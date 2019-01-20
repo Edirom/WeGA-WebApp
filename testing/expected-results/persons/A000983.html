@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-20T08:36:25.726891Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000983" />
         <meta property="dc:description" content="Biographische Informationen zu Johann Friedrich Kaufmann. Lebensdaten: 5. Februar 1785–1. Dezember 1866. Tätigkeiten: Uhrmacher, Instrumentenbauer. Wirkorte: Dresden" />
         <meta name="description" content="Biographische Informationen zu Johann Friedrich Kaufmann. Lebensdaten: 5. Februar 1785–1. Dezember 1866. Tätigkeiten: Uhrmacher, Instrumentenbauer. Wirkorte: Dresden" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"name":"Johann Friedrich Kaufmann – Biographische Informationen aus der WeGA","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000983","@context":"http://schema.org","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000983"}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A000983.html" hreflang="en" lang="en">En</a></li>
@@ -228,38 +231,41 @@
         <div class="container paddingTopIcon paddingBottomIcon">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000983.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000983.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000983.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000983.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000983.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -327,7 +333,9 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
-                    <h2>Ikonographie</h2>
+                    
+                        <h2>Ikonographie</h2>
+                    
                     <div class="iconographythumbnail">
                         <a href="https://de.wikipedia.org/wiki/Datei:Johann_Friedrich_Kaufmann.jpg"><img title="Johann Friedrich Kaufmann. Gemälde von Theodor Thieme, 1865(?) (Quelle: Wikimedia)" alt="Johann Friedrich Kaufmann. Gemälde von Theodor Thieme, 1865(?) (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Johann_Friedrich_Kaufmann.jpg/220px-Johann_Friedrich_Kaufmann.jpg" /></a>
                     </div>
@@ -341,7 +349,7 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li><a href="#biographies">Biographien</a></li>
                                 
                                 <li><a href="#correspondence" data-target="A000983/correspondence.html">Korrespondenz<small> (1)</small></a></li>
@@ -352,8 +360,8 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#contacts" data-target="A000983/contacts.html">Kontakte<small> (1)</small></a></li>
-                                <li><a href="#backlinks" data-target="A000983/backlinks.html">Rückverweise<small> (43)</small></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a href="#backlinks" data-target="A000983/backlinks.html">Rückverweise<small> (4)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -365,7 +373,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
@@ -411,27 +419,27 @@
                                                     
                                                     <div>
       <ul class="tei_list">
-         <li>Sohn von <a class="preview persons A000984" href="/exist/apps/WeGA-WebApp/de/A000984.html">Johann Gottfried Kaufmann</a></li>
+         <li>Sohn von <a class="preview persons A000984" href="">Johann Gottfried Kaufmann</a></li>
          <li>ab 1799 Uhrmacherlehre</li>
          <li>1803–1806 Reisen als Uhrmachergehilfe durch <span class="tei_country">Deutschland</span>, <span class="tei_country">Frankreich</span> und die <span class="tei_country">Schweiz</span></li>
-         <li>daneben musikalische Studien in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span></li>
-         <li>nach der Rückkehr nach <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> gemeinsame Arbeit mit dem <a class="preview persons A000984" href="/exist/apps/WeGA-WebApp/de/A000984.html">Vater</a>: Konstruktion von Spieluhren sowie Erfindung neuer Instrumente, darunter das Belloneon (1806), das Harmonichord (1808/1810), das Chordaulodion (1811–1815)</li>
-         <li>gemeinsame Reisen mit dem <a class="preview persons A000984" href="/exist/apps/WeGA-WebApp/de/A000984.html">Vater</a> zur Vorstellung der Instrumente 1810–1812 und ab 1815</li>
+         <li>daneben musikalische Studien in <a class="preview places A130004" href="">Wien</a></li>
+         <li>nach der Rückkehr nach <a class="preview places A130003" href="">Dresden</a> gemeinsame Arbeit mit dem <a class="preview persons A000984" href="">Vater</a>: Konstruktion von Spieluhren sowie Erfindung neuer Instrumente, darunter das Belloneon (1806), das Harmonichord (1808/1810), das Chordaulodion (1811–1815)</li>
+         <li>gemeinsame Reisen mit dem <a class="preview persons A000984" href="">Vater</a> zur Vorstellung der Instrumente 1810–1812 und ab 1815</li>
          <li>spätere Reisen führten Kaufmann 1837 nach <span class="tei_country">Dänemark</span>, <span class="tei_country">Schweden</span> und <span class="tei_country">Russland</span> sowie 1842–1844 mit seinem Sohn <a class="preview persons A008451" href="/exist/apps/WeGA-WebApp/de/A008451.html">Friedrich Theodor</a> nach <span class="tei_country">Österreich</span>, <span class="tei_country">Bayern</span>, <span class="tei_country">Russland</span> und <span class="tei_country">Dänemark</span></li>
          <li>gemeinsam mit dem <a class="preview persons A008451" href="/exist/apps/WeGA-WebApp/de/A008451.html">Sohn</a> widmete sich Kaufmann besonders der Entwicklung des Orchestrions</li>
       </ul>
    </div>
                                                         <div>
       <h3 class="media-heading">Harmonichord</h3>
-      <p>Im Sommer 1810 unternahm er gemeinsam mit seinem <a class="preview persons A000984" href="/exist/apps/WeGA-WebApp/de/A000984.html">Vater</a> eine Reise durch die böhmischen Bade- und Kurorte <span class="preview places A130201" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130201.html">Teplitz</span>, <span class="67971141081159897100">Carlsbad</span> und <span class="69103101114">Eger</span>, auf der er das Harmonichord vorführte
+      <p>Im Sommer 1810 unternahm er gemeinsam mit seinem <a class="preview persons A000984" href="">Vater</a> eine Reise durch die böhmischen Bade- und Kurorte <a class="preview places A130201" href="">Teplitz</a>, <span class="67971141081159897100">Carlsbad</span> und <span class="69103101114">Eger</span>, auf der er das Harmonichord vorführte
 [vgl. AMZ, Jg. 12, Nr. 57 vom 31. Oktober 1810, Sp. 918f.: Nachrichten aus Dresden sowie die Briefe Goethes an Zelter vom 30. Juni 1810 aus Teplitz und 4. Juli 1810 aus Carlsbad]</p>
-      <p>Eine Vorführung des Harmonichords fand u. a. in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> im Hotel de Pologne am 04. November 1810 statt. Das Harmonichord ähnelt dem Bau des von <span class="85104100101">Uhde</span> entworfenen Xylarmonicons. Kaufmann gelangte offenbar in den Besitz eines vergleichbaren, aber dennoch unbekannten, Instrumentes aus <span class="tei_country">Polen</span>, welches er gemeinsam mit seinem <a class="preview persons A000984" href="/exist/apps/WeGA-WebApp/de/A000984.html">Vater</a> von einem namentlich nicht näher bekannten polnischen Künstler erworben hatte. Das Harmonichord war offenbar für den privaten Musikgebrauch gedacht, ebenso wie zur Begleitung kleinerer Gesangs- oder Instrumentalensembles. Johann Friedrich Kaufmann spielte das Harmonichord mehrmals auch solistisch und ebenso als Begleitinstrument anlässlich seiner Premierenpräsentation, bei der er u.a. den Sänger <a class="preview persons A001958" href="/exist/apps/WeGA-WebApp/de/A001958.html">Tibaldi</a> bei der <a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a>-<span class="651141051013287105101321081051019818032105991043210010599104">Arie „Wie lieb´ ich dich“</span> begleitete.
+      <p>Eine Vorführung des Harmonichords fand u. a. in <a class="preview places A130003" href="">Dresden</a> im Hotel de Pologne am 04. November 1810 statt. Das Harmonichord ähnelt dem Bau des von <span class="85104100101">Uhde</span> entworfenen Xylarmonicons. Kaufmann gelangte offenbar in den Besitz eines vergleichbaren, aber dennoch unbekannten, Instrumentes aus <span class="tei_country">Polen</span>, welches er gemeinsam mit seinem <a class="preview persons A000984" href="">Vater</a> von einem namentlich nicht näher bekannten polnischen Künstler erworben hatte. Das Harmonichord war offenbar für den privaten Musikgebrauch gedacht, ebenso wie zur Begleitung kleinerer Gesangs- oder Instrumentalensembles. Johann Friedrich Kaufmann spielte das Harmonichord mehrmals auch solistisch und ebenso als Begleitinstrument anlässlich seiner Premierenpräsentation, bei der er u.a. den Sänger <a class="preview persons A001958" href="">Tibaldi</a> bei der <a class="preview persons A000777" href="">Haydn</a>-<span class="651141051013287105101321081051019818032105991043210010599104">Arie „Wie lieb´ ich dich“</span> begleitete.
 [in: AMZ, Jg. 12, Nr. 61 vom 28. November 1810, Sp. 981–984: Bericht von Dr. K. Chr. Fr. Krause aus Dresden, Dresden, den 11. November 1810]</p>
-      <p>1811 sind als Reisestationen u. a. <span class="preview places A130016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130016.html">Gotha</span> (Vorführung des Harmonichords vor dem dortigen Hof laut Fourierbuch am 8. Januar) und <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> (Mai/Juni) dokumentiert. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> erlebte Kaufmann als Harmonichord-Spieler erstmals am 25. Mai auf <span class="83991041081111151153278121109112104101110981171141033298101105327725211099104101110">Schloss Nymphenburg bei München</span> und komponierte für dessen <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">Münchner</span> Konzert (13. Juni 1811) ein <span class="preview works A020204" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020204.html"><span class="tei_hi_italic">Concertino</span> (Adagio und Rondo) für das Instrument mit Orchesterbegleitung</span>.</p>
+      <p>1811 sind als Reisestationen u. a. <a class="preview places A130016" href="">Gotha</a> (Vorführung des Harmonichords vor dem dortigen Hof laut Fourierbuch am 8. Januar) und <a class="preview places A130007" href="">München</a> (Mai/Juni) dokumentiert. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> erlebte Kaufmann als Harmonichord-Spieler erstmals am 25. Mai auf <span class="83991041081111151153278121109112104101110981171141033298101105327725211099104101110">Schloss Nymphenburg bei München</span> und komponierte für dessen <a class="preview places A130007" href="">Münchner</a> Konzert (13. Juni 1811) ein <a class="preview works A020204" href=""><span class="tei_hi_italic">Concertino</span> (Adagio und Rondo) für das Instrument mit Orchesterbegleitung</a>.</p>
    </div>
                                                         <div>
       <h3 class="media-heading">Artikel über Kaufmanns Trompeterautomat von Weber</h3>
-      <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> veröffentlichte einen <a class="preview writings A031165" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031165.html">Artikel über Kaufmanns „Trompeter“</a> (unterzeichnet mit September 1812 in Dresden) in: AMZ, Jg. 14, Nr. 41 (7. Oktober 1812), Sp. 663–666:</p>
+      <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> veröffentlichte einen <a class="preview writings A031165" href="">Artikel über Kaufmanns „Trompeter“</a> (unterzeichnet mit September 1812 in Dresden) in: AMZ, Jg. 14, Nr. 41 (7. Oktober 1812), Sp. 663–666:</p>
       <p>Der Artikel enthält auch einen ausführlichen Hinweis auf die Erfindung des Harmonichords und Vorführung des Instrumentes auf einer Reise Kaufmanns durch diverse Regionen Deutschlands im Jahr 1811. Zugleich enthält der Bericht weitere Angaben bezüglich der bei Kaufmann gefertigten mechanischen Musikinstrumente. Dazu zählen neben dem Trompeterautomaten (auch Trompetenwerk genannt), eine erweiterte Form des Fortepiano sowie zahlreiche Spieluhren und das Harmonichord. Das Harmonichord bildet demnach eine gemeinschaftliche Erfindung der beiden Instrumentenbauer, während hingegen die Erfindung des mechanischen Trompeters gänzlich auf Johann Friedrich Kaufmann zurückzuführen ist. </p>
    </div>
                                                     
@@ -530,9 +538,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000983</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000983</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                     </div>
                     
                 </div>
@@ -600,7 +608,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -620,30 +629,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

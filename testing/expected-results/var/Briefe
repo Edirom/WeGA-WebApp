@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta property="dc:date" content="2018-07-04T19:59:50.065Z" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Briefe" />
         <meta property="dc:description" content="Eine Liste von Briefen, gesammelt und (teilweise) ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta name="description" content="Eine Liste von Briefen, gesammelt und (teilweise) ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/css/cslink.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Briefe","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Briefe","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Briefe","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Letters" hreflang="en" lang="en">En</a></li>
@@ -235,7 +238,7 @@
         <div class="allFilter">
             <h2>Filter</h2>
             <h4>Chronologie</h4>
-            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1762-07-18" data-max-slider="2010-12-17" data-from-slider="1762-07-18" data-to-slider="2010-12-17" />
+            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1778-07-12" data-max-slider="2010-12-17" data-from-slider="1778-07-12" data-to-slider="2010-12-17" />
             <div class="input-group facet-group">
                 <input type="checkbox" name="undated" id="undatedLetters" />
                 <label for="undatedLetters">zeige undatierte Dokumente</label>
@@ -267,7 +270,7 @@
         </div>
     </div>
 	<div class="col-md-9 col-md-pull-3 searchResults">
-	<h2>6108 Suchergebnisse</h2>
+	<h2>169 Suchergebnisse</h2>
 	<div class="row">
 		<div class="col-sm-8">
 			<ul class="pagination">
@@ -276,8 +279,8 @@
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
                                             <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
                                             <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=610&amp;limit=10">610</a></li>
-                                            <li><a class="page-link" href="?page=611&amp;limit=10">611</a></li>
+                                            <li><a class="page-link" href="?page=16&amp;limit=10">16</a></li>
+                                            <li><a class="page-link" href="?page=17&amp;limit=10">17</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -294,106 +297,6 @@
 		<div class="col-xs-12">
 			<ul class="media-list">
 				<li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040004.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040004.html">August Wilhelm Meyer an Anonymus<br />Hildesheim, Sonntag, 18. Juli 1762</a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> Nachdem von einigen hiesigen Brüdern abgeredet worden</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            wegen des in Hildesheim wohnhaften von Weber sei ausgemacht, daß er nicht zugelassen werden solle bis er die Braunschweiger Loge wieder besuchen dürfe
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040004</span> <span class="docStatus">in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A005656/Korrespondenz/A040002.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A005656/Korrespondenz/A040002.html">Gottfried Jacob Jänisch an Anonymus<br />Hamburg, Mittwoch, 24. November 1762</a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> –</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Schreiben des Großmeisters der Logen von Hamburg und Niedersachen, Konstitutionspatent für die Hildesheimer Loge "Pforte zur Ewigkeit"; Mitglieder u. a. Franz Anton von Weber und sein Schwager Franz Joseph von Fumetti;
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040002</span> <span class="docStatus">in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040003.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040003.html">J. D. S. Leonhardi an Anonymus<br />Hildesheim, Montag, 27. Dezember 1762</a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> –</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Protokoll der Einweihung der Loge "Pforte zur Ewigkeit", gez. Meister vom Stuhle J. D. S. Leonhardi, Franz Anton von Weber als Großschwertträger; Fumetti zum Redner und Sekretär ernannt;
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040003</span> <span class="docStatus">in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A003715/Korrespondenz/A040005.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A003715/Korrespondenz/A040005.html">Johann Gottfried von Exter an Anonymus<br />Hamburg, Montag, 19. September 1763</a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> –</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Schreiben der Schottenloge "Judica", vertreten durch den Meister vom Stuhle Johann Gottfried von Exter u. a.; Konstitutionspatent für die Hildesheimer Schottenloge "Zum Tempel"; Mitglieder u. a. Weber und sein Schwager Franz Joseph von Fumetti;
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040005</span> <span class="docStatus">in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040006.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040006.html">Oldekop an Johann Philipp Manecke  in Lüneburg<br />Celle, Donnerstag, 17. April 1777</a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> Es haben des H. LandschaftsDirectoris Excellenz mir die hiesige Stöfflersche</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            betr. ein Gastspiel der Stöfflerschen Truppe, die in Lüneburg Station machen möchte; mit Erlaubnis-Notiz vom 20.4.1777
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040006</span> <span class="docStatus">in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
 					<div>
     <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040007.html">
@@ -418,19 +321,21 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040008.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002071/Korrespondenz/A040032.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A040008.html">Anonymus an Nicolaus Staubsand  in Eutin<br />Eutin, Mittwoch, 14. April 1779</a></h3>
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002071/Korrespondenz/A040032.html">Edmund von Weber an Gustav Friedrich Wilhelm Großmann in Lübeck
+               <br />Stendal, Mittwoch, 29. April 1789
+            </a></h3>
         
-        <p><strong><span>Incipit</span>: </strong> Nach Masgabe einer von Rev.mo Ser:mo immediate ad</p>
+        <p><strong><span>Incipit</span>: </strong> Sie werden Verzeihen daß ich mir die Freiheit nehme</p>
         <p>
             <strong><span>Zusammenfassung</span>: </strong> 
-            Anweisung an den Kassierer Staubsandt, ab 1. April Franz Anton v. Weber als Kpm. jährlich 400 rh, Stadtorganist Bülau 100 rh und zwei Waldhornisten mit 120 rh zu bezahlen.
+            erkundigt sich, ob er mit seiner Frau, Mad. Kronheim, die früher schon in Gastrollen bei ihm aufgetreten sei, eine Anstellung finden könne; sie seien gegenwärtig bei der Döbbelinschen Gesellschaft u. treten beide in Opern auf;
         </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040008</span> <span class="docStatus">in Bearbeitung</span></p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040032</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
         <div class="kwic"></div>
     </div>
 </div>
@@ -438,19 +343,21 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040009.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040009.html">Franz Anton von Weber an Nicolaus Staubsand  in Eutin<br />Eutin, Mittwoch, 13. Oktober 1779</a></h3>
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.html">Vincent Weyrauch an Gustav Friedrich Wilhelm Großmann in Hannover
+               <br />Meiningen, Samstag, 10. April 1790
+            </a></h3>
         
-        <p><strong><span>Incipit</span>: </strong> Daß d H Kammer Assessor Staubsandtmir an Gehalt</p>
+        <p><strong><span>Incipit</span>: </strong> Ihr lezter Brief kam mir unerwartet</p>
         <p>
             <strong><span>Zusammenfassung</span>: </strong> 
-            Gehaltsquittung für dreiviertel Jahr 1779 über 300 rh;
+            sieht dem Engagement bei Großmann in Hannover mit Freude entgegen, denkt 25./26. April einzutreffen, fügt sein Rollenverzeichnis bei und berichtet über Theater-Neuigkeiten in Meiningen
         </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040009</span> <span class="docStatus">in Bearbeitung</span></p>
+        <p><strong><span>Kennung</span>:</strong> <span>A045402</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
         <div class="kwic"></div>
     </div>
 </div>
@@ -458,19 +365,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040010.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000651/Korrespondenz/A040057.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040010.html">Franz Anton von Weber an Friedrich August, Fürstbischof von Lübeck  in Eutin<br />Eutin, Dienstag, 20. Juni 1780</a></h3>
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A000651/Korrespondenz/A040057.html"> an <br />Mittwoch, 27. August 1794</a></h3>
         
-        <p><strong><span>Incipit</span>: </strong> Euer Hochfürstl. Durchlaucht Verzeihen gnädigst, wenn ich</p>
+        <p><strong><span>Incipit</span>: </strong> Auf Ihr an mich erlassnes Schreiben</p>
         <p>
             <strong><span>Zusammenfassung</span>: </strong> 
-            Widmungsschreiben zur Übersendung seines Oratoriums "Lob der Göttlichen Vorsehung"
+            betrifft Wiederanstellung der Weyrauchs (Vincenz und Jeanette) in Weimar
         </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040010</span> <span class="docStatus">in Bearbeitung</span></p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040057</span> <span class="docStatus">in Bearbeitung</span></p>
         <div class="kwic"></div>
     </div>
 </div>
@@ -478,16 +385,136 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A008080/Korrespondenz/A040012.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000958/Korrespondenz/A040098.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A008080/Korrespondenz/A040012.html">Friedrich Levin Graf von Holmer an Friedrich August, Fürstbischof von Lübeck<br />Eutin, Freitag, 5. Januar 1781</a></h3>
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A000958/Korrespondenz/A040098.html">Johann Nepomuk Kalcher
+               <br /> Albumblatt für Carl Maria von Weber
+               <br /> München, Freitag, 1. August 1800
+            </a></h3>
         
-        <p><strong><span>Incipit</span>: </strong> Es ist unstreitig und in die Augen fallend</p>
+        <p><strong><span>Incipit</span>: </strong> Zwey Weiber können sich durch Ehe niemals paaren</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Eintrag Kalchers in Webers Album amicorum
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040098</span> <span class="docStatus">in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009077/Korrespondenz/A045317.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A009077/Korrespondenz/A045317.html">Friedrich Eisenhut
+               <br /> Albumblatt für Carl Maria von Weber
+               <br /> Freiberg, Freitag, 24. Oktober 1800
+            </a></h3>
         
-        <p><strong><span>Kennung</span>:</strong> <span>A040012</span> <span class="docStatus">in Bearbeitung</span></p>
+        <p><strong><span>Incipit</span>: </strong> Umschwebe, erhabener Genius der Zeit</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Stammbucheintrag für Carl Maria von Weber
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A045317</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045363.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045363.html">H. Mitterer
+               <br /> Albumblatt für Carl Maria von Weber
+               <br /> vermutlich München um 1800 
+            </a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> –</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Stammbucheintrag für Carl Maria von Weber
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A045363</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A008627/Korrespondenz/A045335.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A008627/Korrespondenz/A045335.html">Johann Schwanberg
+               <br />Albumblatt für Carl Maria von Weber
+               <br />Braunschweig, Mittwoch, 1. September 1802 
+            </a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> Raccomandandosi alle buona amicizia</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Stammbucheintrag für Carl Maria von Weber
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A045335</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000347/Korrespondenz/A045306.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A000347/Korrespondenz/A045306.html">Jakob Hugo Eschen
+               <br /> Albumblatt für Carl Maria von Weber
+               <br /> Eutin, Mittwoch, 13. Oktober 1802
+            </a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> Selig, wer dich ganz empfindet</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Stammbucheintrag für Carl Maria von Weber
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A045306</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040144.html">Carl Maria von Weber an Thaddäus Susan in Wien
+               <br />Augsburg, Donnerstag, 23. Dezember 1802
+            </a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> Mit inniger Freude habe ich deinen lieben Brief</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            gedenkt wehmütig der gemeinsamen Tage; über den Coburger Hof u. den dortigen Musikdir. Schneider, den er ihm empfiehlt; erwähnt S's Plan zur Mus: Zeitung u. andere lit. Vorhaben sowie dazu nötige Kontakte; erwähnt seine Portraitslg. u. legt "einige Kleinigkeiten" von sich bei;
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040144</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
         <div class="kwic"></div>
     </div>
 </div>
@@ -503,8 +530,8 @@
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
                                             <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
                                             <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=610&amp;limit=10">610</a></li>
-                                            <li><a class="page-link" href="?page=611&amp;limit=10">611</a></li>
+                                            <li><a class="page-link" href="?page=16&amp;limit=10">16</a></li>
+                                            <li><a class="page-link" href="?page=17&amp;limit=10">17</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -576,7 +603,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -596,30 +624,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

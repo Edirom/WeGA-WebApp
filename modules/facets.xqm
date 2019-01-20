@@ -197,8 +197,6 @@ declare function facets:filter-label($node as node(), $model as map(*)) as eleme
     element {name($node)} {
         $node/@*[not(name(.) = 'title')],
         attribute title {$model('filterOption')('label')},
-        if(string-length($model('filterOption')('label')) > 30) then 
-            substring($model('filterOption')('label'), 1, 30) || '…'
-        else $model('filterOption')('label')
+        $model('filterOption')('label')
     }
 };

@@ -4,15 +4,15 @@ xquery version "3.1" encoding "UTF-8";
  : Functions for collecting HTML metadata
 ~:)
 
-module namespace html-meta="http://xquery.weber-gesamtausgabe.de/modules/html-meta";
+module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
-import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
+import module namespace templates="http://exist-db.org/xquery/templates" at "xmldb:exist:///db/apps/shared-resources/content/templates.xql";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "date.xqm";
@@ -25,31 +25,32 @@ import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at 
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function html-meta:metadata($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    function lod:metadata($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'meta-page-title' := html-meta:page-title($model, $lang),
+            'meta-page-title' := lod:page-title($model, $lang),
             'DC.contributor' := if($model?specID or $model?schemaID) then query:contributors($gl:main-source) else query:contributors($model('doc')),
-            'DC.creator' := html-meta:DC.creator($model),
-            'DC.date' := html-meta:DC.date($model),
-            'DC.identifier' := html-meta:DC.identifier($model),
-            'DC.description' := html-meta:DC.description($model, $lang),
-            'DC.subject' := html-meta:DC.subject($model, $lang),
-            'DC.rights' := html-meta:DC.rights($model),
+            'DC.creator' := lod:DC.creator($model),
+            'DC.date' := lod:DC.date($model),
+            'DC.identifier' := lod:DC.identifier($model),
+            'DC.description' := lod:DC.description($model, $lang),
+            'DC.subject' := lod:DC.subject($model, $lang),
+            'DC.rights' := query:licence($model?doc),
             'google-site-verification' := config:get-option('googleWebsiteMetatag'),
-            'ms-site-verification' := config:get-option('microsoftBingWebsiteMetatag')
+            'ms-site-verification' := config:get-option('microsoftBingWebsiteMetatag'),
+            'jsonld-metadata' := lod:jsonld($model, $lang)
         }
 };
 
 (:~
  : Print all items from a sequence identified by $model($key)
 ~:)
-declare function html-meta:each-meta($node as node(), $model as map(*), $key as xs:string) as element(meta)* {
+declare function lod:each-meta($node as node(), $model as map(*), $key as xs:string) as element(meta)* {
     $model($key) ! element {name($node)} { $node/@*[not(name(.) = 'content')], attribute content {.} }
 };
 
 declare 
     %templates:default("lang", "en") 
-    function html-meta:hreflang($node as node(), $model as map(*), $lang as xs:string) as element()* {
+    function lod:hreflang($node as node(), $model as map(*), $lang as xs:string) as element()* {
         for $l in $config:valid-languages 
         return
             element { name($node) } { 
@@ -63,9 +64,111 @@ declare
 };
 
 (:~
+ : Collect information about a resource for outputting as JSON-LD
+ :)
+declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
+    let $schema.org-type := lod:schema.org-type($model)
+    let $identifier := lod:DC.identifier($model)
+    let $url := 
+        if($model?doc) then core:permalink(controller:path-to-resource($model?doc, $lang))
+        else $identifier
+    let $jsonld-common := map {
+        '@id': $identifier,
+        '@type': $schema.org-type,
+        '@context': 'http://schema.org',
+        'url': $url,
+        'name': 
+            if($schema.org-type = ('Person', 'Organization', 'Place')) then wdt:lookup(config:get-doctype-by-id($model?docID), $model?doc)('title')('txt')
+            else lod:page-title($model, $lang),
+        'description': lod:DC.description($model, $lang)
+    }
+    let $publisher := map {
+        'name':'Carl-Maria-von-Weber-Gesamtausgabe',
+        'url':'http://weber-gesamtausgabe.de',
+        '@type':'Organization'
+    }
+    let $funder := map {
+        'name':'Akademie der Wissenschaften und der Literatur, Mainz',
+        'url':'http://adwmainz.de',
+        '@type':'Organization'
+    }
+    let $mentions := () 
+        (: too expensive with present implementation! :)
+        (:array {
+            distinct-values(($model?doc//tei:text//tei:*[@key] | $model?doc/tei:ab//tei:*[@key])/@key) ! lod:jsonld-entity(<tei:rs key="{.}"/>, $lang)
+        }:)
+    let $image := 
+        if($model?docID = 'home') then core:permalink('resources/img/logo_weber.png')
+        else ()
+    return
+        map:merge((
+            $jsonld-common, (: always included :)
+            
+            if($image) then map { 'image': $image } else (), (: include image if available :)
+            
+            if($schema.org-type = ('CreativeWork', 'Article', 'NewsArticle')) then map:merge((
+                $jsonld-common,
+                map {'funder': $funder},
+                map {'publisher': $publisher},
+                map {'license': query:licence($model?doc)},
+                map {'author': array { $model?doc//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author ! lod:jsonld-entity(., $lang) }},
+                if(count($mentions) gt 0) then map {'mentions': $mentions} else ()
+            )) 
+            else if($schema.org-type = ('Person', 'Organization', 'Place')) then 
+                if(query:get-gnd($model?doc)) then 
+                    map {'sameAs': config:get-option('dnb') || query:get-gnd($model?doc) }
+                else ()
+            else ()
+        ))
+};
+
+(:~
+ : Helper function for setting a schema.org type
+ :)
+declare %private function lod:schema.org-type($model as map(*)) as xs:string {
+    switch(config:get-doctype-by-id($model?docID))
+    case 'news' return 'NewsArticle'
+    case 'persons' return 'Person'
+    case 'orgs' return 'Organization'
+    case 'places' return 'Place'
+    case 'addenda' case 'thematicCommentary' return 'Article'
+    default return 'CreativeWork'
+};
+
+(:~
+ : Helper function for outputting entity information
+ :)
+declare %private function lod:jsonld-entity($elem as element(), $lang as xs:string) as map(*)* {
+    typeswitch($elem)
+    case element(tei:rs) return tokenize(normalize-space($elem/@key), '\s') ! lod:jsonld-entity(<tei:name key="{.}"/>, $lang) 
+    default return
+        map:merge((
+            map {
+                'name': if($elem/@key) then query:title($elem/@key) else str:normalize-space($elem),
+                '@type': 
+                    if($elem/@key) then lod:schema.org-type(map { 'docID': $elem/@key })
+                    else if($elem/self::tei:orgName or $elem/self::tei:rs[@type='org']) then 'Organization'
+                    else if($elem/self::tei:persName or $elem/self::tei:author or $elem/self::tei:rs[@type='person']) then 'Person'
+                    else if($elem/self::tei:settlement or $elem/self::tei:placeName or $elem/self::tei:region or $elem/self::tei:country or $elem/self::tei:rs[@type='place']) then 'Place'
+                    else core:logToFile('debug',  'Failed to infer schema.org type for ' || serialize($elem))
+            },
+            if($elem/@key) then map {
+                '@id': core:permalink($elem/@key),
+                'url': core:permalink($lang || '/' || $elem/@key)
+            }
+            else (),
+            if(query:get-gnd($elem/@key)) then map {
+                'sameAs': config:get-option('dnb') || query:get-gnd($elem/@key)
+            }
+            else ()
+        ))
+};
+
+
+(:~
  : Helper function for creating the page description
 ~:)
-declare %private function html-meta:DC.description($model as map(*), $lang as xs:string) as xs:string? {
+declare %private function lod:DC.description($model as map(*), $lang as xs:string) as xs:string? {
     if($model?specID) then lang:get-language-string('metaDescriptionGuidelinesSpecs', ($model?specID), $lang)
     else if($model?chapID) then 
         switch($model?chapID)
@@ -99,6 +202,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
             case 'orgs' return wdt:orgs($model('doc'))('title')('txt') || ': ' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2)
             case 'places' return lang:get-language-string('place', $lang)
             case 'works' return lang:get-language-string('workName', $lang)
+            case 'addenda' return lang:get-language-string($model?docType, $lang)
             case 'error' return lang:get-language-string('metaDescriptionError', $lang)
             default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
@@ -106,7 +210,7 @@ declare %private function html-meta:DC.description($model as map(*), $lang as xs
 (:~
  : Helper function for creating the page title
 ~:)
-declare %private function html-meta:page-title($model as map(*), $lang as xs:string) as xs:string? {
+declare %private function lod:page-title($model as map(*), $lang as xs:string) as xs:string? {
     if($model?specID) then lang:get-language-string('metaTitleGuidelinesSpecs', ($model?specID, $model?schemaID), $lang)
     else if($model?chapID) then 
         switch($model?chapID)
@@ -121,7 +225,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
         default return  
             switch($model('docType'))
             case 'persons' return concat(str:print-forename-surname(query:title($model('docID'))), ' – ', lang:get-language-string('tabTitle_bio', $lang))
-            case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' case 'places' case 'works' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
+            case 'letters' case 'writings' case 'news' case 'var' case 'thematicCommentaries' case 'documents' case 'places' case 'works' case 'addenda' return wdt:lookup($model('docType'), $model('doc'))('title')('txt')
             case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
             case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
             case 'error' return lang:get-language-string('metaTitleError', $lang)
@@ -131,7 +235,7 @@ declare %private function html-meta:page-title($model as map(*), $lang as xs:str
 (:~
  : Helper function for creating the page title
 ~:)
-declare %private function html-meta:DC.subject($model as map(*), $lang as xs:string) as xs:string? {
+declare %private function lod:DC.subject($model as map(*), $lang as xs:string) as xs:string? {
     if($model?specID or $model?chapID) then 'Guidelines; Encoding'
     else 
         switch($model('docID'))
@@ -146,23 +250,15 @@ declare %private function html-meta:DC.subject($model as map(*), $lang as xs:str
             case 'diaries' return string-join((lang:get-language-string('diary', $lang), query:get-authorName($model('doc'))), '; ')
             case 'news' return string-join($model('doc')//tei:keywords/tei:term, '; ')
             case 'var' return 'Varia'
-            case 'orgs' case 'works' return lang:get-language-string($model?docType, $lang)
+            case 'orgs' case 'works' case 'addenda' return lang:get-language-string($model?docType, $lang)
             case 'places' return 'Geographica'
             default return ()
 };
 
 (:~
- : Helper function for collecting licensing information
-~:)
-declare %private function html-meta:DC.rights($model as map(*)) as xs:anyURI {
-    if($model('doc')//tei:licence/@target castable as xs:anyURI) then xs:anyURI($model('doc')//tei:licence/@target)
-    else xs:anyURI('https://creativecommons.org/licenses/by/4.0/') 
-};
-
-(:~
  : Helper function for collecting creator information
 ~:)
-declare %private function html-meta:DC.creator($model as map(*)) as xs:string? {
+declare %private function lod:DC.creator($model as map(*)) as xs:string? {
     if($model('docID') = ('indices', 'home', 'search')) then 'Carl-Maria-von-Weber-Gesamtausgabe'
     else if($model?specID or $model?chapID) then 'Carl-Maria-von-Weber-Gesamtausgabe'
     else if(config:get-doctype-by-id($model('docID'))) then map:get(config:get-svn-props($model('docID')), 'author')
@@ -172,7 +268,7 @@ declare %private function html-meta:DC.creator($model as map(*)) as xs:string? {
 (:~
  : Helper function for collecting date information
 ~:)
-declare %private function html-meta:DC.date($model as map(*)) as xs:string? {
+declare %private function lod:DC.date($model as map(*)) as xs:string? {
     if($model('docID') = ('indices', 'home', 'search')) then string(config:getDateTimeOfLastDBUpdate())
     else if($model?specID or $model?chapID) then string(config:getDateTimeOfLastDBUpdate())
     else if(config:get-doctype-by-id($model('docID')) and exists(config:get-svn-props($model('docID')))) then map:get(config:get-svn-props($model('docID')), 'dateTime')
@@ -182,7 +278,7 @@ declare %private function html-meta:DC.date($model as map(*)) as xs:string? {
 (:~
  : Helper function for collecting identifier information
 ~:)
-declare %private function html-meta:DC.identifier($model as map(*)) as xs:string? {
+declare %private function lod:DC.identifier($model as map(*)) as xs:string? {
     if($model('docID') = ('indices', 'search')) then request:get-url()
     else if($model('docID') = 'home') then 'http://weber-gesamtausgabe.de'
     else if($model?specID or $model?chapID) then request:get-url()

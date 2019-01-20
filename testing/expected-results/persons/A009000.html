@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000" />
         <meta property="dc:description" content="Biographische Informationen zu Joachim Veit. Lebensdaten: 5. Januar 1956–. Tätigkeiten: Editionsleiter. Wirkorte: Detmold" />
         <meta name="description" content="Biographische Informationen zu Joachim Veit. Lebensdaten: 5. Januar 1956–. Tätigkeiten: Editionsleiter. Wirkorte: Detmold" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"name":"Joachim Veit – Biographische Informationen aus der WeGA","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","@context":"http://schema.org","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A009000.html" hreflang="en" lang="en">En</a></li>
@@ -228,38 +231,41 @@
         <div class="container paddingTopIcon paddingBottomIcon">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009000.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009000.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009000.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009000.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -270,7 +276,7 @@
                     
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" title="Veit, Joachim" alt="Veit, Joachim" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/persons%2FA0090xx%2FA009000%2FJoachimVeit.jpg/full/,340/0/native.jpg" />
+                            <img class="img-responsive" title="no portrait available" alt="no portrait available" src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_person_mann_gross.png" />
                         </div>
                         <div class="back colored">
                             <h3>Bildquelle</h3>
@@ -335,19 +341,19 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li><a href="#biographies">Biographien</a></li>
                                 
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#biblio" data-target="A009000/biblio.html">Bibliographie<small> (104)</small></a></li>
-                                <li><a href="#thematicCommentaries" data-target="A009000/thematicCommentaries.html">Themenkommentare<small> (4)</small></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#news" data-target="A009000/news.html">Aktuelles<small> (124)</small></a></li>
+                                <li><a href="#thematicCommentaries" data-target="A009000/thematicCommentaries.html">Themenkommentare<small> (2)</small></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A009000/backlinks.html">Rückverweise<small> (12)</small></a></li>
+                                <li><a href="#news" data-target="A009000/news.html">Aktuelles<small> (10)</small></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a href="#backlinks" data-target="A009000/backlinks.html">Rückverweise<small> (6)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -359,7 +365,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
@@ -405,18 +411,18 @@
                                                     
                                                     <div>
         <ul class="tei_list">
-            <li>Studium in <span class="preview places A130316" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130316.html">Saarbrücken</span> und <span class="preview places A130001" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130001.html">Detmold</span>/<span class="preview places A130144" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130144.html">Paderborn</span></li>
+            <li>Studium in <a class="preview places A130316" href="">Saarbrücken</a> und <a class="preview places A130001" href="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130001.html">Detmold</a>/<a class="preview places A130144" href="">Paderborn</a></li>
             <li>1982 1. Staatsexamen für das Lehramt am Gymnasium mit den Fächern Musik und Anglistik</li>
             <li>1983–1984 Tutorentätigkeit an der Universität – GH – Paderborn im Fach Musiktheorie</li>
             <li>1984 Magisterprüfung im Fach Musikwissenschaft an der Universität – GH Paderborn mit den Nebenfächern Anglistische und Amerikanistische Literaturwissenschaft</li>
             <li>1988 Promotion im Fach Musikwissenschaft an der Universität – GH Paderborn, Thema der Dissertation: Studien zum Frühwerk <span class="67971141083277971141059732118111110328710198101114115">Carl Maria von Webers</span>. Untersuchungen zum Einfluß <span class="6598982333286111103108101114115">Abbé Voglers</span> und <span class="7011497110122326897110122105115">Franz Danzis</span></li>
             <li>1988 Einstellung als Wissenschaftlicher Mitarbeiter in dem von der DFG geförderten Drittmittelprojekt „Gesamtausgabe der Briefe Carl Maria von Webers“</li>
-            <li>1993 Organisation des ersten wissenschaftlichen Kolloquiums der Weber-Gesamtausgabe in <span class="preview places A130001" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130001.html">Detmold</span></li>
-            <li>1995 Organisation der ersten Arbeitstagung der Mitarbeiter der Weber-Gesamtausgabe in <span class="preview places A130001" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130001.html">Detmold</span></li>
+            <li>1993 Organisation des ersten wissenschaftlichen Kolloquiums der Weber-Gesamtausgabe in <a class="preview places A130001" href="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130001.html">Detmold</a></li>
+            <li>1995 Organisation der ersten Arbeitstagung der Mitarbeiter der Weber-Gesamtausgabe in <a class="preview places A130001" href="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130001.html">Detmold</a></li>
             <li>1996 Übernahme als Wissenschaftlicher Mitarbeiter in das von der Konferenz der Akademien der Wissenschaften geförderte Projekt der Carl-Maria-von-Weber-Gesamtausgabe</li>
             <li>1997 Mitwirkung in der Arbeitsgruppe „Richtlinien-Empfehlungen zur Edition von Musikerbriefen“ bei der Akademie der Wissenschaften und der Literatur in Mainz</li>
             <li>1998 Mitorganisation der Tagung „Carl Maria von Weber und die Schauspielmusik seiner Zeit“ an der Staatsbibliothek zu Berlin – Preußischer Kulturbesitz und der 2. Arbeitstagung der Weber-Gesamtausgabe in Berlin</li>
-            <li>2001 Organisation des MeisterWerk-Kurses zu <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="preview works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abu Hassan</span> an der Hochschule für Musik Detmold</li>
+            <li>2001 Organisation des MeisterWerk-Kurses zu <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview works A020038" href="">Abu Hassan</a> an der Hochschule für Musik Detmold</li>
             <li>2004 Veranstaltung des Symposions „Musikalisches Erbe im Digitalen Zeitalter – Chancen und Probleme neuer Techniken“ während des Internationalen Kongresses der Gesellschaft für Musikforschung in Weimar</li>
             <li>2005 Verleihung einer Honorarprofessur durch die Kulturwissenschaftliche Fakultät der Universität Paderborn</li>
             <li>2006 Bewilligung des DFG-Projekts „Entwicklung von Werkzeugen für digitale Formen wissenschaftlich-kritischer Musikeditionen“ („<a href="http://www.edirom.de">Edirom</a>“)</li>
@@ -452,7 +458,7 @@
                                                     <ul>
                                                             <li><a title="Bibliothèque nationale de France (mapping provided by VIAF) [121921576]" href="http://catalogue.bnf.fr/ark:/12148/cb121921576">BNF [by http://viaf.org/viaf/263865979]</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/103988327">Deutsche Digitale Bibliothek</a></li>
-                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)103988327">HBZ-Verbundkatalog</a></li>
+                                                            <li><a title="Personen der Formalerschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://193.30.112.134/F/-?func=find-a&amp;local_base=HBZ01&amp;find_code=PGI&amp;request=(DE-588)103988327">HBZ-Verbundkatalog (34)</a></li>
                                                             <li><a title="Find related titles (from and about) in the HeBIS biliographic catalogue" href="http://resolver.hebis.de/wikimedia/pndresolver/103988327">HeBIS-Verbundzentrale (32)</a></li>
                                                             <li><a title="International Standard Name Identifier (ISO 27729) (mapping provided by VIAF) [0000000108720107]" href="http://isni.org/isni/0000000108720107">ISNI [by http://viaf.org/viaf/263865979]</a></li>
                                                             <li><a title="Berlin-Brandenburgische Akademie der Wissenschaften / Jahresberichte für deutsche Geschichte [9 von Veit, Joachim (1956-)]" href="http://jdgdb.bbaw.de/cgi-bin/jdg?t_idn_erg=x&amp;idn=GND:103988327">Jahresberichte für deutsche Geschichte - Online [9 von Veit, Joachim (1956-)]</a></li>
@@ -526,9 +532,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                     </div>
                     
                 </div>
@@ -596,7 +602,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -616,30 +623,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

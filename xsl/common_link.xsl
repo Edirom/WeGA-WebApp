@@ -14,12 +14,12 @@
         because HTML does not support nested links (aka html:a elements) we need to attach the link to the deepest element; 
         thus exclude all elements with the following child elements 
     -->
-    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'unclear', 'app', 'note')"/>
+    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'unclear', 'app', 'note', 'settlement')"/>
     
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
-    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName">
+    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement">
         <xsl:choose>
             <xsl:when test="@key or @dbkey">
                 <xsl:call-template name="createLink"/>
@@ -34,7 +34,7 @@
         <!--
             Need to distinguish between docTypes with support for single views and those with tooltips only 
         -->
-        <xsl:variable name="rs-types-with-link" as="xs:string+" select="('person', 'news', 'writing', 'letter', 'diaryDay', 'org', 'document')"/>
+        <xsl:variable name="rs-types-with-link" as="xs:string+" select="('person', 'news', 'writing', 'letter', 'diaryDay', 'org', 'document', 'work')"/>
         <xsl:choose>
             <xsl:when test="@key and (@type=$rs-types-with-link)">
                 <xsl:call-template name="createLink"/>
@@ -48,16 +48,19 @@
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
-
-    <xsl:template match="tei:settlement">
-        <xsl:call-template name="createSpan"/>
+    
+    <xsl:template match="tei:rs[@type='addenda'][@key]">
+        <!-- 
+            Addenda don't need popovers and have special virtual resource locations
+            Hence this special treatmetn here
+        -->
+        <xsl:element name="a">
+            <xsl:attribute name="href" select="concat(wega:join-path-elements(($baseHref, $lang, @key)), '.html')"/>
+            <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template match="tei:characterName">
-        <xsl:call-template name="createSpan"/>
-    </xsl:template>
-
-    <xsl:template match="tei:workName">
         <xsl:call-template name="createSpan"/>
     </xsl:template>
 

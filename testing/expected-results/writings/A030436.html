@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-10T20:22:02.829414Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030436" />
         <meta property="dc:description" content="Aufführungsbesprechung Berlin: &#34;Der Freischütz&#34; von Carl Maria von Weber am 18. Juni 1821 (Teil 2 von 2). Der erste Teil erschien in der vorigen Ausgabe. Dazu Besprechung eines Konzertes von Carl Maria von Weber und Alexandre Boucher." />
         <meta name="description" content="Aufführungsbesprechung Berlin: &#34;Der Freischütz&#34; von Carl Maria von Weber am 18. Juni 1821 (Teil 2 von 2). Der erste Teil erschien in der vorigen Ausgabe. Dazu Besprechung eines Konzertes von Carl Maria von Weber und Alexandre Boucher." />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Anonymus","@type":"Person"}],"name":"Aufführungsbesprechung Berlin, Schauspielhaus: \"Der Freischütz\" von Carl Maria von Weber am 18. Juni 1821 (Teil 2 von 2) und Konzert Webers im Schauspielhaus am 25. Juni 1821","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030436","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A030436.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><span>Anonymus</span></li>
-                        <li><span>Schriften</span></li>
-                        <li><span>A030436</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span>Anonymus</span>
+                        </li>
+                        <li>
+                            <span>Schriften</span>
+                        </li>
+                        <li>
+                            <span>A030436</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,69 +250,92 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436/backlinks.html">Rückverweise</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030436.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
     </div>
 </div>
-                    <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
+                    <div>                       
+                        
+                        <h2>
+                            <a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
+                        </h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">                           
+                                
                             <div id="relatedItems">
                                 <h3>Verknüpfte Dokumente</h3>
                                 <ul>
                                     <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030435.html">Aufführungsbesprechung Berlin, Schauspielhaus: "Der Freischütz" von Carl Maria von Weber am 18. Juni 1821 (Teil 1 von 2)</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                 </ul>
                             </div>
@@ -308,19 +346,21 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000117" /> <span title="Beethoven, Ludwig van">Beethoven, Ludwig van</span> 
+                                    <input type="checkbox" name="options" value="A001362" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000179" /> <span title="Blume, Heinrich">Blume, Heinrich</span> 
+                                    <input type="checkbox" name="options" value="A000117" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000209" /> <span title="Boucher, Alexandre-Jean">Boucher, Alexandre-Jean</span> 
+                                    <input type="checkbox" name="options" value="A000179" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001362" /> <span title="Mozart, Wolfgang Amadeus">Mozart, Wolfgang Amadeus</span> 
+                                    <input type="checkbox" name="options" value="A001805" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001805" /> <span title="Seidler, Caroline">Seidler, Caroline</span> 
+                                    <input type="checkbox" name="options" value="A000209" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label>
@@ -328,35 +368,41 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020312" /> <span title="9 Variationen über ein norwegisches Lied">9 Variationen über ein norwegi…</span> 
+                                    <input type="checkbox" name="options" value="A020040" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
+                                    <input type="checkbox" name="options" value="A020491" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020491" /> <span title="Fidelio">Fidelio</span> 
+                                    <input type="checkbox" name="options" value="A020231" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020231" /> <span title="Konzertstück für Klavier und Orchester f-Moll">Konzertstück für Klavier und O…</span> 
+                                    <input type="checkbox" name="options" value="A020334" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020334" /> <span title="Rondo brillante Es-Dur">Rondo brillante Es-Dur</span> 
+                                    <input type="checkbox" name="options" value="A020312" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -376,9 +422,9 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Correspondenz-Nachrichten.</h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_hi_spaced_out"><a class="preview writings A030435" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030435.html">(Schluß.)</a></span> Berlin.</h3>
-                                        <p>Ein ausführliches Urtheil über das vortreffliche, neuste und größte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Werk</span> muß ich mir leider! für einen Raum ersparen, der der Musik mehr ausschließlich gewidmet ist, als diese Blätter, und eine Erzählung des Inhaltes werde ich meinen Lesern noch weniger geben, denn Ihre <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wiener</span> Bühne wird sich eine so geniale, gar angenehme Oper nicht lange fremd seyn lassen, und die Überraschung und die Theaterkoups sind bey diesem dramatischen Produkte auch zu etwas anzuschlagen. Nur so viel, daß alle die Eigenschaften, die <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span></a> schon seit seinem ersten Auftreten charakteristisch von allen andern Musikern der Mit- und Vor-Zeit unterschieden, ich meine jenes Genie, das mit den Regeln und Gesetzen spielt und kühn scherzt, ohne sie je zu verletzen, jene <span class="tei_hi_spaced_out">kaustische</span> Kraft der Melodien, die unwiderruflich in’s Herz gehen, jene Ge<span class="tei_pb" title="Seitenumbruch">|</span>wandtheit im Behandeln der Harmonien, und vor allen jene Geschicklichkeit – man erlaube uns eine triviale, aber bezeichnende Redensart – jene Geschicklichkeit, <span class="tei_hi_spaced_out">den Nagel überall auf den Kopf zu treffen</span>, alle diese Prädikate glänzen höchst erfreulich in dem „<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freyschütz,</span>“ und erheben das Werk auf eine Höhe, auf der es, wie einer unserer Recensenten ganz richtig bemerkt hat, „seit <span class="tei_hi_spaced_out"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>’s Tode mit <span class="tei_hi_spaced_out"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>’s „<span class="preview works A020491" data-ref="/exist/apps/WeGA-WebApp/de/A000117/Werke/A020491.html">Fidelio</span>“ einzig dasteht.“ Wollte ich Ihnen auch nur die bedeutendsten und vollendetsten Stücke der Oper hervorheben, so würde ich eine Analyse des ganzen Werkes schreiben müssen, deren ich mich enthalten soll; im Allgemeinen ernteten den rauschendsten Beyfall gleich das erste Lied des komischen Bauern (<span class="tei_hi_antiqua">g-dur</span>) mit einem ganz neu behandelten Mädchenchore, alle Jägerchöre des Stückes, ein wildes, schön gemahltes Lied des <span class="7011410112111599104252116122101110">Freyschützen</span> (<span class="tei_hi_antiqua">h-moll</span>), den Hr. <span class="tei_hi_spaced_out"><a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Blume</a></span> sehr brav spielt und singt, die lyrische, ganz vortrefflich gemahlte große Scene der <span class="6510397116104101">Agathe</span>, von Mad. <span class="tei_hi_spaced_out"><a class="preview persons A001805" href="/exist/apps/WeGA-WebApp/de/A001805.html">Seidler</a></span> wie die ganze Rolle, mit gewohnter Meisterschaft gesungen, derselben süße und elegische Kavatine (<span class="tei_hi_antiqua">As-dur</span>) im dritten Akte; das unübertreffliche, einfache und ungemein geniale Volkslied: „wir winden dir den Jungfernkranz“ und der Schluß der Oper. Genug vom Einzelnen. Sie werden das Ganze ohne Zweifel bald hören, und Ihre Leser sollen hoffentlich ihrem Berliner Korrespondenten noch danken, daß er sie schon vorläufig auf einen großen Genuß aufmerksam gemacht hat.</p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> gab am letzten Montage auch, vielen Menschen sich fügend, ein Konzert, und wir hatten seit Jahren nun auch wieder einmahl Gelegenheit, den vollendeten Pianisten in ihm zu bewundern. Er spielte mit der Elasticität des Anschlages, der perlenrunden Geläufigkeit, und dem originellen Geiste, die wir an ihm gewohnt waren, eine schwierige <span class="preview works A020231" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020231.html">Konzertscene</span> von eigner Komposition, ein <span class="preview works A020334" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020334.html">Rondo brillante</span>, in welchen beyden Stücken er sich denselben rauschenden, warmen und wahrhaft südlichen Beyfall gewann, den er den Zuhörern mit seiner <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Oper</span> entlockt hatte, und endlich <span class="preview works A020312" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020312.html">Variationen auf ein norwegisches Lied</span> mit dem wunderlich merkwürdigen Violinisten <a class="preview persons A000209" href="/exist/apps/WeGA-WebApp/de/A000209.html">Alex. <span class="tei_hi_spaced_out">Boucher</span></a>, der immer noch bey uns ist, und immer wieder, wenn er auftritt, den Saal füllt, die Leute erst unterhält, dann ergetzt, und damit endet, sie hinzureißen. Wie dieser höchst interessante und bizarre Mensch denn einmahl immer seinen eigenthümlichen Weg geht, so machte er sich auch den Spaß, in einer Fermate den begleitenden Kapellmeister <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> um einen Augenblick Pause zu einer Kadenz zu ersuchen, und nun gab er in dieser <span class="tei_hi_spaced_out">improvisirt</span> eine wahre Perlenschnur von Thematen aus dem „<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freyschütz,</span>“ die er, wie alle Musikfreunde, im Kopfe behalten hatte, und nun als originelles, artiges Zeichen seiner Aufmerksamkeit und Verehrung dem Komponisten auf diese geistreiche Art zurückgab; das Publikum erkannte die Originalität, wie die Artigkeit, und die Meisterschaft der unvorbereiteten Ausführung mit lebhaftem Applaus an.</p>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_hi_spaced_out"><a class="preview writings A030435" href="">(Schluß.)</a></span> Berlin.</h3>
+                                        <p>Ein ausführliches Urtheil über das vortreffliche, neuste und größte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> <a class="preview works A020040" href="">Werk</a> muß ich mir leider! für einen Raum ersparen, der der Musik mehr ausschließlich gewidmet ist, als diese Blätter, und eine Erzählung des Inhaltes werde ich meinen Lesern noch weniger geben, denn Ihre <a class="preview places A130004" href="">Wiener</a> Bühne wird sich eine so geniale, gar angenehme Oper nicht lange fremd seyn lassen, und die Überraschung und die Theaterkoups sind bey diesem dramatischen Produkte auch zu etwas anzuschlagen. Nur so viel, daß alle die Eigenschaften, die <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span></a> schon seit seinem ersten Auftreten charakteristisch von allen andern Musikern der Mit- und Vor-Zeit unterschieden, ich meine jenes Genie, das mit den Regeln und Gesetzen spielt und kühn scherzt, ohne sie je zu verletzen, jene <span class="tei_hi_spaced_out">kaustische</span> Kraft der Melodien, die unwiderruflich in’s Herz gehen, jene Ge<span class="tei_pb" title="Seitenumbruch">|</span>wandtheit im Behandeln der Harmonien, und vor allen jene Geschicklichkeit – man erlaube uns eine triviale, aber bezeichnende Redensart – jene Geschicklichkeit, <span class="tei_hi_spaced_out">den Nagel überall auf den Kopf zu treffen</span>, alle diese Prädikate glänzen höchst erfreulich in dem „<a class="preview works A020040" href="">Freyschütz,</a>“ und erheben das Werk auf eine Höhe, auf der es, wie einer unserer Recensenten ganz richtig bemerkt hat, „seit <span class="tei_hi_spaced_out"><a class="preview persons A001362" href="">Mozart</a></span>’s Tode mit <span class="tei_hi_spaced_out"><a class="preview persons A000117" href="">Beethoven</a></span>’s „<a class="preview works A020491" href="">Fidelio</a>“ einzig dasteht.“ Wollte ich Ihnen auch nur die bedeutendsten und vollendetsten Stücke der Oper hervorheben, so würde ich eine Analyse des ganzen Werkes schreiben müssen, deren ich mich enthalten soll; im Allgemeinen ernteten den rauschendsten Beyfall gleich das erste Lied des komischen Bauern (<span class="tei_hi_antiqua">g-dur</span>) mit einem ganz neu behandelten Mädchenchore, alle Jägerchöre des Stückes, ein wildes, schön gemahltes Lied des <span class="7011410112111599104252116122101110">Freyschützen</span> (<span class="tei_hi_antiqua">h-moll</span>), den Hr. <span class="tei_hi_spaced_out"><a class="preview persons A000179" href="">Blume</a></span> sehr brav spielt und singt, die lyrische, ganz vortrefflich gemahlte große Scene der <span class="6510397116104101">Agathe</span>, von Mad. <span class="tei_hi_spaced_out"><a class="preview persons A001805" href="">Seidler</a></span> wie die ganze Rolle, mit gewohnter Meisterschaft gesungen, derselben süße und elegische Kavatine (<span class="tei_hi_antiqua">As-dur</span>) im dritten Akte; das unübertreffliche, einfache und ungemein geniale Volkslied: „wir winden dir den Jungfernkranz“ und der Schluß der Oper. Genug vom Einzelnen. Sie werden das Ganze ohne Zweifel bald hören, und Ihre Leser sollen hoffentlich ihrem Berliner Korrespondenten noch danken, daß er sie schon vorläufig auf einen großen Genuß aufmerksam gemacht hat.</p>
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> gab am letzten Montage auch, vielen Menschen sich fügend, ein Konzert, und wir hatten seit Jahren nun auch wieder einmahl Gelegenheit, den vollendeten Pianisten in ihm zu bewundern. Er spielte mit der Elasticität des Anschlages, der perlenrunden Geläufigkeit, und dem originellen Geiste, die wir an ihm gewohnt waren, eine schwierige <a class="preview works A020231" href="">Konzertscene</a> von eigner Komposition, ein <a class="preview works A020334" href="">Rondo brillante</a>, in welchen beyden Stücken er sich denselben rauschenden, warmen und wahrhaft südlichen Beyfall gewann, den er den Zuhörern mit seiner <a class="preview works A020040" href="">Oper</a> entlockt hatte, und endlich <a class="preview works A020312" href="">Variationen auf ein norwegisches Lied</a> mit dem wunderlich merkwürdigen Violinisten <a class="preview persons A000209" href="">Alex. <span class="tei_hi_spaced_out">Boucher</span></a>, der immer noch bey uns ist, und immer wieder, wenn er auftritt, den Saal füllt, die Leute erst unterhält, dann ergetzt, und damit endet, sie hinzureißen. Wie dieser höchst interessante und bizarre Mensch denn einmahl immer seinen eigenthümlichen Weg geht, so machte er sich auch den Spaß, in einer Fermate den begleitenden Kapellmeister <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> um einen Augenblick Pause zu einer Kadenz zu ersuchen, und nun gab er in dieser <span class="tei_hi_spaced_out">improvisirt</span> eine wahre Perlenschnur von Thematen aus dem „<a class="preview works A020040" href="">Freyschütz,</a>“ die er, wie alle Musikfreunde, im Kopfe behalten hatte, und nun als originelles, artiges Zeichen seiner Aufmerksamkeit und Verehrung dem Komponisten auf diese geistreiche Art zurückgab; das Publikum erkannte die Originalität, wie die Artigkeit, und die Meisterschaft der unvorbereiteten Ausführung mit lebhaftem Applaus an.</p>
                                         <p><span> […]</span></p>
                                     </div>
                                 </div>
@@ -425,16 +471,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Jg. 6, Nr. 89 (26. Juli 1821), S. 758–759</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -464,9 +512,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030436</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030436</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2018 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -532,7 +581,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -552,30 +602,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

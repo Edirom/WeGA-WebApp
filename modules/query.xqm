@@ -14,6 +14,7 @@ import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm"
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
@@ -123,9 +124,9 @@ declare function query:get-gnd($item as item()?) as xs:string? {
             case document-node() return $item
             default return ()
     return
-        (: there might be several gnd IDs in organizations :)
+        (: there might be several gnd IDs :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
-        else if($doc//tei:idno[@type='geonames']) then wega-util:geonames2gnd($doc//tei:idno[@type='geonames'])
+        else if($doc//tei:idno[@type='geonames']) then (wega-util:translate-authority-id($doc//tei:idno[@type='geonames'], 'gnd'))[1]
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
         else ()
 };
@@ -158,7 +159,7 @@ declare function query:get-geonamesID($item as item()?) as xs:string? {
  : @return the main name as given in the GeoNames RDF as gn:name 
 :)
 declare function query:get-geonames-name($gn-id as xs:string) as xs:string? {
-    wega-util:grabExternalResource('geonames', $gn-id, '', ())//gn:name
+    er:grabExternalResource('geonames', $gn-id, '', ())//gn:name
 };
 
 
@@ -194,13 +195,48 @@ declare function query:get-title-element($doc as document-node(), $lang as xs:st
         else ($doc//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
 };
 
+(:~
+ : Get the main text source of an electronic document
+ : This is a simple wrapper around query:text-sources() to enforce a single, main source
+ : 
+ : @param $doc the TEI or MEI document
+ : @return the element describing the main source, e.g. a <tei:bibl> element or a <tei:msDesc> element  
+ :)
 declare function query:get-main-source($doc as document-node()) as element()? {
-    if($doc//tei:sourceDesc) then (: for writings and letters :)
-        if($doc//tei:sourceDesc/tei:listWit) then $doc//tei:sourceDesc/tei:listWit/tei:witness[@n='1']/*
-        else $doc//tei:sourceDesc/*
-    else if($doc//mei:sourceDesc) then () (: for works :)
-    else if($doc/tei:biblStruct) then $doc/tei:biblStruct (: for biblio :)
-    else ()
+    let $sources := query:text-sources($doc)
+    return
+        if(count($sources) gt 1) then $sources/parent::tei:witness[@n='1']/* | $sources/parent::tei:listBibl/tei:*[1]
+        else $sources
+};
+
+(:~
+ : Get the text sources of an electronic document
+ :
+ : @param $doc the TEI or MEI document
+ : @return the elements describing the sources, e.g. a <tei:bibl> element or a <tei:msDesc> element  
+ :)
+declare function query:text-sources($doc as document-node()) as element()* {
+    let $docID := $doc/*/data(@xml:id)
+    let $docType := config:get-doctype-by-id($docID)
+    let $source := 
+        switch($docType)
+        case 'diaries' return 
+            <tei:msDesc>
+               <tei:msIdentifier>
+                  <tei:country>D</tei:country>
+                  <tei:settlement>Berlin</tei:settlement>
+                  <tei:repository n="D-B">Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</tei:repository>
+                  <tei:idno>Mus. ms. autogr. theor. C. M. v. Weber WFN 1</tei:idno>
+               </tei:msIdentifier>
+            </tei:msDesc>
+        case 'works' case 'sources' return () (:$model('doc')//mei:sourceDesc:)
+        case 'biblio' return $doc/tei:biblStruct
+        default return $doc//tei:sourceDesc/tei:*
+    return 
+        typeswitch($source)
+        case element(tei:listWit) return $source/tei:witness/tei:*
+        case element(tei:listBibl) return $source/tei:*
+        default return $source
 };
 
 (:~
@@ -368,17 +404,54 @@ declare function query:correspContext($doc as document-node()) as map(*)? {
 };
 
 (:~
- : Return the TEI facsimile element if present and on the whitelist supplied in the options file
+ : Return the TEI facsimile elements if present and on the whitelist supplied in the options file.
+ : External references to IIIF manifests via the @sameAs attribute on the tei:facsimile element are *always* passed on
  :
- : @param $doc the TEI document to look for the facsimile element
+ : @param $doc the TEI document to look for the facsimile elements
+ : @return TEI facsimile elements if available, the empty sequence otherwise
 ~:)
-declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)? {
+declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)* {
     let $facsimileWhiteList := tokenize(config:get-option('facsimileWhiteList'), '\s+')
     return
-        if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url]
-        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url]
-        else ()
+        if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]
+(:        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
+(:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
+        else $doc//tei:facsimile[@sameAs castable as xs:anyURI] 
+            | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileWhiteList]][tei:graphic/@url]
+            | $doc//tei:facsimile[tei:graphic[starts-with(@url, 'http')]]
 };
+
+(:~
+ : Return the appropriate source element for a given TEI facsimile element
+ : (this is the inverse function of query:witness-facsimile())
+ :
+ : @param $facsimile the TEI facsimile element
+ : @return a TEI 'biblLike' element describing the source (e.g. msDesc, or biblStruct) if available, the empty sequence otherwise
+~:)
+declare function query:facsimile-witness($facsimile as element(tei:facsimile)) as element()? {
+    let $sourceID := substring($facsimile/@source, 2)
+    let $source :=
+        if($sourceID) then $facsimile/preceding::tei:sourceDesc//tei:*[@xml:id=$sourceID]
+        else $facsimile/preceding::tei:sourceDesc/tei:*
+    return
+        if($source[self::tei:witness]) then $source/*
+        else $source
+};
+
+(:~
+ : Return the appropriate TEI facsimile element for a given source (aka biblLike) element
+ : (this is the inverse function of query:facsimile-witness())
+ :
+ : @param $source the TEI 'biblLike' element (e.g. msDesc, or biblStruct)
+ : @return a TEI facsimile element if available, the empty sequence otherwise
+~:)
+declare function query:witness-facsimile($source as element()) as element(tei:facsimile)? {
+    let $sourceID := ($source/@xml:id, $source/parent::tei:witness/@xml:id)[1] (: the ID can be given on the 'biblLike' element itself or the parent witness element :) 
+    return 
+        if($sourceID) then $source/following::tei:facsimile[@source = concat('#', $sourceID)]
+        else $source/following::tei:facsimile[not(@source)]
+};
+
 
 (:~
  : Query the related documents (drafts, etc.) for a given document
@@ -425,19 +498,13 @@ declare function query:relators($doc as document-node()?) as element()* {
     $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role][not(@role='dte')] | query:get-author-element($doc)
 };
 
-declare function query:context-correspSearch($doc as document-node()?) as map()? {
-    let $dateOfDoc := query:get-normalized-date($doc)
-    let $senderGND := query:get-gnd(($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key)
-    let $startDate := $dateOfDoc - xs:dayTimeDuration('P14D')
-    let $endDate := $dateOfDoc + xs:dayTimeDuration('P14D')
-    let $uri := 'http://correspSearch.bbaw.de/api/v1.1/tei-xml.xql?correspondent=http://d-nb.info/gnd/' || $senderGND || '&amp;startdate=' || $startDate || '&amp;enddate=' || $endDate 
-    let $correspSearchResponse := 
-        if(exists($dateOfDoc) and $senderGND) then wega-util:grab-external-xml-document(xs:anyURI($uri))
-        else ()
-    return
-        if ($correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]) then
-            map {
-                'context-correspSearch': $correspSearchResponse//tei:correspDesc[not(contains(@ref, 'weber-gesamtausgabe.de'))]
-            }
-        else ()
+(:~
+ :  Return licencing information
+ : 
+ :  @param $doc the TEI or MEI document to look for a licence
+ :  @return licence as xs:anyURI if given in the document, 'https://creativecommons.org/licenses/by/4.0/' otherwise
+ :)
+declare function query:licence($doc as document-node()?) as xs:anyURI {
+    if($doc//tei:licence/@target castable as xs:anyURI) then xs:anyURI($doc//tei:licence/@target)
+    else xs:anyURI('https://creativecommons.org/licenses/by/4.0/') 
 };

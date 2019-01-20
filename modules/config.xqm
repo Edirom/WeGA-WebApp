@@ -310,6 +310,17 @@ declare function config:is-org($docID as xs:string?) as xs:boolean {
 };
 
 (:~
+ : Checks whether a given id matches the WeGA pattern of addenda ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-addenda($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A12[0-9]{4}$')
+};
+
+(:~
  : Checks whether a given document is from the series "Weber-Studien" published by the WeGA
  :
  : @author Peter Stadler

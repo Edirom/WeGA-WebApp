@@ -235,6 +235,18 @@
         </xsl:choose>
     </xsl:function>
     
+    <xsl:function name="wega:isAddendum" as="xs:boolean">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="matches($docID, '^A12\d{4}$')">
+                <xsl:value-of select="true()"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="false()"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+    
     <xsl:function name="wega:get-doctype-by-id" as="xs:string?">
         <xsl:param name="docID" as="xs:string"/>
         <xsl:choose>
@@ -280,6 +292,9 @@
             <xsl:when test="wega:isDocument($docID)">
                 <xsl:value-of select="'documents'"/>
             </xsl:when>
+            <xsl:when test="wega:isAddendum($docID)">
+                <xsl:value-of select="'addenda'"/>
+            </xsl:when>
             <xsl:otherwise/>
         </xsl:choose>
     </xsl:function>
@@ -308,7 +323,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="(wega:isPerson($docID) or wega:isOrg($docID) or wega:isVar($docID)) and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
+            <xsl:when test="(wega:isPerson($docID) or wega:isOrg($docID) or wega:isVar($docID) or wega:isAddendum($docID)) and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
                 <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $docID)), '.html')"/>
             </xsl:when>
             <xsl:when test="(exists($folder) and $authorID ne '') and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
@@ -543,6 +558,38 @@
         <xsl:param name="node" as="node()?"/> 
         <xsl:param name="seq" as="node()*"/>
         <xsl:sequence select="some $nodeInSeq in $seq/descendant-or-self::*/(.|@*) satisfies deep-equal($nodeInSeq,$node)"/>
+    </xsl:function>
+    
+    <xsl:function name="functx:substring-before-if-contains" as="xs:string?"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:param name="delim" as="xs:string"/>
+        
+        <xsl:sequence select="
+            if (contains($arg,$delim))
+            then substring-before($arg,$delim)
+            else $arg
+            "/>
+    </xsl:function>
+    
+    <xsl:function name="functx:substring-after-last" as="xs:string"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="arg" as="xs:string?"/>
+        <xsl:param name="delim" as="xs:string"/>
+        
+        <xsl:sequence select="
+            replace ($arg,concat('^.*',functx:escape-for-regex($delim)),'')
+            "/>
+    </xsl:function>
+    
+    <xsl:function name="functx:escape-for-regex" as="xs:string"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="arg" as="xs:string?"/>
+        
+        <xsl:sequence select="
+            replace($arg,
+            '(\.|\[|\]|\\|\||\-|\^|\$|\?|\*|\+|\{|\}|\(|\))','\\$1')
+            "/>
     </xsl:function>
     
 </xsl:stylesheet>

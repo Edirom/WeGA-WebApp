@@ -548,43 +548,44 @@ input.form-control
     border:none;    
 }
 
-.resp-tabs-list li.resp-tab-item
+.resp-tabs-list, .hidden-links 
 {
-    background: @gray-light;
-    border: 1px solid @gray-light; 
-/*    margin-bottom: -2px!important;*/
-    margin-left: 2px;
-    padding: 10px 25px;
+    li.resp-tab-item
+    {
+        background: @gray-light;
+        border: 1px solid @gray-light; 
+        margin: 0px 0px -2px 2px!important;
+        padding: 10px 25px;
+        a
+        {
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;   
+            font-family: @font-family-sans-serif;
+        
+        }
+        &.resp-tab-active
+        {
+            background: @gray-lighter;
+            padding: 10px 25px!important;
+            border: 1px solid @gray-light !important;
+            border-bottom: 1px solid @gray-lighter !important;
+            a
+            {
+                color: @gray;
+                font-size: 15px;
+                font-weight: bold;
+                font-family: @font-family-sans-serif;
+            
+            }
+        }
+    }
 }
 
 .resp-tab-item:first-child {
     margin-left: 0px !important;
 }
 
-.resp-tabs-list li.resp-tab-item a
-{
-    color: #fff;
-    font-size:16px;
-    font-weight:normal;   
-    font-family: CamingoDos-Bold;
-
-}
-
-.resp-tabs-list li.resp-tab-item.resp-tab-active
-{
-    background: @gray-lighter;
-    border-bottom: 1px solid @gray-lighter;
-    padding: 10px 25px!important;
-}
-
-.resp-tabs-list li.resp-tab-item.resp-tab-active a
-{
-    color:@gray;
-    font-size:16px;
-    font-weight:normal;
-    font-family: CamingoDos-Bold;
-
-}
 
 @media (max-width: @screen-sm-max) 
 { 
@@ -717,6 +718,10 @@ padding: 20px 25px;
         width: 5%;
         margin-right: 3%;
     }
+    
+    .preview-icon i.fa {
+        font-size:3em;
+    }
         
     .media-body .pull-left {
         margin-top: 0px;
@@ -752,15 +757,6 @@ padding: 20px 25px;
     background-repeat: repeat-x;
     border: 1px solid @gray-light!important;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
-}
-
-
-// Select
-
-.allFilter {
-    .bootstrap-select, .btn, .btn-group  {
-        width: 100%!important;
-    }
 }
 
 // Filter
@@ -886,14 +882,24 @@ padding: 20px 25px;
     background:@brand-primary!important; 
 }
 
-.allFilter
-{
-    margin-bottom: 30px;
-}
 
-.allFilter h4
-{
-    margin-bottom: 10px;
+// allFilter sidebar
+
+.allFilter {
+    margin-bottom: 30px;
+    
+    h4 {
+        margin: 8px 0 4px 0;
+    }
+    
+    .bootstrap-select, .btn, .btn-group  {
+        width: 100%!important;
+    }
+    
+    label.btn {
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
 }
 
 

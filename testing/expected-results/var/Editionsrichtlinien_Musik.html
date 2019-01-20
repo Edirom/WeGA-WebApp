@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:contributor" content="Peter Stadler" />
         <meta property="dc:contributor" content="Markus Bandur" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-21T08:15:50.646835Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070010" />
         <meta property="dc:description" content="Die vorliegenden Editionsrichtlinien für die Weber-Gesamtausgabe gehen zurück auf die im Juni 1994 publizierte erste Auflage, die nach ausführlichen …" />
         <meta name="description" content="Die vorliegenden Editionsrichtlinien für die Weber-Gesamtausgabe gehen zurück auf die im Juni 1994 publizierte erste Auflage, die nach ausführlichen …" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Veit, Joachim","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"},{"name":"Frank Ziegler","@type":"Person"},{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001"},{"name":"Markus Bandur","@type":"Person"}],"name":"Editionsrichtlinien für die Notenbände","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070010","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070010","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/Project/Editorial_Guidelines_Music.html" hreflang="en" lang="en">En</a></li>
@@ -217,11 +222,12 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a>Projekt</a></li>
+                        <li><span>Projekt</span></li>
                         
                         <li><span>A070010</span></li>
                         
                     </ol>
+                    
                     
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,38 +241,41 @@
         <div class="row">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070010.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070010.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070010.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070010.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070010.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -291,7 +300,7 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000914" /> <span title="Jähns, Friedrich Wilhelm">Jähns, Friedrich Wilhelm</span> 
+                                    <input type="checkbox" name="options" value="A000914" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label>
@@ -303,23 +312,23 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Euryanthe, große romantische Oper in drei Aufzügen">Euryanthe, große romantische O…</span> 
+                                    <input type="checkbox" name="options" value="A020036" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020231" /> <span title="Konzertstück für Klavier und Orchester f-Moll">Konzertstück für Klavier und O…</span> 
+                                    <input type="checkbox" name="options" value="A020278" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020227" /> <span title="Musik zu &#34;Preciosa&#34; von Pius Alexander Wolff">Musik zu "Preciosa" von Pius A…</span> 
+                                    <input type="checkbox" name="options" value="A020237" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020253" /> <span title="Ouvertüre der Musik zu &#34;Turandot&#34; von Friedrich Schiller (Klavierauszug)">Ouvertüre der Musik zu "Turand…</span> 
+                                    <input type="checkbox" name="options" value="A020035" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020237" /> <span title="Ouvertüre in Es-Dur zu Peter Schmoll (Konzertfassung)">Ouvertüre in Es-Dur zu Peter S…</span> 
+                                    <input type="checkbox" name="options" value="A020040" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020035" /> <span title="Rübezahl, eine romantische Oper in zwei Aufzügen">Rübezahl, eine romantische Ope…</span> 
+                                    <input type="checkbox" name="options" value="A020227" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020036" /> <span title="Silvana, romantische Oper in drei Aufzügen">Silvana, romantische Oper in d…</span> 
+                                    <input type="checkbox" name="options" value="A020231" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020278" /> <span title="Sinfonie Nr. 1 C-Dur (Fassung der Uraufführung)">Sinfonie Nr. 1 C-Dur (Fassung …</span> 
+                                    <input type="checkbox" name="options" value="A020253" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -1121,7 +1130,7 @@
                                             </div>
                                             <div id="para40"><span class="para-label">§ 40</span>
                                                 <p>Bei größeren Vokalwerken kann die umfangreiche Überlieferung von <span class="tei_hi_bold">Textquellen</span> im Zusammenhang mit der Arbeit an der
-                                Komposition (z. B. <span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span>) einen separaten <span class="tei_hi_bold">Kritischen Bericht</span> für den gesungenen bzw. gesprochenen Text
+                                Komposition (z. B. <span class="tei_hi_italic"><a class="preview works A020043" href="">Euryanthe</a></span>) einen separaten <span class="tei_hi_bold">Kritischen Bericht</span> für den gesungenen bzw. gesprochenen Text
                                 erfordern (<a href="#para104">→ § 104</a>); die Entscheidung hierüber sollte in jedem Fall erst nach
                                 Rücksprache mit der Editionsleitung getroffen werden. Auch hier werden die zu
                                 beschreibenden Objekte nach <span class="tei_hi_italic">Art</span> der Quelle, der <span class="tei_hi_italic">Funktion</span> und der <span class="tei_hi_italic">Form</span> des
@@ -1557,7 +1566,7 @@
                                 17<span class="tei_hi_superscript">t</span>
                                 <span class="tei_hi_italic">Februar</span> 1825“ (Bd. 3, Bl. 254v)
                                 <br />
-                                <span class="tei_hi_small-caps">Provenienz:</span> 1853 im Besitz von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a> (vgl.
+                                <span class="tei_hi_small-caps">Provenienz:</span> 1853 im Besitz von <a class="preview persons A000914" href="">Jähns</a> (vgl.
                                 Brief an <span class="72105108108101114">Hiller</span> vom 2. Dezember 1853, <span class="tei_hi_italic">D-B</span>,
                                 Weberiana Cl. X, Nr. 45) &lt;&gt; am 5. Januar 1856 an seine Cousine,
                                 <span class="77971141051013267971141111081051101013274228104110115">Marie Caroline Jähns</span>, verschenkt (vgl. Eintrag im vorderen Deckel), 1871
@@ -1775,8 +1784,8 @@
                                             </div>
                                             <div id="para74"><span class="para-label">§ 74</span>
                                                 <p>Ein Sonderproblem stellen die bei vielen Werken von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> selbst
-                                    vorgenommenen <span class="tei_hi_bold">Überarbeitungen</span> dar (z. B. <span class="tei_hi_italic"><span class="preview works A020036" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020036.html">Silvana</span></span>, <span class="preview works A020278" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020278.html">Sinfonie Nr. 1</span>). Sofern wesentlich
-                                    verschiedene <span class="tei_hi_bold">Fassungen</span> vorliegen (z. B. <span class="preview works A020237" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020237.html"><span class="tei_hi_italic">Schmoll</span>-Ouvertüre</span>), müssen alle Fassungen
+                                    vorgenommenen <span class="tei_hi_bold">Überarbeitungen</span> dar (z. B. <span class="tei_hi_italic"><a class="preview works A020036" href="">Silvana</a></span>, <a class="preview works A020278" href="">Sinfonie Nr. 1</a>). Sofern wesentlich
+                                    verschiedene <span class="tei_hi_bold">Fassungen</span> vorliegen (z. B. <a class="preview works A020237" href=""><span class="tei_hi_italic">Schmoll</span>-Ouvertüre</a>), müssen alle Fassungen
                                     dokumentiert werden, wobei die Entscheidung über die Wahl der
                                     abzudruckenden Hauptfassung in Absprache mit der Editionsleitung
                                     erfolgt. Im übrigen muss von Fall zu Fall in Absprache mit der
@@ -2031,7 +2040,7 @@
                                                                 <td>15</td>
                                                                 <td>Ob 1</td>
                                                                 <td>A</td>
-                                                                <td>3. Note <span></span> c<span class="tei_hi_superscript">3</span>
+                                                                <td>3. Note <span class="musical-symbols"></span> c<span class="tei_hi_superscript">3</span>
                                     </td>
                                                             </tr>
                                                             <tr>
@@ -2366,11 +2375,11 @@
                         in sinnvoller Weise zwischen Auflösung und verkürzter Schreibweise wechselt. Von
                         der Hauptquelle abweichende Wiedergaben werden, je nach Bedeutung, im KB einzeln
                         oder summarisch vermerkt.
-                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_01.tif/full/full/0/native.jpg"><img alt="Beispiel: Tonrepetitionen und Tremoli im Klaviersatz" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_01.tif/full/,75/0/native.jpg" /></a></span>
+                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_01.tif/full/full/0/native.jpg"><img alt="Beispiel: Tonrepetitionen und Tremoli im Klaviersatz" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_01.tif/full/,75/0/native.jpg" /></a></span>
                         Tonrepetitionen und
                         Tremoli im Klaviersatz werden ebenso behandelt. Abbreviaturen für zweifelsfrei
                         begrenzte Repetitionen von Notengruppen wie z. B. 
-                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_02a.tif/full/full/0/native.jpg"><img alt="Beispiel: Abbreviaturen für zweifelsfrei begrenzte Repetitionen von Notengruppen" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_02a.tif/full/,75/0/native.jpg" /></a></span>
+                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_02a.tif/full/full/0/native.jpg"><img alt="Beispiel: Abbreviaturen für zweifelsfrei begrenzte Repetitionen von Notengruppen" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_02a.tif/full/,75/0/native.jpg" /></a></span>
                         können ohne Kennzeichnung
                         aufgelöst werden. In mehrdeutigen Fällen oder wenn die Auflösung Folgen für die
                         Interpretation anderer Parameter des Notentexts hat, wird auf die Beschreibung
@@ -2392,7 +2401,7 @@
                             Ausnahme der geschweiften Klammer für Violine 1 und 2) ein reiner
                             Herausgeberzusatz. Durch gerade Akkoladenklammern werden die Streicher-, bzw.
                             die Holz- und Blechbläsergruppe und die Chorstimmen zusammengefasst (siehe dazu
-                            auch den folgenden Abschnitt). Bei mehrchörigen Werken (z. B. <span class="tei_hi_italic"><span class="preview works A020035" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020035.html">Rübezahl</span></span>) erhält jeder Chor eine eigene Klammer.
+                            auch den folgenden Abschnitt). Bei mehrchörigen Werken (z. B. <span class="tei_hi_italic"><a class="preview works A020035" href="">Rübezahl</a></span>) erhält jeder Chor eine eigene Klammer.
                             Solostimmen erhalten keine Akkoladenklammer.</p>
                         <p>Geschweifte Akkoladenklammern werden zusätzlich für die beiden Violinen sowie bei
                             auf zwei oder mehr Stimmen aufgeteilter Notation eines Instrumentenpaars bzw.
@@ -2410,7 +2419,7 @@
                             sie vorwiegend mit dieser Gruppe zusammen auftreten (vgl. WeGA, Bd.
                             III/10a).</p>
                         <p>
-                            <span class="tei_hi_bold">Bei Bühnenmusik:</span> Die zu einer Bühnenmusik gehörenden Instrumente, z. B. im <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span> und in der <span class="tei_hi_italic"><span class="preview works A020227" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020227.html">Preciosa</span></span>, werden
+                            <span class="tei_hi_bold">Bei Bühnenmusik:</span> Die zu einer Bühnenmusik gehörenden Instrumente, z. B. im <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> und in der <span class="tei_hi_italic"><a class="preview works A020227" href="">Preciosa</a></span>, werden
                             ebenfalls mit einer Akkoladenklammer zusammengefasst.</p>
                     </dd>
                                         <dt>Akkordbezeichnung im Variantenverzeichnis</dt>
@@ -2419,7 +2428,7 @@
                                         <dd>Akkordrepetitionen in einer Streicherstimme, bei denen gelegentlich nur die
                         oberen Töne ausnotiert, die unteren dagegen in halben oder ganzen Notenwerten
                         zusammengefasst sind, werden ohne Kennzeichnung aufgelöst: Beispiel:
-                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_03.jpg/full/full/0/native.jpg"><img alt="Beispiel:" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_03.jpg/full/,75/0/native.jpg" /></a></span>
+                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_03.jpg/full/full/0/native.jpg"><img alt="Beispiel:" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_03.jpg/full/,75/0/native.jpg" /></a></span>
                         
                     </dd>
                                         <dt id="akzidention">Akzidentien</dt>
@@ -2449,7 +2458,7 @@
                             Vorzeichen sollten erst eingefügt werden, wenn der Zeilenumbruch endgültig
                             festliegt. Auf diesen Sachverhalt ist später beim Korrekturlesen besonders zu
                             achten.)
-                            <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_04neu.png/full/full/0/native.jpg"><img alt="Beispiel: Akzidentien bei übergebundenen Noten, a) innerhalb der Zeile, b) bei Zeilen- oder Seitenwechsel" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_04neu.png/full/,75/0/native.jpg" /></a></span>
+                            <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_04neu.png/full/full/0/native.jpg"><img alt="Beispiel: Akzidentien bei übergebundenen Noten, a) innerhalb der Zeile, b) bei Zeilen- oder Seitenwechsel" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_04neu.png/full/,75/0/native.jpg" /></a></span>
                             
                         </p>
                         <p>
@@ -2459,7 +2468,7 @@
                         <p>
                             <span class="tei_hi_bold">Wechsel:</span> Wechselt die Generalvorzeichnung innerhalb eines Satzes, erscheinen (nach einem
                             doppelten Taktstrich) vor der Neuvorzeichnung die notwendigen Auflösungen.
-                            Innerhalb eines Takts wird die Folge <span></span><span></span> <span></span><span></span> oder <span></span><span></span> <span></span><span></span> so beibehalten
+                            Innerhalb eines Takts wird die Folge <span class="musical-symbols"></span><span class="musical-symbols"></span> <span class="musical-symbols"></span><span class="musical-symbols"></span> oder <span class="musical-symbols"></span><span class="musical-symbols"></span> <span class="musical-symbols"></span><span class="musical-symbols"></span> so beibehalten
                             (d. h. ohne Auflösungszeichen vor der zweiten Note).</p>
                         <p>
                             <span class="tei_hi_bold">In einer anderen Oktave:</span> Akzidentien, die im gleichen Takt in einer anderen Oktave notwendig sind, werden
@@ -2625,8 +2634,8 @@
                             Ausnahmefällen, in denen sich diese Bildungen nur mit großen Schwierigkeiten
                             lesen lassen, werden sie in eine leichter lesbare moderne Form überführt (die
                             originale Form im KB vermerkt).</p>
-                        <p>Beispiel: <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05a.tif/full/full/0/native.jpg"><img alt="Balkensetzung bei besonderer Rhythmik 1" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05a.tif/full/,75/0/native.jpg" /></a></span>bleibt, nicht: <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05b.tif/full/full/0/native.jpg"><img alt="Balkensetzung bei besonderer Rhythmik 2" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05b.tif/full/,75/0/native.jpg" /></a></span>Um Leseschwierigkeiten
-                            abzuhelfen, wird bei Triolen oder Sextolen die Form <span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06a.jpg/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06a.jpg/full/,75/0/native.jpg" /></a></span> in <span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06b.jpg/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06b.jpg/full/,75/0/native.jpg" /></a></span> geändert.</p>
+                        <p>Beispiel: <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05a.tif/full/full/0/native.jpg"><img alt="Balkensetzung bei besonderer Rhythmik 1" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05a.tif/full/,75/0/native.jpg" /></a></span>bleibt, nicht: <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05b.tif/full/full/0/native.jpg"><img alt="Balkensetzung bei besonderer Rhythmik 2" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_05b.tif/full/,75/0/native.jpg" /></a></span>Um Leseschwierigkeiten
+                            abzuhelfen, wird bei Triolen oder Sextolen die Form <span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06a.jpg/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06a.jpg/full/,75/0/native.jpg" /></a></span> in <span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06b.jpg/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_06b.jpg/full/,75/0/native.jpg" /></a></span> geändert.</p>
                     </dd>
                                         <dt>Bandgliederung</dt>
                                         <dd><a href="#para4">→ § 4</a></dd>
@@ -2659,17 +2668,17 @@
                         bzw. bei ungebalkten oder gemischten Notenwerten sowie
                         Noten-Pausen-Kombinationen und unterbrochenen Balkungen Klammern (c, d, e)
                         gesetzt.</p>
-                        <p>Beispiel: a)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07a.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07a.tif/full/,75/0/native.jpg" /></a></span> b)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07b.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07b.tif/full/,75/0/native.jpg" /></a></span> c)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07c.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07c.tif/full/,75/0/native.jpg" /></a></span>
-                            d)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07d.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07d.tif/full/,75/0/native.jpg" /></a></span> e)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07e.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07e.tif/full/,75/0/native.jpg" /></a></span></p>
+                        <p>Beispiel: a)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07a.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07a.tif/full/,75/0/native.jpg" /></a></span> b)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07b.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07b.tif/full/,75/0/native.jpg" /></a></span> c)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07c.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07c.tif/full/,75/0/native.jpg" /></a></span>
+                            d)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07d.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07d.tif/full/,75/0/native.jpg" /></a></span> e)<span class="tei_notatedMusic inline"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07e.tif/full/full/0/native.jpg"><img alt="" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_07e.tif/full/,75/0/native.jpg" /></a></span></p>
                         <p>Bögen werden in der Regel den Notenköpfen zugeordnet, nur bei stimmiger Notierung
                             in einem System erscheinen die Bögen bei den Notenhälsen bzw. -balken.</p>
                         <p>Beispiel:
-                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_08.tif/full/full/0/native.jpg"><img alt="Bogensetzung bei stimmiger Notierung" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_08.tif/full/,75/0/native.jpg" /></a></span></p>
+                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_08.tif/full/full/0/native.jpg"><img alt="Bogensetzung bei stimmiger Notierung" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_08.tif/full/,75/0/native.jpg" /></a></span></p>
                         <p>Wechselt im übrigen die Richtung der Behalsung innerhalb einer durch einen Bogen
                             zusammengefassten Gruppe (gemischte Behalsung), so steht der Bogen vorzugsweise
                             über der Gruppe. Dies gilt unabhängig von der Schlüsselung der Stimme
                             (d. h. auch im Bassschlüssel!).</p>
-                        <p>Beispiel:<span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_09.tif/full/full/0/native.jpg"><img alt="Bogensetzung bei Richtungswechsel der Behalsung" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_09.tif/full/,75/0/native.jpg" /></a></span></p>
+                        <p>Beispiel:<span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_09.tif/full/full/0/native.jpg"><img alt="Bogensetzung bei Richtungswechsel der Behalsung" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_09.tif/full/,75/0/native.jpg" /></a></span></p>
                         <p>Unterschiede in der Notierung prinzipiell ähnlicher Stellen werden nur dann
                             vereinheitlicht (und im KB erwähnt) , wenn die übrigen autorisierten Quellen in
                             diesem Punkte einheitlich verfahren. Ein unbegründetes Angleichen der Bögen an
@@ -2678,7 +2687,7 @@
                         <p>Bei gehaltenen Akkorden können fehlende innere Haltebögen ohne Vermerk und
                             Kennzeichnung ergänzt werden (nicht aber bei stimmiger Notation – hier wären
                             fehlende Haltebögen gekennzeichnet zu ergänzen).</p>
-                        <p>Beispiel:<span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_10.tif/full/full/0/native.jpg"><img alt="Bogensetzung bei gehaltenen Akkorden" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_10.tif/full/,75/0/native.jpg" /></a></span></p>
+                        <p>Beispiel:<span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_10.tif/full/full/0/native.jpg"><img alt="Bogensetzung bei gehaltenen Akkorden" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_10.tif/full/,75/0/native.jpg" /></a></span></p>
                         <p>Einfach behalste, in einem System notierte Instrumentenpaare erhalten nur einen
                             Legatobogen sowie einfache dynamische oder sonstige Bezeichnungen. Bei Wechsel
                             zwischen Ganzen und Halben müssen jedoch zwei Halte- bzw. Legatobögen verwendet
@@ -2724,7 +2733,7 @@
                             dieser Klammer ausgenommen bzw. in sie mit eingeschlossen
                             werden.                         
                         </p>
-                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_collaparte_01neu.png/full/full/0/native.jpg"><img alt="Kennzeichnung der colla-parte-Auflösung der Vl 2" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_collaparte_01neu.png/full/,75/0/native.jpg" /></a></span>
+                        <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_collaparte_01neu.png/full/full/0/native.jpg"><img alt="Kennzeichnung der colla-parte-Auflösung der Vl 2" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_collaparte_01neu.png/full/,75/0/native.jpg" /></a></span>
                         <p>Oktavierungsanweisungen innerhalb eines Systems (z. B. bei
                             Auseinanderführung von Violoncello und Kontrabass, Flöte 1 nach Flöte 2
                             o. ä.) werden ebenfalls aufgelöst, jedoch nicht gekennzeichnet und nur bei
@@ -2743,7 +2752,7 @@
                         werden ( <span class="tei_hi_italic">|cresc.----|</span> ). Auch wenn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> <span class="tei_hi_italic">crescendo</span>- oder <span class="tei_hi_italic">decrescendo</span>-Gabeln
                         verwendet, sollte der Herausgeber in seinem Manuskript auf diese Weise Anfang
                         und Ende genau bezeichnen. (Diese Zusätze erscheinen selbstverständlich nicht in
-                        der Ausgabe.) <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_12.jpg/full/full/0/native.jpg"><img alt="Beispiel:" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_12.jpg/full/,75/0/native.jpg" /></a></span>
+                        der Ausgabe.) <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_12.jpg/full/full/0/native.jpg"><img alt="Beispiel:" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_12.jpg/full/,75/0/native.jpg" /></a></span>
                         
                     </p>
                                         </dd>
@@ -2773,15 +2782,11 @@
                         vorzulegen).</p>
                         <p>Bei rhythmisch identisch verlaufenden geteilten Streicherstimmen (<span class="tei_hi_italic">divisi</span>) werden Pausen nicht doppelt notiert.</p>
                     </dd>
-                                        <dt>Doppelbehalsung (→ <span class="tei_hi_bold">
-                        <span class="tei_hi_italic"><a href="#bogensetzung">Bogensetzung</a></span>
-                    </span>, → <span class="tei_hi_bold">
-                        <span class="tei_hi_italic"><a href="#divisi">divisi</a></span>
-                    </span>, → <span class="tei_hi_bold">
-                        <span class="tei_hi_italic"><a href="#notation">Notation</a></span>
-                    </span>):</dt>
+                                        <dt>Doppelbehalsung (→ <span class="tei_hi_bold"><span class="tei_hi_italic"><a href="#bogensetzung">Bogensetzung</a></span></span>, 
+                        → <span class="tei_hi_bold"><span class="tei_hi_italic"><a href="#divisi">divisi</a></span></span>, 
+                        → <span class="tei_hi_bold"><span class="tei_hi_italic"><a href="#notation">Notation</a></span></span>):</dt>
                                         <dd> <p>Doppelbehalsung von Einklängen zur Bezeichnung von leerer Saite + 4. Finger
-                        (notiert: <span></span><span></span> ) wird in die moderne Form (<span></span><span></span>) aufgelöst. (Die vorliegende Schreibung wird im KB
+                        (notiert: <span class="musical-symbols"></span><span class="musical-symbols"></span> ) wird in die moderne Form (<span class="musical-symbols"></span><span class="musical-symbols"></span>) aufgelöst. (Die vorliegende Schreibung wird im KB
                         vermerkt.)</p>
                                         </dd>
                                         <dt>Doppelschläge:</dt>
@@ -2791,17 +2796,17 @@
                         Klammern ergänzt.</p>
                                         </dd>
                                         <dt>Drucke</dt>
-                                        <dd> <p>–<span class="tei_hi_bold"> Anzeigen in Periodika</span> → §§ <a href="#para65">65</a>–<a href="#para66">66</a></p>
-                        <p>–<span class="tei_hi_bold"> Auflage, Sigle</span> <a href="#para45">→ § 45</a></p>
-                        <p>–<span class="tei_hi_bold"> Auflagen</span> <a href="#para32">→ § 32</a> c</p>
-                        <p>–<span class="tei_hi_bold"> Ausgabe, Sigle</span> <a href="#para45">→ § 45</a></p>
-                        <p>–<span class="tei_hi_bold"> Ausgaben</span> <a href="#para32">→ § 32</a> d</p>
-                        <p>–<span class="tei_hi_bold"> Plattennummer</span> <a href="#para65">→ § 65</a></p>
+                                        <dd> <p>– <span class="tei_hi_bold">Anzeigen in Periodika</span> → §§ <a href="#para65">65</a>–<a href="#para66">66</a></p>
+                        <p>– <span class="tei_hi_bold">Auflage, Sigle</span> <a href="#para45">→ § 45</a></p>
+                        <p>– <span class="tei_hi_bold">Auflagen</span> <a href="#para32">→ § 32</a> c</p>
+                        <p>– <span class="tei_hi_bold">Ausgabe, Sigle</span> <a href="#para45">→ § 45</a></p>
+                        <p>– <span class="tei_hi_bold">Ausgaben</span> <a href="#para32">→ § 32</a> d</p>
+                        <p>– <span class="tei_hi_bold">Plattennummer</span> <a href="#para65">→ § 65</a></p>
                         <p>–<span class="tei_hi_bold">Verlagsnummer</span> <a href="#para65">→ § 65</a></p>
                                         </dd>
                                         <dt id="dynamik">Dynamik:</dt>
                                         <dd>
-                                            <p>–<span class="tei_hi_bold"> abweichende simultane Dynamik</span>
+                                            <p>– <span class="tei_hi_bold">abweichende simultane Dynamik</span>
                     </p>
                         <p>Bei abweichender simultaner Dynamik im Autograph oder in einer von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>
                             autorisierten Quelle muss zunächst davon ausgegangen werden, dass eine Absicht
@@ -2818,7 +2823,7 @@
                         <p>Fehlende dynamische Zeichen in Solostimmen (instrumental oder vokal) werden in
                             der Regel nicht nach dem Vorbild der übrigen Stimmen ergänzt, da der Zusatz <span class="tei_hi_italic">Solo</span> /<span class="tei_hi_italic">Soli</span> bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in der Regel
                             auch als dynamische Vorschrift gelten kann.</p>
-                        <p>–<span class="tei_hi_bold"> Abkürzungen dynamischer Zeichen </span>
+                        <p>– <span class="tei_hi_bold">Abkürzungen dynamischer Zeichen </span>
                         </p>
                         <p>Von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nebeneinander benutzte Varianten des gleichen dynamischen Zeichens (p,
                             p., p:, pia:, oder f, fo:, for oder ff, ffmo: oder fz, fzo:) werden im Notentext
@@ -2851,9 +2856,8 @@
                                         <dd> → <span class="tei_hi_italic"><a href="#akzidention">Akzidentien</a></span></dd>
                                         <dt>Entwürfe, Klassifizierung</dt>
                                         <dd> <a href="#para31">→ § 31</a> a</dd>
-                                        <dt id="ergaenzung">Ergänzungen im Notentext (→ <span class="tei_hi_bold">
-                        <span class="tei_hi_italic"><a href="#ausfuehrungshilfen">Ausführungshilfen</a></span>
-                    </span>):</dt>
+                                        <dt id="ergaenzung">Ergänzungen im Notentext 
+                        (→ <span class="tei_hi_bold"><span class="tei_hi_italic"><a href="#ausfuehrungshilfen">Ausführungshilfen</a></span></span>):</dt>
                                         <dd>
                                             <p>Dem Grundsatz neuerer historisch-kritischer Ausgaben gemäß wird dem
                         Hauptnotentext eine einzige Quelle zugrunde gelegt. Diese Quelle sollte für den
@@ -2884,7 +2888,7 @@
                             autorisierter Quellen in runden bzw. vom Herausgeber in eckigen Klammern
                             ergänzt. Die durch Sternchen markierten Stellen sind jeweils im Kritischen
                             Bericht zu erläutern und die Ergänzungen dort zu begründen.</p>
-                        <p>–<span class="tei_hi_bold"> Ergänzung größerer Abschnitte:</span>
+                        <p>– <span class="tei_hi_bold">Ergänzung größerer Abschnitte:</span>
                         </p>
                         <p>Sofern sich Auslassungen oder Textverluste in der Hauptquelle nur auf einzelne
                             Stimmen und wenige Takte beschränken, können diese nach anderen autorisierten
@@ -2897,7 +2901,7 @@
                             anzugeben und durch geeignete typographische Differenzierungen
                             hervorzuheben.</p>
                         <div class="table-wrapper">
-                                                <table id="d10e3916" class="table">
+                                                <table id="d10e3908" class="table">
                                                     <tbody>
                                                         <tr>
                                                             <td>Beispiel:</td>
@@ -3009,7 +3013,7 @@
                                         <dt>Korrekturen:</dt>
                                         <dd>
                                             <p>– <span class="tei_hi_bold">autographe Korrekturen</span> → §§ <a href="#para32">32</a> a, <a href="#para90">90</a></p>
-                        <p>–<span class="tei_hi_bold"> Korrekturen von Satzfehlern im Notentext:</span>
+                        <p>– <span class="tei_hi_bold">Korrekturen von Satzfehlern im Notentext:</span>
                         </p>
                         <p>Unabdingbar notwendige Korrekturen im musikalischen Satz, d. h. Korrekturen
                             von Stellen, die <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zweifelsfrei als fehlerhaft eingestuft hätte, jedoch
@@ -3019,7 +3023,7 @@
                             eindeutiger Hinweis auf <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Korrekturwunsch vorliegt (z. B. durch eine
                             Korrektur von Quintparallelen in einem Stimmenpaar, aber das Fehlen dieser
                             Korrektur in den Parallelstimmen).</p>
-                        <p>–<span class="tei_hi_bold"> Korrekturen von Schreib- oder Druckfehlern</span> (<a href="#para2">→ § 2</a>, → <span class="tei_hi_italic"><a href="#fehler">Fehler</a></span>):</p>
+                        <p>– <span class="tei_hi_bold">Korrekturen von Schreib- oder Druckfehlern</span> (<a href="#para2">→ § 2</a>, → <span class="tei_hi_italic"><a href="#fehler">Fehler</a></span>):</p>
                         <p>Nur Schreib- oder Druckfehler, die zweifelsfrei als solche zu erkennen sind,
                             werden im Notentext (gekennzeichnet oder mit Anmerkung versehen) korrigiert,
                             aber im Kritischen Bericht vermerkt, wobei auch auf korrigierende Lesarten
@@ -3047,7 +3051,7 @@
                         genaue Beschreibung ist in jedem Falle dem Kritischen Bericht zu entnehmen.</p>
                         <p>Beispiel:</p>
                         <div class="table-wrapper">
-                                                <table id="d10e4199" class="table">
+                                                <table id="d10e4191" class="table">
                                                     <tbody>
                                                         <tr>
                                                             <td>T. 72–88 Bläser</td>
@@ -3057,8 +3061,7 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                        <p>– <span class="tei_hi_bold">
-                            <span class="tei_hi_italic">bis</span>-Anweisung</span>
+                        <p>– <span class="tei_hi_bold"><span class="tei_hi_italic">bis</span>-Anweisung</span>
                         </p>
                         <p>Die von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gelegentlich benutzte Abkürzung zur Wiederholung weniger Takte (<span class="tei_hi_italic">bis</span>-Anweisung) wird aufgelöst (d. h. ausgeschrieben)
                             und nur im Kritischen Bericht (KB) vermerkt (vgl. <a href="#para83">§ 83</a>). Lediglich bei
@@ -3093,12 +3096,12 @@
                                         <dd> <a href="#para33">→ § 33</a></dd>
                                         <dt id="notation">Notation:</dt>
                                         <dd>
-                                            <p>–<span class="tei_hi_bold"> abkürzende Notation </span>→ <span class="tei_hi_italic"><a href="#kurzschrift">Kurzschrift im
+                                            <p>– <span class="tei_hi_bold">abkürzende Notation </span>→ <span class="tei_hi_italic"><a href="#kurzschrift">Kurzschrift im
                         Notentext</a></span>
                     </p>
                         <p>– <span class="tei_hi_bold">längere Pausen in Instrumentenpaaren</span> → <span class="tei_hi_italic"><a href="#leersystem">Leersysteme</a></span>
                         </p>
-                        <p id="dynamik_klaviersatz">–<span class="tei_hi_bold"> dynamische Zeichen im Klaviersatz</span>
+                        <p id="dynamik_klaviersatz">– <span class="tei_hi_bold">dynamische Zeichen im Klaviersatz</span>
                         </p>
                         <p>Dynamische oder sonstige Zeichen im Klaviersatz, die für beide Systeme gelten,
                             werden gewöhnlich nur einmal und zwar in die Mitte zwischen beide Systeme
@@ -3107,7 +3110,7 @@
                             identische Zeichen werden nur dann in der Mitte zwischen beiden Systemen in
                             eines zusammengefasst, wenn das dadurch entstehende Satzbild keine falsche
                             Interpretation erlaubt.</p>
-                        <p>–<span class="tei_hi_bold"> historische Eigenheiten</span>
+                        <p>– <span class="tei_hi_bold">historische Eigenheiten</span>
                         </p>
                         <p>Einige Eigenheiten der früheren Notierungsweise sind den heutigen Gepflogenheiten
                             anzupassen. So werden Punktierungen, die über die Taktgrenzen hinausgehen,
@@ -3117,29 +3120,29 @@
                             rhythmische Bildungen werden – wenn sie schwer zu lesen sind – ebenfalls nach
                             heutiger Form wiedergegeben (im Kritischen Bericht wird die originale Notation
                             vermerkt). Von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit Haltebogen statt als Punktierung geschriebene
-                            Notenwerte ( <span></span><span></span><span></span><span></span> statt <span></span><span></span> ) werden gewöhnlich beibehalten.</p>
-                        <p><span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_13.tif/full/full/0/native.jpg"><img alt="Punktierungen über die Taktgrenze Hinaus; Beispiel: Beginn des Finales der 1. Sinfonie" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_13.tif/full/,75/0/native.jpg" /></a></span>Anm.: Ungewohnte, aber der
+                            Notenwerte ( <span class="musical-symbols"></span><span class="musical-symbols"></span><span class="musical-symbols"></span><span class="musical-symbols"></span> statt <span class="musical-symbols"></span><span class="musical-symbols"></span> ) werden gewöhnlich beibehalten.</p>
+                        <p><span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_13.tif/full/full/0/native.jpg"><img alt="Punktierungen über die Taktgrenze Hinaus; Beispiel: Beginn des Finales der 1. Sinfonie" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fvar%2FA0700xx%2FA070010%2FER_NB_13.tif/full/,75/0/native.jpg" /></a></span>Anm.: Ungewohnte, aber der
                             Deutlichkeit dienliche Notationsformen werden jedoch beibehalten; vgl.
-                            z. B. Beginn des Finale der <span class="preview works A020278" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020278.html">1. Sinfonie</span>:]</p>
-                        <p>–<span class="tei_hi_bold"> Klaviersatz (Verteilung der Hände) </span>
+                            z. B. Beginn des Finale der <a class="preview works A020278" href="">1. Sinfonie</a>:]</p>
+                        <p>– <span class="tei_hi_bold">Klaviersatz (Verteilung der Hände) </span>
                         </p>
                         <p>Die originale Verteilung der Hände im Klaviersatz wird in der Regel beibehalten;
                             zur Verdeutlichung unklarerer Stellen notwendige Abweichungen hiervorn werden
                             vermerkt, Abweichungen in anderen Quellen nur, wenn sie für die Interpretation
                             der Stelle von Bedeutung sind.</p>
-                        <p>–<span class="tei_hi_bold"> Violoncello und Bass</span>
+                        <p>– <span class="tei_hi_bold">Violoncello und Bass</span>
                         </p>
                         <p>Violoncello und Bass werden dann separat notiert, wenn dies auch in der
                             Hauptquelle der Fall ist. Auch wenn sich aufgrund häufiger Stimmkreuzungen oder
                             anderweitiger Eigenheiten die in der Vorlage in einem System notierten beiden
                             Stimmen in ihrer Führung nicht klar unterscheiden lassen, ist abschnittsweise
                             auf zwei Systeme auszuweichen.</p>
-                        <p>–<span class="tei_hi_bold"> vierhändige Klavierwerke</span>
+                        <p>– <span class="tei_hi_bold">vierhändige Klavierwerke</span>
                         </p>
                         <p>Vierhändige Klavierwerke erscheinen in Partiturnotation. Bei Klavierwerken folgt
                             die Verteilung der Stimmen auf beide Systeme und die Getrennt- oder
                             Auseinanderhalsung im allgemeinen der Hauptquelle.</p>
-                        <p id="blaeserpaare">–<span class="tei_hi_bold"> Bläserpaare / Doppelbehalsung</span>
+                        <p id="blaeserpaare">– <span class="tei_hi_bold">Bläserpaare / Doppelbehalsung</span>
                         </p>
                         <p>In einem System notierte Bläserpaare werden im Regelfall wie in der Hauptquelle
                             notiert. Insbesondere wird die bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> ausgiebig verwendete Form der
@@ -3169,7 +3172,7 @@
                             zu ergänzen. Wo immer es nach dem musikalischen Zusammenhang aber möglich ist,
                             beide Formen der Zusätze im Notensystem durch ein vom Herausgeber über dem
                             System ergänztes [a 2] zu vermeiden, ist diese Lösung vorzuziehen.</p>
-                        <p>–<span class="tei_hi_bold"> Schlaginstrumente / Pauken</span>
+                        <p>– <span class="tei_hi_bold">Schlaginstrumente / Pauken</span>
                         </p>
                         <p>Schlaginstrumente ohne bestimmte Tonhöhe (Trommel, Becken, Triangel) werden wie
                             im Original oder ggf. auf einer Linie notiert.</p>
@@ -3179,7 +3182,7 @@
                             Fall ergänzt der Herausgeber die Stimmung der zweiten Pauke (nach anderen
                             autorisierten Quellen) in runden bzw. (als eigener Zusatz) in eckigen Klammern
                             (<span class="tei_hi_italic">Timpani in D.</span> [<span class="tei_hi_italic">A.</span>]).</p>
-                        <p id="schriftauszeichnung">–<span class="tei_hi_bold"> Schriftauszeichnung im Notentext</span>
+                        <p id="schriftauszeichnung">– <span class="tei_hi_bold">Schriftauszeichnung im Notentext</span>
                         </p>
                         <p>Nicht kursiviert werden die technische Spielanweisungen bzw. Angaben wie:
                             pizz(icato), arco, prima/seconda volta sowie substantielle (d. h. in der Regel
@@ -3231,7 +3234,7 @@
                             Chorstimmen zwischen Viola und Bassgruppe ein, so dass sich insgesamt folgendes
                             Bild ergibt: </p>
                         <div class="table-wrapper">
-                                                <table id="d10e4550" class="table">
+                                                <table id="d10e4541" class="table">
                                                     <tbody>
                                                         <tr>
                                                             <td>Flauti</td>
@@ -3272,12 +3275,12 @@
                             erkannt werden kann.</p>
                         <p>Die Trompeten bilden in der Regel mit den Pauken eine zusammengehörende
                             Klanggruppe, die entweder unterhalb der Fagotte oder zwischen Hörnern und
-                            Fagotten erscheint. Nur in sehr wenigen Ausnahmefällen (<span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Jägerchor im Freischütz</span>)
+                            Fagotten erscheint. Nur in sehr wenigen Ausnahmefällen (<a class="preview works A020040" href="">Jägerchor im Freischütz</a>)
                             werden die Hörner unterhalb der Fagotte in Verbindung mit Trompeten und Pauken
                             notiert. Somit ergeben sich als Möglichkeiten in der Bläsergruppe die
                             Reihenfolgen: </p>
                         <div class="table-wrapper">
-                                                <table id="d10e4594" class="table">
+                                                <table id="d10e4585" class="table">
                                                     <tbody>
                                                         <tr>
                                                             <td>Flauti</td>
@@ -3361,7 +3364,7 @@
                             System. In diesen Fällen wird ebenfalls die originale Partituranordnung
                             beibehalten. </p>
                         <div class="table-wrapper">
-                                                <table id="d10e4698" class="table">
+                                                <table id="d10e4689" class="table">
                                                     <tbody>
                                                         <tr>
                                                             <td>
@@ -3419,22 +3422,22 @@
                         Gepflogenheiten gemäß in Überbindungen aufgelöst.</p>
                                         </dd>
                                         <dt>Quellen</dt>
-                                        <dd> <p>–<span class="tei_hi_bold"> autographe</span> → §§ <a href="#para29">29</a>–<a href="#para31">31</a>, <a href="#para37">37</a>–<a href="#para38">38</a>, <a href="#para41">41</a>–<a href="#para42">42</a>, <a href="#para72">72</a></p>
-                        <p>–<span class="tei_hi_bold"> autorisierte</span> → §§ <a href="#para58">58</a>, <a href="#para78">78</a></p>
-                        <p>–<span class="tei_hi_bold"> Ersatzquellen</span> → §§ <a href="#para58">58</a>–<a href="#para59">59</a>, <a href="#para79">79</a>, <a href="#para86">86</a></p>
-                        <p>–<span class="tei_hi_bold"> Hauptquelle</span> → §§ <a href="#para68">68</a>–<a href="#para69">69</a>, <a href="#para75">75</a>–<a href="#para76">76</a></p>
-                        <p>–<span class="tei_hi_bold"> Liste der maßgeblichen Quellen</span> <a href="#para68">→ § 68</a></p>
-                        <p>–<span class="tei_hi_bold"> Systematisierung</span> → §§ <a href="#para28">28</a>–<a href="#para34">34</a></p>
-                        <p>–<span class="tei_hi_bold"> teilautograph</span> → § <a href="#para29">29</a>–<a href="#para30">30</a></p>
-                        <p>–<span class="tei_hi_bold"> unautorisierte</span> → §§ <a href="#para79">79</a>, <a href="#para87">87</a></p>
-                        <p>–<span class="tei_hi_bold"> Zählung</span> → §§ <a href="#para43">43</a>–<a href="#para47">47</a></p>
+                                        <dd> <p>– <span class="tei_hi_bold">autographe</span> → §§ <a href="#para29">29</a>–<a href="#para31">31</a>, <a href="#para37">37</a>–<a href="#para38">38</a>, <a href="#para41">41</a>–<a href="#para42">42</a>, <a href="#para72">72</a></p>
+                        <p>– <span class="tei_hi_bold">autorisierte</span> → §§ <a href="#para58">58</a>, <a href="#para78">78</a></p>
+                        <p>– <span class="tei_hi_bold">Ersatzquellen</span> → §§ <a href="#para58">58</a>–<a href="#para59">59</a>, <a href="#para79">79</a>, <a href="#para86">86</a></p>
+                        <p>– <span class="tei_hi_bold">Hauptquelle</span> → §§ <a href="#para68">68</a>–<a href="#para69">69</a>, <a href="#para75">75</a>–<a href="#para76">76</a></p>
+                        <p>– <span class="tei_hi_bold">Liste der maßgeblichen Quellen</span> <a href="#para68">→ § 68</a></p>
+                        <p>– <span class="tei_hi_bold">Systematisierung</span> → §§ <a href="#para28">28</a>–<a href="#para34">34</a></p>
+                        <p>– <span class="tei_hi_bold">teilautograph</span> → § <a href="#para29">29</a>–<a href="#para30">30</a></p>
+                        <p>– <span class="tei_hi_bold">unautorisierte</span> → §§ <a href="#para79">79</a>, <a href="#para87">87</a></p>
+                        <p>– <span class="tei_hi_bold">Zählung</span> → §§ <a href="#para43">43</a>–<a href="#para47">47</a></p>
                                         </dd>
                                         <dt>Quellenbeschreibung</dt>
                                         <dd>
                                             <p> → §§ <a href="#para59">59</a>–<a href="#para66">66</a></p>
-                        <p>–<span class="tei_hi_bold"> Drucke, mit Beispiel </span>→ §§ <a href="#para65">65</a>–<a href="#para66">66</a></p>
-                        <p>–<span class="tei_hi_bold"> Handschriften, mit Beispiel</span> → §§ <a href="#para61">61</a>–<a href="#para64">64</a></p>
-                        <p>–<span class="tei_hi_bold"> Wasserzeichen</span> <a href="#para63">→ § 63</a> e</p>
+                        <p>– <span class="tei_hi_bold">Drucke, mit Beispiel </span>→ §§ <a href="#para65">65</a>–<a href="#para66">66</a></p>
+                        <p>– <span class="tei_hi_bold">Handschriften, mit Beispiel</span> → §§ <a href="#para61">61</a>–<a href="#para64">64</a></p>
+                        <p>– <span class="tei_hi_bold">Wasserzeichen</span> <a href="#para63">→ § 63</a> e</p>
                                         </dd>
                                         <dt>Quellenbewertung</dt>
                                         <dd> → §§ <a href="#para25">25</a>, <a href="#para31">31</a>, <a href="#para33">33</a>, <a href="#para51">51</a>, <a href="#para67">67</a>–<a href="#para79">79</a></dd>
@@ -3468,8 +3471,8 @@
                                         <dd>
                                             <p>Für Singstimmen sind nur Violin-, oktavierter Violinschlüssel (Tenor) und
                         Bassschlüssel zu verwenden, für Instrumentalstimmen Violin-, Alt, Tenor- und
-                        Bassschlüssel im Rahmen der heutigen Praxis. Schlüsselwechsel<span class="tei_hi_bold"> </span>
-                        <span class="tei_hi_bold"></span>in der Hauptquelle sind (sofern sie im modernisierten Notensatz
+                        Bassschlüssel im Rahmen der heutigen Praxis. Schlüsselwechsel
+                        in der Hauptquelle sind (sofern sie im modernisierten Notensatz
                         nicht mitvollzogen werden können) im Kritischen Bericht zu vermerken. Die auch
                         in der heutigen Notationspraxis üblichen Schlüsselwechsel bei Fagotten, Hörnern,
                         Viola oder Violoncelli werden original (nach der Hauptquelle) übernommen.</p>
@@ -3515,10 +3518,10 @@
                         Akkolade zu Beginn jeder neuen über dem System.</p>
                         <p>Bei Menuett- und Scherzosätzen wird in den Trioteilen weitergezählt. Unmittelbar
                             ineinander übergehende Sätze oder Abschnitte werden durchgezählt, wenn der
-                            musikalische Zusammenhang dies nahelegt (z. B. im <span class="tei_hi_italic"><span class="preview works A020231" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020231.html">Konzertstück</span></span>, in den einzelnen, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nummerierten Szenen der <span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> – ohne Rücksicht auf Wechsel von Rezitativ,
+                            musikalische Zusammenhang dies nahelegt (z. B. im <span class="tei_hi_italic"><a class="preview works A020231" href="">Konzertstück</a></span>, in den einzelnen, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nummerierten Szenen der <span class="tei_hi_italic"><a class="preview works A020043" href="">Euryanthe</a></span> – ohne Rücksicht auf Wechsel von Rezitativ,
                             Arioso und Arie). Bei selbständigen Variationswerken werden die einzelnen
                             Variationen jeweils neu gezählt, Variationen innerhalb mehrsätziger Werke werden
-                            gewöhnlich durchgezählt (Bsp.: <span class="preview works A020253" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020253.html"><span class="tei_hi_italic">Turandot</span>-Ouvertüre</span> oder
+                            gewöhnlich durchgezählt (Bsp.: <a class="preview works A020253" href=""><span class="tei_hi_italic">Turandot</span>-Ouvertüre</a> oder
                             <span class="tei_hi_italic"><span class="861051111089745869711410597116105111110101110">Viola-Variationen</span></span>). In Zweifelsfällen ist Rücksprache
                             mit der Editionsleitung zu nehmen.</p>
                         <p>Bei Wiederholungen mit <span class="tei_hi_italic">prima</span>- und <span class="tei_hi_italic">seconda-volta</span>-Übergängen werden nur die Takte des <span class="tei_hi_italic">seconda-volta</span>-Abschnitts in die fortlaufende Taktzählung einbezogen,
@@ -3557,12 +3560,12 @@
                                         <dd> → <span class="tei_hi_italic"><a href="#dialog-schauspieltexte">Dialog- und Schauspieltexte</a></span></dd>
                                         <dt id="text_vertonter">Text, vertonter:</dt>
                                         <dd>
-                                            <p>–<span class="tei_hi_bold"> bei homophon-mehrstimmigen Partien</span>
+                                            <p>– <span class="tei_hi_bold">bei homophon-mehrstimmigen Partien</span>
                     </p>
                         <p>Bei homophonen mehrstimmigen Partien, in denen meist nur eine oder zwei Stimmen
                             textiert sind, wird die Textierung auf alle Stimmen übertragen (zumal <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> auch
                             hier häufig durch Striche die Textierung andeutet).</p>
-                        <p>–<span class="tei_hi_bold"> Orthographie und Interpunktion</span>
+                        <p>– <span class="tei_hi_bold">Orthographie und Interpunktion</span>
                         </p>
                         <p>Gesangstexte werden gemäß der Hauptquelle in deren Orthographie und
                             Zeichensetzung wiedergegeben. (Einzige Abweichung: standardisierte Texte,
@@ -3576,7 +3579,7 @@
                         wird beibehalten, da sie u.U. auf besondere Aspekte der musikalischen Interpretation (Atemzeichen o.ä.) hinweisen kann. 
                         Ergänzt werden ggf. am Satzende fehlende Zeichen oder solche Satzzeichen, die zu sinnentstellenden Interpretationen führen 
                         könnten (sofern nicht Wortabstände in der Partitur als Gliederungsmittel ausreichen).</p>
-                        <p>–<span class="tei_hi_bold"> fehlende Wörter oder Satzteile</span>
+                        <p>– <span class="tei_hi_bold">fehlende Wörter oder Satzteile</span>
                         </p>
                         <p>Fehlende Satzteile oder Wörter werden nach anderen Quellen in runder bzw. vom
                             Herausgeber in eckiger Klammer ergänzt. Satzzeichen werden (in tief- oder
@@ -3587,13 +3590,13 @@
                             Notentexten behandelt, d. h. durch Fußnoten wird unter dem Notentext der
                             entsprechenden Seite angegeben, in welchen größeren Abschnitten der Text ggf.
                             nach einer anderen Quelle ergänzt werden musste.</p>
-                        <p>–<span class="tei_hi_bold"> nicht ausgeschriebene Wiederholungen</span>
+                        <p>– <span class="tei_hi_bold">nicht ausgeschriebene Wiederholungen</span>
                         </p>
                         <p>Von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> durch Linien angedeutete, aber nicht ausgeschriebene Wiederholungen von
                             Textabschnitten (sukzessiv in einer Stimme oder simultan in mehreren Stimmen)
                             werden (ohne Kennzeichnung) getreu der Vorbild- bzw. Parallelstelle
                             ausgeschrieben.</p>
-                        <p>–<span class="tei_hi_bold"> Silbentrennung und Silbenstrennungsstriche</span>
+                        <p>– <span class="tei_hi_bold">Silbentrennung und Silbenstrennungsstriche</span>
                         </p>
                         <p>Silbentrennungsstriche (<span class="tei_hi_italic">U - - hui!</span>) werden zwischen den
                             Binnensilben eines Wortes angebracht. (Die Anzahl der Silbentrennungsstriche bei
@@ -3609,7 +3612,7 @@
                             wiederholen (<span class="tei_hi_italic">er- /  - schre - cken</span>). (Dies kann
                             bei <span class="tei_hi_italic">Score</span> erst bei Vorliegen des endgültigen Zeilen- bzw.
                             Seitenumbruchs eingefügt werden.)</p>
-                        <p>–<span class="tei_hi_bold"> Strophische Wiedergabe und Wiedergabe fehlender Strophen</span>
+                        <p>– <span class="tei_hi_bold">Strophische Wiedergabe und Wiedergabe fehlender Strophen</span>
                         </p>
                         <p>Strophische Wiedergaben der Hauptquelle werden unverändert übernommen. Bei
                             Unterlegung des Gesangstexts unter die Singstimme(n) wird auf die Lesbarkeit
@@ -3624,7 +3627,7 @@
                             Sachverhalt verwiesen. Weitere Strophen, die nicht in einer maßgeblichen Quelle,
                             sondern nur in der literarischen Vorlage auftauchen, werden nicht im Notenteil,
                             sondern im Textanhang wiedergegeben.</p>
-                        <p>–<span class="tei_hi_bold"> Verlängerungsstriche</span>
+                        <p>– <span class="tei_hi_bold">Verlängerungsstriche</span>
                         </p>
                         <p>Verlängerungsstriche (<span class="tei_hi_italic">Uhui____</span>,) werden nur gesetzt, wenn
                             eine Endsilbe oder ein einsilbiges Wort auf ein Melisma gesungen wird oder auf
@@ -3636,8 +3639,8 @@
                                         </dd>
                                         <dt>Textfassung(en)</dt>
                                         <dd>
-                                            <p>–<span class="tei_hi_bold"> autorisierte</span> <a href="#para23">→ § 23</a></p>
-                        <p>–<span class="tei_hi_bold"> Platzierung</span> <a href="#para22">→ § 22</a></p>
+                                            <p>– <span class="tei_hi_bold">autorisierte</span> <a href="#para23">→ § 23</a></p>
+                        <p>– <span class="tei_hi_bold">Platzierung</span> <a href="#para22">→ § 22</a></p>
                                         </dd>
                                         <dt>Textvarianten, Verzeichnis</dt>
                                         <dd> → §§ <a href="#para40">40</a>, <a href="#para104">104</a></dd>
@@ -3660,7 +3663,7 @@
                         Auftreten mit Sternchen markiert. Eine Fußnote weist auf die Erklärung im
                         Kritischen Bericht hin. </p>
                         <div class="table-wrapper">
-                                                <table id="d10e5484" class="table">
+                                                <table id="d10e5470" class="table">
                                                     <tbody>
                                                         <tr>
                                                             <td>Beispiel:</td>
@@ -3709,17 +3712,15 @@
                                         </dd>
                                         <dt>Variantenverzeichnis</dt>
                                         <dd> → §§ <a href="#para81">81</a>, <a href="#para85">85</a>–<a href="#para105">105</a>
-                        <p>–<span class="tei_hi_bold"> Anordnung</span> → §§ <a href="#para97">97</a>, <a href="#para103">103</a></p>
-                        <p>–<span class="tei_hi_bold"> Funktion</span> → §§ <a href="#para85">85</a>–<a href="#para86">86</a></p>
-                        <p>–<span class="tei_hi_bold"> Instrumentenbezeichnung</span> <a href="#para95">→ § 95</a></p>
+                        <p>– <span class="tei_hi_bold">Anordnung</span> → §§ <a href="#para97">97</a>, <a href="#para103">103</a></p>
+                        <p>– <span class="tei_hi_bold">Funktion</span> → §§ <a href="#para85">85</a>–<a href="#para86">86</a></p>
+                        <p>– <span class="tei_hi_bold">Instrumentenbezeichnung</span> <a href="#para95">→ § 95</a></p>
                                         </dd>
                                         <dt>Verlagsnummer</dt>
                                         <dd> → <span class="tei_hi_italic"><a href="#pn">Plattennummer</a></span></dd>
                                         <dt>Vorbemerkung zum Editionsbericht</dt>
                                         <dd> → §§ <a href="#para81">81</a>–<a href="#para84">84</a></dd>
-                                        <dt id="vorsatz">Vorsatz (→<span class="tei_hi_bold">
-                        <span class="tei_hi_italic"><a href="#schluessel">Schlüssel</a></span>
-                    </span>):</dt>
+                                        <dt id="vorsatz">Vorsatz (→ <span class="tei_hi_bold"><span class="tei_hi_italic"><a href="#schluessel">Schlüssel</a></span></span>):</dt>
                                         <dd>
                                             <p>Die originale Schlüsselung (mit Ausnahme der Doppelschlüssel in den
                         Bläserstimmen) wird vor der ersten Akkolade im Kleinstich
@@ -3754,8 +3755,8 @@
                                         <dd> <a href="#para63">→ § 63</a></dd>
                                         <dt>Werkfassung</dt>
                                         <dd> → <span class="tei_hi_italic"><a href="#fassung">Fassungen</a></span>
-                                            <p>–<span class="tei_hi_bold"> in anderer Besetzung</span> <a href="#para20">→ § 20</a></p>
-                        <p>–<span class="tei_hi_bold"> Dokumentation verschiedener Fassungen</span> → §§ <a href="#para2">2</a>, <a href="#para21">21</a></p>
+                                            <p>– <span class="tei_hi_bold">in anderer Besetzung</span> <a href="#para20">→ § 20</a></p>
+                        <p>– <span class="tei_hi_bold">Dokumentation verschiedener Fassungen</span> → §§ <a href="#para2">2</a>, <a href="#para21">21</a></p>
                                         </dd>
                                         <dt>Werktitel (original / standardisiert)</dt>
                                         <dd> → §§ <a href="#para6">6</a>–<a href="#para8">8</a></dd>
@@ -3779,8 +3780,8 @@
                                         </dd>
                                         <dt>Zusätze</dt>
                                         <dd>
-                                            <p>–<span class="tei_hi_bold"> autographe</span> <a href="#para30">→ § 30</a></p>
-                        <p>–<span class="tei_hi_bold"> des Herausgebers / nach autorisierten Quellen</span> → <span class="tei_hi_italic"><a href="#ergaenzung">Ergänzungen im Notentext</a></span>
+                                            <p>– <span class="tei_hi_bold">autographe</span> <a href="#para30">→ § 30</a></p>
+                        <p>– <span class="tei_hi_bold">des Herausgebers / nach autorisierten Quellen</span> → <span class="tei_hi_italic"><a href="#ergaenzung">Ergänzungen im Notentext</a></span>
                         </p>
                                         </dd>
                                     </dl>
@@ -3804,9 +3805,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070010</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070010</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 21. Juni 2018 durch Peter Stadler</span></p>
+                    <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
             
         </div>
@@ -3872,7 +3873,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -3892,30 +3894,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet 
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-	xmlns="http://www.w3.org/1999/xhtml" 
 	xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
 	xmlns:tei="http://www.tei-c.org/ns/1.0" 
 	xmlns:functx="http://www.functx.com" 
 	xmlns:xs="http://www.w3.org/2001/XMLSchema"
 	xmlns:teix="http://www.tei-c.org/ns/Examples"
-	exclude-result-prefixes="xs" version="2.0">
+	version="2.0">
 	
 	<!-- XSL module for the TEI tagdocs element set --> 
 	
@@ -51,7 +50,7 @@
 		<xsl:variable name="spec" select="wega:doc($main-source-path)//tei:*[@ident=current()/@key]"/>
 		<xsl:element name="li">
 			<xsl:variable name="gi">
-				<tei:gi><xsl:value-of select="@key"/></tei:gi>
+				<gi xmlns="http://www.tei-c.org/ns/1.0"><xsl:value-of select="@key"/></gi>
 			</xsl:variable>
 			<xsl:apply-templates select="$gi"/>
 			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
@@ -108,10 +107,10 @@
 			<!-- WeGA only: create back links to documents for examples -->
 			<xsl:if test="matches(@source, 'A[A-F0-9]{6}')">
 				<xsl:variable name="rs">
-					<tei:rs>
+					<rs xmlns="http://www.tei-c.org/ns/1.0">
 						<xsl:attribute name="key" select="@source"/>
 						<xsl:value-of select="@source"/>
-					</tei:rs>
+					</rs>
 				</xsl:variable>
 				<xsl:element name="span">
 					<xsl:attribute name="class">tei_egXML_source</xsl:attribute>

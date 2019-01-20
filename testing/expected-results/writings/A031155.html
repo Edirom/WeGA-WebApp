@@ -13,8 +13,8 @@
         <meta property="dc:contributor" content="Carl Maria von Weber" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
-        <meta property="dc:creator" content="Joachim Veit" />
-        <meta property="dc:date" content="2018-07-13T21:18:14.937149Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031155" />
         <meta property="dc:description" content="in dem Bericht werden die musikalischen Verhältnisse von Sachsen und Dresden anhand der einzelnen Punkte des von Webers ausgearbeiteten Plan zum Noth- und Hülfsbüchlein systematisch aufgeschlüsselt skizziert" />
         <meta name="description" content="in dem Bericht werden die musikalischen Verhältnisse von Sachsen und Dresden anhand der einzelnen Punkte des von Webers ausgearbeiteten Plan zum Noth- und Hülfsbüchlein systematisch aufgeschlüsselt skizziert" />
@@ -36,6 +36,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -43,12 +44,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Weber, Carl Maria von","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"name":"Carl Maria von Weber: Notizen über Sachsen und Dresden. Ein Beitrag zur musikalischen Topographie","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031155","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -191,7 +194,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Writings/A031155.html" hreflang="en" lang="en">En</a></li>
@@ -215,10 +220,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a></li>
-                        <li><span>A031155</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
+                        </li>
+                        <li>
+                            <span>A031155</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -234,55 +249,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155/backlinks.html">Rückverweise</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155/backlinks.html">Rückverweise</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031155.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -290,69 +322,71 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000064" /> <span title="Babbi, Pietro Giovanni Christoforo">Babbi, Pietro Giovanni Christo…</span> 
+                                    <input type="checkbox" name="options" value="A003577" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001644" /> <span title="Caravoglia-Sandrini, Luigia">Caravoglia-Sandrini, Luigia</span> 
+                                    <input type="checkbox" name="options" value="A000791" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000388" /> <span title="Dietzsch, Carl Gottfried">Dietzsch, Carl Gottfried</span> 
+                                    <input type="checkbox" name="options" value="A000756" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000400" /> <span title="Dotzauer, Justus Johann Friedrich">Dotzauer, Justus Johann Friedr…</span> 
+                                    <input type="checkbox" name="options" value="A004394" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A004163" /> <span title="Dreyssig, Anton">Dreyssig, Anton</span> 
+                                    <input type="checkbox" name="options" value="A001393" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003577" /> <span title="Friedrich August I., Kurfürst von Sachsen">Friedrich August I., Kurfürst …</span> 
+                                    <input type="checkbox" name="options" value="A002416" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A004394" /> <span title="Friedrich August II., Kurfürst von Sachsen">Friedrich August II., Kurfürst…</span> 
+                                    <input type="checkbox" name="options" value="A006381" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000756" /> <span title="Hasse, Johann Adolf">Hasse, Johann Adolf</span> 
+                                    <input type="checkbox" name="options" value="A001436" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000791" /> <span title="Heinichen, Johann David">Heinichen, Johann David</span> 
+                                    <input type="checkbox" name="options" value="A001348" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009849" /> <span title="Jäckel, Gottfried Friedrich">Jäckel, Gottfried Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A002021" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008725" /> <span title="Körner, Christian Gottfried">Körner, Christian Gottfried</span> 
+                                    <input type="checkbox" name="options" value="A000064" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001177" /> <span title="Limberg, Johann Gottlob">Limberg, Johann Gottlob</span> 
+                                    <input type="checkbox" name="options" value="A002156" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009669" /> <span title="Miksch, Adalbert Alexius">Miksch, Adalbert Alexius</span> 
+                                    <input type="checkbox" name="options" value="A000388" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002848" /> <span title="Morgenroth, Franz Anton">Morgenroth, Franz Anton</span> 
+                                    <input type="checkbox" name="options" value="A002210" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001348" /> <span title="Morlacchi, Francesco">Morlacchi, Francesco</span> 
+                                    <input type="checkbox" name="options" value="A002856" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001393" /> <span title="Naumann, Johann Gottlieb">Naumann, Johann Gottlieb</span> 
+                                    <input type="checkbox" name="options" value="A000400" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001436" /> <span title="Paër, Ferdinando">Paër, Ferdinando</span> 
+                                    <input type="checkbox" name="options" value="A008053" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008977" /> <span title="Pechwell, Antonia">Pechwell, Antonia</span> 
+                                    <input type="checkbox" name="options" value="A009849" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002260" /> <span title="Peschke, Carl Gottlob">Peschke, Carl Gottlob</span> 
+                                    <input type="checkbox" name="options" value="A001623" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008053" /> <span title="Prinz, Johann Friedrich">Prinz, Johann Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A001619" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002856" /> <span title="Püschel, Franz Xaver">Püschel, Franz Xaver</span> 
+                                    <input type="checkbox" name="options" value="A009669" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001619" /> <span title="Roth, Gottlob">Roth, Gottlob</span> 
+                                    <input type="checkbox" name="options" value="A008977" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001623" /> <span title="Roth, Johann Traugott">Roth, Johann Traugott</span> 
+                                    <input type="checkbox" name="options" value="A001649" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001649" /> <span title="Sassaroli, Filippo">Sassaroli, Filippo</span> 
+                                    <input type="checkbox" name="options" value="A001644" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001706" /> <span title="Schmiedel, Carl Traugott">Schmiedel, Carl Traugott</span> 
+                                    <input type="checkbox" name="options" value="A004163" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A006381" /> <span title="Schuster, Joseph">Schuster, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A008725" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002416" /> <span title="Seydelmann, Franz">Seydelmann, Franz</span> 
+                                    <input type="checkbox" name="options" value="A001706" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002021" /> <span title="Vitzthum von Eckstädt, Carl Graf">Vitzthum von Eckstädt, Carl Gr…</span> 
+                                    <input type="checkbox" name="options" value="A002260" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002156" /> <span title="Winkel, Therese aus dem">Winkel, Therese aus dem</span> 
+                                    <input type="checkbox" name="options" value="A001177" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002210" /> <span title="Zucker, Emilie">Zucker, Emilie</span> 
+                                    <input type="checkbox" name="options" value="A002848" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -370,15 +404,15 @@
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1">Sachsen</span>.</td>
-                                                        <td>3 Epochen, 1<span class="tei_hi_superscript">t</span> von <span class="tei_hi_underline1"><a class="preview persons A003577" href="/exist/apps/WeGA-WebApp/de/A003577.html">Friedrich August</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000791" href="/exist/apps/WeGA-WebApp/de/A000791.html">Heinichen</a></span>.<br />2<span class="tei_hi_superscript">t</span> <a class="preview persons A000756" href="/exist/apps/WeGA-WebApp/de/A000756.html">Haße</a>. Opern. <span class="tei_add tei_hi_superscript">unter<a class="noteMarker" id="ref-d10e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e31">‡</a></span> <a class="preview persons A004394" href="/exist/apps/WeGA-WebApp/de/A004394.html">August d: 3</a><span class="tei_hi_superscript">t</span><br />3<span class="tei_hi_superscript">t</span> <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a>. <a class="preview persons A002416" href="/exist/apps/WeGA-WebApp/de/A002416.html">Seidelmann</a> und <a class="preview persons A006381" href="/exist/apps/WeGA-WebApp/de/A006381.html">Schuster</a>
-                     gleichsam <span class="8399104252108101114">Schüler</span>.<br />4<span class="tei_supplied" id="d10e58"><span class="brackets_supplied">[</span><span class="tei_hi_superscript">t</span><span class="brackets_supplied">]</span></span> <a class="preview persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Pär’sche</a>, <a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlachi</a>.</td>
+                                                        <td>3 Epochen, 1<span class="tei_hi_superscript">t</span> von <span class="tei_hi_underline1"><a class="preview persons A003577" href="">Friedrich August</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000791" href="">Heinichen</a></span>.<br />2<span class="tei_hi_superscript">t</span> <a class="preview persons A000756" href="">Haße</a>. Opern. <span class="tei_add tei_hi_superscript">unter<a class="noteMarker" id="ref-d10e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e31">‡</a></span> <a class="preview persons A004394" href="">August d: 3</a><span class="tei_hi_superscript">t</span><br />3<span class="tei_hi_superscript">t</span> <a class="preview persons A001393" href="">Naumann</a>. <a class="preview persons A002416" href="">Seidelmann</a> und <a class="preview persons A006381" href="">Schuster</a>
+                     gleichsam <span class="8399104252108101114">Schüler</span>.<br />4<span class="tei_supplied" id="d10e58"><span class="brackets_supplied">[</span><span class="tei_hi_superscript">t</span><span class="brackets_supplied">]</span></span> <a class="preview persons A001436" href="">Pär’sche</a>, <a class="preview persons A001348" href="">Morlachi</a>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1">Dresden</span>.<br />Oboe dominirte wegen 
                      <span class="66101115115111122122105">Bessozzi</span><a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. Clarinette kennt 
                      man erst seit der Anstellung
                      <span class="82104111100101110115">Rhodens</span><a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>. und <span class="66101115115111122122105115">Bessozzis</span> Tode.
-                     <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a> liebte sie sehr
+                     <a class="preview persons A001393" href="">Naumann</a> liebte sie sehr
                      und brachte es mit 
                      Mühe dahin.                        
                      12. Jahr.<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
@@ -395,9 +429,9 @@
                                                     <tr>
                                                         <td><span class="tei_hi_underline1">Erlaubniß</span>.</td>
                                                         <td>wenn die Kapelle spielt muß der Graf 
-                     <a class="preview persons A002021" href="/exist/apps/WeGA-WebApp/de/A002021.html"><span class="tei_hi_latintype">V</span>.</a> die E: geben. vorher wird die K: 
+                     <a class="preview persons A002021" href=""><span class="tei_hi_latintype">V</span>.</a> die E: geben. vorher wird die K: 
                      um ihre Mitw. ersucht. durch den KapellMst. 
-                     oder <a class="preview persons A000064" href="/exist/apps/WeGA-WebApp/de/A000064.html"><span class="tei_hi_latintype">Babi</span></a>. neuerdings befohlen daß keine 
+                     oder <a class="preview persons A000064" href=""><span class="tei_hi_latintype">Babi</span></a>. neuerdings befohlen daß keine 
                      E: gegeben wird ohne Protektion, oder 
                      hinlängliche <span class="tei_hi_latintype">Subsc</span>:<br />
                      in der Stadt ohne C:<span class="tei_supplied" id="d10e124"><span class="brackets_supplied">[</span>apelle?<span class="brackets_supplied">]</span></span> PolizeiE: vom 
@@ -455,19 +489,19 @@
                      recht braves <span class="tei_hi_latintype">Ensemble</span> zusammen
                      Gebracht.                                               
                       
-                     Fräulein aus dem <a class="preview persons A002156" href="/exist/apps/WeGA-WebApp/de/A002156.html">Winkel</a>. Harfe.<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>
+                     Fräulein aus dem <a class="preview persons A002156" href="">Winkel</a>. Harfe.<a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>
                   </td>
-                                                        <td><span class="tei_hi_latintype"><a class="preview persons A000064" href="/exist/apps/WeGA-WebApp/de/A000064.html">Babbi</a></span> oder <span class="tei_hi_underline1"><a class="preview persons A000388" href="/exist/apps/WeGA-WebApp/de/A000388.html">Dietsch</a></span>.   alles gut 
+                                                        <td><span class="tei_hi_latintype"><a class="preview persons A000064" href="">Babbi</a></span> oder <span class="tei_hi_underline1"><a class="preview persons A000388" href="">Dietsch</a></span>.   alles gut 
                      besezt. außer Trompete u Paukken, die 
                      bezahlt werden müßen.
-                     Dilletante<span class="tei_supplied" id="d10e254"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>. Mlle <span class="tei_hi_underline1"><span class="7111425211011997108100">Grünwald</span></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>, <a class="preview persons A002210" href="/exist/apps/WeGA-WebApp/de/A002210.html">Zucker</a> 
-                     <span class="75972231011159910411410110598101114">Kaßeschreiber</span> <span class="71246122">Göz</span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a>. <span class="tei_hi_underline1"><a class="preview persons A002856" href="/exist/apps/WeGA-WebApp/de/A002856.html">Pischel</a></span>. <span class="tei_hi_latintype">Violoncell</span>: Dillettant. 
-                     <a class="preview persons A000400" href="/exist/apps/WeGA-WebApp/de/A000400.html">Dozauer</a>. <a class="preview persons A008053" href="/exist/apps/WeGA-WebApp/de/A008053.html">Prinz</a>. Flöte. <a class="preview persons A009849" href="/exist/apps/WeGA-WebApp/de/A009849.html">Jäckel</a>
-                     Oboe. <span class="preview persons A001623 A001619" data-ref="/exist/apps/WeGA-WebApp/de/A001623.html /exist/apps/WeGA-WebApp/de/A001619.html">Br. Rothe</span>, Clar: <a class="preview persons A009669" href="/exist/apps/WeGA-WebApp/de/A009669.html">Mieksch</a>. und
-                     <a class="preview persons A008977" href="/exist/apps/WeGA-WebApp/de/A008977.html">Pechwell</a>. Mlle:  Mlle:
+                     Dilletante<span class="tei_supplied" id="d10e254"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>. Mlle <span class="tei_hi_underline1"><span class="7111425211011997108100">Grünwald</span></span><a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>, <a class="preview persons A002210" href="">Zucker</a> 
+                     <span class="75972231011159910411410110598101114">Kaßeschreiber</span> <span class="71246122">Göz</span><a class="noteMarker" id="ref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a>. <span class="tei_hi_underline1"><a class="preview persons A002856" href="">Pischel</a></span>. <span class="tei_hi_latintype">Violoncell</span>: Dillettant. 
+                     <a class="preview persons A000400" href="">Dozauer</a>. <a class="preview persons A008053" href="">Prinz</a>. Flöte. <a class="preview persons A009849" href="">Jäckel</a>
+                     Oboe. <span class="preview persons A001623 A001619" data-ref=" ">Br. Rothe</span>, Clar: <a class="preview persons A009669" href="">Mieksch</a>. und
+                     <a class="preview persons A008977" href="">Pechwell</a>. Mlle:  Mlle:
                      Die Kapellisten spielen nicht leicht ohne 
                      ihre <span class="tei_hi_latintype">Consorten</span>.<br />
-                     <span class="tei_hi_underline1">gem</span>: <span class="tei_hi_latintype"><a class="preview persons A001649" href="/exist/apps/WeGA-WebApp/de/A001649.html">Sassarolli</a>. <a class="preview persons A001644" href="/exist/apps/WeGA-WebApp/de/A001644.html">Sandrini</a></span>.<br />
+                     <span class="tei_hi_underline1">gem</span>: <span class="tei_hi_latintype"><a class="preview persons A001649" href="">Sassarolli</a>. <a class="preview persons A001644" href="">Sandrini</a></span>.<br />
                      Leichte gefällige Musik. besonders 
                      sogar aus <span class="tei_hi_latintype">Opera buffa</span> Arien in 
                      <span class="tei_hi_latintype">Concerten</span>. <span class="tei_hi_latintype">Polonais pp</span> in <span class="tei_hi_latintype">Concert</span>: 
@@ -477,8 +511,8 @@
                      um 6 Uhr zuweilen ½ 7.
                      Größere Arien mit Chor, Bruchstükke aus 
                      Opern sind beliebt.
-                     Große Vorliebe für <a class="preview persons A001436" href="/exist/apps/WeGA-WebApp/de/A001436.html">Pär’sche</a> Musik.
-                     <a class="preview persons A004163" href="/exist/apps/WeGA-WebApp/de/A004163.html">Dreißig</a> ein Erard:sches, und H: 
+                     Große Vorliebe für <a class="preview persons A001436" href="">Pär’sche</a> Musik.
+                     <a class="preview persons A004163" href="">Dreißig</a> ein Erard:sches, und H: 
                      <span class="70105101100108101114">Fiedler</span><a class="noteMarker" id="ref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a> ein Streichersches <span class="tei_supplied" id="d10e353"><span class="brackets_supplied">[</span>Pianoforte<span class="brackets_supplied">]</span></span>.
                      Magazin von Instr. im Adreß<span class="tei_hi_latintype">Comptoir</span> <span class="tei_pb" title="Seitenumbruch"> | </span>
                   </td>
@@ -488,26 +522,26 @@
                                                         <td>Winter. wenn die Opern aufgehört haben, von Mitte Dezember bis Ende, und von Fastnachtsdienstag bis zu den heiligen Wochen.<br />gewöhnli<span class="tei_supplied" id="d10e371"><span class="brackets_supplied">[</span>ch<span class="brackets_supplied">]</span></span>ster? Tag <span class="tei_hi_underline1">Freytag</span>. jedoch ist dießen Tag <span class="tei_hi_latintype">Casino</span> welches Manchmal ausgesezt ist<br />M: <span class="tei_hi_underline1">d</span>: <span class="tei_hi_underline1">M</span>: d: <span class="tei_hi_underline1">S</span>: Sonntag ist auch gut, aber wegen den <span class="tei_hi_latintype">Conc<span class="tei_supplied" id="d10e394"><span class="brackets_supplied">[</span>ert<span class="brackets_supplied">]</span></span></span>tag bey Hofe, nichts, –</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="2"><span class="tei_hi_underline1">Bey Hofe spielen</span>.<br />Ohne große Empfehlung von K<span class="tei_supplied" id="d10e404"><span class="brackets_supplied">[</span>apell<span class="brackets_supplied">]</span></span>: K<span class="tei_supplied" id="d10e407"><span class="brackets_supplied">[</span>ammer<span class="brackets_supplied">]</span></span>: M<span class="tei_supplied" id="d10e410"><span class="brackets_supplied">[</span>usikdirektor<span class="brackets_supplied">]</span></span>: <a class="preview persons A002021" href="/exist/apps/WeGA-WebApp/de/A002021.html">V:</a> <span class="tei_hi_latintype">pp</span> geht es gar nicht, und dann sehr schwer. da nie <span class="tei_hi_latintype">Con</span>: bey Hofe <span class="tei_hi_underline1">Langenbrük</span>. 2 Stunden. </td>
+                                                        <td colspan="2"><span class="tei_hi_underline1">Bey Hofe spielen</span>.<br />Ohne große Empfehlung von K<span class="tei_supplied" id="d10e404"><span class="brackets_supplied">[</span>apell<span class="brackets_supplied">]</span></span>: K<span class="tei_supplied" id="d10e407"><span class="brackets_supplied">[</span>ammer<span class="brackets_supplied">]</span></span>: M<span class="tei_supplied" id="d10e410"><span class="brackets_supplied">[</span>usikdirektor<span class="brackets_supplied">]</span></span>: <a class="preview persons A002021" href="">V:</a> <span class="tei_hi_latintype">pp</span> geht es gar nicht, und dann sehr schwer. da nie <span class="tei_hi_latintype">Con</span>: bey Hofe <span class="tei_hi_underline1">Langenbrük</span>. 2 Stunden. </td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
-                                                        <td><span class="tei_hi_underline1">Allgemeine B</span>:<br /><span class="preview persons A001393" data-ref="/exist/apps/WeGA-WebApp/de/A001393.html"><span class="tei_sic">Neumann<a class="noteMarker" id="ref-d10e434" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e434">‡</a></span></span>. <a class="preview persons A008725" href="/exist/apps/WeGA-WebApp/de/A008725.html">Körner</a>. <a class="preview persons A002156" href="/exist/apps/WeGA-WebApp/de/A002156.html">Winkel</a>. viele Häuser die sonst etwas thaten thun nichts mehr.</td>
+                                                        <td><span class="tei_hi_underline1">Allgemeine B</span>:<br /><span class="preview persons A001393" data-ref=""><span class="tei_sic">Neumann<a class="noteMarker" id="ref-d10e434" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e434">‡</a></span></span>. <a class="preview persons A008725" href="">Körner</a>. <a class="preview persons A002156" href="">Winkel</a>. viele Häuser die sonst etwas thaten thun nichts mehr.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td colspan="2">Ausgezeichnet waren sonst die <span class="tei_hi_latintype">Concerte</span> beym HausMarschall von Schönberg<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a>, für die selbst <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumann</a> mehrere Sinfonien schrieb.</td>
+                                                        <td colspan="2">Ausgezeichnet waren sonst die <span class="tei_hi_latintype">Concerte</span> beym HausMarschall von Schönberg<a class="noteMarker" id="ref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a>, für die selbst <a class="preview persons A001393" href="">Naumann</a> mehrere Sinfonien schrieb.</td>
                                                     </tr>
                                                     <tr>
                                                         <td></td>
-                                                        <td>Nun 5 Jahre eine Akademie alle 14 Tage in sein<span class="tei_supplied" id="d10e461"><span class="brackets_supplied">[</span>em<span class="brackets_supplied">]</span></span> Hause unter <a class="preview persons A001393" href="/exist/apps/WeGA-WebApp/de/A001393.html">Naumanns</a> Direktion. Stehende <span class="tei_hi_latintype">Concert</span> giebt es keine mehr seit <span class="preview persons A001393" data-ref="/exist/apps/WeGA-WebApp/de/A001393.html"><span class="tei_sic">Neumanns<a class="noteMarker" id="ref-d10e471" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e471">‡</a></span></span>. und die Kapelle giebt seit       keine mehr da sie nicht auf die Kosten kam.</td>
+                                                        <td>Nun 5 Jahre eine Akademie alle 14 Tage in sein<span class="tei_supplied" id="d10e461"><span class="brackets_supplied">[</span>em<span class="brackets_supplied">]</span></span> Hause unter <a class="preview persons A001393" href="">Naumanns</a> Direktion. Stehende <span class="tei_hi_latintype">Concert</span> giebt es keine mehr seit <span class="preview persons A001393" data-ref=""><span class="tei_sic">Neumanns<a class="noteMarker" id="ref-d10e471" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e471">‡</a></span></span>. und die Kapelle giebt seit       keine mehr da sie nicht auf die Kosten kam.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><br />1<span class="tei_hi_superscript">stens</span> das <span class="tei_add tei_hi_superscript">sogenannte<a class="noteMarker" id="ref-d10e484" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e484">‡</a></span><a class="noteMarker" id="ref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a> Dillettanten<span class="tei_hi_latintype">Concert</span> auf dem Gemeindehause. alle 14 Tage an wechselnden Tagen nach Umständen. es besteht zum Theil aus Kapellisten und Liebhabern. Musikus <span class="8399104117108122">Schulz</span> <span class="tei_hi_latintype">dirigirt</span>. <span class="tei_hi_latintype">Director</span>, ist Geh: Registrator <span class="tei_hi_underline1"><span class="tei_hi_latintype">Krämpa</span></span><a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a> für immer.</td>
                                                         <td>jezt besteht, 2<span class="tei_hi_superscript">tens</span> das <span class="tei_hi_latintype">Concert</span> in der Harmonie, welches auch besondere Beyträge der Gesellschaft braucht und unter Direkzion       besteht.<br />Die Hoboisten der Garde und einige Liebhaber machen es aus. der Tag ist <span class="tei_pb" title="Seitenumbruch"> | </span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><a class="preview persons A001706" href="/exist/apps/WeGA-WebApp/de/A001706.html"><span class="tei_hi_underline1">Schmiedel</span></a> <span class="tei_add tei_hi_superscript">Viola<a class="noteMarker" id="ref-d10e527" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e527">‡</a></span>, <span class="tei_hi_underline1"><span class="preview persons A002260" data-ref="/exist/apps/WeGA-WebApp/de/A002260.html">P<span class="tei_del">ö<a class="noteMarker" id="ref-d10e533" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e533">‡</a></span><span class="tei_add">e<a class="noteMarker" id="ref-d10e535" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e535">‡</a></span>schke</span></span>. <span class="tei_add tei_hi_superscript">V.<a class="noteMarker" id="ref-d10e539" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e539">‡</a></span> <span class="tei_hi_underline1"><a class="preview persons A001177" href="/exist/apps/WeGA-WebApp/de/A001177.html">Limberg</a></span> <span class="tei_add tei_hi_superscript">V:<a class="noteMarker" id="ref-d10e546" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e546">‡</a></span><br />6 Stükk.? <span class="tei_del">Mittwoch<a class="noteMarker" id="ref-d10e551" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e551">‡</a></span><br />Freytag. alle 14 Tage.</td>
-                                                        <td><span class="tei_hi_latintype"><span class="tei_hi_underline1">Quartetten</span> abbonirte. <span class="tei_hi_underline1"><a class="preview persons A000400" href="/exist/apps/WeGA-WebApp/de/A000400.html">Dozauer</a></span></span> und Musiklehrer <span class="tei_hi_latintype"><span class="7011111499104116">Forcht</span></span><a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a>. 3 Quart.? <span class="tei_hi_underline1"><a class="preview persons A002848" href="/exist/apps/WeGA-WebApp/de/A002848.html">Morgenroth</a></span>. Musikl: ein Klavier <span class="tei_hi_latintype">quartett</span>. Dienstag. alle 14 Tage.</td>
+                                                        <td><a class="preview persons A001706" href=""><span class="tei_hi_underline1">Schmiedel</span></a> <span class="tei_add tei_hi_superscript">Viola<a class="noteMarker" id="ref-d10e527" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e527">‡</a></span>, <span class="tei_hi_underline1"><span class="preview persons A002260" data-ref="">P<span class="tei_del">ö<a class="noteMarker" id="ref-d10e533" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e533">‡</a></span><span class="tei_add">e<a class="noteMarker" id="ref-d10e535" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e535">‡</a></span>schke</span></span>. <span class="tei_add tei_hi_superscript">V.<a class="noteMarker" id="ref-d10e539" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e539">‡</a></span> <span class="tei_hi_underline1"><a class="preview persons A001177" href="">Limberg</a></span> <span class="tei_add tei_hi_superscript">V:<a class="noteMarker" id="ref-d10e546" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e546">‡</a></span><br />6 Stükk.? <span class="tei_del">Mittwoch<a class="noteMarker" id="ref-d10e551" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e551">‡</a></span><br />Freytag. alle 14 Tage.</td>
+                                                        <td><span class="tei_hi_latintype"><span class="tei_hi_underline1">Quartetten</span> abbonirte. <span class="tei_hi_underline1"><a class="preview persons A000400" href="">Dozauer</a></span></span> und Musiklehrer <span class="tei_hi_latintype"><span class="7011111499104116">Forcht</span></span><a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a>. 3 Quart.? <span class="tei_hi_underline1"><a class="preview persons A002848" href="">Morgenroth</a></span>. Musikl: ein Klavier <span class="tei_hi_latintype">quartett</span>. Dienstag. alle 14 Tage.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>blos von den neuen <span class="tei_hi_latintype">Oratorien</span>, wird den Montag in der Charwoche die 2<span class="tei_hi_superscript">te</span> Probe bey Hofe gehalten, und den Ostersonnabend um 3. Uhr <span class="tei_del">M<a class="noteMarker" id="ref-d10e586" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e586">‡</a></span> Nachmittag die Aufführung in der <span class="tei_add tei_hi_superscript">Hof<a class="noteMarker" id="ref-d10e589" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e589">‡</a></span>Kirche<a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a></td>
@@ -538,7 +572,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>es ist naheliegend, dass diese Notizen während seiner Konzertreise mit Baermann in Dresden entstanden; im TB sind zwei gedankliche Auseinandersetzungen mit der "Topographie" nachweisbar; vgl. <a class="preview diaries A065562" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065562.html">1. Februar 1812</a> und <a class="preview diaries A065576" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065576.html">am 15. Februar 1812</a>; vgl. außerdem die anderen überlieferten Dokumente zum Noth- und Hülfsbüchlein (<span class="preview writings A031148 A031149 A031151" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031148.html /exist/apps/WeGA-WebApp/de/A002068/Schriften/A031149.html /exist/apps/WeGA-WebApp/de/A002068/Schriften/A031151.html">Weber-Schriften</span>)</p>
+                                        <p>es ist naheliegend, dass diese Notizen während seiner Konzertreise mit Baermann in Dresden entstanden; im TB sind zwei gedankliche Auseinandersetzungen mit der "Topographie" nachweisbar; vgl. <a class="preview diaries A065562" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065562.html">1. Februar 1812</a> und <a class="preview diaries A065576" href="">am 15. Februar 1812</a>; vgl. außerdem die anderen überlieferten Dokumente zum Noth- und Hülfsbüchlein (<span class="preview writings A031148 A031149 A031151" data-ref=" /exist/apps/WeGA-WebApp/de/A002068/Schriften/A031149.html ">Weber-Schriften</span>)</p>
                                     </div>
                         </div>
                         
@@ -568,11 +602,17 @@
                                             </ul>
                                             <h4 class="media-heading">Überlieferung</h4>
                                             <ul>
-                                                <li>Bl. 1: <a class="preview orgs A080105" href="/exist/apps/WeGA-WebApp/de/A080105.html">L’Autographe</a>, 28. Juni 1994</li>
-                                                <li>Bl. 1: <a class="preview orgs A080089" href="/exist/apps/WeGA-WebApp/de/A080089.html">J. A. Stargardt</a> 24./25. November 1964, Kat. 570, Nr. 789 (Faks. recto-Seite auf Tafel 20)</li>
+                                                <li>Bl. 1: <a class="preview orgs A080105" href="">L’Autographe</a>, 28. Juni 1994</li>
+                                                <li>Bl. 1: <a class="preview orgs A080089" href="">J. A. Stargardt</a> 24./25. November 1964, Kat. 570, Nr. 789 (Faks. recto-Seite auf Tafel 20)</li>
                                                 <li>Bl. 2: seit 1956 als Dauerleihgabe in der SBB (Schenkung 1986)</li>
                                             </ul>
                                         </div>
+                                
+                                
+                                <div>
+                                    
+                                    
+                                </div>
                                 
                                 <div>
                                     
@@ -588,9 +628,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         <div>
                             <h3 class="media-heading">Themenkommentare</h3>
@@ -695,7 +733,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A031155/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A031155/manifest.json"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -713,9 +751,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031155</span> (<span>Version 3.3.0dev vom 17. Juli 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031155</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 13. Juli 2018 durch Joachim Veit</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -781,7 +820,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -801,30 +841,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

@@ -135,7 +135,9 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie" data-template="app-shared:if-not-exists" data-template-key="addrLines">
-                    <h2 data-template="lang:translate">iconography</h2>
+                    <div data-template="app-shared:if-exists" data-template-key="iconographyImages" data-template-wrap="no">
+                        <h2 data-template="lang:translate">iconography</h2>
+                    </div>
                     <div class="iconographythumbnail" data-template="app-shared:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
@@ -154,7 +156,7 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li data-template="app-shared:if-matches" data-template-key="docType" data-template-value="persons"><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
                                 <li data-template="app-shared:if-matches" data-template-key="docType" data-template-value="orgs"><a data-template="app:person-main-tab" href="#biographies">history</a></li>
                                 <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
@@ -178,7 +180,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 <!-- Biographie-->
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">

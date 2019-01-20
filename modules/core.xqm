@@ -161,12 +161,13 @@ declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as
 };
 
 (:~
- : Creates a permalink for a given ID
+ : Creates a permalink by concatenating the $permaLinkPrefix (set in options) with the given path piped through core:link-to-current-app()
+ : Mainly used for creating persistent links to documents by simply passing the docID  
  :
  : @author Peter Stadler
- : @param $docID the ID of the document
- : @return xs:string
+ : @param $relLink a relative path within the current app
+ : @return xs:anyURI
  :)
-declare function core:permalink($docID as xs:string) as xs:anyURI? {
-    xs:anyURI(config:get-option('permaLinkPrefix') || core:link-to-current-app($docID))
+declare function core:permalink($relLink as xs:string) as xs:anyURI? {
+    xs:anyURI(config:get-option('permaLinkPrefix') || core:link-to-current-app($relLink))
 };

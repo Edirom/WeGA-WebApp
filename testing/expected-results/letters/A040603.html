@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Eveline Bartlitz" />
-        <meta property="dc:date" content="2018-06-25T11:26:11.975549Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603" />
         <meta property="dc:description" content="Verleger und Rezension der Vereinsbrüder betr.; ausführlich zu Gottfrieds Kritik an der Hymne; über Unstimmigkeiten mit Meyerbeer; Nachlaß des Vaters betr.; Bericht ab 2. Februar; mit einem Verzeichnis von Webers Werken und Anmerkung, welche noch nicht im Druck erschienen sind" />
         <meta name="description" content="Verleger und Rezension der Vereinsbrüder betr.; ausführlich zu Gottfrieds Kritik an der Hymne; über Unstimmigkeiten mit Meyerbeer; Nachlaß des Vaters betr.; Bericht ab 2. Februar; mit einem Verzeichnis von Webers Werken und Anmerkung, welche noch nicht im Druck erschienen sind" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/css/cslink.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Weber, Carl Maria von","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"name":"Carl Maria von Weber an Gottfried Weber in Mannheim. Prag, Dienstag, 9. März 1813","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A002068/Correspondence/A040603.html" hreflang="en" lang="en">En</a></li>
@@ -218,10 +223,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a></li>
-                        <li><span>A040603</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
+                        </li>
+                        <li>
+                            <span>A040603</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -237,63 +252,88 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603/backlinks.html">Rückverweise</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603/backlinks.html">Rückverweise</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
     </div>
 </div>
-                    <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
+                    <div>                       
+                        
+                        <h2>
+                            <a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
+                        </h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">                           
+                                <div>                                
+                                <div id="csLink" data-correspondent-1-id="http://d-nb.info/gnd/118629662" data-correspondent-1-name="Weber, Carl Maria von" data-correspondent-2-id="" data-correspondent-2-name="" data-start-date="1813-03-09" data-end-date="1813-03-09" data-range="30" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#WEGA"></div>
+                                <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/js/cslink.js"></script>
+                                <h2></h2>
+                            </div>
                             
                             <div>
                                 
@@ -301,19 +341,19 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040602.html">1813-03-07</a>:  An  <span class="noDataFound">unbekannt</span>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040556.html">1812-12-06</a>:  An  <a href="" class="persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001590/Korrespondenz/A044662.html">1813-03-04</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A001590.html" class="persons">Rochlitz, Friedrich</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001313/Korrespondenz/A045341.html">1810-10-20</a>:  Von  <a href="" class="persons"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040604.html">1813-03-09</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001088.html" class="persons">Kühnel, Ambrosius</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040613.html">1813-04-02</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A000584.html" class="persons">Gänsbacher, Johann</a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A080093/Korrespondenz/A040568.html">1813-03-12</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A080093.html" class="orgs">Stadtschreiberei Stuttgart</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000162/Korrespondenz/A041671.html">1821-12-08</a>:  Von  <a href="" class="persons"></a>
                                        </li>
                                    </ul>
                                 
@@ -322,19 +362,16 @@
                                     <h4>Vorausgehend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040598.html">1813-01-26</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html" class="persons">Weber, Gottfried</a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040432.html">1811-10-09</a>:  An  <a href="" class="persons"></a>
                                         </li>
                                             <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A044994.html">1813-02-02</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html" class="persons">Weber, Gottfried</a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040318.html">1810-12-07</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="persons">Weber, Carl Maria von</a>
                                         </li>
                                     </ul>
                                     <h4>Folgend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040624.html">1813-06-21</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002078.html" class="persons">Weber, Gottfried</a>
-                                        </li>
-                                            <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A045447.html">1813-06-29</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002078.html" class="persons">Weber, Gottfried</a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263.html">1817-07-21</a>:  An  <a href="" class="persons"></a>
                                         </li>
                                     </ul>
                                 
@@ -342,251 +379,257 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000005" /> <span title="Adam, Christiane">Adam, Christiane</span> 
+                                    <input type="checkbox" name="options" value="A002078" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000111" /> <span title="Beer, Amalie">Beer, Amalie</span> 
+                                    <input type="checkbox" name="options" value="A000857" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000113" /> <span title="Beer, Heinrich">Beer, Heinrich</span> 
+                                    <input type="checkbox" name="options" value="A001313" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000114" /> <span title="Beer, Jacob Hertz">Beer, Jacob Hertz</span> 
+                                    <input type="checkbox" name="options" value="A001590" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000116" /> <span title="Beer, Wilhelm">Beer, Wilhelm</span> 
+                                    <input type="checkbox" name="options" value="A001088" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000134" /> <span title="Bentzel-Sternau, Christian Graf von">Bentzel-Sternau, Christian Gra…</span> 
+                                    <input type="checkbox" name="options" value="A001671" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000135" /> <span title="Bentzel-Sternau, Marie von">Bentzel-Sternau, Marie von</span> 
+                                    <input type="checkbox" name="options" value="A000287" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000146" /> <span title="Berner, Friedrich Wilhelm">Berner, Friedrich Wilhelm</span> 
+                                    <input type="checkbox" name="options" value="A000409" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000216" /> <span title="Brandt, Friedrich">Brandt, Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A008868" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000287" /> <span title="Cherubini, Luigi">Cherubini, Luigi</span> 
+                                    <input type="checkbox" name="options" value="A000146" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000409" /> <span title="Dusch, Alexander von">Dusch, Alexander von</span> 
+                                    <input type="checkbox" name="options" value="A000114" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000487" /> <span title="Firmian, Karl Maria Graf von">Firmian, Karl Maria Graf von</span> 
+                                    <input type="checkbox" name="options" value="A000111" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000005" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002074" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002075" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002071" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002128" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000216" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000113" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000116" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000888" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000884" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000134" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000135" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001843" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000487" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001831" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001693" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000685" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080093" /> <span title=" ()"> ()</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080119" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000584" /> <span title="Gänsbacher, Johann">Gänsbacher, Johann</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080119" /> <span title="Gombart (Musikverlag)">Gombart (Musikverlag)</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000685" /> <span title="Gröbenschütz, Johann">Gröbenschütz, Johann</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000692" /> <span title="Grünbaum, Therese">Grünbaum, Therese</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000838" /> <span title="Hiemer, Franz Carl">Hiemer, Franz Carl</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000857" /> <span title="Hofmann, August Konrad">Hofmann, August Konrad</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000884" /> <span title="Hout, Antonie">Hout, Antonie</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000888" /> <span title="Hout, Ludwig">Hout, Ludwig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001088" /> <span title="Kühnel, Ambrosius">Kühnel, Ambrosius</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001313" /> <span title="Meyerbeer, Giacomo">Meyerbeer, Giacomo</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001382" /> <span title="Müller, Wenzel">Müller, Wenzel</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001590" /> <span title="Rochlitz, Friedrich">Rochlitz, Friedrich</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001671" /> <span title="Schicht, Johann Gottfried">Schicht, Johann Gottfried</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001693" /> <span title="Schlesinger, Adolph Martin">Schlesinger, Adolph Martin</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001831" /> <span title="Simrock, Nikolaus">Simrock, Nikolaus</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001843" /> <span title="Solomé, Clary">Solomé, Clary</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080093" /> <span title="Stadtschreiberei Stuttgart (Behörde)">Stadtschreiberei Stuttgart (Be…</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002071" /> <span title="Weber, Edmund von">Weber, Edmund von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002074" /> <span title="Weber, Franz Anton von">Weber, Franz Anton von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002075" /> <span title="Weber, Fridolin von">Weber, Fridolin von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002078" /> <span title="Weber, Gottfried">Weber, Gottfried</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002128" /> <span title="Weyrauch, Jeanette">Weyrauch, Jeanette</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008868" /> <span title="Wollank, Rudolph">Wollank, Rudolph</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020276" /> <span title="&#34;Heiße stille Liebe schwebet&#34;">"Heiße stille Liebe schwebet"</span> 
+                                    <input type="checkbox" name="options" value="A020008" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020095" /> <span title="&#34;Mädchen, ach meide&#34;">"Mädchen, ach meide"</span> 
+                                    <input type="checkbox" name="options" value="A020279" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020123" /> <span title="&#34;Meine Lieder, meine Sänge&#34;">"Meine Lieder, meine Sänge"</span> 
+                                    <input type="checkbox" name="options" value="A020135" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020122" /> <span title="&#34;Sanftes Licht, weiche nicht&#34; (Fassung mit Gitarre)">"Sanftes Licht, weiche nicht" …</span> 
+                                    <input type="checkbox" name="options" value="A020038" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020150" /> <span title="&#34;Sind es Schmerzen&#34;">"Sind es Schmerzen"</span> 
+                                    <input type="checkbox" name="options" value="A020015" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020118" /> <span title="&#34;Was zieht zu deinem Zauberkreise&#34;">"Was zieht zu deinem Zauberkre…</span> 
+                                    <input type="checkbox" name="options" value="A020288" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020328" /> <span title="12 Allemandes">12 Allemandes</span> 
+                                    <input type="checkbox" name="options" value="A020294" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020327" /> <span title="6 Fughetten">6 Fughetten</span> 
+                                    <input type="checkbox" name="options" value="A020289" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020337" /> <span title="6 Petites Pièces faciles">6 Petites Pièces faciles</span> 
+                                    <input type="checkbox" name="options" value="A020208" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020338" /> <span title="6 Pièces">6 Pièces</span> 
+                                    <input type="checkbox" name="options" value="A020150" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020206" /> <span title="6 Sonates progressives für Klavier und Violine">6 Sonates progressives für Kla…</span> 
+                                    <input type="checkbox" name="options" value="A020151" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020323" /> <span title="6 Variationen über ein Originalthema">6 Variationen über ein Origina…</span> 
+                                    <input type="checkbox" name="options" value="A020152" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020311" /> <span title="6 Variationen über ein Thema aus &#34;Samori&#34; von Georg Joseph Vogler">6 Variationen über ein Thema a…</span> 
+                                    <input type="checkbox" name="options" value="A020153" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020213" /> <span title="7 Variationen über &#34;Vien quà, Dorina bella&#34; von Antonio Bianchi">7 Variationen über "Vien quà, …</span> 
+                                    <input type="checkbox" name="options" value="A020566" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020209" /> <span title="7 Variationen über die Romanze &#34;A peine au sortir de l'enfance&#34; aus &#34;Joseph&#34; von Etienne Nicolas Méhul">7 Variationen über die Romanze…</span> 
+                                    <input type="checkbox" name="options" value="A020762" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020219" /> <span title="7 Variationen über ein Originalthema">7 Variationen über ein Origina…</span> 
+                                    <input type="checkbox" name="options" value="A020460" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020324" /> <span title="8 Variationen über ein Thema aus &#34;Castor und Pollux&#34; von Vogler">8 Variationen über ein Thema a…</span> 
+                                    <input type="checkbox" name="options" value="A020327" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020312" /> <span title="9 Variationen über ein norwegisches Lied">9 Variationen über ein norwegi…</span> 
+                                    <input type="checkbox" name="options" value="A020323" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020038" /> <span title="Abu Hassan, Singspiel in einem Aufzug">Abu Hassan, Singspiel in einem…</span> 
+                                    <input type="checkbox" name="options" value="A020337" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020288" /> <span title="Andante und Rondo ungarese c-Moll (für Altviola)">Andante und Rondo ungarese c-M…</span> 
+                                    <input type="checkbox" name="options" value="A020328" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020289" /> <span title="Andante und Rondo ungarese c-Moll (für Fagott)">Andante und Rondo ungarese c-M…</span> 
+                                    <input type="checkbox" name="options" value="A020324" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020014" /> <span title="An eine Freundin &#34;Zur Freude ward geboren&#34;">An eine Freundin "Zur Freude w…</span> 
+                                    <input type="checkbox" name="options" value="A020311" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020146" /> <span title="Bettlerlied &#34;I und mein junges Weib&#34; (Fassung mit Gitarre)">Bettlerlied "I und mein junges…</span> 
+                                    <input type="checkbox" name="options" value="A020213" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020147" /> <span title="Bettlerlied &#34;I und mein junges Weib&#34; (Fassung mit Klavier)">Bettlerlied "I und mein junges…</span> 
+                                    <input type="checkbox" name="options" value="A020237" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020117" /> <span title="Das Röschen &#34;Ich sah ein Röschen am Wege stehn&#34;">Das Röschen "Ich sah ein Rösch…</span> 
+                                    <input type="checkbox" name="options" value="A020338" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020008" /> <span title="Der erste Ton">Der erste Ton</span> 
+                                    <input type="checkbox" name="options" value="A020219" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020124" /> <span title="Der kleine Fritz an seine jungen Freunde &#34;Ach, wenn ich nur ein Liebchen hätte&#34;">Der kleine Fritz an seine jung…</span> 
+                                    <input type="checkbox" name="options" value="A020203" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020119" /> <span title="Die Blume &#34;Traurig, einsam welkst du hin&#34;">Die Blume "Traurig, einsam wel…</span> 
+                                    <input type="checkbox" name="options" value="A020330" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020126" /> <span title="Die Schäferstunde &#34;Endlich hatte Damon sie gefunden&#34;">Die Schäferstunde "Endlich hat…</span> 
+                                    <input type="checkbox" name="options" value="A020095" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020130" /> <span title="Die Zeit &#34;Es sitzt die Zeit im weißen Kleid&#34;">Die Zeit "Es sitzt die Zeit im…</span> 
+                                    <input type="checkbox" name="options" value="A020111" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020112" /> <span title="Er an sie &#34;Ein Echo kenn' ich&#34;">Er an sie "Ein Echo kenn' ich"</span> 
+                                    <input type="checkbox" name="options" value="A020122" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020566" /> <span title="Gott und die Natur">Gott und die Natur</span> 
+                                    <input type="checkbox" name="options" value="A020126" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020331" /> <span title="Grande Polonaise Es-Dur">Grande Polonaise Es-Dur</span> 
+                                    <input type="checkbox" name="options" value="A020128" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020287" /> <span title="Grand Potpourri für Violoncello und Orchester D-Dur">Grand Potpourri für Violoncell…</span> 
+                                    <input type="checkbox" name="options" value="A020130" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020015" /> <span title="Hymne &#34;In seiner Ordnung schafft der Herr&#34;">Hymne "In seiner Ordnung schaf…</span> 
+                                    <input type="checkbox" name="options" value="A020112" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020762" /> <span title="Jephtas Gelübde">Jephtas Gelübde</span> 
+                                    <input type="checkbox" name="options" value="A020114" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020114" /> <span title="Klage &#34;Ein steter Kampf ist unser Leben&#34;">Klage "Ein steter Kampf ist un…</span> 
+                                    <input type="checkbox" name="options" value="A020117" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020294" /> <span title="Konzert für Fagott und Orchester F-Dur (2. Fassung)">Konzert für Fagott und Orchest…</span> 
+                                    <input type="checkbox" name="options" value="A020118" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020212" /> <span title="Konzert für Klavier und Orchester Nr.1 C-Dur">Konzert für Klavier und Orches…</span> 
+                                    <input type="checkbox" name="options" value="A020123" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020208" /> <span title="Konzert für Klavier und Orchester Nr. 2 Es-Dur">Konzert für Klavier und Orches…</span> 
+                                    <input type="checkbox" name="options" value="A020124" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020148" /> <span title="Liebe-Glühen &#34;In der Berge Riesenschatten&#34; (Fassung mit Gitarre)">Liebe-Glühen "In der Berge Rie…</span> 
+                                    <input type="checkbox" name="options" value="A020058" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020149" /> <span title="Liebe-Glühen &#34;In der Berge Riesenschatten&#34; (Fassung mit Klavier)">Liebe-Glühen "In der Berge Rie…</span> 
+                                    <input type="checkbox" name="options" value="A020206" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020111" /> <span title="Liebeszauber &#34;Mädel, schau' mir in's Gesicht!&#34;">Liebeszauber "Mädel, schau' mi…</span> 
+                                    <input type="checkbox" name="options" value="A020212" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020257" /> <span title="Lied &#34;Laß mich schlummern, Herzlein, schweige&#34; (Fassung mit Gitarre oder Klavier)">Lied "Laß mich schlummern, Her…</span> 
+                                    <input type="checkbox" name="options" value="A020287" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020069" /> <span title="Lied &#34;Über die Berge mit Ungestüm&#34; (Fassung mit Klavier)">Lied "Über die Berge mit Unges…</span> 
+                                    <input type="checkbox" name="options" value="A020331" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020259" /> <span title="Lied mit Chor &#34;Umringt vom mutherfüllten Heere&#34; (Fassung mit Klavier)">Lied mit Chor "Umringt vom mut…</span> 
+                                    <input type="checkbox" name="options" value="A020312" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020135" /> <span title="Maienblümlein &#34;Maienblümlein so schön&#34; (Fassung mit Gitarre)">Maienblümlein "Maienblümlein s…</span> 
+                                    <input type="checkbox" name="options" value="A020113" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020136" /> <span title="Maienblümlein &#34;Maienblümlein so schön&#34; (Fassung mit Klavier)">Maienblümlein "Maienblümlein s…</span> 
+                                    <input type="checkbox" name="options" value="A020119" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020113" /> <span title="Meine Farben &#34;Wollt ihr sie kennen&#34;">Meine Farben "Wollt ihr sie ke…</span> 
+                                    <input type="checkbox" name="options" value="A020136" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020153" /> <span title="Minnelied &#34;Der Holdseligen sonder Wank&#34;">Minnelied "Der Holdseligen son…</span> 
+                                    <input type="checkbox" name="options" value="A020144" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020330" /> <span title="Momento capriccioso B-Dur">Momento capriccioso B-Dur</span> 
+                                    <input type="checkbox" name="options" value="A020014" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020237" /> <span title="Ouvertüre in Es-Dur zu Peter Schmoll (Konzertfassung)">Ouvertüre in Es-Dur zu Peter S…</span> 
+                                    <input type="checkbox" name="options" value="A020276" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020203" /> <span title="Quartett für Klavier, Violine, Viola und Violoncello B-Dur">Quartett für Klavier, Violine,…</span> 
+                                    <input type="checkbox" name="options" value="A020210" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020152" /> <span title="Reigen &#34;Sagt mir an, was schmunzelt ihr?&#34;">Reigen "Sagt mir an, was schmu…</span> 
+                                    <input type="checkbox" name="options" value="A020069" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020058" /> <span title="Rezitativ und Rondo &#34;Il momento s'avvicina&#34; / &#34;La dolce speranza&#34;">Rezitativ und Rondo "Il moment…</span> 
+                                    <input type="checkbox" name="options" value="A020257" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020220" /> <span title="Schwäbisches Tanzlied &#34;Geiger und Pfeiffer&#34;">Schwäbisches Tanzlied "Geiger …</span> 
+                                    <input type="checkbox" name="options" value="A020259" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020279" /> <span title="Sinfonie Nr. 1 C-Dur (Fassung des Erstdrucks)">Sinfonie Nr. 1 C-Dur (Fassung …</span> 
+                                    <input type="checkbox" name="options" value="A020146" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020210" /> <span title="Sonate für Klavier Nr. 1 C-Dur">Sonate für Klavier Nr. 1 C-Dur</span> 
+                                    <input type="checkbox" name="options" value="A020147" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020144" /> <span title="Sonett &#34;Du liebes, holdes, himmelsüßes Wesen&#34;">Sonett "Du liebes, holdes, him…</span> 
+                                    <input type="checkbox" name="options" value="A020148" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020151" /> <span title="Unbefangenheit &#34;Frage mich immer&#34;">Unbefangenheit "Frage mich imm…</span> 
+                                    <input type="checkbox" name="options" value="A020149" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020128" /> <span title="Wiegenlied &#34;Schlaf, Herzenssöhnchen, mein Liebling bist du!&#34; (Fassung mit Gitarre)">Wiegenlied "Schlaf, Herzenssöh…</span> 
+                                    <input type="checkbox" name="options" value="A020220" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020460" /> <span title="Wirt und Gast, oder Aus Scherz Ernst">Wirt und Gast, oder Aus Scherz…</span> 
+                                    <input type="checkbox" name="options" value="A020209" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130017" /> <span title="Augsburg">Augsburg</span> 
+                                    <input type="checkbox" name="options" value="A130015" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130077" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130015" /> <span title="Darmstadt">Darmstadt</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130303" /> <span title="Erl (Tirol)">Erl (Tirol)</span> 
+                                    <input type="checkbox" name="options" value="A130242" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130242" /> <span title="Freiburg">Freiburg</span> 
+                                    <input type="checkbox" name="options" value="A130012" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130016" /> <span title="Gotha">Gotha</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130007" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130007" /> <span title="München">München</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130080" /> <span title="Offenbach">Offenbach</span> 
+                                    <input type="checkbox" name="options" value="A130016" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130014" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130023" /> <span title="Salzburg">Salzburg</span> 
+                                    <input type="checkbox" name="options" value="A130303" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130012" /> <span title="Stuttgart">Stuttgart</span> 
+                                    <input type="checkbox" name="options" value="A130023" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130014" /> <span title="Weimar">Weimar</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130017" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130077" /> <span title="Wiesbaden">Wiesbaden</span> 
+                                    <input type="checkbox" name="options" value="A130080" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -600,7 +643,7 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-                                            <p class="teiLetter_salute">Geliebte, alte treue <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Seele</a>!</p>
+                                            <p class="teiLetter_salute">Geliebte, alte treue <a class="preview persons A002078" href="">Seele</a>!</p>
                                         </div>
                                         <p>Wo soll ich anfangen? wo aufhören? es wird mir glühendheiß wenn ich daran 
                denke was ich dir alles zu sagen habe. in Gottes Nahmen also frisch drauf los.</p>
@@ -609,21 +652,21 @@
                leuchtet, und mir so wohl thut. wie 10 fach hätte ich alles genoßen wenn ich in Eurer
                Mitte sein könnte. Mein alter treuer <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a> ist meine einzige Stüzze, der einzige
                mit dem ich von Euch sprechen kann, und der euch liebt wie ich euch liebe.
-               Ja <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Brüderl</a>,
+               Ja <a class="preview persons A002078" href="">Brüderl</a>,
                einmal wird mich doch der Teufel wieder in Eure Gegend führen, und da wollen wir was
                schwatzen <span class="tei_hi_latintype">pp</span> Na!</p>
                                         <p>Nun zur Beantwortung denn Morgen muß der
-               Brief fort. zu erst zu deinem lezten <a class="preview letters A044994" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A044994.html">Briefe vom 2<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span></a>
+               Brief fort. zu erst zu deinem lezten <a class="preview letters A044994" href="">Briefe vom 2<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span></a>
                den ich d: 11<span class="tei_hi_superscript">t</span> erhielt. den
-               <span class="preview letters A045096" data-ref="/exist/apps/WeGA-WebApp/de/A000857/Korrespondenz/A045096.html /exist/apps/WeGA-WebApp/de/A000857.html">Brief von <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000857" href="/exist/apps/WeGA-WebApp/de/A000857.html">Hoffmann</a></span></span></span>
-               in <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span> mit deinem Zettelchen habe ich
-               auch richtig erhalten, und noch nicht an <span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span> 
+               <span class="preview letters A045096" data-ref=" ">Brief von <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000857" href="">Hoffmann</a></span></span></span>
+               in <a class="preview places A130015" href="">Darmstadt</a> mit deinem Zettelchen habe ich
+               auch richtig erhalten, und noch nicht an <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> 
                geschrieben, wenn es möglich ist geschieht es bis Morgen noch.</p>
                                         <p>Bist wieder einmal ein Esel, freylich war das
 			ein Kompliment nach Unsrer Art, wenn ich sagte daß ich nicht begreiffen könnte warum
-               <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Rochlitz</a> was auf dich hielte. Hast wieder eine große Geschichte dahinter gesucht. Stekt
-               dich der <span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span> an?
-               <a class="preview persons A001088" href="/exist/apps/WeGA-WebApp/de/A001088.html">Kühnel</a> habe ich in aller möglichen Beziehung
+               <a class="preview persons A001590" href="">Rochlitz</a> was auf dich hielte. Hast wieder eine große Geschichte dahinter gesucht. Stekt
+               dich der <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> an?
+               <a class="preview persons A001088" href="">Kühnel</a> habe ich in aller möglichen Beziehung
 			von dir gesprochen. Sezze dich doch endlich einmal <span class="tei_hi_underline1">selbst</span> in
 			Berührung mit ihm.</p>
                                         <p>Wenn dein <span class="tei_ptr"></span><span class="tei_hi_latintype"><span class="68101991089710997116111114105117109">Declamatorium</span></span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a>  
@@ -631,7 +674,7 @@
                einem <span class="tei_hi_latintype">Concert</span> vororgeln und dann davon schreyen. ich sehe mit großer
                Freude daß du fleißig bist, und es ist gewiß gut
                <span class="tei_subst"><span class="tei_add">daß</span><a class="noteMarker" id="ref-d10e85" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e85">‡</a></span> 
-               <span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span> 
+               <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> 
                da ist, das feuert ungemein an, man arbeitet oft blos um es den andern zeigen zu können.
 			Also von Sänger und Sängerinnen willst du neidischer Hund nichts ablaßen, sondern nur
 			alles für dich behalten? Wenn ich was Gutes bey euch wüste würde ich das Kind im
@@ -644,7 +687,7 @@
 			Gefangener Mensch auf 3 und ½ Jahr.
 				<span class="tei_hi_latintype">item</span>.<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090022.html">T</a> – Was du sagst ist
                wahr und ich bin zufrieden. – Nun
-               zu deinem <a class="preview letters A044842" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A044842.html">vom 9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Januar</span></a> 
+               zu deinem <a class="preview letters A044842" href="">vom 9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Januar</span></a> 
                den ich d: 31<span class="tei_hi_superscript">t </span>erhielt. ich lege
 			dir hier ein Verzeichniß meiner gestochenen Werk<span class="tei_supplied" id="d10e127"><span class="brackets_supplied">[</span>e<span class="brackets_supplied">]</span></span> bey,
                die noch nicht rezensirt sind
@@ -657,41 +700,41 @@
                <span class="tei_del">und sage<a class="noteMarker" id="ref-d10e155" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e155">‡</a></span> bezahle sie <span class="tei_hi_underline1">nicht</span>,
                und sage ich würde es schon mit denen Verlegern ausmachen,
 			daß dieses <span class="tei_hi_latintype">Exemplar</span> nachgesendet und ersezt würde. Wen haben sie
-			denn in <span class="preview places A130077" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130077.html">Wisbaden</span> jezt?
-               die Materialien zu der Kritik des <span class="preview works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">ersten Tons</span> und der
-               <span class="tei_hi_latintype"><span class="preview works A020279" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020279.html">Simph:</span></span>
+			denn in <a class="preview places A130077" href="">Wisbaden</a> jezt?
+               die Materialien zu der Kritik des <a class="preview works A020008" href="">ersten Tons</a> und der
+               <span class="tei_hi_latintype"><a class="preview works A020279" href="">Simph:</a></span>
                zu schikken wäre sehr überflüßig, dein in manchem Briefe an
 			mich darüber ausgesprochenes Urtheil, unterschreibe ich von Herzen.
-			Bey der <span class="tei_hi_latintype"><span class="preview works A020279" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020279.html">Simph</span>:</span>
+			Bey der <span class="tei_hi_latintype"><a class="preview works A020279" href="">Simph</a>:</span>
                bemerke allenfalls daß ich sie schon 1807 geschrieben habe,
 			und das erste <span class="tei_hi_latintype">Allo:</span> mehr <span class="tei_hi_latintype">Overturen</span> als
                ächter <span class="tei_hi_latintype">Simphonien</span> Styl ist.
-               auch wegen dem <span class="preview works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">ersten Ton</span> hat
-               <span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span> nicht unrecht.
+               auch wegen dem <a class="preview works A020008" href="">ersten Ton</a> hat
+               <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> nicht unrecht.
                Wenn du ja ein übriges thun willst so schikke
 			mir die <span class="tei_hi_latintype">Recension</span> vorher,
-               und ich spedire sie dann nach <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>.        
+               und ich spedire sie dann nach <a class="preview places A130005" href="">Leipzig</a>.        
 			Deinen <span class="tei_hi_latintype">Quartal</span>Bericht<span class="tei_pb" title="Seitenumbruch"> | </span>in der M: Z:
-               wo der Gesang von <span class="tei_hi_latintype"><span class="preview works A020135" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020135.html">MB</span></span>
+               wo der Gesang von <span class="tei_hi_latintype"><a class="preview works A020135" href="">MB</a></span>
                als Beylage ist<a class="noteMarker" id="ref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> habe ich gelesen. bin aber gar nicht mit dem
-               Dings /: nehmlich dem <span class="preview works A020135" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020135.html">Lied</span> :/ zufrieden. 
-               <span class="tei_hi_underline1"><a class="preview persons A001671" href="/exist/apps/WeGA-WebApp/de/A001671.html">Schicht</a></span> kannst du auf
+               Dings /: nehmlich dem <a class="preview works A020135" href="">Lied</a> :/ zufrieden. 
+               <span class="tei_hi_underline1"><a class="preview persons A001671" href="">Schicht</a></span> kannst du auf
                mein Wort hin, die <span class="77101223101">Meße</span> schikken er bezahlt gleich. 
-               <span class="tei_hi_underline1"><a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubinis</a></span>
+               <span class="tei_hi_underline1"><a class="preview persons A000287" href="">Cherubinis</a></span>
                <span class="841149711710111432759711011697116101">Trauer Kantate</span> weiß ich dir nicht zu verschaffen<a class="noteMarker" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. 
-               <span class="tei_hi_underline1"><a class="preview persons A000409" href="/exist/apps/WeGA-WebApp/de/A000409.html">Dusch</a></span> hat
+               <span class="tei_hi_underline1"><a class="preview persons A000409" href="">Dusch</a></span> hat
 			nichts beygeschrieben in deinen Brief, wie <span class="tei_hi_underline1">du</span> schriebst, wegen
-               <span class="tei_hi_latintype"><span class="preview works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">AbuHassan</span></span>.
-               <span class="tei_hi_latintype"><a class="preview persons A008868" href="/exist/apps/WeGA-WebApp/de/A008868.html">Wollank</a></span> hat mir
+               <span class="tei_hi_latintype"><a class="preview works A020038" href="">AbuHassan</a></span>.
+               <span class="tei_hi_latintype"><a class="preview persons A008868" href="">Wollank</a></span> hat mir
                2 Hefte Lieder, italienisch und deutsch <span class="tei_hi_latintype">dedicirt</span>, die wirklich sehr brav
                sind.<a class="noteMarker" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> 
                <span class="tei_hi_latintype"><a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Triole</a></span> wird sie anzeigen.
-               von <span class="tei_hi_latintype"><a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner</a></span>
+               von <span class="tei_hi_latintype"><a class="preview persons A000146" href="">Berner</a></span>
                höre ich in dieser Sturmvollen Zeit natürlich noch weniger wie
 			vorher. –
 			Wie ist es möglich daß <span class="tei_hi_underline1">Wir</span> einmal so eine
                verschiedene Ansicht haben konnten bey der
-               <span class="tei_hi_latintype"><span class="preview works A020015" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020015.html">Hymne</span></span>.
+               <span class="tei_hi_latintype"><a class="preview works A020015" href="">Hymne</a></span>.
                Gerade das was
                der Dichter <span class="tei_hi_underline1">so</span>
                dachte wie <span class="tei_hi_underline1">ich</span> es
@@ -715,11 +758,11 @@
 			das <span class="tei_hi_underline1">Gelobt sey Gott</span>,  werde ich nach deinem Vorschlag schreiben, weil
 			es richtiger und beßer ist. Warum ist aber dem <span class="72101114114110327111425298108101114">Herrn Grübler</span>, ein wahrhafter
 			DeklamationsFehler im <span class="tei_hi_latintype"><span class="821019910511697116105118">Recitativ</span>:</span> entwischt? den ich erst in
-			<span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> bemerkte und verbeßerte.
+			<a class="preview places A130005" href="">Leipzig</a> bemerkte und verbeßerte.
                es <span class="tei_add tei_hi_superscript">heißt<a class="noteMarker" id="ref-d10e373" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e373">‡</a></span> nehmlich 
-               <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn.png/full/full/0/native.jpg"><img alt="Notenbeispiel: „mit Bösem soll in Kampf es gehn“" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn.png/full/,75/0/native.jpg" /></a></span>
+               <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn.png/full/full/0/native.jpg"><img alt="Notenbeispiel: „mit Bösem soll in Kampf es gehn“" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn.png/full/,75/0/native.jpg" /></a></span>
                und muß heißen 
-               <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn2.png/full/full/0/native.jpg"><img alt="Notenbeispiel: „mit Bösem soll in Kampf es gehn“" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn2.png/full/,75/0/native.jpg" /></a></span>
+               <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn2.png/full/full/0/native.jpg"><img alt="Notenbeispiel: „mit Bösem soll in Kampf es gehn“" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn2.png/full/,75/0/native.jpg" /></a></span>
                welches ich dich zu <span class="tei_hi_latintype">corrigiren</span> bitte.
             </p>
                                         <p>Auf dem lezten Stükk mit dem du so zufrieden
@@ -756,11 +799,11 @@
 				<span class="tei_hi_latintype">C</span> heraus, daß bey = <span class="tei_hi_underline1">Es drängen sich Wetter</span>
                <span class="tei_hi_latintype">pp</span> die <span class="tei_hi_underline1">Fortschreitung</span> etwas hart ist
 			will ich zugeben, wenn du willst, obwohl natürlich durch die <span class="tei_hi_latintype">Ligaturen</span> herbey geführt wird.</p>
-                                        <p>Die <span class="preview works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">Fuge vom 1<span class="tei_hi_superscript">t</span> Ton</span>
+                                        <p>Die <a class="preview works A020008" href="">Fuge vom 1<span class="tei_hi_superscript">t</span> Ton</a>
 			ist mit dieser gar nicht zu vergleichen, wie holprich sind dort alle Stimmen <span class="tei_hi_latintype">pp</span>.</p>
                                         <p><span class="tei_hi_latintype">A propos</span> auch. du
 			nimmst mirs doch nicht übel, daß ich wiedersprochen habe?</p>
-                                        <p>Nun auf <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span></span> 
+                                        <p>Nun auf <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span></span> 
                zu kommen. Es ist wahrhaftig höchst intereßant dem Gange deiner Empfindung und geänderten
                Ueberzeugung auf ein und demselben Blatte zu folgen. <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsb:</a> war bey mir wie ich ihn las,
                und wie ich an die Stelle kam, wo du <span class="tei_subst"><span class="tei_add">noch</span><a class="noteMarker" id="ref-d10e506" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e506">‡</a></span>
@@ -777,10 +820,10 @@
                vor sich zu haben,<span class="tei_pb" title="Seitenumbruch"> | </span>daß ich mich <span class="tei_hi_underline1">darin</span>
 			geirrt habe, ist freylich ein großer Fehler, und meine Erfahrung hätte mich davor warnen
 			können, wenn nicht mein Gefühl sie überschrieen hätte. ich lege dir den
-               Brief an <span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span> 
+               Brief an <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> 
                offen bey, sigle ihn dann nach Gefallen; denn auch das könnte
 			seine Delikateße beleidigen.
-			Was soll das heißen daß <span class="preview persons A000114 A000111" data-ref="/exist/apps/WeGA-WebApp/de/A000114.html /exist/apps/WeGA-WebApp/de/A000111.html">seine Eltern</span> nicht einmal unsre
+			Was soll das heißen daß <span class="preview persons A000114 A000111" data-ref=" ">seine Eltern</span> nicht einmal unsre
 			sogenannte Versöhnung erfahren sollen, warum dringt er so darauf, und, was sucht er
 			darunter. Würde es die guten Menschen nicht freuen, wenn man Ihnen mit 3 Worten sagte,
 			wir haben uns Verständigt, alles ist wieder im Gleise. oder fürchtet Er <span class="tei_hi_latintype">Details</span>, und will lieber um selbst nach Bequemlichkeit die Sache drehen und
@@ -790,13 +833,13 @@
                ausgeglichen werden können. Sehe ich ihn nicht wieder, so geht es mir
 			vielleicht wie dir, und Gegenwart des Menschen, Errinnerung, KunstLiebe <span class="tei_hi_latintype">pp</span>
                das alles besticht mich und läßt vergeßen. – Daß übrigens <span class="tei_hi_underline1">du</span>
-               <span class="tei_hi_latintype">vis a vis</span> <span class="tei_hi_underline1"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beers</a></span> <span class="preview persons A000114 A000111" data-ref="/exist/apps/WeGA-WebApp/de/A000114.html /exist/apps/WeGA-WebApp/de/A000111.html">Eltern</span>
+               <span class="tei_hi_latintype">vis a vis</span> <span class="tei_hi_underline1"><a class="preview persons A001313" href="">Beers</a></span> <span class="preview persons A000114 A000111" data-ref=" ">Eltern</span>
                nicht im geringsten <span class="tei_hi_latintype">compromittirt</span> worden bist versichere ich dich hiemit feyerlichst.
-               <span class="tei_hi_underline1"><span class="preview persons A000114 A000111" data-ref="/exist/apps/WeGA-WebApp/de/A000114.html /exist/apps/WeGA-WebApp/de/A000111.html">Sie</span></span> 
+               <span class="tei_hi_underline1"><span class="preview persons A000114 A000111" data-ref=" ">Sie</span></span> 
                hat stets nur wie mich die reinste Liebe für das Beste
                Ihres Sohnes geleitet, und in deinen Beschwerden fanden Sie nur die Ihrigen wieder und die
                Hoffnung durch einen Fremden beßer auf ihn einwirken zu können. – –</p>
-                                        <p>Nun zu meinen Familien und Geld Geschäften<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090039.html">T</a>. Ich lege dir hier einen Wechsel von 130 ƒ
+                                        <p>Nun zu meinen Familien und Geld Geschäften<a class="noteMarker" href="">T</a>. Ich lege dir hier einen Wechsel von 130 ƒ
                bey wobey ich meine Rechnung also mache<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. </p>
                                         <div class="table-wrapper">
                                             <table id="d10e590" class="table">
@@ -806,19 +849,19 @@
                                                         <td style="width:15.12%">50 ƒ 37</td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="width:84.88%">2 mal der <a class="preview persons A000005" href="/exist/apps/WeGA-WebApp/de/A000005.html">Christiane</a> und noch das dritte mal</td>
+                                                        <td style="width:84.88%">2 mal der <a class="preview persons A000005" href="">Christiane</a> und noch das dritte mal</td>
                                                         <td style="width:15.12%">15  –</td>
                                                     </tr>
                                                     <tr>
                                                         <td style="width:84.88%"><span class="tei_ptr"></span>den Beytrags <span class="tei_hi_latintype">Ducaten</span><a class="noteMarker" id="ref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>
                   von <span class="tei_hi_underline1">mir,
-                     <span class="tei_hi_latintype"><a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner</a></span></span>
+                     <span class="tei_hi_latintype"><a class="preview persons A000146" href="">Berner</a></span></span>
                   und <span class="tei_hi_underline1"><a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a></span></td>
                                                         <td style="width:15.12%">16. 30</td>
                                                     </tr>
                                                     <tr>
-                                                        <td style="width:84.88%">den Schulden Rest meines seeligen <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vaters</a> von 142 ƒ 16 <span class="tei_hi_latintype">xr</span> beträgt das Drittheil, das mich
-                  trifft, da ich darauf rechne das <a class="preview persons A002075" href="/exist/apps/WeGA-WebApp/de/A002075.html">Bruder Friz</a> und <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a> daßelbe thun, da die <a class="preview persons A002128" href="/exist/apps/WeGA-WebApp/de/A002128.html">Schwester</a> außer<br />
+                                                        <td style="width:84.88%">den Schulden Rest meines seeligen <a class="preview persons A002074" href="">Vaters</a> von 142 ƒ 16 <span class="tei_hi_latintype">xr</span> beträgt das Drittheil, das mich
+                  trifft, da ich darauf rechne das <a class="preview persons A002075" href="">Bruder Friz</a> und <a class="preview persons A002071" href="">Edmund</a> daßelbe thun, da die <a class="preview persons A002128" href="">Schwester</a> außer<br />
                   Stand ist</td>
                                                         <td style="width:15.12%">47. 26.</td>
                                                     </tr>
@@ -833,41 +876,41 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p class="inlineEnd">Von meinen <span class="preview persons A002075 A002071" data-ref="/exist/apps/WeGA-WebApp/de/A002075.html /exist/apps/WeGA-WebApp/de/A002071.html">Brüdern</span> 
+                                        <p class="inlineEnd">Von meinen <span class="preview persons A002075 A002071" data-ref=" ">Brüdern</span> 
                höre und sehe ich nichts. Auch würde es mich sehr drükken
-               der <a class="preview persons A000005" href="/exist/apps/WeGA-WebApp/de/A000005.html">Christiane</a> die 5 ƒ Monatlich immer fortzuzahlen, da ich die
+               der <a class="preview persons A000005" href="">Christiane</a> die 5 ƒ Monatlich immer fortzuzahlen, da ich die
 			Kosten des Leichensteins <span class="tei_hi_latintype">pp</span> allein bestritten habe, und andre
 			Menschen leider ein Näheres Recht vor der Hand auf meine Kaße haben. ist es aber nicht
 			anderst so will ich es in Gottesnahmen thun, denn es ist eine heilige Pflicht
                <span class="tei_choice"><span class="tei_unclear">für uns</span><a class="noteMarker" id="ref-d10e675" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e675">‡</a></span>  
 			das treue Wesen wenigstens vor dem bittersten Mangel zu schüzzen. Habe 1000 Dank
-               <a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">lieber Bruder</a> für deine Auslagen und Besorgung, und mache<span class="tei_pb" title="Seitenumbruch"> | </span>doch,
+               <a class="preview persons A002078" href="">lieber Bruder</a> für deine Auslagen und Besorgung, und mache<span class="tei_pb" title="Seitenumbruch"> | </span>doch,
                daß ich endlich einmal erfahre
-               wo meine Brüder stekken, <span class="tei_hi_underline1"><a class="preview persons A002075" href="/exist/apps/WeGA-WebApp/de/A002075.html">Fritz</a></span>
-               ist nicht mehr in <span class="preview places A130242" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130242.html">Freyburg</span> und
+               wo meine Brüder stekken, <span class="tei_hi_underline1"><a class="preview persons A002075" href="">Fritz</a></span>
+               ist nicht mehr in <a class="preview places A130242" href="">Freyburg</a> und
 			Briefe habe ich hier <span class="tei_hi_underline1">keine</span> von ihm gefunden.
                Wahrscheinlich
 			lagen sie zu lange hier und sind zurükgesendet worden, kein Mensch will aber etwas davon
-			wißen. Schreibe mir was noch da ist von des <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vaters</a> Sachen, Papieren <span class="tei_hi_latintype">pp</span> für mich.
-               Vielleicht schikt dir auch die <a class="preview orgs A080093" href="/exist/apps/WeGA-WebApp/de/A080093.html">Stadtschreiberey von <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span></a>,
-               der ich auch <a class="preview letters A040601" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040601.html">vor 8 Tagen Geld sandte</a>, meine noch dort zurükgelaßnen Partituren, Gemälde
+			wißen. Schreibe mir was noch da ist von des <a class="preview persons A002074" href="">Vaters</a> Sachen, Papieren <span class="tei_hi_latintype">pp</span> für mich.
+               Vielleicht schikt dir auch die <span class="preview orgs A080093" data-ref=" ">Stadtschreiberey von <a class="preview places A130012" href="">Stuttgart</a></span>,
+               der ich auch <a class="preview letters A040601" href="">vor 8 Tagen Geld sandte</a>, meine noch dort zurükgelaßnen Partituren, Gemälde
                <span class="tei_hi_latintype">pp</span> die ich so lange schon durch <span class="tei_hi_latintype"><a class="preview persons A000838" href="/exist/apps/WeGA-WebApp/de/A000838.html">Hiemer</a></span> erwartete. – – Nun
                zum Referat deß seit meinem lezten Berichte
-               vorgefallenen<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090280.html">T</a>. d: 2<span class="tei_hi_superscript">t</span>
-               <span class="tei_hi_latintype">Februar</span> kam der Fagottist <a class="preview persons A000216" href="/exist/apps/WeGA-WebApp/de/A000216.html">Brandt</a>, aus der Münchner Kapelle, von
-			<span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> hieher. als einen alten Bekannten
+               vorgefallenen<a class="noteMarker" href="">T</a>. d: 2<span class="tei_hi_superscript">t</span>
+               <span class="tei_hi_latintype">Februar</span> kam der Fagottist <a class="preview persons A000216" href="">Brandt</a>, aus der Münchner Kapelle, von
+			<a class="preview places A130004" href="">Wien</a> hieher. als einen alten Bekannten
                nahm ich ihn zu mir, und arrangirte ihm sein
 				<span class="tei_hi_latintype">Concert</span>. 
                Wozu ich ihm auch noch ein
-               <span class="preview works A020288" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020288.html"><span class="tei_hi_latintype">Andante</span> und <span class="tei_hi_latintype">Rondo Ungarese</span></span>
+               <a class="preview works A020288" href=""><span class="tei_hi_latintype">Andante</span> und <span class="tei_hi_latintype">Rondo Ungarese</span></a>
                componirte welches <span class="tei_hi_latintype">Furore</span>
 			machte. daß ich da alle Hände voll zu thun, mit ihm herumzulaufen und dergleichen hatte,
 			begreifst du. d: 19<span class="tei_hi_superscript">t</span> war sein <span class="tei_hi_latintype">Concert</span> wo
                außer einer <span class="tei_hi_latintype"><span class="79118101114116117114101">Overture</span></span> von <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a>,
-               Er ein <span class="tei_hi_latintype"><span class="preview works A020294" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020294.html">Concert</span></span>
+               Er ein <span class="tei_hi_latintype"><a class="preview works A020294" href="">Concert</a></span>
                von mir blies das ich schon in
-               <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> für ihn geschrieben hatte,
-               und obiges <span class="tei_hi_latintype"><span class="preview works A020289" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020289.html">Rondo</span></span>.
+               <a class="preview places A130007" href="">München</a> für ihn geschrieben hatte,
+               und obiges <span class="tei_hi_latintype"><a class="preview works A020289" href="">Rondo</a></span>.
                Relation davon wirst in der M: Z: finden. d:
 				24<span class="tei_hi_superscript">t</span> reiste er ab, und nun gieng es an das <span class="tei_hi_latintype">Arrangement</span>
                <span class="tei_hi_underline1">meines</span>
@@ -876,12 +919,12 @@
 			in jeder Hinsicht äußerst <span class="tei_hi_latintype">brillant</span> ausfiel, der Saal gedrükt voll, das <span class="tei_hi_latintype">Orchester</span>
                und die Sänger voll Feuer und Leben, und ein Enthusiastischer
 			Beyfall. ich machte
-               meine <span class="tei_hi_latintype"><span class="preview works A020279" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020279.html">Simphonie</span></span>,
+               meine <span class="tei_hi_latintype"><a class="preview works A020279" href="">Simphonie</a></span>,
                Eine <span class="65114105101">Arie</span> gesungen von 
                <span class="tei_hi_latintype"><a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Dlle Müller</a></span>, /: Tochter des <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Wenzel Müller</a> :/ spielte mein
-               <span class="preview works A020208" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020208.html">neues Höllen <span class="tei_hi_latintype">Concert</span></span>, 
-               und gab die <span class="tei_hi_underline1"><span class="preview works A020015" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020015.html">Hymne</span></span>.<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>
-               Außerdem hab ich in dieser Zeit noch <span class="preview works A020150 A020151 A020152 A020153" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020150.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020151.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020152.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020153.html">4 Gesänge</span> <span class="tei_hi_latintype">componirt</span>
+               <a class="preview works A020208" href="">neues Höllen <span class="tei_hi_latintype">Concert</span></a>, 
+               und gab die <span class="tei_hi_underline1"><a class="preview works A020015" href="">Hymne</a></span>.<a class="noteMarker" id="ref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>
+               Außerdem hab ich in dieser Zeit noch <span class="preview works A020150 A020151 A020152 A020153" data-ref="   ">4 Gesänge</span> <span class="tei_hi_latintype">componirt</span>
                und über 30 Briefe in <span class="tei_hi_latintype">Directions</span> Angelegenheiten 
                geschrieben. hierin, und darinn daß ich dir gleich auch Geld schikken
 			wollte liegt die Entschuldigung mit der ich eigentlich meinen Brief hätte anfangen
@@ -889,49 +932,49 @@
 			Hülfe nehmen um diesen Brief zu vollenden. in der Fasten sind noch 2 <span class="tei_hi_latintype">Concerte</span>
                für die Armen, Eines für das <span class="tei_hi_latintype">Orchester</span> und
                Eines für <a class="preview persons A000692" href="/exist/apps/WeGA-WebApp/de/A000692.html">Mlle <span class="tei_hi_underline1">Müller</span></a> 
-               die ich alle <span class="tei_hi_latintype">arrangiren</span> muß<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090280.html">T</a>.
+               die ich alle <span class="tei_hi_latintype">arrangiren</span> muß<a class="noteMarker" href="">T</a>.
                denke also was alles auf mir liegt, dazu die Verfertigung
-			eines neuen <span class="tei_hi_latintype">Catalogs</span> des Theater Archivs<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090070.html">T</a> das in der grösten
+			eines neuen <span class="tei_hi_latintype">Catalogs</span> des Theater Archivs<a class="noteMarker" href="">T</a> das in der grösten
 			Unordnung ist <span class="tei_hi_latintype">pp</span> meine <span class="tei_hi_latintype">Correspondenz</span>,
 			viele <span class="tei_hi_latintype">Recensionen</span>, und Aufsäzze <span class="tei_hi_latintype">pp</span>
 			Manchmal brennt mir wirklich der Kopf und das Wort Posttag ist ein Schrekenstag. Ich
-			will nun versuchen noch an <span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span>
+			will nun versuchen noch an <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span>
                zu schreiben. Er hatte
                <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Gänsbacher</a> sein
-               <span class="preview works A020566" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020566.html"><span class="tei_hi_underline1">Gott und</span> die Natur</span> 
+               <a class="preview works A020566" href=""><span class="tei_hi_underline1">Gott und</span> die Natur</a> 
                versprochen, hätten wir es
-			gehabt hätte ich es jezt aufgeführt, so wie ich die Direktion auch auf seine <span class="preview works A020762" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020762.html">Jephta</span>
-			aufmerksam gemacht habe. Was ist denn das mit dem <span class="tei_hi_latintype"><span class="preview works A020460" data-ref="/exist/apps/WeGA-WebApp/de/A001313/Werke/A020460.html">Ali Melek</span></span>, du
-			wirfst in deinem<span class="tei_pb" title="Seitenumbruch"> | </span>Briefe diesen Nahmen mit <span class="tei_hi_latintype"><span class="preview works A020038" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020038.html">Abu Hassan</span></span> so
+			gehabt hätte ich es jezt aufgeführt, so wie ich die Direktion auch auf seine <a class="preview works A020762" href="">Jephta</a>
+			aufmerksam gemacht habe. Was ist denn das mit dem <span class="tei_hi_latintype"><a class="preview works A020460" href="">Ali Melek</a></span>, du
+			wirfst in deinem<span class="tei_pb" title="Seitenumbruch"> | </span>Briefe diesen Nahmen mit <span class="tei_hi_latintype"><a class="preview works A020038" href="">Abu Hassan</a></span> so
 			durcheinander daß kein Mensch daraus klug wird.
-			ist es eine neue Oper von <span class="tei_hi_latintype"><a class="preview persons A001313" href="/exist/apps/WeGA-WebApp/de/A001313.html">Beer</a></span>?
+			ist es eine neue Oper von <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span>?
                Ich bin begierig von dir zu erfahren was jezt sein Plan ist.
-               von seinem Bruder <a class="preview persons A000113" href="/exist/apps/WeGA-WebApp/de/A000113.html">Hans</a> bekomme ich regelmäßig Briefe von
-               <span class="tei_hi_latintype"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></span>
-			und Bruder <span class="tei_hi_latintype"><a class="preview persons A000116" href="/exist/apps/WeGA-WebApp/de/A000116.html">Wolf</a></span> erwarte ich täglich hier von
-               <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> durchreisend.
-			du hast mir ja so lange nichts von meinen lieben <span class="tei_hi_latintype"><span class="preview persons A000888 A000884" data-ref="/exist/apps/WeGA-WebApp/de/A000888.html /exist/apps/WeGA-WebApp/de/A000884.html">Houts</span></span>
+               von seinem Bruder <a class="preview persons A000113" href="">Hans</a> bekomme ich regelmäßig Briefe von
+               <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>
+			und Bruder <span class="tei_hi_latintype"><a class="preview persons A000116" href="">Wolf</a></span> erwarte ich täglich hier von
+               <a class="preview places A130004" href="">Wien</a> durchreisend.
+			du hast mir ja so lange nichts von meinen lieben <span class="tei_hi_latintype"><span class="preview persons A000888 A000884" data-ref=" ">Houts</span></span>
 			geschrieben auch von meinen andern Bekanntschaften. Unter anderm wie stehts mit
-               <span class="tei_hi_latintype"><span class="preview persons A000134 A000135" data-ref="/exist/apps/WeGA-WebApp/de/A000134.html /exist/apps/WeGA-WebApp/de/A000135.html">Benzels</span></span>, und wie gefällt sich die
-               <span class="tei_hi_latintype"><a class="preview persons A001843" href="/exist/apps/WeGA-WebApp/de/A001843.html">Clary Solome</a></span> im Ehestande?
+               <span class="tei_hi_latintype"><span class="preview persons A000134 A000135" data-ref=" ">Benzels</span></span>, und wie gefällt sich die
+               <span class="tei_hi_latintype"><a class="preview persons A001843" href="">Clary Solome</a></span> im Ehestande?
                Ich fühle mich hier bis jezt nichts weniger als froh.
 			habe zwar überall Zutritt, und bin mehr in großen Gesellschaften als mir lieb ist, aber
 			so ein ächt Musikalisches Haus, wo so die Kunst mit Liebe gepflegt wird, wie wir es
-			gewohnt sind, und wie ich in <span class="tei_hi_latintype"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></span>
-               <span class="preview places A130016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130016.html">Gotha</span>, <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span>,
-               <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span>,
+			gewohnt sind, und wie ich in <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>
+               <a class="preview places A130016" href="">Gotha</a>, <a class="preview places A130014" href="">Weimar</a>,
+               <a class="preview places A130005" href="">Leipzig</a>,
 			gefunden habe, ist hier nicht aufzutreiben. Vielleicht kömt es mit der Zeit, ich
 			vergrabe mich in Arbeit und betäube mich damit aber manchmal will der Mensch doch auch
 			wahre Erholung und Freude.</p>
                                         <p class="tei_closer textAlign-left inlineStart">Schreib mir bald und recht viel wieder, die Briefe meiner
 			Freunde sind meine einzige Freude. <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Jörgl</a> verläßt mich auch im Aprill und geht mit seinem
-			   <a class="preview persons A000487" href="/exist/apps/WeGA-WebApp/de/A000487.html">Grafen</a> nach <span class="preview places A130303" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130303.html">Tyrol</span> und
-               <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> dann stehe ich wieder ganz verwaißt. Nun Gute Nacht. ich
+			   <a class="preview persons A000487" href="">Grafen</a> nach <a class="preview places A130303" href="">Tyrol</a> und
+               <a class="preview places A130023" href="">Salzburg</a> dann stehe ich wieder ganz verwaißt. Nun Gute Nacht. ich
 			drükke euch alle in Gedanken mit Liebe an meine Brust, und Wenn es Euch wohl geht so
 			gedenkt Eures ewig treuen fernen
 			   <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a></span>.</span>
             <span class="tei_dateline textAlign-textAlign-left">
-               <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> d: 9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> 1813.
+               <a class="preview places A130006" href="">Prag</a> d: 9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> 1813.
                <span class="tei_segBlock textAlign-right">Auf dem RoßMarkt im weißen<br />
                Hahne, ersten Stokk.</span>
             </span>
@@ -939,32 +982,32 @@
                                     </div>
                                     <div class="writingSession">
                                         <ul class="tei_simpleList">
-                                            <li><span class="tei_hi_underline1"><span class="preview works A020327" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020327.html">6 Fughetten</span></span>. <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> ge<span class="tei_supplied" id="d10e1013"><span class="brackets_supplied">[</span>dr<span class="brackets_supplied">]</span></span>ukt.</li>
-                                            <li><span class="preview works A020323" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020323.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variation</span></span> in C</span>. in <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span>. gestochen</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020337" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020337.html">Petits Pieçes a 4 Mains</span></span></span>. <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsburg</span></li>
-                                            <li><span class="preview works A020328" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020328.html">12. <span class="tei_hi_underline1">Walzer</span></span>, in <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsb:</span> <span class="preview works A020324" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020324.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat:</span> über Kastor</span> 
-                    <br />und <span class="tei_hi_latintype">Pollux</span></span>, <span class="tei_hi_latintype"><span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span></span>.</li>
-                                            <li><span class="preview works A020311" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020311.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat:</span></span> über <span class="tei_hi_latintype">Samori</span></span>. <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>.</li>
-                                            <li>⩨ <span class="preview works A020213" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020213.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat: Vien qua Dorina bella</span></span></span>, <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsb:</span></li>
-                                            <li><span class="preview works A020237" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020237.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Overture</span></span> in <span class="tei_hi_latintype">Es</span></span>. <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsb:</span></li>
-                                            <li>⩨ <span class="preview works A020338" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020338.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Pieçes a 4 Mains</span></span></span>. <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsb:</span></li>
-                                            <li><span class="preview works A020219" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020219.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat: Thema Original</span></span></span>. <span class="preview places A130080" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130080.html">Offenbach</span>.</li>
-                                            <li><span class="preview works A020203" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020203.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Quatuor</span></span></span>. <a class="preview persons A001831" href="/exist/apps/WeGA-WebApp/de/A001831.html"><span class="tei_hi_latintype">Simrok</span></a>.</li>
-                                            <li><span class="preview works A020330" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020330.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Momento capricioso</span></span></span>. <span class="preview places A130017" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130017.html">Augsb.</span></li>
-                                            <li>⩨ <span class="tei_hi_underline1"><span class="preview works A020095 A020111 A020122 A020126 A020128 A020130" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020095.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020111.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020122.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020126.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020128.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020130.html">Lieder</span></span> bey <a class="preview orgs A080119" href="/exist/apps/WeGA-WebApp/de/A080119.html">Gombart</a>.</li>
-                                            <li>⩨ <span class="tei_hi_underline1"><span class="preview works A020008" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020008.html">der Erste Ton</span></span></li>
-                                            <li><span class="tei_hi_underline1"><span class="preview works A020112 A020114 A020117 A020118 A020123 A020124" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020112.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020114.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020117.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020118.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020123.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020124.html">Lieder</span></span> bey <a class="preview persons A001831" href="/exist/apps/WeGA-WebApp/de/A001831.html"><span class="tei_hi_latintype">Simrok</span></a>.</li>
-                                            <li>⩨ <span class="preview works A020058" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020058.html"><span class="tei_hi_latintype"><span class="tei_hi_underline1">Rondo</span>, la dolce Speranza</span></span>, <span class="preview places A130080" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130080.html">Offenbach</span></li>
-                                            <li><span class="preview works A020206" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020206.html"><span class="tei_hi_underline1">6 <span class="tei_hi_latintype">Sonaten</span></span> mit <span class="tei_hi_latintype">Violin</span></span>. <span class="tei_hi_latintype"><a class="preview persons A001831" href="/exist/apps/WeGA-WebApp/de/A001831.html">Simrok</a></span>.</li>
-                                            <li><span class="preview works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Pianoforte Concert</span></span></span>. <span class="preview places A130080" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130080.html">Offenbach</span>.</li>
-                                            <li>⩨ <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020279" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020279.html">Simphonie</span></span></span>. <span class="preview places A130080" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130080.html">Offenbach</span>.</li>
-                                            <li>⩨ <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020287" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020287.html">Pottpourri pour Violoncelle</span></span></span> <span class="tei_ptr"></span><a class="preview persons A001831" href="/exist/apps/WeGA-WebApp/de/A001831.html">Simmrok</a> noch nicht gesehen.<a class="noteMarker" id="ref-C_22" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_22">*</a></li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020331" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020331.html">Gr: Polonaise Pianoforte</span></span></span></li>
-                                            <li>⩨ <span class="preview works A020312" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020312.html"><span class="tei_hi_latintype"><span class="tei_hi_underline1">Variat:</span> Violon, Pianoforte. D moll</span></span></li>
-                                            <li><span class="tei_hi_underline1"><span class="preview works A020113 A020119 A020135 A020136 A020144 A020014 A020276" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020113.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020119.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020135.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020136.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020144.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020014.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020276.html">6 Lieder</span></span> bey <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Schleßinger</a>.</li>
-                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020210" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020210.html">Sonate</span></span></span>.</li>
-                                            <li><span class="tei_hi_underline1"><span class="preview works A020069 A020257 A020259 A020146 A020147 A020148 A020149 A020220" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020069.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020257.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020259.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020146.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020147.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020148.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020149.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020220.html">Lieder</span></span> bey <a class="preview persons A000685" href="/exist/apps/WeGA-WebApp/de/A000685.html">Gröbenschüz</a>.</li>
-                                            <li>⩨ <span class="preview works A020209" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020209.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat:</span> Romanze aus Joseph</span></span>.</li>
+                                            <li><span class="tei_hi_underline1"><a class="preview works A020327" href="">6 Fughetten</a></span>. <a class="preview places A130023" href="">Salzburg</a> ge<span class="tei_supplied" id="d10e1013"><span class="brackets_supplied">[</span>dr<span class="brackets_supplied">]</span></span>ukt.</li>
+                                            <li><a class="preview works A020323" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variation</span></span> in C</a>. in <a class="preview places A130007" href="">München</a>. gestochen</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020337" href="">Petits Pieçes a 4 Mains</a></span></span>. <a class="preview places A130017" href="">Augsburg</a></li>
+                                            <li><a class="preview works A020328" href="">12. <span class="tei_hi_underline1">Walzer</span></a>, in <a class="preview places A130017" href="">Augsb:</a> <a class="preview works A020324" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat:</span> über Kastor</span> 
+                    <br />und <span class="tei_hi_latintype">Pollux</span></a>, <span class="tei_hi_latintype"><a class="preview places A130004" href="">Wien</a></span>.</li>
+                                            <li><a class="preview works A020311" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat:</span></span> über <span class="tei_hi_latintype">Samori</span></a>. <a class="preview places A130004" href="">Wien</a>.</li>
+                                            <li>⩨ <a class="preview works A020213" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat: Vien qua Dorina bella</span></span></a>, <a class="preview places A130017" href="">Augsb:</a></li>
+                                            <li><a class="preview works A020237" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Overture</span></span> in <span class="tei_hi_latintype">Es</span></a>. <a class="preview places A130017" href="">Augsb:</a></li>
+                                            <li>⩨ <a class="preview works A020338" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Pieçes a 4 Mains</span></span></a>. <a class="preview places A130017" href="">Augsb:</a></li>
+                                            <li><a class="preview works A020219" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat: Thema Original</span></span></a>. <a class="preview places A130080" href="">Offenbach</a>.</li>
+                                            <li><a class="preview works A020203" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Quatuor</span></span></a>. <a class="preview persons A001831" href=""><span class="tei_hi_latintype">Simrok</span></a>.</li>
+                                            <li><a class="preview works A020330" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Momento capricioso</span></span></a>. <a class="preview places A130017" href="">Augsb.</a></li>
+                                            <li>⩨ <span class="tei_hi_underline1"><span class="preview works A020095 A020111 A020122 A020126 A020128 A020130" data-ref="     ">Lieder</span></span> bey <a class="preview orgs A080119" href="">Gombart</a>.</li>
+                                            <li>⩨ <span class="tei_hi_underline1"><a class="preview works A020008" href="">der Erste Ton</a></span></li>
+                                            <li><span class="tei_hi_underline1"><span class="preview works A020112 A020114 A020117 A020118 A020123 A020124" data-ref="     ">Lieder</span></span> bey <a class="preview persons A001831" href=""><span class="tei_hi_latintype">Simrok</span></a>.</li>
+                                            <li>⩨ <a class="preview works A020058" href=""><span class="tei_hi_latintype"><span class="tei_hi_underline1">Rondo</span>, la dolce Speranza</span></a>, <a class="preview places A130080" href="">Offenbach</a></li>
+                                            <li><a class="preview works A020206" href=""><span class="tei_hi_underline1">6 <span class="tei_hi_latintype">Sonaten</span></span> mit <span class="tei_hi_latintype">Violin</span></a>. <span class="tei_hi_latintype"><a class="preview persons A001831" href="">Simrok</a></span>.</li>
+                                            <li><a class="preview works A020212" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Pianoforte Concert</span></span></a>. <a class="preview places A130080" href="">Offenbach</a>.</li>
+                                            <li>⩨ <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020279" href="">Simphonie</a></span></span>. <a class="preview places A130080" href="">Offenbach</a>.</li>
+                                            <li>⩨ <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020287" href="">Pottpourri pour Violoncelle</a></span></span> <span class="tei_ptr"></span><a class="preview persons A001831" href="">Simmrok</a> noch nicht gesehen.<a class="noteMarker" id="ref-C_22" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_22">*</a></li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020331" href="">Gr: Polonaise Pianoforte</a></span></span></li>
+                                            <li>⩨ <a class="preview works A020312" href=""><span class="tei_hi_latintype"><span class="tei_hi_underline1">Variat:</span> Violon, Pianoforte. D moll</span></a></li>
+                                            <li><span class="tei_hi_underline1"><span class="preview works A020113 A020119 A020135 A020136 A020144 A020014 A020276" data-ref="      ">6 Lieder</span></span> bey <a class="preview persons A001693" href="">Schleßinger</a>.</li>
+                                            <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020210" href="">Sonate</a></span></span>.</li>
+                                            <li><span class="tei_hi_underline1"><span class="preview works A020069 A020257 A020259 A020146 A020147 A020148 A020149 A020220" data-ref="       ">Lieder</span></span> bey <a class="preview persons A000685" href="">Gröbenschüz</a>.</li>
+                                            <li>⩨ <a class="preview works A020209" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variat:</span> Romanze aus Joseph</span></a>.</li>
                                         </ul>
                                         <p class="tei_closer textAlign-left">Schreib mir was du davon vornimmst.
               <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype">adio senza adio</span>.</span>
@@ -1020,6 +1063,12 @@
                                             </ul>
                                         </div>
                                 
+                                
+                                <div>
+                                    
+                                    
+                                </div>
+                                
                                 <div>
                                     
                                         <h5 class="media-heading">Weitere Textquellen</h5>
@@ -1031,9 +1080,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         <div>
                             <h3 class="media-heading">Themenkommentare</h3>
@@ -1042,16 +1089,16 @@
                                     <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090022.html">Webers Anstellung am Prager Ständetheater</a>
                                 </li>
                                         <li>
-                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090039.html">Zur Tilgung von Franz Anton von Webers Mannheimer Schulden</a>
+                                    <a href=""></a>
                                 </li>
                                         <li>
-                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090280.html">Webers Anteil am öffentlichen Konzertleben in Prag von 1813 bis 1816</a>
+                                    <a href=""></a>
                                 </li>
                                         <li>
-                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090280.html">Webers Anteil am öffentlichen Konzertleben in Prag von 1813 bis 1816</a>
+                                    <a href=""></a>
                                 </li>
                                         <li>
-                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090070.html"><span class="tei_title">Webers <span class="tei_hi_italic">Notizen-Buch</span> und weitere Archivalien des Prager Ständetheaters</span></a>
+                                    <a href=""></a>
                                 </li>
                             </ul>
                         </div>
@@ -1096,7 +1143,7 @@
                                             <div class="apparatusEntry" id="d_01" data-title="note definition">"<span class="tei_lemma">⩨</span>": Raute mit drei Quer- und zwei Längsbalken</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="note01" data-title="note commentary"><span class="tei_lemma">"… von MB als Beylage ist": </span><a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Webers</a> Bericht aus <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> vom Dezember 1812 in: <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 15, Nr. 4 (27. Januar 1813), Sp. 57–60; in derselben Nummer ist in Sp. 65f. die Rezension von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Webers</a> Liedern op. 23 mit vollständiger Wiedergabe des Liedes Maienblümlein abgedruckt.</div>
+                                            <div class="apparatusEntry" id="note01" data-title="note commentary"><span class="tei_lemma">"… von MB als Beylage ist": </span><a class="preview persons A002078" href="">Gottfried Webers</a> Bericht aus <a class="preview places A130010" href="">Mannheim</a> vom Dezember 1812 in: <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 15, Nr. 4 (27. Januar 1813), Sp. 57–60; in derselben Nummer ist in Sp. 65f. die Rezension von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Webers</a> Liedern op. 23 mit vollständiger Wiedergabe des Liedes Maienblümlein abgedruckt.</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_02" data-title="note commentary"><span class="tei_lemma">"… ich dir nicht zu verschaffen": </span>Auf Grund einer Falschmeldung von Haydns Tod 1805 von Cherubini komponiert als <span class="tei_hi_italic"><span class="671049711011632115117114321089732109111114116321001013274111115101112104327297121100110">Chant sur la mort de Joseph Haydn</span></span>. UA nach Haydns 1809 erfolgtem Tod am 18. Februar 1810 im  Conservatorium, Paris; der Partitur-Druck erschien 1809 in Paris</div>
@@ -1114,7 +1161,7 @@
                                             <div class="apparatusEntry" id="d10e675" data-title="choice">"für uns": weitere mögliche Lesungen: "heute"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_07" data-title="note commentary"><span class="tei_lemma">"… und gab die Hymne .": </span>vgl. <a class="preview letters A040595" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040595.html">Brief Webers an die Berliner Freunde. Zweites Bulletin vom 20. Januar 1813</a></div>
+                                            <div class="apparatusEntry" id="C_07" data-title="note commentary"><span class="tei_lemma">"… und gab die Hymne .": </span>vgl. <a class="preview letters A040595" href="">Brief Webers an die Berliner Freunde. Zweites Bulletin vom 20. Januar 1813</a></div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_22" data-title="note commentary">"<span class="tei_lemma">Simmrok noch nicht gesehen.</span>": Das „Simmrock noch nicht gesehen“ bezieht sich ebenfalls auf die nächste Zeile. Die beiden Zeilen sind im Original durch eine geschweifte Klammer entsprechend verbunden.</div>
@@ -1123,7 +1170,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A040603/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A040603/manifest.json"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -1141,9 +1188,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 25. Juni 2018 durch Eveline Bartlitz</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -1209,7 +1257,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -1229,30 +1278,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

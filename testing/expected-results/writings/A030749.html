@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-11T14:24:37.801599Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030749" />
         <meta property="dc:description" content="Schreibtafel von Mannheim, 1810-V-20a: &#34;Der Kosacken-Offizier&#34; von Charles-François Dumoncheau und Luigi Gianella" />
         <meta name="description" content="Schreibtafel von Mannheim, 1810-V-20a: &#34;Der Kosacken-Offizier&#34; von Charles-François Dumoncheau und Luigi Gianella" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002078"}],"name":"Schreibtafel von Mannheim: \"Der Kosacken-Offizier\" von Charles-François Dumoncheau und Luigi Gianella","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030749","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A002078/Writings/A030749.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002078.html">Gottfried Weber</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften">Schriften</a></li>
-                        <li><span>A030749</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span></span>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften">Schriften</a>
+                        </li>
+                        <li>
+                            <span>A030749</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,55 +250,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030749.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -291,37 +323,43 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008710" /> <span title="Dumoncheau, Charles François">Dumoncheau, Charles François</span> 
+                                    <input type="checkbox" name="options" value="A008710" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000614" /> <span title="Gerl, Franz">Gerl, Franz</span> 
+                                    <input type="checkbox" name="options" value="A008807" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000628" /> <span title="Gervais, Catharina">Gervais, Catharina</span> 
+                                    <input type="checkbox" name="options" value="A000628" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008807" /> <span title="Gianella, Louis">Gianella, Louis</span> 
+                                    <input type="checkbox" name="options" value="A000614" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000852" /> <span title="Hoffmann, Franz">Hoffmann, Franz</span> 
+                                    <input type="checkbox" name="options" value="A000852" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002078" /> <span title="Weber, Gottfried">Weber, Gottfried</span> 
+                                    <input type="checkbox" name="options" value="A002078" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
+                                    <input type="checkbox" name="options" value="A020484" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -361,12 +399,12 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Mannheim</span>, den <span class="tei_date">20. Sept. 1810</span>.</h2>
-                                        <p><span class="tei_hi_spaced_out"><span class="68101114327511111597991071011104579102102105122105101114">Der Kosacken-Offizier</span></span>. Zwey Komponisten aus der französischen Schule, <span class="tei_hi_spaced_out"><a class="preview persons A008710" href="/exist/apps/WeGA-WebApp/de/A008710.html">Dumouchan</a></span> und <span class="tei_hi_spaced_out"><a class="preview persons A008807" href="/exist/apps/WeGA-WebApp/de/A008807.html">Gianella</a></span>, vereinen ihre Kräfte, um in Gemeinschaft folgendes Sujet zu einem Operettchen in einem Akte zu bearbeiten.</p>
+                                        <p><span class="tei_hi_spaced_out"><span class="68101114327511111597991071011104579102102105122105101114">Der Kosacken-Offizier</span></span>. Zwey Komponisten aus der französischen Schule, <span class="tei_hi_spaced_out"><a class="preview persons A008710" href="">Dumouchan</a></span> und <span class="tei_hi_spaced_out"><a class="preview persons A008807" href="">Gianella</a></span>, vereinen ihre Kräfte, um in Gemeinschaft folgendes Sujet zu einem Operettchen in einem Akte zu bearbeiten.</p>
                                         <p><span class="70101111100111114">Feodor</span>, ein junger Kosacken-Offizier, leichtfertig aber brav, kommt aus dem Felde zurück, um die Winterquar<span class="tei_cb" title="Spaltenumbruch">¦</span>tiere bei seinem <span class="79104101105109">Oheim</span>, einem russischen Generalmajor, zu beziehen. Er liebte von frühester Jugend an die Mündel dieses <span class="79110107101108115">Onkels</span>, <span class="9010110810511510797">Zeliska</span>, sie aber glaubt sich von ihm vergessen, und steht ans [sic] Verzweifelung darüber so eben im Begriffe, sich mit dem <span class="79104101105109">Oheim</span> zu verloben.</p>
                                         <p><span class="70101111100111114">Feodor</span> bringt ein Schreiben des <span class="671229797114101110">Czaaren</span> mit, worin dieser dem <span class="79104101105109">Oheim</span> sein Mißfallen über das tolle Betragen des jungen Menschen eröffnet. Diese freilich nicht sehr arantagöse Art, sich seiner Geliebten zu präsentiren, bestärkt diese noch mehr in dem Vorsatze, ihre Verbindung mit dem <span class="79110107101108">Onkel</span> zu beschleunigen, bis endlich ein General-Adjudant des <span class="671229797114101110">Czaaren</span> die Nachricht überbringt: das Schreiben des <span class="671229797114115">Czaars</span> sey nur ein Spaß gewesen, <span class="70101111100111114">Feodor</span> habe sich vielmehr durch sein ausgezeichnet gutes und tapferes Betragen die Stelle seines Lieblings erworben, er habe ihn daher zum Grafen und Obersten der Kosacken erhoben, und wünsche dessen Verbindung mit <span class="9010110810511510797">Zeliska</span>. Der <span class="79110107101108">Onkel</span> macht den Onkel in der Komödie, tritt <span class="70101111100111114110">Feodorn</span> mit Vergnügen die Braut ab, und das Stück ist aus.</p>
-                                        <p>Zu dieser Geschichte wird nun verschiedenes gesungen, auch, wie billig, etwas weniges kosackisch getanzt. Die Musik im Ganzen läßt das Erinnerungsvermögen nicht ohne angenehme Beschäftigung; besonders auffallend ist es, in der Ouvertüre eine ganze Stelle aus <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span> vorkommen zu sehen. Es ist die, welche in der Ouvertüre zu <span class="68111110327411797110">Don Juan</span> Takt 23 und dann noch einmal, bei der Ankunft des Geistes in <span class="68111110327411797110115">Don Juans</span> Zimmer, vorkommt:</p>"<span class="tei_hi_antiqua">Altre cure più gravi di queste</span>" – „Andre Sorgen weit wicht’ger als diese.“<p>Uebrigens sind unter den Musikstücken (größtentheils in <span class="tei_hi_antiqua">G dur</span>) verschiedene sehr artig. Sie bestehen aus Arietten, aus wiederkehrenden Strophen, auch etwas an Duetten ce. Jedes steht aber einzeln und ohne Bezeichnung auf die andern; das Finale allein dringt etwas tiefer in die Situation ein; es beginnt da, wo alles über den Bericht des Adjudanten in Erstaunen geräth. Im langsamen Zeitmaße treten in den mittlern Stimmen die Dissonanzen <span class="tei_hi_antiqua">d</span>’’ und <span class="tei_hi_antiqua">cis</span>’’ frei und hart, aber <span class="tei_hi_antiqua">pianissimo</span>, neben einander, um sich erst spät in konsonirende Akkorde aufzulösen, welches eine glückliche, der Situation ganz entsprechende überraschende Wirkung thut; eben so gebührt auch der gleich darauf folgenden Stelle ihr Lob, wo die beiden Liebenden in einem Duette sich einander wieder nähern, welches durch des <span class="79110107101108115">Onkels</span> großmüthige Verzichtleistung zum Terzette wird, und bald in einen frohen Schluß-Chor übergeht.</p>
+                                        <p>Zu dieser Geschichte wird nun verschiedenes gesungen, auch, wie billig, etwas weniges kosackisch getanzt. Die Musik im Ganzen läßt das Erinnerungsvermögen nicht ohne angenehme Beschäftigung; besonders auffallend ist es, in der Ouvertüre eine ganze Stelle aus <a class="preview works A020484" href="">Don Juan</a> vorkommen zu sehen. Es ist die, welche in der Ouvertüre zu <span class="68111110327411797110">Don Juan</span> Takt 23 und dann noch einmal, bei der Ankunft des Geistes in <span class="68111110327411797110115">Don Juans</span> Zimmer, vorkommt:</p>"<span class="tei_hi_antiqua">Altre cure più gravi di queste</span>" – „Andre Sorgen weit wicht’ger als diese.“<p>Uebrigens sind unter den Musikstücken (größtentheils in <span class="tei_hi_antiqua">G dur</span>) verschiedene sehr artig. Sie bestehen aus Arietten, aus wiederkehrenden Strophen, auch etwas an Duetten ce. Jedes steht aber einzeln und ohne Bezeichnung auf die andern; das Finale allein dringt etwas tiefer in die Situation ein; es beginnt da, wo alles über den Bericht des Adjudanten in Erstaunen geräth. Im langsamen Zeitmaße treten in den mittlern Stimmen die Dissonanzen <span class="tei_hi_antiqua">d</span>’’ und <span class="tei_hi_antiqua">cis</span>’’ frei und hart, aber <span class="tei_hi_antiqua">pianissimo</span>, neben einander, um sich erst spät in konsonirende Akkorde aufzulösen, welches eine glückliche, der Situation ganz entsprechende überraschende Wirkung thut; eben so gebührt auch der gleich darauf folgenden Stelle ihr Lob, wo die beiden Liebenden in einem Duette sich einander wieder nähern, welches durch des <span class="79110107101108115">Onkels</span> großmüthige Verzichtleistung zum Terzette wird, und bald in einen frohen Schluß-Chor übergeht.</p>
                                         <p>Im Ganzen scheinen die beiden Allianzkomponisten unter sich selbst nicht ganz einig <span class="tei_hi_spaced_out">über den Umfang</span> gewesen zu seyn, welchen sie den Singparthieen geben wollten. Der <span class="79110107101108">Onkel</span> hat meistens <span class="tei_hi_spaced_out">sehr hohen</span> Baß zu singen, und gränzt ganz nahe an förmlichen Tenor. <span class="tei_hi_spaced_out">Eine</span> Arie aber, welche er aus <span class="tei_hi_antiqua">F dur</span> zu singen hat, hält sich durchgängig in den Regionen des <span class="tei_hi_spaced_out">tiefsten</span> Basses auf. – Auch die Rolle des <span class="7710599104111108116122">Micholtz</span>, eines alten Unteroffiziers, ist eben so zweydeutig.</p>
-                                        <p>Von der Aufführung ist nichts besonders zu sagen, Mad. <span class="tei_hi_spaced_out"><a class="preview persons A000628" href="/exist/apps/WeGA-WebApp/de/A000628.html">Gervais</a></span> läßt <span class="tei_hi_spaced_out">keine</span> Rolle sinken, Herr <span class="tei_hi_spaced_out"><a class="preview persons A000614" href="/exist/apps/WeGA-WebApp/de/A000614.html">Gerl</a></span> sang wie er seit einiger Zeit leider immer zu singen pflegt. Wo Herr <span class="tei_hi_spaced_out"><a class="preview persons A000852" href="/exist/apps/WeGA-WebApp/de/A000852.html">Hoffmann</a></span> erste Tenor-Rollen und Tenor-Arien singt, würde Kritik am unrechten Orte stehen; er ist als <span class="tei_hi_antiqua">Baritono buffo</span> beliebt, und es ist lobenswerth, daß er auch in andern Fächern auszuhelfen willig ist; ist es aber auch lobenswerth, daß ihm diese Tenor-Rolle nicht <span class="tei_hi_spaced_out">heute</span> allein, sondern von Anbeginn an <span class="tei_hi_spaced_out">ständig</span> zugetheilt ist? – Die Chöre – Ja die Chöre! so viel ich <span class="tei_hi_spaced_out">hören</span> konnte, bestund der Männer-Chor heute aus circa 3 Personen; allein dafür war er schon im voraus auf Mittel gedacht, die <span class="tei_hi_spaced_out">Zuhörer</span> auf einer andern Seite zu entschädigen. Um nämlich dem Eintritt des die Depeschen des <span class="671229797114115">Czaars</span> überbringenden <span class="6510010611710097110116101110">Adjudanten</span> den gehörigen Pomp zu geben, mußten in das <span class="tei_hi_spaced_out">Zimmer</span> des <span class="711011101011149710810997106111114115">Generalmajors</span>, zugleich mit dem ankommenden <span class="6510010611710097110116101110">Adjudanten</span>, sechs bis acht Mann Musquetiers mit Ober- und Untergewehr und aufgepflanztem Bayonette aufmarschiren, und die Stubenthüre besetzen, die von diesem Augenblicke an beständig offen steht; eine Zeremonie, welche zwar in Rußland, zur Winterszeit, nicht allzusehr erhitzen möchte, wodurch aber doch <span class="tei_hi_spaced_out">der</span> schöne Theater-Coup erzielt wurde, daß, als der neue Kosacken-Oberste durch die offene Thüre eintrat, oben belobte sämmtliche Musquetiere das Gewehr präsentiren konnten!! Gewiß ein würdiges Mittel, der Oper erforderlichen Pomp zu geben!</p><span class="tei_signed textAlign-right"><a class="preview persons A002078" href="/exist/apps/WeGA-WebApp/de/A002078.html">G. Gst.</a></span></div>
+                                        <p>Von der Aufführung ist nichts besonders zu sagen, Mad. <span class="tei_hi_spaced_out"><a class="preview persons A000628" href="">Gervais</a></span> läßt <span class="tei_hi_spaced_out">keine</span> Rolle sinken, Herr <span class="tei_hi_spaced_out"><a class="preview persons A000614" href="">Gerl</a></span> sang wie er seit einiger Zeit leider immer zu singen pflegt. Wo Herr <span class="tei_hi_spaced_out"><a class="preview persons A000852" href="">Hoffmann</a></span> erste Tenor-Rollen und Tenor-Arien singt, würde Kritik am unrechten Orte stehen; er ist als <span class="tei_hi_antiqua">Baritono buffo</span> beliebt, und es ist lobenswerth, daß er auch in andern Fächern auszuhelfen willig ist; ist es aber auch lobenswerth, daß ihm diese Tenor-Rolle nicht <span class="tei_hi_spaced_out">heute</span> allein, sondern von Anbeginn an <span class="tei_hi_spaced_out">ständig</span> zugetheilt ist? – Die Chöre – Ja die Chöre! so viel ich <span class="tei_hi_spaced_out">hören</span> konnte, bestund der Männer-Chor heute aus circa 3 Personen; allein dafür war er schon im voraus auf Mittel gedacht, die <span class="tei_hi_spaced_out">Zuhörer</span> auf einer andern Seite zu entschädigen. Um nämlich dem Eintritt des die Depeschen des <span class="671229797114115">Czaars</span> überbringenden <span class="6510010611710097110116101110">Adjudanten</span> den gehörigen Pomp zu geben, mußten in das <span class="tei_hi_spaced_out">Zimmer</span> des <span class="711011101011149710810997106111114115">Generalmajors</span>, zugleich mit dem ankommenden <span class="6510010611710097110116101110">Adjudanten</span>, sechs bis acht Mann Musquetiers mit Ober- und Untergewehr und aufgepflanztem Bayonette aufmarschiren, und die Stubenthüre besetzen, die von diesem Augenblicke an beständig offen steht; eine Zeremonie, welche zwar in Rußland, zur Winterszeit, nicht allzusehr erhitzen möchte, wodurch aber doch <span class="tei_hi_spaced_out">der</span> schöne Theater-Coup erzielt wurde, daß, als der neue Kosacken-Oberste durch die offene Thüre eintrat, oben belobte sämmtliche Musquetiere das Gewehr präsentiren konnten!! Gewiß ein würdiges Mittel, der Oper erforderlichen Pomp zu geben!</p><span class="tei_signed textAlign-right"><a class="preview persons A002078" href="">G. Gst.</a></span></div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -376,7 +414,7 @@
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
                             <div>
-                                        <p>Schreibtafel von Mannheim, 1810-V-20a: "Der Kosacken-Offizier" von Charles-François <a class="preview persons A008710" href="/exist/apps/WeGA-WebApp/de/A008710.html">Dumoncheau</a> und <a class="preview persons A008807" href="/exist/apps/WeGA-WebApp/de/A008807.html">Luigi Gianella</a>
+                                        <p>Schreibtafel von Mannheim, 1810-V-20a: "Der Kosacken-Offizier" von Charles-François <a class="preview persons A008710" href="">Dumoncheau</a> und <a class="preview persons A008807" href="">Luigi Gianella</a>
             </p>
                                     </div>
                         </div>
@@ -412,16 +450,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Schreibtafel von Mannheim</span>, Bd. 1, Heft 17 (31. Oktober 1810), Bl. 1r</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -451,9 +491,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030749</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030749</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 11. Dezember 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -519,7 +560,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -539,30 +581,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

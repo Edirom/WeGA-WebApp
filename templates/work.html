@@ -57,7 +57,9 @@
                 	</ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
-                    <h2 data-template="lang:translate">iconography</h2>
+                    <div data-template="app-shared:if-exists" data-template-key="iconographyImages" data-template-wrap="no">
+                        <h2 data-template="lang:translate">iconography</h2>
+                    </div>
                     <div class="iconographythumbnail" data-template="app-shared:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
                         <img data-template="img:iconographyImage" src="dummy.jpg"/>
                     </div>
@@ -70,8 +72,8 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
-                                <li><a data-template="app:person-main-tab" href="#biographies">biographies</a></li>
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
+                                <li><a data-template="app:person-main-tab" href="#biographies">descriptions</a></li>
                             	<li><a data-template="app:person-main-tab" href="#sources" data-target="$docID/sources.html">sources</a></li>
                                 <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
                             </ul>
@@ -85,7 +87,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 <!-- Biographie-->
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
@@ -132,7 +134,7 @@
                                                         <h3 data-template="lang:translate">creation</h3>
                                                         <div data-template="app-shared:output" data-template-key="creation"/>
                                                     </div>
-                                                    <div data-template="app-shared:if-not-exists" data-template-key="dedicatees creation">
+                                                    <div data-template="app-shared:if-not-exists" data-template-key="dedicatees creation" data-template-or="false">
                                                         <!-- Wenn in der Werkdatei keine Detailinformationen (dedicatees, creation) gefunden werden, dann wird der folgende Standardtext ausgegeben -->
                                                         <p><i data-template="lang:translate">noWorkDetailsFound</i></p>
                                                         <p data-template="lang:translate">noWorkDetailsFoundReason</p>

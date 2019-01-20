@@ -135,6 +135,7 @@ declare function wdt:persons($item as item()*) as map(*) {
 };
 
 declare function wdt:letters($item as item()*) as map(*) {
+    let $text-types := ('albumblatt', 'letter', 'guestbookEntry', 'dedication', 'eingabe', 'vortrag', 'weisung')
     let $constructLetterHead := function($TEI as element(tei:TEI)) as element(tei:title) {
         (: Support for Albumblätter?!? :)
         let $id := $TEI/data(@xml:id)
@@ -177,7 +178,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             else false()
         },
         'filter' := function() as document-node()* {
-            $item/root()/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
+            $item/root()/descendant::tei:text[@type = $text-types]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
             (:$item/root()//tei:persName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
@@ -194,7 +195,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             for $i in wdt:letters($item)('filter')() order by sort:index('letters', $i) ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('letters')/descendant::tei:text[@type = ('albumblatt', 'letter', 'guestbookEntry', 'dedication')]/root()
+            core:data-collection('letters')/descendant::tei:text[@type = $text-types]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
@@ -295,7 +296,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() => $filter()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
-            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint]/root() => $filter()
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[(parent::tei:imprint and not(ancestor::tei:additional)) or parent::tei:creation]/root() => $filter()
         },
         'sort' := function($params as map(*)?) as document-node()* {
             if(sort:has-index('writings')) then ()
@@ -830,8 +831,9 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
 };
 
 declare function wdt:documents($item as item()*) as map(*) {
+    let $text-types := ('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document', 'legal_document', 'theater_document')
     let $filter := function($docs as document-node()*) as document-node()* {
-        $docs/root()/descendant::tei:text[@type = ('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+        $docs/root()/descendant::tei:text[@type = $text-types]/root()
     }
     return
     map {
@@ -856,7 +858,7 @@ declare function wdt:documents($item as item()*) as map(*) {
             for $i in $filter($item) order by sort:index('documents', $i)  ascending return $i
         },
         'init-collection' := function() as document-node()* {
-            core:data-collection('documents')/descendant::tei:text[@type=('work-related_document', 'personal_document', 'financial_document', 'varia_document', 'notification_document', 'konzertzettel_document')]/root()
+            core:data-collection('documents')/descendant::tei:text[@type=$text-types]/root()
         },
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) {
@@ -889,6 +891,76 @@ declare function wdt:documents($item as item()*) as map(*) {
         }
     }
 };
+
+declare function wdt:addenda($item as item()*) as map(*) {
+    let $filter := function($docs as document-node()*) as document-node()* {
+        $docs/root()/tei:TEI[starts-with(@xml:id, 'A12')]/root()
+    }
+    return
+    map {
+        'name' := 'addenda',
+        'prefix' := 'A12',
+        'check' := function() as xs:boolean {
+            if($item castable as xs:string) then matches($item, '^A12\d{4}$')
+            else false()
+        },
+        'filter' := function() as document-node()* {
+            $filter($item)
+        },
+        'filter-by-person' := function($personID as xs:string) as document-node()* {
+            ()
+        },
+        'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
+            ()
+        },
+        'sort' := function($params as map(*)?) as document-node()* {
+            $filter($item)
+        },
+        'init-collection' := function() as document-node()* {
+            core:data-collection('addenda')
+        },
+        'init-sortIndex' := function() as item()* {
+            ()
+        },
+        'title' := function($serialization as xs:string) as item()? {
+            let $TEI := 
+                typeswitch($item)
+                case xs:string return core:doc($item)/tei:TEI
+                case xdt:untypedAtomic return core:doc($item)/tei:TEI
+                case document-node() return $item/tei:TEI
+                default return $item/root()/tei:TEI
+            let $lang := config:guess-language(())
+            let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
+            let $title-element-sub := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'][@type='sub'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][@type='sub'])[1]
+            return
+                switch($serialization)
+                case 'txt' return concat(
+                    str:normalize-space(replace(string-join(str:txtFromTEI($title-element, $lang), ''), '\s*\n+\s*(\S+)', '. $1')),
+                    if($title-element-sub) then concat(
+                        '. ',
+                        str:normalize-space(replace(string-join(str:txtFromTEI($title-element-sub, $lang), ''), '\s*\n+\s*(\S+)', '. $1'))
+                    )
+                    else ()
+                )
+                case 'html' return 
+                    <xhtml:span>{
+                    wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())),
+                    if($title-element-sub) then (
+                        <xhtml:br/>,
+                        wega-util:transform($title-element-sub, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(()))
+                    )
+                    else ()
+                    }</xhtml:span>
+                default return core:logToFile('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
+        },
+        'memberOf' := ('unary-docTypes', 'sitemap'),
+        'search' := function($query as element(query)) {
+            $item[tei:TEI]//tei:body[ft:query(., $query)] | 
+            $item[tei:TEI]//tei:title[ft:query(., $query)]
+        }
+    }
+};
+
 
 declare function wdt:contacts($item as item()*) as map(*) {
     map {

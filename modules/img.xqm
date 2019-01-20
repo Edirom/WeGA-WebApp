@@ -18,6 +18,7 @@ declare namespace dbp="http://dbpedia.org/property/";
 declare namespace dbo="http://dbpedia.org/ontology/";
 declare namespace foaf="http://xmlns.com/foaf/0.1/";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
+declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace templates="http://exist-db.org/xquery/templates";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -28,6 +29,7 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
+import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 (:import module namespace image="http://exist-db.org/xquery/image" at "java:org.exist.xquery.modules.image.ImageModule";:)
 import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace functx="http://www.functx.com";
@@ -98,16 +100,16 @@ declare %private function img:iconography4persons($node as node(), $model as map
  :
 ~:)
 declare %private function img:iconography4places($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-    let $dbpedia-images := img:dbpedia-images($model, $lang)
+    let $wikidata-images := img:wikidata-images($model, $lang)
     let $coa := 
-        for $map in $dbpedia-images 
+        for $map in $wikidata-images 
         return 
             if($map?coa) then $map 
             else ()
     return
         map { 
-                'iconographyImages' := $dbpedia-images,
-                'portrait' := ($coa, $dbpedia-images, img:get-generic-portrait($model, $lang))[1]
+                'iconographyImages' := $wikidata-images,
+                'portrait' := ($coa, $wikidata-images, img:get-generic-portrait($model, $lang))[1]
             }
 };
 
@@ -126,15 +128,11 @@ declare %private function img:iconography4orgs($node as node(), $model as map(*)
  :
 ~:)
 declare %private function img:iconography4works($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-    let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
-        if(exists($model('beaconMap'))) then $model('beaconMap')
-        else try { wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID'))) } catch * { map:new() }
-    let $db := map:keys($beaconMap)[contains(., 'Korrespondierendes Wikidata-Item')]
-    let $dbpedia-images := $db ! img:dbpedia-images(map:put($model, 'dbpediaID', analyze-string(.,'Q\d+')/fn:match/text()), $lang)
+    let $wikidata-images := img:wikidata-images($model, $lang)
     return 
     map { 
-        'iconographyImages' := $dbpedia-images,
-        'portrait' := ( $dbpedia-images, img:get-generic-portrait($model, $lang) )[1]
+        'iconographyImages' := $wikidata-images,
+        'portrait' := ($wikidata-images, img:get-generic-portrait($model, $lang) )[1]
     }
 };
 
@@ -149,70 +147,26 @@ declare function img:iconographyImage($node as node(), $model as map(*)) as elem
 };
 
 (:~
- : Helper function for grabbing images from a dbpedia rdf 
+ : Helper function for grabbing images from wikidata
  :
  : @author Peter Stadler 
  : @param $model a map with all necessary variables, e.g. docID
  : @param $lang the language variable (de|en)
  :)
-declare %private function img:dbpedia-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $docType := config:get-doctype-by-id($model?docID)
-    let $id := 
-        switch($docType)
-        case 'places' return $model('doc')//tei:idno[@type='geonames']
-        case 'works' return $model?dbpediaID
-        default return ()
-    let $dbpedia-rdf := 
-        if($id) then 
-            switch($docType)
-            case 'places' return wega-util:dbpedia-from-geonames($id)
-            case 'works' return wega-util:grabExternalResource('dbpedia', $id, $docType, $lang)
-            default return ()
-        else ()
-    let $wikiFilenames := 
-        distinct-values((
-            $dbpedia-rdf//dbp:imageCoa/text(), 
-            $dbpedia-rdf//dbp:imageFlag/text(), 
-            $dbpedia-rdf//dbp:imagePlan/text(), 
-            $dbpedia-rdf//dbp:image/text(), 
-            (
-                $dbpedia-rdf//dbo:thumbnail[@rdf:resource] |
-                $dbpedia-rdf//foaf:depiction[@rdf:resource] |
-                $dbpedia-rdf//wd:P18[@rdf:resource]
-            ) ! functx:substring-before-if-contains(substring-after(xmldb:decode(./@rdf:resource), 'Special:FilePath/'), '?')
-        ))[.] (: prevent the empty string :)
-    (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
-    let $wikiApiRequestURL := "https://commons.wikimedia.org/w/api.php?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url%7Csize&amp;titles=" || encode-for-uri(string-join($wikiFilenames ! ('File:' || replace(., '\s|%20', '_')), '|'))
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
-    let $onFailureFunc := function($errCode, $errDesc) {
-        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
-    }
-    let $wikiApiResponse := 
-        if(count($wikiFilenames) gt 0) then cache:doc(str:join-path-elements(($config:tmp-collection-path, 'wikiAPI', $id || '.xml')), wega-util:http-get#1, xs:anyURI($wikiApiRequestURL), $lease, $onFailureFunc)
-        else ()
+declare %private function img:wikidata-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $idno := $model?doc//tei:idno[@type=('gnd', 'viaf', 'geonames')] | $model?doc//mei:altId[@type=('gnd', 'viaf')]
+    let $wikidataResponse := $idno ! er:grab-external-resource-wikidata(., ./@type)
+    
+    let $coa-filename := $wikidataResponse//sr:binding[@name=('wappenbild')] ! img:prep-wikimedia-image-filenames(.) 
+    let $other-filenames := distinct-values($wikidataResponse//sr:binding[@name=('flaggenbild', 'image')]) ! img:prep-wikimedia-image-filenames(.)
+    
+    let $maps := img:wikimedia-api-imageinfo(($coa-filename, $other-filenames), $lang)
     return
-        for $page in $wikiApiResponse//page[not(@missing)]
-        let $caption := $page/data(@title)
-        let $linkTarget := $page//ii/data(@descriptionurl)
-        return 
-            map {
-                    'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
-                    'linkTarget' := $linkTarget,
-                    'source' := 'Wikimedia',
-                    'url' := function($size) {
-                        let $iiifInfo := wega-util:wikimedia-iiif($page/data(@title))
-                        return
-                            switch($size)
-                            case 'thumb' case 'small' return 
-                                $page//ii/data(@thumburl)
-                            case 'large' return
-                                if($page//ii/@height > 340) then replace($page//ii/data(@thumburl), '/\d+px\-', '/340px-')
-                                else $page//ii/data(@url)
-                            default return 
-                                $page//ii/data(@url)
-                    },
-                    'coa' := 'File:' || $dbpedia-rdf//dbp:imageCoa/replace(., '\s', '_') = replace($caption, '\s', '_') (: should return true() for the coat of arms :)
-                }
+        for $i in $maps
+        return
+            if(contains($i?caption, $coa-filename))
+            then map:put($i, 'coa', true()) (: special treatment for coat of arms which will become the main (portrait) image :)
+            else $i
 };
 
 (:~
@@ -226,7 +180,7 @@ declare %private function img:dbpedia-images($model as map(*), $lang as xs:strin
 declare %private function img:wikipedia-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $wikiArticle := 
-        if($gnd) then wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
     let $pics := $wikiArticle//xhtml:table[contains(@class,'vcard')] | $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
@@ -262,7 +216,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                         switch($size)
                         case 'thumb' case 'small' return $thumbURI
                         case 'large' return 
-                           let $iiifInfo := wega-util:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
+                           let $iiifInfo := er:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
                            return
                               try {
                                  if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
@@ -270,13 +224,67 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                               }
                               catch * { $thumbURI }
                         default return 
-                           let $iiifInfo := wega-util:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
+                           let $iiifInfo := er:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
                            return
                               try { $iiifInfo('@id') || '/full/full/0/native.jpg' }
                               catch * { $thumbURI }
                     }
                 }
             else ()
+};
+
+(:~
+ : Helper function for retrieving image metadata from Wikimedia
+ :
+ : @param $images the image filename(s). Multiple images can be queried at once to reduce calls to the external API
+ : @param $lang the language variable (de|en)
+ : @return a map with the keys 'caption', 'linkTarget', 'source' and 'url' for every image
+ :)
+declare function img:wikimedia-api-imageinfo($images as xs:string*, $lang as xs:string) as map(*)* {
+    (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
+    let $endpoint := "https://commons.wikimedia.org/w/api.php"
+    let $defaultParams := "?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url%7Csize"
+    let $titlesParam := "&amp;titles=" || encode-for-uri(string-join(distinct-values($images ! img:prep-wikimedia-image-filenames(.)), '|'))
+    let $queryURL := xs:anyURI($endpoint || $defaultParams || $titlesParam)
+    
+    let $localFilepath := str:join-path-elements(($config:tmp-collection-path, 'wikimediaAPI', util:hash($queryURL, 'md5') || '.xml'))
+    let $wikiApiResponse := 
+        if(count($images) gt 0) 
+        then er:cached-external-request($queryURL, $localFilepath)
+        else ()
+        
+    return
+        for $page in $wikiApiResponse//page[not(@missing)]
+        let $caption := $page/data(@title)
+        let $linkTarget := $page//ii/data(@descriptionurl)
+        return 
+            map {
+                'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
+                'linkTarget' := $linkTarget,
+                'source' := 'Wikimedia',
+                'url' := function($size) {
+                    let $iiifInfo := er:wikimedia-iiif($page/data(@title))
+                    return
+                        switch($size)
+                        case 'thumb' case 'small' return 
+                            $page//ii/data(@thumburl)
+                        case 'large' return
+                            if($page//ii/@height > 340) then replace($page//ii/data(@thumburl), '/\d+px\-', '/340px-')
+                            else $page//ii/data(@url)
+                        default return 
+                            $page//ii/data(@url)
+                }
+            }
+    
+};
+
+(:~
+ : Helper function for preparing wikimedia image filenames to work with the wikimedia API
+ :)
+declare %private function img:prep-wikimedia-image-filenames($img as xs:string) as xs:string? {
+    if(contains($img, 'Special:FilePath/')) then img:prep-wikimedia-image-filenames(replace($img, '.*Special:FilePath/', 'File:'))
+    else if(contains($img, '?')) then img:prep-wikimedia-image-filenames(substring-before($img, '?'))
+    else normalize-space(xmldb:decode-uri($img))
 };
 
 (:~
@@ -290,7 +298,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
 declare %private function img:portraitindex-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then wega-util:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:portraitindex-images(): no images found for GND ' || $gnd) else ()
@@ -321,7 +329,7 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
 declare %private function img:tripota-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then wega-util:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:td
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:tripota-images(): no images found for GND ' || $gnd) else ()
@@ -352,7 +360,7 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
 declare %private function img:munich-stadtmuseum-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then wega-util:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:a[@class='imagelink'][ancestor::xhtml:div[@id='main']]
     let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:munich-stadtmuseum-images(): no images found for GND ' || $gnd) else ()
@@ -381,10 +389,10 @@ declare %private function img:munich-stadtmuseum-images($model as map(*), $lang 
  : @return 
  :)
 declare %private function img:wega-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $iiifServer := config:get-option('iiifServer')
+    let $iiifImageApi := config:get-option('iiifImageApi')
     return
         for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
-        let $iiifURI := $iiifServer || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
+        let $iiifURI := $iiifImageApi || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
         order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
         return 
             map {
@@ -463,51 +471,150 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
         }
 };
 
+(:~
+ : Create an IIIF collection for a WeGA document type collection
+ : WARNING: This is considered experimental beacuse it spits out too many manifests and the services choke on it 
+ :
+ : @param $docType the WeGA docType, e.g. 'letters' or 'writings'
+ : @return a collection object
+ :)
+declare function img:iiif-collection($docType as xs:string) as map(*) {
+    map {
+        "@context" := "http://iiif.io/api/presentation/2/context.json",
+        "@id" := "https://weber-gesamtausgabe.de/IIIF/letters",
+        "@type" := "sc:Collection",
+        "label" := "Top Level Letters Collection for the Carl-Maria-von-Weber-Gesamtausgabe",
+        "viewingHint" := "top",
+        "description" := "Description of Collection kommt später",
+        "attribution" := "Provided by the WeGA",
+        "manifests" := array {
+            core:getOrCreateColl($docType, 'indices', true())//tei:facsimile ! map {
+                "@id": controller:iiif-manifest-id(.),
+                "@type": "sc:Manifest",
+                "label": ./ancestor::tei:TEI/@xml:id || ./@source
+            }
+        }
+    }
+};
 
-declare function img:iiif-manifest($docID as xs:string) as map(*) {
-    (:let $id := 'letters/A0412xx/A041234/1817-07-10_05_AM_Weber_an_Caroline_D-B_1r.tif'
-    let $width := '2030'
-    let $height := '2414':)
-    let $doc := core:doc($docID)
-    let $baseURL := config:get-option('iiifServer')
-    let $id := $baseURL || $docID 
-    let $label := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
-    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
+(:~
+ : Create an IIIF manifest for a TEI facsimile element
+ :
+ : @param $facsimile a TEI facsimile element
+ : @return a manifest object
+ :)
+declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(*) {
+    let $iiifImageApi := config:get-option('iiifImageApi')
+    let $docID := $facsimile/ancestor::tei:TEI/@xml:id
+    let $manifest-id := controller:iiif-manifest-id($facsimile)
+    let $label := $docID || $facsimile/@source
+    let $desc := wdt:lookup(config:get-doctype-by-id($docID), $docID)('title')('txt')
+    let $attribution := img:iiif-manifest-attribution($facsimile)
     return
         map {
             "@context":= "http://iiif.io/api/presentation/2/context.json",
-            "@id":= $id || '/manifest.json',
+            "@id":= $manifest-id,
             "@type" := "sc:Manifest", 
             "label":= $label,
+            "description" := $desc,
+            "attribution" := $attribution,
+            "license" := query:licence($facsimile/root()),
+            "logo" := map {
+                "@id" := "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                "service" := map {
+                    "@context": "http://iiif.io/api/image/2/context.json",
+                    "@id": "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                    "profile": "http://iiif.io/api/image/2/level2.json"
+                }
+            },
             "sequences" := [ map {
-                "@id":= $id || '/sequences.json',
+                "@context" := "http://iiif.io/api/presentation/2/context.json",
+                "@id":= replace($manifest-id, 'manifest.json', 'sequence/') || 'default',
                 "@type" := "sc:Sequence", 
-                "label" := "Default", 
+                "label" := "default",
+                "viewingHint": "paged",
                 "canvases" := array {
-                    for $i at $counter in $doc//tei:facsimile/tei:graphic
-                    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
-                    let $image-id := $baseURL || encode-for-uri(str:join-path-elements(($db-path, $docID, $i/@url)))
-                    let $page-label := 
-                        if($i/@xml:id) then $i/string(@xml:id)
-                        else 'page' || $counter 
-                    return 
-                        map:new((
-                            map:entry("@type", "sc:Canvas"),
-                            map:entry("label", $page-label),
-                            map:entry("images", [ map {
-                                "@type" := "oa:Annotation",
-                                "resource" := map {
-                                    "@id" := $id || '/images.json',
-                                    "@type" := "dctypes:Image",
-                                    "service":= map {
-                                        "@context": "http://iiif.io/api/image/2/context.json", 
-                                        "@id": $image-id, 
-                                        "profile": "http://iiif.io/api/image/2/level0.json"
-                                    }
-                                }
-                            }])
-                        ))
-                    }
+                    $facsimile/tei:graphic ! img:iiif-canvas(.)
+                }
             }]
         }
+};
+
+(:~
+ : Create an IIIF canvas for a TEI graphic element
+ :
+ : @param $graphic a TEI graphic element
+ : @return a canvas object
+ :)
+declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
+    let $docID := $graphic/ancestor::tei:TEI/@xml:id
+    let $iiifImageApi := config:get-option('iiifImageApi')
+    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
+    let $image-id := $iiifImageApi || encode-for-uri(str:join-path-elements(($db-path, $docID, $graphic/@url)))
+    let $page-label := 
+        if($graphic/@xml:id) then $graphic/string(@xml:id)
+        else 'page' || count($graphic/preceding::tei:graphic) + 1
+    let $manifest-id := controller:iiif-manifest-id($graphic/parent::tei:facsimile)
+    let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
+    let $image-info :=  parse-json(util:base64-decode(er:http-get(xs:anyURI($image-id))//*:response)) (: why is this not cached? :)
+    return 
+        map:new((
+            map:entry("@context", "http://iiif.io/api/presentation/2/context.json"),
+            map:entry("@id", $canvas-id),
+            map:entry("@type", "sc:Canvas"),
+            map:entry("label", $page-label),
+            map:entry("height", xs:integer($image-info?height)),
+            map:entry("width", xs:integer($image-info?width)),
+            map:entry("images", [ img:iiif-image( map { 
+                "image-id" := $image-id,
+                "canvas-id" := $canvas-id,
+                "manifest-id" := $manifest-id,
+                "height" := xs:integer($image-info?height),
+                "width" := xs:integer($image-info?width)
+            } ) ])
+        ))
+};
+
+(:~
+ : Create an IIIF image object
+ :
+ : @param 
+ : @return a image object
+ :)
+declare %private function img:iiif-image($model as map()) as map(*) {
+    map {
+        "@type" := "oa:Annotation",
+        "@id" := $model?image-id || '/annotation', 
+        "motivation" := "sc:painting",
+        "on" := $model?canvas-id,
+        "resource" := map {
+            "@id" := $model?image-id || "/full/400,/0/default.jpg",
+            "@type" := "dctypes:Image",
+            "height" := $model?height,
+            "width" := $model?width,
+            "format" := "image/jpg",
+            "service":= map {
+                "@context": "http://iiif.io/api/image/2/context.json", 
+                "@id": $model?image-id, 
+                "profile": "http://iiif.io/api/image/2/level2.json"
+            }
+        }
+    }
+};
+
+(:~
+ : Get human readable image attribution information for a digital facsimile 
+ : Helper function for img:iiif-manifest()
+ :
+ : @param $facsimile a TEI facsimile element
+ : @return a human readable string referring to the image source
+ :)
+declare %private function img:iiif-manifest-attribution($facsimile as element(tei:facsimile)) as xs:string {
+    let $source := query:facsimile-witness($facsimile)
+    return
+        typeswitch($source)
+        case element(tei:msDesc) return str:normalize-space($source/tei:msIdentifier/tei:repository)
+        case element(tei:biblStruct) return str:normalize-space($source/tei:monogr/tei:title[1])
+        case element(tei:bibl) return str:normalize-space($source)
+        default return 'Carl-Maria-von-Weber-Gesamtausgabe'
 };

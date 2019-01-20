@@ -73,14 +73,19 @@ $.fn.rangeSlider = function ()
         from: +moment($(this).attr('data-from-slider')),
         to: +moment($(this).attr('data-to-slider')),
         grid: true,
+        skin: "flat",
         step: 100,
         type: "double",
         //force_edges: true,
         grid_num: 3,
         keyboard: true,
         prettify: function (num) {
-            var m = moment(num).locale("de");
-            return m.format("D. MMM YYYY");
+            var lang = getLanguage(),
+                m = moment(num).locale(lang),
+                format;
+            if(lang === 'de') { format = "D. MMM YYYY"}
+            else { format = "MMM D, YYYY" }
+            return m.format(format);
         },
         onFinish: function (data) {
             /* Get active facets to append as URL params */
@@ -116,7 +121,7 @@ $.fn.obfuscateEMail = function () {
 $.fn.loadPortrait = function () {
     $(this).each( function(a, b) {
         var url = $(b).children('a').attr('href').replace('.html', '/portrait.html');
-        $(b).load(url + " a");
+        $(b).children('a').load(url + " img");
     })
 };
 
@@ -156,7 +161,7 @@ $.fn.initDatepicker = function () {
  * Activate bootstrap remote nav tabs (on letters) 
  * "For further details see editorial"  
  */
-$('#transcription a[href$=#editorial]').on('click', function (e) {
+$('#transcription a[href$="#editorial"]').on('click', function (e) {
     // code taken from the bootstrap remote nav tabs plugin
     var url = $(e)[0].target.href,
         hash = url.substring(url.indexOf('#')+1),
@@ -639,6 +644,11 @@ $('li').has('a.deactivated').hide();
  * Initialise easyResponsiveTabs for person.html 
  */
 $('#details').easyResponsiveTabs({
+    tabidentify: 'easyResponsiveTabs',
+    activetab_bg: '#F0F0F0',
+    inactive_bg: '#B5B5B5',
+    active_border_color: '#B5B5B5',
+    active_content_border_color: '#B5B5B5',
     activate: activateTab
 });
 
@@ -729,10 +739,13 @@ $("[data-hovered-src]").hover(
 
 $("#datePicker").initDatepicker();
 
-/* Fieser Hack */
+/*
+ * initialise facsimile viewer if it's not already loaded
+ */
 $('#facsimile-tab').on('click', function() {
+    // need to set timeout for correct display of referenceStrip
     setTimeout(function() {
-       if ($('#map:visible')){
+       if ($('.openseadragon-container').length === 0){
            initFacsimile();
        }
    }, 500);
@@ -763,33 +776,59 @@ $('.teaser + h2 a').each(function(a,b) {
 
 $('.preview').setTextWrap();
 
+/*
+ * initialize openseadragon viewer
+ * from the IIIF manifest URLs given as @data-url attribute on div[@id=map]
+ */
 function initFacsimile() {
-    var map,
-        iiifLayers = {}
-        manifestUrl = $('#map').attr('data-url');
     
-    map = L.map('map', {
-        center: [0, 0],
-        crs: L.CRS.Simple,
-        zoom: 0,
-        attributionControl: false
+    var viewer,
+        tileSources = [],
+        imageAttributions = [],
+        manifestUrls = $('#map').attr('data-url').split(/\s+/);
+    
+    viewer = OpenSeadragon({
+        id: "map",
+        prefixUrl: "$resources/lib/openseadragon/build/openseadragon/images/",
+        sequenceMode: true,
+        showRotationControl: true,
+        showReferenceStrip: true,
+        //placeholderFillStyle: '',
+        defaultZoomLevel: 0,
+        viewportMargins: {top: 30, left: 20, right: 20, bottom: 10}
     });
     
+    $(manifestUrls).each(function(i,url) {
+        // Grab an IIIF manifest
+        $.getJSON(url, function(data) {
+            // Grab the attribution property from the IIIF manifest
+            manifestAttribution = data.attribution;
+            
+            $(data.sequences[0].canvases).each(function(_, val) {
+                tileSources.push(val.images[0].resource.service['@id'] + '/info.json'),
+                imageAttributions.push(manifestAttribution);
+            })
+            // open viewer with the new tile sources
+            viewer.open(tileSources, 0)
+            //console.log('added tiles to viewer')
+        });
+    })
     
-
-    // Grab a IIIF manifest
-    $.getJSON(manifestUrl, function(data) {
-      // For each image create a L.TileLayer.Iiif object and add that to an object literal for the layer control
-      $.each(data.sequences[0].canvases, function(_, val) {
-        iiifLayers[val.label] = L.tileLayer.iiif(val.images[0].resource.service['@id'] + '/info.json');
-      });
-        // Add layers control to the map
-        L.control.layers(iiifLayers).addTo(map);
-        
-        // Access the first Iiif object and add it to the map
-        iiifLayers[Object.keys(iiifLayers)[0]].addTo(map);
+    // add open-handler for adding image attributions as overlays 
+    viewer.addHandler('open', function(obj) {
+        //console.log('open handler')
+        var source_x = obj.eventSource.source.width, 
+            elem = document.createElement("div");
+        elem.innerHTML = imageAttributions[obj.eventSource._sequenceIndex];
+        elem.className = 'image-attribution'
+        viewer.addOverlay({ 
+            element: elem, 
+            location: viewer.viewport.imageToViewportCoordinates(source_x, 0),
+            placement: 'BOTTOM_RIGHT'
+        });
     });
 };
+
 
 function jump2diary(dateText) {
     var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText ;

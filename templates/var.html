@@ -15,7 +15,7 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb" data-template="app-shared:if-matches" data-template-key="docType" data-template-value="var">
                         <li><a href="$link/index">Home</a></li>
-                        <li data-template="app-shared:if-not-matches" data-template-key="docID" data-template-value="A070003"><a data-template="app:breadcrumb-var"/></li>
+                        <li data-template="app-shared:if-not-matches" data-template-key="docID" data-template-value="A070003"><span data-template="app:breadcrumb-var"/></li>
                         <li data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A070003"><a href="$link/A002068.html">Carl Maria von Weber</a></li>
                         <li data-template="app-shared:if-not-matches" data-template-key="docID" data-template-value="A070003"><span data-template="app-shared:print" data-template-key="docID">A040080</span></li>
                         <li data-template="app-shared:if-matches" data-template-key="docID" data-template-value="A070003"><span data-template="lang:translate">bio</span></li>
@@ -25,6 +25,12 @@
                         <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
                         <li><a data-template="app:breadcrumb-docType">Korrespondenz</a></li>
                         <li><span data-template="app-shared:print" data-template-key="docID">A040080</span></li>
+                    </ol>
+                    <ol class="breadcrumb" data-template="app-shared:if-matches" data-template-key="docType" data-template-value="addenda">
+                        <li><a href="$link/index">Home</a></li>
+                        <li><span data-template="lang:translate">project</span></li>
+                        <li><a href="$link/project/volContents.html" data-template="lang:translate">volContents</a></li>
+                        <li><span data-template="app-shared:print" data-template-key="docID">A120000</span></li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">

@@ -15,8 +15,8 @@
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Ziegler, Frank" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2018-07-05T10:15:45.633103Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031000" />
         <meta property="dc:description" content="Besprechung der Wiener Erstaufführung des Oberon im Arrangement von Franz Gläser am 20. März 1827" />
         <meta name="description" content="Besprechung der Wiener Erstaufführung des Oberon im Arrangement von Franz Gläser am 20. März 1827" />
@@ -38,6 +38,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -45,12 +46,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Anonymus","@type":"Person"}],"name":"Besprechung der Wiener Erstaufführung des Oberon im Arrangement von Franz Gläser am 20. März 1827","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031000","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -193,7 +196,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031000.html" hreflang="en" lang="en">En</a></li>
@@ -218,10 +223,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><span>Anonymus</span></li>
-                        <li><span>Schriften</span></li>
-                        <li><span>A031000</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span>Anonymus</span>
+                        </li>
+                        <li>
+                            <span>Schriften</span>
+                        </li>
+                        <li>
+                            <span>A031000</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -237,55 +252,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031000.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -293,65 +325,73 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000639" /> <span title="Gläser, Franz">Gläser, Franz</span> 
+                                    <input type="checkbox" name="options" value="A000639" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001DAA" /> <span title="Hopp, Friedrich">Hopp, Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A002160" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001029" /> <span title="Kneisel, Thekla">Kneisel, Thekla</span> 
+                                    <input type="checkbox" name="options" value="A002352" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001A88" /> <span title="Kreiner, Hr.">Kreiner, Hr.</span> 
+                                    <input type="checkbox" name="options" value="A002357" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002352" /> <span title="Meisl, Karl">Meisl, Karl</span> 
+                                    <input type="checkbox" name="options" value="A008536" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001029" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001A88" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A00147C" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001DAA" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080007" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001487" /> <span title="Planché, James">Planché, James</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080007" /> <span title="Schlesinger (Verlag, Buch- und Musikalienhandlung)">Schlesinger (Verlag, Buch- und…</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A00147C" /> <span title="Scholz, Wenzel">Scholz, Wenzel</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008536" /> <span title="Vio, Betty">Vio, Betty</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002357" /> <span title="Wieland, Christoph Martin">Wieland, Christoph Martin</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002160" /> <span title="Winkler, Karl Theodor">Winkler, Karl Theodor</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020412" /> <span title="Oberon, König der Elfen">Oberon, König der Elfen</span> 
+                                    <input type="checkbox" name="options" value="A020045" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020045" /> <span title="Oberon, or the Elf King's Oath, a romantic and Fairy Opera in three acts">Oberon, or the Elf King's Oath…</span> 
+                                    <input type="checkbox" name="options" value="A020046" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020046" /> <span title="Oberon, or the Elf King's Oath, a romantic and Fairy Opera in three acts (Klavierauszug)">Oberon, or the Elf King's Oath…</span> 
+                                    <input type="checkbox" name="options" value="A020412" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130004" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130004" /> <span title="Wien">Wien</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -376,12 +416,12 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span></span>.</span></h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><a class="preview places A130004" href="">Wien</a></span>.</span></h2>
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">K. K. priv. <span class="tei_placeName">Theater in der Josephstadt</span></span>.</span></h3>
-                                        <p>In diesem Theater macht eine neue Erscheinung großes Aufsehen. Dienstag den <span class="tei_date">20. März d. J.</span> wurde zum Vortheile des Hrn. Kapellmeister und Opern-Regisseurs, <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Franz <span class="tei_hi_spaced_out">Gläser</span></a>, zum ersten Mahle gegeben: „<span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon, König der Elfen</span>“ Feenoper nach der <a class="preview persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html"><span class="tei_hi_spaced_out">Hell</span>’schen</a> Uebersetzung für diese Bühne bearbeitet vom <a class="preview persons A002352" href="/exist/apps/WeGA-WebApp/de/A002352.html">Verfasser</a> der „<span class="1159910411997114122101110327011497117">schwarzen Frau</span>.“ Musik von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von <span class="tei_hi_spaced_out">Weber</span></a>. Für diese Bühne eingerichtet und mit einigen neuen Nummern vermehrt von dem <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Benefizianten</a>.</p>
-                                        <p>Mehr war von dem Ursprung der Musik, wie man heute auf dem Zettel las, nicht angegeben, und der Musik wegen mochte wohl die Elite des Publikums, das sich ungemein zahlreich einfand, im Theater seyn. Es hatte damit aber folgende Bewandtniß: <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Hr. Kapellmeister <span class="tei_hi_spaced_out">Gläser</span></a> hatte sich nicht an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’s</a> <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Partitur</span> halten mögen, sondern den <span class="preview works A020046" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020046.html">Clavier-Auszug</span>, welcher von derselben bey <span class="tei_hi_spaced_out"><a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html">Schlesinger</a></span> in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> zu haben ist, nach bester Ueberzeugung instrumentirt, vieles daraus weggelassen, anders aus Eigenem hinzugefügt, und so, Hand in Hand mit dem <a class="preview persons A002352" href="/exist/apps/WeGA-WebApp/de/A002352.html">Verfasser</a> der „<span class="1159910411997114122101110327011497117">schwarzen Frau</span>,“ ein Werk hingestellt, wie es ihm für seinen Zweck tauglich schien.</p>
-                                        <p>Ohne die <span class="tei_choice"><span class="tei_corr">ethisch-artistische</span><a class="noteMarker" id="ref-d10e83" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e83">‡</a></span> Frage zu beantworten: „ob <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Herr <span class="tei_hi_spaced_out">Gläser</span></a> sich an die Instrumentation des <span class="preview works A020046" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020046.html">Clavier-Auszuges</span> aus der vorhandenen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Partitur hätte machen sollen“ weil die Beantwortung dieser Frage ganz etwas anders als die Würdigung der vorhandenen und aufgestellten Arbeit werden würde, und vor der Hand nur diese geliefert werden soll, muß man gestehen, daß <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Hr. <span class="tei_hi_spaced_out">Gläser</span></a> jenen <span class="67108971181051011144565117115122117103">Clavier-Auszug</span> ganz vortrefflich instrumentirt habe. Er war in den Geist der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Compositionen eingedrungen, hatte sich an die Partitur der Ouverture gehalten, die Andeutungen, welche aus derselben für die Instrumentation der Haupt-Momente der <span class="preview works A020412" data-ref="/exist/apps/WeGA-WebApp/de/A002184/Werke/A020412.html">Oper</span> selbst hervorging, mit Sinn und Verstand benützt, und so ein Werk geliefert, <span class="tei_sic">deren<a class="noteMarker" id="ref-d10e119" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e119">‡</a></span> Partitur, mit der <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Partitur</span> des unsterblichen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tonsetzers</a> zu vergleichen nicht ohne Interesse seyn dürfte. Weil aber „<span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span>,“ wie ihn der englische Dichter, <span class="tei_hi_spaced_out"><a class="preview persons A001487" href="/exist/apps/WeGA-WebApp/de/A001487.html">Planche</a></span> nach <a class="preview persons A002357" href="/exist/apps/WeGA-WebApp/de/A002357.html"><span class="tei_hi_spaced_out">Wieland</span>’s</a> klassischem Ritter-Romane schuf, mit der ganzen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Musik kein für diese Bühne geeignetes Werk gewesen wäre, so mußte der bekannte Hr. <a class="preview persons A002352" href="/exist/apps/WeGA-WebApp/de/A002352.html">Verfasser</a> der „<span class="1159910411997114122101110327011497117">schwarzen Frau</span>“ das Buch verändern, komische Charaktere und Scenen hineinbringen, und zu diesem Zwecke componirte auch <span class="tei_hi_spaced_out"><a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Gläser</a></span>, statt dem Ausgelassenen, neue, komische Musik-Stücke; so entstand dieser <span class="741111151011121041151162281001161011144582227998101114111110468220">Josephstädter-„Oberon.“</span> Da also nur von dem Vorhandenen für jetzt zu reden man hier beabsichtigte, so muß man sagen, daß von den neuen Tonstücken das erste Liedchen <span class="7097116105109101110115">Fatimens</span> sehr gelungen sey. Auch ein komisches Duett <span class="7097116105109101110115">Fatimens</span> und <span class="839910410111497115109105110115">Scherasmins</span> ist recht gut geschrieben, allein ein Lach-Chor im dritten Acte machte wenig Effekt. Die meisten wunderherrlichen Tonstücke <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’s</a> gingen ziemlich unbeachtet vorüber; ein Beweis, wie lebhaft <span class="tei_hi_spaced_out"><a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Gläser</a></span> von dem Bedürfnisse seines Publikums durchdrungen sey, und wie richtig er dessen Geschmack kenne, da er demselben mit komischen Tonstücken genügen wollte. In allen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Nummern wußte <span class="tei_hi_spaced_out"><a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Gläser</a></span> mit recht delikater Würdigung der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Melodien die Instrumentation so einzurichten, daß er die <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a></span> eigenthümliche Benützung der Effekte in den Mittelstimmen, die Verwendung der Celli, der Harmonie, vorzüglich der Hörner, nachzuahmen wußte und dabey die Melodien nirgend deckte, störte, und sie allenthalben mit einer gewissen Scheu über dem Ganzen schwebend erhielt. Allein das Ganze bildete dennoch ein so barokes Vielerley, daß es zu keinem rechten Effekte kommen konnte. Die komischen Personen des <span class="7998101114111110">Oberon</span> und der <span class="841051169711010597">Titania</span> nahmen sich in der romantischen Grundfarbe des Urgedichtes wahrhaft sonderbar und befremdend aus. Aus <span class="839910410111497115109105110115">Scherasmins</span> Humor war eine Composition von alberndreister Spaßhaftigkeit geworden, wie sie einst in „<span class="65114115101110105117115">Arsenius</span>,“ „<span class="6511411510111097">Arsena</span>“<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> und ähnlichen Stücken lachen gemacht hatte, und <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html"><span class="tei_hi_spaced_out">Gläser</span>’s</a> gute komische Musikstücke hatten dennoch eine Fremdartigkeit, die ihrer Wirkung offenbaren Schaden that.<span class="tei_cb" title="Spaltenumbruch"> ¦ </span></p>
-                                        <p>Die Aufführung geschah mit vielem Fleiße und redlicher Anstrengung von Seiten des verstärkten Orchesters, aller Mitwirkenden und des Chores. <a class="preview persons A008536" href="/exist/apps/WeGA-WebApp/de/A008536.html">Dem. <span class="tei_hi_spaced_out">Vio</span></a> sang die Partie der <span class="tei_choice"><span class="tei_corr"><span class="8210112210597">Rezia</span></span><a class="noteMarker" id="ref-d10e246" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e246">‡</a></span> wirklich Beyfalls würdig; besonders gelang ihr die große Arie, in deren Recitativ viel gestrichen worden war. Ihr zur Seite machte <a class="preview persons A001029" href="/exist/apps/WeGA-WebApp/de/A001029.html">Mad. <span class="tei_hi_spaced_out">Kneisel</span></a> durch Spiel und Gesang gute Wirkung. <a class="preview persons A001A88" href="/exist/apps/WeGA-WebApp/de/A001A88.html">Hr. <span class="tei_hi_spaced_out">Kreiner</span></a> gab sich viele Mühe, und trug manche Stelle recht schön vor. Weil nun ein Mahl Komik nach dem Zuschnitt dieses Theaters in dem Stücke seyn mußte, so spielten <span class="68101109463266108117109">Dem. <span class="tei_hi_spaced_out">Blum</span></span> und die Herren <span class="tei_hi_spaced_out"><a class="preview persons A00147C" href="/exist/apps/WeGA-WebApp/de/A00147C.html">Scholz</a></span> und <span class="tei_hi_spaced_out"><a class="preview persons A001DAA" href="/exist/apps/WeGA-WebApp/de/A001DAA.html">Hopp</a></span> ganz in diesem Geiste, und jedem Unbefangenen mußte der gutmüthige Pantoffel-Held, <span class="7998101114111110">Oberon</span>, wie ihn <span class="tei_hi_spaced_out"><a class="preview persons A00147C" href="/exist/apps/WeGA-WebApp/de/A00147C.html">Scholz</a></span> gab, sehr komisch seyn. Das äußerst zahlreiche, sehr gemischte Publikum wußte nicht recht, was es aus dem <span class="tei_hi_italic">Compositum-mixtum</span> machen sollte; demungeachtet mußte die Ouverture wiederholt werden, denn da sie rein <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’s</a> Werk war, fand sie gar keinen Widerspruch, sondern gewährte auch den reinsten Genuß. Die Direktion hatte für angemessene Ausrüstung durch Dekorationen und Garderobe gesorgt, und die folgenden Aufführungen werden zeigen, in wiefern der Antheil durch die eine oder die andere Seite der Leistung aufgeregt wurde.</p>
+                                        <p>In diesem Theater macht eine neue Erscheinung großes Aufsehen. Dienstag den <span class="tei_date">20. März d. J.</span> wurde zum Vortheile des Hrn. Kapellmeister und Opern-Regisseurs, <a class="preview persons A000639" href="">Franz <span class="tei_hi_spaced_out">Gläser</span></a>, zum ersten Mahle gegeben: „<a class="preview works A020045" href="">Oberon, König der Elfen</a>“ Feenoper nach der <a class="preview persons A002160" href=""><span class="tei_hi_spaced_out">Hell</span>’schen</a> Uebersetzung für diese Bühne bearbeitet vom <a class="preview persons A002352" href="">Verfasser</a> der „<span class="1159910411997114122101110327011497117">schwarzen Frau</span>.“ Musik von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von <span class="tei_hi_spaced_out">Weber</span></a>. Für diese Bühne eingerichtet und mit einigen neuen Nummern vermehrt von dem <a class="preview persons A000639" href="">Benefizianten</a>.</p>
+                                        <p>Mehr war von dem Ursprung der Musik, wie man heute auf dem Zettel las, nicht angegeben, und der Musik wegen mochte wohl die Elite des Publikums, das sich ungemein zahlreich einfand, im Theater seyn. Es hatte damit aber folgende Bewandtniß: <a class="preview persons A000639" href="">Hr. Kapellmeister <span class="tei_hi_spaced_out">Gläser</span></a> hatte sich nicht an <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’s</a> <a class="preview works A020045" href="">Partitur</a> halten mögen, sondern den <a class="preview works A020046" href="">Clavier-Auszug</a>, welcher von derselben bey <span class="tei_hi_spaced_out"><a class="preview orgs A080007" href="">Schlesinger</a></span> in <a class="preview places A130002" href="">Berlin</a> zu haben ist, nach bester Ueberzeugung instrumentirt, vieles daraus weggelassen, anders aus Eigenem hinzugefügt, und so, Hand in Hand mit dem <a class="preview persons A002352" href="">Verfasser</a> der „<span class="1159910411997114122101110327011497117">schwarzen Frau</span>,“ ein Werk hingestellt, wie es ihm für seinen Zweck tauglich schien.</p>
+                                        <p>Ohne die <span class="tei_choice"><span class="tei_corr">ethisch-artistische</span><a class="noteMarker" id="ref-d10e83" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e83">‡</a></span> Frage zu beantworten: „ob <a class="preview persons A000639" href="">Herr <span class="tei_hi_spaced_out">Gläser</span></a> sich an die Instrumentation des <a class="preview works A020046" href="">Clavier-Auszuges</a> aus der vorhandenen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Partitur hätte machen sollen“ weil die Beantwortung dieser Frage ganz etwas anders als die Würdigung der vorhandenen und aufgestellten Arbeit werden würde, und vor der Hand nur diese geliefert werden soll, muß man gestehen, daß <a class="preview persons A000639" href="">Hr. <span class="tei_hi_spaced_out">Gläser</span></a> jenen <span class="67108971181051011144565117115122117103">Clavier-Auszug</span> ganz vortrefflich instrumentirt habe. Er war in den Geist der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Compositionen eingedrungen, hatte sich an die Partitur der Ouverture gehalten, die Andeutungen, welche aus derselben für die Instrumentation der Haupt-Momente der <a class="preview works A020412" href="">Oper</a> selbst hervorging, mit Sinn und Verstand benützt, und so ein Werk geliefert, <span class="tei_sic">deren<a class="noteMarker" id="ref-d10e119" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e119">‡</a></span> Partitur, mit der <a class="preview works A020045" href="">Partitur</a> des unsterblichen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Tonsetzers</a> zu vergleichen nicht ohne Interesse seyn dürfte. Weil aber „<a class="preview works A020045" href="">Oberon</a>,“ wie ihn der englische Dichter, <span class="tei_hi_spaced_out"><a class="preview persons A001487" href="/exist/apps/WeGA-WebApp/de/A001487.html">Planche</a></span> nach <a class="preview persons A002357" href=""><span class="tei_hi_spaced_out">Wieland</span>’s</a> klassischem Ritter-Romane schuf, mit der ganzen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Musik kein für diese Bühne geeignetes Werk gewesen wäre, so mußte der bekannte Hr. <a class="preview persons A002352" href="">Verfasser</a> der „<span class="1159910411997114122101110327011497117">schwarzen Frau</span>“ das Buch verändern, komische Charaktere und Scenen hineinbringen, und zu diesem Zwecke componirte auch <span class="tei_hi_spaced_out"><a class="preview persons A000639" href="">Gläser</a></span>, statt dem Ausgelassenen, neue, komische Musik-Stücke; so entstand dieser <span class="741111151011121041151162281001161011144582227998101114111110468220">Josephstädter-„Oberon.“</span> Da also nur von dem Vorhandenen für jetzt zu reden man hier beabsichtigte, so muß man sagen, daß von den neuen Tonstücken das erste Liedchen <span class="7097116105109101110115">Fatimens</span> sehr gelungen sey. Auch ein komisches Duett <span class="7097116105109101110115">Fatimens</span> und <span class="839910410111497115109105110115">Scherasmins</span> ist recht gut geschrieben, allein ein Lach-Chor im dritten Acte machte wenig Effekt. Die meisten wunderherrlichen Tonstücke <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’s</a> gingen ziemlich unbeachtet vorüber; ein Beweis, wie lebhaft <span class="tei_hi_spaced_out"><a class="preview persons A000639" href="">Gläser</a></span> von dem Bedürfnisse seines Publikums durchdrungen sey, und wie richtig er dessen Geschmack kenne, da er demselben mit komischen Tonstücken genügen wollte. In allen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Nummern wußte <span class="tei_hi_spaced_out"><a class="preview persons A000639" href="">Gläser</a></span> mit recht delikater Würdigung der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’schen</a> Melodien die Instrumentation so einzurichten, daß er die <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a></span> eigenthümliche Benützung der Effekte in den Mittelstimmen, die Verwendung der Celli, der Harmonie, vorzüglich der Hörner, nachzuahmen wußte und dabey die Melodien nirgend deckte, störte, und sie allenthalben mit einer gewissen Scheu über dem Ganzen schwebend erhielt. Allein das Ganze bildete dennoch ein so barokes Vielerley, daß es zu keinem rechten Effekte kommen konnte. Die komischen Personen des <span class="7998101114111110">Oberon</span> und der <span class="841051169711010597">Titania</span> nahmen sich in der romantischen Grundfarbe des Urgedichtes wahrhaft sonderbar und befremdend aus. Aus <span class="839910410111497115109105110115">Scherasmins</span> Humor war eine Composition von alberndreister Spaßhaftigkeit geworden, wie sie einst in „<span class="65114115101110105117115">Arsenius</span>,“ „<span class="6511411510111097">Arsena</span>“<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> und ähnlichen Stücken lachen gemacht hatte, und <a class="preview persons A000639" href=""><span class="tei_hi_spaced_out">Gläser</span>’s</a> gute komische Musikstücke hatten dennoch eine Fremdartigkeit, die ihrer Wirkung offenbaren Schaden that.<span class="tei_cb" title="Spaltenumbruch"> ¦ </span></p>
+                                        <p>Die Aufführung geschah mit vielem Fleiße und redlicher Anstrengung von Seiten des verstärkten Orchesters, aller Mitwirkenden und des Chores. <a class="preview persons A008536" href="">Dem. <span class="tei_hi_spaced_out">Vio</span></a> sang die Partie der <span class="tei_choice"><span class="tei_corr"><span class="8210112210597">Rezia</span></span><a class="noteMarker" id="ref-d10e246" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e246">‡</a></span> wirklich Beyfalls würdig; besonders gelang ihr die große Arie, in deren Recitativ viel gestrichen worden war. Ihr zur Seite machte <a class="preview persons A001029" href="">Mad. <span class="tei_hi_spaced_out">Kneisel</span></a> durch Spiel und Gesang gute Wirkung. <a class="preview persons A001A88" href="">Hr. <span class="tei_hi_spaced_out">Kreiner</span></a> gab sich viele Mühe, und trug manche Stelle recht schön vor. Weil nun ein Mahl Komik nach dem Zuschnitt dieses Theaters in dem Stücke seyn mußte, so spielten <span class="68101109463266108117109">Dem. <span class="tei_hi_spaced_out">Blum</span></span> und die Herren <span class="tei_hi_spaced_out"><a class="preview persons A00147C" href="">Scholz</a></span> und <span class="tei_hi_spaced_out"><a class="preview persons A001DAA" href="">Hopp</a></span> ganz in diesem Geiste, und jedem Unbefangenen mußte der gutmüthige Pantoffel-Held, <span class="7998101114111110">Oberon</span>, wie ihn <span class="tei_hi_spaced_out"><a class="preview persons A00147C" href="">Scholz</a></span> gab, sehr komisch seyn. Das äußerst zahlreiche, sehr gemischte Publikum wußte nicht recht, was es aus dem <span class="tei_hi_italic">Compositum-mixtum</span> machen sollte; demungeachtet mußte die Ouverture wiederholt werden, denn da sie rein <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Weber</span>’s</a> Werk war, fand sie gar keinen Widerspruch, sondern gewährte auch den reinsten Genuß. Die Direktion hatte für angemessene Ausrüstung durch Dekorationen und Garderobe gesorgt, und die folgenden Aufführungen werden zeigen, in wiefern der Antheil durch die eine oder die andere Seite der Leistung aufgeregt wurde.</p>
                                     </div>
                                 </div>
                     </div>
@@ -392,7 +432,7 @@
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
                             <div>
-                                        <p>Besprechung der <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wiener</span> Erstaufführung des <span class="tei_hi_italic"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span> im Arrangement von <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Franz Gläser</a> am 20. März 1827
+                                        <p>Besprechung der <a class="preview places A130004" href="">Wiener</a> Erstaufführung des <span class="tei_hi_italic"><a class="preview works A020045" href="">Oberon</a></span> im Arrangement von <a class="preview persons A000639" href="">Franz Gläser</a> am 20. März 1827
             </p>
                                     </div>
                         </div>
@@ -428,16 +468,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Allgemeine Theaterzeitung und Unterhaltungsblatt für Freunde der Kunst, Literatur und des geselligen Lebens</span>, Jg. 20, Nr. 38 (29. März 1827), S. 154</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -454,7 +496,7 @@
                                             <div class="apparatusEntry" id="d10e83" data-title="choice">recte "ethisch-artistische": in der Vorlage "ethisch-artitische"</div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… Arsenius ,“ „ Arsena “": </span><span class="tei_hi_italic">Arsenius</span> der Weiberfeind, Zaubermärchen mit Gesang und Tanz von <a class="preview persons A002352" href="/exist/apps/WeGA-WebApp/de/A002352.html">Meisl</a>, Musik von <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Gläser</a>, sowie <span class="tei_hi_italic">Arsena die Männerfeindin</span>, Zaubermärchen mit Gesang und Tanz von <a class="preview persons A002352" href="/exist/apps/WeGA-WebApp/de/A002352.html">Meisl</a>, Musik von <a class="preview persons A000639" href="/exist/apps/WeGA-WebApp/de/A000639.html">Gläser</a></div>
+                                            <div class="apparatusEntry" id="C_01" data-title="note commentary"><span class="tei_lemma">"… Arsenius ,“ „ Arsena “": </span><span class="tei_hi_italic">Arsenius</span> der Weiberfeind, Zaubermärchen mit Gesang und Tanz von <a class="preview persons A002352" href="">Meisl</a>, Musik von <a class="preview persons A000639" href="">Gläser</a>, sowie <span class="tei_hi_italic">Arsena die Männerfeindin</span>, Zaubermärchen mit Gesang und Tanz von <a class="preview persons A002352" href="">Meisl</a>, Musik von <a class="preview persons A000639" href="">Gläser</a></div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="d10e246" data-title="choice">recte "Rezia": in der Vorlage "Regia"</div>
@@ -481,9 +523,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031000</span> (<span>Version 3.3.0dev vom 17. Juli 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031000</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 5. Juli 2018 durch Solveig Schreiter</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -549,7 +592,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -569,30 +613,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-20T08:36:25.726891Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000865" />
         <meta property="dc:description" content="Biographische Informationen zu Franz Ignaz von Holbein. Lebensdaten: 27. August 1779–5. September 1855. Tätigkeiten: Schauspieler, Theaterdichter, Theaterdirektor. Wirkorte: Berlin, Breslau, Bamberg, Würzburg, Karlsruhe, Prag, Hannover, Wien" />
         <meta name="description" content="Biographische Informationen zu Franz Ignaz von Holbein. Lebensdaten: 27. August 1779–5. September 1855. Tätigkeiten: Schauspieler, Theaterdichter, Theaterdirektor. Wirkorte: Berlin, Breslau, Bamberg, Würzburg, Karlsruhe, Prag, Hannover, Wien" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"name":"Franz Ignaz von Holbein – Biographische Informationen aus der WeGA","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000865","@context":"http://schema.org","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000865"}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A000865.html" hreflang="en" lang="en">En</a></li>
@@ -228,38 +231,41 @@
         <div class="container paddingTopIcon paddingBottomIcon">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000865.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000865.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000865.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000865.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000865.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -332,7 +338,9 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
-                    <h2>Ikonographie</h2>
+                    
+                        <h2>Ikonographie</h2>
+                    
                     <div class="iconographythumbnail">
                         <a href="https://de.wikipedia.org/wiki/Datei:Franz_Ignaz_Holbein.jpg"><img title="Franz Ignaz von Holbein, Lithographie von Josef Kriehuber, 1849 (Quelle: Wikimedia)" alt="Franz Ignaz von Holbein, Lithographie von Josef Kriehuber, 1849 (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Franz_Ignaz_Holbein.jpg/300px-Franz_Ignaz_Holbein.jpg" /></a>
                     </div>
@@ -346,19 +354,19 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li><a href="#biographies">Biographien</a></li>
                                 
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#works" data-target="A000865/works.html">Werke<small> (4)</small></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A000865/backlinks.html">Rückverweise<small> (72)</small></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a href="#backlinks" data-target="A000865/backlinks.html">Rückverweise<small> (4)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -370,7 +378,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
@@ -418,22 +426,22 @@
       <ul class="tei_list">
           <li>Sohn des Beamten <span class="75971151129711432118111110327211110898101105110">Kaspar von Holbein</span> und dessen Frau <span class="6910810111111011111410144321031019846328399104108101105102101114">Eleonore, geb. Schleifer</span></li>
           <li>Erziehung im <span class="831161051021163276105108105101110102101108100">Stift Lilienfeld</span>; bereiste <span class="tei_country">Italien</span></li>
-          <li>zunächst bis ca. 1796 als Beamter bei der Lottodirektion in <span class="preview places A130151" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130151.html">Lemberg</span> tätig; ging anschließend unter dem Namen Fontano als Musiker, Schauspieler, Maler und Sprachlehrer auf Reisen (u. a. Aufenthalte in <span class="preview places A130024" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130024.html">St. Petersburg</span>, <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, <span class="preview places A130056" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130056.html">Amsterdam</span>)</li>
-         <li>erste Schauspielengagements u. a. bei <a class="preview persons A009159" href="/exist/apps/WeGA-WebApp/de/A009159.html">Carl Döbbelin</a> in <span class="tei_region">Schlesien</span> und <span class="preview places A130105" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130105.html">Posen</span> (1798), danach am Nationaltheater in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> (1798/99)</li>
-          <li>heiratete am 3. Mai 1802 in <span class="preview places A130256" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130256.html">Glogau</span> <span class="87105108104101108109105110101327111422810210511032761059910411610111097117443210310198463269110409941107101">Wilhelmine Gräfin Lichtenau, geb. En(c)ke</span> (1753–1820), mit der er in <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span> lebte (Trennung 1806)</li>
-         <li>trat seit seiner <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslauer</span> Zeit (ab ca. 1805) als Autor zahlreicher Bühnenwerke (auch Opernlibretti) hervor, besonders erfolgreich wurde seine Einrichtung von <a class="preview persons A009942" href="/exist/apps/WeGA-WebApp/de/A009942.html">Kleists</a> <span class="tei_hi_italic"><span class="preview works A020948" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020948.html">Käthchen von Heilbronn</span></span> (1811, gedruckt 1822)</li>
-          <li>erfand ca. 1805 das Uranikon, ein Harfenklavier aus zwei miteinander verbundenen Harfen, das er 1806 u. a. in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> und <span class="preview places A130007" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130007.html">München</span> präsentierte; vgl. <span class="tei_hi_italic">National-Zeitung der Teutschen</span>, Nr. 38 (18. September 1806), Sp. 800</li>
-          <li>1808/09 als Theaterdichter und Schauspieler in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>; von dort aus Gastauftritte u. a. in <span class="preview places A130065" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130065.html">Regensburg</span>, <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> (Dezember 1808, Januar 1809), <span class="preview places A130026" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130026.html">Nürnberg</span>, <span class="preview places A130016" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130016.html">Gotha</span> (Mai 1810), <span class="preview places A130025" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130025.html">Würzburg</span> (Juni 1810), <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt/Main</span> (Anfang Juli 1810), <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> (Ende Juli 1810)</li>
-          <li>nach Gastspiel in <span class="preview places A130041" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130041.html">Bamberg</span> (April 1810) dort ab Herbst 1810 bis Februar 1812 Direktor des Theaters</li>
-          <li>Februar 1812 bis April 1813 Direktor am <span class="preview places A130025" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130025.html">Würzburger</span> Theater, danach Gastauftritte u. a. in <span class="preview places A130010" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130010.html">Mannheim</span> (August 1813)</li>
-          <li>September 1813 bis 1814 Engagement am Hoftheater <span class="preview places A130022" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130022.html">Karlsruhe</span>, anschließend Gastauftritte u. a. in <span class="preview places A130106" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130106.html">Baden-Baden</span> (Sommer 1814), <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> (Februar 1815, 1816), <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimar</span> (August 1815), <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipzig</span> (September 1815), <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> (Oktober 1815), <span class="preview places A130199" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130199.html">Kopenhagen</span></li>
-         <li>1816 bis 1819 Oberregisseur in <span class="preview places A130018" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130018.html">Hannover</span> (vom Direktor <a class="preview persons A008685" href="/exist/apps/WeGA-WebApp/de/A008685.html">Pichler</a> zu Direktionsaufgaben herangezogen); publizierte 1817 das <span class="tei_hi_italic">Organisations-Lexicon des Königlich Großbrittanisch-Hannöverschen Hof-Theaters</span> (vgl. <a href="http://sammlungen.ulb.uni-muenster.de/um/content/pageview/1874398">http://sammlungen.ulb.uni-muenster.de/um/content/pageview/1874398 <i class="fa fa-external-link" aria-hidden="true"></i></a>)</li> 
-          <li>ab 1819 Regisseur am <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prager</span> Ständetheater, 1820 bis Mai 1824 dessen Direktor</li>
-          <li>1820 (nach dem Tod der ersten Ehefrau) in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> Heirat mit der Schauspielerin <a class="preview persons A000866" href="/exist/apps/WeGA-WebApp/de/A000866.html">Marie Renner</a>, mit der er bereits seit 1807 liiert war</li>
-          <li>1824/25 Aufenthalt in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span></li>
-          <li>1825/26 bis März 1841 Direktor des Hoftheaters <span class="preview places A130018" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130018.html">Hannover</span></li>
-          <li>1828 in <span class="preview places A130018" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130018.html">Hannover</span> Heirat mit der Schauspielerin <span class="74111104971101101013271246114105110103">Johanne Göring</span> (1801–1863)</li>
-          <li>in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> April 1841 bis 1849 Direktor des Burgtheaters (1844 Einführung der Autoren-Tantiemen), anschließend bis zu seinem Tod neben Direktor <span class="721011051101141059910432769711798101">Heinrich Laube</span> dort als ökonomischer Direktor tätig; zusätzlich 1848 bis März 1853 Administrator der Hofoper, Regierungsrat</li>
+          <li>zunächst bis ca. 1796 als Beamter bei der Lottodirektion in <a class="preview places A130151" href="">Lemberg</a> tätig; ging anschließend unter dem Namen Fontano als Musiker, Schauspieler, Maler und Sprachlehrer auf Reisen (u. a. Aufenthalte in <a class="preview places A130024" href="">St. Petersburg</a>, <a class="preview places A130002" href="">Berlin</a>, <a class="preview places A130056" href="">Amsterdam</a>)</li>
+         <li>erste Schauspielengagements u. a. bei <a class="preview persons A009159" href="">Carl Döbbelin</a> in <span class="tei_region">Schlesien</span> und <a class="preview places A130105" href="">Posen</a> (1798), danach am Nationaltheater in <a class="preview places A130002" href="">Berlin</a> (1798/99)</li>
+          <li>heiratete am 3. Mai 1802 in <a class="preview places A130256" href="">Glogau</a> <span class="87105108104101108109105110101327111422810210511032761059910411610111097117443210310198463269110409941107101">Wilhelmine Gräfin Lichtenau, geb. En(c)ke</span> (1753–1820), mit der er in <a class="preview places A130013" href="">Breslau</a> lebte (Trennung 1806)</li>
+         <li>trat seit seiner <a class="preview places A130013" href="">Breslauer</a> Zeit (ab ca. 1805) als Autor zahlreicher Bühnenwerke (auch Opernlibretti) hervor, besonders erfolgreich wurde seine Einrichtung von <a class="preview persons A009942" href="">Kleists</a> <span class="tei_hi_italic"><a class="preview works A020948" href="">Käthchen von Heilbronn</a></span> (1811, gedruckt 1822)</li>
+          <li>erfand ca. 1805 das Uranikon, ein Harfenklavier aus zwei miteinander verbundenen Harfen, das er 1806 u. a. in <a class="preview places A130004" href="">Wien</a> und <a class="preview places A130007" href="">München</a> präsentierte; vgl. <span class="tei_hi_italic">National-Zeitung der Teutschen</span>, Nr. 38 (18. September 1806), Sp. 800</li>
+          <li>1808/09 als Theaterdichter und Schauspieler in <a class="preview places A130004" href="">Wien</a>; von dort aus Gastauftritte u. a. in <a class="preview places A130065" href="">Regensburg</a>, <a class="preview places A130012" href="">Stuttgart</a> (Dezember 1808, Januar 1809), <a class="preview places A130026" href="">Nürnberg</a>, <a class="preview places A130016" href="">Gotha</a> (Mai 1810), <a class="preview places A130025" href="">Würzburg</a> (Juni 1810), <a class="preview places A130020" href="">Frankfurt/Main</a> (Anfang Juli 1810), <a class="preview places A130010" href="">Mannheim</a> (Ende Juli 1810)</li>
+          <li>nach Gastspiel in <a class="preview places A130041" href="">Bamberg</a> (April 1810) dort ab Herbst 1810 bis Februar 1812 Direktor des Theaters</li>
+          <li>Februar 1812 bis April 1813 Direktor am <a class="preview places A130025" href="">Würzburger</a> Theater, danach Gastauftritte u. a. in <a class="preview places A130010" href="">Mannheim</a> (August 1813)</li>
+          <li>September 1813 bis 1814 Engagement am Hoftheater <a class="preview places A130022" href="">Karlsruhe</a>, anschließend Gastauftritte u. a. in <a class="preview places A130106" href="">Baden-Baden</a> (Sommer 1814), <a class="preview places A130009" href="">Hamburg</a> (Februar 1815, 1816), <a class="preview places A130014" href="">Weimar</a> (August 1815), <a class="preview places A130005" href="">Leipzig</a> (September 1815), <a class="preview places A130002" href="">Berlin</a> (Oktober 1815), <a class="preview places A130199" href="">Kopenhagen</a></li>
+         <li>1816 bis 1819 Oberregisseur in <a class="preview places A130018" href="">Hannover</a> (vom Direktor <a class="preview persons A008685" href="">Pichler</a> zu Direktionsaufgaben herangezogen); publizierte 1817 das <span class="tei_hi_italic">Organisations-Lexicon des Königlich Großbrittanisch-Hannöverschen Hof-Theaters</span> (vgl. <a href="http://sammlungen.ulb.uni-muenster.de/um/content/pageview/1874398">http://sammlungen.ulb.uni-muenster.de/um/content/pageview/1874398 <i class="fa fa-external-link" aria-hidden="true"></i></a>)</li> 
+          <li>ab 1819 Regisseur am <a class="preview places A130006" href="">Prager</a> Ständetheater, 1820 bis Mai 1824 dessen Direktor</li>
+          <li>1820 (nach dem Tod der ersten Ehefrau) in <a class="preview places A130006" href="">Prag</a> Heirat mit der Schauspielerin <a class="preview persons A000866" href="">Marie Renner</a>, mit der er bereits seit 1807 liiert war</li>
+          <li>1824/25 Aufenthalt in <a class="preview places A130004" href="">Wien</a></li>
+          <li>1825/26 bis März 1841 Direktor des Hoftheaters <a class="preview places A130018" href="">Hannover</a></li>
+          <li>1828 in <a class="preview places A130018" href="">Hannover</a> Heirat mit der Schauspielerin <span class="74111104971101101013271246114105110103">Johanne Göring</span> (1801–1863)</li>
+          <li>in <a class="preview places A130004" href="">Wien</a> April 1841 bis 1849 Direktor des Burgtheaters (1844 Einführung der Autoren-Tantiemen), anschließend bis zu seinem Tod neben Direktor <span class="721011051101141059910432769711798101">Heinrich Laube</span> dort als ökonomischer Direktor tätig; zusätzlich 1848 bis März 1853 Administrator der Hofoper, Regierungsrat</li>
          
       </ul> </div>
                                                     
@@ -461,6 +469,7 @@
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier NDB 22217 Einträge)" href="http://www.deutsche-biographie.de/pnd100844901.html#ndbcontent">Biographien der NDB</a></li>
                                                             <li><a title="Deutsche Biographie - Biographische Informationen zu Personen im Index von NDB, ADB und Register" href="http://www.deutsche-biographie.de/pnd100844901.html#allcontent">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
                                                             <li><a title="Biographisches Lexikon des Kaiserthums Oesterreich (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-blkoe/100844901">Biographisches Lexikon des Kaiserthums Oesterreich (Wikisource)</a></li>
+                                                            <li><a title="Bibliothèque nationale de France (mapping provided by VIAF) [107305440]" href="http://catalogue.bnf.fr/ark:/12148/cb107305440">BNF [by http://viaf.org/viaf/93990741]</a></li>
                                                             <li><a title="CERL Thesaurus. Internationaler und multilingualer Thesaurus für Ortsnamen, Drucker, Personen und Körperschaften [cnp00159641]" href="http://thesaurus.cerl.org/record/cnp00159641">CERL Thesaurus</a></li>
                                                             <li><a title="Alle Korrespondenten, von denen Briefe und Gegenbriefe in correspSearch gefunden wurden" href="http://correspsearch.bbaw.de/search.xql?correspondent=http://d-nb.info/gnd/100844901&amp;l=de">correspSearch - Verzeichnisse von Briefeditionen durchsuchen</a></li>
                                                             <li><a title="This is an automatically generated BEACON file for all person pages at Deutsche Digitale Bibliothek" href="https://www.deutsche-digitale-bibliothek.de/entity/100844901">Deutsche Digitale Bibliothek</a></li>
@@ -474,7 +483,6 @@
                                                             <li><a title="Library of Congress/NACO (mapping provided by VIAF) [n85034614]" href="http://lccn.loc.gov/n85034614">LoC [by http://viaf.org/viaf/93990741]</a></li>
                                                             <li><a title="Die Handschriftensammlung der SLUB Dresden bewahrt rund 400.000 Autographen und 500 schriftliche Nachlässe und Sammlungen von Künstlern, Literaten, Musikern und Wissenschaftlern, überwiegend mit Bezug zum mitteldeutschen Raum." href="http://hansopac.slub-dresden.de/cgi-bin/slub.pl?t%5ftunnel=idn&amp;present=auto&amp;idn=PND:100844901">Nachweis von Autographen in der SLUB Dresden</a></li>
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [xx0041159]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=xx0041159">NKC [by http://viaf.org/viaf/93990741]</a></li>
-                                                            <li><a title="Oesterreichisches Musiklexikon [Holbein, Franz Ignaz Edler von Holbeinsberg (Pseud. Fontano)]" href="http://www.musiklexikon.ac.at/ml/musik_H/Holbein_Franz.xml">Oesterreichisches Musiklexikon [Holbein, Franz Ignaz Edler von Holbeinsberg (Pseud. Fontano)]</a></li>
                                                             <li><a title="Österreichische Akademie der Wissenschaften [Holbein, Franz Ignaz Edler von Holbeinsberg (Pseud. Fontano)]" href="http://www.musiklexikon.ac.at/ml/musik_H/Holbein_Franz.xml?frames=no">Oesterreichisches Musiklexikon [Holbein, Franz Ignaz Edler von Holbeinsberg (Pseud. Fontano)]</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [6887203]" href="https://openlibrary.org/authors/OL6887203A">Open Library - Autorenseite [Franz von Holbein (1779-1855)]</a></li>
                                                             <li><a title="Österreichische Akademie der Wissenschaften [Holbein von Holbeinsberg, Franz Ignaz]" href="http://www.biographien.ac.at/oebl/oebl_H/Holbein-Holbeinsberg_Franz-Ignaz_1779_1855.xml?frames=yes">Österreichisches Biographisches Lexikon [Holbein von Holbeinsberg, Franz Ignaz]</a></li>
@@ -546,9 +554,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000865</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000865</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                     </div>
                     
                 </div>
@@ -616,7 +624,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -636,30 +645,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

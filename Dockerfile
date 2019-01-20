@@ -8,20 +8,18 @@ LABEL maintainer="Peter Stadler"
 
 ENV WEGA_BUILD_HOME="/opt/wega"
 ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
-ARG YUICOMPRESSOR_URL="https://github.com/yui/yuicompressor/releases/download/v2.4.8/yuicompressor-2.4.8.jar"
 
-ADD ${YUICOMPRESSOR_URL} /tmp/yuicompressor.jar
 ADD https://deb.nodesource.com/setup_8.x /tmp/nodejs_setup 
 
 # installing Saxon, Node and Git
 RUN apt-get update \
-    && apt-get install -y --force-yes apt-transport-https ant git libsaxonhe-java\
+    && apt-get install -y --force-yes apt-transport-https ant git libsaxonhe-java \
     # installing nodejs
     && chmod 755 /tmp/nodejs_setup \
-    && chmod 644 /tmp/yuicompressor.jar \
     && /tmp/nodejs_setup \
     && apt-get install -y nodejs \
-    && ln -s /usr/bin/nodejs /usr/local/bin/node 
+    && ln -s /usr/bin/nodejs /usr/local/bin/node \
+    && npm install -g yarn
 
 
 # first building WeGA-WebApp-lib
@@ -33,8 +31,7 @@ RUN git clone https://github.com/Edirom/WeGA-WebApp-lib.git . \
 # now building the main WeGA-WebApp
 WORKDIR ${WEGA_BUILD_HOME}
 COPY . .
-RUN npm install bower less \
-    && addgroup wegabuilder \
+RUN addgroup wegabuilder \
     && adduser wegabuilder --ingroup wegabuilder --disabled-password --system \
     && chown -R wegabuilder:wegabuilder ${WEGA_BUILD_HOME}
 
@@ -50,6 +47,11 @@ RUN ant -lib /usr/share/java
 #########################
 FROM stadlerpeter/existdb:3.3.0
 
-ADD https://github.com/Edirom/WeGA-WebApp-lib/releases/download/v1.0.0/WeGA-WebApp-lib-1.0.0.xar ${EXIST_HOME}/autodeploy/
+ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-19436.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega/build/*.xar ${EXIST_HOME}/autodeploy/
+
+HEALTHCHECK --interval=20s --timeout=5s \
+    CMD curl -iLfsS  http://localhost:8080${EXIST_CONTEXT_PATH}/apps/WeGA-WebApp | grep home \
+    && curl -iLfsS  http://localhost:8080${EXIST_CONTEXT_PATH}/apps/WeGA-WebApp | (! grep "HILFE DER GÖTTLICHEN") \
+    || exit 1

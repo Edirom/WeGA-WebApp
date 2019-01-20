@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Eveline Bartlitz" />
-        <meta property="dc:date" content="2018-07-11T09:13:29.445756Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008117" />
         <meta property="dc:description" content="Biographische Informationen zu Friedrich Gehlhaar. Lebensdaten: 1763–25. August 1828. Tätigkeiten: Schauspieler, Sänger (Bass), Theaterdirektor. Wirkorte: Nord-, West- und Mitteldeutschland, Breslau, Stuttgart, Bremen, Hannover, Mainz" />
         <meta name="description" content="Biographische Informationen zu Friedrich Gehlhaar. Lebensdaten: 1763–25. August 1828. Tätigkeiten: Schauspieler, Sänger (Bass), Theaterdirektor. Wirkorte: Nord-, West- und Mitteldeutschland, Breslau, Stuttgart, Bremen, Hannover, Mainz" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"name":"Friedrich Gehlhaar – Biographische Informationen aus der WeGA","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008117","@context":"http://schema.org","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008117"}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A008117.html" hreflang="en" lang="en">En</a></li>
@@ -228,38 +231,41 @@
         <div class="container paddingTopIcon paddingBottomIcon">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A008117.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A008117.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A008117.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A008117.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008117.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -332,7 +338,7 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
-                    <h2>Ikonographie</h2>
+                    
                     
                 </div>
                 
@@ -344,7 +350,7 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li><a href="#biographies">Biographien</a></li>
                                 
                                 <li><a class="deactivated"></a></li>
@@ -356,7 +362,7 @@
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A008117/backlinks.html">Rückverweise<small> (5)</small></a></li>
+                                <li><a class="deactivated"></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -368,7 +374,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
@@ -416,31 +422,31 @@
       <ul class="tei_list">
       <li>Theaterdebüt 1786</li>
      <li> 1791 bei Direktor <span class="67971141083272101105110114105991043270114105101989799104">Carl Heinrich Friebach</span> im Raum <span class="tei_region">Schleswig/Holstein</span> (zweite Liebhaber und Basspartien in der Oper)</li>
-         <li>bewarb sich am 1. November 1791 von <span class="preview places A130138" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130138.html">Lüneburg</span> aus (dort Anstellung bei <a class="preview persons A009924" href="/exist/apps/WeGA-WebApp/de/A009924.html">Christian Wilhelm Klos</a>) erfolglos um ein Engagement bei <a class="preview persons A006331" href="/exist/apps/WeGA-WebApp/de/A006331.html">Gustav Friedrich Wilhelm Großmann</a> (Brief in D-LEu)</li>
-         <li> 1792 bei <span class="671041141051151161059711032871051081041011081093275108111115">Christian Wilhelm Klos</span> und <span class="67971141083272101105110114105991043270114105101989799104">Carl Heinrich Friebach</span> in <span class="79100101110115101">Odense</span>, dort bereits mit einer ersten Ehefrau engagiert (nicht identisch mit seiner späteren Frau <a class="preview persons A000601" href="/exist/apps/WeGA-WebApp/de/A000601.html">Ludowika Gehlhaar)</a></li>
-     <li> 1. Dezember 1792 erfolgloses Debüt als <span class="7611798105110111">Lubino</span> (<span class="preview works A020760" data-ref="/exist/apps/WeGA-WebApp/de/A001269/Werke/A020760.html">Una cosa rara</span>) am <span class="preview places A130014" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130014.html">Weimarer</span> Hoftheater, nicht angestellt</li>
-         <li>1792/93 unter <span class="7797114105971101101013266246104109">Marianne Böhm</span> in <span class="preview places A130033" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130033.html">Düsseldorf</span> engagiert, mit der Direktorin auch nachfolgend im <span class="tei_region"><span class="8210410110511010897110100">Rheinland</span></span> unterwegs (erster Bassist)</li>
-         <li>1795 mit Ehefrau zunächst in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt am Main</span>, dann unter <a class="preview persons A008087" href="/exist/apps/WeGA-WebApp/de/A008087.html">Friedrich Wilhelm Hunnius</a> und <a class="preview persons A008986" href="/exist/apps/WeGA-WebApp/de/A008986.html">Simon Friedrich Koberwein</a> in <span class="preview places A130028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130028.html">Mainz</span> und <span class="preview places A130035" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130035.html">Heidelberg</span>, laut <span class="tei_hi_italic">Mannheimer Theater-Kalender</span> 1796 (Stand 1795) Wechsel nach <span class="preview places A130056" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130056.html">Amsterdam</span> geplant, aber nicht ausgeführt</li>
-      <li>Sommer/Herbst 1796 mit Ehefrau wiederum bei <a class="preview persons A008986" href="/exist/apps/WeGA-WebApp/de/A008986.html">Simon Friedrich Koberwein</a> in <span class="preview places A130028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130028.html">Mainz</span></li>
+         <li>bewarb sich am 1. November 1791 von <a class="preview places A130138" href="">Lüneburg</a> aus (dort Anstellung bei <a class="preview persons A009924" href="">Christian Wilhelm Klos</a>) erfolglos um ein Engagement bei <a class="preview persons A006331" href="">Gustav Friedrich Wilhelm Großmann</a> (Brief in D-LEu)</li>
+         <li> 1792 bei <span class="671041141051151161059711032871051081041011081093275108111115">Christian Wilhelm Klos</span> und <span class="67971141083272101105110114105991043270114105101989799104">Carl Heinrich Friebach</span> in <span class="79100101110115101">Odense</span>, dort bereits mit einer ersten Ehefrau engagiert (nicht identisch mit seiner späteren Frau <a class="preview persons A000601" href="">Ludowika Gehlhaar)</a></li>
+     <li> 1. Dezember 1792 erfolgloses Debüt als <span class="7611798105110111">Lubino</span> (<a class="preview works A020760" href="">Una cosa rara</a>) am <a class="preview places A130014" href="">Weimarer</a> Hoftheater, nicht angestellt</li>
+         <li>1792/93 unter <span class="7797114105971101101013266246104109">Marianne Böhm</span> in <a class="preview places A130033" href="">Düsseldorf</a> engagiert, mit der Direktorin auch nachfolgend im <span class="tei_region"><span class="8210410110511010897110100">Rheinland</span></span> unterwegs (erster Bassist)</li>
+         <li>1795 mit Ehefrau zunächst in <a class="preview places A130020" href="">Frankfurt am Main</a>, dann unter <a class="preview persons A008087" href="">Friedrich Wilhelm Hunnius</a> und <a class="preview persons A008986" href="">Simon Friedrich Koberwein</a> in <a class="preview places A130028" href="">Mainz</a> und <a class="preview places A130035" href="">Heidelberg</a>, laut <span class="tei_hi_italic">Mannheimer Theater-Kalender</span> 1796 (Stand 1795) Wechsel nach <a class="preview places A130056" href="">Amsterdam</a> geplant, aber nicht ausgeführt</li>
+      <li>Sommer/Herbst 1796 mit Ehefrau wiederum bei <a class="preview persons A008986" href="">Simon Friedrich Koberwein</a> in <a class="preview places A130028" href="">Mainz</a></li>
            
-      <li>1797 mit Ehefrau am Theater <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt/Main</span> nachgewiesen (vgl. Ensemble-Übersicht von Catharina Goethe)</li>
+      <li>1797 mit Ehefrau am Theater <a class="preview places A130020" href="">Frankfurt/Main</a> nachgewiesen (vgl. Ensemble-Übersicht von Catharina Goethe)</li>
           <li>ab August 1797 mit Ehefrau unter <span class="749710711198327411110497110110326510898101114116326810510111611410599104115">Jakob Johann Albert Dietrichs</span> in <span class="69109100101110">Emden</span> und <span class="6697114109101110">Barmen</span></li>
-         <li>1798 unter Direktor <span class="741111049711011032761171001191051033266252991041101011143240103101110971101101163282101110110115991042529841">Johann Ludwig Büchner (genannt Rennschüb)</span> in <span class="preview places A130028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130028.html">Mainz</span></li>
-         <li>1799 sowie 1801 unter <a class="preview persons A002048" href="/exist/apps/WeGA-WebApp/de/A002048.html">Ignaz Walter</a> in <span class="preview places A130018" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130018.html">Hannover</span> und <span class="preview places A130032" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130032.html">Bremen</span> engagiert (vgl. <span class="tei_hi_italic">Journal des Luxus und der Moden</span> September 1799, S. 454 und November 1801, S. 607), die dort genannte Mad. Gehlhaar dürfte die zweite Ehefrau <a class="preview persons A000601" href="/exist/apps/WeGA-WebApp/de/A000601.html">Ludowika</a> sein, mit der er nachfolgend stets gemeinsam engagiert war, im Sommer 1801 in <span class="preview places A130203" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130203.html">Pyrmont</span></li>
-      <li>Debüt am <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span>er Theater 27. Januar 1802 als <span class="7797102102101114117">Mafferu</span> (<span class="preview works A020500" data-ref="/exist/apps/WeGA-WebApp/de/A002162/Werke/A020500.html">Das unterbrochene Opferfest)</span></li>
-      <li>gab in <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span> im Musiktheater erste komische und ernste Bassrollen</li>
-     <li> August/September 1805 erfolgloses Gastspiel in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></li>
-         <li>Mitwirkung in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Benefizkonzert am 3. April 1806 (Solist in <a class="preview persons A005324" href="/exist/apps/WeGA-WebApp/de/A005324.html">Kunzens</a> <span class="tei_hi_italic"><span class="preview works A021252" data-ref="/exist/apps/WeGA-WebApp/de/A005324/Werke/A021252.html">Halleluja der Schöpfung</span></span>)</li>
-      <li>Ende Juni 1808 Abgang vom <span class="preview places A130013" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130013.html">Breslau</span>er Theater</li>
-     <li> August 1808 Gastauftritte am Stadttheater <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt/Main</span></li>
-      <li>Anstellung am Hoftheater <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> September 1808 bis 1816, Debüt mit der Titelrolle in <a class="preview persons A001641" href="/exist/apps/WeGA-WebApp/de/A001641.html">Salieris</a> <span class="preview works A020510" data-ref="/exist/apps/WeGA-WebApp/de/A001641/Werke/A020510.html">Axur</span> am 7. September 1808; von dort aus Gastspiel in <span class="preview places A130015" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130015.html">Darmstadt</span> (März/April 1811)</li>
-         <li>Sommer 1816 Wechsel ans Theater <span class="preview places A130032" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130032.html">Bremen</span> (weil die <a class="preview persons A000E7D" href="/exist/apps/WeGA-WebApp/de/A000E7D.html">Tochter</a> keine Anstellung in <span class="preview places A130012" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130012.html">Stuttgart</span> bekam), bis September 1817 in <span class="preview places A130032" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130032.html">Bremen</span> unter Direktion von <span class="6797114108327110111498101114">Carl Gerber</span> und <a class="preview persons A008492" href="/exist/apps/WeGA-WebApp/de/A008492.html">Ringelhardt</a>, Debüts: <span class="76101112111114101108108111">Leporello</span> (<span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Giovanni</span>),  <span class="659898101">Abbe</span> (<span class="preview works A020565" data-ref="/exist/apps/WeGA-WebApp/de/A000845/Werke/A020565.html">Fanchon</span>)</li>
-         <li>1817 bis 1819 in <span class="preview places A130019" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130019.html">Kassel</span> (als Komiker) (vgl. <span class="tei_hi_italic">Leipziger Kunstblatt</span> 1818, S. 379f.)</li>
-          <li>1819/20 vermutlich gemeinsam mit der <a class="preview persons A000601" href="/exist/apps/WeGA-WebApp/de/A000601.html">Ehefrau</a> am Hoftheater <span class="preview places A130018" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130018.html">Hannover</span></li>
-         <li>1820/21 wieder am Theater <span class="preview places A130032" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130032.html">Bremen</span> (vgl. Klingemann-<span class="tei_hi_italic">Taschenbuch</span> 1822)</li>
+         <li>1798 unter Direktor <span class="741111049711011032761171001191051033266252991041101011143240103101110971101101163282101110110115991042529841">Johann Ludwig Büchner (genannt Rennschüb)</span> in <a class="preview places A130028" href="">Mainz</a></li>
+         <li>1799 sowie 1801 unter <a class="preview persons A002048" href="">Ignaz Walter</a> in <a class="preview places A130018" href="">Hannover</a> und <a class="preview places A130032" href="">Bremen</a> engagiert (vgl. <span class="tei_hi_italic">Journal des Luxus und der Moden</span> September 1799, S. 454 und November 1801, S. 607), die dort genannte Mad. Gehlhaar dürfte die zweite Ehefrau <a class="preview persons A000601" href="">Ludowika</a> sein, mit der er nachfolgend stets gemeinsam engagiert war, im Sommer 1801 in <a class="preview places A130203" href="">Pyrmont</a></li>
+      <li>Debüt am <a class="preview places A130013" href="">Breslau</a>er Theater 27. Januar 1802 als <span class="7797102102101114117">Mafferu</span> (<a class="preview works A020500" href="">Das unterbrochene Opferfest)</a></li>
+      <li>gab in <a class="preview places A130013" href="">Breslau</a> im Musiktheater erste komische und ernste Bassrollen</li>
+     <li> August/September 1805 erfolgloses Gastspiel in <a class="preview places A130002" href="">Berlin</a></li>
+         <li>Mitwirkung in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Benefizkonzert am 3. April 1806 (Solist in <a class="preview persons A005324" href="">Kunzens</a> <span class="tei_hi_italic"><a class="preview works A021252" href="">Halleluja der Schöpfung</a></span>)</li>
+      <li>Ende Juni 1808 Abgang vom <a class="preview places A130013" href="">Breslau</a>er Theater</li>
+     <li> August 1808 Gastauftritte am Stadttheater <a class="preview places A130020" href="">Frankfurt/Main</a></li>
+      <li>Anstellung am Hoftheater <a class="preview places A130012" href="">Stuttgart</a> September 1808 bis 1816, Debüt mit der Titelrolle in <a class="preview persons A001641" href="">Salieris</a> <a class="preview works A020510" href="">Axur</a> am 7. September 1808; von dort aus Gastspiel in <a class="preview places A130015" href="">Darmstadt</a> (März/April 1811)</li>
+         <li>Sommer 1816 Wechsel ans Theater <a class="preview places A130032" href="">Bremen</a> (weil die <a class="preview persons A000E7D" href="">Tochter</a> keine Anstellung in <a class="preview places A130012" href="">Stuttgart</a> bekam), bis September 1817 in <a class="preview places A130032" href="">Bremen</a> unter Direktion von <span class="6797114108327110111498101114">Carl Gerber</span> und <a class="preview persons A008492" href="/exist/apps/WeGA-WebApp/de/A008492.html">Ringelhardt</a>, Debüts: <span class="76101112111114101108108111">Leporello</span> (<a class="preview works A020484" href="">Don Giovanni</a>),  <span class="659898101">Abbe</span> (<a class="preview works A020565" href="">Fanchon</a>)</li>
+         <li>1817 bis 1819 in <a class="preview places A130019" href="">Kassel</a> (als Komiker) (vgl. <span class="tei_hi_italic">Leipziger Kunstblatt</span> 1818, S. 379f.)</li>
+          <li>1819/20 vermutlich gemeinsam mit der <a class="preview persons A000601" href="">Ehefrau</a> am Hoftheater <a class="preview places A130018" href="">Hannover</a></li>
+         <li>1820/21 wieder am Theater <a class="preview places A130032" href="">Bremen</a> (vgl. Klingemann-<span class="tei_hi_italic">Taschenbuch</span> 1822)</li>
           
-      <li>1821 bis 1825 am Theater <span class="preview places A130018" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130018.html">Hannover</span> als Schauspieler und Regisseur (gab in der dortigen EA des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html"><span class="tei_hi_italic">Freischütz</span></span> am 13. März 1822 den <span class="7510510810597110">Kilian</span>)</li>
-     <li> Mai 1825 bis März 1826 Direktor des Theaters in <span class="preview places A130028" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130028.html">Mainz</span></li>
+      <li>1821 bis 1825 am Theater <a class="preview places A130018" href="">Hannover</a> als Schauspieler und Regisseur (gab in der dortigen EA des <a class="preview works A020040" href=""><span class="tei_hi_italic">Freischütz</span></a> am 13. März 1822 den <span class="7510510810597110">Kilian</span>)</li>
+     <li> Mai 1825 bis März 1826 Direktor des Theaters in <a class="preview places A130028" href="">Mainz</a></li>
       </ul>
    </div>
                                                     
@@ -520,9 +526,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008117</span> (<span>Version 3.3.0dev vom 17. Juli 2018</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008117</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 11. Juli 2018 durch Eveline Bartlitz</span></p>
+                            <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                     </div>
                     
                 </div>
@@ -590,7 +596,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -610,30 +617,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

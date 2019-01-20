@@ -2,6 +2,9 @@
 <project basedir=".." name="WeGA-WebApp-testing" default="diff">
     
     <property name="results.dir" value="${tmp.dir}/results"/>
+    <property name="docker.image.name" value="wega"/>
+    <property name="docker.container.name" value="wega"/>
+    <property name="docker.exposed.port" value="8080"/>
     
     <target name="reset-expected-results">
         <delete dir="${expected.results.dir}/${docType}"/>
@@ -13,6 +16,23 @@
         </get>
     </target>
     
+    <target name="reset-all-expected-results">
+        <parallel threadCount="5">
+            <antcall target="reset-expected-results"><param name="docType" value="addenda"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="news"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="works"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="letters"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="persons"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="orgs"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="diaries"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="documents"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="thematicCommentaries"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="var"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="writings"/></antcall>
+            <antcall target="reset-expected-results"><param name="docType" value="places"/></antcall>
+        </parallel>
+    </target>
+    
     <target name="create-result-URLs" depends="init">
         <copy file="testing/urls/${docType}.txt" tofile="${tmp.dir}/${docType}.txt" overwrite="true"/>
         <!--<replace file="${tmp.dir}/letters.txt" token="http://www.weber-gesamtausgabe.de" value="http://localhost:8080/exist/apps/WeGA-WebApp"/>-->
@@ -21,21 +41,28 @@
     <target name="get-results" depends="create-result-URLs">
         <delete dir="${tmp.dir}/results.raw/${docType}"/>
         <mkdir dir="${tmp.dir}/results.raw/${docType}"/>
-        <get dest="${tmp.dir}/results.raw/${docType}">
+        <!--<get dest="${tmp.dir}/results.raw/${docType}">
             <resourcelist>
                 <file file="${tmp.dir}/${docType}.txt"/>
             </resourcelist>
-        </get>
+        </get>-->
+        <exec executable="${bash.command}" dir="${tmp.dir}/results.raw/${docType}">
+            <arg value="-c"/>
+            <arg value="while read url; 
+                do echo cURLing $url ; 
+                docker exec ${docker.container.name} curl -LsS $url > `basename $url`;
+                done &lt;${basedir}/${tmp.dir}/${docType}.txt"/>
+        </exec>
     </target>
     
     <target name="check-prettydiff">
         <condition property="prettydiff.available" value="true">
-            <length file="bower_components/prettydiff/api/node-local.js" when="ne" length="0" />
+            <length file="${lib_components.dir}/prettydiff/api/node-local.js" when="ne" length="0" />
         </condition>
     </target>
     
     <target name="update-prettydiff" depends="check-prettydiff" unless="prettydiff.available">
-        <antcall target="bower"/>
+        <antcall target="yarn"/>
     </target>
     
     <target name="diff" depends="update-prettydiff">
@@ -44,7 +71,7 @@
         <tempfile property="diff.out" destdir="${tmp.dir}" suffix=".txt" deleteonexit="false"/>
         <exec executable="${bash.command}" output="${diff.out}">
             <arg value="-c"/>
-            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do node bower_components/prettydiff/api/node-local.js source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot; ; done"/>
+            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do node ${lib_components.dir}/prettydiff/api/node-local.js source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot; ; done"/>
             <!--            <arg value="for i in ${expected.results.dir}/${docType}/* ; do echo -e '******************\nPROCESSING' `basename $i`'\n******************' ; diff -B &lt;(saxon -s:$i -xsl:flatten.xsl) &lt;(saxon -s:${results.dir}/${docType}/`basename $i` -xsl:flatten.xsl) ; done"/>-->
             <env key="LANG" value="C"/>
         </exec>
@@ -69,10 +96,45 @@
             <fileset dir="testing/expected-results"/>
         </copy>
         <replace dir="${tmp.dir}/html-check" token="color=&quot;#0066cc&quot;"/>
-        <java jar="${vnu.jar}" failonerror="true" fork="true">
+        <replace dir="${tmp.dir}/html-check" token="type=&quot;text/javascript&quot;"/>
+        <java jar="${lib_components.dir}/vnu-jar/build/dist/vnu.jar" failonerror="true" fork="true">
             <arg value="${tmp.dir}/html-check"/>
             <arg value="--skip-non-html"/>
         </java>
+    </target>
+    
+    <target name="docker_build">
+        <description>Build the docker image from the current repository root </description>
+        <exec executable="${bash.command}">
+            <arg value="-c"/>
+            <arg value="docker build -t ${docker.image.name} ."/>
+        </exec>
+    </target>
+    
+    <target name="docker_run" depends="docker_build">
+        <description>Run the docker image</description>
+        <exec executable="${bash.command}">
+            <arg value="-c"/>
+            <arg value="docker run --rm --name ${docker.container.name} -d -p ${docker.exposed.port}:8080 -e WEGA_WEBAPP_dataCollectionPath='/db/apps/WeGA-data-testing' ${docker.image.name}"/>
+        </exec>
+        <exec executable="${bash.command}" failonerror="yes">
+            <arg value="-c"/>
+            <arg value="
+                i=0 ; 
+                while (! docker inspect ${docker.container.name} | grep -e Status....healthy) ; 
+                do if ((i > 30)) ; 
+                then echo ' **** timeout ... aborting **** ' ; exit 1 ; 
+                else sleep 5 ; echo waiting for container ... ; i=$((i+1)) ; 
+                fi ; done"/>
+        </exec>
+    </target>
+    
+    <target name="docker_cleanup">
+        <description>Remove test container</description>
+        <exec executable="${bash.command}">
+            <arg value="-c"/>
+            <arg value="docker rm -f ${docker.container.name}"/>
+        </exec>
     </target>
     
     <macrodef name="regressiontest">

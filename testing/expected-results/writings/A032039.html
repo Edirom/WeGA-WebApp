@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Bandur, Markus" />
-        <meta property="dc:creator" content="Markus Bandur" />
-        <meta property="dc:date" content="2018-07-09T15:25:46.396364Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032039" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Anonymus","@type":"Person"}],"name":"Aufführungsbesprechung Frankfurt am Main: „Euryanthe“ von Carl Maria von Weber am 8. März 1824","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032039","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A032039.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><span>Anonymus</span></li>
-                        <li><span>Schriften</span></li>
-                        <li><span>A032039</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span>Anonymus</span>
+                        </li>
+                        <li>
+                            <span>Schriften</span>
+                        </li>
+                        <li>
+                            <span>A032039</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,55 +250,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032039.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -291,21 +323,23 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009141" /> <span title="Bamberger, Sabine">Bamberger, Sabine</span> 
+                                    <input type="checkbox" name="options" value="A000288" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000288" /> <span title="Chézy, Helmina von">Chézy, Helmina von</span> 
+                                    <input type="checkbox" name="options" value="A001821" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008197" /> <span title="Dobler, Alois">Dobler, Alois</span> 
+                                    <input type="checkbox" name="options" value="A009141" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008739" /> <span title="Nieser, Joseph">Nieser, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A008197" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008438" /> <span title="Rothammer, Marie">Rothammer, Marie</span> 
+                                    <input type="checkbox" name="options" value="A008438" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001821" /> <span title="Shakespeare, William">Shakespeare, William</span> 
+                                    <input type="checkbox" name="options" value="A008739" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label>
@@ -313,17 +347,21 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Euryanthe, große romantische Oper in drei Aufzügen">Euryanthe, große romantische O…</span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -348,8 +386,8 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Montag den <span class="tei_date">8. <span class="tei_supplied" id="d10e7"><span class="brackets_supplied">[</span>März<span class="brackets_supplied">]</span></span></span> (<span class="tei_hi_spaced_out">Zum ersten Male</span>; mit Abonnement suspendü) <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>, große romantische Oper in 3 Aufzügen von <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">H. von Chezy</a>. Musik von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a>. Da, wie wir vernehmen, der Oekonomie unsers Repertoirs wegen, die Reihe der weitern Vorstellungen dieser <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> erst mit nächster Messe beginnen soll, wir uns aber weder anmaßen mögen, nach einmaliger Anhörung eines so <span class="tei_hi_spaced_out">bedeutenden</span> Werkes, darüber ein bestimmtes Urtheil zu fällen, noch elegant genug sind, durch den leichten Spaß: „Euryanthe? Ennuyante!“ fertig zu werden; so müssen wir uns eine <span class="tei_hi_spaced_out">Kritik</span> ausdrücklich bis nach näherer Bekanntschaft mit dieser <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> vorbehalten. – Der Text, von <a class="preview persons A000288" href="/exist/apps/WeGA-WebApp/de/A000288.html">Frau von Chezy</a> nach der von ihr aus dem Französischen vorzüglich übertragenen <span class="1041051151161111051141013210010132711011149711410032100101327810111810111411532101116321001013210897329810110810810132101116321181011141161171011171151013269117114121971101163210010132839711811112110144321159732109105101"><span class="tei_hi_italic">histoire de Gerard de Nevers et de la belle et vertueuse Euryant de Savoye, sa mie</span></span>, bearbeitet, bietet dem <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Componisten</a> manche treffliche, <span class="tei_hi_spaced_out">einzelne</span> Scene dar; im Ganzen aber ist das Süjet zur <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> äußerst unglücklich gewählt. Der Inhalt jener Geschichte ist so überreich an einzelnen, und doch unter einander in einer engen, poetisch nothwendigen Verbindung stehenden Abentheuern, daß nur noch eben der gewaltige Genius <a class="preview persons A001821" href="/exist/apps/WeGA-WebApp/de/A001821.html">Shakespeare’s</a> es vermochte, ihn (im <span class="tei_hi_spaced_out"><span class="6712110998101108105110">Cymbelin</span></span>) zur <span class="tei_hi_spaced_out">dramatischen</span> Form zu zwingen und darin zu beherrschen; in die <span class="tei_hi_spaced_out">lyrische</span> der <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> konnte er in allem seinem Reichthum nicht gebracht werden, und so mußte, bei den vielen Verkürzungen und, zum Theil, häßlichen Abänderungen, (wir führen als Beispiel die Art an, wie in der <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> die Untreue <span class="6911711412197110116104101110115">Euryanthens</span> durch <span class="7612111510597114116">Lysiart</span> erwiesen wird) ein Aggregat von Episoden aus jener Geschichte auf einander folgen, welches eben so unverständlich für den Zuhörer, als die schöne, ursprüngliche Erzählung entstellend, ausfiel. – Die Aufführung war in vielen Theilen gelungen, in andern es weniger, zu nennen; doch mag letzteres hinreichend durch die unendlichen Schwierigkeiten entschuldigt werden, die sowohl für Orchester, als Singpersonale in dieser Musik liegen, zumahl, wenn es, wie man sich erzählt, wahr ist, daß diese <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> in so unglaublich kurzer Zeit einstudirt worden. Besonderen Beifall erhielten und verdienten <a class="preview persons A009141" href="/exist/apps/WeGA-WebApp/de/A009141.html">Dem. <span class="tei_hi_spaced_out">Bamberger</span></a> (<span class="6911711412197110116104101">Euryanthe</span>) und <a class="preview persons A008197" href="/exist/apps/WeGA-WebApp/de/A008197.html">Herr <span class="tei_hi_spaced_out">Dobler</span></a> (<span class="7612111510597114116">Lysiart</span>). <a class="preview persons A009141" href="/exist/apps/WeGA-WebApp/de/A009141.html">Erstere</a> gewann in der Rolle der <span class="6911711412197110116104101">Euryanthe</span> eben so wohl durch ihren schönen ausdrucksvollen Gesang, als durch natürliches, anmuthiges Spiel den größten Antheil <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> des Publikums. Vorzüglich wurde von ihr die zweite Scene des 3n Actes: „So bin ich nun <span class="tei_choice"><span class="tei_corr">verlassen</span><a class="noteMarker" id="ref-d10e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e112">‡</a></span>“ vorgetragen. Der Gesang des <a class="preview persons A008197" href="/exist/apps/WeGA-WebApp/de/A008197.html">Hrn.<span class="tei_hi_spaced_out"> Dobler</span></a> war in der ersten Scene des 1n Acts: „Ich trag es nicht“ u. s. w. so wie in der Arie im 2n Akt: „So weih’ ich mich den <span class="tei_choice"><span class="tei_corr">Rachgewalten</span><a class="noteMarker" id="ref-d10e128" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e128">‡</a></span>.“ von der größten Wirkung. Auch die Parthien der <span class="69121108971101161051101016910310897110116105110101"><span class="tei_choice"><span class="tei_corr">Eglantine</span><a class="noteMarker" id="ref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">‡</a></span></span>  (<a class="preview persons A008438" href="/exist/apps/WeGA-WebApp/de/A008438.html">Dem. <span class="tei_hi_spaced_out">Rotthammer</span></a>) und <span class="6510011110897114">Adolar</span> (<a class="preview persons A008739" href="/exist/apps/WeGA-WebApp/de/A008739.html">Herr <span class="tei_hi_spaced_out">Nieser</span></a>) wurden, jene in leidenschaftlichen[,] dieser in den weichen, zarten Stellen, mit Fleiß und Geschmack ausgeführt.</p>
-                                        <p>Auch die äußere Ausstattung der <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Oper</span> war lobenswerth, anständig, ja, gehörigen Orts, reich; doch nicht die Hauptsache, das innere Wesen durch übertriebenen Aufwand stöhrend. Höchst löblich fanden wir es insbesondere, daß viele sehr achtbare Mitglieder des Schauspiel- und Opernpersonales die Schlußscene durch ihr Erscheinen als Figuranten verherrlichten. Solche, vielleicht Ueberwindung kostende, Mitwirkung zum Ganzen, verdient wahrlich mehr Beifall, als mancher „<span class="tei_hi_spaced_out">Brillante Abgang</span>.“</p>
+                                        <p>Montag den <span class="tei_date">8. <span class="tei_supplied" id="d10e7"><span class="brackets_supplied">[</span>März<span class="brackets_supplied">]</span></span></span> (<span class="tei_hi_spaced_out">Zum ersten Male</span>; mit Abonnement suspendü) <a class="preview works A020043" href="">Euryanthe</a>, große romantische Oper in 3 Aufzügen von <a class="preview persons A000288" href="">H. von Chezy</a>. Musik von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a>. Da, wie wir vernehmen, der Oekonomie unsers Repertoirs wegen, die Reihe der weitern Vorstellungen dieser <a class="preview works A020043" href="">Oper</a> erst mit nächster Messe beginnen soll, wir uns aber weder anmaßen mögen, nach einmaliger Anhörung eines so <span class="tei_hi_spaced_out">bedeutenden</span> Werkes, darüber ein bestimmtes Urtheil zu fällen, noch elegant genug sind, durch den leichten Spaß: „Euryanthe? Ennuyante!“ fertig zu werden; so müssen wir uns eine <span class="tei_hi_spaced_out">Kritik</span> ausdrücklich bis nach näherer Bekanntschaft mit dieser <a class="preview works A020043" href="">Oper</a> vorbehalten. – Der Text, von <a class="preview persons A000288" href="">Frau von Chezy</a> nach der von ihr aus dem Französischen vorzüglich übertragenen <span class="1041051151161111051141013210010132711011149711410032100101327810111810111411532101116321001013210897329810110810810132101116321181011141161171011171151013269117114121971101163210010132839711811112110144321159732109105101"><span class="tei_hi_italic">histoire de Gerard de Nevers et de la belle et vertueuse Euryant de Savoye, sa mie</span></span>, bearbeitet, bietet dem <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Componisten</a> manche treffliche, <span class="tei_hi_spaced_out">einzelne</span> Scene dar; im Ganzen aber ist das Süjet zur <a class="preview works A020043" href="">Oper</a> äußerst unglücklich gewählt. Der Inhalt jener Geschichte ist so überreich an einzelnen, und doch unter einander in einer engen, poetisch nothwendigen Verbindung stehenden Abentheuern, daß nur noch eben der gewaltige Genius <a class="preview persons A001821" href="">Shakespeare’s</a> es vermochte, ihn (im <span class="tei_hi_spaced_out"><span class="6712110998101108105110">Cymbelin</span></span>) zur <span class="tei_hi_spaced_out">dramatischen</span> Form zu zwingen und darin zu beherrschen; in die <span class="tei_hi_spaced_out">lyrische</span> der <a class="preview works A020043" href="">Oper</a> konnte er in allem seinem Reichthum nicht gebracht werden, und so mußte, bei den vielen Verkürzungen und, zum Theil, häßlichen Abänderungen, (wir führen als Beispiel die Art an, wie in der <a class="preview works A020043" href="">Oper</a> die Untreue <span class="6911711412197110116104101110115">Euryanthens</span> durch <span class="7612111510597114116">Lysiart</span> erwiesen wird) ein Aggregat von Episoden aus jener Geschichte auf einander folgen, welches eben so unverständlich für den Zuhörer, als die schöne, ursprüngliche Erzählung entstellend, ausfiel. – Die Aufführung war in vielen Theilen gelungen, in andern es weniger, zu nennen; doch mag letzteres hinreichend durch die unendlichen Schwierigkeiten entschuldigt werden, die sowohl für Orchester, als Singpersonale in dieser Musik liegen, zumahl, wenn es, wie man sich erzählt, wahr ist, daß diese <a class="preview works A020043" href="">Oper</a> in so unglaublich kurzer Zeit einstudirt worden. Besonderen Beifall erhielten und verdienten <a class="preview persons A009141" href="">Dem. <span class="tei_hi_spaced_out">Bamberger</span></a> (<span class="6911711412197110116104101">Euryanthe</span>) und <a class="preview persons A008197" href="">Herr <span class="tei_hi_spaced_out">Dobler</span></a> (<span class="7612111510597114116">Lysiart</span>). <a class="preview persons A009141" href="">Erstere</a> gewann in der Rolle der <span class="6911711412197110116104101">Euryanthe</span> eben so wohl durch ihren schönen ausdrucksvollen Gesang, als durch natürliches, anmuthiges Spiel den größten Antheil <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> des Publikums. Vorzüglich wurde von ihr die zweite Scene des 3n Actes: „So bin ich nun <span class="tei_choice"><span class="tei_corr">verlassen</span><a class="noteMarker" id="ref-d10e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e112">‡</a></span>“ vorgetragen. Der Gesang des <a class="preview persons A008197" href="">Hrn.<span class="tei_hi_spaced_out"> Dobler</span></a> war in der ersten Scene des 1n Acts: „Ich trag es nicht“ u. s. w. so wie in der Arie im 2n Akt: „So weih’ ich mich den <span class="tei_choice"><span class="tei_corr">Rachgewalten</span><a class="noteMarker" id="ref-d10e128" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e128">‡</a></span>.“ von der größten Wirkung. Auch die Parthien der <span class="69121108971101161051101016910310897110116105110101"><span class="tei_choice"><span class="tei_corr">Eglantine</span><a class="noteMarker" id="ref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">‡</a></span></span>  (<a class="preview persons A008438" href="">Dem. <span class="tei_hi_spaced_out">Rotthammer</span></a>) und <span class="6510011110897114">Adolar</span> (<a class="preview persons A008739" href="">Herr <span class="tei_hi_spaced_out">Nieser</span></a>) wurden, jene in leidenschaftlichen[,] dieser in den weichen, zarten Stellen, mit Fleiß und Geschmack ausgeführt.</p>
+                                        <p>Auch die äußere Ausstattung der <a class="preview works A020043" href="">Oper</a> war lobenswerth, anständig, ja, gehörigen Orts, reich; doch nicht die Hauptsache, das innere Wesen durch übertriebenen Aufwand stöhrend. Höchst löblich fanden wir es insbesondere, daß viele sehr achtbare Mitglieder des Schauspiel- und Opernpersonales die Schlußscene durch ihr Erscheinen als Figuranten verherrlichten. Solche, vielleicht Ueberwindung kostende, Mitwirkung zum Ganzen, verdient wahrlich mehr Beifall, als mancher „<span class="tei_hi_spaced_out">Brillante Abgang</span>.“</p>
                                     </div>
                                 </div>
                     </div>
@@ -395,16 +433,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Iris. Unterhaltungsblatt für Kunst, Literatur und Poesie</span>, Jg. 1824, Nr. 22 (14. März), S. 88</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -444,9 +484,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032039</span> (<span>Version 3.3.0dev vom 17. Juli 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032039</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 9. Juli 2018 durch Markus Bandur</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -512,7 +553,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -532,30 +574,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

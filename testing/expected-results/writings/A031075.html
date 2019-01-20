@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Frank Ziegler" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-09-14T21:15:08.445249Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031075" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Unbekannt","@type":"Person"}],"name":"Aufführungsbesprechung Neustrelitz: \"Der Freischütz\" von Carl Maria von Weber am 12. August 1822 (EA)","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031075","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031075.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><span>Unbekannt</span></li>
-                        <li><span>Schriften</span></li>
-                        <li><span>A031075</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span>Unbekannt</span>
+                        </li>
+                        <li>
+                            <span>Schriften</span>
+                        </li>
+                        <li>
+                            <span>A031075</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,55 +250,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031075.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -291,59 +323,67 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000179" /> <span title="Blume, Heinrich">Blume, Heinrich</span> 
+                                    <input type="checkbox" name="options" value="A009433" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009464" /> <span title="Franz, August">Franz, August</span> 
+                                    <input type="checkbox" name="options" value="A000179" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009433" /> <span title="Georg, Großherzog von Mecklenburg-Strelitz">Georg, Großherzog von Mecklenb…</span> 
+                                    <input type="checkbox" name="options" value="A009307" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000643" /> <span title="Gley, Christine">Gley, Christine</span> 
+                                    <input type="checkbox" name="options" value="A009491" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009307" /> <span title="Maurer, Mad. F.">Maurer, Mad. F.</span> 
+                                    <input type="checkbox" name="options" value="A009526" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009297" /> <span title="Meaubert, Carl">Meaubert, Carl</span> 
+                                    <input type="checkbox" name="options" value="A008687" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009440" /> <span title="Posch, Carl">Posch, Carl</span> 
+                                    <input type="checkbox" name="options" value="A009464" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008687" /> <span title="Schütz, Heinrich">Schütz, Heinrich</span> 
+                                    <input type="checkbox" name="options" value="A009440" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009526" /> <span title="Strenge, Anna">Strenge, Anna</span> 
+                                    <input type="checkbox" name="options" value="A009297" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000643" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009491" /> <span title="Wiele, Johann Peter C.">Wiele, Johann Peter C.</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
+                                    <input type="checkbox" name="options" value="A020040" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
+                                    <input type="checkbox" name="options" value="A020484" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130098" /> <span title="Neustrelitz">Neustrelitz</span> 
+                                    <input type="checkbox" name="options" value="A130098" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -390,50 +430,50 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">Korrespondenz-Nachrichten.</h2><span class="tei_opener"><span class="tei_dateline textAlign-right"><span class="preview places A130098" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130098.html">Neustrelitz</span>, den <span class="tei_date">18. August</span>.</span></span>
-                                        <p>Die Aufführung <span class="tei_hi_spaced_out">des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischützen</span></span> zur Feier
-               des Geburtsfestes unsers allergnädigsten <a class="preview persons A009433" href="/exist/apps/WeGA-WebApp/de/A009433.html">Großherzogs</a> zog eine Schaar von Fremden
+                                        <h2 class="docHeader textAlign-left">Korrespondenz-Nachrichten.</h2><span class="tei_opener"><span class="tei_dateline textAlign-right"><a class="preview places A130098" href="">Neustrelitz</a>, den <span class="tei_date">18. August</span>.</span></span>
+                                        <p>Die Aufführung <span class="tei_hi_spaced_out">des <a class="preview works A020040" href="">Freischützen</a></span> zur Feier
+               des Geburtsfestes unsers allergnädigsten <a class="preview persons A009433" href="">Großherzogs</a> zog eine Schaar von Fremden
                herbei, die Gasthöfe waren überfüllt, die Privathäuser bequartirt und ein reges
-               Leben den ganzen Tag hindurch bemerkbar. <a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Hr. <span class="tei_hi_spaced_out">Blume</span></a>, vom
-               <span class="tei_placeName">Berliner Theater</span>, sollte den <span class="7597115112101114">Kasper</span>, <a class="preview persons A009307" href="/exist/apps/WeGA-WebApp/de/A009307.html">Mad. <span class="tei_hi_spaced_out">Maurer</span></a>, Tänzerin an
+               Leben den ganzen Tag hindurch bemerkbar. <a class="preview persons A000179" href="">Hr. <span class="tei_hi_spaced_out">Blume</span></a>, vom
+               <span class="tei_placeName">Berliner Theater</span>, sollte den <span class="7597115112101114">Kasper</span>, <a class="preview persons A009307" href="">Mad. <span class="tei_hi_spaced_out">Maurer</span></a>, Tänzerin an
                derselben Bühne, die <span class="6510397116104101">Agathe</span>, als Gast, spielen. Das <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> Prachtwerk, der
                bekannte und der unbekannte Gast, waren die unversiegbare Quelle der Unterhaltung.
                Endlich erschien die ersehnte Stunde, und das Haus war überfüllt. Daß die Oper
                ungemeinen Beifall erhielt, bedarf der Erwähnung nicht, noch weniger, daß sie ihn
                verdient, hier nur einiges über die Ausführung derselben. Die Großherzogl. Kapelle
                executirte die schwierige Musik mit Präzision und Geist unter der Leitung des
-               <a class="preview persons A009491" href="/exist/apps/WeGA-WebApp/de/A009491.html">Kapellmeisters <span class="tei_hi_spaced_out">Wiele</span></a>, welcher, trotz den neulich in
+               <a class="preview persons A009491" href="">Kapellmeisters <span class="tei_hi_spaced_out">Wiele</span></a>, welcher, trotz den neulich in
                diesen Blättern auf ihn gemachten animösen Ausfällen,<a class="noteMarker" id="ref-ftn2" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn2">*</a> da steht wie ein Fels im Meere; geniales
                Feuer rinnt in jeder Ader des wackern Meisters, die Battuta wird in seiner Hand zum
                geflügelten Götterstab, und kaum vermögen die minder begeisterten Instrumente und
                Stimmen dem kühnen Flug zu folgen. Die Chöre gingen durchaus rein und gut und
                machten dem Fleiße des mühsamen und einsichtsvollen Chordirektors, <span class="72114110463287101105100110101114">Hrn. <span class="tei_hi_spaced_out">Weidner</span></span>, alle Ehre. 
-               <a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Hr. Blume</a>, war vortrefflich in der Rolle
+               <a class="preview persons A000179" href="">Hr. Blume</a>, war vortrefflich in der Rolle
                des <span class="7597115112101114">Kasper</span>, eine Partie, die ganz für ihn geschaffen ist. 
-               <a class="preview persons A009307" href="/exist/apps/WeGA-WebApp/de/A009307.html">Mad. Maurer</a> versuchte sich
+               <a class="preview persons A009307" href="">Mad. Maurer</a> versuchte sich
                nicht ohne Glück in der Rolle der <span class="6510397116104101">Agathe</span>, sie besitzt neben einer hübschen Gestalt
                eine schöne Stimme, <span class="tei_hi_spaced_out">die</span> besonders in den mittleren und hohen
                Tönen klangvoll ist. Sie sang diese Rolle nicht übel und spielte wie Prima Donnen
-               spielen. – Ein recht liebliches <span class="6511011099104101110">Annchen</span> war <a class="preview persons A009526" href="/exist/apps/WeGA-WebApp/de/A009526.html">Dem. <span class="tei_hi_spaced_out">Strenge</span></a>,
+               spielen. – Ein recht liebliches <span class="6511011099104101110">Annchen</span> war <a class="preview persons A009526" href="">Dem. <span class="tei_hi_spaced_out">Strenge</span></a>,
                welche die Partie präzise mit ihrem hübschen Stimmchen sang und mit Lebendigkeit
-               spielte. – <a class="preview persons A008687" href="/exist/apps/WeGA-WebApp/de/A008687.html">Hr. <span class="tei_hi_spaced_out">Schütz</span></a> sang und spielte den <span class="7797120">Max</span> recht brav.
+               spielte. – <a class="preview persons A008687" href="">Hr. <span class="tei_hi_spaced_out">Schütz</span></a> sang und spielte den <span class="7797120">Max</span> recht brav.
                Die Stimme des wackern Künstlers ist in der Tiefe ein wenig schwach, aber ungemein
                zart und klangvoll in der Höhe, er trug die ganze Partie mit Zartheit und Gefühl
                vor, und spielte die Rolle, wie es den Tenoristen sonst nicht eigen ist, recht gut.
-               – <a class="preview persons A009464" href="/exist/apps/WeGA-WebApp/de/A009464.html">Hr. <span class="tei_hi_spaced_out">Franz</span></a> verdiente gleichfalls als <span class="75117110111">Kuno</span> Lob. 
-               <a class="preview persons A009440" href="/exist/apps/WeGA-WebApp/de/A009440.html">Hr. <span class="tei_hi_spaced_out">Posch</span></a> war ein wenig ungelenkig als <span class="66246104109101110102252114115116">Böhmenfürst</span>. 
-               <a class="preview persons A009297" href="/exist/apps/WeGA-WebApp/de/A009297.html">Hr. Meaubert</a> ergötzlich als <span class="7510510810597110">Kilian</span>.</p>
+               – <a class="preview persons A009464" href="">Hr. <span class="tei_hi_spaced_out">Franz</span></a> verdiente gleichfalls als <span class="75117110111">Kuno</span> Lob. 
+               <a class="preview persons A009440" href="">Hr. <span class="tei_hi_spaced_out">Posch</span></a> war ein wenig ungelenkig als <span class="66246104109101110102252114115116">Böhmenfürst</span>. 
+               <a class="preview persons A009297" href="">Hr. Meaubert</a> ergötzlich als <span class="7510510810597110">Kilian</span>.</p>
                                         <p>Das Stück war prächtig ausgestattet und die Maschinerien
                gingen bis auf einige Kleinigkeiten gut. Gegen die neuen Dekorationen lassen sich
                ebenfalls nur Kleinigkeiten einwenden, so z. B. begreift man nicht, wie das Bild des
                <span class="85114118971161011141153275117110111">Urvaters Kuno</span> der <span class="6510397116104101">Agathe</span> auf den Kopf fallen kann, da es so niedrig hängt, <span class="tei_hi_italic">item</span> kontrastirt die Bretterdecke in <span class="6510397116104101110115">Agathens</span> Zimmer gegen
                die gothischen Gewölbe &amp;c.</p>
-                                        <p><span class="tei_date">Am 14.</span> wurde <span class="tei_hi_spaced_out"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span></span> gegeben. 
-               <a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Hr. Blume</a> gab den <span class="68111110327411797110">Don Juan</span> mit der ihm eigenen Virtuosität. 
-               <a class="preview persons A000643" href="/exist/apps/WeGA-WebApp/de/A000643.html">Mad. Gley</a> sang die <span class="6811111011097326511011097">Donna Anna</span>, 
-               <a class="preview persons A009307" href="/exist/apps/WeGA-WebApp/de/A009307.html">Mad. Maurer</a> die <span class="6910811810511497">Elvira</span>. <a class="preview persons A008687" href="/exist/apps/WeGA-WebApp/de/A008687.html">Hr. Schütz</a> bekundete aufs neue sein Talent in der
-               Partie des <span class="799911697118105111">Octavio</span>. <a class="preview persons A009526" href="/exist/apps/WeGA-WebApp/de/A009526.html">Dem. Strenge</a> war ungemein liebenswürdig als <span class="9010111410810511099104101110">Zerlinchen</span>. 
-               <a class="preview persons A009440" href="/exist/apps/WeGA-WebApp/de/A009440.html">Hrn. Posch</a> schien der eifersüchtige Bräutigam <span class="7797115101116116111">Masetto</span> gar trefflich zuzusagen, er spielte
+                                        <p><span class="tei_date">Am 14.</span> wurde <span class="tei_hi_spaced_out"><a class="preview works A020484" href="">Don Juan</a></span> gegeben. 
+               <a class="preview persons A000179" href="">Hr. Blume</a> gab den <span class="68111110327411797110">Don Juan</span> mit der ihm eigenen Virtuosität. 
+               <a class="preview persons A000643" href="">Mad. Gley</a> sang die <span class="6811111011097326511011097">Donna Anna</span>, 
+               <a class="preview persons A009307" href="">Mad. Maurer</a> die <span class="6910811810511497">Elvira</span>. <a class="preview persons A008687" href="">Hr. Schütz</a> bekundete aufs neue sein Talent in der
+               Partie des <span class="799911697118105111">Octavio</span>. <a class="preview persons A009526" href="">Dem. Strenge</a> war ungemein liebenswürdig als <span class="9010111410810511099104101110">Zerlinchen</span>. 
+               <a class="preview persons A009440" href="">Hrn. Posch</a> schien der eifersüchtige Bräutigam <span class="7797115101116116111">Masetto</span> gar trefflich zuzusagen, er spielte
                ihn <span class="tei_hi_italic">con amore</span>. <span class="76101112111114101108108111">Leporello</span> ließ allein zu wünschen übrig.</p>
                                     </div>
                                 </div>
@@ -480,16 +520,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Freimüthiges Abendblatt</span>, Jg. 4, Nr. 192 (6. September 1822), Sp. 622</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -500,11 +542,11 @@
                                     <ul class="commentary">
                                         <li>
                                             <div class="apparatusEntry" id="ftn2" data-title="note commentary"><span class="tei_lemma">"… auf ihn gemachten animösen Ausfällen,": </span>Vgl. die Glosse auf
-                  <a class="preview persons A009491" href="/exist/apps/WeGA-WebApp/de/A009491.html">Wieles</a> Dirigieren im ungezeichneten Neustrelitzer Korrespondenzbericht
+                  <a class="preview persons A009491" href="">Wieles</a> Dirigieren im ungezeichneten Neustrelitzer Korrespondenzbericht
                   vom <span class="tei_date">28. Februar 1822</span> in: <span class="tei_hi_italic">Freimüthiges Abendblatt</span>,
                   Jg. 4, Nr. 166 (<span class="tei_date">8. März 1822</span>), Sp. 169: „In den beiden ersten
-                  Vorstellungen derselben <span class="tei_supplied" id="d10e67"><span class="brackets_supplied">[</span><a class="preview persons A000198" href="/exist/apps/WeGA-WebApp/de/A000198.html">Boieldeieus</a><span class="tei_hi_italic"><span class="761013211210111610511632991049711210111411111032114111117103101">Le petit chaperon
-                     rouge</span></span><span class="brackets_supplied">]</span></span> dirigirte, bei Abwesenheit des Hrn. Kapellmeisters <span class="tei_hi_spaced_out"><a class="preview persons A009491" href="/exist/apps/WeGA-WebApp/de/A009491.html">Wiele</a></span>, Hr. Kammermusikus 
+                  Vorstellungen derselben <span class="tei_supplied" id="d10e67"><span class="brackets_supplied">[</span><a class="preview persons A000198" href="">Boieldeieus</a><span class="tei_hi_italic"><span class="761013211210111610511632991049711210111411111032114111117103101">Le petit chaperon
+                     rouge</span></span><span class="brackets_supplied">]</span></span> dirigirte, bei Abwesenheit des Hrn. Kapellmeisters <span class="tei_hi_spaced_out"><a class="preview persons A009491" href="">Wiele</a></span>, Hr. Kammermusikus 
                   <span class="tei_hi_spaced_out"><span class="8710110511612210997110110">Weitzmann</span></span> das Orchester, und zeigte sich als ein tüchtiger,
                   ruhiger Dirigent, der weder Pantomime, noch Manual- oder
                   Pedal-Telegraphie zu Hülfe nahm. Wir hörten also bei diesen beiden
@@ -538,9 +580,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031075</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031075</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 14. September 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -606,7 +649,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -626,30 +670,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

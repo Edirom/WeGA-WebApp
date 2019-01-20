@@ -82,7 +82,8 @@ declare function ct:correspDesc($input as element(tei:correspDesc)) as element(t
 
 declare function ct:participant($input as element()) as element() {
     let $id := $input/@key
-    let $gnd := if($id) then query:get-gnd(string($id)) else ()
+    (: no support for multiple keys, e.g. `<rs type="persons" key="A000914 A008040">Jähns, F. W. und Ida</rs>` :)
+    let $gnd := if(string-length($id) = 7) then query:get-gnd(string($id)) else ()
     let $elemName := 
         if(local-name($input) = 'rs') then 'name'
         else local-name($input)

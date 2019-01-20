@@ -1,6 +1,6 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
-        <div class="modal-content">
+        <div class="modal-content" data-template="app-shared:if-not-matches" data-template-key="lang" data-template-value="de">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
                 <h3 class="modal-title" id="myModalLabel">Download options</h3>
@@ -35,6 +35,48 @@
                     NB: This is considered an experimental feature!
                 </p>
                 <p>More information for developers can be found in our <a href="$link/help/apiDocumentation.html" data-template="lang:translate">apiDocumentation</a></p>
+            </div>
+            <!--<div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                                </div>-->
+        </div>
+        <div class="modal-content" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&#215;</span></button>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
+            </div>
+            <div class="modal-body">
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml" data-template="app:download-link" data-template-format="WeGA">WeGA <i class="fa fa-download"/></a></h4>
+                <p>
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="$link/project/editorialGuidelines-text.html">Richtlinien</a> dokumentiert ist.
+                </p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=tei_all" data-template="app:download-link" data-template-format="tei_all">TEI all <i class="fa fa-download"/></a></h4>
+                <p> 
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
+                </p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=tei_all" data-template="app:download-link" data-template-format="tei_simplePrint">TEI simplePrint <i class="fa fa-download"/></a></h4>
+                <p> 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
+                </p>
+                <!--<h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=dta" data-template="app:xml-download-link" data-template-format="dta">DTA Basisformat <i class="fa fa-download"/></a></h4>-->
+                <!--<p> 
+                    The <a href="http://www.deutschestextarchiv.de/doku/basisformat/index.html">DTA Basisformat</a> is a pure TEI subset, originally used for creating the DTA Corpus. 
+                    This customization is rather strict, so not all WeGA concepts can be transformed and this <i>not</i> a lossless transformation. 
+                </p>-->
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.txt" data-template="app:download-link" data-template-format="text">Plain Text <i class="fa fa-download"/></a></h4>
+                <p>
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
+                </p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="$link/help/apiDocumentation.html" data-template="lang:translate">apiDocumentation</a></p>
             </div>
             <!--<div class="modal-footer">
                                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>

@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Charlene Jakob" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-10T20:22:02.829414Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031814" />
         <meta property="dc:description" content="Aufführungsbesprechung" />
         <meta name="description" content="Aufführungsbesprechung" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008803","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008803"}],"name":"Aufführungsbesprechung Prag, Ständetheater, August bis Oktober 1813 (Teil 2/2)","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031814","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A008803/Writings/A031814.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A008803.html">Daniel Gottlieb Quandt</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften">Schriften</a></li>
-                        <li><span>A031814</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span></span>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften">Schriften</a>
+                        </li>
+                        <li>
+                            <span>A031814</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,69 +250,92 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814/backlinks.html">Rückverweise</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814/backlinks.html">Rückverweise</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031814.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
     </div>
 </div>
-                    <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
+                    <div>                       
+                        
+                        <h2>
+                            <a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
+                        </h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">                           
+                                
                             <div id="relatedItems">
                                 <h3>Verknüpfte Dokumente</h3>
                                 <ul>
                                     <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031777.html">Aufführungsbesprechung Prag, Ständetheater, August bis Oktober 1813 (Teil 1/2)</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                 </ul>
                             </div>
@@ -308,67 +346,75 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000018" /> <span title="Allram, Joseph">Allram, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A002351" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000101" /> <span title="Bayer, Franz Rudolph">Bayer, Franz Rudolph</span> 
+                                    <input type="checkbox" name="options" value="A000222" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000222" /> <span title="Brede, Auguste">Brede, Auguste</span> 
+                                    <input type="checkbox" name="options" value="A001193" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000535" /> <span title="Friedrich II., König von Preußen">Friedrich II., König von Preuß…</span> 
+                                    <input type="checkbox" name="options" value="A000101" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002351" /> <span title="Lessing, Gotthold Ephraim">Lessing, Gotthold Ephraim</span> 
+                                    <input type="checkbox" name="options" value="A001500" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001172" /> <span title="Liebich, Johann Carl">Liebich, Johann Carl</span> 
+                                    <input type="checkbox" name="options" value="A001172" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001193" /> <span title="Löwe, Julie Sophie">Löwe, Julie Sophie</span> 
+                                    <input type="checkbox" name="options" value="A000535" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001500" /> <span title="Polawsky, Ferdinand">Polawsky, Ferdinand</span> 
+                                    <input type="checkbox" name="options" value="A001552" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008803" /> <span title="Quandt, Daniel Gottlieb">Quandt, Daniel Gottlieb</span> 
+                                    <input type="checkbox" name="options" value="A000018" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001552" /> <span title="Reinecke, Ludwig">Reinecke, Ludwig</span> 
+                                    <input type="checkbox" name="options" value="A008803" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020895" /> <span title="Der neue Proteus">Der neue Proteus</span> 
+                                    <input type="checkbox" name="options" value="A020743" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A021024" /> <span title="Der verbannte Amor, oder: die argwöhnischen Eheleute">Der verbannte Amor, oder: die …</span> 
+                                    <input type="checkbox" name="options" value="A020597" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020932" /> <span title="Die Hagestolzen">Die Hagestolzen</span> 
+                                    <input type="checkbox" name="options" value="A020987" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020597" /> <span title="Die Piccolomini">Die Piccolomini</span> 
+                                    <input type="checkbox" name="options" value="A020932" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020743" /> <span title="Minna von Barnhelm oder das Soldatenglück">Minna von Barnhelm oder das So…</span> 
+                                    <input type="checkbox" name="options" value="A021024" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020987" /> <span title="Wallensteins Tod">Wallensteins Tod</span> 
+                                    <input type="checkbox" name="options" value="A020895" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130006" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130006" /> <span title="Prag">Prag</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -421,23 +467,23 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><span class="tei_placeName">Ständisches Theater</span> in <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span></span>.</span></h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">(<a class="preview writings A031777" href="/exist/apps/WeGA-WebApp/de/A008803/Schriften/A031777.html">Fortsetzung</a>.)</span></h3>
-                                        <p>Vor allen <span class="tei_hi_spaced_out">neuen</span> Lustspielen, die auf unserer Bühne zeither gegeben wurden, und die nächstens zur Anzeige kommen, verdient die musterhafte Darstellung der <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html">Lessing</a></span>’schen <span class="preview works A020743" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020743.html"><span class="tei_hi_spaced_out">Minna von Barnhelm</span></span> eine Würdigung <a href="#footnote01" id="backref-footnote01" class="fn-ref">1)</a> . — Im Jahre <span class="tei_date">1763</span> verfertigt, erfreut dies klassische Werk schon ein halbes Jahrhundert, bei einer meisterhaften Aufführung, den Freund wahrer dramatischer Charakterdarstellung; unsere neuen Aesthetiker mögen seinen Plan und dessen Ausführung noch so scharf und unpassend an den Maaßstab ihrer Theorie des Lustspiels halten. — Für den Schauspieler ist die Darstellung jeder Rolle in dieser <span class="preview works A020743" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020743.html"><span class="tei_hi_spaced_out">Minna</span></span> — Probirstein des <span class="tei_hi_spaced_out">Künstlers</span>, und eine durchgängig <span class="tei_hi_spaced_out">meisterhafte</span>, wie sie unsere Bühne aufstellt, der sprechende Beweis eines trefflichen Künstlervereins. Denn hier gilt es keine Tiraden, Theatercoups, lokale, satyrische Ausfälle, und alle die Flittern unserer Volksdichter, die oft das Glück eines Stücks machen, und das Spiel des mittelmäßigen Schauspielers in den Augen der Menge glänzend heben: — hier gilt es <span class="tei_hi_spaced_out">wahre Charakterdarstellung</span>. Jeder muß an seinem Platze stehen, jeder ganz das seyn, was der Dichter ihm vorzeichnete – und so war es denn auch auf unserer Bühne.</p>
-                                        <p><a class="preview persons A001193" href="/exist/apps/WeGA-WebApp/de/A001193.html">Mad. <span class="tei_hi_spaced_out">Löwe</span></a> gab die <span class="7710511011097"><span class="tei_hi_spaced_out">Minna</span></span>; — genug, um die seltene Erscheinung <span class="tei_hi_spaced_out">weiblicher Humanität</span>, die einen <span class="84101108108104101105109"><span class="tei_hi_spaced_out">Tellheim</span></span> achten und lieben, und die ein solcher Mann verehren und achten mußte, in dem Spiele dieser Künstlerin ausgeprägt zu sehen. Und diese Schöne des Geistes und Herzens mit dem feinen Anstand und Benehmen verschmolzen, das der gebildeten Künstlerin für <span class="tei_hi_spaced_out">die Dame</span> natürlich geworden ist, vollendet die Darstellung dieses edlen Charakters.</p>
-                                        <p>Die muntere <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span> ist eine Parade- und Debütrolle auch der ungebildetsten Schauspielerin vor einem ungebildeten Publikum. Sie giebt zu viele Versuche <span class="tei_hi_spaced_out">die gemeine Zofe</span> aufzuspielen, als daß die bloße Routinistin dem lockenden Beifalle ihr Ohr entziehen, und des Kenners Lob und Anerkennung verdienen sollte. — <a class="preview persons A000222" href="/exist/apps/WeGA-WebApp/de/A000222.html">Mad. Brede</a> erwarb sich durch die wahre Darstellung dieses Charakters aufs neue den schon oft in <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html"><span class="tei_hi_spaced_out">Leipzig</span></span> <a href="#footnote02" id="backref-footnote02" class="fn-ref">2)</a>  und hier verdienten Kranz der <span class="tei_hi_spaced_out">Künstlerin</span>, denn sie gab uns <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html">Lessings</a> <span class="701149711012210511510797">Franziska</span></span>, die Freundin ihrer Gebieterin, die an ihrer Seite erzogen wurde; und schon<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ihr einfach gewählter Anzug charakterisirte die Gesellschafterin einer Dame; ihr Frohsinn, ihre Laune äußerte sich nicht mit dem Muthwillen einer unter Bedienten herabgestimmten Kammerzofe, sondern mit der Grazie eines wohlerzogenen Mädchens. Sie warf daher <span class="tei_hi_spaced_out">die Bonmots von ehedem</span> so leicht hin, daß sie den Dichter, auf Kosten eines allgemeinen Beifalls, ehrte. Selbst ihr verliebter Scherz mit <span class="tei_hi_spaced_out">dem Wachtmeister</span>, der zuletzt in einen undelicat scheinenden Antrag endet, war so decent gehalten, daß sie sich (und gleichsam dem Dichter) bei den Worten: „<span class="tei_hi_spaced_out">Herr Wachtmeister! braucht er keine Frau Wachtmeisterin?</span>“ — einen <span class="tei_hi_spaced_out">Fächer</span> lieh; ein Zug, der der weiblichen und künstlerischen Delikatesse der Darstellerin gleich viel Ehre machte.</p>
-                                        <p><span class="7797106111114321181111103284101108108104101105109"><span class="tei_hi_spaced_out">Major von Tellheim</span></span> ist eine Rolle, an welcher jeder gewöhnliche <span class="tei_choice"><span class="tei_corr">Charakterrollen-Bearbeiter</span><a class="noteMarker" id="ref-d10e189" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e189">‡</a></span> grundlos scheitert. Denn nur ein gebildeter Geist für moralisches Zartgefühl, unterstützt den Fleiß des Künstlers, die Züge dieses Gemäldes zum Eindruck steter Achtung aufzufassen, und die <span class="tei_hi_spaced_out">eigenwillige Haltung</span>, die ihm der Dichter lieh, in allen Aufwallungen eines reizbaren Blutes, in allen scheinbaren Härten so gemüthlich zu schattiren, daß wir mit Verehrung der Handlungsweise eines festmännlichen Charakters folgen, die sogar das Glück der Liebe den <span class="tei_hi_spaced_out">eigenen</span> Begriffen von Genuß und Dauer desselben zu opfern bereit steht. — <a class="preview persons A000101" href="/exist/apps/WeGA-WebApp/de/A000101.html">Herr <span class="tei_hi_spaced_out">Bayer</span></a> gab uns diese verdienstliche Darstellung – er <span class="tei_hi_spaced_out">war <a class="preview persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html">Lessings</a> <span class="84101108108104101105109">Tellheim</span></span>.</p>
-                                        <p><span class="82105999997117116321001013210897327797114108105110105101114101"><span class="tei_hi_antiqua">Riccaut de la Marliniere</span></span> ist ein <span class="tei_hi_spaced_out">Deutsch-Franzos</span>, wie sie die ältere Bühne zur Belustigung aufzustellen, sich das Recht nicht versagte. War der Schauspieler, dem diese Rolle zu Theil wird, nicht mit dem Geiste der Zeit fortgeschritten; spreitzt er sich zu dem gewaltigen Radebrechen des Deutsch, und zum Stokkiren jedes französischen Wortes wie eine Marionette – so macht er ein Pasquil auf die Nation, die unserer Sprache, selbst in dem unkundigsten Munde <span class="tei_hi_spaced_out">jetzt</span> mehr Recht wiederfahren läßt. – Denn kann gleich der Darsteller die <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html">Lessing</a>’sche</span> Scene nicht wörtlich modernisiren, so vermag sein Bildungsgeist doch eine Charakterskizze aus der Spielerwelt <span class="tei_hi_spaced_out">unserer</span> Bäder, Messen und Carnevals anzudeuten, wenn er sie wie <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Hr. <span class="tei_hi_spaced_out">Polawsky</span></a> mit der Leichtigkeit, Gewandheit und dem hinströmenden Feuer ausstattet, die<span class="tei_pb" title="Seitenumbruch zu S. 11"> | </span> das Spiel dieses Künstlers in allen seinen Darstellungen so anziehend und verdienstlich machen.  – </p>
-                                        <p><a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Hrn. <span class="tei_hi_spaced_out">Liebichs</span></a> <span class="80971171083287101114110101114"><span class="tei_hi_spaced_out">Paul Werner</span></span> ist eine vollendete Darstellung dieses militairischen Biedermanns. Figur, soldatische Haltung und Sprache bezeichnen seine Außenseite so sprechend, und das treu- und edelgesinnte Gemüth des Subaltern gegen seinen Obern, seinen Freund, dem er zweimal das Leben gerettet hat, prägt jedes Wort, jede Miene des Darstellers in so wahren und gemüthlichen Zügen aus, daß wir jedesmal zu seiner Erscheinung mit Achtung und Wohlwollen hingezogen werden. Erwacht nun in dem <span class="tei_hi_spaced_out">alten</span> Kriegsmann (wie <span class="74117115116"><span class="tei_hi_spaced_out">Just</span></span> ihn gegen <span class="84101108108104101105109"><span class="tei_hi_spaced_out">Tellheim</span></span> nennt) der krigerische Geist nach dem Morgenlande zu ziehen, und unter <span class="80114105110122327210111497107108105117115"><span class="tei_hi_spaced_out">Prinz Heraklius</span></span> Fahnen die Türken zu schlagen, so wird er wieder jung; sein Auge blitzt Feuer, wie die Diamanten auf den Säbeln der Türken – er ist ganz Soldat, der unter <a class="preview persons A000535" href="/exist/apps/WeGA-WebApp/de/A000535.html"><span class="tei_hi_spaced_out">Friedrich</span></a> focht und siegte. — Scherzt er dann mit <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span>, so weicht der Knebelbart bei dem Lächeln des Mundes und der heitersten Miene zurück, denn sie ist seinem <span class="7797106111114"><span class="tei_hi_spaced_out">Major</span></span> von Grund des Herzens gut, so will er warten, um mit ihr plaudern zu können; und die schon in sein Herz geschlichene Liebe findet das <span class="tei_hi_spaced_out">Frauenzimmerchen</span> nicht uneben; junge Bekanntschaft wird warm; er schöpft schnell auf seinen lieben <span class="7797106111114">Major</span> Verdacht; es wird ihm kein Bissen schmecken, bis er sich gegen <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span> wegen der Ringe an allen neun Fingern erklärt hat, und dann sein : <span class="tei_hi_spaced_out">Guten Appetit Frauenzimmerchen!</span> mit erleichtertem Herzen wünschen kann. Aeußerst charakteristisch giebt <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Hr. <span class="tei_hi_spaced_out">Liebich</span></a> diese Scenen, so wie die militairischgehaltene Briefbestellung an <span class="7710511011097"><span class="tei_hi_spaced_out">Minna</span></span>, wo sein launigtes: „<span class="tei_hi_spaced_out">Hier nicht Frauenzimmerchen! Es ist wider den Respect, wider die Subordination</span>“ den Uebergang zum steifen „<span class="tei_hi_spaced_out">Gnädiges Fräulein!</span>“ — sehr drollig contrastirt. Und da endlich sich <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span> entschließt, mit ihm nach <span class="tei_placeName"><span class="tei_geogName"><span class="tei_hi_spaced_out">Persien</span></span></span> — wohin er will – zu ziehen, so sind alle seine Wünsche erfüllt; er reicht ihr die Hand zum Bunde, und begeistert führt er die Braut zur Staffel der Ehre, die ihm Heldenmuth schon im Geiste mit dem Wahlspruch seiner tapfern Nation: <span class="tei_hi_spaced_out">Sieg oder Tod!</span> ersteigen läßt. — Tiefer war daher und ergreifender der Eindruck dieser wahren und schönen Darstellung des <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Hrn. <span class="tei_hi_spaced_out">Liebich</span></a>, weil die Zeitverhältnisse dies Bild in Gegenwart so vieler Tapfern der preußischen Nation in den Vordergrund des Interesse stellten, und nach <span class="tei_hi_spaced_out">funfzig Jahren</span> wieder mit frischen Lorbeeren schmückten. —</p>
-                                        <p>Zur Seite steht <span class="74117115116"><span class="tei_hi_spaced_out">Just</span></span>, der an Treue und Liebe gegen seinen Herrn mit <span class="87101114110101114"><span class="tei_hi_spaced_out">Werner</span></span> zu wetteifern strebt, aber freilich die gemeine Natur des gewesenen <span class="tei_hi_spaced_out">Packknechts</span> nicht verläugnen kann. Der Schauspieler hat<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> daher Verdienst um diese Rolle, wenn er wie <a class="preview persons A001552" href="/exist/apps/WeGA-WebApp/de/A001552.html">Herr <span class="tei_hi_spaced_out">Reinecke</span></a> jene Roheit, soviel als möglich ist, verwischt, und die achtungswerthen Züge des Charakters in ein desto helleres Licht setzt. Schon durch sein Aeußeres imponirt dieser <span class="74117115116"><span class="tei_hi_spaced_out">Just</span></span>, denn ihm sehen wir es wohl an, daß er <span class="tei_hi_spaced_out">Reiter</span> ist, dem der <span class="7797106111114"><span class="tei_hi_spaced_out">Major</span></span> seinen Stall anvertrauen kann. Aber wir hören auch das treue Gemüth sich im Unwillen gegen <span class="87105114116104">Wirth</span> und Kammermädchen, im gekränkten Sinne scheinbaren Verdachtes wegen, kräftig aussprechen. Sehr wahr und ergreifend giebt <a class="preview persons A001552" href="/exist/apps/WeGA-WebApp/de/A001552.html">Hr. R.</a> die Erzählung vom Budel, und den begeisterten Uebergang zu dem: „<span class="tei_hi_spaced_out">Ich bin ein Bedienter, der – wenn das Schlimmste zum Schlimmen kommt – für seinen Herrn betteln und stehlen kann</span>.“ —</p>
-                                        <p>Den <span class="87105114116104"><span class="tei_hi_spaced_out">Wirth</span></span> gab unser braver Komiker <a class="preview persons A000018" href="/exist/apps/WeGA-WebApp/de/A000018.html">Herr <span class="tei_hi_spaced_out">Allram</span></a>. — Die komische Muse hat diesen Schauspieler schon an seiner Wiege mit ihren Gaben beschenkt, und musterhafter Fleiß hat diese Talente so mannigfaltig ausgebildet, daß er nun seit einer Reihe von Jahren das hiesige <span class="tei_choice"><span class="tei_corr">Publikum</span><a class="noteMarker" id="ref-d10e382" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e382">‡</a></span> durch sein Spiel erheitert, und sich immer in neuen Gestalten darstellt. Er ist ganz Herr der Bühne und seiner Rolle. Dies bewahrt ihn vor dem Extemporiren und Manieriren jener unsichern Darsteller, die die Lücken ihrer Reden, die sie vom Einsager ausgefüllt erwarten, einstweilen durch eigne Späschen und Grimassen maskiren müssen. — Läßt jedoch <a class="preview persons A000018" href="/exist/apps/WeGA-WebApp/de/A000018.html">Hr. A.</a> in niedrigkomischen Rollen seiner sprudelnden Laune den Zügel schießen, so möchte er wohl das Zwergfell des düstersten Hypochonders zu erschüttern vermögen. — <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html">Lessings</a> <span class="87105114116104">Wirth</span></span> gab er mit den sprechenden Zügen der Neugierde, des Eigennutzes, in der <span class="tei_choice"><span class="tei_corr">schleichenden</span><a class="noteMarker" id="ref-d10e399" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e399">‡</a></span>, kriechenden Maske, die ihm der Dichter geliehen hat. — Die Nebenrollen griffen mit Fleiß in das Ganze ein, und Referent hat sich – gewiß mit jedem Freunde der <a class="preview persons A002351" href="/exist/apps/WeGA-WebApp/de/A002351.html"><span class="tei_hi_spaced_out">Lessing</span></a>’schen Muse – seit langer Zeit an keiner so vollendeten Darstellung erfreut, als an dieser.</p>
-                                        <p><span class="tei_segBlock textAlign-right"><a class="preview persons A008803" href="/exist/apps/WeGA-WebApp/de/A008803.html">Qdt</a>.</span></p>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out"><span class="tei_placeName">Ständisches Theater</span> in <a class="preview places A130006" href="">Prag</a></span>.</span></h2>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">(<a class="preview writings A031777" href="">Fortsetzung</a>.)</span></h3>
+                                        <p>Vor allen <span class="tei_hi_spaced_out">neuen</span> Lustspielen, die auf unserer Bühne zeither gegeben wurden, und die nächstens zur Anzeige kommen, verdient die musterhafte Darstellung der <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="">Lessing</a></span>’schen <a class="preview works A020743" href=""><span class="tei_hi_spaced_out">Minna von Barnhelm</span></a> eine Würdigung <a href="#footnote01" id="backref-footnote01" class="fn-ref">1)</a> . — Im Jahre <span class="tei_date">1763</span> verfertigt, erfreut dies klassische Werk schon ein halbes Jahrhundert, bei einer meisterhaften Aufführung, den Freund wahrer dramatischer Charakterdarstellung; unsere neuen Aesthetiker mögen seinen Plan und dessen Ausführung noch so scharf und unpassend an den Maaßstab ihrer Theorie des Lustspiels halten. — Für den Schauspieler ist die Darstellung jeder Rolle in dieser <a class="preview works A020743" href=""><span class="tei_hi_spaced_out">Minna</span></a> — Probirstein des <span class="tei_hi_spaced_out">Künstlers</span>, und eine durchgängig <span class="tei_hi_spaced_out">meisterhafte</span>, wie sie unsere Bühne aufstellt, der sprechende Beweis eines trefflichen Künstlervereins. Denn hier gilt es keine Tiraden, Theatercoups, lokale, satyrische Ausfälle, und alle die Flittern unserer Volksdichter, die oft das Glück eines Stücks machen, und das Spiel des mittelmäßigen Schauspielers in den Augen der Menge glänzend heben: — hier gilt es <span class="tei_hi_spaced_out">wahre Charakterdarstellung</span>. Jeder muß an seinem Platze stehen, jeder ganz das seyn, was der Dichter ihm vorzeichnete – und so war es denn auch auf unserer Bühne.</p>
+                                        <p><a class="preview persons A001193" href="">Mad. <span class="tei_hi_spaced_out">Löwe</span></a> gab die <span class="7710511011097"><span class="tei_hi_spaced_out">Minna</span></span>; — genug, um die seltene Erscheinung <span class="tei_hi_spaced_out">weiblicher Humanität</span>, die einen <span class="84101108108104101105109"><span class="tei_hi_spaced_out">Tellheim</span></span> achten und lieben, und die ein solcher Mann verehren und achten mußte, in dem Spiele dieser Künstlerin ausgeprägt zu sehen. Und diese Schöne des Geistes und Herzens mit dem feinen Anstand und Benehmen verschmolzen, das der gebildeten Künstlerin für <span class="tei_hi_spaced_out">die Dame</span> natürlich geworden ist, vollendet die Darstellung dieses edlen Charakters.</p>
+                                        <p>Die muntere <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span> ist eine Parade- und Debütrolle auch der ungebildetsten Schauspielerin vor einem ungebildeten Publikum. Sie giebt zu viele Versuche <span class="tei_hi_spaced_out">die gemeine Zofe</span> aufzuspielen, als daß die bloße Routinistin dem lockenden Beifalle ihr Ohr entziehen, und des Kenners Lob und Anerkennung verdienen sollte. — <a class="preview persons A000222" href="">Mad. Brede</a> erwarb sich durch die wahre Darstellung dieses Charakters aufs neue den schon oft in <a class="preview places A130005" href=""><span class="tei_hi_spaced_out">Leipzig</span></a> <a href="#footnote02" id="backref-footnote02" class="fn-ref">2)</a>  und hier verdienten Kranz der <span class="tei_hi_spaced_out">Künstlerin</span>, denn sie gab uns <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="">Lessings</a> <span class="701149711012210511510797">Franziska</span></span>, die Freundin ihrer Gebieterin, die an ihrer Seite erzogen wurde; und schon<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ihr einfach gewählter Anzug charakterisirte die Gesellschafterin einer Dame; ihr Frohsinn, ihre Laune äußerte sich nicht mit dem Muthwillen einer unter Bedienten herabgestimmten Kammerzofe, sondern mit der Grazie eines wohlerzogenen Mädchens. Sie warf daher <span class="tei_hi_spaced_out">die Bonmots von ehedem</span> so leicht hin, daß sie den Dichter, auf Kosten eines allgemeinen Beifalls, ehrte. Selbst ihr verliebter Scherz mit <span class="tei_hi_spaced_out">dem Wachtmeister</span>, der zuletzt in einen undelicat scheinenden Antrag endet, war so decent gehalten, daß sie sich (und gleichsam dem Dichter) bei den Worten: „<span class="tei_hi_spaced_out">Herr Wachtmeister! braucht er keine Frau Wachtmeisterin?</span>“ — einen <span class="tei_hi_spaced_out">Fächer</span> lieh; ein Zug, der der weiblichen und künstlerischen Delikatesse der Darstellerin gleich viel Ehre machte.</p>
+                                        <p><span class="7797106111114321181111103284101108108104101105109"><span class="tei_hi_spaced_out">Major von Tellheim</span></span> ist eine Rolle, an welcher jeder gewöhnliche <span class="tei_choice"><span class="tei_corr">Charakterrollen-Bearbeiter</span><a class="noteMarker" id="ref-d10e189" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e189">‡</a></span> grundlos scheitert. Denn nur ein gebildeter Geist für moralisches Zartgefühl, unterstützt den Fleiß des Künstlers, die Züge dieses Gemäldes zum Eindruck steter Achtung aufzufassen, und die <span class="tei_hi_spaced_out">eigenwillige Haltung</span>, die ihm der Dichter lieh, in allen Aufwallungen eines reizbaren Blutes, in allen scheinbaren Härten so gemüthlich zu schattiren, daß wir mit Verehrung der Handlungsweise eines festmännlichen Charakters folgen, die sogar das Glück der Liebe den <span class="tei_hi_spaced_out">eigenen</span> Begriffen von Genuß und Dauer desselben zu opfern bereit steht. — <a class="preview persons A000101" href="">Herr <span class="tei_hi_spaced_out">Bayer</span></a> gab uns diese verdienstliche Darstellung – er <span class="tei_hi_spaced_out">war <a class="preview persons A002351" href="">Lessings</a> <span class="84101108108104101105109">Tellheim</span></span>.</p>
+                                        <p><span class="82105999997117116321001013210897327797114108105110105101114101"><span class="tei_hi_antiqua">Riccaut de la Marliniere</span></span> ist ein <span class="tei_hi_spaced_out">Deutsch-Franzos</span>, wie sie die ältere Bühne zur Belustigung aufzustellen, sich das Recht nicht versagte. War der Schauspieler, dem diese Rolle zu Theil wird, nicht mit dem Geiste der Zeit fortgeschritten; spreitzt er sich zu dem gewaltigen Radebrechen des Deutsch, und zum Stokkiren jedes französischen Wortes wie eine Marionette – so macht er ein Pasquil auf die Nation, die unserer Sprache, selbst in dem unkundigsten Munde <span class="tei_hi_spaced_out">jetzt</span> mehr Recht wiederfahren läßt. – Denn kann gleich der Darsteller die <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="">Lessing</a>’sche</span> Scene nicht wörtlich modernisiren, so vermag sein Bildungsgeist doch eine Charakterskizze aus der Spielerwelt <span class="tei_hi_spaced_out">unserer</span> Bäder, Messen und Carnevals anzudeuten, wenn er sie wie <a class="preview persons A001500" href="">Hr. <span class="tei_hi_spaced_out">Polawsky</span></a> mit der Leichtigkeit, Gewandheit und dem hinströmenden Feuer ausstattet, die<span class="tei_pb" title="Seitenumbruch zu S. 11"> | </span> das Spiel dieses Künstlers in allen seinen Darstellungen so anziehend und verdienstlich machen.  – </p>
+                                        <p><a class="preview persons A001172" href="">Hrn. <span class="tei_hi_spaced_out">Liebichs</span></a> <span class="80971171083287101114110101114"><span class="tei_hi_spaced_out">Paul Werner</span></span> ist eine vollendete Darstellung dieses militairischen Biedermanns. Figur, soldatische Haltung und Sprache bezeichnen seine Außenseite so sprechend, und das treu- und edelgesinnte Gemüth des Subaltern gegen seinen Obern, seinen Freund, dem er zweimal das Leben gerettet hat, prägt jedes Wort, jede Miene des Darstellers in so wahren und gemüthlichen Zügen aus, daß wir jedesmal zu seiner Erscheinung mit Achtung und Wohlwollen hingezogen werden. Erwacht nun in dem <span class="tei_hi_spaced_out">alten</span> Kriegsmann (wie <span class="74117115116"><span class="tei_hi_spaced_out">Just</span></span> ihn gegen <span class="84101108108104101105109"><span class="tei_hi_spaced_out">Tellheim</span></span> nennt) der krigerische Geist nach dem Morgenlande zu ziehen, und unter <span class="80114105110122327210111497107108105117115"><span class="tei_hi_spaced_out">Prinz Heraklius</span></span> Fahnen die Türken zu schlagen, so wird er wieder jung; sein Auge blitzt Feuer, wie die Diamanten auf den Säbeln der Türken – er ist ganz Soldat, der unter <a class="preview persons A000535" href=""><span class="tei_hi_spaced_out">Friedrich</span></a> focht und siegte. — Scherzt er dann mit <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span>, so weicht der Knebelbart bei dem Lächeln des Mundes und der heitersten Miene zurück, denn sie ist seinem <span class="7797106111114"><span class="tei_hi_spaced_out">Major</span></span> von Grund des Herzens gut, so will er warten, um mit ihr plaudern zu können; und die schon in sein Herz geschlichene Liebe findet das <span class="tei_hi_spaced_out">Frauenzimmerchen</span> nicht uneben; junge Bekanntschaft wird warm; er schöpft schnell auf seinen lieben <span class="7797106111114">Major</span> Verdacht; es wird ihm kein Bissen schmecken, bis er sich gegen <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span> wegen der Ringe an allen neun Fingern erklärt hat, und dann sein : <span class="tei_hi_spaced_out">Guten Appetit Frauenzimmerchen!</span> mit erleichtertem Herzen wünschen kann. Aeußerst charakteristisch giebt <a class="preview persons A001172" href="">Hr. <span class="tei_hi_spaced_out">Liebich</span></a> diese Scenen, so wie die militairischgehaltene Briefbestellung an <span class="7710511011097"><span class="tei_hi_spaced_out">Minna</span></span>, wo sein launigtes: „<span class="tei_hi_spaced_out">Hier nicht Frauenzimmerchen! Es ist wider den Respect, wider die Subordination</span>“ den Uebergang zum steifen „<span class="tei_hi_spaced_out">Gnädiges Fräulein!</span>“ — sehr drollig contrastirt. Und da endlich sich <span class="701149711012210511510797"><span class="tei_hi_spaced_out">Franziska</span></span> entschließt, mit ihm nach <span class="tei_placeName"><span class="tei_geogName"><span class="tei_hi_spaced_out">Persien</span></span></span> — wohin er will – zu ziehen, so sind alle seine Wünsche erfüllt; er reicht ihr die Hand zum Bunde, und begeistert führt er die Braut zur Staffel der Ehre, die ihm Heldenmuth schon im Geiste mit dem Wahlspruch seiner tapfern Nation: <span class="tei_hi_spaced_out">Sieg oder Tod!</span> ersteigen läßt. — Tiefer war daher und ergreifender der Eindruck dieser wahren und schönen Darstellung des <a class="preview persons A001172" href="">Hrn. <span class="tei_hi_spaced_out">Liebich</span></a>, weil die Zeitverhältnisse dies Bild in Gegenwart so vieler Tapfern der preußischen Nation in den Vordergrund des Interesse stellten, und nach <span class="tei_hi_spaced_out">funfzig Jahren</span> wieder mit frischen Lorbeeren schmückten. —</p>
+                                        <p>Zur Seite steht <span class="74117115116"><span class="tei_hi_spaced_out">Just</span></span>, der an Treue und Liebe gegen seinen Herrn mit <span class="87101114110101114"><span class="tei_hi_spaced_out">Werner</span></span> zu wetteifern strebt, aber freilich die gemeine Natur des gewesenen <span class="tei_hi_spaced_out">Packknechts</span> nicht verläugnen kann. Der Schauspieler hat<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> daher Verdienst um diese Rolle, wenn er wie <a class="preview persons A001552" href="">Herr <span class="tei_hi_spaced_out">Reinecke</span></a> jene Roheit, soviel als möglich ist, verwischt, und die achtungswerthen Züge des Charakters in ein desto helleres Licht setzt. Schon durch sein Aeußeres imponirt dieser <span class="74117115116"><span class="tei_hi_spaced_out">Just</span></span>, denn ihm sehen wir es wohl an, daß er <span class="tei_hi_spaced_out">Reiter</span> ist, dem der <span class="7797106111114"><span class="tei_hi_spaced_out">Major</span></span> seinen Stall anvertrauen kann. Aber wir hören auch das treue Gemüth sich im Unwillen gegen <span class="87105114116104">Wirth</span> und Kammermädchen, im gekränkten Sinne scheinbaren Verdachtes wegen, kräftig aussprechen. Sehr wahr und ergreifend giebt <a class="preview persons A001552" href="">Hr. R.</a> die Erzählung vom Budel, und den begeisterten Uebergang zu dem: „<span class="tei_hi_spaced_out">Ich bin ein Bedienter, der – wenn das Schlimmste zum Schlimmen kommt – für seinen Herrn betteln und stehlen kann</span>.“ —</p>
+                                        <p>Den <span class="87105114116104"><span class="tei_hi_spaced_out">Wirth</span></span> gab unser braver Komiker <a class="preview persons A000018" href="">Herr <span class="tei_hi_spaced_out">Allram</span></a>. — Die komische Muse hat diesen Schauspieler schon an seiner Wiege mit ihren Gaben beschenkt, und musterhafter Fleiß hat diese Talente so mannigfaltig ausgebildet, daß er nun seit einer Reihe von Jahren das hiesige <span class="tei_choice"><span class="tei_corr">Publikum</span><a class="noteMarker" id="ref-d10e382" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e382">‡</a></span> durch sein Spiel erheitert, und sich immer in neuen Gestalten darstellt. Er ist ganz Herr der Bühne und seiner Rolle. Dies bewahrt ihn vor dem Extemporiren und Manieriren jener unsichern Darsteller, die die Lücken ihrer Reden, die sie vom Einsager ausgefüllt erwarten, einstweilen durch eigne Späschen und Grimassen maskiren müssen. — Läßt jedoch <a class="preview persons A000018" href="">Hr. A.</a> in niedrigkomischen Rollen seiner sprudelnden Laune den Zügel schießen, so möchte er wohl das Zwergfell des düstersten Hypochonders zu erschüttern vermögen. — <span class="tei_hi_spaced_out"><a class="preview persons A002351" href="">Lessings</a> <span class="87105114116104">Wirth</span></span> gab er mit den sprechenden Zügen der Neugierde, des Eigennutzes, in der <span class="tei_choice"><span class="tei_corr">schleichenden</span><a class="noteMarker" id="ref-d10e399" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e399">‡</a></span>, kriechenden Maske, die ihm der Dichter geliehen hat. — Die Nebenrollen griffen mit Fleiß in das Ganze ein, und Referent hat sich – gewiß mit jedem Freunde der <a class="preview persons A002351" href=""><span class="tei_hi_spaced_out">Lessing</span></a>’schen Muse – seit langer Zeit an keiner so vollendeten Darstellung erfreut, als an dieser.</p>
+                                        <p><span class="tei_segBlock textAlign-right"><a class="preview persons A008803" href="">Qdt</a>.</span></p>
                                     </div>
                                     <div id="endNotes">
                                         <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>1) Sie wurde schon im <span class="tei_date">September</span>, und zum Benefiz der <a class="preview persons A000222" href="/exist/apps/WeGA-WebApp/de/A000222.html">Mad. <span class="tei_hi_spaced_out">Brede</span></a>, am <span class="tei_date">10. November</span>, bei vollem Hause gegeben. Die Künstlerin wurde nach dem Stück hervorgerufen.</li>
-                                            <li id="footnote02"><a href="#backref-footnote02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>2) wo sie als <span class="779711410597328311611797114116"><span class="tei_hi_spaced_out">Maria Stuart</span></span>, <span class="76971001213277105108102111114100"><span class="tei_hi_spaced_out">Lady Milford</span></span>, <span class="711142281021051103284101114122107121"><span class="tei_hi_spaced_out">Gräfin Terzky</span></span> <span class="tei_hi_spaced_out">in <span class="preview works A020597 A020987" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020597.html /exist/apps/WeGA-WebApp/de/A007979/Werke/A020987.html">Wallenstein</span>, <span class="779711410397114101116104101">Margarethe</span></span> in <span class="tei_hi_spaced_out">den <span class="preview works A020932" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020932.html">Hagestolzen</span>, <span class="6722811597114105111">Cäsario</span>, <span class="80114111102101115115111114105110">Professorin</span></span> im <span class="tei_hi_spaced_out"><span class="preview works A021024" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021024.html">verbannten Amor</span>, <span class="691091099732118111110328310110811697117">Emma von Seltau</span></span> im <span class="tei_hi_spaced_out"><span class="preview works A020895" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020895.html">neuen Proteus</span>, <span class="7710510797">Mika</span></span> in der <span class="tei_hi_spaced_out"><span class="6610111511646321181111103283109111108101110115107">Best. von Smolensk</span> u. a. m.</span> den Freunden der Bühne unvergeßlich bleibt.</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>1) Sie wurde schon im <span class="tei_date">September</span>, und zum Benefiz der <a class="preview persons A000222" href="">Mad. <span class="tei_hi_spaced_out">Brede</span></a>, am <span class="tei_date">10. November</span>, bei vollem Hause gegeben. Die Künstlerin wurde nach dem Stück hervorgerufen.</li>
+                                            <li id="footnote02"><a href="#backref-footnote02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>2) wo sie als <span class="779711410597328311611797114116"><span class="tei_hi_spaced_out">Maria Stuart</span></span>, <span class="76971001213277105108102111114100"><span class="tei_hi_spaced_out">Lady Milford</span></span>, <span class="711142281021051103284101114122107121"><span class="tei_hi_spaced_out">Gräfin Terzky</span></span> <span class="tei_hi_spaced_out">in <span class="preview works A020597 A020987" data-ref=" ">Wallenstein</span>, <span class="779711410397114101116104101">Margarethe</span></span> in <span class="tei_hi_spaced_out">den <a class="preview works A020932" href="">Hagestolzen</a>, <span class="6722811597114105111">Cäsario</span>, <span class="80114111102101115115111114105110">Professorin</span></span> im <span class="tei_hi_spaced_out"><a class="preview works A021024" href="">verbannten Amor</a>, <span class="691091099732118111110328310110811697117">Emma von Seltau</span></span> im <span class="tei_hi_spaced_out"><a class="preview works A020895" href="">neuen Proteus</a>, <span class="7710510797">Mika</span></span> in der <span class="tei_hi_spaced_out"><span class="6610111511646321181111103283109111108101110115107">Best. von Smolensk</span> u. a. m.</span> den Freunden der Bühne unvergeßlich bleibt.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -484,16 +530,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Allgemeiner Deutscher Theater-Anzeiger</span>, Jg. 4 (1814), Nr. 3 (Fortsetzung zu Jg. 3.1813), S. 10–11</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -533,9 +581,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031814</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031814</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2018 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -601,7 +650,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -621,30 +671,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

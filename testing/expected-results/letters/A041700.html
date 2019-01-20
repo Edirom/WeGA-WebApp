@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-09-15T05:43:09.116327Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041700" />
         <meta property="dc:description" content="übersendet Freischütz-Textbuch, das er abzuschreiben u. umgehend zurückzusenden bittet, da er es bei der Zensur einreichen wolle; mit Angabe der Rollenbesetzung;" />
         <meta name="description" content="übersendet Freischütz-Textbuch, das er abzuschreiben u. umgehend zurückzusenden bittet, da er es bei der Zensur einreichen wolle; mit Angabe der Rollenbesetzung;" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/css/cslink.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001355","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001355"}],"name":"Ignaz Franz Edler von Mosel an unbekannt. Wien, 7. September 1821","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041700","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"übersendet Freischütz-Textbuch, das er abzuschreiben u. umgehend zurückzusenden bittet, da er es bei der Zensur einreichen wolle; mit Angabe der Rollenbesetzung;"}</script>
+
 
     </head>
     <body>
@@ -192,7 +193,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A001355/Correspondence/A041700.html" hreflang="en" lang="en">En</a></li>
@@ -218,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A001355.html">Ignaz Franz Edler von Mosel</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz">Korrespondenz</a></li>
-                        <li><span>A041700</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span></span>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz">Korrespondenz</a>
+                        </li>
+                        <li>
+                            <span>A041700</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -237,63 +250,88 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041700.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
     </div>
 </div>
-                    <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
+                    <div>                       
+                        
+                        <h2>
+                            <a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
+                        </h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">                           
+                                <div>                                
+                                <div id="csLink" data-correspondent-1-id="" data-correspondent-1-name="" data-correspondent-2-id="" data-correspondent-2-name="" data-start-date="1821-09-07" data-end-date="1821-09-07" data-range="30" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#WEGA"></div>
+                                <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/js/cslink.js"></script>
+                                <h2></h2>
+                            </div>
                             
                             <div>
                                 
@@ -301,20 +339,12 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="persons">Weber, Carl Maria von</a>
-                                       </li>
-                                            <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041776.html">1821-08-24</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="persons">Weber, Carl Maria von</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041429.html">1818-07-05</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="persons">Weber, Carl Maria von</a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
-                                       <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041701.html">1821-11-30</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A001980.html" class="persons">Treitschke, Georg Friedrich</a>
-                                       </li>
-                                            <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A000966/Korrespondenz/A041691.html">1821-09-26</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000966.html" class="persons">Kannegießer, Karl Friedrich Ludwig</a>
-                                       </li>
+                                       
                                    </ul>
                                 
                                 
@@ -322,49 +352,55 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000386" /> <span title="Dietrichstein, Moritz von">Dietrichstein, Moritz von</span> 
+                                    <input type="checkbox" name="options" value="A002094" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000511" /> <span title="Forti, Franz Anton">Forti, Franz Anton</span> 
+                                    <input type="checkbox" name="options" value="A000386" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000660" /> <span title="Gottdank, Joseph">Gottdank, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A002024" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001029" /> <span title="Kneisel, Thekla">Kneisel, Thekla</span> 
+                                    <input type="checkbox" name="options" value="A002102" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001355" /> <span title="Mosel, Ignaz Franz Edler von">Mosel, Ignaz Franz Edler von</span> 
+                                    <input type="checkbox" name="options" value="A001747" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001614" /> <span title="Rosner, Franz">Rosner, Franz</span> 
+                                    <input type="checkbox" name="options" value="A001029" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001747" /> <span title="Schröder-Devrient, Wilhelmine">Schröder-Devrient, Wilhelmine</span> 
+                                    <input type="checkbox" name="options" value="A000511" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002024" /> <span title="Vogl, Johann Michael">Vogl, Johann Michael</span> 
+                                    <input type="checkbox" name="options" value="A001614" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002094" /> <span title="Weigl, Joseph">Weigl, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A002100" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002100" /> <span title="Weinkopf, Johann Michael">Weinkopf, Johann Michael</span> 
+                                    <input type="checkbox" name="options" value="A002192" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002102" /> <span title="Weinmüller, Carl">Weinmüller, Carl</span> 
+                                    <input type="checkbox" name="options" value="A000660" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002192" /> <span title="Zeltner, Leopold">Zeltner, Leopold</span> 
+                                    <input type="checkbox" name="options" value="A001355" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
+                                    <input type="checkbox" name="options" value="A020040" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -382,7 +418,7 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="7797120" /> <span title="Max">Max</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="821051161161011143272971101156363637211710311132118111110328710110510010111010211111411511687101105100101110104111114115116" /> <span title="Ritter Hans???Hugo von WeidenforstWeidenhorst">Ritter Hans???Hugo von Weidenf…</span> 
+                                    <input type="checkbox" name="options" value="821051161161011143272971101156363637211710311132118111110328710110510010111010211111411511687101105100101110104111114115116" /> <span title="Ritter Hans???Hugo von WeidenforstWeidenhorst">Ritter Hans???Hugo von WeidenforstWeidenhorst</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="8397109105101108" /> <span title="Samiel">Samiel</span> 
                                 </label>
@@ -401,20 +437,20 @@
                                             <p class="teiLetter_salute">Wohlgeborener<a class="noteMarker" id="ref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>!</p>
                                         </div>
                                         <p>
-               Ich übersende Ihnen beiliegendes Manuscript<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a> mit dem Ersuchen, es, nach den darin gemachten Abänderungen, in <span class="tei_hi_underline2andMore">größter Eile</span>  abschreiben zu lassen, und mir es alsdann unverweilt zurück zu stellen, damit ich es zur Cenzur geben kann. Herr Operndirector <a class="preview persons A002094" href="/exist/apps/WeGA-WebApp/de/A002094.html">Weigl</a> möchte <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">die Partitur</span> bei mir im Bureau abholen lassen, und das Ausschreiben der Stimmen ungesäumt veranlaßen. Die Zeit drängt, wir dürfen keine verlieren<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>.
-               Die von <a class="preview persons A000386" href="/exist/apps/WeGA-WebApp/de/A000386.html">Sr. Exellenz</a> genehmigte Rollen-Austheilung ist folgende:</p>
-                                        <p><span class="tei_hi_underline1"><span class="821051161161011143272971101156363637211710311132118111110328710110510010111010211111411511687101105100101110104111114115116">Ritter <span class="tei_choice"><span class="tei_corr">Hugo</span><a class="noteMarker" id="ref-d10e44" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e44">‡</a></span> von <span class="tei_choice"><span class="tei_corr">Weidenhorst</span><a class="noteMarker" id="ref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">‡</a></span></span></span>	– <a class="preview persons A002024" href="/exist/apps/WeGA-WebApp/de/A002024.html">Hr Vogl</a></p>
-                                        <p><span class="tei_hi_underline1"><span class="67117110111">Cuno</span></span>, Erbförster				– "  <a class="preview persons A002102" href="/exist/apps/WeGA-WebApp/de/A002102.html">Weinmüller</a></p>
-                                        <p><span class="tei_hi_underline1"><span class="6510397116104101">Agathe</span></span>						– Dlle <a class="preview persons A001747" href="/exist/apps/WeGA-WebApp/de/A001747.html">Mina Schröder</a></p>
-                                        <p><span class="tei_hi_underline1"><span class="19611011099104101110">Ännchen</span></span>						–  "   <a class="preview persons A001029" href="/exist/apps/WeGA-WebApp/de/A001029.html">Tecla Demmer</a></p>
-                                        <p><span class="tei_hi_underline1"><span class="679711511297114">Caspar</span></span>, erster   Jägergenosse		- <a class="preview persons A000511" href="/exist/apps/WeGA-WebApp/de/A000511.html">Hr Forti</a></p>
-                                        <p><span class="tei_hi_underline1"><span class="7797120">Max</span></span>, zweyter   				– "  <a class="preview persons A001614" href="/exist/apps/WeGA-WebApp/de/A001614.html">Rosner</a></p>
-                                        <p><span class="tei_hi_underline1"><span class="8397109105101108">Samiel</span></span>, der schwarze Jäger		– "  <a class="preview persons A002100" href="/exist/apps/WeGA-WebApp/de/A002100.html">Weinkopf</a></p>
-                                        <p><span class="tei_hi_underline1">Ein <span class="6710897117115110101114">Clausner</span></span>					– "  <a class="preview persons A002192" href="/exist/apps/WeGA-WebApp/de/A002192.html">Zeltner</a></p>
-                                        <p><span class="tei_hi_underline1"><span class="7510510810597110">Kilian</span></span>, ein reicher Bauer		– "  <a class="preview persons A000660" href="/exist/apps/WeGA-WebApp/de/A000660.html">Gottdank</a></p>
+               Ich übersende Ihnen beiliegendes Manuscript<a class="noteMarker" id="ref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a> mit dem Ersuchen, es, nach den darin gemachten Abänderungen, in <span class="tei_hi_underline2andMore">größter Eile</span>  abschreiben zu lassen, und mir es alsdann unverweilt zurück zu stellen, damit ich es zur Cenzur geben kann. Herr Operndirector <a class="preview persons A002094" href="">Weigl</a> möchte <a class="preview works A020040" href="">die Partitur</a> bei mir im Bureau abholen lassen, und das Ausschreiben der Stimmen ungesäumt veranlaßen. Die Zeit drängt, wir dürfen keine verlieren<a class="noteMarker" id="ref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>.
+               Die von <a class="preview persons A000386" href="">Sr. Exellenz</a> genehmigte Rollen-Austheilung ist folgende:</p>
+                                        <p><span class="tei_hi_underline1"><span class="821051161161011143272971101156363637211710311132118111110328710110510010111010211111411511687101105100101110104111114115116">Ritter <span class="tei_choice"><span class="tei_corr">Hugo</span><a class="noteMarker" id="ref-d10e44" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e44">‡</a></span> von <span class="tei_choice"><span class="tei_corr">Weidenhorst</span><a class="noteMarker" id="ref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">‡</a></span></span></span>	– <a class="preview persons A002024" href="">Hr Vogl</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="67117110111">Cuno</span></span>, Erbförster				– "  <a class="preview persons A002102" href="">Weinmüller</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="6510397116104101">Agathe</span></span>						– Dlle <a class="preview persons A001747" href="">Mina Schröder</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="19611011099104101110">Ännchen</span></span>						–  "   <a class="preview persons A001029" href="">Tecla Demmer</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="679711511297114">Caspar</span></span>, erster   Jägergenosse – <a class="preview persons A000511" href="">Hr Forti</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="7797120">Max</span></span>, zweyter   				– "  <a class="preview persons A001614" href="">Rosner</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="8397109105101108">Samiel</span></span>, der schwarze Jäger		– "  <a class="preview persons A002100" href="">Weinkopf</a></p>
+                                        <p><span class="tei_hi_underline1">Ein <span class="6710897117115110101114">Clausner</span></span>					– "  <a class="preview persons A002192" href="">Zeltner</a></p>
+                                        <p><span class="tei_hi_underline1"><span class="7510510810597110">Kilian</span></span>, ein reicher Bauer		– "  <a class="preview persons A000660" href="">Gottdank</a></p>
                                         <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-center"> ___________<br />
                Mit Achtung<br />
-                 <a class="preview persons A001355" href="/exist/apps/WeGA-WebApp/de/A001355.html">Mosel</a>.</span></p>
+                 <a class="preview persons A001355" href="">Mosel</a>.</span></p>
                                         <p class="clearer"></p>
                                     </div>
                                 </div>
@@ -462,16 +498,18 @@
                                             </ul>
                                         </div>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -481,7 +519,7 @@
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… Wohlgeborener": </span>an ein unbekanntes Mitglied der Hoftheater-Administration; Diss. von T. Antonicek, Ignaz von Mosel, Wien 1962, S. 341 vermutet <a class="preview persons A001980" href="/exist/apps/WeGA-WebApp/de/A001980.html">Georg Friedrich Treitschke</a> als Empfänger</div>
+                                            <div class="apparatusEntry" id="C_001" data-title="note commentary"><span class="tei_lemma">"… Wohlgeborener": </span>an ein unbekanntes Mitglied der Hoftheater-Administration; Diss. von T. Antonicek, Ignaz von Mosel, Wien 1962, S. 341 vermutet <a class="preview persons A001980" href="">Georg Friedrich Treitschke</a> als Empfänger</div>
                                         </li>
                                         <li>
                                             <div class="apparatusEntry" id="C_002" data-title="note commentary"><span class="tei_lemma">"… Ich übersende Ihnen beiliegendes Manuscript": </span>es geht um eine Abschrift des Textbuches zu Webers <span class="tei_hi_italic">Freischütz</span></div>
@@ -499,7 +537,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="/exist/apps/WeGA-WebApp/IIIF/A041700/manifest.json"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A041700/manifest.json"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -517,9 +555,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041700</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041700</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 15. September 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -585,7 +624,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -605,30 +645,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

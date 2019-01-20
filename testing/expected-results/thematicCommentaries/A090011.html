@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2018-07-11T11:29:50.289487Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090011" />
         <meta property="dc:description" content="Die Edition der Romanfragmente zu Tonkünstlers Leben nimmt eine Sonderstellung innerhalb der gegenwärtigen digitalen Edition von Webers Schriften der …" />
         <meta name="description" content="Die Edition der Romanfragmente zu Tonkünstlers Leben nimmt eine Sonderstellung innerhalb der gegenwärtigen digitalen Edition von Webers Schriften der …" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009004","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009004"}],"name":"Tonkünstlers Leben","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090011","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +192,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A009004/Thematic_Commentaries/A090011.html" hreflang="en" lang="en">En</a></li>
@@ -215,10 +220,11 @@
                     
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009004.html">Solveig Schreiter</a></li>
+                        <li><span></span></li>
                         <li><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare">Themenkommentare</a></li>
                         <li><span>A090011</span></li>
                     </ol>
+                    
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"></i>
@@ -231,38 +237,41 @@
         <div class="row">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -287,39 +296,39 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000060" /> <span title="August, Herzog von Sachsen-Gotha-Altenburg">August, Herzog von Sachsen-Got…</span> 
+                                    <input type="checkbox" name="options" value="A001002" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000194" /> <span title="Böttiger, Karl August">Böttiger, Karl August</span> 
+                                    <input type="checkbox" name="options" value="A000326" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000326" /> <span title="Cotta, Johann Friedrich">Cotta, Johann Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A000060" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000505" /> <span title="Förster, Karl">Förster, Karl</span> 
+                                    <input type="checkbox" name="options" value="A000213" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000851" /> <span title="Hoffmann, Ernst Theodor Amadeus">Hoffmann, Ernst Theodor Amadeu…</span> 
+                                    <input type="checkbox" name="options" value="A001545" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003095" /> <span title="Jean Paul">Jean Paul</span> 
+                                    <input type="checkbox" name="options" value="A000951" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008576" /> <span title="Kaiser, Georg">Kaiser, Georg</span> 
+                                    <input type="checkbox" name="options" value="A001960" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001002" /> <span title="Kind, Friedrich">Kind, Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A000851" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001362" /> <span title="Mozart, Wolfgang Amadeus">Mozart, Wolfgang Amadeus</span> 
+                                    <input type="checkbox" name="options" value="A001590" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080000" /> <span title="Redaktion der AMZ (Zeitschriftenredaktion)">Redaktion der AMZ (Zeitschrift…</span> 
+                                    <input type="checkbox" name="options" value="A003095" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001545" /> <span title="Reichardt, Johann Friedrich">Reichardt, Johann Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A000505" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001590" /> <span title="Rochlitz, Friedrich">Rochlitz, Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A008576" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001960" /> <span title="Tieck, Ludwig">Tieck, Ludwig</span> 
+                                    <input type="checkbox" name="options" value="A001362" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000951" /> <span title="Wackenroder, Wilhelm Heinrich">Wackenroder, Wilhelm Heinrich</span> 
+                                    <input type="checkbox" name="options" value="A002170" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000194" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080000" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000213" /> <span title="Weber, Caroline von">Weber, Caroline von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002170" /> <span title="Wohlbrück, Johann Gottfried">Wohlbrück, Johann Gottfried</span> 
                                 </label>
                             </div>
                         </div>
@@ -329,11 +338,11 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A021159" /> <span title="Fantasiestücke in Callot's Manier">Fantasiestücke in Callot's Man…</span> 
+                                    <input type="checkbox" name="options" value="A020143" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
+                                    <input type="checkbox" name="options" value="A021159" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020143" /> <span title="Romanze &#34;Um Rettung bietet ein güld'nes Geschmeide&#34;">Romanze "Um Rettung bietet ein…</span> 
+                                    <input type="checkbox" name="options" value="A020484" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -343,7 +352,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130114" /> <span title="Tübingen">Tübingen</span> 
+                                    <input type="checkbox" name="options" value="A130114" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -356,69 +365,69 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d10e2">
                                     <h2 id="d10e3">Vorbemerkungen</h2>
-                                    <p>Die Edition der Romanfragmente zu <span class="tei_hi_italic">Tonkünstlers Leben</span> nimmt eine Sonderstellung innerhalb der gegenwärtigen digitalen Edition von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Schriften der Weber-Gesamtausgabe ein. Das Prinzip der Schriftenedition, die in der Regel als Textvorlage den autorisierten Erstdruck der Schriften (unter Angabe von überlieferten Entwürfen und Auflistung der evtl. vorhandenen Abweichungen) zugrunde legt, wurde hier verworfen, da nur vier der insgesamt 15 Fragmente des Romans zu Lebzeiten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> bzw. von ihm autorisiert publiziert wurden (Fragment III, IX, XII und XIII). Die Mehrzahl der Fragmente ist jedoch handschriftlich im Entwurf überliefert und dann erst postum (überwiegend in <span class="preview biblio A112549" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112549.html">Hell-Schriften</span>) veröffentlicht worden. Um sowohl <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> gedanklichen Schaffensprozess, der sich an den Entwürfen sehr gut ablesen lässt, so transparent wie möglich durchscheinen zu lassen, als auch den Umstand, dass die postume Drucklegung teilweise auffällig von der handschriftlichen Überlieferung abweicht, hervorzuheben, hat sich der Hg. bei dem Romanfragment dafür entschieden, pro Fragment der gedruckten Textfassung (dem in den meisten Fällen unautorisierten Erstdruck) jeweils das entsprechende Dokument mit der handschriftlichen Überlieferung (gekennzeichnet mit Entwurf) gegenüberzustellen. Die Reihenfolge der Fragmente basiert dabei auf Jaisers Neuedition innerhalb der <span class="preview biblio A110173" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110173.html"><span class="tei_hi_italic">Weber-Studien</span>, Bd. 6.</span>, der die Fragmente chronologisch anhand der Entstehungsdaten anordnet, die wiederum im Wesentlichen auf der <span class="preview biblio A112549" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A112549.html">Ausgabe von Theodor Hell von 1828</span> beruht:</p>
+                                    <p>Die Edition der Romanfragmente zu <span class="tei_hi_italic">Tonkünstlers Leben</span> nimmt eine Sonderstellung innerhalb der gegenwärtigen digitalen Edition von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Schriften der Weber-Gesamtausgabe ein. Das Prinzip der Schriftenedition, die in der Regel als Textvorlage den autorisierten Erstdruck der Schriften (unter Angabe von überlieferten Entwürfen und Auflistung der evtl. vorhandenen Abweichungen) zugrunde legt, wurde hier verworfen, da nur vier der insgesamt 15 Fragmente des Romans zu Lebzeiten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> bzw. von ihm autorisiert publiziert wurden (Fragment III, IX, XII und XIII). Die Mehrzahl der Fragmente ist jedoch handschriftlich im Entwurf überliefert und dann erst postum (überwiegend in <span class="preview biblio A112549" data-ref="">Hell-Schriften</span>) veröffentlicht worden. Um sowohl <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> gedanklichen Schaffensprozess, der sich an den Entwürfen sehr gut ablesen lässt, so transparent wie möglich durchscheinen zu lassen, als auch den Umstand, dass die postume Drucklegung teilweise auffällig von der handschriftlichen Überlieferung abweicht, hervorzuheben, hat sich der Hg. bei dem Romanfragment dafür entschieden, pro Fragment der gedruckten Textfassung (dem in den meisten Fällen unautorisierten Erstdruck) jeweils das entsprechende Dokument mit der handschriftlichen Überlieferung (gekennzeichnet mit Entwurf) gegenüberzustellen. Die Reihenfolge der Fragmente basiert dabei auf Jaisers Neuedition innerhalb der <span class="preview biblio A110173" data-ref=""><span class="tei_hi_italic">Weber-Studien</span>, Bd. 6.</span>, der die Fragmente chronologisch anhand der Entstehungsdaten anordnet, die wiederum im Wesentlichen auf der <span class="preview biblio A112549" data-ref="">Ausgabe von Theodor Hell von 1828</span> beruht:</p>
                                     <div class="table-wrapper">
                                         <table id="d10e31" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td><a class="preview writings A031741" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031741.html">Fragment I (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031704" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031704.html">Fragment I (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031704" href="">Fragment I (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A031581" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031581.html">Fragment II (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031701" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031701.html">Fragment II (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031581" href="">Fragment II (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031701" href="">Fragment II (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview writings A031285" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031285.html">Fragment III (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031668" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031668.html">Fragment III (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031668" href="">Fragment III (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview writings A031770" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031770.html">Fragment IV (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031770" href="">Fragment IV (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A031023" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031023.html">Fragment V (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031551" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031551.html">Fragment V (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031023" href="">Fragment V (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031551" href="">Fragment V (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview writings A031595" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031595.html">Fragment VI (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031181" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031181.html">Fragment VI (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031181" href="">Fragment VI (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A031188" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031188.html">Fragment VII (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031386" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031386.html">Fragment VII (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031188" href="">Fragment VII (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031386" href="">Fragment VII (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A030979" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030979.html">Fragment VIII (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031582" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031582.html">Fragment VIII (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A030979" href="">Fragment VIII (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031582" href="">Fragment VIII (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview writings A031596" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031596.html">Fragment IX (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031306" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031306.html">Fragment IX (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031306" href="">Fragment IX (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A031737" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031737.html">Fragment X (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031703" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031703.html">Fragment X (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031737" href="">Fragment X (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031703" href="">Fragment X (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview writings A031801" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031801.html">Fragment XI (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031796" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031796.html">Fragment XI (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031796" href="">Fragment XI (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A031792" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031792.html">Fragment XII (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031768" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031768.html">Fragment XII (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031792" href="">Fragment XII (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031768" href="">Fragment XII (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A031324" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031324.html">Fragment XIII (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031721" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031721.html">Fragment XIII (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031324" href="">Fragment XIII (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031721" href="">Fragment XIII (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview writings A031698" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031698.html">Fragment XIV (Entwurf)</a></td>
-                                                    <td><a class="preview writings A031371" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031371.html">Fragment XIV (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031698" href="">Fragment XIV (Entwurf)</a></td>
+                                                    <td><a class="preview writings A031371" href="">Fragment XIV (Erstdruck)</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview writings A031559" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031559.html">Fragment XV (Erstdruck)</a></td>
+                                                    <td><a class="preview writings A031559" href="">Fragment XV (Erstdruck)</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -532,21 +541,21 @@
                                 </div>
                                 <div id="d10e301">
                                     <h2 id="d10e302">Entstehungsprozess</h2>
-                                    <p>Der hier verwendete Romantitel basiert auf der Überschrift der drei innerhalb der <span class="tei_hi_italic">Muse</span> 1821 veröffentlichten Fragmente als „Bruchstücke aus: Tonkünstlers Leben“; im TB verwandte Weber jedoch überwiegend die Kurzform <span class="tei_hi_italic">Künstlerleben</span>. Die Arbeit an <span class="tei_hi_italic">Tonkünstlers Leben</span> kann grob in vier Schaffensphasen eingeteilt werden. Die ersten vier Fragmente (I–IV) entstammen der Stuttgarter Periode aus dem Jahr 1809, die Teile V–IX entstanden in Darmstadt und Mannheim 1810/1811. Die beiden Pläne (Fragmente X und XI) illustrieren Webers Bemühungen um eine Strukturierung der Ideen zum Gesamtkorpus seines Romans unter Einbezug der bis dahin entstandenen Teile. Der erste Plan fällt in die frühe Beschäftigungsphase, der zweite Plan datiert 1812. Nach einer Schaffenspause nahm Weber erst 1816 die Arbeit wieder auf (Fragmente XII–XV), wobei er auch den zweiten Plan vervollständigte (Randnotizen im Fragment XI), und konzentrierte sich ab 1820 auf die Veröffentlichung von drei Texten in der von <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Friedrich Kind</a> hg. Monatsschrift <span class="tei_hi_italic">Die Muse</span> 1821 (Fragmente IX, XII und XIII). Obwohl der letzte Teil in der <span class="tei_hi_italic">Muse</span> eine Fortsetzung ankündigt, bleibt diese aus. Auch im TB ist keine weitere Beschäftigung mit dem Roman mehr nachweisbar (vgl. Tabelle unten).</p>
-                                    <p>Die frühen 1809 entstandenen Teile handeln von einem Künstler, der seine sichere Existenz verlässt und in eine ungewisse Zukunft aufbricht, indem er auf Konzertreise geht und dort die mannigfaltigsten Erfahrungen mit musikalischen Instanzen und interessierten Laien macht. Mitte 1810 begann <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Johann Friedrich Cotta</a>, der bereits das <span class="tei_hi_italic">Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird</span> (= Fragment III), eine parodierende Traumschilderung des Komponisten über eine große Orchester-<span class="tei_hi_italic">Assemblee</span>, in seinem <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span> hatte abdrucken lassen, hinsichtlich einer Publikation des Romans zu verhandeln, wie aus dem TB-Einträgen vom <a class="preview diaries A064549" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064549.html">25. Juli</a> und <a class="preview diaries A064556" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064556.html">1. August</a> sowie dem Brief an <span class="74111104971101103271228110115989799104101114">Johann Gänsbacher</span> vom <a class="preview letters A040304" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040304.html">24. September 1810</a> zu entnehmen ist: „am angenehmsten aber war es mir, daß ich meinen Freund <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Cotta</a> den bekannten großen Buchhändler aus <span class="preview places A130114" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130114.html">Tübingen</span> antraf, [...] dem ich mein Künstlerleben zum Verlag antrug. Er nahm es zu meiner großen Freude an, und es soll zu künftiger Oster Meße mit einigen Kupfern erscheinen. Sein Verlag hat einen so ausgezeichneten Litterarischen Ruf, daß dadurch allein schon das Glük und der Werth meiner Arbeit in den Augen der Welt halb entschieden ist.“     
-                    Von den Verhandlungen mit <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Cotta</a> angeregt, setzte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> die Arbeit am Roman zwar fort, aus der geplanten Veröffentlichung im Frühjahr 1811 wurde jedoch nichts.
+                                    <p>Der hier verwendete Romantitel basiert auf der Überschrift der drei innerhalb der <span class="tei_hi_italic">Muse</span> 1821 veröffentlichten Fragmente als „Bruchstücke aus: Tonkünstlers Leben“; im TB verwandte Weber jedoch überwiegend die Kurzform <span class="tei_hi_italic">Künstlerleben</span>. Die Arbeit an <span class="tei_hi_italic">Tonkünstlers Leben</span> kann grob in vier Schaffensphasen eingeteilt werden. Die ersten vier Fragmente (I–IV) entstammen der Stuttgarter Periode aus dem Jahr 1809, die Teile V–IX entstanden in Darmstadt und Mannheim 1810/1811. Die beiden Pläne (Fragmente X und XI) illustrieren Webers Bemühungen um eine Strukturierung der Ideen zum Gesamtkorpus seines Romans unter Einbezug der bis dahin entstandenen Teile. Der erste Plan fällt in die frühe Beschäftigungsphase, der zweite Plan datiert 1812. Nach einer Schaffenspause nahm Weber erst 1816 die Arbeit wieder auf (Fragmente XII–XV), wobei er auch den zweiten Plan vervollständigte (Randnotizen im Fragment XI), und konzentrierte sich ab 1820 auf die Veröffentlichung von drei Texten in der von <a class="preview persons A001002" href="">Friedrich Kind</a> hg. Monatsschrift <span class="tei_hi_italic">Die Muse</span> 1821 (Fragmente IX, XII und XIII). Obwohl der letzte Teil in der <span class="tei_hi_italic">Muse</span> eine Fortsetzung ankündigt, bleibt diese aus. Auch im TB ist keine weitere Beschäftigung mit dem Roman mehr nachweisbar (vgl. Tabelle unten).</p>
+                                    <p>Die frühen 1809 entstandenen Teile handeln von einem Künstler, der seine sichere Existenz verlässt und in eine ungewisse Zukunft aufbricht, indem er auf Konzertreise geht und dort die mannigfaltigsten Erfahrungen mit musikalischen Instanzen und interessierten Laien macht. Mitte 1810 begann <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit <a class="preview persons A000326" href="">Johann Friedrich Cotta</a>, der bereits das <span class="tei_hi_italic">Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird</span> (= Fragment III), eine parodierende Traumschilderung des Komponisten über eine große Orchester-<span class="tei_hi_italic">Assemblee</span>, in seinem <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span> hatte abdrucken lassen, hinsichtlich einer Publikation des Romans zu verhandeln, wie aus dem TB-Einträgen vom <a class="preview diaries A064549" href="">25. Juli</a> und <a class="preview diaries A064556" href="">1. August</a> sowie dem Brief an <span class="74111104971101103271228110115989799104101114">Johann Gänsbacher</span> vom <a class="preview letters A040304" href="">24. September 1810</a> zu entnehmen ist: „am angenehmsten aber war es mir, daß ich meinen Freund <a class="preview persons A000326" href="">Cotta</a> den bekannten großen Buchhändler aus <a class="preview places A130114" href="">Tübingen</a> antraf, [...] dem ich mein Künstlerleben zum Verlag antrug. Er nahm es zu meiner großen Freude an, und es soll zu künftiger Oster Meße mit einigen Kupfern erscheinen. Sein Verlag hat einen so ausgezeichneten Litterarischen Ruf, daß dadurch allein schon das Glük und der Werth meiner Arbeit in den Augen der Welt halb entschieden ist.“     
+                    Von den Verhandlungen mit <a class="preview persons A000326" href="">Cotta</a> angeregt, setzte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> die Arbeit am Roman zwar fort, aus der geplanten Veröffentlichung im Frühjahr 1811 wurde jedoch nichts.
                     Für die Gestaltung der einzelnen Kapitel verwendete er verschiedene literarisch-stilistische Mittel (Opern-Parodie/Fragment VI, Erzählungen in Dialogform/Fragmente VII+VIII oder als Brief gestaltete Prosa/Fragment IX) und führte den Dichterfreund Dihl (Diehl), eine Art <span class="tei_hi_italic">alter ego</span> des Titelhelden, ein, der diesen durch Maskeraden und über allerlei Verwirrspiele mit der Liebe seines Lebens konfrontiert.
                 </p>
-                                    <p>Nach den eher sporadisch und zusammenhangslos entstandenen Teilen von 1809 bis 1811 scheint <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> während seiner beiden Aufenthalte in Gotha 1812 wesentliche Anstösse für die Fortführung des Romans bekommen zu haben. Er stellte sein Romanfragment dem ihm sehr zugewandten Musen-Herzog <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">August Emil Leopold von Sachsen-Gotha-Altenburg</a> vor, der selbst dichtete, malte und komponierte. Im Tagebuch vom <a class="preview diaries A065556" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065556.html">26. Januar</a> vermerkte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> freudig, dass sich der <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzog</a> sehr für sein <span class="tei_hi_italic">Künstlerleben</span> interessieren würde und Gedichte dazu verfassen wolle. Außerdem musste <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> versichern, den Held des Stückes Xavie[r] zu nennen, wie den männlichen  Hauptprotagonisten in dem in Brief- und Tagebuchform gehaltenen Roman über eine Jungfrau Namens Emilie, an dem der <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzog</a> zu dieser Zeit arbeitete und zu dem <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> das „Lied, der braunverhüllten Emilie“ beisteuerte (= <span class="preview works A020143" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020143.html">Um Rettung bietet ein güldnes Geschmeide</span>, TB <a class="preview diaries A065621" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065621.html">31. März 1812</a>). Obwohl Gedichte des <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzogs</a> zu <span class="tei_hi_italic">Tonkünstlers Leben</span> zwar nicht überliefert sind und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, als er bei seinem zweiten längeren Aufenthalt in Gotha einen neuen Plan für seinen Roman entwarf, als Namen für seinen Helden Felix anstelle Xavier wählte, bleibt eine Verbindung zu den offenbar äußerst fruchtbaren Auseinandersetzungen mit dem <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Herzog</a> in der weiblichen Hauptrolle, der von Felix angebeteten  Emilie (die allerdings bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Figur vorher schon existierte) bestehen<a class="noteMarker arabic" id="ref-footnote_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_01">1</a>. 
+                                    <p>Nach den eher sporadisch und zusammenhangslos entstandenen Teilen von 1809 bis 1811 scheint <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> während seiner beiden Aufenthalte in Gotha 1812 wesentliche Anstösse für die Fortführung des Romans bekommen zu haben. Er stellte sein Romanfragment dem ihm sehr zugewandten Musen-Herzog <a class="preview persons A000060" href="">August Emil Leopold von Sachsen-Gotha-Altenburg</a> vor, der selbst dichtete, malte und komponierte. Im Tagebuch vom <a class="preview diaries A065556" href="">26. Januar</a> vermerkte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> freudig, dass sich der <a class="preview persons A000060" href="">Herzog</a> sehr für sein <span class="tei_hi_italic">Künstlerleben</span> interessieren würde und Gedichte dazu verfassen wolle. Außerdem musste <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> versichern, den Held des Stückes Xavie[r] zu nennen, wie den männlichen  Hauptprotagonisten in dem in Brief- und Tagebuchform gehaltenen Roman über eine Jungfrau Namens Emilie, an dem der <a class="preview persons A000060" href="">Herzog</a> zu dieser Zeit arbeitete und zu dem <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> das „Lied, der braunverhüllten Emilie“ beisteuerte (= <a class="preview works A020143" href="">Um Rettung bietet ein güldnes Geschmeide</a>, TB <a class="preview diaries A065621" href="">31. März 1812</a>). Obwohl Gedichte des <a class="preview persons A000060" href="">Herzogs</a> zu <span class="tei_hi_italic">Tonkünstlers Leben</span> zwar nicht überliefert sind und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, als er bei seinem zweiten längeren Aufenthalt in Gotha einen neuen Plan für seinen Roman entwarf, als Namen für seinen Helden Felix anstelle Xavier wählte, bleibt eine Verbindung zu den offenbar äußerst fruchtbaren Auseinandersetzungen mit dem <a class="preview persons A000060" href="">Herzog</a> in der weiblichen Hauptrolle, der von Felix angebeteten  Emilie (die allerdings bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> als Figur vorher schon existierte) bestehen<a class="noteMarker arabic" id="ref-footnote_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_01">1</a>. 
                 </p>
-                                    <p>Durch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Anstellung in Prag 1813 wurde seine Arbeit am Roman unterbrochen. Erst 1815 nahm er sie wieder auf und vervollständigte den zweiten Plan (Fragment XI). Gerade in der Skizzierung der Liebesbeziehung zwischen Felix und Emilie finden sich deutliche Verweise auf <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> damals aktuelles Verhältnis zu seiner Verlobten <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline Brandt</a>. „Die Aufarbeitung der persönlichen Erfahrung im Roman stellt einen offensichtlichen Versuch dar, im eigenen Empfinden Allgemeines zu entdecken, gerade auch durch literarische Anspielungen“ (vgl. <span class="preview biblio A110173" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110173.html">Jaiser</span>, S. 91). Trotz kontinuierlicher Weiterarbeit gelang es <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> jedoch nicht, den Roman als vollständige Handlung fertig zu stellen. Die folgenden Fragmente widmeten sich Fragen der Ästhetik, der Musiktheorie und -geschichte sowie der Künstlerpersönlichkeit allgemein. 1821 erfolgte die Teilveröffentlichung der drei „Bruchstücke aus Tonkünstlers Leben“ in der <span class="tei_hi_italic">Muse</span> (= Fragmente IX, XII und XIII). Evtl. stehen die im <span class="preview diaries A061331 A061350 A061351" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061331.html /exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061350.html /exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061351.html">Juli 1820 lt. Tagebuch</span> angefertigten Kopien vom "Künstlerleben" im Zusammenhang mit dieser Veröffentlichung. Fragment XII (bei Hell als „zweite Ausarbeitung des ersten Kapitels“ bezeichnet)  enthält noch kleine Bezüge zu Fragment I (1809), wurde jedoch wesentlich erweitert. Mit der Publikation in der <span class="tei_hi_italic">Muse</span> beendete <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nicht nur die Arbeit am Roman, sondern (von wenigen Ausnahmen abgesehen) seine schriftstellerische Laufbahn überhaupt.</p>
-                                    <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>s unvollendeter Roman steht in der Tradition der romantischen Musikerbiographien, z. B. <a class="preview persons A001545" href="/exist/apps/WeGA-WebApp/de/A001545.html">Reichardt</a>s <span class="tei_hi_italic">Leben des berühmten Tonkünstlers Heinrich Wilhelm Gulden</span> (Berlin 1779) oder <a class="preview persons A000951" href="/exist/apps/WeGA-WebApp/de/A000951.html">Wackenroders</a> und <a class="preview persons A001960" href="/exist/apps/WeGA-WebApp/de/A001960.html">Tiecks</a> <span class="tei_hi_italic">Herzensergießungen eines kunstliebenden Klosterbruders</span> (Berlin 1796).                     
-                    Geistig nahe ist <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> natürlich auch <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">E.T.A. Hoffmanns</a> Kapellmeister Kreisler aus dessen <span class="tei_hi_italic">Kreisleriana</span>, die zwischen 1810 und 1814 in der <a class="preview orgs A080000" href="/exist/apps/WeGA-WebApp/de/A080000.html">AmZ</a> abgedruckt wurden und 1814 und 1815 im zweiten und vierten Band der <span class="tei_hi_italic"><span class="preview works A021159" data-ref="/exist/apps/WeGA-WebApp/de/A000851/Werke/A021159.html">Fantasiestücke in Callot’s Manier</span></span> erschienen. Dass <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> sich mit <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">Hoffmanns</a> Werk beschäftigte,  aber auch worin für ihn die Schwierigkeiten einer stringenten gedanklichen Arbeit an seinem eigenen Projekt lagen, zeigen seine Zeilen an <a class="preview persons A001590" href="/exist/apps/WeGA-WebApp/de/A001590.html">Friedrich Rochlitz</a> am <a class="preview letters A040878" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040878.html">4. Februar 1816</a>: „a prospos. haben Sie die Phantasiestükke von Hoffmann, 4 Theile gelesen? und was halten Sie davon. Ich finde viel treffliches, blühende, ja oft toll überschäumende Phantasie darin, und das Ganze /: mit Erlaubniß gesagt :/ und wie mir scheint, ohne bestimten Zweck vor Augen gehabt zu haben hingeworfen. der erste Theil gefällt mir am besten. Bey der Gelegenheit ist die Lust mein Künstlerleben, wieder vorzunehmen lebendig in mir erwacht. und ich werfe so manchmal eine kleine Skizze hin. Aber allein kann ich an so etwas nicht arbeiten, ich muß einen Freund haben, deßen Urtheil mich berichtigt deßen Beyfall mich befeuert. Könnte ich Sie doch zu mir hexen.“ Darüber hinaus werden Einflüsse durch <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">Jean Pauls</a> <span class="tei_hi_italic">Flegeljahre</span> (Tübingen 1804/1805) sichtbar. Dass es sich bei <span class="tei_hi_italic">Tonkünstlers Leben</span> aber ebenso um autobiographisch motivierte ästhetische Selbstreflexionen eines kritischen Künstlergeistes handelt, bleibt außer Zweifel. <a class="preview persons A000505" href="/exist/apps/WeGA-WebApp/de/A000505.html">Karl Försters</a> Urteil, in der wiss. Beilage zu Nr. 9 der <span class="tei_hi_italic">Abendzeitung</span> 1821, fasste diese Tatsache treffend zusammen: „Es sind tiefe Blicke in das Leben oder vielmehr geniale Griffe aus dem Leben, aus der eigenen Brust des vielerfahrenen Künstlers.“</p>
-                                    <p>Abschließend sei hier das Resümee von <a class="preview persons A008576" href="/exist/apps/WeGA-WebApp/de/A008576.html">Kaiser</a> in seiner <span class="preview biblio A111886" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A111886.html">Schriftenausgabe</span>, S. XXII, zitiert, das die Bedeutung von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> schriftstellerischem Œuvre wie folgt zusammenfasst: „Die Summe seiner ästhetischen Ansichten und Prinzipien, die in seinen Schriften und im Roman niedergelegt sind, ist so groß und wertvoll, daß wir nicht anstehen zu erklären, ein jeder Musiker und Musikfreund unserer Tage könne hier noch recht viel lernen. Selbst wo <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> Werke bespricht, die heute vergessen sind, ist doch die Art, wie er sie anschaut und beurteilt, hochinteressant. Geradezu imponieren aber muß die hohe Achtung, die er vor dem Kunstwerk als solchem hat, und die unendliche Liebe zu der ihm heiligen Tonkunst. Den Beruf des Künstlers vergleicht er mit dem des Priesters; in einer für ihn an Zweifeln und Kämpfen reichen Zeit glaubte er als Künstler auf seinen Glücksanspruch als Mensch verzichten und ganz der Welt sich weihen zu müssen, [...] Auch noch später verlangt er vom Künstler, daß er auch als Mensch sich vor anderen auszeichne und das verliehene Genie als ein Himmelsgeschenk ansehe, dessen er sich würdig zu zeigen habe. So durchzieht ein hoher Idealismus die Schriften, und überall offenbart sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Wahrheitsliebe im reichsten Maße.“</p>
+                                    <p>Durch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Anstellung in Prag 1813 wurde seine Arbeit am Roman unterbrochen. Erst 1815 nahm er sie wieder auf und vervollständigte den zweiten Plan (Fragment XI). Gerade in der Skizzierung der Liebesbeziehung zwischen Felix und Emilie finden sich deutliche Verweise auf <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> damals aktuelles Verhältnis zu seiner Verlobten <a class="preview persons A000213" href="">Caroline Brandt</a>. „Die Aufarbeitung der persönlichen Erfahrung im Roman stellt einen offensichtlichen Versuch dar, im eigenen Empfinden Allgemeines zu entdecken, gerade auch durch literarische Anspielungen“ (vgl. <span class="preview biblio A110173" data-ref="">Jaiser</span>, S. 91). Trotz kontinuierlicher Weiterarbeit gelang es <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> jedoch nicht, den Roman als vollständige Handlung fertig zu stellen. Die folgenden Fragmente widmeten sich Fragen der Ästhetik, der Musiktheorie und -geschichte sowie der Künstlerpersönlichkeit allgemein. 1821 erfolgte die Teilveröffentlichung der drei „Bruchstücke aus Tonkünstlers Leben“ in der <span class="tei_hi_italic">Muse</span> (= Fragmente IX, XII und XIII). Evtl. stehen die im <span class="preview diaries A061331 A061350 A061351" data-ref="  ">Juli 1820 lt. Tagebuch</span> angefertigten Kopien vom "Künstlerleben" im Zusammenhang mit dieser Veröffentlichung. Fragment XII (bei Hell als „zweite Ausarbeitung des ersten Kapitels“ bezeichnet)  enthält noch kleine Bezüge zu Fragment I (1809), wurde jedoch wesentlich erweitert. Mit der Publikation in der <span class="tei_hi_italic">Muse</span> beendete <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nicht nur die Arbeit am Roman, sondern (von wenigen Ausnahmen abgesehen) seine schriftstellerische Laufbahn überhaupt.</p>
+                                    <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>s unvollendeter Roman steht in der Tradition der romantischen Musikerbiographien, z. B. <a class="preview persons A001545" href="">Reichardt</a>s <span class="tei_hi_italic">Leben des berühmten Tonkünstlers Heinrich Wilhelm Gulden</span> (Berlin 1779) oder <a class="preview persons A000951" href="">Wackenroders</a> und <a class="preview persons A001960" href="">Tiecks</a> <span class="tei_hi_italic">Herzensergießungen eines kunstliebenden Klosterbruders</span> (Berlin 1796).                     
+                    Geistig nahe ist <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> natürlich auch <a class="preview persons A000851" href="">E.T.A. Hoffmanns</a> Kapellmeister Kreisler aus dessen <span class="tei_hi_italic">Kreisleriana</span>, die zwischen 1810 und 1814 in der <a class="preview orgs A080000" href="">AmZ</a> abgedruckt wurden und 1814 und 1815 im zweiten und vierten Band der <span class="tei_hi_italic"><a class="preview works A021159" href="">Fantasiestücke in Callot’s Manier</a></span> erschienen. Dass <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> sich mit <a class="preview persons A000851" href="">Hoffmanns</a> Werk beschäftigte,  aber auch worin für ihn die Schwierigkeiten einer stringenten gedanklichen Arbeit an seinem eigenen Projekt lagen, zeigen seine Zeilen an <a class="preview persons A001590" href="">Friedrich Rochlitz</a> am <a class="preview letters A040878" href="">4. Februar 1816</a>: „a prospos. haben Sie die Phantasiestükke von Hoffmann, 4 Theile gelesen? und was halten Sie davon. Ich finde viel treffliches, blühende, ja oft toll überschäumende Phantasie darin, und das Ganze /: mit Erlaubniß gesagt :/ und wie mir scheint, ohne bestimten Zweck vor Augen gehabt zu haben hingeworfen. der erste Theil gefällt mir am besten. Bey der Gelegenheit ist die Lust mein Künstlerleben, wieder vorzunehmen lebendig in mir erwacht. und ich werfe so manchmal eine kleine Skizze hin. Aber allein kann ich an so etwas nicht arbeiten, ich muß einen Freund haben, deßen Urtheil mich berichtigt deßen Beyfall mich befeuert. Könnte ich Sie doch zu mir hexen.“ Darüber hinaus werden Einflüsse durch <a class="preview persons A003095" href="">Jean Pauls</a> <span class="tei_hi_italic">Flegeljahre</span> (Tübingen 1804/1805) sichtbar. Dass es sich bei <span class="tei_hi_italic">Tonkünstlers Leben</span> aber ebenso um autobiographisch motivierte ästhetische Selbstreflexionen eines kritischen Künstlergeistes handelt, bleibt außer Zweifel. <a class="preview persons A000505" href="">Karl Försters</a> Urteil, in der wiss. Beilage zu Nr. 9 der <span class="tei_hi_italic">Abendzeitung</span> 1821, fasste diese Tatsache treffend zusammen: „Es sind tiefe Blicke in das Leben oder vielmehr geniale Griffe aus dem Leben, aus der eigenen Brust des vielerfahrenen Künstlers.“</p>
+                                    <p>Abschließend sei hier das Resümee von <a class="preview persons A008576" href="">Kaiser</a> in seiner <span class="preview biblio A111886" data-ref="">Schriftenausgabe</span>, S. XXII, zitiert, das die Bedeutung von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> schriftstellerischem Œuvre wie folgt zusammenfasst: „Die Summe seiner ästhetischen Ansichten und Prinzipien, die in seinen Schriften und im Roman niedergelegt sind, ist so groß und wertvoll, daß wir nicht anstehen zu erklären, ein jeder Musiker und Musikfreund unserer Tage könne hier noch recht viel lernen. Selbst wo <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> Werke bespricht, die heute vergessen sind, ist doch die Art, wie er sie anschaut und beurteilt, hochinteressant. Geradezu imponieren aber muß die hohe Achtung, die er vor dem Kunstwerk als solchem hat, und die unendliche Liebe zu der ihm heiligen Tonkunst. Den Beruf des Künstlers vergleicht er mit dem des Priesters; in einer für ihn an Zweifeln und Kämpfen reichen Zeit glaubte er als Künstler auf seinen Glücksanspruch als Mensch verzichten und ganz der Welt sich weihen zu müssen, [...] Auch noch später verlangt er vom Künstler, daß er auch als Mensch sich vor anderen auszeichne und das verliehene Genie als ein Himmelsgeschenk ansehe, dessen er sich würdig zu zeigen habe. So durchzieht ein hoher Idealismus die Schriften, und überall offenbart sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Wahrheitsliebe im reichsten Maße.“</p>
                                 </div>
                                 <div id="d10e573">
                                     <h2 id="d10e574">Inhalt der Fragmente</h2>
-                                    <p>Die folgende Tabelle gibt nur einen kurzen Überblick über den Inhalt der einzelnen Romanfragmente. Ausführlichere Angaben dazu und Hinweise zur Einordnung und Bewertung der inhaltlichen Bestandteile des Romans finden sich in den einzelnen Fragmenten im jeweiligen Apparat (vgl. auch ausführlich bei <span class="preview biblio A110173" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110173.html">Jaiser</span>, S. 82–104).</p>
+                                    <p>Die folgende Tabelle gibt nur einen kurzen Überblick über den Inhalt der einzelnen Romanfragmente. Ausführlichere Angaben dazu und Hinweise zur Einordnung und Bewertung der inhaltlichen Bestandteile des Romans finden sich in den einzelnen Fragmenten im jeweiligen Apparat (vgl. auch ausführlich bei <span class="preview biblio A110173" data-ref="">Jaiser</span>, S. 82–104).</p>
                                     <div class="table-wrapper">
                                         <table id="d10e581" class="table">
                                             <tbody>
@@ -564,7 +573,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td>IV</td>
-                                                    <td>Resümee über einen Besuch einer Vorstellung des <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span> von <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></td>
+                                                    <td>Resümee über einen Besuch einer Vorstellung des <a class="preview works A020484" href="">Don Juan</a> von <a class="preview persons A001362" href="">Mozart</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>V</td>
@@ -621,87 +630,87 @@
                                             <tbody>
                                                 <tr>
                                                     <td>1810</td>
-                                                    <td><a class="preview diaries A064549" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064549.html">25. Juli</a></td>
-                                                    <td>Verhandlungen mit <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Johann Friedrich Cotta</a> betreffs Publikation</td>
+                                                    <td><a class="preview diaries A064549" href="">25. Juli</a></td>
+                                                    <td>Verhandlungen mit <a class="preview persons A000326" href="">Johann Friedrich Cotta</a> betreffs Publikation</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A064556" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064556.html">1. August</a></td>
+                                                    <td><a class="preview diaries A064556" href="">1. August</a></td>
                                                     <td>"</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A064610" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064610.html">24. September</a></td>
+                                                    <td><a class="preview diaries A064610" href="">24. September</a></td>
                                                     <td>Arbeit</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A064611" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064611.html">25. September</a></td>
+                                                    <td><a class="preview diaries A064611" href="">25. September</a></td>
                                                     <td>"</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A064661" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064661.html">14. November</a></td>
+                                                    <td><a class="preview diaries A064661" href="">14. November</a></td>
                                                     <td>"</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A064681" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064681.html">4. Dezember</a></td>
+                                                    <td><a class="preview diaries A064681" href="">4. Dezember</a></td>
                                                     <td>"</td>
                                                 </tr>
                                                 <tr>
                                                     <td>1811</td>
-                                                    <td><a class="preview diaries A065195" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065195.html">30. Januar</a></td>
-                                                    <td>Verhandlungen mit <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Johann Friedrich Cotta</a> betreffs Publikation</td>
+                                                    <td><a class="preview diaries A065195" href="">30. Januar</a></td>
+                                                    <td>Verhandlungen mit <a class="preview persons A000326" href="">Johann Friedrich Cotta</a> betreffs Publikation</td>
                                                 </tr>
                                                 <tr>
                                                     <td>1812</td>
-                                                    <td><a class="preview diaries A065556" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065556.html">26. Januar</a></td>
-                                                    <td>Gespräch mit Herzog <a class="preview persons A000060" href="/exist/apps/WeGA-WebApp/de/A000060.html">Emil Leopold August von Sachsen-Gotha und Altenburg</a></td>
+                                                    <td><a class="preview diaries A065556" href="">26. Januar</a></td>
+                                                    <td>Gespräch mit Herzog <a class="preview persons A000060" href="">Emil Leopold August von Sachsen-Gotha und Altenburg</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A065798" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065798.html">24. September</a></td>
+                                                    <td><a class="preview diaries A065798" href="">24. September</a></td>
                                                     <td>Arbeit</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A065807" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065807.html">3. Oktober</a></td>
-                                                    <td>Verhandlungen mit <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Johann Friedrich Cotta</a> betreffs Publikation</td>
+                                                    <td><a class="preview diaries A065807" href="">3. Oktober</a></td>
+                                                    <td>Verhandlungen mit <a class="preview persons A000326" href="">Johann Friedrich Cotta</a> betreffs Publikation</td>
                                                 </tr>
                                                 <tr>
                                                     <td>1813</td>
-                                                    <td><a class="preview diaries A062458" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062458.html">23. Juli</a></td>
-                                                    <td>Lesung mit <a class="preview persons A001960" href="/exist/apps/WeGA-WebApp/de/A001960.html">Ludwig Tieck</a></td>
+                                                    <td><a class="preview diaries A062458" href="">23. Juli</a></td>
+                                                    <td>Lesung mit <a class="preview persons A001960" href="">Ludwig Tieck</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>1815</td>
-                                                    <td><a class="preview diaries A062958" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062958.html">15. Juli</a></td>
-                                                    <td>Lesung mit <a class="preview persons A002170" href="/exist/apps/WeGA-WebApp/de/A002170.html">Johann Gottfried Wohlbrück</a></td>
+                                                    <td><a class="preview diaries A062958" href="">15. Juli</a></td>
+                                                    <td>Lesung mit <a class="preview persons A002170" href="">Johann Gottfried Wohlbrück</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>1816</td>
-                                                    <td><a class="preview diaries A063967" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A063967.html">18. Februar</a></td>
+                                                    <td><a class="preview diaries A063967" href="">18. Februar</a></td>
                                                     <td>Arbeit</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A064247" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064247.html">24. November</a></td>
+                                                    <td><a class="preview diaries A064247" href="">24. November</a></td>
                                                     <td>"</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A064255" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064255.html">2. Dezember</a></td>
+                                                    <td><a class="preview diaries A064255" href="">2. Dezember</a></td>
                                                     <td>Überarbeitung 1. Kpt.</td>
                                                 </tr>
                                                 <tr>
                                                     <td>1817</td>
-                                                    <td><a class="preview diaries A060146" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060146.html">26. Mai</a></td>
-                                                    <td>Lesung mit <a class="preview persons A001002" href="/exist/apps/WeGA-WebApp/de/A001002.html">Friedrich Kind</a></td>
+                                                    <td><a class="preview diaries A060146" href="">26. Mai</a></td>
+                                                    <td>Lesung mit <a class="preview persons A001002" href="">Friedrich Kind</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A060259" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060259.html">16. September</a></td>
+                                                    <td><a class="preview diaries A060259" href="">16. September</a></td>
                                                     <td>bei Webers TB-Eintrag: „Idee zu der Erzählung des Musikers der durch Krank:[heit] die M:[usik] vergaß.“ ist fraglich, ob er einen Bezug zur Arbeit an "Tonkünstlers Leben" aufweist</td>
                                                 </tr>
                                                 <tr>
@@ -711,28 +720,28 @@
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A060664" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060664.html">26. Oktober</a></td>
+                                                    <td><a class="preview diaries A060664" href="">26. Oktober</a></td>
                                                     <td>Arbeit</td>
                                                 </tr>
                                                 <tr>
                                                     <td>1819</td>
-                                                    <td><a class="preview diaries A060846" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060846.html">15. Februar</a></td>
+                                                    <td><a class="preview diaries A060846" href="">15. Februar</a></td>
                                                     <td>"</td>
                                                 </tr>
                                                 <tr>
                                                     <td></td>
-                                                    <td><a class="preview diaries A060879" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060879.html">20. März</a></td>
-                                                    <td>Arbeit und Lesung im Liederkreis bei <a class="preview persons A000194" href="/exist/apps/WeGA-WebApp/de/A000194.html">August Böttiger</a></td>
+                                                    <td><a class="preview diaries A060879" href="">20. März</a></td>
+                                                    <td>Arbeit und Lesung im Liederkreis bei <a class="preview persons A000194" href="">August Böttiger</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td>1820</td>
-                                                    <td><a class="preview diaries A061342" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061342.html">16. Juli</a></td>
+                                                    <td><a class="preview diaries A061342" href="">16. Juli</a></td>
                                                     <td>Arbeit</td>
                                                 </tr>
                                                 <tr>
                                                     <td>1821</td>
-                                                    <td><a class="preview diaries A061554" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061554.html">4. Februar</a></td>
-                                                    <td>Gespräch mit <a class="preview persons A001960" href="/exist/apps/WeGA-WebApp/de/A001960.html">Ludwig Tieck</a></td>
+                                                    <td><a class="preview diaries A061554" href="">4. Februar</a></td>
+                                                    <td>Gespräch mit <a class="preview persons A001960" href="">Ludwig Tieck</a></td>
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -771,9 +780,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090011</span> (<span>Version 3.3.0dev vom 17. Juli 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090011</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 11. Juli 2018 durch Solveig Schreiter</span></p>
+                    <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
             
         </div>
@@ -839,7 +848,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -859,30 +869,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Schaffer, Sebastian" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-10T20:22:02.829414Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031611" />
         <meta property="dc:description" content="Rezension über Webers Oberon einschl. Beschreibung der Charaktere und einzelner Musiknummern; untersucht Bedeutung Oberons" />
         <meta name="description" content="Rezension über Webers Oberon einschl. Beschreibung der Charaktere und einzelner Musiknummern; untersucht Bedeutung Oberons" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001564","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001564"}],"name":"Rezension: Oberon, romantische Oper in drei Akten, nach dem Englischen des J. Planché, von Theodor Hell, Musik von Karl Maria von Weber. Berlin bei Schlesinger (Teil 3 von 3)","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031611","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A001564/Writings/A031611.html" hreflang="en" lang="en">En</a></li>
@@ -219,10 +224,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A001564.html">Ludwig Rellstab</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften">Schriften</a></li>
-                        <li><span>A031611</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span></span>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften">Schriften</a>
+                        </li>
+                        <li>
+                            <span>A031611</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -238,55 +253,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611/backlinks.html">Rückverweise</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611/backlinks.html">Rückverweise</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031611.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -294,59 +326,65 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000117" /> <span title="Beethoven, Ludwig van">Beethoven, Ludwig van</span> 
+                                    <input type="checkbox" name="options" value="A002160" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000287" /> <span title="Cherubini, Luigi">Cherubini, Luigi</span> 
+                                    <input type="checkbox" name="options" value="A001616" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003095" /> <span title="Jean Paul">Jean Paul</span> 
+                                    <input type="checkbox" name="options" value="A001362" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001271" /> <span title="Marx, Adolph Bernhard">Marx, Adolph Bernhard</span> 
+                                    <input type="checkbox" name="options" value="A002357" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001362" /> <span title="Mozart, Wolfgang Amadeus">Mozart, Wolfgang Amadeus</span> 
+                                    <input type="checkbox" name="options" value="A003095" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000117" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000287" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001864" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001862" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001564" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001271" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A080007" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001487" /> <span title="Planché, James">Planché, James</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001564" /> <span title="Rellstab, Ludwig">Rellstab, Ludwig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001616" /> <span title="Rossini, Gioachino">Rossini, Gioachino</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080007" /> <span title="Schlesinger (Verlag, Buch- und Musikalienhandlung)">Schlesinger (Verlag, Buch- und…</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001862" /> <span title="Spohr, Louis">Spohr, Louis</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001864" /> <span title="Spontini, Gaspare">Spontini, Gaspare</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002357" /> <span title="Wieland, Christoph Martin">Wieland, Christoph Martin</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002160" /> <span title="Winkler, Karl Theodor">Winkler, Karl Theodor</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
+                                    <input type="checkbox" name="options" value="A020045" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Euryanthe, große romantische Oper in drei Aufzügen">Euryanthe, große romantische O…</span> 
+                                    <input type="checkbox" name="options" value="A020484" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
+                                    <input type="checkbox" name="options" value="A020040" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020045" /> <span title="Oberon, or the Elf King's Oath, a romantic and Fairy Opera in three acts">Oberon, or the Elf King's Oath…</span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -373,9 +411,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span>, romantische Oper in drei Akten, nach dem Englischen des <span class="tei_hi_spaced_out"><a class="preview persons A001487" href="/exist/apps/WeGA-WebApp/de/A001487.html">J. Planché</a></span>, von <span class="tei_hi_spaced_out"><a class="preview persons A002160" href="/exist/apps/WeGA-WebApp/de/A002160.html">Theodor
+                                        <h2 class="docHeader textAlign-left"><a class="preview works A020045" href="">Oberon</a>, romantische Oper in drei Akten, nach dem Englischen des <span class="tei_hi_spaced_out"><a class="preview persons A001487" href="/exist/apps/WeGA-WebApp/de/A001487.html">J. Planché</a></span>, von <span class="tei_hi_spaced_out"><a class="preview persons A002160" href="">Theodor
                         Hell</a></span>, Musik von <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a></span>. Berlin
-                    bei <a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html">Schlesinger</a></h2><br />
+                    bei <a class="preview orgs A080007" href="">Schlesinger</a></h2><br />
                                         <p><span class="tei_segBlock textAlign-center">(<a class="preview writings A031642" href="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A031642.html">Schluss.</a>)</span></p>
                                         <p>In dem Duett zwischen <span class="7097116105109101">Fatime</span> und
                         <span class="839910410111497115109105110">Scherasmin</span> mischen sich die Karaktere des
@@ -414,16 +452,16 @@
                     zu haben pflegen; doch auf der andern Seite stören uns einige Stellen, denen man
                     den beabsichtigten Effekt zu sehr anhört, theils die Menge der Passagen,
                     besonders da wir diesen anfühlen, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> schrieb sie nicht à bon grè, wie
-                    <a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a>, sondern sehr contre coeur. (Der Deutsche hat keine Worte, um diese
+                    <a class="preview persons A001616" href="">Rossini</a>, sondern sehr contre coeur. (Der Deutsche hat keine Worte, um diese
                     Zustände so bestimmt zu nüanciren, daher verzeihe man mir die französischen).
                     Deshalb sind die Arien nicht glücklich gerathen, sondern<span class="tei_pb" title="Seitenumbruch zu S. 474"> | </span> mischen sich aus
                     Karakterzügen und unwesentlichem Passagenwerk; wir können indess, nicht <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a></span> zum Trost,
                     sondern dem Publikum, das ihn mit Recht so liebt, versichern, dass wir hier den
                     höchsten Maasstab der Foderungen an gelegt haben, und uns daher auch noch
-                    Niemand in diesem Punkte genügt hat, als <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>. Er ist der einzige Komponist, der einen solchen
+                    Niemand in diesem Punkte genügt hat, als <a class="preview persons A001362" href="">Mozart</a>. Er ist der einzige Komponist, der einen solchen
                     Reichthum, und eine solche Bildsamkeit der Erfindungen hatte, dass sie selbst in
                     der Gestalt von Passagen für die Bravoursängerin noch Bedeutung behalten. – Der
-                    getadelten Stücke im <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> sind wenige; denn, nur Beispielsweise will ich die
+                    getadelten Stücke im <a class="preview works A020045" href="">Oberon</a> sind wenige; denn, nur Beispielsweise will ich die
                     Preghiera, ein äusserst inniges Andante ausnehmen; die mehrstimmigen Sachen z.
                     B. das vortreffliche Quartett: „Ueber die blauen Wogen" u. s. w. gar nicht
                     gerechnet. Sehr glücklich hat bei dem letztgenannten Stück der Komponist die
@@ -432,7 +470,7 @@
                     gewusst, und sich so aus dem historischen Bilde beider Liebespaare ein Genrebild
                     geschaffen, welches seinem individuellen Talent mehr zusagt.</p><br />
                                         <p>Die mindest bedeutende Figur in der Oper ist <span class="7998101114111110">Oberon</span> selbst.
-                    Dies liegt aber vorzüglich am Dichter, und zwar schon an <a class="preview persons A002357" href="/exist/apps/WeGA-WebApp/de/A002357.html">Wieland</a>. 
+                    Dies liegt aber vorzüglich am Dichter, und zwar schon an <a class="preview persons A002357" href="">Wieland</a>. 
                     <span class="tei_hi_spaced_out">Töne</span> können uns wohl einen mächtigen, nur durch
                     Anmuth herrschenden Geisterfürsten, dessen äussere Gestalt aber fast die eines
                     Kindes sein soll, vor die Seele führen; allein sobald die Verwirklichung auf der
@@ -442,10 +480,10 @@
                     künstliche Begleitung und Instrumentirung die Erscheinung des Geisterfürsten
                     immer scharf von der der Erdensöhne zu sondern, allein es liegt in der Natur des
                     Wunderbaren, dass es nicht dauernd, nicht oft wiederholt wirken kann. Schon dem
-                    Geist des <span class="67111109116104117114">Comthur</span> im <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span> haben es tiefsinnige Aesthetiker<a href="#f_02" id="backref-f_02" class="fn-ref"> **)</a>
+                    Geist des <span class="67111109116104117114">Comthur</span> im <a class="preview works A020484" href="">Don Juan</a> haben es tiefsinnige Aesthetiker<a href="#f_02" id="backref-f_02" class="fn-ref"> **)</a>
                     nicht ganz mit
                     Unrecht<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> zum Vorwurf gemacht, dass er zu lange verweile; und welche Mittel bietet
-                    hier die Situation, bietet <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>s
+                    hier die Situation, bietet <a class="preview persons A001362" href="">Mozart</a>s
                     unendlicher Genius dar, um den schauerlichen Eindruck zu erhalten! Wie viel
                     schwerer musste es sein, (ja es ist unmöglich) den freundlichen Geist Oherons
                     immer so einzuführen und zu halten, dass uns die Verehrung vor seiner höhern
@@ -462,7 +500,7 @@
                     obwohl sie selbst vielleicht anerkennen, dass es nicht die höchsten sind. Mehr
                     oder weniger haben die ausgezeichnetsten Genien aller Zeiten dies gethan; wir
                     nennen nur <span class="849799105116117115"><span class="tei_hi_spaced_out">Tacitus</span></span>, <span class="7710599104971011083265110103101108111"><span class="tei_hi_spaced_out">Michael
-                        Angelo</span></span>, <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html"><span class="tei_hi_spaced_out">Jean Paul</span></a>, <span class="tei_hi_spaced_out"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>. Mir däucht, keiner
+                        Angelo</span></span>, <a class="preview persons A003095" href=""><span class="tei_hi_spaced_out">Jean Paul</span></a>, <span class="tei_hi_spaced_out"><a class="preview persons A000117" href="">Beethoven</a></span>. Mir däucht, keiner
                     von diesen allen dürfte Vorbild werden, so mächtig ihre geniale Kraft auch anf
                     die künstlerische Seele wirkt, uud wirken soll. Unser Freund, wiewohl diesen
                     Heroen nicht zu vergleichen, musste, vom innersten Drang getrieben, einen
@@ -472,12 +510,12 @@
                     der Kunst that, und sie uns durch sinnvolle Tonschöpfungen mittheilte. Viele Genien
                     gingen eine ähnliche Bahn wie er; fast alle aber entfernten sich, je weiter
                     sie kamen, immer <span class="tei_hi_spaced_out">mehr</span> von dem wahren Ziele der Kunst;
-                    dahin gehören aus unsern Tagen <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a>,<span class="tei_pb" title="Seitenumbruch zu S. 475"> | </span>
-                        <a class="preview persons A001864" href="/exist/apps/WeGA-WebApp/de/A001864.html">Spontini</a>, <a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a>, ja sogar <a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a>.
+                    dahin gehören aus unsern Tagen <a class="preview persons A000287" href="">Cherubini</a>,<span class="tei_pb" title="Seitenumbruch zu S. 475"> | </span>
+                        <a class="preview persons A001864" href="">Spontini</a>, <a class="preview persons A001862" href="">Spohr</a>, ja sogar <a class="preview persons A000117" href="">Beethoven</a>.
                         <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> aber näherte sich allmählig mit
                     den fortschreitenden Jahren mehr und mehr dem geläuterten Schönen. Er hielt
                     seine Individualität fest, schliff jedoch nach und nach die zu scharfen Ecken
-                    derselben ab. In diesem Sinne können wir mit Recht behaupten, <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> sei sein
+                    derselben ab. In diesem Sinne können wir mit Recht behaupten, <a class="preview works A020045" href="">Oberon</a> sei sein
                     bestes Werk. So eigentümlich es ist, so viel Gelegenheit ihm der Stoff bot,
                     gerade hier seinen Lieblingsausschweifungen den Zügel schiessen zu lassen, so
                     erblicken wir doch viel mehr als in frühern Arbeiten des Komponisten, den klaren
@@ -490,11 +528,11 @@
                     tobenden Gewühl allein ruhig und klar bleibt, und nie über irgend ein Mittel,
                     sei es das gewaltsamste, entscheidendste, seinen Zweck aus dem festen Blick des
                     Auges verliert. —</p><br />
-                                        <p>Haben wir im <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> ein zwar äusserst
+                                        <p>Haben wir im <a class="preview works A020040" href="">Freischütz</a> ein zwar äusserst
                     keckes, aber oft barockes Entfernen von dem Schönen zu rügen, finden wir in der
-                        <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span> häufige Spuren fast
+                        <a class="preview works A020043" href="">Euryanthe</a> häufige Spuren fast
                     konvulsivischer Anstrengungen, um gewisse Wirkungen zu erreichen: so bietet uns
-                    dagegen <span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span> das schönere, edlere Bild
+                    dagegen <a class="preview works A020045" href="">Oberon</a> das schönere, edlere Bild
                     gezügelter Kräfte, die von einer gereinigtem Klarheit des Geistes geführt
                     werden, dar. Nur Momente erinnern an die Mühsamkeit und gesuchte Anstrengung
                     früherer Arbeiten (z. B. der Sturm); grösstentheils aber zeigt und behält der
@@ -527,9 +565,9 @@
                     unwiderstehlich andringenden Tropfen. Gewiss eine dieser edlen Empfindungen,
                     oder ein Gemisch aus allen, regt sich wehmüthig in uns, wenn wir des Freundes
                     gedenken; und darum dürfen wir ihm eine Thräne zollen ohne sie zu verbergen.</p>
-                                        <p><span class="tei_segBlock textAlign-right"><a class="preview persons A001564" href="/exist/apps/WeGA-WebApp/de/A001564.html">L. Rellstab</a>.</span></p>
-                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e233"><span class="brackets_supplied">[</span>Anmerkung des Herausgebers: Eine <a class="preview writings A031384" href="/exist/apps/WeGA-WebApp/de/A001271/Schriften/A031384.html">nachträgliche Bemerkung</a> zu diesem Artikel von
-                            <a class="preview persons A001271" href="/exist/apps/WeGA-WebApp/de/A001271.html">A. B. Marx</a> findet sich in Nro. 51 vom
+                                        <p><span class="tei_segBlock textAlign-right"><a class="preview persons A001564" href="">L. Rellstab</a>.</span></p>
+                                        <p><span class="tei_segBlock textAlign-center"><span class="tei_supplied" id="d10e233"><span class="brackets_supplied">[</span>Anmerkung des Herausgebers: Eine <a class="preview writings A031384" href="">nachträgliche Bemerkung</a> zu diesem Artikel von
+                            <a class="preview persons A001271" href="">A. B. Marx</a> findet sich in Nro. 51 vom
                         17. Dez. 1828, Sp. 481-482 in derselben Zeitung<span class="brackets_supplied">]</span></span></span></p>
                                     </div>
                                     <div id="endNotes">
@@ -544,7 +582,7 @@
                         Künstlers.</p>
                                             </li>
                                             <li id="f_02"><a href="#backref-f_02" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>**)
-                            <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">J. Paul Friedrich Richter</a>, im
+                            <a class="preview persons A003095" href="">J. Paul Friedrich Richter</a>, im
                         besondern Gespräch mit mir über diesen Gegenstand.</li>
                                         </ul>
                                     </div>
@@ -595,16 +633,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Berliner allgemeine musikalische Zeitung</span>, Jg. 5, Nr. 50 (10. Dezember 1828), S. 473–475</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -634,9 +674,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031611</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031611</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2018 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -702,7 +743,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -722,30 +764,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

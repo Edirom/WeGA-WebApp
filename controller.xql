@@ -79,8 +79,11 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  :
  :)
 
-(: Generelle Weiterleitung für Ressourcen :)    
-else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,4})?$')) then 
+(:~
+ : Resolving von allen Dokument-IDs, die als resource angesprochen werden,
+ : d.h. letzer Teil des URL-Pfades sind.
+ :)    
+else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,6})?$')) then 
     controller:dispatch($exist-vars)
     
 (:
@@ -89,20 +92,11 @@ else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,4})?$')) then
  :)
 else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templates/ajax')) then 
     controller:forward-html('/templates/ajax/' || $exist:resource, map:new(($exist-vars, map:entry('docID', functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')))))
-    
-
-(:~
- : The CMIF Output of the letters (has to go before the generic *.xml rule) 
-~:)
-else if ($exist:resource = 'correspDesc.xml') then 
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{concat($exist:controller, '/modules/correspDesc.xql')}"/>
-    </dispatch>
 
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
    (: Shortcut for IDs, given as query string :)
-   if(config:get-combined-doctype-by-id(str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))) = ($search:wega-docTypes, 'var')) then controller:dispatch(map:put($exist-vars, 'exist:resource', str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))))
+   if(config:get-combined-doctype-by-id(str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))) = ($search:wega-docTypes, 'var', 'addenda')) then controller:dispatch(map:put($exist-vars, 'exist:resource', str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))))
    else controller:forward-html('/templates/search.html', map:new(($exist-vars, map:entry('docID', 'search'))))
 
 (: Register :)
@@ -154,40 +148,24 @@ else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
     
 (: IIIF manifest meta data :)
-else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/manifest.json')) then
+else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}(.*)/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/modules/view-json.xql')}">
-            <set-attribute name="docID" value="{substring-after(substring-before($exist:path, '/manifest.json'), 'IIIF/')}"/>
+            <set-attribute name="docID" value="{substring(substring-after($exist:path, 'IIIF/'), 1, 7)}"/>
+            <set-attribute name="sourceID" value="{substring(substring-after(substring-before($exist:path, '/manifest.json'), 'IIIF/'), 8)}"/>
             <set-attribute name="type" value="manifest"/>
         </forward>
     </dispatch>
 
-(: IIIF resource meta data :)
-(:else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}/[^/]+/info.json')) then
+(: IIIF collection meta data :)
+(:else if (matches($exist:path, '/IIIF/letters/collection.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/modules/view-json.xql')}">
-            <set-attribute name="docID" value="{substring-before(substring-after($exist:path, 'IIIF/'), '/')}"/>
-            <set-attribute name="image" value="{functx:substring-after-last(util:unescape-uri(substring-before($exist:path, '/info.json'), 'UTF-8'), '/')}"/>
-            <set-attribute name="type" value="resource"/>
+            <set-attribute name="docID" value="letters"/>
+            <set-attribute name="type" value="collection"/>
         </forward>
-    </dispatch>:)
-    
-(:else if (contains($exist:path, '/IIIF') and $exist:resource eq 'level0.json') then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{concat($exist:controller, '/templates/ajax/dnb.html')}"/>
-        <view>
-            <forward url="{concat($exist:controller, '/modules/view-json.xql)'}">
-                <set-attribute name="resource" value="{substring-before($exist:resource, '.json')}"/>
-            </forward>
-        </view>
     </dispatch>
-    :)
-    
-(:else if (contains($exist:path, '/IIIF')) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <redirect url="http://192.168.3.104:9091/digilib2.3.3/Scaler/IIIF{replace(substring-after($exist:path, 'IIIF'), 'default', 'native')}"/>
-    </dispatch>:)
-
+:)
 (: Ausführliche Weber-Biographie :)
 else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
     controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))
@@ -211,14 +189,6 @@ else if ($exist:path eq '/de/Sonderband.html' or $exist:path eq '/en/Special_Vol
 (: GND Resolver :)
 else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+(\.\w+)?$'))) then
     controller:redirect-by-gnd($exist-vars)
-
-(: Shortcut für fffi-db :)
-(:else if (matches($exist:path, '^/fffi-db[^/]*$')) then
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<redirect url="{str:join-path-elements(($lang, $search))}">
-    	   <cache-control cache="yes"/>
-    	</redirect>
-    </dispatch>   :) 
 
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then

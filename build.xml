@@ -18,50 +18,47 @@
     </target>
     
     <target name="clean-all" depends="clean">
-        <delete dir="${bower_components.dir}"/>
-        <delete dir="guidelines"/>
+        <delete dir="${lib_components.dir}"/>
     </target>
     
     <target name="init">
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <mkdir dir="${dist.dir}"/>
-        <condition property="update.bower">
-            <not>
-                <available file="${bower_components.dir}" type="dir"/>
-            </not>
-        </condition>
         <condition property="update.smufl-font">
             <not>
-                <available file="${bower_components.dir}/bravura.zip"/>
+                <available file="${lib_components.dir}/bravura.zip"/>
             </not>
         </condition>
     </target>
     
     <target name="test">
         <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
-        <regressiontest doctype="works"/>
-        <regressiontest doctype="letters"/>
-        <regressiontest doctype="persons"/>
-        <regressiontest doctype="orgs"/>
-        <regressiontest doctype="diaries"/>
-        <regressiontest doctype="documents"/>
-        <regressiontest doctype="news"/>
-        <regressiontest doctype="thematicCommentaries"/>
-        <regressiontest doctype="var"/>
-        <regressiontest doctype="writings"/>
-        <regressiontest doctype="places"/>
+        <parallel threadCount="5" failonany="yes">
+            <regressiontest doctype="addenda"/>
+            <regressiontest doctype="news"/>
+            <regressiontest doctype="works"/>
+            <regressiontest doctype="letters"/>
+            <regressiontest doctype="persons"/>
+            <regressiontest doctype="orgs"/>
+            <regressiontest doctype="diaries"/>
+            <regressiontest doctype="documents"/>
+            <regressiontest doctype="thematicCommentaries"/>
+            <regressiontest doctype="var"/>
+            <regressiontest doctype="writings"/>
+            <regressiontest doctype="places"/>
+        </parallel>
     </target>
     
-    <target name="download-smufl-font" depends="bower" if="${update.smufl-font}">
+    <target name="download-smufl-font" depends="yarn" if="${update.smufl-font}">
         <description>Download Bravura font from the official website</description>
-        <get src="${smufl.font}" dest="${bower_components.dir}/bravura.zip" skipexisting="no"/>
+        <get src="${smufl.font}" dest="${lib_components.dir}/bravura.zip" skipexisting="no"/>
     </target>
     
-    <target name="bower" depends="init" if="${update.bower}">
-        <description>Update javascript libraries via bower</description>
-        <exec executable="${bower.cmd}" failonerror="yes">
-            <arg value="update"/>
+    <target name="yarn" depends="init">
+        <description>Update javascript libraries via yarn</description>
+        <exec executable="${yarn.cmd}" failonerror="yes">
+            <arg value="install"/>
         </exec>
     </target>
     
@@ -75,7 +72,7 @@
         </exec>
     </target>
     
-    <target name="dist" depends="init, download-smufl-font, bower, less">
+    <target name="dist" depends="init, download-smufl-font, yarn, less">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
@@ -93,20 +90,22 @@
                 <include name="catalogues/**"/>
                 <include name="indices/**"/>
                 <include name="templates/**"/>
-                <include name="guidelines/**"/>
                 <include name="xsl/**"/>
                 <exclude name="build.xml"/>
                 <exclude name="*build.properties"/>
                 <exclude name=".git*"/>
                 <exclude name="*.tmpl"/>
                 <exclude name="*.txt"/>
-                <exclude name="bower.json"/>
+                <exclude name="package.json"/>
+                <exclude name="yarn.lock"/>
+                <exclude name=".dockerignore"/>
+                <exclude name=".travis.yml"/>
                 <exclude name="**/less/**"/>
             </fileset>
         </copy>
         
         <!-- extract smufl fonts -->
-        <unzip src="${bower_components.dir}/bravura.zip" dest="${tmp.dir}"/>
+        <unzip src="${lib_components.dir}/bravura.zip" dest="${tmp.dir}"/>
         
         <!-- Copy additional fonts -->
         <copy todir="${dist.dir}/resources/fonts" failonerror="false">
@@ -129,11 +128,11 @@
             <fileset dir="${wega.fonts.dir}">
                 <include name="2B*.*"/>
             </fileset>
-            <fileset dir="${bower_components.dir}/bootstrap/dist/fonts/">
+            <fileset dir="${lib_components.dir}/bootstrap/dist/fonts/">
                 <include name="*.*"/>
             </fileset>
-            <fileset dir="${bower_components.dir}/fontawesome/fonts/">
-                <include name="fontawesome-webfont.*"/>
+            <fileset dir="${lib_components.dir}/font-awesome/fonts/">
+                <include name="*"/>
             </fileset>
         </copy>
         <!-- Copy additional images -->
@@ -143,9 +142,9 @@
             </fileset>
         </copy>
         
-        <!-- Copy libs from bower components -->
+        <!-- Copy libs from ${lib_components.dir} -->
         <copy todir="${dist.dir}/resources/lib">
-            <fileset dir="${bower_components.dir}">
+            <fileset dir="${lib_components.dir}">
                 <include name="**/*.js"/>
                 <include name="**/*.css"/>
                 <include name="**/*.gif"/>
@@ -159,13 +158,14 @@
                 <exclude name="**/test/**"/>
                 <exclude name="**/tests.js"/>
                 <exclude name="**/docs/**"/>
+                <exclude name="json-*/**"/>
             </fileset>
         </copy>
         
-        <!-- Copy compiled TEI Guidelines from bower components -->
+        <!-- Copy compiled TEI Guidelines from ${lib_components.dir} -->
         <!-- TODO: include p5subset.xml as a reference -->
         <copy todir="${dist.dir}/guidelines">
-            <fileset dir="${bower_components.dir}/WeGA-ODD/compiled-ODD">
+            <fileset dir="${lib_components.dir}/WeGA-ODD/compiled-ODD">
                 <include name="*.xml"/>
             </fileset>
         </copy>
@@ -174,7 +174,7 @@
     <target name="yuicompress" depends="dist">
         <apply executable="java" parallel="false" dest="${dist.dir}/resources/css">
             <fileset dir="${dist.dir}/resources/css" includes="*.css" excludes="*min.css"/>
-            <arg line="-jar ${yuicompress.jar} -v"/>
+            <arg line="-jar ${lib_components.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
             <srcfile/>
             <arg line="-o"/>
             <mapper type="glob" from="*.css" to="*-min.css"/>
@@ -182,15 +182,15 @@
         </apply>
         <apply executable="java" parallel="false" dest="${dist.dir}/resources/js">
             <fileset dir="${dist.dir}/resources/js" includes="*.js" excludes="*min.js"/>
-            <arg line="-jar ${yuicompress.jar} -v"/>
+            <arg line="-jar ${lib_components.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
             <srcfile/>
             <arg line="-o"/>
             <mapper type="glob" from="*.js" to="*-min.js"/>
             <targetfile/>
         </apply>
-        <apply executable="java" parallel="false" dest="${dist.dir}/resources/lib/datepicker-fr/ui/widgets">
-            <fileset dir="${dist.dir}/resources/lib/datepicker-fr/ui/widgets" includes="datepicker.js" excludes="*min.js"/>
-            <arg line="-jar ${yuicompress.jar} -v"/>
+        <apply executable="java" parallel="false" dest="${dist.dir}/resources/lib/jquery-ui/ui/widgets">
+            <fileset dir="${dist.dir}/resources/lib/jquery-ui/ui/widgets" includes="datepicker.js" excludes="*min.js"/>
+            <arg line="-jar ${lib_components.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
             <srcfile/>
             <arg line="-o"/>
             <mapper type="glob" from="*.js" to="*-min.js"/>

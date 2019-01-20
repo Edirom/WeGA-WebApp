@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta property="dc:date" content="2018-08-24T08:18:27.015Z" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://localhost:8080/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles" />
         <meta property="dc:description" content="Eine Liste von aktuellen Nachrichten, herausgegeben von der Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta name="description" content="Eine Liste von aktuellen Nachrichten, herausgegeben von der Carl-Maria-von-Weber-Gesamtausgabe" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Webseitennews","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/Project/News" hreflang="en" lang="en">En</a></li>
@@ -235,7 +238,7 @@
         <div class="allFilter">
             <h2>Filter</h2>
             <h4>Chronologie</h4>
-            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="2003-03-23" data-max-slider="2018-07-17" data-from-slider="2003-03-23" data-to-slider="2018-07-17" />
+            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="2005-11-11" data-max-slider="2016-05-04" data-from-slider="2005-11-11" data-to-slider="2016-05-04" />
            
             <h4>Personen</h4>
             <select multiple="multiple" name="persons" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="news">
@@ -251,17 +254,13 @@
         </div>
     </div>
 	<div class="col-md-9 col-md-pull-3 searchResults">
-	<h2>169 Suchergebnisse</h2>
+	<h2>19 Suchergebnisse</h2>
 	<div class="row">
 		<div class="col-sm-8">
 			<ul class="pagination">
                                             <li class="disabled"><span>« zurück</span></li>
                                             <li class="active"><span>1</span></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=16&amp;limit=10">16</a></li>
-                                            <li><a class="page-link" href="?page=17&amp;limit=10">17</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -280,19 +279,19 @@
 				<li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050169.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050328.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050169.html">Digitale Edition Version 3.3 veröffentlicht</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050328.html">Digitale Edition Version 2.0 veröffentlicht</a>
         </h3>
-        <p><strong>17. Juli 2018</strong></p>
-        <p>Während in Berlin, Paderborn – und sogar Detmold – fast unentwegt die Sonne scheint und der Sommer sich von seiner schönsten Seite zeigt, haben wir uns mitnichten an den See gelegt, sondern vielmehr …</p>
+        <p><strong>4. Mai 2016</strong></p>
+        <p>Nachdem bei den letzten Veröffentlichungen der Digitalen Edition der WeGA oftmals die Daten im Vordergrund standen und an der Oberfläche wenig Veränderungen vorgenommen wurden, so ist das Release 2.0 …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050169</span>
+            <span>A050328</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -301,19 +300,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009004/Aktuelles/A050323.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009004/Aktuelles/A050323.html">Oberon-Textbuch</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.html">Rätsel um Caroline von Weber und Ludwig Börne</a>
         </h3>
-        <p><strong>12. Juli 2018</strong></p>
-        <p>Nach Wielands Alceste erscheint im Juli dieses Jahres nun endlich als Bd. 3 der Reihe „Opernlibretti – kritisch ediert“ (Hg.: Irmlind Capelle und Joachim Veit) im Münchner Verlag Allitera das …</p>
+        <p><strong>19. April 2016</strong></p>
+        <p>2012 wies uns Christoph Schwandt auf einen Brief Ludwig Börnes hin, der bezüglich Caroline von Weber, geb. Brandt, Rätsel aufgab. Börne, der sich im Sommer 1825 zeitgleich mit Carl Maria von Weber im …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050323</span>
+            <span>A050172</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -322,19 +321,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050271.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050271.html">Partitur der <span class="tei_hi_italic">Jubel-Kantate</span> liegt vor</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050225.html">Max Maria von Weber als „Fälscher“ überführt</a>
         </h3>
-        <p><strong>10. Juli 2018</strong></p>
-        <p>Auf die Publikation des Freischütz folgte nun in Serie II als Bd. 4 die von Irmlind Capelle herausgegebene, 1818 entstandene Jubel-Kantate (WeV B.15), die auf dem Titelblatt die Widmung trägt „Zur …</p>
+        <p><strong>2. November 2015</strong></p>
+        <p>Dass man die Angaben Max Maria von Webers in der Biographie seines Vaters (Carl Maria von Weber. Ein Lebensbild, 3 Bd., Leipzig 1864/66) mit Vorsicht zu betrachten hat, ist seit längerem bekannt; …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050271</span>
+            <span>A050225</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -343,19 +342,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050178.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050178.html">10. Band der Weber-Studien erschienen</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050223.html">Umzug und neue Adresse der WeGA in Detmold</a>
         </h3>
-        <p><strong>2. Juni 2018</strong></p>
-        <p>Im Jahr 1993 erschien zu Beginn der Arbeiten an der WeGA Band 1 der Reihe Weber-Studien, herausgegeben von Gerhard Allroggen und Joachim Veit. Die Reihe sollte laut Vorwort als „das Erscheinen der …</p>
+        <p><strong>27. September 2015</strong></p>
+        <p>Wo hat es das im öffentlichen Bereich in letzter Zeit gegeben: Ein schmucker neuer Gebäudekomplex, der nicht nur im Kostenrahmen blieb, sondern sogar „zu früh“ bezugsfertig war?? Lippische …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050178</span>
+            <span>A050223</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -364,19 +363,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050314.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050224.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050314.html">Musikeditionspreis für den Freischütz</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050224.html">Erstmals eine Klausurtagung der WeGA</a>
         </h3>
-        <p><strong>16. April 2018</strong></p>
-        <p>Bei der diesjährigen Frankfurter Musikmesse wurden die Deutschen Musikeditionspreise „Best Edition 2018“ vom Deutschen Musikverlegerverband verliehen. In der Kategorie der Gesamtausgaben errang den …</p>
+        <p><strong>26. September 2015</strong></p>
+        <p>Die erfolgreichen Berichte von „Klausurtagungen“ anderer Projekte am Musikwissenschaftlichen Seminar Detmold/Paderborn hatten schon lange den Wunsch geweckt, eine solche Intensiv-Arbeitsphase auch …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050314</span>
+            <span>A050224</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -385,19 +384,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050191.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050191.html">90th Birthday of John Warrack</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295.html"><span class="tei_hi_italic">Weber-Studien</span> 9 erschienen</a>
         </h3>
-        <p><strong>9. Februar 2018</strong></p>
-        <p>9th of February 2018: Today we celebrate the 90th birthday of Prof. Dr John Warrack, member of the advisory board of the Carl-Maria-von-Weber-Gesellschaft and one of the fathers of our historico …</p>
+        <p><strong>18. Februar 2015</strong></p>
+        <p>Die Internationale Carl-Maria-von-Weber-Gesellschaft e. V. hat gemäß ihrem Satzungsziel, der „Förderung der Auseinandersetzung mit dem Werk Carl Maria von Webers“, im Rahmen ihrer …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050191</span>
+            <span>A050295</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -406,19 +405,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050269.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050206.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050269.html">Weber-Neuerwerbungen der Staatsbibliothek zu Berlin – PK 2017</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050206.html">Webers <span class="tei_hi_italic">Adagio und Rondo</span> – aber welches?</a>
         </h3>
-        <p><strong>29. Januar 2018</strong></p>
-        <p>Auch im Jahr 2017 hat die Musikabteilung der Berliner Staatsbibliothek gemäß ihrem Sammelauftrag die in ihren Magazinen gehütete weltweit umfassendste Weber-Sammlung kontinuierlich ausbauen können, …</p>
+        <p><strong>9. Dezember 2014</strong></p>
+        <p>Mehrfach haben uns in letzter Zeit Anfragen zu Carl Maria von Webers Adagio und Rondo erreicht; kein Wunder, kursieren doch drei Werke des Komponisten unter dieser Bezeichnung, die immer wieder …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050269</span>
+            <span>A050206</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -427,19 +426,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050356.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050204.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050356.html">Digitale Edition Version 3.2 veröffentlicht</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050204.html">Weber-Neuerwerbungen im Herbst 2014 in Berlin</a>
         </h3>
-        <p><strong>22. Dezember 2017</strong></p>
-        <p>Es weihnachtet sehr, überall im Land werden Päckchen gepackt und geschnürt, und auch die WeGA-Wichtel haben sich wieder viel Mühe gegeben, noch rechtzeitig zum Fest ein aktuelles Release zu schnüren …</p>
+        <p><strong>8. Dezember 2014</strong></p>
+        <p>Die Musikabteilung der Staats-Bibliothek zu Berlin – Preußischer Kulturbesitz konnte ihre einzigartige Weber-Sammlung erneut um wichtige Quellen bereichern, u. a. im Herbst 2014 um eine dreibändige …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050356</span>
+            <span>A050204</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -448,19 +447,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050000.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050121.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050000.html">Endlich vorliegend: Die Partituredition des „Freischütz“ innerhalb der WeGA</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050121.html">Digitale Edition Version 1.2 veröffentlicht</a>
         </h3>
-        <p><strong>6. Dezember 2017</strong></p>
-        <p>Nun ist er endlich da: Webers Freischütz (Serie III, Bd. 7a und 7b der WeGA), mit dem sich die Zahl der bislang erschienenen Bände der Ausgabe auf 30 erhöht. Die zweibändige Edition der Partitur (mit …</p>
+        <p><strong>11. Juni 2014</strong></p>
+        <p>Das vorliegende Release 1.2 hat etwas auf sich warten lassen, dafür wartet es jetzt auch mit zahlreichen sichtbaren (und noch mehr unsichtbaren) Änderungen auf: Neu hinzugekommen ist u.a. der …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050000</span>
+            <span>A050121</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -469,19 +468,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050113.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050120.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050113.html">Voglers „Dole-vise-Variationen“ als Band 1 der Online-Editionen der WeGA veröffentlicht</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050120.html">Weberiana, Heft 24 (2014) geht in Druck</a>
         </h3>
-        <p><strong>6. Dezember 2017</strong></p>
-        <p>Am 23. Mai 2017 hatten Dr. Markus Bandur und Frank Ziegler im Rahmen der Reihe „Musik im Landtag“ in Mainz unter dem Titel: Musikalischer Populismus? – Volkslieder und nationale Stilelemente in Carl …</p>
+        <p><strong>8. Juni 2014</strong></p>
+        <p>Das neueste, 208 Seiten umfassende Heft der Weberiana geht in Kürze in Druck. Es enthält diesmal vier größere Beiträge: Eveline Bartlitz wirft anlässlich der Erwerbung eines Rochlitz-Briefes durch …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A050113</span>
+            <span>A050120</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -496,10 +495,6 @@
                                             <li class="disabled"><span>« zurück</span></li>
                                             <li class="active"><span>1</span></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=16&amp;limit=10">16</a></li>
-                                            <li><a class="page-link" href="?page=17&amp;limit=10">17</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -571,7 +566,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -591,30 +587,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

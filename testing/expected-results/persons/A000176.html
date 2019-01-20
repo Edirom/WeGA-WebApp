@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-20T08:36:25.726891Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000176" />
         <meta property="dc:description" content="Biographische Informationen zu Carl Blum. Lebensdaten: 1786–2. Juli 1844. Tätigkeiten: Schauspieler, Sänger (Bass), Bühnenschriftsteller, Komponist, Regisseur. Wirkorte: Erlangen, Königsberg, Berlin, Wien, Paris" />
         <meta name="description" content="Biographische Informationen zu Carl Blum. Lebensdaten: 1786–2. Juli 1844. Tätigkeiten: Schauspieler, Sänger (Bass), Bühnenschriftsteller, Komponist, Regisseur. Wirkorte: Erlangen, Königsberg, Berlin, Wien, Paris" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"name":"Carl Blum – Biographische Informationen aus der WeGA","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000176","@context":"http://schema.org","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000176"}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A000176.html" hreflang="en" lang="en">En</a></li>
@@ -228,38 +231,41 @@
         <div class="container paddingTopIcon paddingBottomIcon">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000176.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000176.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000176.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000176.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000176.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -327,7 +333,9 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
-                    <h2>Ikonographie</h2>
+                    
+                        <h2>Ikonographie</h2>
+                    
                     <div class="iconographythumbnail">
                         <a href="https://de.wikipedia.org/wiki/Datei:Carl_Blum.jpg"><img title="Carl Blum, Lithographie von Joseph Teltscher (Quelle: Wikimedia)" alt="Carl Blum, Lithographie von Joseph Teltscher (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/29/Carl_Blum.jpg/220px-Carl_Blum.jpg" /></a>
                     </div>
@@ -350,19 +358,19 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li><a href="#biographies">Biographien</a></li>
                                 
-                                <li><a href="#correspondence" data-target="A000176/correspondence.html">Korrespondenz<small> (3)</small></a></li>
-                                <li><a class="deactivated"></a></li>
-                                <li><a class="deactivated"></a></li>
-                                <li><a href="#works" data-target="A000176/works.html">Werke<small> (5)</small></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#contacts" data-target="A000176/contacts.html">Kontakte<small> (4)</small></a></li>
-                                <li><a href="#backlinks" data-target="A000176/backlinks.html">Rückverweise<small> (37)</small></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a href="#backlinks" data-target="A000176/backlinks.html">Rückverweise<small> (2)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -374,7 +382,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
@@ -420,21 +428,21 @@
                                                     
                                                     <div>
       <ul class="tei_list">
-          <li>Sohn von <span class="7597114108327911611611132661081171094010141">Karl Otto Blum(e)</span>, Sekretär der Kriegs- und Domänenkammer (gest. 1801), und dessen Frau <span class="65110110973268111114111116104101973283111112104105974432103101984632709710899107101">Anna Dorothea Sophia, geb. Falcke</span>; älterer Bruder von <a class="preview persons A000179" href="/exist/apps/WeGA-WebApp/de/A000179.html">Heinrich Blume</a></li>
+          <li>Sohn von <span class="7597114108327911611611132661081171094010141">Karl Otto Blum(e)</span>, Sekretär der Kriegs- und Domänenkammer (gest. 1801), und dessen Frau <span class="65110110973268111114111116104101973283111112104105974432103101984632709710899107101">Anna Dorothea Sophia, geb. Falcke</span>; älterer Bruder von <a class="preview persons A000179" href="">Heinrich Blume</a></li>
           <li>Besuch des französischen Gymnasiums; bereits in jungen Jahren musikalische Ausbildung, Cello-Unterricht bei <span class="72101105110114105991043271114111115115">Heinrich Gross</span>; außerdem Unterricht in Zeichnen/Malen und Kupferstecherei in der Kunstakademie</li>
-          <li>nach dem Tod des Vaters 16-jährig erster Bühnenauftritt am Thalia-Theater in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></li>
-          <li>1803 Schauspielengagement unter <a class="preview persons A008803" href="/exist/apps/WeGA-WebApp/de/A008803.html">Quandt</a> in <span class="preview places A130059" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130059.html">Erlangen</span></li>
-          <li>ab 1. Juli 1804 am Theater <span class="preview places A130027" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130027.html">Königsberg</span>, dort noch 1814 nachgewiesen, „hat sich hier zum Bassisten gebildet, und er ist sehr brav“ (AmZ 1809, Sp. 639)</li>
-          <li>in <span class="preview places A130027" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130027.html">Königsberg</span> weitere musikalische Unterweisungen durch <a class="preview persons A008029" href="/exist/apps/WeGA-WebApp/de/A008029.html">Friedrich Adam Hiller</a>, erlernte außerdem das Gitarrenspiel</li>
-          <li>nach Übersiedlung des preußischen Hofes nach <span class="preview places A130027" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130027.html">Königsberg</span> vorübergehend Musiklehrer der <a class="preview persons A001254" href="/exist/apps/WeGA-WebApp/de/A001254.html">Prinzessin Marianne</a></li>
-          <li>nach 1813 Heirat mit <a class="preview persons A007892" href="/exist/apps/WeGA-WebApp/de/A007892.html">Antoinette, geb. Toscani</a> (Trennung vor 1816)</li>
-          <li>nach längerem Aufenthalt in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> ab 1817 in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span>, nahm Unterricht bei <a class="preview persons A001641" href="/exist/apps/WeGA-WebApp/de/A001641.html">Salieri</a>, ab 1818 Mitglied der Ludlamshöhle (Vereinsname: Blümel der Allesser); von <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> aus angeblich Reise nach <span class="tei_country">Italien</span></li>
-          <li>1820/21 Aufenthalt in <span class="preview places A130008" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130008.html">Paris</span> (dort Ernennung zum preußischen Hofkomponisten), Bekanntschaft u. a. mit <a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a> <a class="preview persons A000198" href="/exist/apps/WeGA-WebApp/de/A000198.html">Boieldieu</a> und <a class="preview persons A000056" href="/exist/apps/WeGA-WebApp/de/A000056.html">Auber</a></li>
-          <li>ab 1821 wieder in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, lt. AmZ 1823 (Sp. 420, Berlin-Bericht vom Mai 1823) in den Königlichen Schauspielen „kürzlich Regisseur der Oper geworden“; weiterhin auch Konzertauftritte als Sänger und Gitarrist</li>
-         <li>um den Jahreswechsel 1826/27 Wechsel vom Königlichen ans Königsstädtische Theater in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span>, dort technischer Direktor (vgl. AmZ 1827, Sp. 113), im Frühjahr <span class="tei_country">Italien</span>-Reise (vgl. AmZ 1827, Sp. 428), legte am 1. Februar 1829 sein Amt nieder (vgl. AmZ 1829, Sp. 131)</li>
-          <li>Anfang 1830 kurze Reise nach <span class="preview places A130008" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130008.html">Paris</span></li>
-          <li>ab 1832 erneut Regisseur an der Hofoper (vgl. AmZ 1832, Sp. 701) bis zum Tod (sein Nachfolger wurde <a class="preview persons A000074" href="/exist/apps/WeGA-WebApp/de/A000074.html">Bader</a>, vgl. AmZ 1844, Sp. 743)</li>
-         <li>widmete <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> sein <span class="tei_hi_italic">Siegeslied der Kreuzfahrer bei Eroberung des heiligen Grabes</span> op. 67, Partitur bei <a class="preview orgs A080002" href="/exist/apps/WeGA-WebApp/de/A080002.html">Schott</a>, Mainz (PN: 1690); vgl. auch Blums Brief an Schott vom 10. Dezember 1821: „Die Dedication auf dem Siegeslied der Kreutzfahrer ändern Sie gefälligst anstatt an Kap. <a class="preview persons A002038" href="/exist/apps/WeGA-WebApp/de/A002038.html">Wagner</a> an Herrn Carl Maria v. Weber erstem Königl. Sächsischen Hofkapellmeister, weil ich Herrn Wagner in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> bei <a class="preview orgs A080150" href="/exist/apps/WeGA-WebApp/de/A080150.html">Steiner</a> ein Chor dedicirt habe, und in <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> Kirchenmusik ist.“ (D-B, Schott-Archiv, Nr. 48476, Bl. 8): <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> erhielt laut <a class="preview diaries A061924" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061924.html">Tagebuch</a> ein Exemplar am 4. Februar 1822.</li>
+          <li>nach dem Tod des Vaters 16-jährig erster Bühnenauftritt am Thalia-Theater in <a class="preview places A130002" href="">Berlin</a></li>
+          <li>1803 Schauspielengagement unter <a class="preview persons A008803" href="">Quandt</a> in <a class="preview places A130059" href="">Erlangen</a></li>
+          <li>ab 1. Juli 1804 am Theater <a class="preview places A130027" href="">Königsberg</a>, dort noch 1814 nachgewiesen, „hat sich hier zum Bassisten gebildet, und er ist sehr brav“ (AmZ 1809, Sp. 639)</li>
+          <li>in <a class="preview places A130027" href="">Königsberg</a> weitere musikalische Unterweisungen durch <a class="preview persons A008029" href="">Friedrich Adam Hiller</a>, erlernte außerdem das Gitarrenspiel</li>
+          <li>nach Übersiedlung des preußischen Hofes nach <a class="preview places A130027" href="">Königsberg</a> vorübergehend Musiklehrer der <a class="preview persons A001254" href="">Prinzessin Marianne</a></li>
+          <li>nach 1813 Heirat mit <a class="preview persons A007892" href="">Antoinette, geb. Toscani</a> (Trennung vor 1816)</li>
+          <li>nach längerem Aufenthalt in <a class="preview places A130002" href="">Berlin</a> ab 1817 in <a class="preview places A130004" href="">Wien</a>, nahm Unterricht bei <a class="preview persons A001641" href="">Salieri</a>, ab 1818 Mitglied der Ludlamshöhle (Vereinsname: Blümel der Allesser); von <a class="preview places A130004" href="">Wien</a> aus angeblich Reise nach <span class="tei_country">Italien</span></li>
+          <li>1820/21 Aufenthalt in <a class="preview places A130008" href="">Paris</a> (dort Ernennung zum preußischen Hofkomponisten), Bekanntschaft u. a. mit <a class="preview persons A000287" href="">Cherubini</a> <a class="preview persons A000198" href="">Boieldieu</a> und <a class="preview persons A000056" href="">Auber</a></li>
+          <li>ab 1821 wieder in <a class="preview places A130002" href="">Berlin</a>, lt. AmZ 1823 (Sp. 420, Berlin-Bericht vom Mai 1823) in den Königlichen Schauspielen „kürzlich Regisseur der Oper geworden“; weiterhin auch Konzertauftritte als Sänger und Gitarrist</li>
+         <li>um den Jahreswechsel 1826/27 Wechsel vom Königlichen ans Königsstädtische Theater in <a class="preview places A130002" href="">Berlin</a>, dort technischer Direktor (vgl. AmZ 1827, Sp. 113), im Frühjahr <span class="tei_country">Italien</span>-Reise (vgl. AmZ 1827, Sp. 428), legte am 1. Februar 1829 sein Amt nieder (vgl. AmZ 1829, Sp. 131)</li>
+          <li>Anfang 1830 kurze Reise nach <a class="preview places A130008" href="">Paris</a></li>
+          <li>ab 1832 erneut Regisseur an der Hofoper (vgl. AmZ 1832, Sp. 701) bis zum Tod (sein Nachfolger wurde <a class="preview persons A000074" href="">Bader</a>, vgl. AmZ 1844, Sp. 743)</li>
+         <li>widmete <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> sein <span class="tei_hi_italic">Siegeslied der Kreuzfahrer bei Eroberung des heiligen Grabes</span> op. 67, Partitur bei <a class="preview orgs A080002" href="">Schott</a>, Mainz (PN: 1690); vgl. auch Blums Brief an Schott vom 10. Dezember 1821: „Die Dedication auf dem Siegeslied der Kreutzfahrer ändern Sie gefälligst anstatt an Kap. <a class="preview persons A002038" href="">Wagner</a> an Herrn Carl Maria v. Weber erstem Königl. Sächsischen Hofkapellmeister, weil ich Herrn Wagner in <a class="preview places A130004" href="">Wien</a> bei <a class="preview orgs A080150" href="">Steiner</a> ein Chor dedicirt habe, und in <a class="preview places A130003" href="">Dresden</a> Kirchenmusik ist.“ (D-B, Schott-Archiv, Nr. 48476, Bl. 8): <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> erhielt laut <a class="preview diaries A061924" href="">Tagebuch</a> ein Exemplar am 4. Februar 1822.</li>
           <li>arrangierte aus Liedern und weiterer Musik <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> das Liederspiel <span class="tei_hi_italic">Die Rückkehr ins Dörfchen</span> (UA am Königsstädtischen Theater in Berlin am 13. April 1829)</li>
          <li>zu seinen Werken zählen: Lustspiele für die deutsche Bühne, 1824; Vaudevilles, 2 Bde, 1824–26; Neue Bühnenstücke 1828; Neue Theaterspiele 1830; Theater, 4 Bde, 1839–44; Opern und Singspiele (schuf auch Übersetzungen von Bühnenwerken bzw. Opernlibretti aus dem Französischen und Italienischen)</li>
       </ul>
@@ -458,7 +466,7 @@
                                                     <ul>
                                                             <li><a title="Digitaler Portraitindex - Alle Personen" href="http://www.portraitindex.de/dokumente/pnd/116207523">3 Reproduktionen im Digitalen Portraitindex Frühe Neuzeit</a></li>
                                                             <li><a title="Allgemeine Deutsche Biographie (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-adb/116207523">Allgemeine Deutsche Biographie (Wikisource)</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=116207523">Bayerische Staatsbibliothek (92)</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=116207523">Bayerische Staatsbibliothek (115)</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier ADB 25782 Einträge)" href="http://www.deutsche-biographie.de/pnd116207523.html#adbcontent">Biographien der ADB</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier NDB 22217 Einträge)" href="http://www.deutsche-biographie.de/pnd116207523.html#ndbcontent">Biographien der NDB</a></li>
                                                             <li><a title="Deutsche Biographie - Biographische Informationen zu Personen im Index von NDB, ADB und Register" href="http://www.deutsche-biographie.de/pnd116207523.html#allcontent">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
@@ -478,13 +486,15 @@
                                                             <li><a title="Die Handschriftensammlung der SLUB Dresden bewahrt rund 400.000 Autographen und 500 schriftliche Nachlässe und Sammlungen von Künstlern, Literaten, Musikern und Wissenschaftlern, überwiegend mit Bezug zum mitteldeutschen Raum." href="http://hansopac.slub-dresden.de/cgi-bin/slub.pl?t%5ftunnel=idn&amp;present=auto&amp;idn=PND:116207523">Nachweis von Autographen in der SLUB Dresden</a></li>
                                                             <li><a title="Mapping from GND ID IDs to National Library of Israel ID IDs [Q110163]" href="http://aleph.nli.org.il/F/?func=find-b&amp;local_base=NNL10&amp;find_code=SYS&amp;con_lng=eng&amp;request=000287106">National Library of Israel ID</a></li>
                                                             <li><a title="Národní knihovna České republiky (mapping provided by VIAF) [jx20070612003]" href="http://aleph.nkp.cz/F/?func=find-c&amp;local_base=aut&amp;ccl_term=ica=jx20070612003">NKC [by http://viaf.org/viaf/40124084]</a></li>
+                                                            <li><a title="Aus der de:Wikipedia und en:Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_imslp/116207523">Noten, Partituren und Auszüge im International Music Score Library Project</a></li>
                                                             <li><a title="The Open Library - Autorenseite (https://openlibrary.org) [6886379]" href="https://openlibrary.org/authors/OL6886379A">Open Library - Autorenseite [Carl Blum (1786-1844)]</a></li>
                                                             <li><a title="Mapping from GND ID IDs to openMLOL author ID IDs [Q110163]" href="https://openmlol.it/autore/53259">openMLOL author ID</a></li>
                                                             <li><a title="autorités SUDOC/idref.fr (mapping provided by VIAF) [161123813]" href="http://www.idref.fr/161123813">SUDOC [by http://viaf.org/viaf/40124084]</a></li>
                                                             <li><a title="Personen der Formal- und Sacherschliessung (Tn und Tp) mit GND-Nummer &#34;extern&#34; erstellt aus Linked Open Data" href="http://swb.bsz-bw.de/DB=2.104/CMD?retrace=0&amp;trm_old=&amp;ACT=SRCHA&amp;IKT=2999&amp;SRT=RLV&amp;MATCFILTER=N&amp;MATCSET=N&amp;NOABS=Y&amp;SHRTST=50&amp;TRM=116207523">SWB-Verbundkatalog</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29116207523">Titelaufnahmen des B3Kat (144)</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek - Bibliotheksverbund Bayern - Sachgebiet Verbundnahe Dienste" href="http://www.gateway-bayern.de/opensearch?rfr_id=LinkedOpenData%3ABeacon&amp;rft.au=%28DE-588%29116207523">Titelaufnahmen des B3Kat (153)</a></li>
                                                             <li><a title="Links von GND-Identifiern in den Verbundatalog des GBV" href="http://gso.gbv.de/DB=2.1/SET=1/TTL=1/CMD?ACT=SRCHA&amp;IKT=8549&amp;SRT=YOP&amp;TRM=116207523">Titel im Verbundkatalog des GBV (169)</a></li>
                                                             <li><a title="aus der {de,en}:Wikipedia extrahierte Links" href="http://beacon.findbuch.de/gnd-resolver/pw_ol/116207523">Werke in der Open Library</a></li>
+                                                            <li><a title="Korrespondierendes Wikidata-Item (www.wikidata.org) [Q110163]" href="https://tools.wmflabs.org/reasonator/?q=Q110163">Wikidata</a></li>
                                                             <li><a title="Wikipedia-Personenartikel" href="https://tools.wmflabs.org/persondata/redirect/gnd/de/116207523">Wikipedia-Artikel</a></li>
                                                         </ul>
                                                 </div>
@@ -547,9 +557,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000176</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000176</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                     </div>
                     
                 </div>
@@ -617,7 +627,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -637,30 +648,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

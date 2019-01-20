@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2017-12-15T14:59:45.125033Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090003" />
         <meta property="dc:description" content="Nachdem das Projekt Franz Anton von Webers, in Freiberg eine Lithographie-Werkstatt zu etablieren (s. Anzeige), nicht zum gewünschten Erfolg geführt …" />
         <meta name="description" content="Nachdem das Projekt Franz Anton von Webers, in Freiberg eine Lithographie-Werkstatt zu etablieren (s. Anzeige), nicht zum gewünschten Erfolg geführt …" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005"}],"name":"Der Freiberger Pressestreit um Webers Waldmädchen","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090003","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090003","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +192,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A009005/Thematic_Commentaries/A090003.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,11 @@
                     
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a></li>
+                        <li><span></span></li>
                         <li><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare">Themenkommentare</a></li>
                         <li><span>A090003</span></li>
                     </ol>
+                    
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"></i>
@@ -232,38 +238,41 @@
         <div class="row">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090003.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090003.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090003.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090003.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090003.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -288,31 +297,31 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001251" /> <span title="Amalie, Königin von Sachsen">Amalie, Königin von Sachsen</span> 
+                                    <input type="checkbox" name="options" value="A002074" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000146" /> <span title="Berner, Friedrich Wilhelm">Berner, Friedrich Wilhelm</span> 
+                                    <input type="checkbox" name="options" value="A001886" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000490" /> <span title="Fischer, Johann Gottfried">Fischer, Johann Gottfried</span> 
+                                    <input type="checkbox" name="options" value="A000778" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000778" /> <span title="Haydn, Michael">Haydn, Michael</span> 
+                                    <input type="checkbox" name="options" value="A001251" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000851" /> <span title="Hoffmann, Ernst Theodor Amadeus">Hoffmann, Ernst Theodor Amadeu…</span> 
+                                    <input type="checkbox" name="options" value="A001828" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003095" /> <span title="Jean Paul">Jean Paul</span> 
+                                    <input type="checkbox" name="options" value="A000490" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008576" /> <span title="Kaiser, Georg">Kaiser, Georg</span> 
+                                    <input type="checkbox" name="options" value="A007993" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A007993" /> <span title="Kretschmar, Christian Gottfried">Kretschmar, Christian Gottfrie…</span> 
+                                    <input type="checkbox" name="options" value="A008576" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001545" /> <span title="Reichardt, Johann Friedrich">Reichardt, Johann Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A000146" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001828" /> <span title="Siegert, Christian Gottlob">Siegert, Christian Gottlob</span> 
+                                    <input type="checkbox" name="options" value="A001545" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001886" /> <span title="Steinsberg, Karl Franz Guolfinger Ritter von">Steinsberg, Karl Franz Guolfin…</span> 
+                                    <input type="checkbox" name="options" value="A000851" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A003095" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002074" /> <span title="Weber, Franz Anton von">Weber, Franz Anton von</span> 
                                 </label>
                             </div>
                         </div>
@@ -322,11 +331,11 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020327" /> <span title="6 Fughetten">6 Fughetten</span> 
+                                    <input type="checkbox" name="options" value="A020033" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020323" /> <span title="6 Variationen über ein Originalthema">6 Variationen über ein Origina…</span> 
+                                    <input type="checkbox" name="options" value="A020327" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020033" /> <span title="Das Waldmädchen, eine komische Oper in zwei Aufzügen (Klavierauszug)">Das Waldmädchen, eine komische…</span> 
+                                    <input type="checkbox" name="options" value="A020323" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -336,9 +345,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130038" /> <span title="Chemnitz">Chemnitz</span> 
+                                    <input type="checkbox" name="options" value="A130051" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130051" /> <span title="Freiberg (Sachsen)">Freiberg (Sachsen)</span> 
+                                    <input type="checkbox" name="options" value="A130038" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -350,15 +359,15 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d10e2">
-                                    <p>Nachdem das Projekt <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Webers</a>, in <span class="preview places A130051" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130051.html">Freiberg</span> eine Lithographie-Werkstatt zu etablieren (s. <a class="preview writings A031063" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031063.html">Anzeige</a>), nicht zum gewünschten Erfolg geführt hatte, eröffnete die Anwesenheit der Theatertruppe von <a class="preview persons A001886" href="/exist/apps/WeGA-WebApp/de/A001886.html">Steinsberg</a>  in der Stadt von August bis November 1800 die Möglichkeit, den knapp vierzehnjährigen Sohn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a>  als komponierendes „Wunderkind“ zu präsentieren. Auf ein Libretto des <a class="preview persons A001886" href="/exist/apps/WeGA-WebApp/de/A001886.html">Theaterprinzipals</a>  schrieb der junge <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> im Herbst 1800 in erstaunlich kurzer Zeit die abendfüllende zweiaktige Oper <span class="preview works A020033" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020033.html">Das Waldmädchen</span>. Wie auf dem Theaterzettel zur <span class="preview places A130038" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130038.html">Chemnitz</span>er Erstaufführung (5. Dezember 1800) wurde  auch im Vorfeld der  <span class="preview places A130051" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130051.html">Freiberg</span>er Uraufführung (24. November 1800) auf das Alter des Komponisten und den Umstand, dass dieser ein <span class="7297121100110">Haydn</span>-Schüler sei (ohne Konkretisierung, dass <a class="preview persons A000778" href="/exist/apps/WeGA-WebApp/de/A000778.html">Michael Haydn</a>  der Lehrer war), hingewiesen, um größeres Interesse zu wecken (demselben Ziel diente die Widmung des Werks an die <a class="preview persons A001251" href="/exist/apps/WeGA-WebApp/de/A001251.html">sächsische Kurfürstin</a>). Doch den dadurch übersteigerten Erwartungen des Publikums konnten weder das Werk selbst noch dessen Aufführungen gerecht werden, wie sowohl die <a class="preview writings A031037" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037.html">Aufführungsbesprechung</a> aus <span class="preview places A130051" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130051.html">Freiberg</span>  als auch <a class="preview writings A031038" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031038.html">jene</a> aus <span class="preview places A130038" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130038.html">Chemnitz</span>  erkennen lässt.</p>
-                                    <p>Trotz des insgesamt wohlwollenden Tenors der <span class="preview places A130051" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130051.html">Freiberg</span>er Kritik fühlte sich der junge Komponist bemüßigt, eine <a class="preview writings A031100" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031100.html">Entgegnung</a>  in die Zeitung zu setzen, in der er von Kabalen gegen ihn sprach und vor allem die Leistung des Orchesters für den insgesamt enttäuschenden Eindruck der <span class="preview places A130051" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130051.html">Freiberg</span>er Uraufführung verantwortlich machte. Damit eröffnete er eine Pressefehde, die von zunehmender Polemik geprägt war. Nicht nur der Stadtmusikus <a class="preview persons A001828" href="/exist/apps/WeGA-WebApp/de/A001828.html">Siegert</a>  fühlte sich als Leiter des Orchesters zu einer <a class="preview writings A031035" href="/exist/apps/WeGA-WebApp/de/A001828/Schriften/A031035.html">Rechtfertigung</a>  gedrängt; auch der Kantor <a class="preview persons A000490" href="/exist/apps/WeGA-WebApp/de/A000490.html">Fischer</a>  meldete sich mit einer ausführlichen <a class="preview writings A031026" href="/exist/apps/WeGA-WebApp/de/A000490/Schriften/A031026.html">Erklärung</a>  zu Wort. Während <a class="preview persons A001828" href="/exist/apps/WeGA-WebApp/de/A001828.html">Siegert</a> die musikalischen Ungeschicklichkeiten des jungen Tonsetzers quasi noch entschuldigte, kommt <a class="preview persons A000490" href="/exist/apps/WeGA-WebApp/de/A000490.html">Fischers</a> Stellungsnahme, die auch auf die 1798 im Druck erschienenen <span class="tei_hi_latintype"><span class="preview works A020327" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020327.html">Fughetten</span></span>  <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> eingeht, einem glatten Verriss gleich. Zudem meldete sich der <span class="preview places A130038" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130038.html">Chemnitz</span>er Redakteur <a class="preview persons A007993" href="/exist/apps/WeGA-WebApp/de/A007993.html">Kretschmar</a>  mit einer kurzen <a class="preview writings A030806" href="/exist/apps/WeGA-WebApp/de/A007993/Schriften/A030806.html">Stellungnahme</a> zu Wort. Gegen alle drei richtete sich eine im Tonfall völlig unangemessene, geradezu unverschämte und in Details (u. a. die Angabe zum eigenen Alter betreffend) falsche <a class="preview writings A031101" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031101.html">Replik</a> des jungen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>. Während <a class="preview persons A000490" href="/exist/apps/WeGA-WebApp/de/A000490.html">Fischer</a>  eine erneute Reaktion darauf ablehnte, meldete sich <a class="preview persons A007993" href="/exist/apps/WeGA-WebApp/de/A007993.html">Kretschmar</a> daraufhin erneut kurz zu <a class="preview writings A030837" href="/exist/apps/WeGA-WebApp/de/A007993/Schriften/A030837.html">Wort</a>. <a class="preview persons A001828" href="/exist/apps/WeGA-WebApp/de/A001828.html">Siegert</a>  fühlte sich sogar nochmals zu einer ausführlichen <a class="preview writings A031096" href="/exist/apps/WeGA-WebApp/de/A001828/Schriften/A031096.html">Reaktion</a>  genötigt, in der er die wenig schmeichelhafte <a class="preview writings A031643" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031643.html">Rezension</a> zu Webers <span class="preview works A020323" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020323.html">Variationen op. 2</span>  aus dem Jg. 3 der <span class="tei_hi_latintype">Allgemeinen musikalischen Zeitung</span>  zitierte, wogegen sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in seiner erneuten <a class="preview writings A031102" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031102.html">Erwiderung</a> auf die positivere <a class="preview writings A031339" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031339.html">Bewertung</a> desselben Werks im Jg. 2 derselben Zeitung  bezog.</p>
-                                    <p><a class="preview persons A008576" href="/exist/apps/WeGA-WebApp/de/A008576.html">Kaiser</a>  kam in seiner Schriftenausgabe<a class="noteMarker arabic" id="ref-footnote_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_01">1</a>  aufgrund des sehr polemischen Tonfalls der drei Weberschen Publikationen, der so gar nicht zu dessen späteren Schriften passen will, zu dem Urteil, der Verfasser der drei Freiberger Texte sei „ohne Zweifel in der Hauptsache <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vater</a>“ gewesen, allerdings ist noch aus dem Jahr 1806 der Fall einer äußerst scharfen Replik <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> bekannt, in der er seinen Freund <a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berner</a>  gegen die Angriffe eines anonymen Rezensenten verteidigen wollte. Der als Einsendung an die <span class="tei_hi_latintype">Berlinische Musikalische Zeitung</span>  geschriebene <a class="preview writings A031561" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031561.html">Text</a>  wurde vom Herausgeber <a class="preview persons A001545" href="/exist/apps/WeGA-WebApp/de/A001545.html">Reichardt</a> als „bittere Parodie des ersten Urtheils“ zurückgewiesen, um „Streitigkeiten, mit Heftigkeit und Bitterkeit geführt“, zu vermeiden<a class="noteMarker arabic" id="ref-footnote_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_02">2</a>. Ein Hang des jungen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zu zugespitzter Polemik ist also nicht auszuschließen und wurde offenbar erst in späteren Publikationen ganz bewusst unterdrückt. Eine Vorliebe für  Satire, Parodie und Spott ist freilich – wie bei anderen Romantikern (z. B. <a class="preview persons A000851" href="/exist/apps/WeGA-WebApp/de/A000851.html">E. T. A. Hoffmann</a> oder <a class="preview persons A003095" href="/exist/apps/WeGA-WebApp/de/A003095.html">Jean Paul</a>) auch – noch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> späteren Schriften eigen, so etwa etlichen Fragmenten aus dem Romanprojekt <span class="tei_hi_latintype">Tonkünstlers Leben</span><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.html">T</a>. Trotzdem scheint eine Einflussnahme <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Webers</a>  auf die drei <span class="preview places A130051" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130051.html">Freiberg</span>er <span class="preview writings A031100 A031101 A031102" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031100.html /exist/apps/WeGA-WebApp/de/A002068/Schriften/A031101.html /exist/apps/WeGA-WebApp/de/A002068/Schriften/A031102.html">Presseeinsendungen</span> seines Sohnes schon wegen dessen Alter fast zwangsläufig. Eine Unterscheidung der Anteile beider bezüglich der Autorschaft ist allerdings ohne Kenntnis der handschriftlichen Vorlagen nicht möglich.</p>
+                                    <p>Nachdem das Projekt <a class="preview persons A002074" href="">Franz Anton von Webers</a>, in <a class="preview places A130051" href="">Freiberg</a> eine Lithographie-Werkstatt zu etablieren (s. <a class="preview writings A031063" href="">Anzeige</a>), nicht zum gewünschten Erfolg geführt hatte, eröffnete die Anwesenheit der Theatertruppe von <a class="preview persons A001886" href="">Steinsberg</a>  in der Stadt von August bis November 1800 die Möglichkeit, den knapp vierzehnjährigen Sohn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a>  als komponierendes „Wunderkind“ zu präsentieren. Auf ein Libretto des <a class="preview persons A001886" href="">Theaterprinzipals</a>  schrieb der junge <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> im Herbst 1800 in erstaunlich kurzer Zeit die abendfüllende zweiaktige Oper <a class="preview works A020033" href="">Das Waldmädchen</a>. Wie auf dem Theaterzettel zur <a class="preview places A130038" href="">Chemnitz</a>er Erstaufführung (5. Dezember 1800) wurde  auch im Vorfeld der  <a class="preview places A130051" href="">Freiberg</a>er Uraufführung (24. November 1800) auf das Alter des Komponisten und den Umstand, dass dieser ein <span class="7297121100110">Haydn</span>-Schüler sei (ohne Konkretisierung, dass <a class="preview persons A000778" href="">Michael Haydn</a>  der Lehrer war), hingewiesen, um größeres Interesse zu wecken (demselben Ziel diente die Widmung des Werks an die <a class="preview persons A001251" href="">sächsische Kurfürstin</a>). Doch den dadurch übersteigerten Erwartungen des Publikums konnten weder das Werk selbst noch dessen Aufführungen gerecht werden, wie sowohl die <a class="preview writings A031037" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031037.html">Aufführungsbesprechung</a> aus <a class="preview places A130051" href="">Freiberg</a>  als auch <a class="preview writings A031038" href="">jene</a> aus <a class="preview places A130038" href="">Chemnitz</a>  erkennen lässt.</p>
+                                    <p>Trotz des insgesamt wohlwollenden Tenors der <a class="preview places A130051" href="">Freiberg</a>er Kritik fühlte sich der junge Komponist bemüßigt, eine <a class="preview writings A031100" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031100.html">Entgegnung</a>  in die Zeitung zu setzen, in der er von Kabalen gegen ihn sprach und vor allem die Leistung des Orchesters für den insgesamt enttäuschenden Eindruck der <a class="preview places A130051" href="">Freiberg</a>er Uraufführung verantwortlich machte. Damit eröffnete er eine Pressefehde, die von zunehmender Polemik geprägt war. Nicht nur der Stadtmusikus <a class="preview persons A001828" href="">Siegert</a>  fühlte sich als Leiter des Orchesters zu einer <a class="preview writings A031035" href="">Rechtfertigung</a>  gedrängt; auch der Kantor <a class="preview persons A000490" href="">Fischer</a>  meldete sich mit einer ausführlichen <a class="preview writings A031026" href="">Erklärung</a>  zu Wort. Während <a class="preview persons A001828" href="">Siegert</a> die musikalischen Ungeschicklichkeiten des jungen Tonsetzers quasi noch entschuldigte, kommt <a class="preview persons A000490" href="">Fischers</a> Stellungsnahme, die auch auf die 1798 im Druck erschienenen <span class="tei_hi_latintype"><a class="preview works A020327" href="">Fughetten</a></span>  <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> eingeht, einem glatten Verriss gleich. Zudem meldete sich der <a class="preview places A130038" href="">Chemnitz</a>er Redakteur <a class="preview persons A007993" href="">Kretschmar</a>  mit einer kurzen <a class="preview writings A030806" href="">Stellungnahme</a> zu Wort. Gegen alle drei richtete sich eine im Tonfall völlig unangemessene, geradezu unverschämte und in Details (u. a. die Angabe zum eigenen Alter betreffend) falsche <a class="preview writings A031101" href="">Replik</a> des jungen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>. Während <a class="preview persons A000490" href="">Fischer</a>  eine erneute Reaktion darauf ablehnte, meldete sich <a class="preview persons A007993" href="">Kretschmar</a> daraufhin erneut kurz zu <a class="preview writings A030837" href="">Wort</a>. <a class="preview persons A001828" href="">Siegert</a>  fühlte sich sogar nochmals zu einer ausführlichen <a class="preview writings A031096" href="">Reaktion</a>  genötigt, in der er die wenig schmeichelhafte <a class="preview writings A031643" href="">Rezension</a> zu Webers <a class="preview works A020323" href="">Variationen op. 2</a>  aus dem Jg. 3 der <span class="tei_hi_latintype">Allgemeinen musikalischen Zeitung</span>  zitierte, wogegen sich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in seiner erneuten <a class="preview writings A031102" href="">Erwiderung</a> auf die positivere <a class="preview writings A031339" href="">Bewertung</a> desselben Werks im Jg. 2 derselben Zeitung  bezog.</p>
+                                    <p><a class="preview persons A008576" href="">Kaiser</a>  kam in seiner Schriftenausgabe<a class="noteMarker arabic" id="ref-footnote_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_01">1</a>  aufgrund des sehr polemischen Tonfalls der drei Weberschen Publikationen, der so gar nicht zu dessen späteren Schriften passen will, zu dem Urteil, der Verfasser der drei Freiberger Texte sei „ohne Zweifel in der Hauptsache <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview persons A002074" href="">Vater</a>“ gewesen, allerdings ist noch aus dem Jahr 1806 der Fall einer äußerst scharfen Replik <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> bekannt, in der er seinen Freund <a class="preview persons A000146" href="">Berner</a>  gegen die Angriffe eines anonymen Rezensenten verteidigen wollte. Der als Einsendung an die <span class="tei_hi_latintype">Berlinische Musikalische Zeitung</span>  geschriebene <a class="preview writings A031561" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031561.html">Text</a>  wurde vom Herausgeber <a class="preview persons A001545" href="">Reichardt</a> als „bittere Parodie des ersten Urtheils“ zurückgewiesen, um „Streitigkeiten, mit Heftigkeit und Bitterkeit geführt“, zu vermeiden<a class="noteMarker arabic" id="ref-footnote_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_02">2</a>. Ein Hang des jungen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> zu zugespitzter Polemik ist also nicht auszuschließen und wurde offenbar erst in späteren Publikationen ganz bewusst unterdrückt. Eine Vorliebe für  Satire, Parodie und Spott ist freilich – wie bei anderen Romantikern (z. B. <a class="preview persons A000851" href="">E. T. A. Hoffmann</a> oder <a class="preview persons A003095" href="">Jean Paul</a>) auch – noch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> späteren Schriften eigen, so etwa etlichen Fragmenten aus dem Romanprojekt <span class="tei_hi_latintype">Tonkünstlers Leben</span><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090011.html">T</a>. Trotzdem scheint eine Einflussnahme <a class="preview persons A002074" href="">Franz Anton von Webers</a>  auf die drei <a class="preview places A130051" href="">Freiberg</a>er <span class="preview writings A031100 A031101 A031102" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031100.html  ">Presseeinsendungen</span> seines Sohnes schon wegen dessen Alter fast zwangsläufig. Eine Unterscheidung der Anteile beider bezüglich der Autorschaft ist allerdings ohne Kenntnis der handschriftlichen Vorlagen nicht möglich.</p>
                                 </div>
                                 <div id="endNotes">
                                     <h2>Einzelnachweise</h2>
                                     <ol class="endNotes">
-                                        <li id="footnote_01" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#ref-footnote_01">1</a>Vgl. <span class="preview biblio A111886" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A111886.html">Sämtliche Schriften</span>, S. XXXVI.</li>
-                                        <li id="footnote_02" data-title="Einzelnachweis 2"><a class="endnote_backlink" href="#ref-footnote_02">2</a>Vgl. <span class="tei_hi_latintype">Berlinische Musikalische Zeitung</span>, Jg. 2 (1806), Nr. 18, S. 71 (Fußnote des <a class="preview persons A001545" href="/exist/apps/WeGA-WebApp/de/A001545.html">Herausgebers</a> zu <a class="preview persons A000146" href="/exist/apps/WeGA-WebApp/de/A000146.html">Berners</a> eigener Verteidigungsschrift gegen die Kritik in derselben Zeitung, Nr. 9, S. 35).</li>
+                                        <li id="footnote_01" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#ref-footnote_01">1</a>Vgl. <span class="preview biblio A111886" data-ref="">Sämtliche Schriften</span>, S. XXXVI.</li>
+                                        <li id="footnote_02" data-title="Einzelnachweis 2"><a class="endnote_backlink" href="#ref-footnote_02">2</a>Vgl. <span class="tei_hi_latintype">Berlinische Musikalische Zeitung</span>, Jg. 2 (1806), Nr. 18, S. 71 (Fußnote des <a class="preview persons A001545" href="">Herausgebers</a> zu <a class="preview persons A000146" href="">Berners</a> eigener Verteidigungsschrift gegen die Kritik in derselben Zeitung, Nr. 9, S. 35).</li>
                                     </ol>
                                 </div>
                     </div>
@@ -380,9 +389,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090003</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090003</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 15. Dezember 2017 durch Solveig Schreiter</span></p>
+                    <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
             
         </div>
@@ -448,7 +457,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -468,30 +478,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

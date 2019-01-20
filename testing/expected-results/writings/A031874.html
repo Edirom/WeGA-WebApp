@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-10T20:22:02.829414Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031874" />
         <meta property="dc:description" content="" />
         <meta name="description" content="" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"J.","@type":"Person"}],"name":"Rezension: Erstdruck der Partitur des \"Freischütz\" von Carl Maria von Weber, Berlin: Schlesinger, PN S. 3512 (1849)","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031874","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031874.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><span>J.</span></li>
-                        <li><span>Schriften</span></li>
-                        <li><span>A031874</span> <span class="docStatus">in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span>J.</span>
+                        </li>
+                        <li>
+                            <span>Schriften</span>
+                        </li>
+                        <li>
+                            <span>A031874</span> 
+                                <span class="docStatus">in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,55 +250,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031874.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -291,25 +323,27 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080010" /> <span title="Breitkopf &amp; Härtel (Verlag)">Breitkopf &amp; Härtel (Verlag)</span> 
+                                    <input type="checkbox" name="options" value="A001362" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000914" /> <span title="Jähns, Friedrich Wilhelm">Jähns, Friedrich Wilhelm</span> 
+                                    <input type="checkbox" name="options" value="A003371" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080026" /> <span title="Kistner (Verlag, Musikalienhandlung)">Kistner (Verlag, Musikalienhan…</span> 
+                                    <input type="checkbox" name="options" value="A001693" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003371" /> <span title="Mendelssohn Bartholdy, Felix">Mendelssohn Bartholdy, Felix</span> 
+                                    <input type="checkbox" name="options" value="A000914" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001362" /> <span title="Mozart, Wolfgang Amadeus">Mozart, Wolfgang Amadeus</span> 
+                                    <input type="checkbox" name="options" value="A080007" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080012" /> <span title="Peters (Verlag)">Peters (Verlag)</span> 
+                                    <input type="checkbox" name="options" value="A080010" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001693" /> <span title="Schlesinger, Adolph Martin">Schlesinger, Adolph Martin</span> 
+                                    <input type="checkbox" name="options" value="A080026" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A080007" /> <span title="Schlesinger (Verlag, Buch- und Musikalienhandlung)">Schlesinger (Verlag, Buch- und…</span> 
+                                    <input type="checkbox" name="options" value="A080012" /> <span title=" ()"> ()</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label>
@@ -317,29 +351,35 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
+                                    <input type="checkbox" name="options" value="A020040" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
+                                    <input type="checkbox" name="options" value="A020484" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -364,9 +404,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Die Partitur von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span>.</span></h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Preis 18 Thaler. <br /><a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html">Verlag der <span class="tei_hi_spaced_out">Schlesinger</span>’schen Buch- und Musikalienhandlung</a> in <span class="tei_hi_spaced_out"><span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span></span>.</span></h3>
-                                        <p>Die soeben erschienene Partitur-Ausgabe des <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span> ist gewiß vom gesammten musikalischen Publicum freudigst begrüßt worden, einmal des jeden Künstler und Liebhaber an’s Herz gewachsenen Gegenstandes willen, dann aber auch weil wir von den dramatischen Meisterwerken unsrer vaterländischen Componisten (die <a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a>’schen Opern ausgenommen) noch keine gedruckten Partituren besitzen und zu hoffen ist, daß durch die Herausgabe dieser Partitur sich auch andere Verleger bewogen fühlen werden, die großen bisher nur in den Theater- und einzelnen Privatbibliotheken vorhandenen Schätze der deutschen musikalisch-dramatischen Literatur in dieser für Kenner genußreichsten, für ernst-strebende Kunstjünger aber einzig wahrhaft fördernden Gestalt erscheinen zu lassen. Es stand zu erwarten, daß die <a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html">Verlagshandlung</a>, nachdem sie seit etwa 28 Jahren mit <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">diesem Werke</span> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> (seiner andern dort erschienenen Werke nicht zu gedenken) die allerglänzendsten Geschäfte gemacht und gewiß damit mehr erworben hat als <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit allen seinen Compositionen zusammengenommen, die Partitur in einer Gestalt erscheinen lassen würde, die den strengsten Anforderungen in jeder Beziehung entspräche. Leider ist diese Erwartung in keiner Weise befriedigt worden. Das Aeußere, wenn es auch grade nicht häßlich zu nennen ist, hat durchaus nichts Hervorstechendes und kann sich namentlich mit Ausgaben Leipziger Verleger durchaus nicht messen. Man sehe sich darauf die neue Partitur-Ausgabe des <span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Don Juan</span> (<a class="preview orgs A080010" href="/exist/apps/WeGA-WebApp/de/A080010.html">Breitkopf und Härtel</a>), die der <span class="87971081121171141031051151109799104116">Walpurgisnacht</span> von <a class="preview persons A003371" href="/exist/apps/WeGA-WebApp/de/A003371.html">Mendelssohn</a> (<a class="preview orgs A080026" href="/exist/apps/WeGA-WebApp/de/A080026.html">Kistner</a>), die der <span class="729711711211610997110110">Hauptmann</span>’schen Messe (<a class="preview orgs A080012" href="/exist/apps/WeGA-WebApp/de/A080012.html">Peters</a>) und vieler anderer Werke, die sich doch erst bezahlt machen sollen, an. Das wäre aber das Wenigste. Man durfte mindestens eine in allen Theilen <span class="tei_hi_spaced_out">correkte</span> Ausgabe erwarten, und eine solche ist auch in der, der Partitur vorgesetzten, Anmerkung ausdrücklich verheißen. Mit Dreistigkeit ist aber zu behaupten, <span class="tei_hi_spaced_out">daß noch nie ein dergestalt von Fehlern, Nachlässigkeiten und Ungenauigkeiten</span> bezüglich der Uebereinstimmung der<span class="tei_pb" title="Seitenumbruch zu S. 290"> | </span> Stricharten, der p. und f. Bezeichnungen ec. ec. <span class="tei_hi_spaced_out">wimmelndes musikalisches Druckwerk in die Welt gesendet worden ist, wie die bei <a class="preview persons A001693" href="/exist/apps/WeGA-WebApp/de/A001693.html">Adolph Martin Schlesinger</a> in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> <span class="tei_hi_antiqua">Anno</span> <span class="tei_date">1849</span> erschienene Partitur des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’schen <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Freischütz</span></span>, und es ist daher schwer zu ergründen, worin die „äußerste Sorgfalt“ deren sich der königl. preuß. Musikdirector <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herr F. W. <span class="tei_hi_spaced_out">Jähns</span></a>, der die Herausgabe geleitet, in jener Anmerkung rühmt, bestanden haben mag. Zugegeben, daß, was den Tadel der Stricharten ec. ec. betrifft, die <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> Originalpartitur selbst nicht überall bei fraglichen Stellen hinlänglichen Aufschluß giebt (wir glauben dies aus tiefer liegenden Gründen, deren Erörterung wir auf ein ander Mal versparen), so war es Pflicht des <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herausgebers</a> an solchen Stellen zu redigiren, denn es ist zu widerwärtig, daß dem Lesenden fast auf jedem Systeme sich widersprechende Bezeichnungen der Stricharten, Inconsequenzen in den Nüancirungen in die Augen fallen, und an allen Ecken und Enden etwas zu rathen und zu ergänzen übrig bleibt. Zum Beweise, daß unsre Behauptung keine übertriebene sei, haben wir uns das Vergnügen gemacht einige Nummern etwas schärfer anzusehen und lassen nun hier die stattliche Reihe der darin gefundenen Fehler, Ungenauigkeiten ec. ec. aufmarschieren, wobei wir unsre eigne Unfehlbarkeit nicht preisen und gerne zugestehen wollen, daß sich der Fehler bei noch aufmerksamerer Durchsicht noch viel mehr finden dürften.</p>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Die Partitur von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s <a class="preview works A020040" href="">Freischütz</a>.</span></h2>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Preis 18 Thaler. <br /><a class="preview orgs A080007" href="">Verlag der <span class="tei_hi_spaced_out">Schlesinger</span>’schen Buch- und Musikalienhandlung</a> in <span class="tei_hi_spaced_out"><a class="preview places A130002" href="">Berlin</a></span>.</span></h3>
+                                        <p>Die soeben erschienene Partitur-Ausgabe des <a class="preview works A020040" href="">Freischütz</a> ist gewiß vom gesammten musikalischen Publicum freudigst begrüßt worden, einmal des jeden Künstler und Liebhaber an’s Herz gewachsenen Gegenstandes willen, dann aber auch weil wir von den dramatischen Meisterwerken unsrer vaterländischen Componisten (die <a class="preview persons A001362" href="">Mozart</a>’schen Opern ausgenommen) noch keine gedruckten Partituren besitzen und zu hoffen ist, daß durch die Herausgabe dieser Partitur sich auch andere Verleger bewogen fühlen werden, die großen bisher nur in den Theater- und einzelnen Privatbibliotheken vorhandenen Schätze der deutschen musikalisch-dramatischen Literatur in dieser für Kenner genußreichsten, für ernst-strebende Kunstjünger aber einzig wahrhaft fördernden Gestalt erscheinen zu lassen. Es stand zu erwarten, daß die <a class="preview orgs A080007" href="">Verlagshandlung</a>, nachdem sie seit etwa 28 Jahren mit <a class="preview works A020040" href="">diesem Werke</a> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> (seiner andern dort erschienenen Werke nicht zu gedenken) die allerglänzendsten Geschäfte gemacht und gewiß damit mehr erworben hat als <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> mit allen seinen Compositionen zusammengenommen, die Partitur in einer Gestalt erscheinen lassen würde, die den strengsten Anforderungen in jeder Beziehung entspräche. Leider ist diese Erwartung in keiner Weise befriedigt worden. Das Aeußere, wenn es auch grade nicht häßlich zu nennen ist, hat durchaus nichts Hervorstechendes und kann sich namentlich mit Ausgaben Leipziger Verleger durchaus nicht messen. Man sehe sich darauf die neue Partitur-Ausgabe des <a class="preview works A020484" href="">Don Juan</a> (<a class="preview orgs A080010" href="">Breitkopf und Härtel</a>), die der <span class="87971081121171141031051151109799104116">Walpurgisnacht</span> von <a class="preview persons A003371" href="">Mendelssohn</a> (<a class="preview orgs A080026" href="">Kistner</a>), die der <span class="729711711211610997110110">Hauptmann</span>’schen Messe (<a class="preview orgs A080012" href="">Peters</a>) und vieler anderer Werke, die sich doch erst bezahlt machen sollen, an. Das wäre aber das Wenigste. Man durfte mindestens eine in allen Theilen <span class="tei_hi_spaced_out">correkte</span> Ausgabe erwarten, und eine solche ist auch in der, der Partitur vorgesetzten, Anmerkung ausdrücklich verheißen. Mit Dreistigkeit ist aber zu behaupten, <span class="tei_hi_spaced_out">daß noch nie ein dergestalt von Fehlern, Nachlässigkeiten und Ungenauigkeiten</span> bezüglich der Uebereinstimmung der<span class="tei_pb" title="Seitenumbruch zu S. 290"> | </span> Stricharten, der p. und f. Bezeichnungen ec. ec. <span class="tei_hi_spaced_out">wimmelndes musikalisches Druckwerk in die Welt gesendet worden ist, wie die bei <a class="preview persons A001693" href="">Adolph Martin Schlesinger</a> in <a class="preview places A130002" href="">Berlin</a> <span class="tei_hi_antiqua">Anno</span> <span class="tei_date">1849</span> erschienene Partitur des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’schen <a class="preview works A020040" href="">Freischütz</a></span>, und es ist daher schwer zu ergründen, worin die „äußerste Sorgfalt“ deren sich der königl. preuß. Musikdirector <a class="preview persons A000914" href="">Herr F. W. <span class="tei_hi_spaced_out">Jähns</span></a>, der die Herausgabe geleitet, in jener Anmerkung rühmt, bestanden haben mag. Zugegeben, daß, was den Tadel der Stricharten ec. ec. betrifft, die <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webersche</a> Originalpartitur selbst nicht überall bei fraglichen Stellen hinlänglichen Aufschluß giebt (wir glauben dies aus tiefer liegenden Gründen, deren Erörterung wir auf ein ander Mal versparen), so war es Pflicht des <a class="preview persons A000914" href="">Herausgebers</a> an solchen Stellen zu redigiren, denn es ist zu widerwärtig, daß dem Lesenden fast auf jedem Systeme sich widersprechende Bezeichnungen der Stricharten, Inconsequenzen in den Nüancirungen in die Augen fallen, und an allen Ecken und Enden etwas zu rathen und zu ergänzen übrig bleibt. Zum Beweise, daß unsre Behauptung keine übertriebene sei, haben wir uns das Vergnügen gemacht einige Nummern etwas schärfer anzusehen und lassen nun hier die stattliche Reihe der darin gefundenen Fehler, Ungenauigkeiten ec. ec. aufmarschieren, wobei wir unsre eigne Unfehlbarkeit nicht preisen und gerne zugestehen wollen, daß sich der Fehler bei noch aufmerksamerer Durchsicht noch viel mehr finden dürften.</p>
                                         <div class="table-wrapper">
                                             <table id="d10e117" class="table">
                                                 <caption><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Arie der <span class="6510397116104101">Agathe</span></span>. (Wie nahte mir der Schlummer.)</span></caption>
@@ -1029,7 +1069,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p>So geht es durch die ganze Partitur, und wenn wir zu dem allen noch der theilweise höchst unübersichtlichen Uebereinanderstellung der Instrumente (man sehe sich <span class="tei_hi_antiqua">pag</span>. 254 u. ff. an, und sage ob jemals in der Welt eine Partitur auf so verrückte Weise arrangirt worden ist) gedenken, so dürfen wir gradezu aussprechen, daß die Partitur eine durchaus unbrauchbare sei, halten uns verpflichtet vor deren Ankauf zu warnen, die <a class="preview orgs A080007" href="/exist/apps/WeGA-WebApp/de/A080007.html">Schlesinger’sche Handlung</a> aber aufzufordern: sie möge die in dieser unwürdigen Gestalt abgedruckten und ausgegebenen Exemplare zurückfordern und vernichten, eine strenge Revision des ganzen Werkes durch <span class="tei_hi_spaced_out">einen der Sache Kundigen</span> vornehmen lassen, und so diese erste Ausgabe und was sie damit auf sich geladen, vergessen zu machen suchen. <span class="tei_segBlock textAlign-right">J.</span></p>
+                                        <p>So geht es durch die ganze Partitur, und wenn wir zu dem allen noch der theilweise höchst unübersichtlichen Uebereinanderstellung der Instrumente (man sehe sich <span class="tei_hi_antiqua">pag</span>. 254 u. ff. an, und sage ob jemals in der Welt eine Partitur auf so verrückte Weise arrangirt worden ist) gedenken, so dürfen wir gradezu aussprechen, daß die Partitur eine durchaus unbrauchbare sei, halten uns verpflichtet vor deren Ankauf zu warnen, die <a class="preview orgs A080007" href="">Schlesinger’sche Handlung</a> aber aufzufordern: sie möge die in dieser unwürdigen Gestalt abgedruckten und ausgegebenen Exemplare zurückfordern und vernichten, eine strenge Revision des ganzen Werkes durch <span class="tei_hi_spaced_out">einen der Sache Kundigen</span> vornehmen lassen, und so diese erste Ausgabe und was sie damit auf sich geladen, vergessen zu machen suchen. <span class="tei_segBlock textAlign-right">J.</span></p>
                                     </div>
                                 </div>
                     </div>
@@ -1075,16 +1115,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Signale für die musikalische Welt</span>, Jg. 7 (1849), Nr. 37, S. 289–292</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -1114,9 +1156,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031874</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031874</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2018 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -1182,7 +1225,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -1202,30 +1246,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

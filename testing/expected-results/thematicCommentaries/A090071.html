@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
-        <meta property="dc:creator" content="Solveig Schreiter" />
-        <meta property="dc:date" content="2018-07-05T10:16:55.481764Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090071" />
         <meta property="dc:description" content="Im Jahr 1781 begann der amtierende Oberstburggraf von Böhmen, Franz Anton Graf von Nostitz-Rieneck (1725–1794), auf eigene Kosten mit dem Bau eines …" />
         <meta name="description" content="Im Jahr 1781 begann der amtierende Oberstburggraf von Böhmen, Franz Anton Graf von Nostitz-Rieneck (1725–1794), auf eigene Kosten mit dem Bau eines …" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005"}],"name":"Das Prager Ständetheater zu Beginn des 19. Jahrhunderts","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090071","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090071","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +192,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A009005/Thematic_Commentaries/A090071.html" hreflang="en" lang="en">En</a></li>
@@ -215,10 +220,11 @@
                     
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a></li>
+                        <li><span></span></li>
                         <li><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare">Themenkommentare</a></li>
                         <li><span>A090071</span></li>
                     </ol>
+                    
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"></i>
@@ -231,38 +237,41 @@
         <div class="row">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090071.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090071.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090071.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090071.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090071.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -287,95 +296,95 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008940" /> <span title="Badner, Dem.">Badner, Dem.</span> 
+                                    <input type="checkbox" name="options" value="A001ADC" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003984" /> <span title="Bolze, Mad.">Bolze, Mad.</span> 
+                                    <input type="checkbox" name="options" value="A000297" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A00240F" /> <span title="Brinke, Johann">Brinke, Johann</span> 
+                                    <input type="checkbox" name="options" value="A001350" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A004429" /> <span title="Brunetti, Joachim">Brunetti, Joachim</span> 
+                                    <input type="checkbox" name="options" value="A008471" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000297" /> <span title="Clam-Gallas, Christian Christoph">Clam-Gallas, Christian Christo…</span> 
+                                    <input type="checkbox" name="options" value="A008825" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008531" /> <span title="Frühmann, Therese">Frühmann, Therese</span> 
+                                    <input type="checkbox" name="options" value="A001172" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001173" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001901" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001500" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000954" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001896" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001413" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008211" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008960" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001891" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000C5F" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001982" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A004429" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008531" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008200" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A006203" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A006745" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008452" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A003984" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008314" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002607" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000627" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008230" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008611" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008940" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A009107" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A009131" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008522" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A009291" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A00240F" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001945" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008393" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001C45" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A0004CF" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001656" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001545" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001056" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000584" /> <span title="Gänsbacher, Johann">Gänsbacher, Johann</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000627" /> <span title="Gerstel, Hr.">Gerstel, Hr.</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008825" /> <span title="Guardasoni, Domenico">Guardasoni, Domenico</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000865" /> <span title="Holbein, Franz Ignaz von">Holbein, Franz Ignaz von</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001C45" /> <span title="Horschelt, Babette">Horschelt, Babette</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001945" /> <span title="Horschelt, Katharina">Horschelt, Katharina</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000954" /> <span title="Kainz, Josef Wolfgang">Kainz, Josef Wolfgang</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008522" /> <span title="Kobler, Anna">Kobler, Anna</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009107" /> <span title="Kobler, Franz">Kobler, Franz</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009131" /> <span title="Kobler, Johanna">Kobler, Johanna</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009291" /> <span title="Kobler, Margarethe">Kobler, Margarethe</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001413" /> <span title="Kolowrat-Liebsteinsky, Franz Anton Graf">Kolowrat-Liebsteinsky, Franz A…</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008393" /> <span title="Kopmann, Caroline">Kopmann, Caroline</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001056" /> <span title="Kotzebue, August von">Kotzebue, August von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008230" /> <span title="Küffel, Adalbert">Küffel, Adalbert</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008314" /> <span title="Länger, Mad.">Länger, Mad.</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001173" /> <span title="Liebich, Johanna">Liebich, Johanna</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001172" /> <span title="Liebich, Johann Carl">Liebich, Johann Carl</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008211" /> <span title="Lobkowitz, Anton Isidor Fürst von">Lobkowitz, Anton Isidor Fürst …</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008611" /> <span title="Macco, Carl Ferdinand">Macco, Carl Ferdinand</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001350" /> <span title="Morzin, Rudolph Graf">Morzin, Rudolph Graf</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001382" /> <span title="Müller, Wenzel">Müller, Wenzel</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001ADC" /> <span title="Nostitz, Friedrich Graf von">Nostitz, Friedrich Graf von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008960" /> <span title="Pachta, Johann Joseph">Pachta, Johann Joseph</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001500" /> <span title="Polawsky, Ferdinand">Polawsky, Ferdinand</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000C5F" /> <span title="Postl, Carl">Postl, Carl</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A006203" /> <span title="Reiberger, Franz">Reiberger, Franz</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A006745" /> <span title="Reiberger, Michael Cajetan">Reiberger, Michael Cajetan</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001545" /> <span title="Reichardt, Johann Friedrich">Reichardt, Johann Friedrich</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002607" /> <span title="Richter, Dem.">Richter, Dem.</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001656" /> <span title="Schaden, Adolph von">Schaden, Adolph von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A0004CF" /> <span title="Schießler, Sebastian Willibald">Schießler, Sebastian Willibald</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001896" /> <span title="Štěpánek, Jan Nepomuk">Štěpánek, Jan Nepomuk</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001891" /> <span title="Sternberg-Manderscheid, Franz Josef von">Sternberg-Manderscheid, Franz …</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001901" /> <span title="Stöger, Johann August">Stöger, Johann August</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008452" /> <span title="Supper, Johann">Supper, Johann</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001982" /> <span title="Triebensee, Josef">Triebensee, Josef</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008471" /> <span title="Wrtby, Franz Joseph von">Wrtby, Franz Joseph von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008200" /> <span title="Zittermann, Dem.">Zittermann, Dem.</span> 
                                 </label>
                             </div>
                         </div>
@@ -385,17 +394,17 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020440" /> <span title="Das Waldmädchen">Das Waldmädchen</span> 
+                                    <input type="checkbox" name="options" value="A020545" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020032" /> <span title="Das Waldmädchen, eine komische Oper in zwei Aufzügen">Das Waldmädchen, eine komische…</span> 
+                                    <input type="checkbox" name="options" value="A020469" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020769" /> <span title="Die Kreuzfahrer">Die Kreuzfahrer</span> 
+                                    <input type="checkbox" name="options" value="A020440" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020469" /> <span title="Faust">Faust</span> 
+                                    <input type="checkbox" name="options" value="A020032" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020545" /> <span title="La clemenza di Tito">La clemenza di Tito</span> 
+                                    <input type="checkbox" name="options" value="A020769" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020415" /> <span title="Ouvertüre, Märsche und Chor zum Schauspiel &#34;Die Kreuzfahrer&#34; von Kotzebue">Ouvertüre, Märsche und Chor zu…</span> 
+                                    <input type="checkbox" name="options" value="A020415" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -419,33 +428,33 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d10e2">
-                                    <h2 id="d10e3">Zur Geschichte des Theaters bis zum Tod Webers<a class="noteMarker arabic" id="ref-C_1" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_1">1</a></h2><span class="tei_figure float-left"><img title="„Ständisches National-Theater [Prag]“. Stich von Vincenc Morstadt (um 1835).&#xA;Quelle: Karl Laux, Carl Maria von Weber, Leipzig 1978, Nr. 43" alt="„Ständisches National-Theater [Prag]“. Stich von Vincenc Morstadt (um 1835).&#xA;Quelle: Karl Laux, Carl Maria von Weber, Leipzig 1978, Nr. 43" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/thematicCommentaries%2FA0900xx%2FA090071%2FStaendetheaterPrag_1.jpg/full/,275/0/native.jpg" /></span>
+                                    <h2 id="d10e3">Zur Geschichte des Theaters bis zum Tod Webers<a class="noteMarker arabic" id="ref-C_1" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_1">1</a></h2><span class="tei_figure float-left"><img title="„Ständisches National-Theater [Prag]“. Stich von Vincenc Morstadt (um 1835).&#xA;Quelle: Karl Laux, Carl Maria von Weber, Leipzig 1978, Nr. 43" alt="„Ständisches National-Theater [Prag]“. Stich von Vincenc Morstadt (um 1835).&#xA;Quelle: Karl Laux, Carl Maria von Weber, Leipzig 1978, Nr. 43" src="https://weber-gesamtausgabe.de/Scaler/IIIF/thematicCommentaries%2FA0900xx%2FA090071%2FStaendetheaterPrag_1.jpg/full/,275/0/native.jpg" /></span>
                                     <p>Im Jahr 1781 begann der amtierende Oberstburggraf von Böhmen, Franz Anton Graf von Nostitz-Rieneck (1725–1794), auf eigene Kosten mit dem Bau eines neuen Theaters in der Prager Altstadt auf der Königsstraße (auch Carolinplatz, ab 1870 Obstmarkt/Ovocný trh; Haus Altstadt Nr. 540). Die Grundsteinlegung erfolgte am 7. Juni 1781, eröffnet wurde das neue Haus am 21. April 1783 als Gräflich Nostitzsches Nationaltheater. In der <span class="tei_hi_italic">Kurzgefaßten Beschreibung der königl. Haupt- und Residenzstadt Prag</span>  von 1817 heißt es dazu:<a class="noteMarker arabic" id="ref-C_2" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_2">2</a></p>
-                                    <p>„Das  <span class="tei_hi_spaced_out">Nationaltheater</span>,  welches  <span class="tei_hi_spaced_out"><span class="701149711012232651101161111103282101105991041151031144632118463278111115116105116122321171101003282104105110101107">Franz Anton Reichsgr. v. Nostitz und Rhinek</span></span> mit einem Aufwand von 83700 fl. im J. 1781 angelegt, in zwei Jahren zu Ende gebracht, und mit folgender Aufschrift geziert hat: <span class="tei_hi_italic">Patriae et Musis</span>. Dessen Sohn  <span class="tei_hi_spaced_out"><a class="preview persons A001ADC" href="/exist/apps/WeGA-WebApp/de/A001ADC.html">Gr. Friedrich</a></span> verwendete noch andere 8000 fl. darauf, um dieses Gebäude noch bequemer einzurichten. Gegenwärtig ist es ein Eigenthum der hochlöblichen Hrn. Stände Böhmens, die es von dem <span class="7211411046327111497102101110321181111103278111115116105116122">Hrn.  <span class="tei_hi_spaced_out">Grafen von Nostitz</span></span> | für die Summe von 60,000 fl. erkauften, welche durch die Einkaufung von 6 Familienlogen zusammengebracht wurden. Alle spätern kostspieligen Bauten, Verschönerung des Innern und neuen Decorationen geschahen auf Kosten der Hrn. Stände, welche aus ihrer Mitte eine eigne Theater-Aufsichts-Commission zur Oberleitung der ganzen Geschäftsführung erwählt haben.“ </p>
-                                    <p>Die erwähnte Übernahme durch die böhmischen Landstände fand im April 1798 statt; damit einher ging die Umbenennung des Hauses in „Landständisches Theater“ bzw. „Ständetheater“ (auch „Altstädtisches Nationaltheater“). Die erwähnten gekauften Logen gehörten Mitgliedern des in Prag beheimateten höheren Adels<a class="noteMarker arabic" id="ref-C_3" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_3">3</a>, welche nicht nur einen Großteil der Kosten trugen, sondern denen dafür die Mitgliedschaft in der erwähnten Theateraufsichts-Kommission (s. u.) garantiert wurde. Bis ca. 1806/07 sind als Logen-Inhaber  bezeugt: <span class="801041051081051121123271114971023211811111032831191011011141161154583112111114107">Philipp Graf von Sweerts-Spork</span>, <a class="preview persons A000297" href="/exist/apps/WeGA-WebApp/de/A000297.html">Christian Graf von Clam-Gallas</a>, <a class="preview persons A001350" href="/exist/apps/WeGA-WebApp/de/A001350.html">Rudolph Graf von Morzin</a>, <span class="80104105108105112112327111497102321181111103275105110115107121">Philipp Graf von Kinsky</span> und <span class="6910997110117101108327111497102321181111103287971081001151161011051103211711010032879711411610111098101114103">Emanuel Graf von Waldstein und Wartenberg</span><a class="noteMarker arabic" id="ref-C_4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_4">4</a>, ab dem Jahr 1807/08 anstelle des <a class="preview persons A001350" href="/exist/apps/WeGA-WebApp/de/A001350.html">Grafen Morzin</a> nun <span class="87105108104101108109327025211411511632118111110326511710111411598101114103">Wilhelm Fürst von Auersberg</span> und <a class="preview persons A008471" href="/exist/apps/WeGA-WebApp/de/A008471.html">Franz Joseph Graf von Wrtby</a><a class="noteMarker arabic" id="ref-C_5" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_5">5</a>. Nach dem Tod von <span class="801041051081051121123211811111032831191011011141161154583112111114107">Philipp von Sweerts-Spork</span> (4. April 1810) übernahmen dessen Erben die Loge, ansonsten blieben die Besetzung der gekauften Hauptlogen (abgesehen vom Wechsel von <span class="6910997110117101108">Emanuel</span> zu <span class="691141101151163211811111032879710810011511610110511045879711411610111098101114103">Ernst von Waldstein-Wartenberg</span> um 1808<a class="noteMarker arabic" id="ref-C_6" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_6">6</a>) und somit auch die entsprechenden Mitglieder der Theateraufsichtskommission bis über das Jahr 1820 hinaus identisch.</p>
-                                    <p>Als Direktor (bzw. Pächter) war nach dem Tod von <a class="preview persons A008825" href="/exist/apps/WeGA-WebApp/de/A008825.html">Domenico Guardasoni</a>  (13./14. Juni 1806) zunächst interimistisch, per Landtagsbeschluss vom 4. August 1806 dann endgültig der bisherige Regisseur <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Johann Carl Liebich</a>  berufen worden<a class="noteMarker arabic" id="ref-C_7" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_7">7</a>. Über die  ersten  beiden  Spielzeiten unter seiner Leitung (1806/07 und 1807/08) sowie die Vorgeschichte des Hauses geben die beiden Jahrgänge des <span class="tei_hi_italic">Prager Theater-Almanachs</span>  (1808, 1809) Auskunft (inklusive komplettem Spielplan bis Ende Juli 1809); leider wurde dieses Periodikum danach nicht weitergeführt, so dass die Informationsbasis für die Zeit ab August 1809 wesentlich lückenhafter wird.</p>
-                                    <p>Ab 1803 hatten die Stände zusätzlich die Verantwortung für das zweisprachige (deutsch-tschechische) Kleinseitner Theater (mit eigenem Ensemble) übernommen, das 1805 als eigenständige Institution aufgelöst und seitdem (bis 1811) als Nebenbühne des Ständetheaters weiterbetrieben wurde.  <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a> war von 1806 bis 1811 Direktor beider Häuser, die künstlerische Verantwortung für das Kleinseitner Theater lag allerdings im wesentlichen in den Händen des Regisseurs Wenzel Swoboda (1764/72–1822), der auch die bis 1811  noch üblichen Sommergastspiele in Teplitz leitete, die vorrangig  vom Kleinseitner Ensemble bestritten wurden, allerdings mit Unterstützung durch  Darsteller vom  Ständetheater.</p>
-                                    <p>Nach <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebichs</a>  Tod (1816) übernahm zunächst dessen <a class="preview persons A001173" href="/exist/apps/WeGA-WebApp/de/A001173.html">Witwe</a>  die Direktion des Ständetheaters, unterstützt durch <a class="preview persons A001901" href="/exist/apps/WeGA-WebApp/de/A001901.html">Johann August Stöger</a>, 1819/20 wurde <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Ferdinand Polawsky</a>  Mitunternehmer von <a class="preview persons A001173" href="/exist/apps/WeGA-WebApp/de/A001173.html">Johanna Liebich</a>  und Direktor, ihm folgte von 1820 bis 1824  <a class="preview persons A000865" href="/exist/apps/WeGA-WebApp/de/A000865.html">Franz Ignaz von  Holbein</a>.  Von 1824 bis 1834 wirkte schließlich ein Direktorat aus drei Personen: <a class="preview persons A001500" href="/exist/apps/WeGA-WebApp/de/A001500.html">Ferdinand Polawsky</a>, <a class="preview persons A000954" href="/exist/apps/WeGA-WebApp/de/A000954.html">Josef Wolfgang Kainz</a>  und <a class="preview persons A001896" href="/exist/apps/WeGA-WebApp/de/A001896.html">Jan Nepomuk Štěpánek</a>.</p>
+                                    <p>„Das  <span class="tei_hi_spaced_out">Nationaltheater</span>,  welches  <span class="tei_hi_spaced_out"><span class="701149711012232651101161111103282101105991041151031144632118463278111115116105116122321171101003282104105110101107">Franz Anton Reichsgr. v. Nostitz und Rhinek</span></span> mit einem Aufwand von 83700 fl. im J. 1781 angelegt, in zwei Jahren zu Ende gebracht, und mit folgender Aufschrift geziert hat: <span class="tei_hi_italic">Patriae et Musis</span>. Dessen Sohn  <span class="tei_hi_spaced_out"><a class="preview persons A001ADC" href="">Gr. Friedrich</a></span> verwendete noch andere 8000 fl. darauf, um dieses Gebäude noch bequemer einzurichten. Gegenwärtig ist es ein Eigenthum der hochlöblichen Hrn. Stände Böhmens, die es von dem <span class="7211411046327111497102101110321181111103278111115116105116122">Hrn.  <span class="tei_hi_spaced_out">Grafen von Nostitz</span></span> | für die Summe von 60,000 fl. erkauften, welche durch die Einkaufung von 6 Familienlogen zusammengebracht wurden. Alle spätern kostspieligen Bauten, Verschönerung des Innern und neuen Decorationen geschahen auf Kosten der Hrn. Stände, welche aus ihrer Mitte eine eigne Theater-Aufsichts-Commission zur Oberleitung der ganzen Geschäftsführung erwählt haben.“ </p>
+                                    <p>Die erwähnte Übernahme durch die böhmischen Landstände fand im April 1798 statt; damit einher ging die Umbenennung des Hauses in „Landständisches Theater“ bzw. „Ständetheater“ (auch „Altstädtisches Nationaltheater“). Die erwähnten gekauften Logen gehörten Mitgliedern des in Prag beheimateten höheren Adels<a class="noteMarker arabic" id="ref-C_3" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_3">3</a>, welche nicht nur einen Großteil der Kosten trugen, sondern denen dafür die Mitgliedschaft in der erwähnten Theateraufsichts-Kommission (s. u.) garantiert wurde. Bis ca. 1806/07 sind als Logen-Inhaber  bezeugt: <span class="801041051081051121123271114971023211811111032831191011011141161154583112111114107">Philipp Graf von Sweerts-Spork</span>, <a class="preview persons A000297" href="">Christian Graf von Clam-Gallas</a>, <a class="preview persons A001350" href="">Rudolph Graf von Morzin</a>, <span class="80104105108105112112327111497102321181111103275105110115107121">Philipp Graf von Kinsky</span> und <span class="6910997110117101108327111497102321181111103287971081001151161011051103211711010032879711411610111098101114103">Emanuel Graf von Waldstein und Wartenberg</span><a class="noteMarker arabic" id="ref-C_4" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_4">4</a>, ab dem Jahr 1807/08 anstelle des <a class="preview persons A001350" href="">Grafen Morzin</a> nun <span class="87105108104101108109327025211411511632118111110326511710111411598101114103">Wilhelm Fürst von Auersberg</span> und <a class="preview persons A008471" href="">Franz Joseph Graf von Wrtby</a><a class="noteMarker arabic" id="ref-C_5" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_5">5</a>. Nach dem Tod von <span class="801041051081051121123211811111032831191011011141161154583112111114107">Philipp von Sweerts-Spork</span> (4. April 1810) übernahmen dessen Erben die Loge, ansonsten blieben die Besetzung der gekauften Hauptlogen (abgesehen vom Wechsel von <span class="6910997110117101108">Emanuel</span> zu <span class="691141101151163211811111032879710810011511610110511045879711411610111098101114103">Ernst von Waldstein-Wartenberg</span> um 1808<a class="noteMarker arabic" id="ref-C_6" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_6">6</a>) und somit auch die entsprechenden Mitglieder der Theateraufsichtskommission bis über das Jahr 1820 hinaus identisch.</p>
+                                    <p>Als Direktor (bzw. Pächter) war nach dem Tod von <a class="preview persons A008825" href="">Domenico Guardasoni</a>  (13./14. Juni 1806) zunächst interimistisch, per Landtagsbeschluss vom 4. August 1806 dann endgültig der bisherige Regisseur <a class="preview persons A001172" href="">Johann Carl Liebich</a>  berufen worden<a class="noteMarker arabic" id="ref-C_7" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_7">7</a>. Über die  ersten  beiden  Spielzeiten unter seiner Leitung (1806/07 und 1807/08) sowie die Vorgeschichte des Hauses geben die beiden Jahrgänge des <span class="tei_hi_italic">Prager Theater-Almanachs</span>  (1808, 1809) Auskunft (inklusive komplettem Spielplan bis Ende Juli 1809); leider wurde dieses Periodikum danach nicht weitergeführt, so dass die Informationsbasis für die Zeit ab August 1809 wesentlich lückenhafter wird.</p>
+                                    <p>Ab 1803 hatten die Stände zusätzlich die Verantwortung für das zweisprachige (deutsch-tschechische) Kleinseitner Theater (mit eigenem Ensemble) übernommen, das 1805 als eigenständige Institution aufgelöst und seitdem (bis 1811) als Nebenbühne des Ständetheaters weiterbetrieben wurde.  <a class="preview persons A001172" href="">Liebich</a> war von 1806 bis 1811 Direktor beider Häuser, die künstlerische Verantwortung für das Kleinseitner Theater lag allerdings im wesentlichen in den Händen des Regisseurs Wenzel Swoboda (1764/72–1822), der auch die bis 1811  noch üblichen Sommergastspiele in Teplitz leitete, die vorrangig  vom Kleinseitner Ensemble bestritten wurden, allerdings mit Unterstützung durch  Darsteller vom  Ständetheater.</p>
+                                    <p>Nach <a class="preview persons A001172" href="">Liebichs</a>  Tod (1816) übernahm zunächst dessen <a class="preview persons A001173" href="">Witwe</a>  die Direktion des Ständetheaters, unterstützt durch <a class="preview persons A001901" href="">Johann August Stöger</a>, 1819/20 wurde <a class="preview persons A001500" href="">Ferdinand Polawsky</a>  Mitunternehmer von <a class="preview persons A001173" href="">Johanna Liebich</a>  und Direktor, ihm folgte von 1820 bis 1824  <a class="preview persons A000865" href="/exist/apps/WeGA-WebApp/de/A000865.html">Franz Ignaz von  Holbein</a>.  Von 1824 bis 1834 wirkte schließlich ein Direktorat aus drei Personen: <a class="preview persons A001500" href="">Ferdinand Polawsky</a>, <a class="preview persons A000954" href="">Josef Wolfgang Kainz</a>  und <a class="preview persons A001896" href="">Jan Nepomuk Štěpánek</a>.</p>
                                 </div>
                                 <div id="d10e213">
                                     <h2 id="d10e214">Die Theateraufsichts-Kommission</h2>
                                     <p>Als dem Direktor/Pächter vorgesetztes administratives Gremium hatten die böhmischen Landstände die Theateraufsichts-Kommission ins Leben gerufen, deren Zusammensetzung zu Beginn des 19. Jahrhunderts (untersucht wurde der Zeitraum 1806 bis 1820) nicht konstant war, wie aus den wechselnden (in Details auch widersprüchlichen) Angaben in den Jahrgängen des <span class="tei_hi_italic">Schematismus für das Königreich Böhmen</span><a class="noteMarker arabic" id="ref-C_8" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_8">8</a>  sowie in verschiedenen Theateralmanachen<a class="noteMarker arabic" id="ref-C_9" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_9">9</a>  hervorgeht. Der Kommission gehörten überwiegend Vertreter des „Herrenstandes“ an, während der „Ritterstand“ und der „Bürgerstand“ in der Regel je einen  Vertreter entsandten.</p>
-                                    <p>Als Präsident wird im Jg. 1807 des <span class="tei_hi_italic">Schematismus</span>  (erschienen 1806) noch der am 13. Dezember 1806 verstorbene Joseph Heinrich von Schlick, Reichsgraf von Passaun und Weißkirchen, genannt. Ihm folgte im Amt der vorherige Beisitzer <a class="preview persons A001413" href="/exist/apps/WeGA-WebApp/de/A001413.html">Franz Graf von Kolowrat-Liebsteinsky</a>, der allerdings in mehreren Verzeichnissen lediglich als „Präsidium führend“ bezeichnet ist, während das eigentliche Amt des Präsidenten unbesetzt blieb. Laut Jg. 1817 des <span class="tei_hi_italic">Schematismus</span>  (also bereits ab 1816) wirkte er schließlich wieder als Beisitzer, neuer Präsident wurde zu diesem Zeitpunkt (bis zu seinem Tod 1819) <a class="preview persons A008211" href="/exist/apps/WeGA-WebApp/de/A008211.html">Anton Isidor Fürst von Lobkowitz</a><a class="noteMarker arabic" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">10</a>. Webers häufige Erwähnungen von Besuchen bei <a class="preview persons A001413" href="/exist/apps/WeGA-WebApp/de/A001413.html">Graf Kolowrat</a> bzw. (ab 1816) bei Fürst <a class="preview persons A008211" href="/exist/apps/WeGA-WebApp/de/A008211.html">Lobkowitz</a> in seinem Tagebuch könnten im Einzelfall mit deren Amtsführung als Präsidenten der Theateraufsichts-Kommission in Verbindung stehen.</p>
+                                    <p>Als Präsident wird im Jg. 1807 des <span class="tei_hi_italic">Schematismus</span>  (erschienen 1806) noch der am 13. Dezember 1806 verstorbene Joseph Heinrich von Schlick, Reichsgraf von Passaun und Weißkirchen, genannt. Ihm folgte im Amt der vorherige Beisitzer <a class="preview persons A001413" href="">Franz Graf von Kolowrat-Liebsteinsky</a>, der allerdings in mehreren Verzeichnissen lediglich als „Präsidium führend“ bezeichnet ist, während das eigentliche Amt des Präsidenten unbesetzt blieb. Laut Jg. 1817 des <span class="tei_hi_italic">Schematismus</span>  (also bereits ab 1816) wirkte er schließlich wieder als Beisitzer, neuer Präsident wurde zu diesem Zeitpunkt (bis zu seinem Tod 1819) <a class="preview persons A008211" href="">Anton Isidor Fürst von Lobkowitz</a><a class="noteMarker arabic" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">10</a>. Webers häufige Erwähnungen von Besuchen bei <a class="preview persons A001413" href="">Graf Kolowrat</a> bzw. (ab 1816) bei Fürst <a class="preview persons A008211" href="">Lobkowitz</a> in seinem Tagebuch könnten im Einzelfall mit deren Amtsführung als Präsidenten der Theateraufsichts-Kommission in Verbindung stehen.</p>
                                     <p>Neben dem Präsidenten gehörten die oben erwähnten „Logenerkäufer“, wie sie in den Verzeichnissen tituliert werden, zur Kommission; während der Amtszeit Webers in Prag waren dies:</p>
                                     <ul class="tei_list">
                                         <li><span class="87105108104101108109327025211411511632118111110326511710111411598101114103">Wilhelm Fürst von Auersberg</span>, </li>
                                         <li><span class="74111104971101103271114971023211811111032831191011141161154583112111114107">Johann Graf von Swerts-Spork</span> (der seinen am 4. April 1810  verstorbenen  Vater <span class="801041051081051121123271114971023211811111032831191011011141161154583112111114107">Philipp Graf von Sweerts-Spork</span> bereits in den Jahren zuvor in der Kommission vertreten hatte), </li>
-                                        <li><a class="preview persons A000297" href="/exist/apps/WeGA-WebApp/de/A000297.html">Christian Graf von Clam-Gallas</a>, </li>
+                                        <li><a class="preview persons A000297" href="">Christian Graf von Clam-Gallas</a>, </li>
                                         <li><span class="80104105108105112112327111497102321181111103275105110115107121">Philipp Graf von Kinsky</span>, </li>
-                                        <li><a class="preview persons A008471" href="/exist/apps/WeGA-WebApp/de/A008471.html">Franz Joseph Graf von Wrtby</a>  und </li>
+                                        <li><a class="preview persons A008471" href="">Franz Joseph Graf von Wrtby</a>  und </li>
                                         <li><span class="69114110115116327111497102321181111103287971081001151161011051103211711010032879711411610111098101114103">Ernst Graf von Waldstein und Wartenberg</span>.</li>
                                     </ul>
                                     <p>Unter den Beisitzern des Präsidenten (ihre Zahl wechselte laut <span class="tei_hi_italic">Schematismus</span>  zwischen sechs im Jahrgang 1807 sowie ab 1817, fünf für die Jahrgänge 1808 bis 1814 und drei für die Jahrgänge 1815/16) fanden sich Vertreter verschiedener Stände: </p>
                                     <p>Aus dem „Herrenstand“  wurden entsandt: </p>
                                     <ul class="tei_list">
-                                        <li>der bereits erwähnte <a class="preview persons A001413" href="/exist/apps/WeGA-WebApp/de/A001413.html">Graf Kolowrat</a>  (vor bzw. nach dessen Präsidentschaftsführung), </li>
-                                        <li><a class="preview persons A008960" href="/exist/apps/WeGA-WebApp/de/A008960.html">Johann Graf von Pachta</a>, </li>
-                                        <li><a class="preview persons A001891" href="/exist/apps/WeGA-WebApp/de/A001891.html">Franz Graf von Sternberg</a>, </li>
+                                        <li>der bereits erwähnte <a class="preview persons A001413" href="">Graf Kolowrat</a>  (vor bzw. nach dessen Präsidentschaftsführung), </li>
+                                        <li><a class="preview persons A008960" href="">Johann Graf von Pachta</a>, </li>
+                                        <li><a class="preview persons A001891" href="">Franz Graf von Sternberg</a>, </li>
                                         <li><span class="87101110122101108327111497102321181111103283116971091129799104">Wenzel Graf von Stampach</span> (bezeugt im <span class="tei_hi_italic">Schematismus</span>  bis 1814) und </li>
                                         <li><span class="74111115101112104327111497102321181111103278111115116105116122">Joseph Graf von Nostitz</span> (bezeugt im <span class="tei_hi_italic">Schematismus</span>  ab 1817). </li>
                                     </ul>
@@ -463,24 +472,24 @@
                                     <ul class="tei_list">
                                         <li>der Aktuar <span class="8610511012210111012232749711011097117101114">Vinzenz Jannauer</span>,</li>
                                         <li>der Rechnungsführer des Theater-Pensionsfonds <span class="651171031171151163271101101114115">August Geers</span>,</li>
-                                        <li>die Theatermaler <a class="preview persons A000C5F" href="/exist/apps/WeGA-WebApp/de/A000C5F.html">Carl Postl</a>  (bezeugt bis <span class="tei_hi_italic">Schematismus</span>  1818) bzw. <span class="6511011611111032839799104101116116105">Anton Sachetti</span> (bezeugt ab <span class="tei_hi_italic">Schematismus</span>  1819),</li>
+                                        <li>die Theatermaler <a class="preview persons A000C5F" href="">Carl Postl</a>  (bezeugt bis <span class="tei_hi_italic">Schematismus</span>  1818) bzw. <span class="6511011611111032839799104101116116105">Anton Sachetti</span> (bezeugt ab <span class="tei_hi_italic">Schematismus</span>  1819),</li>
                                         <li>der Türsteher <span class="87101110122101108327011111410997110110">Wenzel Formann</span> (in einigen Verzeichnissen fälschlich als W. Herrmann) sowie</li>
                                         <li>die Theaterhausmeister <span class="70114971101223277101114116101110">Franz Merten</span> (bezeugt bis <span class="tei_hi_italic">Schematismus</span>  1812) bzw. <span class="74111104971101103283116114111984010141108">Johann Strob(e)l</span> (bezeugt ab <span class="tei_hi_italic">Schematismus</span>  1813), in späteren Jahren zusätzlich (ab <span class="tei_hi_italic">Schematismus</span>  1816) der Registrator <span class="7597115112971143284104105110101108108105321181111103276246119101110115116101114110">Kaspar Thinelli von Löwenstern</span>.</li>
                                     </ul>
                                 </div>
                                 <div id="d10e445">
                                     <h2 id="d10e446">Sparten</h2>
-                                    <p><a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a> führte nach seiner Amtsübernahme 1806 das deutschsprachige Schauspiel unverändert weiter, beendete aber die Ära der von <a class="preview persons A008825" href="/exist/apps/WeGA-WebApp/de/A008825.html">Guardasoni</a> favorisierten italienischen Oper, die am 24. April 1807 mit einer Aufführung von <span class="tei_hi_italic"><span class="preview works A020545" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020545.html">La clemenza di Tito</span></span>  ihre Tätigkeit einstellte. Statt dessen begann am 3. Mai 1807 die neugegründete deutsche Opernsparte ihren Betrieb, die zunächst sechs Jahre hindurch (1807–1813) von <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Wenzel Müller</a>, dann drei Jahre (1813–1816) von Carl Maria von Weber und schließlich zwanzig Jahre lang (1816–1836) von <a class="preview persons A001982" href="/exist/apps/WeGA-WebApp/de/A001982.html">Josef Triebensee</a>  geleitet wurde.</p>
-                                    <p>Das Ballett hatte bereits in den letzten Jahren unter <a class="preview persons A008825" href="/exist/apps/WeGA-WebApp/de/A008825.html">Guardasoni</a>  (ab 1804) nur noch ein Schattendasein gefristet<a class="noteMarker arabic" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">11</a>; nach dessen Tod wurde das Tänzerensemble unter dem Ballettmeister <a class="preview persons A004429" href="/exist/apps/WeGA-WebApp/de/A004429.html">Brunetti</a>  „abgewickelt“. Allerdings verlangten einige Opern Tanzeinlagen, und so gab es weiterhin einige Tänzerinnen und Tänzer am Ständetheater. Während der Amtszeit Webers waren dies (teils zeitlich versetzt) <a class="preview persons A008531" href="/exist/apps/WeGA-WebApp/de/A008531.html">Therese Frühmann</a>, <a class="preview persons A008200" href="/exist/apps/WeGA-WebApp/de/A008200.html">Dem. Zittermann</a>, <a class="preview persons A006203" href="/exist/apps/WeGA-WebApp/de/A006203.html">Franz</a>  und <a class="preview persons A006745" href="/exist/apps/WeGA-WebApp/de/A006745.html">Michael Cajetan Reiberger</a>  sowie <a class="preview persons A008452" href="/exist/apps/WeGA-WebApp/de/A008452.html">Johann Supper</a>. Hinzu kamen Mitglieder des Schauspielensembles, die per Kontrakt auch zur Mitwirkung im Ballett verpflichtet waren: die Damen <a class="preview persons A003984" href="/exist/apps/WeGA-WebApp/de/A003984.html">Bolze</a>, <a class="preview persons A008314" href="/exist/apps/WeGA-WebApp/de/A008314.html">Länger</a>  und <a class="preview persons A002607" href="/exist/apps/WeGA-WebApp/de/A002607.html">Richter</a>  sowie die Herren <a class="preview persons A000627" href="/exist/apps/WeGA-WebApp/de/A000627.html">Gerstel</a>, <a class="preview persons A008230" href="/exist/apps/WeGA-WebApp/de/A008230.html">Küffel</a>  und <a class="preview persons A008611" href="/exist/apps/WeGA-WebApp/de/A008611.html">Macco</a>. Weber vermerkte zudem in seinem <span class="tei_hi_italic"><a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Notizen-Buch</a></span>, auch <a class="preview persons A008940" href="/exist/apps/WeGA-WebApp/de/A008940.html">Dem. Badner</a>  wäre im Ballett „zu verwenden“ und <a class="preview persons A000627" href="/exist/apps/WeGA-WebApp/de/A000627.html">Herr Gerstel</a>  könne, wie beispielsweise in der Oper <span class="tei_hi_italic"><span class="preview works A020469" data-ref="/exist/apps/WeGA-WebApp/de/A001862/Werke/A020469.html">Faust</span></span>  geschehen, Choreographien einrichten. </p>
-                                    <p>Eigenständige Tanzdarbietungen blieben die Ausnahme, etwa die Aufführung des <span class="preview works A020440" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020440.html"><span class="tei_hi_italic">Waldmädchen</span>-Balletts</span> zum Benefiz für <a class="preview persons A004429" href="/exist/apps/WeGA-WebApp/de/A004429.html">Brunetti</a>  am 24. November 1813 (mit <a class="preview persons A004429" href="/exist/apps/WeGA-WebApp/de/A004429.html">Brunetti</a>  und <a class="preview persons A008531" href="/exist/apps/WeGA-WebApp/de/A008531.html">Frühmann</a>  in den Hauptpartien als <span class="80114105110122">Prinz</span> und <span class="879710810010922810099104101110">Waldmädchen</span>) oder Vorstellungen im Rahmen von  Gastspielen  der <span class="preview persons A009107 A009131 A008522 A009291" data-ref="/exist/apps/WeGA-WebApp/de/A009107.html /exist/apps/WeGA-WebApp/de/A009131.html /exist/apps/WeGA-WebApp/de/A008522.html /exist/apps/WeGA-WebApp/de/A009291.html">Tänzerfamilie Kobler</span>  (Juni/Juli 1815) bzw.  des aus Prag stammenden Tänzers <a class="preview persons A00240F" href="/exist/apps/WeGA-WebApp/de/A00240F.html">Johann Brinke</a>  (Juli/August 1815). Zudem leitete <a class="preview persons A001945" href="/exist/apps/WeGA-WebApp/de/A001945.html">Katharina Horschelt</a>, die bereits im Juli 1813 mit ihren Töchtern <a class="preview persons A008393" href="/exist/apps/WeGA-WebApp/de/A008393.html">Caroline</a>  und <a class="preview persons A001C45" href="/exist/apps/WeGA-WebApp/de/A001C45.html">Babette</a>  am Ständetheater gastiert hatte, zwischen 1813 und 1815 in Prag ein Kinderballett, das im Ständetheater auftrat.</p>
-                                    <p>Eine Ausnahme blieben auf der Bühne des Ständetheaters für lange Zeit auch Vorstellungen in der tschechischen Landessprache. Unter <a class="preview persons A008825" href="/exist/apps/WeGA-WebApp/de/A008825.html">Guardasoni</a>  hatte es zuletzt regelmäßige Gastauftritte des (zweisprachigen) Ensembles vom Kleinseitner Theater mit tschechischen Produktionen im Ständetheater gegeben (üblicherweise Nachmittagsvorstellungen an Sonn- und Feiertagen). In diesem Zusammenhang kam dort am 9. März und 13. April 1806 beispielsweise Webers Oper <span class="tei_hi_italic"><span class="preview works A020032" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020032.html">Das Waldmädchen</span></span>  in tschechischer Übersetzung zur Aufführung. Doch unter <a class="preview persons A001172" href="/exist/apps/WeGA-WebApp/de/A001172.html">Liebich</a> wurden beide Häuser hinsichtlich ihres Repertoires wieder deutlicher voneinander abgegrenzt. Bis 1824 gab es im Ständetheater in der Regel keine professionellen tschechischen Theaterproduktionen, lediglich Gastauftritte eines Vereins von Theaterliebhabern  unter der künstlerischen Leitung von <a class="preview persons A001896" href="/exist/apps/WeGA-WebApp/de/A001896.html">Jan Nepomuk Štěpánek</a>  zu wohltätigen Zwecken.</p>
+                                    <p><a class="preview persons A001172" href="">Liebich</a> führte nach seiner Amtsübernahme 1806 das deutschsprachige Schauspiel unverändert weiter, beendete aber die Ära der von <a class="preview persons A008825" href="">Guardasoni</a> favorisierten italienischen Oper, die am 24. April 1807 mit einer Aufführung von <span class="tei_hi_italic"><a class="preview works A020545" href="">La clemenza di Tito</a></span>  ihre Tätigkeit einstellte. Statt dessen begann am 3. Mai 1807 die neugegründete deutsche Opernsparte ihren Betrieb, die zunächst sechs Jahre hindurch (1807–1813) von <a class="preview persons A001382" href="/exist/apps/WeGA-WebApp/de/A001382.html">Wenzel Müller</a>, dann drei Jahre (1813–1816) von Carl Maria von Weber und schließlich zwanzig Jahre lang (1816–1836) von <a class="preview persons A001982" href="">Josef Triebensee</a>  geleitet wurde.</p>
+                                    <p>Das Ballett hatte bereits in den letzten Jahren unter <a class="preview persons A008825" href="">Guardasoni</a>  (ab 1804) nur noch ein Schattendasein gefristet<a class="noteMarker arabic" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">11</a>; nach dessen Tod wurde das Tänzerensemble unter dem Ballettmeister <a class="preview persons A004429" href="">Brunetti</a>  „abgewickelt“. Allerdings verlangten einige Opern Tanzeinlagen, und so gab es weiterhin einige Tänzerinnen und Tänzer am Ständetheater. Während der Amtszeit Webers waren dies (teils zeitlich versetzt) <a class="preview persons A008531" href="">Therese Frühmann</a>, <a class="preview persons A008200" href="">Dem. Zittermann</a>, <a class="preview persons A006203" href="">Franz</a>  und <a class="preview persons A006745" href="">Michael Cajetan Reiberger</a>  sowie <a class="preview persons A008452" href="">Johann Supper</a>. Hinzu kamen Mitglieder des Schauspielensembles, die per Kontrakt auch zur Mitwirkung im Ballett verpflichtet waren: die Damen <a class="preview persons A003984" href="">Bolze</a>, <a class="preview persons A008314" href="">Länger</a>  und <a class="preview persons A002607" href="">Richter</a>  sowie die Herren <a class="preview persons A000627" href="">Gerstel</a>, <a class="preview persons A008230" href="">Küffel</a>  und <a class="preview persons A008611" href="">Macco</a>. Weber vermerkte zudem in seinem <span class="tei_hi_italic"><a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Notizen-Buch</a></span>, auch <a class="preview persons A008940" href="">Dem. Badner</a>  wäre im Ballett „zu verwenden“ und <a class="preview persons A000627" href="">Herr Gerstel</a>  könne, wie beispielsweise in der Oper <span class="tei_hi_italic"><a class="preview works A020469" href="">Faust</a></span>  geschehen, Choreographien einrichten. </p>
+                                    <p>Eigenständige Tanzdarbietungen blieben die Ausnahme, etwa die Aufführung des <a class="preview works A020440" href=""><span class="tei_hi_italic">Waldmädchen</span>-Balletts</a> zum Benefiz für <a class="preview persons A004429" href="">Brunetti</a>  am 24. November 1813 (mit <a class="preview persons A004429" href="">Brunetti</a>  und <a class="preview persons A008531" href="">Frühmann</a>  in den Hauptpartien als <span class="80114105110122">Prinz</span> und <span class="879710810010922810099104101110">Waldmädchen</span>) oder Vorstellungen im Rahmen von  Gastspielen  der <span class="preview persons A009107 A009131 A008522 A009291" data-ref="   ">Tänzerfamilie Kobler</span>  (Juni/Juli 1815) bzw.  des aus Prag stammenden Tänzers <a class="preview persons A00240F" href="">Johann Brinke</a>  (Juli/August 1815). Zudem leitete <a class="preview persons A001945" href="">Katharina Horschelt</a>, die bereits im Juli 1813 mit ihren Töchtern <a class="preview persons A008393" href="">Caroline</a>  und <a class="preview persons A001C45" href="">Babette</a>  am Ständetheater gastiert hatte, zwischen 1813 und 1815 in Prag ein Kinderballett, das im Ständetheater auftrat.</p>
+                                    <p>Eine Ausnahme blieben auf der Bühne des Ständetheaters für lange Zeit auch Vorstellungen in der tschechischen Landessprache. Unter <a class="preview persons A008825" href="">Guardasoni</a>  hatte es zuletzt regelmäßige Gastauftritte des (zweisprachigen) Ensembles vom Kleinseitner Theater mit tschechischen Produktionen im Ständetheater gegeben (üblicherweise Nachmittagsvorstellungen an Sonn- und Feiertagen). In diesem Zusammenhang kam dort am 9. März und 13. April 1806 beispielsweise Webers Oper <span class="tei_hi_italic"><a class="preview works A020032" href="">Das Waldmädchen</a></span>  in tschechischer Übersetzung zur Aufführung. Doch unter <a class="preview persons A001172" href="">Liebich</a> wurden beide Häuser hinsichtlich ihres Repertoires wieder deutlicher voneinander abgegrenzt. Bis 1824 gab es im Ständetheater in der Regel keine professionellen tschechischen Theaterproduktionen, lediglich Gastauftritte eines Vereins von Theaterliebhabern  unter der künstlerischen Leitung von <a class="preview persons A001896" href="">Jan Nepomuk Štěpánek</a>  zu wohltätigen Zwecken.</p>
                                 </div>
                                 <div id="d10e591">
-                                    <h2 id="d10e592">Das Gebäude</h2><span class="tei_figure float-left"><img title="„Prospect von dem Altstädter National-Theater in Prag“. Radierung von Leopold Peucker (ca. 1793). Foto in D-B" alt="„Prospect von dem Altstädter National-Theater in Prag“. Radierung von Leopold Peucker (ca. 1793). Foto in D-B" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/thematicCommentaries%2FA0900xx%2FA090071%2FStaendetheaterPrag_2.jpg/full/,300/0/native.jpg" /></span>
+                                    <h2 id="d10e592">Das Gebäude</h2><span class="tei_figure float-left"><img title="„Prospect von dem Altstädter National-Theater in Prag“. Radierung von Leopold Peucker (ca. 1793). Foto in D-B" alt="„Prospect von dem Altstädter National-Theater in Prag“. Radierung von Leopold Peucker (ca. 1793). Foto in D-B" src="https://weber-gesamtausgabe.de/Scaler/IIIF/thematicCommentaries%2FA0900xx%2FA090071%2FStaendetheaterPrag_2.jpg/full/,300/0/native.jpg" /></span>
                                     <p>Um sich ein Bild vom Aussehen und Zustand des heute noch bestehenden, im Kern erhaltenen, aber vielfach umgebauten Theaters zur Weber-Zeit machen zu können<a class="noteMarker arabic" id="ref-C_33" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_33">12</a>, seien nachfolgend einige Beschreibungen von Zeitgenossen zitiert. In mehreren Berichten werden ähnliche Details erwähnt, wie die ungewöhnlich große Zahl von Zugängen ins Haus, die vergleichsweise große Bühne, das noch heute bestehende Zufahrtstor, das die Hinterbühne vom dahinter liegenden Platz aus zugänglich macht, und die schlechten akustischen Verhältnisse.</p>
                                     <ul class="tei_list">
                                         <li>
-                        <a class="preview persons A0004CF" href="/exist/apps/WeGA-WebApp/de/A0004CF.html">Sebastian Willibald Schießler</a>, <span class="tei_hi_italic">Prag und seine Umgebungen</span>, [Bd. 1], Prag und Teplitz 1812, S. 161–163:
+                        <a class="preview persons A0004CF" href="">Sebastian Willibald Schießler</a>, <span class="tei_hi_italic">Prag und seine Umgebungen</span>, [Bd. 1], Prag und Teplitz 1812, S. 161–163:
                         <br />„Das Nationaltheater […] ist ein ansehnliches Gebäude, dessen Pracht und architektonischer Anstand, den Tempel Thaliens auszeichnet, und das einen | vorzüglichen Platz in der Reihe dieser Häuser einnimmt. […]
                             <br />Das Gebäude ist durchgehends solid, massiv und geräumig, man findet darin viele Eingänge, theils zur Bequemlichkeit der Zuschauer, theils wegen eines freien Zugangs zur Löschung eines etwa entstehenden Feuers.
                             <br />Zu diesem Ende ist auch an dem Hintertheile des Theaters ein breites Thor angebracht, welches auch dazu dient, größere Maschinenwerke oder Wagen mit Pferden, auf das Theater zu bringen.
@@ -488,7 +497,7 @@
                             <br />Die Bühne ist groß, und mit allen möglichen Dekorationen, dann einer prächtigen Garderobe versehen. Da die Decke | des Gebäudes sehr hoch ist, so verschlägt sich in etwas die Stimme der Schauspieler; wodurch nicht selten der Effekt guter Darstellungen beeinträchtigt wird.“
                     </li>
                                         <li>
-                        <a class="preview persons A001656" href="/exist/apps/WeGA-WebApp/de/A001656.html">Adolf von Schaden</a>, <span class="tei_hi_italic">Kritischer Bockssprung von Dresden nach Prag; ein neues Capriccio, als Gegenstück des Katersprunges</span>, Schneeberg 1822, S. 209f.:
+                        <a class="preview persons A001656" href="">Adolf von Schaden</a>, <span class="tei_hi_italic">Kritischer Bockssprung von Dresden nach Prag; ein neues Capriccio, als Gegenstück des Katersprunges</span>, Schneeberg 1822, S. 209f.:
                         <br />„Das hiesige Schauspielhaus […] stellt sich im Ganzen als ein solides, schönes und seinen Zwecken entsprechendes Gebäude dar; es faßt eine der Bevölkerung Prags angemessene Menge Zuschauer, hat eine dreifache Logenreihe und viele Ausgänge.
                             <br />In akustischer Hinsicht wurden vom Baumeister bedeutsame Fehler begangen, auch führt | ein Kanal, oder besser gesagt, eine Kloake unter dem Hause weg, welcher Uebelstand bewirkt, daß es zuweilen, vorzüglich im Parterre, ungemein stinkt.
                             <br />Die Bühne ist groß, mit hinreichenden Dekorationen und ziemlicher Garderobe versehen.“
@@ -498,13 +507,13 @@
                         <br />„Das in der Mitte der Königstrasse von allen Seiten frei stehende, mit der Vorderseite gegen die Ritterstrasse gekehrte Theatergebäude wurde 1783 […]  erbaut. Rücksichtlich seiner Größe gehört es zu den mittleren Gebäuden dieser Art in Deutschland. Es ist durchaus massiv erbaut, und am Haupteingange mit einem schönen Portikus geziert. […] Der Haupteingang ist nach beendigter Vorstellung zur Verhüthung jedes Unfalles bloss für die Fahrenden bestimmt, wogegen die Seitenthüren ausschliesslich den Fussgängern zum Ausgange dienen. Im Innern befindet sich das Parterre mit den Sperrsitzen; der Gallerien sind drei, und selbst noch in der dritten Seiten-Logen angebracht. Im Hintergrunde der Bühne ist ein grosses Thor, um Wagen, Pferde u. s. w. auf dieselbe bringen zu können.“
                     </li>
                                     </ul>
-                                    <p><a class="preview persons A001545" href="/exist/apps/WeGA-WebApp/de/A001545.html">Johann Friedrich Reichardt</a>, der Prag im November 1808 besuchte, zeigte sich in seinen <span class="tei_hi_italic">Vertrauten Briefen geschrieben auf einer Reise nach Wien und den Oesterreichischen Staaten zu Ende des Jahres 1808 und zu Anfang 1809</span>  (Amsterdam 1810, Bd. 1, S. 123) vom Inneren des Theaters verwundert:</p>
+                                    <p><a class="preview persons A001545" href="">Johann Friedrich Reichardt</a>, der Prag im November 1808 besuchte, zeigte sich in seinen <span class="tei_hi_italic">Vertrauten Briefen geschrieben auf einer Reise nach Wien und den Oesterreichischen Staaten zu Ende des Jahres 1808 und zu Anfang 1809</span>  (Amsterdam 1810, Bd. 1, S. 123) vom Inneren des Theaters verwundert:</p>
                                     <p>
                     „Sonderbar sieht es aber aus, daß die abonnirten herrschaftlichen Logen nach dem Geschmack der Abonnenten verziert sind, bald mit grünen, blauen, bald mit gestreiften, buntfarbigen seidenen Drapperien, bald glatt, bald gepufft, wie’s Jedem gefällt. Einer hat sogar sein in vergoldeter Stuccaturarbeit groß ausgeführtes Wappen über seiner Loge.“
                 </p>
                                     <p>Diesen Zustand des Innenraums erlebte Weber allerdings nur noch bei seinen ersten Theaterbesuchen in Prag; im Frühjahr 1813, also noch vor seinem Dienstantritt als Operndirektor, wurde der Saal grundlegend umgestaltet, wie aus einem Korrespondenzbericht zu entnehmen ist:<a class="noteMarker arabic" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">13</a>
-                </p><span class="tei_figure float-left"><img title="„Das ständ. Theater mit dem Universitäts- oder Carolingebäude gegen Mitternacht“. Radierung von Johann Berka (1810). Quelle: Julius Kapp, Carl Maria von Weber. Eine Biographie, 15. Aufl., Berlin 1944" alt="„Das ständ. Theater mit dem Universitäts- oder Carolingebäude gegen Mitternacht“. Radierung von Johann Berka (1810). Quelle: Julius Kapp, Carl Maria von Weber. Eine Biographie, 15. Aufl., Berlin 1944" src="https://weber-gesamtausgabe.de/digilib/Scaler/IIIF/thematicCommentaries%2FA0900xx%2FA090071%2FStaendetheaterPrag_3.jpg/full/,275/0/native.jpg" /></span>
-                                    <p>„In der Osterwoche wurde unser Schauspielhaus, das in der That eines neuen Gewandes bedurfte, unter der Aufsicht und Angabe des <a class="preview persons A000C5F" href="/exist/apps/WeGA-WebApp/de/A000C5F.html">Herrn Prof. <span class="tei_hi_spaced_out">Postel</span></a> neu decorirt, und am 19. April zum ersten Mahl wieder eröffnet mit dem Schauspiel:  <span class="preview works A020769" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A020769.html"><span class="tei_hi_spaced_out">Die deutschen Ritter vor Nicäa</span> (die Kreuzfahrer)</span>, von <a class="preview persons A001056" href="/exist/apps/WeGA-WebApp/de/A001056.html">A. v.  <span class="tei_hi_spaced_out">Kotzebue</span></a>,  mit <span class="preview works A020415" data-ref="/exist/apps/WeGA-WebApp/de/A000584/Werke/A020415.html">Musik</span>  von <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Herrn  <span class="tei_hi_spaced_out">Gänsbacher</span></a>.  Die neue Ausschmückung des Hauses überraschte angenehm. Das Haus ist blau gemahlt, die Verzierungen grau in Weiß und Silber, die Drapperien aller Logen gleich von blauer Seide mit goldgelben Frangen; über der Obrist-Burggräflichen Loge ist der böhmische Adler im rothen Felde aufgestellt mit reichen Drapperien umgeben, die aber etwas düster aussehen. Eine Lampe-astrale, welche während des Stücks hinaufgezogen wird, beleuchtet das Haus viel besser, als ehemals die sparsam vertheilten Wandleuchter. Nur schade, daß die Gallerie ein nicht eben sehr vortheilhaftes Geländer vorstellt, und die Decke gar nicht gemahlt ist, was vielleicht die Kürze der Zeit nicht erlaubte. Wer das Theater noch vor wenigen Wochen mit seinen großen schnäbelnden Tauben und dem buntschäckigen Quodlibet von Logenverzierungen sah, wird gerne gestehen, wie erfreulich diese Veränderung sey.“</p>
+                </p><span class="tei_figure float-left"><img title="„Das ständ. Theater mit dem Universitäts- oder Carolingebäude gegen Mitternacht“. Radierung von Johann Berka (1810). Quelle: Julius Kapp, Carl Maria von Weber. Eine Biographie, 15. Aufl., Berlin 1944" alt="„Das ständ. Theater mit dem Universitäts- oder Carolingebäude gegen Mitternacht“. Radierung von Johann Berka (1810). Quelle: Julius Kapp, Carl Maria von Weber. Eine Biographie, 15. Aufl., Berlin 1944" src="https://weber-gesamtausgabe.de/Scaler/IIIF/thematicCommentaries%2FA0900xx%2FA090071%2FStaendetheaterPrag_3.jpg/full/,275/0/native.jpg" /></span>
+                                    <p>„In der Osterwoche wurde unser Schauspielhaus, das in der That eines neuen Gewandes bedurfte, unter der Aufsicht und Angabe des <a class="preview persons A000C5F" href="">Herrn Prof. <span class="tei_hi_spaced_out">Postel</span></a> neu decorirt, und am 19. April zum ersten Mahl wieder eröffnet mit dem Schauspiel:  <a class="preview works A020769" href=""><span class="tei_hi_spaced_out">Die deutschen Ritter vor Nicäa</span> (die Kreuzfahrer)</a>, von <a class="preview persons A001056" href="">A. v.  <span class="tei_hi_spaced_out">Kotzebue</span></a>,  mit <a class="preview works A020415" href="">Musik</a>  von <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Herrn  <span class="tei_hi_spaced_out">Gänsbacher</span></a>.  Die neue Ausschmückung des Hauses überraschte angenehm. Das Haus ist blau gemahlt, die Verzierungen grau in Weiß und Silber, die Drapperien aller Logen gleich von blauer Seide mit goldgelben Frangen; über der Obrist-Burggräflichen Loge ist der böhmische Adler im rothen Felde aufgestellt mit reichen Drapperien umgeben, die aber etwas düster aussehen. Eine Lampe-astrale, welche während des Stücks hinaufgezogen wird, beleuchtet das Haus viel besser, als ehemals die sparsam vertheilten Wandleuchter. Nur schade, daß die Gallerie ein nicht eben sehr vortheilhaftes Geländer vorstellt, und die Decke gar nicht gemahlt ist, was vielleicht die Kürze der Zeit nicht erlaubte. Wer das Theater noch vor wenigen Wochen mit seinen großen schnäbelnden Tauben und dem buntschäckigen Quodlibet von Logenverzierungen sah, wird gerne gestehen, wie erfreulich diese Veränderung sey.“</p>
                                     <p>Einen weiteren wichtigen Umbau zu Ende von Webers Amtszeit, der sich wohl weniger optisch als vielmehr akustisch bemerkbar machte, dokumentierte  Weber selbst in seinem <span class="tei_hi_italic"><a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Notizen-Buch</a></span>: Im September 1816 wurde der Boden des Orchestergrabens erneuert und dabei erhöht.</p>
                                 </div>
                                 <div id="d10e721">
@@ -515,15 +524,15 @@
                                     <ol class="endNotes">
                                         <li id="C_1" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#ref-C_1">1</a>Vgl. dazu auch die Materialsammlung von Alena Jakubcová, Jitka Ludvová, <span class="tei_hi_italic">Deutschsprachiges Theater in Prag. Spielstätten und Quellen</span>, in: <span class="tei_hi_italic">Deutschsprachiges Theater in Prag. Begegnungen der Sprachen und Kulturen</span>, hg. von Alena Jakubcová, Jitka Ludvová, Václav Maidl, Prag 2001, S. 495–498.</li>
                                         <li id="C_2" data-title="Einzelnachweis 2"><a class="endnote_backlink" href="#ref-C_2">2</a>Jaroslaus Schaller, <span class="tei_hi_italic">Kurzgefaßte Beschreibung der königl. Haupt- und Residenzstadt Prag</span>, neue umgearb. und verm. Auflage, Prag [1817], S. 187f.</li>
-                                        <li id="C_3" data-title="Einzelnachweis 3"><a class="endnote_backlink" href="#ref-C_3">3</a>Oscar Teuber, <span class="tei_hi_italic">Geschichte des Prager Theaters. Von den Anfängen des Schauspielwesens bis auf die neueste Zeit</span>, Bd. 2, Prag 1885, S. 334f. nennt sieben „Logeneinkäufer“: neben den  <span class="711149710210111032671089710945719710810897115">Grafen Clam-Gallas</span>, <span class="741111049711011032911141019911610132801041051081051121129332831191011011141161154583112111114107">Johann  [recte Philipp] Sweerts-Spork</span>, <span class="8711411698121">Wrtby</span>, <span class="77111114122105110">Morzin</span>, <span class="75105110115107121">Kinsky</span> auch  <span class="71114228102105110328010410510810511211210511010132839910410810599107443210310198463278111115116105116122">Gräfin Philippine Schlick, geb. Nostitz</span> sowie  den Vorbesitzer des Theaters (Sohn des Erbauers) <a class="preview persons A001ADC" href="/exist/apps/WeGA-WebApp/de/A001ADC.html">Friedrich Graf Nostitz-Rieneck</a>, der die Loge vermutlich nicht kaufte, sondern deren Verbleib in Familienbesitz aushandelte. Eine weitere Loge stand dem jeweiligen Oberstburggrafen zu.</li>
+                                        <li id="C_3" data-title="Einzelnachweis 3"><a class="endnote_backlink" href="#ref-C_3">3</a>Oscar Teuber, <span class="tei_hi_italic">Geschichte des Prager Theaters. Von den Anfängen des Schauspielwesens bis auf die neueste Zeit</span>, Bd. 2, Prag 1885, S. 334f. nennt sieben „Logeneinkäufer“: neben den  <span class="711149710210111032671089710945719710810897115">Grafen Clam-Gallas</span>, <span class="741111049711011032911141019911610132801041051081051121129332831191011011141161154583112111114107">Johann  [recte Philipp] Sweerts-Spork</span>, <span class="8711411698121">Wrtby</span>, <span class="77111114122105110">Morzin</span>, <span class="75105110115107121">Kinsky</span> auch  <span class="71114228102105110328010410510810511211210511010132839910410810599107443210310198463278111115116105116122">Gräfin Philippine Schlick, geb. Nostitz</span> sowie  den Vorbesitzer des Theaters (Sohn des Erbauers) <a class="preview persons A001ADC" href="">Friedrich Graf Nostitz-Rieneck</a>, der die Loge vermutlich nicht kaufte, sondern deren Verbleib in Familienbesitz aushandelte. Eine weitere Loge stand dem jeweiligen Oberstburggrafen zu.</li>
                                         <li id="C_4" data-title="Einzelnachweis 4"><a class="endnote_backlink" href="#ref-C_4">4</a>Vgl. <span class="tei_hi_italic">Schematismus für das Königreich Böhmen</span>, Jg. 1807 (2. Teil), S. 12f.</li>
                                         <li id="C_5" data-title="Einzelnachweis 5"><a class="endnote_backlink" href="#ref-C_5">5</a>Vgl. die Angaben zur Theateraufsichts-Kommission in: <span class="tei_hi_italic">Prager Theater-Almanach</span>, Jg. 1.1808, S. 2–4, <span class="tei_hi_italic">Schematismus für das Königreich Böhmen</span>, Jg. 1808 (2. Teil), S. 12–14 und Jg. 1809, S. 120–122.</li>
                                         <li id="C_6" data-title="Einzelnachweis 6"><a class="endnote_backlink" href="#ref-C_6">6</a>Im <span class="tei_hi_italic">Schematismus für das Königreich Böhmen</span>, Jg. 1809, S. 102–122 bereits <span class="69114110115116">Ernst</span> (in späteren Jahrgängen auch Ernest) von Waldstein und Wartenberg, im <span class="tei_hi_italic">Prager Theater-Almanach</span>, Jg. 2.1809, S. 5–8 allerdings noch <span class="6910997110117101108321181111103287971081001151161011051103211711010032879711411610111098101114103">Emanuel von  Waldstein und Wartenberg</span>.</li>
                                         <li id="C_7" data-title="Einzelnachweis 7"><a class="endnote_backlink" href="#ref-C_7">7</a>Vgl. <span class="tei_hi_italic">Materialien zu einer Geschichte der prager Schaubühne</span>, in: <span class="tei_hi_italic">Prager Theater-Almanach</span>, Jg. 1.1808, S. 96.</li>
                                         <li id="C_8" data-title="Einzelnachweis 8"><a class="endnote_backlink" href="#ref-C_8">8</a>Vgl. u. a. Jg. 1807 (2. Teil, S. 12f.), Jg. 1808 (2. Teil, S. 12–14), Jg. 1809 (S. 120–122), Jg. 1810 (2. Teil, S. 12–14), Jg. 1812 (S. 137–139), Jg. 1813 (S. 141f.), Jg. 1814 (2. Teil, S. 13–15), Jg. 1815 (S. 154f.), Jg. 1816 (S. 165–167), Jg. 1817 (S. 172f.), Jg. 1818 (S. 168–170), Jg. 1819 (S. 124–126), Jg. 1820 (S. 171f.); wiedergegeben ist üblicherweise jeweils der Stand zu Ende des Vorjahres.</li>
                                         <li id="C_9" data-title="Einzelnachweis 9"><a class="endnote_backlink" href="#ref-C_9">9</a>Vgl. u. a. <span class="tei_hi_italic">Almanach fürs Theater</span>, hg. von August Wilhelm Iffland, Berlin, Jg. 1807 (S. 349), Jg. 1808 (S. 238), ebd. in Jg. 1809 (S. 157) und 1811 (S. 293) mit fälschlichem Rückbezug auf den Jg. 1807 statt 1808; <span class="tei_hi_italic">Prager Theater-Almanach</span>, Jg. 1.1808 (S. 2–4), Jg. 2.1809 (S. 5–8); <span class="tei_hi_italic">Almanach fürs Theater</span>, hg. von Friedrich Ludwig Schmidt, Leipzig, Jg. 1812 (S. 172f.); <span class="tei_hi_italic">Taschenbuch für Schauspieler und Schauspielfreunde</span>, hg. von Wenzel Lembert, Jg. 1821 (S. 292); dokumentiert ist auch hier jeweils der Stand gegen Ende des Vorjahres.</li>
-                                        <li id="C_13" data-title="Einzelnachweis 10"><a class="endnote_backlink" href="#ref-C_13">10</a>Weber erwähnt im Tagebuch am <a class="preview diaries A063978" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A063978.html">29. Februar 1816</a> einen Besuch bei
-                    <a class="preview persons A008211" href="/exist/apps/WeGA-WebApp/de/A008211.html">Lobkowitz</a> als "neuem Theater Präsidenten".</li>
+                                        <li id="C_13" data-title="Einzelnachweis 10"><a class="endnote_backlink" href="#ref-C_13">10</a>Weber erwähnt im Tagebuch am <a class="preview diaries A063978" href="">29. Februar 1816</a> einen Besuch bei
+                    <a class="preview persons A008211" href="">Lobkowitz</a> als "neuem Theater Präsidenten".</li>
                                         <li id="C_11" data-title="Einzelnachweis 11"><a class="endnote_backlink" href="#ref-C_11">11</a>Vgl. Ferdinand B. Mikowec, <span class="tei_hi_italic">Zur Geschichte des Prager Theaters. Von Steinsberg bis Liebich. (Schluß.)</span>, in: <span class="tei_hi_italic">Bohemia</span>, Prag, red. von Franz Klutschak, Jg. 33, Nr. 174 (25. Juli 1860), S. 193.</li>
                                         <li id="C_33" data-title="Einzelnachweis 12"><a class="endnote_backlink" href="#ref-C_33">12</a>Zum Theatervorhang von <span class="741111151011023266101114103108101114">Josef Bergler</span> vgl. u. a. Caroline Sternberg, <span class="tei_hi_italic">Prag um 1800: Der Entwurf Josef Berglers für den Hauptvorhang des Prager Ständetheaters als Zeugnis seiner Zeit</span>, in: <span class="tei_hi_italic">Bohemia. Zeitschrift für Geschichte und Kultur der böhmischen Länder</span>, Bd. 46, Nr. 2 (2005), S. 343–372.</li>
                                         <li id="C_12" data-title="Einzelnachweis 13"><a class="endnote_backlink" href="#ref-C_12">13</a>
@@ -549,9 +558,9 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090071</span> (<span>Version 3.3.0dev vom 17. Juli 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090071</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                    <span>Letzte Änderung dieses Dokuments am 5. Juli 2018 durch Solveig Schreiter</span></p>
+                    <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
             
         </div>
@@ -617,7 +626,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -637,30 +647,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

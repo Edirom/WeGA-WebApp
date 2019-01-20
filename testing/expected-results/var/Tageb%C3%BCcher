@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta property="dc:date" content="2018-07-04T19:59:50.065Z" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Tageb%C3%BCcher" />
         <meta property="dc:description" content="Eine Liste von Tagebucheinträgen, gesammelt und ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta name="description" content="Eine Liste von Tagebucheinträgen, gesammelt und ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Tagebücher","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Tageb%C3%BCcher","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Tageb%C3%BCcher","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Diaries" hreflang="en" lang="en">En</a></li>
@@ -239,7 +242,7 @@
         <div class="allFilter">
             <h2>Filter</h2>
             <h4>Chronologie</h4>
-            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1810-02-26" data-max-slider="1826-06-03" data-from-slider="1810-02-26" data-to-slider="1826-06-03" />
+            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1810-03-20" data-max-slider="1826-04-23" data-from-slider="1810-03-20" data-to-slider="1826-04-23" />
             
             <h4>Personen</h4>
             <select multiple="multiple" name="persons" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="diaries">
@@ -259,7 +262,7 @@
         </div>
     </div>
 	<div class="col-md-9 col-md-pull-3 searchResults">
-	<h2>5700 Suchergebnisse</h2>
+	<h2>79 Suchergebnisse</h2>
 	<div class="row">
 		<div class="col-sm-8">
 			<ul class="pagination">
@@ -268,8 +271,8 @@
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
                                             <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
                                             <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=569&amp;limit=10">569</a></li>
-                                            <li><a class="page-link" href="?page=570&amp;limit=10">570</a></li>
+                                            <li><a class="page-link" href="?page=7&amp;limit=10">7</a></li>
+                                            <li><a class="page-link" href="?page=8&amp;limit=10">8</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -288,18 +291,18 @@
 				<li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064400.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064422.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064400.html">Montag, 26. Februar 1810<br />Stuttgart, Heilbronn</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064422.html">Dienstag, 20. März 1810<br /></a>
         </h3>
-        <p>d: 26t Februar von Stuttgart mit OberP:K: Götz abgereist. im Vermögen gehabt 40 ƒ. in Heilbronn übernachtet.</p>
+        <p>d: 20t an v: Dusch, und Mad: Widder nach Heidelberg geschrieben, wegen einem Concert. Mittag bey Solomé. Nachmittag auf der Mühlau. die Silvana erhalten.</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064400</span>
+            <span>A064422</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -309,18 +312,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064401.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064436.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064401.html">Dienstag, 27. Februar 1810<br />Heilbronn, …, Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064436.html">Dienstag, 3. April 1810<br /></a>
         </h3>
-        <p>d: 27t bis Fürfeld mit Götz gereist, von ihm Abschied genommen, und noch 25 ƒ erhalten. da kein anderes Fuhrwerk zu bekommen war muste ich Extrapost nehmen. PostGeld bis Sinzheim 5 ƒ 15. Chaussée und …</p>
+        <p>d: 3t früh 6 Uhr meinen Koffer gepakt. Visiten gemacht Mittag bey Berger. Abends bey Weber und dann bey Loudain bis 1 Uhr. mit Pap.Pez. verzehrt 41 xr Guittarre Saiten und Trinkgeld der Magd 2 – …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064401</span>
+            <span>A064436</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -330,18 +333,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064402.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064459.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064402.html">Mittwoch, 28. Februar 1810<br />Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064459.html">Donnerstag, 26. April 1810<br />, </a>
         </h3>
-        <p>d: 28t ---- ihm zum KapellMstr Ritter, zu Hoffmann, zu Franks gegangen, welche eine große Freude hatten, mich zu sehen, und sogleich für ein Monats Quartier sorgten. Nachmittgs noch zu Babo, Weber, …</p>
+        <p>d: 26t Mittags im römischen Kayser bey Frieß gespeißt vorher mit Simmrok aus Bonn gesprochen Postgeld bezahlt nach Darmstadt 1 ƒ 16. der Schneider Wolf bey mir gewesen, und ich ihm schriftlich …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064402</span>
+            <span>A064459</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -351,18 +354,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064403.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064467.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064403.html">Donnerstag, 1. März 1810<br />Mannheim, Heidelberg, Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064467.html">Freitag, 4. Mai 1810<br /></a>
         </h3>
-        <p>d: 1t März mit Hoffman und Berger nach Heidelberg gefahren. da zu H: KapellMst: Hoffmann, H: von Tusch, Heinrich Voß und Michaelis gegangen, auch zufällig Seligmann angetroffen. für Mittageßen 3 ƒ24. …</p>
+        <p>4t d: früh 6 Uhr reiste er wieder ab nachdem er mir 44 ƒ gegeben hatte. dem Hausknecht für Stiefelpuzen 18. Gruben besucht, und mit Simrok gesprochen. mit Ihm bey dem Instrumentenmacher Schwab zu …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064403</span>
+            <span>A064467</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -372,18 +375,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064404.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064480.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064404.html">Freitag, 2. März 1810<br />Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064480.html">Donnerstag, 17. Mai 1810<br /></a>
         </h3>
-        <p>d: 2t Kaibel und Maier aufgesucht, und zum erstenmale im Schwarzen Bären zu Mittag gegeßen 36. im großen Concert gespielt die Var: aus C. Abends 27.</p>
+        <p>d: 17t Mittag im Bären. Nachmittag zu Berger gezogen. Koffer tragen 18. Brief von Hiemer erhalten. im Bären bezahlt 1 ƒ 24.</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064404</span>
+            <span>A064480</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -393,18 +396,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064405.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064494.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064405.html">Samstag, 3. März 1810<br />Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064494.html">Donnerstag, 31. Mai 1810<br /></a>
         </h3>
-        <p>d: 3t Mittag und Abendeßen 1. –</p>
+        <p>d: 31t früh aufs Schloß, von da über den Wolfs Brunnen aufs Stift und da zu Mittag gegeßen Abends fidel Comercirt, bey H: v: Lozow. Gänsbacher sp: Weber tröstet, Frey will im Bett aufbleiben. pp bis  …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064405</span>
+            <span>A064494</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -414,18 +417,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064406.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064690.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064406.html">Sonntag, 4. März 1810<br />Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064690.html">Donnerstag, 13. Dezember 1810<br />, , </a>
         </h3>
-        <p>-- 4t dito 1. –</p>
+        <p>d: 13t für Uebernachten, Trinkgeld pp: 1 ƒ 12 Extra in der Früh 48 um 5 Uhr mit einer BeyChaise abgefahren. Trinkgeld und verzehrt 56 Trinkgeld bis Bruchsal 24. Mittag in Bruchsal 1 ƒ – Trinkgeld bis …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064406</span>
+            <span>A064690</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -435,18 +438,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064407.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064407.html">Montag, 5. März 1810<br />Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.html">Montag, 31. Dezember 1810<br /></a>
         </h3>
-        <p>-- 5t bey Weber zu Mittag Klavier vom Kauf: Gärtner gehohlt. 42.</p>
+        <p>Moralische Uebersicht des Jahres 1810. Da mit dem 26t Februar 1810 eine neue Lebens Epoche für mich begann, so rechne ich auch den Anfang dieses Jahres von diesem Zeitpunkt an. --- Ich habe in diesem …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064407</span>
+            <span>A064709</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -456,18 +459,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064408.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065189.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064408.html">Dienstag, 6. März 1810<br />Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065189.html">Donnerstag, 24. Januar 1811<br />, </a>
         </h3>
-        <p>-- 6t im Bären 36.</p>
+        <p>d: 24 im Weidenhoff bezahlt 2 ƒ 6. Trinkgelder 1. 12. Frühstük noch 48. an Schmitt, Buch und Partittur von Abu Haßan ge schikt. Mittag wieder in Darmstadt ange langt. für Bänder in die Schuhe 5. für …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064408</span>
+            <span>A065189</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -477,18 +480,18 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064409.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065215.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_diaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064409.html">Mittwoch, 7. März 1810<br />Mannheim</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065215.html">Dienstag, 19. Februar 1811<br />Gießen</a>
         </h3>
-        <p>7t dito, Visiten 36. Abends bey Frau von Zillhart gewesen.</p>
+        <p>d: 19t Früh, Briefe abgegeben, an H: Grim. H: Hofbuch Händler Heyer, HofK:Rath Emmerling, Prof: Jaup. RegierungsRath Elwert. Besucht Prof: Schnell, Advokat wegen Klavier, Mittag bey H: Heyer, überall …</p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A064409</span>
+            <span>A065215</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -506,8 +509,8 @@
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
                                             <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
                                             <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=569&amp;limit=10">569</a></li>
-                                            <li><a class="page-link" href="?page=570&amp;limit=10">570</a></li>
+                                            <li><a class="page-link" href="?page=7&amp;limit=10">7</a></li>
+                                            <li><a class="page-link" href="?page=8&amp;limit=10">8</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -579,7 +582,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -599,30 +603,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

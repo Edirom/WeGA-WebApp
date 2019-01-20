@@ -23,6 +23,7 @@ import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/sea
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
+import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
@@ -248,7 +249,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+    function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element() {
         let $pathTokens := tokenize(request:get-attribute('$exist:path'), '/')
         return 
             element {node-name($node)} {
@@ -331,7 +332,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        if($model('hasLocalFacsimile')) then 
+        if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then 
             element {name($node)} {
                 $node/@*,
                 lang:get-language-string(normalize-space($node), $lang)
@@ -663,12 +664,22 @@ declare
         }
 };
 
-declare
+declare 
+    %templates:default("lang", "en")
+    function app:index-news-item($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        map {
+            'title' := wdt:news($model?newsItem)?title('html'),
+            'date' := date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}),
+            'url' := app:createUrlForDoc($model?newsItem, $lang)
+        }
+};
+
+(:declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:index-news-date($node as node(), $model as map(*), $lang as xs:string) as xs:string {
         date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
-};
+};:)
 
 declare 
     %templates:default("lang", "en")
@@ -693,11 +704,11 @@ declare
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
-    let $gnd := if (exists(query:get-gnd($model('doc')))) then query:get-gnd($model('doc')) else if ($geonames-id) then wega-util:geonames2gnd($geonames-id) else ()
+    let $gnd := query:get-gnd($model('doc'))
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
         else map:new()
-    let $gn-doc := wega-util:grabExternalResource('geonames', $geonames-id, '', ())
+    let $gn-doc := er:grabExternalResource('geonames', $geonames-id, '', ())
     return
         map {
             'gnd' := $gnd,
@@ -979,7 +990,7 @@ declare
         if($model('portrait')('source') = 'Carl-Maria-von-Weber-Gesamtausgabe') then ()
         else (
             $model('portrait')('source'),
-            if(contains($model('portrait')('linkTarget'), config:get-option('iiifServer'))) then ()
+            if(contains($model('portrait')('linkTarget'), config:get-option('iiifImageApi'))) then ()
             else (<br/>, element a {
                 attribute href {$model('portrait')('linkTarget')},
                 $model('portrait')('linkTarget')
@@ -999,7 +1010,7 @@ declare
     %templates:default("lang", "en")
     function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $wikiContent := wega-util:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        let $wikiContent := er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
         let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
         return 
@@ -1064,7 +1075,7 @@ declare
     %templates:wrap
     function app:deutsche-biographie($node as node(), $model as map(*)) as map(*) {
         map {
-            'adbndbContent' := wega-util:grabExternalResource('deutsche-biographie', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
+            'adbndbContent' := er:grabExternalResource('deutsche-biographie', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
         }
 };
 
@@ -1091,9 +1102,9 @@ declare
     %templates:default("lang", "en")
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $dnbContent := wega-util:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
-        let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
-        let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! wega-util:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $dnbContent := er:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
+        let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
                 'docType' := config:get-doctype-by-id($model?docID),
@@ -1180,11 +1191,11 @@ declare
         return
             map {
                 'facsimile' := $facs,
-                'externalImageURLs' := $facs/tei:graphic[starts-with(@url, 'http')]/data(@url),
-                'hasLocalFacsimile' := exists($facs) and not($facs/tei:graphic[starts-with(@url, 'http')]),
+                'localFacsimiles' := $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]],
+                'externalIIIFManifestFacsimiles' := $facs[@sameAs],
                 'hasCreation' := exists($model?doc//tei:creation),
                 'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-                'thematicCommentaries' := $model('doc')//tei:note[@type='thematicCom']/@target,
+                'thematicCommentaries' := distinct-values($model('doc')//tei:note[@type='thematicCom']/@target),
                 'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
             }
 };
@@ -1278,25 +1289,8 @@ declare
 declare 
     %templates:wrap
     function app:textSources($node as node(), $model as map(*)) as map(*) {
-        (: Drei mögliche Kinder (neben tei:correspDesc) von sourceDesc: tei:msDesc, tei:listWit, tei:biblStruct :)
-        let $source := 
-            switch($model('docType'))
-            case 'diaries' return 
-                <tei:msDesc>
-                   <tei:msIdentifier>
-                      <tei:country>D</tei:country>
-                      <tei:settlement>Berlin</tei:settlement>
-                      <tei:repository n="D-B">Staatsbibliothek zu Berlin – Preußischer Kulturbesitz</tei:repository>
-                      <tei:idno>Mus. ms. autogr. theor. C. M. v. Weber WFN 1</tei:idno>
-                   </tei:msIdentifier>
-                </tei:msDesc>
-            default return $model('doc')//tei:sourceDesc/tei:*[name(.) != 'correspDesc']
-        return 
         map {
-            'textSources' := 
-                typeswitch($source)
-                case element(tei:listWit) return $source/tei:witness/tei:*
-                default return $source
+            'textSources' := query:text-sources($model?doc)
         }
 };
 
@@ -1315,7 +1309,7 @@ declare
     function app:additionalSources($node as node(), $model as map(*)) as map(*) {
         (: tei:msDesc, tei:bibl, tei:biblStruct als mögliche Kindelemente von tei:additional/tei:listBibl :)
         map {
-            'additionalSources' := $model('textSource')//tei:additional/tei:listBibl/tei:* | $model('textSource')/tei:relatedItem/tei:* 
+            'additionalSources' := $model('textSource')//tei:additional/tei:listBibl/tei:* | $model('textSource')/tei:relatedItem/tei:*[not(./self::tei:listBibl)] | $model('textSource')/tei:relatedItem/tei:listBibl/tei:* 
         }
 };
 
@@ -1327,6 +1321,18 @@ declare
         case element(tei:biblStruct) return bibl:printCitation($model('additionalSource'), <xhtml:span class="biblio-entry"/>, $lang)
         case element(tei:bibl) return <span>{wega-util:transform($model('additionalSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))}</span>
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+};
+
+(:~
+ : Fetch all (external) facsimiles for a text source
+ :)
+declare 
+    %templates:wrap
+    function app:externalImageURLs($node as node(), $model as map(*)) as map(*) {
+        map {
+            (: intersect with $model?facsimile to only get allowed facsimiles :)
+            'externalImageURLs' := (query:witness-facsimile($model?textSource) intersect $model?facsimile)/tei:graphic[starts-with(@url, 'http')]/data(@url) 
+        }
 };
 
 (:~
@@ -1403,8 +1409,7 @@ declare
             switch($model?docType)
             case 'letters' return map:new((
                 query:context-relatedItems($model?doc), 
-                query:correspContext($model?doc),
-                query:context-correspSearch($model?doc)
+                query:correspContext($model?doc)
             ))
             default return query:context-relatedItems($model?doc)
         return
@@ -1435,7 +1440,9 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-context-relatedItem($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        app:createDocLink($model?context-relatedItem?context-relatedItem-doc, wdt:lookup(config:get-doctype-by-id($model?context-relatedItem?context-relatedItem-doc/*/data(@xml:id)), $model?context-relatedItem?context-relatedItem-doc)?title('txt'), $lang, ())
+        if($model?context-relatedItem?context-relatedItem-doc) 
+        then app:createDocLink($model?context-relatedItem?context-relatedItem-doc, wdt:lookup(config:get-doctype-by-id($model?context-relatedItem?context-relatedItem-doc/*/data(@xml:id)), $model?context-relatedItem?context-relatedItem-doc)?title('txt'), $lang, ())
+        else core:logToFile('warn', 'unable to process related items for ' || $model?docID)
 };
 
 declare 
@@ -1444,6 +1451,48 @@ declare
     function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
         lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang)
 };
+
+(:~
+ : Create csLink element (see https://github.com/correspSearch/csLink for options)
+ : wip!
+ : @author Jakob Schmidt
+ :)
+declare 
+    %templates:default("lang", "en")
+    function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
+        let $doc := $model('doc')
+        let $correspondent-1-key := query:get-authorID($doc)       
+        let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
+        let $correspondent-2-key := ($doc//tei:correspAction[@type = 'received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])[1]
+        let $correspondent-2-gnd := query:get-gnd($correspondent-2-key)
+        let $gnd-uri := config:get-option("dnb") (: 'http://d-nb.info/gnd/' :)        
+        (: Element-Parameter :)
+        let $data-correspondent-1-id := if ($correspondent-1-gnd) then concat($gnd-uri,$correspondent-1-gnd) else ""
+        let $data-correspondent-1-name :=
+            (:if ($data-correspondent-1-id) then "" else:) 
+            if ($correspondent-1-key) then query:title($correspondent-1-key) else ""
+        let $data-correspondent-2-id := if ($correspondent-2-gnd) then concat($gnd-uri,$correspondent-2-gnd) else ""
+        let $data-correspondent-2-name :=
+            (:if ($data-correspondent-2-id) then "" else :)
+            if ($correspondent-2-key) then query:title($correspondent-2-key) else ""
+        let $data-start-date := query:get-normalized-date($doc)        
+        return
+            element { node-name($node) } {
+            attribute id {"csLink"}, (: mandatory :)
+            attribute data-correspondent-1-id {$data-correspondent-1-id},
+            attribute data-correspondent-1-name {$data-correspondent-1-name},            
+            attribute data-correspondent-2-id {$data-correspondent-2-id},
+            attribute data-correspondent-2-name {$data-correspondent-2-name},           
+            attribute data-start-date { $data-start-date},
+            attribute data-end-date {$data-start-date},
+            attribute data-range {"30"},
+            attribute data-selection-when {"before-after"},
+            attribute data-selection-span {"median-before-after"},
+            attribute data-result-max {"4"},
+            attribute data-exclude-edition {"#WEGA"}            
+}
+};
+
 
 (:~
  : Create dateline and author link for website news
@@ -1469,22 +1518,25 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
         else()
 };
 
+(:~
+ : Initialize rendering of the facsimile (if available) on document pages 
+ : by writing a whitespace separated list of IIIF manifest URLs to the `@data-url` attribute
+ : for a client side renderer. 
+ :)
 declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
-    let $image-url := core:link-to-current-app('IIIF/' || $model('docID') || '/manifest.json')
-(:    let $image-originalMaxSize := doc($config:data-collection-path || '/images/images.xml')//image[@id=$model('docID')]/data(@height) :)
-    return 
-        element {name($node)} {
-            if($image-url) then (
-                $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-                if($model?hasLocalFacsimile) then (
-                    attribute {'data-url'} {$image-url}
-                )
-                else ()
-(:                attribute {'data-originalMaxSize'} {$image-originalMaxSize} :)
-            )
-            else $node/@*
-        }
+    element {name($node)} {
+        $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
+        if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then (
+            attribute {'data-url'} { normalize-space(
+                string-join($model?externalIIIFManifestFacsimiles/@sameAs, ' ') ||
+                ' ' ||
+                string-join(($model?localFacsimiles except $model?externalIIIFManifestFacsimiles) ! controller:iiif-manifest-id(.), ' ') 
+            )}
+        )
+        else ()
+    }
 };
+
 
 (:
  : ****************************
@@ -1517,36 +1569,23 @@ declare
                 }
 };
 
-(:declare 
-    %templates:wrap
-    function app:search-results-count($node as node(), $model as map(*)) as xs:string {
-        count($model('search-results')) || ' Suchergebnisse'
-};
-:)
-
-declare 
-    %templates:default("lang", "en")
-    function app:preview-icon($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        element {name($node)} {
-            $node/@*[not(name(.) = 'href')],
-            attribute href {app:createUrlForDoc($model('doc'), $lang)},
-            templates:process($node/node(), $model)
-    }
-};
-
 (:~
  : Overwrites the current model with 'doc' and 'docID' of the preview document
  :
  :)
 declare
     %templates:wrap
-    function app:preview($node as node(), $model as map(*)) as map(*) {
+    %templates:default("lang", "en")
+    function app:preview($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
             'doc' := $model('result-page-entry'),
             'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
+            'docURL' := app:createUrlForDoc($model('result-page-entry'), $lang),
+            'docType' := config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' := query:relators($model('result-page-entry')),
             'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
-            'workType' := $model('result-page-entry')//mei:term/data(@classcode)
+            'workType' := $model('result-page-entry')//mei:term/data(@classcode),
+            'newsDate' := date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
         }
 };
 

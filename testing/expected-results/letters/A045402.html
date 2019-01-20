@@ -13,8 +13,8 @@
         <meta property="dc:contributor" content="Weyrauch, Vincent" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Frank Ziegler" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-20T08:43:14.086600Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045402" />
         <meta property="dc:description" content="sieht dem Engagement bei Großmann in Hannover mit Freude entgegen, denkt 25./26. April einzutreffen, fügt sein Rollenverzeichnis bei und berichtet über Theater-Neuigkeiten in Meiningen" />
         <meta name="description" content="sieht dem Engagement bei Großmann in Hannover mit Freude entgegen, denkt 25./26. April einzutreffen, fügt sein Rollenverzeichnis bei und berichtet über Theater-Neuigkeiten in Meiningen" />
@@ -36,6 +36,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/css/cslink.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -43,12 +44,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002129","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002129"}],"name":"Vincent Weyrauch an Gustav Friedrich Wilhelm Großmann in Hannover. Meiningen, Samstag, 10. April 1790","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045402","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -191,7 +194,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A002129/Correspondence/A045402.html" hreflang="en" lang="en">En</a></li>
@@ -217,10 +222,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002129.html">Vincent Weyrauch</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz">Korrespondenz</a></li>
-                        <li><span>A045402</span> <span class="docStatus">Kommentar in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span></span>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz">Korrespondenz</a>
+                        </li>
+                        <li>
+                            <span>A045402</span> 
+                                <span class="docStatus">Kommentar in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -236,137 +251,147 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045402.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
     </div>
 </div>
-                    <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
+                    <div>                       
+                        
+                        <h2>
+                            <a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
+                        </h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">                           
+                                <div>                                
+                                <div id="csLink" data-correspondent-1-id="" data-correspondent-1-name="" data-correspondent-2-id="" data-correspondent-2-name="" data-start-date="1790-04-10" data-end-date="1790-04-10" data-range="30" data-selection-when="before-after" data-selection-span="median-before-after" data-result-max="4" data-exclude-edition="#WEGA"></div>
+                                <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/js/cslink.js"></script>
+                                <h2></h2>
+                            </div>
                             
                             <div>
                                 
                                    <h3>Absolute Chronologie</h3>
                                    <h4>Vorausgehend</h4>
                                    <ul>
-                                       <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A046129.html">1790-04-07</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A006331.html" class="persons">Großmann, Gustav Friedrich Wilhelm</a>
-                                       </li>
+                                       
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045645.html">1790-04-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A006331.html" class="persons">Großmann, Gustav Friedrich Wilhelm</a>
-                                       </li>
-                                            <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A000651/Korrespondenz/A040057.html">1794-08-27</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A000651.html" class="persons">Goethe, Johann Wolfgang von</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000651/Korrespondenz/A040057.html">1794-08-27</a>:  Von  <a href="" class="persons"></a>
                                        </li>
                                    </ul>
                                 
-                                
-                                    <h3>Korrespondenzstelle</h3>
-                                    <h4>Vorausgehend</h4>
-                                    <ul>
-                                        <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A046129.html">1790-04-07</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A006331.html" class="persons">Großmann, Gustav Friedrich Wilhelm</a>
-                                        </li>
-                                    </ul>
-                                    <h4>Folgend</h4>
-                                    <ul>
-                                        <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002129/Korrespondenz/A045645.html">1790-04-17</a>:  An  <a href="/exist/apps/WeGA-WebApp/de/A006331.html" class="persons">Großmann, Gustav Friedrich Wilhelm</a>
-                                        </li>
-                                    </ul>
                                 
                             </div>
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009925" /> <span title="Friedrich II., Landgraf von Hessen-Kassel">Friedrich II., Landgraf von He…</span> 
+                                    <input type="checkbox" name="options" value="A009919" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009919" /> <span title="Großmann, Magdalena Viktoria">Großmann, Magdalena Viktoria</span> 
+                                    <input type="checkbox" name="options" value="A002128" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000926" /> <span title="Jasmund, Ludwig Hellmuth Heinrich Freiherr von">Jasmund, Ludwig Hellmuth Heinr…</span> 
+                                    <input type="checkbox" name="options" value="A002129" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009778" /> <span title="Leifer, Mad.">Leifer, Mad.</span> 
+                                    <input type="checkbox" name="options" value="A009726" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009636" /> <span title="Neuhaus, Carl Ludwig Christian">Neuhaus, Carl Ludwig Christian</span> 
+                                    <input type="checkbox" name="options" value="A000926" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009957" /> <span title="Santorini, Peter Carl">Santorini, Peter Carl</span> 
+                                    <input type="checkbox" name="options" value="A009957" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009726" /> <span title="Stamitz, Carl">Stamitz, Carl</span> 
+                                    <input type="checkbox" name="options" value="A009910" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009910" /> <span title="Toscani, Johann Friedrich">Toscani, Johann Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A009636" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002128" /> <span title="Weyrauch, Jeanette">Weyrauch, Jeanette</span> 
+                                    <input type="checkbox" name="options" value="A009778" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002129" /> <span title="Weyrauch, Vincent">Weyrauch, Vincent</span> 
+                                    <input type="checkbox" name="options" value="A009925" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130021" /> <span title="Braunschweig">Braunschweig</span> 
+                                    <input type="checkbox" name="options" value="A130019" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130019" /> <span title="Kassel">Kassel</span> 
+                                    <input type="checkbox" name="options" value="A130021" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -383,13 +408,13 @@
             <span class="tei_dateline textAlign-right"><span class="83971204577101105110117110103101110">Sax-Meinungen</span> d 10. Aprill 1790</span>
             <p class="teiLetter_salute">Verehrungswerther Herr Großmann!</p>
          </div>
-                                        <p class="inlineEnd">Ihr lezter Brief kam mir unerwartet aber der heutige vom 4. Aprill weit mehr – der Himmel gebe daß ich <span class="tei_hi_latintype">Ihnen</span> und den <span class="tei_hi_latintype">Ihrigen</span> mit meinem Eifer und Bereitwilligkeit so dienen kann als ich wünsche – Meinen innigsten Dank an Tag und Mann zu bringen erspar’ ich bis ich bey <span class="tei_hi_latintype">Ihnen</span> bin. Die <a class="preview persons A009919" href="/exist/apps/WeGA-WebApp/de/A009919.html">Mama Großmann</a> hat also für <span class="tei_hi_latintype">Ihren</span> ergebenen Sohn so gesorgt? Dank <span class="tei_hi_latintype">Ihr</span> und der Hand die es gab. Aus meinem lezten werden <span class="tei_hi_latintype">Sie</span> gelesen haben daß wir noch gesinnt sind für Uns und sämtℓ Mitglieder 3. Vorstellungen zu geben – diese sind künftige Woche – dann soll mich nichts abhalten zu <span class="tei_hi_latintype">Ihnen</span> so geschwind als möglich zu eilen. Den 20: Aprill: geh’ ich von hier mit dem Nürnberger Boten bis<span class="tei_pb" title="Seitenumbruch"> | </span>Braunschweig – von da nach dem lieben <span class="tei_hi_latintype">Hannover</span> – kann daher 25 oder 26: dieses bey <span class="tei_hi_latintype">Ihnen</span> meine 1<span class="tei_hi_superscript">e</span> Aufwartung machen – Hiebey folgt das verlangte Rollen Verzeichnüß – </p>
-                                        <p class="tei_closer textAlign-left inlineStart">Sobald meine <a class="preview persons A002128" href="/exist/apps/WeGA-WebApp/de/A002128.html">Frau</a> sich von der Reise erholt haben wird wird Sie nicht ermangeln in <span class="tei_hi_latintype">Ihrem</span> Zimmer eine Probe <span class="tei_hi_latintype">Ihrer</span> wenigen Singkunst abzulegen – Bis dahin verbleiben wir <span class="tei_hi_latintype">Ihre</span> Dankbahre Dieners
-               <span class="tei_segBlock textAlign-right"><span class="preview persons A002129 A002128" data-ref="/exist/apps/WeGA-WebApp/de/A002129.html /exist/apps/WeGA-WebApp/de/A002128.html">Vinzent &amp; <span class="tei_hi_latintype">Jeanette Weyrauchmp</span></span></span>
+                                        <p class="inlineEnd">Ihr lezter Brief kam mir unerwartet aber der heutige vom 4. Aprill weit mehr – der Himmel gebe daß ich <span class="tei_hi_latintype">Ihnen</span> und den <span class="tei_hi_latintype">Ihrigen</span> mit meinem Eifer und Bereitwilligkeit so dienen kann als ich wünsche – Meinen innigsten Dank an Tag und Mann zu bringen erspar’ ich bis ich bey <span class="tei_hi_latintype">Ihnen</span> bin. Die <a class="preview persons A009919" href="">Mama Großmann</a> hat also für <span class="tei_hi_latintype">Ihren</span> ergebenen Sohn so gesorgt? Dank <span class="tei_hi_latintype">Ihr</span> und der Hand die es gab. Aus meinem lezten werden <span class="tei_hi_latintype">Sie</span> gelesen haben daß wir noch gesinnt sind für Uns und sämtℓ Mitglieder 3. Vorstellungen zu geben – diese sind künftige Woche – dann soll mich nichts abhalten zu <span class="tei_hi_latintype">Ihnen</span> so geschwind als möglich zu eilen. Den 20: Aprill: geh’ ich von hier mit dem Nürnberger Boten bis<span class="tei_pb" title="Seitenumbruch"> | </span>Braunschweig – von da nach dem lieben <span class="tei_hi_latintype">Hannover</span> – kann daher 25 oder 26: dieses bey <span class="tei_hi_latintype">Ihnen</span> meine 1<span class="tei_hi_superscript">e</span> Aufwartung machen – Hiebey folgt das verlangte Rollen Verzeichnüß – </p>
+                                        <p class="tei_closer textAlign-left inlineStart">Sobald meine <a class="preview persons A002128" href="">Frau</a> sich von der Reise erholt haben wird wird Sie nicht ermangeln in <span class="tei_hi_latintype">Ihrem</span> Zimmer eine Probe <span class="tei_hi_latintype">Ihrer</span> wenigen Singkunst abzulegen – Bis dahin verbleiben wir <span class="tei_hi_latintype">Ihre</span> Dankbahre Dieners
+               <span class="tei_segBlock textAlign-right"><span class="preview persons A002129 A002128" data-ref=" ">Vinzent &amp; <span class="tei_hi_latintype">Jeanette Weyrauchmp</span></span></span>
             </p>
                                         <div class="tei_postscript">
-                                            <p class="inlineEnd">Neuigkeiten von hier sind: <span class="tei_hi_latintype"><a class="preview persons A009726" href="/exist/apps/WeGA-WebApp/de/A009726.html">Carl Stamiz</a></span> der sich seit vorigen Sommer in <span class="tei_hi_latintype"><span class="preview places A130019" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130019.html">Cassel</span></span> aufhielt ist gestern hier mit seiner <span class="tei_hi_latintype">Familie</span> angekommen – hatt sich bey Uns melden lassen und erzählte folgendes: Daß Hℓ: v <span class="tei_hi_latintype"><a class="preview persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jasmund</a></span> ihm viel versprochen und nicht das mindeste gehalten – schimpft daher gewaltig auf ihn – <a class="preview persons A009957" href="/exist/apps/WeGA-WebApp/de/A009957.html"><span class="tei_hi_latintype">Santorini</span></a> <span class="tei_hi_latintype"><a class="preview persons A009910" href="/exist/apps/WeGA-WebApp/de/A009910.html">Toscani</a></span> und <span class="tei_hi_latintype"><a class="preview persons A009636" href="/exist/apps/WeGA-WebApp/de/A009636.html">Neuhaus</a></span> sind Schuldenhalber <span class="tei_hi_latintype">arre</span>tirt auf 4. hundert Thaler sollen sich dieselben belaufen.<span class="tei_pb" title="Seitenumbruch"> | </span>16. Zentℓ: alleine sind sie Talch an Hof Mezger schuldig &amp;&amp; ob der Mann nicht seine Nachrichten übertreibt steht dahin – Sie werden wohl die Verfassung der Hℓ: <span class="tei_hi_latintype"><span class="679711511510110897110101114">Casselaner</span></span> am besten wissen da Hℓ: v <span class="tei_hi_latintype"><a class="preview persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jasmund</a></span> bey <span class="tei_hi_latintype">Ihnen</span> war – Er bestätigt die Nachricht – daß Sie <span class="tei_hi_latintype"><span class="preview places A130019" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130019.html">Cassel</span></span> haben – <a class="preview persons A009778" href="/exist/apps/WeGA-WebApp/de/A009778.html">Mad: Laufer</a> soll schon nach <span class="tei_hi_latintype"><span class="tei_region">Tyrol</span></span> abgegangen seyn – Verzeihen Sie wenn ich Sie bitte mit <span class="tei_hi_latintype"><span class="preview places A130019" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130019.html">Cassel</span></span> auf Ihrer Hut zu seyn – <span class="tei_hi_latintype"><span class="preview places A130019" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130019.html">Cassel</span></span> ist nicht mehr der Ort wie er war als Sie bey Lebzeiten des vorigen <a class="preview persons A009925" href="/exist/apps/WeGA-WebApp/de/A009925.html">Hℓ:</a> es angetroffen – <span class="tei_hi_latintype"><a class="preview persons A000926" href="/exist/apps/WeGA-WebApp/de/A000926.html">Jassmund</a></span> ist ein guter braver Herr – aber er hatt leider den Fehler – daß er viel verspricht und – doch <span class="tei_hi_underline1">Sie</span> werden das wohl wissen besser als ich – daher bitt ich nochmahl um Vergebung daß <span class="tei_hi_underline1">ich</span> mich unterstand <span class="tei_hi_latintype"><span class="tei_hi_underline1">Ihnen</span></span> so was zu schreiben – s <span class="tei_hi_latintype">Publicum</span> alldort ist nicht so gut und anhänglich wis <span class="729711011024611811410511599104101"><span class="tei_hi_latintype">Hannövri</span>sche</span> sieht zwar gerne was neues – aber Armuth in allen Eken – Oekonomie am Hof die<span class="tei_pb" title="Seitenumbruch"> | </span>dem Geize mehr gleicht als ein Ey dem andern. Ich nehme die <span class="tei_hi_latintype">Tour</span> über <span class="tei_hi_latintype"><span class="preview places A130021" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130021.html">Braunschweig</span></span> – um nicht Zeuge des Mischmasches zu seyn – Aufhalten möcht ich mich wohl auch – folglich ist besser ich reise um bald an den Ort meiner Ruhe zu kommen – <br /><span class="tei_hi_latintype"><a class="preview persons A009726" href="/exist/apps/WeGA-WebApp/de/A009726.html">Stamiz</a></span> will hier eine Oper seiner Arbeit aufführen – ich werdes nicht eingehen und wenn ich würklich was profitiren könnte – denn ich bin froh daß ich von dem <span class="tei_hi_latintype">Liliputer</span> Hof einmahl erlößt bin – </p>
-                                            <p class="tei_closer textAlign-left inlineStart">Leben Sie wohl empfehlen Sie mich und mein <a class="preview persons A002128" href="/exist/apps/WeGA-WebApp/de/A002128.html">Weib</a> Ihrer <a class="preview persons A009919" href="/exist/apps/WeGA-WebApp/de/A009919.html">Frau Gemahlin</a> – ich unterschreibe mich nochmal und stets als <span class="tei_hi_latintype">Ihren</span><span class="tei_segBlock textAlign-right">bereitwilligsten und dankbarsten<br />Diener und Freund<br /><span class="tei_hi_latintype"><a class="preview persons A002129" href="/exist/apps/WeGA-WebApp/de/A002129.html">Weyrauch</a>mp</span></span></p>
+                                            <p class="inlineEnd">Neuigkeiten von hier sind: <span class="tei_hi_latintype"><a class="preview persons A009726" href="">Carl Stamiz</a></span> der sich seit vorigen Sommer in <span class="tei_hi_latintype"><a class="preview places A130019" href="">Cassel</a></span> aufhielt ist gestern hier mit seiner <span class="tei_hi_latintype">Familie</span> angekommen – hatt sich bey Uns melden lassen und erzählte folgendes: Daß Hℓ: v <span class="tei_hi_latintype"><a class="preview persons A000926" href="">Jasmund</a></span> ihm viel versprochen und nicht das mindeste gehalten – schimpft daher gewaltig auf ihn – <a class="preview persons A009957" href=""><span class="tei_hi_latintype">Santorini</span></a> <span class="tei_hi_latintype"><a class="preview persons A009910" href="">Toscani</a></span> und <span class="tei_hi_latintype"><a class="preview persons A009636" href="">Neuhaus</a></span> sind Schuldenhalber <span class="tei_hi_latintype">arre</span>tirt auf 4. hundert Thaler sollen sich dieselben belaufen.<span class="tei_pb" title="Seitenumbruch"> | </span>16. Zentℓ: alleine sind sie Talch an Hof Mezger schuldig &amp;&amp; ob der Mann nicht seine Nachrichten übertreibt steht dahin – Sie werden wohl die Verfassung der Hℓ: <span class="tei_hi_latintype"><span class="679711511510110897110101114">Casselaner</span></span> am besten wissen da Hℓ: v <span class="tei_hi_latintype"><a class="preview persons A000926" href="">Jasmund</a></span> bey <span class="tei_hi_latintype">Ihnen</span> war – Er bestätigt die Nachricht – daß Sie <span class="tei_hi_latintype"><a class="preview places A130019" href="">Cassel</a></span> haben – <a class="preview persons A009778" href="">Mad: Laufer</a> soll schon nach <span class="tei_hi_latintype"><span class="tei_region">Tyrol</span></span> abgegangen seyn – Verzeihen Sie wenn ich Sie bitte mit <span class="tei_hi_latintype"><a class="preview places A130019" href="">Cassel</a></span> auf Ihrer Hut zu seyn – <span class="tei_hi_latintype"><a class="preview places A130019" href="">Cassel</a></span> ist nicht mehr der Ort wie er war als Sie bey Lebzeiten des vorigen <a class="preview persons A009925" href="">Hℓ:</a> es angetroffen – <span class="tei_hi_latintype"><a class="preview persons A000926" href="">Jassmund</a></span> ist ein guter braver Herr – aber er hatt leider den Fehler – daß er viel verspricht und – doch <span class="tei_hi_underline1">Sie</span> werden das wohl wissen besser als ich – daher bitt ich nochmahl um Vergebung daß <span class="tei_hi_underline1">ich</span> mich unterstand <span class="tei_hi_latintype"><span class="tei_hi_underline1">Ihnen</span></span> so was zu schreiben – s <span class="tei_hi_latintype">Publicum</span> alldort ist nicht so gut und anhänglich wis <span class="729711011024611811410511599104101"><span class="tei_hi_latintype">Hannövri</span>sche</span> sieht zwar gerne was neues – aber Armuth in allen Eken – Oekonomie am Hof die<span class="tei_pb" title="Seitenumbruch"> | </span>dem Geize mehr gleicht als ein Ey dem andern. Ich nehme die <span class="tei_hi_latintype">Tour</span> über <span class="tei_hi_latintype"><a class="preview places A130021" href="">Braunschweig</a></span> – um nicht Zeuge des Mischmasches zu seyn – Aufhalten möcht ich mich wohl auch – folglich ist besser ich reise um bald an den Ort meiner Ruhe zu kommen – <br /><span class="tei_hi_latintype"><a class="preview persons A009726" href="">Stamiz</a></span> will hier eine Oper seiner Arbeit aufführen – ich werdes nicht eingehen und wenn ich würklich was profitiren könnte – denn ich bin froh daß ich von dem <span class="tei_hi_latintype">Liliputer</span> Hof einmahl erlößt bin – </p>
+                                            <p class="tei_closer textAlign-left inlineStart">Leben Sie wohl empfehlen Sie mich und mein <a class="preview persons A002128" href="">Weib</a> Ihrer <a class="preview persons A009919" href="">Frau Gemahlin</a> – ich unterschreibe mich nochmal und stets als <span class="tei_hi_latintype">Ihren</span><span class="tei_segBlock textAlign-right">bereitwilligsten und dankbarsten<br />Diener und Freund<br /><span class="tei_hi_latintype"><a class="preview persons A002129" href="">Weyrauch</a>mp</span></span></p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -438,6 +463,12 @@
                                             </ul>
                                         </div>
                                 
+                                
+                                <div>
+                                    
+                                    
+                                </div>
+                                
                                 <div>
                                     
                                         <h5 class="media-heading">Weitere Textquellen</h5>
@@ -449,9 +480,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -463,7 +492,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A045402/manifest.json"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -481,9 +510,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045402</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045402</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -549,7 +579,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -569,30 +600,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

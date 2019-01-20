@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-10T20:22:02.829414Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030404" />
         <meta property="dc:description" content="Aufführungsbesprechung Schauspielhaus, Berlin: Konzert von Heinrich Joseph Baermann und Carl Maria von Weber am 15. März 1812, darin 2. Konzert für Klarinette von Carl Maria von Weber (WeV N.13). Bärmann als Solist." />
         <meta name="description" content="Aufführungsbesprechung Schauspielhaus, Berlin: Konzert von Heinrich Joseph Baermann und Carl Maria von Weber am 15. März 1812, darin 2. Konzert für Klarinette von Carl Maria von Weber (WeV N.13). Bärmann als Solist." />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"P.r.","@type":"Person"}],"name":"Aufführungsbesprechung Berlin, Kgl. Schauspielhaus: Konzert von Heinrich Joseph Baermann und Carl Maria von Weber am 15. März 1812","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030404","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A030404.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><span>P.r.</span></li>
-                        <li><span>Schriften</span></li>
-                        <li><span>A030404</span> <span class="docStatus">in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span>P.r.</span>
+                        </li>
+                        <li>
+                            <span>Schriften</span>
+                        </li>
+                        <li>
+                            <span>A030404</span> 
+                                <span class="docStatus">in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,55 +250,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030404.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -291,17 +323,19 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002618" /> <span title="Bach, Johann Sebastian">Bach, Johann Sebastian</span> 
+                                    <input type="checkbox" name="options" value="A000077" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000075" /> <span title="Baermann, Carl">Baermann, Carl</span> 
+                                    <input type="checkbox" name="options" value="A002618" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000077" /> <span title="Baermann, Heinrich">Baermann, Heinrich</span> 
+                                    <input type="checkbox" name="options" value="A000075" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008794" /> <span title="Nasolini, Sebastiano">Nasolini, Sebastiano</span> 
+                                    <input type="checkbox" name="options" value="A008794" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001685" /> <span title="Schiller, Friedrich von">Schiller, Friedrich von</span> 
                                 </label><label class="btn gradient-light">
@@ -311,27 +345,31 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020235" /> <span title="7 Variationen für Klarinette und Klavier über ein Thema aus &#34;Silvana&#34;">7 Variationen für Klarinette u…</span> 
+                                    <input type="checkbox" name="options" value="A020207" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020226" /> <span title="Konzert für Klarinette und Orchester Nr. 2 Es-Dur">Konzert für Klarinette und Orc…</span> 
+                                    <input type="checkbox" name="options" value="A020226" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020212" /> <span title="Konzert für Klavier und Orchester Nr.1 C-Dur">Konzert für Klavier und Orches…</span> 
+                                    <input type="checkbox" name="options" value="A020212" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020207" /> <span title="Ouvertüre zum Beherrscher der Geister (Konzertfassung)">Ouvertüre zum Beherrscher der …</span> 
+                                    <input type="checkbox" name="options" value="A020235" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Leipzig">Leipzig</span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -344,14 +382,14 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Großes Vocal- und Instrumental-Conzert, im Saale des Königl. Schauspielhauses am 15ten März, gegeben von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Marie <span class="tei_hi_spaced_out">von Weber</span></a> und <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Heinrich <span class="tei_hi_spaced_out">Bärmann</span></a>.</p>
-                                        <p>Unter den auf dem Zettel angekündigten Stücken, waren die <span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Ouvertüre</span>, ein <span class="preview works A020226" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020226.html">Clarinett-Conzert</span>, ein <span class="preview works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">Fortepiano-Conzert</span> und <span class="preview works A020235" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020235.html">Variationen über ein Thema aus der Oper <span class="tei_hi_spaced_out">Silvana</span></span> für das Clarinett und Fortepiano, von der eigenen Composition des Herrn <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a></span>. Es gehört zu den angenehmen Erscheinungen, einen Meister der Kritik, als welchen sich Hr. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a> schon, durch Aufsätze in der <span class="preview places A130005" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130005.html">Leipziger</span> Musikalischen Zeitung und durch die Herausgabe von zwölf verbesserten <a class="preview persons A002618" href="/exist/apps/WeGA-WebApp/de/A002618.html">Bachschen</a> Chorälen namkündig gemacht hatte, auch als guten Componisten und praktischen Künstler auftreten zu sehn.</p>
-                                        <p>Unter den heute vorgetragenen Compositionen fanden die <span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Ouvertüre</span> und das letzte Stück des <span class="preview works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">Fortepiano-Concerts</span> den meisten Beifall. Die Begleitung und Ausführung dieser Stücke ist schwer genug um vielfältige Proben mit dem ganzen Orchester zu verlangen, welche bei dem Drange der öffentlichen Concerte nicht einmal möglich wären, wenn sich auch das Orchester denselben unterziehen wollte. Dessen ungeachtet hielt sich das Orchester ganz wacker zusammen, und besonders die Ouvertüre ging gegen das Ende recht gut von statten.</p>
-                                        <p>Herr <a class="preview persons A000077" href="/exist/apps/WeGA-WebApp/de/A000077.html">Heinrich <span class="tei_hi_spaced_out">Bärmann</span></a> fand mit seinem <span class="preview works A020226" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020226.html">Clarinett-Concerte</span> ausgezeichneten Beifall. Der Ton seines Instruments<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> schien einmal wieder der natürliche Clarinett-Ton zu seyn; doch die Verbindung seiner Höhe mit der Tiefe, das stärkste Forte, das leiseste Piano, die meisterhafte Gradation, die Fertigkeit und der gute Geschmack womit diese Dinge verbunden erschienen, kann nur mit dem Besten verglichen werden was in Berlin ist gehört worden.</p>
-                                        <p>Nach dem <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillerschen</a> Gedichte: <span class="tei_hi_spaced_out"><span class="1001051013275114971101059910410132100101115327398105107117115">die Kraniche des Ibikus</span></span>, von Demoiselle <span class="tei_hi_spaced_out">Beck</span> gesprochen, ließ sich Herrr <span class="tei_hi_spaced_out"><a class="preview persons A000075" href="/exist/apps/WeGA-WebApp/de/A000075.html">Carl Bärmann</a></span> auf dem Fagotte mit Variationen hören. Ein schöner, voller Ton und nicht gemeine Fertigkeit sind diesem Virtuosen eigen; noch mehr Anmuth und melodischer Fluß werden sein Spiel vollenden.</p>
-                                        <p>Mademoiselle <span class="tei_hi_spaced_out">Schmidt</span> sang eine Arie von <span class="tei_hi_spaced_out"><a class="preview persons A008794" href="/exist/apps/WeGA-WebApp/de/A008794.html">Nasolini</a></span> mit gewohnter Reinheit und Sicherheit.</p>
-                                        <p>Das <span class="preview works A020212" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020212.html">Fortepiano-Konzert</span> des Herrn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a> könnte man eher zu den guten Musikstücken als zu den guten Konzerten rechnen. Ein Konzert, welches durch Schwierigkeiten, die der Konzertist zu bekämpfen hat, interessant ist, kann nur von eigentlicher Würkung seyn, wenn es durch die Begleitung <span class="tei_hi_spaced_out">gar</span> nicht genirt wird; denn auch die beste Begleitung genirt den Konzertisten um so mehr, wenn er selber der Komponist ist. Die bloße Sorge, daß dieser oder jener ausbleiben könne, ist dazu hinreichend; kömmt dazu noch  das Bestreben des Komponisten, das Neue und Geistige auf besonderen Auswegen zu suchen, wodurch das Orchester sowohl als der Zuhörer frappirt und choquirt wird, indem er überrascht werden soll; so ist der geringste Verstoß gegen Deutlichkeit und Sicherheit hinlänglich, den Strom des Gefühls aufzuhalten und die Wirkung zu verhindern.</p>
-                                        <p>Aus diesem Grunde giengen auch die <span class="preview works A020235" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020235.html">Variationen für Klarinett und Klavier</span> am freisten und leichtesten von statten.</p>
+                                        <p>Großes Vocal- und Instrumental-Conzert, im Saale des Königl. Schauspielhauses am 15ten März, gegeben von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Marie <span class="tei_hi_spaced_out">von Weber</span></a> und <a class="preview persons A000077" href="">Heinrich <span class="tei_hi_spaced_out">Bärmann</span></a>.</p>
+                                        <p>Unter den auf dem Zettel angekündigten Stücken, waren die <a class="preview works A020207" href="">Ouvertüre</a>, ein <a class="preview works A020226" href="">Clarinett-Conzert</a>, ein <a class="preview works A020212" href="">Fortepiano-Conzert</a> und <a class="preview works A020235" href="">Variationen über ein Thema aus der Oper <span class="tei_hi_spaced_out">Silvana</span></a> für das Clarinett und Fortepiano, von der eigenen Composition des Herrn <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a></span>. Es gehört zu den angenehmen Erscheinungen, einen Meister der Kritik, als welchen sich Hr. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a> schon, durch Aufsätze in der <a class="preview places A130005" href="">Leipziger</a> Musikalischen Zeitung und durch die Herausgabe von zwölf verbesserten <a class="preview persons A002618" href="">Bachschen</a> Chorälen namkündig gemacht hatte, auch als guten Componisten und praktischen Künstler auftreten zu sehn.</p>
+                                        <p>Unter den heute vorgetragenen Compositionen fanden die <a class="preview works A020207" href="">Ouvertüre</a> und das letzte Stück des <a class="preview works A020212" href="">Fortepiano-Concerts</a> den meisten Beifall. Die Begleitung und Ausführung dieser Stücke ist schwer genug um vielfältige Proben mit dem ganzen Orchester zu verlangen, welche bei dem Drange der öffentlichen Concerte nicht einmal möglich wären, wenn sich auch das Orchester denselben unterziehen wollte. Dessen ungeachtet hielt sich das Orchester ganz wacker zusammen, und besonders die Ouvertüre ging gegen das Ende recht gut von statten.</p>
+                                        <p>Herr <a class="preview persons A000077" href="">Heinrich <span class="tei_hi_spaced_out">Bärmann</span></a> fand mit seinem <a class="preview works A020226" href="">Clarinett-Concerte</a> ausgezeichneten Beifall. Der Ton seines Instruments<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> schien einmal wieder der natürliche Clarinett-Ton zu seyn; doch die Verbindung seiner Höhe mit der Tiefe, das stärkste Forte, das leiseste Piano, die meisterhafte Gradation, die Fertigkeit und der gute Geschmack womit diese Dinge verbunden erschienen, kann nur mit dem Besten verglichen werden was in Berlin ist gehört worden.</p>
+                                        <p>Nach dem <a class="preview persons A001685" href="/exist/apps/WeGA-WebApp/de/A001685.html">Schillerschen</a> Gedichte: <span class="tei_hi_spaced_out"><span class="1001051013275114971101059910410132100101115327398105107117115">die Kraniche des Ibikus</span></span>, von Demoiselle <span class="tei_hi_spaced_out">Beck</span> gesprochen, ließ sich Herrr <span class="tei_hi_spaced_out"><a class="preview persons A000075" href="">Carl Bärmann</a></span> auf dem Fagotte mit Variationen hören. Ein schöner, voller Ton und nicht gemeine Fertigkeit sind diesem Virtuosen eigen; noch mehr Anmuth und melodischer Fluß werden sein Spiel vollenden.</p>
+                                        <p>Mademoiselle <span class="tei_hi_spaced_out">Schmidt</span> sang eine Arie von <span class="tei_hi_spaced_out"><a class="preview persons A008794" href="">Nasolini</a></span> mit gewohnter Reinheit und Sicherheit.</p>
+                                        <p>Das <a class="preview works A020212" href="">Fortepiano-Konzert</a> des Herrn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a> könnte man eher zu den guten Musikstücken als zu den guten Konzerten rechnen. Ein Konzert, welches durch Schwierigkeiten, die der Konzertist zu bekämpfen hat, interessant ist, kann nur von eigentlicher Würkung seyn, wenn es durch die Begleitung <span class="tei_hi_spaced_out">gar</span> nicht genirt wird; denn auch die beste Begleitung genirt den Konzertisten um so mehr, wenn er selber der Komponist ist. Die bloße Sorge, daß dieser oder jener ausbleiben könne, ist dazu hinreichend; kömmt dazu noch  das Bestreben des Komponisten, das Neue und Geistige auf besonderen Auswegen zu suchen, wodurch das Orchester sowohl als der Zuhörer frappirt und choquirt wird, indem er überrascht werden soll; so ist der geringste Verstoß gegen Deutlichkeit und Sicherheit hinlänglich, den Strom des Gefühls aufzuhalten und die Wirkung zu verhindern.</p>
+                                        <p>Aus diesem Grunde giengen auch die <a class="preview works A020235" href="">Variationen für Klarinett und Klavier</a> am freisten und leichtesten von statten.</p>
                                         <p>P.r.</p>
                                     </div>
                                 </div>
@@ -398,16 +436,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Berlinische Nachrichten von Staats- und gelehrten Sachen</span>, Jg. 73, Nr. 33 (17. März 1812), S. 6</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -437,9 +477,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030404</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030404</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2018 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -505,7 +546,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -525,30 +567,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

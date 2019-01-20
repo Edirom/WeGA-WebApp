@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-16T00:47:25.968087Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000324" />
         <meta property="dc:description" content="Biographische Informationen zu Carl Ludwig Costenoble. Lebensdaten: 28. Dezember 1769–28. August 1837. Tätigkeiten: Schauspieler, Musiker, Schriftsteller. Wirkorte: Magdeburg, Hamburg, Wien" />
         <meta name="description" content="Biographische Informationen zu Carl Ludwig Costenoble. Lebensdaten: 28. Dezember 1769–28. August 1837. Tätigkeiten: Schauspieler, Musiker, Schriftsteller. Wirkorte: Magdeburg, Hamburg, Wien" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"name":"Carl Ludwig Costenoble – Biographische Informationen aus der WeGA","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000324","@context":"http://schema.org","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000324"}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A000324.html" hreflang="en" lang="en">En</a></li>
@@ -228,38 +231,41 @@
         <div class="container paddingTopIcon paddingBottomIcon">
             <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000324.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -322,7 +328,9 @@
                     </ol>
                 </div>
                 <div class="col-md-4 col-sm-12 iconographie">
-                    <h2>Ikonographie</h2>
+                    
+                        <h2>Ikonographie</h2>
+                    
                     <div class="iconographythumbnail">
                         <a href="https://de.wikipedia.org/wiki/Datei:Carl_Ludwig_Costenoble.jpg"><img title="Carl Ludwig Costenoble, Lithographie von Josef Kriehuber, 1829 (Quelle: Wikimedia)" alt="Carl Ludwig Costenoble, Lithographie von Josef Kriehuber, 1829 (Quelle: Wikimedia)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/80/Carl_Ludwig_Costenoble.jpg/220px-Carl_Ludwig_Costenoble.jpg" /></a>
                     </div>
@@ -366,19 +374,19 @@
                 <div class="row">
                     <div class="col-md-10 col-xs-12">
                         <nav class="greedy">
-                            <ul class="resp-tabs-list links">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li><a href="#biographies">Biographien</a></li>
                                 
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#writings" data-target="A000324/writings.html">Schriften<small> (1)</small></a></li>
-                                <li><a class="deactivated"></a></li>
-                                <li><a class="deactivated"></a></li>
-                                <li><a href="#biblio" data-target="A000324/biblio.html">Bibliographie<small> (1)</small></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
                                 <li><a class="deactivated"></a></li>
-                                <li><a href="#backlinks" data-target="A000324/backlinks.html">Rückverweise<small> (27)</small></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a class="deactivated"></a></li>
+                                <li><a href="#backlinks" data-target="A000324/backlinks.html">Rückverweise<small> (2)</small></a></li>
                             </ul>
                             <button>Mehr</button>
                             <ul class="hidden-links hidden"></ul>
@@ -390,7 +398,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-xs-12 ">
-                            <div class="resp-tabs-container colored">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
                                 
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
@@ -436,46 +444,46 @@
                                                     
                                                     <div> 
         <ul class="tei_list">
-           <li class="listTitle">Kindheit/Jugend vorrangig in Magdeburg (bis 1790)</li>
+           <li class="listTitle">Kindheit/Jugend vorrangig in <a class="preview places A130034" href="">Magdeburg</a> (bis 1790)</li>
            <li>Sohn eines Predigers</li>
            <li>neben Bäckerlehre auch musikalische Ausbildung (Flöte, daneben Oboe, Geige, Cello)</li>
-           <li>Vorstellungen der Wäserschen Schauspiel-Gesellschaft entfachten die Theaterbegeisterung</li>
-           <li>mit 16 Jahren erste Versuche auf einer Magdeburger Privatbühne (Gesellschaftstheater)</li>
+           <li>Vorstellungen der <span class="8722811510111411599104101110">Wäserschen</span> Schauspiel-Gesellschaft entfachten die Theaterbegeisterung</li>
+           <li>mit 16 Jahren erste Versuche auf einer <a class="preview places A130034" href="">Magdeburger</a> Privatbühne (Gesellschaftstheater)</li>
            <li>gelegentlich Aushilfe als Cellist im Theaterorchester</li>
         </ul>
      <ul class="tei_list">
         <li class="listTitle">erste Theateranstellung (1790–1792)</li>
-        <li>verließ am 14. April 1790 heimlich <span class="preview places A130034" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130034.html">Magdeburg</span>, ging über <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg </span> nach <span class="preview places A130165" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130165.html">Wismar</span> zu <a class="preview persons A003067" href="/exist/apps/WeGA-WebApp/de/A003067.html">Butenop</a> und <a class="preview persons A009924" href="/exist/apps/WeGA-WebApp/de/A009924.html">Klos</a> </li>
-        <li>Debüt in <span class="preview places A130165" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130165.html">Wismar</span> als <span class="80101116101114">Peter</span> in <span class="preview works A021069" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Werke/A021069.html"><span class="tei_hi_italic">Menschenhaß und Reue</span></span></li>
-        <li>nach Auflösung der Doppeldirektion und Aufspaltung der Truppe mit <a class="preview persons A003067" href="/exist/apps/WeGA-WebApp/de/A003067.html">Butenop</a> nach <span class="7197114100101108101103101110">Gardelegen</span>, <span class="preview places A130273" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130273.html">Salzwedel</span>, <span class="781011171049710810010111011510810198101110">Neuhaldensleben</span>, <span class="87111108109105114115116101100116">Wolmirstedt</span>, <span class="9010111498115116">Zerbst</span>, <span class="83991042461101019810199107">Schönebeck</span>, <span class="preview places A130147" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130147.html">Bernburg</span>, <span class="preview places A130049" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130049.html">Quedlinburg</span>, <span class="661089711010710111098117114103">Blankenburg</span>; 
-           in <span class="preview places A130273" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130273.html">Salzwedel</span> Truppe aufgelöst (von <span class="8510810810997110110">Ullmann</span> übernommen)</li>
-        <li>Gastrolle in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> ohne Erfolg (keine Anstellung)</li>
-        <li> von <span class="preview places A130273" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130273.html">Salzwedel</span> aus (Truppe <span class="8510810810997110110">Ullmann</span>) 1792 Rückkehr nach <span class="preview places A130034" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130034.html">Magdeburg</span></li>
+        <li>verließ am 14. April 1790 heimlich <a class="preview places A130034" href="">Magdeburg</a>, ging über <a class="preview places A130009" href="">Hamburg </a> nach <a class="preview places A130165" href="">Wismar</a> zu <a class="preview persons A003067" href="">Butenop</a> und <a class="preview persons A009924" href="">Klos</a> </li>
+        <li>Debüt in <a class="preview places A130165" href="">Wismar</a> als <span class="80101116101114">Peter</span> in <a class="preview works A021069" href=""><span class="tei_hi_italic">Menschenhaß und Reue</span></a></li>
+        <li>nach Auflösung der Doppeldirektion und Aufspaltung der Truppe mit <a class="preview persons A003067" href="">Butenop</a> nach <span class="7197114100101108101103101110">Gardelegen</span>, <a class="preview places A130273" href="">Salzwedel</a>, <span class="781011171049710810010111011510810198101110">Neuhaldensleben</span>, <span class="87111108109105114115116101100116">Wolmirstedt</span>, <a class="preview places A130859" href="">Zerbst</a>, <span class="83991042461101019810199107">Schönebeck</span>, <a class="preview places A130147" href="">Bernburg</a>, <a class="preview places A130049" href="">Quedlinburg</a>, <a class="preview places A130343" href="">Blankenburg</a>; 
+           in <a class="preview places A130273" href="">Salzwedel</a> Truppe aufgelöst (von <span class="8510810810997110110">Ullmann</span> übernommen)</li>
+        <li>Gastrolle in <a class="preview places A130002" href="">Berlin</a> ohne Erfolg (keine Anstellung)</li>
+        <li> von <a class="preview places A130273" href="">Salzwedel</a> aus (Truppe <span class="8510810810997110110">Ullmann</span>) 1792 Rückkehr nach <a class="preview places A130034" href="">Magdeburg</a></li>
      </ul>
   <ul class="tei_list">
-     <li class="listTitle">1792/93 erneuter Aufenthalt in Magdeburg (1792/93)</li>
+     <li class="listTitle">1792/93 erneuter Aufenthalt in <a class="preview places A130034" href="">Magdeburg</a> (1792/93)</li>
      <li>widmete sich erneut der Musik (Unterricht Klavier, Generalbaß)</li>
-     <li>in <span class="preview places A130034" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130034.html">Magdeburg</span> spielte zu dieser Zeit die Gesellschaft <a class="preview persons A009159" href="/exist/apps/WeGA-WebApp/de/A009159.html">Carl Döbbelin</a>;
+     <li>in <a class="preview places A130034" href="">Magdeburg</a> spielte zu dieser Zeit die Gesellschaft <a class="preview persons A009159" href="">Carl Döbbelin</a>;
         Costenoble wirkte im Orchester als Oboist mit</li>
   </ul>
    <ul class="tei_list">
       <li class="listTitle">Schauspieler bei verschiedenen reisenden Theatergesellschaften (1794–1796)</li>
-      <li>unter Direktion von <a class="preview persons A008803" href="/exist/apps/WeGA-WebApp/de/A008803.html">Daniel Gottlieb Quandt</a> in <span class="preview places A130053" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130053.html">Bayreuth</span> Mitte März bis 15. Mai 1794; erste Gastauftritte dort noch vor der Übernahme der <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Weberschen</a> Gesellschaft durch <a class="preview persons A008803" href="/exist/apps/WeGA-WebApp/de/A008803.html">Quandt</a>), <span class="preview places A130061" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130061.html">Hildburghausen</span> (16. Mai bis Mitte Juli 1794), <span class="70252108108989799104">Füllbach</span> (Anfang August bis Anfang Oktober 1794), <span class="preview places A130048" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130048.html">Coburg</span> (Anfang bis Mitte Oktober 1794), wiederum <span class="preview places A130053" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130053.html">Bayreuth</span> (Ende Oktober 1794 bis Anfang Juni 1795)</li>
-      <li>12. Mai 1794 Heirat mit der Schauspielerin <a class="preview persons A008574" href="/exist/apps/WeGA-WebApp/de/A008574.html">Johanna Katharina Margarethe Steinhäus(s)er</a></li>
-      <li>unter Direktion von <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Weber</a> in <span class="preview places A130023" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130023.html">Salzburg</span> (Juni 1795 bis Dezember 1795; Debüt 1. Juli) und <span class="preview places A130283" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130283.html">Hallein</span> (Sommer 1795)</li>
-      <li>unter Direktion von <a class="preview persons A008769" href="/exist/apps/WeGA-WebApp/de/A008769.html">Wenzel Mihule</a> in <span class="preview places A130026" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130026.html">Nürnberg</span> und <span class="78246114100108105110103101110">Nördlingen</span> (Dezember 1795 bis Mitte 1796)</li>
+      <li>unter Direktion von <a class="preview persons A008803" href="">Daniel Gottlieb Quandt</a> in <a class="preview places A130053" href="">Bayreuth</a> Mitte März bis 15. Mai 1794; erste Gastauftritte dort noch vor der Übernahme der <a class="preview persons A002074" href="">Weberschen</a> Gesellschaft durch <a class="preview persons A008803" href="">Quandt</a>), <a class="preview places A130061" href="">Hildburghausen</a> (16. Mai bis Mitte Juli 1794), <span class="70252108108989799104">Füllbach</span> (Anfang August bis Anfang Oktober 1794), <a class="preview places A130048" href="">Coburg</a> (Anfang bis Mitte Oktober 1794), wiederum <a class="preview places A130053" href="">Bayreuth</a> (Ende Oktober 1794 bis Anfang Juni 1795)</li>
+      <li>12. Mai 1794 Heirat mit der Schauspielerin <a class="preview persons A008574" href="">Johanna Katharina Margarethe Steinhäus(s)er</a></li>
+      <li>unter Direktion von <a class="preview persons A002074" href="">Franz Anton von Weber</a> in <a class="preview places A130023" href="">Salzburg</a> (Juni 1795 bis Dezember 1795; Debüt 1. Juli) und <a class="preview places A130283" href="">Hallein</a> (Sommer 1795)</li>
+      <li>unter Direktion von <a class="preview persons A008769" href="">Wenzel Mihule</a> in <a class="preview places A130026" href="">Nürnberg</a> und <span class="78246114100108105110103101110">Nördlingen</span> (Dezember 1795 bis Mitte 1796)</li>
    </ul>
   <ul class="tei_list">
      <li class="listTitle">Schauspieler an Stadttheatern (1796–1818)</li>
-     <li>ab 1796 in <span class="preview places A130034" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130034.html">Magdeburg</span>, ab 1798 in <span class="preview places A130064" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130064.html">Altona</span>,
-        ab 1801 in <span class="preview places A130009" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130009.html">Hamburg</span> </li>
-     <li>in dieser Zeit diverse Gastspielreisen, u. a. nach <span class="preview places A130006" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130006.html">Prag</span> (Sommer 1816)</li>
+     <li>ab 1796 in <a class="preview places A130034" href="">Magdeburg</a>, ab 1798 in <a class="preview places A130064" href="">Altona</a>,
+        ab 1801 in <a class="preview places A130009" href="">Hamburg</a> </li>
+     <li>in dieser Zeit diverse Gastspielreisen, u. a. nach <a class="preview places A130006" href="">Prag</a> (Sommer 1816)</li>
   </ul>
   <ul class="tei_list">
      <li class="listTitle">Hofschauspieler in Wien (Burgtheater, 1818ff.)</li>
-     <li> Reise nach <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> über <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> (dort Treffen mit <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a>)</li>
-     <li>von <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> aus diverse Gastspielreisen, u. a. nach <span class="preview places A130003" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130003.html">Dresden</span> (Juli/August 1820)</li>
-     <li>in <span class="preview places A130004" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130004.html">Wien</span> Treffen mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> 1822 und 1823</li>
+     <li> Reise nach <a class="preview places A130004" href="">Wien</a> über <a class="preview places A130003" href="">Dresden</a> (dort Treffen mit <a class="preview persons A000213" href="">Caroline von Weber</a>)</li>
+     <li>von <a class="preview places A130004" href="">Wien</a> aus diverse Gastspielreisen, u. a. nach <a class="preview places A130003" href="">Dresden</a> (Juli/August 1820)</li>
+     <li>in <a class="preview places A130004" href="">Wien</a> Treffen mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> 1822 und 1823</li>
      <li>ab 1831 auch Regisseur am Burgtheater</li>
   </ul>
    </div>
@@ -498,7 +506,8 @@
                                                     <ul>
                                                             <li><a title="Digitaler Portraitindex - Alle Personen" href="http://www.portraitindex.de/dokumente/pnd/116689234">10 Reproduktionen im Digitalen Portraitindex Frühe Neuzeit</a></li>
                                                             <li><a title="Allgemeine Deutsche Biographie (Wikisource)" href="https://tools.wmflabs.org/persondata/redirect/gnd/ws-adb/116689234">Allgemeine Deutsche Biographie (Wikisource)</a></li>
-                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=116689234">Bayerische Staatsbibliothek (10)</a></li>
+                                                            <li><a title="Alle mit Norm-ID versehenen Datensätze im Personenregister" href="https://iffland.bbaw.de/register/personen/detail.xql?normid=http://d-nb.info/gnd/116689234">August Wilhelm Ifflands dramaturgisches Archiv</a></li>
+                                                            <li><a title="Bayerische Staatsbibliothek" href="http://opacplus.bsb-muenchen.de/search?pnd=116689234">Bayerische Staatsbibliothek (11)</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier ADB 25782 Einträge)" href="http://www.deutsche-biographie.de/pnd116689234.html#adbcontent">Biographien der ADB</a></li>
                                                             <li><a title="Deutsche Biographie - Biographien der Allgemeinen Deutschen Biographie (ADB), der Neuen Deutschen Biographie (NDB) und Angaben des Registers (hier NDB 22217 Einträge)" href="http://www.deutsche-biographie.de/pnd116689234.html#ndbcontent">Biographien der NDB</a></li>
                                                             <li><a title="Deutsche Biographie - Biographische Informationen zu Personen im Index von NDB, ADB und Register" href="http://www.deutsche-biographie.de/pnd116689234.html#allcontent">Biographische Informationen zu Personen im Index von NDB, ADB und Register</a></li>
@@ -585,9 +594,9 @@
                 <div class="row permaLink">
                     <div class="col-md-9">
                         <h4>Empfohlene Zitierweise</h4>
-                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000324</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000324</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                             <br />
-                            <span>Letzte Änderung dieses Dokuments am 16. Dezember 2017 durch Peter Stadler</span></p>
+                            <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                     </div>
                     
                 </div>
@@ -655,7 +664,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -675,30 +685,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

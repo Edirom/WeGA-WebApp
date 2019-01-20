@@ -82,10 +82,9 @@
             </xsl:if>
             <xsl:if test="$node/tei:repository != ''">
                 <xsl:value-of select="$node/tei:repository"/>
-                <xsl:text> </xsl:text>
             </xsl:if>
             <xsl:if test="$node/tei:repository/@n">
-                <xsl:text>(</xsl:text>
+                <xsl:text> (</xsl:text>
                 <xsl:value-of select="$node/tei:repository/@n"/>
                 <xsl:text>)</xsl:text>
             </xsl:if>
@@ -132,6 +131,19 @@
                 </xsl:element>
             </xsl:for-each>
         </xsl:element>
+        <xsl:if test="tei:accMat">
+            <xsl:element name="h4">
+                <xsl:attribute name="class">media-heading</xsl:attribute>
+                <xsl:value-of select="wega:getLanguageString('accMat', $lang)"/>
+            </xsl:element>
+            <xsl:element name="ul">
+                <xsl:for-each select="tei:accMat">
+                    <xsl:element name="li">
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="tei:history">
@@ -140,7 +152,8 @@
             <xsl:value-of select="wega:getLanguageString('provenance', $lang)"/>
         </xsl:element>
         <xsl:element name="ul">
-            <xsl:for-each select="tei:provenance | tei:acquisition">
+            <!-- make tei:acquisition appear on top of the list -->
+            <xsl:for-each select="tei:acquisition, tei:provenance">
                 <xsl:element name="li">
                     <xsl:apply-templates/>
                 </xsl:element>

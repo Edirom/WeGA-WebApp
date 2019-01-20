@@ -1,7 +1,12 @@
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="app:preview">
     <div class="preview-icon">
-        <a class="pull-left" data-template="app:preview-icon">
-            <img src="$resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon"/>
+        <a class="pull-left" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="docURL">
+            <span data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="addenda" data-template-wrap="no">
+                <img src="$resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon"/>
+            </span>
+            <span data-template="app-shared:if-matches" data-template-key="docType" data-template-value="addenda" data-template-wrap="no">
+                <i class="fa fa-exclamation-circle" aria-hidden="true"></i>
+            </span>
         </a>
     </div>
     <div class="media-body" data-template="app:preview-details">
@@ -10,7 +15,7 @@
                 über den Geschmack in der Musik von Joh. Bapt.
                 Schaul</a>
         </h3>
-        <p>
+        <p data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="addenda">
             <strong><span data-template="lang:translate">incipit</span>: </strong> 
             <span data-template="app:preview-incipit">"Lieben Sie Beste Elise alzeit Ihr aufrichtiger …"</span>
         </p>
@@ -25,7 +30,7 @@
         <p>
             <strong><span data-template="lang:translate">identifier</span>:</strong> 
             <span data-template="app-shared:print" data-template-key="docID">A030043</span>
-            <span data-template="app:status" class="docStatus">in Bearbeitung</span>
+            <span data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="addenda" data-template-wrap="no"><span data-template="app:status" class="docStatus">in Bearbeitung</span></span>
         </p>
         <div class="kwic" data-template="search:kwic"/>
     </div>

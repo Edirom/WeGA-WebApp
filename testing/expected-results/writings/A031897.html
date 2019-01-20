@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Charlene Jakob" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-10T20:22:02.829414Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031897" />
         <meta property="dc:description" content="Helmina von Chezy über die Entstehung der Euryanthe, Teil 3/9" />
         <meta name="description" content="Helmina von Chezy über die Entstehung der Euryanthe, Teil 3/9" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000288","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000288"}],"name":"Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 3/9","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031897","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -192,7 +195,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A000288/Writings/A031897.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +221,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A000288.html">Helmina von Chézy</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften">Schriften</a></li>
-                        <li><span>A031897</span> <span class="docStatus">in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span></span>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften">Schriften</a>
+                        </li>
+                        <li>
+                            <span>A031897</span> 
+                                <span class="docStatus">in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,97 +250,134 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897/backlinks.html">Rückverweise</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031897.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
     </div>
 </div>
-                    <div>
-                        <h2><a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a></h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
+                    <div>                       
+                        
+                        <h2>
+                            <a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
+                        </h2>
+                        <div id="kontext" class="panel-collapse collapse borderBox">                           
+                                
                             <div id="relatedItems">
                                 <h3>Verknüpfte Dokumente</h3>
                                 <ul>
                                     <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031868.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 1/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                             <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031757.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 2/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                             <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031534.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 4/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                             <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031842.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 5/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                             <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031984.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 6/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                             <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031927.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 7/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                             <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031880.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 8/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                             <li>
                                         <h4>Weiterer Teil</h4> 
-                                        <p><a href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031903.html">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper, von Helmina v. Chezy, geb. Freiin Klencke, 1840, Teil 9/9</a></p>
+                                        <p>
+                                            
+                                        </p>
                                     </li>
                                 </ul>
                             </div>
@@ -336,13 +388,15 @@
                         </div>
                     </div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000289" /> <span title="Chézy, Max von">Chézy, Max von</span> 
+                                    <input type="checkbox" name="options" value="A000290" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000290" /> <span title="Chézy, Wilhelm von">Chézy, Wilhelm von</span> 
+                                    <input type="checkbox" name="options" value="A000289" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
                                 </label>
@@ -350,17 +404,21 @@
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Euryanthe, große romantische Oper in drei Aufzügen">Euryanthe, große romantische O…</span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#characterNames">Rollen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="characterNames">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
@@ -417,9 +475,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>’s <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span>.</span></h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">(<a class="preview writings A031757" href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031757.html">Fortsetzung</a>.)</span></h3>
-                                        <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s Auswahl des Stoffes der Euryanthe war mir um so willkommener, als ich mich innerlich so oft damit beschäftigt und stets gewünscht hatte, ihn poetisch zu bearbeiten. Es war auch schon von <span class="tei_date">1810</span> ein Anfang da, den ich liegen lassen mußte, weil die Pflege <span class="preview persons A000290 A000289" data-ref="/exist/apps/WeGA-WebApp/de/A000290.html /exist/apps/WeGA-WebApp/de/A000289.html">meiner Kinder</span> mir keine Muße zur Combination eines Planes, noch zu sorgfältiger Ausführung ließ. Lieder kamen von selbst, <span class="tei_hi_spaced_out">die</span> durft’ ich nur aufschreiben. </p>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>’s <a class="preview works A020043" href="">Euryanthe</a>.</span></h2>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">(<a class="preview writings A031757" href="">Fortsetzung</a>.)</span></h3>
+                                        <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s Auswahl des Stoffes der Euryanthe war mir um so willkommener, als ich mich innerlich so oft damit beschäftigt und stets gewünscht hatte, ihn poetisch zu bearbeiten. Es war auch schon von <span class="tei_date">1810</span> ein Anfang da, den ich liegen lassen mußte, weil die Pflege <span class="preview persons A000290 A000289" data-ref=" ">meiner Kinder</span> mir keine Muße zur Combination eines Planes, noch zu sorgfältiger Ausführung ließ. Lieder kamen von selbst, <span class="tei_hi_spaced_out">die</span> durft’ ich nur aufschreiben. </p>
                                         <p>Bei der Bearbeitung für <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> wollte ich mich streng an die Novelle halten, nur statt der alten <span class="721111021091011051151161011141051103272111110100114233101">Hofmeisterin Hondrée</span> (<span class="72117110100114105101116104">Hundrieth</span>), die <span class="6911711412197110116104101">Euryanthe</span> verrieth, <span class="tei_hi_spaced_out"><span class="6910310897110116105110101">Eglantine</span></span> einflechten; die kommt in der Novelle, jedoch später, und im Conflict mit <span class="6911711412197110116104101110">Euryanthen</span> vor. <span class="7612111510597114116115">Lysiarts</span> Erklärung und Versuch, <span class="6911711412197110116104101">Euryanthe</span> für seine Liebe zu gewinnen, die ich für höchst effectvoll und dramatisch hielt, verwarf <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, ich glaube sie hätte bleiben sollen, denn nicht sowohl würden <span class="6911711412197110116104101">Euryanthe</span> und <span class="7612111510597114116">Lysiart</span> dadurch <span class="tei_choice"><span class="tei_corr">einen</span><a class="noteMarker" id="ref-d10e68" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e68">‡</a></span> reichhaltigeren Part bekommen haben, sondern das Publicum würde verstehen, warum <span class="7612111510597114116">Lysiart</span> verzweifelnd in den Burggarten herausstürzt? Die Scene war gedichtet, doch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> las sie nicht einmal. <span class="76117100119105103115">Ludwigs</span> <span class="tei_hi_spaced_out"><span class="75246110105103105110">Königin</span></span> wollte ich in die Handlung hineinziehn. „Nein,“ sagte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, „<span class="tei_hi_spaced_out">die</span> muß wegbleiben, <span class="tei_hi_spaced_out">die</span> interessirt keinen Menschen.“ Ich wollte den Schluß der Novelle treulich beibehalten. „Nicht doch!“ sprach <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, „Turniere, Gottesgerichte, die gibts zum Uebermaß auf den Brettern, wir müssen was Neues bringen!“ Ich kann mir nicht versagen, aus meinem ersten Scenariumsentwurf diesen Schluß darzulegen:</p>
                                         <p>III. Act. Kampfplatz mit Gerüsten, die sich nach und<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> nach mit Menschen füllen, der <span class="72101114111108100">Herold</span> tritt auf, die Ritter versammeln sich, man erblickt einen Ritter (<span class="7110111410497114100">Gerhard</span>) mit festgeschlossenem Visier in schwarzer Rüstung, dann <span class="71114971023277111110116102111114116">Graf Montfort</span>, <span class="65108111115">Alos</span>, den <span class="72101114122111103321181111103266117114103117110100">Herzog von Burgund</span>.</p>
                                         <p>Der <span class="72101114111108100">Herold</span> verkündet, daß <span class="752461101051033276117100119105103">König Ludwig</span> ein Gottesgericht zu <span class="6911711412197110116104101115">Euryanthes</span> Ehrenrettung verstatte, wenn sich für sie ein Kämpfer fände, — sie solle, wenn ihr Ritter unterliegt, den Tod der Verbrecherin leiden, wie sie es selbst, im Vertrauen auf ihre Unschuld und die göttliche Gerechtigkeit, begehrt.</p>
@@ -434,7 +492,7 @@
                                         <p>Nach einigen Tagen brachte mir <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> folgendes Scenarium, es war großentheils nach meinem eignen Entwurf, nur mit genauer Bezeichnung der Musikstücke, geschrieben, und von meinem Schluß wollte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">der Componist</a> nichts wissen, und hatte ihn nach eignem Wunsch gestaltet.</p>
                                     </div>
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Scenarium zur <span class="6911711412197110116104101"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span>. (Treu nach <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s Originalentwurf abgeschrieben.)</span></span></h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Scenarium zur <span class="6911711412197110116104101"><a class="preview works A020043" href="">Euryanthe</a></span>. (Treu nach <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s Originalentwurf abgeschrieben.)</span></span></h2>
                                         <ul class="tei_simpleList">
                                             <li>1.	<span class="tei_hi_spaced_out">Introduction. — Fest bei Hofe.</span> Tanz mit Chor.
                       <br />Preis der Künste ec., der <span class="75246110105103">König</span> fordert <span class="7110111410497114100">Gerhard</span> auf. Hymne zum Preis seiner Schönen. Beifalls-Chor. <span class="7612111510597114116">Lysiart</span> höhnt ec., heftiger Wortwechsel, der <span class="75246110105103">König</span> mischt sich drein, entläßt die Tänzer ec., vermittelt ec., die Wette wird beschworen. Alle ab.</li>
@@ -472,7 +530,7 @@
                                             <li>Das für <span class="7612111510597114116">Lysiart</span> angeordnete Fest beschließt für <span class="7110111410497114100">Gerhard</span> gefeiert das Ganze.</li>
                                             <li>    <span class="tei_hi_antiqua">NB</span>. Soll <span class="7612111510597114116">Lysiart</span> die <span class="6910310897110116105110101">Eglantine</span> ermorden, oder sie ihn? oder was geschieht mit Beiden?</li>
                                         </ul>
-                                        <p><span class="tei_segBlock textAlign-center">(<a class="preview writings A031534" href="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A031534.html">Fortsetzung folgt</a>.)</span></p>
+                                        <p><span class="tei_segBlock textAlign-center">(<a class="preview writings A031534" href="">Fortsetzung folgt</a>.)</span></p>
                                     </div>
                                 </div>
                     </div>
@@ -518,16 +576,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Neue Zeitschrift für Musik</span>, Bd. 13, Jg. 7, Nr. 3 (08. Juli 1840), S. 9–10</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -561,9 +621,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031897</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031897</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2018 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -629,7 +690,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -649,30 +711,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

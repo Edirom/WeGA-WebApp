@@ -12,7 +12,7 @@
         <meta property="dc:format" content="text/html" />
         
         <meta property="dc:creator" content="Carl-Maria-von-Weber-Gesamtausgabe" />
-        <meta property="dc:date" content="2018-07-04T19:59:50.065Z" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Dokumente" />
         <meta property="dc:description" content="Eine Liste von Dokumenten, gesammelt und (teilweise) ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta name="description" content="Eine Liste von Dokumenten, gesammelt und (teilweise) ediert durch die Carl-Maria-von-Weber-Gesamtausgabe" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Dokumente","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Dokumente","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Dokumente","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +190,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Documents" hreflang="en" lang="en">En</a></li>
@@ -235,6 +238,8 @@
         <div class="allFilter">
             <h2>Filter</h2>
             
+            <h4>Chronologie</h4>
+            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1619-07-11" data-max-slider="1846-06-22" data-from-slider="1619-07-11" data-to-slider="1846-06-22" />
             
             <h4>Personen</h4>
             <select multiple="multiple" name="persons" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="documents">
@@ -258,7 +263,7 @@
         </div>
     </div>
 	<div class="col-md-9 col-md-pull-3 searchResults">
-	<h2>212 Suchergebnisse</h2>
+	<h2>37 Suchergebnisse</h2>
 	<div class="row">
 		<div class="col-sm-8">
 			<ul class="pagination">
@@ -266,9 +271,7 @@
                                             <li class="active"><span>1</span></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
                                             <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=21&amp;limit=10">21</a></li>
-                                            <li><a class="page-link" href="?page=22&amp;limit=10">22</a></li>
+                                            <li><a class="page-link" href="?page=4&amp;limit=10">4</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -319,67 +322,6 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100203.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100203.html">Freimaurerpatent für Franz Anton von Weber<br />Hamburg, Montag, 31. Dezember 1787</a>
-        </h3>
-        <p>
-            <strong><span>Incipit</span>: </strong> 
-            [Dokument aus konservatorischen Gründen unzugänglich]
-        </p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Freimaurerpatent der Schotten-Loge „Zum glänzenden Felsen“ in Hamburg für Franz Anton von Weber; vgl. Weberiana Heft 23 (2013), S. 26-28
-        </p>
-        
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A100203</span>
-            <span class="docStatus">in Bearbeitung</span>
-        </p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100004.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100004.html">Carl Maria von Weber: Zeichnung (1796)</a>
-        </h3>
-        <p>
-            <strong><span>Incipit</span>: </strong> 
-            Gemacht den 21ten Februar Anno 1796
-        </p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            e. Zeichnung: Brunnen mit Paar vor Gebäudegruppe rechts; (für?)
-        </p>
-        <p>
-            <strong>Autor</strong>: 
-            <span>Weber, Carl Maria von</span>
-        </p>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A100004</span>
-            <span class="docStatus">Kommentar in Bearbeitung</span>
-        </p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100005.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
         </a>
@@ -412,62 +354,27 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A00068E/Dokumente/A100002.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100163.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A00068E/Dokumente/A100002.html">Totenschein Genovefa von Weber</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100163.html">Fremdenanzeigen Chemnitz (vor 25. Oktober 1800): Durchreise Franz Anton von Weber</a>
         </h3>
         <p>
             <strong><span>Incipit</span>: </strong> 
-            Daß im Jahre 1798 den 13ten Märtz um 11 Uhr Nachts in 30sten Jahre des Alters …
+            Durchreisende Fremde. Herr Major von Weber, von Altenburg nach Dresden. Graf …
         </p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Bestätigung des Todes, der Todesursache und des Begräbnistages von Genovefa von Weber geb. Brenner; ausgestellt durch Kaplan von St. Sebastian in Salzburg nach dem Totenbuch
-        </p>
+        
         <p>
             <strong>Autor</strong>: 
-            <span>Caspar Gmachl</span>
+            <span>anonym</span>
         </p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A100002</span>
-            <span class="docStatus">Kommentar in Bearbeitung</span>
-        </p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100008.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100008.html">Carl Maria von Weber: Zeichnung (1799)</a>
-        </h3>
-        <p>
-            <strong><span>Incipit</span>: </strong> 
-            ... H. 1799. C.v.W.f.
-        </p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            e.Zeichnung: eine Art Mahnaltar mit Flamme u. Inschrift
-        </p>
-        <p>
-            <strong>Autor</strong>: 
-            <span>Weber, Carl Maria von</span>
-        </p>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A100008</span>
-            <span class="docStatus">Kommentar in Bearbeitung</span>
+            <span>A100163</span>
+            <span class="docStatus">in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
     </div>
@@ -540,37 +447,31 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A008231/Dokumente/A100246.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A008231/Dokumente/A100246.html">C. M. v. Webers Anstellungskontrakt für Breslau<br />Breslau, Dienstag, 1. Mai 1804</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100038.html">Carl Maria von Weber: Quittung für Johann Vitus Kistner in Leipzig
+               <br />Leipzig, Sonntag, 5. April 1807
+            </a>
         </h3>
         <p>
             <strong><span>Incipit</span>: </strong> 
-            Die Direction des Kgl. privil. Breslauschen Theater
+            Quittung Ueber fünf Louisdor in Golde welche
         </p>
         <p>
             <strong><span>Zusammenfassung</span>: </strong> 
-            Anstellungsdekret Webers als Musikdirektor in Breslau;
+            Quittung über Darlehen von Kistner, dem er seine Uhr als Pfand ließ; mit Vermerk über Bezahlung vom 11. Juli 1816
         </p>
         <p>
             <strong>Autor</strong>: 
-            <span>Bothe, Friedrich</span>
-        </p>
-                                                        <p>
-            <strong>Autor</strong>: 
-            <span>Hayn, Carl Christian</span>
-        </p>
-                                                        <p>
-            <strong>Autor</strong>: 
-            <span>Schiller, Ferdinand</span>
+            <span>Weber, Carl Maria von</span>
         </p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A100246</span>
+            <span>A100038</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -580,31 +481,131 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000462/Dokumente/A100075.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.html">
             <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A000462/Dokumente/A100075.html">Eugen, Herzog von Württemberg: Reisepass für Carl Maria von Weber
-               <br />Carlsruhe/Oberschlesien, Sonntag, 22. Februar 1807
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100214.html">Carl Maria von Weber: Notizen über die Reise von Carlsruhe nach Stuttgart 1807</a>
+        </h3>
+        <p>
+            <strong><span>Incipit</span>: </strong> 
+            Reise v: Carlsruhe nach Stuttgart d: 23t Februar 1807. abgereist nach Breslau – …
+        </p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Notizen zur Reise von Carlsruh nach Stuttgart vom 23.2. bis 17.8. 1807; mit einigen späteren Anmerkungen
+        </p>
+        <p>
+            <strong>Autor</strong>: 
+            <span>Weber, Carl Maria von</span>
+        </p>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A100214</span>
+            <span class="docStatus">Kommentar in Bearbeitung</span>
+        </p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100057.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100057.html">Carl Maria von Weber: Quittung für Johann Michael Hönes in Schwieberdingen
+               <br />Ludwigsburg, Montag, 6. Oktober 1808
             </a>
         </h3>
         <p>
             <strong><span>Incipit</span>: </strong> 
-            "Da Vorzeiger dieses, der Herr Reichsfreyherr Carl Marie von Weber …"
+            EndesUnterschriebener bezeugt und beurkundet hiemit
         </p>
         <p>
             <strong><span>Zusammenfassung</span>: </strong> 
-            Paß für Weber zur Reise nach Stuttgart;
+            bestätigt von Hönes 1000 Gulden erhalten zu haben, die er mit 6 Prozent innerhalb eines Jahres zurückzahlen will; mit Teil-RückzahlVermerken vom 5. Dezember 1809 (200 Gulden) und 1. Januar 1810 (55 Gulden)
         </p>
         <p>
             <strong>Autor</strong>: 
-            <span>Eugen, Herzog von Württemberg</span>
+            <span>Weber, Carl Maria von</span>
         </p>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A100075</span>
+            <span>A100057</span>
+            <span class="docStatus">Kommentar in Bearbeitung</span>
+        </p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100056.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100056.html"><span class="tei_persName">Carl Maria von Weber</span>: Quittung für <span class="tei_persName">Carl Meurer</span>
+               <br />Ludwigsburg, Sonntag, 9. Juli 1809
+            </a>
+        </h3>
+        <p>
+            <strong><span>Incipit</span>: </strong> 
+            Auf Befehl S: Hoheit des H: Herzogs Louis hat
+        </p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Quittung über 8 Gulden, die Weber als rückständige Miete an Carl Meurer(?) bezahlt hat; gezeichnet von diesem;
+        </p>
+        <p>
+            <strong>Autor</strong>: 
+            <span>Weber, Carl Maria von</span>
+        </p>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A100056</span>
+            <span class="docStatus">Kommentar in Bearbeitung</span>
+        </p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100051.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_thematicCommentaries.png" class="img-responsive" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100051.html">Carl Maria von Weber: Quittung für Herzog Ludwig von Württemberg
+               <br />Ludwigsburg, Samstag, 15. Juli 1809
+            </a>
+        </h3>
+        <p>
+            <strong><span>Incipit</span>: </strong> 
+            Mein Gehalt pro 1mo August und 7ber 1809
+        </p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Quittung von Gagenauszahlungen an verschied. Personen;
+        </p>
+        <p>
+            <strong>Autor</strong>: 
+            <span>Weber, Carl Maria von</span>
+        </p>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A100051</span>
             <span class="docStatus">Kommentar in Bearbeitung</span>
         </p>
         <div class="kwic"></div>
@@ -621,9 +622,7 @@
                                             <li class="active"><span>1</span></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
                                             <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=21&amp;limit=10">21</a></li>
-                                            <li><a class="page-link" href="?page=22&amp;limit=10">22</a></li>
+                                            <li><a class="page-link" href="?page=4&amp;limit=10">4</a></li>
                                             <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
                                         </ul>
 		</div>
@@ -695,7 +694,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -715,30 +715,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

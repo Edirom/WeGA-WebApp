@@ -1,0 +1,16 @@
+sudo: required
+
+language: java
+
+services:
+  - docker
+
+before_install:
+  - ant docker_run
+  - docker cp wega:/opt/exist/lib/endorsed/Saxon-HE-9.6.0-7.jar .
+
+script:
+  - ant -lib . test
+
+after_failure:
+  - docker exec -it wega tail -2000 webapp/WEB-INF/logs/exist.log 

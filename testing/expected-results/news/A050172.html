@@ -11,8 +11,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2017-12-20T13:54:16.138030Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050172" />
         <meta property="dc:description" content="2012 wies uns Christoph Schwandt auf einen Brief Ludwig Börnes hin, der bezüglich Caroline von Weber, geb. Brandt, Rätsel aufgab. Börne, der sich im …" />
         <meta name="description" content="2012 wies uns Christoph Schwandt auf einen Brief Ludwig Börnes hin, der bezüglich Caroline von Weber, geb. Brandt, Rätsel aufgab. Börne, der sich im …" />
@@ -34,6 +34,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -41,12 +42,14 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005"}],"name":"Rätsel um Caroline von Weber und Ludwig Börne","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"NewsArticle","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050172","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+
 
     </head>
     <body>
@@ -189,7 +192,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A009005/News/A050172.html" hreflang="en" lang="en">En</a></li>
@@ -213,10 +218,18 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a></li>
-                        <li><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles">Aktuelles</a></li>
-                        <li><span>A050172</span> </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span></span>
+                        </li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles">Aktuelles</a>
+                        </li>
+                        <li>
+                            <span>A050172</span> 
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -232,53 +245,68 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -286,37 +314,41 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003044" /> <span title="Börne, Ludwig">Börne, Ludwig</span> 
+                                    <input type="checkbox" name="options" value="A003044" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000914" /> <span title="Jähns, Friedrich Wilhelm">Jähns, Friedrich Wilhelm</span> 
+                                    <input type="checkbox" name="options" value="A000213" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008040" /> <span title="Jähns, Ida">Jähns, Ida</span> 
+                                    <input type="checkbox" name="options" value="A006536" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002062" /> <span title="Weber, Alexander von">Weber, Alexander von</span> 
+                                    <input type="checkbox" name="options" value="A000914" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A008040" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002062" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000213" /> <span title="Weber, Caroline von">Weber, Caroline von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A006536" /> <span title="Wohl, Jeanette">Wohl, Jeanette</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Berlin">Berlin</span> 
+                                    <input type="checkbox" name="options" value="A130191" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130191" /> <span title="Ems">Ems</span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130020" /> <span title="Frankfurt am Main">Frankfurt am Main</span> 
+                                    <input type="checkbox" name="options" value="A130020" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -328,24 +360,24 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d10e2">
-                                    <p>2012 wies uns <span class="6710411410511511611111210432839910411997110100116">Christoph Schwandt</span> auf einen Brief <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börnes</a> hin, der bezüglich <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber, geb. Brandt</a>, Rätsel aufgab. <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Börne</a>, der sich im Sommer 1825 zeitgleich mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> im <span class="7511711498971003269109115">Kurbad Ems</span> aufhielt, schrieb an seine langjährige Freundin <a class="preview persons A006536" href="/exist/apps/WeGA-WebApp/de/A006536.html">Jeanette Wohl</a> am 16. Juli 1825: „<a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> ist jetzt hier und logiert in den 4 Türmen. […] Ich bin begierig, ob er seine Frau bei sich hat, meine ehemalige Schwägerin (die <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Brand</a>).“ 
-               <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Webers Frau</a> war allerdings nicht nach <span class="preview places A130191" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130191.html">Ems</span> mitgereist, so dass ein persönliches Treffen nicht zustande kam. Für die erwähnte familiäre Verbindung ließen sich weder durch die Börne- noch durch die Weber-Forschung Nachweise erbringen<a class="noteMarker arabic" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">1</a> 
-               – bis jetzt. Nun werfen zwei Briefe <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Webers</a> aus dem Herbst 1843 neues Licht auf die Angelegenheit. Es handelt sich um Schreiben aus jenem Konvolut von Briefen der Komponistenwitwe an das befreundete Berliner Ehepaar <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm</a> und <a class="preview persons A008040" href="/exist/apps/WeGA-WebApp/de/A008040.html">Ida Jähns</a>, dessen Originaltexte verschollen sind; erhalten blieb lediglich eine maschinenschriftliche Kopie (<span class="tei_hi_italic">D-Dl</span>, Mscr. Dresd. App. 2097). <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> datierte die meisten ihrer (bezüglich Orthographie und Interpunktion recht eigenwilligen) Schreiben nicht, über Empfangsvermerke lassen sie sich allerdings chronologisch einordnen. So kam der Brief Nr. 84 des Konvoluts am 30. September 1843 in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> an; darin liest man (in der Abschrift auf S. 293):
-               „Am Montag bin ich wieder ins Winterquartier gerückt und habe seit dem, <span class="tei_hi_underline1">jeden</span> Tag ein Haus voll Besuch gehabt. Vor allen freute mich die Ankunft eines alten Frankfurter Freunden, welcher mir treue Anhänglichkeit durch <span class="tei_hi_underline1">30</span> Jahre bewahrt hat. Es ist der Bruder des bekanntes <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Dr. Bören [recte: Börne]</a>, und <span class="tei_hi_underline1">Er</span> ist es, welcher Euch diese Zeilen, welche in aller Eile geschrieben, nur ein Lebens, ein Gesundheitszeichen sein sollen mitnimmt.“
+                                    <p>2012 wies uns <span class="6710411410511511611111210432839910411997110100116">Christoph Schwandt</span> auf einen Brief <a class="preview persons A003044" href="">Ludwig Börnes</a> hin, der bezüglich <a class="preview persons A000213" href="">Caroline von Weber, geb. Brandt</a>, Rätsel aufgab. <a class="preview persons A003044" href="">Börne</a>, der sich im Sommer 1825 zeitgleich mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> im <span class="7511711498971003269109115">Kurbad Ems</span> aufhielt, schrieb an seine langjährige Freundin <a class="preview persons A006536" href="">Jeanette Wohl</a> am 16. Juli 1825: „<a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> ist jetzt hier und logiert in den 4 Türmen. […] Ich bin begierig, ob er seine Frau bei sich hat, meine ehemalige Schwägerin (die <a class="preview persons A000213" href="">Brand</a>).“ 
+               <a class="preview persons A000213" href="">Webers Frau</a> war allerdings nicht nach <a class="preview places A130191" href="">Ems</a> mitgereist, so dass ein persönliches Treffen nicht zustande kam. Für die erwähnte familiäre Verbindung ließen sich weder durch die Börne- noch durch die Weber-Forschung Nachweise erbringen<a class="noteMarker arabic" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">1</a> 
+               – bis jetzt. Nun werfen zwei Briefe <a class="preview persons A000213" href="">Caroline von Webers</a> aus dem Herbst 1843 neues Licht auf die Angelegenheit. Es handelt sich um Schreiben aus jenem Konvolut von Briefen der Komponistenwitwe an das befreundete Berliner Ehepaar <a class="preview persons A000914" href="">Friedrich Wilhelm</a> und <a class="preview persons A008040" href="">Ida Jähns</a>, dessen Originaltexte verschollen sind; erhalten blieb lediglich eine maschinenschriftliche Kopie (<span class="tei_hi_italic">D-Dl</span>, Mscr. Dresd. App. 2097). <a class="preview persons A000213" href="">Caroline von Weber</a> datierte die meisten ihrer (bezüglich Orthographie und Interpunktion recht eigenwilligen) Schreiben nicht, über Empfangsvermerke lassen sie sich allerdings chronologisch einordnen. So kam der Brief Nr. 84 des Konvoluts am 30. September 1843 in <a class="preview places A130002" href="">Berlin</a> an; darin liest man (in der Abschrift auf S. 293):
+               „Am Montag bin ich wieder ins Winterquartier gerückt und habe seit dem, <span class="tei_hi_underline1">jeden</span> Tag ein Haus voll Besuch gehabt. Vor allen freute mich die Ankunft eines alten Frankfurter Freunden, welcher mir treue Anhänglichkeit durch <span class="tei_hi_underline1">30</span> Jahre bewahrt hat. Es ist der Bruder des bekanntes <a class="preview persons A003044" href="">Dr. Bören [recte: Börne]</a>, und <span class="tei_hi_underline1">Er</span> ist es, welcher Euch diese Zeilen, welche in aller Eile geschrieben, nur ein Lebens, ein Gesundheitszeichen sein sollen mitnimmt.“
             </p>
                                     <p>Im nachfolgenden Brief Nr. 85 (mit Empfangsvermerk vom 20. Oktober 1843) heißt es, auf dieselbe Person Bezug nehmend (in der Abschrift auf S. 298f.):
-               „Dass unser Frankfurter freund Euch meinen Brief nicht selbst gebracht, mag wohl daher kommen dass er, wie er mir schreibt in <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130002.html">Berlin</span> unwohl wurde und nicht ausgehen konnte sonst hette er sich gewiss die Freude gemacht Euch kennen zu lernen. Dieser mein <span class="tei_hi_underline1">Jugendfreund</span> ist nun auch schuld daran dass Ihr mein Bild noch nicht habt, denn sein altes Herz verlangte so sehr nach dem Conterfey seiner <span class="tei_hi_underline1">ersten Liebe</span> dass <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alex</a> ihm eine Copie im Kleinen versprechen musste. Diese Copie ist nun zwar angefangen aber da <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alex</a> wirklich jetzt recht fleissig ist, und den ganzen Tag im Atelier arbeitet kann noch eine Zeit darüber hingehen bis er mein liebes Gesicht auf die Leinwand gezaubert hat und eine noch viel längere bis es <span class="tei_hi_underline1">ihm</span> vergönnt ist endlich zu Euch zu eilen […].“
+               „Dass unser Frankfurter freund Euch meinen Brief nicht selbst gebracht, mag wohl daher kommen dass er, wie er mir schreibt in <a class="preview places A130002" href="">Berlin</a> unwohl wurde und nicht ausgehen konnte sonst hette er sich gewiss die Freude gemacht Euch kennen zu lernen. Dieser mein <span class="tei_hi_underline1">Jugendfreund</span> ist nun auch schuld daran dass Ihr mein Bild noch nicht habt, denn sein altes Herz verlangte so sehr nach dem Conterfey seiner <span class="tei_hi_underline1">ersten Liebe</span> dass <a class="preview persons A002062" href="">Alex</a> ihm eine Copie im Kleinen versprechen musste. Diese Copie ist nun zwar angefangen aber da <a class="preview persons A002062" href="">Alex</a> wirklich jetzt recht fleissig ist, und den ganzen Tag im Atelier arbeitet kann noch eine Zeit darüber hingehen bis er mein liebes Gesicht auf die Leinwand gezaubert hat und eine noch viel längere bis es <span class="tei_hi_underline1">ihm</span> vergönnt ist endlich zu Euch zu eilen […].“
             </p>
-                                    <p>Das von <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Börne</a> im <a class="preview letters A044835" href="/exist/apps/WeGA-WebApp/de/A003044/Korrespondenz/A044835.html">Brief von 1825</a> erwähnte Verwandtschaftsverhältnis ist also nicht als ein faktisches, sondern lediglich als ein (zumindest von Seiten seines Bruders) erhofftes anzusehen: Einer seiner Brüder hatte eine Liaison mit der jungen <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline</a>; sie war, wie sie selbst schreibt, seine „erste Liebe“. Der angegebene Zeitpunkt der Freundschaft (vor etwa 30 Jahren) verweist auf <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Carolines</a> Jahre in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt am Main</span> (1809–1812), als sie am dortigen Stadttheater als Soubrette engagiert war.
+                                    <p>Das von <a class="preview persons A003044" href="">Börne</a> im <a class="preview letters A044835" href="">Brief von 1825</a> erwähnte Verwandtschaftsverhältnis ist also nicht als ein faktisches, sondern lediglich als ein (zumindest von Seiten seines Bruders) erhofftes anzusehen: Einer seiner Brüder hatte eine Liaison mit der jungen <a class="preview persons A000213" href="">Caroline</a>; sie war, wie sie selbst schreibt, seine „erste Liebe“. Der angegebene Zeitpunkt der Freundschaft (vor etwa 30 Jahren) verweist auf <a class="preview persons A000213" href="">Carolines</a> Jahre in <a class="preview places A130020" href="">Frankfurt am Main</a> (1809–1812), als sie am dortigen Stadttheater als Soubrette engagiert war.
             </p>
-                                    <p><a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börne</a> (1786–1837, eigentlich Baruch, Namenswechsel 1818) hatte drei Brüder, der jüngste, <span class="839710811110911111032669711411799104">Salomon Baruch</span> (1792–1806), kommt allerdings aufgrund seines frühen Todes nicht als Jugendfreund <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Webers</a> in Betracht. Es bleiben <span class="831051091111103274971071119832669711411799104">Simon Jakob Baruch</span> (1782–1856, ab 1848 Börne) und <span class="801041051081051121123274971071119832669711411799104">Philipp Jakob Baruch</span> (1789–1852, ebenfalls ab 1848 Börne), wobei die Erwähnung der „ersten Liebe“ für den jüngeren der beiden spricht, zumal <span class="83105109111110">Simon</span> seit 1803 mit <span class="90101109105114101443210310198463287101114116104101105109101114">Zemire, geb. Wertheimer</span>, verheiratet war (geschieden 1819, danach 1827 zweite Eheschließung mit <span class="83111112104105101328510810810997110110">Sophie Ullmann</span>), während <span class="80104105108105112112">Philipp</span> erst 1829 <span class="841041011141011151013283112105114111">Therese Spiro</span> (1809–1847) heiratete.
+                                    <p><a class="preview persons A003044" href="">Ludwig Börne</a> (1786–1837, eigentlich Baruch, Namenswechsel 1818) hatte drei Brüder, der jüngste, <span class="839710811110911111032669711411799104">Salomon Baruch</span> (1792–1806), kommt allerdings aufgrund seines frühen Todes nicht als Jugendfreund <a class="preview persons A000213" href="">Caroline von Webers</a> in Betracht. Es bleiben <span class="831051091111103274971071119832669711411799104">Simon Jakob Baruch</span> (1782–1856, ab 1848 Börne) und <span class="801041051081051121123274971071119832669711411799104">Philipp Jakob Baruch</span> (1789–1852, ebenfalls ab 1848 Börne), wobei die Erwähnung der „ersten Liebe“ für den jüngeren der beiden spricht, zumal <span class="83105109111110">Simon</span> seit 1803 mit <span class="90101109105114101443210310198463287101114116104101105109101114">Zemire, geb. Wertheimer</span>, verheiratet war (geschieden 1819, danach 1827 zweite Eheschließung mit <span class="83111112104105101328510810810997110110">Sophie Ullmann</span>), während <span class="80104105108105112112">Philipp</span> erst 1829 <span class="841041011141011151013283112105114111">Therese Spiro</span> (1809–1847) heiratete.
             </p>
-                                    <p>Bei dem von <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> erwähnten Bildnis handelt es sich um ihr Ölporträt, ausgeführt von ihrem Sohn <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Alexander von Weber</a>, dessen erste, im April 1843 fertiggestellte Fassung<a class="noteMarker arabic" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">2</a> 
+                                    <p>Bei dem von <a class="preview persons A000213" href="">Caroline von Weber</a> erwähnten Bildnis handelt es sich um ihr Ölporträt, ausgeführt von ihrem Sohn <a class="preview persons A002062" href="">Alexander von Weber</a>, dessen erste, im April 1843 fertiggestellte Fassung<a class="noteMarker arabic" id="ref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">2</a> 
                im Sommer 1843 auf der Dresdner Akademieausstellung zu sehen war<a class="noteMarker arabic" id="ref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">3</a> 
-               und heute als Eigentum des Dresdener Stadtmuseums (Inv.-Nr. 1986/k 257) im Weber-Museum Dresden-Hosterwitz ausgestellt wird. Eine geplante Replik des Bildes für die Familie Jähns kam wohl aufgrund des frühen Todes des <a class="preview persons A002062" href="/exist/apps/WeGA-WebApp/de/A002062.html">Weber-Sohns</a> nicht mehr zustande – <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm Jähns</a> erhielt stattdessen eine als Entwurf zum Originalgemälde entstandene Ölskizze (heute in D-B, Weberiana Cl. VIII, H. 1, Anh. 3). Ob die Replik für den <span class="662461141101014566114117100101114">Börne-Bruder</span> fertiggestellt und dem Besteller zugesandt wurde, ist unbekannt.
+               und heute als Eigentum des Dresdener Stadtmuseums (Inv.-Nr. 1986/k 257) im Weber-Museum Dresden-Hosterwitz ausgestellt wird. Eine geplante Replik des Bildes für die Familie Jähns kam wohl aufgrund des frühen Todes des <a class="preview persons A002062" href="">Weber-Sohns</a> nicht mehr zustande – <a class="preview persons A000914" href="">Friedrich Wilhelm Jähns</a> erhielt stattdessen eine als Entwurf zum Originalgemälde entstandene Ölskizze (heute in D-B, Weberiana Cl. VIII, H. 1, Anh. 3). Ob die Replik für den <span class="662461141101014566114117100101114">Börne-Bruder</span> fertiggestellt und dem Besteller zugesandt wurde, ist unbekannt.
             </p>
-                                    <p>Der beiläufige Hinweis <a class="preview persons A003044" href="/exist/apps/WeGA-WebApp/de/A003044.html">Ludwig Börnes</a> auf seine Schwägerin (in spe) darf also – unter Vorbehalt – als geklärt gelten. Rätselhaft bleibt dagegen weiterhin der Tagebucheintrag <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> vom <a class="preview diaries A065227" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065227.html">3. März 1811</a>: „neuen Beweis erhalten daß die Weiber nichts taugen, <span class="tei_hi_underline2andMore">alle</span> – Geschichte zwischen <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html"><span class="tei_hi_italic">Lina</span> <span class="tei_hi_underline1">Brandt</span></a>. und <span class="66111116104101">Bothe</span>.“ 
-               Besagter <span class="66111116104101">Bothe</span> bleibt vorerst ein Unbekannter; eine Verwechslung des Namens Baruch mit Bothe ist wohl auszuschließen. Offenbar hatte <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline</a> in <span class="preview places A130020" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Orte/A130020.html">Frankfurt</span> mehrere Verehrer, immerhin erwähnt <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in zwei Briefen an seine Braut und spätere Frau (<a class="preview letters A040697" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040697.html">23. Juli 1814</a>, <a class="preview letters A040814" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040814.html">21. August 1815</a>) einen ehemaligen engen Freund der Aktrice (Vorname: Moritz). Doch nicht jedes persönliche Geheimnis muss enthüllt werden; gönnen wir <a class="preview persons A000213" href="/exist/apps/WeGA-WebApp/de/A000213.html">Caroline von Weber</a> dieses Stück Privatsphäre!
+                                    <p>Der beiläufige Hinweis <a class="preview persons A003044" href="">Ludwig Börnes</a> auf seine Schwägerin (in spe) darf also – unter Vorbehalt – als geklärt gelten. Rätselhaft bleibt dagegen weiterhin der Tagebucheintrag <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> vom <a class="preview diaries A065227" href="">3. März 1811</a>: „neuen Beweis erhalten daß die Weiber nichts taugen, <span class="tei_hi_underline2andMore">alle</span> – Geschichte zwischen <a class="preview persons A000213" href=""><span class="tei_hi_italic">Lina</span> <span class="tei_hi_underline1">Brandt</span></a>. und <span class="66111116104101">Bothe</span>.“ 
+               Besagter <span class="66111116104101">Bothe</span> bleibt vorerst ein Unbekannter; eine Verwechslung des Namens Baruch mit Bothe ist wohl auszuschließen. Offenbar hatte <a class="preview persons A000213" href="">Caroline</a> in <a class="preview places A130020" href="">Frankfurt</a> mehrere Verehrer, immerhin erwähnt <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in zwei Briefen an seine Braut und spätere Frau (<a class="preview letters A040697" href="">23. Juli 1814</a>, <a class="preview letters A040814" href="">21. August 1815</a>) einen ehemaligen engen Freund der Aktrice (Vorname: Moritz). Doch nicht jedes persönliche Geheimnis muss enthüllt werden; gönnen wir <a class="preview persons A000213" href="">Caroline von Weber</a> dieses Stück Privatsphäre!
             </p>
                                 </div>
                                 <div id="endNotes">
@@ -356,7 +388,7 @@
                                         <li id="C_03" data-title="Einzelnachweis 3"><a class="endnote_backlink" href="#ref-C_03">3</a>Vgl. <span class="tei_hi_italic">Verzeichniß der vom 16. Juli 1843 an in der K. Sächs. Akademie der Künste zu Dresden öffentlich ausgestellten Werke der bildenden Kunst</span>, Dresden: C. H. Gärtner, 1843, S. 21, Nr. 239.</li>
                                     </ol>
                                 </div>
-                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009005.html" class="persons">Frank Ziegler</a>, Dienstag, 19. April 2016</p>
+                                <p class="authorDate"><a href="" class="persons"></a>, Dienstag, 19. April 2016</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -389,16 +421,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <span class="noDataFound">Keine Angaben gefunden</span>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -423,9 +457,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050172</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050172</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 20. Dezember 2017 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -491,7 +526,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -511,30 +547,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

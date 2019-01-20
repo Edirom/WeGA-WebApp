@@ -14,8 +14,8 @@
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
-        <meta property="dc:creator" content="Peter Stadler" />
-        <meta property="dc:date" content="2018-06-10T20:22:02.829414Z" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031995" />
         <meta property="dc:description" content="Aufführungen Webers Musik im Rahmen der Konzerte der Londoner Philharmonic" />
         <meta name="description" content="Aufführungen Webers Musik im Rahmen der Konzerte der Londoner Philharmonic" />
@@ -37,6 +37,7 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
+        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,12 +45,12 @@
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/themes/overcast/jquery-ui.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/ion.rangeSlider.skinNice.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/css/normalize.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Anonymus","@type":"Person"}],"name":"Aufführungen Webers Musik im Rahmen der Konzerte der Londoner Philharmonic","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031995","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"Aufführungen Webers Musik im Rahmen der Konzerte der Londoner Philharmonic"}</script>
+
 
     </head>
     <body>
@@ -192,7 +193,9 @@
                                 </ul>
                             </li>
                             <li class="divider"></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a></li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
                             <li class="divider"></li>
                             <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/en/A007979/Writings/A031995.html" hreflang="en" lang="en">En</a></li>
@@ -216,10 +219,20 @@
             <div class="row">
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
-                        <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                        <li><span>Anonymus</span></li>
-                        <li><span>Schriften</span></li>
-                        <li><span>A031995</span> <span class="docStatus">in Bearbeitung</span></li>
+                        <li>
+                            <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                        </li>
+                        <li>
+                            <span>Anonymus</span>
+                        </li>
+                        <li>
+                            <span>Schriften</span>
+                        </li>
+                        <li>
+                            <span>A031995</span> 
+                                <span class="docStatus">in Bearbeitung</span>
+                            
+                        </li>
                     </ol>
                 </div>
                 <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
@@ -235,55 +248,72 @@
                 <div class="allFilter">
                     
                     <div>
-                        <h2><a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a></h2>
+                        <h2>
+                            <a href="#dokument" class="collapseSingle collapsed" data-toggle="collapse">Dokument</a>
+                        </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
+                                <li class="gradient-light active">
+                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                </li>
                                 
-                                    <li class="gradient-light"><a href="#editorial" data-toggle="tab">Apparat</a></li>
+                                    <li class="gradient-light">
+                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    </li>
                                 
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a class="deactivated"></a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995/xml.html">XML-Vorschau</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a class="deactivated"></a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995/xml.html">XML-Vorschau</a>
+                                </li>
+                                <li class="gradient-light">
+                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                </li>
                             </ul>
                         </div>
                     </div>
                     <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
     <div class="modal-dialog" role="document">
+        
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
-                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
             </div>
             <div class="modal-body">
-                <p>You can download the current document in the following formats:</p>
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml">WeGA <i class="fa fa-download"></i></a></h4>
                 <p>
-                    The WeGA native format as documented in our <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Guidelines</a>.
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    The 'standard' TEI version. 
-                    WeGA element additions such as <code>workName</code> are mapped to the more generic <code>name</code> element,
-                    but no information needs to be dropped.
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
                 </p>
                 <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
                 <p> 
-                    "An entry-level customization, focused primarily on the needs of those encoding Western European early modern printed material" (<a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
-                    This customization facilitates processing and publishing in particular, but not all WeGA concepts can be transformed. 
-                    So be warned, this <i>not</i> a lossless transformation. 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
                 </p>
                 
                 
-                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.txt">Plain text <i class="fa fa-download"></i></a></h4>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031995.txt">Plain Text <i class="fa fa-download"></i></a></h4>
                 <p>
-                    An attempt to create a 'simple' plain text version. 
-                    All variants, readings, etc. are resolved and from the text structure only paragraphs are marked by a newline.
-                    NB: This is considered an experimental feature!
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
                 </p>
-                <p>More information for developers can be found in our <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
             </div>
             
         </div>
@@ -291,137 +321,141 @@
 </div>
                     <div></div>
                     <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000117" /> <span title="Beethoven, Ludwig van">Beethoven, Ludwig van</span> 
+                                    <input type="checkbox" name="options" value="A001295" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002511" /> <span title="Begnis, Giuseppe de">Begnis, Giuseppe de</span> 
+                                    <input type="checkbox" name="options" value="A001862" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003788" /> <span title="Begrez, Pierre">Begrez, Pierre</span> 
+                                    <input type="checkbox" name="options" value="A000392" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002552" /> <span title="Bonini, Madame">Bonini, Madame</span> 
+                                    <input type="checkbox" name="options" value="A000568" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000273" /> <span title="Caradori-Allan, Rosalbina">Caradori-Allan, Rosalbina</span> 
+                                    <input type="checkbox" name="options" value="A001593" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000287" /> <span title="Cherubini, Luigi">Cherubini, Luigi</span> 
+                                    <input type="checkbox" name="options" value="A001353" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000295" /> <span title="Cimarosa, Domenico">Cimarosa, Domenico</span> 
+                                    <input type="checkbox" name="options" value="A000273" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009452" /> <span title="Cramer, Franz">Cramer, Franz</span> 
+                                    <input type="checkbox" name="options" value="A001474" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000392" /> <span title="Dizi, François Joseph">Dizi, François Joseph</span> 
+                                    <input type="checkbox" name="options" value="A000777" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000401" /> <span title="Dragonetti, Domenico">Dragonetti, Domenico</span> 
+                                    <input type="checkbox" name="options" value="A003480" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000486" /> <span title="Fioravanti, Valentino">Fioravanti, Valentino</span> 
+                                    <input type="checkbox" name="options" value="A001646" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000537" /> <span title="Friedrich August I., König von Sachsen">Friedrich August I., König von…</span> 
+                                    <input type="checkbox" name="options" value="A000117" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000568" /> <span title="Fürstenau, Anton Bernhard">Fürstenau, Anton Bernhard</span> 
+                                    <input type="checkbox" name="options" value="A009575" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000700" /> <span title="Guglielmi, Pietro Alessandro">Guglielmi, Pietro Alessandro</span> 
+                                    <input type="checkbox" name="options" value="A007498" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000732" /> <span title="Händel, Georg Friedrich">Händel, Georg Friedrich</span> 
+                                    <input type="checkbox" name="options" value="A001362" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000777" /> <span title="Haydn, Joseph">Haydn, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A001001" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001001" /> <span title="Kiesewetter, Christoph Gottfried">Kiesewetter, Christoph Gottfri…</span> 
+                                    <input type="checkbox" name="options" value="A000732" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A007498" /> <span title="Lindley, Robert">Lindley, Robert</span> 
+                                    <input type="checkbox" name="options" value="A001446" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008625" /> <span title="Loder, John David">Loder, John David</span> 
+                                    <input type="checkbox" name="options" value="A002511" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001295" /> <span title="Mayseder, Josef">Mayseder, Josef</span> 
+                                    <input type="checkbox" name="options" value="A002094" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009575" /> <span title="Mori, Nicolas">Mori, Nicolas</span> 
+                                    <input type="checkbox" name="options" value="A001616" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001348" /> <span title="Morlacchi, Francesco">Morlacchi, Francesco</span> 
+                                    <input type="checkbox" name="options" value="A008336" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001353" /> <span title="Moscheles, Ignaz">Moscheles, Ignaz</span> 
+                                    <input type="checkbox" name="options" value="A008625" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001362" /> <span title="Mozart, Wolfgang Amadeus">Mozart, Wolfgang Amadeus</span> 
+                                    <input type="checkbox" name="options" value="A001835" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001438" /> <span title="Paisiello, Giovanni">Paisiello, Giovanni</span> 
+                                    <input type="checkbox" name="options" value="A001448" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001446" /> <span title="Pasta, Giuditta">Pasta, Giuditta</span> 
+                                    <input type="checkbox" name="options" value="A000287" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001448" /> <span title="Paton, Mary Ann">Paton, Mary Ann</span> 
+                                    <input type="checkbox" name="options" value="A009452" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002259" /> <span title="Pavesi, Stefano">Pavesi, Stefano</span> 
+                                    <input type="checkbox" name="options" value="A000295" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001474" /> <span title="Phillips, Henry">Phillips, Henry</span> 
+                                    <input type="checkbox" name="options" value="A001438" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001521" /> <span title="Puzzi, Giovanni">Puzzi, Giovanni</span> 
+                                    <input type="checkbox" name="options" value="A000700" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001593" /> <span title="Rode, Pierre">Rode, Pierre</span> 
+                                    <input type="checkbox" name="options" value="A002008" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002552" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A003788" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001521" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000486" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002259" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000401" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001348" /> <span title=""></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A000537" /> <span title="Friedrich August I., König von Sachsen">Friedrich August I., König von Sachsen</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001599" /> <span title="Romberg, Andreas">Romberg, Andreas</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001616" /> <span title="Rossini, Gioachino">Rossini, Gioachino</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001646" /> <span title="Sapio, Lewis">Sapio, Lewis</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A003480" /> <span title="Schuncke, Ludwig">Schuncke, Ludwig</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001835" /> <span title="Smart, Sir George">Smart, Sir George</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001862" /> <span title="Spohr, Louis">Spohr, Louis</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002008" /> <span title="Velluti, Giovanni">Velluti, Giovanni</span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002094" /> <span title="Weigl, Joseph">Weigl, Joseph</span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A008336" /> <span title="Zingarelli, Niccolò Antonio">Zingarelli, Niccolò Antonio</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
                             <div>
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a></h2>
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
+                        </h2>
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020062" /> <span title="&#34;Misera me&#34; / &#34;Ho spavento d'ogn'aura&#34;">"Misera me" / "Ho spavento d'o…</span> 
+                                    <input type="checkbox" name="options" value="A020606" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020964" /> <span title="Christus am Ölberge">Christus am Ölberge</span> 
+                                    <input type="checkbox" name="options" value="A020040" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020040" /> <span title="Der Freischütz, romantische Oper in drei Aufzügen">Der Freischütz, romantische Op…</span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020606" /> <span title="Die Schöpfung">Die Schöpfung</span> 
+                                    <input type="checkbox" name="options" value="A020058" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Euryanthe, große romantische Oper in drei Aufzügen">Euryanthe, große romantische O…</span> 
+                                    <input type="checkbox" name="options" value="A020484" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020469" /> <span title="Faust">Faust</span> 
+                                    <input type="checkbox" name="options" value="A020564" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020409" /> <span title="Giulietta e Romeo">Giulietta e Romeo</span> 
+                                    <input type="checkbox" name="options" value="A020045" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020484" /> <span title="Il dissoluto punito ossia Il Don Giovanni">Il dissoluto punito ossia Il D…</span> 
+                                    <input type="checkbox" name="options" value="A020409" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020251" /> <span title="Jubel-Ouvertüre">Jubel-Ouvertüre</span> 
+                                    <input type="checkbox" name="options" value="A020207" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020534" /> <span title="L'inganno felice">L'inganno felice</span> 
+                                    <input type="checkbox" name="options" value="A020469" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020401" /> <span title="La donna del lago">La donna del lago</span> 
+                                    <input type="checkbox" name="options" value="A020964" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020564" /> <span title="La gazza ladra">La gazza ladra</span> 
+                                    <input type="checkbox" name="options" value="A020551" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020567" /> <span title="Le nozze di Figaro">Le nozze di Figaro</span> 
+                                    <input type="checkbox" name="options" value="A020401" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020551" /> <span title="Lodoïska">Lodoïska</span> 
+                                    <input type="checkbox" name="options" value="A020251" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020045" /> <span title="Oberon, or the Elf King's Oath, a romantic and Fairy Opera in three acts">Oberon, or the Elf King's Oath…</span> 
+                                    <input type="checkbox" name="options" value="A020062" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020207" /> <span title="Ouvertüre zum Beherrscher der Geister (Konzertfassung)">Ouvertüre zum Beherrscher der …</span> 
+                                    <input type="checkbox" name="options" value="A020534" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020058" /> <span title="Rezitativ und Rondo &#34;Il momento s'avvicina&#34; / &#34;La dolce speranza&#34;">Rezitativ und Rondo "Il moment…</span> 
+                                    <input type="checkbox" name="options" value="A020567" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A021222" /> <span title="Septett für Klarinette, Horn, Fagott, Violine, Viola, Violoncello und Kontrabass Es-Dur">Septett für Klarinette, Horn, …</span> 
+                                    <input type="checkbox" name="options" value="A021222" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020568" /> <span title="Tebaldo e Isolina">Tebaldo e Isolina</span> 
+                                    <input type="checkbox" name="options" value="A020568" /> <span title=""></span> 
                                 </label>
                             </div>
                         </div>
@@ -435,7 +469,7 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <p><span> […]</span></p>
-                                        <p>But to return to the concerts of the Philharmonic. Of the selections the virtuoso will be enabled to judge, as the bills are appended at foot.* Upon the whole there has been more novelty<span class="tei_pb" title="Seitenumbruch zu S. 161"> | </span> than usual, and scarcely less excellence in the instrumental compositions. <a class="preview persons A001599" href="/exist/apps/WeGA-WebApp/de/A001599.html">Romberg</a>, <a class="preview persons A001295" href="/exist/apps/WeGA-WebApp/de/A001295.html">Mayseder</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, <a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a>, <span class="67114117115115101108108">Crussell</span>, <span class="75114101117116122101114">Kreut<span class="tei_pb" title="Seitenumbruch zu S. 162">|</span>zer</span>, <a class="preview persons A000392" href="/exist/apps/WeGA-WebApp/de/A000392.html">Dizi</a>, <a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Fürstenau</a>, <a class="preview persons A001593" href="/exist/apps/WeGA-WebApp/de/A001593.html">Rode</a>, <span class="681013266101114105111116">De Beriot</span>, <a class="preview persons A001353" href="/exist/apps/WeGA-WebApp/de/A001353.html">Moscheles</a>, <span class="7810599104111108115111110">Nicholson</span>, and <span class="80111116116101114">Potter</span>, are the authors who have contributed to diversify and<span class="tei_pb" title="Seitenumbruch zu S. 163"> | </span> exalt these performances. Nor ought it to escape observation that most of them are existing writers, and residing at this moment in <span class="tei_country">England</span>–we point out the fact in order to meet the charge that living merit is neglected. <span> […]</span></p>
+                                        <p>But to return to the concerts of the Philharmonic. Of the selections the virtuoso will be enabled to judge, as the bills are appended at foot.* Upon the whole there has been more novelty<span class="tei_pb" title="Seitenumbruch zu S. 161"> | </span> than usual, and scarcely less excellence in the instrumental compositions. <a class="preview persons A001599" href="/exist/apps/WeGA-WebApp/de/A001599.html">Romberg</a>, <a class="preview persons A001295" href="">Mayseder</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, <a class="preview persons A001862" href="">Spohr</a>, <span class="67114117115115101108108">Crussell</span>, <span class="75114101117116122101114">Kreut<span class="tei_pb" title="Seitenumbruch zu S. 162">|</span>zer</span>, <a class="preview persons A000392" href="">Dizi</a>, <a class="preview persons A000568" href="">Fürstenau</a>, <a class="preview persons A001593" href="">Rode</a>, <span class="681013266101114105111116">De Beriot</span>, <a class="preview persons A001353" href="">Moscheles</a>, <span class="7810599104111108115111110">Nicholson</span>, and <span class="80111116116101114">Potter</span>, are the authors who have contributed to diversify and<span class="tei_pb" title="Seitenumbruch zu S. 163"> | </span> exalt these performances. Nor ought it to escape observation that most of them are existing writers, and residing at this moment in <span class="tei_country">England</span>–we point out the fact in order to meet the charge that living merit is neglected. <span> […]</span></p>
                                     </div>
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">* FIRST CONCERT, Monday, <span class="tei_date">February 27, 1826</span>.</span></h2>
@@ -472,19 +506,19 @@
                                                         <td><span class="tei_hi_italic"><a class="preview persons A001599" href="/exist/apps/WeGA-WebApp/de/A001599.html">A. Romberg</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duet, "<span class="7111497991011021171083299111110115111114116">Graceful consort</span>," <a class="preview persons A000273" href="/exist/apps/WeGA-WebApp/de/A000273.html">Madame Caradori Allan</a> and <a class="preview persons A001474" href="/exist/apps/WeGA-WebApp/de/A001474.html">Mr. Phillips</a>. (<span class="tei_hi_italic"><span class="preview works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">The Creation</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a></span></td>
+                                                        <td>Duet, "<span class="7111497991011021171083299111110115111114116">Graceful consort</span>," <a class="preview persons A000273" href="">Madame Caradori Allan</a> and <a class="preview persons A001474" href="">Mr. Phillips</a>. (<span class="tei_hi_italic"><a class="preview works A020606" href="">The Creation</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="">Haydn</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Concerto, Piano-forte, <a class="preview persons A003480" href="/exist/apps/WeGA-WebApp/de/A003480.html">Mr. Schuncke</a></td>
+                                                        <td>Concerto, Piano-forte, <a class="preview persons A003480" href="">Mr. Schuncke</a></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Scene, from <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischutz</span>, <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Mr. Sapio</a></td>
+                                                        <td>Scene, from <a class="preview works A020040" href="">Der Freischutz</a>, <a class="preview persons A001646" href="">Mr. Sapio</a></td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. Von Weber</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Overture, <span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></td>
+                                                        <td>Overture, <a class="preview works A020043" href="">Euryanthe</a></td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. Von Weber</a></span></td>
                                                     </tr>
                                                     <tr>
@@ -493,26 +527,26 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="8310511010211111010597321051103265">Sinfonia in A</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span></td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Scene, <a class="preview persons A000273" href="/exist/apps/WeGA-WebApp/de/A000273.html">Madame Caradori Allan</a>, "<span class="preview works A020058" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020058.html">La dolce speranza</span>"</td>
+                                                        <td>Scene, <a class="preview persons A000273" href="">Madame Caradori Allan</a>, "<a class="preview works A020058" href="">La dolce speranza</a>"</td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. Von Weber</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Quartetto, two Violins, Viola, and Violoncello, Messrs. <a class="preview persons A009575" href="/exist/apps/WeGA-WebApp/de/A009575.html">Mori</a>, <span class="79117114121">Oury</span>, <span class="7711111497108116">Moralt</span>, and <a class="preview persons A007498" href="/exist/apps/WeGA-WebApp/de/A007498.html">Lindley</a></td>
-                                                        <td><a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a></td>
+                                                        <td>Quartetto, two Violins, Viola, and Violoncello, Messrs. <a class="preview persons A009575" href="">Mori</a>, <span class="79117114121">Oury</span>, <span class="7711111497108116">Moralt</span>, and <a class="preview persons A007498" href="">Lindley</a></td>
+                                                        <td><a class="preview persons A000777" href="">Haydn</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, "<span class="6510432116979910544321051101031051171151161113299111114101">Ah taci, ingiusto core</span>," <a class="preview persons A000273" href="/exist/apps/WeGA-WebApp/de/A000273.html">Madame Caradori Allan</a>, <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Mr. Sapio</a>, and <a class="preview persons A001474" href="/exist/apps/WeGA-WebApp/de/A001474.html">Mr. Phillips</a> (<span class="tei_hi_italic"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Il Don Giovanni</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span></td>
+                                                        <td>Terzetto, "<span class="6510432116979910544321051101031051171151161113299111114101">Ah taci, ingiusto core</span>," <a class="preview persons A000273" href="">Madame Caradori Allan</a>, <a class="preview persons A001646" href="">Mr. Sapio</a>, and <a class="preview persons A001474" href="">Mr. Phillips</a> (<span class="tei_hi_italic"><a class="preview works A020484" href="">Il Don Giovanni</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Overture, <span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischutz</span></td>
+                                                        <td>Overture, <a class="preview works A020040" href="">Der Freischutz</a></td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. Von Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A001001" href="/exist/apps/WeGA-WebApp/de/A001001.html">Mr. Kiesewetter</a>–Conductor, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Mr. Weber</a>.</span></td>
+                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A001001" href="">Mr. Kiesewetter</a>–Conductor, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Mr. Weber</a>.</span></td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
@@ -533,22 +567,22 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Sinfonia</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000732" href="/exist/apps/WeGA-WebApp/de/A000732.html">Handel</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000732" href="">Handel</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Quartetto, <a class="preview persons A001446" href="/exist/apps/WeGA-WebApp/de/A001446.html">Madame Pasta</a>, <span class="831051031101111143267117114105111110105">Signor Curioni</span>, <a class="preview persons A001474" href="/exist/apps/WeGA-WebApp/de/A001474.html">Mr. Phillips</a>, and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">Signor De Begnis</a></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A002094" href="/exist/apps/WeGA-WebApp/de/A002094.html">Weigl</a></span>.<span class="tei_pb" title="Seitenumbruch zu S. 162"> | </span></td>
+                                                        <td>Quartetto, <a class="preview persons A001446" href="">Madame Pasta</a>, <span class="831051031101111143267117114105111110105">Signor Curioni</span>, <a class="preview persons A001474" href="">Mr. Phillips</a>, and <a class="preview persons A002511" href="">Signor De Begnis</a></td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A002094" href="">Weigl</a></span>.<span class="tei_pb" title="Seitenumbruch zu S. 162"> | </span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Concerto Flute, <a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Mr. Fürstenau</a> (First Flute to the <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">King of Saxony</a>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">Fürstenau</a></span>.</td>
+                                                        <td>Concerto Flute, <a class="preview persons A000568" href="">Mr. Fürstenau</a> (First Flute to the <a class="preview persons A000537" href="/exist/apps/WeGA-WebApp/de/A000537.html">King of Saxony</a>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000568" href="">Fürstenau</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, "<span class="793211011710910132981011101011021059911133">O nume benefico!</span>" <a class="preview persons A001446" href="/exist/apps/WeGA-WebApp/de/A001446.html">Madame Pasta</a>, <a class="preview persons A001474" href="/exist/apps/WeGA-WebApp/de/A001474.html">Mr. Phillips</a>, and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">Signor De Begnis</a> (<span class="tei_hi_italic"><span class="preview works A020564" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020564.html">La Gazza Ladra</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Terzetto, "<span class="793211011710910132981011101011021059911133">O nume benefico!</span>" <a class="preview persons A001446" href="">Madame Pasta</a>, <a class="preview persons A001474" href="">Mr. Phillips</a>, and <a class="preview persons A002511" href="">Signor De Begnis</a> (<span class="tei_hi_italic"><a class="preview works A020564" href="">La Gazza Ladra</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Overture, (<span class="tei_hi_italic"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span>)</td>
+                                                        <td>Overture, (<span class="tei_hi_italic"><a class="preview works A020045" href="">Oberon</a></span>)</td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
@@ -557,26 +591,26 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="83105110102111110105973210511032673277105110111114">Sinfonia in C Minor</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Recit. ed Aria, <a class="preview persons A001446" href="/exist/apps/WeGA-WebApp/de/A001446.html">Madame Pasta</a>, "<span class="791099811497329710011111497116974432971151121011161169733">Ombra adorata, aspetta!</span>" (<span class="tei_hi_italic"><span class="preview works A020409" data-ref="/exist/apps/WeGA-WebApp/de/A008336/Werke/A020409.html">Romeo e Giulietta</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A008336" href="/exist/apps/WeGA-WebApp/de/A008336.html">Zingarelli</a></span>.</td>
+                                                        <td>Recit. ed Aria, <a class="preview persons A001446" href="">Madame Pasta</a>, "<span class="791099811497329710011111497116974432971151121011161169733">Ombra adorata, aspetta!</span>" (<span class="tei_hi_italic"><a class="preview works A020409" href="">Romeo e Giulietta</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A008336" href="">Zingarelli</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Concerto Violin, <span class="771144632681013266101114105111116">Mr. De Beriot</span> (Violin de la Chambre de S. M. le Roi de France)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001593" href="/exist/apps/WeGA-WebApp/de/A001593.html">Rode</a> &amp; <span class="681013266101114105111116">De Beriot</span></span></td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001593" href="">Rode</a> &amp; <span class="681013266101114105111116">De Beriot</span></span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duetto, "<span class="79328311697116110973210310111011610510810511511510510997">O Statna gentilissima</span>," <span class="831051031101111143267117114105111110105">Signor Curioni</span> and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">Signor De Begnis</a> (<span class="tei_hi_italic"><span class="preview works A020484" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020484.html">Il Don Giovanni</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>.</td>
+                                                        <td>Duetto, "<span class="79328311697116110973210310111011610510810511511510510997">O Statna gentilissima</span>," <span class="831051031101111143267117114105111110105">Signor Curioni</span> and <a class="preview persons A002511" href="">Signor De Begnis</a> (<span class="tei_hi_italic"><a class="preview works A020484" href="">Il Don Giovanni</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="79118101114116117114101321051103268">Overture in D</span>.</td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A001599" href="/exist/apps/WeGA-WebApp/de/A001599.html">A. Romberg</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A008625" href="/exist/apps/WeGA-WebApp/de/A008625.html">Mr. Loder</a>.–Conductor, <a class="preview persons A001835" href="/exist/apps/WeGA-WebApp/de/A001835.html">Sir G. Smart</a>.</span></td>
+                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A008625" href="">Mr. Loder</a>.–Conductor, <a class="preview persons A001835" href="">Sir G. Smart</a>.</span></td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
@@ -594,22 +628,22 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="8310511010211111010597321051103268">Sinfonia in D</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Song, <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Mr. Sapio</a>, "<span class="73110321109711610511810132119111114116104">In native worth</span>," (<span class="tei_hi_italic"><span class="preview works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">The Creation</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a></span>.</td>
+                                                        <td>Song, <a class="preview persons A001646" href="">Mr. Sapio</a>, "<span class="73110321109711610511810132119111114116104">In native worth</span>," (<span class="tei_hi_italic"><a class="preview works A020606" href="">The Creation</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="">Haydn</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Grand Concerto (MS.) Harp, <a class="preview persons A000392" href="/exist/apps/WeGA-WebApp/de/A000392.html">Mr. Dizi</a></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000392" href="/exist/apps/WeGA-WebApp/de/A000392.html">Dizi</a></span>.</td>
+                                                        <td>Grand Concerto (MS.) Harp, <a class="preview persons A000392" href="">Mr. Dizi</a></td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000392" href="">Dizi</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duetto, <a class="preview persons A001448" href="/exist/apps/WeGA-WebApp/de/A001448.html">Miss Paton</a> and <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Mr. Sapio</a>, "<span class="6510911111444321121111151151011101161013211011110910133">Amor, possente nome!</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Duetto, <a class="preview persons A001448" href="">Miss Paton</a> and <a class="preview persons A001646" href="">Mr. Sapio</a>, "<span class="6510911111444321121111151151011101161013211011110910133">Amor, possente nome!</span>"</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Overture, (<span class="tei_hi_italic">Der <span class="tei_choice"><span class="tei_corr">Beherrscher</span><a class="noteMarker" id="ref-d10e501" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e501">‡</a></span> der Geister</span>)</span></td>
+                                                        <td><span class="preview works A020207" data-ref="">Overture, (<span class="tei_hi_italic">Der <span class="tei_choice"><span class="tei_corr">Beherrscher</span><a class="noteMarker" id="ref-d10e501" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e501">‡</a></span> der Geister</span>)</span></td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
@@ -618,26 +652,26 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="83105110102111110105973210511032693210210897116">Sinfonia in E flat</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Scena ed Aria, <a class="preview persons A001448" href="/exist/apps/WeGA-WebApp/de/A001448.html">Miss Paton</a>, "<span class="8310544327311132115101110116111">Si, Io sento</span>," (<span class="tei_hi_italic"><span class="preview works A020469" data-ref="/exist/apps/WeGA-WebApp/de/A001862/Werke/A020469.html">Faust</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span>.</td>
+                                                        <td>Scena ed Aria, <a class="preview persons A001448" href="">Miss Paton</a>, "<span class="8310544327311132115101110116111">Si, Io sento</span>," (<span class="tei_hi_italic"><a class="preview works A020469" href="">Faust</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001862" href="">Spohr</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Quartetto, two Violins, Viola, and Violoncello, Messrs. <span class="66101108108111110">Bellon</span>, <span class="79117114121">Oury</span>, <span class="7711111497108116">Moralt</span>, and <a class="preview persons A007498" href="/exist/apps/WeGA-WebApp/de/A007498.html">Lindley</a></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a></span>.</td>
+                                                        <td>Quartetto, two Violins, Viola, and Violoncello, Messrs. <span class="66101108108111110">Bellon</span>, <span class="79117114121">Oury</span>, <span class="7711111497108116">Moralt</span>, and <a class="preview persons A007498" href="">Lindley</a></td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="">Haydn</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Trio, <a class="preview persons A001448" href="/exist/apps/WeGA-WebApp/de/A001448.html">Miss Paton</a>, <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Mr. Sapio</a>, and <a class="preview persons A001474" href="/exist/apps/WeGA-WebApp/de/A001474.html">Mr. Phillips</a>, "<span class="7712132115111117108321191051161043211497103101">My soul with rage</span>" (<span class="tei_hi_italic"><span class="preview works A020964" data-ref="/exist/apps/WeGA-WebApp/de/A000117/Werke/A020964.html">Mount of Olives</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>.</td>
+                                                        <td>Trio, <a class="preview persons A001448" href="">Miss Paton</a>, <a class="preview persons A001646" href="">Mr. Sapio</a>, and <a class="preview persons A001474" href="">Mr. Phillips</a>, "<span class="7712132115111117108321191051161043211497103101">My soul with rage</span>" (<span class="tei_hi_italic"><a class="preview works A020964" href="">Mount of Olives</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Overture, (<span class="tei_hi_italic"><span class="preview works A020551" data-ref="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020551.html">Lodoiska</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000287" href="/exist/apps/WeGA-WebApp/de/A000287.html">Cherubini</a></span>.</td>
+                                                        <td>Overture, (<span class="tei_hi_italic"><a class="preview works A020551" href="">Lodoiska</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000287" href="">Cherubini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A009452" href="/exist/apps/WeGA-WebApp/de/A009452.html">Mr. F. Cramer</a>.–Conductor, <a class="preview persons A009452" href="/exist/apps/WeGA-WebApp/de/A009452.html">Mr. Cramer</a>.</span></td>
+                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A009452" href="">Mr. F. Cramer</a>.–Conductor, <a class="preview persons A009452" href="">Mr. Cramer</a>.</span></td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
@@ -658,20 +692,20 @@
                                                         <td><span class="tei_hi_italic"><span class="80111116116101114">Potter</span></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duetto, <a class="preview persons A000273" href="/exist/apps/WeGA-WebApp/de/A000273.html">Madame Caradori Allan</a> and <span class="831051031101111143267117114105111110105">Signor Curioni</span>, "<span class="831011053210310597328311211111597">Sei gia Sposa</span>," (<span class="tei_hi_italic"><span class="preview works A020401" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020401.html">La Donna del Lago</span></span>).</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Duetto, <a class="preview persons A000273" href="">Madame Caradori Allan</a> and <span class="831051031101111143267117114105111110105">Signor Curioni</span>, "<span class="831011053210310597328311211111597">Sei gia Sposa</span>," (<span class="tei_hi_italic"><a class="preview works A020401" href="">La Donna del Lago</a></span>).</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="67111110991011141161013280105971101114510211111411610144327132109105110111114">Concerte Piano-forte, G minor</span>, <a class="preview persons A001353" href="/exist/apps/WeGA-WebApp/de/A001353.html">Mr. Moscheles</a>.</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001353" href="/exist/apps/WeGA-WebApp/de/A001353.html">Moscheles</a></span>.</td>
+                                                        <td><span class="67111110991011141161013280105971101114510211111411610144327132109105110111114">Concerte Piano-forte, G minor</span>, <a class="preview persons A001353" href="">Mr. Moscheles</a>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001353" href="">Moscheles</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, <a class="preview persons A000273" href="/exist/apps/WeGA-WebApp/de/A000273.html">Madame Caradori Allan</a>, <span class="831051031101111143267117114105111110105">Signor Curioni</span>, and <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, "<span class="77971101001051109732971099798105108101">Mandina amabile</span>."</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>.</td>
+                                                        <td>Terzetto, <a class="preview persons A000273" href="">Madame Caradori Allan</a>, <span class="831051031101111143267117114105111110105">Signor Curioni</span>, and <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, "<span class="77971101001051109732971099798105108101">Mandina amabile</span>."</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Overture, <span class="tei_hi_italic"><span class="68101114326610111410345103101105115116">Der Berg-geist</span></span>.</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001862" href="/exist/apps/WeGA-WebApp/de/A001862.html">Spohr</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001862" href="">Spohr</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Act II.</span></td>
@@ -679,22 +713,22 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="8310511010211111010597321051103270">Sinfonia in F</span>.</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Recit. and Aria, <a class="preview persons A000273" href="/exist/apps/WeGA-WebApp/de/A000273.html">Madame Caradori Allan</a>, "<span class="6810110432809711410897116101">Deh Parlate</span>," (<span class="tei_hi_italic"><span class="731083283979911410510210599105111321003932659811497109111">Il Sacrificio d’ Abramo</span></span>.)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000295" href="/exist/apps/WeGA-WebApp/de/A000295.html">Cimarosa</a></span>.</td>
+                                                        <td>Recit. and Aria, <a class="preview persons A000273" href="">Madame Caradori Allan</a>, "<span class="6810110432809711410897116101">Deh Parlate</span>," (<span class="tei_hi_italic"><span class="731083283979911410510210599105111321003932659811497109111">Il Sacrificio d’ Abramo</span></span>.)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000295" href="">Cimarosa</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Quintetto, two Violins, two Violas, and Violoncello, Messrs. <a class="preview persons A001001" href="/exist/apps/WeGA-WebApp/de/A001001.html">Kiesewetter</a>, <span class="79117114121">Oury</span>, <span class="7711111497108116">Moralt</span>, <span class="65115104108101121">Ashley</span>, and <a class="preview persons A007498" href="/exist/apps/WeGA-WebApp/de/A007498.html">Lindley</a>.</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>.<span class="tei_pb" title="Seitenumbruch zu S. 163"> | </span></td>
+                                                        <td>Quintetto, two Violins, two Violas, and Violoncello, Messrs. <a class="preview persons A001001" href="">Kiesewetter</a>, <span class="79117114121">Oury</span>, <span class="7711111497108116">Moralt</span>, <span class="65115104108101121">Ashley</span>, and <a class="preview persons A007498" href="">Lindley</a>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span>.<span class="tei_pb" title="Seitenumbruch zu S. 163"> | </span></td>
                                                     </tr>
                                                     <tr>
                                                         <td>Duetto, <span class="831051031101111143267117114105111110105">Signor Curioni</span> and <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, "<span class="831111103210511132100101115116111">Son io desto</span>," (<span class="tei_hi_italic"><span class="7810511097">Nina</span></span>.)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001438" href="/exist/apps/WeGA-WebApp/de/A001438.html">Paisiello</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001438" href="">Paisiello</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="preview works A020251" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020251.html">Overture, <span class="tei_hi_italic">Jubilee</span></span>.</td>
+                                                        <td><a class="preview works A020251" href="">Overture, <span class="tei_hi_italic">Jubilee</span></a>.</td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. Von Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
@@ -708,10 +742,10 @@
                                     </div>
                                     <div class="docPart">
                                         <p><span> […]</span></p>
-                                        <p>The third night introduced <a class="preview persons A003480" href="/exist/apps/WeGA-WebApp/de/A003480.html">Mr. Schuncke</a>, a German pianist. His execution was considered very neat and rapid. At this concert <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. Von Weber</a><a href="#footnote01" id="backref-footnote01" class="fn-ref">*</a>  conducted. <span class="preview works A020040 A020043 A020058" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html /exist/apps/WeGA-WebApp/de/A002068/Werke/A020058.html">Four of his own compositions</span> were performed–two vocal and two instrumental–the overtures to <span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span> and <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischutz</span></span>.</p>
+                                        <p>The third night introduced <a class="preview persons A003480" href="">Mr. Schuncke</a>, a German pianist. His execution was considered very neat and rapid. At this concert <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. Von Weber</a><a href="#footnote01" id="backref-footnote01" class="fn-ref">*</a>  conducted. <span class="preview works A020040 A020043 A020058" data-ref="  ">Four of his own compositions</span> were performed–two vocal and two instrumental–the overtures to <span class="tei_hi_italic"><a class="preview works A020043" href="">Euryanthe</a></span> and <span class="tei_hi_italic"><a class="preview works A020040" href="">Der Freischutz</a></span>.</p>
                                         <p><span> […]</span><span class="tei_pb" title="Seitenumbruch zu S. 165"> | </span></p>
                                         <p><span> […]</span></p>
-                                        <p>The fifth performance was distinguished by concertos from <a class="preview persons A000568" href="/exist/apps/WeGA-WebApp/de/A000568.html">M. Fürstenau</a> and <span class="774632681013266101114105111116">M. De Beriot</span>. Of the former artist we have spoken in our account of the oratorios, where he first appeared. Indisposition diminished his powers on this occasion. <span class="774632681013266101114105111116">M. De Beriot</span> has placed himself, <span class="tei_hi_italic">per saltum</span>, by the side of the most eminent violinists ever heard in this country. His taste is as elegant and delicate as his execution is perfect. His tone is round, and smooth, and sweet, and brilliant. His tune accuracy itself. His manner of bowing that of the best schools; and the hearer is never alarmed by the fear of failure, while he is captivated by the exquisite grace and finish of the entire performance. All we have heard of this great player since serves only to confirm the impression we first received from his concerto at the Philharmonic. The best judges appear to concur in opinion respecting him, and to place him amongst the very finest players <span class="tei_region">Europe</span> has produced.</p>
+                                        <p>The fifth performance was distinguished by concertos from <a class="preview persons A000568" href="">M. Fürstenau</a> and <span class="774632681013266101114105111116">M. De Beriot</span>. Of the former artist we have spoken in our account of the oratorios, where he first appeared. Indisposition diminished his powers on this occasion. <span class="774632681013266101114105111116">M. De Beriot</span> has placed himself, <span class="tei_hi_italic">per saltum</span>, by the side of the most eminent violinists ever heard in this country. His taste is as elegant and delicate as his execution is perfect. His tone is round, and smooth, and sweet, and brilliant. His tune accuracy itself. His manner of bowing that of the best schools; and the hearer is never alarmed by the fear of failure, while he is captivated by the exquisite grace and finish of the entire performance. All we have heard of this great player since serves only to confirm the impression we first received from his concerto at the Philharmonic. The best judges appear to concur in opinion respecting him, and to place him amongst the very finest players <span class="tei_region">Europe</span> has produced.</p>
                                         <p><span> […]</span> <span class="tei_pb" title="Seitenumbruch zu S. 166"> | </span></p>
                                         <p><span> […]</span></p>
                                         <p>We are now to speak of a series of subscription concerts, to aid the funds of the Royal Academy of Music, set on foot by the committee of that institution, and governed by the noblemen and gentlemen composing that body, who are as here enumerated. <span> […]</span> <span class="tei_pb" title="Seitenumbruch zu S. 167"> | </span> <span> […]</span></p>
@@ -745,14 +779,14 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="83121109112104111110121321051103267">Symphony in C</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, <span class="83105103110111114326797114105111110105">Signor Carioni</span>, <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">Signor De Begnis</a>, "<span class="71105117114111329710810897321161011141149732971083299105101108111">Giuro alla terra al cielo</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000700" href="/exist/apps/WeGA-WebApp/de/A000700.html">Guglielmi</a></span>.</td>
+                                                        <td>Terzetto, <span class="83105103110111114326797114105111110105">Signor Carioni</span>, <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, and <a class="preview persons A002511" href="">Signor De Begnis</a>, "<span class="71105117114111329710810897321161011141149732971083299105101108111">Giuro alla terra al cielo</span>"</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000700" href="">Guglielmi</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Scena e Cavatina, <a class="preview persons A002008" href="/exist/apps/WeGA-WebApp/de/A002008.html">Signor Velluti</a>, "<span class="651043299104101321121011143210910132110111110321183932232">Ah che per me non v’ è</span>" (<span class="tei_hi_italic"><span class="71105110101118114973210010532839911112210597">Ginevra di Scozia</span></span>)</td>
+                                                        <td>Scena e Cavatina, <a class="preview persons A002008" href="">Signor Velluti</a>, "<span class="651043299104101321121011143210910132110111110321183932232">Ah che per me non v’ è</span>" (<span class="tei_hi_italic"><span class="71105110101118114973210010532839911112210597">Ginevra di Scozia</span></span>)</td>
                                                         <td><span class="tei_hi_italic"><span class="7797121101114">Mayer</span></span>.</td>
                                                     </tr>
                                                     <tr>
@@ -760,11 +794,11 @@
                                                         <td><span class="tei_hi_italic"><span class="75114101117116122101114">Kreutzer</span></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duetto, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Madame Bonini</a> and <a class="preview persons A002008" href="/exist/apps/WeGA-WebApp/de/A002008.html">Signor Velluti</a>, "<span class="831013211611732109393297109105">Se tu m’ ami</span>" (<span class="tei_hi_italic"><span class="65117114101108105971101113210511032809710810910511497">Aureliano in Palmira</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Duetto, <a class="preview persons A002552" href="">Madame Bonini</a> and <a class="preview persons A002008" href="">Signor Velluti</a>, "<span class="831013211611732109393297109105">Se tu m’ ami</span>" (<span class="tei_hi_italic"><span class="65117114101108105971101113210511032809710810910511497">Aureliano in Palmira</span></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Finale, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Mad. Bonini</a>, <a class="preview persons A001448" href="/exist/apps/WeGA-WebApp/de/A001448.html">Miss Paton</a>, <span class="831051031101111143267117114105111110105">Signor Curioni</span>, <a class="preview persons A003788" href="/exist/apps/WeGA-WebApp/de/A003788.html">Signor Begrez</a>, and <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, "<span class="6811110899101321021051031081051171111083210039851149711010597">Dolce figliuol d’Urania</span>"</td>
+                                                        <td>Finale, <a class="preview persons A002552" href="">Mad. Bonini</a>, <a class="preview persons A001448" href="">Miss Paton</a>, <span class="831051031101111143267117114105111110105">Signor Curioni</span>, <a class="preview persons A003788" href="">Signor Begrez</a>, and <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, "<span class="6811110899101321021051031081051171111083210039851149711010597">Dolce figliuol d’Urania</span>"</td>
                                                         <td><span class="tei_hi_italic"><span class="7797121101114">Mayer</span></span>.<span class="tei_pb" title="Seitenumbruch zu S. 169"> | </span></td>
                                                     </tr>
                                                     <tr>
@@ -772,31 +806,31 @@
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="preview works A020207" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020207.html">Overture (<span class="tei_hi_italic">Der Beherrscher der Geister</span>)</span></td>
+                                                        <td><a class="preview works A020207" href="">Overture (<span class="tei_hi_italic">Der Beherrscher der Geister</span>)</a></td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Aria, <a class="preview persons A001448" href="/exist/apps/WeGA-WebApp/de/A001448.html">Miss Paton</a>, (<span class="tei_hi_italic"><span class="preview works A020062" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020062.html">Atalia</span></span>)</td>
+                                                        <td>Aria, <a class="preview persons A001448" href="">Miss Paton</a>, (<span class="tei_hi_italic"><a class="preview works A020062" href="">Atalia</a></span>)</td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Concerto, French Horn, <a class="preview persons A001521" href="/exist/apps/WeGA-WebApp/de/A001521.html">Signor Puzzi</a></td>
+                                                        <td>Concerto, French Horn, <a class="preview persons A001521" href="">Signor Puzzi</a></td>
                                                         <td><span class="tei_hi_italic"><span class="66101108111108108105">Belolli</span></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Mad. Bonini</a>, <a class="preview persons A003788" href="/exist/apps/WeGA-WebApp/de/A003788.html">Signor Begrez</a>, and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">Signor De Begnis</a> (<span class="tei_hi_italic"><span class="preview works A020534" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020534.html">L’Inganno Felice</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Terzetto, <a class="preview persons A002552" href="">Mad. Bonini</a>, <a class="preview persons A003788" href="">Signor Begrez</a>, and <a class="preview persons A002511" href="">Signor De Begnis</a> (<span class="tei_hi_italic"><a class="preview works A020534" href="">L’Inganno Felice</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Aria, <span class="77971009710910132681013286105103111">Madame De Vigo</span> (her first appearance in this country), "<span class="6810532116971101161053211297108112105116105">Di tanti palpiti</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Finale, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Mad. Bonini</a>, <a class="preview persons A001448" href="/exist/apps/WeGA-WebApp/de/A001448.html">Miss Paton</a>, <a class="preview persons A003788" href="/exist/apps/WeGA-WebApp/de/A003788.html">Signor Begrez</a>, <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">Signor De Begnis</a>, <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>–<span class="771051151153266101108108991049710998101114115">Miss Bellchambers</span> and <span class="7711446328397112105111443210611711046">Mr. Sapio, jun.</span> (Pupils of the Royal Academy of Music), "<span class="83105103110111114101333210010532102117111114105">Signore! di fuori</span>" (<span class="tei_hi_italic"><span class="preview works A020567" data-ref="/exist/apps/WeGA-WebApp/de/A001362/Werke/A020567.html">Figaro</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>.</td>
+                                                        <td>Finale, <a class="preview persons A002552" href="">Mad. Bonini</a>, <a class="preview persons A001448" href="">Miss Paton</a>, <a class="preview persons A003788" href="">Signor Begrez</a>, <a class="preview persons A002511" href="">Signor De Begnis</a>, <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>–<span class="771051151153266101108108991049710998101114115">Miss Bellchambers</span> and <span class="7711446328397112105111443210611711046">Mr. Sapio, jun.</span> (Pupils of the Royal Academy of Music), "<span class="83105103110111114101333210010532102117111114105">Signore! di fuori</span>" (<span class="tei_hi_italic"><a class="preview works A020567" href="">Figaro</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A009452" href="/exist/apps/WeGA-WebApp/de/A009452.html">Mr. F. Cramer</a>–Conductor, <span class="6811446326711411111699104">Dr. Crotch</span>.</span></td>
+                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A009452" href="">Mr. F. Cramer</a>–Conductor, <span class="6811446326711411111699104">Dr. Crotch</span>.</span></td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
@@ -814,38 +848,38 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="831211091121041111101213240673210910511011111441">Symphony (C minor)</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, Messrs. <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Sapio</a>, <a class="preview persons A001474" href="/exist/apps/WeGA-WebApp/de/A001474.html">Phillips</a>, and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">De Begnis</a>, "<span class="681051081081013299104101321131171011151161113299111114101">Dille che questo core</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000486" href="/exist/apps/WeGA-WebApp/de/A000486.html">Fioravanti</a></span>.</td>
+                                                        <td>Terzetto, Messrs. <a class="preview persons A001646" href="">Sapio</a>, <a class="preview persons A001474" href="">Phillips</a>, and <a class="preview persons A002511" href="">De Begnis</a>, "<span class="681051081081013299104101321131171011151161113299111114101">Dille che questo core</span>"</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000486" href="">Fioravanti</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duetto, <a class="preview persons A002008" href="/exist/apps/WeGA-WebApp/de/A002008.html">Sig. Velluti</a> and <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Mad. Bonini</a>, "<span class="7710510810810132115111115112105114105321013210897103114105109101">Mille sospiri e lagrime</span>" (<span class="tei_hi_italic"><span class="65117114101108105971101113210511032809710810910511497">Aureliano in Palmira</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Duetto, <a class="preview persons A002008" href="">Sig. Velluti</a> and <a class="preview persons A002552" href="">Mad. Bonini</a>, "<span class="7710510810810132115111115112105114105321013210897103114105109101">Mille sospiri e lagrime</span>" (<span class="tei_hi_italic"><span class="65117114101108105971101113210511032809710810910511497">Aureliano in Palmira</span></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>
-                            Selection from <span class="tei_hi_italic"><span class="preview works A020606" data-ref="/exist/apps/WeGA-WebApp/de/A000777/Werke/A020606.html">The Creation</span></span><br />
-                                Recit. <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Mr. Sapio</a>, "<span class="65110100327111110032991141019711610110032109971103210511032104105115321111191103210510997103101">And God created man in his own image</span>."<br />
+                            Selection from <span class="tei_hi_italic"><a class="preview works A020606" href="">The Creation</a></span><br />
+                                Recit. <a class="preview persons A001646" href="">Mr. Sapio</a>, "<span class="65110100327111110032991141019711610110032109971103210511032104105115321111191103210510997103101">And God created man in his own image</span>."<br />
                                 Air, – "<span class="73110321109711610511810132119111114116104">In native worth</span>."<br />
                                 Chorus, "<span class="65999911110911210810511510410110032105115321161041013210310811111410511111711532119111114107">Accomplished is the glorious work</span>."<br />
-                                Recit. and Trio, <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Mr. Sapio</a>, and <span class="7711446326546328397112105111">Mr. A. Sapio</span> and <span class="771051151153266101108108991049710998101114115">Miss Bellchambers</span> (Pupils of the Royal Academy of Music), "<span class="7911032841041011013210197991043210810511810511010332115111117108">On Thee each living soul</span>."<br />
+                                Recit. and Trio, <a class="preview persons A001646" href="">Mr. Sapio</a>, and <span class="7711446326546328397112105111">Mr. A. Sapio</span> and <span class="771051151153266101108108991049710998101114115">Miss Bellchambers</span> (Pupils of the Royal Academy of Music), "<span class="7911032841041011013210197991043210810511810511010332115111117108">On Thee each living soul</span>."<br />
                                 Grand Chorus, "<span class="65999911110911210810511510410110032105115321161041013210310811111410511111711532119111114107">Accomplished is the glorious work</span>."
                         </td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="/exist/apps/WeGA-WebApp/de/A000777.html">Haydn</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000777" href="">Haydn</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Part II.</span></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Overture, <span class="tei_hi_italic"><span class="preview works A020040" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020040.html">Der Freischutz</span></span>.</td>
+                                                        <td>Overture, <span class="tei_hi_italic"><a class="preview works A020040" href="">Der Freischutz</a></span>.</td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Cavatina, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Mad. Bonini</a>, "<span class="68105321121059799101114">Di piacer</span>" (<span class="tei_hi_italic"><span class="preview works A020564" data-ref="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020564.html">La Gazza Ladra</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Cavatina, <a class="preview persons A002552" href="">Mad. Bonini</a>, "<span class="68105321121059799101114">Di piacer</span>" (<span class="tei_hi_italic"><a class="preview works A020564" href="">La Gazza Ladra</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Concerto, Violin, <span class="7746321001013266101114105111116">M. de Beriot</span> (his first appearance in this country.)</td>
@@ -853,18 +887,18 @@
                                                     </tr>
                                                     <tr>
                                                         <td>Aria, <span class="77971009710910132683965110118101114115">Madame D’Anvers</span> (her first appearance in this country), "<span class="65108109973210511011810511611697">Alma invitta</span>" (<span class="tei_hi_italic"><span class="83105103105115109111110100111">Sigismondo</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Quintetto, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Mad. Bonini</a>, <a class="preview persons A001448" href="/exist/apps/WeGA-WebApp/de/A001448.html">Miss Paton</a>, Messrs. <a class="preview persons A001646" href="/exist/apps/WeGA-WebApp/de/A001646.html">Sapio</a>, <a class="preview persons A001474" href="/exist/apps/WeGA-WebApp/de/A001474.html">Phillips</a>, and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">De Begnis</a>, "<span class="79104321031179711410097116101">Oh guardate</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Quintetto, <a class="preview persons A002552" href="">Mad. Bonini</a>, <a class="preview persons A001448" href="">Miss Paton</a>, Messrs. <a class="preview persons A001646" href="">Sapio</a>, <a class="preview persons A001474" href="">Phillips</a>, and <a class="preview persons A002511" href="">De Begnis</a>, "<span class="79104321031179711410097116101">Oh guardate</span>"</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Overture (M. S.)</td>
                                                         <td><span class="tei_hi_italic"><span class="674632761179997115">C. Lucas</span>, Pupil of the Royal Academy of Music</span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A009575" href="/exist/apps/WeGA-WebApp/de/A009575.html">Mr. Mori</a>–Conductor, <span class="6811446326711411111699104">Dr. Crotch</span>.</span></td>
+                                                        <td><span class="tei_segBlock textAlign-center">Leader, <a class="preview persons A009575" href="">Mr. Mori</a>–Conductor, <span class="6811446326711411111699104">Dr. Crotch</span>.</span></td>
                                                         <td></td>
                                                     </tr>
                                                 </tbody>
@@ -884,26 +918,26 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="83121109112104111110121324010511032713210910511011111441">Symphony (in G minor)</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duetto, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Signora Bonini</a> and <span class="7710511511532669799111110">Miss Bacon</span>, "<span class="80971141161113332116105321089711599105111">Parto! ti lascio</span>"</td>
+                                                        <td>Duetto, <a class="preview persons A002552" href="">Signora Bonini</a> and <span class="7710511511532669799111110">Miss Bacon</span>, "<span class="80971141161113332116105321089711599105111">Parto! ti lascio</span>"</td>
                                                         <td><span class="tei_hi_italic"><span class="7797121101114">Mayer</span></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Cavatina, <a class="preview persons A002008" href="/exist/apps/WeGA-WebApp/de/A002008.html">Signor Velluti</a>, "<span class="769732116117973210010510810111611697">La tua diletta</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A002259" href="/exist/apps/WeGA-WebApp/de/A002259.html">Pavesi</a></span>.<span class="tei_pb" title="Seitenumbruch zu S. 171"> | </span></td>
+                                                        <td>Cavatina, <a class="preview persons A002008" href="">Signor Velluti</a>, "<span class="769732116117973210010510810111611697">La tua diletta</span>"</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A002259" href="">Pavesi</a></span>.<span class="tei_pb" title="Seitenumbruch zu S. 171"> | </span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="preview works A021222" data-ref="/exist/apps/WeGA-WebApp/de/A000117/Werke/A021222.html">Septuor</span>–Violin, <a class="preview persons A001001" href="/exist/apps/WeGA-WebApp/de/A001001.html">Mr. Kiesewetter</a>–Tenor, <span class="7711446327711111497108116">Mr. Moralt</span>–Violoncello, <a class="preview persons A007498" href="/exist/apps/WeGA-WebApp/de/A007498.html">Mr. Lindley</a>–Double Bass, <a class="preview persons A000401" href="/exist/apps/WeGA-WebApp/de/A000401.html">Mr. Dragonetti</a>–Clarinett, <span class="7711446328710510810810997110">Mr. Willman</span>–Horn, <a class="preview persons A001521" href="/exist/apps/WeGA-WebApp/de/A001521.html">Mr. Puzzi</a>–and Bassoon, <span class="771144632779799107105110116111115104">Mr. Mackintosh</span></td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="/exist/apps/WeGA-WebApp/de/A000117.html">Beethoven</a></span>.</td>
+                                                        <td><a class="preview works A021222" href="">Septuor</a>–Violin, <a class="preview persons A001001" href="">Mr. Kiesewetter</a>–Tenor, <span class="7711446327711111497108116">Mr. Moralt</span>–Violoncello, <a class="preview persons A007498" href="">Mr. Lindley</a>–Double Bass, <a class="preview persons A000401" href="">Mr. Dragonetti</a>–Clarinett, <span class="7711446328710510810810997110">Mr. Willman</span>–Horn, <a class="preview persons A001521" href="">Mr. Puzzi</a>–and Bassoon, <span class="771144632779799107105110116111115104">Mr. Mackintosh</span></td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000117" href="">Beethoven</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Signora Bonini</a>, <a class="preview persons A002008" href="/exist/apps/WeGA-WebApp/de/A002008.html">Signor Velluti</a>, and <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, "<span class="791043299105101108321001011083299117105">Oh ciel del cui</span>"</td>
+                                                        <td>Terzetto, <a class="preview persons A002552" href="">Signora Bonini</a>, <a class="preview persons A002008" href="">Signor Velluti</a>, and <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, "<span class="791043299105101108321001011083299117105">Oh ciel del cui</span>"</td>
                                                         <td><span class="tei_hi_italic"><span class="809799105110105">Pacini</span></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Aria, <a class="preview persons A001446" href="/exist/apps/WeGA-WebApp/de/A001446.html">Madame Pasta</a>, "<span class="65104329910410132102111114115101">Ah che forse</span>;" Corno obligato, <a class="preview persons A001521" href="/exist/apps/WeGA-WebApp/de/A001521.html">Signor Puzzi</a></td>
+                                                        <td>Aria, <a class="preview persons A001446" href="">Madame Pasta</a>, "<span class="65104329910410132102111114115101">Ah che forse</span>;" Corno obligato, <a class="preview persons A001521" href="">Signor Puzzi</a></td>
                                                         <td><span class="tei_hi_italic"><span class="809799105110105">Pacini</span></span>.</td>
                                                     </tr>
                                                     <tr>
@@ -911,32 +945,32 @@
                                                         <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Overture, (<span class="tei_hi_italic"><span class="preview works A020043" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</span></span>)</td>
+                                                        <td>Overture, (<span class="tei_hi_italic"><a class="preview works A020043" href="">Euryanthe</a></span>)</td>
                                                         <td><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Duetto, <a class="preview persons A001446" href="/exist/apps/WeGA-WebApp/de/A001446.html">Madame Pasta</a> and <span class="831051031101111143267117114105111110105">Signor Curioni</span>, "<span class="693210010111510111411611132105108329811111599111">E deserto il bosco</span>"</td>
+                                                        <td>Duetto, <a class="preview persons A001446" href="">Madame Pasta</a> and <span class="831051031101111143267117114105111110105">Signor Curioni</span>, "<span class="693210010111510111411611132105108329811111599111">E deserto il bosco</span>"</td>
                                                         <td><span class="tei_hi_italic"><span class="7797121101114">Mayer</span></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Cavatina, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Signora Bonini</a>, e Coro, "<span class="68101108108393297114112101">Dell’ arpe</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A002259" href="/exist/apps/WeGA-WebApp/de/A002259.html">Pavesi</a></span>.</td>
+                                                        <td>Cavatina, <a class="preview persons A002552" href="">Signora Bonini</a>, e Coro, "<span class="68101108108393297114112101">Dell’ arpe</span>"</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A002259" href="">Pavesi</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, Misses <span class="7797114105110111110105">Marinoni</span> and <span class="7111497110116">Grant</span> and <span class="7711446326546328397112105111">Mr. A. Sapio</span> (Pupils of the Royal Academy of Music), "<span class="73110321131171011083283111103103105111114110111">In quel Soggiorno</span>" (<span class="tei_hi_italic"><span class="preview works A020568" data-ref="/exist/apps/WeGA-WebApp/de/A001348/Werke/A020568.html">Tebaldo</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001348" href="/exist/apps/WeGA-WebApp/de/A001348.html">Morlacchi</a></span>.</td>
+                                                        <td>Terzetto, Misses <span class="7797114105110111110105">Marinoni</span> and <span class="7111497110116">Grant</span> and <span class="7711446326546328397112105111">Mr. A. Sapio</span> (Pupils of the Royal Academy of Music), "<span class="73110321131171011083283111103103105111114110111">In quel Soggiorno</span>" (<span class="tei_hi_italic"><a class="preview works A020568" href="">Tebaldo</a></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001348" href="">Morlacchi</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>Cavatina, <span class="7710511511532669799111110">Miss Bacon</span>, "<span class="701141011109711432118111114114101105">Frenar vorrei</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A000295" href="/exist/apps/WeGA-WebApp/de/A000295.html">Cimarosa</a></span>.</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A000295" href="">Cimarosa</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Terzetto, <a class="preview persons A001446" href="/exist/apps/WeGA-WebApp/de/A001446.html">Madame Pasta</a>, <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, and <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">Signor De Begnis</a>, "<span class="65104321169799105321051101031051171151161113299111114101">Ah taci ingiusto core</span>"</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="/exist/apps/WeGA-WebApp/de/A001362.html">Mozart</a></span>.</td>
+                                                        <td>Terzetto, <a class="preview persons A001446" href="">Madame Pasta</a>, <span class="831051031101111143280101108108101103114105110105">Signor Pellegrini</span>, and <a class="preview persons A002511" href="">Signor De Begnis</a>, "<span class="65104321169799105321051101031051171151161113299111114101">Ah taci ingiusto core</span>"</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001362" href="">Mozart</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td>Finale, <a class="preview persons A002552" href="/exist/apps/WeGA-WebApp/de/A002552.html">Signora Bonini</a>, Misses <span class="7797114105110111110105">Marinoni</span> and <span class="7111497110116">Grant</span>, Signori <span class="67117114105111110105">Curioni</span>, <a class="preview persons A002511" href="/exist/apps/WeGA-WebApp/de/A002511.html">De Begnis</a>, <span class="80101108108101103114105110105">Pellegrini</span>, and <span class="6546328397112105111">A. Sapio</span>, "<span class="8610511897443211810511897">Viva, viva</span>" (<span class="tei_hi_italic"><span class="763973116971081059711097321051103265108103105101114105">L’Italiana in Algieri</span></span>)</td>
-                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="/exist/apps/WeGA-WebApp/de/A001616.html">Rossini</a></span>.</td>
+                                                        <td>Finale, <a class="preview persons A002552" href="">Signora Bonini</a>, Misses <span class="7797114105110111110105">Marinoni</span> and <span class="7111497110116">Grant</span>, Signori <span class="67117114105111110105">Curioni</span>, <a class="preview persons A002511" href="">De Begnis</a>, <span class="80101108108101103114105110105">Pellegrini</span>, and <span class="6546328397112105111">A. Sapio</span>, "<span class="8610511897443211810511897">Viva, viva</span>" (<span class="tei_hi_italic"><span class="763973116971081059711097321051103265108103105101114105">L’Italiana in Algieri</span></span>)</td>
+                                                        <td><span class="tei_hi_italic"><a class="preview persons A001616" href="">Rossini</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_segBlock textAlign-center">Leader, <span class="7711446328311297103110111108101116116105">Mr. Spagnoletti</span>–Conductor, <span class="6811446326711411111699104">Dr. Crotch</span>.<span class="tei_pb" title="Seitenumbruch zu S. 172"> | </span></span></td>
@@ -951,7 +985,7 @@
                                         <p><span class="tei_pb" title="Seitenumbruch zu S. 177"> | </span><span> […]</span> While we are upon this topic, we mention with a feeling allied to shame as well as regret, that the concert of poor <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, the popular the idolized <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, though he produced pieces of his own not at all known in <span class="tei_country">England</span>, was amongst the thinnest of the year. He disdained to practice any of the arts by which some concerts <span class="tei_hi_italic">are made</span> as the phrase goes–and however unaccountable it may seem–he was deserted. <span> […]</span><span class="tei_pb" title="Seitenumbruch zu S. 178"> | </span></p>
                                         <p><span> […]</span></p>
                                         <p><span class="tei_pb" title="Seitenumbruch zu S. 180"> | </span><span> […]</span></p>
-                                        <p>Thus much as to the effect upon the public. With respect to the art itself, it is clear that its cultivation is more general and more scientific. We demonstrate this fact by the growing regard to instrumental music and by the facility with which the mere regard to melody, though it is and must be at all times the predominant characteristic of the popular attachment, has given way to the apprehension and relish of fine instrumental combinations in accompaniment. Nothing has gone so far to prove this as the pro<span class="tei_pb" title="Seitenumbruch zu S. 181">|</span>duction and sustentation of <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s compositions. His overtures have been continually encored at the theatres–a circumstance unknown till of late years–and his <span class="tei_hi_italic"><span class="preview works A020045" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020045.html">Oberon</span></span> depends far more upon the orchestra than the singer. Again we may cite the perpetual introduction of concertos upon all instruments. There is no surer criterion of public approbation than frequency of performance. It results necessarily that such demonstrations of skill must tend to correct the general taste and to diffuse the justest notions of perfect execution. They operate essentially to polish the judgment.</p>
+                                        <p>Thus much as to the effect upon the public. With respect to the art itself, it is clear that its cultivation is more general and more scientific. We demonstrate this fact by the growing regard to instrumental music and by the facility with which the mere regard to melody, though it is and must be at all times the predominant characteristic of the popular attachment, has given way to the apprehension and relish of fine instrumental combinations in accompaniment. Nothing has gone so far to prove this as the pro<span class="tei_pb" title="Seitenumbruch zu S. 181">|</span>duction and sustentation of <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s compositions. His overtures have been continually encored at the theatres–a circumstance unknown till of late years–and his <span class="tei_hi_italic"><a class="preview works A020045" href="">Oberon</a></span> depends far more upon the orchestra than the singer. Again we may cite the perpetual introduction of concertos upon all instruments. There is no surer criterion of public approbation than frequency of performance. It results necessarily that such demonstrations of skill must tend to correct the general taste and to diffuse the justest notions of perfect execution. They operate essentially to polish the judgment.</p>
                                         <p><span> […]</span></p>
                                     </div>
                                     <div id="endNotes">
@@ -1004,16 +1038,18 @@
                                 <h4 class="media-heading">Textzeuge</h4>
                                 <p class="biblio-entry"><span class="journalTitle">Quarterly Musical Magazine and Review</span>, Bd. 8 (1826), S. 160–184</p>
                                 
+                                
                                 <div>
                                     
-                                    <ul class="tei_list">
-                                        
-                                    </ul>
+                                    
+                                </div>
+                                
+                                <div>
+                                    
+                                    
                                 </div>
                             </div>
-                        </div>
-                        
-                        
+                        </div>                    
                         
                         
                         
@@ -1047,9 +1083,10 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031995</span> (<span>Version 3.2.1dev vom 8. Januar 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031995</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
                     <br />
-                <span>Letzte Änderung dieses Dokuments am 10. Juni 2018 durch Peter Stadler</span></p>
+                <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
+                </p>
             </div>
             
         </div>
@@ -1115,7 +1152,8 @@
                                 <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
                             </li>
                             <li>
-                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i>
+                                </a>
                             </li>
                         </ul>
                     </div>
@@ -1135,30 +1173,35 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev"><span class="fa fa-angle-double-left"></span></a>
+                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next"><span class="fa fa-angle-double-right"></span></a>
+                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
             </div> 
         </div>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/jquery.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/FitText.js/jquery.fittext.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/widgets/datepicker-min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datepicker-fr/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ionrangeslider/js/ion.rangeSlider.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet/dist/leaflet.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/leaflet-iiif/leaflet-iiif.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
+        
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

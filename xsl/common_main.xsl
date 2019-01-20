@@ -18,6 +18,7 @@
 <!--    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>-->
     <xsl:variable name="blockLevelElements" as="xs:string+" select="('item', 'p')"/>
     <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
+    <xsl:variable name="fa-exclamation-circle" as="xs:string" select="'&#xf06a;'"/>
     <xsl:param name="optionsFile"/>
     <xsl:param name="baseHref"/>
     <xsl:param name="lang"/>
@@ -193,7 +194,7 @@
     <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
 
     <xsl:template match="text()">
-        <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols), '|')"/>
+        <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols, $fa-exclamation-circle), '|')"/>
         <xsl:analyze-string select="." regex="{$regex}">
             <xsl:matching-substring>
                 <!--       Ersetzen von Pfundzeichen in Bild         -->
@@ -212,6 +213,12 @@
                     <xsl:element name="span">
                         <xsl:attribute name="class" select="'musical-symbols'"/>
                         <xsl:value-of select="."/>
+                    </xsl:element>
+                </xsl:if>
+                <xsl:if test="matches(.,  $fa-exclamation-circle)">
+                    <xsl:element name="i">
+                        <xsl:attribute name="class" select="'fa fa-exclamation-circle'"/>
+                        <xsl:attribute name="aria-hidden" select="'true'"/>
                     </xsl:element>
                 </xsl:if>
             </xsl:matching-substring>
@@ -364,7 +371,17 @@
                                 Könnnte und sollte man mal generisch machen …
                             -->
                             <xsl:when test="$docID = 'A070011'">
-                                <xsl:copy-of select="(1,8,1)"/>
+                                <xsl:choose>
+                                    <xsl:when test="count($currNode/tei:row[1]/tei:cell) = 3">
+                                        <xsl:sequence select="(1,8,1)"/>
+                                    </xsl:when>
+                                    <xsl:when test="count($currNode/tei:row[1]/tei:cell) = 4">
+                                        <xsl:sequence select="(1,7.5,1,.5)"/>
+                                    </xsl:when>
+                                    <xsl:otherwise>
+                                        <xsl:message>XSLT Warning: unsupported ammount of table cells <xsl:value-of select="$docID"/></xsl:message>
+                                    </xsl:otherwise>
+                                </xsl:choose>
                             </xsl:when>
                             <!-- Noch ein hack für die Spielpläne -->
                             <xsl:when test="$docID = ('A090102', 'A090134', 'A090206', 'A090068') and descendant::tei:table">
@@ -400,7 +417,7 @@
     </xsl:template>
     <xsl:template match="tei:cell">
         <xsl:param name="widths" as="xs:double*" tunnel="yes"/>
-        <xsl:variable name="counter" as="xs:integer" select="position()"/>
+        <xsl:variable name="counter" as="xs:integer" select="count(preceding-sibling::tei:cell) + 1"/>
         <xsl:choose>
             <xsl:when test="parent::tei:row[@role='label']">
                 <xsl:element name="th">
@@ -483,7 +500,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:variable name="localURL">
-            <xsl:value-of select="concat(wega:getOption('iiifServer'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
+            <xsl:value-of select="concat(wega:getOption('iiifImageApi'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
         </xsl:variable>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
@@ -501,7 +518,7 @@
                 <xsl:element name="img">
                     <xsl:attribute name="title" select="$title"/>
                     <xsl:attribute name="alt" select="$title"/>
-                    <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifServer'))"/>
+                    <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifImageApi'))"/>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
@@ -639,17 +656,20 @@
     <xsl:template match="tei:footNote"/>
 
     <xsl:template match="tei:g">
-        <xsl:variable name="charName" select="concat('_', substring-after(@ref, 'http://edirom.de/smufl-browser/'))" as="xs:string"/>
+        <xsl:variable name="smuflCodepoint" as="xs:string">
+            <xsl:variable name="charName" select="concat('_', functx:substring-before-if-contains(functx:substring-after-last(@ref, '/'), '.'))"/>
+            <xsl:value-of select="key('charDecl', $charName, wega:doc($smufl-decl))/tei:mapping[@type='smufl']"/>
+        </xsl:variable>
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:choose>
-                <xsl:when test="@type='smufl'">
+                <xsl:when test="$smuflCodepoint">
                     <xsl:attribute name="class" select="'musical-symbols'"/>
-                    <xsl:variable name="smufl-codepoint" select="key('charDecl', $charName, wega:doc($smufl-decl))/tei:mapping[@type='smufl']"/>
-                    <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smufl-codepoint, 'U+')))"/>
+                    <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smuflCodepoint, 'U+')))"/>
                 </xsl:when>
                 <xsl:otherwise>
-            <xsl:apply-templates/>
+                    <xsl:message>XSLT Warning: template for `tei:g` failed to recognize glyph in document <xsl:value-of select="$docID"/></xsl:message>
+                    <xsl:apply-templates/>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
