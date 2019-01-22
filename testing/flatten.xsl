@@ -78,7 +78,7 @@
     <xsl:template match="html:meta[@property='dc:identifier'][not(normalize-space(@content) eq '')]"/>
     <xsl:template match="html:meta[@property='dc:date'][not(normalize-space(@content) eq '')]"/>
     <xsl:template match="html:meta[@property='dc:creator'][not(normalize-space(@content) eq '')]"/>
-    <xsl:template match="html:script"/>
-    <xsl:template match="html:noscript"/>
+<!--    <xsl:template match="html:script"/>-->
+<!--    <xsl:template match="html:noscript"/>-->
     
 </xsl:stylesheet>
