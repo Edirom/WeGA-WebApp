@@ -331,7 +331,7 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
         else ()
     let $pics := $page//xhtml:td
     return 
-        for $div in $pics
+        for $div in $pics[not(xhtml:a/xhtml:img/@src='portraits/dummy.jpg')]
         let $picURI := concat('http://www.tripota.uni-trier.de/',  $div//xhtml:img[starts-with(@src, 'portraits')]/data(@src))
         return 
             if($picURI castable as xs:anyURI) then
