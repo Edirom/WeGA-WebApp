@@ -14,8 +14,8 @@
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012" />
-        <meta property="dc:description" content="Die Seiten der WeGA können sowohl über http als auch über verschlüsseltes https abgerufen werden. Die folgenden URL-Beispiele gelten somit immer für …" />
-        <meta name="description" content="Die Seiten der WeGA können sowohl über http als auch über verschlüsseltes https abgerufen werden. Die folgenden URL-Beispiele gelten somit immer für …" />
+        <meta property="dc:description" content="Die Seiten der WeGA werden seit 2018 nur noch über verschlüsseltes https ausgeliefert. Anfragen via http werden nach https umgeleitet. Die folgenden …" />
+        <meta name="description" content="Die Seiten der WeGA werden seit 2018 nur noch über verschlüsseltes https ausgeliefert. Anfragen via http werden nach https umgeleitet. Die folgenden …" />
         <meta property="dc:subject" content="Varia" />
         <meta property="dc:language" content="de" />
         <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
@@ -44,11 +44,9 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
-        
-        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
         
-        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001"}],"name":"API Dokumentation","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070012","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Stadler, Peter","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001"}],"name":"API Dokumentation","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070012","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"Die Seiten der WeGA werden seit 2018 nur noch über verschlüsseltes https ausgeliefert. Anfragen via http werden nach https umgeleitet. Die folgenden …"}</script>
 
 
     </head>
@@ -303,28 +301,61 @@
                                     <h2>Inhaltsverzeichnis</h2>
                                     <ul>
                                         <li class="secLevel1"><a href="#d10e3">http/https</a></li>
-                                        <li class="secLevel1"><a href="#contentNegotiationDE">Content Negotiation</a></li>
-                                        <li class="secLevel1"><a href="#d10e81">TEI-Ausgabeformate</a></li>
+                                        <li class="secLevel1"><a href="#contentNegotiationDE">Ausgabeformate und Content Negotiation</a></li>
+                                        <li class="secLevel1"><a href="#d10e109">TEI-Ausgabeformate</a></li>
                                         <li class="secLevel1"><a href="#sprachwahl">Sprachauswahl</a></li>
-                                        <li class="secLevel1"><a href="#d10e154">Abfragen von GND IDs</a></li>
-                                        <li class="secLevel1"><a href="#d10e196">Correspondence Metadata Interchange-Format</a></li>
-                                        <li class="secLevel1"><a href="#d10e221">Swagger OpenAPI</a></li>
+                                        <li class="secLevel1"><a href="#d10e182">Abfragen von GND IDs</a></li>
+                                        <li class="secLevel1"><a href="#d10e230">Correspondence Metadata Interchange-Format (CMIF)</a></li>
+                                        <li class="secLevel1"><a href="#d10e255">International Image Interoperability Framework (IIIF)</a></li>
+                                        <li class="secLevel1"><a href="#d10e300">Swagger OpenAPI</a></li>
                                     </ul>
                                 </div>
                                 <div id="d10e2">
                                     <h2 id="d10e3">http/https</h2>
-                                    <p>Die Seiten der WeGA können sowohl über <code>http</code> als auch über verschlüsseltes <code>https</code> abgerufen werden.
+                                    <p>Die Seiten der WeGA werden seit 2018  nur noch über verschlüsseltes <code>https</code> ausgeliefert.
+               Anfragen via  <code>http</code> werden nach <code>https</code> umgeleitet.
                Die folgenden URL-Beispiele gelten somit immer für beide Protokolle.</p>
                                 </div>
                                 <div id="contentNegotiationDE">
-                                    <h2 id="d10e14">Content Negotiation</h2>
+                                    <h2 id="d10e17">Ausgabeformate und Content Negotiation</h2>
                                     <p>Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. 
-               Aktuell werden HTML, TEI-XML und Plain Text unterstützt, wobei das gewünschte Ausgabeformat entweder 
-               über ein Suffix (<code>.html</code>/<code>.htm</code> oder <code>.tei</code>/<code>.xml</code> oder <code>.txt</code>) oder über den HTTP Accept Header 
-               (<code>text/html</code> bzw. <code>application/xhtml+xml</code> oder <code>application/xml</code> bzw. <code>application/tei+xml</code>
-               oder <code>text/plain</code>)
-               angegeben werden können. Wird beides angegeben, hat das Suffix Vorrang. NB: Die Plain-Text-Ausgabe ist als experimentelles Feature zu verstehen!</p>
-                                    <p>Die kanonische URL jeder Ressource setzt sich dabei aus der Domäne „weber-gesamtausgabe.de“ und der ID zusammen. </p>
+               Aktuell werden HTML, TEI-XML, JSON-LD und Plain Text unterstützt, wobei das gewünschte Ausgabeformat entweder 
+               über ein Suffix oder über den HTTP Accept Header angegeben werden kann.
+               Wird beides angegeben, hat das Suffix Vorrang. 
+               NB: Die Plain-Text-Ausgabe ist als experimentelles Feature zu verstehen!
+            </p>
+                                    <div class="table-wrapper">
+                                        <table id="d10e21" class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Format</th>
+                                                    <th>Suffix</th>
+                                                    <th>Accept Header</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>HTML</td>
+                                                    <td><code>.html</code>, <code>.htm</code></td>
+                                                    <td><code>text/html</code>, <code>application/xhtml+xml</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TEI XML</td>
+                                                    <td><code>.tei</code>, <code>.xml</code></td>
+                                                    <td><code>application/xml</code>, <code>application/tei+xml</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Plain Text</td>
+                                                    <td><code>.txt</code></td>
+                                                    <td><code>text/plain</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>JSON-LD</td>
+                                                    <td><code>.jsonld</code></td>
+                                                    <td><code>application/ld+json</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>Die persistente URL jeder Ressource setzt sich dabei aus der Domäne „weber-gesamtausgabe.de“ und der ID zusammen. </p>
                                     <div class="panel panel-info">
                                         <div class="panel-heading">
                                             <h4 class="panel-title">Beispiele mit curl</h4>
@@ -339,15 +370,15 @@
                                     </div>
                                     <p>Bitte beachten Sie, dass der Parameter <code>-L</code> hier benötigt wird, da ggf. eine Weiterleitung erfolgt.</p>
                                 </div>
-                                <div id="d10e80">
-                                    <h2 id="d10e81">TEI-Ausgabeformate</h2>
+                                <div id="d10e108">
+                                    <h2 id="d10e109">TEI-Ausgabeformate</h2>
                                     <p>Wird eine TEI-Datei abgerufen (siehe <a href="#contentNegotiationDE">Content Negotiation</a>), so wird diese standardmäßig im WeGA-TEI-Format ausgeliefert.
                Dieses Format ist eine „TEI-Customization“ und dokumentiert unter <a href="https://github.com/Edirom/WeGA-ODD">https://github.com/Edirom/WeGA-ODD</a>.
                Alternativ kann über den URL-Parameter <code>format</code> auch eine Ausgabe kompatibel zu „TEI all“ (<code>format=tei_all</code>) 
                oder „TEI simplePrint“ (<code>format=tei_simplePrint</code>) gewählt werden.</p>
                                     <div class="panel panel-info">
                                         <div class="panel-heading">
-                                            <h4 class="panel-title">Examples with curl</h4>
+                                            <h4 class="panel-title">Beispiele mit curl</h4>
                                         </div>
                                         <div class="panel-body">
                
@@ -358,7 +389,7 @@
                                     <p>Siehe auch die <a class="preview news A050229" href="">News vom 29. November 2017</a> zu „alternativen TEI-Ausgabeformaten“.</p>
                                 </div>
                                 <div id="sprachwahl">
-                                    <h2 id="d10e131">Sprachauswahl</h2>
+                                    <h2 id="d10e159">Sprachauswahl</h2>
                                     <p>Die HTML-Ausgabe der Ressourcen kann in mehreren Sprachen (Aktuell Deutsch und Englisch) erfolgen. 
                Dabei werden allerdings nur die Navigations- und Menüelemente übersetzt, nicht jedoch die eigentlichen Texte!
                Die Sprachwahl erfolgt über eine URL-Pfadkomponente, <code>de</code> für Deutsch und <code>en</code> für Englisch.</p>
@@ -373,11 +404,11 @@
             </div>
                                     </div>
                                 </div>
-                                <div id="d10e153">
-                                    <h2 id="d10e154">Abfragen von GND IDs</h2>
+                                <div id="d10e181">
+                                    <h2 id="d10e182">Abfragen von GND IDs</h2>
                                     <p> 
-               Von der API werden aktuell GNDs vom Typ „Person“ (früher PND), Organisation/Körperschaft (früher GKD),
-               sowie Werk unterstützt, 
+               Von der API werden aktuell GNDs vom Typ „Person“ (früher PND), „Organisation/Körperschaft“ (früher GKD),
+               sowie „Werk“ unterstützt, 
                welche über BEACON-Dateien zur Verfügung gestellt werden. 
                Die Adressen der BEACON-Dateien sind <code>https://weber-gesamtausgabe.de/pnd_beacon.txt</code>,
                <code>https://weber-gesamtausgabe.de/gkd_beacon.txt</code>,
@@ -397,18 +428,38 @@
                                     </div>
                                     <p>Detaillierte Informationen zum BEACON-Format finden sich unter <a href="https://de.wikipedia.org/wiki/Wikipedia:BEACON">https://de.wikipedia.org/wiki/Wikipedia:BEACON <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p>
                                 </div>
-                                <div id="d10e195">
-                                    <h2 id="d10e196">Correspondence Metadata Interchange-Format</h2>
-                                    <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMI)
-               zur Verfügung. Adresse der Beacon-Datei: <code>https://weber-gesamtausgabe.de/correspDesc.xml</code>.
+                                <div id="d10e229">
+                                    <h2 id="d10e230">Correspondence Metadata Interchange-Format (CMIF)</h2>
+                                    <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMIF)
+               zur Verfügung. Adresse der BEACON-Datei: <code>https://weber-gesamtausgabe.de/correspDesc.xml</code>.
             </p>
                                     <p>Detaillierte Informationen zum CMI-Format finden sich auf den Seiten des <a href="https://correspsearch.bbaw.de/index.xql?id=participate_cmi-format&amp;l=de">correspSearch Webservice <i class="fa fa-external-link" aria-hidden="true"></i></a>
                und unter <a href="https://github.com/TEI-Correspondence-SIG/CMIF">https://github.com/TEI-Correspondence-SIG/CMIF <i class="fa fa-external-link" aria-hidden="true"></i></a>.
                Siehe auch die <a class="preview news A050122" href="">News vom 7. Mai 2014</a> zur ersten Einrichtung eines „experimentellen Corresp-Beacon“. 
             </p>
                                 </div>
-                                <div id="d10e220">
-                                    <h2 id="d10e221">Swagger OpenAPI</h2>
+                                <div id="d10e254">
+                                    <h2 id="d10e255"><span class="tei_hi_italic">International Image Interoperability Framework</span> (IIIF)</h2>
+                                    <p>Die WeGA stellt die digitalen Faksimiles, die sie selber hosten und veröffentlichen darf, 
+               nach dem <a href="https://iiif.io">IIIF-Standard <i class="fa fa-external-link" aria-hidden="true"></i></a> zur Verfügung. 
+               Die Metadaten der einzelnen Bilder (<code>info.json</code>) werden dabei von dem bei uns eingesetzten 
+               <a href="https://robcast.github.io/digilib/index.html">Digilib-Imageserver <i class="fa fa-external-link" aria-hidden="true"></i></a> 
+               automatisch erzeugt, und die „Resource Structure“ für die IIIF Presentation API (<code>manifest.json</code>)
+               wird aus den TEI-Dokumenten durch die WeGA-WebApp generiert.</p>
+                                    <p>Die persistente URL jeder Ressource setzt sich dabei aus der Domäne „weber-gesamtausgabe.de“ und dem Pfad „/IIIF/<code>$ID</code>/manifest.json“ zusammen. </p>
+                                    <div class="panel panel-info">
+                                        <div class="panel-heading">
+                                            <h4 class="panel-title">Beispiele mit curl</h4>
+                                        </div>
+                                        <div class="panel-body">
+               
+               <code># curl -L https://weber-gesamtausgabe.de/de/gnd/118629662 </code>
+               <br /><code># curl -L -H "Accept: application/application/json" https://weber-gesamtausgabe.de/IIIF/A040709/manifest.json </code>
+            </div>
+                                    </div>
+                                </div>
+                                <div id="d10e299">
+                                    <h2 id="d10e300">Swagger OpenAPI</h2>
                                     <p>Die WeGA bietet unter <a href="https://weber-gesamtausgabe.de/api/v1/">https://weber-gesamtausgabe.de/api/v1/</a> 
                ebenfalls eine REST-Schnittstelle nach der <a href="https://swagger.io/specification/">Swagger OpenAPI Spezifikation 2.0 <i class="fa fa-external-link" aria-hidden="true"></i></a> an. 
                Diese Schnittstelle soll ein schnelles und komfortables 
@@ -433,7 +484,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<span>Version 3.4.0dev vom 20. Januar 2019</span>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
