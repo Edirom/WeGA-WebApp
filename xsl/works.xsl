@@ -1,6 +1,7 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:mei="http://www.music-encoding.org/ns/mei"
+    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
     xmlns="http://www.w3.org/1999/xhtml"
     exclude-result-prefixes="xs" version="2.0">
     
@@ -40,6 +41,14 @@
         <xsl:element name="dd">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates select="node() except mei:head"/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="mei:creation">
+        <xsl:element name="p">
+            <xsl:value-of select="wega:getLanguageString('dateOfOrigin', $lang)"/>
+            <xsl:text>: </xsl:text>
+            <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
     
