@@ -1282,7 +1282,7 @@ declare
             for $respStmt in $respStmts
             return (
                 <dt>{str:normalize-space($respStmt/tei:resp)}</dt>,
-                <dd>{str:normalize-space(string-join($respStmt/tei:name, ', '))}</dd>
+                <dd>{str:normalize-space(string-join($respStmt/tei:name, '; '))}</dd>
             )
 };
 
