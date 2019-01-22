@@ -310,6 +310,7 @@ declare
             case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
             case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
+            case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
         let $ajax-url :=
         	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang) || '/' || $ajax-resource)
@@ -705,14 +706,10 @@ declare
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
     let $gnd := query:get-gnd($model('doc'))
-    let $beaconMap := 
-        if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
-        else map:new()
     let $gn-doc := er:grabExternalResource('geonames', $geonames-id, '', ())
     return
         map {
             'gnd' := $gnd,
-            'beaconMap' := $beaconMap,
             'names' := $model?doc//tei:placeName[@type],
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
@@ -878,13 +875,14 @@ declare
         'documents' := core:getOrCreateColl('documents', $model('docID'), true()),
         
         'source' := $model('doc')/tei:person/data(@source),
+        'gnd' := query:get-gnd($model?doc),
         'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
         (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
     }
 };
 
-declare function app:person-beacon($node as node(), $model as map(*)) as map(*) {
+(:declare function app:person-beacon($node as node(), $model as map(*)) as map(*) {
     let $gnd := query:get-gnd($model('doc'))
     let $beaconMap := 
         if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
@@ -894,6 +892,27 @@ declare function app:person-beacon($node as node(), $model as map(*)) as map(*) 
             'gnd' := $gnd,
             'beaconMap' := $beaconMap
         }
+};:)
+
+(:~
+ : Create Beacon Links
+ : Called via AJAX
+ :)
+declare 
+    %templates:wrap 
+    function app:beacon($node as node(), $model as map(*)) as map(*) {
+        let $gnd := query:get-gnd($model?doc)
+        let $beaconMap := 
+            if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
+            else map:new()
+        return
+            map { 'beaconLinks': 
+                    for $i in map:keys($beaconMap)
+                    order by $beaconMap($i)[2] collation "?lang=de-DE"
+                    return 
+                        (: replacement in @href for invalid links from www.sbn.it :)
+                        <a title="{$i}" href="{replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a>
+            }
 };
 
 declare 
@@ -908,17 +927,6 @@ declare
                     if($bio instance of xs:string) then <p>{$bio}</p>
                     else templates:process($node/node(), $model)
                 }
-};
-
-declare function app:print-beacon-links($node as node(), $model as map(*)) as element(ul) {
-        let $beaconMap := $model('beaconMap')
-        return
-            <ul>{
-                for $i in map:keys($beaconMap)
-                order by $beaconMap($i)[2] collation "?lang=de-DE"
-                return 
-                    <li><a title="{$i}" href="{(: replacement for invalid links from www.sbn.it :)replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a></li>
-            }</ul>
 };
 
 declare 

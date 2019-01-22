@@ -46,11 +46,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
     let $botPresent := er:bot-present()
     let $url := 
         switch($resource)
-        case 'wikipedia' return
-            let $beaconMap := wega-util:beacon-map($gnd, $docType)
-            let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')][1])[1]
-            return
-                replace($url, '/gnd/de/', '/gnd/' || $lang || '/')
+        case 'wikipedia' return er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data()
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf') (: $gnd is actually the geonames ID :)

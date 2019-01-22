@@ -67,24 +67,12 @@ declare
 declare %private function img:iconography4persons($node as node(), $model as map(*), $lang as xs:string) as map(*) {
     let $local-image := img:wega-images($model, $lang)
     let $suppressWikipediaPortrait := core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[not(tei:graphic)]
-    let $beaconMap := (: when loaded via AJAX there's no beaconMap in $model :)
-        if(exists($model('beaconMap'))) then $model('beaconMap')
-        else try { 
-            wega-util:beacon-map(query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')))
-            }
-            catch * { map:new() } 
-    let $portraitindex-images := 
-        if(count(map:keys($beaconMap)[contains(., 'Portraitindex')]) gt 0) then img:portraitindex-images($model, $lang)
-        else ()
+    let $portraitindex-images := img:portraitindex-images($model, $lang)
     let $wikipedia-images := 
-        if(not($suppressWikipediaPortrait) and count(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')]) gt 0) then img:wikipedia-images($model, $lang)
+        if(not($suppressWikipediaPortrait)) then img:wikipedia-images($model, $lang)
         else ()
-    let $tripota-images := 
-        if(count(map:keys($beaconMap)[contains(., 'GND-Zuordnung')]) gt 0) then img:tripota-images($model, $lang)
-        else ()
-    let $munich-stadtmuseum-images := 
-        if(count(map:keys($beaconMap)[contains(., 'Porträtsammlung')]) gt 0) then img:munich-stadtmuseum-images($model, $lang)
-        else ()
+    let $tripota-images := img:tripota-images($model, $lang)
+    let $munich-stadtmuseum-images := img:munich-stadtmuseum-images($model, $lang)
     let $iconographyImages := ($local-image, $wikipedia-images, $portraitindex-images, $tripota-images, $munich-stadtmuseum-images)
     let $portrait := ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
     return
