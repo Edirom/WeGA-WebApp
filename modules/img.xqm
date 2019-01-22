@@ -610,6 +610,7 @@ declare %private function img:iiif-manifest-attribution($facsimile as element(te
     return
         typeswitch($source)
         case element(tei:msDesc) return str:normalize-space($source/tei:msIdentifier/tei:repository)
+        case element(tei:msFrag) return str:normalize-space($source/tei:msIdentifier/tei:repository)
         case element(tei:biblStruct) return str:normalize-space($source/tei:monogr/tei:title[1])
         case element(tei:bibl) return str:normalize-space($source)
         default return 'Carl-Maria-von-Weber-Gesamtausgabe'
