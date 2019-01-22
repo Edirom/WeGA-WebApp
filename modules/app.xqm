@@ -88,7 +88,7 @@ declare function app:createDocLink($doc as document-node()?, $content as xs:stri
  : @param $popover whether to add class attributes for popovers
  : @return a html:a element
  :)
-declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*, $popover as xs:boolean) as element(xhtml:a) {
+declare function app:createDocLink($doc as document-node()?, $content as xs:string, $lang as xs:string, $attributes as xs:string*, $popover as xs:boolean) as element(xhtml:a) {
     if($popover) then 
         let $docID := $doc/*/data(@xml:id)
         let $docType := config:get-doctype-by-id($docID)
