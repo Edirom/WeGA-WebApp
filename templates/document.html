@@ -79,6 +79,7 @@
                     </div>
                     <div data-template="templates:include" data-template-path="templates/includes/download-modal.html"/>
                     <div data-template="app:context">                       
+                        
                         <h2>
                             <a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a>
                         </h2>
@@ -160,24 +161,24 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div data-template="app-shared:output" data-template-key="transcription"/>
                     </div>
-                    <div class="tab-pane fade" id="editorial">
+                    <div class="tab-pane fade" id="editorial" data-template="app:check-apparatus">
                         <h2 data-template="lang:translate">editorial</h2>
                         <!--<div>
                             <h3 data-template="lang:translate">series</h3>
                             <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
                         </div>-->
                         
-                        <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="diaries">
+                        <div data-template="app-shared:if-exists" data-template-key="summary">
                             <h3 data-template="lang:translate" class="media-heading">summary</h3>
                             <div data-template="app:print-summary"/>
                         </div>
                         
-                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters writings documents">
+                        <div data-template="app-shared:if-exists" data-template-key="incipit">
                             <h3 data-template="lang:translate" class="media-heading">incipit</h3>
                             <div data-template="app:print-incipit"/>
                         </div>
                         
-                        <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="diaries">
+                        <div data-template="app-shared:if-exists" data-template-key="generalRemark">
                             <h3 data-template="lang:translate" class="media-heading">generalRemark</h3>
                             <div data-template="app:print-generalRemark"/>
                         </div>

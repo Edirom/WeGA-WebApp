@@ -1346,7 +1346,7 @@ declare
             if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
             else ()
         let $summary := 
-            if($model('doc')//tei:note[@type='summary']) then wega-util:transform($model('doc')//tei:note[@type='summary'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            if(query:summary($model('doc'))) then wega-util:transform(query:summary($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
             else '–'
         return (
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
@@ -1360,7 +1360,7 @@ declare
     %templates:default("lang", "en")
     %templates:default("generate", "false")
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
-        let $incipit := wega-util:transform($model('doc')//tei:note[@type='incipit'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        let $incipit := wega-util:transform(query:incipit($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
             else element p {
@@ -1373,7 +1373,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-generalRemark($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $generalRemark := wega-util:transform($model('doc')//tei:note[@type='editorial'], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        let $generalRemark := wega-util:transform(query:generalRemark($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($generalRemark) and (every $i in $generalRemark satisfies $i instance of element())) then $generalRemark
             else element p {
@@ -1401,6 +1401,19 @@ declare
         else if($model?hasCreation) then wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         else '–'
 };
+
+
+declare
+    %templates:default("lang", "en")
+    %templates:wrap
+    function app:check-apparatus($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        map {
+            'incipit' := query:incipit($model('doc')),
+            'summary' := query:summary($model('doc')),
+            'generalRemark' := query:generalRemark($model('doc'))
+        }
+};
+
 
 declare 
     %templates:wrap
