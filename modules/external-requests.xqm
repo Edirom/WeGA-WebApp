@@ -86,6 +86,33 @@ declare function er:grab-external-resource-wikidata($id as xs:string, $authority
 };
 
 (:~
+ : Lookup gnd IDs in BEACON files 
+ :)
+declare function er:lookup-gnd-from-beaconProvider($beaconProvider as xs:string, $gnd as xs:string) as xs:anyURI? {
+    let $beaconURI := config:get-option($beaconProvider)
+    return
+        if($beaconURI castable as xs:anyURI)
+        then er:lookup-gnd-from-beaconURI($beaconURI, $gnd)
+        else ()
+};
+
+(:~
+ : Lookup gnd IDs in BEACON files 
+ :)
+declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as xs:string) as xs:anyURI? {
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+    let $onFailureFunc := function($errCode, $errDesc) {
+            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+    let $filename := util:hash($beaconURI, 'md5') || '.xml'
+    let $docURI := str:join-path-elements(($config:tmp-collection-path, 'beaconFiles', $filename))
+    let $beacon := cache:doc($docURI, er:parse-beacon#1, $beaconURI, $lease, $onFailureFunc)
+    return 
+        try { $beacon/id(concat('_', $gnd)) cast as xs:anyURI }
+        catch * {()}
+};
+
+(:~
  :  Make a request to linked data resources
  :  This is in fact a wrapper function around the expath `http:send-request` method, see http://expath.org/modules/http-client/
  : 
@@ -247,4 +274,33 @@ declare %private function er:wikidata-url($id as xs:string, $authority-provider 
  :)
 declare %private function er:bot-present() as xs:boolean {
     matches(request:get-header('User-Agent'), 'Baiduspider|Yandex|MegaIndex|AhrefsBot|HTTrack|bingbot|Googlebot|cliqzbot|DotBot|SemrushBot|MJ12bot', 'i')
+};
+
+(:~
+ : Helper function for fetching and parsing a plain text BEACON file into an XML structure
+ :)
+declare %private function er:parse-beacon($beaconURI as xs:anyURI) as element(er:beacon) {
+    let $beacon := er:http-get($beaconURI)
+    let $lines := 
+        if($beacon//httpclient:response/@statusCode eq '200')
+        then tokenize($beacon//httpclient:body, '\n')
+        else ()
+    let $target := $lines[starts-with(., '#TARGET:')] ! normalize-space(substring-after(., '#TARGET:'))
+    let $gnds := $lines[matches(normalize-space(.), '(^1[01]?\d{7}[0-9X]|[47]\d{6}-\d|[1-9]\d{0,7}-[0-9X]|3\d{7}[0-9X])$')]
+    return 
+        <er:beacon>{
+            for $meta in $lines[starts-with(., '#')]
+            return
+                element {
+                    QName('http://xquery.weber-gesamtausgabe.de/modules/external-requests', lower-case(substring-before(substring($meta, 2), ':')))
+                }{
+                    normalize-space(substring-after($meta, ':'))
+                },
+            for $gnd in $gnds
+            return
+                <er:gnd>{
+                    attribute {'xml:id'} {'_' || $gnd},
+                    replace($target, '\{ID\}', $gnd)
+                }</er:gnd>
+        }</er:beacon>
 };

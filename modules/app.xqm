@@ -10,6 +10,7 @@ declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace gn="http://www.geonames.org/ontology#";
+declare namespace sr="http://www.w3.org/2005/sparql-results#";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -298,16 +299,13 @@ declare
 declare
     %templates:default("lang", "en")
     function app:ajax-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        let $beacon := 
-            try {string-join(map:keys($model('beaconMap')), ' ')}
-            catch * {()}
         let $ajax-resource :=
             switch(normalize-space($node))
             case 'XML-Preview' return 'xml.html'
             case 'examples' return if(gl:schemaIdent2docType($model?schemaID) = (for $func in $wdt:functions return $func(())('name'))) then 'examples.html' else ()
-            case 'wikipedia-article' return if(contains($beacon, 'Wikipedia-Personenartikel')) then 'wikipedia.html' else ()
-            case 'adb-article' return if(contains($beacon, '(hier ADB ')) then 'adb.html' else ()
-            case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
+            case 'wikipedia-article' return if(er:grab-external-resource-wikidata($model?gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data()) then 'wikipedia.html' else ()
+            case 'adb-article' return if(er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
+            case 'ndb-article' return if(er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
             case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
