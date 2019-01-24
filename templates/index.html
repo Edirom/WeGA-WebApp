@@ -32,12 +32,7 @@
                                     <option value="biblio" data-template="lang:translate">bibliography</option>-->
                                 </select>
                             </div>
-                            <div data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
-                                <input type="text" class="query-input form-control" placeholder="Suchbegriff" name="q" id="query-input"/>
-                            </div>
-                            <div data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
-                                <input type="text" class="query-input form-control" placeholder="search term" name="q"/>
-                            </div>
+                            <input type="text" class="query-input form-control" name="q" id="query-input" data-template="app:search-input"/>
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
                             </span>
