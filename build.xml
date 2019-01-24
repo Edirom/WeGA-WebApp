@@ -25,11 +25,6 @@
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <mkdir dir="${dist.dir}"/>
-        <condition property="update.smufl-font">
-            <not>
-                <available file="${lib_components.dir}/bravura.zip"/>
-            </not>
-        </condition>
     </target>
     
     <target name="test">
@@ -50,7 +45,15 @@
         </parallel>
     </target>
     
-    <target name="download-smufl-font" depends="yarn" if="${update.smufl-font}">
+    <target name="check-for-smufl-font" depends="yarn">
+        <condition property="update.smufl-font">
+            <not>
+                <available file="${lib_components.dir}/bravura.zip"/>
+            </not>
+        </condition>
+    </target>
+    
+    <target name="download-smufl-font" depends="check-for-smufl-font" if="${update.smufl-font}">
         <description>Download Bravura font from the official website</description>
         <get src="${smufl.font}" dest="${lib_components.dir}/bravura.zip" skipexisting="no"/>
     </target>
