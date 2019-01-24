@@ -74,7 +74,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
  : 
  : @param $id some external authority ID (e.g. Geonames, GND)
  : @param $authority-provider the respective authority-provider string (e.g. 'geonames', or 'gnd')
- : @return a httpclient:response element if succesfull, the empty sequence otherwise. For a description of the `httpclient:response` element
+ : @return a httpclient:response element if successful, the empty sequence otherwise. For a description of the `httpclient:response` element
  :      see http://expath.org/modules/http-client/
  :)
 declare function er:grab-external-resource-wikidata($id as xs:string, $authority-provider as xs:string) as element(httpclient:response)? {
