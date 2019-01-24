@@ -49,7 +49,12 @@
                     <div class="col-md-9 searchform">
                         <!--<form role="form" class="form-inline">-->
                             <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Standard Suche" name="q" data-template="search:inject-value" value="foobar" id="query-input"/>
+                                <div data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
+                                    <input type="text" class="query-input form-control" placeholder="Suchbegriff" name="q" id="query-input"/>
+                                </div>
+                                <div data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
+                                    <input type="text" class="query-input form-control" placeholder="search term" name="q"/>
+                                </div>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
                                 </span>

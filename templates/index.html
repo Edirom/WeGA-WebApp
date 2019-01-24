@@ -21,7 +21,7 @@
                     <div class="col-md-6 form-group">
                         <div class="input-group searchform">
                             <div class="input-group-btn dropdown docType-search-filter">
-                                <select class="input-group-addon bootstrap-select form-control prettyselect" name="d" id="search-select">
+                                <select class="input-group-addon gradient-light bootstrap-select form-control prettyselect" name="d" id="search-select">
                                     <option value="all" data-template="app:search-options">all</option>
                                     <!--<option value="personsPlus" data-template="lang:translate">personsPlus</option>
                                     <option value="letters" data-template="lang:translate">correspondence</option>
@@ -32,7 +32,12 @@
                                     <option value="biblio" data-template="lang:translate">bibliography</option>-->
                                 </select>
                             </div>
-                            <input type="text" class="form-control" placeholder="Suchbegriff" name="q" id="query-input"/>
+                            <div data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
+                                <input type="text" class="query-input form-control" placeholder="Suchbegriff" name="q" id="query-input"/>
+                            </div>
+                            <div data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
+                                <input type="text" class="query-input form-control" placeholder="search term" name="q"/>
+                            </div>
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
                             </span>
@@ -153,7 +158,7 @@
                             <p>
                                 <a href="singleAktuelles.php.html" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="url">
                                     <span data-template="app-shared:output" data-template-key="title">Digitale Edition Version 1.1.8
-                                        veröffentlicht</span> <i class="fa fa-arrow-right"/>
+                                    veröffentlicht</span> <i class="fa fa-arrow-right"/>
                                 </a>
                             </p>
                         </div>
