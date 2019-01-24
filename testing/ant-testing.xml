@@ -77,7 +77,7 @@
         </exec>
         <exec executable="${bash.command}" outputproperty="grep.out">
             <arg value="-c"/>
-            <arg value="grep -A 2 -B 11 &quot;\[32m&quot; ${diff.out}"/>
+            <arg value="grep -A 2 -B 11 &quot;\[3[12]m&quot; ${diff.out}"/>
             <env key="LANG" value="C"/>
         </exec>
         <echo>${grep.out}</echo>

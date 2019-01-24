@@ -64,6 +64,7 @@
         <xsl:attribute name="data-target">some_computed_id</xsl:attribute>
     </xsl:template>
     
+    <xsl:template match="html:div[contains(@class, 'iconographie')]"/>
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:span[matches(., '^Version \d+\.\d+(\.\d+)?dev vom \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:h2[matches(., '^\d+ Suchergebnisse$')]"/>
