@@ -46,7 +46,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
     let $botPresent := er:bot-present()
     let $url := 
         switch($resource)
-        case 'wikipedia' return er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data()
+        case 'wikipedia' return (er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf') (: $gnd is actually the geonames ID :)
@@ -58,7 +58,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
     let $response := 
-        if($botPresent) then ()
+        if($botPresent or not($url)) then ()
         else
             (: Because the EXPath http client is very picky about HTTPS certificates, we need to use the standard httpclient module for the munich-stadtmuseum which uses HTTPS :)
             switch($resource)
@@ -81,7 +81,7 @@ declare function er:grab-external-resource-wikidata($id as xs:string, $authority
     let $uri := er:wikidata-url($id, $authority-provider)
     let $fileName := util:hash($uri, 'md5') || '.xml'
     return
-        if(er:bot-present()) then ()
+        if(er:bot-present() or not($uri)) then ()
         else er:cached-external-request($uri, str:join-path-elements(($config:tmp-collection-path, 'wikidata', $fileName)))
 };
 
@@ -240,7 +240,7 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
  : construct wikidata query URL
  : (Helper function for er:grabExternalResource())
 ~:)
-declare %private function er:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI*  {
+declare %private function er:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI {
     (:  
     see https://query.wikidata.org/ 
     and https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/Wikidata_Query_Help 
@@ -286,6 +286,7 @@ declare %private function er:parse-beacon($beaconURI as xs:anyURI) as element(er
         then tokenize($beacon//httpclient:body, '\n')
         else ()
     let $target := $lines[starts-with(., '#TARGET:')] ! normalize-space(substring-after(., '#TARGET:'))
+    (: GND ID regex taken from https://www.wikidata.org/wiki/Property:P227 :)
     let $gnds := $lines[matches(normalize-space(.), '(^1[01]?\d{7}[0-9X]|[47]\d{6}-\d|[1-9]\d{0,7}-[0-9X]|3\d{7}[0-9X])$')]
     return 
         <er:beacon>{
