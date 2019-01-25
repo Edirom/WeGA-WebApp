@@ -880,20 +880,8 @@ declare
     }
 };
 
-(:declare function app:person-beacon($node as node(), $model as map(*)) as map(*) {
-    let $gnd := query:get-gnd($model('doc'))
-    let $beaconMap := 
-        if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
-        else map:new()
-    return
-        map{
-            'gnd' := $gnd,
-            'beaconMap' := $beaconMap
-        }
-};:)
-
 (:~
- : Create Beacon Links
+ : Prepare Beacon Links for display on person and work pages
  : Called via AJAX
  :)
 declare 
