@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:tei="http://www.tei-c.org/ns/1.0" 
-    xmlns:rng="http://relaxng.org/ns/structure/1.0" 
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
-    version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
     
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     
@@ -40,6 +34,7 @@
             </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="div">
+                    <xsl:attribute name="class">panel-body panel panel-default apparatus-div</xsl:attribute>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:otherwise>
@@ -66,7 +61,8 @@
             <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>-->
-        <xsl:element name="p">
+        <xsl:element name="h4">
+            <xsl:attribute name="class">media-heading</xsl:attribute>            
             <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
                 <xsl:value-of select="wega:getLanguageString($node/ancestor-or-self::tei:msDesc/@rend, $lang)"/>
                 <xsl:text>: </xsl:text>
@@ -122,9 +118,10 @@
     <xsl:template match="tei:physDesc">
         <xsl:element name="h4">
             <xsl:attribute name="class">media-heading</xsl:attribute>
-            <xsl:value-of select="wega:getLanguageString('physicalDescription', $lang)"/>
+            <!--<xsl:value-of select="wega:getLanguageString('physicalDescription', $lang)"/>-->
         </xsl:element>
         <xsl:element name="ul">
+            <xsl:attribute name="class">apparatus-details</xsl:attribute>               
             <xsl:for-each select="tei:p">
                 <xsl:element name="li">
                     <xsl:apply-templates/>
@@ -147,11 +144,12 @@
     </xsl:template>
 
     <xsl:template match="tei:history">
-        <xsl:element name="h4">
-            <xsl:attribute name="class">media-heading</xsl:attribute>
-            <xsl:value-of select="wega:getLanguageString('provenance', $lang)"/>
-        </xsl:element>
         <xsl:element name="ul">
+            <xsl:attribute name="class">apparatus-details</xsl:attribute>
+            <xsl:element name="strong">
+                <xsl:attribute name="class">media-heading</xsl:attribute>
+                <xsl:value-of select="wega:getLanguageString('provenance', $lang)"/>: 
+            </xsl:element>
             <!-- make tei:acquisition appear on top of the list -->
             <xsl:for-each select="tei:acquisition, tei:provenance">
                 <xsl:element name="li">
