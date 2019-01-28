@@ -16,21 +16,28 @@
     <xsl:template match="tei:listWit">
         <xsl:for-each select="tei:witness">
             <xsl:sort select="@n" order="ascending" data-type="number"/>
-            <xsl:element name="div">
-                <xsl:attribute name="id" select="concat('source_', position())"/>
+            <xsl:variable name="wit_id">
+                <xsl:value-of select="concat('source_', position())"/>
+            </xsl:variable>
+            <xsl:element name="div">                
                 <xsl:attribute name="class" select="'witness'"/>
-                <xsl:if test="position()!=1">
+                <!--<xsl:if test="position()!=1">
                     <xsl:attribute name="style" select="'display:none;'"/>
-                </xsl:if>
-                <xsl:apply-templates/>
+                </xsl:if>                -->
+                <xsl:apply-templates>
+                    <xsl:with-param name="wit_id" select="$wit_id"/>
+                </xsl:apply-templates>
             </xsl:element>
         </xsl:for-each>
     </xsl:template>
 
     <xsl:template match="tei:msDesc">
+        <xsl:param name="wit_id"/>       
         <xsl:choose>
-            <xsl:when test="parent::tei:witness">
-                <xsl:apply-templates/>
+            <xsl:when test="ancestor::tei:listWit">
+                <xsl:apply-templates>
+                    <xsl:with-param name="wit_id" select="$wit_id"/>
+                </xsl:apply-templates>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:element name="div">
@@ -42,8 +49,10 @@
     </xsl:template>
 
     <xsl:template match="tei:msIdentifier">
+        <xsl:param name="wit_id"/>       
         <xsl:call-template name="createMsIdentifier">
             <xsl:with-param name="node" select="."/>
+            <xsl:with-param name="wit_id" select="$wit_id"/>
         </xsl:call-template>
     </xsl:template>
     
@@ -57,12 +66,16 @@
 
     <xsl:template name="createMsIdentifier">
         <xsl:param name="node"/>
+        <xsl:param name="wit_id"/>
         <!--<xsl:element name="h4">
             <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>-->
         <xsl:element name="h4">
-            <xsl:attribute name="class">media-heading</xsl:attribute>            
+            <xsl:element name="a">
+            <xsl:attribute name="class">media-heading</xsl:attribute>
+            <xsl:attribute name="data-target"><xsl:value-of select="concat('#',$wit_id)"/></xsl:attribute>
+            <xsl:attribute name="data-toggle">collapse</xsl:attribute>
             <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
                 <xsl:value-of select="wega:getLanguageString($node/ancestor-or-self::tei:msDesc/@rend, $lang)"/>
                 <xsl:text>: </xsl:text>
@@ -113,6 +126,16 @@
                 </xsl:element>
             </xsl:if>
         </xsl:element>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:msDesc/tei:*[not(self::tei:msIdentifier)]">
+        <xsl:param name="wit_id"/>
+        <xsl:element name="div">           
+            <xsl:attribute name="id"><xsl:value-of select="$wit_id"/></xsl:attribute>
+            <xsl:attribute name="class">collapse</xsl:attribute>
+            <xsl:next-match/>
+        </xsl:element>
     </xsl:template>
 
     <xsl:template match="tei:physDesc">
@@ -120,7 +143,7 @@
             <xsl:attribute name="class">media-heading</xsl:attribute>
             <!--<xsl:value-of select="wega:getLanguageString('physicalDescription', $lang)"/>-->
         </xsl:element>
-        <xsl:element name="ul">
+        <xsl:element name="ul">            
             <xsl:attribute name="class">apparatus-details</xsl:attribute>               
             <xsl:for-each select="tei:p">
                 <xsl:element name="li">

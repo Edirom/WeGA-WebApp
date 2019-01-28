@@ -234,7 +234,7 @@ declare function query:text-sources($doc as document-node()) as element()* {
         default return $doc//tei:sourceDesc/tei:*
     return 
         typeswitch($source)
-        case element(tei:listWit) return $source/tei:witness/tei:*
+        case element(tei:listWit) return $source
         case element(tei:listBibl) return $source/tei:*
         default return $source
 };
