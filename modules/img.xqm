@@ -285,7 +285,8 @@ declare %private function img:prep-wikimedia-image-filenames($img as xs:string) 
 declare %private function img:portraitindex-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then er:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grab-external-resource-via-beacon('portraitindexBeacon', $gnd) 
+        (:er:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang):)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
     return 
@@ -315,7 +316,8 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
 declare %private function img:tripota-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then er:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grab-external-resource-via-beacon('tripotaBeacon', $gnd)
+        (:er:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang):)
         else ()
     let $pics := $page//xhtml:td
     return 
@@ -345,7 +347,8 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
 declare %private function img:munich-stadtmuseum-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
-        if($gnd) then er:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grab-external-resource-via-beacon('munich-stadtmuseumBeacon', $gnd)
+        (:er:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang):)
         else ()
     let $pics := $page//xhtml:a[@class='imagelink'][ancestor::xhtml:div[@id='main']]
     return 

@@ -65,8 +65,19 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
             case 'munich-stadtmuseum' return cache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:httpclient-get#1, xs:anyURI($url), $lease, $onFailureFunc)
             default return cache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
     return 
-        if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
+        if($response//httpclient:response/@statusCode eq '200') 
+        then $response//httpclient:response
         else ()
+};
+
+declare function er:grab-external-resource-via-beacon($beaconProvider as xs:string, $gnd as xs:string) as element(httpclient:response)? {
+    let $uri := er:lookup-gnd-from-beaconProvider($beaconProvider, $gnd)
+    let $fileName := $gnd || '.xml'
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, encode-for-uri($beaconProvider), $fileName))
+    return
+        if(er:bot-present() or not($uri)) 
+        then ()
+        else er:cached-external-request($uri, $localFilePath)
 };
 
 (:~
@@ -81,7 +92,8 @@ declare function er:grab-external-resource-wikidata($id as xs:string, $authority
     let $uri := er:wikidata-url($id, $authority-provider)
     let $fileName := util:hash($uri, 'md5') || '.xml'
     return
-        if(er:bot-present() or not($uri)) then ()
+        if(er:bot-present() or not($uri)) 
+        then ()
         else er:cached-external-request($uri, str:join-path-elements(($config:tmp-collection-path, 'wikidata', $fileName)))
 };
 
@@ -105,11 +117,13 @@ declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as x
             core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
         }
     let $filename := util:hash($beaconURI, 'md5') || '.xml'
-    let $docURI := str:join-path-elements(($config:tmp-collection-path, 'beaconFiles', $filename))
-    let $beacon := cache:doc($docURI, er:parse-beacon#1, $beaconURI, $lease, $onFailureFunc)
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'beaconFiles', $filename))
+    let $beacon := cache:doc($localFilePath, er:parse-beacon#1, $beaconURI, $lease, $onFailureFunc)
+    let $uri := $beacon/id(concat('_', $gnd))
     return 
-        try { $beacon/id(concat('_', $gnd)) cast as xs:anyURI }
-        catch * {()}
+        if($uri castable as xs:anyURI) 
+        then xs:anyURI($uri) 
+        else ()
 };
 
 (:~
@@ -287,7 +301,8 @@ declare %private function er:parse-beacon($beaconURI as xs:anyURI) as element(er
         else ()
     let $target := $lines[starts-with(., '#TARGET:')] ! normalize-space(substring-after(., '#TARGET:'))
     (: GND ID regex taken from https://www.wikidata.org/wiki/Property:P227 :)
-    let $gnds := $lines[matches(normalize-space(.), '(^1[01]?\d{7}[0-9X]|[47]\d{6}-\d|[1-9]\d{0,7}-[0-9X]|3\d{7}[0-9X])$')]
+    let $gnd-regex := '1[01]?\d{7}[0-9X]|[47]\d{6}-\d|[1-9]\d{0,7}-[0-9X]|3\d{7}[0-9X]'
+    let $gnds := $lines[matches(normalize-space(.), $gnd-regex)] ! analyze-string(., $gnd-regex)/fn:match/text()
     return 
         <er:beacon>{
             for $meta in $lines[starts-with(., '#')]
