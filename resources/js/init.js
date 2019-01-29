@@ -25,7 +25,11 @@ $.fn.prettyselect = function ()
     $(this).each( function(a, b) {
         $(b).selectize({        
             inputClass: 'form-control input selectize-input', 
-            dropdownParent: "body"
+            dropdownParent: "body",
+            create: false,            
+            onInitialize: function() {
+                this.$control_input.attr('readonly', true);
+            }
             })
     });
 }
