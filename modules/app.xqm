@@ -1177,6 +1177,26 @@ declare
         )
 };
 
+(:~
+ : set link to Bach Digital for person pages
+ : for those data sets originating from the Bach Institut
+ :)
+declare function app:bach-digital-url($node as node(), $model as map(*)) as element() {
+    let $url := 
+        if($model?doc//tei:idno[@type='bd'])
+        then 'https://www.bach-digital.de/receive/' || $model?doc//tei:idno[@type='bd']
+        else if ($node/@href) 
+        then $node/data(@href)
+        else 'https://www.bach-digital.de'
+    return
+    element {node-name($node)} {
+        $node/@*[not(local-name(.) eq 'href')],
+        attribute href {$url},
+        templates:process($node/node(), $model)
+    }
+};
+
+
 (:
  : ****************************
  : Document pages
