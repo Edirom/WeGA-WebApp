@@ -1298,7 +1298,7 @@ declare
     %templates:default("lang", "en")
     function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element()* {
         typeswitch($model('textSource'))
-        case element(tei:listWit) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+        case element(tei:msDesc) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         case element(tei:biblStruct) return bibl:printCitation($model('textSource'), <xhtml:p class="biblio-entry"/>, $lang)
         case element(tei:bibl) return <p>{str:normalize-space($model('textSource'))}</p>
         default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
