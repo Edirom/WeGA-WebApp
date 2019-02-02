@@ -1290,18 +1290,33 @@ declare
     %templates:wrap
     function app:textSources($node as node(), $model as map(*)) as map(*) {
         map {
-            'textSources' := query:text-sources($model?doc)
+            'textSources' := query:text-sources($model?doc),
+            'textSourcesCount' := if (count(query:text-sources($model?doc)) > 1) then concat("in ", count(query:text-sources($model?doc)), " ", lang:get-language-string("textSources",$model('lang')),":") else ""            
         }
 };
 
+
 declare 
     %templates:default("lang", "en")
-    function app:print-textSource($node as node(), $model as map(*), $lang as xs:string) as element()* {
-        typeswitch($model('textSource'))
-        case element(tei:msDesc) return wega-util:transform($model('textSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        case element(tei:biblStruct) return bibl:printCitation($model('textSource'), <xhtml:p class="biblio-entry"/>, $lang)
-        case element(tei:bibl) return <p>{str:normalize-space($model('textSource'))}</p>
-        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
+    function app:print-Source($node as node(), $model as map(*), $key as xs:string) as element()* {
+    typeswitch($model($key))
+    case element(tei:msDesc)
+            return 
+            let $source := $model($key)/tei:msIdentifier
+            let $source-data := $model($key)/tei:*[not(self::tei:msIdentifier)]
+            let $source-id := util:hash($source,'md5')
+            return (                                
+                <a href="{concat("#",$source-id)}" data-toggle="collapse" class="collapseMarker collapsed">                    
+                    {wega-util:transform($source, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))}
+                </a>,
+                <div id="{$source-id}" class="collapse">
+                    {wega-util:transform($source-data, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))}
+                </div>
+                
+                )
+        case element(tei:biblStruct) return bibl:printCitation($model($key), <xhtml:p class="biblio-entry"/>, $model('lang'))
+        case element(tei:bibl) return <p>{str:normalize-space($model($key))}</p>
+        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$model('lang'))}</span>       
 };
 
 declare 
@@ -1313,15 +1328,6 @@ declare
         }
 };
 
-declare 
-    %templates:default("lang", "en")
-    function app:print-additionalSource($node as node(), $model as map(*), $lang as xs:string) as element()* {
-        typeswitch($model('additionalSource'))
-        case element(tei:msDesc) return wega-util:transform($model('additionalSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        case element(tei:biblStruct) return bibl:printCitation($model('additionalSource'), <xhtml:span class="biblio-entry"/>, $lang)
-        case element(tei:bibl) return <span>{wega-util:transform($model('additionalSource'), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))}</span>
-        default return <span class="noDataFound">{lang:get-language-string('noDataFound',$lang)}</span>
-};
 
 (:~
  : Fetch all (external) facsimiles for a text source
