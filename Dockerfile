@@ -47,7 +47,7 @@ RUN ant -lib /usr/share/java
 #########################
 FROM stadlerpeter/existdb:3.3.0
 
-ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-19436.xar ${EXIST_HOME}/autodeploy/
+ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-19943.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega/build/*.xar ${EXIST_HOME}/autodeploy/
 

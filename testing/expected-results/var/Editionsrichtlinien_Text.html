@@ -47,11 +47,9 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
-        
-        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
         
-        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003672","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A003672"},{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009002","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009002"},{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001"},{"name":"Veit, Joachim","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"name":"Editionsrichtlinien zur Ausgabe der Briefe, Tagebücher und Dokumente Webers","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070001","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"}}</script>
+        <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003672","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A003672"},{"name":"","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009002","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009002"},{"name":"Stadler, Peter","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001"},{"name":"Veit, Joachim","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"name":"Editionsrichtlinien zur Ausgabe der Briefe, Tagebücher und Dokumente Webers","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070001","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"Als im Anschluss an die Jubiläumsveranstaltungen zu Webers 200. Geburtstag Ende der 1980er Jahre die Pläne zu einer Weber-Gesamtausgabe in den …"}</script>
 
 
     </head>
@@ -342,6 +340,7 @@
                                         <li class="secLevel2"><a href="#d10e2494">4. 5 Angaben zur Einrichtung des Textes in der vorliegenden elektronischen Form &lt;encodingDesc/&gt;</a></li>
                                         <li class="secLevel2"><a href="#d10e2515">4. 6 Inhaltliche Erschließung des Dokuments &lt;profileDesc/&gt;</a></li>
                                         <li class="secLevel2"><a href="#d10e2597">4. 7 Die Dokumentation der Änderungen an der Datei &lt;revisionDesc/&gt;</a></li>
+                                        <li class="secLevel2"><a href="#d10e2641">4. 8 Die Einbindung von Faksimiles der Quellen &lt;facsimile/&gt;</a></li>
                                     </ul>
                                 </div>
                                 <div id="d10e2">
@@ -1205,6 +1204,40 @@
                                             </table>
                                         </div>
                                     </div>
+                                    <div id="d10e2640">
+                                        <h3 id="d10e2641">4. 8 Die Einbindung von Faksimiles der Quellen <code>&lt;facsimile/&gt;</code></h3>
+                                        <p>Sofern Faksimiles der Quellen integriert werden sollen, fügt man Verweise darauf zwischen
+              <code>&lt;teiHeader/&gt;</code> und <code>&lt;text/&gt;</code> (also vor Beginn der
+            eigentlichen Übertragung) mit Hilfe des Elements <code>&lt;facsimile/&gt;</code>
+            ein. (Aufgrund rechtlicher Beschränkungen ist es leider nicht in allen Fällen
+            möglich, diese Faksimiles auch auf der vorliegenden Website anzuzeigen.). Durch ein
+              <code>@source</code>-Attribut wird auf die zugehörige Quelle und die weiterführenden Informationen dazu in der
+            Quellenbeschreibung (Autograph, Abschrift, Drucke, zusätzliche Informationen) verwiesen
+            (dort ist in diesen Fällen eine entsprechende Identifikationsnummer <code>@xml:id</code>
+            zu vergeben, auf die hier lediglich verwiesen wird).</p>
+                                        <p>Geschachtelt im Element <code>&lt;facsimile/&gt;</code> werden die einzelnen
+            Abbildungen als <code>&lt;graphic/&gt;</code> in Verbindung mit der Angabe einer
+            entsprechenden <code>@url</code> verzeichnet, jede Graphik erhält wieder eine eigene
+              <code>@xml:id</code>, um auch von anderer Stelle auf diese Faksimiles verweisen zu
+            können (z.B. an der Stelle des Seitenumbruchs auf den Beginn einer neuen Faksimileseite: <code>&lt;pb facs="#facs_2r"/&gt;</code> ). Wenn mehrere Quellen faksimiliert werden, empfiehlt es sich jedes
+              <code>&lt;facsimile/&gt;</code>-Element zusätzlich mit einer eigenen Zählung
+              (<code>@n</code>) zu versehen.</p>
+                                        <p>Teilweise sind auch Erst- oder Frühdrucke der Texte als Faksimile vorhanden, die keinen
+            Quellenrang für den Edierten Text haben, aber rezeptionsgeschichtlich von Interesse sind. Auch solche Faksimiles sind an dieser Stelle
+            aufzulisten; die entsprechende Stelle bei den Nachweisen (unter
+              <code>&lt;additional/&gt;</code> erhält dort eine <code>@xml:id</code>, die dann (wie
+            im Falle der eigentlichen Quellen des Edierten Textes) als Verweiszeichen bei dem
+            Faksimile (Bsp.: <code>&lt;facsimile source="bruehl"/&gt;</code> eingetragen wird.</p>
+                                        <p>Beispiel einer vollständigen Angabe:
+          <div class="panel panel-info">
+                                                <div class="panel-body">
+            &lt;facsimile n="1" source="#wit1" sameAs="https://content.staatsbibliothek-berlin.de/dc/828606013/manifest"/&gt;
+            &lt;facsimile n="2" source="#wit2" sameAs="https://content.staatsbibliothek-berlin.de/dc/748738517/manifest"/&gt;
+            &lt;facsimile n="3" source="#copy" url="1817-05-32_01_XM_Weber_an_Caroline_D-B_2v.tif" xml:id="facs_2v"/&gt;
+          </div>
+                                            </div>
+          In den beiden ersten Fällen verweist das Faksimile auf eine externe Quelle (die hier bereits im IIIF-Format eingebunden ist und daher in einfacherer Weise verzeichnet werden kann), im zweiten Fall handelt es sich um ein intern abgelegtes Faksimile der Quelle (hier Blatt 2v dieses Faksimiles).</p>
+                                    </div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
@@ -1225,7 +1258,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001</span> (<span>Version 3.3.1dev vom 24. August 2018</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001</span> (<span>Version 3.4.0dev vom 20. Januar 2019</span>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>

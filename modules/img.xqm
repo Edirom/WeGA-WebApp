@@ -184,7 +184,6 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
         else ()
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
     let $pics := $wikiArticle//xhtml:table[contains(@class,'vcard')] | $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
-    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:wikipedia-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
         let $tmpPicURI := ($div//xhtml:img[@class='thumbimage']/@src | $div[self::xhtml:table]//xhtml:img[not(@class='thumbimage')]/@src)[1]
@@ -301,7 +300,6 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
         if($gnd) then er:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
-    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:portraitindex-images(): no images found for GND ' || $gnd) else ()
     return 
         for $div in $pics
         let $picURI := $div//xhtml:img/data(@src)
@@ -332,9 +330,8 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
         if($gnd) then er:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:td
-    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:tripota-images(): no images found for GND ' || $gnd) else ()
     return 
-        for $div in $pics
+        for $div in $pics[not(xhtml:a/xhtml:img/@src='portraits/dummy.jpg')]
         let $picURI := concat('http://www.tripota.uni-trier.de/',  $div//xhtml:img[starts-with(@src, 'portraits')]/data(@src))
         return 
             if($picURI castable as xs:anyURI) then
@@ -363,7 +360,6 @@ declare %private function img:munich-stadtmuseum-images($model as map(*), $lang 
         if($gnd) then er:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     let $pics := $page//xhtml:a[@class='imagelink'][ancestor::xhtml:div[@id='main']]
-    let $errorLog := if(count($pics) = 0) then core:logToFile('info', 'img:munich-stadtmuseum-images(): no images found for GND ' || $gnd) else ()
     return 
         for $a in $pics
         let $picURI := concat('https://stadtmuseum.bayerische-landesbibliothek-online.de', $a/xhtml:img/@src)
@@ -614,6 +610,7 @@ declare %private function img:iiif-manifest-attribution($facsimile as element(te
     return
         typeswitch($source)
         case element(tei:msDesc) return str:normalize-space($source/tei:msIdentifier/tei:repository)
+        case element(tei:msFrag) return str:normalize-space($source/tei:msIdentifier/tei:repository)
         case element(tei:biblStruct) return str:normalize-space($source/tei:monogr/tei:title[1])
         case element(tei:bibl) return str:normalize-space($source)
         default return 'Carl-Maria-von-Weber-Gesamtausgabe'

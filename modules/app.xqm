@@ -88,7 +88,7 @@ declare function app:createDocLink($doc as document-node()?, $content as xs:stri
  : @param $popover whether to add class attributes for popovers
  : @return a html:a element
  :)
-declare function app:createDocLink($doc as document-node(), $content as xs:string, $lang as xs:string, $attributes as xs:string*, $popover as xs:boolean) as element(xhtml:a) {
+declare function app:createDocLink($doc as document-node()?, $content as xs:string, $lang as xs:string, $attributes as xs:string*, $popover as xs:boolean) as element(xhtml:a) {
     if($popover) then 
         let $docID := $doc/*/data(@xml:id)
         let $docType := config:get-doctype-by-id($docID)
@@ -768,7 +768,7 @@ declare
         let $print-titles := function($doc as document-node(), $alt as xs:boolean) {
             for $title in $doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type='sub')][exists(@type='alt') = $alt]
             let $titleLang := $title/string(@xml:lang) 
-            let $subTitle := $title/following-sibling::mei:title[@type='sub'][string(@title) = $titleLang]
+            let $subTitle := $title/following-sibling::mei:title[@type='sub'][string(@xml:lang) = $titleLang]
             return <span>{
                 string-join((
                     wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())),
@@ -798,7 +798,7 @@ declare
                 if($config:isDevelopment) then core:getOrCreateColl('sources', $model('docID'), true())
                 else (),
             'creation' := wega-util:transform(
-                $model?doc//mei:history, 
+                ($model?doc//mei:creation, $model?doc//mei:history), 
                 doc(concat($config:xsl-collection-path, '/works.xsl')), 
                 config:get-xsl-params( map {'dbPath' := document-uri($model?doc), 'docID' := $model?docID })
                 ), 
@@ -1177,6 +1177,26 @@ declare
         )
 };
 
+(:~
+ : set link to Bach Digital for person pages
+ : for those data sets originating from the Bach Institut
+ :)
+declare function app:bach-digital-url($node as node(), $model as map(*)) as element() {
+    let $url := 
+        if($model?doc//tei:idno[@type='bd'])
+        then 'https://www.bach-digital.de/receive/' || $model?doc//tei:idno[@type='bd']
+        else if ($node/@href) 
+        then $node/data(@href)
+        else 'https://www.bach-digital.de'
+    return
+    element {node-name($node)} {
+        $node/@*[not(local-name(.) eq 'href')],
+        attribute href {$url},
+        templates:process($node/node(), $model)
+    }
+};
+
+
 (:
  : ****************************
  : Document pages
@@ -1282,7 +1302,7 @@ declare
             for $respStmt in $respStmts
             return (
                 <dt>{str:normalize-space($respStmt/tei:resp)}</dt>,
-                <dd>{str:normalize-space(string-join($respStmt/tei:name, ', '))}</dd>
+                <dd>{str:normalize-space(string-join($respStmt/tei:name, '; '))}</dd>
             )
 };
 
