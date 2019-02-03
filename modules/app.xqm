@@ -1564,6 +1564,17 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
  : ****************************
 :)
 
+declare
+%templates:default("lang", "en")
+    function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(input)* {
+    let $placeholder := lang:get-language-string("searchTerm",$lang)
+    return
+    element {name($node)} {
+        $node/@*,
+        attribute placeholder {$placeholder}
+    }
+};
+
 declare 
     %templates:default("lang", "en")
     function app:search-filter($node as node(), $model as map(*), $lang as xs:string) as element(label)* {
