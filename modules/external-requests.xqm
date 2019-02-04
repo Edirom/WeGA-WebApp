@@ -78,7 +78,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
  : 
  : @param $id some external authority ID (e.g. Geonames, GND)
  : @param $authority-provider the respective authority-provider string (e.g. 'geonames', or 'gnd')
- : @return a httpclient:response element if succesfull, the empty sequence otherwise. For a description of the `httpclient:response` element
+ : @return a httpclient:response element if successful, the empty sequence otherwise. For a description of the `httpclient:response` element
  :      see http://expath.org/modules/http-client/
  :)
 declare function er:grab-external-resource-wikidata($id as xs:string, $authority-provider as xs:string) as element(httpclient:response)? {
@@ -95,7 +95,7 @@ declare function er:grab-external-resource-wikidata($id as xs:string, $authority
  : 
  :  @param $elem an element (e.g. `<gndo:formOfWorkAndExpression rdf:resource="http://d-nb.info/gnd/4043582-9"/>`) bearing 
  :      an `@rdf:resource` attribute which indicates the resource to fetch
- :  @return an httpclient:response element if succesfull, the empty sequence otherwise. For a description of the `httpclient:response` element
+ :  @return an httpclient:response element if successful, the empty sequence otherwise. For a description of the `httpclient:response` element
  :      see http://expath.org/modules/http-client/
 ~:)
 declare function er:resolve-rdf-resource($elem as element()) as element(httpclient:response)? {
@@ -187,7 +187,7 @@ declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
  :
  : @param $uri the external URI to fetch
  : @param $localFilepath the filepath to store the cached document
- : @return a httpclient:response element with the response stored within httpclient:body if succesful, the empty sequence otherwise
+ : @return a httpclient:response element with the response stored within httpclient:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string) as element(httpclient:response)? {
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
@@ -206,7 +206,7 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
  : @param $localFilepath the filepath to store the cached document
  : @param $lease a function to determine wether the cache should be updated. Must return a boolean value
  : @param $onFailureFunc an on-error function that's passed on to the underlying cache:doc() function 
- : @return a httpclient:response element with the response stored within httpclient:body if succesful, the empty sequence otherwise
+ : @return a httpclient:response element with the response stored within httpclient:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(httpclient:response)? {
     cache:doc($localFilepath, er:http-get#1, $uri, $lease, $onFailureFunc)//httpclient:response[@statusCode = '200']

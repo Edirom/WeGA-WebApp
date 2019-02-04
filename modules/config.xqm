@@ -136,7 +136,7 @@ declare function config:get-option($key as xs:string?) as xs:string? {
  : 
  :  @param $key the key to update or insert 
  :  @param $value the value for $key
- :  @return the new value if succesfull, the empty sequence otherwise
+ :  @return the new value if successful, the empty sequence otherwise
 ~:)
 declare function config:set-option($key as xs:string, $value as xs:string) as xs:string? {
     let $old := $config:options-file/id($key)
