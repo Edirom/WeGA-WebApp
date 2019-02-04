@@ -92,7 +92,7 @@ declare function lang:reverse-language-string-lookup($string as xs:string, $lang
  : @param $string the string to translate
  : @param $sourceLang the language to translate from
  : @param $targetLang the language to translate to
- : @return xs:string the translated string if successfull, otherwise the empty string
+ : @return xs:string the translated string if successful, otherwise the empty string
  :)
 declare function lang:translate-language-string($string as xs:string, $sourceLang as xs:string, $targetLang as xs:string) as xs:string {
     let $targetCatalogue := lang:get-language-catalogue($targetLang)
