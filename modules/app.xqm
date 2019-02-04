@@ -1068,9 +1068,16 @@ declare
 declare 
     %templates:wrap
     function app:deutsche-biographie($node as node(), $model as map(*)) as map(*) {
-        map {
-            'adbndbContent' := er:grabExternalResource('deutsche-biographie', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
-        }
+        let $gnd := query:get-gnd($model?doc)
+        return 
+            map {
+                'adbndbContent' := 
+                    if(er:lookup-gnd-from-beaconProvider('ndbBeacon', $gnd)) 
+                    then er:grab-external-resource-via-beacon('ndbBeacon', $gnd)
+                    else if($gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $gnd)) 
+                    then er:grab-external-resource-via-beacon('adbBeacon', $gnd)
+                    else ()
+            }
 };
 
 declare 
