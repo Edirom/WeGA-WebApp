@@ -494,7 +494,7 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
         case node() return parse-json(json:xml-to-json($value)) (: the output of json:xml-to-json() seems to be a string, not a map object :)
         case array(*) return $value
         case map(*) return $value
-        default return core:link-to-current-app('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
+        default return core:logToFile('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
     let $update := config:map-put-recursive($swagger.json, $key, $valueJSON)
     let $serialize-json := function($json as item()) as xs:string {
         serialize($json, <output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
