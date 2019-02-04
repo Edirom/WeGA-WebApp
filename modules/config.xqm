@@ -12,6 +12,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
+import module namespace json="http://www.json.org";
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -472,28 +473,48 @@ declare function config:api-base() as xs:string {
 };
 
 (:~
- : set/update object in swagger.json description
+ : set/update object in swagger.json description.
+ : NB: You have to be logged in as admin to be able to update preferences!
  :
- : @param $key a sequence of keys navigating to the object 
- : (e.g. the sequence ('foo', 'bar') will select the object 'bar' within the object 'foo'. 
- : Non existing keys will be added, existing keys will be updated)
- :
- : @param $value the value of the new or updated key
- : @return 
+ : @param $key a sequence of keys navigating to the object; 
+ :  e.g. the sequence ('foo', 'bar') will select the object 'bar' within the object 'foo'. 
+ :  Non existing keys will be added, existing keys will be updated
+ : @param $value the value of the new or updated key. 
+ :  String values will be parsed as JSON, so you can pass objects or arrays via
+ :  environment variables 
+ : @return the new value if successful, the empty sequence otherwise
  :)
-declare function config:set-swagger-option($key as xs:string*, $value as item()?) {
+declare function config:set-swagger-option($key as xs:string*, $value as item()?) as item()? {
     let $swagger.json := fn:json-doc($config:swagger-config-path)
-    let $update := config:map-put-recursive($swagger.json, $key, $value)
-    let $update2string := serialize($update, <output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
+    let $valueJSON := 
+        typeswitch($value)
+        case xs:string return
+            try { parse-json($value) }
+            catch * { $value } (: parse-json() fails for simple string values  :)
+        case node() return parse-json(json:xml-to-json($value)) (: the output of json:xml-to-json() seems to be a string, not a map object :)
+        case array(*) return $value
+        case map(*) return $value
+        default return core:link-to-current-app('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
+    let $update := config:map-put-recursive($swagger.json, $key, $valueJSON)
+    let $serialize-json := function($json as item()) as xs:string {
+        serialize($json, <output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
+    }
+    let $update2string := $serialize-json($update)
     let $fileName := functx:substring-after-last($config:swagger-config-path, '/')
     let $collection := functx:substring-before-last($config:swagger-config-path, '/')
-    return 
-        try { xmldb:store($collection, $fileName, $update2string, 'application/json') }
-        catch * { core:logToFile('error', 'failed to set swagger option "' || string-join($key, '.') || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) } 
+    let $update := 
+        try { 
+            xmldb:store($collection, $fileName, $update2string, 'application/json'),
+            core:logToFile('debug', 'set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '"')
+        }
+        catch * { core:logToFile('error', 'config:set-swagger-option(): failed to set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+    return
+        if($update) then $valueJSON
+        else ()
 };
 
 (:~
- : Recursively walk through a map object and update map objects therein
+ : Recursively walk through a map object and update map objects therein.
  : Helper function for config:set-swagger-option()
  :)
 declare %private function config:map-put-recursive($map as map(*), $key as xs:string+, $value as item()*) as map(*) {
