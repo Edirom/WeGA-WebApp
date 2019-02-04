@@ -223,6 +223,27 @@
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="tei:supplied">
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="concat('tei_', local-name())"/>
+            <!--<xsl:attribute name="id" select="wega:createID(.)"/>-->
+            <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>[</xsl:text></xsl:element>
+            <xsl:apply-templates/>
+            <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>]</xsl:text></xsl:element>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:sic">
+        <xsl:element name="span">
+            <xsl:attribute name="class" select="concat('tei_', local-name())"/>
+            <xsl:apply-templates/>
+            <xsl:text>&#x00A0;[sic!]</xsl:text>
+        </xsl:element>
+    </xsl:template>
+    
+    <!-- hide corr within choice because we'll only print the sic -->
+    <xsl:template match="tei:corr[parent::tei:choice]"/>
+    
     <!--<xsl:template match="tei:biblStruct[parent::tei:listBibl]">
         <xsl:sequence select="wega:printCitation(., 'li', $lang)"/>
     </xsl:template>-->

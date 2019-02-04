@@ -19,6 +19,21 @@ $.fn.extend({
     }
 });
 
+
+$.fn.prettyselect = function () 
+{
+    $(this).each( function(a, b) {
+        $(b).selectize({        
+            inputClass: 'form-control input selectize-input', 
+            dropdownParent: "body",
+            create: false,            
+            onInitialize: function() {
+                this.$control_input.attr('readonly', true);
+            }
+            })
+    });
+}
+
 /* A wrapper function for creating select boxes */
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
@@ -490,7 +505,7 @@ $(document).on('change', '.facet-group input', function() {
 /* Start search by clicking on filter button */
 $('.searchDocTypeFilter').on('change', 'label', function() {
     /* No need to refresh the page when there's no query string */
-    if($('#query-input').val().length) {
+    if($('.query-input').val().length) {
         var params = active_facets();
         updatePage(params);
     }
@@ -597,8 +612,8 @@ function active_facets() {
             value = $(this).attr('value')? $(this).attr('value'): 'true';
         if(undefined != facet) { params['facets'].push(facet + '=' + encodeURI(value)) }
     })
-    if($('#query-input').val()) {
-        params['facets'].push('q=' + $('#query-input').val());
+    if($('.query-input').val()) {
+        params['facets'].push('q=' + $('.query-input').val());
     }
     else if($('#query-string').length) {
         params['facets'].push('q=' + $('#query-string').text());
@@ -630,6 +645,10 @@ $('.jubilee, .jul').tooltip();
 
 /* Initialise selectize plugin for facets on index pages */
 $('.allFilter select').facets();
+
+
+
+$('.prettyselect').prettyselect();
 
 /* Initialise range slider for index pages */
 $('.allFilter:visible .rangeSlider').rangeSlider();
@@ -755,7 +774,7 @@ $('#facsimile-tab').on('click', function() {
 $('.searchResults .portrait').loadPortrait();
 
 /* Put focus on text inputs */
-$('#query-input').focus();
+$('.query-input').focus();
 
 /* Umbruch der Teaserüberschriften abhängig von Textlänge */
 $('.teaser + h2 a').each(function(a,b) {

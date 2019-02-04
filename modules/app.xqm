@@ -763,7 +763,7 @@ declare
         let $print-titles := function($doc as document-node(), $alt as xs:boolean) {
             for $title in $doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type='sub')][exists(@type='alt') = $alt]
             let $titleLang := $title/string(@xml:lang) 
-            let $subTitle := $title/following-sibling::mei:title[@type='sub'][string(@title) = $titleLang]
+            let $subTitle := $title/following-sibling::mei:title[@type='sub'][string(@xml:lang) = $titleLang]
             return <span>{
                 string-join((
                     wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())),
@@ -1171,6 +1171,26 @@ declare
         )
 };
 
+(:~
+ : set link to Bach Digital for person pages
+ : for those data sets originating from the Bach Institut
+ :)
+declare function app:bach-digital-url($node as node(), $model as map(*)) as element() {
+    let $url := 
+        if($model?doc//tei:idno[@type='bd'])
+        then 'https://www.bach-digital.de/receive/' || $model?doc//tei:idno[@type='bd']
+        else if ($node/@href) 
+        then $node/data(@href)
+        else 'https://www.bach-digital.de'
+    return
+    element {node-name($node)} {
+        $node/@*[not(local-name(.) eq 'href')],
+        attribute href {$url},
+        templates:process($node/node(), $model)
+    }
+};
+
+
 (:
  : ****************************
  : Document pages
@@ -1537,6 +1557,17 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
  : Searches
  : ****************************
 :)
+
+declare
+%templates:default("lang", "en")
+    function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(input)* {
+    let $placeholder := lang:get-language-string("searchTerm",$lang)
+    return
+    element {name($node)} {
+        $node/@*,
+        attribute placeholder {$placeholder}
+    }
+};
 
 declare 
     %templates:default("lang", "en")
