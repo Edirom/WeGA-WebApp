@@ -71,11 +71,8 @@
     <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]"/>
     
     <xsl:template match="tei:measure">
-        <xsl:variable name="counter">
-            <xsl:number level="any"/>
-        </xsl:variable>
         <xsl:element name="span">
-            <xsl:attribute name="class" select="concat(@type,$counter)"/>
+            <xsl:attribute name="class">tei_measure</xsl:attribute>
             <xsl:apply-templates/>
             <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
             <xsl:copy-of select="wega:addCurrencySymbolIfNecessary(.)"/>
