@@ -363,7 +363,7 @@
         <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
         <xsl:if test="matches(normalize-space(string-join($measure/node() except $measure/tei:note, '')),'^\d+\.?$') and $measure/@quantity &gt; 0">
             <xsl:element name="span">
-                <xsl:attribute name="class" select="'tei_supplied'"/>
+                <xsl:attribute name="class" select="'suppliedCurrencySymbol'"/>
                 <xsl:choose>
                     <xsl:when test="$measure/@unit = 'f'">
                         <xsl:value-of select="' &#402;'"/>
