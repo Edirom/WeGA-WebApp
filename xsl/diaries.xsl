@@ -68,9 +68,9 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:measure[@type='expense']" priority="0.5"/>
+    <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]"/>
     
-    <xsl:template match="tei:measure[@rend='inline' or @type='income' or @type='rebooking']" priority="1">
+    <xsl:template match="tei:measure">
         <xsl:variable name="counter">
             <xsl:number level="any"/>
         </xsl:variable>
