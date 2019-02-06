@@ -1564,13 +1564,21 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
  : ****************************
 :)
 
+
+(:~
+ : Write the sanitized query string into the search text input for reuse
+ : and set the placeholder text for initial search box.
+ : To be called from an HTML template.
+~:)
 declare
 %templates:default("lang", "en")
     function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(input)* {
     let $placeholder := lang:get-language-string("searchTerm",$lang)
     return
     element {name($node)} {
-        $node/@*,
+        $node/@*[not(name(.) = ('value', 'placeholder'))],
+        if($model('query-string-org') ne '') then attribute {'value'} {$model('query-string-org')}
+        else (),
         attribute placeholder {$placeholder}
     }
 };
