@@ -42,11 +42,26 @@
     --> 
     
     <xsl:template match="tei:pb" priority="1">
+        <xsl:element name="br"/>
         <xsl:element name="span">
             <xsl:attribute name="class" select="'tei_pb'"/>
             <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
             <!-- <xsl:text>Seitenumbruch</xsl:text> -->
         </xsl:element>
+    </xsl:template>
+    
+    <!-- 
+        overwrite generic template from common_main.xsl
+        which drops line breaks following a tei:seg[@rend]
+    -->
+    <xsl:template match="tei:lb" priority="0.8">
+        <xsl:if test="@type='inWord'">
+            <xsl:element name="span">
+                <xsl:attribute name="class" select="'break_inWord'"/>
+                <xsl:text>-</xsl:text>
+            </xsl:element>
+        </xsl:if>
+        <xsl:element name="br"/>
     </xsl:template>
     
     <xsl:template match="tei:seg">
@@ -107,8 +122,28 @@
         </xsl:element>
     </xsl:template>
     
+    <!-- 
+        dedicated rule for tei:seg[@rend] because those elements
+        get a styling as `display:block` which produces extra line breaks.
+        Hence we need to add extra line breaks in the right column
+        as well.
+    -->
+    <xsl:template match="tei:seg[@rend]" priority="1" mode="rightTableColumn">
+        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
+            <xsl:with-param name="counter">
+                <xsl:number level="any"/>
+            </xsl:with-param>
+        </xsl:apply-templates>
+        <xsl:element name="br"/>
+        <xsl:element name="span">
+            <!--    Erzwingt vertikalen Abstand bei Zeilenumbrüchen -->
+            <xsl:attribute name="class" select="'hiddenText'"/>
+            <xsl:text>|</xsl:text>
+        </xsl:element>
+    </xsl:template>
+    
     <xsl:template match="tei:seg" mode="rightTableColumn">
-        <xsl:apply-templates select=".//tei:measure[@type='expense'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
+        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
             <xsl:with-param name="counter">
                 <xsl:number level="any"/>
             </xsl:with-param>
