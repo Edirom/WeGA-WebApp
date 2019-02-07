@@ -142,7 +142,12 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:seg" mode="rightTableColumn">
+    <!--
+        this is the entry point for the right column.
+        Need to catch everything to process nested line
+        and page breaks.
+    -->
+    <xsl:template match="*[parent::tei:ab]" priority="0.1" mode="rightTableColumn">
         <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
             <xsl:with-param name="counter">
                 <xsl:number level="any"/>
@@ -150,7 +155,7 @@
         </xsl:apply-templates>
     </xsl:template>
     
-    <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]" mode="rightTableColumn">
+    <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]" priority="0.5" mode="rightTableColumn">
         <xsl:param name="counter"/>
         <xsl:element name="span">
             <xsl:attribute name="class">
