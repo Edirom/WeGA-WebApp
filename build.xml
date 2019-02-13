@@ -135,6 +135,19 @@
                 <include name="**/*.jpg"/>
                 <include name="**/*.xsl"/>
                 <include name="**/*.xml"/>
+                <!-- exclude unnecessary directories -->
+                <exclude name="bootstrap-vue/"/>
+                <exclude name="bravura/"/>
+                <exclude name="core-js/"/>
+                <exclude name="@fortawesome/"/>
+                <exclude name="prettydiff/"/>
+                <exclude name="less/"/>
+                <exclude name="lodash/"/>
+                <exclude name="rx/"/>
+                <exclude name="vnu/"/>
+                <exclude name="vnu-jar/"/>
+                <exclude name="vue/"/>
+                <exclude name="yuicompressor/"/>
                 <!-- exclude html files. non-well-formed html makes eXist choke -->
                 <exclude name="**/*.html"/>
                 <!-- exclude tests to reduce file size -->
