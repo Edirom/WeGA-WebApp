@@ -45,19 +45,6 @@
         </parallel>
     </target>
     
-    <target name="check-for-smufl-font" depends="yarn">
-        <condition property="update.smufl-font">
-            <not>
-                <available file="${lib_components.dir}/bravura.zip"/>
-            </not>
-        </condition>
-    </target>
-    
-    <target name="download-smufl-font" depends="check-for-smufl-font" if="${update.smufl-font}">
-        <description>Download Bravura font from the official website</description>
-        <get src="${smufl.font}" dest="${lib_components.dir}/bravura.zip" skipexisting="no"/>
-    </target>
-    
     <target name="yarn" depends="init">
         <description>Update javascript libraries via yarn</description>
         <exec executable="${yarn.cmd}" failonerror="yes">
@@ -75,7 +62,7 @@
         </exec>
     </target>
     
-    <target name="dist" depends="init, download-smufl-font, yarn, less">
+    <target name="dist" depends="init, yarn, less">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
@@ -107,25 +94,18 @@
             </fileset>
         </copy>
         
-        <!-- extract smufl fonts -->
-        <unzip src="${lib_components.dir}/bravura.zip" dest="${tmp.dir}"/>
-        
         <!-- Copy additional fonts -->
         <copy todir="${dist.dir}/resources/fonts" failonerror="false">
-            <fileset dir="${tmp.dir}/eot/">
-                <include name="Bravura.*"/>
-                <!--<include name="BravuraText.eot"/>-->
-                <!--<include name="BravuraText.woff"/>-->
-                <!--<include name="BravuraText.otf"/>-->
-                <!--<include name="BravuraText.svg"/>-->
-            </fileset>
-            <fileset dir="${tmp.dir}/woff/">
+            <fileset dir="${lib_components.dir}/bravura/redist/eot/">
                 <include name="Bravura.*"/>
             </fileset>
-            <fileset dir="${tmp.dir}/otf/">
+            <fileset dir="${lib_components.dir}/bravura/redist/woff/">
                 <include name="Bravura.*"/>
             </fileset>
-            <fileset dir="${tmp.dir}/svg/">
+            <fileset dir="${lib_components.dir}/bravura/redist/otf/">
+                <include name="Bravura.*"/>
+            </fileset>
+            <fileset dir="${lib_components.dir}/bravura/redist/svg/">
                 <include name="Bravura.*"/>
             </fileset>
             <fileset dir="${wega.fonts.dir}">
