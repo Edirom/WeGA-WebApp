@@ -151,9 +151,6 @@
         <xsl:variable name="keys" select="tokenize(($myNode/@key, $myNode/@dbkey, $myNode/@target/replace(., 'wega:', '')), '\s+')" as="xs:string+"/>
         <xsl:variable name="class" as="xs:string">
             <xsl:choose>
-                <xsl:when test="$myNode/@type">
-                    <xsl:value-of select="$myNode/@type"/>
-                </xsl:when>
                 <xsl:when test="count(distinct-values(for $key in $keys return substring($key, 1,3))) = 1">
                     <xsl:value-of select="wega:get-doctype-by-id($keys[1])"/>
                 </xsl:when>
