@@ -83,7 +83,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="@target">
+    <xsl:template match="@target[not(matches(., '\s'))]">
         <xsl:attribute name="href">
             <xsl:choose>
                 <xsl:when test="starts-with(.,'wega:')">
@@ -96,15 +96,20 @@
             </xsl:choose>
         </xsl:attribute>
     </xsl:template>
+    
+    <xsl:template match="@key[not(matches(., '\s'))] | @dbkey[not(matches(., '\s'))]">
+        <xsl:attribute name="href" select="wega:createLinkToDoc(., $lang)"/>
+    </xsl:template>
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when test="exists((@key, @dbkey)) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
+            <xsl:when test="exists((@key, @dbkey, @target)) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
                         <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:attribute>
-                    <xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>
+                    <!--<xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>-->
+                    <xsl:apply-templates select="@key | @dbkey | @target"/>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
@@ -121,7 +126,7 @@
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="$suppressLinks"/>
-                    <xsl:when test="@key or @dbkey">
+                    <xsl:when test="exists((@key, @dbkey, @target))">
                         <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -132,11 +137,21 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:if test="(@key or @dbkey) and not($suppressLinks)">
+            <xsl:if test="exists((@key, @dbkey, @target)) and not($suppressLinks)">
                 <xsl:variable name="urls" as="xs:string+">
-                    <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@dbkey">
+                    <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@dbkey | descendant-or-self::*/@target[starts-with(., 'wega:')]">
                         <xsl:for-each select="tokenize(normalize-space(.), '\s+')">
-                            <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
+                            <xsl:choose>
+                                <xsl:when test="starts-with(.,'wega:')">
+                                    <xsl:value-of select="wega:createLinkToDoc(substring(., 6, 7), $lang)"/>
+                                </xsl:when>
+                                <xsl:when test="matches(., '^A[A-F0-9]{6}$')">
+                                    <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:variable>
