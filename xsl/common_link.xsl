@@ -102,7 +102,7 @@
             <xsl:when test="exists((@key, @dbkey)) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
-                        <xsl:value-of select="string-join(('preview', wega:get-doctype-by-id(substring((@key, @dbkey), 1, 7)), (@key, @dbkey)), ' ')"/>
+                        <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:attribute>
                     <xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>
                     <xsl:apply-templates/>
@@ -120,14 +120,9 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>
+                    <xsl:when test="$suppressLinks"/>
                     <xsl:when test="@key or @dbkey">
-                        <xsl:value-of select="string-join(
-                            (
-                            if($suppressLinks) then () else 'preview', 
-                            wega:get-doctype-by-id(substring((@key, @dbkey), 1, 7)), 
-                            (@key, @dbkey)
-                            )
-                            , ' ')"/>
+                        <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:for-each select="string-to-codepoints(normalize-space(.))">
@@ -150,5 +145,22 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:function name="wega:preview-class" as="xs:string">
+        <xsl:param name="myNode" as="element()"/>
+        <xsl:variable name="keys" select="tokenize(($myNode/@key, $myNode/@dbkey, $myNode/@target/replace(., 'wega:', '')), '\s+')" as="xs:string+"/>
+        <xsl:variable name="class" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="$myNode/@type">
+                    <xsl:value-of select="$myNode/@type"/>
+                </xsl:when>
+                <xsl:when test="count(distinct-values(for $key in $keys return substring($key, 1,3))) = 1">
+                    <xsl:value-of select="wega:get-doctype-by-id($keys[1])"/>
+                </xsl:when>
+                <xsl:otherwise>mixed</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:value-of select="string-join(('preview', $class, $keys), ' ')"/>
+    </xsl:function>
 
 </xsl:stylesheet>
