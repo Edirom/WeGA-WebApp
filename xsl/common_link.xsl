@@ -83,6 +83,10 @@
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="tei:ref[contains(@target, 'wega:')]">
+        <xsl:call-template name="createLink"/>
+    </xsl:template>
+    
     <xsl:template match="@target[not(matches(., '\s'))]">
         <xsl:attribute name="href">
             <xsl:choose>
