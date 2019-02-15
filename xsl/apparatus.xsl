@@ -341,7 +341,7 @@
    <!-- gap in damage, del, add und unclear?!? -->
    <xsl:template match="tei:gap">
       <xsl:element name="span">
-         <xsl:text> […]</xsl:text>
+         <xsl:text>[…]</xsl:text>
          <xsl:if test="not(@reason='outOfScope' or parent::tei:del)">
             <xsl:call-template name="popover"/>
          </xsl:if>
