@@ -116,6 +116,12 @@
    </xsl:template>
    
    <xsl:template match="tei:subst" mode="apparatus">
+      <xsl:variable name="processedDel" as="xs:string">
+         <xsl:variable name="delNode">
+            <xsl:apply-templates select="tei:del[1]/node()" mode="plain-text-output"/>
+         </xsl:variable>
+         <xsl:value-of select="string-join($delNode, '')"/>
+      </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
@@ -138,11 +144,11 @@
                <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
             </xsl:when>
             <xsl:when test="./tei:del[@rend='strikethrough']">
-               <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
+               <xsl:value-of select="concat('&#34;', $processedDel, '&#34;')"/>
                <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
             </xsl:when>
             <xsl:when test="./tei:del[@rend='overwritten']">
-               <xsl:value-of select="concat('&#34;', normalize-space(./tei:del[1]), '&#34;')"/>
+               <xsl:value-of select="concat('&#34;', $processedDel, '&#34;')"/>
                <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
             </xsl:when>
          </xsl:choose>
@@ -514,6 +520,24 @@
       <xsl:text>"</xsl:text>
       <xsl:apply-templates mode="#current"/>
       <xsl:text>"</xsl:text>
+   </xsl:template>
+   <xsl:template match="tei:choice" mode="plain-text-output">
+      <xsl:choose>
+         <xsl:when test="tei:sic">
+            <xsl:apply-templates select="tei:corr" mode="#current"/>
+         </xsl:when>
+         <xsl:when test="tei:unclear">
+            <xsl:variable name="opts" as="element()*">
+               <xsl:perform-sort select="tei:unclear">
+                  <xsl:sort select="$sort-order[. = current()/string(@cert)]/@sort"/>
+               </xsl:perform-sort>
+            </xsl:variable>
+            <xsl:apply-templates select="$opts[1]" mode="#current"/>
+         </xsl:when>
+         <xsl:when test="tei:abbr">
+            <xsl:apply-templates select="tei:abbr" mode="#current"/>
+         </xsl:when>
+      </xsl:choose>
    </xsl:template>
    <xsl:template match="tei:*" mode="plain-text-output">
       <xsl:apply-templates mode="#current"/>
