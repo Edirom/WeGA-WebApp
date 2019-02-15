@@ -83,7 +83,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]"/>
+    <xsl:template match="tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')]"/>
     
     <xsl:template match="tei:measure">
         <xsl:element name="span">
@@ -129,7 +129,7 @@
         as well.
     -->
     <xsl:template match="tei:seg[@rend]" priority="1" mode="rightTableColumn">
-        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
+        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
             <xsl:with-param name="counter">
                 <xsl:number level="any"/>
             </xsl:with-param>
@@ -146,16 +146,19 @@
         this is the entry point for the right column.
         Need to catch everything to process nested line
         and page breaks.
+        There are several caveats: 
+        * measure@rend='inline' need to be excluded because they will be output in the left column
+        * ancestor::tei:seg[@rend] need to be excluded, otherwise those measures will be duplicated by the rule above for `tei:seg[@rend]`
     -->
     <xsl:template match="*[parent::tei:ab]" priority="0.1" mode="rightTableColumn">
-        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
+        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')][not(ancestor::tei:seg[@rend])] | .//tei:lb | .//tei:pb" mode="#current">
             <xsl:with-param name="counter">
                 <xsl:number level="any"/>
             </xsl:with-param>
         </xsl:apply-templates>
     </xsl:template>
     
-    <xsl:template match="tei:measure[@type='expense'][not(@rend='inline')]" priority="0.5" mode="rightTableColumn">
+    <xsl:template match="tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')]" priority="0.5" mode="rightTableColumn">
         <xsl:param name="counter"/>
         <xsl:element name="span">
             <xsl:attribute name="class">
