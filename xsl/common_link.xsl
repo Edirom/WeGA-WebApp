@@ -83,7 +83,14 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:ref[contains(@target, 'wega:')]">
+    <!--
+        dedicated rule for internal links (e.g. `<ref target='wega:A090092'>`)
+        which will be treated like other references with previews.
+        NB: fragment identifiers are excluded since this is not implemented yet
+        for previews. Hence, links with fragment identifiers (e.g. `<ref target='wega:A090092#chapter-links'>`)
+        will be transformed to simple links without preview popover
+    -->
+    <xsl:template match="tei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))]">
         <xsl:call-template name="createLink"/>
     </xsl:template>
     
@@ -167,7 +174,10 @@
     
     <xsl:function name="wega:preview-class" as="xs:string">
         <xsl:param name="myNode" as="element()"/>
-        <xsl:variable name="keys" select="tokenize(($myNode/@key, $myNode/@dbkey, $myNode/@target/replace(., 'wega:', '')), '\s+')" as="xs:string+"/>
+        <xsl:variable name="keys" select="
+            for $key in tokenize(($myNode/@key, $myNode/@dbkey, $myNode/@target/replace(., 'wega:', '')), '\s+')
+            return substring($key, 1, 7)
+            " as="xs:string+"/>
         <xsl:variable name="class" as="xs:string">
             <xsl:choose>
                 <xsl:when test="count(distinct-values(for $key in $keys return substring($key, 1,3))) = 1">
