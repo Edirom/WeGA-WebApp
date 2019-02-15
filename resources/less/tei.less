@@ -255,6 +255,12 @@ li.listSubTitle {
 .teiLetter_address {
     margin-bottom:@line-height-computed;
 }
+/*
+ * add extra margin between writingSessions
+ */
+.writingSession ~ .writingSession {
+    margin-top: 3 * @line-height-computed;
+}
 #endNotes li {
     margin-bottom: 2ex;
 }
