@@ -153,6 +153,10 @@ ol.breadcrumb li
     margin: 0px;
 }
 
+ol.breadcrumb > li + li:before {
+    font-family: "FontAwesome";
+    font-size:smaller;
+}
 
 .backLinkInBreadcrumb {
     color: @brand-primary;
@@ -733,9 +737,9 @@ padding: 20px 25px;
 .inner-shadow-light, .gradient-light.open , .gradient-light.active a, .gradient-light.active 
 {
 
-    -moz-box-shadow:    inset 0 0 12px rgba(0,0,0,0.5)!important;
-    -webkit-box-shadow: inset 0 0 12px rgba(0,0,0,0.5)!important;
-    box-shadow:         inset 0 0 12px rgba(0,0,0,0.5)!important;
+    -moz-box-shadow:    inset 0 0 12px rgba(0,0,0,0.2)!important;
+    -webkit-box-shadow: inset 0 0 12px rgba(0,0,0,0.2)!important;
+    box-shadow:         inset 0 0 12px rgba(0,0,0,0.2)!important;
     border: 1px solid @gray-light!important;
     background-image: none;
     background-color: @gray-lighter!important;;
@@ -753,7 +757,7 @@ padding: 20px 25px;
     -moz-border-right-colors: none;
     -moz-border-top-colors: none;
     background-color: #f5f5f5;
-    background-image: linear-gradient(to bottom, #ffffff, #e6e6e6);
+    /*  background-image: linear-gradient(to bottom, #ffffff, #e6e6e6); */
     background-repeat: repeat-x;
     border: 1px solid @gray-light!important;
     box-shadow: 0 1px 0 rgba(255, 255, 255, 0.2) inset, 0 1px 2px rgba(0, 0, 0, 0.05);
