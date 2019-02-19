@@ -1,22 +1,25 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" exclude-result-prefixes="xs" version="2.0">
    
    <xsl:template name="createApparatus">
+      <xsl:variable name="textConstitutionPath" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
          <xsl:if test="wega:isNews($docID)">
             <xsl:attribute name="style">display:none</xsl:attribute>
          </xsl:if>
-         <xsl:element name="h3">
-            <xsl:attribute name="class">media-heading</xsl:attribute>
-            <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
-         </xsl:element>
+         <xsl:if test="$textConstitutionPath">
+            <xsl:element name="h3">
+               <xsl:attribute name="class">media-heading</xsl:attribute>
+               <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
+            </xsl:element>
+         </xsl:if>
          <xsl:element name="ul">
-            <xsl:attribute name="class">textConstitution</xsl:attribute>
-            <xsl:for-each select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']">
-               <xsl:element name="li">
-                  <xsl:apply-templates select="." mode="apparatus"/>
-               </xsl:element>
-            </xsl:for-each>
+               <xsl:attribute name="class">textConstitution</xsl:attribute>
+               <xsl:for-each select="$textConstitutionPath">
+                  <xsl:element name="li">
+                     <xsl:apply-templates select="." mode="apparatus"/>
+                  </xsl:element>
+               </xsl:for-each>
          </xsl:element>
          <xsl:element name="h3">
             <xsl:attribute name="class">media-heading</xsl:attribute>
