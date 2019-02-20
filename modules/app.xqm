@@ -10,6 +10,7 @@ declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace gn="http://www.geonames.org/ontology#";
+declare namespace sr="http://www.w3.org/2005/sparql-results#";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -298,18 +299,16 @@ declare
 declare
     %templates:default("lang", "en")
     function app:ajax-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        let $beacon := 
-            try {string-join(map:keys($model('beaconMap')), ' ')}
-            catch * {()}
         let $ajax-resource :=
             switch(normalize-space($node))
             case 'XML-Preview' return 'xml.html'
             case 'examples' return if(gl:schemaIdent2docType($model?schemaID) = (for $func in $wdt:functions return $func(())('name'))) then 'examples.html' else ()
-            case 'wikipedia-article' return if(contains($beacon, 'Wikipedia-Personenartikel')) then 'wikipedia.html' else ()
-            case 'adb-article' return if(contains($beacon, '(hier ADB ')) then 'adb.html' else ()
-            case 'ndb-article' return if(contains($beacon, '(hier NDB ')) then 'ndb.html' else ()
+            case 'wikipedia-article' return if($model?gnd and exists(er:grab-external-resource-wikidata($model?gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html' else ()
+            case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
+            case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
             case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
+            case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
         let $ajax-url :=
         	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang) || '/' || $ajax-resource)
@@ -705,14 +704,10 @@ declare
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
     let $gnd := query:get-gnd($model('doc'))
-    let $beaconMap := 
-        if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
-        else map:new()
     let $gn-doc := er:grabExternalResource('geonames', $geonames-id, '', ())
     return
         map {
             'gnd' := $gnd,
-            'beaconMap' := $beaconMap,
             'names' := $model?doc//tei:placeName[@type],
             'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
             'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
@@ -878,22 +873,32 @@ declare
         'documents' := core:getOrCreateColl('documents', $model('docID'), true()),
         
         'source' := $model('doc')/tei:person/data(@source),
+        'gnd' := query:get-gnd($model?doc),
         'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
         (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
     }
 };
 
-declare function app:person-beacon($node as node(), $model as map(*)) as map(*) {
-    let $gnd := query:get-gnd($model('doc'))
-    let $beaconMap := 
-        if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
-        else map:new()
-    return
-        map{
-            'gnd' := $gnd,
-            'beaconMap' := $beaconMap
-        }
+(:~
+ : Prepare Beacon Links for display on person and work pages
+ : Called via AJAX
+ :)
+declare 
+    %templates:wrap 
+    function app:beacon($node as node(), $model as map(*)) as map(*) {
+        let $gnd := query:get-gnd($model?doc)
+        let $beaconMap := 
+            if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
+            else map:new()
+        return
+            map { 'beaconLinks': 
+                    for $i in map:keys($beaconMap)
+                    order by $beaconMap($i)[2] collation "?lang=de-DE"
+                    return 
+                        (: replacement in @href for invalid links from www.sbn.it :)
+                        <a title="{$i}" href="{replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a>
+            }
 };
 
 declare 
@@ -908,17 +913,6 @@ declare
                     if($bio instance of xs:string) then <p>{$bio}</p>
                     else templates:process($node/node(), $model)
                 }
-};
-
-declare function app:print-beacon-links($node as node(), $model as map(*)) as element(ul) {
-        let $beaconMap := $model('beaconMap')
-        return
-            <ul>{
-                for $i in map:keys($beaconMap)
-                order by $beaconMap($i)[2] collation "?lang=de-DE"
-                return 
-                    <li><a title="{$i}" href="{(: replacement for invalid links from www.sbn.it :)replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a></li>
-            }</ul>
 };
 
 declare 
@@ -1074,9 +1068,16 @@ declare
 declare 
     %templates:wrap
     function app:deutsche-biographie($node as node(), $model as map(*)) as map(*) {
-        map {
-            'adbndbContent' := er:grabExternalResource('deutsche-biographie', query:get-gnd($model('doc')), config:get-doctype-by-id($model('docID')), ())
-        }
+        let $gnd := query:get-gnd($model?doc)
+        return 
+            map {
+                'adbndbContent' := 
+                    if(er:lookup-gnd-from-beaconProvider('ndbBeacon', $gnd)) 
+                    then er:grab-external-resource-via-beacon('ndbBeacon', $gnd)
+                    else if($gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $gnd)) 
+                    then er:grab-external-resource-via-beacon('adbBeacon', $gnd)
+                    else ()
+            }
 };
 
 declare 
