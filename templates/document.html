@@ -207,26 +207,27 @@
                                         </span>                                      
                                         <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse">
                                             <div data-template="app-shared:output" data-template-key="sourceData-content"/>
-                                        </div>
-                                        <!-- Processing tei:additional for every source -->
-                                        <div data-template="app:additionalSources">
-                                            <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
-                                                <em data-template="lang:translate" class="media-heading">correspondingSources</em>:
-                                            </div>
-                                            <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="additionalSources">
-                                                <li data-template="app-shared:each" data-template-from="additionalSources" data-template-to="additionalSource">
-                                                    <div data-template="app:print-Source" data-template-key="additionalSource">
-                                                        <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
-                                                        <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
-                                                            <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed"/>                                                                                                                                                                               
-                                                        </span>  
-                                                        <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse">
-                                                            <div data-template="app-shared:output" data-template-key="sourceData-content"/>
+                                            <!-- Processing tei:additional for every source -->
+                                            <div data-template="app:additionalSources">
+                                                <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
+                                                    <em data-template="lang:translate" class="media-heading">correspondingSources</em>:
+                                                </div>
+                                                <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="additionalSources">
+                                                    <li data-template="app-shared:each" data-template-from="additionalSources" data-template-to="additionalSource">
+                                                        <div data-template="app:print-Source" data-template-key="additionalSource">
+                                                            <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
+                                                            <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
+                                                                <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed"/>                                                                                                                                                                               
+                                                            </span>  
+                                                            <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse">
+                                                                <div data-template="app-shared:output" data-template-key="sourceData-content"/>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </li>
-                                            </ul>
+                                                    </li>
+                                                </ul>
+                                            </div>
                                         </div>
+                                        
                                     </div>
                                     <!-- processing (external) facsimile references for every source -->
                                     <div data-template="app:externalImageURLs">

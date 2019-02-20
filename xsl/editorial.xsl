@@ -44,6 +44,11 @@
         </xsl:call-template>
     </xsl:template>
     
+    <!-- aktuell nur für die Ausgabe von msName innerhalb msDesc; eventuell überarbeiten und anpassen im Zuge von #276 -->
+    <xsl:template match="tei:msIdentifier[tei:msName][not(parent::tei:msFrag)]">
+        <xsl:apply-templates select="tei:msName"/>
+    </xsl:template>
+    
     <xsl:template match="tei:msFrag">
         <xsl:element name="div">
             <xsl:attribute name="class">tei_msFrag</xsl:attribute>
@@ -58,8 +63,8 @@
             <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>-->
-        <xsl:element name="strong">
-            <xsl:attribute name="class">media-heading</xsl:attribute>            
+        <xsl:element name="span">
+            <!--<xsl:attribute name="class">media-heading</xsl:attribute>-->            
             <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
                 <xsl:value-of select="wega:getLanguageString($node/ancestor-or-self::tei:msDesc/@rend, $lang)"/>
                 <xsl:text>: </xsl:text>
