@@ -27,7 +27,7 @@ declare function local:header($doc as document-node()) as xs:string {
     let $lod := lod:metadata(<head/>, $model, $lang)
     let $author := '## Author: ' || query:get-authorName($doc)
     let $title := '## Title: ' || $lod?meta-page-title
-    let $version := '## Version: ' || config:get-option('version')
+    let $version := '## Version: ' || config:expath-descriptor()/@version
     let $origin := '## Origin: ' || core:permalink($docID)
     let $license := '## License: ' || $lod?DC.rights
     return

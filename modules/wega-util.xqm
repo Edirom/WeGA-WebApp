@@ -154,7 +154,7 @@ declare %private function wega-util:editionStmt() as map() {
         map {
             'version' :=    lang:get-language-string(
                                 'versionInformation', (
-                                    config:get-option('version'), 
+                                    config:expath-descriptor()/@version, 
                                     date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
                                 ), 
                                 $lang
