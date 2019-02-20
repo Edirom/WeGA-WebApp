@@ -364,6 +364,49 @@
                     }
                 }
             }
+        },
+        "/application/newID": {
+            "get": {
+                "summary": "Create a new WeGA ID",
+                "description": "",
+                "tags": [
+                    "Application"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "parameters": [
+                    {
+                        "$ref": "#/parameters/docTypeParam",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "A single object with a fresh WeGA ID",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "docID": {
+                                    "type": "string",
+                                    "pattern": "^A[A-F0-9]{6}$",
+                                    "description": "The WeGA ID"
+                                },
+                                "docType": {
+                                    "type": "string",
+                                    "description": "The WeGA document type"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {
+                            "$ref": "#/definitions/Error"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {

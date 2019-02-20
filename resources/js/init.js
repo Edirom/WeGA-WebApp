@@ -959,11 +959,12 @@ function addSearchOption(that)
 
 /* Development only: request a new ID */
 $('#create-newID').on('click', function() {
+    var docType = $('#newID-select :selected').val(),
+        url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType ;
     $('#newID-result span').hide();
     $('#newID-result i').show();
-    var docType = $('#newID-select :selected').val();
-    $.getJSON('../dev/api.xql?func=get-new-id&format=json&docType='+docType, function(response) {
-        $('#newID-result span').html(response);
+    $.getJSON(url, function(response) {
+        $('#newID-result span').html(response.docID);
         $('#newID-result i').hide();
         $('#newID-result span').show();
     });

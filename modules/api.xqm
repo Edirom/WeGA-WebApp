@@ -18,6 +18,7 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev/dev.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
@@ -111,6 +112,22 @@ declare function api:application-status($model as map()*) as map()* {
             "version": config:expath-descriptor()/data(@version)
         }
     )
+};
+
+declare function api:application-newID($model as map(*)) as map()* {
+    if($config:isDevelopment) 
+    then (
+        map { 'totalRecordCount': 1 },
+        map {
+            'docID': dev:createNewID($model?docType),
+            'docType': $model?docType
+        }
+    )
+    else 
+        map {
+            'code': 403, 
+            'message': 'The creation of new IDs is only available in the development environment' 
+        }
 };
 
 (:~
