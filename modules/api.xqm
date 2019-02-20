@@ -101,6 +101,18 @@ declare function api:code-findByElement($model as map()) {
         )
 };
 
+declare function api:application-status($model as map()*) as map()* {
+    (
+        map { 'totalRecordCount': 1 },
+        map {
+            "status": "healthy",
+            "svnRevision": if (config:getCurrentSvnRev()) then config:getCurrentSvnRev() else 0,
+            "deployment": xs:dateTime($config:repo-descriptor/repo:deployed),
+            "version": config:expath-descriptor()/data(@version)
+        }
+    )
+};
+
 (:~
  :  Find document by ID.
  :  IDs are accepted in the following formats:
