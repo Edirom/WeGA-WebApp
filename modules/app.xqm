@@ -1289,9 +1289,12 @@ declare
 declare 
     %templates:wrap
     function app:textSources($node as node(), $model as map(*)) as map(*) {
+    let $textSourcesCount := count(query:text-sources($model?doc))
+    return
         map {
             'textSources' := query:text-sources($model?doc),
-            'textSourcesCountString' := concat(count(query:text-sources($model?doc)), " ", if (count(query:text-sources($model?doc)) > 1) then lang:get-language-string("textSources",$model('lang')) else lang:get-language-string("textSource",$model('lang')),": ")
+            'textSourcesCountString' := concat($textSourcesCount, " ", if (count($textSourcesCount) > 1) then lang:get-language-string("textSources",$model('lang')) else lang:get-language-string("textSource",$model('lang')),": "),
+            'countClass' := if ($textSourcesCount > 1) then "decimal" else "none"
         }
 };
 
