@@ -151,7 +151,7 @@
         * ancestor::tei:seg[@rend] need to be excluded, otherwise those measures will be duplicated by the rule above for `tei:seg[@rend]`
     -->
     <xsl:template match="*[parent::tei:ab]" priority="0.1" mode="rightTableColumn">
-        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')][not(ancestor::tei:seg[@rend])] | .//tei:lb | .//tei:pb" mode="#current">
+        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')][not(ancestor::tei:seg[@rend])] | .//tei:lb[not(ancestor::tei:seg[@rend])] | .//tei:pb[not(ancestor::tei:seg[@rend])]" mode="#current">
             <xsl:with-param name="counter">
                 <xsl:number level="any"/>
             </xsl:with-param>
