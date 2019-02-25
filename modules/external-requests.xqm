@@ -46,11 +46,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
     let $botPresent := er:bot-present()
     let $url := 
         switch($resource)
-        case 'wikipedia' return
-            let $beaconMap := wega-util:beacon-map($gnd, $docType)
-            let $url := $beaconMap(map:keys($beaconMap)[contains(., 'Wikipedia-Personenartikel')][1])[1]
-            return
-                replace($url, '/gnd/de/', '/gnd/' || $lang || '/')
+        case 'wikipedia' return (er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf') (: $gnd is actually the geonames ID :)
@@ -62,15 +58,26 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
     let $response := 
-        if($botPresent) then ()
+        if($botPresent or not($url)) then ()
         else
             (: Because the EXPath http client is very picky about HTTPS certificates, we need to use the standard httpclient module for the munich-stadtmuseum which uses HTTPS :)
             switch($resource)
             case 'munich-stadtmuseum' return cache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:httpclient-get#1, xs:anyURI($url), $lease, $onFailureFunc)
             default return cache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
     return 
-        if($response//httpclient:response/@statusCode eq '200') then $response//httpclient:response
+        if($response//httpclient:response/@statusCode eq '200') 
+        then $response//httpclient:response
         else ()
+};
+
+declare function er:grab-external-resource-via-beacon($beaconProvider as xs:string, $gnd as xs:string) as element(httpclient:response)? {
+    let $uri := er:lookup-gnd-from-beaconProvider($beaconProvider, $gnd)
+    let $fileName := $gnd || '.xml'
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, encode-for-uri($beaconProvider), $fileName))
+    return
+        if(er:bot-present() or not($uri)) 
+        then ()
+        else er:cached-external-request($uri, $localFilePath)
 };
 
 (:~
@@ -78,15 +85,45 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
  : 
  : @param $id some external authority ID (e.g. Geonames, GND)
  : @param $authority-provider the respective authority-provider string (e.g. 'geonames', or 'gnd')
- : @return a httpclient:response element if succesfull, the empty sequence otherwise. For a description of the `httpclient:response` element
+ : @return a httpclient:response element if successful, the empty sequence otherwise. For a description of the `httpclient:response` element
  :      see http://expath.org/modules/http-client/
  :)
 declare function er:grab-external-resource-wikidata($id as xs:string, $authority-provider as xs:string) as element(httpclient:response)? {
     let $uri := er:wikidata-url($id, $authority-provider)
     let $fileName := util:hash($uri, 'md5') || '.xml'
     return
-        if(er:bot-present()) then ()
+        if(er:bot-present() or not($uri)) 
+        then ()
         else er:cached-external-request($uri, str:join-path-elements(($config:tmp-collection-path, 'wikidata', $fileName)))
+};
+
+(:~
+ : Lookup gnd IDs in BEACON files 
+ :)
+declare function er:lookup-gnd-from-beaconProvider($beaconProvider as xs:string, $gnd as xs:string) as xs:anyURI? {
+    let $beaconURI := config:get-option($beaconProvider)
+    return
+        if($beaconURI castable as xs:anyURI)
+        then er:lookup-gnd-from-beaconURI($beaconURI, $gnd)
+        else ()
+};
+
+(:~
+ : Lookup gnd IDs in BEACON files 
+ :)
+declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as xs:string) as xs:anyURI? {
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+    let $onFailureFunc := function($errCode, $errDesc) {
+            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+    let $filename := util:hash($beaconURI, 'md5') || '.xml'
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'beaconFiles', $filename))
+    let $beacon := cache:doc($localFilePath, er:parse-beacon#1, $beaconURI, $lease, $onFailureFunc)
+    let $uri := $beacon/id(concat('_', $gnd))
+    return 
+        if($uri castable as xs:anyURI) 
+        then xs:anyURI($uri) 
+        else ()
 };
 
 (:~
@@ -95,7 +132,7 @@ declare function er:grab-external-resource-wikidata($id as xs:string, $authority
  : 
  :  @param $elem an element (e.g. `<gndo:formOfWorkAndExpression rdf:resource="http://d-nb.info/gnd/4043582-9"/>`) bearing 
  :      an `@rdf:resource` attribute which indicates the resource to fetch
- :  @return an httpclient:response element if succesfull, the empty sequence otherwise. For a description of the `httpclient:response` element
+ :  @return an httpclient:response element if successful, the empty sequence otherwise. For a description of the `httpclient:response` element
  :      see http://expath.org/modules/http-client/
 ~:)
 declare function er:resolve-rdf-resource($elem as element()) as element(httpclient:response)? {
@@ -187,7 +224,7 @@ declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
  :
  : @param $uri the external URI to fetch
  : @param $localFilepath the filepath to store the cached document
- : @return a httpclient:response element with the response stored within httpclient:body if succesful, the empty sequence otherwise
+ : @return a httpclient:response element with the response stored within httpclient:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string) as element(httpclient:response)? {
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
@@ -206,7 +243,7 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
  : @param $localFilepath the filepath to store the cached document
  : @param $lease a function to determine wether the cache should be updated. Must return a boolean value
  : @param $onFailureFunc an on-error function that's passed on to the underlying cache:doc() function 
- : @return a httpclient:response element with the response stored within httpclient:body if succesful, the empty sequence otherwise
+ : @return a httpclient:response element with the response stored within httpclient:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(httpclient:response)? {
     cache:doc($localFilepath, er:http-get#1, $uri, $lease, $onFailureFunc)//httpclient:response[@statusCode = '200']
@@ -217,7 +254,7 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
  : construct wikidata query URL
  : (Helper function for er:grabExternalResource())
 ~:)
-declare %private function er:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI*  {
+declare %private function er:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI {
     (:  
     see https://query.wikidata.org/ 
     and https://www.wikidata.org/wiki/Wikidata:SPARQL_query_service/Wikidata_Query_Help 
@@ -251,4 +288,35 @@ declare %private function er:wikidata-url($id as xs:string, $authority-provider 
  :)
 declare %private function er:bot-present() as xs:boolean {
     matches(request:get-header('User-Agent'), 'Baiduspider|Yandex|MegaIndex|AhrefsBot|HTTrack|bingbot|Googlebot|cliqzbot|DotBot|SemrushBot|MJ12bot', 'i')
+};
+
+(:~
+ : Helper function for fetching and parsing a plain text BEACON file into an XML structure
+ :)
+declare %private function er:parse-beacon($beaconURI as xs:anyURI) as element(er:beacon) {
+    let $beacon := er:http-get($beaconURI)
+    let $lines := 
+        if($beacon//httpclient:response/@statusCode eq '200')
+        then tokenize($beacon//httpclient:body, '\n')
+        else ()
+    let $target := $lines[starts-with(., '#TARGET:')] ! normalize-space(substring-after(., '#TARGET:'))
+    (: GND ID regex taken from https://www.wikidata.org/wiki/Property:P227 :)
+    let $gnd-regex := '1[01]?\d{7}[0-9X]|[47]\d{6}-\d|[1-9]\d{0,7}-[0-9X]|3\d{7}[0-9X]'
+    let $gnds := $lines[matches(normalize-space(.), $gnd-regex)] ! analyze-string(., $gnd-regex)/fn:match/text()
+    return 
+        <er:beacon>{
+            for $meta in $lines[starts-with(., '#')]
+            return
+                element {
+                    QName('http://xquery.weber-gesamtausgabe.de/modules/external-requests', lower-case(substring-before(substring($meta, 2), ':')))
+                }{
+                    normalize-space(substring-after($meta, ':'))
+                },
+            for $gnd in $gnds
+            return
+                <er:gnd>{
+                    attribute {'xml:id'} {'_' || $gnd},
+                    replace($target, '\{ID\}', $gnd)
+                }</er:gnd>
+        }</er:beacon>
 };

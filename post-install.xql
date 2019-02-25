@@ -27,7 +27,9 @@ declare function local:mkcol-recursive($collection, $components) {
 declare function local:set-options() as xs:string* {
     for $opt in available-environment-variables()[starts-with(., 'WEGA_WEBAPP_')]
     return
-        config:set-option(substring($opt, 13), string(environment-variable($opt)))
+        if(starts-with($opt, 'WEGA_WEBAPP_SWAGGER_'))
+        then config:set-swagger-option(substring($opt, 21), string(environment-variable($opt)))
+        else config:set-option(substring($opt, 13), string(environment-variable($opt)))
 };
 
 (: Helper function to recursively create a collection hierarchy. :)

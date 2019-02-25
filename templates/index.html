@@ -21,7 +21,7 @@
                     <div class="col-md-6 form-group">
                         <div class="input-group searchform">
                             <div class="input-group-btn dropdown docType-search-filter">
-                                <select class="input-group-addon gradient-light bootstrap-select form-control" name="d">
+                                <select class="input-group-addon gradient-light bootstrap-select form-control prettyselect" name="d" id="search-select">
                                     <option value="all" data-template="app:search-options">all</option>
                                     <!--<option value="personsPlus" data-template="lang:translate">personsPlus</option>
                                     <option value="letters" data-template="lang:translate">correspondence</option>
@@ -32,7 +32,7 @@
                                     <option value="biblio" data-template="lang:translate">bibliography</option>-->
                                 </select>
                             </div>
-                            <input type="text" class="form-control" placeholder="Standard Suche" name="q" id="query-input"/>
+                            <input type="text" class="query-input form-control" name="q" id="query-input" data-template="app:search-input"/>
                             <span class="input-group-btn">
                                 <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
                             </span>
@@ -64,12 +64,12 @@
                         <h4>Neue ID</h4>
                         <div class="input-group">
                             <div class="input-group-btn dropdown">
-                                <select class="input-group-addon gradient-light bootstrap-select form-control" name="newID-d" id="newID-select" data-template="dev-app:newID-docTypes">
+                                <select class="input-group-addon gradient-light bootstrap-select form-control prettyselect" name="newID-d" id="newID-select" data-template="dev-app:newID-docTypes">
                                     <option value="persons" data-template="app-shared:each" data-template-from="newID-docTypes" data-template-to="newID-docType" data-template-callback="dev-app:newID-option">persons</option>
                                 </select>
                             </div>
                             <div class="input-group-btn">
-                                <button type="button" class="btn btn-primary" id="create-newID">
+                                <button type="button" class="btn btn-primary" id="create-newID" data-template="app:inject-api-base">
                                     <i class="fa fa-arrow-right"/>
                                 </button>
                             </div>
@@ -126,7 +126,7 @@
                         <li><a href="$link/A002068.html#works"><span data-template="lang:translate">webers_works</span> <i class="fa fa-arrow-right"/></a></li>
                     </ul>
                 </div>
-            	<div class="clearfix visible-sm-block"><!-- break and clearfix for small devices (tablets, 768px and up) --></div>
+                <div class="clearfix visible-sm-block"><!-- break and clearfix for small devices (tablets, 768px and up) --></div>
                 <div class="col-md-3 col-sm-6">
                     <a href="$link/indices" class="teaser register"> </a>
                     <h2>

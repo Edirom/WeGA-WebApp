@@ -181,10 +181,9 @@ declare function wdt:letters($item as item()*) as map(*) {
             $item/root()/descendant::tei:text[@type = $text-types]/root()
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            (:$item/root()//tei:persName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
-            $item/root()//tei:orgName[@key = $personID][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root() |
-            $item/root()//tei:rs[ancestor::tei:correspAction][contains(@key, $personID)][not(ancestor-or-self::tei:note)]/root():)
-            $item/root()//tei:*[contains(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root()
+            typeswitch($item) (: remove call to function `root()` when document-node()s are passed as input :)
+            case document-node()+ return $item//tei:*[contains(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root()
+            default return $item/root()//tei:*[contains(@key, $personID)][ancestor::tei:correspAction][not(ancestor-or-self::tei:note)]/root()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:correspAction]/root()
@@ -638,7 +637,9 @@ declare function wdt:biblio($item as item()*) as map(*) {
             $filter($item)
         },
         'filter-by-person' := function($personID as xs:string) as document-node()* {
-            ($item/root()//tei:author[@key = $personID]/root() | $item/root()//tei:editor[@key = $personID]/root()) => $filter()
+            typeswitch($item) (: remove call to function `root()` when document-node()s are passed as input :)
+            case document-node()+ return $item//@key[range:eq(., $personID)][parent::tei:author or parent::tei:editor]/root()  => $filter()
+            default return $item/root()//@key[range:eq(., $personID)][parent::tei:author or parent::tei:editor]/root()  => $filter()
         },
         'filter-by-date' := function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint]/root() => $filter()

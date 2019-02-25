@@ -307,6 +307,7 @@
             <xsl:choose>
                 <xsl:when test="wega:isPerson($docID)"/>
                 <xsl:when test="wega:isOrg($docID)"/>
+                <xsl:when test="wega:isPlace($docID)"/>
                 <xsl:otherwise>
                     <xsl:value-of select="wega:getAuthorFromTeiDoc($docID)"/>
                 </xsl:otherwise>
@@ -323,7 +324,7 @@
             </xsl:choose>
         </xsl:variable>
         <xsl:choose>
-            <xsl:when test="(wega:isPerson($docID) or wega:isOrg($docID) or wega:isVar($docID) or wega:isAddendum($docID)) and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
+            <xsl:when test="(wega:isPerson($docID) or wega:isOrg($docID) or wega:isPlace($docID) or wega:isVar($docID) or wega:isAddendum($docID)) and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
                 <xsl:value-of select="concat(wega:join-path-elements(($baseHref, $lang, $docID)), '.html')"/>
             </xsl:when>
             <xsl:when test="(exists($folder) and $authorID ne '') and doc-available(concat('xmldb:exist://', wega:getCollectionPath($docID), '/', $docID, '.xml'))">
@@ -363,7 +364,7 @@
         <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
         <xsl:if test="matches(normalize-space(string-join($measure/node() except $measure/tei:note, '')),'^\d+\.?$') and $measure/@quantity &gt; 0">
             <xsl:element name="span">
-                <xsl:attribute name="class" select="'tei_supplied'"/>
+                <xsl:attribute name="class" select="'suppliedCurrencySymbol'"/>
                 <xsl:choose>
                     <xsl:when test="$measure/@unit = 'f'">
                         <xsl:value-of select="' &#402;'"/>

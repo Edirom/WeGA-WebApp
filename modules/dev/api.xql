@@ -34,11 +34,11 @@ declare function local:get-reg-name($params as map(*)) as xs:string {
     query:title($params('id'))
 };
 
-declare function local:get-new-id($params as map(*)) as xs:string {
+(:declare function local:get-new-id($params as map(*)) as xs:string {
     dev:createNewID($params('docType'))
 };
-
-declare function local:get-diary-by-date($params as map(*)) as item() {
+:)
+(:declare function local:get-diary-by-date($params as map(*)) as item() {
     let $ab := core:getOrCreateColl('diaries', 'indices', true())/tei:ab[@n=$params('date')][1]
     return
         if(exists($ab)) then 
@@ -47,7 +47,7 @@ declare function local:get-diary-by-date($params as map(*)) as item() {
                 'url' := core:link-to-current-app(controller:path-to-resource($ab/root(), $params('lang')))
             }
         else 'No results'
-};
+};:)
 
 declare function local:diaryDay-to-kml($params as map(*)) as element(kml:Placemark)+ {
     let $day := core:doc($params('docID'))/tei:ab

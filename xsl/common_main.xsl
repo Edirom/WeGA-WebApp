@@ -772,8 +772,8 @@
                 <xsl:text>inlineEnd</xsl:text>
             </xsl:if>
         </xsl:variable>
-        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teix:egXML">
-            <xsl:if test="current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText)][matches(., '\S')] or current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText)][self::element()]">
+        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teix:egXML|tei:eg">
+            <xsl:if test="current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText or self::tei:eg)][matches(., '\S')] or current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText or self::tei:eg)][self::element()]">
                 <xsl:element name="p">
                     <xsl:if test="position() eq 1">
                         <xsl:apply-templates select="parent::tei:p/@xml:id"/>
@@ -781,10 +781,10 @@
                     <xsl:if test="$inlineEnd">
                         <xsl:attribute name="class" select="$inlineEnd"/>
                     </xsl:if>
-                    <xsl:apply-templates select="current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText)]"/>
+                    <xsl:apply-templates select="current-group()[not(self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText or self::tei:eg)]"/>
                 </xsl:element>
             </xsl:if>
-            <xsl:apply-templates select="current-group()[self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText]"/>
+            <xsl:apply-templates select="current-group()[self::tei:list or self::tei:specList or self::teix:egXML or self::tei:table or self::tei:floatingText or self::tei:eg]"/>
         </xsl:for-each-group>
     </xsl:template>
 

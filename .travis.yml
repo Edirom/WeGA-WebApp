@@ -7,6 +7,7 @@ services:
 
 before_install:
   - ant docker_run
+  - npm install prettydiff
   - docker cp wega:/opt/exist/lib/endorsed/Saxon-HE-9.6.0-7.jar .
 
 script:

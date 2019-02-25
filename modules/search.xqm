@@ -64,18 +64,6 @@ declare
 };
 
 (:~
- : Write the sanitized query string into the search text input for reuse
- : To be called from an HTML template
-~:)
-declare function search:inject-value($node as node(), $model as map(*)) as element(input) {
-    element {name($node)} {
-        $node/@*[not(name(.) = 'value')],
-        if($model('query-string-org') ne '') then attribute {'value'} {$model('query-string-org')}
-        else ()
-    }
-};
-
-(:~
  : Push the results for one page to the $model
  : $model?result-page-entries will be a sequence of document-node()*
  : $model?result-page-hits-per-entry will be a map(), consisting of document IDs as key and the fulltext hits as value (if appropriate).
