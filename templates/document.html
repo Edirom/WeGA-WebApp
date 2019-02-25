@@ -196,8 +196,10 @@
                         </div>                        
                         
                         <div data-template="app:textSources">
-                            <h3 data-template="lang:translate" class="media-heading">provenance</h3>
-                            <em data-template="app-shared:print" data-template-key="textSourcesCountString"/>
+                            <h3 class="media-heading">
+                                <span data-template="lang:translate">provenance</span>
+                                <em class="small" data-template="app-shared:print" data-template-key="textSourcesCountString"/>
+                            </h3>
                             <ol data-template="app-shared:set-attr" data-template-attr="class" data-template-key="countClass">
                                 <li data-template="app-shared:each" data-template-from="textSources" data-template-to="textSource">
                                     <div data-template="app:print-Source" data-template-key="textSource">
@@ -208,9 +210,9 @@
                                         <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse apparatus-details">
                                             <div data-template="app-shared:output" data-template-key="sourceData-content"/>
                                             <!-- Processing tei:additional for every source -->
-                                            <div data-template="app:additionalSources" class="padding-left-20">
+                                            <div data-template="app:additionalSources">
                                                 <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
-                                                    <em data-template="lang:translate" class="media-heading">correspondingSources</em>:
+                                                    <h4 data-template="lang:translate" class="media-heading">correspondingSources</h4>
                                                 </div>
                                                 <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="additionalSources">
                                                     <li data-template="app-shared:each" data-template-from="additionalSources" data-template-to="additionalSource">
@@ -227,7 +229,6 @@
                                                 </ul>
                                             </div>
                                         </div>
-                                        
                                     </div>
                                     <!-- processing (external) facsimile references for every source -->
                                     <div data-template="app:externalImageURLs">

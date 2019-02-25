@@ -1293,7 +1293,7 @@ declare
     return
         map {
             'textSources' := query:text-sources($model?doc),
-            'textSourcesCountString' := concat($textSourcesCount, " ", if (count($textSourcesCount) > 1) then lang:get-language-string("textSources",$model('lang')) else lang:get-language-string("textSource",$model('lang')),": "),
+            'textSourcesCountString' := if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else "",
             'countClass' := if ($textSourcesCount > 1) then "decimal" else "none"
         }
 };
