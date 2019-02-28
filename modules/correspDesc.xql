@@ -32,7 +32,7 @@ declare function ct:create-header() as element(tei:teiHeader) {
             </publicationStmt>
             <sourceDesc>
                 <bibl type="online" xml:id="{$ct:source-uuid}">
-                    Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <ref target="{config:get-option('permaLinkPrefix')}">{config:get-option('permaLinkPrefix')}</ref> (Version {config:get-option('version')} vom {date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string('de'), 'de')})
+                    Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <ref target="{config:get-option('permaLinkPrefix')}">{config:get-option('permaLinkPrefix')}</ref> (Version {config:expath-descriptor()/data(@version)} vom {date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string('de'), 'de')})
                 </bibl>
             </sourceDesc>
         </fileDesc>

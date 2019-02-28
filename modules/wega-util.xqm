@@ -154,7 +154,7 @@ declare %private function wega-util:editionStmt() as map() {
         map {
             'version' :=    lang:get-language-string(
                                 'versionInformation', (
-                                    config:get-option('version'), 
+                                    config:expath-descriptor()/@version, 
                                     date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
                                 ), 
                                 $lang
@@ -348,19 +348,25 @@ declare function wega-util:distance-between-places($placeID1 as xs:string, $plac
 };
 
 (:~
- :  Lookup viaf ID by calling an external service.
- :  Currently, we are using the rdf serialization from the DNB.
+ :  Lookup VIAF ID for a given GND ID.
+ :  (This is a shortcut function for `wega-util:translate-authority-id()`)
+ :
+ :  @param $gnd a GND identifier
+ :  @return the corresponding VIAF identifier(s) as string(s)
 ~:)
 declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
-    er:grabExternalResource('dnb', $gnd, '', ())//owl:sameAs/@rdf:resource[starts-with(., 'http://viaf.org/viaf/')]/substring(., 22)
+    wega-util:translate-authority-id(<tei:idno type="gnd">{$gnd}</tei:idno>, 'viaf')
 };
 
 (:~
- :  Lookup gnd ID by calling an external service.
- :  Currently, we are using the rdf serialization from viaf.org.
+ :  Lookup GND ID for a given VIAF ID.
+ :  (This is a shortcut function for `wega-util:translate-authority-id()`)
+ :
+ :  @param $viaf a VIAF identifier
+ :  @return the corresponding GND identifier(s) as string(s)
 ~:)
 declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
-    er:grabExternalResource('viaf', $viaf, '', ())//schema:sameAs/@rdf:resource[starts-with(., 'http://d-nb.info/gnd/')]/substring(., 22)
+    wega-util:translate-authority-id(<tei:idno type="viaf">{$viaf}</tei:idno>, 'gnd')
 };
 
 (:~

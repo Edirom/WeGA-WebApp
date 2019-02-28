@@ -83,7 +83,18 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="@target">
+    <!--
+        dedicated rule for internal links (e.g. `<ref target='wega:A090092'>`)
+        which will be treated like other references with previews.
+        NB: fragment identifiers are excluded since this is not implemented yet
+        for previews. Hence, links with fragment identifiers (e.g. `<ref target='wega:A090092#chapter-links'>`)
+        will be transformed to simple links without preview popover
+    -->
+    <xsl:template match="tei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))]">
+        <xsl:call-template name="createLink"/>
+    </xsl:template>
+    
+    <xsl:template match="@target[not(matches(., '\s'))]">
         <xsl:attribute name="href">
             <xsl:choose>
                 <xsl:when test="starts-with(.,'wega:')">
@@ -96,15 +107,20 @@
             </xsl:choose>
         </xsl:attribute>
     </xsl:template>
+    
+    <xsl:template match="@key[not(matches(., '\s'))] | @dbkey[not(matches(., '\s'))]">
+        <xsl:attribute name="href" select="wega:createLinkToDoc(., $lang)"/>
+    </xsl:template>
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when test="exists((@key, @dbkey)) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
+            <xsl:when test="exists((@key, @dbkey, @target)) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
-                        <xsl:value-of select="string-join(('preview', wega:get-doctype-by-id(substring((@key, @dbkey), 1, 7)), (@key, @dbkey)), ' ')"/>
+                        <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:attribute>
-                    <xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>
+                    <!--<xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>-->
+                    <xsl:apply-templates select="@key | @dbkey | @target"/>
                     <xsl:apply-templates/>
                 </xsl:element>
             </xsl:when>
@@ -120,14 +136,9 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="@key or @dbkey">
-                        <xsl:value-of select="string-join(
-                            (
-                            if($suppressLinks) then () else 'preview', 
-                            wega:get-doctype-by-id(substring((@key, @dbkey), 1, 7)), 
-                            (@key, @dbkey)
-                            )
-                            , ' ')"/>
+                    <xsl:when test="$suppressLinks"/>
+                    <xsl:when test="exists((@key, @dbkey, @target))">
+                        <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:for-each select="string-to-codepoints(normalize-space(.))">
@@ -137,11 +148,21 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:if test="(@key or @dbkey) and not($suppressLinks)">
+            <xsl:if test="exists((@key, @dbkey, @target)) and not($suppressLinks)">
                 <xsl:variable name="urls" as="xs:string+">
-                    <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@dbkey">
+                    <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@dbkey | descendant-or-self::*/@target[starts-with(., 'wega:')]">
                         <xsl:for-each select="tokenize(normalize-space(.), '\s+')">
-                            <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
+                            <xsl:choose>
+                                <xsl:when test="starts-with(.,'wega:')">
+                                    <xsl:value-of select="wega:createLinkToDoc(substring(., 6, 7), $lang)"/>
+                                </xsl:when>
+                                <xsl:when test="matches(., '^A[A-F0-9]{6}$')">
+                                    <xsl:value-of select="wega:createLinkToDoc(., $lang)"/>
+                                </xsl:when>
+                                <xsl:otherwise>
+                                    <xsl:value-of select="."/>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:for-each>
                     </xsl:for-each>
                 </xsl:variable>
@@ -150,5 +171,22 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+    
+    <xsl:function name="wega:preview-class" as="xs:string">
+        <xsl:param name="myNode" as="element()"/>
+        <xsl:variable name="keys" select="
+            for $key in tokenize(($myNode/@key, $myNode/@dbkey, $myNode/@target/replace(., 'wega:', '')), '\s+')
+            return substring($key, 1, 7)
+            " as="xs:string+"/>
+        <xsl:variable name="class" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="count(distinct-values(for $key in $keys return substring($key, 1,3))) = 1">
+                    <xsl:value-of select="wega:get-doctype-by-id($keys[1])"/>
+                </xsl:when>
+                <xsl:otherwise>mixed</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:value-of select="string-join(('preview', $class, $keys), ' ')"/>
+    </xsl:function>
 
 </xsl:stylesheet>

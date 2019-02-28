@@ -25,11 +25,6 @@
         <mkdir dir="${build.dir}"/>
         <mkdir dir="${tmp.dir}"/>
         <mkdir dir="${dist.dir}"/>
-        <condition property="update.smufl-font">
-            <not>
-                <available file="${lib_components.dir}/bravura.zip"/>
-            </not>
-        </condition>
     </target>
     
     <target name="test">
@@ -50,11 +45,6 @@
         </parallel>
     </target>
     
-    <target name="download-smufl-font" depends="yarn" if="${update.smufl-font}">
-        <description>Download Bravura font from the official website</description>
-        <get src="${smufl.font}" dest="${lib_components.dir}/bravura.zip" skipexisting="no"/>
-    </target>
-    
     <target name="yarn" depends="init">
         <description>Update javascript libraries via yarn</description>
         <exec executable="${yarn.cmd}" failonerror="yes">
@@ -72,7 +62,7 @@
         </exec>
     </target>
     
-    <target name="dist" depends="init, download-smufl-font, yarn, less">
+    <target name="dist" depends="init, yarn, less">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
@@ -104,25 +94,18 @@
             </fileset>
         </copy>
         
-        <!-- extract smufl fonts -->
-        <unzip src="${lib_components.dir}/bravura.zip" dest="${tmp.dir}"/>
-        
         <!-- Copy additional fonts -->
         <copy todir="${dist.dir}/resources/fonts" failonerror="false">
-            <fileset dir="${tmp.dir}/eot/">
-                <include name="Bravura.*"/>
-                <!--<include name="BravuraText.eot"/>-->
-                <!--<include name="BravuraText.woff"/>-->
-                <!--<include name="BravuraText.otf"/>-->
-                <!--<include name="BravuraText.svg"/>-->
-            </fileset>
-            <fileset dir="${tmp.dir}/woff/">
+            <fileset dir="${lib_components.dir}/bravura/redist/eot/">
                 <include name="Bravura.*"/>
             </fileset>
-            <fileset dir="${tmp.dir}/otf/">
+            <fileset dir="${lib_components.dir}/bravura/redist/woff/">
                 <include name="Bravura.*"/>
             </fileset>
-            <fileset dir="${tmp.dir}/svg/">
+            <fileset dir="${lib_components.dir}/bravura/redist/otf/">
+                <include name="Bravura.*"/>
+            </fileset>
+            <fileset dir="${lib_components.dir}/bravura/redist/svg/">
                 <include name="Bravura.*"/>
             </fileset>
             <fileset dir="${wega.fonts.dir}">
@@ -152,6 +135,19 @@
                 <include name="**/*.jpg"/>
                 <include name="**/*.xsl"/>
                 <include name="**/*.xml"/>
+                <!-- exclude unnecessary directories -->
+                <exclude name="bootstrap-vue/"/>
+                <exclude name="bravura/"/>
+                <exclude name="core-js/"/>
+                <exclude name="@fortawesome/"/>
+                <exclude name="prettydiff/"/>
+                <exclude name="less/"/>
+                <exclude name="lodash/"/>
+                <exclude name="rx/"/>
+                <exclude name="vnu/"/>
+                <exclude name="vnu-jar/"/>
+                <exclude name="vue/"/>
+                <exclude name="yuicompressor/"/>
                 <!-- exclude html files. non-well-formed html makes eXist choke -->
                 <exclude name="**/*.html"/>
                 <!-- exclude tests to reduce file size -->
