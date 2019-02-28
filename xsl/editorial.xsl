@@ -150,7 +150,6 @@
             <xsl:value-of select="wega:getLanguageString('provenance', $lang)"/> 
         </xsl:element>
         <xsl:element name="ul">
-            <xsl:attribute name="class">apparatus-details</xsl:attribute>            
             <!-- make tei:acquisition appear on top of the list -->
             <xsl:for-each select="tei:acquisition, tei:provenance">
                 <xsl:element name="li">
