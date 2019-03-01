@@ -21,6 +21,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace templates="http://exist-db.org/xquery/templates";
 
@@ -117,6 +118,7 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
         if($term ='Art der Institution') then lang:get-language-string('organisationsInstitutions', $lang)
         else lang:get-language-string('sex_' || $term, $lang)
     case 'docTypeSubClass' case 'docStatus' case 'textType' return lang:get-language-string($term, $lang)
+    case 'repository' return facets:display-term-repository($term)
     default return str:normalize-space($term)
 };
 
@@ -199,4 +201,16 @@ declare function facets:filter-label($node as node(), $model as map(*)) as eleme
         attribute title {$model('filterOption')('label')},
         $model('filterOption')('label')
     }
+};
+
+(:~
+ : Create display term for library facet
+ : Helper function for facets:display-term()
+ :)
+declare %private function facets:display-term-repository($term as xs:string) as xs:string {
+    let $key := wega-util:settlement-key-from-rism-siglum($term)
+    return (
+        if($key) then wdt:places($key)('title')('txt') || ' (' || $term || ')'
+        else $term
+    )
 };
