@@ -2,6 +2,7 @@
    
    <xsl:template name="createApparatus">
       <xsl:variable name="textConstitutionPath" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
+      <xsl:variable name="commentaryPath" select=".//tei:app | .//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
          <xsl:if test="wega:isNews($docID)">
@@ -21,13 +22,15 @@
                   </xsl:element>
                </xsl:for-each>
          </xsl:element>
-         <xsl:element name="h3">
-            <xsl:attribute name="class">media-heading</xsl:attribute>
-            <xsl:value-of select="wega:getLanguageString('commentary', $lang)"/>
-         </xsl:element>
+         <xsl:if test="$commentaryPath">
+            <xsl:element name="h3">
+               <xsl:attribute name="class">media-heading</xsl:attribute>
+               <xsl:value-of select="wega:getLanguageString('commentary', $lang)"/>
+            </xsl:element>
+         </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">commentary</xsl:attribute>
-            <xsl:for-each select=".//tei:app | .//tei:note[@type=('commentary', 'definition')] | .//tei:choice">
+            <xsl:for-each select="$commentaryPath">
                <xsl:element name="li">
                   <xsl:apply-templates select="." mode="apparatus"/>
                </xsl:element>
