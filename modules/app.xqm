@@ -1330,7 +1330,7 @@ declare
                 case element(tei:biblStruct) return bibl:printCitation($model($key), <xhtml:span class="biblio-entry"/>, $model('lang'))
                 case element(tei:bibl) return <span>{str:normalize-space($model($key))}</span>
                 default return <span class="noDataFound">{lang:get-language-string('noDataFound',$model('lang'))}</span>
-        let $sourceCategory :=
+        let $sourceCategory := if($model($key)/@rend) then lang:get-language-string($model($key)/@rend,$model('lang')) else ()
             typeswitch($model($key))
                 case element(tei:msDesc) return $model($key)/@rend
                 default return ()
