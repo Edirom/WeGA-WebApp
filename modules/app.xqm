@@ -1330,7 +1330,8 @@ declare
                 case element(tei:biblStruct) return bibl:printCitation($model($key), <xhtml:span class="biblio-entry"/>, $model('lang'))
                 case element(tei:bibl) return <span>{str:normalize-space($model($key))}</span>
                 default return <span class="noDataFound">{lang:get-language-string('noDataFound',$model('lang'))}</span>
-        let $sourceData-content :=
+        let $sourceCategory := if($model($key)/@rend) then lang:get-language-string($model($key)/@rend,$model('lang')) else ()
+	let $sourceData-content :=
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:*[not(self::tei:msIdentifier)], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 default return ()
