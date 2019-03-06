@@ -1347,7 +1347,7 @@ declare
                 'sourceId' := $source-id,
                 'sourceLink-content' := $sourceLink-content,
                 'sourceData-content' := $sourceData-content,
-                'sourceCategory' := lang:get-language-string($sourceCategory,$model('lang'))
+                'sourceCategory' := if ($sourceCategory) then lang:get-language-string($sourceCategory,$model('lang')) else ()
             }
 };
 
