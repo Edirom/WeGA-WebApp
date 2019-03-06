@@ -438,3 +438,14 @@ declare function wega-util:print-forename-surname-from-nameLike-element($nameLik
         (: fallback: anonymous :)
         else query:title(config:get-option('anonymusID'))
 };
+
+(:~
+ : Infer our local settlement WeGA ID from a RISM siglum
+ :
+ : @param $siglum a RISM siglum (see http://www.rism.info/en/sigla.html)
+ : @return the corresponding WeGA ID for the settlement
+ :)
+declare function wega-util:settlement-key-from-rism-siglum($siglum as xs:string) as xs:string {
+    let $keys := core:data-collection('letters')//tei:repository[range:field-eq('rism-siglum', $siglum)]/preceding-sibling::tei:settlement/@key
+    return string($keys[1])
+};

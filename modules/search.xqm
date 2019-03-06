@@ -31,7 +31,7 @@ declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'w
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
     'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames', 
-    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames');
+    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames', 'repository');
 
 (:~
  : Main function called from the templating module
@@ -299,7 +299,9 @@ declare %private function search:filter-result($collection as document-node()*, 
         (: exact search for terms -> range:eq :)
         else if($filter = ('journals', 'forenames', 'surnames', 'sex', 'occupations')) then query:get-facets($collection, $filter)[range:eq(.,$filters($filter))]/root()
         (: range:contains for tokens within key values  :)
-        else query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
+        else if($filter = ('addressee', 'sender')) then query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
+        (: exact match for everything else :)
+        else query:get-facets($collection, $filter)[range:eq(.,$filters($filter))]/root()
       else $collection
     let $newFilter :=
         if($filter = ('fromDate', 'toDate')) then 

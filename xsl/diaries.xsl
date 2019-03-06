@@ -129,8 +129,8 @@
         as well.
     -->
     <xsl:template match="tei:seg[@rend]" priority="1" mode="rightTableColumn">
-        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')] | .//tei:lb | .//tei:pb" mode="#current">
-            <xsl:with-param name="counter">
+        <xsl:apply-templates mode="#current">
+            <xsl:with-param name="counter" tunnel="yes">
                 <xsl:number level="any"/>
             </xsl:with-param>
         </xsl:apply-templates>
@@ -151,15 +151,15 @@
         * ancestor::tei:seg[@rend] need to be excluded, otherwise those measures will be duplicated by the rule above for `tei:seg[@rend]`
     -->
     <xsl:template match="*[parent::tei:ab]" priority="0.1" mode="rightTableColumn">
-        <xsl:apply-templates select=".//tei:seg[@rend] | .//tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')][not(ancestor::tei:seg[@rend])] | .//tei:lb[not(ancestor::tei:seg[@rend])] | .//tei:pb[not(ancestor::tei:seg[@rend])]" mode="#current">
-            <xsl:with-param name="counter">
+        <xsl:apply-templates mode="#current">
+            <xsl:with-param name="counter" tunnel="yes">
                 <xsl:number level="any"/>
             </xsl:with-param>
         </xsl:apply-templates>
     </xsl:template>
     
     <xsl:template match="tei:measure[@type='expense' or ancestor::tei:seg/@type='accounting'][not(@rend='inline')]" priority="0.5" mode="rightTableColumn">
-        <xsl:param name="counter"/>
+        <xsl:param name="counter" tunnel="yes"/>
         <xsl:element name="span">
             <xsl:attribute name="class">
                 <xsl:value-of select="concat('payment_',$counter)"/>
@@ -174,7 +174,14 @@
         </xsl:element>
     </xsl:template>
     
-    <!-- suppress all other content -->
-    <xsl:template match="*" mode="rightTableColumn"/>
+    <xsl:template match="tei:measure" priority="0.2" mode="rightTableColumn">
+        <xsl:apply-templates select="*" mode="#current"/>
+    </xsl:template>
+    
+    <xsl:template match="*" mode="rightTableColumn">
+        <xsl:apply-templates mode="#current"/>
+    </xsl:template>
+    
+    <xsl:template match="text()[not(parent::tei:measure)]" mode="rightTableColumn"/>
     
 </xsl:stylesheet>
