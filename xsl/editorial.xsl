@@ -65,10 +65,10 @@
         </xsl:element>-->
         <xsl:element name="span">
             <!--<xsl:attribute name="class">media-heading</xsl:attribute>-->            
-            <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
+<!--            <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
                 <xsl:value-of select="wega:getLanguageString($node/ancestor-or-self::tei:msDesc/@rend, $lang)"/>
                 <xsl:text>: </xsl:text>
-            </xsl:if>
+            </xsl:if>-->
             <xsl:if test="$node/tei:settlement != ''">
                 <xsl:value-of select="tei:settlement"/>
                 <xsl:text> </xsl:text>

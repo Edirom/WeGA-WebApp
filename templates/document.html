@@ -203,6 +203,7 @@
                             <ol data-template="app-shared:set-attr" data-template-attr="class" data-template-key="countClass">
                                 <li data-template="app-shared:each" data-template-from="textSources" data-template-to="textSource">
                                     <div data-template="app:print-Source" data-template-key="textSource">
+                                        <span><span data-template="app-shared:print" data-template-key="sourceCategory"></span>: </span>
                                         <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
                                         <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
                                             <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed"/>                                                                                                                                                                               
@@ -217,6 +218,7 @@
                                                 <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="additionalSources">
                                                     <li data-template="app-shared:each" data-template-from="additionalSources" data-template-to="additionalSource">
                                                         <div data-template="app:print-Source" data-template-key="additionalSource">
+                                                            <span><span data-template="app-shared:print" data-template-key="sourceCategory"></span>: </span>
                                                             <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
                                                             <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
                                                                 <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed apparatus-details"/>

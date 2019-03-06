@@ -1324,13 +1324,17 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:print-Source($node as node(), $model as map(*), $key as xs:string) as map()* {
-        let $sourceLink-content := 
+        let $sourceLink-content :=
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:msIdentifier, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 case element(tei:biblStruct) return bibl:printCitation($model($key), <xhtml:span class="biblio-entry"/>, $model('lang'))
                 case element(tei:bibl) return <span>{str:normalize-space($model($key))}</span>
                 default return <span class="noDataFound">{lang:get-language-string('noDataFound',$model('lang'))}</span>
-        let $sourceData-content := 
+        let $sourceCategory :=
+            typeswitch($model($key))
+                case element(tei:msDesc) return $model($key)/@rend
+                default return ()
+        let $sourceData-content :=
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:*[not(self::tei:msIdentifier)], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 default return ()
@@ -1342,7 +1346,8 @@ declare
                 'sourceLink' := concat("#",$source-id),
                 'sourceId' := $source-id,
                 'sourceLink-content' := $sourceLink-content,
-                'sourceData-content' := $sourceData-content
+                'sourceData-content' := $sourceData-content,
+                'sourceCategory' := lang:get-language-string($sourceCategory,$model('lang'))
             }
 };
 
