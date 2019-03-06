@@ -504,8 +504,35 @@ declare function query:relators($doc as document-node()?) as element()* {
  : 
  :  @param $doc the TEI or MEI document to look for a licence
  :  @return licence as xs:anyURI if given in the document, 'https://creativecommons.org/licenses/by/4.0/' otherwise
- :)
+~:)
 declare function query:licence($doc as document-node()?) as xs:anyURI {
     if($doc//tei:licence/@target castable as xs:anyURI) then xs:anyURI($doc//tei:licence/@target)
     else xs:anyURI('https://creativecommons.org/licenses/by/4.0/') 
+};
+
+(:~
+ :  Return the incipit of a document
+ :  @param $doc a TEI document
+ :  @return the incipit as a the note element
+~:)
+declare function query:incipit($doc as document-node()?) as element(tei:note)? {
+    $doc//tei:note[@type='incipit']
+};
+
+(:~
+ :  Return the general remark of a document
+ :  @param $doc a TEI document
+ :  @return the general remark as a note element
+~:)
+declare function query:generalRemark($doc as document-node()?) as element(tei:note)? {
+    $doc//tei:note[@type='editorial']
+};
+
+(:~
+ :  Return the summary of a document
+ :  @param $doc a TEI document
+ :  @return the summary as a note element
+~:)
+declare function query:summary($doc as document-node()?) as element(tei:note)? {
+    $doc//tei:note[@type='summary']
 };

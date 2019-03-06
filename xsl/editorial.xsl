@@ -1,10 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:tei="http://www.tei-c.org/ns/1.0" 
-    xmlns:rng="http://relaxng.org/ns/structure/1.0" 
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
-    version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" version="2.0">
     
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
     
@@ -38,10 +32,8 @@
             <xsl:when test="parent::tei:witness">
                 <xsl:apply-templates/>
             </xsl:when>
-            <xsl:otherwise>
-                <xsl:element name="div">
+            <xsl:otherwise>                
                     <xsl:apply-templates/>
-                </xsl:element>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -52,9 +44,14 @@
         </xsl:call-template>
     </xsl:template>
     
+    <!-- aktuell nur für die Ausgabe von msName innerhalb msDesc; eventuell überarbeiten und anpassen im Zuge von #276 -->
+    <xsl:template match="tei:msIdentifier[tei:msName][not(parent::tei:msFrag)]">
+        <xsl:apply-templates select="tei:msName"/>
+    </xsl:template>
+    
     <xsl:template match="tei:msFrag">
         <xsl:element name="div">
-            <xsl:attribute name="class">tei_msFrag</xsl:attribute>
+            <xsl:attribute name="class">tei_msFrag apparatus-block</xsl:attribute>
             <xsl:element name="h4"><xsl:value-of select="concat(wega:getLanguageString('fragment', $lang), ' ', count(preceding-sibling::tei:msFrag) +1)"/></xsl:element>
             <xsl:apply-templates/>
         </xsl:element>
@@ -66,11 +63,12 @@
             <xsl:attribute name="class">media-heading</xsl:attribute>
             <xsl:value-of select="wega:getLanguageString('repository', $lang)"/>
         </xsl:element>-->
-        <xsl:element name="p">
-            <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
+        <xsl:element name="span">
+            <!--<xsl:attribute name="class">media-heading</xsl:attribute>-->            
+<!--            <xsl:if test="$node/ancestor-or-self::tei:msDesc/@rend">
                 <xsl:value-of select="wega:getLanguageString($node/ancestor-or-self::tei:msDesc/@rend, $lang)"/>
                 <xsl:text>: </xsl:text>
-            </xsl:if>
+            </xsl:if>-->
             <xsl:if test="$node/tei:settlement != ''">
                 <xsl:value-of select="tei:settlement"/>
                 <xsl:text> </xsl:text>
@@ -149,7 +147,7 @@
     <xsl:template match="tei:history">
         <xsl:element name="h4">
             <xsl:attribute name="class">media-heading</xsl:attribute>
-            <xsl:value-of select="wega:getLanguageString('provenance', $lang)"/>
+            <xsl:value-of select="wega:getLanguageString('provenance', $lang)"/> 
         </xsl:element>
         <xsl:element name="ul">
             <!-- make tei:acquisition appear on top of the list -->

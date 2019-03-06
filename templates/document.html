@@ -79,6 +79,7 @@
                     </div>
                     <div data-template="templates:include" data-template-path="templates/includes/download-modal.html"/>
                     <div data-template="app:context">                       
+                        
                         <h2>
                             <a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a>
                         </h2>
@@ -160,24 +161,24 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div data-template="app-shared:output" data-template-key="transcription"/>
                     </div>
-                    <div class="tab-pane fade" id="editorial">
+                    <div class="tab-pane fade" id="editorial" data-template="app:check-apparatus">
                         <h2 data-template="lang:translate">editorial</h2>
                         <!--<div>
                             <h3 data-template="lang:translate">series</h3>
                             <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
                         </div>-->
                         
-                        <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="diaries">
+                        <div data-template="app-shared:if-exists" data-template-key="summary">
                             <h3 data-template="lang:translate" class="media-heading">summary</h3>
                             <div data-template="app:print-summary"/>
                         </div>
                         
-                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters writings documents">
+                        <div data-template="app-shared:if-exists" data-template-key="incipit">
                             <h3 data-template="lang:translate" class="media-heading">incipit</h3>
                             <div data-template="app:print-incipit"/>
                         </div>
                         
-                        <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="diaries">
+                        <div data-template="app-shared:if-exists" data-template-key="generalRemark">
                             <h3 data-template="lang:translate" class="media-heading">generalRemark</h3>
                             <div data-template="app:print-generalRemark"/>
                         </div>
@@ -192,38 +193,64 @@
                         <div>
                             <h3 data-template="lang:translate" class="media-heading">responsibilities</h3>
                             <dl data-template="app:respStmts"/>
-                        </div>
+                        </div>                        
                         
                         <div data-template="app:textSources">
-                            <h3 data-template="lang:translate" class="media-heading">provenance</h3>
-                            <div data-template="app-shared:each" data-template-from="textSources" data-template-to="textSource">
-                                <h4 data-template="lang:translate" class="media-heading">textSource</h4>
-                                <div data-template="app:print-textSource"/>
-                                
-                                <!-- processing (external) facsimile references for every source -->
-                                <div data-template="app:externalImageURLs">
-                                    <div data-template="app-shared:if-exists" data-template-key="externalImageURLs" data-template-wrap="no">
-                                        <h5 data-template="lang:translate" class="media-heading">facsimile</h5>
+                            <h3 class="media-heading">
+                                <span data-template="lang:translate">tradition</span>
+                                <em class="small" data-template="app-shared:print" data-template-key="textSourcesCountString"/>
+                            </h3>
+                            <ol data-template="app-shared:set-attr" data-template-attr="class" data-template-key="countClass">
+                                <li data-template="app-shared:each" data-template-from="textSources" data-template-to="textSource">
+                                    <div data-template="app:print-Source" data-template-key="textSource">
+                                        <span data-template="app-shared:if-exists" data-template-key="sourceCategory" data-template-wrap="no">
+                                            <span data-template="app-shared:print" data-template-key="sourceCategory"/>: 
+                                        </span>
+                                        <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
+                                        <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
+                                            <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed"/>                                                                                                                                                                               
+                                        </span>                                      
+                                        <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse apparatus-details">
+                                            <div data-template="app-shared:output" data-template-key="sourceData-content"/>
+                                            <!-- Processing tei:additional for every source -->
+                                            <div data-template="app:additionalSources">
+                                                <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
+                                                    <h4 data-template="lang:translate" class="media-heading">correspondingSources</h4>
+                                                </div>
+                                                <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="additionalSources">
+                                                    <li data-template="app-shared:each" data-template-from="additionalSources" data-template-to="additionalSource">
+                                                        <div data-template="app:print-Source" data-template-key="additionalSource">
+                                                            <span data-template="app-shared:if-exists" data-template-key="sourceCategory" data-template-wrap="no">
+                                                                <span data-template="app-shared:print" data-template-key="sourceCategory"/>: 
+                                                            </span>
+                                                            <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
+                                                            <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
+                                                                <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed apparatus-details"/>
+                                                            </span>  
+                                                            <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse">
+                                                                <div data-template="app-shared:output" data-template-key="sourceData-content"/>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="externalImageURLs">
-                                        <li data-template="app-shared:each" data-template-from="externalImageURLs" data-template-to="externalImageURL">
-                                            <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="externalImageURL"><span data-template="app-shared:print" data-template-key="externalImageURL">some URL</span> <i class="fa fa-external-link" aria-hidden="true"/></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <!-- Processing tei:additional for every source -->
-                                <div data-template="app:additionalSources">
-                                    <div data-template="app-shared:if-exists" data-template-key="additionalSources" data-template-wrap="no">
-                                        <h5 data-template="lang:translate" class="media-heading">additionalSources</h5>
-                                    </div>
-                                    <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="additionalSources">
-                                        <li data-template="app-shared:each" data-template-from="additionalSources" data-template-to="additionalSource">
-                                            <p data-template="app:print-additionalSource"/>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>                    
+                                    <!-- processing (external) facsimile references for every source -->
+                                    <div data-template="app:externalImageURLs">
+                                        <div data-template="app-shared:if-exists" data-template-key="externalImageURLs" data-template-wrap="no">
+                                            <h5 data-template="lang:translate" class="media-heading">facsimile</h5>
+                                        </div>
+                                        <ul class="tei_list" data-template="app-shared:if-exists" data-template-key="externalImageURLs">
+                                            <li data-template="app-shared:each" data-template-from="externalImageURLs" data-template-to="externalImageURL">
+                                                <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="externalImageURL"><span data-template="app-shared:print" data-template-key="externalImageURL">some URL</span>
+                                                    <i class="fa fa-external-link" aria-hidden="true"/></a>
+                                            </li>
+                                        </ul>
+                                    </div>                                                                    
+                                </li>
+                            </ol>
+                        </div>                   
                         
                         <div data-template="app-shared:if-exists" data-template-key="thematicCommentaries">
                             <h3 data-template="lang:translate" class="media-heading">thematicCommentaries</h3>
