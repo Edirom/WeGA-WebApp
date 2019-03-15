@@ -103,10 +103,16 @@ declare function api:code-findByElement($model as map()) {
 };
 
 declare function api:application-status($model as map()*) as map()* {
+    let $healthy := query:facsimile(core:doc('A040043'))[tei:graphic/@url]
+                    and core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
+    return
     (
-        map { 'totalRecordCount': 1 },
+        map:new(( 
+            map:entry('totalRecordCount', 1),
+            if(not($healthy)) then map:entry('code', 500) else ()
+        )),
         map {
-            "status": "healthy",
+            "status": if($healthy) then "healthy" else "unhealthy",
             "svnRevision": if (config:getCurrentSvnRev()) then config:getCurrentSvnRev() else 0,
             "deployment": xs:dateTime($config:repo-descriptor/repo:deployed),
             "version": config:expath-descriptor()/data(@version)
