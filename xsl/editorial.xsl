@@ -48,11 +48,18 @@
     <xsl:template match="tei:msIdentifier[tei:msName][not(parent::tei:msFrag)]">
         <xsl:apply-templates select="tei:msName"/>
     </xsl:template>
-    
+
     <xsl:template match="tei:msFrag">
         <xsl:element name="div">
             <xsl:attribute name="class">tei_msFrag apparatus-block</xsl:attribute>
-            <xsl:element name="h4"><xsl:value-of select="concat(wega:getLanguageString('fragment', $lang), ' ', count(preceding-sibling::tei:msFrag) +1)"/></xsl:element>
+            <xsl:element name="h4"><xsl:value-of select="concat(wega:getLanguageString('fragment', $lang), ' ', count(preceding-sibling::tei:msFrag) +1)"/>
+               <xsl:choose>
+                    <xsl:when test="descendant::tei:msName">
+                        <xsl:value-of select="concat(': ', descendant::tei:msName)"/>
+                    </xsl:when>
+                    <xsl:otherwise/>
+                </xsl:choose>
+            </xsl:element>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
