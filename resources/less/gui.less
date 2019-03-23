@@ -490,18 +490,25 @@ div.table-wrapper {
 /*
  * styling for Guidelines and Wikipedia TOC
  */
+
+#toc ul { /* additional left margin for Wikipedia TOC to compensate .toggle-toc-item */
+    margin-left: 12px;
+}
+
 div.toc {
     li ul {
-        margin-left: 1.5em;
+        margin-left: 1em;
     }
     
     ul>li>ul>li {
-        margin-left: 2em;
+        margin-left: 1.5em;
     }
     
     .toggle-toc-item {
-        padding-left: 2em;
         cursor:pointer;
+        right:20px;
+        margin-right:-12px;
+        position:relative;
     }
     
     i {

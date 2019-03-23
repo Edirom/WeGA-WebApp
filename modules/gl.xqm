@@ -310,6 +310,14 @@ declare
 };
 
 declare function gl:print-divGen-item($node as node(), $model as map(*)) {
+    if(count($model?divGen-item?sub-items) gt 0) then (
+    element span {
+    attribute class {"toggle-toc-item"},
+        <i class="fa fa-plus-square" aria-hidden="true" style="display:none;"/>,
+        <i class="fa fa-minus-square" aria-hidden="true"/>
+    }
+    )
+    else (),
     element {node-name($node)} {
         $node/@*,
         element a {
@@ -317,12 +325,12 @@ declare function gl:print-divGen-item($node as node(), $model as map(*)) {
             $model?divGen-item?label
         }
     },
-    if(count($model?divGen-item?sub-items) gt 0) then 
+    if(count($model?divGen-item?sub-items) gt 0) then (
         element ul {
             for $item in $model?divGen-item?sub-items
             return
                 <li>{gl:print-divGen-item($node, map {'divGen-item' := $item})}</li>
-        }
+        } )
     else ()
 };
 
