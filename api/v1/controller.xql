@@ -98,11 +98,17 @@ declare function local:serialize-json($response as item()*) {
  :  @return          an XML fragment 
 ~:)
 declare function local:serialize-xml($response as item()*, $root as xs:string) as element() {
-    let $setHeader3 := if($response instance of map() and $response?code) then response:set-status-code($response?code) else ()
-    let $setHeader4 := response:set-header('totalRecordCount', $response[1]?totalRecordCount)
+    let $setHeader3 := 
+        if($response[1] instance of map() and map:contains($response[1],'code')) 
+        then response:set-status-code($response[1]?code) 
+        else ()
+    let $setHeader4 := 
+        if($response[1] instance of map() and map:contains($response[1],'totalRecordCount'))
+        then response:set-header('totalRecordCount', $response[1]?totalRecordCount)
+        else ()
     return
         element {$root} {
-            for $i in subsequence($response,2)
+            for $i in subsequence($response, if(count($response) gt 1) then 2 else 1)
             return 
                 typeswitch($i)
                 case map() return map:keys($i) ! local:serialize-xml($i(.), .)
@@ -194,7 +200,8 @@ return (:(
         </dispatch>
     else if(exists($lookup)) then 
         if($accept-header[.='application/xml']) then local:serialize-xml($response($lookup), if(empty($lookup)) then 'Error' else $exist:resource )
-        else if($accept-header[.='application/json']) then local:serialize-json($response($lookup))
-        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the swagger.conf file for supported response formats.', 'code':= 406 }, 'apiResponse')
-    else if($accept-header[.='application/json']) then local:serialize-json($unknown-function)
-    else local:serialize-xml($unknown-function, 'apiResponse')
+        else local:serialize-json($response($lookup))
+        (:else if($accept-header[.='application/json']) then local:serialize-json($response($lookup))
+        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the swagger.conf file for supported response formats.', 'code':= 406 }, 'apiResponse'):)
+    else if($accept-header[.='application/xml']) then local:serialize-xml($unknown-function, 'apiResponse')
+    else local:serialize-json($unknown-function)
