@@ -364,19 +364,19 @@ div.table-wrapper {
 
 /* settings for toc  */
 /* second class (after the comma) is used on Wikipedia pages */
-.secLevel1, .toclevel-1 {
+.secLevel1, .toclevel-1, .toc li {
 	padding-left:2em;
 	text-indent:-2em;
 }
-.secLevel2, .toclevel-2 {
+.secLevel2, .toclevel-2, .toc li li {
 	padding-left:3em;
 	text-indent:-2em;
 }
-.secLevel3, .toclevel-3 {
+.secLevel3, .toclevel-3, .toc li li li {
 	padding-left:4em;
 	text-indent:-2em;
 }
-.secLevel4, .toclevel-4 {
+.secLevel4, .toclevel-4, .toc li li li li {
 	padding-left:5em;
 	text-indent:-2em;
 }
@@ -491,30 +491,27 @@ div.table-wrapper {
  * styling for Guidelines and Wikipedia TOC
  */
 
-#toc ul { /* additional left margin for Wikipedia TOC to compensate .toggle-toc-item */
-    margin-left: 12px;
+div.toc-side {
+    font-size:smaller;
 }
 
+div.toc-side.affix {
+     top:50px;
+     padding:0 2em 0 2em;
+    }
+
 div.toc {
-    li ul {
-        margin-left: 1em;
+    h3 {
+        margin-bottom:4px;
     }
-    
-    ul>li>ul>li {
-        margin-left: 1.5em;
-    }
-    
     .toggle-toc-item {
         cursor:pointer;
-        right:20px;
-        margin-right:-12px;
-        position:relative;
+        padding-left:2em;
     }
-    
     i {
         color:@brand-primary;
         vertical-align:middle;
-    }    
+    }
 }
 
 /*

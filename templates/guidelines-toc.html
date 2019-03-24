@@ -25,28 +25,11 @@
 			</div>
 		</div>
 	</div>
-	<div class="container documentText paddingTopIcon paddingBottomIcon" data-template="gl:spec-details">
-		<div class="row">
-			<div class="col-md-6 toc">
-				<h2 data-template="lang:translate">toc</h2>
-				<ul data-template="gl:divGen" data-template.type="toc">
-					<li data-template="app-shared:each" data-template-from="divGen-items" data-template-to="divGen-item">
-						<span data-template="gl:print-divGen-item">some element name</span>
-					</li>
-				</ul>
-			</div>
-			<div class="col-md-6 appendix">
-				<h2 data-template="lang:translate">appendix</h2>
-				<ul>
-					<!--<li data-template="app-shared:each" data-template-from="divGen-items" data-template-to="divGen-item">
-						<span data-template="gl:print-divGen-item">Elements</span>
-					</li>-->
-					<li><a href="$link/project/editorialGuidelines-text/elements/index"><span data-template="lang:translate">elements</span></a></li>
-					<li><a href="$link/project/editorialGuidelines-text/attributes/index"><span data-template="lang:translate">attributes</span></a></li>
-				</ul>
-			</div>
-		</div>
+
+	<div class="container documentText paddingTopIcon paddingBottomIcon">
+		<div data-template="templates:include" data-template-path="templates/includes/guidelines-toc.html"/>
 	</div>
+
 	<div class="container documentFooter">
 		<div class="row permaLink">
 			<div class="col-md-9">
