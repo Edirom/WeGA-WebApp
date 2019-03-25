@@ -218,6 +218,8 @@ $('body').on('click touchstart', function (e) {
  */
 $('.toggle-toc-item').on('click', toggleTocItems);
 $('.toggle-toc-item').each(toggleTocItems);
+$(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
+
 
 /*
  * used for Guidelines TOC as well as for Wikipedia
