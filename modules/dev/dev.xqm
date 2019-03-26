@@ -72,10 +72,10 @@ declare %private function dev:addFffiEntry($IDFile as document-node(), $id as xs
  :
  : @author Peter Stadler
  : @param $IDFile
- : @return empty()
+ : @return empty-sequence()
  :)
 
-declare %private function dev:removeOldEntries($IDFile as document-node()) as empty() {
+declare %private function dev:removeOldEntries($IDFile as document-node()) as empty-sequence() {
     let $currentdateTime := util:system-dateTime()
     return 
         for $entry in $IDFile//dev:entry[@dateTime < ($currentdateTime - xs:dayTimeDuration('P10D'))]

@@ -122,7 +122,7 @@ declare function core:undated($docType as xs:string) as document-node()* {
  : @param $message to write
  : @return 
 :)
-declare function core:logToFile($priority as xs:string, $message as xs:string) as empty() {
+declare function core:logToFile($priority as xs:string, $message as xs:string) as empty-sequence() {
     let $file := config:get-option('errorLogFile')
     let $message := concat($message, ' (rev. ', config:getCurrentSvnRev(), ')')
     return (

@@ -249,7 +249,7 @@ declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
 (:~
  : Helper function for validating user input (= function parameters)
 ~:)
-(:declare %private function api:validateInput($model as map()) as empty() {
+(:declare %private function api:validateInput($model as map()) as empty-sequence() {
     for $param in map:keys($model)
     return
         switch($param)
