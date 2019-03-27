@@ -417,7 +417,8 @@ declare
 declare 
     %templates:wrap
     function gl:spec-list($node as node(), $model as map(*)) as map()? {
-        let $specType := substring-after($model?chapID, 'index-')
+        let $chapID := if (exists($node/@data-chapID)) then $node/@data-chapID/string() else $model?chapID
+        let $specType := substring-after($chapID, 'index-')
         let $specIDs := gl:spec-idents($model?schemaID, $specType)
         return 
             map {
@@ -449,7 +450,6 @@ declare function gl:spec-list-items($node as node(), $model as map(*)) as map()?
         'items' := $links
     }
 };
-
 
 (:~
  : Create a link to $specID
