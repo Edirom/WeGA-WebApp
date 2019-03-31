@@ -42,15 +42,20 @@
 			</div>
 			<form>
 				<div class="col-md-3">
-					<div class="allFilter glSchemaIDFilter">  
-						<h2>Filter</h2> 
-						<div class="btn-group" data-toggle="buttons">
-							<label class="btn gradient-light" data-template="gl:schemaID-filter">
-								<input type="checkbox" name="schemaID" value="wega_all"/> persons
-							</label>
+					<h2><a data-toggle="collapse" class="collapseSingle collapsed" href="#sidefilter">Filter</a></h2>
+					<div class="panel-collapse collapse" id="sidefilter">
+						<div class="allFilter glSchemaIDFilter">
+							<div class="btn-group" data-toggle="buttons">
+								<label class="btn gradient-light" data-template="gl:schemaID-filter">
+									<input type="checkbox" name="schemaID" value="wega_all"/> persons
+								</label>
+							</div>
 						</div>
 					</div>
-					<div class="toc-side" data-spy="affix" data-offset-top="1000">
+					<h2>
+						<a data-template="lang:translate" data-toggle="collapse" class="collapseSingle" href="#sidetoc">toc</a>
+					</h2>
+					<div class="toc-side" data-spy="affix" data-offset-top="400" data-offset-bottom="400">
 						<div data-template="templates:include" data-template-path="templates/includes/guidelines-toc.html"/>
 					</div>
 				</div>

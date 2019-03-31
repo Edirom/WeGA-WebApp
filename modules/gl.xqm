@@ -294,7 +294,7 @@ declare
             return
                 map {
                     'label' := $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
-                    'url' := ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
+                    'url' :=  core:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
                     'sub-items' := for $sub-item in $div/tei:div return $callBack($sub-item, $new-depth, $callBack)
                 }
         }
