@@ -1328,7 +1328,7 @@ declare
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:msIdentifier, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 case element(tei:biblStruct) return bibl:printCitation($model($key), <xhtml:span class="biblio-entry"/>, $model('lang'))
-                case element(tei:bibl) return <span>{str:normalize-space($model($key))}</span>
+                case element(tei:bibl) return wega-util:transform($model($key), doc(concat($config:xsl-collection-path, '/document.xsl')), config:get-xsl-params(()))
                 default return <span class="noDataFound">{lang:get-language-string('noDataFound',$model('lang'))}</span>
         let $sourceCategory := if($model($key)/@rend) then lang:get-language-string($model($key)/@rend,$model('lang')) else ()
         let $sourceData-content :=
