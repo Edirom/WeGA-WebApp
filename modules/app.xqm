@@ -1335,7 +1335,7 @@ declare
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:*[not(self::tei:msIdentifier)], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 default return ()
-        let $source-id := util:hash($sourceLink-content,'md5')
+        let $source-id := util:hash(generate-id($model($key)),'md5')
         let $collapse := exists($sourceData-content) or exists($model($key)/tei:additional) or exists($model($key)/tei:relatedItem)
         return
             map {
