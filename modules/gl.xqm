@@ -316,9 +316,7 @@ declare function gl:print-divGen-item($node as node(), $model as map(*)) {
         <i class="fa fa-minus-square" aria-hidden="true"/>
     },
     element {node-name($node)} {
-        $node/@*[not(name(.) = 'class')],
-        if (starts-with(string($model?divGen-item?url), string($model?chapID)) and not(contains("toc",$model?chapID))) then
-        attribute class {"active"} else (),
+        $node/@*[not(name(.) = 'class')],        
         element a {
             attribute href {$model?divGen-item?url},
             $model?divGen-item?label
