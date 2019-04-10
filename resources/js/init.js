@@ -218,7 +218,7 @@ $('body').on('click touchstart', function (e) {
  */
 $('.toggle-toc-item').on('click', toggleTocItems);
 $('.toggle-toc-item').each(toggleTocItems);
-$('.toc a[href~="'+window.location.pathname+'"]').addClass("active");
+$('.toc a[href~="'+window.location.pathname+'"]').parent("span").addClass("active");
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
 
 
