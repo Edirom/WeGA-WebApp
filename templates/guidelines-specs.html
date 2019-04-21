@@ -103,15 +103,16 @@
                         <div class="row">
                         	<div class="col-md-12">
                         		<p>
-                        			<b data-template="app-shared:print" data-template-key="specIDDisplay">castGroup</b> 
+                                    <span class="label" data-template="app-shared:print" data-template-key="specIDDisplay">castGroup</span>
                         		    <span data-template="app-shared:print" data-template-key="gloss" class="gloss">cast list grouping</span> 
                         		    <span data-template="app-shared:print" data-template-key="desc" class="desc">groups one or more individual castItem elements within a cast list.</span>
                         		</p>
                         	</div>
                         </div>
                         <div class="row customizations" data-template="gl:spec-customizations">
+                            <hr/>
                             <div class="col-md-2">
-                            	<p data-template="lang:translate">other_customizations</p>
+                                <span class="label" data-template="lang:translate">other_customizations</span>
                             </div>
                             <div class="col-md-10">
                                 <!--<p>unmodified – this is the original usage as defined by the TEI Guidelines version 3.1.0.</p>-->
@@ -123,8 +124,9 @@
                             </div>
                         </div>
                         <div class="row members" data-template="gl:members">
+                            <hr/>
                             <div class="col-md-2">
-                                <p data-template="lang:translate">members</p>
+                                <span class="label" data-template="lang:translate">members</span>
                             </div>
                             <div class="col-md-10">
                                 <ul>
@@ -135,8 +137,9 @@
                             </div>
                         </div>
                         <div class="row attributes" data-template="gl:attributes">
+                            <hr/>
                             <div class="col-md-2">
-                                <p data-template="lang:translate">attributes</p>
+                                <span class="label" data-template="lang:translate">attributes</span>
                             </div>
                             <div class="col-md-10">
                                 <div class="attClasses">
@@ -150,48 +153,52 @@
                                     <div data-template="app-shared:each" data-template-from="localAtts" data-template-to="localAtt" class="row">
                                         <div data-template="gl:spec-details" data-template-specKey="localAtt">
                                             <div class="col-md-2">
-                                                <p data-template="app-shared:print" data-template-key="specIDDisplay" class="attribute">att</p>
+                                                <code>
+                                                    <span data-template="app-shared:print" data-template-key="specIDDisplay" class="label attribute">att</span>
+                                                </code>
                                             </div>
                                             <div class="col-md-10">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <p>
+                                                        <span>
                                                             <span data-template="app-shared:print" data-template-key="gloss" class="gloss">gloss</span>
                                                             <span data-template="app-shared:print" data-template-key="desc" class="desc">desc</span>
-                                                        </p>
+                                                        </span>
                                                     </div>
                                                 </div>
-                                                <div class="row">
+                                                <div class="row" data-template="app-shared:if-exists" data-template-key="usage">
                                                     <div class="col-md-2">
-                                                        <p data-template="lang:translate">status</p>
+                                                        <span class="label" data-template="lang:translate">status</span>
                                                     </div>
                                                     <div class="col-md-10">
-                                                        <p data-template="app-shared:print" data-template-key="usage">Optional</p>
+                                                        <span data-template="app-shared:print" data-template-key="usage">Optional</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" data-template="app-shared:if-exists" data-template-key="datatype">
                                                     <div class="col-md-2">
-                                                        <p data-template="lang:translate">datatype</p>
+                                                        <span class="label" data-template="lang:translate">datatype</span>
                                                     </div>
                                                     <div class="col-md-10">
-                                                        <p data-template="app-shared:print" data-template-key="datatype">teidata.enumerated</p>
+                                                        <span data-template="app-shared:print" data-template-key="datatype">teidata.enumerated</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" data-template="app-shared:if-exists" data-template-key="closed_values">
                                                     <div class="col-md-2">
-                                                        <p data-template="lang:translate">closed_values</p>
+                                                        <span class="label" data-template="lang:translate">closed_values</span>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <div data-template="app-shared:each" data-template-from="closed_values" data-template-to="closed_value" class="row">
                                                             <div data-template="gl:spec-details" data-template-specKey="closed_value">
                                                                 <div class="col-md-2">
-                                                                    <p data-template="app-shared:print" data-template-key="specIDDisplay">simple</p>
+                                                                    <code>
+                                                                        <span data-template="app-shared:print" data-template-key="specIDDisplay">simple</span>
+                                                                    </code>
                                                                 </div>
                                                                 <div class="col-md-10">
-                                                                    <p>
+                                                                    <div>
                                                                         <span data-template="app-shared:print" data-template-key="gloss" class="gloss">gloss</span>
                                                                         <span data-template="app-shared:print" data-template-key="desc" class="desc">desc</span>
-                                                                    </p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>    
@@ -199,7 +206,7 @@
                                                 </div>
                                                 <div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">
                                                     <div class="col-md-2">
-                                                        <p data-template="lang:translate">gl_note</p>
+                                                        <span class="label" data-template="lang:translate">gl_note</span>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <div>
@@ -210,7 +217,7 @@
                                                 </div>
                                                 <div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">
                                                     <div class="col-md-2">
-                                                        <p data-template="lang:translate">example</p>
+                                                        <span class="label" data-template="lang:translate">example</span>
                                                     </div>
                                                     <div class="col-md-10">
                                                         <div>
@@ -233,8 +240,9 @@
                             </div>
                         </div>-->
                     	<div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">
-                            <div class="col-md-2">
-                            	<p data-template="lang:translate">gl_note</p>
+                    	    <hr/>
+                    	    <div class="col-md-2">
+                                <span class="label" data-template="lang:translate">gl_note</span>
                             </div>
                             <div class="col-md-10">
                             	<div>
@@ -244,8 +252,9 @@
                             </div>
                         </div>
                     	<div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">
+                    	    <hr/>
                     		<div class="col-md-2">
-                    			<p data-template="lang:translate">example</p>
+                                <span class="label" data-template="lang:translate">example</span>
                     		</div>
                     		<div class="col-md-10">
                     			<div>
