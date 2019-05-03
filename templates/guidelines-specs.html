@@ -87,7 +87,7 @@
                         </div>
                     </div>-->
                 </div>
-                <div class="toc-side" data-spy="affix" data-offset-top="400" data-offset-bottom="400">
+                <div class="hidden-sm hidden-xs toc-side" data-spy="affix" data-offset-top="400" data-offset-bottom="400">
                     <h2>
                         <a data-template="lang:translate" data-toggle="collapse" class="collapseSingle" href="#sidetoc">toc</a>
                     </h2>
@@ -108,10 +108,10 @@
                         	</div>
                         </div>
                         <div class="row customizations" data-template="gl:spec-customizations">                            
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">other_customizations</span>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <!--<p>unmodified – this is the original usage as defined by the TEI Guidelines version 3.1.0.</p>-->
                             	<ul>
                             		<li data-template="app-shared:each" data-template-from="customizations" data-template-to="customization"><span data-template="gl:print-customization">Letters (modified)</span></li>
@@ -121,10 +121,10 @@
                             </div>
                         </div>
                         <div class="row members" data-template="gl:members">                            
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">members</span>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <ul>
                                     <li data-template="app-shared:each" data-template-from="members" data-template-to="member">
                                         <span data-template="gl:print-member" data-template-key="member"/>
@@ -133,10 +133,10 @@
                             </div>
                         </div>
                         <div class="row attributes" data-template="gl:attributes">                            
-                            <div class="col-md-3">
+                            <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">attributes</span>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                                 <div class="attClasses">
                                     <ul data-template="app-shared:if-exists" data-template-key="attClasses">
                                         <li data-template="app-shared:each" data-template-from="attClasses" data-template-to="attClass">
@@ -228,10 +228,10 @@
                             </div>
                         </div>-->
                     	<div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">                    	    
-                    	    <div class="col-md-3">
+                    	    <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">gl_note</span>
                             </div>
-                            <div class="col-md-9">
+                            <div class="col-md-10">
                             	<div>
                             		<p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
                                     Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
@@ -239,10 +239,10 @@
                             </div>
                         </div>
                     	<div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">                    	    
-                    		<div class="col-md-3">
+                    		<div class="col-md-2">
                                 <span class="label" data-template="lang:translate">example</span>
                     		</div>
-                    		<div class="col-md-9">
+                    		<div class="col-md-10">
                     			<div>
                     				<pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
                     				</code></pre>
