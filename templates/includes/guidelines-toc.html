@@ -1,0 +1,70 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="gl:spec-details">
+    <div class="panel-collapse collapse in toc">
+        <div class="guidelines">
+            <h3>Text</h3>
+            <ul data-template="gl:divGen" data-template-type="toc">
+                <li data-template="app-shared:each" data-template-from="divGen-items" data-template-to="divGen-item">
+                    <span data-template="gl:print-divGen-item">some element name</span>
+                </li>
+            </ul>
+        </div>
+        <div class="appendix">
+            <h3 data-template="lang:translate">appendix</h3>
+            <div>
+                <ul>
+                    <li class="appendix-div">
+                        <span class="toggle-toc-item">
+                            <i class="fa fa-plus-square" aria-hidden="true" style="display: none;"/>
+                            <i class="fa fa-minus-square" aria-hidden="true"/>
+                        </span>
+                        <span>
+                            <a href="$link/project/editorialGuidelines-text/elements/index"><span data-template="lang:translate">elements</span></a>
+                        </span>
+                        <ul data-template="gl:spec-list" data-template-type="toc" data-chapID="index-elements">
+                            <li data-template="app-shared:each" data-template-from="spec-list" data-template-to="specs-by-initial">
+                                <div data-template="gl:spec-list-items">
+                                <span class="toggle-toc-item">
+                                    <i class="fa fa-plus-square" aria-hidden="true" style="display: none;"/>
+                                    <i class="fa fa-minus-square" aria-hidden="true"/>
+                                </span>
+                                <span>
+                                    <a data-template="app-shared:print" data-template-key="label"/>
+                                </span>
+                                <ul>
+                                    <li data-template="app-shared:each" data-template-from="items" data-template-to="item">
+                                        <span>
+                                            <a data-template="app-shared:output" data-template-key="item">anchor</a>
+                                        </span>
+                                    </li>
+                                </ul>
+                                </div>
+                            </li>
+                        </ul>                       
+                    </li>
+                    <li class="appendix-div">
+                        <span class="toggle-toc-item">
+                            <i class="fa fa-plus-square" aria-hidden="true" style="display: none;"/>
+                            <i class="fa fa-minus-square" aria-hidden="true"/>
+                        </span>
+                        <span>
+                            <a href="$link/project/editorialGuidelines-text/attributes/index"><span data-template="lang:translate">attributes</span></a>
+                        </span>
+                        <ul data-template="gl:spec-list" data-template-type="toc" data-chapID="index-attributes">
+                            <li data-template="app-shared:each" data-template-from="spec-list" data-template-to="specs-by-initial">
+                                <div data-template="gl:spec-list-items">
+                                    <div>
+                                        <div data-template="app-shared:each" data-template-from="items" data-template-to="item">
+                                            <span>
+                                                <a data-template="app-shared:output" data-template-key="item">anchor</a>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

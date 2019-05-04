@@ -294,7 +294,7 @@ declare
             return
                 map {
                     'label' := $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
-                    'url' := ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
+                    'url' :=  core:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
                     'sub-items' := for $sub-item in $div/tei:div return $callBack($sub-item, $new-depth, $callBack)
                 }
         }
@@ -310,20 +310,17 @@ declare
 };
 
 declare function gl:print-divGen-item($node as node(), $model as map(*)) {
-    if(count($model?divGen-item?sub-items) gt 0) then (
     element span {
     attribute class {"toggle-toc-item"},
         <i class="fa fa-plus-square" aria-hidden="true" style="display:none;"/>,
         <i class="fa fa-minus-square" aria-hidden="true"/>
-    }
-    )
-    else (),
+    },
     element {node-name($node)} {
-        $node/@*,
+        $node/@*[not(name(.) = 'class')],        
         element a {
             attribute href {$model?divGen-item?url},
             $model?divGen-item?label
-        }
+       }
     },
     if(count($model?divGen-item?sub-items) gt 0) then (
         element ul {
@@ -418,7 +415,8 @@ declare
 declare 
     %templates:wrap
     function gl:spec-list($node as node(), $model as map(*)) as map()? {
-        let $specType := substring-after($model?chapID, 'index-')
+        let $chapID := if (exists($node/@data-chapID)) then $node/@data-chapID/string() else $model?chapID
+        let $specType := substring-after($chapID, 'index-')
         let $specIDs := gl:spec-idents($model?schemaID, $specType)
         return 
             map {
@@ -450,7 +448,6 @@ declare function gl:spec-list-items($node as node(), $model as map(*)) as map()?
         'items' := $links
     }
 };
-
 
 (:~
  : Create a link to $specID
