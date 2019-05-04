@@ -131,7 +131,7 @@ declare
 				'desc' := $spec/tei:desc[@xml:lang=$lang],
 				'spec' := $spec,
 				'specIDDisplay' := if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
-				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
+				'remarks' := $HTMLSpec/xhtml:div[@class='remarks'],
 				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.),
 				'usage' := if($spec/@usage) then lang:get-language-string('usage_' || $spec/data(@usage), $model?lang) else (),
 				'datatype' := $spec/tei:datatype/tei:dataRef/data(@key),
