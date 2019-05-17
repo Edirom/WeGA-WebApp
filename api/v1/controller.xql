@@ -171,7 +171,7 @@ let $validate-params := function($params as map()?) as map()? {
 ~:)
 let $response := function($lookup as map(*)) { 
    (: typeswitch($lookup?func)
-    case empty() return $unknown-function
+    case empty-sequence() return $unknown-function
     default return :)
         try { $lookup?func(map:new(($local:defaults, map {'swagger:config' := $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
         catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }

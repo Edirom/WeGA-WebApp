@@ -88,7 +88,7 @@ declare function local:getMimeType($compression as xs:string) as xs:string? {
     else ()
 };
 
-declare function local:createSitemapCollection($path as xs:string) as empty() {
+declare function local:createSitemapCollection($path as xs:string) as empty-sequence() {
     let $createCollection := 
         try { xmldb:create-collection(functx:substring-before-last($path, '/'), functx:substring-after-last($path, '/')) }
         catch * {core:logToFile('error', 'failed to create sitemap collection')}

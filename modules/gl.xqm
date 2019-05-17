@@ -132,7 +132,7 @@ declare
 				'desc' := $spec/tei:desc[@xml:lang=$lang],
 				'spec' := $spec,
 				'specIDDisplay' := if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
-				'remarks' := $HTMLSpec//xhtml:div[@class='remarks'],
+				'remarks' := $HTMLSpec/xhtml:div[@class='remarks'],
 				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.),
 				'usage-label' := if ($spec/@usage) then <sup title="{concat("Status: ",$usage-string)}" class="{concat("usage_",$spec/data(@usage))}">{$spec/data(@usage)}</sup> else (),
 				'datatype' := $spec/tei:datatype/tei:dataRef/data(@key),

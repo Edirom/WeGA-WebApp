@@ -495,15 +495,28 @@ div.toc-side {
     font-size:smaller;
 }
 
+.toc-side > div {
+    height:100%;
+    overflow-y:auto;
+    /* border: 1px solid @gray-light; */
+}
+
 div.toc-side.affix {
      top:50px;     
+     height:50%;
      overflow-y:auto;
-     height:90%;
      margin-right:20px;
-    }
-     
+     padding-bottom:20px;
+}
+
 .affix-bottom {
     position:relative;
+}
+
+#sidetoc {
+    margin-bottom:0!important;
+    padding:8px;
+    background-color: #f5f5f5;
 }
 
 div.toc {

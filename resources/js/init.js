@@ -222,6 +222,21 @@ $('.toc a[href~="'+window.location.pathname+window.location.hash+'"]').parentsUn
 $('.appendix a[href^="'+window.location.pathname+window.location.hash+'"]').parentsUntil(".appendix-div").addClass("active");
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
 
+/* dynamically adjust width of side-toc */
+$(function() {
+function changeAffixBoxWidth() {
+var getParentWidth = $('.toc-side').parent().width();
+  $('.toc-side').css({
+  		'width': getParentWidth
+  })
+}
+$(window).on('resize', function() {
+	changeAffixBoxWidth();
+})
+$('.toc-side').on('affixed.bs.affix', function() {
+	changeAffixBoxWidth();
+})
+});
 
 /*
  * used for Guidelines TOC as well as for Wikipedia
