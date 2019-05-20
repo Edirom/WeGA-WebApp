@@ -17,13 +17,13 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace repo="http://exist-db.org/xquery/repo";
 import module namespace functx="http://www.functx.com";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "../app.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "../wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "../wega-util.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "../date.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "../lang.xqm";
 
 declare 
