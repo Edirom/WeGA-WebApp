@@ -235,7 +235,7 @@ declare
             if(($model?member)/self::tei:classSpec) then (
                 ($model?member)/data(@ident),
                 ' [',
-                gl:class-members($model?member)/@ident/data(),
+                <small>{gl:class-members($model?member)/@ident/data()}</small>,
                 ']'
             )
             else ($model?member)/data(@ident)
