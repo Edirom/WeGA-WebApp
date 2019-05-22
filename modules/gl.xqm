@@ -423,7 +423,7 @@ declare
             map {
                 'spec-list' := 
                     for $id in $specIDs
-                    group by $initial := lower-case(substring($id, 1, 1))
+                    group by $initial := lower-case(substring(functx:substring-after-if-contains($id,"att."), 1, 1))
                     order by $initial
                     return 
                          map {
