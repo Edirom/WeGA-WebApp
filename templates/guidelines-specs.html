@@ -29,8 +29,7 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="gl:spec-details">
         <div class="row">
-            <div class="col-md-3 col-md-push-9">
-                
+            <div class="col-md-3 col-md-push-9">                
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
                         <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a></h2>
@@ -88,7 +87,6 @@
                         </div>
                     </div>-->
                 </div>
-
                 <div class="hidden-sm hidden-xs toc-side" data-spy="affix" data-offset-top="400">
                     <h2>
                         <a data-template="lang:translate" data-toggle="collapse" class="collapseSingle" href="#sidetoc">toc</a>
@@ -101,19 +99,19 @@
             <div class="col-md-9 col-md-pull-3">
                 <!-- Tab panes -->
                 <div class="tab-content">
-                    <div class="tab-pane active fade in" id="transcription">
+                    <div class="guidelines-specs tab-pane active fade in" id="transcription">
                         <div class="row">
                         	<div class="col-md-12">
                         		<p>
-                        			<b data-template="app-shared:print" data-template-key="specIDDisplay">castGroup</b> 
+                                    <span class="label" data-template="app-shared:print" data-template-key="specIDDisplay">castGroup</span>
                         		    <span data-template="app-shared:print" data-template-key="gloss" class="gloss">cast list grouping</span> 
                         		    <span data-template="app-shared:print" data-template-key="desc" class="desc">groups one or more individual castItem elements within a cast list.</span>
                         		</p>
                         	</div>
                         </div>
-                        <div class="row customizations" data-template="gl:spec-customizations">
+                        <div class="row customizations" data-template="gl:spec-customizations">                            
                             <div class="col-md-2">
-                            	<p data-template="lang:translate">other_customizations</p>
+                                <span class="label" data-template="lang:translate">other_customizations</span>
                             </div>
                             <div class="col-md-10">
                                 <!--<p>unmodified – this is the original usage as defined by the TEI Guidelines version 3.1.0.</p>-->
@@ -124,9 +122,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row members" data-template="gl:members">
+                        <div class="row members" data-template="gl:members">                            
                             <div class="col-md-2">
-                                <p data-template="lang:translate">members</p>
+                                <span class="label" data-template="lang:translate">members</span>
                             </div>
                             <div class="col-md-10">
                                 <ul>
@@ -136,9 +134,9 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row attributes" data-template="gl:attributes">
+                        <div class="row attributes" data-template="gl:attributes">                            
                             <div class="col-md-2">
-                                <p data-template="lang:translate">attributes</p>
+                                <span class="label" data-template="lang:translate">attributes</span>
                             </div>
                             <div class="col-md-10">
                                 <div class="attClasses">
@@ -151,59 +149,56 @@
                                 <div class="localAtts">
                                     <div data-template="app-shared:each" data-template-from="localAtts" data-template-to="localAtt" class="row">
                                         <div data-template="gl:spec-details" data-template-specKey="localAtt">
-                                            <div class="col-md-2">
-                                                <p data-template="app-shared:print" data-template-key="specIDDisplay" class="attribute">att</p>
+                                            <div class="col-md-2 text-nowrap label-col">
+                                                <code><span data-template="app-shared:print" data-template-key="specIDDisplay" class="label attribute">att</span></code>
+                                                <span class="status-label">                                                    
+                                                    <sup data-template="app-shared:output" data-template-key="usage-label"/>
+                                                </span>
                                             </div>
-                                            <div class="col-md-10">
+                                            <div class="col-md-10 data-col">
                                                 <div class="row">
                                                     <div class="col-md-12">
-                                                        <p>
+                                                        <em>
                                                             <span data-template="app-shared:print" data-template-key="gloss" class="gloss">gloss</span>
                                                             <span data-template="app-shared:print" data-template-key="desc" class="desc">desc</span>
-                                                        </p>
+                                                        </em>
                                                     </div>
-                                                </div>
-                                                <div class="row">
-                                                    <div class="col-md-2">
-                                                        <p data-template="lang:translate">status</p>
-                                                    </div>
-                                                    <div class="col-md-10">
-                                                        <p data-template="app-shared:print" data-template-key="usage">Optional</p>
-                                                    </div>
-                                                </div>
+                                                </div>      
                                                 <div class="row" data-template="app-shared:if-exists" data-template-key="datatype">
-                                                    <div class="col-md-2">
-                                                        <p data-template="lang:translate">datatype</p>
+                                                    <div class="col-md-3">
+                                                        <span class="label" data-template="lang:translate">datatype</span>
                                                     </div>
-                                                    <div class="col-md-10">
-                                                        <p data-template="app-shared:print" data-template-key="datatype">teidata.enumerated</p>
+                                                    <div class="col-md-9">
+                                                        <span data-template="app-shared:print" data-template-key="datatype">teidata.enumerated</span>
                                                     </div>
                                                 </div>
                                                 <div class="row" data-template="app-shared:if-exists" data-template-key="closed_values">
-                                                    <div class="col-md-2">
-                                                        <p data-template="lang:translate">closed_values</p>
+                                                    <div class="col-md-3">
+                                                        <span class="label text-nowrap" data-template="lang:translate">closed_values</span>
                                                     </div>
-                                                    <div class="col-md-10">
+                                                    <div class="col-md-9">
                                                         <div data-template="app-shared:each" data-template-from="closed_values" data-template-to="closed_value" class="row">
                                                             <div data-template="gl:spec-details" data-template-specKey="closed_value">
-                                                                <div class="col-md-2">
-                                                                    <p data-template="app-shared:print" data-template-key="specIDDisplay">simple</p>
+                                                                <div class="col-md-3">
+                                                                    <code>
+                                                                        <span data-template="app-shared:print" data-template-key="specIDDisplay">simple</span>
+                                                                    </code>
                                                                 </div>
-                                                                <div class="col-md-10">
-                                                                    <p>
+                                                                <div class="col-md-9">
+                                                                    <div>
                                                                         <span data-template="app-shared:print" data-template-key="gloss" class="gloss">gloss</span>
                                                                         <span data-template="app-shared:print" data-template-key="desc" class="desc">desc</span>
-                                                                    </p>
+                                                                    </div>
                                                                 </div>
                                                             </div>
                                                         </div>    
                                                     </div>
                                                 </div>
                                                 <div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">
-                                                    <div class="col-md-2">
-                                                        <p data-template="lang:translate">gl_note</p>
+                                                    <div class="col-md-3">
+                                                        <span class="label" data-template="lang:translate">gl_note</span>
                                                     </div>
-                                                    <div class="col-md-10">
+                                                    <div class="col-md-9">
                                                         <div>
                                                             <p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
                                                                 Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
@@ -211,10 +206,10 @@
                                                     </div>
                                                 </div>
                                                 <div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">
-                                                    <div class="col-md-2">
-                                                        <p data-template="lang:translate">example</p>
+                                                    <div class="col-md-3">
+                                                        <span class="label" data-template="lang:translate">example</span>
                                                     </div>
-                                                    <div class="col-md-10">
+                                                    <div class="col-md-9">
                                                         <div>
                                                             <pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span></code></pre>
                                                         </div>
@@ -227,16 +222,16 @@
                             </div>
                         </div>
                         <!--<div class="row">
-                            <div class="col-md-2">
+                            <div class="col-md-3">
                                 <p>Module</p>
                             </div>
-                            <div class="col-md-10">
+                            <div class="col-md-9">
                                 <p>drama — Performance Texts</p>
                             </div>
                         </div>-->
-                    	<div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">
-                            <div class="col-md-2">
-                            	<p data-template="lang:translate">gl_note</p>
+                    	<div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">                    	    
+                    	    <div class="col-md-2">
+                                <span class="label" data-template="lang:translate">gl_note</span>
                             </div>
                             <div class="col-md-10">
                             	<div>
@@ -245,9 +240,9 @@
                             	</div>
                             </div>
                         </div>
-                    	<div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">
+                    	<div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">                    	    
                     		<div class="col-md-2">
-                    			<p data-template="lang:translate">example</p>
+                                <span class="label" data-template="lang:translate">example</span>
                     		</div>
                     		<div class="col-md-10">
                     			<div>

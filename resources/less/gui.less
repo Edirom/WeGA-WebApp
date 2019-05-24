@@ -434,7 +434,7 @@ div.table-wrapper {
 /* 
  * Guidelines Spec pages
  */
-.customizations, .attributes, .members, .spec-list {
+.customizations, .attributes, .spec-list {
 	li {
 		display: inline;
 		margin-right: .3em;
@@ -502,12 +502,12 @@ div.toc-side {
 }
 
 div.toc-side.affix {
-     top:50px;          
+     top:50px;
      height:50%;
      margin-right:20px;
      padding-bottom:20px;
     }
-     
+
 .affix-bottom {
     position:relative;
 }
@@ -535,6 +535,54 @@ div.toc {
         font-weight:800;
     }
 }
+
+/*
+ * styling for Guidelines specs
+ */
+
+span.label {
+    font-weight:800;
+    font-family:@font-family-sans-serif;
+}
+
+.localAtts {
+    > .row {
+        padding:6px 0 6px 0;
+    }
+    > .row:not(:first-child) {
+        border-top:1px solid @gray-lighter;
+    }
+    code {
+        color:unset;
+    }
+}
+
+.guidelines-specs {
+    > .row:not(:empty) {
+        border-bottom: 1px solid @gray-lighter;
+        padding: 20px 0 20px 0;
+    }
+    p:last-child, ul:last-child {
+        margin-bottom:unset;
+    }
+}
+
+.data-col {
+    font-size:90%;
+}
+
+.usage_opt {
+    color: green;
+}
+
+.usage_req {
+    color: #c7254e;
+}
+
+.usage_rec {
+    color:#ff8400;
+}
+
 
 /*
  * styling for specLists
