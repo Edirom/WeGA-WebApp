@@ -126,6 +126,8 @@ declare
 		let $lang := $model?lang
 		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 		let $usage-string := if($spec/@usage) then lang:get-language-string('usage_' || $spec/data(@usage), $model?lang) else ()
+		let $examples-selection := $spec/tei:exemplum[@xml:lang=$lang or @xml:lang="mul"]
+		let $examples := if (exists($examples-selection)) then $examples-selection else $spec/tei:exemplum[@xml:lang="en"]
 		return
 			map {
 				'gloss' := $spec/tei:gloss[@xml:lang=$lang] ! ('(' || . || ')'),
@@ -133,7 +135,7 @@ declare
 				'spec' := $spec,
 				'specIDDisplay' := if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
 				'remarks' := $HTMLSpec/xhtml:div[@class='remarks'],
-				'examples' := $spec/tei:exemplum[@xml:lang='en'] ! gl:print-exemplum(.),
+				'examples' := $examples ! gl:print-exemplum(.),
 				'usage-label' := if ($spec/@usage) then <sup title="{concat("Status: ",$usage-string)}" class="{concat("usage_",$spec/data(@usage))}">{$spec/data(@usage)}</sup> else (),
 				'datatype' := $spec/tei:datatype/tei:dataRef/data(@key),
 				'closed_values' := $spec/tei:valList[@type='closed']/tei:valItem

@@ -205,15 +205,17 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                                <div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">
-                                                    <div class="col-md-3">
+                                                <div class="row">
+                                                    <div class="col-md-3" data-template="app-shared:if-exists" data-template-key="examples">
                                                         <span class="label" data-template="lang:translate">example</span>
                                                     </div>
+                                                  <div data-template="app-shared:each" data-template-from="examples" data-template-to="example">
                                                     <div class="col-md-9">
                                                         <div>
                                                             <pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span></code></pre>
                                                         </div>
-                                                    </div>
+                                                  </div>
+                                                </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -240,16 +242,20 @@
                             	</div>
                             </div>
                         </div>
-                    	<div class="row" data-template="app-shared:each" data-template-from="examples" data-template-to="example">                    	    
-                    		<div class="col-md-2">
+                    	<div class="row">                    	                        		
+                    	    <div class="col-md-2" data-template="app-shared:if-exists" data-template-key="examples">
                                 <span class="label" data-template="lang:translate">example</span>
                     		</div>
-                    		<div class="col-md-10">
-                    			<div>
-                    				<pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
-                    				</code></pre>
-                    			</div>
-                    		</div>
+                    	    <div data-template="app-shared:each" data-template-from="examples" data-template-to="example">
+                    	      <div class="col-md-2"/>
+                    	      <div class="col-md-10">
+                      			<div>
+                      				<pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
+                      				</code></pre>
+                      			</div>
+                      		</div>
+                    	       
+                    	    </div>
                     	</div>
                     </div>
                     <div class="tab-pane fade" id="examples">
