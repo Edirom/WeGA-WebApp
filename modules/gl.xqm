@@ -126,7 +126,7 @@ declare
 		let $lang := $model?lang
 		let $HTMLSpec := wega-util:transform($spec, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
 		let $usage-string := if($spec/@usage) then lang:get-language-string('usage_' || $spec/data(@usage), $model?lang) else ()
-		let $examples-selection := $spec/tei:exemplum[@xml:lang=$lang or @xml:lang="mul"]
+		let $examples-selection := $spec/tei:exemplum[@xml:lang=($lang, "mul", "und")]
 		let $examples := if (exists($examples-selection)) then $examples-selection else $spec/tei:exemplum[@xml:lang="en"]
 		return
 			map {
