@@ -39,17 +39,23 @@
     </xsl:template>
 
     <xsl:template match="tei:msIdentifier">
-        <!-- msNames außerhalb von msFrag werden vorab als "Titel" gesetzt -->
-        <xsl:if test="tei:msName and not(parent::tei:msFrag)">
-            <xsl:apply-templates select="tei:msName"/>
-            <!-- Wenn weitere Elemente (eine vollständige bibliogr. Angabe) folgen, wird hier noch ein Umbruch erzwungen -->
-            <xsl:if test="* except tei:msName">
-                <xsl:element name="br"/>
-            </xsl:if>
-        </xsl:if>
         <xsl:call-template name="createMsIdentifier">
             <xsl:with-param name="node" select="."/>
         </xsl:call-template>
+    </xsl:template>
+    
+    <!-- Sonderregel für msIdentifier mit msName, außerhalb von msFrag -->
+    <xsl:template match="tei:msIdentifier[tei:msName][not(parent::tei:msFrag)]">
+        <!-- msNames außerhalb von msFrag werden vorab als Titel gesetzt -->
+        <xsl:apply-templates select="tei:msName"/>
+        <xsl:if test="* except tei:msName">
+            <!-- Wenn weitere Elemente (eine vollständige bibliogr. Angabe) folgen, 
+                wird hier noch ein Umbruch erzwungen und dann der Rest ausgegeben -->
+            <xsl:element name="br"/>
+            <xsl:call-template name="createMsIdentifier">
+                <xsl:with-param name="node" select="."/>
+            </xsl:call-template>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="tei:msFrag">
