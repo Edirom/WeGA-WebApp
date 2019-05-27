@@ -45,11 +45,11 @@ declare
         return
             switch($docType)
             (: search page :)
-            case 'search' return search:search(map:new(($model, $filters, map:entry('docID', 'indices'))))
+            case 'search' return search:search(map:merge(($model, $filters, map:entry('docID', 'indices'))))
             (: controller sends docType=persons which needs to be turned into "personsPlus" here :)
-            case 'persons' return search:list(map:new(($filters, map:put($model, 'docType', 'personsPlus'))))
+            case 'persons' return search:list(map:merge(($filters, map:put($model, 'docType', 'personsPlus'))))
             (: various list views :)
-            default return search:list(map:new(($filters, map:put($model, 'docType', $docType))))
+            default return search:list(map:merge(($filters, map:put($model, 'docType', $docType))))
 };
 
 (:~
@@ -89,7 +89,7 @@ declare
                 else if($doc instance of node()) then error($search:ERROR, 'unable to process node: ' || functx:node-kind($doc) || ' ' || name($doc))
                 else if($doc instance of xs:anyAtomicType) then error($search:ERROR, 'unable to process atomic type: ' || functx:atomic-type($doc))
                 else error($search:ERROR, 'unknown result entry')
-        let $result-page-hits-per-entry := map:new(
+        let $result-page-hits-per-entry := map:merge(
             for $doc in $subseq
             return (
                 if($doc instance of map() and exists($doc?hits)) then 
@@ -124,7 +124,7 @@ declare
         (: Need to distinguish between contacts and other person previews :)
         let $usage := if(wdt:personsPlus(($model('docID')))('check')() and $model('docType') = 'contacts') then 'contacts' else ''
         (: Since docID will be overwritten by app:preview we need to preserve it to know what the parent page is :)
-        let $newModel := map:new(($model, map:entry('parent-docID', $model('docID')), map:entry('usage', $usage)))
+        let $newModel := map:merge(($model, map:entry('parent-docID', $model('docID')), map:entry('usage', $usage)))
         return
             templates:include($node, $newModel, 'templates/includes/preview-' || $preview-template || '.html')
 };
@@ -165,7 +165,7 @@ declare %private function search:search($model as map(*)) as map(*) {
         if($updatedModel('query-string')) then search:merge-hits($docTypes ! search:fulltext($filtered-results, $updatedModel('query-string'), $updatedModel?filters, .))
         else $filtered-results 
     return
-        map:new(($updatedModel, map:entry('search-results', $fulltext-search)))
+        map:merge(($updatedModel, map:entry('search-results', $fulltext-search)))
 };  
 
 (:~
@@ -277,7 +277,7 @@ declare %private function search:additional-mappings($str as xs:string) as eleme
 declare %private function search:create-filters() as map(*) {
     let $params := request:get-parameter-names()[.=$search:valid-params]
     return
-        map:new(
+        map:merge(
             (: "undated" takes precedence over date filter :)
             if($params[.='undated']) then $params[not(.= ('fromDate', 'toDate'))] ! map:entry(., request:get-parameter(., ()))
             else $params ! map:entry(., request:get-parameter(., ()))
@@ -309,7 +309,7 @@ declare %private function search:filter-result($collection as document-node()*, 
             catch * {()}
         else 
             try { map:remove($filters, $filter) }
-            catch * {map:new()}
+            catch * {map {} }
     return
         if(exists(map:keys($newFilter))) then search:filter-result($filtered-coll, $newFilter, $docType)
         else $filtered-coll
@@ -392,7 +392,7 @@ declare %private function search:prepare-search-string($model as map()) as map(*
         else if(count($dates) gt 1) then map:put(map:put($model?filters, 'toDate', $dates[2]), 'fromDate', $dates[1])
         else $model?filters
     return
-        map:new((
+        map:merge((
             $model, 
             map {
                 'filters' := $filters, (: the original filters from $model gets overridden :)

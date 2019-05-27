@@ -107,7 +107,7 @@ declare function api:application-status($model as map()*) as map()* {
                     and core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
     return
     (
-        map:new(( 
+        map:merge(( 
             map:entry('totalRecordCount', 1),
             if(not($healthy)) then map:entry('code', 500) else ()
         )),

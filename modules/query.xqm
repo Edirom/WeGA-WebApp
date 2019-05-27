@@ -304,7 +304,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
 };
 
 declare function query:correspondence-partners($id as xs:string) as map(*) {
-    map:new(
+    map:merge(
         for $i in (norm:get-norm-doc('letters')//norm:entry[contains(@addresseeID, $id)] | norm:get-norm-doc('letters')//norm:entry[contains(@authorID, $id)])/(@authorID, @addresseeID)/tokenize(., '\s+') 
         group by $partnerID := data($i)
         return

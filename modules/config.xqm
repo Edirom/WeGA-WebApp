@@ -402,7 +402,7 @@ declare function config:getCurrentSvnRev() as xs:int? {
 :)
 
 declare function config:get-svn-props($docID as xs:string) as map() {
-    map:new(
+    map:merge(
         for $prop in $config:svn-change-history-file//id($docID)/@*
         return map:entry(local-name($prop), data($prop))
     )
@@ -531,6 +531,6 @@ declare %private function config:map-put-recursive($map as map(*), $key as xs:st
         map:put(
             $map,
             $key[1],
-            config:map-put-recursive(map:new(), subsequence($key, 2), $value)
+            config:map-put-recursive(map {}, subsequence($key, 2), $value)
         )
 };

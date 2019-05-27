@@ -8,6 +8,7 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace compression="http://exist-db.org/xquery/compression";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace sm="http://exist-db.org/xquery/securitymanager";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
@@ -105,8 +106,8 @@ declare function local:createSitemapCollection($path as xs:string) as empty-sequ
 declare function local:compressXML($xml as element(), $fileName as xs:string, $compression as xs:string) as xs:base64Binary? {
     if($compression eq 'zip') then compression:zip(<entry name="{$fileName}" type="xml" method="deflate">{$xml}</entry>, false())
     else if($compression eq 'gz') then (
-        let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=no', 'encoding=utf-8')
-        return compression:gzip(util:string-to-binary(util:serialize($xml, $serializationParameters)))
+        let $serializationParameters := <output:serialization-parameters><output:method>xml</output:method><output:media-type>application/xml</output:media-type><output:indent>no</output:indent></output:serialization-parameters>
+        return compression:gzip(util:string-to-binary(serialize($xml, $serializationParameters)))
     )
     else ()
 };

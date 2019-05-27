@@ -11,6 +11,7 @@ declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace gn="http://www.geonames.org/ontology#";
 declare namespace sr="http://www.w3.org/2005/sparql-results#";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -432,7 +433,7 @@ declare function app:switch-limit($node as node(), $model as map(*)) as element(
 ~:)
 declare %private function app:page-link($model as map(), $params as map()) as xs:string {
 	let $URLparams := request:get-parameter-names()[.=($search:valid-params, 'd', 'q')]
-    let $paramsMap := map:new((map { 'limit': config:entries-per-page() }, $model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
+    let $paramsMap := map:merge((map { 'limit': config:entries-per-page() }, $model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
     return
         replace(
 	        string-join(
@@ -889,7 +890,7 @@ declare
         let $gnd := query:get-gnd($model?doc)
         let $beaconMap := 
             if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
-            else map:new()
+            else map {}
         return
             map { 'beaconLinks': 
                     for $i in map:keys($beaconMap)
@@ -1144,13 +1145,13 @@ declare
 ~:)
 declare function app:xml-prettify($node as node(), $model as map(*)) {
         let $docID := $model('docID')
-        let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
+        let $serializationParameters := <output:serialization-parameters><output:method>xml</output:method><output:media-type>application/xml</output:media-type><output:indent>no</output:indent></output:serialization-parameters>
         let $doc :=
         	if(config:get-doctype-by-id($docID)) then core:doc($docID)
         	else gl:spec($model('exist:path'))
         return
-            if($config:isDevelopment) then util:serialize($doc, $serializationParameters)
-            else util:serialize(wega-util:inject-version-info(wega-util:process-xml-for-display($doc)), $serializationParameters)
+            if($config:isDevelopment) then serialize($doc, $serializationParameters)
+            else serialize(wega-util:inject-version-info(wega-util:process-xml-for-display($doc)), $serializationParameters)
 };
 
 declare 
@@ -1457,7 +1458,7 @@ declare
     function app:context($node as node(), $model as map(*)) as map(*)? {
         let $context := 
             switch($model?docType)
-            case 'letters' return map:new((
+            case 'letters' return map:merge((
                 query:context-relatedItems($model?doc), 
                 query:correspContext($model?doc)
             ))
@@ -1805,5 +1806,5 @@ declare
  : @author Peter Stadler
  :)
 declare function app:inject-api-base($node as node(), $model as map(*))  {
-    app-shared:set-attr($node, map:new(($model, map {'api-base' := config:api-base()})), 'data-api-base', 'api-base')
+    app-shared:set-attr($node, map:merge(($model, map {'api-base' := config:api-base()})), 'data-api-base', 'api-base')
 };

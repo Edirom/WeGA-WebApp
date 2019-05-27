@@ -38,7 +38,7 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
         else ()
     return 
         if(exists($jxml)) then
-            map:new(
+            map:merge(
                 for $i in 1 to array:size($jxml?2)
                 let $link  := str:normalize-space($jxml?4?($i))
                 let $title := str:normalize-space($jxml?3?($i))
@@ -47,7 +47,7 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
                     if(matches($link,"weber-gesamtausgabe.de")) then ()
                     else map:entry($title, ($link, $text))
             )
-        else map:new()
+        else map {}
 };
 
 (:~

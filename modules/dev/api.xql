@@ -185,7 +185,7 @@ declare function local:serialize-txt($response as item()*) {
 let $func := request:get-parameter('func', '')
 let $format := request:get-parameter('format', 'xml')
 let $params := 
-    map:new(
+    map:merge(
         for $i in request:get-parameter-names()
         return
             map:entry($i, request:get-parameter($i, ''))

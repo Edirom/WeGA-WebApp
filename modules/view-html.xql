@@ -36,7 +36,7 @@ let $config := map {
  : with the attributes that are passed by the controller
 ~:)
 let $model := 
-	map:new((
+	map:merge((
 		(
 		for $var in request:attribute-names()
 		return

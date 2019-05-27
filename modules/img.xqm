@@ -545,7 +545,7 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
     let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
     let $image-info :=  parse-json(util:base64-decode(er:http-get(xs:anyURI($image-id))//*:response)) (: why is this not cached? :)
     return 
-        map:new((
+        map:merge((
             map:entry("@context", "http://iiif.io/api/presentation/2/context.json"),
             map:entry("@id", $canvas-id),
             map:entry("@type", "sc:Canvas"),

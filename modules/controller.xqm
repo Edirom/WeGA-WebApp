@@ -145,7 +145,7 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
     let $media-type := controller:media-type($exist-vars)
     let $docID := functx:substring-before-if-contains($exist-vars('exist:resource'), '.')
     let $updated-exist-vars := 
-        map:new((
+        map:merge((
             $exist-vars, 
             map:entry('docID', $docID),
             map:entry('docType', config:get-doctype-by-id($docID)),
@@ -174,7 +174,7 @@ declare function controller:dispatch-register($exist-vars as map(*)) as element(
         if($docType) then controller:encode-path-segments-for-uri(controller:path-to-register($docType, $exist-vars('lang')))
         else ()
     let $updated-exist-vars := 
-        map:new((
+        map:merge((
             $exist-vars, 
             map:entry('docID', 'indices'),
             map:entry('docType', $docType)
@@ -195,13 +195,13 @@ declare function controller:dispatch-project($exist-vars as map(*)) as element(e
         switch($a)
         case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
         (: Need to inject the corresponding IDs of special pages here :)
-        case 'projectDescription' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070006'), map:entry('docType', 'var')))) 
-        case 'editorialGuidelines-text'  return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070001'), map:entry('docType', 'var'))))
-        case 'editorialGuidelines-music'  return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070010'), map:entry('docType', 'var'))))
-        case 'contact' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070009'), map:entry('docType', 'var'))))
-        case 'about' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070002'), map:entry('docType', 'var'))))
-        case 'volContents' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070011'), map:entry('docType', 'var'))))
-        case 'credits' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070013'), map:entry('docType', 'var'))))
+        case 'projectDescription' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070006'), map:entry('docType', 'var')))) 
+        case 'editorialGuidelines-text'  return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070001'), map:entry('docType', 'var'))))
+        case 'editorialGuidelines-music'  return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070010'), map:entry('docType', 'var'))))
+        case 'contact' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070009'), map:entry('docType', 'var'))))
+        case 'about' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070002'), map:entry('docType', 'var'))))
+        case 'volContents' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070011'), map:entry('docType', 'var'))))
+        case 'credits' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070013'), map:entry('docType', 'var'))))
         default return controller:error($exist-vars, 404)
 };
 
@@ -215,8 +215,8 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
     return
         switch($a)
         (: Need to inject the corresponding IDs of special pages here :)
-        case 'faq' return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070004'), map:entry('docType', 'var')))) 
-        case 'apiDocumentation'  return controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070012'), map:entry('docType', 'var'))))
+        case 'faq' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070004'), map:entry('docType', 'var')))) 
+        case 'apiDocumentation'  return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070012'), map:entry('docType', 'var'))))
         default return controller:error($exist-vars, 404)
 };
 
@@ -245,11 +245,11 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
 	       count($subPathTokens) eq 1 
 	       and $media-type='xml' 
 	       and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
-	       ) then controller:forward-xml(map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
+	       ) then controller:forward-xml(map:merge(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
        else if( (: Index :)
 	       count($subPathTokens) eq 1 
 	       and $exist-vars('exist:resource') = 'Index'
-	       ) then controller:forward-html('templates/guidelines-toc.html', map:new(($exist-vars, map {'chapID' := 'toc' } )))
+	       ) then controller:forward-html('templates/guidelines-toc.html', map:merge(($exist-vars, map {'chapID' := 'toc' } )))
        else if( (: redirect for index.html etc. :)
 	       count($subPathTokens) eq 1 
 	       and matches($exist-vars('exist:resource'), '[Ii]ndex\.html?')
@@ -258,7 +258,7 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
 	       count($subPathTokens) eq 1 
 	       and $media-type='html' 
 	       and controller:basename($exist-vars('exist:resource')) = gl:chapter-idents()
-	       ) then controller:forward-html('templates/guidelines-chapters.html', map:new(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
+	       ) then controller:forward-html('templates/guidelines-chapters.html', map:merge(($exist-vars, map {'chapID' := controller:basename($exist-vars('exist:resource')) } )))
        else if( (: Redirects für htm o.ä. :)
            count($subPathTokens) eq 1 
            and $media-type 
@@ -269,11 +269,11 @@ declare function controller:dispatch-editorialGuidelines-text($exist-vars as map
 	   else if(
 	       count($subPathTokens) eq 2
 	       and substring-after(controller:basename($exist-vars('exist:resource')), 'ref-') = gl:spec-idents($schemaID, lang:reverse-language-string-lookup($subPathTokens[1], $exist-vars?lang))
-	       ) then controller:dispatch-editorialGuidelines-text-specs(map:new(($exist-vars, map { 'specID' := substring-after(controller:basename($exist-vars('exist:resource')), 'ref-'), 'schemaID' := $schemaID, 'media-type' := $media-type } )))
+	       ) then controller:dispatch-editorialGuidelines-text-specs(map:merge(($exist-vars, map { 'specID' := substring-after(controller:basename($exist-vars('exist:resource')), 'ref-'), 'schemaID' := $schemaID, 'media-type' := $media-type } )))
 	   else if(
 	       $subPathTokens[1] = (lang:get-language-string('elements', $exist-vars?lang), lang:get-language-string('attributes', $exist-vars?lang), lang:get-language-string('classes', $exist-vars?lang))
 	       and $exist-vars('exist:resource') = 'Index'
-	       ) then controller:forward-html('templates/guidelines-spec-index.html', map:new(($exist-vars, map {'chapID' := 'index-' || lang:reverse-language-string-lookup($subPathTokens[1], $exist-vars?lang), 'schemaID' := $schemaID } )))
+	       ) then controller:forward-html('templates/guidelines-spec-index.html', map:merge(($exist-vars, map {'chapID' := 'index-' || lang:reverse-language-string-lookup($subPathTokens[1], $exist-vars?lang), 'schemaID' := $schemaID } )))
 	   
    (: resorting to the error page if all of the above tests fail :)
 	   else controller:error($exist-vars, 404)

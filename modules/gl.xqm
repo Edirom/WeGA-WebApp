@@ -261,7 +261,7 @@ declare
 		let $examples := api:code-findByElement($map)
 (:		let $log := util:log-system-out($model('exist:path')):)
 		return 
-			map:new((
+			map:merge((
 				$map,
 				map {
 					'search-results' := $examples
