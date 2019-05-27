@@ -39,23 +39,27 @@
     </xsl:template>
 
     <xsl:template match="tei:msIdentifier">
+        <!-- msNames außerhalb von msFrag werden vorab als "Titel" gesetzt -->
+        <xsl:if test="tei:msName and not(parent::tei:msFrag)">
+            <xsl:apply-templates select="tei:msName"/>
+            <!-- Wenn weitere Elemente (eine vollständige bibliogr. Angabe) folgen, wird hier noch ein Umbruch erzwungen -->
+            <xsl:if test="* except tei:msName">
+                <xsl:element name="br"/>
+            </xsl:if>
+        </xsl:if>
         <xsl:call-template name="createMsIdentifier">
             <xsl:with-param name="node" select="."/>
         </xsl:call-template>
-    </xsl:template>
-    
-    <!-- aktuell nur für die Ausgabe von msName innerhalb msDesc; eventuell überarbeiten und anpassen im Zuge von #276 -->
-    <xsl:template match="tei:msIdentifier[tei:msName][not(parent::tei:msFrag)]">
-        <xsl:apply-templates select="tei:msName"/>
     </xsl:template>
 
     <xsl:template match="tei:msFrag">
         <xsl:element name="div">
             <xsl:attribute name="class">tei_msFrag apparatus-block</xsl:attribute>
-            <xsl:element name="h4"><xsl:value-of select="concat(wega:getLanguageString('fragment', $lang), ' ', count(preceding-sibling::tei:msFrag) +1)"/>
-               <xsl:choose>
-                    <xsl:when test="descendant::tei:msName">
-                        <xsl:value-of select="concat(': ', descendant::tei:msName)"/>
+            <xsl:element name="h4">
+                <xsl:value-of select="concat(wega:getLanguageString('fragment', $lang), ' ', count(preceding-sibling::tei:msFrag) +1)"/>
+                <xsl:choose>
+                   <xsl:when test="tei:msIdentifier/tei:msName">
+                       <xsl:value-of select="concat(': ', tei:msIdentifier/tei:msName)"/>
                     </xsl:when>
                     <xsl:otherwise/>
                 </xsl:choose>
