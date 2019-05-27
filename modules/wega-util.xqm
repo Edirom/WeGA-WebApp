@@ -7,7 +7,6 @@ module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-ut
 declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
-declare namespace httpclient = "http://exist-db.org/xquery/httpclient";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace http="http://expath.org/ns/http-client";
 declare namespace math="http://www.w3.org/2005/xpath-functions/math";
@@ -34,7 +33,7 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
     (:let $log := util:log-system-out($gnd):)
     let $jxml := 
         if(exists($findbuchResponse)) then 
-            if($findbuchResponse/httpclient:body/@encoding = 'Base64Encoded') then parse-json(util:binary-to-string($findbuchResponse))
+            if($findbuchResponse/er:body/@encoding = 'Base64Encoded') then parse-json(util:binary-to-string($findbuchResponse))
             else parse-json($findbuchResponse)
         else ()
     return 
