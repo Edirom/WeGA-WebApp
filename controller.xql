@@ -60,7 +60,7 @@ else if (matches($exist:path, '^/[Ii]ndex(\.(htm|html|xml)|/)?$')) then
     controller:redirect-absolute('/' || $lang || '/Index')
         
 else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
-    controller:forward-html('/templates/index.html', map:new(($exist-vars, map:entry('docID', 'home'))))
+    controller:forward-html('/templates/index.html', map:merge(($exist-vars, map:entry('docID', 'home'))))
 
 (:
  : Virtual directory structure for persons:
@@ -91,13 +91,13 @@ else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,6})?$')) then
  : Caching muss unterbunden werden
  :)
 else if ($exist:resource = xmldb:get-child-resources($config:app-root || '/templates/ajax')) then 
-    controller:forward-html('/templates/ajax/' || $exist:resource, map:new(($exist-vars, map:entry('docID', functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')))))
+    controller:forward-html('/templates/ajax/' || $exist:resource, map:merge(($exist-vars, map:entry('docID', functx:substring-after-last(functx:substring-before-last($exist:path, '/'), '/')))))
 
 (: Suche :)
 else if (matches($exist:path, concat('^/', $lang, '/', lang:get-language-string('search', $lang), '/?$'))) then
    (: Shortcut for IDs, given as query string :)
    if(config:get-combined-doctype-by-id(str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))) = ($search:wega-docTypes, 'var', 'addenda')) then controller:dispatch(map:put($exist-vars, 'exist:resource', str:normalize-space(str:sanitize(string-join(request:get-parameter('q', ''), ' ')))))
-   else controller:forward-html('/templates/search.html', map:new(($exist-vars, map:entry('docID', 'search'))))
+   else controller:forward-html('/templates/search.html', map:merge(($exist-vars, map:entry('docID', 'search'))))
 
 (: Register :)
 else if (contains($exist:path, concat('/', lang:get-language-string('indices', $lang)))) then
@@ -168,11 +168,11 @@ else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}(.*)/manifest.json')) then
 :)
 (: Ausführliche Weber-Biographie :)
 else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
-    controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))
+    controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))
 
 (: Bartlitz Sonderband :)
 else if ($exist:path eq '/de/Sonderband.html' or $exist:path eq '/en/Special_Volume.html') then
-    controller:forward-html('/templates/var.html', map:new(($exist-vars, map:entry('docID', 'A070090'), map:entry('docType', 'var'))))
+    controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070090'), map:entry('docType', 'var'))))
     
 (: Weber-Studien Einzelansicht:)
 (:else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $publications, '/', $weberStudies, '/', 'A11\d{4}/?$'))) then
