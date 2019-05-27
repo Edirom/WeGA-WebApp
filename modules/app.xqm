@@ -27,7 +27,6 @@ import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at 
 import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 import module namespace functx="http://www.functx.com";
-import module namespace datetime="http://exist-db.org/xquery/datetime" at "java:org.exist.xquery.modules.datetime.DateTimeModule";
 import module namespace templates="http://exist-db.org/xquery/templates" at "/db/apps/shared-resources/content/templates.xql";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace app-shared="http://xquery.weber-gesamtausgabe.de/modules/app-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/app-shared.xqm";
@@ -1564,7 +1563,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
             element p {
                 attribute class {'authorDate'},
                 app:printCorrespondentName(query:get-author-element($doc), $lang, 'fs'),
-                concat(', ', date:format-date(datetime:date-from-dateTime($doc//tei:publicationStmt/tei:date/@when), $dateFormat, $lang))
+                concat(', ', date:format-date(xs:date($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)), $dateFormat, $lang))
             }
         else()
 };
