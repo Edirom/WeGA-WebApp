@@ -7,7 +7,7 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "../str.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "../wdt.xqm";
 
 declare variable $local:wega-docTypes as xs:string+ := for $func in wdt:members('indices') return $func(())('name') (: = all supported docTypes :);

@@ -12,10 +12,10 @@ declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "str";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "lang.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
 declare option exist:serialize "method=xml media-type=application/xml indent=yes omit-xml-declaration=no encoding=utf-8";
 
