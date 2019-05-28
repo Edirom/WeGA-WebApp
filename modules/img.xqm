@@ -7,7 +7,7 @@ xquery version "3.1" encoding "UTF-8";
 :)
 
 module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img";
-declare default collation "?lang=de;strength=primary";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";

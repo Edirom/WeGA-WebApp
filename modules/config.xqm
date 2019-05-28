@@ -159,10 +159,22 @@ declare function config:set-option($key as xs:string, $value as xs:string) as xs
  : @return xs:string document type
 :)
 declare function config:get-doctype-by-id($id as xs:string?) as xs:string? {
-    for $func in $wdt:functions
-    return 
-        if($func($id)('check')() and $func($id)('prefix')) then $func($id)('name')
-        else ()
+    if(config:is-person($id)) then 'persons'
+    else if(config:is-writing($id)) then 'writings'
+    else if(config:is-work($id)) then 'works'
+    else if(config:is-diary($id)) then 'diaries'
+    else if(config:is-letter($id)) then 'letters'
+    else if(config:is-news($id)) then 'news'
+    else if(config:is-iconography($id)) then 'iconography'
+    else if(config:is-var($id)) then 'var'
+    else if(config:is-biblio($id)) then 'biblio'
+    else if(config:is-place($id)) then 'places'
+    else if(config:is-source($id)) then 'sources'
+    else if(config:is-org($id)) then 'orgs'
+    else if(config:is-addenda($id)) then 'addenda'
+    else if(config:is-thematicCommentary($id)) then 'thematicCommentaries'
+    else if(config:is-document($id)) then 'documents'
+    else ()
 };
 
 declare function config:get-combined-doctype-by-id($id as xs:string?) as xs:string* {
@@ -261,6 +273,39 @@ declare function config:is-var($docID as xs:string?) as xs:boolean {
 };
 
 (:~
+ : Checks whether a given id matches the WeGA pattern of org ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-org($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A08\d{4}$')
+};
+
+(:~
+ : Checks whether a given id matches the WeGA pattern of thematicCommentary ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-thematicCommentary($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A09\d{4}$')
+};
+
+(:~
+ : Checks whether a given id matches the WeGA pattern of document ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-document($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A10\d{4}$')
+};
+
+(:~
  : Checks whether a given id matches the WeGA pattern of biblio ids
  :
  : @author Peter Stadler
@@ -269,6 +314,17 @@ declare function config:is-var($docID as xs:string?) as xs:boolean {
 :)
 declare function config:is-biblio($docID as xs:string?) as xs:boolean {
     matches($docID, '^A11\d{4}$')
+};
+
+(:~
+ : Checks whether a given id matches the WeGA pattern of addenda ids
+ :
+ : @author Peter Stadler
+ : @param $docID the id to test as string
+ : @return xs:boolean
+:)
+declare function config:is-addenda($docID as xs:string?) as xs:boolean {
+    matches($docID, '^A12\d{4}$')
 };
 
 (:~
@@ -291,28 +347,6 @@ declare function config:is-place($docID as xs:string?) as xs:boolean {
 :)
 declare function config:is-source($docID as xs:string?) as xs:boolean {
     matches($docID, '^A22\d{4}$')
-};
-
-(:~
- : Checks whether a given id matches the WeGA pattern of org ids
- :
- : @author Peter Stadler
- : @param $docID the id to test as string
- : @return xs:boolean
-:)
-declare function config:is-org($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A08[0-9A-F]{4}$')
-};
-
-(:~
- : Checks whether a given id matches the WeGA pattern of addenda ids
- :
- : @author Peter Stadler
- : @param $docID the id to test as string
- : @return xs:boolean
-:)
-declare function config:is-addenda($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A12[0-9]{4}$')
 };
 
 (:~

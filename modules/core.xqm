@@ -4,7 +4,7 @@ xquery version "3.1";
  : Core functions of the WeGA-WebApp
  :)
 module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core";
-declare default collation "?lang=de;strength=primary";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace request="http://exist-db.org/xquery/request";

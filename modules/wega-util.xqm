@@ -4,7 +4,7 @@ xquery version "3.1" encoding "UTF-8";
  : Various utility functions for the WeGA WebApp
 :)
 module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util";
-declare default collation "?lang=de;strength=primary";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace wega="http://www.weber-gesamtausgabe.de";

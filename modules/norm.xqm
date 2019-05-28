@@ -4,7 +4,7 @@ xquery version "3.0";
  : XQuery module for creating normalized lists of documents
  :)
 module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm";
-declare default collation "?lang=de;strength=primary";
+
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";

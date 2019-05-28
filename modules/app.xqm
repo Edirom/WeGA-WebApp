@@ -920,7 +920,7 @@ declare
         return
             map { 'beaconLinks': 
                     for $i in map:keys($beaconMap)
-                    order by $beaconMap($i)[2] collation "?lang=de-DE"
+                    order by $beaconMap($i)[2]
                     return 
                         (: replacement in @href for invalid links from www.sbn.it :)
                         <a title="{$i}" href="{replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a>
