@@ -16,7 +16,7 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
-import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
+import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 import module namespace functx="http://www.functx.com";
 
@@ -36,7 +36,7 @@ declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     }
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     return 
-        cache:doc($docURI, norm:create-norm-doc#1, $docType, $lease, $onFailureFunc)
+        mycache:doc($docURI, norm:create-norm-doc#1, $docType, $lease, $onFailureFunc)
 };
 
 declare function norm:create-norm-doc($docType as xs:string) as element(norm:catalogue)? {

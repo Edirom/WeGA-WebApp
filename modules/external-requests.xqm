@@ -24,7 +24,7 @@ import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/quer
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
-import module namespace cache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
+import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
 
 
@@ -58,7 +58,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
     }
     let $response := 
         if($botPresent or not($url)) then ()
-        else cache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
+        else mycache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
     return 
         if($response//er:response/@statusCode eq '200') 
         then $response//er:response
@@ -113,7 +113,7 @@ declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as x
         }
     let $filename := util:hash($beaconURI, 'md5') || '.xml'
     let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'beaconFiles', $filename))
-    let $beacon := cache:doc($localFilePath, er:parse-beacon#1, $beaconURI, $lease, $onFailureFunc)
+    let $beacon := mycache:doc($localFilePath, er:parse-beacon#1, $beaconURI, $lease, $onFailureFunc)
     let $uri := $beacon/id(concat('_', $gnd))
     return 
         if($uri castable as xs:anyURI) 
@@ -180,7 +180,7 @@ declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
-    let $response := cache:doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
+    let $response := mycache:doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
     return 
         if($response//er:response/@statusCode eq '200') then 
             try { parse-json(util:binary-to-string($response//er:body)) }
@@ -213,11 +213,11 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
  : @param $uri the external URI to fetch
  : @param $localFilepath the filepath to store the cached document
  : @param $lease a function to determine wether the cache should be updated. Must return a boolean value
- : @param $onFailureFunc an on-error function that's passed on to the underlying cache:doc() function 
+ : @param $onFailureFunc an on-error function that's passed on to the underlying mycache:doc() function 
  : @return a er:response element with the response stored within er:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(httpclient:response)? {
-    cache:doc($localFilepath, er:http-get#1, $uri, $lease, $onFailureFunc)//er:response[@statusCode = '200']
+    mycache:doc($localFilepath, er:http-get#1, $uri, $lease, $onFailureFunc)//er:response[@statusCode = '200']
 };
 
 
