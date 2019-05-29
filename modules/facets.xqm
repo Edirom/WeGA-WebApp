@@ -50,7 +50,7 @@ declare
                 },
                 for $i in $selected 
                 let $display-term := facets:display-term($facet, $i, $lang)
-                order by $i
+                order by $display-term
                 return
                     element option {
                         attribute selected {'selected'},
