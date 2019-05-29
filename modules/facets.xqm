@@ -50,7 +50,7 @@ declare
                 },
                 for $i in $selected 
                 let $display-term := facets:display-term($facet, $i, $lang)
-                order by $display-term
+                order by $display-term collation "?lang=de;strength=primary"
                 return
                     element option {
                         attribute selected {'selected'},
@@ -160,7 +160,7 @@ declare
                         switch($i)
                         case 'characterNames' return string-join(string-to-codepoints(normalize-space($j)) ! string(.), '')
                         default return $j
-                    order by $label ascending
+                    order by $label ascending collation "?lang=de;strength=primary"
                     return map { 'key' : $key, 'label' : $label}
         }
 };
