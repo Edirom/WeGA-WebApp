@@ -1,14 +1,12 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
-import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "modules/query.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "modules/config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "modules/core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "modules/lang.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "modules/str.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "modules/search.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "modules/controller.xqm";
 import module namespace functx="http://www.functx.com";
