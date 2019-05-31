@@ -204,7 +204,14 @@
                <xsl:apply-templates select="tei:lem" mode="lemma"/>
             </xsl:variable>
             <xsl:element name="span">
-               <xsl:sequence select="wega:enquote($lemma)"/>
+               <xsl:choose>
+                  <xsl:when test="$lemma">
+                     <xsl:sequence select="wega:enquote($lemma)"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:value-of select="concat(wega:getLanguageString('NoLem', $lang), '.')"/>
+                  </xsl:otherwise>
+               </xsl:choose>
             </xsl:element>
          </xsl:element>
          <xsl:for-each select="tei:rdg">
@@ -218,7 +225,14 @@
                   <xsl:apply-templates select="." mode="lemma"/>
                </xsl:variable>
                <xsl:element name="span">
-                  <xsl:sequence select="wega:enquote($rdg)"/>
+                  <xsl:choose>
+                     <xsl:when test="$rdg">
+                        <xsl:sequence select="wega:enquote($rdg)"/>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:value-of select="concat(wega:getLanguageString('NoAppRdg', $lang), '.')"/>
+                     </xsl:otherwise>
+                  </xsl:choose>
                </xsl:element>
             </xsl:element>
          </xsl:for-each>
