@@ -222,12 +222,25 @@ $('.toc a[href~="'+window.location.pathname+window.location.hash+'"]').parentsUn
 $('.appendix a[href^="'+window.location.pathname+window.location.hash+'"]').parentsUntil(".appendix-div").addClass("active");
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
 
+
+var headerHeight = 300; // adds margins to the total height
+var footerHeight = $('.documentFooter').outerHeight() + 60;
+var getParentWidth = $('.toc-side').parent().width();
+
+$('.toc-side').affix({
+    offset: {
+        top: headerHeight,
+        bottom: footerHeight
+    }
+}).css({
+        'width': getParentWidth
+});
+
 /* dynamically adjust width of side-toc */
 $(function() {
 function changeAffixBoxWidth() {
-var getParentWidth = $('.toc-side').parent().width();
   $('.toc-side').css({
-  		'width': getParentWidth
+        'width': getParentWidth
   })
 }
 $(window).on('resize', function() {
