@@ -223,9 +223,9 @@ $('.appendix a[href^="'+window.location.pathname+window.location.hash+'"]').pare
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
 
 
-var headerHeight = 300; // adds margins to the total height
-var footerHeight = $('.documentFooter').outerHeight() + 60;
-var getParentWidth = $('.toc-side').parent().width();
+var headerHeight = 300, // adds margins to the total height
+    footerHeight = $('.documentFooter').outerHeight() + 60,
+    getParentWidth = $('.toc-side').parent().width();
 
 $('.toc-side').affix({
     offset: {
