@@ -199,7 +199,7 @@ declare function wdt:letters($item as item()*) as map(*) {
         'init-sortIndex' := function() as item()* {
             wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
                 let $normDate := query:get-normalized-date($node)
-                let $n :=  functx:pad-integer-to-length($node//tei:correspAction[@type='sent']/tei:date/data(@n), 4)
+                let $n :=  functx:pad-integer-to-length(($node//tei:correspAction[@type='sent']/tei:date)[1]/data(@n), 4)
                 return
                     (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n
             }, ())
