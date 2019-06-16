@@ -148,10 +148,10 @@ declare
 	   (:util:log-system-out(request:get-parameter-names()),:)
 	   map {
 	       'specType' := lang:get-language-string(gl:specType(gl:spec($model?specID, $model?schemaID)), $model?lang),
-	       'editorialGuidelines-text_elements_url' := core:link-to-current-app(str:join-path-elements((
+	       'editorialGuidelines-text_specType_url' := core:link-to-current-app(str:join-path-elements((
 	           lang:get-language-string('project', $model?lang),
 	           lang:get-language-string('editorialGuidelines-text', $model?lang),
-	           lang:get-language-string('elements', $model?lang),
+	           lang:get-language-string(gl:specType(gl:spec($model('specID'), $model('schemaID'))), $model?lang),
 	           lang:get-language-string('index', $model?lang)
 	       ))) || '?schemaID=' || $model?schemaID
 	   }
