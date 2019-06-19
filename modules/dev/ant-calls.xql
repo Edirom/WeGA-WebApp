@@ -10,7 +10,7 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "../wdt.xqm";
 
-declare variable $local:wega-docTypes as xs:string+ := for $func in wdt:members('indices') return $func(())('name') (: = all supported docTypes :);
+declare variable $local:wega-docTypes as xs:string+ := for $func in wdt:members('unary-docTypes') return $func(())('name') (: = all supported docTypes :);
 
 declare function local:patch-subversion-history($patch as document-node()) {
     if($patch/dictionary/@head castable as xs:integer) then (
