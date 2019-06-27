@@ -481,7 +481,7 @@ declare function config:api-base() as xs:string {
  :  Non existing keys will be added, existing keys will be updated
  : @param $value the value of the new or updated key. 
  :  String values will be parsed as JSON, so you can pass objects or arrays via
- :  environment variables 
+ :  environment variables. NB: JSON strings need to be wrapped in double quotes!  
  : @return the new value if successful, the empty sequence otherwise
  :)
 declare function config:set-swagger-option($key as xs:string*, $value as item()?) as item()? {
