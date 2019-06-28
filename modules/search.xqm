@@ -153,14 +153,15 @@ declare %private function search:search($model as map(*)) as map(*) {
     let $docTypes := 
         if($updatedModel?query-docTypes = 'all') then ($search:wega-docTypes, 'var', 'addenda') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
         else $search:wega-docTypes[.=$updatedModel?query-docTypes]
-    let $base-collection := 
-        if($updatedModel('query-string-org')) then $docTypes ! core:getOrCreateColl(., 'indices', true())
+    let $base-collection := function ($updatedModel as map(*), $docTypes as xs:string*) {
+        if($updatedModel?query-string-org) then $docTypes ! core:getOrCreateColl(., 'indices', true())
         else ()
+    }
     let $filtered-results := 
         if(exists($updatedModel('filters'))) then 
             for $docType in $docTypes 
-            return search:filter-result($base-collection, $updatedModel?filters, $docType)
-        else $base-collection
+            return search:filter-result($base-collection($updatedModel, $docType), $updatedModel?filters, $docType)
+        else $base-collection($updatedModel, $docTypes)
     let $fulltext-search :=
         if($updatedModel('query-string')) then search:merge-hits($docTypes ! search:fulltext($filtered-results, $updatedModel('query-string'), $updatedModel?filters, .))
         else $filtered-results 
@@ -293,6 +294,7 @@ declare %private function search:filter-result($collection as document-node()*, 
     let $filtered-coll := 
       if($filter) then 
         if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
+        else if($filter = 'searchDate') then search:searchDate-filter($collection, $filters)
         else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
         else if($filter = 'textType') then search:textType-filter($collection, $filters)
         else if($filter = 'hideRevealed') then search:revealed-filter($collection, $filters)
@@ -313,6 +315,21 @@ declare %private function search:filter-result($collection as document-node()*, 
     return
         if(exists(map:keys($newFilter))) then search:filter-result($filtered-coll, $newFilter, $docType)
         else $filtered-coll
+};
+
+(:~
+ : Helper function for search:filter-result()
+ : Queries dates within TEI and MEI documents
+~:)
+declare %private function search:searchDate-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
+    (
+        $collection//tei:date[@when=$filters?searchDate] 
+        | $collection//tei:date[@notBefore le $filters?searchDate][@notAfter ge $filters?searchDate] 
+        | $collection//tei:date[@from le $filters?searchDate][@to ge $filters?searchDate]
+        | $collection//mei:date[@isodate=$filters?searchDate] 
+        | $collection//mei:date[@notbefore le $filters?searchDate][@notafter ge $filters?searchDate] 
+        | $collection//mei:date[@startdate le $filters?searchDate][@enddate ge $filters?searchDate]
+    )/root()
 };
 
 (:~
@@ -386,10 +403,8 @@ declare %private function search:prepare-search-string($model as map()) as map(*
     let $dates := $analyzed-query-string/fn:match/text()
     let $query-string := str:normalize-space(string-join($analyzed-query-string/fn:non-match/text(), ' '))
     let $filters := 
-        (: if only one date is given in the query string, we set both toDate and fromDate on date  :)
-        if(count($dates) = 1) then map:put(map:put($model?filters, 'toDate', $dates), 'fromDate', $dates)
-        (: if two (or more!) dates are given in the query string, we set fromDate to the first and toDate to the second date :)
-        else if(count($dates) gt 1) then map:put(map:put($model?filters, 'toDate', $dates[2]), 'fromDate', $dates[1])
+        (: push recognized dates to the filters :)
+        if(count($dates) gt 0) then map:put($model?filters, 'searchDate', $dates)
         else $model?filters
     return
         map:merge((
