@@ -170,15 +170,15 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
         if($gnd) then er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
         else ()
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
-    let $pics := $wikiArticle//xhtml:table[contains(@class,'vcard')] | $wikiArticle//xhtml:table[contains(@class,'toptextcells')] | $wikiArticle//xhtml:div[@class='thumbinner']
+    let $images := $wikiArticle//xhtml:img[@class='thumbimage' or ancestor::xhtml:table[contains(@class, 'vcard') or contains(@class, 'toptextcells')] or ancestor::xhtml:div[@class='thumbinner']]
     return 
-        for $div in $pics
-        let $tmpPicURI := ($div//xhtml:img[@class='thumbimage']/@src | $div[self::xhtml:table]//xhtml:img[not(@class='thumbimage')]/@src)[1]
+        for $img in $images
+        let $tmpPicURI := ($img/@src)[1]
         let $thumbURI := (: Achtung: in $pics landen auch andere Medien, z.B. audio. Diese erzeugen dann aber ein leeres $tmpPicURI, da natürlich kein <img/> vorhanden :)
             if(starts-with($tmpPicURI, '//')) then concat('https:', $tmpPicURI) 
             else if(starts-with($tmpPicURI, 'http')) then $tmpPicURI
             else ()
-        let $tmpLinkTarget := ($div/xhtml:a/@href | $div[self::xhtml:table]//xhtml:a[xhtml:img]/@href)[1]
+        let $tmpLinkTarget := $img/parent::xhtml:a/@href
         let $linkTarget := 
             (: Create a link to Wikipedia, e.g. https://de.wikipedia.org/wiki/Datei:Constanze_mozart.jpg :)
             (: NB, not all images are found at wikimedia commons due to copyright issues :)
@@ -190,8 +190,11 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
             https://github.com/Toollabs/zoomviewer
         :)
         let $caption := 
-            if($div[self::xhtml:table]) then ($div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr)[1] 
-            else $div/xhtml:div[@class='thumbcaption']
+(:            if($div[self::xhtml:table]) then ($div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr)[1] :)
+            if($img/ancestor::xhtml:table) then 
+                let $td-pos := count(($img/ancestor::xhtml:td)[1]/preceding-sibling::xhtml:td) + 1 
+                return ($img/ancestor::xhtml:table)[1]//(xhtml:tr except $img/ancestor::xhtml:tr)[1]/xhtml:td[$td-pos]
+            else ($img/ancestor::xhtml:div/xhtml:div[@class='thumbcaption'])[1]
         return 
             if($thumbURI castable as xs:anyURI) then
                 map {
