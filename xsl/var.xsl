@@ -172,7 +172,7 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:note[@type=('commentary','definition','textConst')]">
+    <xsl:template match="tei:note[@type=('commentary','definition','textConst')]" priority="2">
         <xsl:call-template name="popover">
             <xsl:with-param name="marker" select="'arabic'"/>
         </xsl:call-template>
