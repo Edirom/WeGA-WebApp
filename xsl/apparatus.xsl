@@ -439,6 +439,15 @@
       </xsl:element>
    </xsl:template>
    
+   <!-- special template rule for <sic> within bibliographic contexts -->
+   <xsl:template match="tei:sic[parent::tei:title or parent::tei:author]" priority="2">
+      <xsl:apply-templates/>
+      <xsl:element name="span">
+         <xsl:attribute name="class">brackets_supplied</xsl:attribute>
+         <xsl:text>[sic!]</xsl:text>
+      </xsl:element>
+   </xsl:template>
+   
    <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
