@@ -14,6 +14,7 @@
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
 	<xsl:include href="tagdocs.xsl"/>
+    <xsl:include href="apparatus.xsl"/>
     
     <xsl:template match="/">
         <xsl:apply-templates/>
@@ -189,16 +190,6 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:supplied">
-        <xsl:element name="span">
-            <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-            <!--<xsl:attribute name="id" select="wega:createID(.)"/>-->
-            <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>[</xsl:text></xsl:element>
-            <xsl:apply-templates/>
-            <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>]</xsl:text></xsl:element>
-        </xsl:element>
-    </xsl:template>
-
     <!-- Create section numbers for headings   -->
     <xsl:template name="createSecNo">
         <xsl:param name="div"/>

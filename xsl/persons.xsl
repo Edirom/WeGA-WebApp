@@ -12,6 +12,7 @@
     
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
+    <xsl:include href="apparatus.xsl"/>
 
     <xsl:template match="tei:note[parent::document-node()]" priority="1">
         <xsl:element name="div">
