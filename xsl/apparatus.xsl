@@ -38,21 +38,19 @@
          </xsl:element>
       </xsl:element>
    </xsl:template>
-   
+
    <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
       <xsl:call-template name="popover"/>
    </xsl:template>
-   
    <xsl:template match="tei:note" mode="apparatus">
       <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
             <xsl:if test="self::tei:note">
                <xsl:text> </xsl:text>
-               <xsl:value-of select="@type"/>
+               <xsl:value-of select="wega:getLanguageString(@type,$lang)"/>
             </xsl:if>
          </xsl:attribute>
          <xsl:choose>
@@ -126,7 +124,7 @@
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
+            <xsl:value-of select="wega:getLanguageString('subst',$lang)"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
          <!-- Need to take care of whitespace when there are multiple <add> -->
@@ -194,7 +192,7 @@
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
+            <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
          <xsl:value-of select="tei:lem"/>
@@ -264,7 +262,7 @@
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
+            <xsl:value-of select="wega:getLanguageString('addDefault',$lang)"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
          <xsl:choose>
@@ -288,6 +286,7 @@
             <!-- TODO translate -->
             <xsl:otherwise>
                <xsl:value-of select="wega:getLanguageString('addDefault', $lang)"/>
+               <xsl:text>.</xsl:text>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:element>
@@ -313,7 +312,7 @@
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
+            <xsl:value-of select="wega:getLanguageString('unclearDefault',$lang)"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
          <xsl:choose>
@@ -328,6 +327,7 @@
          </xsl:choose>
          <xsl:text>": </xsl:text>
          <xsl:value-of select="wega:getLanguageString('unclearDefault', $lang)"/>
+         <xsl:text>.</xsl:text>
       </xsl:element>
    </xsl:template>
    
@@ -353,9 +353,11 @@
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
-            <xsl:text> </xsl:text>
-            <xsl:value-of select="@reason"/>
+            <xsl:value-of select="wega:getLanguageString('gapDefault',$lang)"/>
+            <xsl:if test="@reason='outofScope'">
+               <xsl:text>: </xsl:text>
+               <xsl:value-of select="wega:getLanguageString('outofScope',$lang)"/>
+            </xsl:if>
          </xsl:attribute>
          <xsl:text> </xsl:text>
          <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
@@ -399,7 +401,7 @@
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
+            <xsl:value-of select="wega:getLanguageString('choiceUnclear',$lang)"/>
          </xsl:attribute>
          <xsl:choose>
             <xsl:when test="tei:sic">
@@ -498,7 +500,7 @@
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
+            <xsl:value-of select="wega:getLanguageString('del',$lang)"/>
          </xsl:attribute>
          <xsl:text>"</xsl:text>
          <xsl:apply-templates mode="plain-text-output"/>
