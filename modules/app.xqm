@@ -302,7 +302,10 @@ declare
             switch(normalize-space($node))
             case 'XML-Preview' return 'xml.html'
             case 'examples' return if(gl:schemaIdent2docType($model?schemaID) = (for $func in $wdt:functions return $func(())('name'))) then 'examples.html' else ()
-            case 'wikipedia-article' return if($model?gnd and exists(er:grab-external-resource-wikidata($model?gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html' else ()
+            case 'wikipedia-article' return 
+                if($model?gnd and exists(er:grab-external-resource-wikidata($model?gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
+                else if($model?viaf and exists(er:grab-external-resource-wikidata($model?viaf, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
+                else ()
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
@@ -873,6 +876,7 @@ declare
         
         'source' := $model('doc')/tei:person/data(@source),
         'gnd' := query:get-gnd($model?doc),
+        'viaf' := query:get-viaf($model?doc),
         'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
         (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
@@ -1003,7 +1007,10 @@ declare
     %templates:default("lang", "en")
     function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $wikiContent := er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        let $viaf := if($gnd) then () else query:get-viaf($model('doc'))
+        let $wikiContent := 
+            if($gnd) then er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+            else er:grabExternalResource('wikipediaVIAF', $viaf, config:get-doctype-by-id($model('docID')), $lang)
         let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
         let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
         return 

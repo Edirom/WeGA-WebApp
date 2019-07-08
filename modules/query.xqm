@@ -126,10 +126,38 @@ declare function query:get-gnd($item as item()?) as xs:string? {
     return
         (: there might be several gnd IDs :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
+        else if($doc//tei:idno[@type='viaf']) then (wega-util:translate-authority-id($doc//tei:idno[@type='viaf'], 'gnd'))[1]
         else if($doc//tei:idno[@type='geonames']) then (wega-util:translate-authority-id($doc//tei:idno[@type='geonames'], 'gnd'))[1]
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
         else ()
 };
+
+(:~
+ : Return VIAF ID for persons, organizations, places and works
+ :
+ : @author Peter Stadler
+ : @param $item may be xs:string (the WeGA ID), document-node() or some root element
+ : @return the VIAF ID as xs:string, or empty sequence if nothing was found 
+:)
+declare function query:get-viaf($item as item()?) as xs:string? {
+    let $doc := 
+        typeswitch($item)
+            case xs:string return core:doc($item)
+            case xdt:untypedAtomic return core:doc(string($item))
+            case attribute() return core:doc(string($item))
+            case element() return $item
+            case document-node() return $item
+            default return ()
+    return
+        (: there might be several gnd IDs :)
+        if($doc//tei:idno[@type = 'viaf']) then ($doc//tei:idno[@type = 'viaf'])[1]
+        else if($doc//tei:idno[@type='gnd']) then (wega-util:translate-authority-id($doc//tei:idno[@type='gnd'], 'viaf'))[1]
+        else if($doc//tei:idno[@type='geonames']) then (wega-util:translate-authority-id($doc//tei:idno[@type='geonames'], 'viaf'))[1]
+        else if($doc//mei:altId[@type = 'viaf']) then ($doc//mei:altId[@type = 'viaf'])[1]
+        else if($doc//mei:altId[@type='gnd']) then (wega-util:translate-authority-id($doc//mei:altId[@type='gnd'], 'viaf'))[1]
+        else ()
+};
+
 
 (:~
  : Return Geonames ID for places
