@@ -1264,7 +1264,11 @@ declare
              then 
                 element p {
                         attribute class {'notAvailable'},
-                        if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
+                        if($doc//tei:correspDesc[@n = 'revealed']) then (
+                            substring-before(lang:get-language-string('correspondenceTextNotAvailable', $lang),"."), ' ',
+                            <span>({lang:get-language-string('see', $lang)}</span>, ' ',
+                            <span><a href="#backlinks">{lang:get-language-string('backlinks', $lang)}</a>).</span>, ' ',
+                            substring-after(lang:get-language-string('correspondenceTextNotAvailable',$lang),".") )
                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang),
                         (: adding link to editorial :)
                         lang:get-language-string('forFurtherDetailsSee', $lang), ' ',

@@ -176,7 +176,7 @@ $.fn.initDatepicker = function () {
  * Activate bootstrap remote nav tabs (on letters) 
  * "For further details see editorial"  
  */
-$('#transcription a[href$="#editorial"]').on('click', function (e) {
+$('#transcription a[href$="#editorial"], a[href$="#backlinks"]').on('click', function (e) {
     // code taken from the bootstrap remote nav tabs plugin
     var url = $(e)[0].target.href,
         hash = url.substring(url.indexOf('#')+1),
