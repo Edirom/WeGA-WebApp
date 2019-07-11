@@ -45,6 +45,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
     let $botPresent := er:bot-present()
     let $url := 
         switch($resource)
+        case 'wikipediaVIAF' return (er:grab-external-resource-wikidata($gnd, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'wikipedia' return (er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
