@@ -49,7 +49,6 @@
          <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
             <xsl:if test="self::tei:note">
-               <xsl:text> </xsl:text>
                <xsl:value-of select="wega:getLanguageString(@type,$lang)"/>
             </xsl:if>
          </xsl:attribute>
