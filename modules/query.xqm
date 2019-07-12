@@ -124,10 +124,10 @@ declare function query:get-gnd($item as item()?) as xs:string? {
             case document-node() return $item
             default return ()
     return
-        (: there might be several gnd IDs :)
+        (: WARNING: there might be several IDs of the same kind :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
-        else if($doc//tei:idno[@type='viaf']) then (wega-util:translate-authority-id($doc//tei:idno[@type='viaf'], 'gnd'))[1]
-        else if($doc//tei:idno[@type='geonames']) then (wega-util:translate-authority-id($doc//tei:idno[@type='geonames'], 'gnd'))[1]
+        else if($doc//tei:idno[@type='viaf']) then ($doc//tei:idno[@type='viaf'] ! wega-util:translate-authority-id(., 'gnd'))[1]
+        else if($doc//tei:idno[@type='geonames']) then ($doc//tei:idno[@type='geonames'] ! wega-util:translate-authority-id(., 'gnd'))[1]
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
         else ()
 };
@@ -149,12 +149,12 @@ declare function query:get-viaf($item as item()?) as xs:string? {
             case document-node() return $item
             default return ()
     return
-        (: there might be several gnd IDs :)
+        (: WARNING: there might be several IDs of the same kind :)
         if($doc//tei:idno[@type = 'viaf']) then ($doc//tei:idno[@type = 'viaf'])[1]
-        else if($doc//tei:idno[@type='gnd']) then (wega-util:translate-authority-id($doc//tei:idno[@type='gnd'], 'viaf'))[1]
-        else if($doc//tei:idno[@type='geonames']) then (wega-util:translate-authority-id($doc//tei:idno[@type='geonames'], 'viaf'))[1]
+        else if($doc//tei:idno[@type='gnd']) then ($doc//tei:idno[@type='gnd'] ! wega-util:translate-authority-id(., 'viaf'))[1]
+        else if($doc//tei:idno[@type='geonames']) then ($doc//tei:idno[@type='geonames'] ! wega-util:translate-authority-id(., 'viaf'))[1]
         else if($doc//mei:altId[@type = 'viaf']) then ($doc//mei:altId[@type = 'viaf'])[1]
-        else if($doc//mei:altId[@type='gnd']) then (wega-util:translate-authority-id($doc//mei:altId[@type='gnd'], 'viaf'))[1]
+        else if($doc//mei:altId[@type='gnd']) then ($doc//mei:altId[@type='gnd'] ! wega-util:translate-authority-id(., 'viaf'))[1]
         else ()
 };
 
