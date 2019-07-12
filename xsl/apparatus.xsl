@@ -25,7 +25,7 @@
          <xsl:if test="$commentaryPath">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
-               <xsl:value-of select="wega:getLanguageString('commentary', $lang)"/>
+               <xsl:value-of select="wega:getLanguageString('note_commentary', $lang)"/>
             </xsl:element>
          </xsl:if>
          <xsl:element name="ul">
