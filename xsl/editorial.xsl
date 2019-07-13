@@ -228,9 +228,9 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:element name="p">
-                            <xsl:text>"</xsl:text>
+                            <xsl:text>„</xsl:text>
                             <xsl:apply-templates/>
-                            <xsl:text> …"</xsl:text>
+                            <xsl:text> …“</xsl:text>
                         </xsl:element>
                     </xsl:otherwise>
                 </xsl:choose>
