@@ -127,6 +127,29 @@ table {
     }
 }
 
+/* lemma styling */
+span.tei_lemma {
+    font-style: italic;
+    font-color:@gray;
+    font-size: smaller;
+    margin-bottom: 6px;
+}
+
+.popover-content span.tei_lemma:before {
+    content: "\e044";
+    margin-right:4px;
+    font-style: normal;
+    font-family: 'Glyphicons Halflings';
+}
+
+.popover-content span.tei_lemma {
+     display: block;
+}
+
+.apparatusEntry span.tei_lemma:after {
+    content: " — ";
+}
+
 /* This class toggles the popovers for previews */
 .preview {
     .common-link
