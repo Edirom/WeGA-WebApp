@@ -498,8 +498,11 @@
     </xsl:function>
 
     <xsl:function name="wega:enquote">
-        <xsl:param name="node" as="node()*"/>
-        <xsl:for-each select="$node">
+        <xsl:param name="input" as="item()*"/>
+        <xsl:variable name="inputWrapper">
+            <xsl:element name="inputWraper"><xsl:sequence select="$input"/></xsl:element>
+        </xsl:variable>
+        <xsl:for-each select="$inputWrapper">
             <xsl:call-template name="enquote"/>
         </xsl:for-each>
     </xsl:function>
