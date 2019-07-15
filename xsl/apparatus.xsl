@@ -60,14 +60,10 @@
             <xsl:otherwise>
                <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text(), ' '), '\s+')"/>
                <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
-               <xsl:variable name="qelem">
-                  <xsl:element name="span">
-                     <xsl:attribute name="class" select="'tei_lemma'"/>
-                     <xsl:text>… </xsl:text>
-                     <xsl:value-of select="subsequence($textTokens, count($textTokens) - 4)"/>
-                  </xsl:element>
-               </xsl:variable>
-               <xsl:value-of select="wega:enquote($qelem)"/>
+               <xsl:element name="span">
+                  <xsl:attribute name="class" select="'tei_lemma'"/>
+                  <xsl:value-of select="wega:enquote(('… ', subsequence($textTokens, count($textTokens) - 4)))"/>
+               </xsl:element>
                <xsl:text>: </xsl:text>
             </xsl:otherwise>
          </xsl:choose>
@@ -118,7 +114,7 @@
    </xsl:template>
    
    <xsl:template match="tei:subst" mode="apparatus">
-      <xsl:variable name="processedDel">
+      <xsl:variable name="processedDel" as="xs:string">
          <xsl:variable name="delNode">
             <xsl:apply-templates select="tei:del[1]/node()" mode="plain-text-output"/>
          </xsl:variable>
