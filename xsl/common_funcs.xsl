@@ -496,7 +496,14 @@
             </xsl:choose>
         </xsl:for-each>
     </xsl:function>
-    
+
+    <xsl:function name="wega:enquote">
+        <xsl:param name="node" as="node()*"/>
+        <xsl:for-each select="$node">
+            <xsl:call-template name="enquote"/>
+        </xsl:for-each>
+    </xsl:function>
+
     <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->
     <!--  *********************************************  -->

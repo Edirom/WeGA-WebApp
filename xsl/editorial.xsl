@@ -228,9 +228,9 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:element name="p">
-                            <xsl:text>„</xsl:text>
-                            <xsl:apply-templates/>
-                            <xsl:text> …“</xsl:text>
+                            <xsl:call-template name="enquote">
+                                <xsl:with-param name="ellipsis" select="true()"/>
+                            </xsl:call-template>
                         </xsl:element>
                     </xsl:otherwise>
                 </xsl:choose>

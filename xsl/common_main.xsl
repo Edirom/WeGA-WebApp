@@ -138,16 +138,23 @@
     
     <xsl:template name="enquote">
         <xsl:param name="double" select="true()"/>
+        <xsl:param name="ellipsis" select="false()"/>
         <xsl:choose>
             <!-- German double quotation marks -->
             <xsl:when test="$lang eq 'de' and $double">
                 <xsl:text>„</xsl:text>
                 <xsl:apply-templates/>
+                <xsl:if test="$ellipsis">
+                    <xsl:text>…</xsl:text>
+                </xsl:if>
                 <xsl:text>“</xsl:text>
             </xsl:when>
             <xsl:when test="$lang eq 'en' and $double">
                 <xsl:text>“</xsl:text>
                 <xsl:apply-templates/>
+                <xsl:if test="$ellipsis">
+                    <xsl:text>…</xsl:text>
+                </xsl:if>
                 <xsl:text>”</xsl:text>
             </xsl:when>
             <!-- German single quotation marks -->
