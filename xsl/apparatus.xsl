@@ -5,6 +5,19 @@
    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
    exclude-result-prefixes="xs" version="2.0">
    
+   <!--
+      Mode: default (i.e. template rules without a @mode attribute)
+      In this mode the default variant (e.g. sic, not corr) will be output and diacritic 
+      signs will be added to the text. 
+      
+      Mode: lemma
+      This mode is used for creating lemmata (for notes and apparatus entries, etc.) and will
+      be almost plain text, with the exception of html:span for musical symbols and the like.
+      
+      Mode: apparatus
+      This mode is used for outputting the apparatus entries (wiht the variant forms).
+   -->
+   
    <xsl:template name="createApparatus">
       <xsl:variable name="textConstitutionPath" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
       <xsl:variable name="commentaryPath" select=".//tei:app | .//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
@@ -47,6 +60,7 @@
    <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
       <xsl:call-template name="popover"/>
    </xsl:template>
+   
    <xsl:template match="tei:note" mode="apparatus">
       <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:element name="div">
@@ -67,7 +81,7 @@
                <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
                <xsl:element name="span">
                   <xsl:attribute name="class" select="'tei_lemma'"/>
-                  <xsl:value-of select="wega:enquote(('… ', subsequence($textTokens, count($textTokens) - 4)))"/>
+                  <xsl:sequence select="wega:enquote(('… ', subsequence($textTokens, count($textTokens) - 4)))"/>
                </xsl:element>
                <xsl:text>: </xsl:text>
             </xsl:otherwise>
@@ -119,11 +133,11 @@
    </xsl:template>
    
    <xsl:template match="tei:subst" mode="apparatus">
-      <xsl:variable name="processedDel" as="xs:string">
-         <xsl:variable name="delNode">
-            <xsl:apply-templates select="tei:del[1]/node()" mode="plain-text-output"/>
-         </xsl:variable>
-         <xsl:value-of select="string-join($delNode, '')"/>
+      <xsl:variable name="processedDel">
+<!--         <xsl:variable name="delNode">-->
+            <xsl:apply-templates select="tei:del[1]/node()" mode="lemma"/>
+         <!--</xsl:variable>-->
+<!--         <xsl:value-of select="string-join($delNode, '')"/>-->
       </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
@@ -135,51 +149,28 @@
          <xsl:variable name="qelem">
              <xsl:choose>
                 <xsl:when test="count(tei:add) gt 1">
-                   <xsl:apply-templates select="tei:add | text()" mode="plain-text-output"/>
+                   <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
                 </xsl:when>
                 <xsl:otherwise>
-                   <xsl:apply-templates select="tei:add" mode="plain-text-output"/>
+                   <xsl:apply-templates select="tei:add" mode="lemma"/>
                 </xsl:otherwise>
              </xsl:choose>
          </xsl:variable>
-         <xsl:value-of select="wega:enquote($qelem)"/>
+         <xsl:sequence select="wega:enquote($qelem)"/>
          <xsl:text>: </xsl:text>
          <xsl:choose>
             <xsl:when test="./tei:del/tei:gap">
                <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
             </xsl:when>
             <xsl:when test="./tei:del[@rend='strikethrough']">
-               <xsl:value-of select="wega:enquote($processedDel)"/>
+               <xsl:sequence select="wega:enquote($processedDel)"/>
                <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
             </xsl:when>
             <xsl:when test="./tei:del[@rend='overwritten']">
-               <xsl:value-of select="wega:enquote($processedDel)"/>
+               <xsl:sequence select="wega:enquote($processedDel)"/>
                <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
             </xsl:when>
          </xsl:choose>
-         <!--<xsl:element name="span">
-                <xsl:attribute name="class" select="'teiLetter_noteInline'"/>
-                <xsl:attribute name="id">
-                    <xsl:value-of select="concat('subst_',$substInlineID)"/>
-                </xsl:attribute>
-                <xsl:choose>
-                    <xsl:when test="./tei:add[@place='inline']">
-                        <xsl:value-of select="wega:getLanguageString('substInline', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='above']">
-                        <xsl:value-of select="wega:getLanguageString('substAbove', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='below']">
-                        <xsl:value-of select="wega:getLanguageString('substBelow', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='margin']">
-                        <xsl:value-of select="wega:getLanguageString('substMargin', $lang)"/>
-                    </xsl:when>
-                    <xsl:when test="./tei:add[@place='mixed']">
-                        <xsl:value-of select="wega:getLanguageString('substMixed', $lang)"/>
-                    </xsl:when>
-                </xsl:choose>
-            </xsl:element>-->
       </xsl:element>
    </xsl:template>
    
@@ -201,7 +192,10 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
-         <xsl:value-of select="wega:enquote(tei:lem)"/>
+         <xsl:variable name="qelem">
+            <xsl:apply-templates select="tei:lem" mode="lemma"/>
+         </xsl:variable>
+         <xsl:sequence select="wega:enquote($qelem)"/>
          <xsl:text>: </xsl:text>
          <xsl:value-of select="wega:getLanguageString('appRdg', $lang)"/>
          <xsl:text>: </xsl:text>
@@ -261,7 +255,7 @@
    
    <xsl:template match="tei:add[not(parent::tei:subst)]" mode="apparatus">
       <xsl:variable name="addedText">
-         <xsl:apply-templates/>
+         <xsl:apply-templates mode="lemma"/>
       </xsl:variable>
       <xsl:variable name="tokens" select="tokenize($addedText, '\s+')"/>
       <xsl:element name="div">
@@ -278,11 +272,11 @@
                   <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -2, 3), ' ')"/>
                </xsl:when>
                <xsl:otherwise>
-                  <xsl:value-of select="$addedText"/>
+                  <xsl:sequence select="$addedText"/>
                </xsl:otherwise>
             </xsl:choose>
          </xsl:variable>
-         <xsl:value-of select="wega:enquote($qelem)"/>
+         <xsl:sequence select="wega:enquote($qelem)"/>
          <xsl:text>: </xsl:text>
          <xsl:choose>
             <xsl:when test="@place='margin'">
@@ -413,12 +407,17 @@
          </xsl:attribute>
          <xsl:choose>
             <xsl:when test="tei:sic">
+               <xsl:variable name="sic">
+                  <xsl:apply-templates select="tei:sic" mode="lemma"/>
+               </xsl:variable>
+               <xsl:variable name="corr">
+                  <xsl:apply-templates select="tei:corr" mode="lemma"/>
+               </xsl:variable>
                <xsl:text>recte </xsl:text>
-               <xsl:value-of select="wega:enquote(normalize-space(tei:corr))"/>
+               <xsl:sequence select="wega:enquote($corr)"/>
                <xsl:text>: </xsl:text>
                <xsl:value-of select="concat(wega:getLanguageString('choiceCorr', $lang),' ')"/>
-               <xsl:value-of select="wega:enquote(normalize-space(tei:sic))">
-               </xsl:value-of>
+               <xsl:sequence select="wega:enquote($sic)"/>
             </xsl:when>
             <xsl:when test="tei:unclear">
                <xsl:variable name="opts" as="element()*">
@@ -426,18 +425,30 @@
                      <xsl:sort select="$sort-order[. = current()/string(@cert)]/@sort"/>
                   </xsl:perform-sort>
                </xsl:variable>
-               <xsl:value-of select="wega:enquote($opts[1])"/>
+               <xsl:variable name="opt1">
+                  <xsl:apply-templates select="$opts[1]" mode="lemma"/>
+               </xsl:variable>
+               <xsl:variable name="opt2">
+                  <xsl:apply-templates select="subsequence($opts, 2)" mode="lemma"/>
+               </xsl:variable>
+               <xsl:sequence select="wega:enquote($opt1)"/>
                <xsl:text>: </xsl:text>
                <xsl:value-of select="wega:getLanguageString('choiceUnclear', $lang)"/>
                <xsl:text>: </xsl:text>
                <!-- Eventuell noch @cert mit ausgeben?!? -->
-               <xsl:value-of select="wega:enquote(subsequence($opts, 2))"/>
+               <xsl:sequence select="wega:enquote($opt2)"/>
             </xsl:when>
             <xsl:when test="tei:abbr">
-               <xsl:value-of select="wega:enquote(normalize-space(tei:abbr))"/>
+               <xsl:variable name="abbr">
+                  <xsl:apply-templates select="tei:abbr" mode="lemma"/>
+               </xsl:variable>
+               <xsl:variable name="expan">
+                  <xsl:apply-templates select="tei:expan" mode="lemma"/>
+               </xsl:variable>
+               <xsl:sequence select="wega:enquote($abbr)"/>
                <xsl:text>: </xsl:text>
                <xsl:value-of select="concat(wega:getLanguageString('choiceAbbr', $lang),' ')"/>
-               <xsl:value-of select="wega:enquote(normalize-space(tei:expan))"/>
+               <xsl:sequence select="wega:enquote($expan)"/>
             </xsl:when>
          </xsl:choose>
       </xsl:element>
@@ -484,7 +495,10 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="local-name()"/>
          </xsl:attribute>
-         <xsl:call-template name="enquote"/>
+         <xsl:variable name="sic">
+            <xsl:apply-templates mode="lemma"/>
+         </xsl:variable>
+         <xsl:sequence select="wega:enquote($sic)"/>
          <xsl:text>: sic!</xsl:text>
       </xsl:element>
    </xsl:template>
@@ -509,7 +523,10 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('del',$lang)"/>
          </xsl:attribute>
-         <xsl:value-of select="wega:enquote(normalize-space(.))"/>
+         <xsl:variable name="del">
+            <xsl:apply-templates mode="lemma"/>
+         </xsl:variable>
+         <xsl:sequence select="wega:enquote($del)"/>
          <xsl:text>: </xsl:text>
          <xsl:choose>
             <xsl:when test="tei:gap">
@@ -528,15 +545,15 @@
       </xsl:element>
    </xsl:template>
     
-   <xsl:template match="tei:del" mode="plain-text-output"/>
-   <xsl:template match="tei:note" mode="plain-text-output"/>
-   <xsl:template match="tei:lb" mode="plain-text-output">
+   <xsl:template match="tei:del" mode="lemma"/>
+   <xsl:template match="tei:note" mode="lemma"/>
+   <xsl:template match="tei:lb" mode="lemma">
       <xsl:text> </xsl:text>
    </xsl:template>
-   <xsl:template match="tei:q" mode="plain-text-output">
+   <xsl:template match="tei:q" mode="lemma">
       <xsl:call-template name="enquote"/>
    </xsl:template>
-   <xsl:template match="tei:choice" mode="plain-text-output">
+   <xsl:template match="tei:choice" mode="lemma">
       <xsl:choose>
          <xsl:when test="tei:sic">
             <xsl:apply-templates select="tei:corr" mode="#current"/>
@@ -554,7 +571,7 @@
          </xsl:when>
       </xsl:choose>
    </xsl:template>
-   <xsl:template match="tei:*" mode="plain-text-output">
+   <xsl:template match="tei:*" mode="lemma">
       <xsl:apply-templates mode="#current"/>
    </xsl:template>
    
