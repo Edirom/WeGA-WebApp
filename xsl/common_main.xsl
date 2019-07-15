@@ -143,7 +143,7 @@
             <!-- German double quotation marks -->
             <xsl:when test="$lang eq 'de' and $double">
                 <xsl:text>„</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
                 <xsl:if test="$ellipsis">
                     <xsl:text>…</xsl:text>
                 </xsl:if>
@@ -151,7 +151,7 @@
             </xsl:when>
             <xsl:when test="$lang eq 'en' and $double">
                 <xsl:text>“</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
                 <xsl:if test="$ellipsis">
                     <xsl:text>…</xsl:text>
                 </xsl:if>
@@ -160,12 +160,12 @@
             <!-- German single quotation marks -->
             <xsl:when test="$lang eq 'de' and not($double)">
                 <xsl:text>‚</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
                 <xsl:text>‘</xsl:text>
             </xsl:when>
             <xsl:when test="$lang eq 'en' and not($double)">
                 <xsl:text>‘</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
                 <xsl:text>’</xsl:text>
             </xsl:when>
         </xsl:choose>
