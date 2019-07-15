@@ -1,4 +1,9 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns="http://www.w3.org/1999/xhtml" xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" exclude-result-prefixes="xs" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+   xmlns:tei="http://www.tei-c.org/ns/1.0" 
+   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+   xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
+   exclude-result-prefixes="xs" version="2.0">
    
    <xsl:template name="createApparatus">
       <xsl:variable name="textConstitutionPath" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
@@ -78,21 +83,21 @@
       <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
       <xsl:variable name="textTokensBetween" select="tokenize(string-join($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)], ' '), '\s+')"/>
       <xsl:variable name="qelem">
-         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_lemma'"/>
-            <xsl:choose>
-               <xsl:when test="count($textTokensBetween) gt 6">
-                  <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
-                  <xsl:text> … </xsl:text>
-                  <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -2, 3), ' ')"/>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
-               </xsl:otherwise>
-            </xsl:choose>
-         </xsl:element>
+         <xsl:choose>
+            <xsl:when test="count($textTokensBetween) gt 6">
+               <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
+               <xsl:text> … </xsl:text>
+               <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -2, 3), ' ')"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
+            </xsl:otherwise>
+         </xsl:choose>
       </xsl:variable>
-      <xsl:value-of select="wega:enquote($qelem)"/>
+      <xsl:element name="span">
+        <xsl:attribute name="class" select="'tei_lemma'"/>
+        <xsl:value-of select="wega:enquote($qelem)"/>
+      </xsl:element>
       <xsl:text>: </xsl:text>
    </xsl:template>
    
@@ -127,14 +132,17 @@
             <xsl:value-of select="wega:getLanguageString('subst',$lang)"/>
          </xsl:attribute>
          <!-- Need to take care of whitespace when there are multiple <add> -->
-         <xsl:choose>
-            <xsl:when test="count(tei:add) gt 1">
-               <xsl:apply-templates select="wega:enquote(tei:add) | text()" mode="plain-text-output"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:apply-templates select="wega:enquote(tei:add)" mode="plain-text-output"/>
-            </xsl:otherwise>
-         </xsl:choose>
+         <xsl:variable name="qelem">
+             <xsl:choose>
+                <xsl:when test="count(tei:add) gt 1">
+                   <xsl:apply-templates select="tei:add | text()" mode="plain-text-output"/>
+                </xsl:when>
+                <xsl:otherwise>
+                   <xsl:apply-templates select="tei:add" mode="plain-text-output"/>
+                </xsl:otherwise>
+             </xsl:choose>
+         </xsl:variable>
+         <xsl:value-of select="wega:enquote($qelem)"/>
          <xsl:text>: </xsl:text>
          <xsl:choose>
             <xsl:when test="./tei:del/tei:gap">
@@ -406,10 +414,10 @@
          <xsl:choose>
             <xsl:when test="tei:sic">
                <xsl:text>recte </xsl:text>
-               <xsl:value-of select="wega:enquote(tei:corr)"/>
+               <xsl:value-of select="wega:enquote(normalize-space(tei:corr))"/>
                <xsl:text>: </xsl:text>
                <xsl:value-of select="concat(wega:getLanguageString('choiceCorr', $lang),' ')"/>
-               <xsl:value-of select="wega:enquote(tei:sic)">
+               <xsl:value-of select="wega:enquote(normalize-space(tei:sic))">
                </xsl:value-of>
             </xsl:when>
             <xsl:when test="tei:unclear">
@@ -426,10 +434,10 @@
                <xsl:value-of select="wega:enquote(subsequence($opts, 2))"/>
             </xsl:when>
             <xsl:when test="tei:abbr">
-               <xsl:value-of select="wega:enquote(tei:abbr)"/>
+               <xsl:value-of select="wega:enquote(normalize-space(tei:abbr))"/>
                <xsl:text>: </xsl:text>
                <xsl:value-of select="concat(wega:getLanguageString('choiceAbbr', $lang),' ')"/>
-               <xsl:value-of select="wega:enquote(tei:expan)"/>
+               <xsl:value-of select="wega:enquote(normalize-space(tei:expan))"/>
             </xsl:when>
          </xsl:choose>
       </xsl:element>
@@ -457,9 +465,15 @@
       <xsl:element name="span">
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>[</xsl:text></xsl:element>
+         <xsl:element name="span">
+                <xsl:attribute name="class">brackets_supplied</xsl:attribute>
+                <xsl:text>[</xsl:text>
+            </xsl:element>
          <xsl:apply-templates mode="#current"/>
-         <xsl:element name="span"><xsl:attribute name="class">brackets_supplied</xsl:attribute><xsl:text>]</xsl:text></xsl:element>
+         <xsl:element name="span">
+                <xsl:attribute name="class">brackets_supplied</xsl:attribute>
+                <xsl:text>]</xsl:text>
+            </xsl:element>
       </xsl:element>
    </xsl:template>
    
@@ -495,7 +509,7 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('del',$lang)"/>
          </xsl:attribute>
-         <xsl:call-template name="enquote"/>
+         <xsl:value-of select="wega:enquote(normalize-space(.))"/>
          <xsl:text>: </xsl:text>
          <xsl:choose>
             <xsl:when test="tei:gap">
