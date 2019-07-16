@@ -195,6 +195,20 @@
    </xsl:template>
 
    <xsl:template match="tei:app" mode="apparatus">
+      <xsl:variable name="lemElem" select="tei:lem/descendant::text()"/>
+      <xsl:variable name="tokens" select="tokenize(string-join($lemElem, ' '), '\s+')"/>
+      <xsl:variable name="qelem">
+         <xsl:choose>
+            <xsl:when test="count($tokens) gt 6">
+               <xsl:value-of select="string-join(subsequence($tokens, 1, 3), ' ')"/>
+               <xsl:text> … </xsl:text>
+               <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -2, 3), ' ')"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="$lemElem"/>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
@@ -203,7 +217,7 @@
          </xsl:attribute>
          <xsl:element name="span">
             <xsl:attribute name="class" select="'tei_lemma'"/>
-            <xsl:value-of select="wega:enquote(tei:lem)"/>
+            <xsl:value-of select="wega:enquote($qelem)"/>
          </xsl:element>
          <xsl:value-of select="wega:getLanguageString('appRdg', $lang)"/>
          <xsl:text>: </xsl:text>
