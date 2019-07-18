@@ -315,13 +315,6 @@
       </xsl:call-template>
    </xsl:template>
 
-   <!--<xsl:template match="tei:gap[@reason='outOfScope']">
-      <xsl:element name="span">
-         <xsl:attribute name="class" select="'tei_supplied'"/>
-         <xsl:text> […] </xsl:text>
-      </xsl:element>
-   </xsl:template>-->
-
    <!-- TODO: gap in damage, del, add und unclear?!? -->
    <xsl:template match="tei:gap">
       <xsl:element name="span">
@@ -486,19 +479,6 @@
          </xsl:with-param>
       </xsl:call-template>
    </xsl:template>
-
-   <!--<xsl:template match="tei:supplied" mode="apparatus">
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
-         </xsl:attribute>
-         <xsl:text>"</xsl:text>
-         <xsl:apply-templates/>
-         <xsl:text>": Hinzufügung des Herausgebers</xsl:text>
-      </xsl:element>
-   </xsl:template>-->
 
    <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
       <xsl:call-template name="apparatusEntry">
