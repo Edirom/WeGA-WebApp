@@ -363,7 +363,7 @@
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:choose>
             <xsl:when test="tei:sic">
-               <xsl:apply-templates select="tei:corr" mode="#current"/>
+               <xsl:apply-templates select="tei:sic" mode="#current"/>
             </xsl:when>
             <xsl:when test="tei:unclear">
                <xsl:variable name="opts" as="element()*">
@@ -389,13 +389,12 @@
          <xsl:apply-templates select="tei:corr" mode="lemma"/>
       </xsl:variable>
       <xsl:call-template name="apparatusEntry">
-         <!-- TODO: translate properly -->
-         <xsl:with-param name="title" select="wega:getLanguageString('choiceUnclear',$lang)"/>
+         <xsl:with-param name="title">sic</xsl:with-param>
          <xsl:with-param name="lemma">
-            <xsl:sequence select="('recte ', $corr)"/>
+            <xsl:sequence select="$sic"/>
          </xsl:with-param>
          <xsl:with-param name="explanation">
-            <xsl:sequence select="(wega:getLanguageString('choiceCorr', $lang),' ', $sic)"/>
+            <xsl:sequence select="('recte ', wega:enquote($corr))"/>
          </xsl:with-param>
       </xsl:call-template>
    </xsl:template>
@@ -437,7 +436,7 @@
             <xsl:sequence select="$abbr"/>
          </xsl:with-param>
          <xsl:with-param name="explanation">
-            <xsl:sequence select="(wega:getLanguageString('choiceAbbr', $lang),' ', $expan)"/>
+            <xsl:sequence select="(wega:getLanguageString('choiceAbbr', $lang),' ', wega:enquote($expan))"/>
          </xsl:with-param>
       </xsl:call-template>
    </xsl:template>
@@ -537,7 +536,7 @@
    <xsl:template match="tei:choice" mode="lemma">
       <xsl:choose>
          <xsl:when test="tei:sic">
-            <xsl:apply-templates select="tei:corr" mode="#current"/>
+            <xsl:apply-templates select="tei:sic" mode="#current"/>
          </xsl:when>
          <xsl:when test="tei:unclear">
             <xsl:variable name="opts" as="element()*">
