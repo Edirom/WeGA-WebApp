@@ -182,6 +182,15 @@
         <xsl:apply-templates mode="#current"/>
     </xsl:template>
     
+    <!-- 
+        extra treatment since per default the content of those elements will be enquoted
+        which results in empty quotations in the right column
+        (see templates in common_main.xsl and commit 3777509a)
+    -->
+    <xsl:template match="tei:q|tei:quote|tei:soCalled" mode="rightTableColumn" priority="1">
+        <xsl:apply-templates mode="#current"/>
+    </xsl:template>
+    
     <xsl:template match="text()[not(parent::tei:measure)]" mode="rightTableColumn"/>
     
 </xsl:stylesheet>
