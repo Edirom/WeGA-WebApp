@@ -19,7 +19,7 @@
    -->
    
    <xsl:template name="createApparatus">
-      <xsl:variable name="textConstitutionPath" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope')] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
+      <xsl:variable name="textConstitutionPath" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
       <xsl:variable name="commentaryPath" select=".//tei:app | .//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
