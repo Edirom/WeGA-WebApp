@@ -63,30 +63,25 @@
    
    <xsl:template match="tei:note" mode="apparatus">
       <xsl:variable name="id" select="wega:createID(.)"/>
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="$id"/>
-         <xsl:attribute name="data-title">
-            <xsl:if test="self::tei:note">
-               <xsl:value-of select="wega:getLanguageString(string-join((local-name(),@type), '_'),$lang)"/>
-            </xsl:if>
-         </xsl:attribute>
-         <xsl:choose>
-            <xsl:when test="preceding::tei:ptr[@target=concat('#', $id)]">
-               <!-- When ein ptr existiert, dann wird dieser ausgewertet -->
-               <xsl:apply-templates select="preceding::tei:ptr[@target=concat('#', $id)]" mode="apparatus"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text(), ' '), '\s+')"/>
-               <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
-               <xsl:element name="span">
-                  <xsl:attribute name="class" select="'tei_lemma'"/>
-                  <xsl:sequence select="wega:enquote(('… ', subsequence($textTokens, count($textTokens) - 4)))"/>
-               </xsl:element>
-            </xsl:otherwise>
-         </xsl:choose>
-         <xsl:apply-templates/>
-      </xsl:element>
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString(string-join((local-name(),@type), '_'),$lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:choose>
+               <xsl:when test="preceding::tei:ptr[@target=concat('#', $id)]">
+                  <!-- When ein ptr existiert, dann wird dieser ausgewertet -->
+                  <xsl:apply-templates select="preceding::tei:ptr[@target=concat('#', $id)]" mode="apparatus"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text(), ' '), '\s+')"/>
+                  <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
+                  <xsl:sequence select="('… ', subsequence($textTokens, count($textTokens) - 4))"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:apply-templates/>
+         </xsl:with-param>
+      </xsl:call-template>
    </xsl:template>
 
    <xsl:template match="tei:ptr" mode="apparatus">
@@ -95,56 +90,23 @@
       <xsl:variable name="vtextPostPtr" select="following::text()"/>
       <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
       <xsl:variable name="textTokensBetween" select="tokenize(string-join($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)], ' '), '\s+')"/>
-      <xsl:variable name="qelem">
-         <xsl:choose>
-            <xsl:when test="count($textTokensBetween) gt 6">
-               <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
-               <xsl:text> … </xsl:text>
-               <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -2, 3), ' ')"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
-            </xsl:otherwise>
-         </xsl:choose>
-      </xsl:variable>
-      <xsl:element name="span">
-         <xsl:attribute name="class" select="'tei_lemma'"/>
-         <xsl:value-of select="wega:enquote($qelem)"/>
-      </xsl:element>
+      <xsl:choose>
+         <xsl:when test="count($textTokensBetween) gt 6">
+            <xsl:value-of select="string-join(subsequence($textTokensBetween, 1, 3), ' ')"/>
+            <xsl:text> … </xsl:text>
+            <xsl:value-of select="string-join(subsequence($textTokensBetween, count($textTokensBetween) -2, 3), ' ')"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:value-of select="string-join($textTokensBetween, ' ')"/>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
 
    <xsl:template match="tei:subst">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class" select="'tei_subst'"/>
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <!-- Need to take care of whitespace when there are multiple <add> -->
-             <xsl:choose>
-                <xsl:when test="count(tei:add) gt 1">
-                   <xsl:apply-templates select="tei:add | text()" mode="plain-text-output"/>
-                </xsl:when>
-                <xsl:otherwise>
-                   <xsl:apply-templates select="tei:add" mode="plain-text-output"/>
-                </xsl:otherwise>
-             </xsl:choose>
-         <xsl:call-template name="popover"/>
-      </xsl:element>
-   </xsl:template>
-
-   <xsl:template match="tei:subst" mode="apparatus">
-      <xsl:variable name="processedDel">
-<!--         <xsl:variable name="delNode">-->
-            <xsl:apply-templates select="tei:del[1]/node()" mode="lemma"/>
-         <!--</xsl:variable>-->
-<!--         <xsl:value-of select="string-join($delNode, '')"/>-->
-      </xsl:variable>
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:attribute name="data-title">
-            <xsl:value-of select="wega:getLanguageString('subst',$lang)"/>
-         </xsl:attribute>
-         <!-- Need to take care of whitespace when there are multiple <add> -->
-         <xsl:variable name="qelem">
              <xsl:choose>
                 <xsl:when test="count(tei:add) gt 1">
                    <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
@@ -153,38 +115,54 @@
                    <xsl:apply-templates select="tei:add" mode="lemma"/>
                 </xsl:otherwise>
              </xsl:choose>
-         </xsl:variable>
-         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_lemma'"/>
-            <xsl:sequence select="wega:enquote($qelem)"/>
-         </xsl:element>
-         <xsl:choose>
-            <xsl:when test="./tei:del/tei:gap">
-               <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
-            </xsl:when>
-            <xsl:when test="./tei:del[@rend='strikethrough']">
-               <xsl:sequence select="wega:enquote($processedDel)"/>
-               <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
-            </xsl:when>
-            <xsl:when test="./tei:del[@rend='overwritten']">
-               <xsl:sequence select="wega:enquote($processedDel)"/>
-               <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
-            </xsl:when>
-         </xsl:choose>
+         <xsl:call-template name="popover"/>
       </xsl:element>
+   </xsl:template>
+
+   <xsl:template match="tei:subst" mode="apparatus">
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString('subst',$lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:choose>
+               <xsl:when test="count(tei:add) gt 1">
+                  <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:apply-templates select="tei:add" mode="lemma"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:variable name="processedDel">
+               <xsl:apply-templates select="tei:del[1]/node()" mode="lemma"/>
+            </xsl:variable>
+            <xsl:choose>
+               <xsl:when test="./tei:del/tei:gap">
+                  <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
+               </xsl:when>
+               <xsl:when test="./tei:del[@rend='strikethrough']">
+                  <xsl:sequence select="wega:enquote($processedDel)"/>
+                  <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
+               </xsl:when>
+               <xsl:when test="./tei:del[@rend='overwritten']">
+                  <xsl:sequence select="wega:enquote($processedDel)"/>
+                  <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
+               </xsl:when>
+            </xsl:choose>
+         </xsl:with-param>
+      </xsl:call-template>
    </xsl:template>
 
    <xsl:template match="tei:app">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class">
-            <xsl:text>tei_app</xsl:text>
-         </xsl:attribute>
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:apply-templates select="tei:lem" mode="#current"/>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
 
+   <!-- will be changed in https://github.com/Edirom/WeGA-WebApp/issues/307 -->
    <xsl:template match="tei:app" mode="apparatus">
       <xsl:variable name="lemElem" select="tei:lem/descendant::text()"/>
       <xsl:variable name="tokens" select="tokenize(string-join($lemElem, ' '), '\s+')"/>
@@ -226,7 +204,7 @@
 
    <xsl:template match="tei:rdg">
       <xsl:element name="span">
-         <xsl:attribute name="class">tei_rdg</xsl:attribute>
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:apply-templates mode="rdg"/>
       </xsl:element>
    </xsl:template>
@@ -234,7 +212,7 @@
    <!-- within readings there must not be any paragraphs (in the result HTML) -->
    <xsl:template match="tei:p" mode="rdg">
       <xsl:element name="span">
-         <xsl:attribute name="class">tei_p</xsl:attribute>
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:apply-templates mode="#default"/>
       </xsl:element>
    </xsl:template>
@@ -274,13 +252,9 @@
          <xsl:apply-templates mode="lemma"/>
       </xsl:variable>
       <xsl:variable name="tokens" select="tokenize($addedText, '\s+')"/>
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:attribute name="data-title">
-            <xsl:value-of select="wega:getLanguageString('addDefault',$lang)"/>
-         </xsl:attribute>
-         <xsl:variable name="qelem">
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString('addDefault',$lang)"/>
+         <xsl:with-param name="lemma">
             <xsl:choose>
                <xsl:when test="count($tokens) gt 6">
                   <xsl:value-of select="string-join(subsequence($tokens, 1, 3), ' ')"/>
@@ -291,64 +265,54 @@
                   <xsl:sequence select="$addedText"/>
                </xsl:otherwise>
             </xsl:choose>
-         </xsl:variable>
-         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_lemma'"/>
-            <xsl:sequence select="wega:enquote($qelem)"/>
-         </xsl:element>
-         <xsl:choose>
-            <xsl:when test="@place='margin'">
-               <xsl:value-of select="wega:getLanguageString('addMargin', $lang)"/>
-            </xsl:when>
-            <xsl:when test="@place='inline'">
-               <xsl:value-of select="wega:getLanguageString('addInline', $lang)"/>
-            </xsl:when>
-            <!-- TODO translate -->
-            <xsl:otherwise>
-               <xsl:value-of select="wega:getLanguageString('addDefault', $lang)"/>
-               <xsl:text>.</xsl:text>
-            </xsl:otherwise>
-         </xsl:choose>
-      </xsl:element>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:choose>
+               <xsl:when test="@place='margin'">
+                  <xsl:value-of select="wega:getLanguageString('addMargin', $lang)"/>
+               </xsl:when>
+               <xsl:when test="@place='inline'">
+                  <xsl:value-of select="wega:getLanguageString('addInline', $lang)"/>
+               </xsl:when>
+               <!-- TODO translate -->
+               <xsl:otherwise>
+                  <xsl:value-of select="wega:getLanguageString('addDefault', $lang)"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:with-param>
+      </xsl:call-template>
    </xsl:template>
 
    <xsl:template match="tei:unclear[not(parent::tei:choice)]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class">
-            <xsl:text>tei_add</xsl:text>
-         </xsl:attribute>
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:apply-templates/>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
 
    <xsl:template match="tei:unclear[not(parent::tei:choice)]" mode="apparatus">
-      <xsl:variable name="addedText">
-         <xsl:apply-templates/>
+      <xsl:variable name="unclearText">
+         <xsl:apply-templates mode="lemma"/>
       </xsl:variable>
-      <xsl:variable name="tokens" select="tokenize($addedText, '\s+')"/>
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:attribute name="data-title">
-            <xsl:value-of select="wega:getLanguageString('unclearDefault',$lang)"/>
-         </xsl:attribute>
-         <xsl:text>„</xsl:text>
-         <xsl:choose>
-            <xsl:when test="count($tokens) gt 6">
-               <xsl:value-of select="string-join(subsequence($tokens, 1, 3), ' ')"/>
-               <xsl:text> … </xsl:text>
-               <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -2, 3), ' ')"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:value-of select="$addedText"/>
-            </xsl:otherwise>
-         </xsl:choose>
-         <xsl:text>“: </xsl:text>
-         <xsl:value-of select="wega:getLanguageString('unclearDefault', $lang)"/>
-         <xsl:text>.</xsl:text>
-      </xsl:element>
+      <xsl:variable name="tokens" select="tokenize($unclearText, '\s+')"/>
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString('unclearDefault',$lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:choose>
+               <xsl:when test="count($tokens) gt 6">
+                  <xsl:value-of select="string-join(subsequence($tokens, 1, 3), ' ')"/>
+                  <xsl:text> … </xsl:text>
+                  <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -2, 3), ' ')"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:sequence select="$unclearText"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:with-param>
+         <xsl:with-param name="explanation" select="wega:getLanguageString('unclearDefault', $lang)"/>
+      </xsl:call-template>
    </xsl:template>
 
    <!--<xsl:template match="tei:gap[@reason='outOfScope']">
@@ -358,7 +322,7 @@
       </xsl:element>
    </xsl:template>-->
 
-   <!-- gap in damage, del, add und unclear?!? -->
+   <!-- TODO: gap in damage, del, add und unclear?!? -->
    <xsl:template match="tei:gap">
       <xsl:element name="span">
          <xsl:text>[…]</xsl:text>
@@ -368,6 +332,7 @@
       </xsl:element>
    </xsl:template>
 
+   <!-- TODO: Beschreibung von gap noch etwas dürftig bzw. gedoppelt in Titel und Beschreibung -->
    <xsl:template match="tei:gap" mode="apparatus">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
@@ -395,7 +360,7 @@
    <xsl:template match="tei:choice">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
-         <xsl:attribute name="class" select="'tei_choice'"/>
+         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:choose>
             <xsl:when test="tei:sic">
                <xsl:apply-templates select="tei:corr" mode="#current"/>
@@ -416,65 +381,65 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:choice" mode="apparatus">
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:attribute name="data-title">
-            <xsl:value-of select="wega:getLanguageString('choiceUnclear',$lang)"/>
-         </xsl:attribute>
-         <xsl:choose>
-            <xsl:when test="tei:sic">
-               <xsl:variable name="sic">
-                  <xsl:apply-templates select="tei:sic" mode="lemma"/>
-               </xsl:variable>
-               <xsl:variable name="corr">
-                  <xsl:apply-templates select="tei:corr" mode="lemma"/>
-               </xsl:variable>
-               <xsl:element name="span">
-                  <xsl:attribute name="class" select="'tei_lemma'"/>
-                  <xsl:text>recte </xsl:text>
-                  <xsl:sequence select="wega:enquote($corr)"/>
-               </xsl:element>
-               <xsl:value-of select="concat(wega:getLanguageString('choiceCorr', $lang),' ')"/>
-               <xsl:sequence select="wega:enquote($sic)"/>
-            </xsl:when>
-            <xsl:when test="tei:unclear">
-               <xsl:variable name="opts" as="element()*">
-                  <xsl:perform-sort select="tei:unclear">
-                     <xsl:sort select="$sort-order[. = current()/string(@cert)]/@sort"/>
-                  </xsl:perform-sort>
-               </xsl:variable>
-               <xsl:variable name="opt1">
-                  <xsl:apply-templates select="$opts[1]" mode="lemma"/>
-               </xsl:variable>
-               <xsl:variable name="opt2">
-                  <xsl:apply-templates select="subsequence($opts, 2)" mode="lemma"/>
-               </xsl:variable>
-               <xsl:element name="span">
-                  <xsl:attribute name="class" select="'tei_lemma'"/>
-                  <xsl:sequence select="wega:enquote($opt1)"/>
-               </xsl:element>
-               <xsl:value-of select="wega:getLanguageString('choiceUnclear', $lang)"/>
-               <!-- Eventuell noch @cert mit ausgeben?!? -->
-               <xsl:sequence select="wega:enquote($opt2)"/>
-            </xsl:when>
-            <xsl:when test="tei:abbr">
-               <xsl:variable name="abbr">
-                  <xsl:apply-templates select="tei:abbr" mode="lemma"/>
-               </xsl:variable>
-               <xsl:variable name="expan">
-                  <xsl:apply-templates select="tei:expan" mode="lemma"/>
-               </xsl:variable>
-               <xsl:element name="span">
-                  <xsl:attribute name="class" select="'tei_lemma'"/>
-                  <xsl:sequence select="wega:enquote($abbr)"/>
-               </xsl:element>
-               <xsl:value-of select="concat(wega:getLanguageString('choiceAbbr', $lang),' ')"/>
-               <xsl:sequence select="wega:enquote($expan)"/>
-            </xsl:when>
-         </xsl:choose>
-      </xsl:element>
+   <xsl:template match="tei:choice[tei:sic]" mode="apparatus">
+      <xsl:variable name="sic">
+         <xsl:apply-templates select="tei:sic" mode="lemma"/>
+      </xsl:variable>
+      <xsl:variable name="corr">
+         <xsl:apply-templates select="tei:corr" mode="lemma"/>
+      </xsl:variable>
+      <xsl:call-template name="apparatusEntry">
+         <!-- TODO: translate properly -->
+         <xsl:with-param name="title" select="wega:getLanguageString('choiceUnclear',$lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:sequence select="('recte ', $corr)"/>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:sequence select="(wega:getLanguageString('choiceCorr', $lang),' ', $sic)"/>
+         </xsl:with-param>
+      </xsl:call-template>
+   </xsl:template>
+   
+   <xsl:template match="tei:choice[tei:unclear]" mode="apparatus">
+      <xsl:variable name="opts" as="element()*">
+         <xsl:perform-sort select="tei:unclear">
+            <xsl:sort select="$sort-order[. = current()/string(@cert)]/@sort"/>
+         </xsl:perform-sort>
+      </xsl:variable>
+      <xsl:variable name="opt1">
+         <xsl:apply-templates select="$opts[1]" mode="lemma"/>
+      </xsl:variable>
+      <xsl:variable name="opt2">
+         <xsl:apply-templates select="subsequence($opts, 2)" mode="lemma"/>
+      </xsl:variable>
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString('choiceUnclear',$lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:sequence select="$opt1"/>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <!-- Eventuell noch @cert mit ausgeben?!? -->
+            <xsl:sequence select="(wega:getLanguageString('choiceUnclear', $lang),' ', $opt2)"/>
+         </xsl:with-param>
+      </xsl:call-template>
+   </xsl:template>
+   
+   <xsl:template match="tei:choice[tei:abbr]" mode="apparatus">
+      <xsl:variable name="abbr">
+         <xsl:apply-templates select="tei:abbr" mode="lemma"/>
+      </xsl:variable>
+      <xsl:variable name="expan">
+         <xsl:apply-templates select="tei:expan" mode="lemma"/>
+      </xsl:variable>
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString('choiceUnclear',$lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:sequence select="$abbr"/>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:sequence select="(wega:getLanguageString('choiceAbbr', $lang),' ', $expan)"/>
+         </xsl:with-param>
+      </xsl:call-template>
    </xsl:template>
 
    <!-- special template rule for <sic> within bibliographic contexts -->
@@ -512,18 +477,15 @@
    </xsl:template>
 
    <xsl:template match="tei:sic[not(parent::tei:choice)]" mode="apparatus">
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:attribute name="data-title">
-            <xsl:value-of select="local-name()"/>
-         </xsl:attribute>
-         <xsl:variable name="sic">
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="local-name()"/>
+         <xsl:with-param name="lemma">
             <xsl:apply-templates mode="lemma"/>
-         </xsl:variable>
-         <xsl:sequence select="wega:enquote($sic)"/>
-         <xsl:text>: sic!</xsl:text>
-      </xsl:element>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:text>sic!</xsl:text>
+         </xsl:with-param>
+      </xsl:call-template>
    </xsl:template>
 
    <!--<xsl:template match="tei:supplied" mode="apparatus">
@@ -540,34 +502,28 @@
    </xsl:template>-->
 
    <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
-         <xsl:attribute name="data-title">
-            <xsl:value-of select="wega:getLanguageString('del',$lang)"/>
-         </xsl:attribute>
-         <xsl:variable name="del">
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString('del',$lang)"/>
+         <xsl:with-param name="lemma">
             <xsl:apply-templates mode="lemma"/>
-         </xsl:variable>
-         <xsl:element name="span">
-            <xsl:attribute name="class" select="'tei_lemma'"/>
-            <xsl:sequence select="wega:enquote($del)"/>
-         </xsl:element>
-         <xsl:choose>
-            <xsl:when test="tei:gap">
-               <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
-            </xsl:when>
-            <xsl:when test="@rend='strikethrough'">
-               <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
-            </xsl:when>
-            <xsl:when test="@rend='overwritten'">
-               <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:value-of select="@rend"/>
-            </xsl:otherwise>
-         </xsl:choose>
-      </xsl:element>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:choose>
+               <xsl:when test="tei:gap">
+                  <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
+               </xsl:when>
+               <xsl:when test="@rend='strikethrough'">
+                  <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
+               </xsl:when>
+               <xsl:when test="@rend='overwritten'">
+                  <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:value-of select="@rend"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:with-param>
+      </xsl:call-template>
    </xsl:template>
     
    <xsl:template match="tei:del" mode="lemma"/>
@@ -598,6 +554,32 @@
    </xsl:template>
    <xsl:template match="tei:*" mode="lemma">
       <xsl:apply-templates mode="#current"/>
+   </xsl:template>
+   
+   <!-- template for creating an apparatus entry -->
+   <xsl:template name="apparatusEntry">
+      <xsl:param name="title" as="xs:string"/>
+      <xsl:param name="lemma" as="item()*"/>
+      <xsl:param name="explanation" as="item()*"/>
+      <xsl:element name="div">
+         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="data-title">
+            <xsl:value-of select="$title"/>
+         </xsl:attribute>
+         <xsl:if test="$lemma">
+            <xsl:element name="span">
+               <xsl:attribute name="class" select="'tei_lemma'"/>
+               <xsl:sequence select="wega:enquote($lemma)"/>
+            </xsl:element>
+         </xsl:if>
+         <xsl:if test="$explanation">
+            <xsl:sequence select="$explanation"/>
+            <xsl:if test="not(matches($explanation, '(\.|\?|!)\s*$'))">
+               <xsl:text>.</xsl:text>
+            </xsl:if>
+         </xsl:if>
+      </xsl:element>
    </xsl:template>
 
    <xsl:function name="wega:createID">
