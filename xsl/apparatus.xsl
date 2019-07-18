@@ -510,8 +510,8 @@
    <xsl:template match="tei:lb" mode="lemma">
       <xsl:text> </xsl:text>
    </xsl:template>
-   <xsl:template match="tei:q" mode="lemma">
-      <xsl:call-template name="enquote"/>
+   <xsl:template match="tei:gap" mode="lemma">
+      <xsl:text>[…]</xsl:text>
    </xsl:template>
    <xsl:template match="tei:choice" mode="lemma">
       <xsl:choose>
