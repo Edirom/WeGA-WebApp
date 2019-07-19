@@ -132,22 +132,21 @@ span.tei_lemma {
     font-style: italic;
     font-color:@gray;
     font-size: smaller;
+    }
+
+.popover span.tei_lemma {
     margin-bottom: 6px;
+    display: block;
+    border-left: 6px solid #f0f0f0;
+    padding-left: 6px;
 }
 
-.popover-content span.tei_lemma:before {
-    content: "\e044";
-    margin-right:4px;
-    font-style: normal;
-    font-family: 'Glyphicons Halflings';
-}
-
-.popover-content span.tei_lemma {
-     display: block;
-}
-
-.apparatusEntry span.tei_lemma:after {
+.apparatus span.tei_lemma:after {
     content: " — ";
+}
+
+.apparatus ul li {
+    margin-bottom: 8px;
 }
 
 /* This class toggles the popovers for previews */
