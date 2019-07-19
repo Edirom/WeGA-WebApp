@@ -1,8 +1,9 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
-   xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-   xmlns:tei="http://www.tei-c.org/ns/1.0" 
-   xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-   xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
+   xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+   xmlns:tei="http://www.tei-c.org/ns/1.0"
+   xmlns:xs="http://www.w3.org/2001/XMLSchema"
+   xmlns:functx="http://www.functx.com"
+   xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
    exclude-result-prefixes="xs" version="2.0">
    
    <!--
@@ -137,16 +138,20 @@
                <xsl:apply-templates select="tei:del[1]/node()" mode="lemma"/>
             </xsl:variable>
             <xsl:choose>
-               <xsl:when test="./tei:del/tei:gap">
+               <xsl:when test="tei:del/tei:gap and functx:all-whitespace(string-join(tei:del/text(), ''))">
                   <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
                </xsl:when>
-               <xsl:when test="./tei:del[@rend='strikethrough']">
+               <xsl:when test="tei:del[@rend='strikethrough']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
                   <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
                </xsl:when>
-               <xsl:when test="./tei:del[@rend='overwritten']">
+               <xsl:when test="tei:del[@rend='overwritten']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
                   <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
+               </xsl:when>
+               <xsl:when test="tei:del[@rend='erased']">
+                  <xsl:sequence select="wega:enquote($processedDel)"/>
+                  <xsl:value-of select="wega:getLanguageString('delErased', $lang)"/>
                </xsl:when>
             </xsl:choose>
          </xsl:with-param>
@@ -488,7 +493,7 @@
          </xsl:with-param>
          <xsl:with-param name="explanation">
             <xsl:choose>
-               <xsl:when test="tei:gap">
+               <xsl:when test="tei:gap and functx:all-whitespace(string-join(text(), ''))">
                   <xsl:value-of select="wega:getLanguageString('delGap', $lang)"/>
                </xsl:when>
                <xsl:when test="@rend='strikethrough'">
@@ -496,6 +501,9 @@
                </xsl:when>
                <xsl:when test="@rend='overwritten'">
                   <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
+               </xsl:when>
+               <xsl:when test="@rend='erased'">
+                  <xsl:value-of select="wega:getLanguageString('delErased', $lang)"/>
                </xsl:when>
                <xsl:otherwise>
                   <xsl:value-of select="@rend"/>
