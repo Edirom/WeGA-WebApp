@@ -765,7 +765,7 @@ declare
         let $print-titles := function($doc as document-node(), $alt as xs:boolean) {
             for $title in $doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type='sub')][exists(@type='alt') = $alt]
             let $titleLang := $title/string(@xml:lang) 
-            let $subTitle := $title/following-sibling::mei:title[@type='sub'][string(@xml:lang) = $titleLang]
+            let $subTitle := ($title/following-sibling::mei:title[@type='sub'][string(@xml:lang) = $titleLang])[1]
             return <span>{
                 string-join((
                     wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())),
@@ -1738,13 +1738,16 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:preview-subtitle($node as node(), $model as map(*), $lang as xs:string) as element(h4)? {
-        if(exists($model('doc')//mei:fileDesc/mei:titleStmt/mei:title[@type = 'sub'])) then 
+    function app:preview-subtitle($node as node(), $model as map(*), $lang as xs:string) as element()? {
+        let $main-title := ($model?doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type=('sub', 'alt'))])[1]
+        return 
             element {name($node)} {
                 $node/@*,
-                data($model('doc')//mei:fileDesc/mei:titleStmt/mei:title[@type = 'sub'][1])
+                data(
+                    (: output the first matching subtitle :)
+                    ($model?doc//mei:fileDesc/mei:titleStmt/mei:title[@type = 'sub'][string(@xml:lang) = $main-title/string(@xml:lang)])[1]
+                )
             }
-        else()
 };
 
 
