@@ -131,6 +131,7 @@ declare
 		let $usage-string := if($spec/@usage) then lang:get-language-string('usage_' || $spec/data(@usage), $model?lang) else ()
 		let $examples-selection := $spec/tei:exemplum[@xml:lang=($lang, "mul", "und")]
 		let $examples := if (exists($examples-selection)) then $examples-selection else $spec/tei:exemplum[@xml:lang="en"]
+		let $datatype := $spec/tei:datatype/tei:dataRef/data(@key)
 		return
 			map {
 				'gloss' : $spec/tei:gloss[@xml:lang=$lang] ! ('(' || . || ')'),
@@ -140,7 +141,8 @@ declare
 				'remarks' : $HTMLSpec/xhtml:div[@class='remarks'],
 				'examples' : $examples ! gl:print-exemplum(.),
 				'usage-label' : if ($spec/@usage) then <sup title="{concat("Status: ",$usage-string)}" class="{concat("usage_",$spec/data(@usage))}">{$spec/data(@usage)}</sup> else (),
-				'datatype' : $spec/tei:datatype/tei:dataRef/data(@key),
+				'datatype' : $datatype,
+				'datatypeURL' : $datatype ! gl:link-to-spec($datatype, $lang, 'html', ()),
 				'closed_values' : $spec/tei:valList[@type='closed']/tei:valItem
 			}
 };
@@ -464,6 +466,7 @@ declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:stri
     let $spec-type := 
         if(starts-with($specID, 'att.')) then lang:get-language-string('attributes', $lang)
         else if(starts-with($specID, 'model.')) then lang:get-language-string('classes', $lang)
+        else if(contains($specID, '.')) then lang:get-language-string('datatypes', $lang)
         (: to be continued :)
         else lang:get-language-string('elements', $lang)
     let $url-param := if($schemaID) then ('?schemaID=' || $schemaID) else ()
