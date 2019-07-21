@@ -199,7 +199,7 @@
          <xsl:value-of select="wega:getLanguageString('appRdg', $lang)"/>
          <xsl:text>: </xsl:text>
          <xsl:variable name="rdg">
-            <xsl:apply-templates select="tei:rdg"/>
+            <xsl:apply-templates select="wega:enquote(tei:rdg)"/>
          </xsl:variable>
          <xsl:call-template name="remove-by-class">
             <xsl:with-param name="nodes" select="$rdg"/>
