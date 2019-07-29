@@ -145,8 +145,14 @@ span.tei_lemma {
     content: " — ";
 }
 
-.apparatus ul li {
-    margin-bottom: 8px;
+ul.apparatus {
+    list-style:decimal;
+}
+
+ul.apparatus > li {
+    border-top:1px solid @gray-lighter;
+    padding: 6px 0 6px 12px;
+    margin-bottom:0;
 }
 
 /* This class toggles the popovers for previews */

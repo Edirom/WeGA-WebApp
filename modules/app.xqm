@@ -1265,7 +1265,7 @@ declare
             case 'works' return $doc/mei:mei
             case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
             case 'thematicCommentaries' return $doc//tei:text/(tei:body | tei:back)
-            default return $doc//tei:text/tei:body
+            default return $doc//(tei:text/tei:body | tei:sourceDesc/tei:listWit)
         let $body := 
              if(functx:all-whitespace(<root>{$textRoot}</root>))
              then 
