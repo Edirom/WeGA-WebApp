@@ -5,7 +5,7 @@
    xmlns:functx="http://www.functx.com"
    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
    exclude-result-prefixes="xs" version="2.0">
-   
+
    <!--
       Mode: default (i.e. template rules without a @mode attribute)
       In this mode the default variant (e.g. sic, not corr) will be output and diacritic 
@@ -32,7 +32,6 @@
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <span><xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/></span>
-               <em class="small"> in <xsl:value-of select="concat(count($textConstitutionPath),' ',wega:getLanguageString('gl_notes',$lang))"/></em>
             </xsl:element>
          </xsl:if>
          <xsl:element name="ul">
@@ -47,7 +46,6 @@
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('note_commentary', $lang)"/>
-               <em class="small"> in <xsl:value-of select="concat(count($commentaryPath),' ',wega:getLanguageString('gl_notes',$lang))"/></em>
             </xsl:element>
          </xsl:if>
          <xsl:element name="ul">
@@ -62,7 +60,6 @@
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('appRdgs', $lang)"/>
-               <em class="small"> in <xsl:value-of select="concat(count($rdgPath),' ',wega:getLanguageString('gl_notes',$lang))"/></em>
             </xsl:element>
          </xsl:if>
          <xsl:element name="ul">
@@ -210,23 +207,21 @@
             <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
          <xsl:element name="div">
-            <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/></strong>
-            <xsl:variable name="qelem">
+            <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/></strong> <!-- source containing the lemma the first text source by definition' -->
+            <xsl:variable name="lemma">
                <xsl:apply-templates select="tei:lem" mode="lemma"/>
             </xsl:variable>
             <xsl:element name="span">
                <!--<xsl:attribute name="class" select="'tei_lemma'"/>-->
-               <xsl:sequence select="wega:enquote($qelem)"/>
+               <xsl:sequence select="wega:enquote($lemma)"/>
             </xsl:element>
          </xsl:element>
          <xsl:element name="div">
             <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/></strong>
             <xsl:variable name="rdg">
-               <xsl:apply-templates select="wega:enquote(tei:rdg)"/>
+               <xsl:apply-templates select="tei:rdg" mode="lemma"/>
             </xsl:variable>
-            <xsl:call-template name="remove-by-class">
-               <xsl:with-param name="nodes" select="$rdg"/>
-            </xsl:call-template>
+            <xsl:sequence select="wega:enquote($rdg)"/>
          </xsl:element>
       </xsl:element>
    </xsl:template>
