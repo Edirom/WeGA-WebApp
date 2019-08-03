@@ -172,18 +172,33 @@ $.fn.initDatepicker = function () {
     })
 };
 
+
 /* 
  * Activate bootstrap remote nav tabs (on letters) 
- * "For further details see editorial"  
+ * "For further details see editorial"
  */
-$('#transcription a[href$="#editorial"], a[href$="#backlinks"]').on('click', function (e) {
+$('#transcription a[href$="#editorial"], a[href$="#backlinks"], a[href$="#transcription"]').on('click', function (e) {
     // code taken from the bootstrap remote nav tabs plugin
     var url = $(e)[0].target.href,
         hash = url.substring(url.indexOf('#')+1),
         hasTab = $('[data-toggle=tab][href*='+hash+']'),
         hasAccordion = $('[data-toggle=collapse][href*='+hash+']');
+        apparatusLink = $(this).hasClass("apparatus"),
+        ref = $(this).attr("data-href");
 
-    if (hasTab) {
+    if (hasTab && apparatusLink) { // if clicked link is an link within the apparatus (marked with class .apparatus)
+         hasTab.tab('show'); // open tab
+              $(document).on('shown.bs.tab', 'a[href="#transcription"]', function (e) { //wait for tab to be loaded
+                 $(".hi-").removeClass("hi-"); //remove previous highlight
+                 $('html, body').animate({
+                     scrollTop: $(ref).offset().top - 400 //scroll to position (with offset)
+                 }, 500);
+                 $(ref).click();
+                 $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-"); // attempt to highlight lemma in text, jump to position and open corresponding popover ...
+         })
+    }
+
+    else if (hasTab) {
         hasTab.tab('show');
     }
     
@@ -491,7 +506,8 @@ function popover_callBack() {
         popover_div.attr('data-ref', e);
         
         if(e.startsWith('#')) { // local references to endnotes and commentaries
-            $('.item-title', popover_div).html($(e).attr('data-title'));
+            $('.item-title-content', popover_div).html($(e).attr('data-title'));
+            $('.item-counter', popover_div).html($(e).attr('data-counter'));
             $('.item-content', popover_div).html($(e).html());
             popover_data = popover.data('bs.popover');
             popover_data.options.content = $('div.popover-content', popover).clone().children();

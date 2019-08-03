@@ -35,12 +35,25 @@
             </xsl:element>
          </xsl:if>
          <xsl:element name="ul">
-               <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
-               <xsl:for-each select="$textConstitutionPath">
-                  <xsl:element name="li">
+            <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
+            <xsl:for-each select="$textConstitutionPath">
+               <xsl:element name="li">
+                  <xsl:element name="div">
+                     <xsl:attribute name="class">row</xsl:attribute>
+                     <xsl:element name="div">
+                        <xsl:attribute name="class">col-xs-1</xsl:attribute>
+                        <xsl:element name="a">
+                           <xsl:attribute name="href">#transcription</xsl:attribute>
+                           <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
+                           <xsl:attribute name="class">apparatus</xsl:attribute>
+                           <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/> <!-- should be in a variable -->
+                           <xsl:text>.</xsl:text>
+                        </xsl:element>
+                     </xsl:element>
                      <xsl:apply-templates select="." mode="apparatus"/>
                   </xsl:element>
-               </xsl:for-each>
+               </xsl:element>
+            </xsl:for-each>
          </xsl:element>
          <xsl:if test="$commentaryPath">
             <xsl:element name="h3">
@@ -52,7 +65,21 @@
             <xsl:attribute name="class">apparatus commentary</xsl:attribute>
             <xsl:for-each select="$commentaryPath">
                <xsl:element name="li">
-                  <xsl:apply-templates select="." mode="apparatus"/>
+                  <xsl:element name="div">
+                     <xsl:attribute name="class">row</xsl:attribute>
+                     <xsl:element name="div">
+                        <xsl:attribute name="class">col-xs-1</xsl:attribute>
+                        <xsl:element name="a">
+                           <xsl:attribute name="href">#transcription</xsl:attribute>
+                           <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
+                           <xsl:attribute name="class">apparatus</xsl:attribute>
+                           <xsl:text>* </xsl:text>
+                           <xsl:number count="tei:note[@type=('commentary', 'definition')] | tei:choice" level="any"/>
+                           <xsl:text>.</xsl:text>
+                        </xsl:element>
+                     </xsl:element>
+                     <xsl:apply-templates select="." mode="apparatus"/>
+                  </xsl:element>
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
@@ -66,7 +93,21 @@
             <xsl:attribute name="class">apparatus rdg</xsl:attribute>
             <xsl:for-each select="$rdgPath">
                <xsl:element name="li">
-                  <xsl:apply-templates select="." mode="apparatus"/>
+                  <xsl:element name="div">
+                     <xsl:attribute name="class">row</xsl:attribute>
+                     <xsl:element name="div">
+                        <xsl:attribute name="class">col-xs-1</xsl:attribute>
+                        <xsl:element name="a">
+                           <xsl:attribute name="href">#transcription</xsl:attribute>
+                           <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
+                           <xsl:attribute name="class">apparatus</xsl:attribute>
+                           <xsl:text>‡ </xsl:text>
+                           <xsl:number level="any"/>
+                           <xsl:text>.</xsl:text>
+                        </xsl:element>
+                     </xsl:element>
+                     <xsl:apply-templates select="." mode="apparatus"/>
+                  </xsl:element>
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
@@ -186,6 +227,9 @@
 
    <!-- will be changed in https://github.com/Edirom/WeGA-WebApp/issues/307 -->
    <xsl:template match="tei:app" mode="apparatus">
+      <xsl:variable name="counter">
+         <xsl:number level="any"/>
+      </xsl:variable>
       <xsl:variable name="lemElem" select="tei:lem/descendant::text()"/>
       <xsl:variable name="lemWit" select="tei:rdg/substring-after(@wit,'#')"/>
       <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$lemWit]/data(@n)"/>
@@ -203,11 +247,12 @@
          </xsl:choose>
       </xsl:variable>
       <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="class">apparatusEntry col-xs-11</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
+         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:element name="div">
             <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/></strong> <!-- source containing the lemma the first text source by definition' -->
             <xsl:variable name="lemma">
@@ -353,6 +398,9 @@
 
    <!-- TODO: Beschreibung von gap noch etwas dürftig bzw. gedoppelt in Titel und Beschreibung -->
    <xsl:template match="tei:gap" mode="apparatus">
+      <xsl:variable name="counter">
+         <xsl:number level="any"/>
+      </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
@@ -363,6 +411,7 @@
                <xsl:value-of select="wega:getLanguageString('outofScope',$lang)"/>
             </xsl:if>
          </xsl:attribute>
+         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:text> </xsl:text>
          <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
          <xsl:text> </xsl:text>
@@ -569,12 +618,16 @@
       <xsl:param name="title" as="xs:string"/>
       <xsl:param name="lemma" as="item()*"/>
       <xsl:param name="explanation" as="item()*"/>
+      <xsl:variable name="counter">
+         <xsl:number level="any"/>
+      </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="$title"/>
          </xsl:attribute>
+         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:if test="$lemma">
             <xsl:element name="span">
                <xsl:attribute name="class" select="'tei_lemma'"/>
@@ -589,7 +642,6 @@
          </xsl:if>
       </xsl:element>
    </xsl:template>
-
    <xsl:function name="wega:createID">
       <xsl:param name="elem" as="element()"/>
       <xsl:choose>
