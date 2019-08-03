@@ -72,6 +72,8 @@
          </xsl:element>
       </xsl:element>
    </xsl:template>
+   
+   <xsl:template match="tei:listWit"/> <!-- prevent unintended witness output -->
 
    <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
       <xsl:call-template name="popover"/>
