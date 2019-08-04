@@ -183,10 +183,10 @@ $('#transcription a[href$="#editorial"], a[href$="#backlinks"], a[href$="#transc
         hash = url.substring(url.indexOf('#')+1),
         hasTab = $('[data-toggle=tab][href*='+hash+']'),
         hasAccordion = $('[data-toggle=collapse][href*='+hash+']');
-        apparatusLink = $(this).hasClass("apparatus"),
+        apparatusLink = $(this).hasClass("apparatus-link"),
         ref = $(this).attr("data-href");
 
-    if (hasTab && apparatusLink) { // if clicked link is an link within the apparatus (marked with class .apparatus)
+    if (hasTab && apparatusLink) { // if clicked link is an link within the apparatus (marked with class .apparatus-link)
          hasTab.tab('show'); // open tab
               $(document).on('shown.bs.tab', 'a[href="#transcription"]', function (e) { //wait for tab to be loaded
                  $(".hi-").removeClass("hi-"); //remove previous highlight

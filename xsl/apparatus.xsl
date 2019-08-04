@@ -45,7 +45,7 @@
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
-                           <xsl:attribute name="class">apparatus</xsl:attribute>
+                           <xsl:attribute name="class">apparatus-link</xsl:attribute>
                            <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/> <!-- should be in a variable -->
                            <xsl:text>.</xsl:text>
                         </xsl:element>
@@ -72,7 +72,7 @@
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
-                           <xsl:attribute name="class">apparatus</xsl:attribute>
+                           <xsl:attribute name="class">apparatus-link</xsl:attribute>
                            <xsl:text>* </xsl:text>
                            <xsl:number count="tei:note[@type=('commentary', 'definition')] | tei:choice" level="any"/>
                            <xsl:text>.</xsl:text>
@@ -100,7 +100,7 @@
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
-                           <xsl:attribute name="class">apparatus</xsl:attribute>
+                           <xsl:attribute name="class">apparatus-link</xsl:attribute>
                            <xsl:text>‡ </xsl:text>
                            <xsl:number level="any"/>
                            <xsl:text>.</xsl:text>
