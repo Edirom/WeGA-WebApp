@@ -15,7 +15,7 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace xmldb = "http://exist-db.org/xquery/xmldb";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace json-output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace kml="http://www.opengis.net/kml/2.2";
 import module namespace functx="http://www.functx.com";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "../query.xqm";
@@ -163,9 +163,9 @@ declare function local:serialize-json($response as item()*) {
     return 
         response:stream(
             serialize($response, 
-                <json-output:serialization-parameters>
-                    <json-output:method>json</json-output:method>
-                </json-output:serialization-parameters>
+                <output:serialization-parameters>
+                    <output:method>json</output:method>
+                </output:serialization-parameters>
             ), 
             string-join($serializationParameters, ' ')
         )
