@@ -67,9 +67,9 @@ declare
     return
         if($rev) then 
             map {
-                'ant-log-rev' := $rev,
-                'ant-log-success' := ($logLines = 'BUILD SUCCESSFUL'),
-                'ant-log-url' := core:link-to-current-app('logs/' || $rev || '.log')
+                'ant-log-rev' : $rev,
+                'ant-log-success' : ($logLines = 'BUILD SUCCESSFUL'),
+                'ant-log-url' : core:link-to-current-app('logs/' || $rev || '.log')
             }
         else map {}
 };
@@ -78,7 +78,7 @@ declare
 	%templates:wrap 
 	function dev-app:app-status($node as node(), $model as map(*)) as map(*) {
 	    map {
-	        'deployment-date' := date:format-date(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, $config:default-date-picture-string($model?lang), $model?lang)
+	        'deployment-date' : date:format-date(xs:dateTime($config:repo-descriptor/repo:deployed) cast as xs:date, $config:default-date-picture-string($model?lang), $model?lang)
 	    }
 };
 
@@ -88,7 +88,7 @@ declare
         let $wega-docTypes := for $func in wdt:members('unary-docTypes') return $func(())('name')
         return 
             map {
-                'newID-docTypes' := $wega-docTypes
+                'newID-docTypes' : $wega-docTypes
             }
 };
 

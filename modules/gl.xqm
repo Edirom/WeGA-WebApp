@@ -130,15 +130,15 @@ declare
 		let $examples := if (exists($examples-selection)) then $examples-selection else $spec/tei:exemplum[@xml:lang="en"]
 		return
 			map {
-				'gloss' := $spec/tei:gloss[@xml:lang=$lang] ! ('(' || . || ')'),
-				'desc' := $spec/tei:desc[@xml:lang=$lang],
-				'spec' := $spec,
-				'specIDDisplay' := if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
-				'remarks' := $HTMLSpec/xhtml:div[@class='remarks'],
-				'examples' := $examples ! gl:print-exemplum(.),
-				'usage-label' := if ($spec/@usage) then <sup title="{concat("Status: ",$usage-string)}" class="{concat("usage_",$spec/data(@usage))}">{$spec/data(@usage)}</sup> else (),
-				'datatype' := $spec/tei:datatype/tei:dataRef/data(@key),
-				'closed_values' := $spec/tei:valList[@type='closed']/tei:valItem
+				'gloss' : $spec/tei:gloss[@xml:lang=$lang] ! ('(' || . || ')'),
+				'desc' : $spec/tei:desc[@xml:lang=$lang],
+				'spec' : $spec,
+				'specIDDisplay' : if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
+				'remarks' : $HTMLSpec/xhtml:div[@class='remarks'],
+				'examples' : $examples ! gl:print-exemplum(.),
+				'usage-label' : if ($spec/@usage) then <sup title="{concat("Status: ",$usage-string)}" class="{concat("usage_",$spec/data(@usage))}">{$spec/data(@usage)}</sup> else (),
+				'datatype' : $spec/tei:datatype/tei:dataRef/data(@key),
+				'closed_values' : $spec/tei:valList[@type='closed']/tei:valItem
 			}
 };
 
@@ -147,8 +147,8 @@ declare
 	function gl:breadcrumb($node as node(), $model as map(*)) as map() {
 	   (:util:log-system-out(request:get-parameter-names()),:)
 	   map {
-	       'specType' := lang:get-language-string(gl:specType(gl:spec($model?specID, $model?schemaID)), $model?lang),
-	       'editorialGuidelines-text_specType_url' := core:link-to-current-app(str:join-path-elements((
+	       'specType' : lang:get-language-string(gl:specType(gl:spec($model?specID, $model?schemaID)), $model?lang),
+	       'editorialGuidelines-text_specType_url' : core:link-to-current-app(str:join-path-elements((
 	           lang:get-language-string('project', $model?lang),
 	           lang:get-language-string('editorialGuidelines-text', $model?lang),
 	           lang:get-language-string(gl:specType(gl:spec($model('specID'), $model('schemaID'))), $model?lang),
@@ -190,7 +190,7 @@ declare
 		let $teiSpec := doc(str:join-path-elements(($gl:guidelines-collection-path, 'p5subset.xml')))//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')]
 		return
 			map {
-				'customizations' := ($schemaSpecs//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')] except $spec, $teiSpec)
+				'customizations' : ($schemaSpecs//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')] except $spec, $teiSpec)
 			}
 };
 
@@ -206,9 +206,9 @@ declare
 	   return
 	       if(count($attClasses | $localAtts) gt 0) then
     	       map {
-    				'attributes' := $attClasses | $localAtts,
-    				'attClasses' := $attClasses,
-    				'localAtts' := $localAtts
+    				'attributes' : $attClasses | $localAtts,
+    				'attClasses' : $attClasses,
+    				'localAtts' : $localAtts
     			}
     		else ()
 };
@@ -222,7 +222,7 @@ declare
 	   return
 	       if(count($members) gt 0) then
     	       map {
-    	           'members' := for $i in $members order by $i/@ident return $i 
+    	           'members' : for $i in $members order by $i/@ident return $i 
     	       }
            else ()
 };
@@ -252,11 +252,11 @@ declare
 	function gl:examples($node as node(), $model as map(*)) as map()? {
 		let $spec := gl:spec($model('exist:path'))
 		let $map := map {
-			'element' := $spec/data(@ident), 
-			'docType' := gl:schemaIdent2docType($spec/ancestor::tei:schemaSpec/data(@ident)), 
-			'namespace' := 'http://www.tei-c.org/ns/1.0', 
-			'swagger:config' := json-doc($config:swagger-config-path), 
-			'total' := true() 
+			'element' : $spec/data(@ident), 
+			'docType' : gl:schemaIdent2docType($spec/ancestor::tei:schemaSpec/data(@ident)), 
+			'namespace' : 'http://www.tei-c.org/ns/1.0', 
+			'swagger:config' : json-doc($config:swagger-config-path), 
+			'total' : true() 
 		}
 		let $examples := api:code-findByElement($map)
 (:		let $log := util:log-system-out($model('exist:path')):)
@@ -264,7 +264,7 @@ declare
 			map:merge((
 				$map,
 				map {
-					'search-results' := $examples
+					'search-results' : $examples
 				}
 			))
 };
@@ -284,7 +284,7 @@ declare
 		let $secNoOffset := count($chapter/preceding-sibling::tei:div)
 		return
 			map {
-				'transcription' := wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(map { 'main-source-path' := document-uri($gl:main-source), 'createSecNos' := 'true', 'secNoOffset' := $secNoOffset }))
+				'transcription' : wega-util:transform($chapter, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(map { 'main-source-path' : document-uri($gl:main-source), 'createSecNos' : 'true', 'secNoOffset' : $secNoOffset }))
 			}
 };
 
@@ -296,9 +296,9 @@ declare
             let $new-depth := string-join(($depth, count($div/preceding-sibling::tei:div) + 1), '.&#8201;')
             return
                 map {
-                    'label' := $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
-                    'url' :=  core:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
-                    'sub-items' := for $sub-item in $div/tei:div return $callBack($sub-item, $new-depth, $callBack)
+                    'label' : $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
+                    'url' :  core:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
+                    'sub-items' : for $sub-item in $div/tei:div return $callBack($sub-item, $new-depth, $callBack)
                 }
         }
         let $items :=  
@@ -308,7 +308,7 @@ declare
         
         return
             map {
-                 'divGen-items' := $items
+                 'divGen-items' : $items
             }
 };
 
@@ -329,7 +329,7 @@ declare function gl:print-divGen-item($node as node(), $model as map(*)) {
         element ul {
             for $item in $model?divGen-item?sub-items
             return
-                <li>{gl:print-divGen-item($node, map {'divGen-item' := $item})}</li>
+                <li>{gl:print-divGen-item($node, map {'divGen-item' : $item})}</li>
         } )
     else ()
 };
@@ -343,14 +343,14 @@ declare
 		let $docType := config:get-doctype-by-id($codeSample?docID)
 		return
 			map {
-	            'doc' := $doc,
-	            'docID' := $codeSample?docID,
-	            'docURL' := app:createUrlForDoc($doc, $lang),
-	            'relators' := $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
-	            'biblioType' := $doc/tei:biblStruct/data(@type),
-	            'workType' := $doc//mei:term/data(@classcode),
-	            'codeSample' := $codeSample?codeSample,
-	            'icon-src' := '$resources/img/icons/icon_' || $docType || '.png'
+	            'doc' : $doc,
+	            'docID' : $codeSample?docID,
+	            'docURL' : app:createUrlForDoc($doc, $lang),
+	            'relators' : $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
+	            'biblioType' : $doc/tei:biblStruct/data(@type),
+	            'workType' : $doc//mei:term/data(@classcode),
+	            'codeSample' : $codeSample?codeSample,
+	            'icon-src' : '$resources/img/icons/icon_' || $docType || '.png'
 	        }
 };
 	
@@ -423,14 +423,14 @@ declare
         let $specIDs := gl:spec-idents($model?schemaID, $specType)
         return 
             map {
-                'spec-list' := 
+                'spec-list' : 
                     for $id in $specIDs
                     group by $initial := lower-case(substring(functx:substring-after-if-contains($id,"att."), 1, 1))
                     order by $initial
                     return 
                          map {
-                            'label' := $initial,
-                            'items' := $id
+                            'label' : $initial,
+                            'items' : $id
                          }
                         
             }
@@ -447,8 +447,8 @@ declare function gl:spec-list-items($node as node(), $model as map(*)) as map()?
             }
     return 
     map {
-        'label' := $model?specs-by-initial?label,
-        'items' := $links
+        'label' : $model?specs-by-initial?label,
+        'items' : $links
     }
 };
 
@@ -486,8 +486,8 @@ declare %private function gl:tei-source($spec as element()) as map() {
 	let $customizationIdent := 'TEI version ' || $teiVersion
 	return
 		map {
-			'customizationIdent' := $customizationIdent,
-			'url' := $url
+			'customizationIdent' : $customizationIdent,
+			'url' : $url
 		}
 };
 
@@ -500,8 +500,8 @@ declare %private function gl:wega-customization($model as map(*)) as map() {
 	let $url := gl:link-to-spec($specID, $model?lang, 'html', $customizationIdent)
 	return
 		map {
-			'customizationIdent' := $customizationIdent,
-			'url' := $url
+			'customizationIdent' : $customizationIdent,
+			'url' : $url
 		}
 };
 

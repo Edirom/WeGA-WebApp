@@ -110,10 +110,10 @@ declare
         let $versionDate := date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
         return
             map {
-                'bugEmail' := config:get-option('bugEmail'),
-                'permalink' := core:permalink($model('docID')),
-                'versionNews' := app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ()),
-                'latestChange' :=
+                'bugEmail' : config:get-option('bugEmail'),
+                'permalink' : core:permalink($model('docID')),
+                'versionNews' : app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ()),
+                'latestChange' :
                     if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',($formatedDate,$author),$lang)
                     else lang:get-language-string('lastChangeDateWithoutAuthor', $formatedDate, $lang)
             }
@@ -123,7 +123,7 @@ declare
     %templates:wrap
     function app:bugreport($node as node(), $model as map(*)) as map(*) {
     	map {
-                'bugEmail' := config:get-option('bugEmail')
+                'bugEmail' : config:get-option('bugEmail')
             }
 };
 
@@ -155,7 +155,7 @@ declare
     %templates:wrap
     function app:line-wrap($node as node(), $model as map(*)) as map(*)? {
         map {
-            'line-wrap' := config:line-wrap()
+            'line-wrap' : config:line-wrap()
         }
 };
 
@@ -407,7 +407,7 @@ declare
     %templates:wrap
     function app:set-entries-per-page($node as node(), $model as map(*)) as map() {
 		map {
-			'limit' := config:entries-per-page()
+			'limit' : config:entries-per-page()
 		}
 };
 
@@ -536,7 +536,7 @@ declare function app:set-facet-checkbox($node as node(), $model as map(*), $key 
  :)
 declare function app:popover($node as node(), $model as map(*)) as map(*)* {
     map {
-        'result-page-entry' := $model('doc')
+        'result-page-entry' : $model('doc')
     }
 };
 
@@ -557,10 +557,10 @@ declare
             else core:logToFile('info', 'app:word-of-the-day(): no words of the day found')
         return 
             map {
-                'wordOfTheDay' := 
+                'wordOfTheDay' : 
                     if($random) then str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang)
                     else str:normalize-space($node/xhtml:h1),
-                'wordOfTheDayURL' := 
+                'wordOfTheDayURL' : 
                     if($random) then app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
                     else '#'
             }
@@ -580,9 +580,9 @@ declare
     let $length := count($events)
     return
         map {
-            'otd-date' := $date,
-            'events1' := subsequence($events, 1, ceiling($length div 2)),
-            'events2' := subsequence($events, ceiling($length div 2) + 1)
+            'otd-date' : $date,
+            'events1' : subsequence($events, 1, ceiling($length div 2)),
+            'events2' : subsequence($events, ceiling($length div 2) + 1)
         }
 };
 
@@ -661,7 +661,7 @@ declare
     %templates:wrap
     function app:index-news-items($node as node(), $model as map(*)) as map(*) {
         map {
-            'news' := subsequence(core:getOrCreateColl('news', 'indices', true()), 1, xs:int(config:get-option('maxNews')))
+            'news' : subsequence(core:getOrCreateColl('news', 'indices', true()), 1, xs:int(config:get-option('maxNews')))
         }
 };
 
@@ -669,9 +669,9 @@ declare
     %templates:default("lang", "en")
     function app:index-news-item($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'title' := wdt:news($model?newsItem)?title('html'),
-            'date' := date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}),
-            'url' := app:createUrlForDoc($model?newsItem, $lang)
+            'title' : wdt:news($model?newsItem)?title('html'),
+            'date' : date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}),
+            'url' : app:createUrlForDoc($model?newsItem, $lang)
         }
 };
 
@@ -709,17 +709,17 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
     let $gn-doc := er:grabExternalResource('geonames', $geonames-id, '', ())
     return
         map {
-            'gnd' := $gnd,
-            'names' := $model?doc//tei:placeName[@type],
-            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
-            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-            'geonames_alternateNames' := 
+            'gnd' : $gnd,
+            'names' : $model?doc//tei:placeName[@type],
+            'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+            'geonames_alternateNames' : 
                 for $alternateName in $gn-doc//gn:alternateName 
                 group by $name := $alternateName/text()
                 order by $name 
                 return
                     ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
-            'geonames_parentCountry' := $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() ! query:get-geonames-name(.)
+            'geonames_parentCountry' : $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() ! query:get-geonames-name(.)
         }
 };
 
@@ -727,8 +727,8 @@ declare
     %templates:wrap
     function app:place-basic-data($node as node(), $model as map(*)) as map(*) {
         map {
-            'geonames-id' := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1]),
-            'coordinates' := str:normalize-space($model?doc//tei:geo)
+            'geonames-id' : str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1]),
+            'coordinates' : str:normalize-space($model?doc//tei:geo)
         }
 };
 
@@ -779,11 +779,11 @@ declare
         }
         return
         map {
-            'ids' := $model?doc//mei:altId[not(@type='gnd')],
-            'relators' := query:relators($model?doc),
-            'workType' := $model?doc//mei:term/data(@classcode),
-            'titles' := $print-titles($model?doc, false()),
-            'altTitles' := $print-titles($model?doc, true())
+            'ids' : $model?doc//mei:altId[not(@type='gnd')],
+            'relators' : query:relators($model?doc),
+            'workType' : $model?doc//mei:term/data(@classcode),
+            'titles' : $print-titles($model?doc, false()),
+            'altTitles' : $print-titles($model?doc, true())
         }
 };
 
@@ -791,18 +791,18 @@ declare
     %templates:wrap
     function app:work-details($node as node(), $model as map(*)) as map(*) {
         map {
-            'sources' := 
+            'sources' : 
                 if($config:isDevelopment) then core:getOrCreateColl('sources', $model('docID'), true())
                 else (),
-            'creation' := wega-util:transform(
+            'creation' : wega-util:transform(
                 ($model?doc//mei:creation, $model?doc//mei:history), 
                 doc(concat($config:xsl-collection-path, '/works.xsl')), 
-                config:get-xsl-params( map {'dbPath' := document-uri($model?doc), 'docID' := $model?docID })
+                config:get-xsl-params( map {'dbPath' : document-uri($model?doc), 'docID' : $model?docID })
                 ), 
-            'dedicatees' := $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role='dte'],
-            'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
-            'gnd' := query:get-gnd($model('doc')),
-            'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+            'dedicatees' : $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role='dte'],
+            'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'gnd' : query:get-gnd($model('doc')),
+            'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         }
 };
 
@@ -810,8 +810,8 @@ declare
     %templates:wrap
     function app:prepare-work-id($node as node(), $model as map(*)) as map(*) {
         map {
-            'id-key' := $model?id/@type,
-            'id-value' := $model?id/text()
+            'id-key' : $model?id/@type,
+            'id-value' : $model?id/text()
         }
 };
 
@@ -838,23 +838,23 @@ declare
     %templates:default("lang", "en")
     function app:person-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map{
-            'fullnames' := $model('doc')//tei:persName[@type = 'full'] ! string-join(str:txtFromTEI(., $lang), ''),
-            'pseudonyme' := $model('doc')//tei:persName[@type = 'pseud'] ! string-join(str:txtFromTEI(., $lang), ''),
-            'birthnames' := $model('doc')//tei:persName[@subtype = 'birth'] ! string-join(str:txtFromTEI(., $lang), ''),
-            'realnames' := $model('doc')//tei:persName[@type = 'real'] ! string-join(str:txtFromTEI(., $lang), ''),
-            'altnames' := 
+            'fullnames' : $model('doc')//tei:persName[@type = 'full'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'pseudonyme' : $model('doc')//tei:persName[@type = 'pseud'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'birthnames' : $model('doc')//tei:persName[@subtype = 'birth'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'realnames' : $model('doc')//tei:persName[@type = 'real'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'altnames' : 
                 (
                 $model('doc')//tei:persName[@type = 'alt'][not(@subtype)] ! string-join(str:txtFromTEI(., $lang), ''),  
                 $model('doc')//tei:orgName[@type = 'alt'] ! string-join(str:txtFromTEI(., $lang), '')
                 ),
-            'marriednames' := $model('doc')//tei:persName[@subtype = 'married'] ! string-join(str:txtFromTEI(., $lang), ''),
-            'birth' := exists($model('doc')//tei:birth[not(tei:date[@type])]),
-            'baptism' := exists($model('doc')//tei:birth/tei:date[@type='baptism']),
-            'death' := exists($model('doc')//tei:death[not(tei:date[@type])]),
-            'funeral' := exists($model('doc')//tei:death/tei:date[@type = 'funeral']),
-            'occupations' := $model('doc')//tei:occupation | $model('doc')//tei:label[.='Art der Institution']/following-sibling::tei:desc,
-            'residences' := $model('doc')//tei:residence | $model('doc')//tei:label[.='Ort']/following-sibling::tei:desc/tei:*,
-            'addrLines' := $model('doc')//tei:addrLine[ancestor::tei:affiliation[tei:orgName='Carl-Maria-von-Weber-Gesamtausgabe']] 
+            'marriednames' : $model('doc')//tei:persName[@subtype = 'married'] ! string-join(str:txtFromTEI(., $lang), ''),
+            'birth' : exists($model('doc')//tei:birth[not(tei:date[@type])]),
+            'baptism' : exists($model('doc')//tei:birth/tei:date[@type='baptism']),
+            'death' : exists($model('doc')//tei:death[not(tei:date[@type])]),
+            'funeral' : exists($model('doc')//tei:death/tei:date[@type = 'funeral']),
+            'occupations' : $model('doc')//tei:occupation | $model('doc')//tei:label[.='Art der Institution']/following-sibling::tei:desc,
+            'residences' : $model('doc')//tei:residence | $model('doc')//tei:label[.='Ort']/following-sibling::tei:desc/tei:*,
+            'addrLines' : $model('doc')//tei:addrLine[ancestor::tei:affiliation[tei:orgName='Carl-Maria-von-Weber-Gesamtausgabe']] 
         }
 };
 
@@ -862,24 +862,24 @@ declare
     %templates:wrap
     function app:person-details($node as node(), $model as map(*)) as map(*) {
     map{
-        'correspondence' := core:getOrCreateColl('letters', $model('docID'), true()),
-        'diaries' := core:getOrCreateColl('diaries', $model('docID'), true()),
-        'writings' := core:getOrCreateColl('writings', $model('docID'), true()),
-        'works' := core:getOrCreateColl('works', $model('docID'), true()),
-        'contacts' := core:getOrCreateColl('contacts', $model('docID'), true()),
-        'biblio' := core:getOrCreateColl('biblio', $model('docID'), true()),
-        'news' := core:getOrCreateColl('news', $model('docID'), true()),
+        'correspondence' : core:getOrCreateColl('letters', $model('docID'), true()),
+        'diaries' : core:getOrCreateColl('diaries', $model('docID'), true()),
+        'writings' : core:getOrCreateColl('writings', $model('docID'), true()),
+        'works' : core:getOrCreateColl('works', $model('docID'), true()),
+        'contacts' : core:getOrCreateColl('contacts', $model('docID'), true()),
+        'biblio' : core:getOrCreateColl('biblio', $model('docID'), true()),
+        'news' : core:getOrCreateColl('news', $model('docID'), true()),
         (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
-        'backlinks' := core:getOrCreateColl('backlinks', $model('docID'), true()),
-        'thematicCommentaries' := core:getOrCreateColl('thematicCommentaries', $model('docID'), true()),
-        'documents' := core:getOrCreateColl('documents', $model('docID'), true()),
+        'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
+        'thematicCommentaries' : core:getOrCreateColl('thematicCommentaries', $model('docID'), true()),
+        'documents' : core:getOrCreateColl('documents', $model('docID'), true()),
         
-        'source' := $model('doc')/tei:person/data(@source),
-        'gnd' := query:get-gnd($model?doc),
-        'viaf' := query:get-viaf($model?doc),
-        'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+        'source' : $model('doc')/tei:person/data(@source),
+        'gnd' : query:get-gnd($model?doc),
+        'viaf' : query:get-viaf($model?doc),
+        'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
-        (:                'xml-download-URL' := core:link-to-current-app($model('docID') || '.xml'):)
+        (:                'xml-download-URL' : core:link-to-current-app($model('docID') || '.xml'):)
     }
 };
 
@@ -1015,9 +1015,9 @@ declare
         let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
         return 
             map {
-                'wikiContent' := $wikiContent,
-                'wikiUrl' := $wikiUrl,
-                'wikiName' := $wikiName
+                'wikiContent' : $wikiContent,
+                'wikiUrl' : $wikiUrl,
+                'wikiName' : $wikiName
             }
 };
 
@@ -1077,7 +1077,7 @@ declare
         let $gnd := query:get-gnd($model?doc)
         return 
             map {
-                'adbndbContent' := 
+                'adbndbContent' : 
                     if(er:lookup-gnd-from-beaconProvider('ndbBeacon', $gnd)) 
                     then er:grab-external-resource-via-beacon('ndbBeacon', $gnd)
                     else if($gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $gnd)) 
@@ -1114,34 +1114,34 @@ declare
         let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return
             map {
-                'docType' := config:get-doctype-by-id($model?docID),
-                'dnbContent' := $dnbContent,
-                'dnbName' := ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePlaceOrGeographicName/str:normalize-space(.)),
-                'dnbBirths' := 
+                'docType' : config:get-doctype-by-id($model?docID),
+                'dnbContent' : $dnbContent,
+                'dnbName' : ($dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePerson/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForTheCorporateBody/str:normalize-space(.), $dnbContent//rdf:RDF/rdf:Description/gndo:preferredNameForThePlaceOrGeographicName/str:normalize-space(.)),
+                'dnbBirths' : 
                     if($dnbContent//gndo:dateOfBirth castable as xs:date) then date:format-date($dnbContent//gndo:dateOfBirth, $config:default-date-picture-string($lang), $lang)
                     else if($dnbContent//gndo:dateOfBirth castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfBirth, $lang)
                     else(),
-                'dnbDeaths' := 
+                'dnbDeaths' : 
                     if($dnbContent//gndo:dateOfDeath castable as xs:date) then date:format-date($dnbContent//gndo:dateOfDeath, $config:default-date-picture-string($lang), $lang)
                     else if($dnbContent//gndo:dateOfDeath castable as xs:gYear) then date:formatYear($dnbContent//gndo:dateOfDeath, $lang)
                     else(),
-                'dnbOccupations' := 
+                'dnbOccupations' : 
                     if($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation or $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral) then
                         ($dnbOccupations, $dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupationAsLiteral/str:normalize-space(.))
                     else (),
-                'biographicalOrHistoricalInformations' := $dnbContent//gndo:biographicalOrHistoricalInformation,
-                'dnbOtherNames' := (
+                'biographicalOrHistoricalInformations' : $dnbContent//gndo:biographicalOrHistoricalInformation,
+                'dnbOtherNames' : (
                     for $name in ($dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePerson, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForTheCorporateBody, $dnbContent//rdf:RDF/rdf:Description/gndo:variantNameForThePlaceOrGeographicName/str:normalize-space(.))
                     return
                         if(functx:all-whitespace($name)) then ()
                         else str:normalize-space($name)
                 ),
-                'gndDefinition' := $dnbContent//gndo:definition,
-                'lang' := $lang,
-                'dnbURL' := config:get-option('dnb') || $gnd,
-                'preferredNameForTheWork':= $dnbContent//gndo:preferredNameForTheWork  ! str:normalize-space(.),
-                'variantNamesForTheWork' := $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
-                'subjectHeadings' := $subjectHeadings
+                'gndDefinition' : $dnbContent//gndo:definition,
+                'lang' : $lang,
+                'dnbURL' : config:get-option('dnb') || $gnd,
+                'preferredNameForTheWork' : $dnbContent//gndo:preferredNameForTheWork  ! str:normalize-space(.),
+                'variantNamesForTheWork' : $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
+                'subjectHeadings' : $subjectHeadings
             }
 };
 
@@ -1217,13 +1217,13 @@ declare
         let $facs := query:facsimile($model?doc)
         return
             map {
-                'facsimile' := $facs,
-                'localFacsimiles' := $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]],
-                'externalIIIFManifestFacsimiles' := $facs[@sameAs],
-                'hasCreation' := exists($model?doc//tei:creation),
-                'xml-download-url' := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
-                'thematicCommentaries' := distinct-values($model('doc')//tei:note[@type='thematicCom']/@target),
-                'backlinks' := wdt:backlinks(())('filter-by-person')($model?docID)
+                'facsimile' : $facs,
+                'localFacsimiles' : $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]],
+                'externalIIIFManifestFacsimiles' : $facs[@sameAs],
+                'hasCreation' : exists($model?doc//tei:creation),
+                'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+                'thematicCommentaries' : distinct-values($model('doc')//tei:note[@type='thematicCom']/@target),
+                'backlinks' : wdt:backlinks(())('filter-by-person')($model?docID)
             }
 };
 
@@ -1245,12 +1245,12 @@ declare
         let $lang := $model('lang')
         let $docType := $model('docType')
         let $xslParams := config:get-xsl-params( map {
-            'dbPath' := document-uri($doc),
-            'docID' := $docID,
-            'transcript' := 'true',
+            'dbPath' : document-uri($doc),
+            'docID' : $docID,
+            'transcript' : 'true',
             (: Some special flag for diaries :)
-            'suppressLinks' := if(year-from-date(xs:date($doc/tei:ab/@n)) = $config:diaryYearsToSuppress) then 'true' else (),
-            'createSecNos' := if($docID = ('A070010', 'A070001')) then 'true' else ()
+            'suppressLinks' : if(year-from-date(xs:date($doc/tei:ab/@n)) = $config:diaryYearsToSuppress) then 'true' else (),
+            'createSecNos' : if($docID = ('A070010', 'A070001')) then 'true' else ()
             } )
         let $xslt1 := 
             switch($docType)
@@ -1290,8 +1290,8 @@ declare
          
          return 
             map { 
-                'transcription' := (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
-                'apparatus' := $body/descendant-or-self::*[@class='apparatus']
+                'transcription' : (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
+                'apparatus' : $body/descendant-or-self::*[@class='apparatus']
             }
 };
 
@@ -1323,9 +1323,9 @@ declare
     let $textSourcesCount := count(query:text-sources($model?doc))
     return
         map {
-            'textSources' := query:text-sources($model?doc),
-            'textSourcesCountString' := if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else "",
-            'countClass' := if ($textSourcesCount > 1) then "decimal" else "none"
+            'textSources' : query:text-sources($model?doc),
+            'textSourcesCountString' : if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else "",
+            'countClass' : if ($textSourcesCount > 1) then "decimal" else "none"
         }
 };
 
@@ -1352,12 +1352,12 @@ declare
         let $collapse := exists($sourceData-content) or exists($model($key)/tei:additional) or exists($model($key)/tei:relatedItem)
         return
             map {
-                'collapse' := $collapse,
-                'sourceLink' := concat("#",$source-id),
-                'sourceId' := $source-id,
-                'sourceLink-content' := $sourceLink-content,
-                'sourceData-content' := $sourceData-content,
-                'sourceCategory' := $sourceCategory
+                'collapse' : $collapse,
+                'sourceLink' : concat("#",$source-id),
+                'sourceId' : $source-id,
+                'sourceLink-content' : $sourceLink-content,
+                'sourceData-content' : $sourceData-content,
+                'sourceCategory' : $sourceCategory
             }
 };
 
@@ -1366,7 +1366,7 @@ declare
     function app:additionalSources($node as node(), $model as map(*)) as map(*) {
         (: tei:msDesc, tei:bibl, tei:biblStruct als mögliche Kindelemente von tei:additional/tei:listBibl :)
         map {
-            'additionalSources' := $model('textSource')//tei:additional/tei:listBibl/tei:* | $model('textSource')/tei:relatedItem/tei:*[not(./self::tei:listBibl)] | $model('textSource')/tei:relatedItem/tei:listBibl/tei:* 
+            'additionalSources' : $model('textSource')//tei:additional/tei:listBibl/tei:* | $model('textSource')/tei:relatedItem/tei:*[not(./self::tei:listBibl)] | $model('textSource')/tei:relatedItem/tei:listBibl/tei:* 
         }
 };
 
@@ -1379,7 +1379,7 @@ declare
     function app:externalImageURLs($node as node(), $model as map(*)) as map(*) {
         map {
             (: intersect with $model?facsimile to only get allowed facsimiles :)
-            'externalImageURLs' := (query:witness-facsimile($model?textSource) intersect $model?facsimile)/tei:graphic[starts-with(@url, 'http')]/data(@url) 
+            'externalImageURLs' : (query:witness-facsimile($model?textSource) intersect $model?facsimile)/tei:graphic[starts-with(@url, 'http')]/data(@url) 
         }
 };
 
@@ -1456,9 +1456,9 @@ declare
     %templates:wrap
     function app:check-apparatus($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'incipit' := query:incipit($model('doc')),
-            'summary' := query:summary($model('doc')),
-            'generalRemark' := query:generalRemark($model('doc'))
+            'incipit' : query:incipit($model('doc')),
+            'summary' : query:summary($model('doc')),
+            'generalRemark' : query:generalRemark($model('doc'))
         }
 };
 
@@ -1658,14 +1658,14 @@ declare
     %templates:default("lang", "en")
     function app:preview($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'doc' := $model('result-page-entry'),
-            'docID' := $model('result-page-entry')/root()/*/data(@xml:id),
-            'docURL' := app:createUrlForDoc($model('result-page-entry'), $lang),
-            'docType' := config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
-            'relators' := query:relators($model('result-page-entry')),
-            'biblioType' := $model('result-page-entry')/tei:biblStruct/data(@type),
-            'workType' := $model('result-page-entry')//mei:term/data(@classcode),
-            'newsDate' := date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
+            'doc' : $model('result-page-entry'),
+            'docID' : $model('result-page-entry')/root()/*/data(@xml:id),
+            'docURL' : app:createUrlForDoc($model('result-page-entry'), $lang),
+            'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
+            'relators' : query:relators($model('result-page-entry')),
+            'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
+            'workType' : $model('result-page-entry')//mei:term/data(@classcode),
+            'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
         }
 };
 
@@ -1673,8 +1673,8 @@ declare
     %templates:wrap
     function app:preview-details($node as node(), $model as map(*)) as map(*) {
         map {
-            'hasCreation' := exists($model('doc')//tei:creation),
-            'summary' := app:print-summary($node, $model, $model?lang) => string-join('; ') => str:normalize-space()
+            'hasCreation' : exists($model('doc')//tei:creation),
+            'summary' : app:print-summary($node, $model, $model?lang) => string-join('; ') => str:normalize-space()
         }
 };
 
@@ -1812,7 +1812,7 @@ declare
     %templates:wrap
     function app:error-settings($node as node(), $model as map(*)) as map(*) {
         map {
-            'bugEmail' := config:get-option('bugEmail') 
+            'bugEmail' : config:get-option('bugEmail') 
         }
 }; 
 
@@ -1822,5 +1822,5 @@ declare
  : @author Peter Stadler
  :)
 declare function app:inject-api-base($node as node(), $model as map(*))  {
-    app-shared:set-attr($node, map:merge(($model, map {'api-base' := config:api-base()})), 'data-api-base', 'api-base')
+    app-shared:set-attr($node, map:merge(($model, map {'api-base' : config:api-base()})), 'data-api-base', 'api-base')
 };

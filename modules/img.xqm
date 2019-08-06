@@ -76,8 +76,8 @@ declare %private function img:iconography4persons($node as node(), $model as map
     let $portrait := ($iconographyImages, img:get-generic-portrait($model, $lang))[1]
     return
         map { 
-            'iconographyImages' := $iconographyImages,
-            'portrait' := $portrait
+            'iconographyImages' : $iconographyImages,
+            'portrait' : $portrait
         }
 };
 
@@ -95,8 +95,8 @@ declare %private function img:iconography4places($node as node(), $model as map(
             else ()
     return
         map { 
-                'iconographyImages' := $wikidata-images,
-                'portrait' := ($coa, $wikidata-images, img:get-generic-portrait($model, $lang))[1]
+                'iconographyImages' : $wikidata-images,
+                'portrait' : ($coa, $wikidata-images, img:get-generic-portrait($model, $lang))[1]
             }
 };
 
@@ -118,8 +118,8 @@ declare %private function img:iconography4works($node as node(), $model as map(*
     let $wikidata-images := img:wikidata-images($model, $lang)
     return 
     map { 
-        'iconographyImages' := $wikidata-images,
-        'portrait' := ($wikidata-images, img:get-generic-portrait($model, $lang) )[1]
+        'iconographyImages' : $wikidata-images,
+        'portrait' : ($wikidata-images, img:get-generic-portrait($model, $lang) )[1]
     }
 };
 
@@ -198,10 +198,10 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
         return 
             if($thumbURI castable as xs:anyURI) then
                 map {
-                    'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
-                    'linkTarget' := $linkTarget,
-                    'source' := 'Wikimedia',
-                    'url' := function($size) {
+                    'caption' : normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
+                    'linkTarget' : $linkTarget,
+                    'source' : 'Wikimedia',
+                    'url' : function($size) {
                         switch($size)
                         case 'thumb' case 'small' return $thumbURI
                         case 'large' return 
@@ -248,10 +248,10 @@ declare function img:wikimedia-api-imageinfo($images as xs:string*, $lang as xs:
         let $linkTarget := $page//ii/data(@descriptionurl)
         return 
             map {
-                'caption' := normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
-                'linkTarget' := $linkTarget,
-                'source' := 'Wikimedia',
-                'url' := function($size) {
+                'caption' : normalize-space(concat($caption,' (', lang:get-language-string('sourceWikipedia', $lang), ')')),
+                'linkTarget' : $linkTarget,
+                'source' : 'Wikimedia',
+                'url' : function($size) {
                     let $iiifInfo := er:wikimedia-iiif($page/data(@title))
                     return
                         switch($size)
@@ -297,10 +297,10 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
         return 
             if($picURI castable as xs:anyURI) then
                 map {
-                    'caption' := normalize-space($div/following-sibling::xhtml:p/xhtml:a) || ', ' || replace(normalize-space(string-join($div/following-sibling::xhtml:p/text(), ' ')), '&#65533;', ' ') || ' (Quelle: Digitaler Portraitindex)',
-                    'linkTarget' := $div/xhtml:a/data(@href),
-                    'source' := 'Digitaler Portraitindex',
-                    'url' := function($size) {
+                    'caption' : normalize-space($div/following-sibling::xhtml:p/xhtml:a) || ', ' || replace(normalize-space(string-join($div/following-sibling::xhtml:p/text(), ' ')), '&#65533;', ' ') || ' (Quelle: Digitaler Portraitindex)',
+                    'linkTarget' : $div/xhtml:a/data(@href),
+                    'source' : 'Digitaler Portraitindex',
+                    'url' : function($size) {
                         $picURI
                     }
                 }
@@ -328,10 +328,10 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
         return 
             if($picURI castable as xs:anyURI) then
                 map {
-                    'caption' := normalize-space(string-join($div/xhtml:br[2]/following-sibling::node(), ' ')) || ' (Quelle: Trierer Porträtdatenbank)',
-                    'linkTarget' := 'http://www.tripota.uni-trier.de/' || $div/xhtml:a[1]/data(@href),
-                    'source' := 'Trierer Porträtdatenbank',
-                    'url' := function($size) {
+                    'caption' : normalize-space(string-join($div/xhtml:br[2]/following-sibling::node(), ' ')) || ' (Quelle: Trierer Porträtdatenbank)',
+                    'linkTarget' : 'http://www.tripota.uni-trier.de/' || $div/xhtml:a[1]/data(@href),
+                    'source' : 'Trierer Porträtdatenbank',
+                    'url' : function($size) {
                         $picURI
                     }
                 }
@@ -359,10 +359,10 @@ declare %private function img:munich-stadtmuseum-images($model as map(*), $lang 
         return 
             if($picURI castable as xs:anyURI) then
                 map {
-                    'caption' := str:normalize-space($a/xhtml:img/@title) || ' (Quelle: Münchner Stadtmuseum)',
-                    'linkTarget' := 'https://stadtmuseum.bayerische-landesbibliothek-online.de/pnd/' || $gnd,
-                    'source' := 'Münchner Stadtmuseum',
-                    'url' := function($size) {
+                    'caption' : str:normalize-space($a/xhtml:img/@title) || ' (Quelle: Münchner Stadtmuseum)',
+                    'linkTarget' : 'https://stadtmuseum.bayerische-landesbibliothek-online.de/pnd/' || $gnd,
+                    'source' : 'Münchner Stadtmuseum',
+                    'url' : function($size) {
                         $picURI
                     }
                 }
@@ -385,10 +385,10 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
         order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
         return 
             map {
-                'caption' := normalize-space($fig/preceding::tei:title),
-                'linkTarget' := $iiifURI || '/full/full/0/native.jpg',
-                'source' := wega-util:transform($fig//tei:bibl, doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(())),
-                'url' := function($size) {
+                'caption' : normalize-space($fig/preceding::tei:title),
+                'linkTarget' : $iiifURI || '/full/full/0/native.jpg',
+                'source' : wega-util:transform($fig//tei:bibl, doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(())),
+                'url' : function($size) {
                     switch($size)
                     case 'thumb' return $iiifURI || '/full/,52/0/native.jpg'
                     case 'small' return $iiifURI || '/full/,60/0/native.jpg'
@@ -433,10 +433,10 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
         else $model('doc')//tei:sex/text()
     return
         map {
-            'caption' := 'no portrait available',
-            'linkTarget' := (),
-            'source' := 'Carl-Maria-von-Weber-Gesamtausgabe',
-            'url' := function($size) {
+            'caption' : 'no portrait available',
+            'linkTarget' : (),
+            'source' : 'Carl-Maria-von-Weber-Gesamtausgabe',
+            'url' : function($size) {
                 switch($size)
                 case 'thumb' case 'small' return 
                     switch($sex)
@@ -469,14 +469,14 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
  :)
 declare function img:iiif-collection($docType as xs:string) as map(*) {
     map {
-        "@context" := "http://iiif.io/api/presentation/2/context.json",
-        "@id" := "https://weber-gesamtausgabe.de/IIIF/letters",
-        "@type" := "sc:Collection",
-        "label" := "Top Level Letters Collection for the Carl-Maria-von-Weber-Gesamtausgabe",
-        "viewingHint" := "top",
-        "description" := "Description of Collection kommt später",
-        "attribution" := "Provided by the WeGA",
-        "manifests" := array {
+        "@context" : "http://iiif.io/api/presentation/2/context.json",
+        "@id" : "https://weber-gesamtausgabe.de/IIIF/letters",
+        "@type" : "sc:Collection",
+        "label" : "Top Level Letters Collection for the Carl-Maria-von-Weber-Gesamtausgabe",
+        "viewingHint" : "top",
+        "description" : "Description of Collection kommt später",
+        "attribution" : "Provided by the WeGA",
+        "manifests" : array {
             core:getOrCreateColl($docType, 'indices', true())//tei:facsimile ! map {
                 "@id": controller:iiif-manifest-id(.),
                 "@type": "sc:Manifest",
@@ -501,28 +501,28 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
     let $attribution := img:iiif-manifest-attribution($facsimile)
     return
         map {
-            "@context":= "http://iiif.io/api/presentation/2/context.json",
-            "@id":= $manifest-id,
-            "@type" := "sc:Manifest", 
-            "label":= $label,
-            "description" := $desc,
-            "attribution" := $attribution,
-            "license" := query:licence($facsimile/root()),
-            "logo" := map {
-                "@id" := "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
-                "service" := map {
-                    "@context": "http://iiif.io/api/image/2/context.json",
-                    "@id": "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
-                    "profile": "http://iiif.io/api/image/2/level2.json"
+            "@context" : "http://iiif.io/api/presentation/2/context.json",
+            "@id" : $manifest-id,
+            "@type" : "sc:Manifest", 
+            "label" : $label,
+            "description" : $desc,
+            "attribution" : $attribution,
+            "license" : query:licence($facsimile/root()),
+            "logo" : map {
+                "@id" : "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                "service" : map {
+                    "@context" : "http://iiif.io/api/image/2/context.json",
+                    "@id" : "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                    "profile" : "http://iiif.io/api/image/2/level2.json"
                 }
             },
-            "sequences" := [ map {
-                "@context" := "http://iiif.io/api/presentation/2/context.json",
-                "@id":= replace($manifest-id, 'manifest.json', 'sequence/') || 'default',
-                "@type" := "sc:Sequence", 
-                "label" := "default",
-                "viewingHint": "paged",
-                "canvases" := array {
+            "sequences" : [ map {
+                "@context" : "http://iiif.io/api/presentation/2/context.json",
+                "@id" : replace($manifest-id, 'manifest.json', 'sequence/') || 'default',
+                "@type" : "sc:Sequence", 
+                "label" : "default",
+                "viewingHint" : "paged",
+                "canvases" : array {
                     $facsimile/tei:graphic ! img:iiif-canvas(.)
                 }
             }]
@@ -555,11 +555,11 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
             map:entry("height", xs:integer($image-info?height)),
             map:entry("width", xs:integer($image-info?width)),
             map:entry("images", [ img:iiif-image( map { 
-                "image-id" := $image-id,
-                "canvas-id" := $canvas-id,
-                "manifest-id" := $manifest-id,
-                "height" := xs:integer($image-info?height),
-                "width" := xs:integer($image-info?width)
+                "image-id" : $image-id,
+                "canvas-id" : $canvas-id,
+                "manifest-id" : $manifest-id,
+                "height" : xs:integer($image-info?height),
+                "width" : xs:integer($image-info?width)
             } ) ])
         ))
 };
@@ -572,20 +572,20 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
  :)
 declare %private function img:iiif-image($model as map()) as map(*) {
     map {
-        "@type" := "oa:Annotation",
-        "@id" := $model?image-id || '/annotation', 
-        "motivation" := "sc:painting",
-        "on" := $model?canvas-id,
-        "resource" := map {
-            "@id" := $model?image-id || "/full/400,/0/default.jpg",
-            "@type" := "dctypes:Image",
-            "height" := $model?height,
-            "width" := $model?width,
-            "format" := "image/jpg",
-            "service":= map {
-                "@context": "http://iiif.io/api/image/2/context.json", 
-                "@id": $model?image-id, 
-                "profile": "http://iiif.io/api/image/2/level2.json"
+        "@type" : "oa:Annotation",
+        "@id" : $model?image-id || '/annotation', 
+        "motivation" : "sc:painting",
+        "on" : $model?canvas-id,
+        "resource" : map {
+            "@id" : $model?image-id || "/full/400,/0/default.jpg",
+            "@type" : "dctypes:Image",
+            "height" : $model?height,
+            "width" : $model?width,
+            "format" : "image/jpg",
+            "service" : map {
+                "@context" : "http://iiif.io/api/image/2/context.json", 
+                "@id" : $model?image-id, 
+                "profile" : "http://iiif.io/api/image/2/level2.json"
             }
         }
     }

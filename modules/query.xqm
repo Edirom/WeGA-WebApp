@@ -415,8 +415,8 @@ declare function query:correspContext($doc as document-node()) as map(*)? {
     let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
         if($letter and exists(query:get-normalized-date($letter))) then
             map {
-                'fromTo' := $fromTo,
-                'doc' := $letter
+                'fromTo' : $fromTo,
+                'doc' : $letter
             }
         else ()
     }
@@ -424,10 +424,10 @@ declare function query:correspContext($doc as document-node()) as map(*)? {
     return
         if($prevLetterFromSender,$prevLetterToSender,$nextLetterFromSender,$nextLetterToSender,$prevLetterFromAuthorToAddressee,$prevLetterFromAddressee,$replyLetterFromSender,$replyLetterFromAddressee) then  
             map {
-                'context-letter-absolute-prev' := ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
-                'context-letter-absolute-next' := ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
-                'context-letter-korrespondenzstelle-prev' := ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
-                'context-letter-korrespondenzstelle-next' := ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
+                'context-letter-absolute-prev' : ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
+                'context-letter-absolute-next' : ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
+                'context-letter-korrespondenzstelle-prev' : ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
+                'context-letter-korrespondenzstelle-next' : ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
             }
         else ()
 };
@@ -500,7 +500,7 @@ declare function query:context-relatedItems($doc as document-node()?) as map()? 
     return
         if(exists($relatedItems)) then 
             map { 
-                'context-relatedItems' := $relatedItems
+                'context-relatedItems' : $relatedItems
             }
         else ()
 };

@@ -76,9 +76,9 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
         let $docType := config:get-doctype-by-id($docTypePrefix || '0000')
         return 
             map {
-                'value' := $docType,
-                'label' := lang:get-language-string($docType, $lang),
-                'frequency' := count($i)
+                'value' : $docType,
+                'label' : lang:get-language-string($docType, $lang),
+                'frequency' : count($i)
             }
     ]
 };
@@ -93,9 +93,9 @@ declare %private function facets:createFacets($nodes as node()*, $facet as xs:st
         let $label := facets:display-term($facet, $term, $lang) 
         return
         map {
-            'value' := str:normalize-space($term),
-            'label' := $label,
-            'frequency' := $data[2]
+            'value' : str:normalize-space($term),
+            'label' : $label,
+            'frequency' : $data[2]
         }
     }
     return 
@@ -136,15 +136,15 @@ declare
             else ('personsPlus', 'works', 'places', 'characterNames')
         return
         map {
-            'filterSections' := 
+            'filterSections' : 
                 for $filter in $filterSections
                 let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-combined-doctype-by-id(.) = $filter])
                 let $characterNames := 
                     if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
                     else ()
                 return 
-                    if(exists($keys)) then map { $filter := $keys}
-                    else if(exists($characterNames)) then map { $filter := $characterNames}
+                    if(exists($keys)) then map { $filter : $keys}
+                    else if(exists($characterNames)) then map { $filter : $characterNames}
                     else ()
         }
 };
@@ -154,7 +154,7 @@ declare
     %templates:wrap
     function facets:filter-options($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'filterOptions' := 
+            'filterOptions' : 
                 (: iterating over filterSection although there's only one key in this map :)
                 for $i in map:keys($model('filterSection'))
                     for $j in $model('filterSection')($i)
@@ -164,7 +164,7 @@ declare
                         case 'characterNames' return string-join(string-to-codepoints(normalize-space($j)) ! string(.), '')
                         default return $j
                     order by $label ascending
-                    return map { 'key' := $key, 'label' := $label}
+                    return map { 'key' : $key, 'label' : $label}
         }
 };
 

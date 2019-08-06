@@ -41,7 +41,7 @@ declare function api:documents($model as map()) as map()* {
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?works=A020062&fromDate=1798-10-10&toDate=1982-06-08&func=facets&format=json&facet=persons&docID=indices&docType=writings:)
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?&fromDate=1801-01-15&toDate=1982-06-08&func=facets&format=json&facet=places&docID=A002068&docType=writings:)
 (:declare function api:facets($model as map()) {
-    let $search := search:results(<span/>, map { 'docID' := $model('docID') }, tokenize($model(exist:resource), '/')[last() -2])
+    let $search := search:results(<span/>, map { 'docID' : $model('docID') }, tokenize($model(exist:resource), '/')[last() -2])
     return 
         facets:facets($search?search-results, $model('facet'), -1, 'de')
 };
@@ -182,7 +182,7 @@ declare function api:ant-deleteResources($model as map()) {
             if($old) then update replace $old with $entry
             else update insert $entry into $config:svn-change-history-file/dictionary
         )
-    else map {'code' := 400, 'message' := 'could not parse XML fragment', 'fields' := 'invalid format'}
+    else map {'code' : 400, 'message' : 'could not parse XML fragment', 'fields' : 'invalid format'}
 };
 :)
 
@@ -221,10 +221,10 @@ declare %private function api:document($documents as document-node()*, $model as
         let $supportsHTML := $docType = ('letters', 'persons', 'diaries', 'writings', 'news', 'documents', 'thematicCommentaries')
         return
             map { 
-                'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
-                'docID' := $id,
-                'docType' := $docType,
-                'title' := wdt:lookup($docType, $doc)('title')('txt')
+                'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
+                'docID' : $id,
+                'docType' : $docType,
+                'title' : wdt:lookup($docType, $doc)('title')('txt')
             } 
 };
 
@@ -240,9 +240,9 @@ declare function api:codeSample($nodes as node()*, $model as map()) as map()* {
         let $docID := $node/root()/*/data(@xml:id)
         return
             map { 
-                'uri' := $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
-                'docID' := $docID,
-                'codeSample' := serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
+                'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
+                'docID' : $docID,
+                'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
             }
 };
 
@@ -288,7 +288,7 @@ declare function api:validate-element($model as map()) as map()? {
 ~:)
 declare function api:validate-namespace($model as map()) as map()? {
     if(xmldb:decode-uri($model('namespace')) castable as xs:anyURI and matches(xmldb:decode-uri($model('namespace')), '^[-\.:#+/a-zA-Z0-9]+$')) then 
-        map { 'namespace' := xmldb:decode-uri($model?namespace) }
+        map { 'namespace' : xmldb:decode-uri($model?namespace) }
     else 
         error($api:INVALID_PARAMETER, 'Unsupported namespace notation: "' || $model('namespace') || '". 
             The namespace should be castable to an xs:anyURI, e.g. "http://www.tei-c.org/ns/1.0" und must not contain some special characters.'
@@ -332,7 +332,7 @@ declare function api:validate-toDate($model as map()) as map()? {
 ~:)
 declare function api:validate-docID($model as map()) as map()? {
     (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
-    map { 'docID' := xmldb:decode-uri($model?docID) }
+    map { 'docID' : xmldb:decode-uri($model?docID) }
 };
 
 (:~
@@ -340,7 +340,7 @@ declare function api:validate-docID($model as map()) as map()? {
 ~:)
 declare function api:validate-authorID($model as map()) as map()? {
     (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
-    map { 'authorID' := xmldb:decode-uri($model?authorID) }
+    map { 'authorID' : xmldb:decode-uri($model?authorID) }
 };
 
 (:~

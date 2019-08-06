@@ -27,17 +27,17 @@ declare
     %templates:default("lang", "en")
     function lod:metadata($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
-            'meta-page-title' := lod:page-title($model, $lang),
-            'DC.contributor' := if($model?specID or $model?schemaID) then query:contributors($gl:main-source) else query:contributors($model('doc')),
-            'DC.creator' := lod:DC.creator($model),
-            'DC.date' := lod:DC.date($model),
-            'DC.identifier' := lod:DC.identifier($model),
-            'DC.description' := lod:DC.description($model, $lang),
-            'DC.subject' := lod:DC.subject($model, $lang),
-            'DC.rights' := query:licence($model?doc),
-            'google-site-verification' := config:get-option('googleWebsiteMetatag'),
-            'ms-site-verification' := config:get-option('microsoftBingWebsiteMetatag'),
-            'jsonld-metadata' := lod:jsonld($model, $lang)
+            'meta-page-title' : lod:page-title($model, $lang),
+            'DC.contributor' : if($model?specID or $model?schemaID) then query:contributors($gl:main-source) else query:contributors($model('doc')),
+            'DC.creator' : lod:DC.creator($model),
+            'DC.date' : lod:DC.date($model),
+            'DC.identifier' : lod:DC.identifier($model),
+            'DC.description' : lod:DC.description($model, $lang),
+            'DC.subject' : lod:DC.subject($model, $lang),
+            'DC.rights' : query:licence($model?doc),
+            'google-site-verification' : config:get-option('googleWebsiteMetatag'),
+            'ms-site-verification' : config:get-option('microsoftBingWebsiteMetatag'),
+            'jsonld-metadata' : lod:jsonld($model, $lang)
         }
 };
 

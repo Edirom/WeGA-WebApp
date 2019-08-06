@@ -43,8 +43,8 @@ declare function local:get-reg-name($params as map(*)) as xs:string {
     return
         if(exists($ab)) then 
             map {
-                'id' := $ab/data(@xml:id),
-                'url' := core:link-to-current-app(controller:path-to-resource($ab/root(), $params('lang')))
+                'id' : $ab/data(@xml:id),
+                'url' : core:link-to-current-app(controller:path-to-resource($ab/root(), $params('lang')))
             }
         else 'No results'
 };:)
@@ -135,7 +135,7 @@ declare function local:create-beacon($params as map(*)) as xs:string {
 
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=facets&docID=indices&docType=letters&facet=sender&format=json:)
 declare function local:facets($params as map(*))  {
-    let $search := search:results(<span/>, map { 'docID' := $params('docID') }, $params('docType'))
+    let $search := search:results(<span/>, map { 'docID' : $params('docID') }, $params('docType'))
     let $lang := config:guess-language($params('lang'))
     return 
         facets:facets($search?search-results, $params('facet'), -1, $lang)

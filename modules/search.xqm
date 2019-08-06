@@ -41,7 +41,7 @@ declare
     %templates:default("docType", "letters")
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
-        let $filters := map { 'filters' := search:create-filters(), 'api-base' := core:link-to-current-app('/api/v1')}
+        let $filters := map { 'filters' : search:create-filters(), 'api-base' : core:link-to-current-app('/api/v1')}
         return
             switch($docType)
             (: search page :)
@@ -99,8 +99,8 @@ declare
         )
         return
             map {
-                'result-page-entries' := $docs,
-                'result-page-hits-per-entry' := $result-page-hits-per-entry
+                'result-page-entries' : $docs,
+                'result-page-hits-per-entry' : $result-page-hits-per-entry
             }
 };
 
@@ -177,17 +177,17 @@ declare %private function search:list($model as map(*)) as map(*) {
     let $search-results := 
         if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
         else $coll
-    let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')( map { 'personID' := $model('docID')} )
+    let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')( map { 'personID' : $model('docID')} )
     return
         map:merge((
             $model,
             map {
-                'filters' := $model('filters'),
-                'search-results' := $sorted-results,
-                'earliestDate' := search:get-earliest-date($sorted-results, $model('docType')),
-                'latestDate' := search:get-latest-date($sorted-results, $model('docType')),
-                'oldFromDate' := request:get-parameter('oldFromDate', ''),
-                'oldToDate' := request:get-parameter('oldToDate', '')
+                'filters' : $model('filters'),
+                'search-results' : $sorted-results,
+                'earliestDate' : search:get-earliest-date($sorted-results, $model('docType')),
+                'latestDate' : search:get-latest-date($sorted-results, $model('docType')),
+                'oldFromDate' : request:get-parameter('oldFromDate', ''),
+                'oldToDate' : request:get-parameter('oldToDate', '')
             }
         ))
 };  
@@ -203,9 +203,9 @@ declare %private function search:merge-hits($hits as item()*) as map()* {
     order by $score descending 
     return
         map { 
-            'doc' := $doc,
-            'hits' := $hit,
-            'score' := $score
+            'doc' : $doc,
+            'hits' : $hit,
+            'score' : $score
         }
 };
 
@@ -410,10 +410,10 @@ declare %private function search:prepare-search-string($model as map()) as map(*
         map:merge((
             $model, 
             map {
-                'filters' := $filters, (: the original filters from $model gets overridden :)
-                'query-string' := wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
-                'query-docTypes' := $query-docTypes,
-                'query-string-org' := $query-string-org
+                'filters' : $filters, (: the original filters from $model gets overridden :)
+                'query-string' : wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
+                'query-docTypes' : $query-docTypes,
+                'query-string-org' : $query-string-org
             }
         ))
 };
