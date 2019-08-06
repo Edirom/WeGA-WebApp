@@ -27,8 +27,8 @@ import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at 
 declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
 
 let $config := map {
-    $templates:CONFIG_APP_ROOT := $config:app-root,
-    $templates:CONFIG_STOP_ON_ERROR := true()
+    $templates:CONFIG_APP_ROOT : $config:app-root,
+    $templates:CONFIG_STOP_ON_ERROR : true()
 }
 
 (:~
