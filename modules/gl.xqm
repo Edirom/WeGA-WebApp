@@ -13,6 +13,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace teieg="http://www.tei-c.org/ns/Examples";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 (:import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";:)
@@ -510,9 +511,16 @@ declare %private function gl:wega-customization($model as map(*)) as map() {
  : Helper function for gl:spec-details()
 ~:)
 declare %private function gl:print-exemplum($exemplum as element()) as item()* {
-	let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=yes', 'encoding=utf-8')
+	let $serializationParameters := 
+	   <output:serialization-parameters>
+	       <output:method>xml</output:method>
+	       <output:indent>no</output:indent>
+	       <output:media-type>application/xml</output:media-type>
+	       <output:omit-xml-declaration>yes</output:omit-xml-declaration>
+	       <output:encoding>utf-8</output:encoding>
+       </output:serialization-parameters>
 	return
-		util:serialize(functx:change-element-ns-deep($exemplum, '', '')/*/*, $serializationParameters)
+		serialize(functx:change-element-ns-deep($exemplum, '', '')/*/*, $serializationParameters)
 };
 
 (:~
