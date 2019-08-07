@@ -53,7 +53,7 @@ declare variable $local:defaults as map() := map {
  :  Another map object with the HTTP request parameters
  :  This map gets later forwarded to every subsequent API function 
 ~:)
-declare variable $local:url-parameters as map() := map:new((
+declare variable $local:url-parameters as map() := map:merge((
     for $i in request:get-parameter-names() return map:entry($i, request:get-parameter($i, ''))
 ));
 
@@ -121,8 +121,8 @@ declare function local:serialize-xml($response as item()*, $root as xs:string) a
  :  Try to lookup a function for the requested path and extract path parameters
  :  Swagger paths get mapped to functions by concatenating path segments with dashes, 
  :  e.g. "/foo/bar/baz" --> api:foo-bar-baz() 
- :  Swagger path variables are removed from the path and put into a map() which gets passed on to the function,
- :  e.g. "/foo/{bar}/baz" --> api:foo-baz(map(bar: $bar-value$))
+ :  Swagger path variables are removed from the path and put into a map{} which gets passed on to the function,
+ :  e.g. "/foo/{bar}/baz" --> api:foo-baz(map{bar: $bar-value$})
 ~:)
 let $lookup as map()? := 
     (
@@ -137,7 +137,7 @@ let $lookup as map()? :=
             return
                 map {
                     'func' := function-lookup(xs:QName($local:api-module-prefix || ':' || $func-name), 1),
-                    'path-params' := map:new($params)
+                    'path-params' := map:merge($params)
                 }
         else ()
     (: return the most specific function, e.g. the function "a-b()" is prefered over the function "a(b)" :)
@@ -150,7 +150,7 @@ let $validate-unknown-param := function-lookup(xs:QName($local:api-module-prefix
 
 let $validate-params := function($params as map()?) as map()? {
     if(exists($params)) then
-        map:new(
+        map:merge(
             for $param in map:keys($params)
             let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
             return
@@ -173,7 +173,7 @@ let $response := function($lookup as map(*)) {
    (: typeswitch($lookup?func)
     case empty-sequence() return $unknown-function
     default return :)
-        try { $lookup?func(map:new(($local:defaults, map {'swagger:config' := $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
+        try { $lookup?func(map:merge(($local:defaults, map {'swagger:config' := $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
         catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }
 }
 
@@ -191,7 +191,7 @@ return (:(
     ):)
     if($exist:resource eq 'swagger.json') then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
-    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:new(($local:defaults, map {'lang' := 'en'} )))
+    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' := 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{concat($exist:controller, '/../../resources/', substring-after($exist:path, '/resources/'))}">
