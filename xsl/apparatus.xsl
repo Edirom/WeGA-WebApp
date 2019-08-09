@@ -225,24 +225,12 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:rdg">
+   <!-- within readings or lemmas there must not be any paragraphs (in the result HTML) -->
+   <xsl:template match="tei:p" mode="lemma">
       <xsl:element name="span">
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <xsl:apply-templates mode="rdg"/>
+         <xsl:apply-templates mode="#current"/>
       </xsl:element>
-   </xsl:template>
-
-   <!-- within readings there must not be any paragraphs (in the result HTML) -->
-   <xsl:template match="tei:p" mode="rdg">
-      <xsl:element name="span">
-         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <xsl:apply-templates mode="#default"/>
-      </xsl:element>
-   </xsl:template>
-
-   <!-- fallback (for everything but tei:p): forward all nodes to the default templates  -->
-   <xsl:template match="node()|@*" mode="rdg">
-      <xsl:apply-templates select="." mode="#default"/>
    </xsl:template>
 
    <xsl:template match="tei:add[not(parent::tei:subst)]">
@@ -531,7 +519,6 @@
       </xsl:call-template>
    </xsl:template>
     
-   <xsl:template match="tei:del" mode="lemma"/>
    <xsl:template match="tei:note" mode="lemma"/>
    <xsl:template match="tei:lb" mode="lemma">
       <xsl:text> </xsl:text>
@@ -556,9 +543,6 @@
             <xsl:apply-templates select="tei:abbr" mode="#current"/>
          </xsl:when>
       </xsl:choose>
-   </xsl:template>
-   <xsl:template match="tei:*" mode="lemma">
-      <xsl:apply-templates mode="#current"/>
    </xsl:template>
    
    <!-- template for creating an apparatus entry -->

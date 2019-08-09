@@ -235,9 +235,9 @@
         </xsl:analyze-string>
     </xsl:template>
 
-    <xsl:template match="tei:hi[@rend='underline']">
+    <xsl:template match="tei:hi[@rend='underline']" mode="#all">
         <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates select="@xml:id" mode="#current"/>
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="@n &gt; 1 or ancestor::tei:hi[@rend='underline']">
@@ -248,7 +248,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="#current"/>
         </xsl:element>
     </xsl:template>
     
@@ -797,11 +797,11 @@
 
     <!-- Default template for TEI elements -->
     <!-- will be turned into html:span with class tei_elementName_attributeRendValue -->
-    <xsl:template match="tei:*">
+    <xsl:template match="tei:*" mode="#all">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="string-join(('tei', local-name(), @rend), '_')"/>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="#current"/>
         </xsl:element>
     </xsl:template>
 
