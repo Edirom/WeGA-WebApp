@@ -189,22 +189,6 @@
 
    <!-- will be changed in https://github.com/Edirom/WeGA-WebApp/issues/307 -->
    <xsl:template match="tei:app" mode="apparatus">
-      <xsl:variable name="lemElem" select="tei:lem/descendant::text()"/>
-      <xsl:variable name="lemWit" select="tei:rdg/substring-after(@wit,'#')"/>
-      <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$lemWit]/data(@n)"/>
-      <xsl:variable name="tokens" select="tokenize(string-join($lemElem, ' '), '\s+')"/>
-      <xsl:variable name="qelem">
-         <xsl:choose>
-            <xsl:when test="count($tokens) gt 6">
-               <xsl:value-of select="string-join(subsequence($tokens, 1, 3), ' ')"/>
-               <xsl:text> … </xsl:text>
-               <xsl:value-of select="string-join(subsequence($tokens, count($tokens) -2, 3), ' ')"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:value-of select="$lemElem"/>
-            </xsl:otherwise>
-         </xsl:choose>
-      </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
@@ -212,22 +196,32 @@
             <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
          <xsl:element name="div">
-            <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/></strong> <!-- source containing the lemma the first text source by definition' -->
+            <xsl:element name="strong">
+               <!-- source containing the lemma the first text source by definition' -->
+               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/>
+            </xsl:element> 
             <xsl:variable name="lemma">
                <xsl:apply-templates select="tei:lem" mode="lemma"/>
             </xsl:variable>
             <xsl:element name="span">
-               <!--<xsl:attribute name="class" select="'tei_lemma'"/>-->
                <xsl:sequence select="wega:enquote($lemma)"/>
             </xsl:element>
          </xsl:element>
-         <xsl:element name="div">
-            <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/></strong>
-            <xsl:variable name="rdg">
-               <xsl:apply-templates select="tei:rdg" mode="lemma"/>
-            </xsl:variable>
-            <xsl:sequence select="wega:enquote($rdg)"/>
-         </xsl:element>
+         <xsl:for-each select="tei:rdg">
+            <xsl:variable name="lemWit" select="substring-after(@wit,'#')"/>
+            <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$lemWit]/data(@n)"/>
+            <xsl:element name="div">
+               <xsl:element name="strong">
+                  <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/>
+               </xsl:element>
+               <xsl:variable name="rdg">
+                  <xsl:apply-templates select="." mode="lemma"/>
+               </xsl:variable>
+               <xsl:element name="span">
+                  <xsl:sequence select="wega:enquote($rdg)"/>
+               </xsl:element>
+            </xsl:element>
+         </xsl:for-each>
       </xsl:element>
    </xsl:template>
 
