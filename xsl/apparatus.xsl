@@ -31,45 +31,48 @@
          <xsl:if test="$textConstitutionPath">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
-               <span><xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/></span>
+               <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
             </xsl:element>
-         </xsl:if>
-         <xsl:element name="ul">
+            <xsl:element name="ul">
                <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
                <xsl:for-each select="$textConstitutionPath">
                   <xsl:element name="li">
                      <xsl:apply-templates select="." mode="apparatus"/>
                   </xsl:element>
                </xsl:for-each>
-         </xsl:element>
+            </xsl:element>
+         </xsl:if>
+         
          <xsl:if test="$commentaryPath">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('note_commentary', $lang)"/>
             </xsl:element>
+            <xsl:element name="ul">
+               <xsl:attribute name="class">apparatus commentary</xsl:attribute>
+               <xsl:for-each select="$commentaryPath">
+                  <xsl:element name="li">
+                     <xsl:apply-templates select="." mode="apparatus"/>
+                  </xsl:element>
+               </xsl:for-each>
+            </xsl:element>
          </xsl:if>
-         <xsl:element name="ul">
-            <xsl:attribute name="class">apparatus commentary</xsl:attribute>
-            <xsl:for-each select="$commentaryPath">
-               <xsl:element name="li">
-                  <xsl:apply-templates select="." mode="apparatus"/>
-               </xsl:element>
-            </xsl:for-each>
-         </xsl:element>
+         
          <xsl:if test="$rdgPath">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('appRdgs', $lang)"/>
             </xsl:element>
+            <xsl:element name="ul">
+               <xsl:attribute name="class">apparatus rdg</xsl:attribute>
+               <xsl:for-each select="$rdgPath">
+                  <xsl:element name="li">
+                     <xsl:apply-templates select="." mode="apparatus"/>
+                  </xsl:element>
+               </xsl:for-each>
+            </xsl:element>
          </xsl:if>
-         <xsl:element name="ul">
-            <xsl:attribute name="class">apparatus rdg</xsl:attribute>
-            <xsl:for-each select="$rdgPath">
-               <xsl:element name="li">
-                  <xsl:apply-templates select="." mode="apparatus"/>
-               </xsl:element>
-            </xsl:for-each>
-         </xsl:element>
+         
       </xsl:element>
    </xsl:template>
    
