@@ -1394,7 +1394,7 @@ declare
             if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
             else ()
         let $summary := 
-            if(query:summary($model('doc'))) then wega-util:transform(query:summary($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            if(query:summary($model('doc'), $lang)) then wega-util:transform(query:summary($model('doc'), $lang), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
             else '–'
         return (
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
@@ -1457,7 +1457,7 @@ declare
     function app:check-apparatus($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
             'incipit' : query:incipit($model('doc')),
-            'summary' : query:summary($model('doc')),
+            'summary' : query:summary($model('doc'), $lang),
             'generalRemark' : query:generalRemark($model('doc'))
         }
 };

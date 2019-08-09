@@ -559,8 +559,12 @@ declare function query:generalRemark($doc as document-node()?) as element(tei:no
 (:~
  :  Return the summary of a document
  :  @param $doc a TEI document
+ :  @param $lang the language code, e.g. "de" or "en"
  :  @return the summary as a note element
 ~:)
-declare function query:summary($doc as document-node()?) as element(tei:note)? {
-    $doc//tei:note[@type='summary']
+declare function query:summary($doc as document-node()?, $lang as xs:string?) as element(tei:note)? {
+    let $summaries := $doc//tei:note[@type='summary']
+    return
+        if($summaries[@xml:lang = $lang]) then $summaries[@xml:lang = $lang]
+        else $summaries[1] (: always return a summary if possible :)
 };
