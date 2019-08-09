@@ -1265,7 +1265,7 @@ declare
             case 'works' return $doc/mei:mei
             case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
             case 'thematicCommentaries' return $doc//tei:text/(tei:body | tei:back)
-            default return $doc//(tei:text/tei:body | tei:sourceDesc/tei:listWit)
+            default return $doc//tei:text/tei:body
         let $body := 
              if(functx:all-whitespace(<root>{$textRoot}</root>))
              then 
@@ -1282,7 +1282,9 @@ declare
                         <a href="#editorial">{lang:get-language-string('editorial', $lang)}</a>, '.'
                 }
              else (
-                wega-util:transform($textRoot, $xslt1, $xslParams)
+                (: need to add listWit for resolving references from rdg an lem :)
+                (: this might be moved into the parameters, as well?! :)
+                wega-util:transform($textRoot | $doc//tei:sourceDesc/tei:listWit, $xslt1, $xslParams)
             )
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
