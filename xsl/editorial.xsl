@@ -13,20 +13,6 @@
         <xsl:apply-templates/>
         </xsl:template>-->
 
-    <xsl:template match="tei:listWit">
-        <xsl:for-each select="tei:witness">
-            <xsl:sort select="@n" order="ascending" data-type="number"/>
-            <xsl:element name="div">
-                <xsl:attribute name="id" select="concat('source_', position())"/>
-                <xsl:attribute name="class" select="'witness'"/>
-                <xsl:if test="position()!=1">
-                    <xsl:attribute name="style" select="'display:none;'"/>
-                </xsl:if>
-                <xsl:apply-templates/>
-            </xsl:element>
-        </xsl:for-each>
-    </xsl:template>
-
     <xsl:template match="tei:msDesc">
         <xsl:choose>
             <xsl:when test="parent::tei:witness">
@@ -228,9 +214,9 @@
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:element name="p">
-                            <xsl:text>"</xsl:text>
-                            <xsl:apply-templates/>
-                            <xsl:text> …"</xsl:text>
+                            <xsl:call-template name="enquote">
+                                <xsl:with-param name="ellipsis" select="true()"/>
+                            </xsl:call-template>
                         </xsl:element>
                     </xsl:otherwise>
                 </xsl:choose>

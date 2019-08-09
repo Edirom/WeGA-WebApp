@@ -138,27 +138,34 @@
     
     <xsl:template name="enquote">
         <xsl:param name="double" select="true()"/>
+        <xsl:param name="ellipsis" select="false()"/>
         <xsl:choose>
             <!-- German double quotation marks -->
             <xsl:when test="$lang eq 'de' and $double">
                 <xsl:text>„</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
+                <xsl:if test="$ellipsis">
+                    <xsl:text>…</xsl:text>
+                </xsl:if>
                 <xsl:text>“</xsl:text>
             </xsl:when>
             <xsl:when test="$lang eq 'en' and $double">
                 <xsl:text>“</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
+                <xsl:if test="$ellipsis">
+                    <xsl:text>…</xsl:text>
+                </xsl:if>
                 <xsl:text>”</xsl:text>
             </xsl:when>
             <!-- German single quotation marks -->
             <xsl:when test="$lang eq 'de' and not($double)">
                 <xsl:text>‚</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
                 <xsl:text>‘</xsl:text>
             </xsl:when>
             <xsl:when test="$lang eq 'en' and not($double)">
                 <xsl:text>‘</xsl:text>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
                 <xsl:text>’</xsl:text>
             </xsl:when>
         </xsl:choose>
@@ -723,14 +730,14 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:q" priority="0.5">
+    <xsl:template match="tei:q" priority="0.5" mode="#all">
         <!-- Always(!) surround with quotation marks -->
         <xsl:call-template name="enquote">
             <xsl:with-param name="double" select="true()"/>
         </xsl:call-template>
     </xsl:template>
     
-    <xsl:template match="tei:quote" priority="0.5">
+    <xsl:template match="tei:quote" priority="0.5" mode="#all">
         <xsl:choose>
             <!-- Surround with quotation marks if @rend is set -->
             <xsl:when test="@rend">
@@ -740,12 +747,12 @@
             </xsl:when>
             <!-- no quotation marks as default -->
             <xsl:otherwise>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template match="tei:soCalled">
+    <xsl:template match="tei:soCalled" mode="#all">
         <xsl:call-template name="enquote">
             <xsl:with-param name="double" select="false()"/>
         </xsl:call-template>

@@ -127,6 +127,34 @@ table {
     }
 }
 
+/* lemma styling */
+span.tei_lemma {
+    font-style: italic;
+    color: gray;
+    font-size: smaller;
+    }
+
+.popover span.tei_lemma {
+    margin-bottom: 6px;
+    display: block;
+    border-left: 6px solid #f0f0f0;
+    padding-left: 6px;
+}
+
+.apparatus span.tei_lemma:after {
+    content: " — ";
+}
+
+ul.apparatus {
+    list-style:decimal;
+}
+
+ul.apparatus > li {
+    border-top:1px solid @gray-lighter;
+    padding: 6px 0 6px 12px;
+    margin-bottom:0;
+}
+
 /* This class toggles the popovers for previews */
 .preview {
     .common-link

@@ -1282,7 +1282,9 @@ declare
                         <a href="#editorial">{lang:get-language-string('editorial', $lang)}</a>, '.'
                 }
              else (
-                wega-util:transform($textRoot, $xslt1, $xslParams)
+                (: need to add listWit for resolving references from rdg an lem :)
+                (: this might be moved into the parameters, as well?! :)
+                wega-util:transform($textRoot | $doc//tei:sourceDesc/tei:listWit, $xslt1, $xslParams)
             )
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
