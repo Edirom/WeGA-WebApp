@@ -93,8 +93,8 @@
                   <xsl:apply-templates select="preceding::tei:ptr[@target=concat('#', $id)]" mode="apparatus"/>
                </xsl:when>
                <xsl:otherwise>
-                  <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text(), ' '), '\s+')"/>
                   <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
+                  <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])], ' '), '\s+')"/>
                   <xsl:sequence select="('… ', subsequence($textTokens, count($textTokens) - 4))"/>
                </xsl:otherwise>
             </xsl:choose>
@@ -108,8 +108,8 @@
    <xsl:template match="tei:ptr" mode="apparatus">
       <!-- Thanks to Dimitre Novatchev! http://stackoverflow.com/questions/2694825/how-do-i-select-all-text-nodes-between-two-elements-using-xsl -->
       <xsl:variable name="noteID" select="substring(@target, 2)"/>
-      <xsl:variable name="vtextPostPtr" select="following::text()"/>
-      <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
+      <xsl:variable name="vtextPostPtr" select="following::text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])]"/>
+      <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])]"/>
       <xsl:variable name="textTokensBetween" select="tokenize(string-join($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)], ' '), '\s+')"/>
       <xsl:choose>
          <xsl:when test="count($textTokensBetween) gt 6">
