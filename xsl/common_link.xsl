@@ -19,7 +19,7 @@
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
-    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement">
+    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement | mei:geogName">
         <xsl:choose>
             <xsl:when test="@key or @dbkey">
                 <xsl:call-template name="createLink"/>
