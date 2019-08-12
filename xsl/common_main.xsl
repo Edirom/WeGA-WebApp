@@ -1,14 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
-    xmlns:tei="http://www.tei-c.org/ns/1.0" 
-    xmlns:xhtml="http://www.w3.org/1999/xhtml"
-    xmlns:rng="http://relaxng.org/ns/structure/1.0" 
-    xmlns:functx="http://www.functx.com" 
-    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
-    xmlns:teix="http://www.tei-c.org/ns/Examples" 
-    xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:functx="http://www.functx.com"
+    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
+    exclude-result-prefixes="xs" version="2.0">
     
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
 
@@ -17,8 +13,8 @@
     <!--  *********************************************  -->
 <!--    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>-->
     <xsl:variable name="blockLevelElements" as="xs:string+" select="('item', 'p')"/>
-    <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
-    <xsl:variable name="fa-exclamation-circle" as="xs:string" select="'&#xf06a;'"/>
+    <xsl:variable name="musical-symbols" as="xs:string" select="'[𝄀-𝇿♭-♯]+'"/>
+    <xsl:variable name="fa-exclamation-circle" as="xs:string" select="''"/>
     <xsl:param name="optionsFile"/>
     <xsl:param name="baseHref"/>
     <xsl:param name="lang"/>
@@ -42,7 +38,7 @@
     <xsl:template name="dots">
         <xsl:param name="count" select="1"/>
         <xsl:if test="$count &gt; 0">
-            <xsl:text>&#160;</xsl:text>
+            <xsl:text> </xsl:text>
             <xsl:call-template name="dots">
                 <xsl:with-param name="count" select="$count - 1"/>
             </xsl:call-template>
@@ -75,8 +71,11 @@
                 <xsl:when test="not($marker) and self::tei:note">
                     <xsl:text>*</xsl:text>
                 </xsl:when>
-                <xsl:otherwise>
+                <xsl:when test="not($marker) and self::tei:app">
                     <xsl:text>‡</xsl:text>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:text>+</xsl:text> <!-- to be changed in apparatus.xsl too if necessary -->
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
@@ -282,15 +281,15 @@
                                 <xsl:choose>
                                     <xsl:when test="$docID eq 'A100000'">
                                         <!-- Special treatment for the Notizenbuch where we decided to label the pages as numbers, sigh … -->
-                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' Nr.&#160;', @n)"/>
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' Nr. ', @n)"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), '&#160;', @n)"/>
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), ' ', @n)"/>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:when>
                             <xsl:when test="self::tei:cb">
-                                <xsl:value-of select="concat(wega:getLanguageString('columnBreakTo', $lang), ' ', wega:getLanguageString('col', $lang), '&#160;', @n)"/>
+                                <xsl:value-of select="concat(wega:getLanguageString('columnBreakTo', $lang), ' ', wega:getLanguageString('col', $lang), ' ', @n)"/>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:when>
