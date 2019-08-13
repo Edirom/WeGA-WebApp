@@ -205,11 +205,12 @@
             </xsl:variable>
             <xsl:element name="span">
                <xsl:choose>
-                  <xsl:when test="$lemma">
-                     <xsl:sequence select="wega:enquote($lemma)"/>
+                  <xsl:when test="functx:all-whitespace($lemma)">
+                     <xsl:attribute name="class">noLem</xsl:attribute>
+                     <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
                   </xsl:when>
                   <xsl:otherwise>
-                     <xsl:value-of select="concat(wega:getLanguageString('NoLem', $lang), '.')"/>
+                     <xsl:sequence select="wega:enquote($lemma)"/>
                   </xsl:otherwise>
                </xsl:choose>
             </xsl:element>
@@ -226,11 +227,12 @@
                </xsl:variable>
                <xsl:element name="span">
                   <xsl:choose>
-                     <xsl:when test="$rdg">
-                        <xsl:sequence select="wega:enquote($rdg)"/>
+                     <xsl:when test="functx:all-whitespace($rdg)">
+                        <xsl:attribute name="class">noLem</xsl:attribute>
+                        <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
                      </xsl:when>
                      <xsl:otherwise>
-                        <xsl:value-of select="concat(wega:getLanguageString('NoAppRdg', $lang), '.')"/>
+                        <xsl:sequence select="wega:enquote($rdg)"/>
                      </xsl:otherwise>
                   </xsl:choose>
                </xsl:element>
