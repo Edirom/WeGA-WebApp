@@ -178,7 +178,11 @@
         <xsl:apply-templates select="*" mode="#current"/>
     </xsl:template>
     
-    <xsl:template match="*" mode="rightTableColumn">
+    <!--
+        Need to add priority to overwrite default 
+        template (with mode #add) in the commons module
+    -->
+    <xsl:template match="*" mode="rightTableColumn" priority="0.01">
         <xsl:apply-templates mode="#current"/>
     </xsl:template>
     
@@ -188,6 +192,20 @@
         (see templates in common_main.xsl and commit 3777509a)
     -->
     <xsl:template match="tei:q|tei:quote|tei:soCalled" mode="rightTableColumn" priority="1">
+        <xsl:apply-templates mode="#current"/>
+    </xsl:template>
+    
+    <!--
+        extra treatment for elements processed in the linking module with the mode #all
+    -->
+    <xsl:template match="tei:persName | tei:orgName | tei:workName | tei:settlement" mode="rightTableColumn" priority="1">
+        <xsl:apply-templates mode="#current"/>
+    </xsl:template>
+    
+    <!--
+        extra treatment for elements processed in the commons module with the mode #all
+    -->
+    <xsl:template match="tei:hi" mode="rightTableColumn" priority="1">
         <xsl:apply-templates mode="#current"/>
     </xsl:template>
     
