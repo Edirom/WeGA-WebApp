@@ -206,7 +206,7 @@
             <xsl:element name="span">
                <xsl:choose>
                   <xsl:when test="functx:all-whitespace($lemma)">
-                     <xsl:attribute name="class">noLem</xsl:attribute>
+                     <xsl:attribute name="class">noRdg</xsl:attribute>
                      <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
                   </xsl:when>
                   <xsl:otherwise>
@@ -228,7 +228,7 @@
                <xsl:element name="span">
                   <xsl:choose>
                      <xsl:when test="functx:all-whitespace($rdg)">
-                        <xsl:attribute name="class">noLem</xsl:attribute>
+                        <xsl:attribute name="class">noRdg</xsl:attribute>
                         <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
                      </xsl:when>
                      <xsl:otherwise>
