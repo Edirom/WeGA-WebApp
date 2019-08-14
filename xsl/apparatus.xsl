@@ -197,6 +197,17 @@
 
    <!-- will be changed in https://github.com/Edirom/WeGA-WebApp/issues/307 -->
    <xsl:template match="tei:app" mode="apparatus">
+      <xsl:variable name="lemWit" select="preceding::tei:witness/@xml:id=tei:lem/@wit"/>
+      <xsl:variable name="lemtextSource">
+         <xsl:choose>
+            <xsl:when test="$lemWit">
+               <xsl:value-of select="$lemWit"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="(preceding::tei:witness[not(@rend)])[1]/@n"/>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
@@ -206,7 +217,7 @@
          <xsl:element name="div">
             <xsl:element name="strong">
                <!-- source containing the lemma the first available (not lost) text source by definition' -->
-               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', (preceding::tei:witness[not(@rend)])[1]/@n,': ')"/>
+               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $lemtextSource,': ')"/>
             </xsl:element> 
             <xsl:variable name="lemma">
                <xsl:apply-templates select="tei:lem" mode="lemma"/>
@@ -224,8 +235,8 @@
             </xsl:element>
          </xsl:element>
          <xsl:for-each select="tei:rdg">
-            <xsl:variable name="lemWit" select="substring-after(@wit,'#')"/>
-            <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$lemWit]/data(@n)"/>
+            <xsl:variable name="rdgWit" select="substring-after(@wit,'#')"/>
+            <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$rdgWit]/data(@n)"/>
             <xsl:element name="div">
                <xsl:element name="strong">
                   <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/>
