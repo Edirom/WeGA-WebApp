@@ -257,8 +257,8 @@
          <xsl:attribute name="data-counter">‡ <xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:element name="div">
             <xsl:element name="strong">
-               <!-- source containing the lemma the first text source by definition' -->
-               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/>
+               <!-- source containing the lemma the first available (not lost) text source by definition' -->
+               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', (preceding::tei:witness[not(@rend)])[1]/@n,': ')"/>
             </xsl:element> 
             <xsl:variable name="lemma">
                <xsl:apply-templates select="tei:lem" mode="lemma"/>
