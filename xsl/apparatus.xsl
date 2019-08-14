@@ -6,6 +6,8 @@
    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
    exclude-result-prefixes="xs" version="2.0">
 
+   <xsl:variable name="doc" select="wega:doc($docID)"/>
+
    <!--
       Mode: default (i.e. template rules without a @mode attribute)
       In this mode the default variant (e.g. sic, not corr) will be output and diacritic 
@@ -233,14 +235,15 @@
          <xsl:number level="any"/>
       </xsl:variable>
       <xsl:variable name="lemElem" select="tei:lem/descendant::text()"/>
-      <xsl:variable name="lemWit" select="preceding::tei:witness/@xml:id=tei:lem/@wit"/>
+      <xsl:variable name="lemWit" select="tei:lem/@wit"/>
+      <xsl:variable name="lemWitness" select="$doc//tei:witness[@xml:id=substring-after($lemWit,'#')]/@n"/>
       <xsl:variable name="lemtextSource">
          <xsl:choose>
-            <xsl:when test="$lemWit">
-               <xsl:value-of select="$lemWit"/>
+            <xsl:when test="$lemWitness">
+               <xsl:value-of select="$lemWitness"/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:value-of select="(preceding::tei:witness[not(@rend)])[1]/@n"/>
+               <xsl:value-of select="($doc//tei:witness[not(@rend)])[1]/@n"/>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:variable>
@@ -286,7 +289,7 @@
          </xsl:element>
          <xsl:for-each select="tei:rdg">
             <xsl:variable name="rdgWit" select="substring-after(@wit,'#')"/>
-            <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$rdgWit]/data(@n)"/>
+            <xsl:variable name="witN" select="$doc//tei:witness[@xml:id=$rdgWit]/data(@n)"/>
             <xsl:element name="div">
                <xsl:element name="strong">
                   <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/>
