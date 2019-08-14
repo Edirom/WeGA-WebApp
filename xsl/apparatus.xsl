@@ -56,7 +56,12 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
-
+         <xsl:if test="$commentaryPath">
+            <xsl:element name="h3">
+               <xsl:attribute name="class">media-heading</xsl:attribute>
+               <xsl:value-of select="wega:getLanguageString('note_commentary', $lang)"/>
+            </xsl:element>
+         </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus commentary</xsl:attribute>
             <xsl:for-each select="$commentaryPath">
@@ -79,6 +84,12 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
+         <xsl:if test="$rdgPath">
+            <xsl:element name="h3">
+               <xsl:attribute name="class">media-heading</xsl:attribute>
+               <xsl:value-of select="wega:getLanguageString('appRdgs', $lang)"/>
+            </xsl:element>
+         </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus rdg</xsl:attribute>
             <xsl:for-each select="$rdgPath">
