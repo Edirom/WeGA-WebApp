@@ -37,9 +37,9 @@ declare function local:tidy($node as node()) as node()? {
 declare function local:tidy-attr($node as node()) as node()? {
     let $exist-vars := 
     	map { 
-    		'lang' := request:get-attribute('lang'),
-    		'exist:prefix' := request:get-attribute('exist:prefix'),
-    		'exist:controller' := request:get-attribute('exist:controller')
+    		'lang' : request:get-attribute('lang'),
+    		'exist:prefix' : request:get-attribute('exist:prefix'),
+    		'exist:controller' : request:get-attribute('exist:controller')
     	}
     return 
         if(starts-with(node-name($node), 'data-template')) then ()

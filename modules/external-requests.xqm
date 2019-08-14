@@ -217,7 +217,7 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
  : @param $onFailureFunc an on-error function that's passed on to the underlying mycache:doc() function 
  : @return a er:response element with the response stored within er:body if successful, the empty sequence otherwise
  :)
-declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(httpclient:response)? {
+declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(er:response)? {
     mycache:doc($localFilepath, er:http-get#1, $uri, $lease, $onFailureFunc)//er:response[@statusCode = '200']
 };
 

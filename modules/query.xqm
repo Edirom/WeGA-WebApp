@@ -415,8 +415,8 @@ declare function query:correspContext($doc as document-node()) as map(*)? {
     let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
         if($letter and exists(query:get-normalized-date($letter))) then
             map {
-                'fromTo' := $fromTo,
-                'doc' := $letter
+                'fromTo' : $fromTo,
+                'doc' : $letter
             }
         else ()
     }
@@ -424,10 +424,10 @@ declare function query:correspContext($doc as document-node()) as map(*)? {
     return
         if($prevLetterFromSender,$prevLetterToSender,$nextLetterFromSender,$nextLetterToSender,$prevLetterFromAuthorToAddressee,$prevLetterFromAddressee,$replyLetterFromSender,$replyLetterFromAddressee) then  
             map {
-                'context-letter-absolute-prev' := ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
-                'context-letter-absolute-next' := ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
-                'context-letter-korrespondenzstelle-prev' := ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
-                'context-letter-korrespondenzstelle-next' := ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
+                'context-letter-absolute-prev' : ($create-map($prevLetterFromSender, 'to'), $create-map($prevLetterToSender, 'from')),
+                'context-letter-absolute-next' : ($create-map($nextLetterFromSender, 'to'), $create-map($nextLetterToSender, 'from')),
+                'context-letter-korrespondenzstelle-prev' : ($create-map($prevLetterFromAuthorToAddressee, 'to'), $create-map($prevLetterFromAddressee, 'from')),
+                'context-letter-korrespondenzstelle-next' : ($create-map($replyLetterFromSender, 'to'), $create-map($replyLetterFromAddressee, 'from'))
             }
         else ()
 };
@@ -500,7 +500,7 @@ declare function query:context-relatedItems($doc as document-node()?) as map()? 
     return
         if(exists($relatedItems)) then 
             map { 
-                'context-relatedItems' := $relatedItems
+                'context-relatedItems' : $relatedItems
             }
         else ()
 };
@@ -559,8 +559,12 @@ declare function query:generalRemark($doc as document-node()?) as element(tei:no
 (:~
  :  Return the summary of a document
  :  @param $doc a TEI document
+ :  @param $lang the language code, e.g. "de" or "en"
  :  @return the summary as a note element
 ~:)
-declare function query:summary($doc as document-node()?) as element(tei:note)? {
-    $doc//tei:note[@type='summary']
+declare function query:summary($doc as document-node()?, $lang as xs:string?) as element(tei:note)? {
+    let $summaries := $doc//tei:note[@type='summary']
+    return
+        if($summaries[@xml:lang = $lang]) then $summaries[@xml:lang = $lang]
+        else $summaries[1] (: always return a summary if possible :)
 };

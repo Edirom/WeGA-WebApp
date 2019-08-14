@@ -77,7 +77,7 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
             let $newIndex := 
                 if($cacheKey eq 'indices') then wdt:lookup($collName, $newColl)('init-sortIndex')()
                 else ()
-            let $sortedColl := wdt:lookup($collName, $newColl)('sort')( map { 'personID' := $cacheKey} )
+            let $sortedColl := wdt:lookup($collName, $newColl)('sort')( map { 'personID' : $cacheKey} )
             (:let $log := core:logToFile('debug', 'Creating collection' || $collName || ': ' || $cacheKey):)
             return $sortedColl
     }

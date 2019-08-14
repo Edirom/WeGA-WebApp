@@ -18,11 +18,11 @@ declare variable $exist:prefix external;
 
 let $lang := config:guess-language(())
 let $exist-vars := map {
-    'exist:path' := $exist:path,
-    'exist:resource' := $exist:resource,
-    'exist:controller' := $exist:controller,
-    'exist:prefix' := $exist:prefix,
-    'lang' := $lang
+    'exist:path' : $exist:path,
+    'exist:resource' : $exist:resource,
+    'exist:controller' : $exist:controller,
+    'exist:prefix' : $exist:prefix,
+    'lang' : $lang
     }
 
 return (

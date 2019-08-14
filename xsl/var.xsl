@@ -10,7 +10,7 @@
     <xsl:param name="secNoOffset" select="0"/>
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note"/>
+    <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note tei:lem tei:rdg"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
 	<xsl:include href="tagdocs.xsl"/>
@@ -355,7 +355,11 @@
         <xsl:text>&gt;</xsl:text>
     </xsl:template>
     
-    <xsl:template match="text()" mode="verbatim">
+    <!--
+        Need to add priority to overwrite default 
+        template (with mode #add) in the commons module
+    -->
+    <xsl:template match="text()" mode="verbatim" priority="0.1">
         <xsl:call-template name="verbatim-xml">
             <xsl:with-param name="text" select="."/>
         </xsl:call-template>

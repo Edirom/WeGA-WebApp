@@ -15,7 +15,7 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace xmldb = "http://exist-db.org/xquery/xmldb";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace json-output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace kml="http://www.opengis.net/kml/2.2";
 import module namespace functx="http://www.functx.com";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "../query.xqm";
@@ -43,8 +43,8 @@ declare function local:get-reg-name($params as map(*)) as xs:string {
     return
         if(exists($ab)) then 
             map {
-                'id' := $ab/data(@xml:id),
-                'url' := core:link-to-current-app(controller:path-to-resource($ab/root(), $params('lang')))
+                'id' : $ab/data(@xml:id),
+                'url' : core:link-to-current-app(controller:path-to-resource($ab/root(), $params('lang')))
             }
         else 'No results'
 };:)
@@ -135,7 +135,7 @@ declare function local:create-beacon($params as map(*)) as xs:string {
 
 (:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=facets&docID=indices&docType=letters&facet=sender&format=json:)
 declare function local:facets($params as map(*))  {
-    let $search := search:results(<span/>, map { 'docID' := $params('docID') }, $params('docType'))
+    let $search := search:results(<span/>, map { 'docID' : $params('docID') }, $params('docType'))
     let $lang := config:guess-language($params('lang'))
     return 
         facets:facets($search?search-results, $params('facet'), -1, $lang)
@@ -163,9 +163,9 @@ declare function local:serialize-json($response as item()*) {
     return 
         response:stream(
             serialize($response, 
-                <json-output:serialization-parameters>
-                    <json-output:method>json</json-output:method>
-                </json-output:serialization-parameters>
+                <output:serialization-parameters>
+                    <output:method>json</output:method>
+                </output:serialization-parameters>
             ), 
             string-join($serializationParameters, ' ')
         )

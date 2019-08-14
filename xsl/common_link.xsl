@@ -19,7 +19,7 @@
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
-    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement">
+    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement | mei:geogName" mode="#all">
         <xsl:choose>
             <xsl:when test="@key or @dbkey">
                 <xsl:call-template name="createLink"/>
@@ -30,7 +30,7 @@
         </xsl:choose>
     </xsl:template>
 
-    <xsl:template match="tei:rs">
+    <xsl:template match="tei:rs" mode="#all">
         <!--
             Need to distinguish between docTypes with support for single views and those with tooltips only 
         -->
@@ -44,7 +44,7 @@
                 <xsl:call-template name="createSpan"/>
             </xsl:when>
             <xsl:otherwise>
-                <xsl:apply-templates/>
+                <xsl:apply-templates mode="#current"/>
             </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
@@ -60,11 +60,11 @@
         </xsl:element>
     </xsl:template>
 
-    <xsl:template match="tei:characterName">
+    <xsl:template match="tei:characterName" mode="#all">
         <xsl:call-template name="createSpan"/>
     </xsl:template>
 
-    <xsl:template match="tei:ref">
+    <xsl:template match="tei:ref" mode="#all">
         <xsl:element name="a">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates select="@target"/>
@@ -72,7 +72,7 @@
                 <xsl:attribute name="id" select="concat('backref-', substring(@target, 2))"/>
                 <xsl:attribute name="class">fn-ref</xsl:attribute>
             </xsl:if>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="#current"/>
             <xsl:if test="@type = 'hyperLink'">
                 <xsl:text> </xsl:text>
                 <xsl:element name="i">
@@ -90,7 +90,7 @@
         for previews. Hence, links with fragment identifiers (e.g. `<ref target='wega:A090092#chapter-links'>`)
         will be transformed to simple links without preview popover
     -->
-    <xsl:template match="tei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))]">
+    <xsl:template match="tei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))]" mode="#all">
         <xsl:call-template name="createLink"/>
     </xsl:template>
     
@@ -121,7 +121,7 @@
                     </xsl:attribute>
                     <!--<xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>-->
                     <xsl:apply-templates select="@key | @dbkey | @target"/>
-                    <xsl:apply-templates/>
+                    <xsl:apply-templates mode="#current"/>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
@@ -168,7 +168,7 @@
                 </xsl:variable>
                 <xsl:attribute name="data-ref" select="string-join($urls, ' ')"/>
             </xsl:if>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="#current"/>
         </xsl:element>
     </xsl:template>
     

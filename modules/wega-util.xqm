@@ -151,14 +151,14 @@ declare %private function wega-util:editionStmt() as map() {
     let $lang := config:guess-language(())
     return
         map {
-            'version' :=    lang:get-language-string(
+            'version' :    lang:get-language-string(
                                 'versionInformation', (
                                     config:expath-descriptor()/@version, 
                                     date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
                                 ), 
                                 $lang
                             ),
-            'download' := lang:get-language-string('downloaded_on', $lang) || ': ' || current-dateTime()
+            'download' : lang:get-language-string('downloaded_on', $lang) || ': ' || current-dateTime()
         }
 };
 
@@ -434,7 +434,7 @@ declare function wega-util:print-forename-surname-from-nameLike-element($nameLik
         else if($id and config:is-org($id)) then query:title($id)
         (: any name without key / or multiple keys, e.g. `<rs type="persons" key="A001234 A004321">:)
         (: NB: there may be nested elements (e.g. <supplied> in bibliographies) which we need to process first :)
-        else if (not(functx:all-whitespace($nameLikeElement))) then str:print-forename-surname(wega-util:transform($nameLikeElement, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params( map {'suppressLinks' := 'true'} )))
+        else if (not(functx:all-whitespace($nameLikeElement))) then str:print-forename-surname(wega-util:transform($nameLikeElement, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params( map {'suppressLinks' : 'true'} )))
         (: fallback: anonymous :)
         else query:title(config:get-option('anonymusID'))
 };

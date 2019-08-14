@@ -1,10 +1,14 @@
-<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-    xmlns:tei="http://www.tei-c.org/ns/1.0"
-    xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    xmlns:functx="http://www.functx.com"
-    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-    exclude-result-prefixes="xs" version="2.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml" 
+    xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
+    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
+    xmlns:tei="http://www.tei-c.org/ns/1.0" 
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:rng="http://relaxng.org/ns/structure/1.0" 
+    xmlns:functx="http://www.functx.com" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+    xmlns:teix="http://www.tei-c.org/ns/Examples" 
+    xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
     
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
 
@@ -13,8 +17,8 @@
     <!--  *********************************************  -->
 <!--    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>-->
     <xsl:variable name="blockLevelElements" as="xs:string+" select="('item', 'p')"/>
-    <xsl:variable name="musical-symbols" as="xs:string" select="'[𝄀-𝇿♭-♯]+'"/>
-    <xsl:variable name="fa-exclamation-circle" as="xs:string" select="''"/>
+    <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
+    <xsl:variable name="fa-exclamation-circle" as="xs:string" select="'&#xf06a;'"/>
     <xsl:param name="optionsFile"/>
     <xsl:param name="baseHref"/>
     <xsl:param name="lang"/>
@@ -38,7 +42,7 @@
     <xsl:template name="dots">
         <xsl:param name="count" select="1"/>
         <xsl:if test="$count &gt; 0">
-            <xsl:text> </xsl:text>
+            <xsl:text>&#160;</xsl:text>
             <xsl:call-template name="dots">
                 <xsl:with-param name="count" select="$count - 1"/>
             </xsl:call-template>
@@ -199,7 +203,7 @@
     <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:seg[@rend]]" priority="0.6"/>
     <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
 
-    <xsl:template match="text()">
+    <xsl:template match="text()" mode="#all">
         <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols, $fa-exclamation-circle), '|')"/>
         <xsl:analyze-string select="." regex="{$regex}">
             <xsl:matching-substring>
@@ -234,9 +238,9 @@
         </xsl:analyze-string>
     </xsl:template>
 
-    <xsl:template match="tei:hi[@rend='underline']">
+    <xsl:template match="tei:hi[@rend='underline']" mode="#all">
         <xsl:element name="span">
-            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates select="@xml:id" mode="#current"/>
             <xsl:attribute name="class">
                 <xsl:choose>
                     <xsl:when test="@n &gt; 1 or ancestor::tei:hi[@rend='underline']">
@@ -247,7 +251,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="#current"/>
         </xsl:element>
     </xsl:template>
     
@@ -281,15 +285,15 @@
                                 <xsl:choose>
                                     <xsl:when test="$docID eq 'A100000'">
                                         <!-- Special treatment for the Notizenbuch where we decided to label the pages as numbers, sigh … -->
-                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' Nr. ', @n)"/>
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' Nr.&#160;', @n)"/>
                                     </xsl:when>
                                     <xsl:otherwise>
-                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), ' ', @n)"/>
+                                        <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), '&#160;', @n)"/>
                                     </xsl:otherwise>
                                 </xsl:choose>
                             </xsl:when>
                             <xsl:when test="self::tei:cb">
-                                <xsl:value-of select="concat(wega:getLanguageString('columnBreakTo', $lang), ' ', wega:getLanguageString('col', $lang), ' ', @n)"/>
+                                <xsl:value-of select="concat(wega:getLanguageString('columnBreakTo', $lang), ' ', wega:getLanguageString('col', $lang), '&#160;', @n)"/>
                             </xsl:when>
                         </xsl:choose>
                     </xsl:when>
@@ -796,11 +800,11 @@
 
     <!-- Default template for TEI elements -->
     <!-- will be turned into html:span with class tei_elementName_attributeRendValue -->
-    <xsl:template match="tei:*">
+    <xsl:template match="tei:*" mode="#all">
         <xsl:element name="span">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class" select="string-join(('tei', local-name(), @rend), '_')"/>
-            <xsl:apply-templates/>
+            <xsl:apply-templates mode="#current"/>
         </xsl:element>
     </xsl:template>
 

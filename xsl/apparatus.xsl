@@ -31,7 +31,7 @@
          <xsl:if test="$textConstitutionPath">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
-               <span><xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/></span>
+               <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
             </xsl:element>
          </xsl:if>
          <xsl:element name="ul">
@@ -56,12 +56,7 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
-         <xsl:if test="$commentaryPath">
-            <xsl:element name="h3">
-               <xsl:attribute name="class">media-heading</xsl:attribute>
-               <xsl:value-of select="wega:getLanguageString('note_commentary', $lang)"/>
-            </xsl:element>
-         </xsl:if>
+
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus commentary</xsl:attribute>
             <xsl:for-each select="$commentaryPath">
@@ -84,12 +79,6 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
-         <xsl:if test="$rdgPath">
-            <xsl:element name="h3">
-               <xsl:attribute name="class">media-heading</xsl:attribute>
-               <xsl:value-of select="wega:getLanguageString('appRdgs', $lang)"/>
-            </xsl:element>
-         </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus rdg</xsl:attribute>
             <xsl:for-each select="$rdgPath">
@@ -133,8 +122,8 @@
                   <xsl:apply-templates select="preceding::tei:ptr[@target=concat('#', $id)]" mode="apparatus"/>
                </xsl:when>
                <xsl:otherwise>
-                  <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text(), ' '), '\s+')"/>
                   <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
+                  <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])], ' '), '\s+')"/>
                   <xsl:sequence select="('… ', subsequence($textTokens, count($textTokens) - 4))"/>
                </xsl:otherwise>
             </xsl:choose>
@@ -148,8 +137,8 @@
    <xsl:template match="tei:ptr" mode="apparatus">
       <!-- Thanks to Dimitre Novatchev! http://stackoverflow.com/questions/2694825/how-do-i-select-all-text-nodes-between-two-elements-using-xsl -->
       <xsl:variable name="noteID" select="substring(@target, 2)"/>
-      <xsl:variable name="vtextPostPtr" select="following::text()"/>
-      <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()"/>
+      <xsl:variable name="vtextPostPtr" select="following::text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])]"/>
+      <xsl:variable name="vtextPreNote" select="//tei:note[@xml:id=$noteID]/preceding::text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])]"/>
       <xsl:variable name="textTokensBetween" select="tokenize(string-join($vtextPostPtr[count(.|$vtextPreNote) = count($vtextPreNote)], ' '), '\s+')"/>
       <xsl:choose>
          <xsl:when test="count($textTokensBetween) gt 6">
@@ -256,43 +245,57 @@
          </xsl:attribute>
          <xsl:attribute name="data-counter">‡ <xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:element name="div">
-            <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/></strong> <!-- source containing the lemma the first text source by definition' -->
+            <xsl:element name="strong">
+               <!-- source containing the lemma the first text source by definition' -->
+               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/>
+            </xsl:element> 
             <xsl:variable name="lemma">
                <xsl:apply-templates select="tei:lem" mode="lemma"/>
             </xsl:variable>
             <xsl:element name="span">
-               <!--<xsl:attribute name="class" select="'tei_lemma'"/>-->
-               <xsl:sequence select="wega:enquote($lemma)"/>
+               <xsl:choose>
+                  <xsl:when test="functx:all-whitespace($lemma)">
+                     <xsl:attribute name="class">noRdg</xsl:attribute>
+                     <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:sequence select="wega:enquote($lemma)"/>
+                  </xsl:otherwise>
+               </xsl:choose>
             </xsl:element>
          </xsl:element>
-         <xsl:element name="div">
-            <strong><xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/></strong>
-            <xsl:variable name="rdg">
-               <xsl:apply-templates select="tei:rdg" mode="lemma"/>
-            </xsl:variable>
-            <xsl:sequence select="wega:enquote($rdg)"/>
-         </xsl:element>
+         <xsl:for-each select="tei:rdg">
+            <xsl:variable name="lemWit" select="substring-after(@wit,'#')"/>
+            <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$lemWit]/data(@n)"/>
+            <xsl:element name="div">
+               <xsl:element name="strong">
+                  <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/>
+               </xsl:element>
+               <xsl:variable name="rdg">
+                  <xsl:apply-templates select="." mode="lemma"/>
+               </xsl:variable>
+               <xsl:element name="span">
+                  <xsl:choose>
+                     <xsl:when test="functx:all-whitespace($rdg)">
+                        <xsl:attribute name="class">noRdg</xsl:attribute>
+                        <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:sequence select="wega:enquote($rdg)"/>
+                     </xsl:otherwise>
+                  </xsl:choose>
+               </xsl:element>
+            </xsl:element>
+         </xsl:for-each>
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:rdg">
+   <!-- within readings or lemmas there must not be any paragraphs (in the result HTML) -->
+   <xsl:template match="tei:p" mode="lemma">
       <xsl:element name="span">
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <xsl:apply-templates mode="rdg"/>
+         <xsl:apply-templates mode="#current"/>
       </xsl:element>
-   </xsl:template>
-
-   <!-- within readings there must not be any paragraphs (in the result HTML) -->
-   <xsl:template match="tei:p" mode="rdg">
-      <xsl:element name="span">
-         <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <xsl:apply-templates mode="#default"/>
-      </xsl:element>
-   </xsl:template>
-
-   <!-- fallback (for everything but tei:p): forward all nodes to the default templates  -->
-   <xsl:template match="node()|@*" mode="rdg">
-      <xsl:apply-templates select="." mode="#default"/>
    </xsl:template>
 
    <xsl:template match="tei:add[not(parent::tei:subst)]">
@@ -588,7 +591,6 @@
       </xsl:call-template>
    </xsl:template>
     
-   <xsl:template match="tei:del" mode="lemma"/>
    <xsl:template match="tei:note" mode="lemma"/>
    <xsl:template match="tei:lb" mode="lemma">
       <xsl:text> </xsl:text>
@@ -613,9 +615,6 @@
             <xsl:apply-templates select="tei:abbr" mode="#current"/>
          </xsl:when>
       </xsl:choose>
-   </xsl:template>
-   <xsl:template match="tei:*" mode="lemma">
-      <xsl:apply-templates mode="#current"/>
    </xsl:template>
    
    <!-- template for creating an apparatus entry -->

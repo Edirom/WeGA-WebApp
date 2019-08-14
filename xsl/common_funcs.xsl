@@ -499,12 +499,15 @@
 
     <xsl:function name="wega:enquote">
         <xsl:param name="input" as="item()*"/>
-        <xsl:variable name="inputWrapper">
-            <xsl:element name="inputWraper"><xsl:sequence select="$input"/></xsl:element>
+        <xsl:variable name="dummy">
+            <xsl:text>dummy</xsl:text>
         </xsl:variable>
-        <xsl:for-each select="$inputWrapper">
-            <xsl:call-template name="enquote"/>
-        </xsl:for-each>
+        <xsl:variable name="enquoted">
+            <xsl:for-each select="$dummy">
+                <xsl:call-template name="enquote"/>
+            </xsl:for-each>
+        </xsl:variable>
+        <xsl:sequence select="substring-before($enquoted, 'dummy'), $input, substring-after($enquoted, 'dummy')"/>
     </xsl:function>
 
     <!--  *********************************************  -->
