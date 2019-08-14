@@ -127,7 +127,12 @@
       <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="title" select="wega:getLanguageString(string-join((local-name(),@type), '_'),$lang)"/>
-         <xsl:with-param name="counter-param" select="'note'"/>
+         <xsl:with-param name="counter-param">
+            <xsl:choose>
+               <xsl:when test="@type='textConst'"/>
+               <xsl:otherwise><xsl:value-of select="'note'"/></xsl:otherwise>
+            </xsl:choose>
+         </xsl:with-param>
          <xsl:with-param name="lemma">
             <xsl:choose>
                <xsl:when test="preceding::tei:ptr[@target=concat('#', $id)]">

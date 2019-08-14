@@ -72,7 +72,7 @@
                 <xsl:when test="$marker eq 'arabic'">
                     <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
                 </xsl:when>
-                <xsl:when test="not($marker) and self::tei:note">
+                <xsl:when test="not($marker) and self::tei:note[not(@type='textConst')]">
                     <xsl:text>*</xsl:text>
                 </xsl:when>
                 <xsl:when test="not($marker) and self::tei:app">
