@@ -1271,11 +1271,15 @@ declare
              then 
                 element p {
                         attribute class {'notAvailable'},
+                        (: revealed correspondence which has backlinks gets a direct link to the backlinks, see https://github.com/Edirom/WeGA-WebApp/issues/304 :)
                         if($doc//tei:correspDesc[@n = 'revealed'] and $model('backlinks')) then (
                             substring-before(lang:get-language-string('correspondenceTextNotAvailable', $lang),"."), ' ',
                             <span>({lang:get-language-string('see', $lang)}</span>, ' ',
                             <span><a href="#backlinks">{lang:get-language-string('backlinks', $lang)}</a>).</span>, ' ',
                             substring-after(lang:get-language-string('correspondenceTextNotAvailable',$lang),".") )
+                        (: … for revealed correspondence without backlinks drop that link :)
+                        else if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable',$lang)
+                        (: all other empty texts :)
                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang),
                         (: adding link to editorial :)
                         lang:get-language-string('forFurtherDetailsSee', $lang), ' ',
