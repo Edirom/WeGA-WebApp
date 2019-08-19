@@ -582,6 +582,12 @@
          </xsl:when>
       </xsl:choose>
    </xsl:template>
+   <!-- suppress processing of footnotes in lemma mode to avoid duplicate IDs (https://github.com/Edirom/WeGA-WebApp/issues/313) -->
+   <xsl:template match="tei:ref[@type='footnoteAnchor']|tei:footNote" mode="lemma" priority="1">
+      <xsl:apply-templates mode="#current"/>
+   </xsl:template>
+   <!-- suppress processing of footnoteAnchors in lemma mode when the footnote itself is part of the tei:app -->
+   <xsl:template match="tei:ref[@type='footnoteAnchor'][ancestor::tei:app//tei:footNote]" mode="lemma" priority="2"/>
    
    <!-- template for creating an apparatus entry -->
    <xsl:template name="apparatusEntry">
