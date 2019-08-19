@@ -1271,7 +1271,7 @@ declare
              then 
                 element p {
                         attribute class {'notAvailable'},
-                        if($doc//tei:correspDesc[@n = 'revealed']) then (
+                        if($doc//tei:correspDesc[@n = 'revealed'] and $model('backlinks')) then (
                             substring-before(lang:get-language-string('correspondenceTextNotAvailable', $lang),"."), ' ',
                             <span>({lang:get-language-string('see', $lang)}</span>, ' ',
                             <span><a href="#backlinks">{lang:get-language-string('backlinks', $lang)}</a>).</span>, ' ',
