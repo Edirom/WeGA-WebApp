@@ -203,24 +203,16 @@
     
     <xsl:template match="tei:note[@type='incipit']">
         <xsl:element name="div">
-            <!--<xsl:attribute name="id" select="'incipit'"/>-->
-            <xsl:if test="normalize-space(.) != ''">
-                <!--<xsl:element name="h3">
-                    <xsl:value-of select="wega:getLanguageString('incipit', $lang)"/>
-                </xsl:element>-->
-                <xsl:choose>
-                    <xsl:when test="tei:p">
+            <xsl:choose>
+                <xsl:when test="tei:p">
+                    <xsl:apply-templates/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:element name="p">
                         <xsl:apply-templates/>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:element name="p">
-                            <xsl:call-template name="enquote">
-                                <xsl:with-param name="ellipsis" select="true()"/>
-                            </xsl:call-template>
-                        </xsl:element>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:if>
+                    </xsl:element>
+                </xsl:otherwise>
+            </xsl:choose>
         </xsl:element>
     </xsl:template>
     

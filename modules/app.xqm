@@ -1408,16 +1408,31 @@ declare
         )
 };
 
+(:~
+ : surround HTML fragment with quotation marks  
+ :
+ : @param $items the HTML fragments (or strings) to enquote
+ : @param $lang the language switch (en, de)
+ :)
+declare %private function app:enquote-html($items as item()*, $lang as xs:string) as item()*  {
+    let $enquotedDummy := str:enquote('dummy', $lang)
+    return (
+        <xhtml:span class="marks_supplied">{substring-before($enquotedDummy, 'dummy')}</xhtml:span>,
+        $items,
+        <xhtml:span class="marks_supplied">{substring-after($enquotedDummy, 'dummy')}</xhtml:span>
+    ) 
+};
+
 declare 
     %templates:default("lang", "en")
     %templates:default("generate", "false")
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
         let $incipit := wega-util:transform(query:incipit($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
-            if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
+            if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit ! element p { app:enquote-html(./xhtml:p/node(), $lang) }
             else element p {
-                if(exists($incipit)) then $incipit
-                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then str:shorten-TEI($model('doc')//tei:text/tei:body, 80, $lang)
+                if(exists($incipit)) then app:enquote-html($incipit, $lang)
+                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then app:enquote-html(str:shorten-TEI($model('doc')//tei:text/tei:body, 80, $lang), $lang)
                 else '–'
             }
 };
@@ -1699,7 +1714,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-incipit($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        app:print-incipit($node, $model, $lang, 'true') => string-join('; ') => str:normalize-space()
+        app:print-incipit($node, $model, $lang, 'true') ! str:normalize-space(.)  => string-join('; ')
 };
 
 declare 
