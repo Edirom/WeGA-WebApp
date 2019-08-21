@@ -670,17 +670,10 @@ declare
     function app:index-news-item($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
             'title' : wdt:news($model?newsItem)?title('html'),
-            'date' : date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}),
+            'date' : date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), $config:default-date-picture-string),
             'url' : app:createUrlForDoc($model?newsItem, $lang)
         }
 };
-
-(:declare
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:index-news-date($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
-};:)
 
 declare 
     %templates:default("lang", "en")
@@ -957,7 +950,7 @@ declare
                 >greg.</sup>
         }
         return (
-            date:printDate($orderedDates[1], $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
+            date:printDate($orderedDates[1], $model?lang, lang:get-language-string(?,?,$model?lang), $config:default-date-picture-string),
             if(($orderedDates[1])[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($orderedDates[1]/@when), $model?lang))
             else (),
             (
@@ -967,7 +960,7 @@ declare
                     for $date at $count in subsequence($orderedDates, 2)
                     return 
                         <span>{
-                            date:printDate($date, $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
+                            date:printDate($date, $model?lang, lang:get-language-string(?,?,$model?lang), $config:default-date-picture-string),
                             if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
                             else (),
                             if($count < count($orderedDates) - 1) then ', '
@@ -1684,7 +1677,7 @@ declare
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' : $model('result-page-entry')//mei:term/data(@classcode),
-            'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
+            'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), $config:default-date-picture-string)
         }
 };
 
