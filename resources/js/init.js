@@ -177,28 +177,39 @@ $.fn.initDatepicker = function () {
  * Activate bootstrap remote nav tabs (on letters) 
  * "For further details see editorial"
  */
-$('#transcription a[href$="#editorial"], a[href$="#backlinks"], a[href$="#transcription"]').on('click', function (e) {
+$(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="#transcription"]', function (e) {
     // code taken from the bootstrap remote nav tabs plugin
     var url = $(e)[0].target.href,
-        hash = url.substring(url.indexOf('#')+1),
-        hasTab = $('[data-toggle=tab][href*='+hash+']'),
-        hasAccordion = $('[data-toggle=collapse][href*='+hash+']');
-        apparatusLink = $(this).hasClass("apparatus-link"),
-        ref = $(this).attr("data-href");
+    hash = url.substring(url.indexOf('#') + 1),
+    hasTab = $('[data-toggle=tab][href*=' + hash + ']'),
+    hasAccordion = $('[data-toggle=collapse][href*=' + hash + ']');
+    apparatusLink = $(this).hasClass("apparatus-link"),
+    ref = $(this).attr("data-href");
 
-    if (hasTab && apparatusLink) { // if clicked link is an link within the apparatus (marked with class .apparatus-link)
-         hasTab.tab('show'); // open tab
-              $(document).on('shown.bs.tab', 'a[href="#transcription"]', function (e) { //wait for tab to be loaded
-                 $(".hi-").removeClass("hi-"); //remove previous highlight
-                 $('html, body').animate({
-                     scrollTop: $(ref).offset().top - 400 //scroll to position (with offset)
-                 }, 500);
-                 $(ref).click();
-                 $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-"); // attempt to highlight lemma in text, jump to position and open corresponding popover ...
-         })
-    }
-
-    else if (hasTab) {
+    if (hasTab && apparatusLink) {
+        // if clicked link is an link within the apparatus (marked with class .apparatus-link)
+        hasTab.tab('show');
+        // open tab
+        $(document).on('shown.bs.tab', 'a[href="#transcription"]', function (e) {
+            //wait for tab to be loaded
+            $(".hi-").removeClass("hi-");
+            //remove previous highlight
+            $('html, body').animate({
+                scrollTop: $(ref).offset().top - 400 //scroll to position (with offset)
+            },
+            500);
+            $(ref).click();
+            $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-");
+            // attempt to highlight lemma in text, jump to position and open corresponding popover ...
+        });
+        $(document).on('shown.bs.tab', 'a[href="#editorial"]', function (e) {
+            $('.popover').popover('hide');
+            $('html, body').animate({
+                scrollTop: $(ref).offset().top - 400
+            },
+            500);
+        });
+    } else if (hasTab) {
         hasTab.tab('show');
     }
     
@@ -508,6 +519,7 @@ function popover_callBack() {
         if(e.startsWith('#')) { // local references to endnotes and commentaries
             $('.item-title-content', popover_div).html($(e).attr('data-title'));
             $('.item-counter', popover_div).html($(e).attr('data-counter'));
+            $('.item-counter',popover_div).attr('data-href',$(e).attr('data-href'));
             $('.item-content', popover_div).html($(e).html());
             popover_data = popover.data('bs.popover');
             popover_data.options.content = $('div.popover-content', popover).clone().children();

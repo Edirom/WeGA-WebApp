@@ -231,8 +231,8 @@
       </xsl:element>
    </xsl:template>
 
-   <!-- will be changed in https://github.com/Edirom/WeGA-WebApp/issues/307 -->
    <xsl:template match="tei:app" mode="apparatus">
+      <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:variable name="counter">
          <xsl:number level="any"/>
       </xsl:variable>
@@ -263,12 +263,14 @@
          </xsl:choose>
       </xsl:variable>
       <xsl:element name="div">
+         <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="class">apparatusEntry col-xs-11</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
          <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
+         <xsl:attribute name="data-href"><xsl:value-of select="concat('#',$id)"/></xsl:attribute>
          <xsl:element name="div">
             <xsl:element name="strong">
                <!-- source containing the lemma the first available (not lost) text source by definition' -->
@@ -428,12 +430,13 @@
 
    <!-- TODO: Beschreibung von gap noch etwas dürftig bzw. gedoppelt in Titel und Beschreibung -->
    <xsl:template match="tei:gap" mode="apparatus">
+      <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:variable name="counter">
          <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/>
       </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry col-xs-11</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('gapDefault',$lang)"/>
             <xsl:if test="@reason='outofScope'">
@@ -442,6 +445,7 @@
             </xsl:if>
          </xsl:attribute>
          <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
+         <xsl:attribute name="data-href"><xsl:value-of select="concat('#',$id)"/></xsl:attribute>
          <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
          <xsl:text> </xsl:text>
          <xsl:if test="@unit and @quantity">
@@ -647,6 +651,7 @@
       <xsl:param name="lemma" as="item()*"/>
       <xsl:param name="explanation" as="item()*"/>
       <xsl:param name="counter-param"/>
+      <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:variable name="counter">
          <xsl:choose>
             <xsl:when test="$counter-param='note'">
@@ -659,12 +664,12 @@
       </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry col-xs-11</xsl:attribute>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
+         <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="$title"/>
          </xsl:attribute>
-         <xsl:attribute name="data-counter">
-            <xsl:value-of select="$counter"/></xsl:attribute>
+         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
+         <xsl:attribute name="data-href"><xsl:value-of select="concat('#',$id)"/></xsl:attribute>
          <xsl:if test="$lemma">
             <xsl:element name="span">
                <xsl:attribute name="class" select="'tei_lemma'"/>
