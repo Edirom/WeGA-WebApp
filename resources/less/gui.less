@@ -129,8 +129,15 @@ table {
 
 .popover .item-counter {
     float: right;
-    color: @gray;
+    margin-left:1em;
+    :before {
+    font-size:0.8em;
+    font-family:"FontAwesome";
+    vertical-align:middle;
+    content:"\f062";
+    }
 }
+
 
 /* lemma styling */
 span.tei_lemma {
@@ -707,6 +714,13 @@ span.label {
 
 .apparatus-block {
     margin: 4px 0 4px 0;
+}
+
+.apparatus-link:before {
+    font-size: 0.8em;
+    font-family:"FontAwesome";
+    content:"\f062";
+    padding-right:4px;
 }
 
 .no-wrap {
