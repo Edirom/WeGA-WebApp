@@ -43,12 +43,11 @@
                   <xsl:element name="div">
                      <xsl:attribute name="class">row</xsl:attribute>
                      <xsl:element name="div">
-                        <xsl:attribute name="class">col-xs-1</xsl:attribute>
+                        <xsl:attribute name="class">col-xs-1 text-nowrap</xsl:attribute>
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
-                           <xsl:text>+ </xsl:text> <!-- to be changed in common_main.xsl too if necessary -->
                            <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/> <!-- should be in a variable -->
                            <xsl:text>.</xsl:text>
                         </xsl:element>
@@ -71,12 +70,11 @@
                   <xsl:element name="div">
                      <xsl:attribute name="class">row</xsl:attribute>
                      <xsl:element name="div">
-                        <xsl:attribute name="class">col-xs-1</xsl:attribute>
+                        <xsl:attribute name="class">col-xs-1 text-nowrap</xsl:attribute>
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
-                           <xsl:text>* </xsl:text>
                            <xsl:number count="tei:note[@type=('commentary', 'definition')] | tei:choice" level="any"/>
                            <xsl:text>.</xsl:text>
                         </xsl:element>
@@ -99,12 +97,11 @@
                   <xsl:element name="div">
                      <xsl:attribute name="class">row</xsl:attribute>
                      <xsl:element name="div">
-                        <xsl:attribute name="class">col-xs-1</xsl:attribute>
+                        <xsl:attribute name="class">col-xs-1 text-nowrap</xsl:attribute>
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
-                           <xsl:text>‡ </xsl:text>
                            <xsl:number level="any"/>
                            <xsl:text>.</xsl:text>
                         </xsl:element>
@@ -271,7 +268,7 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
-         <xsl:attribute name="data-counter">‡ <xsl:value-of select="$counter"/></xsl:attribute>
+         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:element name="div">
             <xsl:element name="strong">
                <!-- source containing the lemma the first available (not lost) text source by definition' -->
@@ -435,7 +432,7 @@
          <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/>
       </xsl:variable>
       <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="class">apparatusEntry col-xs-11</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('gapDefault',$lang)"/>
@@ -445,7 +442,6 @@
             </xsl:if>
          </xsl:attribute>
          <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
-         <xsl:text>+ </xsl:text>
          <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
          <xsl:text> </xsl:text>
          <xsl:if test="@unit and @quantity">
@@ -662,20 +658,12 @@
          </xsl:choose>
       </xsl:variable>
       <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry</xsl:attribute>
+         <xsl:attribute name="class">apparatusEntry col-xs-11</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="$title"/>
          </xsl:attribute>
          <xsl:attribute name="data-counter">
-            <xsl:choose>
-               <xsl:when test="$counter-param='note'">
-                  <xsl:text>* </xsl:text>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:text>+ </xsl:text>
-               </xsl:otherwise>
-            </xsl:choose>
             <xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:if test="$lemma">
             <xsl:element name="span">

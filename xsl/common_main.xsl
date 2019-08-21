@@ -76,10 +76,10 @@
                     <xsl:text>*</xsl:text>
                 </xsl:when>
                 <xsl:when test="not($marker) and self::tei:app">
-                    <xsl:text>‡</xsl:text>
+                    <xsl:text>Δ</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text>+</xsl:text> <!-- to be changed in apparatus.xsl too if necessary -->
+                    <xsl:text>‡</xsl:text> <!-- to be changed in apparatus.xsl too if necessary -->
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
