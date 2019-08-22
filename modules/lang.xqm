@@ -54,10 +54,6 @@ declare function lang:get-language-string($key as xs:string, $lang as xs:string)
 declare function lang:get-language-string($key as xs:string, $replacements as xs:string*, $lang as xs:string) as xs:string? {
     let $catalogue := lang:get-language-catalogue($lang)
     let $catalogueEntry := normalize-space($catalogue//id($key))
-    let $replacements := 
-        for $r in $replacements 
-        return if(string-length($r)<3 and $lang='de' and $key eq 'dateBetween') then concat($r,'.') (: Sonderfall: "Zwischen 3. und 4. März 1767" - Der Punkt hinter der 3 :)
-        else $r
     let $placeHolders := 
         for $i at $count in $replacements
         let $x := concat('%',$count)

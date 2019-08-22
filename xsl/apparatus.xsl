@@ -30,7 +30,7 @@
          <xsl:if test="wega:isNews($docID)">
             <xsl:attribute name="style">display:none</xsl:attribute>
          </xsl:if>
-         <xsl:if test="$textConstitutionPath">
+         <xsl:if test="$textConstitutionPath or $doc//tei:notesStmt/tei:note[@type='textConst']">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
@@ -114,8 +114,20 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:listWit"/> <!-- prevent unintended witness output -->
-
+   <!-- dedicated template for textConst notes in the notesStmt -->
+   <xsl:template match="tei:note[@type='textConst'][parent::tei:notesStmt]" priority="2">
+      <xsl:choose>
+         <xsl:when test="child::*/local-name() = $blockLevelElements">
+            <xsl:apply-templates/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:element name="p">
+               <xsl:apply-templates/>
+            </xsl:element>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+   
    <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
       <xsl:call-template name="popover"/>
    </xsl:template>
@@ -185,18 +197,19 @@
    </xsl:template>
 
    <xsl:template match="tei:subst" mode="apparatus">
+      <xsl:variable name="lemma">
+         <xsl:choose>
+            <xsl:when test="count(tei:add) gt 1">
+               <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:apply-templates select="tei:add" mode="lemma"/>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="title" select="wega:getLanguageString('subst',$lang)"/>
-         <xsl:with-param name="lemma">
-            <xsl:choose>
-               <xsl:when test="count(tei:add) gt 1">
-                  <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:apply-templates select="tei:add" mode="lemma"/>
-               </xsl:otherwise>
-            </xsl:choose>
-         </xsl:with-param>
+         <xsl:with-param name="lemma" select="$lemma"/>
          <xsl:with-param name="explanation">
             <xsl:variable name="processedDel">
                <xsl:apply-templates select="tei:del[1]/node()" mode="lemma"/>
@@ -207,14 +220,21 @@
                </xsl:when>
                <xsl:when test="tei:del[@rend='strikethrough']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
-                  <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:value-of select="wega:getLanguageString('substDelStrikethrough', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:sequence select="wega:enquote($lemma)"/>
                </xsl:when>
                <xsl:when test="tei:del[@rend='overwritten']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
-                  <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:value-of select="wega:getLanguageString('substDelOverwritten', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:sequence select="wega:enquote($lemma)"/>
                </xsl:when>
                <xsl:when test="tei:del[@rend='erased']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
+                  <xsl:text> </xsl:text>
                   <xsl:value-of select="wega:getLanguageString('delErased', $lang)"/>
                </xsl:when>
             </xsl:choose>
@@ -644,6 +664,12 @@
          </xsl:when>
       </xsl:choose>
    </xsl:template>
+   <!-- suppress processing of footnotes in lemma mode to avoid duplicate IDs (https://github.com/Edirom/WeGA-WebApp/issues/313) -->
+   <xsl:template match="tei:ref[@type='footnoteAnchor']|tei:footNote" mode="lemma" priority="1">
+      <xsl:apply-templates mode="#current"/>
+   </xsl:template>
+   <!-- suppress processing of footnoteAnchors in lemma mode when the footnote itself is part of the tei:app -->
+   <xsl:template match="tei:ref[@type='footnoteAnchor'][ancestor::tei:app//tei:footNote]" mode="lemma" priority="2"/>
    
    <!-- template for creating an apparatus entry -->
    <xsl:template name="apparatusEntry">

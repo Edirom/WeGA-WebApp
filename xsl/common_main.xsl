@@ -16,7 +16,7 @@
     <!--  *             Global Variables              *  -->
     <!--  *********************************************  -->
 <!--    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>-->
-    <xsl:variable name="blockLevelElements" as="xs:string+" select="('item', 'p')"/>
+    <xsl:variable name="blockLevelElements" as="xs:string+" select="('p', 'list', 'table')"/>
     <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
     <xsl:variable name="fa-exclamation-circle" as="xs:string" select="'&#xf06a;'"/>
     <xsl:param name="optionsFile"/>

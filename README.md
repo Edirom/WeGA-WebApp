@@ -14,7 +14,7 @@ Since version 1.2 the WeGA-WebApp is designed as an eXist app package and should
 
 A recent [eXist-db](http://exist-db.org/) with support for XQuery 3.1 (!)
 
-NB: Due to a regression in the eXist-db code (https://github.com/eXist-db/exist/issues/1550) we currently need to stick to eXist-db version 3.3.0!
+NB: Due to a regression in the eXist-db code ([1550](https://github.com/eXist-db/exist/issues/1550), [2678](https://github.com/eXist-db/exist/issues/2678), [2779](https://github.com/eXist-db/exist/issues/2779)) we currently need to stick to eXist-db version 3.3.0!
 
 
 ## Quick start guide
