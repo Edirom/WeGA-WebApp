@@ -169,7 +169,7 @@
          </xsl:choose>
       </xsl:variable>
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('subst',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.subst',$lang)"/>
          <xsl:with-param name="lemma" select="$lemma"/>
          <xsl:with-param name="explanation">
             <xsl:variable name="processedDel">
@@ -317,7 +317,7 @@
       </xsl:variable>
       <xsl:variable name="tokens" select="tokenize($addedText, '\s+')"/>
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('addDefault',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.add',$lang)"/>
          <xsl:with-param name="lemma">
             <xsl:choose>
                <xsl:when test="count($tokens) gt 6">
@@ -332,13 +332,9 @@
          </xsl:with-param>
          <xsl:with-param name="explanation">
             <xsl:choose>
-               <xsl:when test="@place='margin'">
-                  <xsl:value-of select="wega:getLanguageString('addMargin', $lang)"/>
+               <xsl:when test="@place=('margin', 'inline', 'above', 'below', 'mixed')">
+                  <xsl:value-of select="wega:getLanguageString(concat('add', functx:capitalize-first(@place)), $lang)"/>
                </xsl:when>
-               <xsl:when test="@place='inline'">
-                  <xsl:value-of select="wega:getLanguageString('addInline', $lang)"/>
-               </xsl:when>
-               <!-- TODO translate -->
                <xsl:otherwise>
                   <xsl:value-of select="wega:getLanguageString('addDefault', $lang)"/>
                </xsl:otherwise>
@@ -488,7 +484,7 @@
          <xsl:apply-templates select="tei:expan" mode="lemma"/>
       </xsl:variable>
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('abbreviation',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.choiceAbbr',$lang)"/>
          <xsl:with-param name="lemma">
             <xsl:sequence select="$abbr"/>
          </xsl:with-param>
@@ -546,7 +542,7 @@
 
    <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('del',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.del',$lang)"/>
          <xsl:with-param name="lemma">
             <xsl:apply-templates mode="lemma"/>
          </xsl:with-param>
