@@ -30,19 +30,22 @@
          <xsl:if test="wega:isNews($docID)">
             <xsl:attribute name="style">display:none</xsl:attribute>
          </xsl:if>
-         <xsl:if test="$textConstitutionPath">
+         <xsl:if test="$textConstitutionPath or $doc//tei:notesStmt/tei:note[@type='textConst']">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
             </xsl:element>
-            <xsl:element name="ul">
-               <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
-               <xsl:for-each select="$textConstitutionPath">
-                  <xsl:element name="li">
-                     <xsl:apply-templates select="." mode="apparatus"/>
-                  </xsl:element>
-               </xsl:for-each>
-            </xsl:element>
+            <xsl:apply-templates select="$doc//tei:notesStmt/tei:note[@type='textConst']"/>
+            <xsl:if test="$textConstitutionPath">
+               <xsl:element name="ul">
+                  <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
+                  <xsl:for-each select="$textConstitutionPath">
+                     <xsl:element name="li">
+                        <xsl:apply-templates select="." mode="apparatus"/>
+                     </xsl:element>
+                  </xsl:for-each>
+               </xsl:element>
+            </xsl:if>
          </xsl:if>
          
          <xsl:if test="$commentaryPath">
@@ -76,6 +79,20 @@
          </xsl:if>
          
       </xsl:element>
+   </xsl:template>
+   
+   <!-- dedicated template for textConst notes in the notesStmt -->
+   <xsl:template match="tei:note[@type='textConst'][parent::tei:notesStmt]" priority="2">
+      <xsl:choose>
+         <xsl:when test="child::*/local-name() = $blockLevelElements">
+            <xsl:apply-templates/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:element name="p">
+               <xsl:apply-templates/>
+            </xsl:element>
+         </xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
    
    <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
