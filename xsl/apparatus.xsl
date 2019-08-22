@@ -488,7 +488,7 @@
          <xsl:apply-templates select="tei:expan" mode="lemma"/>
       </xsl:variable>
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('choiceUnclear',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('abbreviation',$lang)"/>
          <xsl:with-param name="lemma">
             <xsl:sequence select="$abbr"/>
          </xsl:with-param>
