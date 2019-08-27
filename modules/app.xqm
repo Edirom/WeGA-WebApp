@@ -488,6 +488,7 @@ declare
                 
                 (: Child element a takes the link :)
                 element a {
+                    attribute class {"nav-link"},
                     attribute href {
                         if($isActive) then '#'
                         else controller:translate-URI(request:get-uri(), $lang, lower-case(normalize-space($node)))
