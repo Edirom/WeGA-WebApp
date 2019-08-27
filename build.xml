@@ -52,17 +52,17 @@
         </exec>
     </target>
     
-    <target name="less" depends="init">
-        <description>Create CSS files via less</description>
-        <exec executable="${lessc.cmd}">
-            <arg line="resources/less/styles.less ${dist.dir}/resources/css/styles.css"/>
+    <target name="sass" depends="init">
+        <description>Create CSS files via sass</description>
+        <exec executable="${sass.cmd}">
+            <arg line="resources/sass/styles.scss ${dist.dir}/resources/css/styles.css"/>
         </exec>
-        <exec executable="${lessc.cmd}">
-            <arg line="resources/less/swagger.less ${dist.dir}/resources/css/swagger.css"/>
+        <exec executable="${sass.cmd}">
+            <arg line="resources/sass/swagger.scss ${dist.dir}/resources/css/swagger.css"/>
         </exec>
     </target>
     
-    <target name="dist" depends="init, yarn, less">
+    <target name="dist" depends="init, yarn, sass">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
@@ -91,6 +91,7 @@
                 <exclude name=".dockerignore"/>
                 <exclude name=".travis.yml"/>
                 <exclude name="**/less/**"/>
+                <exclude name="**/sass/**"/>
             </fileset>
         </copy>
         
@@ -142,6 +143,7 @@
                 <exclude name="@fortawesome/"/>
                 <exclude name="prettydiff/"/>
                 <exclude name="less/"/>
+                <exclude name="sass/"/>
                 <exclude name="lodash/"/>
                 <exclude name="rx/"/>
                 <exclude name="vnu/"/>
