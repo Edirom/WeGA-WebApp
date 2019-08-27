@@ -6,6 +6,8 @@
    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
    exclude-result-prefixes="xs" version="2.0">
 
+   <xsl:variable name="doc" select="wega:doc($docID)"/>
+
    <!--
       Mode: default (i.e. template rules without a @mode attribute)
       In this mode the default variant (e.g. sic, not corr) will be output and diacritic 
@@ -28,19 +30,22 @@
          <xsl:if test="wega:isNews($docID)">
             <xsl:attribute name="style">display:none</xsl:attribute>
          </xsl:if>
-         <xsl:if test="$textConstitutionPath">
+         <xsl:if test="$textConstitutionPath or $doc//tei:notesStmt/tei:note[@type='textConst']">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
             </xsl:element>
-            <xsl:element name="ul">
-               <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
-               <xsl:for-each select="$textConstitutionPath">
-                  <xsl:element name="li">
-                     <xsl:apply-templates select="." mode="apparatus"/>
-                  </xsl:element>
-               </xsl:for-each>
-            </xsl:element>
+            <xsl:apply-templates select="$doc//tei:notesStmt/tei:note[@type='textConst']"/>
+            <xsl:if test="$textConstitutionPath">
+               <xsl:element name="ul">
+                  <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
+                  <xsl:for-each select="$textConstitutionPath">
+                     <xsl:element name="li">
+                        <xsl:apply-templates select="." mode="apparatus"/>
+                     </xsl:element>
+                  </xsl:for-each>
+               </xsl:element>
+            </xsl:if>
          </xsl:if>
          
          <xsl:if test="$commentaryPath">
@@ -76,8 +81,20 @@
       </xsl:element>
    </xsl:template>
    
-   <xsl:template match="tei:listWit"/> <!-- prevent unintended witness output -->
-
+   <!-- dedicated template for textConst notes in the notesStmt -->
+   <xsl:template match="tei:note[@type='textConst'][parent::tei:notesStmt]" priority="2">
+      <xsl:choose>
+         <xsl:when test="child::*/local-name() = $blockLevelElements">
+            <xsl:apply-templates/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:element name="p">
+               <xsl:apply-templates/>
+            </xsl:element>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+   
    <xsl:template match="tei:note[@type=('definition', 'commentary', 'textConst')]">
       <xsl:call-template name="popover"/>
    </xsl:template>
@@ -141,18 +158,19 @@
    </xsl:template>
 
    <xsl:template match="tei:subst" mode="apparatus">
+      <xsl:variable name="lemma">
+         <xsl:choose>
+            <xsl:when test="count(tei:add) gt 1">
+               <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:apply-templates select="tei:add" mode="lemma"/>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:variable>
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('subst',$lang)"/>
-         <xsl:with-param name="lemma">
-            <xsl:choose>
-               <xsl:when test="count(tei:add) gt 1">
-                  <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
-               </xsl:when>
-               <xsl:otherwise>
-                  <xsl:apply-templates select="tei:add" mode="lemma"/>
-               </xsl:otherwise>
-            </xsl:choose>
-         </xsl:with-param>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.subst',$lang)"/>
+         <xsl:with-param name="lemma" select="$lemma"/>
          <xsl:with-param name="explanation">
             <xsl:variable name="processedDel">
                <xsl:apply-templates select="tei:del[1]/node()" mode="lemma"/>
@@ -163,14 +181,21 @@
                </xsl:when>
                <xsl:when test="tei:del[@rend='strikethrough']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
-                  <xsl:value-of select="wega:getLanguageString('delStrikethrough', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:value-of select="wega:getLanguageString('substDelStrikethrough', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:sequence select="wega:enquote($lemma)"/>
                </xsl:when>
                <xsl:when test="tei:del[@rend='overwritten']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
-                  <xsl:value-of select="wega:getLanguageString('delOverwritten', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:value-of select="wega:getLanguageString('substDelOverwritten', $lang)"/>
+                  <xsl:text> </xsl:text>
+                  <xsl:sequence select="wega:enquote($lemma)"/>
                </xsl:when>
                <xsl:when test="tei:del[@rend='erased']">
                   <xsl:sequence select="wega:enquote($processedDel)"/>
+                  <xsl:text> </xsl:text>
                   <xsl:value-of select="wega:getLanguageString('delErased', $lang)"/>
                </xsl:when>
             </xsl:choose>
@@ -189,6 +214,18 @@
 
    <!-- will be changed in https://github.com/Edirom/WeGA-WebApp/issues/307 -->
    <xsl:template match="tei:app" mode="apparatus">
+      <xsl:variable name="lemWit" select="tei:lem/@wit"/>
+      <xsl:variable name="lemWitness" select="$doc//tei:witness[@xml:id=substring-after($lemWit,'#')]/@n"/>
+      <xsl:variable name="lemtextSource">
+         <xsl:choose>
+            <xsl:when test="$lemWitness">
+               <xsl:value-of select="$lemWitness"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="($doc//tei:witness[not(@rend)])[1]/@n"/>
+            </xsl:otherwise>
+         </xsl:choose>
+      </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry</xsl:attribute>
          <xsl:attribute name="id" select="wega:createID(.)"/>
@@ -197,19 +234,27 @@
          </xsl:attribute>
          <xsl:element name="div">
             <xsl:element name="strong">
-               <!-- source containing the lemma the first text source by definition' -->
-               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', '1',': ')"/>
+               <!-- source containing the lemma the first available (not lost) text source by definition' -->
+               <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $lemtextSource,': ')"/>
             </xsl:element> 
             <xsl:variable name="lemma">
                <xsl:apply-templates select="tei:lem" mode="lemma"/>
             </xsl:variable>
             <xsl:element name="span">
-               <xsl:sequence select="wega:enquote($lemma)"/>
+               <xsl:choose>
+                  <xsl:when test="functx:all-whitespace($lemma)">
+                     <xsl:attribute name="class">noRdg</xsl:attribute>
+                     <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:sequence select="wega:enquote($lemma)"/>
+                  </xsl:otherwise>
+               </xsl:choose>
             </xsl:element>
          </xsl:element>
          <xsl:for-each select="tei:rdg">
-            <xsl:variable name="lemWit" select="substring-after(@wit,'#')"/>
-            <xsl:variable name="witN" select="preceding::tei:witness[@xml:id=$lemWit]/data(@n)"/>
+            <xsl:variable name="rdgWit" select="substring-after(@wit,'#')"/>
+            <xsl:variable name="witN" select="$doc//tei:witness[@xml:id=$rdgWit]/data(@n)"/>
             <xsl:element name="div">
                <xsl:element name="strong">
                   <xsl:value-of select="concat(wega:getLanguageString('textSource', $lang),' ', $witN,': ')"/>
@@ -218,7 +263,15 @@
                   <xsl:apply-templates select="." mode="lemma"/>
                </xsl:variable>
                <xsl:element name="span">
-                  <xsl:sequence select="wega:enquote($rdg)"/>
+                  <xsl:choose>
+                     <xsl:when test="functx:all-whitespace($rdg)">
+                        <xsl:attribute name="class">noRdg</xsl:attribute>
+                        <xsl:value-of select="concat(wega:getLanguageString('noRdg', $lang), '.')"/>
+                     </xsl:when>
+                     <xsl:otherwise>
+                        <xsl:sequence select="wega:enquote($rdg)"/>
+                     </xsl:otherwise>
+                  </xsl:choose>
                </xsl:element>
             </xsl:element>
          </xsl:for-each>
@@ -264,7 +317,7 @@
       </xsl:variable>
       <xsl:variable name="tokens" select="tokenize($addedText, '\s+')"/>
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('addDefault',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.add',$lang)"/>
          <xsl:with-param name="lemma">
             <xsl:choose>
                <xsl:when test="count($tokens) gt 6">
@@ -279,13 +332,9 @@
          </xsl:with-param>
          <xsl:with-param name="explanation">
             <xsl:choose>
-               <xsl:when test="@place='margin'">
-                  <xsl:value-of select="wega:getLanguageString('addMargin', $lang)"/>
+               <xsl:when test="@place=('margin', 'inline', 'above', 'below', 'mixed')">
+                  <xsl:value-of select="wega:getLanguageString(concat('add', functx:capitalize-first(@place)), $lang)"/>
                </xsl:when>
-               <xsl:when test="@place='inline'">
-                  <xsl:value-of select="wega:getLanguageString('addInline', $lang)"/>
-               </xsl:when>
-               <!-- TODO translate -->
                <xsl:otherwise>
                   <xsl:value-of select="wega:getLanguageString('addDefault', $lang)"/>
                </xsl:otherwise>
@@ -435,7 +484,7 @@
          <xsl:apply-templates select="tei:expan" mode="lemma"/>
       </xsl:variable>
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('choiceUnclear',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.choiceAbbr',$lang)"/>
          <xsl:with-param name="lemma">
             <xsl:sequence select="$abbr"/>
          </xsl:with-param>
@@ -493,7 +542,7 @@
 
    <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
       <xsl:call-template name="apparatusEntry">
-         <xsl:with-param name="title" select="wega:getLanguageString('del',$lang)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.del',$lang)"/>
          <xsl:with-param name="lemma">
             <xsl:apply-templates mode="lemma"/>
          </xsl:with-param>
@@ -544,6 +593,12 @@
          </xsl:when>
       </xsl:choose>
    </xsl:template>
+   <!-- suppress processing of footnotes in lemma mode to avoid duplicate IDs (https://github.com/Edirom/WeGA-WebApp/issues/313) -->
+   <xsl:template match="tei:ref[@type='footnoteAnchor']|tei:footNote" mode="lemma" priority="1">
+      <xsl:apply-templates mode="#current"/>
+   </xsl:template>
+   <!-- suppress processing of footnoteAnchors in lemma mode when the footnote itself is part of the tei:app -->
+   <xsl:template match="tei:ref[@type='footnoteAnchor'][ancestor::tei:app//tei:footNote]" mode="lemma" priority="2"/>
    
    <!-- template for creating an apparatus entry -->
    <xsl:template name="apparatusEntry">

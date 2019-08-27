@@ -671,17 +671,10 @@ declare
     function app:index-news-item($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         map {
             'title' : wdt:news($model?newsItem)?title('html'),
-            'date' : date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)}),
+            'date' : date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), $config:default-date-picture-string),
             'url' : app:createUrlForDoc($model?newsItem, $lang)
         }
 };
-
-(:declare
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:index-news-date($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        date:printDate($model('doc')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
-};:)
 
 declare 
     %templates:default("lang", "en")
@@ -958,7 +951,7 @@ declare
                 >greg.</sup>
         }
         return (
-            date:printDate($orderedDates[1], $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
+            date:printDate($orderedDates[1], $model?lang, lang:get-language-string(?,?,$model?lang), $config:default-date-picture-string),
             if(($orderedDates[1])[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($orderedDates[1]/@when), $model?lang))
             else (),
             (
@@ -968,7 +961,7 @@ declare
                     for $date at $count in subsequence($orderedDates, 2)
                     return 
                         <span>{
-                            date:printDate($date, $model?lang, lang:get-language-string(?,?,$model?lang), function() {$config:default-date-picture-string($model?lang)}),
+                            date:printDate($date, $model?lang, lang:get-language-string(?,?,$model?lang), $config:default-date-picture-string),
                             if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
                             else (),
                             if($count < count($orderedDates) - 1) then ', '
@@ -1264,7 +1257,7 @@ declare
             switch($docType)
             case 'diaries' return $doc/tei:ab
             case 'works' return $doc/mei:mei
-            case 'var' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
+            case 'var' case 'addenda' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
             case 'thematicCommentaries' return $doc//tei:text/(tei:body | tei:back)
             default return $doc//tei:text/tei:body
         let $body := 
@@ -1272,20 +1265,22 @@ declare
              then 
                 element p {
                         attribute class {'notAvailable'},
-                        if($doc//tei:correspDesc[@n = 'revealed']) then (
+                        (: revealed correspondence which has backlinks gets a direct link to the backlinks, see https://github.com/Edirom/WeGA-WebApp/issues/304 :)
+                        if($doc//tei:correspDesc[@n = 'revealed'] and $model('backlinks')) then (
                             substring-before(lang:get-language-string('correspondenceTextNotAvailable', $lang),"."), ' ',
                             <span>({lang:get-language-string('see', $lang)}</span>, ' ',
                             <span><a href="#backlinks">{lang:get-language-string('backlinks', $lang)}</a>).</span>, ' ',
                             substring-after(lang:get-language-string('correspondenceTextNotAvailable',$lang),".") )
+                        (: … for revealed correspondence without backlinks drop that link :)
+                        else if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable',$lang)
+                        (: all other empty texts :)
                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang),
                         (: adding link to editorial :)
                         lang:get-language-string('forFurtherDetailsSee', $lang), ' ',
                         <a href="#editorial">{lang:get-language-string('editorial', $lang)}</a>, '.'
                 }
              else (
-                (: need to add listWit for resolving references from rdg an lem :)
-                (: this might be moved into the parameters, as well?! :)
-                wega-util:transform($textRoot | $doc//tei:sourceDesc/tei:listWit, $xslt1, $xslParams)
+                wega-util:transform($textRoot, $xslt1, $xslParams)
             )
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
@@ -1407,16 +1402,31 @@ declare
         )
 };
 
+(:~
+ : surround HTML fragment with quotation marks  
+ :
+ : @param $items the HTML fragments (or strings) to enquote
+ : @param $lang the language switch (en, de)
+ :)
+declare %private function app:enquote-html($items as item()*, $lang as xs:string) as item()*  {
+    let $enquotedDummy := str:enquote('dummy', $lang)
+    return (
+        <xhtml:span class="marks_supplied">{substring-before($enquotedDummy, 'dummy')}</xhtml:span>,
+        $items,
+        <xhtml:span class="marks_supplied">{substring-after($enquotedDummy, 'dummy')}</xhtml:span>
+    ) 
+};
+
 declare 
     %templates:default("lang", "en")
     %templates:default("generate", "false")
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
         let $incipit := wega-util:transform(query:incipit($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
-            if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit
+            if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit ! element p { app:enquote-html(./xhtml:p/node(), $lang) }
             else element p {
-                if(exists($incipit)) then $incipit
-                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then str:shorten-TEI($model('doc')//tei:text/tei:body, 80, $lang)
+                if(exists($incipit)) then app:enquote-html($incipit, $lang)
+                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then app:enquote-html(str:shorten-TEI($model('doc')//tei:text/tei:body, 80, $lang), $lang)
                 else '–'
             }
 };
@@ -1668,7 +1678,7 @@ declare
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' : $model('result-page-entry')//mei:term/data(@classcode),
-            'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), function() {$config:default-date-picture-string($lang)})
+            'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), $config:default-date-picture-string)
         }
 };
 
@@ -1698,7 +1708,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-incipit($node as node(), $model as map(*), $lang as xs:string) as xs:string {
-        app:print-incipit($node, $model, $lang, 'true') => string-join('; ') => str:normalize-space()
+        app:print-incipit($node, $model, $lang, 'true') ! str:normalize-space(.)  => string-join('; ')
 };
 
 declare 

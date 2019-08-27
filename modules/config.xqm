@@ -65,11 +65,10 @@ declare variable $config:xsl-external-schemas-collection-path as xs:string := $c
 declare variable $config:valid-languages as xs:string* := ('de', 'en');
 
 declare variable $config:default-date-picture-string := function($lang as xs:string) as xs:string? {
-    if($lang = 'de') then '[D]. [MNn] [Y]' 
+    if($lang = 'de') then '[D1o] [MNn] [Y]' 
     else if ($lang = 'en') then '[MNn] [D], [Y]'
     else ()
 };
-
 
 (: Temporarily suppressing internal links to persons, works etc. since those are not reliable :)
 declare variable $config:diaryYearsToSuppress as xs:integer* := 
