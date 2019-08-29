@@ -606,4 +606,14 @@
             "/>
     </xsl:function>
     
+    <xsl:function name="functx:capitalize-first" as="xs:string?"
+        xmlns:functx="http://www.functx.com">
+        <xsl:param name="arg" as="xs:string?"/>
+        
+        <xsl:sequence select="
+            concat(upper-case(substring($arg,1,1)),
+            substring($arg,2))
+            "/>
+    </xsl:function>
+    
 </xsl:stylesheet>
