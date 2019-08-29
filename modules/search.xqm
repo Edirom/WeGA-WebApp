@@ -403,8 +403,12 @@ declare %private function search:prepare-search-string($model as map()) as map(*
     let $dates := $analyzed-query-string/fn:match/text()
     let $query-string := str:normalize-space(string-join($analyzed-query-string/fn:non-match/text(), ' '))
     let $filters := 
-        (: push recognized dates to the filters :)
-        if(count($dates) gt 0) then map:put($model?filters, 'searchDate', $dates)
+        (: push recognized dates to the filters 
+            NB: these need to be explicitly casted to xs:string, 
+            otherwise we faced some issues with false positives from search:searchDate-filter,
+            see https://github.com/Edirom/WeGA-WebApp/issues/318 
+        :)
+        if(count($dates) gt 0) then map:put($model?filters, 'searchDate', $dates ! string(.))
         else $model?filters
     return
         map:merge((
