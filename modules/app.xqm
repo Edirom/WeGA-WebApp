@@ -1241,8 +1241,6 @@ declare
             'dbPath' : document-uri($doc),
             'docID' : $docID,
             'transcript' : 'true',
-            (: Some special flag for diaries :)
-            'suppressLinks' : if(year-from-date(xs:date($doc/tei:ab/@n)) = $config:diaryYearsToSuppress) then 'true' else (),
             'createSecNos' : if($docID = ('A070010', 'A070001')) then 'true' else ()
             } )
         let $xslt1 := 

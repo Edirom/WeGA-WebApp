@@ -130,10 +130,7 @@ declare
     %templates:default("lang", "en") 
     %templates:wrap
     function facets:document-allFilter($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $suppressLinks := year-from-date(xs:date($model('doc')/tei:ab/@n)) = $config:diaryYearsToSuppress
-        let $filterSections := 
-            if($suppressLinks) then ('characterNames')
-            else ('personsPlus', 'works', 'places', 'characterNames')
+        let $filterSections := ('personsPlus', 'works', 'places', 'characterNames')
         return
         map {
             'filterSections' : 

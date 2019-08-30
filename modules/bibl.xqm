@@ -284,7 +284,7 @@ declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprin
  : @return html:span element if any data is given, the empty sequence otherwise
  :)
 declare %private function bibl:printTitles($titles as element(tei:title)*) as element(xhtml:span)? {
-    let $formattedTitles := wega-util:transform($titles, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params( map {'suppressLinks' : 'true'} ))
+    let $formattedTitles := wega-util:transform($titles, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
     return
         if(count($formattedTitles[.]) gt 0) then
             <xhtml:span class="title">{

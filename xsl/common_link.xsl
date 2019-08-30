@@ -114,7 +114,7 @@
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when test="exists((@key, @dbkey, @target)) and not(descendant::*[local-name(.) = $linkableElements] or $suppressLinks)">
+            <xsl:when test="exists((@key, @dbkey, @target)) and not(descendant::*[local-name(.) = $linkableElements])">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
                         <xsl:value-of select="wega:preview-class(.)"/>
@@ -136,7 +136,6 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="$suppressLinks"/>
                     <xsl:when test="exists((@key, @dbkey, @target))">
                         <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:when>
@@ -148,7 +147,7 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:if test="exists((@key, @dbkey, @target)) and not($suppressLinks)">
+            <xsl:if test="exists((@key, @dbkey, @target))">
                 <xsl:variable name="urls" as="xs:string+">
                     <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@dbkey | descendant-or-self::*/@target[starts-with(., 'wega:')]">
                         <xsl:for-each select="tokenize(normalize-space(.), '\s+')">
