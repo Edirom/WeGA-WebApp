@@ -1,0 +1,100 @@
+nav.greedy {
+  position: relative;
+/*  height: 60px;*/
+  display: flex;
+  align-items: center;
+  padding: 0px 20px;
+/*  background: #e0e0e0;*/
+}
+
+/*nav.greedy h1 {
+  display: flex;
+  align-self: stretch;
+  align-items: center;
+  background: #c6c6c6;
+  padding: 0 1rem;
+  font-weight: bold;
+}*/
+
+nav.greedy button {
+  align-self: stretch;
+  transition: all .4s ease-out;
+  padding: 0 1rem 0 1.5rem;
+  outline: 0;
+  border: 0;
+  /*font-size: 0.9rem;*/
+  /*font-weight: bold;*/
+  background: #b5b5b5;
+  color: #fff;
+  margin-left:2px;
+  font-family: CamingoDos-Bold;
+/*  border:1px solid #b5b5b5; */
+}
+nav.greedy button.hidden {
+  transition: none;
+  border-right: 0.5rem solid #b6b6b6;
+  width: 0;
+  padding: 0;
+  overflow: hidden;
+}
+nav.greedy button::after {
+  content: attr(count);
+  display: inline-flex;
+  width: 25px;
+  height: 25px;
+  align-items: center;
+  justify-content: center;
+  background: #9f9f9f;
+  color: #f2f2f2;
+  border-radius: 50%;
+  font-size: 14px;
+  line-height: 14px;
+  margin-left: 1rem;
+  margin-right: #{"calc(-1rem + -8px)"};
+  font-family: CamingoDos-Bold;
+}
+nav.greedy ul.links {
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+/*  overflow: hidden;*/
+}
+nav.greedy ul.links li {
+  flex: none;
+  padding: 1rem;
+}
+
+nav.greedy ul.links li a {
+/*  color: #404040;*/
+}
+nav.greedy ul.hidden-links {
+  position: absolute;
+/*  background: #d8d8d8;*/
+  right: 0;
+  top: 100%;
+  z-index:1;
+  margin-right: 20px;
+}
+nav.greedy ul.hidden-links.hidden {
+  display: none;
+}
+nav.greedy ul.hidden-links li {
+    padding: 1rem;
+    border: 1px solid #c1c1c1;
+    cursor: pointer;
+/*    display: inline-block;*/
+/*    float: left;*/
+/*    font-size: 13px;*/
+/*    font-weight: 600;*/
+    list-style: outside none none;
+    margin: 0;
+    padding: 13px 15px;
+       background: #b5b5b5 none repeat scroll 0 0;
+/*    border: 1px solid #b5b5b5;*/
+}
+.hidden-links li a {
+    color: #fff;
+    font-family: CamingoDos-Bold;
+    font-size: 16px;
+    font-weight: normal;
+}

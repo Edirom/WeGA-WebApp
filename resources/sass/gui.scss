@@ -1,0 +1,757 @@
+.iconographythumbnail {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  float:left;
+  display:block;
+  margin: 0 4px 4px 0;
+}
+.iconographythumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+.spinner {
+    color:$primary;
+}
+.baptism img, .funeral img {
+    margin: 0px;
+    width: 16px;
+}
+.abstract {
+    background-color: $gray-light;
+    margin: 1ex 2em;
+    padding: 1ex 1em;
+}
+.abstract p, .abstract ul {
+    margin-bottom: 5px;
+}
+.table-wrapper {
+    width: 95%;
+    margin: auto;
+}
+
+/* workaround: reset table font-size in order to overwrite csLink style */
+table {
+    font-size:initial;
+}
+
+/* Settings for popovers */
+.popover {
+    div.preview-icon {
+        width: 25%;
+        margin: 0;
+        padding-right:3px;
+        float:left;
+        img {
+            width:100%;
+            padding-top: 1ex;
+        }
+    }
+    .popover-header {
+        display:none;
+    }
+    .popover-body {
+        padding: 0px;
+        .endnote_backlink {
+            display:none;
+        }
+        .item-title {
+            background-color: $gray-lighter;
+            padding: 8px 14px;
+            border-bottom:1px solid $popover-border-color;
+            margin: 0px;
+            font-size:16px;
+            a:hover {
+                text-decoration:none;
+            }
+        }
+        .item-content {
+            padding: 8px 14px;
+            margin: 0px;
+            max-height: 250px;
+            overflow: scroll;
+            overflow-x:hidden;
+            overflow-y:auto;
+            > div.media-body {
+                width: 75%;
+                margin: 0;
+                padding-left:3px;
+                float:left;
+                margin-bottom: 4px;
+            }
+        }
+        .carousel-indicators {
+            bottom:-60px;
+        }
+    }
+    .popover-multi {
+        .carousel-inner {
+            height:275px;
+            margin-bottom: 25px;
+        }
+        // override max-height because we need to subtract the bottom carousel controls 
+        .item-content {
+            max-height: 234px !important;
+        }
+        .carousel-control {
+            bottom: -20px;
+            text-shadow: none;
+            color: $gray;
+            span {
+                position: absolute;
+                bottom: 0;
+            }
+            &.left,
+            &.right {
+                background: none !important;
+            }
+            .fa-angle-double-left {
+                left: 5px !important;
+            }
+        }
+    }
+    p {
+        margin-bottom: 5px;
+        font-family: $font-family-sans-serif;
+    }
+    .preview {
+        // to prevent horizontal scrolling in popovers
+        white-space: normal;
+    }
+}
+
+/* lemma styling */
+span.tei_lemma {
+    font-style: italic;
+    color: gray;
+    font-size: smaller;
+    }
+
+.popover span.tei_lemma {
+    margin-bottom: 6px;
+    display: block;
+    border-left: 6px solid #f0f0f0;
+    padding-left: 6px;
+}
+
+.apparatus span.tei_lemma:after {
+    content: " — ";
+}
+
+ul.apparatus {
+    list-style:decimal;
+}
+
+ul.apparatus > li {
+    border-top:1px solid $gray-lighter;
+    padding: 6px 0 6px 12px;
+    margin-bottom:0;
+}
+
+/* This class toggles the popovers for previews */
+.preview {
+    @extend .common-link
+}
+
+ol.endNotes {
+    margin:0px;
+}
+
+/* little arrow that gets prepended to (original) footnote text */
+.fn-backref {
+    padding-right:.25em;
+    font-size: .83em;
+    vertical-align:super;
+    position:relative;
+}
+
+/* hanging indent for bibliographies*/
+.bibliography li {
+    text-indent:-2em;
+    padding-left:2em;
+}
+
+/* adds space between work title and opus number  */
+.popover-header span {
+    margin-right: .5em;
+}
+
+.tei_notatedMusic {
+    display:block;
+    margin: 1ex auto;
+    width: 95%;
+    text-align:center;
+}
+.tei_notatedMusic img {
+    margin: 0px;
+}
+.inline {
+    display:inline !important;
+    margin: 0px 1em;
+}
+
+*[class*="hi-"], *[class*="hi-"] *, .kwic .hi {
+    color: #ffffff !important;
+    background-color: $primary !important;
+}
+
+.common-link {
+    color: $link-color;
+    cursor:pointer;
+    white-space: nowrap;
+    &:hover {
+        color: $link-hover-color;
+    }
+}
+
+.nameDesc::before {
+    content:"(";
+}
+.nameDesc::after {
+    content:")";
+}
+
+
+/* Hide parantheses for empty docStatus */
+.docStatus:empty {
+    display:none;
+}
+
+.docStatus::before {
+    content:"(";
+}
+.docStatus::after {
+    content:")";
+}
+
+.panel-heading {
+    border-radius: $border-radius-base;
+}
+
+/* Some datePicker settings */
+#datePicker .ui-datepicker {
+    width: 100%;
+    background: #fff none repeat scroll 0 0;
+    border-radius: $border-radius-base;
+    border: none;
+    color: $gray;
+    .ui-widget-header {
+        border-radius: $border-radius-base;
+        background: $gray-lighter none repeat scroll 0 0;
+    }
+    a {
+        color: $primary;
+    }
+    a.ui-state-active {
+        color: #fff;
+    }
+    select {
+        border-radius: $border-radius-base;
+    }
+    table, select {
+        font-family: $font-family-sans-serif;
+    }
+}
+
+a.noteMarker {
+    background-color: $gray-light;
+    cursor:pointer;
+    padding: 0px 2px;
+    margin-left: 2px;
+    color:#fff !important;
+    &.arabic {
+        background-color: inherit;
+        padding: 0px 1px;
+        margin-left: 0px;
+        color:$primary  !important;
+        @extend .tei_hi_superscript;
+    }
+}
+.documentFooter {
+    font-size: 85%;
+    line-height: 1.2em;
+    padding-top: 2ex;
+    color: $gray;
+}
+.piwik-opt-out iframe {
+    border: none;
+    padding: 0px;
+    margin: 0px;
+    width: 100%;
+    overflow: scroll;
+}
+.commentary li {
+    margin-bottom:1ex;
+}
+/* some styling for the flip images */
+.portrait {
+    &.large {
+        margin-bottom:3ex;
+    }
+    .back {
+        padding: 20px;
+        word-wrap:break-word;
+    }
+    .front {
+        img {
+            margin:0px auto;
+            max-height:100%;
+            max-width:100%;
+        }
+    }
+}
+
+/* extra styling for pagination on person pages because there's no $href */
+.pagination > li > a {
+    cursor:pointer;
+}
+h2.resp-accordion {
+    display:none;
+}
+/* loading spinner for selectize plugin */
+.loading::before {
+    content: "\f110";
+	color:$gray-dark;
+	z-index: 2;
+	position: absolute;
+	top: .5em;
+	right: .5em;
+    @xtend .fa-spin;
+    @extend .fa;
+}
+
+.collapseMarker, .collapseMarker:hover, .collapseMarker:focus {
+    cursor:pointer;
+    color:inherit;
+    text-decoration:none;
+}
+
+.collapseMarker.collapsed:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f13a";
+    margin-left: 4px;
+}
+
+.collapseMarker:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f139";
+    margin-left: 4px;
+}
+
+/* some special treatment for Prager Spielpläne */
+div.table-wrapper {
+    h4.collapseMarker {
+        line-height: 1.875;
+        margin-bottom:0px;
+    }
+    table.collapse {
+        margin-bottom:0px;
+    }
+}
+
+/* large images (600px) within running text */
+.maxSize img {
+    display:block;
+    max-width: 100%;
+    margin: $line-height-computed auto;
+}
+
+.float-left img {
+    float:left;
+    margin: 0px 2em 1em 0px;
+    padding: .5em 1em;
+    max-width: 100%;
+}
+
+.float-right img {
+    float:right;
+    margin: 0px 0px 1em 2em;
+    padding: .5em 1em;
+    max-width: 100%;
+}
+
+/* hide search docType filter on index page */
+@include media-breakpoint-up(xs) {
+    .docType-search-filter {
+        display:none;
+    }
+}
+
+/* settings for toc  */
+/* second class (after the comma) is used on Wikipedia pages */
+.secLevel1, .toclevel-1, .toc li {
+	padding-left:2em;
+	text-indent:-2em;
+}
+.secLevel2, .toclevel-2, .toc li li {
+	padding-left:3em;
+	text-indent:-2em;
+}
+.secLevel3, .toclevel-3, .toc li li li {
+	padding-left:4em;
+	text-indent:-2em;
+}
+.secLevel4, .toclevel-4, .toc li li li li {
+	padding-left:5em;
+	text-indent:-2em;
+}
+
+/* Used on Wikipedia pages */
+.tocnumber {
+    padding: 0 0.5em 0 0;
+}
+
+/* Some Wikipedia styling rules*/
+#wikipediaText {
+    .float-right {
+        float:right;
+        margin: 0em 0em 2em 2em;
+    }
+    .wikipediaOrigin {
+        font-style: italic;
+    }
+}
+
+/* settings for "What happened on?" on start page */
+.history {
+	p {
+	    margin-bottom: 0px;
+	    font-family: 'CamingoDos-Bold';
+	    color: $gray;
+    }
+    .event-year, .event-text {
+		display: table-cell;
+		padding-right: 0.5em;
+	}
+	.event-year::after {
+		content:":";
+	}
+	.jubilee {
+	    /* 
+	     * support for elaborated text-decoration is still miserable, see https://css-tricks.com/almanac/properties/t/text-decoration/
+	     * can't use border bottom because of cell display
+	     */
+		text-decoration: underline dotted;
+		-webkit-text-decoration: underline dotted;
+		cursor: help;
+	}
+}
+
+/*
+ * highlighting of Julian calendar dates  
+ */
+.jul {
+    text-decoration: underline dotted;
+    -webkit-text-decoration: underline dotted;
+    cursor: help;
+}
+
+/* 
+ * Guidelines Spec pages
+ */
+.customizations, .attributes, .spec-list {
+	li {
+		display: inline;
+		margin-right: .3em;
+		a {
+			white-space:nowrap;
+		}
+	}
+	li:after {
+	    content: " ";
+	}
+}
+
+.attribute:before, .unusedattribute:before {
+    content:"$";
+}
+
+.unusedattribute {
+    text-decoration:line-through;
+}
+
+/* 
+ * toggle for XML preview line wrap  
+ */
+/* styling of the control */
+.line-wrap-toggle {
+    position:absolute;
+    top: 33px;
+    right: ($grid-gutter-width / 2);
+    > div {
+        height: auto !important;
+    }
+    .btn {
+        padding: 1px 5px;
+    }
+}
+
+/*
+ * styling of code sections on XMLPreview tabs
+ */
+#XMLPreview {
+    .prettyprint {
+        word-wrap:normal; /* overwrite the default to force no line break on Safari */
+        font-size: ceil(($font-size-base * 0.9));
+    }
+}
+
+/* the class that toggles the line wrap */
+.line-wrap {
+    white-space:pre-wrap;
+    word-wrap:break-word;
+}
+
+/*
+ * styling for Guidelines and Wikipedia TOC
+ */
+
+div.toc-side {
+    font-size:smaller;
+}
+
+.toc-side > div {
+    height:100%;
+    overflow-y:auto;
+    /* border: 1px solid $gray-light; */
+}
+
+div.toc-side.affix {
+     top:50px;
+     height:50%;
+     margin-right:20px;
+     padding-bottom:20px;
+    }
+
+.affix-bottom {
+    position:relative;
+}
+
+#sidetoc {
+    margin-bottom:0!important;
+    padding:8px;
+    background-color: #f5f5f5;
+}
+
+div.toc {
+    h3 {
+        margin-bottom:4px;
+    }
+    .toggle-toc-item {
+        cursor:pointer;
+        padding-left:2.2em;
+    }
+    i {
+        color:$primary;
+        vertical-align:middle;
+    }
+
+    span.active {
+        font-weight:800;
+    }
+}
+
+/*
+ * styling for Guidelines specs
+ */
+
+span.label {
+    font-weight:800;
+    font-family:$font-family-sans-serif;
+}
+
+.localAtts {
+    > .row {
+        padding:6px 0 6px 0;
+    }
+    > .row:not(:first-child) {
+        border-top:1px solid $gray-lighter;
+    }
+    code {
+        color:unset;
+    }
+}
+
+.guidelines-specs {
+    > .row:not(:empty) {
+        border-bottom: 1px solid $gray-lighter;
+        padding: 20px 0 20px 0;
+    }
+    p:last-child, ul:last-child {
+        margin-bottom:unset;
+    }
+}
+
+.data-col {
+    font-size:90%;
+}
+
+.usage_opt {
+    color: green;
+}
+
+.usage_req {
+    color: #c7254e;
+}
+
+.usage_rec {
+    color:#ff8400;
+}
+
+
+/*
+ * styling for specLists
+ */
+.tei_specList {
+    margin-left:1em;
+    margin-top:-(ceil($line-height-computed / 2));
+    li * {
+        display: table-cell;
+        padding-right:.5em;
+    }
+}
+
+/*
+ * styling for source links at egXML examples
+ */
+.tei_egXML {
+    &.panel {
+        border:none;
+        box-shadow:unset;
+    }
+    pre, .prettyprint {
+        margin-bottom:0px;
+        border-color:$gray-light;
+    }
+    .tei_egXML_source {
+        display:block;
+        text-align: right;
+        margin-right: 1em;
+        font-family: $font-family-sans-serif;
+    }
+}
+
+/*
+ * styling for modals, i.e. XML download options
+ */
+.modal-header button {
+    float:right;
+}
+
+.modal-body .fa-download {
+    padding-left:.5em;
+}
+
+/*
+ * A little bit more margin for paragraphs in the context box (at document pages)
+ */
+#relatedItems li p {
+    margin-bottom: $line-height-computed;
+}
+
+/*
+ * Animated highlighting, used e.g. for historic footnotes (see https://github.com/Edirom/WeGA-WebApp/issues/226)
+ */
+@keyframes animate-bg-info {
+ 	0% {
+ 		background: $state-info-bg; 
+ 	}
+ 	100% {
+ 		background: none;
+ 	}
+}
+
+.animated-highlight {
+    animation: animate-bg-info 2.5s;
+}
+
+/*
+ * background for the openseadragon viewer container
+ */
+#map {
+    background-color:$gray-lighter;
+}
+
+/* apparatus styling */
+
+.apparatus-details {
+    font-size:smaller;
+    margin-top:8px;
+    padding-left:12px;
+    border-left:1px solid $gray-light;
+    line-height:($line-height-base * 0.85);
+}
+
+.apparatus-details h4 {
+    font-size:inherit;
+    margin:10px 0 4px 0;
+}
+
+.apparatus-block {
+    margin: 4px 0 4px 0;
+}
+
+.no-wrap {
+    white-space:nowrap;
+}
+
+/* styling for selectize select */
+
+.selectize-input.form-control {
+    height:50px;
+    width:100%!important;           
+}
+
+.selectize-control.form-control {    
+    border:none!important;
+}
+
+.form-control .item {
+    line-height:38px;    
+}
+
+.selectize-dropdown-content .option.active {
+    background: $gray-lighter;
+    
+}
+
+.selectize-input > * {
+  vertical-align: middle;
+}
+
+.selectize-input .item {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  max-width: 80%;
+}
+
+.selectize-dropdown {
+  min-width:175px;
+}
+
+.input-group-addon {
+  text-align:left!important;    
+}
+
+/*
+ * Hiding notes from ADB (see https://github.com/Edirom/WeGA-WebApp/issues/253)
+ */
+#adbText {
+    .noteanchor, .note {
+        display:none;
+    }
+}
