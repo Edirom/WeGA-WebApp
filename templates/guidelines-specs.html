@@ -20,7 +20,7 @@
                         <li><span data-template="app-shared:print" data-template-key="specID">div</span> </li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"/>
                     <span data-template="lang:translate">back</span>
                 </div>
@@ -29,17 +29,17 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="gl:spec-details">
         <div class="row">
-            <div class="col-md-3 col-md-push-9">                
+            <div class="col-md-3 order-2">                
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
                         <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a></h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
-                                <li class="gradient-light"><a href="#examples" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">examples</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
-                                <!--<li class="gradient-light"><a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="xml-download-url">download</a></li>-->
+                                <li class="nav-item gradient-light active"><a href="#transcription" class="nav-link" data-toggle="tab">Text</a></li>
+                                <li class="nav-item gradient-light"><a href="#examples" class="nav-link" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">examples</a></li>
+                                <li class="nav-item gradient-light"><a href="#XMLPreview" class="nav-link"  data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
+                                <!--<li class="nav-item gradient-light"><a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="xml-download-url">download</a></li>-->
                             </ul>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                         </div>
                     </div>-->
                 </div>
-                <div class="hidden-sm hidden-xs toc-side">
+                <div class="hidden-sm d-none d-sm-block toc-side">
                     <h2>
                         <a data-template="lang:translate" data-toggle="collapse" class="collapseSingle" href="#sidetoc">toc</a>
                     </h2>

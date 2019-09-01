@@ -33,7 +33,7 @@
                         <li><span data-template="app-shared:print" data-template-key="docID">A120000</span></li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"/>
                     <span data-template="lang:translate">back</span>
                 </div>
@@ -43,17 +43,17 @@
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row" data-template="app:doc-details">
             <div data-template="templates:include" data-template-path="templates/includes/download-modal.html"/>
-            <div class="col-md-3 col-md-push-9">
+            <div class="col-md-3 order-2">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
                         <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a></h2>
                         <div id="dokument" class="panel-collapse collapse ">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
-                                <li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a></li>
-                                <li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
-                                <li class="gradient-light"><a href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                                <li class="nav-item gradient-light active"><a href="#transcription" class="nav-link"  data-toggle="tab">Text</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
                     </div>

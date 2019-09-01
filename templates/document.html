@@ -30,7 +30,7 @@
                         </li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"/>
                     <span data-template="lang:translate">back</span>
                 </div>
@@ -39,7 +39,7 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="app:doc-details">
         <div class="row">
-            <div class="col-md-3 col-md-push-9">
+            <div class="col-md-3 order-2">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="diaries">
                         <h2>
@@ -54,25 +54,25 @@
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active">
-                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                <li class="nav-item gradient-light active">
+                                    <a class="nav-link" href="#transcription" data-toggle="tab">Text</a>
                                 </li>
                                 <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no">
-                                    <li class="gradient-light">
-                                        <a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a>
+                                    <li class="nav-item gradient-light">
+                                        <a class="nav-link" href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a>
                                     </li>
                                 </div>
-                                <li class="gradient-light">
-                                    <a href="#facsimile" data-toggle="tab" data-template="app:facsimile-tab" id="facsimile-tab">facsimile</a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" data-template="app:facsimile-tab" id="facsimile-tab">facsimile</a>
                                 </li>
-                                <li class="gradient-light">
-                                    <a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a>
                                 </li>
-                                <li class="gradient-light">
-                                    <a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a>
                                 </li>
-                                <li class="gradient-light">
-                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                 </li>
                             </ul>
                         </div>

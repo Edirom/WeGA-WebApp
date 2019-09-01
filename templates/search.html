@@ -17,7 +17,7 @@
                         <li data-template="lang:translate">search</li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"/>
                     <span data-template="lang:translate">back</span>
                 </div>
@@ -26,8 +26,8 @@
     </div>
     <div class="container">
         <div class="row paddingBottomIcon paddingTopIcon">
-            <form>
-            <div class="col-md-3 col-md-push-9">
+            
+            <div class="col-md-3 order-2">
                 <div class="allFilter searchDocTypeFilter">  
                     <h2>Filter</h2> 
                     <div class="btn-group" data-toggle="buttons">
@@ -38,9 +38,9 @@
                 </div>
             </div>
             
-            <div class="col-md-9 col-md-pull-3" data-template="search:results" data-template-docType="search">
+            <div class="col-md-9" data-template="search:results" data-template-docType="search">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <h2 data-template="lang:translate">pleaseEnterSearchTerms</h2>
                     </div>
                 </div>    
@@ -63,7 +63,7 @@
                 </div>
                 
                 <div class="row searchResultList">
-                    <div class="col-xs-12 textBlock searchResults" data-template="search:result-page">
+                    <div class="col-12 textBlock searchResults" data-template="search:result-page">
                         <div data-template="templates:if-parameter-set" data-template-param="q">
                         	<h2 data-template="search:results-count">124 Suchergebnisse</h2>
                         	<p data-template="app-shared:print" data-template-key="query-string" style="display:none;" id="query-string"/>
@@ -83,7 +83,7 @@
                         		</div>
                         	</div>
                         	<div class="row">
-                        		<div class="col-xs-12">
+                        		<div class="col-12">
                         			<ul class="media-list">
                         				<li class="media" data-template="app-shared:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
                         					<div data-template="search:dispatch-preview"/>
@@ -112,7 +112,7 @@
                     </div>
                 </div>
             </div>
-            </form>
+            
         </div>
     </div>
 </div>
