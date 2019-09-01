@@ -325,7 +325,7 @@ declare
                 }
             else
                 element {name($node)} {
-                    attribute class {'deactivated'}
+                    attribute class {'nav-link deactivated'}
                 }
 };
 
@@ -377,29 +377,23 @@ declare
         }
         let $last-page := ceiling(count($model('search-results')) div config:entries-per-page()) 
         return (
-            <li>{
-                if($page le 1) then (
-                    attribute {'class'}{'disabled'},
-                    <span>{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</span>
-                )
-                else $a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) 
-            }</li>,
-            if($page gt 3) then <li>{$a-element(1, '1')}</li> else (),
-            if($page gt 4) then <li>{$a-element(2, '2')}</li> else (),
-            if($page gt 5) then <li class="disabled"><span>…</span></li> else (),
-            ($page - 2, $page - 1)[. gt 0] ! <li>{$a-element(., string(.))}</li>,
-            <li class="active"><span>{$page}</span></li>,
-            ($page + 1, $page + 2)[. le $last-page] ! <li>{$a-element(., string(.))}</li>,
-            if($page + 4 lt $last-page) then <li class="disabled"><span>…</span></li> else (),
-            if($page + 3 lt $last-page) then <li>{$a-element($last-page - 1, string($last-page - 1))}</li> else (),
-            if($page + 2 lt $last-page) then <li>{$a-element($last-page, string($last-page))}</li> else (),
-            <li>{
-                if($page ge $last-page) then (
-                    attribute {'class'}{'disabled'},
-                    <span>{lang:get-language-string('paginationNext', $lang) || ' &#x00BB;'}</span>
-                )
-                else $a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')
-            }</li>
+            if($page le 1) then
+             <li class="page-item disabled"><a class="page-link">{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</a></li>
+             else <li class="page-item">{$a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) }</li>,
+            if($page gt 3) then <li class="page-item">{$a-element(1, '1')}</li> else (),
+            if($page gt 4) then <li class="page-item">{$a-element(2, '2')}</li> else (),
+            if($page gt 5) then <li class="page-item disabled"><a href="page-link">…</a></li> else (),
+            ($page - 2, $page - 1)[. gt 0] ! <li class="page-item">{$a-element(., string(.))}</li>,
+            <li class="page-item active"><a class="page-link">{$page}</a></li>,
+            ($page + 1, $page + 2)[. le $last-page] ! <li class="page-item">{$a-element(., string(.))}</li>,
+            if($page + 4 lt $last-page) then <li class="page-item disabled"><a class="page-link">…</a></li> else (),
+            if($page + 3 lt $last-page) then <li class="page-item">{$a-element($last-page - 1, string($last-page - 1))}</li> else (),
+            if($page + 2 lt $last-page) then <li class="page-item">{$a-element($last-page, string($last-page))}</li> else (),
+            if($page ge $last-page) then
+                <li class="page-item disabled">{
+                    <a class="page-link">{lang:get-language-string('paginationNext', $lang) || ' &#x00BB;'}</a>
+                }</li>
+            else <li class="page-item">{$a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')}</li>
         )
 };
 
@@ -413,7 +407,7 @@ declare
 
 declare function app:switch-limit($node as node(), $model as map(*)) as element() {
 	element {name($node)} {
-		if($model?limit = number($node)) then attribute class {'active'} else (),
+		if($model?limit = number($node)) then attribute class {'page-item active'} else attribute class {'page-item'},
 		element a {
 			attribute class {'page-link'},
 			(: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
