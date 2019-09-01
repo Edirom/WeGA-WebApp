@@ -227,14 +227,14 @@ var headerHeight = 300, // adds margins to the total height
     footerHeight = $('.documentFooter').outerHeight() + 60,
     getParentWidth = $('.toc-side').parent().width();
 
-$('.toc-side').affix({
+/*$('.toc-side').affix({
     offset: {
         top: headerHeight,
         bottom: footerHeight
     }
 }).css({
         'width': getParentWidth
-});
+});*/
 
 /* dynamically adjust width of side-toc */
 $(function() {
@@ -405,7 +405,7 @@ $.fn.preview_popover = function() {
              */
             if(container.next().length === 0) {
                 popover_data = popover_node.data('bs.popover');
-                popover_data.options.content = container.parents('div.popover-content').children();
+                popover_data.config.content = container.parents('div.popover-body').children();
                 popover_node.popover('show');
             }
             
@@ -423,7 +423,7 @@ $('.preview, .noteMarker').on('click', function() {
         "html": true,
         "trigger": "manual",
         "container": 'body',
-        'placement': 'auto top',
+        'placement': 'auto',
         "title": "Loading …", // This is just a dummy title otherwise the content function will be called twice, see  https://github.com/twbs/bootstrap/issues/12563
         "content": popover_template
     });
@@ -439,7 +439,7 @@ $('.preview, .noteMarker').on('click', function() {
 /*
  * A simple template for the popover based on page.html#carousel-popover
  * NB: we do not make use of the generic popover-title since we want 
- * to insert all AJAX content simply into popover-content
+ * to insert all AJAX content simply into popover-body
  */
 function popover_template() {
     var carouselID = "carousel" + $.now(),
@@ -448,7 +448,7 @@ function popover_template() {
     $('.carousel-indicators li', template).attr('data-target', '#'+carouselID);
     $('a.carousel-control', template).attr('href', '#'+carouselID);
     $('.carousel-indicators, a.carousel-control', template).hide();
-    template.removeClass('hidden');
+    template.removeClass('d-none');
     return template;
 };
 
@@ -459,9 +459,9 @@ function popover_template() {
  * we need to take care of several methods ourselves:
  * - grabbing external content from href or data-ref (could be a whitespace separated list) attributes
  * - internal links from href or data-ref (prefixed with '#')
- * - content provided on data-popover-content and data-popover-title attributes (NB: we need to distinguish from the default attributes supported by bootstrap)
+ * - content provided on data-popover-body and data-popover-title attributes (NB: we need to distinguish from the default attributes supported by bootstrap)
  * 
- * Every logical popover is wrapped into a <div class="item"/> within the <div class="popover-content"/>  
+ * Every logical popover is wrapped into a <div class="item"/> within the <div class="popover-body"/>  
  */
 function popover_callBack() {
     var urls = [],
@@ -494,7 +494,7 @@ function popover_callBack() {
             $('.item-title', popover_div).html($(e).attr('data-title'));
             $('.item-content', popover_div).html($(e).html());
             popover_data = popover.data('bs.popover');
-            popover_data.options.content = $('div.popover-content', popover).clone().children();
+            popover_data.config.content = $('div.popover-body', popover).clone().children();
             popover.popover('show');
         }
         else { // external content via AJAX
@@ -514,16 +514,16 @@ function popover_callBack() {
     })
     if(urls.length > 1) {
         $('.carousel-indicators, a.carousel-control', popover).show();
-        $('.popover-content', popover).addClass('popover-multi');
+        $('.popover-body', popover).addClass('popover-multi');
     }
     
-    // content provided via data-popover-content and data-popover-title attributes on the anchor element
-    if(undefined != $(this).attr('data-popover-content')) {
+    // content provided via data-popover-body and data-popover-title attributes on the anchor element
+    if(undefined != $(this).attr('data-popover-body')) {
         popover_div = $('div.item:last', popover);
         $('.item-title', popover_div).html($(this).attr('data-popover-title'));
-        $('.item-content', popover_div).html($(this).attr('data-popover-content'));
+        $('.item-content', popover_div).html($(this).attr('data-popover-body'));
         popover_data = popover.data('bs.popover');
-        popover_data.options.content = $('div.popover-content', popover).children();
+        popover_data.config.content = $('div.popover-body', popover).children();
         popover.popover('show');
     }
 };
