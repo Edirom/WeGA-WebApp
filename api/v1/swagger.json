@@ -377,8 +377,7 @@
                 ],
                 "parameters": [
                     {
-                        "$ref": "#/parameters/docTypeParam",
-                        "required": true
+                        "$ref": "#/parameters/docTypeRequiredParam"
                     }
                 ],
                 "responses": {
@@ -548,6 +547,31 @@
                     "writings"
                 ]
             }
+        },
+        "docTypeRequiredParam": {
+            "items": {
+                "enum": [
+                    "biblio",
+                    "diaries",
+                    "documents",
+                    "letters",
+                    "news",
+                    "orgs",
+                    "persons",
+                    "places",
+                    "thematicCommentaries",
+                    "var",
+                    "works",
+                    "writings"
+                ],
+                "type": "string"
+            },
+            "in": "query",
+            "name": "docType",
+            "collectionFormat": "csv",
+            "type": "array",
+            "description": "The WeGA document type",
+            "required": true
         }
     }
 }

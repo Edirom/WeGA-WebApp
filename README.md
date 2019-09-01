@@ -3,6 +3,7 @@
 [![](https://img.shields.io/badge/license-BSD2-green.svg)](https://github.com/Edirom/WeGA-WebApp/blob/develop/LICENSE)
 [![](https://img.shields.io/badge/license-CC--BY--4.0-green.svg)](https://github.com/Edirom/WeGA-WebApp/blob/develop/LICENSE)
 [![GitHub release](https://img.shields.io/github/release/edirom/WeGA-WebApp.svg)](https://github.com/Edirom/WeGA-WebApp/releases)
+[![DOI](https://zenodo.org/badge/7872550.svg)](https://zenodo.org/badge/latestdoi/7872550)
 [![Build Status](https://travis-ci.com/Edirom/WeGA-WebApp.svg?branch=develop)](https://travis-ci.com/Edirom/WeGA-WebApp)
 
 This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [www.weber-gesamtausgabe.de](http://www.weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `example-data` and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
