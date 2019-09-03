@@ -757,7 +757,7 @@ function ajaxCall(container,url,callback) {
         
 $.fn.activatePagination = function(container) {
     /*  Two possible locations:  */
-    var activeTab = $('li.resp-tab-active a, ul.nav-tabs li.active a'),
+    var activeTab = $('li.resp-tab-active a, ul.nav-tabs li a.active'),
     /*  with different attributes */
         baseUrl = activeTab.attr('data-target')? activeTab.attr('data-target'): activeTab.attr('data-tab-url'),
         url = baseUrl + $(this).attr('data-url'),
@@ -769,7 +769,7 @@ $.fn.activatePagination = function(container) {
      * and we use it to remove filters from the backlinks AJAX page
      */
     if($('.nav-tabs .active a[data-tab-callback]').length === 1) {
-        callback = window[$('.nav-tabs .active a').attr('data-tab-callback')];
+        callback = window[$('.nav-tabs a.active').attr('data-tab-callback')];
     }    
     
     ajaxCall(container,url,callback);
