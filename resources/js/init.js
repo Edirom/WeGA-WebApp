@@ -223,34 +223,6 @@ $('.appendix a[href^="'+window.location.pathname+window.location.hash+'"]').pare
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
 
 
-var headerHeight = 300, // adds margins to the total height
-    footerHeight = $('.documentFooter').outerHeight() + 60,
-    getParentWidth = $('.toc-side').parent().width();
-
-/*$('.toc-side').affix({
-    offset: {
-        top: headerHeight,
-        bottom: footerHeight
-    }
-}).css({
-        'width': getParentWidth
-});*/
-
-/* dynamically adjust width of side-toc */
-$(function() {
-function changeAffixBoxWidth() {
-  $('.toc-side').css({
-        'width': getParentWidth
-  })
-}
-$(window).on('resize', function() {
-	changeAffixBoxWidth();
-})
-$('.toc-side').on('affixed.bs.affix', function() {
-	changeAffixBoxWidth();
-})
-});
-
 /*
  * used for Guidelines TOC as well as for Wikipedia
  */
