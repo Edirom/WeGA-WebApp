@@ -1,7 +1,5 @@
 /* Init functions */
 
-$('.dropdown-secondlevel-nav').dropdownHover();
-
 /* Adjust font size of h1 headings */
 $.fn.h1FitText = function () {
     if ($(this).hasClass('document')) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }

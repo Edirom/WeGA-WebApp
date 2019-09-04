@@ -139,3 +139,25 @@ div.toc-side  {
 nav.greedy ul.links li {
     padding: 10px 25px;
 }
+
+/* restyling buttons */
+
+.nav-item.gradient-light, label.gradient-light {
+    margin:0;
+    border:0!important;
+    box-shadow:none;
+}
+
+.nav-item.gradient-light > .active, .gradient-light.active {
+    color: $primary;
+    border-left:4px solid $primary!important;;
+}
+
+.gradient-light:hover {
+    background-color:$gray-lighter!important;
+}
+
+/* hover open */
+.nav-item.dropdown:hover>.dropdown-menu {
+  display: block;
+}
