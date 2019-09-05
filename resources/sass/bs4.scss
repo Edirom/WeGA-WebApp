@@ -157,7 +157,65 @@ nav.greedy ul.links li {
     background-color:$gray-lighter!important;
 }
 
+/* navigation styling */
+
+.navbar-nav ul.dropdown-menu li {
+    border: none;
+    border-left: 4px solid $gray-light;
+}
+
+
+.navbar-nav ul.dropdown-menu li:hover {
+    border-left: 4px solid $primary;
+}
+
 /* hover open */
 .nav-item.dropdown:hover>.dropdown-menu {
   display: block;
 }
+
+/* navigation breakpoint additions */
+
+@include media-breakpoint-down(lg)
+{
+        #navbarCollapse {
+            .divider {
+                margin: 23px 4px 23px 4px;
+            }
+            a.nav-link {
+                font-size:1rem!important;
+            }
+        }
+
+        .brand {
+            margin-top: 29px;
+            margin-bottom: 0px;
+            width: 200px;;
+        }
+
+        .navbar.navbar-default {
+            margin-top: 0px;
+        }
+}
+
+@include media-breakpoint-down(md)
+{
+    #navbarCollapse {
+        a.nav-link {
+            font-size:0.9rem!important;
+        }
+    }
+    .brand {
+       width: 180px;
+    }
+}
+
+@include media-breakpoint-down(sm)
+{
+    .brand {
+       width: 240px;
+       margin-top: 0px;
+       max-width: 100%;
+    }
+}
+
