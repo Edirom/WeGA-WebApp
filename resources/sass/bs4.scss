@@ -69,10 +69,13 @@ li.resp-tab-item {
 
 li.resp-tab-active {
     border-bottom: 3px solid #F0F0F0!important;
+    border-top: 4px solid $gray;
 }
 
+ resp-tab-active
+
 .selectize-dropdown-content {
-    padding: 5px;
+    padding: 8px;
 }
 
 .selectize-input {
@@ -100,7 +103,11 @@ li.resp-tab-active {
 }
 
 .selectize-dropdown-content {
-    padding: 4px!important;
+    padding: 0px!important;
+}
+
+.selectize-dropdown-content div {
+    padding: 8px;
 }
 
 .breadcrumb > li:not(:first-child) >  {
@@ -148,9 +155,13 @@ nav.greedy ul.links li {
     box-shadow:none;
 }
 
-.nav-item.gradient-light > .active, .gradient-light.active {
+li.nav-item.gradient-light > .active,  .gradient-light.active {
     color: $primary;
     border-left:4px solid $primary!important;;
+}
+
+li.nav-item.gradient-light > .nav-link {
+    border-left:4px solid $gray-lighter;
 }
 
 .gradient-light:hover {
@@ -161,17 +172,60 @@ nav.greedy ul.links li {
 
 .navbar-nav ul.dropdown-menu li {
     border: none;
-    border-left: 4px solid $gray-light;
+    border-left: 4px solid $gray-lighter;
+    box-shadow: 0 2px 2px 0 $gray;
 }
-
 
 .navbar-nav ul.dropdown-menu li:hover {
     border-left: 4px solid $primary;
 }
 
+.navbar-nav ul.dropdown-menu li a {
+    color: rgba(0, 0, 0, 0.6)!important;
+    font-size: smaller!important;
+}
+
+.navbar-nav ul.dropdown-menu li a:hover {
+    color: rgba(0, 0, 0, 0.8);
+}
+
 /* hover open */
 .nav-item.dropdown:hover>.dropdown-menu {
   display: block;
+}
+
+.navbar-light.navbar {
+    border-bottom: 4px solid $gray-lighter;
+}
+
+#navbarCollapse .navbar-nav {
+    margin-bottom: -5px;
+}
+
+#navbarCollapse .navbar-nav ul.dropdown-menu {
+    top: 94%;
+}
+
+/* filter */
+
+.searchDocTypeFilter .btn.active:before {
+    content: "\f14a\00a0";
+    font-family: "FontAwesome";
+    vertical-align: text-top;
+    margin-right:10px;
+    color: #0064b4;
+}
+
+.searchDocTypeFilter .btn:before {
+    content: "\f096\00a0";
+    font-family: "FontAwesome";
+    vertical-align: text-top;
+    margin-right:11px;
+    color: #0064b4;
+}
+
+.searchDocTypeFilter .btn.active {
+    background:#f0f0f0;
 }
 
 /* navigation breakpoint additions */
