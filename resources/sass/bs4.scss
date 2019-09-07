@@ -273,3 +273,51 @@ li.nav-item.gradient-light > .nav-link {
     }
 }
 
+/* workaround for ajax includes */
+
+.col-xs-12 {
+  flex:  0 0 100%;
+  max-width:100%;
+  position: relative;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+}
+
+/* input restyling */
+.input-group.facet-group.checkbox {
+    margin: 8px 0 8px 0;
+}
+
+.checkbox input[type="checkbox"] {
+    opacity: 0; //hide element visually (not for screen readers)
+    position: absolute; //move it out of the way
+    top: -50px;
+    left: -50px;
+}
+
+.checkbox label {
+    margin-top: -24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+.checkbox input[type="checkbox"] + label::before {
+    content: "\f096\00a0";
+    font-family: "FontAwesome";
+    margin-right:11px;
+    color: #0064b4;
+}
+
+.checkbox input[type="checkbox"]:checked + label::before {
+    content: "\f14a\00a0";
+    font-family: "FontAwesome";
+    margin-right:10px;
+    color: #0064b4;
+}
+
+/* irs styling */
+span.irs span {
+    border-radius: 0!important;
+}
