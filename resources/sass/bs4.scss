@@ -141,7 +141,7 @@ li.resp-tab-active {
 
 
 .undefined .ui-state-default {
-    background #eee!important;
+    background: #eee!important;
 }
 
 .ui-datepicker-current-day .ui-state.active {
@@ -354,4 +354,28 @@ span.irs span {
 /* main column padding */
 .main-col {
     padding-right: 40px;
+}
+
+/* collapse border style */
+.collapseSingle.collapsed {
+    border-bottom: 4px solid $gray-lighter!important;
+    padding-bottom:0!important;
+}
+
+.collapseSingle:after {
+    font-size: smaller;
+}
+
+/* fix margins in allFilter */
+.allFilter .nav {
+    margin-top: 0px;
+}
+
+.allFilter h2 {
+    margin-bottom: 10px!important;
+}
+
+.borderBox {
+    border:0!important;
+    background:$gray-lighter;
 }
