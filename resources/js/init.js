@@ -353,7 +353,7 @@ $.fn.toggleTab = function () {
 };
 
 $.fn.A090280 = function () {
-    if(getID() === 'A090280') {
+    if(['A090280', 'A090148'].indexOf(getID()) > -1) {
         $(this).addClass('bg-info');
         $(this).css({'margin-bottom': '0px'});
     }
