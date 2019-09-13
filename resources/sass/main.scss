@@ -1,6 +1,6 @@
 /*@import "../../node_modules/bootstrap/scss/bootstrap";*/
 // local variables
-@import "variables";
+@import "base/variables";
 
 // Core variables and mixins
 @import "../../node_modules/bootstrap/scss/functions";
@@ -51,11 +51,33 @@
 @import "../../node_modules/bootstrap/scss/utilities";
 
 // non-bootstrap imports
-@import "bs4";
 @import "../../node_modules/font-awesome/scss/font-awesome";
-@import "weber";
-@import "tei";
-@import "gui";
-@import "greedynav";
-@import "csLink";
-@import "ion-rangeslider";
+@import "base/fonts";
+@import "base/helpers";
+@import "base/base";
+@import "base/typography";
+@import "components/tei";
+@import "components/buttons";
+@import "components/greedynav";
+@import "components/csLink";
+@import "components/ion-rangeslider";
+@import "components/tabs";
+@import "components/popover";
+@import "components/breadcrumbs";
+@import "components/media";
+@import "components/misc";
+@import "components/btn";
+@import "components/text";
+@import "components/ajax";
+@import "components/collapse";
+@import "layout/grid";
+@import "layout/breakpoints";
+@import "layout/header";
+@import "layout/footer";
+@import "layout/sidebar";
+@import "pages/person";
+@import "pages/guidelines";
+@import "pages/index";
+@import "pages/apparatus";
+@import "pages/search";
+@import "pages/abandoned";

@@ -1,0 +1,272 @@
+/* filter */
+.searchDocTypeFilter .btn.active:before {
+    content: "\f14a\00a0";
+    font-family: "FontAwesome";
+    vertical-align: text-top;
+    margin-right:10px;
+    color: #0064b4;
+}
+
+.searchDocTypeFilter .btn:before {
+    content: "\f096\00a0";
+    font-family: "FontAwesome";
+    vertical-align: text-top;
+    margin-right:11px;
+    color: #0064b4;
+}
+
+.searchDocTypeFilter .btn.active {
+    background:#f0f0f0;
+}
+
+/* input restyling */
+.input-group.facet-group.checkbox {
+    margin: 8px 0 8px 0;
+}
+
+.checkbox input[type="checkbox"] {
+    opacity: 0; //hide element visually (not for screen readers)
+    position: absolute; //move it out of the way
+    top: -50px;
+    left: -50px;
+}
+
+.checkbox label {
+    margin-top: -24px;
+    position: relative;
+    display: inline-block;
+    margin-bottom: 0px;
+}
+
+.checkbox input[type="checkbox"] + label::before {
+    content: "\f096\00a0";
+    font-family: "FontAwesome";
+    margin-right:11px;
+    color: #0064b4;
+}
+
+.checkbox input[type="checkbox"]:checked + label::before {
+    content: "\f14a\00a0";
+    font-family: "FontAwesome";
+    margin-right:10px;
+    color: #0064b4;
+}
+
+// allFilter sidebar
+
+.allFilter {
+    margin-bottom: 30px;
+    
+    .nav {
+        margin-top: 0px;
+    }
+    
+    h2 {
+        margin-bottom:10px!important;
+    }
+    
+    h4 {
+        margin: 8px 0 4px 0;
+    }
+    
+    .bootstrap-select, .btn, .btn-group  {
+        width: 100%!important;
+    }
+    
+    label.btn {
+        overflow:hidden;
+        text-overflow:ellipsis;
+    }
+}
+
+
+/* selectize */
+
+.selectize-dropdown-content {
+    padding: 0px;    
+    div { padding: 8px; }
+}
+
+.selectize-control.multi .selectize-input > div {
+    margin: 0;
+    top: 2px;
+}
+
+.selectize-input {
+    border-radius: 0px!important;
+    -webkit-border-radius: 0px!important;
+    -moz-border-radius:0px!important;
+    
+    .item {
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          max-width: 80%;
+    }
+    
+    > * {
+          vertical-align: middle;
+    }
+}
+
+
+/* styling for selectize select */
+
+.selectize-input.form-control {
+    height:50px;
+    width:100%!important;           
+}
+
+.selectize-control.form-control {    
+    border:none!important;
+}
+
+.form-control .item {
+    line-height:38px;    
+}
+
+.selectize-dropdown-content .option.active {
+    background: $gray-lighter;   
+}
+
+.selectize-dropdown {
+  min-width:175px;
+}
+
+.input-group-addon {
+  text-align:left!important;    
+}
+
+/* loading spinner for selectize plugin */
+.loading::before {
+    content: "\f110";
+	color:$gray-dark;
+	z-index: 2;
+	position: absolute;
+	top: .5em;
+	right: .5em;
+    @xtend .fa-spin;
+    @extend .fa;
+}
+
+/* irs styling */
+span.irs span {
+    border-radius: 0!important;
+}
+
+.bootstrap-select
+{
+    width: 140px!important;
+    padding: 0px;
+}
+
+.dropdown-menu li:hover a .text,  .dropdown-menu li.active a .text,  .dropdown-menu > .active a:hover
+{ 
+    color: #fff;
+}
+
+.dropdown-menu li:hover a ,  .dropdown-menu li.active a,  .dropdown-menu > .active a:hover
+{
+    background-color:$primary;
+
+}
+
+ .bootstrap-select .btn-default
+{
+    background: transparent;
+    border: none;
+    color:$gray;
+
+    padding: 0px;
+}
+ .btn-group .dropdown-toggle  
+{
+    padding: 15px 20px;
+}
+
+ .btn-group .dropdown-toggle .filter-option:after
+{
+    content: "\f0d7";
+    font-family: "FontAwesome";
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    margin-left: 8px;
+}
+
+ .btn-group.open .dropdown-toggle .filter-option:after
+{
+    content: "\f0d8";
+}
+
+ .btn-group.open .dropdown-toggle  
+{
+    box-shadow: none;
+    border:none;
+    background:none;
+    color:$gray;
+}
+
+.dropdown-toggle::after {
+    border: none;
+    margin-left: 0;
+}
+
+/* Some datePicker settings */
+#datePicker .ui-datepicker {
+    width: 100%;
+    background: #fff none repeat scroll 0 0;
+    border-radius: $border-radius-base;
+    border: none;
+    color: $gray;
+    .ui-widget-header {
+        border-radius: $border-radius-base;
+        background: $gray-lighter none repeat scroll 0 0;
+    }
+    a {
+        color: $primary;
+    }
+    a.ui-state-active {
+        color: #fff;
+    }
+    select {
+        border-radius: $border-radius-base;
+    }
+    table, select {
+        font-family: $font-family-sans-serif;
+    }
+}
+
+.input-group.searchform, .searchform .input-group {
+    flex-wrap: nowrap;
+}
+
+.input-group.facet-group {
+    display:block;
+}
+
+.undefined .ui-state-default {
+    background: #eee!important;
+}
+
+.ui-datepicker-current-day .ui-state.active {
+   background: #999!important;
+   border: none!important;
+}
+
+.borderBox {
+    border:0!important;
+    background:$gray-lighter;
+    padding: 20px;
+}
+
+.borderBox p:last-child , .borderBox ul:last-child
+{
+   margin-bottom: 0px;
+}
+
+// Single Collapse Elements in Sidebar
+.panel-collapse.collapse
+{
+     margin-bottom: 30px;
+}

@@ -1,0 +1,148 @@
+/* hide search docType filter on index page */
+@include media-breakpoint-down(xs) {
+    .docType-search-filter {
+        display:none;
+    }
+} 
+
+@include media-breakpoint-down(md) 
+{
+    .teaser
+    { 
+        margin-top: 30px;    
+    }
+    
+    #navbarCollapse {
+        a.nav-link {
+            font-size:0.9rem!important;
+        }
+    }
+    .brand {
+       width: 180px;
+    }
+
+}
+
+//navigation for sm down 
+@include media-breakpoint-down(sm) 
+{
+    .navbar-nav.nav li
+    {
+      padding: 0px;
+
+    }
+
+    .navbar-nav.nav li a
+    {
+        padding:  0px;
+        padding-left: 20px;
+        line-height: 70px;
+    }
+    
+    .navbar-nav.nav li a:focus
+    {
+        color: $primary;
+    }
+    
+    
+    .navbar-nav.nav.nav li > a:after, .nav li.active > a:after 
+    {
+      border: none;
+    }
+    
+    .navbar-nav ul.dropdown-menu li 
+    {
+      border: none;    
+    }
+    
+    
+    ul.dropdown-menu li a
+    {
+        background-color: $gray-lighter;
+        padding: 15px 35px!important;
+        
+   }
+   
+   .divider
+   {
+       width: 100%!important;
+       margin: 0px;
+       padding: 0px;
+       
+       height:10px;
+       background-color: $primary;
+   }
+    
+    .resp-tabs-container .resp-tab-content-active
+    {
+      border-left: 1px solid $gray-light;
+      border-right: 1px solid $gray-light;
+      border-bottom: 1px solid $gray-light;
+    }
+}
+
+// front page for sm down
+@include media-breakpoint-down(sm)
+{
+   .brand
+    {      
+        height: auto;
+        width: 240px;
+        margin-top: 0px;
+        max-width: 100%;
+    }
+
+    .footer .row:first-child
+    {
+        padding-bottom: 0px;
+    }
+
+    .footer .col-md-3 img
+    {
+        margin-bottom: 60px!important;
+    }
+    
+    .colored.none-sm
+    {
+        background: transparent;
+    }
+
+    .borderTop.none-sm
+    {
+        border: none;
+    }
+
+    .unterschriftweber img    
+    {
+     display: none;
+    }
+
+    .navbar-nav ul.dropdown-menu li {
+        box-shadow: none;
+    }
+}    
+
+
+
+
+@include media-breakpoint-down(lg)
+{
+        #navbarCollapse {
+            .divider {
+                margin: 23px 4px 23px 4px;
+            }
+            a.nav-link {
+                font-size:1rem!important;
+            }
+        }
+
+        .brand {
+            margin-top: 29px;
+            margin-bottom: 0px;
+            width: 200px;;
+        }
+
+        .navbar.navbar-default {
+            margin-top: 0px;
+        }
+}

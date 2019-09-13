@@ -1,0 +1,43 @@
+/* settings for toc  */
+/* second class (after the comma) is used on Wikipedia pages */
+.secLevel1, .toclevel-1, .toc li {
+	padding-left:2em;
+	text-indent:-2em;
+}
+.secLevel2, .toclevel-2, .toc li li {
+	padding-left:3em;
+	text-indent:-2em;
+}
+.secLevel3, .toclevel-3, .toc li li li {
+	padding-left:4em;
+	text-indent:-2em;
+}
+.secLevel4, .toclevel-4, .toc li li li li {
+	padding-left:5em;
+	text-indent:-2em;
+}
+
+/* Used on Wikipedia pages */
+.tocnumber {
+    padding: 0 0.5em 0 0;
+}
+
+/* Some Wikipedia styling rules*/
+#wikipediaText {
+    .float-right {
+        float:right;
+        margin: 0em 0em 2em 2em;
+    }
+    .wikipediaOrigin {
+        font-style: italic;
+    }
+}
+
+/*
+ * Hiding notes from ADB (see https://github.com/Edirom/WeGA-WebApp/issues/253)
+ */
+#adbText {
+    .noteanchor, .note {
+        display:none;
+    }
+} 

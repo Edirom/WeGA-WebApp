@@ -56,11 +56,11 @@
     <target name="sass" depends="init">
         <description>Create CSS files via sass</description>
         <exec executable="${sass.cmd}">
-            <arg line="resources/sass/styles.scss ${dist.dir}/resources/css/styles.css"/>
+            <arg line="resources/sass/main.scss ${dist.dir}/resources/css/styles.css"/>
         </exec>
-        <exec executable="${sass.cmd}">
+        <!-- <exec executable="${sass.cmd}">
             <arg line="resources/sass/swagger.scss ${dist.dir}/resources/css/swagger.css"/>
-        </exec>
+            </exec> -->
     </target>
     
     <target name="dist" depends="init, yarn, sass">

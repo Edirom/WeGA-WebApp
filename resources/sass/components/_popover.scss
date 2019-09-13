@@ -1,0 +1,114 @@
+/* Settings for popovers */
+.popover {
+    div.preview-icon {
+        width: 25%;
+        margin: 0;
+        padding-right:3px;
+        float:left;
+        img {
+            width:100%;
+            padding-top: 1ex;
+        }
+    }
+    .popover-header {
+        display:none;
+    }
+    .popover-body {
+        padding: 0px;
+        color: $gray;
+        .endnote_backlink {
+            display:none;
+        }
+        .item-title {
+            background-color: $gray-lighter;
+            padding: 8px 14px;
+            border-bottom:1px solid $popover-border-color;
+            margin: 0px;
+            font-size:16px;
+            a:hover {
+                text-decoration:none;
+            }
+        }
+        .item-content {
+            padding: 8px 14px;
+            margin: 0px;
+            max-height: 250px;
+            overflow: scroll;
+            overflow-x:hidden;
+            overflow-y:auto;
+            > div.media-body {
+                width: 75%;
+                margin: 0;
+                padding-left:3px;
+                float:left;
+                margin-bottom: 4px;
+            }
+        }
+        .carousel-indicators {
+             bottom: -45px!important;
+        }
+        .item-counter {
+            float: right;
+            margin-left:1em;
+            :before {
+            font-size:0.8em;
+            font-family:"FontAwesome";
+            vertical-align:middle;
+            content:"\f062";
+            }
+        }
+    }
+    .popover-multi {
+        .carousel-inner {
+            height:275px;
+            margin-bottom: 25px;
+        }
+        // override max-height because we need to subtract the bottom carousel controls 
+        .item-content {
+            max-height: 234px !important;
+        }
+        .carousel-control {
+            bottom: -20px;
+            text-shadow: none;
+            color: $gray;
+            span {
+                position: absolute;
+                bottom: 0;
+            }
+            &.left,
+            &.right {
+                background: none !important;
+            }
+            .fa-angle-double-left {
+                left: 5px !important;
+            }
+        }
+    }
+    p {
+        margin-bottom: 5px;
+        font-family: $font-family-sans-serif;
+    }
+    span.tei_lemma {
+        margin-bottom: 6px;
+        display: block;
+        border-left: 6px solid #f0f0f0;
+        padding-left: 6px;
+    }
+    .preview {
+        // to prevent horizontal scrolling in popovers
+        white-space: normal;
+    }
+    &.show {
+         border-radius: 0px;
+        -webkit-border-radius: 0px;
+        -moz-border-radius:0px;   
+    }
+    &.show .arrow::after {
+        border-with:0.5rem 0.5rem 0.5rem 0;
+    }
+}
+
+/* adds space between work title and opus number  */
+.popover-header span {
+    margin-right: .5em;
+}

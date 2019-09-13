@@ -1,0 +1,68 @@
+.iconographythumbnail {
+  position: relative;
+  width: 52px;
+  height: 52px;
+  overflow: hidden;
+  float:left;
+  display:block;
+  margin: 0 4px 4px 0;
+}
+.iconographythumbnail img {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  height: 100%;
+  width: auto;
+  -webkit-transform: translate(-50%,-50%);
+      -ms-transform: translate(-50%,-50%);
+          transform: translate(-50%,-50%);
+}
+
+.baptism img, .funeral img {
+    margin: 0px;
+    width: 16px;
+}
+
+/* extra styling for pagination on person pages because there's no $href */
+.pagination > li > a {
+    cursor:pointer;
+}
+
+h2.resp-accordion {
+    display:none;
+}
+
+/* some styling for the flip images */
+.portrait {
+    &.large {
+        margin-bottom:3ex;
+    }
+    .back {
+        padding: 20px;
+        word-wrap:break-word;
+    }
+    .front {
+        img {
+            margin:0px auto;
+            max-height:100%;
+            max-width:100%;
+        }
+    }
+}
+
+
+.nameDesc::before {
+    content:"(";
+}
+.nameDesc::after {
+    content:")";
+}
+
+/*
+ * highlighting of Julian calendar dates  
+ */
+.jul {
+    text-decoration: underline dotted;
+    -webkit-text-decoration: underline dotted;
+    cursor: help;
+}
