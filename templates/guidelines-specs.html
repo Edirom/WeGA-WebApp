@@ -38,54 +38,11 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a href="#examples" class="nav-link" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">examples</a></li>
-                                <li class="nav-item gradient-light"><a href="#XMLPreview" class="nav-link"  data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
+                                <li class="nav-item gradient-light"><a href="#XMLPreview" class="nav-link" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
                                 <!--<li class="nav-item gradient-light"><a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="xml-download-url">download</a></li>-->
                             </ul>
                         </div>
                     </div>
-                    <!--<div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters">
-                        <h2><a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a></h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
-                            <div data-template="app:context-letter">
-                                <h3 data-template="lang:translate">absouluteChronology</h3>
-                                <h4 data-template="lang:translate">prevLetters</h4>
-                                <ul>
-                                    <li data-template="app-shared:each" data-template-from="context-letter-absolute-prev" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
-                                <h4 data-template="lang:translate">nextLetters</h4>
-                                <ul>
-                                    <li data-template="app-shared:each" data-template-from="context-letter-absolute-next" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
-                                <h3 data-template="lang:translate">korrespondenzstelle</h3>
-                                <h4 data-template="lang:translate">prevLetters</h4>
-                                <ul>
-                                    <li data-template="app-shared:each" data-template-from="context-letter-korrespondenzstelle-prev" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
-                                <h4 data-template="lang:translate">nextLetters</h4>
-                                <ul>
-                                    <li data-template="app-shared:each" data-template-from="context-letter-korrespondenzstelle-next" data-template-to="letter-norm-entry">
-                                        <span data-template="app:print-letter-context"><a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span></span>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>-->
-                    <!--<div data-template="app-shared:each" data-template-from="filterSections" data-template-to="filterSection">
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head" href="#">Personen</a></h2>
-                        <div class="panel-collapse collapse" data-template="facets:filter-body">
-                            <div data-toggle="buttons" class="btn-group primary" data-template="facets:filter-options">
-                                <label class="btn gradient-light" data-template="app-shared:each" data-template-from="filterOptions" data-template-to="filterOption">
-                                    <input type="checkbox" name="options" data-template="facets:filter-value"/> <span data-template="facets:filter-label">Weber, Carl Maria von</span> 
-                                </label>
-                            </div>
-                        </div>
-                    </div>-->
                 </div>
                 <div class="d-none d-md-block toc-side">
                     <h2>
@@ -109,7 +66,7 @@
                         		</p>
                         	</div>
                         </div>
-                        <div class="row customizations" data-template="gl:spec-customizations">                            
+                        <div class="row customizations" data-template="gl:spec-customizations">
                             <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">other_customizations</span>
                             </div>
@@ -122,7 +79,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row members" data-template="gl:members">                            
+                        <div class="row members" data-template="gl:members">
                             <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">members</span>
                             </div>
@@ -134,7 +91,7 @@
                                 </ul>
                             </div>
                         </div>
-                        <div class="row attributes" data-template="gl:attributes">                            
+                        <div class="row attributes" data-template="gl:attributes">
                             <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">attributes</span>
                             </div>
@@ -147,8 +104,8 @@
                                     </ul>
                                 </div>
                                 <div class="localAtts">
-                                    <div data-template="app-shared:each" data-template-from="localAtts" data-template-to="localAtt" class="row">
-                                        <div data-template="gl:spec-details" data-template-specKey="localAtt">
+                                    <div data-template="app-shared:each" data-template-from="localAtts" data-template-to="localAtt">
+                                        <div data-template="gl:spec-details" data-template-specKey="localAtt" class="row">
                                             <div class="col-md-2 text-nowrap label-col">
                                                 <code><span data-template="app-shared:print" data-template-key="specIDDisplay" class="label attribute">att</span></code>
                                                 <span class="status-label">                                                    
@@ -177,18 +134,17 @@
                                                         <span class="label text-nowrap" data-template="lang:translate">closed_values</span>
                                                     </div>
                                                     <div class="col-md-9">
-                                                        <div data-template="app-shared:each" data-template-from="closed_values" data-template-to="closed_value" class="row">
-                                                            <div data-template="gl:spec-details" data-template-specKey="closed_value">
+                                                        <div data-template="app-shared:each" data-template-from="closed_values" data-template-to="closed_value">
+                                                            <div data-template="gl:spec-details" data-template-specKey="closed_value" class="row">
                                                                 <div class="col-md-3">
                                                                     <code>
                                                                         <span data-template="app-shared:print" data-template-key="specIDDisplay">simple</span>
                                                                     </code>
                                                                 </div>
                                                                 <div class="col-md-9">
-                                                                    <div>
                                                                         <span data-template="app-shared:print" data-template-key="gloss" class="gloss">gloss</span>
                                                                         <span data-template="app-shared:print" data-template-key="desc" class="desc">desc</span>
-                                                                    </div>
+                                                                    
                                                                 </div>
                                                             </div>
                                                         </div>    
@@ -199,10 +155,8 @@
                                                         <span class="label" data-template="lang:translate">gl_note</span>
                                                     </div>
                                                     <div class="col-md-9">
-                                                        <div>
                                                             <p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
                                                                 Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
-                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="row">
@@ -231,30 +185,24 @@
                                 <p>drama — Performance Texts</p>
                             </div>
                         </div>-->
-                    	<div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">                    	    
+                    	<div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">
                     	    <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">gl_note</span>
                             </div>
                             <div class="col-md-10">
-                            	<div>
                             		<p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
                                     Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
-                            	</div>
                             </div>
                         </div>
-                        <div class="row" data-template="app-shared:if-exists" data-template-key="examples">
-                            <div class="col-md-2">
-                                <span class="label" data-template="lang:translate">example</span>
-                    		</div>
-                    	    <div data-template="app-shared:each" data-template-from="examples" data-template-to="example">
-                    	      <div class="col-md-2"/>
+                        <div data-template="app-shared:if-exists" data-template-key="examples" class="row">
+                            <div data-template="app-shared:each" data-template-from="examples" data-template-to="example" class="col-12 row">
+                    	       <div class="col-md-2">
+                    	            <span class="label" data-template="lang:translate">example</span>
+                    	       </div>
                     	      <div class="col-md-10">
-                      			<div>
                       				<pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
                       				</code></pre>
-                      			</div>
                       		</div>
-                    	       
                     	    </div>
                     	</div>
                     </div>
