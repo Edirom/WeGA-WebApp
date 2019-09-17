@@ -74,7 +74,7 @@ li.resp-tab-item {
   &:first-child { margin-left: 0px!important; }
 }
 
-li.resp-tab-active {
+button.resp-tab-active, li.resp-tab-active {
     border-bottom: 3px solid #F0F0F0!important;
     border-top: 4px solid $gray;
 }
@@ -86,14 +86,14 @@ li.resp-tab-active {
     border:none;    
 }
 
-.resp-tabs-list, .hidden-links 
+.resp-tabs-list, .hidden-links, .greedy 
 {
-    li.resp-tab-item
+    li.resp-tab-item, button
     {
         background: $gray-light;
         border: 1px solid $gray-light; 
         margin: 0px 0px -2px 2px!important;
-        padding: 10px 25px;
+        
         a
         {
             color: #fff;
@@ -104,8 +104,9 @@ li.resp-tab-active {
         }
         &.resp-tab-active
         {
+            color: $gray;
             background: $gray-lighter;
-            padding: 10px 25px!important;
+            
             border: 1px solid $gray-light!important;
             border-top: 4px solid $gray!important;
             border-bottom: 3px solid $gray-lighter!important;
