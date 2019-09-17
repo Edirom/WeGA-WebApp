@@ -79,4 +79,4 @@ $.fn.greedyNav = function() {
 
   check();
 
-});
+};
