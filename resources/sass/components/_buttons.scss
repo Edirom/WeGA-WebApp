@@ -1,36 +1,33 @@
-.btn-group {
-    display: block;
-}
-
 .btn input {
     display:none;
 }
 
-.btn
+.btn:not(.gradient-light)
 {    border-radius:0;
      padding: 9px 20px;
      &:hover { 
-        background-color: #018eff;
-        border-color: #018eff;
+        background-color: $blue-light;
+        border-color: $blue-light;
      }
 }
 
-.btn-group .btn
-{
-    color: $gray!important;
-    font-size: 16px!important;
-    line-height: 19px!important;
-    padding: 14px 20px;
-    font-family: $font-family-sans-serif-bold!important;
-    margin-left: 0px!important ;
-    text-align: left;
-}
-
-.btn-group .btn input
-{
-    color: $gray!important;
-    font-size: 16px!important;
-    line-height: 19px!important;
+.btn-group {
+    display: block;
+    .btn {
+        color: $gray!important;
+        font-size: 16px!important;
+        line-height: 19px!important;
+        padding: 14px 20px;
+        font-family: $font-family-sans-serif-bold!important;
+        margin-left: 0px!important ;
+        text-align: left; 
+    }
+    input {
+        color: $gray!important;
+        font-size: 16px!important;
+        line-height: 19px!important; 
+    }
+    
 }
 
 .btn-group.primary .btn.gradient-light.active
@@ -39,39 +36,36 @@
     color: #fff!important;
 }
 
-.inner-shadow-light, .gradient-light.open , .gradient-light > a.nav-link.active
-{
-    background-color: $gray-lighter!important;;
-    color: $gray!important;
-    font-size: 16px!important;
-    line-height: 20px!important;
-    cursor: pointer;
-    width: 100%;   
-}
-
 .gradient-light
 {
-    background-color: #f5f5f5;
+    background-color: $gray-lightest;
     &:hover {
         background-color:$gray-lighter!important;
     }
+    a {
+        margin:0;
+        border:0;
+        border-left: 4px solid $gray-lighter;
+        box-shadow:none;
+        &:hover {
+            border-color:$blue-light;
+        }
+    }
+    > a.active {
+        background-color: $gray-lighter!important;
+        color: $gray!important;
+        font-size: 16px!important;
+        line-height: 20px!important;
+        cursor: pointer;
+        width: 100%;     
+    }
+    &.active {
+        background-color: $gray-lighter;
+    }
 }
 
-.btn-group .btn.gradient-light:hover {
-    color: $primary!important;
-    background: none;
-}
-
-.nav-item.gradient-light, label.gradient-light {
-    margin:0;
-    border:0;
-    border-left: 4px solid $gray-lighter;
-    box-shadow:none;
-}
-
-li.nav-item.gradient-light > .active,  .gradient-light.active {
-    color: $primary;
-    border-left:4px solid $primary!important;;
+li.nav-item.gradient-light > .active, btn.gradient-light.active {
+    background-color: $gray-lighter;
 }
 
 li.nav-item.gradient-light > .nav-link {

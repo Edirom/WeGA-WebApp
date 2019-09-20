@@ -1,3 +1,7 @@
+.guidelines-specs div p {
+    margin-bottom: 0px!important;
+}
+
 div.toc-side  {
     position: -webkit-sticky;
     position: sticky;
@@ -36,6 +40,17 @@ span.label {
     font-weight:800;
     font-family:$font-family-sans-serif;
 }
+
+span.desc {
+    display: inline-block;
+    font-style: italic;
+    line-height: 1.3em;
+}
+
+.schemeClasses, .attClasses {
+    font-family: $font-family-monospace;
+}
+
 
 .localAtts {
     > .row {
@@ -108,7 +123,6 @@ span.label {
     }
 }
 
-
 /*
  * styling for Guidelines and Wikipedia TOC
  */
@@ -137,7 +151,7 @@ div.toc-side.affix {
 #sidetoc {
     margin-bottom:0!important;
     padding:8px;
-    background-color: #f5f5f5;
+    background-color: $gray-lightest;
 }
 
 div.toc {

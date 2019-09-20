@@ -1,13 +1,6 @@
 /* filter */
-.searchDocTypeFilter .btn.active:before {
-    content: "\f14a\00a0";
-    font-family: "FontAwesome";
-    vertical-align: text-top;
-    margin-right:10px;
-    color: #0064b4;
-}
 
-.searchDocTypeFilter .btn:before {
+.searchDocTypeFilter .btn:before, .filtersection .btn:before {
     content: "\f096\00a0";
     font-family: "FontAwesome";
     vertical-align: text-top;
@@ -15,8 +8,9 @@
     color: #0064b4;
 }
 
-.searchDocTypeFilter .btn.active {
-    background:#f0f0f0;
+.searchDocTypeFilter .btn.active:before, .filtersection .btn.active:before {
+        content: "\f14a\00a0";
+        margin-right:10px;
 }
 
 /* input restyling */
@@ -77,6 +71,9 @@
         overflow:hidden;
         text-overflow:ellipsis;
     }
+    
+    label.gradient-light { margin-bottom: 0px!important; }
+
 }
 
 
@@ -260,7 +257,7 @@
    margin-bottom: 0px;
 }
 
-.order-2 {
+.side-col {
     line-height: 1.3;
 }
 
