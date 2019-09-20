@@ -3,7 +3,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                	<h1 data-template="gl:title">Element: seg</h1>
+                    <h1 data-template="gl:title">Element: seg</h1>
                 </div>
             </div>
         </div>
@@ -15,7 +15,7 @@
                     <ol class="breadcrumb" data-template="gl:breadcrumb">
                         <li><a href="$link/index">Home</a></li>
                         <li><a data-template="lang:translate">project</a></li>
-                    	<li><a href="$link/project/editorialGuidelines-text/index" data-template="lang:translate">editorialGuidelines-text</a></li>
+                        <li><a href="$link/project/editorialGuidelines-text/index" data-template="lang:translate">editorialGuidelines-text</a></li>
                         <li><a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="editorialGuidelines-text_specType_url"><span data-template="app-shared:print" data-template-key="specType">elements</span> (<span data-template="app-shared:print" data-template-key="schemaID">wegaLetters</span>)</a></li>
                         <li><span data-template="app-shared:print" data-template-key="specID">div</span> </li>
                     </ol>
@@ -29,7 +29,7 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="gl:spec-details">
         <div class="row">
-            <div class="col-md-3 order-2">                
+            <div class="col-md-3 order-2 side-col">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
                         <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a></h2>
@@ -58,13 +58,13 @@
                 <div class="tab-content">
                     <div class="guidelines-specs tab-pane active fade in" id="transcription">
                         <div class="row">
-                        	<div class="col-md-12">
-                        		<p>
+                            <div class="col-md-12">
+                                <p>
                                     <span class="label" data-template="app-shared:print" data-template-key="specIDDisplay">castGroup</span>
-                        		    <span data-template="app-shared:print" data-template-key="gloss" class="gloss">cast list grouping</span> 
-                        		    <span data-template="app-shared:print" data-template-key="desc" class="desc">groups one or more individual castItem elements within a cast list.</span>
-                        		</p>
-                        	</div>
+                                    <span data-template="app-shared:print" data-template-key="gloss" class="gloss">cast list grouping</span> 
+                                    <span data-template="app-shared:print" data-template-key="desc" class="desc">groups one or more individual castItem elements within a cast list.</span>
+                                </p>
+                            </div>
                         </div>
                         <div class="row customizations" data-template="gl:spec-customizations">
                             <div class="col-md-2">
@@ -72,11 +72,13 @@
                             </div>
                             <div class="col-md-10">
                                 <!--<p>unmodified – this is the original usage as defined by the TEI Guidelines version 3.1.0.</p>-->
-                            	<ul>
-                            		<li data-template="app-shared:each" data-template-from="customizations" data-template-to="customization"><span data-template="gl:print-customization">Letters (modified)</span></li>
-                                    <!--<li>Diaries, Persons</li>-->
-                                    <!--<li>TEI version 3.0.1</li>-->
-                                </ul>
+                                <div class="schemeClasses">
+                                    <ul>
+                                        <li data-template="app-shared:each" data-template-from="customizations" data-template-to="customization"><span data-template="gl:print-customization">Letters (modified)</span></li>
+                                        <!--<li>Diaries, Persons</li>-->
+                                        <!--<li>TEI version 3.0.1</li>-->
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                         <div class="row members" data-template="gl:members">
@@ -84,11 +86,11 @@
                                 <span class="label" data-template="lang:translate">members</span>
                             </div>
                             <div class="col-md-10">
-                                <ul>
-                                    <li data-template="app-shared:each" data-template-from="members" data-template-to="member">
-                                        <span data-template="gl:print-member" data-template-key="member"/>
-                                    </li>
-                                </ul>
+                                    <ul>
+                                        <li data-template="app-shared:each" data-template-from="members" data-template-to="member">
+                                            <span data-template="gl:print-member" data-template-key="member"/>
+                                        </li>
+                                    </ul>
                             </div>
                         </div>
                         <div class="row attributes" data-template="gl:attributes">
@@ -126,7 +128,7 @@
                                                         <span class="label" data-template="lang:translate">datatype</span>
                                                     </div>
                                                     <div class="col-md-9">
-                                                        <span data-template="app-shared:print" data-template-key="datatype">teidata.enumerated</span>
+                                                        <code data-template="app-shared:print" data-template-key="datatype">teidata.enumerated</code>
                                                     </div>
                                                 </div>
                                                 <div class="row" data-template="app-shared:if-exists" data-template-key="closed_values">
@@ -142,8 +144,8 @@
                                                                     </code>
                                                                 </div>
                                                                 <div class="col-md-9">
-                                                                        <span data-template="app-shared:print" data-template-key="gloss" class="gloss">gloss</span>
-                                                                        <span data-template="app-shared:print" data-template-key="desc" class="desc">desc</span>
+                                                                    <span data-template="app-shared:print" data-template-key="gloss" class="gloss">gloss</span>
+                                                                    <span data-template="app-shared:print" data-template-key="desc" class="desc">desc</span>
                                                                     
                                                                 </div>
                                                             </div>
@@ -155,21 +157,21 @@
                                                         <span class="label" data-template="lang:translate">gl_note</span>
                                                     </div>
                                                     <div class="col-md-9">
-                                                            <p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
-                                                                Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
+                                                        <p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
+                                                            Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
                                                     </div>
                                                 </div>
                                                 <div class="row">
                                                     <div class="col-md-3" data-template="app-shared:if-exists" data-template-key="examples">
                                                         <span class="label" data-template="lang:translate">example</span>
                                                     </div>
-                                                  <div data-template="app-shared:each" data-template-from="examples" data-template-to="example">
-                                                    <div class="col-md-9">
-                                                        <div>
-                                                            <pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span></code></pre>
+                                                    <div data-template="app-shared:each" data-template-from="examples" data-template-to="example">
+                                                        <div class="col-md-9">
+                                                            <div>
+                                                                <pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span></code></pre>
+                                                            </div>
                                                         </div>
-                                                  </div>
-                                                </div>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -185,26 +187,26 @@
                                 <p>drama — Performance Texts</p>
                             </div>
                         </div>-->
-                    	<div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">
-                    	    <div class="col-md-2">
+                        <div class="row" data-template="app-shared:each" data-template-from="remarks" data-template-to="remark">
+                            <div class="col-md-2">
                                 <span class="label" data-template="lang:translate">gl_note</span>
                             </div>
                             <div class="col-md-10">
-                            		<p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
+                                <p data-template="app-shared:output" data-template-key="remark">The rend attribute may be used, as here, to indicate whether the grouping is indicated by a brace, whitespace, font change, etc.
                                     Note that in this example the role description ‘friends of Mathias’ is understood to apply to both roles equally.</p>
                             </div>
                         </div>
                         <div data-template="app-shared:if-exists" data-template-key="examples" class="row">
                             <div data-template="app-shared:each" data-template-from="examples" data-template-to="example" class="col-12 row">
-                    	       <div class="col-md-2">
-                    	            <span class="label" data-template="lang:translate">example</span>
-                    	       </div>
-                    	      <div class="col-md-10">
-                      				<pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
+                                <div class="col-md-2">
+                                    <span class="label" data-template="lang:translate">example</span>
+                                </div>
+                                <div class="col-md-10">
+                                    <pre class="prettyprint"><code data-template="app-shared:output" data-template-key="example" data-template-wrap="yes" class="language-xml"><span class="element">&lt;castGroup <span class="attribute">rend</span>="<span class="attributevalue">braced</span>"&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Walter<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr Frank Hall<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;castItem&gt;</span><br/>  <span class="element">&lt;role&gt;</span>Hans<span class="element">&lt;/role&gt;</span><br/>  <span class="element">&lt;actor&gt;</span>Mr F.W. Irish<span class="element">&lt;/actor&gt;</span><br/> <span class="element">&lt;/castItem&gt;</span><br/> <span class="element">&lt;roleDesc&gt;</span>friends of Mathias<span class="element">&lt;/roleDesc&gt;</span><br/><span class="element">&lt;/castGroup&gt;</span>
                       				</code></pre>
-                      		</div>
-                    	    </div>
-                    	</div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="tab-pane fade" id="examples">
                         <h2 data-template="lang:translate">examples</h2>
@@ -220,9 +222,9 @@
     </div>
     <div class="container documentFooter">
         <div class="row permaLink">
-        	<div class="col-md-9">
-        		<p>Source Code can be found on our <a href="https://github.com/edirom/WeGA-ODD">GitHub</a>.</p>
-        	</div>
+            <div class="col-md-9">
+                <p>Source Code can be found on our <a href="https://github.com/edirom/WeGA-ODD">GitHub</a>.</p>
+            </div>
             <!--<div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
                 <h4>Empfohlene Zitierweise</h4>
                 <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
@@ -236,7 +238,7 @@
                 <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
             </div>-->
         </div>
-    	<div class="row bugreport" data-template="app:bugreport">
+        <div class="row bugreport" data-template="app:bugreport">
             <div class="col-md-9">
                 <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
                     <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
