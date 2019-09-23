@@ -1,15 +1,24 @@
 /* filter */
 
-.searchDocTypeFilter .btn:before, .filtersection .btn:before {
-    content: "\f096\00a0";
-    font-family: "FontAwesome";
-    vertical-align: text-top;
-    margin-right:11px;
-    color: #0064b4;
+.searchDocTypeFilter .btn, .filtersection .btn {
+    padding-left: 40px;
+    &:before {
+        content: "\f096\00a0";
+        font-family: "FontAwesome";
+        vertical-align: text-top;
+        margin-right:11px;
+        position: absolute;
+        left:20px;
+    }
+    span {
+        vertical-align: text-top;
+    }
+    
 }
 
 .searchDocTypeFilter .btn.active:before, .filtersection .btn.active:before {
         content: "\f14a\00a0";
+        color: $primary;
         margin-right:10px;
 }
 
@@ -36,14 +45,14 @@
     content: "\f096\00a0";
     font-family: "FontAwesome";
     margin-right:11px;
-    color: #0064b4;
+    color: $primary;
 }
 
 .checkbox input[type="checkbox"]:checked + label::before {
     content: "\f14a\00a0";
     font-family: "FontAwesome";
     margin-right:10px;
-    color: #0064b4;
+    color: $primary;
 }
 
 // allFilter sidebar
