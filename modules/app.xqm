@@ -649,6 +649,7 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
     if(exists($persName/@key)) then 
         if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        else if ($order eq 's') then app:createDocLink(core:doc($persName/string(@key)), substring-before(query:title($persName/@key),','), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
         else app:createDocLink(core:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
     else if(not(functx:all-whitespace($persName))) then 
         if ($order eq 'fs') then <xhtml:span class="noDataFound">{wega-util:print-forename-surname-from-nameLike-element($persName)}</xhtml:span>
@@ -1501,9 +1502,9 @@ declare
         return (
             app:createDocLink($letter, $normDate, $lang, ()), 
             ": ",
-            lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
+            lower-case(lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang)),
             " ",
-            app:printCorrespondentName($partner, $lang, 'sf')
+            app:printCorrespondentName($partner, $lang, 's')
         )
 };
 
@@ -1654,7 +1655,9 @@ declare
                         if($docType = $selected-docTypes) then attribute checked {'checked'}
                         else ()
                     },
+                    element span {
                     $displayTitle
+                    }
                 }
 };
 
