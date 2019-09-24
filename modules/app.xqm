@@ -1318,9 +1318,8 @@ declare
     let $textSourcesCount := count(query:text-sources($model?doc))
     return
         map {
-            'textSources' : query:text-sources($model?doc),
-            'textSourcesCountString' : if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else "",
-            'countClass' : if ($textSourcesCount > 1) then "decimal" else "none"
+            'textSources' := query:text-sources($model?doc),
+            'textSourcesCountString' := if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else ""
         }
 };
 
@@ -1329,6 +1328,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:print-Source($node as node(), $model as map(*), $key as xs:string) as map()* {
+        let $sourceCount := $model($key)/ancestor::tei:listWit/count(tei:witness)
         let $sourceLink-content :=
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:msIdentifier, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
@@ -1347,12 +1347,13 @@ declare
         let $collapse := exists($sourceData-content) or exists($model($key)/tei:additional) or exists($model($key)/tei:relatedItem)
         return
             map {
-                'collapse' : $collapse,
-                'sourceLink' : concat("#",$source-id),
-                'sourceId' : $source-id,
-                'sourceLink-content' : $sourceLink-content,
-                'sourceData-content' : $sourceData-content,
-                'sourceCategory' : $sourceCategory
+                'witness' : if ($sourceCount > 1) then concat($model($key)/parent::tei:witness/@n,".") else "",
+                'collapse' := $collapse,
+                'sourceLink' := concat("#",$source-id),
+                'sourceId' := $source-id,
+                'sourceLink-content' := $sourceLink-content,
+                'sourceData-content' := $sourceData-content,
+                'sourceCategory' := $sourceCategory
             }
 };
 
