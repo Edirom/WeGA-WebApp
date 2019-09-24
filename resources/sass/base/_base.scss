@@ -13,7 +13,7 @@ p:last-of-type {
 }*/
 
 .tab-content div {
-    p:last-of-type, ol:last-of-type, dl:last-of-type, ul:last-of-type { margin-bottom: 30px; }
+    p:last-of-type, ol:last-of-type, dl:last-of-type, ul:last-of-type, .abstract:last-child { margin-bottom: 30px; }
 }
 
 ul, ol, dl
@@ -43,9 +43,4 @@ ol.none {
 img
 {
     margin-bottom:30px;
-}
-
-/* workaround: reset table font-size in order to overwrite csLink style */
-table {
-    font-size:initial;
 }
