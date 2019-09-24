@@ -3,56 +3,56 @@
     margin-bottom:30px;
 }
 
-.popover.fade.show {
-    max-width:300px;    
-    font-family: unset;
-    font-size:1em;
-    opacity:1;
-    
+.popover.fade.show[id*='BV_popover'] {
    table {
-        font-size:unset;    
+        font-size:unset;
    }
    
    table.b-table > thead > tr > th.sorting {
         padding-right: 2em;
    }
    
-   .fade.show {
-        opacity:1;   
-   }
-   
-   .popover-body {
+   .popover-body [id*="_BVID_"].tabs {
         max-height:400px;
-        padding:4px;
-    }       
+        padding: 10px;
+        .tab-content {
+            overflow-y:auto;
+            font-size:smaller;
+            p {
+                margin-bottom:unset;
+            }
+        }
+    }
     
     .popover-header:empty {
         display:none; 
-    }    
+    }
     
     .nav {
         margin:4px 0 4px 0;
+        flex-wrap:nowrap;
     }
     
     .nav-tabs li {
         width: unset;
-    }    
+    }
     
-    .tab-content {
-        font-size:smaller;
+    .nav-tabs {
+        border: 0;
+        .nav-item {
+            padding: 0 8px;
+            a {
+                padding: 8px;
+                font-size:larger;
+                color:gray;
+                &.active {
+                    border-bottom: 4px solid #0064bb;
+                }
+            }
+        }
     }
     
     hr {
         margin: 4px 0 4px 0;
     }
-    
-/*    .arrow {
-        border-width: 0px;
-    }
-    
-    .arrow::after {
-        border-width: 0 .5rem .5rem;
-        border-bottom-color: #fff;
-    }   */
-
 }
