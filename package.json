@@ -26,11 +26,45 @@
     "jquery-ui-themes": "^1.12.0",
     "moment": "^2.10.2",
     "openseadragon": "^2.4.0",
-    "prettydiff": "^1",
-    "sass": "^1.22.9",
     "selectize": "^0.12.0",
     "swagger-ui-dist": "^3.23.8",
     "vnu": "^0.0.1",
     "yuicompressor": "^2.4.8"
+  },
+    "devDependencies": {
+    "prettydiff": "^99.0.1",
+    "frontend-dependencies": "^0.2.1",
+    "sass": "^1.22.12"
+  },
+   "frontendDependencies": {
+    "target": "libs",
+    "packages": [
+      "Easy-Responsive-Tabs-to-Accordion",
+      "WeGA-ODD/",
+      "bootstrap-hover-dropdown/*.js",
+      "bootstrap-remote-data/{css,js,img}",
+      "bootstrap/{build,dist,js,scss}",
+      "bootstrap4-toggle/{css,js}",
+      "bravura",
+      "csLink/dist",
+      "fittextjs",
+      "flip/dist",
+      "font-awesome",
+      "google-code-prettify/{styles,bin,lang}",
+      "ion-rangeslider/{css,img,js}",
+      "jquery/dist/",
+      "jquery-ui",
+      "jquery-ui-themes",
+      "moment/min",
+      "openseadragon/build/openseadragon/",
+      "selectize/dist/",
+      "swagger-ui-dist/",
+      "microplugin/src/",
+      "vnu/",
+      "yuicompressor/"
+    ]
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/frontend-dependencies"
   }
 }
