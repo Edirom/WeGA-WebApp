@@ -405,7 +405,7 @@ declare
     function app:set-entries-per-page($node as node(), $model as map(*)) as map() {
 		map {
 			'limit' : config:entries-per-page(),
-			'fewresults' := if ((count($model('search-results'))>config:entries-per-page())) then 'true' else ()
+			'fewresults' := if ( count($model('search-results')) lt config:entries-per-page() ) then 'true' else ()
 		}
 };
 
