@@ -465,6 +465,7 @@ function popover_callBack() {
         dataRefs = $(this).attr('data-ref'),
         popoverID = $(this).attr('aria-describedby'),
         popover = $('#'+popoverID),
+        suppressCrosslink  = $(this).hasClass("arabic"),
         li_templ = $('.carousel-indicators li:last', popover),
         li_clone,
         popover_div,
@@ -490,6 +491,7 @@ function popover_callBack() {
             $('.item-title-content', popover_div).html($(e).attr('data-title'));
             $('.item-counter', popover_div).html($(e).attr('data-counter'));
             $('.item-counter',popover_div).attr('data-href',$(e).attr('data-href'));
+            if (suppressCrosslink) { $('.item-counter',popover_div).remove() } else {}; // remove .item-counter e.g. for classic footnotes
             $('.item-content', popover_div).html($(e).html());
             popover_data = popover.data('bs.popover');
             popover_data.config.content = $('div.popover-body', popover).clone().children();
@@ -838,7 +840,7 @@ function initFacsimile() {
     
     viewer = OpenSeadragon({
         id: "map",
-        prefixUrl: "$resources/lib/openseadragon/build/openseadragon/images/",
+        prefixUrl: "$resources/lib/openseadragon/openseadragon/images/",
         sequenceMode: true,
         showRotationControl: true,
         showReferenceStrip: true,
