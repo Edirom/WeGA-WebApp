@@ -29,7 +29,8 @@
             
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter searchDocTypeFilter">  
-                    <h2>Filter</h2> 
+                    <h2>Filter</h2>
+                    <h3 data-template="lang:translate">docType</h3>
                     <div class="btn-group" data-toggle="buttons">
                         <label class="btn gradient-light" data-template="app:search-filter">
                             <input type="checkbox" name="d" value="persons"/> persons
@@ -47,14 +48,14 @@
                 <div class="row">
                     
                     <div class="col-md-9 searchform">
-                        <!--<form role="form" class="form-inline">-->
+                        <form role="form">
                             <div class="input-group">
                                 <input type="text" class="query-input form-control" name="q" id="query-input" data-template="app:search-input"/>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
                                 </span>
                             </div>
-                        <!--</form>-->
+                        </form>
                     </div>
                     
                     <!--<div class="col-md-3">
@@ -65,53 +66,57 @@
                 <div class="row searchResultList">
                     <div class="col-12 textBlock searchResults" data-template="search:result-page">
                         <div data-template="templates:if-parameter-set" data-template-param="q">
-                        	<h2 data-template="search:results-count">124 Suchergebnisse</h2>
-                        	<p data-template="app-shared:print" data-template-key="query-string" style="display:none;" id="query-string"/>
-                        	<div class="row">
-                        		<div class="col-sm-8">
-                        			<ul class="pagination" data-template="app:pagination">
-                        				<li><a href="#">&lt;</a></li>
-                        			</ul>
-                        		</div>
-                        	    <div data-template="app:set-entries-per-page">
-                        	        <div class="col-sm-4" data-template="app-shared:if-not-matches" data-template-key="fewresults" data-template-value="true">
-                        	            <ul class="pagination switch-limit">
-                        	                <li class="page-item disabled"><a class="page-link" href="#" data-template="lang:translate">perPage</a></li>
-                        	                <li data-template="app:switch-limit"><a class="page-link" href="#">10</a></li>
-                        	                <li data-template="app:switch-limit"><a class="page-link" href="#">25</a></li>
-                        	                <li data-template="app:switch-limit"><a class="page-link" href="#">50</a></li>
-                        	            </ul>
-                        	        </div>
-                        	    </div>
-                        	</div>
-                        	<div class="row">
-                        		<div class="col-12">
-                        			<ul class="media-list">
-                        				<li class="media" data-template="app-shared:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
-                        					<div data-template="search:dispatch-preview"/>
-                        				</li>
-                        			</ul>
-                        		</div>
-                        	</div>
-	                        <div data-template="templates:if-parameter-set" data-template-param="q">
-	                        	<div class="row">
-	                        		<div class="col-sm-8">
-	                        			<ul class="pagination" data-template="app:pagination">
-	                        				<li><a href="#">&lt;</a></li>
-	                        			</ul>
-	                        		</div>
-	                        	    <div data-template="app:set-entries-per-page">
-	                        	        <div class="col-sm-4" data-template="app-shared:if-not-matches" data-template-key="fewresults" data-template-value="true">
-	                        	            <ul class="pagination switch-limit">
-	                        	                <li class="page-item disabled"><a class="page-link" href="#" data-template="lang:translate">perPage</a></li>
-	                        	                <li data-template="app:switch-limit"><a class="page-link" href="#">10</a></li>
-	                        	                <li data-template="app:switch-limit"><a class="page-link" href="#">25</a></li>
-	                        	                <li data-template="app:switch-limit"><a class="page-link" href="#">50</a></li>
-	                        	            </ul>
-	                        	        </div>
-	                        	    </div>
-	                        	</div>
-	                        </div>
+                            <h2 data-template="search:results-count">124 Suchergebnisse</h2>
+                            <p data-template="app-shared:print" data-template-key="query-string" style="display:none;" id="query-string"/>
+                            <div data-template="app:set-entries-per-page">
+                                <div data-template="app-shared:if-matches" data-template-key="moreresults" data-template-value="true">
+                                    <div class="row">
+                                        <div class="col-sm-8">
+                                            <ul class="pagination" data-template="app:pagination">
+                                                <li><a href="#">&lt;</a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="col-sm-4">
+                                            <ul class="pagination switch-limit">
+                                                <li class="page-item disabled"><a class="page-link" href="#" data-template="lang:translate">perPage</a></li>
+                                                <li data-template="app:switch-limit"><a class="page-link" href="#">10</a></li>
+                                                <li data-template="app:switch-limit"><a class="page-link" href="#">25</a></li>
+                                                <li data-template="app:switch-limit"><a class="page-link" href="#">50</a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <ul class="media-list">
+                                        <li class="media" data-template="app-shared:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
+                                            <div data-template="search:dispatch-preview"/>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div data-template="templates:if-parameter-set" data-template-param="q">
+                                <div data-template="app:set-entries-per-page">
+                                    <div data-template="app-shared:if-matches" data-template-key="moreresults" data-template-value="true">
+                                        <div class="row">
+                                            <div class="col-sm-8">
+                                                <ul class="pagination" data-template="app:pagination">
+                                                    <li><a href="#">&lt;</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-4" data-template="app-shared:if-not-matches">
+                                                <ul class="pagination switch-limit">
+                                                    <li class="page-item disabled"><a class="page-link" href="#" data-template="lang:translate">perPage</a></li>
+                                                    <li data-template="app:switch-limit"><a class="page-link" href="#">10</a></li>
+                                                    <li data-template="app:switch-limit"><a class="page-link" href="#">25</a></li>
+                                                    <li data-template="app:switch-limit"><a class="page-link" href="#">50</a></li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

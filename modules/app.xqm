@@ -377,7 +377,6 @@ declare
         }
         let $last-page := ceiling(count($model('search-results')) div config:entries-per-page()) 
         return
-        if (count($model('search-results'))>config:entries-per-page()) then
         (
             if($page le 1) then
              <li class="page-item disabled"><a class="page-link">{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</a></li>
@@ -397,7 +396,6 @@ declare
                 }</li>
             else <li class="page-item">{$a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')}</li>
         )
-        else ()
 };
 
 declare
@@ -405,7 +403,7 @@ declare
     function app:set-entries-per-page($node as node(), $model as map(*)) as map() {
 		map {
 			'limit' : config:entries-per-page(),
-			'fewresults' := if ( count($model('search-results')) lt config:entries-per-page() ) then 'true' else ()
+			'moreresults' := if ( count($model('search-results')) gt config:entries-per-page() ) then 'true' else ()
 		}
 };
 
@@ -1656,9 +1654,7 @@ declare
                         if($docType = $selected-docTypes) then attribute checked {'checked'}
                         else ()
                     },
-                    element span {
                     $displayTitle
-                    }
                 }
 };
 
