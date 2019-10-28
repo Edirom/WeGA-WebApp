@@ -12,16 +12,18 @@ $.fn.greedyNav = function() {
   numOfItems = 0,
   totalSpace = 0,
   closingTime = 1000,
-  breakWidths = [];
+  breakWidths = [],
+  availableSpace, 
+  numOfVisibleItems, 
+  requiredSpace, 
+  timer;
 
   // Get initial state
-    $vlinks.children(':visible').outerWidth(function(i, w) {
+  $vlinks.children(':visible').outerWidth(function(i, w) {
     totalSpace += w;
     numOfItems += 1;
     breakWidths.push(totalSpace);
   });
-
-  var availableSpace, numOfVisibleItems, requiredSpace, timer;
 
   function check() {
 
