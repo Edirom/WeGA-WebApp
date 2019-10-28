@@ -143,16 +143,24 @@
   text-align:left!important;    
 }
 
-/* loading spinner for selectize plugin */
+/* 
+ * loading spinner for selectize plugin (.allFilter)
+ * and AJAX tabs on person pages (.nav-item)
+ */
 .loading::before {
     content: "\f110";
 	color:$gray-dark;
 	z-index: 2;
 	position: absolute;
-	top: .5em;
-	right: .5em;
     @xtend .fa-spin;
     @extend .fa;
+    .allFilter & {
+        top: .5em;
+        right: .5em;
+    }
+    .nav-item & {
+        right: 1.5em;
+    }
 }
 
 .bootstrap-select
