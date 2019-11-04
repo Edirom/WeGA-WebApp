@@ -34,7 +34,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,36 +43,34 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap4-toggle/css/bootstrap4-toggle.min.css" />
         
         <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Personen","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Personen","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Personen","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"Eine Liste von (historischen) Personen aus dem Umfeld der Editionen der Carl-Maria-von-Weber-Gesamtausgabe"}</script>
 
 
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-light navbar-default navbar-expand-md">
             <div class="container">
-                <div class="row">
+                <div class="row flex-grow-1 flex-row-reverse">
                     
-                    <div class="navbar-header col-md-3 navbar-right">
-                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                    <div class="navbar-header"> 
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggler">
+                            <span class="navbar-toggler-icon"></span>
                         </button>
-                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
+                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="nav-link navbar-brand"> 
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     
-                    <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
+                    <div id="navbarCollapse" class="navbar-collapse collapse">
+                        
                         <ul class="nav navbar-nav">
-
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
+                            <li class="dropdown nav-item">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -81,28 +78,28 @@
                                     
                                     
                                     
-                                <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -113,36 +110,36 @@
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav" class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
+                           <li id="project-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -154,48 +151,48 @@
                                     
                                 
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav" class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
+                            <li id="help-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
                             </li>
-                            <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Persons" hreflang="en" lang="en">En</a></li>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item active"><a class="nav-link" href="#" hreflang="de" lang="de">De</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/exist/apps/WeGA-WebApp/en/Indices/Persons" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -219,10 +216,10 @@
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
                         <li><a href="/exist/apps/WeGA-WebApp/de/Register">Register</a></li>
-                        <li>Personen</li>
+                        <li><span>Personen</span></li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"></i> <span>Zurück</span> </div>
             </div>
         </div>
@@ -230,10 +227,10 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 paddingTopIcon paddingBottomIcon">
+            <div class="col-12 paddingTopIcon paddingBottomIcon">
                 
                 <div class="row">
-    <div class="col-md-3 col-md-push-9">
+    <div class="col-md-3 order-2 side-col">
         
         <div class="allFilter">
             <h2>Filter</h2>
@@ -269,34 +266,241 @@
             
         </div>
     </div>
-	<div class="col-md-9 col-md-pull-3 searchResults">
-	<h2>76 Suchergebnisse</h2>
-	<div class="row">
-		<div class="col-sm-8">
-			<ul class="pagination">
-                                            <li class="disabled"><span>« zurück</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=7&amp;limit=10">7</a></li>
-                                            <li><a class="page-link" href="?page=8&amp;limit=10">8</a></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
-                                        </ul>
-		</div>
-		<div class="col-sm-4">
-			<ul class="pagination switch-limit">
-				<li class="disabled"><a href="#">pro Seite</a></li>
-				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
-				<li><a class="page-link" href="?limit=25">25</a></li>
-				<li><a class="page-link" href="?limit=50">50</a></li>
-			</ul>
+	<div class="col-md-9 main-col searchResults">
+	<h2>78 Suchergebnisse</h2>
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-8">
+					<ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link">« zurück</a></li>
+                                                    <li class="page-item active"><a class="page-link">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
+                                                    <li class="page-item disabled"><a class="page-link">…</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=7&amp;limit=10">7</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=8&amp;limit=10">8</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                </ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="pagination switch-limit">
+						<li class="page-item disabled"><a class="page-link" href="#">pro Seite</a></li>
+						<li class="page-item active"><a class="page-link" href="?limit=10">10</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=25">25</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=50">50</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-12">
 			<ul class="media-list">
 				<li class="media">
+					<div>
+    <div class="portrait preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000077.html">
+            
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A000077.html">Baermann, Heinrich</a>
+        </h3>
+        <ol class="media">
+            
+            <li class="media">
+                <div class="pull-left">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="media-body">Baermann, Heinrich Joseph</div>
+            </li>
+            
+            
+            
+            
+            
+            <li class="media">
+                <div class="pull-left">
+                    <i class="fa fa-asterisk "></i>
+                </div>
+                <div class="media-body">
+                    <span>14. Februar 1784</span>
+                    <span> in Potsdam</span>
+                     </div>
+            </li>
+            
+            <li class="media">
+                <div class="pull-left">
+                    <strong>†</strong>
+                </div>
+                <div class="media-body">
+                    <span>11. Juni 1847</span>
+                    <span> in München</span>
+                </div>
+            </li>
+            
+            
+            <li class="media occupations">
+                <div class="pull-left">                  
+                    <i class="fa fa-briefcase"></i>
+                </div>
+                <div class="media-body">Klarinettist, Komponist, Militärmusiker</div>
+            </li>
+            <li class="media residences">
+                <div class="pull-left">                  
+                    <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="media-body">München</div>
+            </li>
+            
+            
+            
+        </ol>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A000077</span>
+        </p>
+        
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="portrait preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002641.html">
+            
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A002641.html">Beale, Thomas Frederick</a>
+        </h3>
+        <ol class="media">
+            
+            
+            
+            
+            
+            
+            
+            <li class="media">
+                <div class="pull-left">
+                    <i class="fa fa-asterisk "></i>
+                </div>
+                <div class="media-body">
+                    <span>18. November 1804</span>
+                    <span> in Manchester</span>
+                     </div>
+            </li>
+            
+            <li class="media">
+                <div class="pull-left">
+                    <strong>†</strong>
+                </div>
+                <div class="media-body">
+                    <span>26. Juni 1863</span>
+                    <span> in Chislehurst (London)</span>
+                </div>
+            </li>
+            
+            
+            <li class="media occupations">
+                <div class="pull-left">                  
+                    <i class="fa fa-briefcase"></i>
+                </div>
+                <div class="media-body">Musikverleger</div>
+            </li>
+            <li class="media residences">
+                <div class="pull-left">                  
+                    <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="media-body">London</div>
+            </li>
+            
+            
+            
+        </ol>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A002641</span>
+        </p>
+        
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="portrait preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000131.html">
+            
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A000131.html">Benelli, Antonio Peregrino</a>
+        </h3>
+        <ol class="media">
+            
+            
+            
+            
+            
+            
+            
+            <li class="media">
+                <div class="pull-left">
+                    <i class="fa fa-asterisk "></i>
+                </div>
+                <div class="media-body">
+                    <span>5. September 1771</span>
+                    <span> in Forli</span>
+                     </div>
+            </li>
+            
+            <li class="media">
+                <div class="pull-left">
+                    <strong>†</strong>
+                </div>
+                <div class="media-body">
+                    <span>16. August 1830</span>
+                    <span> in Börnichen / Sachsen</span>
+                </div>
+            </li>
+            
+            
+            <li class="media occupations">
+                <div class="pull-left">                  
+                    <i class="fa fa-briefcase"></i>
+                </div>
+                <div class="media-body">Sänger (Tenor), Komponist, Gesangspädagoge</div>
+            </li>
+            <li class="media residences">
+                <div class="pull-left">                  
+                    <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="media-body">Neapel, Dresden, Wien, …</div>
+            </li>
+            
+            
+            
+        </ol>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A000131</span>
+        </p>
+        
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
 					<div>
     <div class="portrait preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A080149.html">
@@ -317,7 +521,7 @@
             
             <li class="media altnames">
                 <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
+                    <i class="fa fa-user"></i>
                 </div>
                 <div class="media-body"> <span>Zeltersche Liedertafel</span> <span class="nameDesc">Weitere Namen</span></div>
             </li>
@@ -328,13 +532,13 @@
             
             <li class="media occupations">
                 <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
+                    <i class="fa fa-briefcase"></i>
                 </div>
                 <div class="media-body">Verein</div>
             </li>
             <li class="media residences">
                 <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
+                    <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="media-body">Berlin</div>
             </li>
@@ -345,6 +549,77 @@
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A080149</span>
+        </p>
+        
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="portrait preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002680.html">
+            
+            <i class="fa fa-spinner fa-spin fa-2x"></i>
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A002680.html">Blahetka, Joseph</a>
+        </h3>
+        <ol class="media">
+            
+            <li class="media">
+                <div class="pull-left">
+                    <i class="fa fa-user"></i>
+                </div>
+                <div class="media-body">Blahetka, Johann Joseph Leopold</div>
+            </li>
+            
+            
+            
+            
+            
+            <li class="media">
+                <div class="pull-left">
+                    <i class="fa fa-asterisk "></i>
+                </div>
+                <div class="media-body">
+                    <span>1782  (andere Angaben: <span>1773</span>)</span>
+                    <span> in West-Mähren</span>
+                     </div>
+            </li>
+            
+            <li class="media">
+                <div class="pull-left">
+                    <strong>†</strong>
+                </div>
+                <div class="media-body">
+                    <span>1857</span>
+                    <span></span>
+                </div>
+            </li>
+            
+            
+            <li class="media occupations">
+                <div class="pull-left">                  
+                    <i class="fa fa-briefcase"></i>
+                </div>
+                <div class="media-body">Inspektor, Verlagsmitarbeiter, Musikschriftsteller</div>
+            </li>
+            <li class="media residences">
+                <div class="pull-left">                  
+                    <i class="fa fa-map-marker"></i>
+                </div>
+                <div class="media-body">Guntramsdorf, Wien, Boulogne-sur-Mer</div>
+            </li>
+            
+            
+            
+        </ol>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A002680</span>
         </p>
         
         <div class="kwic"></div>
@@ -372,13 +647,13 @@
             
             <li class="media altnames">
                 <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
+                    <i class="fa fa-user"></i>
                 </div>
                 <div class="media-body"> <span>Blume, Carl August Wilhelm</span> <span class="nameDesc">Weitere Namen</span></div>
             </li>
             <li class="media">
                 <div class="pull-left">
-                    <i class="fa fa-asterisk  media-object"></i>
+                    <i class="fa fa-asterisk "></i>
                 </div>
                 <div class="media-body">
                     <span>1786</span>
@@ -399,13 +674,13 @@
             
             <li class="media occupations">
                 <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
+                    <i class="fa fa-briefcase"></i>
                 </div>
                 <div class="media-body">Schauspieler, Sänger (Bass), Bühnenschriftsteller, …</div>
             </li>
             <li class="media residences">
                 <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
+                    <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="media-body">Erlangen, Königsberg, Berlin, …</div>
             </li>
@@ -444,7 +719,7 @@
             
             <li class="media">
                 <div class="pull-left">
-                    <i class="fa fa-asterisk  media-object"></i>
+                    <i class="fa fa-asterisk "></i>
                 </div>
                 <div class="media-body">
                     <span>1731</span>
@@ -465,13 +740,13 @@
             
             <li class="media occupations">
                 <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
+                    <i class="fa fa-briefcase"></i>
                 </div>
                 <div class="media-body">Sänger (Bass), Theaterdirektor</div>
             </li>
             <li class="media residences">
                 <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
+                    <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="media-body">Italien, Böhmen, Prag, …</div>
             </li>
@@ -482,82 +757,6 @@
         <p>
             <strong><span>Kennung</span>:</strong> 
             <span>A002549</span>
-        </p>
-        
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="portrait preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000214.html">
-            
-            <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A000214.html">Brandt, Christiane Sophia Henrietta</a>
-        </h3>
-        <ol class="media">
-            
-            
-            
-            <li class="media">
-                <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
-                </div>
-                <div class="media-body"> <span>Hartmann, Christiane Sophia Henrietta</span> <span class="nameDesc">Geburtsname</span></div>
-            </li>
-            
-            
-            <li class="media altnames">
-                <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
-                </div>
-                <div class="media-body"> <span>Brandt, Christina Sophia Henrietta</span> <span class="nameDesc">Weitere Namen</span></div>
-            </li>
-            <li class="media">
-                <div class="pull-left">
-                    <i class="fa fa-asterisk  media-object"></i>
-                </div>
-                <div class="media-body">
-                    <span>29. Juli 1761</span>
-                    <span> in Gotha</span>
-                     </div>
-            </li>
-            
-            <li class="media">
-                <div class="pull-left">
-                    <strong>†</strong>
-                </div>
-                <div class="media-body">
-                    <span>Frühestens am 31. Dezember 1826</span>
-                    <span> in Mannheim</span>
-                </div>
-            </li>
-            
-            
-            <li class="media occupations">
-                <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
-                </div>
-                <div class="media-body">Schauspielerin (Soubrette), Sängerin</div>
-            </li>
-            <li class="media residences">
-                <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
-                </div>
-                <div class="media-body">Gotha, Leipzig, Dresden, …</div>
-            </li>
-            
-            
-            
-        </ol>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A000214</span>
         </p>
         
         <div class="kwic"></div>
@@ -591,13 +790,13 @@
             
             <li class="media occupations">
                 <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
+                    <i class="fa fa-briefcase"></i>
                 </div>
                 <div class="media-body">Doktor</div>
             </li>
             <li class="media residences">
                 <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
+                    <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="media-body">Augsburg</div>
             </li>
@@ -636,7 +835,7 @@
             
             <li class="media">
                 <div class="pull-left">
-                    <i class="fa fa-asterisk  media-object"></i>
+                    <i class="fa fa-asterisk "></i>
                 </div>
                 <div class="media-body">
                     <span>1776</span>
@@ -657,13 +856,13 @@
             
             <li class="media occupations">
                 <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
+                    <i class="fa fa-briefcase"></i>
                 </div>
                 <div class="media-body">Arzt</div>
             </li>
             <li class="media residences">
                 <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
+                    <i class="fa fa-map-marker"></i>
                 </div>
                 <div class="media-body">Augsburg</div>
             </li>
@@ -683,40 +882,35 @@
                                             <li class="media">
 					<div>
     <div class="portrait preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000239.html">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A003066.html">
             
             <i class="fa fa-spinner fa-spin fa-2x"></i>
         </a>
     </div>
     <div class="media-body">
         <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A000239.html">Brunetti d. J., Therese</a>
+            <a href="/exist/apps/WeGA-WebApp/de/A003066.html">Bruegel der Ältere, Pieter</a>
         </h3>
         <ol class="media">
             
             
             
             
-            <li class="media">
-                <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
-                </div>
-                <div class="media-body"> <span>Kalliwoda, Therese</span> <span class="nameDesc">Ehename</span></div>
-            </li>
+            
             
             <li class="media altnames">
                 <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
+                    <i class="fa fa-user"></i>
                 </div>
-                <div class="media-body"> <span>Brunetti d. J., Terezie Barbara; Brunetti, Resi</span> <span class="nameDesc">Weitere Namen</span></div>
+                <div class="media-body"> <span>Brueghel der Ältere, Pieter; Breughel der Ältere, Pieter; Bauernbruegel; de Drol</span> <span class="nameDesc">Weitere Namen</span></div>
             </li>
             <li class="media">
                 <div class="pull-left">
-                    <i class="fa fa-asterisk  media-object"></i>
+                    <i class="fa fa-asterisk "></i>
                 </div>
                 <div class="media-body">
-                    <span>28. Januar 1803</span>
-                    <span> in Prag</span>
+                    <span>Zwischen 1. Januar 1525 und 31. Dezember 1530</span>
+                    <span> in Breda (Belgien)</span>
                      </div>
             </li>
             
@@ -725,144 +919,23 @@
                     <strong>†</strong>
                 </div>
                 <div class="media-body">
-                    <span>28. März 1892</span>
-                    <span> in Karlsruhe</span>
+                    <span>5. September 1569</span>
+                    <span> in Brüssel</span>
                 </div>
             </li>
             
             
             <li class="media occupations">
                 <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
-                </div>
-                <div class="media-body">Sängerin (Sopran), Schauspielerin</div>
-            </li>
-            <li class="media residences">
-                <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
-                </div>
-                <div class="media-body">Prag, Donaueschingen, Karlsruhe</div>
-            </li>
-            
-            
-            
-        </ol>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A000239</span>
-        </p>
-        
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="portrait preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A080052.html">
-            
-            <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A080052.html">Buxtorf</a>
-        </h3>
-        <ol class="media">
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            
-            <li class="media occupations">
-                <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
-                </div>
-                <div class="media-body">Weinhandlung</div>
-            </li>
-            <li class="media residences">
-                <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
-                </div>
-                <div class="media-body">Wichelhausen in Bremen</div>
-            </li>
-            
-            
-            
-        </ol>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A080052</span>
-        </p>
-        
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="portrait preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000289.html">
-            
-            <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A000289.html">Chézy, Max von</a>
-        </h3>
-        <ol class="media">
-            
-            <li class="media">
-                <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
-                </div>
-                <div class="media-body">Chézy, Maximilian Anton Théodor de</div>
-            </li>
-            
-            
-            
-            
-            
-            <li class="media">
-                <div class="pull-left">
-                    <i class="fa fa-asterisk  media-object"></i>
-                </div>
-                <div class="media-body">
-                    <span>25. Januar 1808</span>
-                    <span> in Paris</span>
-                     </div>
-            </li>
-            
-            <li class="media">
-                <div class="pull-left">
-                    <strong>†</strong>
-                </div>
-                <div class="media-body">
-                    <span>14. Dezember 1846</span>
-                    <span> in Heidelberg</span>
-                </div>
-            </li>
-            
-            
-            <li class="media occupations">
-                <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
+                    <i class="fa fa-briefcase"></i>
                 </div>
                 <div class="media-body">Maler</div>
             </li>
             <li class="media residences">
                 <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
+                    <i class="fa fa-map-marker"></i>
                 </div>
-                <div class="media-body">Dresden, Wien, Paris, …</div>
+                <div class="media-body">Belgien</div>
             </li>
             
             
@@ -870,62 +943,7 @@
         </ol>
         <p>
             <strong><span>Kennung</span>:</strong> 
-            <span>A000289</span>
-        </p>
-        
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="portrait preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A080114.html">
-            
-            <i class="fa fa-spinner fa-spin fa-2x"></i>
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A080114.html">Cramer, Addison &amp; Beale</a>
-        </h3>
-        <ol class="media">
-            
-            
-            
-            
-            
-            
-            <li class="media altnames">
-                <div class="pull-left">
-                    <i class="fa fa-user media-object"></i>
-                </div>
-                <div class="media-body"> <span>J. B. Cramer &amp; Co.</span> <span class="nameDesc">Weitere Namen</span></div>
-            </li>
-            
-            
-            
-            
-            
-            <li class="media occupations">
-                <div class="pull-left">                  
-                    <i class="fa fa-briefcase media-object"></i>
-                </div>
-                <div class="media-body">Musikverlag, Musik- und Instrumentenhandlung</div>
-            </li>
-            <li class="media residences">
-                <div class="pull-left">                  
-                    <i class="fa fa-map-marker media-object"></i>
-                </div>
-                <div class="media-body">London</div>
-            </li>
-            
-            
-            
-        </ol>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A080114</span>
+            <span>A003066</span>
         </p>
         
         <div class="kwic"></div>
@@ -935,26 +953,30 @@
 			</ul>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-8">
-			<ul class="pagination">
-                                            <li class="disabled"><span>« zurück</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=7&amp;limit=10">7</a></li>
-                                            <li><a class="page-link" href="?page=8&amp;limit=10">8</a></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
-                                        </ul>
-		</div>
-		<div class="col-sm-4">
-			<ul class="pagination switch-limit">
-				<li class="disabled"><a href="#">pro Seite</a></li>
-				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
-				<li><a class="page-link" href="?limit=25">25</a></li>
-				<li><a class="page-link" href="?limit=50">50</a></li>
-			</ul>
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-8">
+					<ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link">« zurück</a></li>
+                                                    <li class="page-item active"><a class="page-link">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
+                                                    <li class="page-item disabled"><a class="page-link">…</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=7&amp;limit=10">7</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=8&amp;limit=10">8</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                </ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="pagination switch-limit">
+						<li class="page-item disabled"><a class="page-link" href="#">pro Seite</a></li>
+						<li class="page-item active"><a class="page-link" href="?limit=10">10</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=25">25</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=50">50</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -966,36 +988,36 @@
         <div class="greyLight">
             <div class="container footer">
                 <div class="row">
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.uni-paderborn.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.hfm-detmold.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://staatsbibliothek-berlin.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.adwmainz.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://exist-db.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.tei-c.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
                         </a>
                     </div>
                 </div>
@@ -1004,7 +1026,7 @@
         <div class="greyDark footerbottom">
             <div class="container ">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <ul class="footerNav">
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
@@ -1025,10 +1047,13 @@
             </div>
         </div>
         
-        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+        <div id="carousel-popover" class="carousel slide d-none" data-interval="false">
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <h3 class="item-title">Loading …</h3>
+                <div class="carousel-item item active">
+                    <h3 class="item-title">
+                        <span class="item-title-content">Loading …</span>
+                        <a href="#editorial" class="apparatus-link item-counter">1</a>
+                    </h3>
                     <div class="item-content">
                         <div class="progress" style="min-width:244px">
                             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
@@ -1037,13 +1062,13 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                <a class="carousel-control carousel-control-prev left" href="#carousel-popover" data-slide="prev">
                     <span class="fa fa-angle-double-left"></span>
                 </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                <a class="carousel-control carousel-control-next right" href="#carousel-popover" data-slide="next">
                     <span class="fa fa-angle-double-right"></span>
                 </a>
             </div> 
@@ -1051,7 +1076,8 @@
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
@@ -1064,8 +1090,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
-        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/openseadragon/openseadragon.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

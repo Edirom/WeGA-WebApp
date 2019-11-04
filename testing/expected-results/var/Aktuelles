@@ -34,7 +34,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,36 +43,34 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap4-toggle/css/bootstrap4-toggle.min.css" />
         
         <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Webseitennews","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"Eine Liste von aktuellen Nachrichten, herausgegeben von der Carl-Maria-von-Weber-Gesamtausgabe"}</script>
 
 
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-light navbar-default navbar-expand-md">
             <div class="container">
-                <div class="row">
+                <div class="row flex-grow-1 flex-row-reverse">
                     
-                    <div class="navbar-header col-md-3 navbar-right">
-                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                    <div class="navbar-header"> 
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggler">
+                            <span class="navbar-toggler-icon"></span>
                         </button>
-                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
+                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="nav-link navbar-brand"> 
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     
-                    <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
+                    <div id="navbarCollapse" class="navbar-collapse collapse">
+                        
                         <ul class="nav navbar-nav">
-
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
+                            <li class="dropdown nav-item">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -81,28 +78,28 @@
                                     
                                     
                                     
-                                <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -113,36 +110,36 @@
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav" class="dropdown active">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
+                           <li id="project-nav" class="nav-item dropdown active">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -154,48 +151,48 @@
                                     
                                 
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav" class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
+                            <li id="help-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
                             </li>
-                            <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/Project/News" hreflang="en" lang="en">En</a></li>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item active"><a class="nav-link" href="#" hreflang="de" lang="de">De</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/exist/apps/WeGA-WebApp/en/Project/News" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -219,10 +216,10 @@
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
                         <li><a>Projekt</a></li>
-                        <li>Aktuelles</li>
+                        <li><span>Aktuelles</span></li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"></i> <span>Zurück</span> </div>
             </div>
         </div>
@@ -230,15 +227,15 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 paddingTopIcon paddingBottomIcon">
+            <div class="col-12 paddingTopIcon paddingBottomIcon">
                 
                 <div class="row">
-    <div class="col-md-3 col-md-push-9">
+    <div class="col-md-3 order-2 side-col">
         
         <div class="allFilter">
             <h2>Filter</h2>
             <h4>Chronologie</h4>
-            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="2003-09-15" data-max-slider="2019-01-17" data-from-slider="2003-09-15" data-to-slider="2019-01-17" />
+            <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="2003-07-12" data-max-slider="2019-08-26" data-from-slider="2003-07-12" data-to-slider="2019-08-26" />
            
             <h4>Personen</h4>
             <select multiple="multiple" name="persons" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="news">
@@ -253,35 +250,81 @@
                                         <option value="">Alle</option></select>
         </div>
     </div>
-	<div class="col-md-9 col-md-pull-3 searchResults">
-	<h2>25 Suchergebnisse</h2>
-	<div class="row">
-		<div class="col-sm-8">
-			<ul class="pagination">
-                                            <li class="disabled"><span>« zurück</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
-                                        </ul>
-		</div>
-		<div class="col-sm-4">
-			<ul class="pagination switch-limit">
-				<li class="disabled"><a href="#">pro Seite</a></li>
-				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
-				<li><a class="page-link" href="?limit=25">25</a></li>
-				<li><a class="page-link" href="?limit=50">50</a></li>
-			</ul>
+	<div class="col-md-9 main-col searchResults">
+	<h2>27 Suchergebnisse</h2>
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-8">
+					<ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link">« zurück</a></li>
+                                                    <li class="page-item active"><a class="page-link">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                </ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="pagination switch-limit">
+						<li class="page-item disabled"><a class="page-link" href="#">pro Seite</a></li>
+						<li class="page-item active"><a class="page-link" href="?limit=10">10</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=25">25</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=50">50</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-12">
 			<ul class="media-list">
 				<li class="media">
 					<div>
     <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050379.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050379.html">Digitale Edition Version 3.5 veröffentlicht</a>
+        </h3>
+        <p><strong>26. August 2019</strong></p>
+        <p>Planmäßig, mitten im (zweiten) Hochsommer des Jahres, erscheint das Release 3.5 der digitalen Edition der Carl-Maria-von-Weber-Gesamtausgabe. Dieses enthält die Änderungen und Ergänzungen des letzten …</p>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A050379</span>
+        </p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009004/Aktuelles/A050276.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A009004/Aktuelles/A050276.html">Autographen-Schenkung der Gebrüder Ledderose</a>
+        </h3>
+        <p><strong>21. Mai 2019</strong></p>
+        <p>Bereits 2018 wurde die Internationale Carl-Maria-von-Webergesellschaft durch die großzügige Schenkung eines Exemplars der Weberschen Totenmaske aus dem Besitz von Dr. Georg Ledderose aus Ebenhausen …</p>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A050276</span>
+        </p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050228.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -301,29 +344,8 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050358.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050358.html"><span class="tei_hi_italic">Freischütz</span> als Volksbelustigung</a>
-        </h3>
-        <p><strong>21. Dezember 2018</strong></p>
-        <p>Bei den Recherchen rund um Weber zur Kommentierung der Briefe und Tagebücher sowie bezüglich der Rezeptionsgeschichte seiner Kompositionen finden sich immer wieder auch Kuriosa, so eine Notiz aus dem …</p>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A050358</span>
-        </p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050254.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -344,7 +366,7 @@
 					<div>
     <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050234.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -364,29 +386,8 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050169.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050169.html">Digitale Edition Version 3.3 veröffentlicht</a>
-        </h3>
-        <p><strong>17. Juli 2018</strong></p>
-        <p>Während in Berlin, Paderborn – und sogar Detmold – fast unentwegt die Sonne scheint und der Sommer sich von seiner schönsten Seite zeigt, haben wir uns mitnichten an den See gelegt, sondern vielmehr …</p>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A050169</span>
-        </p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009004/Aktuelles/A050323.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -407,7 +408,7 @@
 					<div>
     <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050314.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -427,8 +428,29 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050229.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading">
+            <a href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050229.html">Alternative TEI-Ausgabeformate</a>
+        </h3>
+        <p><strong>29. November 2017</strong></p>
+        <p>Die Möglichkeit zum Download unserer XML-Dateien war schon seit jeher Bestandteil dieser Seiten; ausgeliefert wurde dann das „originale“ WeGA-Format, welches eine sog. „TEI-Customization“ ist. Das …</p>
+        <p>
+            <strong><span>Kennung</span>:</strong> 
+            <span>A050229</span>
+        </p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050115.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -449,7 +471,7 @@
 					<div>
     <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050340.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -466,47 +488,30 @@
     </div>
 </div>
 				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_news.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading">
-            <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050172.html">Rätsel um Caroline von Weber und Ludwig Börne</a>
-        </h3>
-        <p><strong>19. April 2016</strong></p>
-        <p>2012 wies uns Christoph Schwandt auf einen Brief Ludwig Börnes hin, der bezüglich Caroline von Weber, geb. Brandt, Rätsel aufgab. Börne, der sich im Sommer 1825 zeitgleich mit Carl Maria von Weber im …</p>
-        <p>
-            <strong><span>Kennung</span>:</strong> 
-            <span>A050172</span>
-        </p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
 			</ul>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-8">
-			<ul class="pagination">
-                                            <li class="disabled"><span>« zurück</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
-                                        </ul>
-		</div>
-		<div class="col-sm-4">
-			<ul class="pagination switch-limit">
-				<li class="disabled"><a href="#">pro Seite</a></li>
-				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
-				<li><a class="page-link" href="?limit=25">25</a></li>
-				<li><a class="page-link" href="?limit=50">50</a></li>
-			</ul>
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-8">
+					<ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link">« zurück</a></li>
+                                                    <li class="page-item active"><a class="page-link">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                </ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="pagination switch-limit">
+						<li class="page-item disabled"><a class="page-link" href="#">pro Seite</a></li>
+						<li class="page-item active"><a class="page-link" href="?limit=10">10</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=25">25</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=50">50</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -518,36 +523,36 @@
         <div class="greyLight">
             <div class="container footer">
                 <div class="row">
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.uni-paderborn.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.hfm-detmold.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://staatsbibliothek-berlin.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.adwmainz.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://exist-db.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.tei-c.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
                         </a>
                     </div>
                 </div>
@@ -556,7 +561,7 @@
         <div class="greyDark footerbottom">
             <div class="container ">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <ul class="footerNav">
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
@@ -577,10 +582,13 @@
             </div>
         </div>
         
-        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+        <div id="carousel-popover" class="carousel slide d-none" data-interval="false">
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <h3 class="item-title">Loading …</h3>
+                <div class="carousel-item item active">
+                    <h3 class="item-title">
+                        <span class="item-title-content">Loading …</span>
+                        <a href="#editorial" class="apparatus-link item-counter">1</a>
+                    </h3>
                     <div class="item-content">
                         <div class="progress" style="min-width:244px">
                             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
@@ -589,13 +597,13 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                <a class="carousel-control carousel-control-prev left" href="#carousel-popover" data-slide="prev">
                     <span class="fa fa-angle-double-left"></span>
                 </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                <a class="carousel-control carousel-control-next right" href="#carousel-popover" data-slide="next">
                     <span class="fa fa-angle-double-right"></span>
                 </a>
             </div> 
@@ -603,7 +611,8 @@
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
@@ -616,8 +625,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
-        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/openseadragon/openseadragon.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

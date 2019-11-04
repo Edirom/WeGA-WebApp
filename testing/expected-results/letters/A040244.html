@@ -37,7 +37,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/css/cslink.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -47,36 +46,34 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap4-toggle/css/bootstrap4-toggle.min.css" />
         
         <script type="application/ld+json">{"license":"http://creativecommons.org/licenses/by/4.0/","author":[{"name":"Gänsbacher, Johann","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000584","@type":"Person","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000584"}],"name":"Johann Gänsbacher an Maria Anna Gräfin Firmian. Darmstadt, Mittwoch, 18. April 1810","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000584/Korrespondenz/A040244","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040244","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":""}</script>
 
 
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-light navbar-default navbar-expand-md">
             <div class="container">
-                <div class="row">
+                <div class="row flex-grow-1 flex-row-reverse">
                     
-                    <div class="navbar-header col-md-3 navbar-right">
-                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                    <div class="navbar-header"> 
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggler">
+                            <span class="navbar-toggler-icon"></span>
                         </button>
-                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
+                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="nav-link navbar-brand"> 
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     
-                    <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
+                    <div id="navbarCollapse" class="navbar-collapse collapse">
+                        
                         <ul class="nav navbar-nav">
-
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
+                            <li class="dropdown nav-item">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -84,28 +81,28 @@
                                     
                                     
                                     
-                                <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -116,36 +113,36 @@
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav" class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
+                           <li id="project-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -157,48 +154,48 @@
                                     
                                 
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav" class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
+                            <li id="help-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
                             </li>
-                            <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/A000584/Correspondence/A040244.html" hreflang="en" lang="en">En</a></li>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item active"><a class="nav-link" href="#" hreflang="de" lang="de">De</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/exist/apps/WeGA-WebApp/en/A000584/Correspondence/A040244.html" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -236,7 +233,7 @@
                         </li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"></i>
                     <span>Zurück</span>
                 </div>
@@ -245,7 +242,7 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon">
         <div class="row">
-            <div class="col-md-3 col-md-push-9">
+            <div class="col-md-3 order-2">
                 <div class="allFilter">
                     
                     <div>
@@ -255,25 +252,25 @@
                         <div id="dokument" class="panel-collapse collapse">
                             
                             <ul class="nav nav-tabs">
-                                <li class="gradient-light active">
-                                    <a href="#transcription" data-toggle="tab">Text</a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link active" href="#transcription" data-toggle="tab">Text</a>
                                 </li>
                                 
-                                    <li class="gradient-light">
-                                        <a href="#editorial" data-toggle="tab">Apparat</a>
+                                    <li class="nav-item gradient-light">
+                                        <a class="nav-link" href="#editorial" data-toggle="tab">Apparat</a>
                                     </li>
                                 
-                                <li class="gradient-light">
+                                <li class="nav-item gradient-light">
                                     <a class="deactivated"></a>
                                 </li>
-                                <li class="gradient-light">
-                                    <a class="deactivated"></a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link deactivated"></a>
                                 </li>
-                                <li class="gradient-light">
-                                    <a href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000584/Korrespondenz/A040244/xml.html">XML-Vorschau</a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000584/Korrespondenz/A040244/xml.html">XML-Vorschau</a>
                                 </li>
-                                <li class="gradient-light">
-                                    <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                <li class="nav-item gradient-light">
+                                    <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                 </li>
                             </ul>
                         </div>
@@ -283,8 +280,8 @@
         
         <div class="modal-content">
             <div class="modal-header">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
                 <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
             </div>
             <div class="modal-body">
                 <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
@@ -320,8 +317,7 @@
         </div>
     </div>
 </div>
-                    <div>                       
-                        
+                    <div>
                         <h2>
                             <a href="#kontext" class="collapseSingle collapsed" data-toggle="collapse">Kontext</a>
                         </h2>
@@ -341,15 +337,31 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040318.html">1810-12-07</a>:  Von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="persons">Weber, Carl Maria von</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000584/Korrespondenz/A040245.html">1810-05-28</a>:  an  <a href="" class="preview A000488 persons"></a>
+                                       </li>
+                                            <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040318.html">1810-12-07</a>:  von  <a href="" class="preview A002068 persons"></a>
                                        </li>
                                    </ul>
                                 
+                                <hr />
+                                
+                                    <h3>Korrespondenzstelle</h3>
+                                    <h4>Vorausgehend</h4>
+                                    <ul>
+                                        
+                                    </ul>
+                                    <h4>Folgend</h4>
+                                    <ul>
+                                        <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000584/Korrespondenz/A040245.html">1810-05-28</a>:  an  <a href="" class="preview A000488 persons"></a>
+                                        </li>
+                                    </ul>
                                 
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div class="filtersection">
                         <h2>
                             <a class="collapseSingle collapsed" data-toggle="collapse" href="#personsPlus">Personen</a>
                         </h2>
@@ -376,14 +388,14 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001313" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000584" /> <span title="Gänsbacher, Johann">Gänsbacher, Johann</span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title=""></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Weber, Carl Maria von">Weber, Carl Maria von</span> 
+                                    <input type="checkbox" name="options" value="A000584" /> <span title="Gänsbacher, Johann">Gänsbacher, Johann</span> 
                                 </label>
                             </div>
                         </div>
                     </div>
-                            <div>
+                            <div class="filtersection">
                         <h2>
                             <a class="collapseSingle collapsed" data-toggle="collapse" href="#works">Werke</a>
                         </h2>
@@ -399,7 +411,7 @@
                             </div>
                         </div>
                     </div>
-                            <div>
+                            <div class="filtersection">
                         <h2>
                             <a class="collapseSingle collapsed" data-toggle="collapse" href="#places">Orte</a>
                         </h2>
@@ -437,7 +449,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-9 col-md-pull-3">
+            <div class="col-md-9 main-col">
                 
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
@@ -446,9 +458,9 @@
                                         <div class="teiLetter_opener">
                <span class="tei_dateline textAlign-right"><a class="preview places A130015" href="">Darmstadt</a> den 18 / 4 / <span class="tei_supplied" id="d10e9"><span class="brackets_supplied">[</span>18<span class="brackets_supplied">]</span></span>10</span>
             </div>
-                                        <p>Meinen Brief von <a class="preview places A130017" href="">Augsburg</a> werden <a class="preview persons A000488" href="">Eure Exzellenz</a> noch zu <a class="preview places A130006" href="">Prag</a> erhalten haben. Abends unsrer Abreise von da wurden wir von einem heftigen Donnerwetter überfallen, und eingeweicht. Den 8t hörten wir zu <span class="6811111097117119101114116104">Donauwerth</span> Meße; nicht weit von da sah ich noch zum letztenmale die Tyroler Gränzgebürge, ungefähr in einer Strecke von 45 Stunden; es war auch das letzte majestätische Specktakl, und lebewohl; das zu flache Schwabenland behagte mir gar nicht; die Menschen fand ich aber durchgehend sehr gutmüthig und zuvorkommend; die Neuburg:<span class="tei_supplied" id="d10e27"><span class="brackets_supplied">[</span>er<span class="brackets_supplied">]</span></span> sind ganz von unsrer Parthie, und halten die Gesinnung für das, was sie ist, und zu seyn verdient; unsere Reiße gieng dann über <span class="72979711498117114103">Haarburg</span>, <span class="77101100105110103101110">Medingen</span>, <span class="78246114100108105110103101110">Nördlingen</span>, <span class="68252110107108115112105101108">Dünklspiel</span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a>, <span class="6610111410398114117110110">Bergbrunn</span><a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>, <span class="75114101105108115104101105109">Kreilsheim</span>, <span class="66114101116101102101108100">Bretefeld</span><a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a>, <span class="82105101100989799104">Rie<span class="tei_supplied" id="d10e61"><span class="brackets_supplied">[</span>d<span class="brackets_supplied">]</span></span>bach</span>, <span class="721011149811511610497117223101110">Herbsthaußen</span> nach <span class="77101114103101110116104101105109">Mergentheim</span>, wo wir den 10t Abends eintrafen. Dise Stadt mit &lt;...&gt; ihrer schönen bergichten Lage und dem bey 4 Stunden langen Thale, gefiel mir sehr; es ist im großen ausgeführt ungefähr das was mein liebes, <span class="68252114114110989799104">Dürrnbach</span> bey <span class="tei_hi_latintype"><span class="679797100101110">Caaden</span></span>  im kleinen vorstellt; auf dem Gebürge wächst der sogenannte Tauben Wein. Der <a class="preview persons A000534" href="">König von Würtemberg</a> ließ gerade einige Tage zuvor das schöne Schloß ganz ausbrenen; kein Nagl an der Wand, nicht einmal der Boden blieb verschont. hier war es auch wo voriges Jahr eine <span class="tei_hi_latintype">Insurection</span>  ausbrach, die aber in 3 Stunden ganz gedämpft wurde; so war ganz <span class="tei_country">Deutschland</span> vorbereitet. Am 11t reißten wir weiter über <span class="75246110105103115104111102101110">Königshofen</span>, <span class="6610511599104111102115104101105109">Bischofsheim</span>, <span class="83116101105110989799104">Steinbach</span> <span class="8410510110210111011610497108">Tiefenthal</span> <span class="691059910410111098252104108">Eichenbühl</span> <span class="7710510810010111098101114103">Milde<span class="tei_supplied" id="d10e106"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>berg</span>, wo wir zum erstenmale den sanften Main sahen, &lt;...&gt; <span class="799810111411098117114103">Ober<span class="tei_supplied" id="d10e112"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>burg</span>, <span class="831161119910711511697100116">Stockstadt</span> nach <span class="8310110810510310111011511697100116">Seligenstadt</span>, am 12t. Auf dieser Tour fand ich die erste Schloßruine <span class="7510810511010310111098101114103">Klingenberg</span>, wo auch ein herrlicher Tropfen Wein wächst, und das schöne wohl conservirte Schloß Löwenstein <a class="preview places A130312" href="">Wertheim</a>. Den 13. reißten wir in einem grundlosen Weg über <a class="preview places A130080" href="">Ofenbach</a> nach <a class="preview places A130020" href="">Frankfurth</a>. <a class="preview places A130080" href="">Ofenbach</a> ist das niedlichste Städtchen, was ich noch sah; von da bis <a class="preview places A130020" href="">Frank:</a>, eine Stunde weit, fährt man fast durchaus durch lauter Gärten, die der Wohlstand der Frankfurther anlegte; nur Schade, daß noch fast nichts grün war; auch fängt da die <span class="tei_hi_latintype">Chausée</span>  an, die uns auf die vorausgegangenen Wege sehr wohl that, wo wir oft Vorspann nehmen mußten, um nicht stecken zu bleiben. Am nämlichen Abend unsrer Ankunft gaben die in der Akademie angestellten Tonkünstler zu ihrem Besten ein <span class="tei_hi_latintype">Concert</span>; der <span class="tei_hi_latintype">entrée</span>  kostete einen kleinen Thaler <span class="tei_hi_latintype">/:</span>  1 st? 21 ? <span class="tei_hi_latintype">:/</span>  Ich fand das Orchester sehr brav, präcis, und beßer als in <a class="preview places A130005" href="">Leipzig</a>, nur gefiel mir die Wahl der Stücke nicht bis auf das <a class="preview works A020674" href="">Lied von der Glocke</a>, von <a class="preview persons A001599" href="">A: Romberg</a> für das ganze Orchester mit Chören in Musik gesetzt; ein schönes, gut ausgeführtes und durchdachtes Werk, fast im <a class="preview persons A000777" href="">Haydn</a>schen Stil verfaßt; ich wünschte es nochmal zu hören, um ein <span class="tei_hi_latintype">Detail</span>  liefern zu können; dabey sang eine Altistin, wie ich noch keine so schöne Altstimme hörte; die übrigen Sänger tretten sehr in die Mittelmäßigkeit. am 14t nach Mittag fuhr ich mit einer Gelegenheit hieher; <a class="preview persons A002025" href="">V:</a> empfieng mich sehr freundschaftlich, und freute sich meiner Ankunft. Am andern Tag hielt ich meine Unterredung mit ihm, die den Zweck meiner Reise, und meines hiesigen Aufenthalts, nebst der Art deßelben enthielt.</p>
+                                        <p>Meinen Brief von <a class="preview places A130017" href="">Augsburg</a> werden <a class="preview persons A000488" href="">Eure Exzellenz</a> noch zu <a class="preview places A130006" href="">Prag</a> erhalten haben. Abends unsrer Abreise von da wurden wir von einem heftigen Donnerwetter überfallen, und eingeweicht. Den 8t hörten wir zu <span class="6811111097117119101114116104">Donauwerth</span> Meße; nicht weit von da sah ich noch zum letztenmale die Tyroler Gränzgebürge, ungefähr in einer Strecke von 45 Stunden; es war auch das letzte majestätische Specktakl, und lebewohl; das zu flache Schwabenland behagte mir gar nicht; die Menschen fand ich aber durchgehend sehr gutmüthig und zuvorkommend; die Neuburg:<span class="tei_supplied" id="d10e27"><span class="brackets_supplied">[</span>er<span class="brackets_supplied">]</span></span> sind ganz von unsrer Parthie, und halten die Gesinnung für das, was sie ist, und zu seyn verdient; unsere Reiße gieng dann über <span class="72979711498117114103">Haarburg</span>, <span class="77101100105110103101110">Medingen</span>, <span class="78246114100108105110103101110">Nördlingen</span>, <span class="68252110107108115112105101108">Dünklspiel</span><a class="noteMarker" id="ref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a>, <span class="6610111410398114117110110">Bergbrunn</span><a class="noteMarker" id="ref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>, <span class="75114101105108115104101105109">Kreilsheim</span>, <span class="66114101116101102101108100">Bretefeld</span><a class="noteMarker" id="ref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a>, <span class="82105101100989799104">Rie<span class="tei_supplied" id="d10e61"><span class="brackets_supplied">[</span>d<span class="brackets_supplied">]</span></span>bach</span>, <span class="721011149811511610497117223101110">Herbsthaußen</span> nach <span class="77101114103101110116104101105109">Mergentheim</span>, wo wir den 10t Abends eintrafen. Dise Stadt mit <span class="tei_del"><span>[…]</span><a class="noteMarker" id="ref-d10e72" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e72">‡</a></span> ihrer schönen bergichten Lage und dem bey 4 Stunden langen Thale, gefiel mir sehr; es ist im großen ausgeführt ungefähr das was mein liebes, <span class="68252114114110989799104">Dürrnbach</span> bey <span class="tei_hi_latintype"><span class="679797100101110">Caaden</span></span>  im kleinen vorstellt; auf dem Gebürge wächst der sogenannte Tauben Wein. Der <a class="preview persons A000534" href="">König von Würtemberg</a> ließ gerade einige Tage zuvor das schöne Schloß ganz ausbrenen; kein Nagl an der Wand, nicht einmal der Boden blieb verschont. hier war es auch wo voriges Jahr eine <span class="tei_hi_latintype">Insurection</span>  ausbrach, die aber in 3 Stunden ganz gedämpft wurde; so war ganz <span class="tei_country">Deutschland</span> vorbereitet. Am 11t reißten wir weiter über <span class="75246110105103115104111102101110">Königshofen</span>, <span class="6610511599104111102115104101105109">Bischofsheim</span>, <span class="83116101105110989799104">Steinbach</span> <span class="8410510110210111011610497108">Tiefenthal</span> <span class="691059910410111098252104108">Eichenbühl</span> <span class="7710510810010111098101114103">Milde<span class="tei_supplied" id="d10e109"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>berg</span>, wo wir zum erstenmale den sanften Main sahen, <span class="tei_del"><span>[…]</span><a class="noteMarker" id="ref-d10e114" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e114">‡</a></span> <span class="799810111411098117114103">Ober<span class="tei_supplied" id="d10e119"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span>burg</span>, <span class="831161119910711511697100116">Stockstadt</span> nach <span class="8310110810510310111011511697100116">Seligenstadt</span>, am 12t. Auf dieser Tour fand ich die erste Schloßruine <span class="7510810511010310111098101114103">Klingenberg</span>, wo auch ein herrlicher Tropfen Wein wächst, und das schöne wohl conservirte Schloß Löwenstein <a class="preview places A130312" href="">Wertheim</a>. Den 13. reißten wir in einem grundlosen Weg über <a class="preview places A130080" href="">Ofenbach</a> nach <a class="preview places A130020" href="">Frankfurth</a>. <a class="preview places A130080" href="">Ofenbach</a> ist das niedlichste Städtchen, was ich noch sah; von da bis <a class="preview places A130020" href="">Frank:</a>, eine Stunde weit, fährt man fast durchaus durch lauter Gärten, die der Wohlstand der Frankfurther anlegte; nur Schade, daß noch fast nichts grün war; auch fängt da die <span class="tei_hi_latintype">Chausée</span>  an, die uns auf die vorausgegangenen Wege sehr wohl that, wo wir oft Vorspann nehmen mußten, um nicht stecken zu bleiben. Am nämlichen Abend unsrer Ankunft gaben die in der Akademie angestellten Tonkünstler zu ihrem Besten ein <span class="tei_hi_latintype">Concert</span>; der <span class="tei_hi_latintype">entrée</span>  kostete einen kleinen Thaler <span class="tei_hi_latintype">/:</span>  1 st? 21 ? <span class="tei_hi_latintype">:/</span>  Ich fand das Orchester sehr brav, präcis, und beßer als in <a class="preview places A130005" href="">Leipzig</a>, nur gefiel mir die Wahl der Stücke nicht bis auf das <a class="preview works A020674" href="">Lied von der Glocke</a>, von <a class="preview persons A001599" href="">A: Romberg</a> für das ganze Orchester mit Chören in Musik gesetzt; ein schönes, gut ausgeführtes und durchdachtes Werk, fast im <a class="preview persons A000777" href="">Haydn</a>schen Stil verfaßt; ich wünschte es nochmal zu hören, um ein <span class="tei_hi_latintype">Detail</span>  liefern zu können; dabey sang eine Altistin, wie ich noch keine so schöne Altstimme hörte; die übrigen Sänger tretten sehr in die Mittelmäßigkeit. am 14t nach Mittag fuhr ich mit einer Gelegenheit hieher; <a class="preview persons A002025" href="">V:</a> empfieng mich sehr freundschaftlich, und freute sich meiner Ankunft. Am andern Tag hielt ich meine Unterredung mit ihm, die den Zweck meiner Reise, und meines hiesigen Aufenthalts, nebst der Art deßelben enthielt.</p>
                                         <p>Die Kösten der Reise habe ich mit <a class="preview persons A0006B0" href="">Mörz</a> gemeinschaftlich getheilt.</p>
-                                        <p class="inlineEnd">Ich habe die Sache so eingeleitet, daß nicht <span class="tei_hi_underline1">ich</span>  zu <a class="preview persons A002025" href="">V:</a> Absicht, aber wohl <a class="preview persons A002025" href=""><span class="tei_hi_underline1">V</span>:</a> zu <span class="tei_hi_underline1">meiner</span>  Absicht verrenkt wird; diese war ein Studium des Orglbaues, und seines Orglspiels, denn dafür bin ich schon zu alt; sondern Studium des reinsten 4stimmigen Satzes, und seiner eigenen harmonischen Verwebungen; worinne er beiderseits eigen ist; daby werden alle seine Compositionen durchstudirt, nicht etwa um ihn nachzuahmen, sondern seine Denkweiße und Erfahrungen nach <span class="tei_hi_underline1">meiner</span>  eigenen Einsicht und Talent zu verarbeiten. Ich hatte freilich mit mehr Schwierigkeiten zu kämpfen, daß ich <span class="tei_hi_underline1">mein</span>  und nicht <a class="preview persons A002025" href="">V:</a> <span class="tei_hi_underline1">sein</span>  Projeckt durchsetze; allein man muß sich manches gefallen laßen, um frey handeln zu können. Ich wohne und speiße bey einer alten Wachtmeisters Witwe. Von Frühstük und Wein bin ich dispensirt, befinde mich aber doch sehr wohl dabey. <a class="preview places A130015" href="">Darmstadt</a> <span class="tei_hi_latintype">/:</span>  auch Armstadt <span class="tei_hi_latintype">:/</span>  soll nicht das beste Klima haben, indem es von allen Seiten zu ofen, zu flach liegt, und Mangel an fließendem und stehendem Waßer hat, erst 3 Stunden von hier fließt der Rhein; da <a class="preview places A130010" href="">Manheim</a> nur 12 Stunden und <a class="preview places A130028" href="">Maynz</a> 8 Stunden von hier liegt, so werde ich gelegenheitlich davon zu profitiren suchen. Außer den 2 Hofgärten ist hier wenig rares zu sehen; mein Aufenthalt ist ganz Euterpen geweiht; sobald mich diese Muse hier absolvirt hat, trette ich wieder meine Wanderung an, und zi<span class="tei_supplied" id="d10e227"><span class="brackets_supplied">[</span>ehe<span class="brackets_supplied">]</span></span><a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a>  über <a class="preview places A130025" href="">Würzburg</a> und <a class="preview places A130389" href="">Eger</a> nach – Sie glauben wohl gar nach <span class="tei_region">Böhmen</span> &lt;nach&gt; zu einem gewißen <a class="preview persons A000487" href="">Graf <span class="tei_hi_latintype">Firmian</span></a>  im Sautzerkreiß? – Wir werden wenigstens versuchen, ob man dem KomponirersGesellen da Eintrit gestattet –  Wie dieses alles ausgeführt wird, laße ich wieder die guten Götter sorgen, die mir nicht unhold zu seyn scheinen; übrigens fühle ich mich hier sehr <span class="tei_hi_underline1">allein</span>. Uebermorgen wird hier das berühmte <span class="tei_hi_latintype">Oratorium</span>  von <a class="preview persons A004556" href="">Graun</a> "<a class="preview works A020397" href="">der Tod Jesu</a>" aufgeführt; der <a class="preview persons A001209" href="">Großherzog</a> dirigirt immer selbst bey den Proben. <a class="preview persons A002025" href="">V:</a> hat erst kürzlich wieder einen Schüller aus <a class="preview places A130002" href="">Berlin</a> erhalten, einen vortrefflichen Klavierspieler Namens <a class="preview persons A001313" href="">Peer</a>; auch mein ehemaliger <span class="tei_hi_latintype">Condiscipl</span>  bey <a class="preview persons A002025" href="">V:</a> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">H: v. Weber</a> wird nächstens hier eintreffen. Künftigen Samstag gehe ich nach <a class="preview places A130020" href="">Frankfurth</a>, um ein paar Tage mit <a class="preview persons A0006B0" href="">Mörz</a> zu seyn. Dort treffe<a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a>  ich in der Musikhandlung Gayl <span class="tei_hi_latintype">et Hedler</span>  einige meiner jüngsten Compositionen von <a class="preview places A130005" href="">Leipzig</a> an, nemlich die <span class="tei_hi_latintype"><span class="869711458329732523210997105110115">Var: a 4 mains</span></span>, <a class="preview works A021407" href="">Wiedersehn</a> und die <span class="54326511410510111611610111032109105116327111710511697114114101">6 Arietten mit Guitarre</span>, ersteres <a class="preview persons A000488" href="">Eurer Exzellenz</a>, und letztere der <span class="tei_hi_latintype">Comtesse dedicirt</span>; ich hoffe, Sie haben es erhalten; meinem lieben Freund <a class="preview persons A000487" href="">Karl</a> sind die <span class="5032831111109711610111032102252114328610511110810511032101116327111710511646">2 <span class="tei_hi_latintype">Sonaten</span>  für <span class="tei_hi_latintype">Violin et</span>  Guit.</span> dedicirt. Nun ist wohl das ganze Bandl in <a class="preview places A130023" href="">S:</a> beysammen? wann werd <span class="tei_hi_underline1">ich</span>  doch einmal <a class="preview places A130023" href="">S:</a> sehen? ich freute mich schon so lange darauf; unausgeführt bleibt diese schöne Idee gewiß nicht; ich werde &lt;...&gt; deßfalls wieder einen Wink der Götter abwarten. dieß wird auch ein Wiedersehen gewesen seyn?</p>
+                                        <p class="inlineEnd">Ich habe die Sache so eingeleitet, daß nicht <span class="tei_hi_underline1">ich</span>  zu <a class="preview persons A002025" href="">V:</a> Absicht, aber wohl <a class="preview persons A002025" href=""><span class="tei_hi_underline1">V</span>:</a> zu <span class="tei_hi_underline1">meiner</span>  Absicht verrenkt wird; diese war ein Studium des Orglbaues, und seines Orglspiels, denn dafür bin ich schon zu alt; sondern Studium des reinsten 4stimmigen Satzes, und seiner eigenen harmonischen Verwebungen; worinne er beiderseits eigen ist; daby werden alle seine Compositionen durchstudirt, nicht etwa um ihn nachzuahmen, sondern seine Denkweiße und Erfahrungen nach <span class="tei_hi_underline1">meiner</span>  eigenen Einsicht und Talent zu verarbeiten. Ich hatte freilich mit mehr Schwierigkeiten zu kämpfen, daß ich <span class="tei_hi_underline1">mein</span>  und nicht <a class="preview persons A002025" href="">V:</a> <span class="tei_hi_underline1">sein</span>  Projeckt durchsetze; allein man muß sich manches gefallen laßen, um frey handeln zu können. Ich wohne und speiße bey einer alten Wachtmeisters Witwe. Von Frühstük und Wein bin ich dispensirt, befinde mich aber doch sehr wohl dabey. <a class="preview places A130015" href="">Darmstadt</a> <span class="tei_hi_latintype">/:</span>  auch Armstadt <span class="tei_hi_latintype">:/</span>  soll nicht das beste Klima haben, indem es von allen Seiten zu ofen, zu flach liegt, und Mangel an fließendem und stehendem Waßer hat, erst 3 Stunden von hier fließt der Rhein; da <a class="preview places A130010" href="">Manheim</a> nur 12 Stunden und <a class="preview places A130028" href="">Maynz</a> 8 Stunden von hier liegt, so werde ich gelegenheitlich davon zu profitiren suchen. Außer den 2 Hofgärten ist hier wenig rares zu sehen; mein Aufenthalt ist ganz Euterpen geweiht; sobald mich diese Muse hier absolvirt hat, trette ich wieder meine Wanderung an, und zi<span class="tei_supplied" id="d10e233"><span class="brackets_supplied">[</span>ehe<span class="brackets_supplied">]</span></span><a class="noteMarker" id="ref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a>  über <a class="preview places A130025" href="">Würzburg</a> und <a class="preview places A130389" href="">Eger</a> nach – Sie glauben wohl gar nach <span class="tei_region">Böhmen</span> <span class="tei_del">nach<a class="noteMarker" id="ref-d10e248" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e248">‡</a></span> zu einem gewißen <a class="preview persons A000487" href="">Graf <span class="tei_hi_latintype">Firmian</span></a>  im Sautzerkreiß? – Wir werden wenigstens versuchen, ob man dem KomponirersGesellen da Eintrit gestattet –  Wie dieses alles ausgeführt wird, laße ich wieder die guten Götter sorgen, die mir nicht unhold zu seyn scheinen; übrigens fühle ich mich hier sehr <span class="tei_hi_underline1">allein</span>. Uebermorgen wird hier das berühmte <span class="tei_hi_latintype">Oratorium</span>  von <a class="preview persons A004556" href="">Graun</a> "<a class="preview works A020397" href="">der Tod Jesu</a>" aufgeführt; der <a class="preview persons A001209" href="">Großherzog</a> dirigirt immer selbst bey den Proben. <a class="preview persons A002025" href="">V:</a> hat erst kürzlich wieder einen Schüller aus <a class="preview places A130002" href="">Berlin</a> erhalten, einen vortrefflichen Klavierspieler Namens <a class="preview persons A001313" href="">Peer</a>; auch mein ehemaliger <span class="tei_hi_latintype">Condiscipl</span>  bey <a class="preview persons A002025" href="">V:</a> <a class="preview persons A002068" href="">H: v. Weber</a> wird nächstens hier eintreffen. Künftigen Samstag gehe ich nach <a class="preview places A130020" href="">Frankfurth</a>, um ein paar Tage mit <a class="preview persons A0006B0" href="">Mörz</a> zu seyn. Dort treffe<a class="noteMarker" id="ref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a>  ich in der Musikhandlung Gayl <span class="tei_hi_latintype">et Hedler</span>  einige meiner jüngsten Compositionen von <a class="preview places A130005" href="">Leipzig</a> an, nemlich die <span class="tei_hi_latintype"><span class="869711458329732523210997105110115">Var: a 4 mains</span></span>, <a class="preview works A021407" href="">Wiedersehn</a> und die <span class="54326511410510111611610111032109105116327111710511697114114101">6 Arietten mit Guitarre</span>, ersteres <a class="preview persons A000488" href="">Eurer Exzellenz</a>, und letztere der <span class="tei_hi_latintype">Comtesse dedicirt</span>; ich hoffe, Sie haben es erhalten; meinem lieben Freund <a class="preview persons A000487" href="">Karl</a> sind die <span class="5032831111109711610111032102252114328610511110810511032101116327111710511646">2 <span class="tei_hi_latintype">Sonaten</span>  für <span class="tei_hi_latintype">Violin et</span>  Guit.</span> dedicirt. Nun ist wohl das ganze Bandl in <a class="preview places A130023" href="">S:</a> beysammen? wann werd <span class="tei_hi_underline1">ich</span>  doch einmal <a class="preview places A130023" href="">S:</a> sehen? ich freute mich schon so lange darauf; unausgeführt bleibt diese schöne Idee gewiß nicht; ich werde <span class="tei_del"><span>[…]</span><a class="noteMarker" id="ref-d10e347" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e347">‡</a></span> deßfalls wieder einen Wink der Götter abwarten. dieß wird auch ein Wiedersehen gewesen seyn?</p>
                                         <p class="tei_closer textAlign-left inlineStart">Meine harmonische Empfehlung. Gruß <span class="tei_hi_latintype">et</span>  Kuß und Respekt <span class="tei_hi_latintype">/:</span> <span class="tei_hi_latintype">cuique h..m:</span> <span class="tei_hi_latintype">:/</span>  bitte ich nicht zu vergeßen von dem alten treuen <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Hans</a>. Bey meiner Rückkunft erhalten <a class="preview persons A000488" href="">Eure Exzellenz</a> ein Andenken von <span class="tei_region">Tyrol</span>, deßen sich wenige zu erfreuen haben. ich hoffe vieles von <a class="preview places A130023" href="">Salzburg</a> zu hören und zu lesen; hier habe ich ohnediß außer der Harmonie keinen wahrhaft theilnehmenden und mitheilenden Freund. Wie sich wohl mein alte Mutter<a class="noteMarker" id="ref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> benehmen mag; der Himmel wird sorgen, daß die Absicht nicht verfehlt ist. <span class="tei_hi_latintype">addio</span>
            
                <span class="tei_segBlock textAlign-right">der alte <a class="preview persons A000584" href="/exist/apps/WeGA-WebApp/de/A000584.html">Hans</a>.</span></p>
@@ -484,15 +496,16 @@
                                 <span>Überlieferung</span>
                                 <em class="small"></em>
                             </h3>
-                            <ol class="none">
+                            <ul>
                                 <li>
                                     <div>
+                                        <strong><span></span> <span>Textzeuge</span>:</strong>
                                         
                                         <span>Innsbruck (A), Tiroler Landesmuseum Ferdinandeum, Musiksammlung (A-Imf)<br /><i>Signatur</i>: F 2</span>
                                         <span>
-                                            <a data-toggle="collapse" title="Details" class="collapseMarker collapsed" href="#4b7ea9a98d0908cafb9b4b9cf7ee49b6"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" title="Details" class="collapseMarker collapsed" href="#source_4b7ea9a98d0908cafb9b4b9cf7ee49b6"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="4b7ea9a98d0908cafb9b4b9cf7ee49b6">
+                                        <div class="collapse apparatus-details" id="source_4b7ea9a98d0908cafb9b4b9cf7ee49b6">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S. o. Adr.)</li>
@@ -510,33 +523,79 @@
                                         
                                     </div>                                                                    
                                 </li>
-                            </ol>
+                            </ul>
                         </div>                   
                         
                         
                         
                         <div class="apparatus">
+                                    <h3 class="media-heading">Textkonstitution</h3>
+                                    <ul class="apparatus textConstitution">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-d10e72" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e72" data-title="Löschung" data-counter="1" data-href="#d10e72"><span class="tei_lemma">„[…]“</span>Gelöschter Text nicht lesbar.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-d10e114" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e114" data-title="Löschung" data-counter="2" data-href="#d10e114"><span class="tei_lemma">„[…]“</span>Gelöschter Text nicht lesbar.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-d10e248" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e248" data-title="Löschung" data-counter="3" data-href="#d10e248"><span class="tei_lemma">„nach“</span>durchgestrichen.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-d10e347" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e347" data-title="Löschung" data-counter="4" data-href="#d10e347"><span class="tei_lemma">„[…]“</span>Gelöschter Text nicht lesbar.</div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="apparatus commentary">
                                         <li>
-                                            <div class="apparatusEntry" id="C_11" data-title="Einzelstellenerläuterung"><span class="tei_lemma">„…  Medingen , Nördlingen , Dünklspiel“</span> Dinkelsbühl.</div>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-C_11" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_11" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_11"><span class="tei_lemma">„…  Medingen , Nördlingen , Dünklspiel“</span> Dinkelsbühl.</div>
+                                            </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_12" data-title="Einzelstellenerläuterung"><span class="tei_lemma">„…  Nördlingen , Dünklspiel , Bergbrunn“</span> Bergbronn.</div>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-C_12" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_12" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_12"><span class="tei_lemma">„…  Nördlingen , Dünklspiel , Bergbrunn“</span> Bergbronn.</div>
+                                            </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_13" data-title="Einzelstellenerläuterung"><span class="tei_lemma">„…  Bergbrunn , Kreilsheim , Bretefeld“</span> Brettenfeld.</div>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-C_13" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_13" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_13"><span class="tei_lemma">„…  Bergbrunn , Kreilsheim , Bretefeld“</span> Brettenfeld.</div>
+                                            </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_14" data-title="Einzelstellenerläuterung"><span class="tei_lemma">„…  Wanderung an, und zi ehe“</span> Textverlust.</div>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-C_14" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_14" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_14"><span class="tei_lemma">„…  Wanderung an, und zi ehe“</span> Textverlust.</div>
+                                            </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_15" data-title="Einzelstellenerläuterung"><span class="tei_lemma">„…  Mörz zu seyn. Dort treffe“</span> unklar, oder: traf?</div>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-C_15" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_15" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_15"><span class="tei_lemma">„…  Mörz zu seyn. Dort treffe“</span> unklar, oder: traf?</div>
+                                            </div>
                                         </li>
                                         <li>
-                                            <div class="apparatusEntry" id="C_01" data-title="Einzelstellenerläuterung"><span class="tei_lemma">„…  sich wohl mein alte Mutter“</span>Maria Elisabeth, geb. Mayr (1741–1815).</div>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#ref-C_01" class="apparatus-link">6.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="6" data-href="#C_01"><span class="tei_lemma">„…  sich wohl mein alte Mutter“</span>Maria Elisabeth, geb. Mayr (1741–1815).</div>
+                                            </div>
                                         </li>
                                     </ul>
+                                    <ul class="apparatus rdg"></ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
@@ -558,7 +617,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040244</span> (<span>Version 3.4.2dev vom 8. Februar 2019</span>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040244</span> (<span>Version 3.5.2dev vom 26. August 2019</span>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -577,36 +636,36 @@
         <div class="greyLight">
             <div class="container footer">
                 <div class="row">
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.uni-paderborn.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.hfm-detmold.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://staatsbibliothek-berlin.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.adwmainz.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://exist-db.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.tei-c.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
                         </a>
                     </div>
                 </div>
@@ -615,7 +674,7 @@
         <div class="greyDark footerbottom">
             <div class="container ">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <ul class="footerNav">
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
@@ -636,10 +695,13 @@
             </div>
         </div>
         
-        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+        <div id="carousel-popover" class="carousel slide d-none" data-interval="false">
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <h3 class="item-title">Loading …</h3>
+                <div class="carousel-item item active">
+                    <h3 class="item-title">
+                        <span class="item-title-content">Loading …</span>
+                        <a href="#editorial" class="apparatus-link item-counter">1</a>
+                    </h3>
                     <div class="item-content">
                         <div class="progress" style="min-width:244px">
                             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
@@ -648,13 +710,13 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                <a class="carousel-control carousel-control-prev left" href="#carousel-popover" data-slide="prev">
                     <span class="fa fa-angle-double-left"></span>
                 </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                <a class="carousel-control carousel-control-next right" href="#carousel-popover" data-slide="next">
                     <span class="fa fa-angle-double-right"></span>
                 </a>
             </div> 
@@ -662,7 +724,8 @@
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
@@ -675,8 +738,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
-        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/openseadragon/openseadragon.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>

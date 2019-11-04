@@ -13,7 +13,7 @@ ADD https://deb.nodesource.com/setup_8.x /tmp/nodejs_setup
 
 # installing Saxon, Node and Git
 RUN apt-get update \
-    && apt-get install -y --force-yes apt-transport-https ant git libsaxonhe-java \
+    && apt-get install -y --no-install-recommends apt-transport-https ant git libsaxonhe-java \
     # installing nodejs
     && chmod 755 /tmp/nodejs_setup \
     && /tmp/nodejs_setup \
@@ -47,7 +47,7 @@ RUN ant -lib /usr/share/java
 #########################
 FROM stadlerpeter/existdb:3.3.0
 
-ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-19943.xar ${EXIST_HOME}/autodeploy/
+ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-22662.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
 COPY --chown=wegajetty --from=builder /opt/wega/build/*.xar ${EXIST_HOME}/autodeploy/
 

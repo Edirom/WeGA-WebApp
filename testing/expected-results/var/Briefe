@@ -34,7 +34,6 @@
         <meta name="msapplication-TileColor" content="#2d89ef" />
         <meta name="theme-color" content="#ffffff" />
 
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/csLink/dist/static/css/cslink.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
@@ -44,36 +43,34 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-toggle/css/bootstrap-toggle.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/bootstrap4-toggle/css/bootstrap4-toggle.min.css" />
         
         <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Briefe","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Briefe","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Briefe","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"Eine Liste von Briefen, gesammelt und (teilweise) ediert durch die Carl-Maria-von-Weber-Gesamtausgabe"}</script>
 
 
     </head>
     <body>
-        <nav class="navbar navbar-default">
+        <nav class="navbar navbar-light navbar-default navbar-expand-md">
             <div class="container">
-                <div class="row">
+                <div class="row flex-grow-1 flex-row-reverse">
                     
-                    <div class="navbar-header col-md-3 navbar-right">
-                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggle">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
+                    <div class="navbar-header"> 
+                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggler">
+                            <span class="navbar-toggler-icon"></span>
                         </button>
-                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="navbar-right">
+                        <a href="/exist/apps/WeGA-WebApp/de/Index" class="nav-link navbar-brand"> 
                             <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
                         </a>
                     </div>
                     
-                    <div id="navbarCollapse" class="collapse navbar-collapse navbar-left col-md-9">
+                    <div id="navbarCollapse" class="navbar-collapse collapse">
+                        
                         <ul class="nav navbar-nav">
-
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
-                            <li class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
+                            <li class="dropdown nav-item">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -81,28 +78,28 @@
                                     
                                     
                                     
-                                <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
                                     </li>
-                                    <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
+                                    <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="dropdown active">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                            <li class="nav-item dropdown active">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -113,36 +110,36 @@
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
                             </li>
-                           <li id="project-nav" class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
+                           <li id="project-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
@@ -154,48 +151,48 @@
                                     
                                 
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li id="help-nav" class="dropdown">
-                                <a class="dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
+                            <li id="help-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
                                 <ul class="dropdown-menu" role="menu">
                                     
                                     
                                 <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
                                     </li>
                                     <li>
-                                        <a href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
                                     </li>
                                 </ul>
                             </li>
-                            <li class="divider"></li>
-                            <li>
-                                <a href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
                             </li>
-                            <li class="divider"></li>
-                            <li class="active"><a href="#" hreflang="de" lang="de">De</a></li>
-                            <li><a href="/exist/apps/WeGA-WebApp/en/Indices/Letters" hreflang="en" lang="en">En</a></li>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item active"><a class="nav-link" href="#" hreflang="de" lang="de">De</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/exist/apps/WeGA-WebApp/en/Indices/Letters" hreflang="en" lang="en">En</a></li>
                         </ul>
                     </div>
                 </div>
@@ -219,10 +216,10 @@
                     <ol class="breadcrumb">
                         <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
                         <li><a href="/exist/apps/WeGA-WebApp/de/Register">Register</a></li>
-                        <li>Briefe</li>
+                        <li><span>Briefe</span></li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"></i> <span>Zurück</span> </div>
             </div>
         </div>
@@ -230,16 +227,16 @@
     
     <div class="container">
         <div class="row">
-            <div class="col-xs-12 paddingTopIcon paddingBottomIcon">
+            <div class="col-12 paddingTopIcon paddingBottomIcon">
                 
                 <div class="row">
-    <div class="col-md-3 col-md-push-9">
+    <div class="col-md-3 order-2 side-col">
         
         <div class="allFilter">
             <h2>Filter</h2>
             <h4>Chronologie</h4>
             <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1778-07-12" data-max-slider="2010-12-17" data-from-slider="1778-07-12" data-to-slider="2010-12-17" />
-            <div class="input-group facet-group">
+            <div class="input-group facet-group checkbox">
                 <input type="checkbox" name="undated" id="undatedLetters" />
                 <label for="undatedLetters">zeige undatierte Dokumente</label>
                 <br />
@@ -272,38 +269,42 @@
                                         <option value="">Alle</option></select>
         </div>
     </div>
-	<div class="col-md-9 col-md-pull-3 searchResults">
-	<h2>212 Suchergebnisse</h2>
-	<div class="row">
-		<div class="col-sm-8">
-			<ul class="pagination">
-                                            <li class="disabled"><span>« zurück</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=21&amp;limit=10">21</a></li>
-                                            <li><a class="page-link" href="?page=22&amp;limit=10">22</a></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
-                                        </ul>
-		</div>
-		<div class="col-sm-4">
-			<ul class="pagination switch-limit">
-				<li class="disabled"><a href="#">pro Seite</a></li>
-				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
-				<li><a class="page-link" href="?limit=25">25</a></li>
-				<li><a class="page-link" href="?limit=50">50</a></li>
-			</ul>
+	<div class="col-md-9 main-col searchResults">
+	<h2>275 Suchergebnisse</h2>
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-8">
+					<ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link">« zurück</a></li>
+                                                    <li class="page-item active"><a class="page-link">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
+                                                    <li class="page-item disabled"><a class="page-link">…</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=27&amp;limit=10">27</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=28&amp;limit=10">28</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                </ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="pagination switch-limit">
+						<li class="page-item disabled"><a class="page-link" href="#">pro Seite</a></li>
+						<li class="page-item active"><a class="page-link" href="?limit=10">10</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=25">25</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=50">50</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-xs-12">
+		<div class="col-12">
 			<ul class="media-list">
 				<li class="media">
 					<div>
     <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040007.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -314,7 +315,7 @@
         <p><strong><span>Incipit</span>: </strong> „Euer HochEdelgeb: Verzeihen gütigst, das mit“</p>
         <p>
             <strong><span>Zusammenfassung</span>: </strong> 
-            bedauert, eine erhaltene Operette noch nicht bezahlt zu haben; propagiert seine 12 Oden, die in Lübeck erschienen; fragt, ob B. 200 Ex. abnehme; erkundigt sich nach Bendas Romeo u. nach einer Piramus-Parodie;
+            bedauert, eine erhaltene Operette noch nicht bezahlt zu haben; propagiert seine 12 Oden, die in Lübeck erschienen; fragt, ob B. 200 Ex. abnehme; erkundigt sich nach Bendas Romeo u. nach einer Piramus-Parodie
         </p>
         <p><strong><span>Kennung</span>:</strong> <span>A040007</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
         <div class="kwic"></div>
@@ -324,8 +325,112 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040020.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040020.html">Franz Anton von Weber an Carlo Artaria in Wien<br />Eutin, Montag, 6. März 1786</a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> „Mit dem lebhaftesten Vergnügen erinnere ich mich“</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            an Bekanntschaft im letzten Jahr anknüpfend, bittet er um Übersendung von Musikalien Mozarts u. Haydns; mit Logengruß u. Gruß an Lange
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040020</span> <span class="docStatus">in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002071/Korrespondenz/A040032.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002071/Korrespondenz/A040032.html">Edmund von Weber an Gustav Friedrich Wilhelm Großmann in Lübeck
+               <br />Stendal, Mittwoch, 29. April 1789
+            </a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> „Sie werden Verzeihen daß ich mir die Freiheit nehme“</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            erkundigt sich, ob er mit seiner Frau, Mad. Kronheim, die früher schon in Gastrollen bei ihm aufgetreten sei, eine Anstellung finden könne; sie seien gegenwärtig bei der Döbbelinschen Gesellschaft u. treten beide in Opern auf
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040032</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040038.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040038.html">Franz Anton von Weber an Karl Friedrich von Baden in Karlsruhe<br />Nürnberg, Donnerstag, 19. Juli 1792</a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> „Ich wage es, Euer HochFürstl: Durchlaucht mich mit“</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Anstellungsgesuch Franz Antons für seine Truppe am badischen Hof; lobt die Truppe, mit der er nur für einen Winter kommen könne, da er in Nürnberg, Ansbach u. Bayreuth fest etabliert sei
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040038</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A001390/Korrespondenz/A040069.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A001390/Korrespondenz/A040069.html"> an Edmund von Weber<br />Donnerstag, 10. Dezember 1795</a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> „Die Ursache, warum ich Ihre Sinfonie noch nicht“</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            informiert Edmund Weber, daß seine Sinfonie nur deshalb noch nicht gedruckt sei, weil Nägeli sie für seine eigene, geplante Stecherei übernehmen will; fragt, ob er sie zurücksenden solle; würde sich über andere Kompositionen E's freuen
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040069</span> <span class="docStatus">in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040074.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040074.html">Carl Maria und Franz Anton von Weber an Johann Peter Heuschkel in <span class="tei_settlement">Hildburghausen</span>
+               <br />Salzburg, Donnerstag, 28. Dezember 1797
+            </a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> „Der eintretende NeueJahrs Wechsel erinnert mich an die Pflicht“</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            zum Neuen Jahr dankt er Heuschkel für seinen Unterricht, der ihm schon große Ehre eingebracht habe; nach langer Suche will ihn nun Michael Haydn annehmen, dem sein Vorspiel gefallen habe
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040074</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009244/Korrespondenz/A045301.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -347,8 +452,28 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000746/Korrespondenz/A040096.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
+        </a>
+    </div>
+    <div class="media-body">
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A000746/Korrespondenz/A040096.html">Gottfried Christoph Härtel an Franz Anton von Weber<br />Leipzig, Samstag, 27. September 1800</a></h3>
+        
+        <p><strong><span>Incipit</span>: </strong> –</p>
+        <p>
+            <strong><span>Zusammenfassung</span>: </strong> 
+            Laut Hase besaß Härtel „selbst dergleichen [lithographierte] Platten“, hätte „auch selbst den Versuch eines solchen Steindruckes gesehen“ und wollte „gern genauere Nachricht haben, sowohl von der Prozedur bei Auftragung des [sic!] Noten auf die Platten und der Ätzung, als von der Prozedur beim Abdruck“, obgleich der Verlag „wohl nie selbst davon Gebrauch machen“ würde, „da dies ihrer Notendruckerei Eintrag tun würde“.
+        </p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040096</span> <span class="docStatus">in Bearbeitung</span></p>
+        <div class="kwic"></div>
+    </div>
+</div>
+				</li>
+                                            <li class="media">
+					<div>
+    <div class="preview-icon">
         <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A009077/Korrespondenz/A045317.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
@@ -370,156 +495,19 @@
                                             <li class="media">
 					<div>
     <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045363.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
+        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040108.html">
+            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-fluid" alt="preview-icon" />
         </a>
     </div>
     <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045363.html">H. Mitterer
-               <br /> Albumblatt für Carl Maria von Weber
-               <br /> vermutlich München um 1800 
-            </a></h3>
+        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002074/Korrespondenz/A040108.html">Franz Anton von Weber an Franz Kirms in Weimar<br />Freiberg, Mittwoch, 10. Dezember 1800</a></h3>
         
-        <p><strong><span>Incipit</span>: </strong> –</p>
+        <p><strong><span>Incipit</span>: </strong> „So eben erhalte disen Morgen 10 uhr Dero gütiges“</p>
         <p>
             <strong><span>Zusammenfassung</span>: </strong> 
-            Stammbucheintrag für Carl Maria von Weber
+            bittet, C.M.v. Webers Waldmädchen anzunehmen; beschreibt den Erfolg der Oper; betr. Schulden und verpfändete Kleidung Krügers; ausführlich über Ehepaar Weyrauch und dessen wegen Pass-Problemen erzwungenen Zwischenstationen auf der Reise nach St. Petersburg, empfiehlt Kirms seinen jüngeren Sohn Edmund mit Frau.
         </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A045363</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000746/Korrespondenz/A040110.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A000746/Korrespondenz/A040110.html"> an <br />Donnerstag, 31. Dezember 1801</a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> –</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Laut Hase zeigte sich Härtel „nicht abgeneigt, Kompositionen des talentvollen Sohnes zu übernehmen; sobald sie etwas freier seien, würden sie selbst um ein Werk bitten, am liebsten wäre ihnen dann eine große Klaviersonate oder drei Klaviersonaten mit oder ohne Violine“. Hase zitiert aus Härtels Brief: „Ermuntern Sie ihn doch ja auf alle Weise, sein rühmliches Ziel nicht aus den Augen zu verlieren.“ Zudem äußerte „Härtel nun doch den Wunsch […], mit Franz Anton von Weber über eine Steindruckmaschine einig werden zu können. Die Prozedur sollte zwar nun bekannt sein, mehrere Verleger fingen den Steindruck an.“ Härtel versprach Weber „auf Ehre, wenn er sie in den Stand setze, diese Sache mit Vollkommenheit zu betreiben, sie nicht ohne Erfüllung der von ihm gemachten Bedingungen zu unternehmen.“
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040110</span> <span class="docStatus">in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A008627/Korrespondenz/A045335.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A008627/Korrespondenz/A045335.html">Johann Schwanberg
-               <br />Albumblatt für Carl Maria von Weber
-               <br />Braunschweig, Mittwoch, 1. September 1802 
-            </a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> „Raccomandandosi alle buona amicizia“</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Stammbucheintrag für Carl Maria von Weber
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A045335</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000347/Korrespondenz/A045306.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A000347/Korrespondenz/A045306.html">Jakob Hugo Eschen
-               <br /> Albumblatt für Carl Maria von Weber
-               <br /> Eutin, Mittwoch, 13. Oktober 1802
-            </a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> „Selig, wer dich ganz empfindet“</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Stammbucheintrag für Carl Maria von Weber
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A045306</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A000045/Korrespondenz/A045348.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A000045/Korrespondenz/A045348.html">Franz Anton Arand von Ackerfeld
-               <br /> Albumblatt für Carl Maria von Weber
-               <br /> Augsburg, Dienstag, 5. April 1803
-            </a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> „Ich geh fort, und Du bleibst da, lebe wohl, Maria (Liednotation mit Textunterlegung) “</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Stammbucheintrag für Carl Maria von Weber
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A045348</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A006950/Korrespondenz/A045361.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A006950/Korrespondenz/A045361.html">Traugott Maximilian Eberwein
-               <br /> Albumblatt für Carl Maria von Weber
-               <br /> Augsburg, Dienstag, 17. Mai 1803
-            </a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> „Das Angenehmste was ich in Augsburg fand,“</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            Stammbucheintrag für Carl Maria von Weber
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A045361</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
-        <div class="kwic"></div>
-    </div>
-</div>
-				</li>
-                                            <li class="media">
-					<div>
-    <div class="preview-icon">
-        <a class="pull-left" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040151.html">
-            <img src="/exist/apps/WeGA-WebApp/resources/img/icons/icon_letters.png" class="img-responsive" alt="preview-icon" />
-        </a>
-    </div>
-    <div class="media-body">
-        <h3 class="media-heading"><a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040151.html">Carl Maria von Weber an Thaddäus Susan in Salzburg
-               <br />Wien, Montag, 2. April bis Freitag, 6. April 1804
-            </a></h3>
-        
-        <p><strong><span>Incipit</span>: </strong> „Nach mondenlanger Frist einmal wieder ein Wort“</p>
-        <p>
-            <strong><span>Zusammenfassung</span>: </strong> 
-            über die geplante Theatergeschichte Wiens, die gegenw. Theaterverhältnisse ebd.; ausführl. über Voglers Akademie; erwähnt sonstige Konzerte, den Besuch bei Haydn (mit Vogler), eine Rez. seiner Variationen op.5/6 u. den Ruf nach Breslau;
-        </p>
-        <p><strong><span>Kennung</span>:</strong> <span>A040151</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
+        <p><strong><span>Kennung</span>:</strong> <span>A040108</span> <span class="docStatus">Kommentar in Bearbeitung</span></p>
         <div class="kwic"></div>
     </div>
 </div>
@@ -527,26 +515,30 @@
 			</ul>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-8">
-			<ul class="pagination">
-                                            <li class="disabled"><span>« zurück</span></li>
-                                            <li class="active"><span>1</span></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                            <li><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                            <li class="disabled"><span>…</span></li>
-                                            <li><a class="page-link" href="?page=21&amp;limit=10">21</a></li>
-                                            <li><a class="page-link" href="?page=22&amp;limit=10">22</a></li>
-                                            <li><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
-                                        </ul>
-		</div>
-		<div class="col-sm-4">
-			<ul class="pagination switch-limit">
-				<li class="disabled"><a href="#">pro Seite</a></li>
-				<li class="active"><a class="page-link" href="?limit=10">10</a></li>
-				<li><a class="page-link" href="?limit=25">25</a></li>
-				<li><a class="page-link" href="?limit=50">50</a></li>
-			</ul>
+	<div>
+		<div>
+			<div class="row">
+				<div class="col-sm-8">
+					<ul class="pagination">
+                                                    <li class="page-item disabled"><a class="page-link">« zurück</a></li>
+                                                    <li class="page-item active"><a class="page-link">1</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
+                                                    <li class="page-item disabled"><a class="page-link">…</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=27&amp;limit=10">27</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=28&amp;limit=10">28</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                </ul>
+				</div>
+				<div class="col-sm-4">
+					<ul class="pagination switch-limit">
+						<li class="page-item disabled"><a class="page-link" href="#">pro Seite</a></li>
+						<li class="page-item active"><a class="page-link" href="?limit=10">10</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=25">25</a></li>
+						<li class="page-item"><a class="page-link" href="?limit=50">50</a></li>
+					</ul>
+				</div>
+			</div>
 		</div>
 	</div>
 </div>
@@ -558,36 +550,36 @@
         <div class="greyLight">
             <div class="container footer">
                 <div class="row">
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.uni-paderborn.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.hfm-detmold.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://staatsbibliothek-berlin.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.adwmainz.de/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
                         </a>
                     </div>
-                	<div class="clearfix visible-xs-block"></div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
                         <a href="http://exist-db.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
                         </a>
                     </div>
-                    <div class="col-md-4 col-xs-6">
+                    <div class="col-md-4 col-6">
                         <a href="http://www.tei-c.org/">
-                            <img class="img-responsive" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
                         </a>
                     </div>
                 </div>
@@ -596,7 +588,7 @@
         <div class="greyDark footerbottom">
             <div class="container ">
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="col-12">
                         <ul class="footerNav">
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
@@ -617,10 +609,13 @@
             </div>
         </div>
         
-        <div id="carousel-popover" class="carousel slide hidden" data-interval="false">
+        <div id="carousel-popover" class="carousel slide d-none" data-interval="false">
             <div class="carousel-inner" role="listbox">
-                <div class="item active">
-                    <h3 class="item-title">Loading …</h3>
+                <div class="carousel-item item active">
+                    <h3 class="item-title">
+                        <span class="item-title-content">Loading …</span>
+                        <a href="#editorial" class="apparatus-link item-counter">1</a>
+                    </h3>
                     <div class="item-content">
                         <div class="progress" style="min-width:244px">
                             <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
@@ -629,13 +624,13 @@
                 </div>
             </div>
             <div class="carousel-controls">
-                <a class="carousel-control left" href="#carousel-popover" data-slide="prev">
+                <a class="carousel-control carousel-control-prev left" href="#carousel-popover" data-slide="prev">
                     <span class="fa fa-angle-double-left"></span>
                 </a>
                 <ol class="carousel-indicators">
                     <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
                 </ol>
-                <a class="carousel-control right" href="#carousel-popover" data-slide="next">
+                <a class="carousel-control carousel-control-next right" href="#carousel-popover" data-slide="next">
                     <span class="fa fa-angle-double-right"></span>
                 </a>
             </div> 
@@ -643,7 +638,8 @@
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
@@ -656,8 +652,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/build/openseadragon/openseadragon.min.js"></script>
-        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/openseadragon/openseadragon.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
