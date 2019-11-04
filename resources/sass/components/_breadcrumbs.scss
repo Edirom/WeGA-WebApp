@@ -1,0 +1,51 @@
+ol.breadcrumb 
+{
+    margin: 0px;
+}
+
+ol.breadcrumb li
+{
+    margin: 0px;
+}
+
+.breadcrumb > li:not(:first-child) >  {
+    *:first-child:before {
+        padding: 0 8px;        
+        content: "\f054\00a0";
+        font-family: "FontAwesome";
+        font-size:smaller;
+    }
+    > a:before {
+        color: $link-color;
+    }
+    > span:before {
+        color:$gray-light;
+    }
+}
+
+.backLinkInBreadcrumb {
+    color: $primary;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 10px;
+    text-align: right;
+    font-family: $font-family-sans-serif;
+   
+}
+
+.backLinkInBreadcrumb:hover {
+    color: #018eff;
+   
+}
+
+/* Hide parantheses for empty docStatus */
+.docStatus:empty {
+    display:none;
+}
+
+.docStatus::before {
+    content:"(";
+}
+.docStatus::after {
+    content:")";
+}

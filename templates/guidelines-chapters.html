@@ -16,10 +16,10 @@
 						<li><a href="$link/index">Home</a></li>
 						<li><a data-template="lang:translate">project</a></li>
 						<li><a href="$link/project/editorialGuidelines-text/index" data-template="lang:translate">editorialGuidelines-text</a></li>
-						<li><span data-template="gl:chapter-heading">chapter heading</span> </li>
+						<li><span data-template="gl:chapter-heading">chapter heading</span></li>
 					</ol>
 				</div>
-				<div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+				<div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
 					<i class="fa fa-arrow-left"/>
 					<span data-template="lang:translate">back</span>
 				</div>
@@ -28,24 +28,24 @@
 	</div>
 	<div class="container documentText paddingTopIcon paddingBottomIcon" data-template="gl:doc-details">
 		<div class="row">
-			<div class="col-md-3 col-md-push-9">
+			<div class="col-md-3 order-2 side-col">
 				<div class="allFilter">
 					<div>
 						<h2><a href="#dokument" data-template="lang:translate" class="collapseSingle" data-toggle="collapse">document</a></h2>
 						<div id="dokument" class="panel-collapse collapse">
 							<!-- Nav tabs -->
 							<ul class="nav nav-tabs">
-								<li class="gradient-light active"><a href="#transcription" data-toggle="tab">Text</a></li>
-<!--								<div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><li class="gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li></div>-->
-<!--								<li class="gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a></li>-->
-								<li class="gradient-light"><a href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a></li>
-								<!--<li class="gradient-light"><a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="xml-download-url">Download</a></li>-->
+								<li class="nav-item gradient-light"><a href="#transcription" class="nav-link active" data-toggle="tab">Text</a></li>
+<!--								<div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><li class="nav-item gradient-light"><a href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a></li></div>-->
+<!--								<li class="nav-item gradient-light"><a href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a></li>-->
+								<li class="nav-item gradient-light"><a href="#XMLPreview" data-toggle="tab" class="nav-link" data-template="app:ajax-tab">XML-Preview</a></li>
+								<!--<li class="nav-item gradient-light"><a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="xml-download-url">Download</a></li>-->
 							</ul>
 						</div>
 					</div>
 				</div>
 				
-				<div class="toc-side hidden-sm hidden-xs">
+				<div class="toc-side d-none d-md-block">
 					<h2>
 						<a data-template="lang:translate" data-toggle="collapse" class="collapseSingle" href="#sidetoc">toc</a>
 					</h2>
@@ -55,7 +55,7 @@
 				</div>
 				
 			</div>
-			<div class="col-md-9 col-md-pull-3">
+			<div class="col-md-9 main-col">
 				<!-- Tab panes -->
 				<div class="tab-content">
 					<div class="tab-pane active fade in" id="transcription">

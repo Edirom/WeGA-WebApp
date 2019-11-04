@@ -1,0 +1,63 @@
+.collapseSingle
+{
+  cursor: pointer;  
+}
+
+a.collapseSingle, a.collapseSingle:hover 
+{
+    color:inherit;
+    text-decoration:none;
+}
+
+.collapseSingle.collapsed:after
+{
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f13a";
+    margin-left: 10px;
+}
+
+.collapseSingle:after
+{
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f139";
+    margin-left: 10px;
+    font-size: smaller;
+}
+
+.collapseSingle.collapsed
+{
+    margin-bottom: 15px;
+    border-bottom: 4px solid $gray-lighter!important;
+    padding-bottom:0!important;
+}
+
+.collapseMarker, .collapseMarker:hover, .collapseMarker:focus {
+    cursor:pointer;
+    color:inherit;
+    text-decoration:none;
+}
+
+.collapseMarker.collapsed:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f13a";
+    margin-left: 4px;
+}
+
+.collapseMarker:after {
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    content:  "\f139";
+    margin-left: 4px;
+}
+

@@ -18,10 +18,10 @@
         <div class="container">
             <form role="form" class="form-inline" action="$link/search">
                 <div class="row paddingTopIcon paddingBottomIcon">
-                    <div class="col-md-6 form-group">
+                    <div class="col-md form-group">
                         <div class="input-group searchform">
                             <div class="input-group-btn dropdown docType-search-filter">
-                                <select class="input-group-addon gradient-light bootstrap-select form-control prettyselect" name="d" id="search-select">
+                                <select class="input-group-prepend bootstrap-select form-control prettyselect" name="d" id="search-select">
                                     <option value="all" data-template="app:search-options">all</option>
                                     <!--<option value="personsPlus" data-template="lang:translate">personsPlus</option>
                                     <option value="letters" data-template="lang:translate">correspondence</option>
@@ -60,11 +60,11 @@
                             Keine Log-Datei verfügbar.
                         </p>
                     </div>
-                    <div class="col-sm-4 form-group">
+                    <div class="col-sm-4">
                         <h4>Neue ID</h4>
                         <div class="input-group">
                             <div class="input-group-btn dropdown">
-                                <select class="input-group-addon gradient-light bootstrap-select form-control prettyselect" name="newID-d" id="newID-select" data-template="dev-app:newID-docTypes">
+                                <select class="input-group-prepend bootstrap-select form-control prettyselect" name="newID-d" id="newID-select" data-template="dev-app:newID-docTypes">
                                     <option value="persons" data-template="app-shared:each" data-template-from="newID-docTypes" data-template-to="newID-docType" data-template-callback="newID-option" data-template-callbackNamespace="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app">persons</option>
                                 </select>
                             </div>
@@ -126,7 +126,7 @@
                         <li><a href="$link/A002068.html#works"><span data-template="lang:translate">webers_works</span> <i class="fa fa-arrow-right"/></a></li>
                     </ul>
                 </div>
-                <div class="clearfix visible-sm-block"><!-- break and clearfix for small devices (tablets, 768px and up) --></div>
+                <div class="clearfix d-none d-sm-block d-md-none"><!-- break and clearfix for small devices (tablets, 768px and up) --></div>
                 <div class="col-md-3 col-sm-6">
                     <a href="$link/indices" class="teaser register"> </a>
                     <h2>
@@ -166,7 +166,7 @@
         <div id="otd" data-target="../ajax/otd.html">
             <div class="container" data-template="app:lookup-todays-events">
                 <div class="row paddingTopIcon">
-                    <div class="col-xs-12 ">
+                    <div class="col-12 ">
                         <h2 data-template="app:print-events-title">Was geschah am 9. April?</h2>
                     </div>
                 </div>

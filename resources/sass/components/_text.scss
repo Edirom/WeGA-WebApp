@@ -1,0 +1,112 @@
+/*
+ * A little bit more margin for paragraphs in the context box (at document pages)
+ */
+ 
+.commentary li {
+    margin-bottom:1ex;
+}
+
+#relatedItems li p {
+    margin-bottom: $line-height-computed;
+}
+
+.table-wrapper {
+    width: 95%;
+    margin: auto;
+    th {
+        font-family:$font-family-sans-serif;
+    }
+}
+
+/* some special treatment for Prager Spielpläne */
+div.table-wrapper {
+    h4.collapseMarker {
+        line-height: 1.875;
+        margin-bottom:0px;
+    }
+    table.collapse {
+        margin-bottom:0px;
+    }
+}
+
+/* abstract restyling */
+.abstract {
+    border-left: 4px solid lighten($primary,10%);
+    background-color: $gray-lighter;
+    margin: 1em 0;
+    padding: 1em;
+    p, ul {
+        margin-bottom: 5px!important;
+    }
+}
+
+/* large images (600px) within running text */
+.maxSize img {
+    display:block;
+    max-width: 100%;
+    margin: $line-height-computed auto;
+}
+
+/*
+ * Animated highlighting, used e.g. for historic footnotes (see https://github.com/Edirom/WeGA-WebApp/issues/226)
+ */
+@keyframes animate-bg-info {
+ 	0% {
+ 		background: $state-info-bg; 
+ 	}
+ 	100% {
+ 		background: none;
+ 	}
+}
+
+.animated-highlight {
+    animation: animate-bg-info 2.5s;
+}
+
+/* little arrow that gets prepended to (original) footnote text */
+.fn-backref {
+    padding-right:.25em;
+    font-size: .83em;
+    vertical-align:super;
+    position:relative;
+}
+
+/* hanging indent for bibliographies */
+.bibliography li {
+    text-indent:-2em;
+    padding-left:2em;
+}
+
+.tei_notatedMusic {
+    display:block;
+    margin: 1ex auto;
+    width: 95%;
+    text-align:center;
+}
+.tei_notatedMusic img {
+    margin: 0px;
+}
+
+/* This class toggles the popovers for previews */
+.preview {
+    @extend .common-link
+}
+
+ol.endNotes {
+    margin:0px;
+}
+
+a.noteMarker {
+    background-color: $gray-light;
+    cursor:pointer;
+    padding: 0px 2px;
+    margin-left: 2px;
+    color:#fff !important;
+    &.arabic {
+        background-color: inherit;
+        padding: 0px 1px;
+        margin-left: 0px;
+        color:$primary  !important;
+        @extend .tei_hi_superscript;
+    }
+}

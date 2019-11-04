@@ -1,0 +1,32 @@
+@import "variables";
+
+.swagger-section #message-bar {
+    display:none;
+}
+
+.swagger-ui {    
+    .scheme-container, .swagger-ui .topbar { display: none !important; }
+    .info .title small { display:none; }
+    h1,h2,h3,h4 {
+        font-family: $font-family-sans-serif;      
+    }
+    .info {
+        background: none;
+    }
+}
+
+.swagger-ui * {
+    font-family: $font-family-sans-serif!important;
+}
+
+.swagger-ui .opblock {
+    border-radius: 0;
+}
+
+.swagger-ui .opblock.opblock-get .opblock-summary-method {
+    background: $primary;
+}
+
+.swagger-ui .opblock .opblock-summary-method {
+    border-radius: 0;
+}

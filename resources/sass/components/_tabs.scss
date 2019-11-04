@@ -1,0 +1,127 @@
+// Vertikal Tabs
+.nav-tabs
+{
+    margin-bottom: 30px;
+}
+
+.nav-tabs .nav-link {
+    border: none;
+    border-radius: 0;
+}
+.nav-tabs li
+{
+    width: 100%;
+    padding: 0px;
+}
+
+.nav-tabs li a
+{
+    color: $gray;
+    font-size: 16px;
+    line-height: 20px;
+    padding: 15px 20px;
+}
+
+.nav-tabs li.active a
+{
+    color: $gray;
+    border:none;
+    background: transparent;
+}
+
+.nav-tabs li.active a:hover
+{
+    color: $gray;
+    background: transparent;
+}
+
+.nav li a {
+    font-family: $font-family-sans-serif-bold;
+}
+
+// responsive Tabs to Accordeon
+
+.resp-tabs-container
+{
+    margin-bottom: 50px;
+}
+
+.resp-tabs-container .resp-accordion
+{
+    background: $gray-light;
+    padding: 20px 25px;
+    a {
+        color: #fff;
+        font-size:16px;
+        font-weight:normal;   
+        font-family: $font-family-sans-serif-bold; 
+    }
+    &.resp-tab-active
+    {
+        background: $gray-lighter!important;
+    }
+    &.resp-tab-active a
+    {
+        color:$gray;
+        font-size:16px;
+        font-weight:normal;
+        font-family: CamingoDos-Bold;
+    }
+}
+
+li.resp-tab-item {
+  margin: 0px 0px -4px 3px!important;
+  &:first-child { margin-left: 0px!important; }
+}
+
+button.resp-tab-active, li.resp-tab-active {
+    border-bottom: 3px solid #F0F0F0!important;
+    border-top: 4px solid $gray;
+}
+
+
+// Tabs
+.resp-tab-content
+{
+    border:none;    
+}
+
+.resp-tabs-list, .hidden-links, .greedy 
+{
+    li.resp-tab-item, button
+    {
+        background: $gray-light;
+        border: 1px solid $gray-light; 
+        margin: 0px 0px -2px 2px!important;
+        
+        a
+        {
+            color: #fff;
+            font-size: 15px;
+            font-weight: bold;   
+            font-family: $font-family-sans-serif;
+        
+        }
+        &.resp-tab-active
+        {
+            color: $gray;
+            background: $gray-lighter;
+            
+            border: 1px solid $gray-light!important;
+            border-top: 4px solid $gray!important;
+            border-bottom: 3px solid $gray-lighter!important;
+            a
+            {
+                color: $gray;
+                font-size: 15px;
+                font-weight: bold;
+                font-family: $font-family-sans-serif;
+            
+            }
+        }
+    }
+}
+
+.fade.in {
+    opacity:1;
+}

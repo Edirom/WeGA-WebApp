@@ -10,10 +10,10 @@
   "dependencies": {
     "Easy-Responsive-Tabs-to-Accordion": "peterstadler/Easy-Responsive-Tabs-to-Accordion#develop",
     "WeGA-ODD": "edirom/WeGA-ODD#develop",
-    "bootstrap": "^3.3.7",
+    "bootstrap": "^4.3.1",
     "bootstrap-hover-dropdown": "^2.2.1",
     "bootstrap-remote-data": "peterstadler/bootstrap-remote-data#master",
-    "bootstrap-toggle": "^2.0.0",
+    "bootstrap4-toggle": "^3.5.0",
     "bravura": "https://github.com/steinbergmedia/bravura",
     "csLink": "correspSearch/csLink",
     "fittextjs": "^1.2.0",
@@ -21,16 +21,50 @@
     "font-awesome": "^4.7.0",
     "google-code-prettify": "^1.0.3",
     "ion-rangeslider": "^2",
-    "jquery": "^3",
+    "jquery": "^3.4.1",
     "jquery-ui": "^1.12.1",
     "jquery-ui-themes": "^1.12.0",
-    "less": "^3.8.1",
     "moment": "^2.10.2",
     "openseadragon": "^2.4.0",
-    "prettydiff": "^1",
     "selectize": "^0.12.0",
-    "swagger-ui": "^2.2.10",
+    "swagger-ui-dist": "^3.23.8",
     "vnu": "^0.0.1",
     "yuicompressor": "^2.4.8"
+  },
+  "devDependencies": {
+    "frontend-dependencies": "^0.2.1",
+    "prettydiff": "^99.0.1",
+    "sass": "^1.22.12"
+  },
+  "frontendDependencies": {
+    "target": "libs",
+    "packages": [
+      "Easy-Responsive-Tabs-to-Accordion",
+      "WeGA-ODD/",
+      "bootstrap-hover-dropdown/*.js",
+      "bootstrap-remote-data/{css,js,img}",
+      "bootstrap/{build,dist,js,scss}",
+      "bootstrap4-toggle/{css,js}",
+      "bravura",
+      "csLink/dist",
+      "fittextjs",
+      "flip/dist",
+      "font-awesome",
+      "google-code-prettify/{styles,bin,lang}",
+      "ion-rangeslider/{css,img,js}",
+      "jquery/dist/",
+      "jquery-ui",
+      "jquery-ui-themes",
+      "moment/min",
+      "openseadragon/build/openseadragon/",
+      "selectize/dist/",
+      "swagger-ui-dist/",
+      "microplugin/src/",
+      "vnu/",
+      "yuicompressor/"
+    ]
+  },
+  "scripts": {
+    "postinstall": "./node_modules/.bin/frontend-dependencies"
   }
 }

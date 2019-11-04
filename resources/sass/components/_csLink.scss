@@ -1,0 +1,61 @@
+#exploreCorrespSearch {
+    display:block;
+    margin-bottom:30px;
+    .noLink {
+        display: none;
+    }
+}
+
+.popover[id*='BV_popover'] {
+   table {
+        font-size:unset;
+   }
+   
+   table.b-table > thead > tr > th.sorting {
+        padding-right: 2em;
+   }
+   
+   .popover-body [id*="_BVID_"].tabs {
+        max-height:400px;
+        padding: 10px;
+        .tab-content {
+            overflow-y:auto;
+            font-size:smaller;
+            p {
+                margin-bottom:unset;
+            }
+        }
+    }
+    
+    .popover-header:empty {
+        display:none; 
+    }
+    
+    .nav {
+        margin:4px 0 4px 0;
+        flex-wrap:nowrap;
+    }
+    
+    .nav-tabs li {
+        width: unset;
+    }
+    
+    .nav-tabs {
+        border: 0;
+        .nav-item {
+            padding: 0 8px;
+            a {
+                padding: 8px;
+                font-size:larger;
+                color:gray;
+                &.active {
+                    border-bottom: 4px solid #0064bb;
+                }
+            }
+        }
+    }
+    
+    hr {
+        margin: 4px 0 4px 0;
+    }
+}

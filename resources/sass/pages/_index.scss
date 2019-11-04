@@ -1,0 +1,118 @@
+// Startseite
+
+h1.home
+{
+    margin-bottom: 22px;
+}
+
+.teaser
+{
+    display: block;
+    border-radius: 200px;
+    height:200px;
+    width: 200px;
+    margin-bottom: 30px;
+}
+
+.aktuelles
+{
+    background: url(../img/teaser_aktuelles.jpg) no-repeat;
+}
+
+.weber
+{
+    background: url(../img/teaser_carl_maria_von_weber.jpg) no-repeat;
+}
+
+.register
+{
+    background: url(../img/teaser_register.jpg) no-repeat;
+}
+
+.wega
+{
+    background: url(../img/teaser_projekt_wega.jpg) no-repeat;    
+}
+
+.noMargin p
+{
+    margin-bottom:0px;
+}
+
+// Suche
+
+.searchform
+{
+    margin-bottom: 15px;
+}
+
+.searchformPlus
+{
+    margin-top: 5px;
+    margin-right: 10px;
+    margin-bottom: 15px;
+}
+
+.searchResultList
+{
+    margin-top: 45px;
+}
+
+ .btn.plus
+{
+    font-size: 34px!important;
+    line-height: 30px!important;
+    padding: 9px 15px;
+}
+
+.advancedSearch
+{
+    display: inline-block;
+    margin-top: 10px;
+    padding-left: 5px;
+    font-family: 'CamingoDos-Regular';
+}
+
+.input-group 
+{
+    width: 100%;    
+}
+
+.unterschriftweber img
+{
+    position: absolute;
+    display: inline;
+    margin-left:15px;
+}
+
+.unterschriftweber
+{
+    margin-bottom:60px;
+}
+
+/* settings for "What happened on?" on start page */
+.history {
+	p {
+	    margin-bottom: 0px;
+	    font-family: $font-family-sans-serif-bold;
+	    color: $gray;
+    }
+    .event-year, .event-text {
+		display: table-cell;
+		padding-right: 0.5em;
+	}
+	.event-year::after {
+		content:":";
+	}
+	.jubilee {
+	    /* 
+	     * support for elaborated text-decoration is still miserable, see https://css-tricks.com/almanac/properties/t/text-decoration/
+	     * can't use border bottom because of cell display
+	     */
+		text-decoration: underline dotted;
+		-webkit-text-decoration: underline dotted;
+		cursor: help;
+	}
+}
+
+

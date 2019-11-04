@@ -1,0 +1,189 @@
+//
+// Variables
+// --------------------------------------------------
+
+
+//== Colors
+//
+//## Gray and brand colors for use across Bootstrap.
+
+$gray-dark:              #323232;
+$gray-darker:            darken($gray-dark, 10%);
+$gray:                   #646464;
+$gray-light:             #B5B5B5;
+$gray-lighter:           #F0F0F0;
+$gray-lightest:          #F5F5F5;
+$black:                  #000;
+
+$primary:         #0064B4;
+$blue-light:      #018eff;
+$success:         #c8e5c4;
+$info:            #d9edf7;
+$warning:         #ffe9a7;
+$danger:          #e78c8a;
+
+
+$theme-colors: () !default;
+// stylelint-disable-next-line scss/dollar-variable-default
+$theme-colors: map-merge(
+  (
+    "primary":    $primary,
+    "success":    $success,
+    "info":       $info,
+    "warning":    $warning,
+    "danger":     $danger
+  ),
+  $theme-colors
+);
+
+// Grid breakpoints
+//
+// Define the minimum dimensions at which your layout will change,
+// adapting to different screen sizes, for use in media queries.
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px
+);
+
+// Grid containers
+//
+// Define the maximum width of `.container` for different screen sizes.
+
+$container-max-widths: (
+  sm: 560px,
+  md: 740px,
+  lg: 980px,
+  xl: 1160px
+);
+
+
+//== Scaffolding
+//
+//## Settings for some of the most global styles.
+
+//** Global text color on `<body>`.
+$text-color:            $gray;
+
+//** Global textual link color.
+$link-color:            $primary;
+//** Link hover color set via `darken()` function.
+$link-hover-color:      lighten($link-color, 15%);
+
+
+//== Typography
+//
+//## Font, line-height, and color for body text, headings, and more.
+
+$font-family-sans-serif:  'CamingoDos-Regular', Helvetica, Arial, sans-serif;
+$font-family-sans-serif-bold: 'CamingoDos-Bold';
+$font-family-serif:       Georgia, "Times New Roman", Times, serif;
+$font-family-base:        $font-family-sans-serif !default;
+$font-family-monospace:   SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+$font-size-base:              1rem; // Assumes the browser default, typically `16px`
+$font-size-lg:                $font-size-base * 1.25;
+$font-size-sm:                $font-size-base * .75;
+
+$line-height-base:            1.5;
+
+$h1-font-size:                $font-size-base * 2.5;
+$h2-font-size:                $font-size-base * 1.875;
+$h3-font-size:                $font-size-base * 1.2;
+$h4-font-size:                $font-size-base;
+$h5-font-size:                $font-size-base;
+$h6-font-size:                ceil(($font-size-base * 0.75));
+
+//** Unit-less `line-height` for use in components like buttons.
+$line-height-base:        1.875; // 20/14
+//** Computed "line-height" (`font-size` * `line-height`) for use with `margin`, `padding`, etc.
+$line-height-computed:    floor(($font-size-base * $line-height-base)); // ~20px
+
+//== Components
+//
+//## Define common padding and border radius sizes and more. Values based on 14px text and 1.428 line-height (~20px to start).
+
+$padding-large-vertical:    50px;
+
+$line-height-large:         1.33;
+
+$border-radius-base:        0px;
+$input-border-radius: $border-radius-base;
+$border-radius-lg:       0px;
+$border-radius-sm:       0px;
+
+$enable-rounded: false !default;
+
+//== Forms
+//
+//##
+
+
+//** Placeholder text color
+$input-color-placeholder:        $gray-light;
+
+
+//== Tabs
+
+$state-info-bg:                  $info;
+
+
+
+//== Progress bars
+//
+//##
+
+//** Background color of the whole progress component
+$progress-bg:                 $gray-lightest;
+
+//** Default progress bar color
+$progress-bar-bg:             $primary;
+
+// Navigation
+
+$navbar-light-active-color:         $primary;
+$navbar-light-color:                rgba($black, .6) !default;
+
+
+//== Breadcrumbs
+//
+//##
+
+$breadcrumb-padding-y:   10px;
+$breadcrumb-padding-x: 0px;
+//** Breadcrumb background color
+$breadcrumb-bg:                 transparent;
+//** Text color of current page in the breadcrumb
+$breadcrumb-active-color:       $primary;
+//** Textual separator for between breadcrumb elements
+$breadcrumb-separator:          "\f054";
+
+
+//== Carousel
+//
+//##
+
+$carousel-indicator-active-bg:                $gray-light;
+
+
+//== Code
+//
+//##
+
+$code-color:                  #c7254e;
+$kbd-bg:                      #333;
+$pre-color:                   $gray-dark;
+
+//== Type
+//
+//##
+
+//** Text muted color
+$text-muted:                  $gray-light;
+//** Blockquote small color
+$blockquote-small-color:      $gray-light;
+//** Blockquote font size
+$blockquote-font-size:        ($font-size-base * 1.25);

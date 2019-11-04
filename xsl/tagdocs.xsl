@@ -77,10 +77,10 @@
 	<xsl:template match="tei:eg">
 		<xsl:element name="div">
 			<xsl:apply-templates select="@xml:id"/>
-			<xsl:attribute name="class" select="'panel panel-info'"/>
+			<xsl:attribute name="class" select="'card panel-info'"/>
 			<xsl:apply-templates select="tei:gloss"/>
 			<xsl:element name="div">
-				<xsl:attribute name="class" select="'panel-body'"/>
+				<xsl:attribute name="class" select="'card-body'"/>
 				<xsl:apply-templates select="node()[not(self::tei:gloss)]"/>
 			</xsl:element>
 		</xsl:element>
@@ -88,7 +88,7 @@
 	
 	<xsl:template match="teix:egXML">
 		<xsl:element name="div">
-			<xsl:attribute name="class" select="'panel tei_egXML'"/>
+			<xsl:attribute name="class" select="'tei_egXML'"/>
 			<xsl:if test="matches(@source, 'A[A-F0-9]{6}') and wega:getOption('environment') eq 'development'">
 				<!-- output warnings for broken examples (in development mode only) -->
 				<xsl:variable name="mySource" select="wega:doc(@source)"/>

@@ -1,0 +1,173 @@
+.guidelines-specs div p {
+    margin-bottom: 0px!important;
+}
+
+div.toc-side  {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 2rem;
+}
+
+/*
+ * Guidelines Spec pages
+ */
+.customizations, .attributes, .spec-list {
+	li {
+		display: inline;
+		margin-right: .3em;
+		a {
+			white-space:nowrap;
+		}
+	}
+	li:after {
+	    content: " ";
+	}
+}
+
+.attribute:before, .unusedattribute:before {
+    content:"$";
+}
+
+.unusedattribute {
+    text-decoration:line-through;
+}
+
+/*
+ * styling for Guidelines specs
+ */
+
+span.label {
+    font-weight:800;
+    font-family:$font-family-sans-serif;
+}
+
+span.desc {
+    display: inline-block;
+    font-style: italic;
+    line-height: 1.3em;
+}
+
+.schemeClasses, .attClasses {
+    font-family: $font-family-monospace;
+}
+
+
+.localAtts {
+    > .row {
+        padding:6px 0 6px 0;
+    }
+    > .row:not(:first-child) {
+        border-top:1px solid $gray-lighter;
+    }
+    code {
+        color:unset;
+    }
+}
+
+.guidelines-specs {
+    > .row:not(:empty) {
+        border-bottom: 1px solid $gray-lighter;
+        padding: 20px 0 20px 0;
+    }
+    p:last-child, ul:last-child {
+        margin-bottom:unset;
+    }
+}
+
+.data-col {
+    font-size:90%;
+}
+
+.usage_opt {
+    color: green;
+}
+
+.usage_req {
+    color: #c7254e;
+}
+
+.usage_rec {
+    color:#ff8400;
+}
+
+
+/*
+ * styling for specLists
+ */
+.tei_specList {
+    margin-left:1em;
+    margin-top:-(ceil($line-height-computed / 2));
+    li * {
+        display: table-cell;
+        padding-right:.5em;
+    }
+}
+
+/*
+ * styling for source links at egXML examples
+ */
+.tei_egXML {
+    &.panel {
+        border:none;
+        box-shadow:unset;
+    }
+    pre, .prettyprint {
+        margin-bottom:0px;
+        border-color:$gray-light;
+    }
+    .tei_egXML_source {
+        display:block;
+        text-align: right;
+        margin-right: 1em;
+        font-family: $font-family-sans-serif;
+    }
+}
+
+/*
+ * styling for Guidelines and Wikipedia TOC
+ */
+
+div.toc-side {
+    font-size:smaller;
+}
+
+.toc-side > div {
+    height:100%;
+    overflow-y:auto;
+    /* border: 1px solid $gray-light; */
+}
+
+div.toc-side.affix {
+     top:50px;
+     height:50%;
+     margin-right:20px;
+     padding-bottom:20px;
+    }
+
+.affix-bottom {
+    position:relative;
+}
+
+#sidetoc {
+    margin-bottom:0!important;
+    padding:8px;
+    background-color: $gray-lightest;
+}
+
+div.toc {
+    h3 {
+        margin-bottom:4px;
+    }
+    .toggle-toc-item {
+        cursor:pointer;
+        padding-left:2.2em;
+    }
+    i {
+        color:$primary;
+        vertical-align:middle;
+    }
+
+    span.active {
+        font-weight:800;
+    }
+}

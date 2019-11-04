@@ -129,9 +129,9 @@
     <xsl:template match="tei:gloss[parent::tei:eg]">
         <xsl:element name="div">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:attribute name="class" select="'panel-heading'"/>
+            <xsl:attribute name="class" select="'card-header'"/>
             <xsl:element name="h4">
-                <xsl:attribute name="class" select="'panel-title'"/>
+                <xsl:attribute name="class" select="'card-title'"/>
                 <xsl:apply-templates/>
             </xsl:element>
         </xsl:element>

@@ -1,7 +1,5 @@
 /* Init functions */
 
-$('.dropdown-secondlevel-nav').dropdownHover();
-
 /* Adjust font size of h1 headings */
 $.fn.h1FitText = function () {
     if ($(this).hasClass('document')) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
@@ -172,18 +170,44 @@ $.fn.initDatepicker = function () {
     })
 };
 
+
 /* 
  * Activate bootstrap remote nav tabs (on letters) 
- * "For further details see editorial"  
+ * "For further details see editorial"
  */
-$('#transcription a[href$="#editorial"], a[href$="#backlinks"]').on('click', function (e) {
+$(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="#transcription"]', function (e) {
     // code taken from the bootstrap remote nav tabs plugin
     var url = $(e)[0].target.href,
-        hash = url.substring(url.indexOf('#')+1),
-        hasTab = $('[data-toggle=tab][href*='+hash+']'),
-        hasAccordion = $('[data-toggle=collapse][href*='+hash+']');
+    hash = url.substring(url.indexOf('#') + 1),
+    hasTab = $('[data-toggle=tab][href*=' + hash + ']'),
+    hasAccordion = $('[data-toggle=collapse][href*=' + hash + ']');
+    apparatusLink = $(this).hasClass("apparatus-link"),
+    ref = $(this).attr("data-href");
 
-    if (hasTab) {
+    if (hasTab && apparatusLink) {
+        // if clicked link is an link within the apparatus (marked with class .apparatus-link)
+        hasTab.tab('show');
+        // open tab
+        $(document).on('shown.bs.tab', 'a[href="#transcription"]', function (e) {
+            //wait for tab to be loaded
+            $(".hi-").removeClass("hi-");
+            //remove previous highlight
+            $('html, body').animate({
+                scrollTop: $(ref).offset().top - 400 //scroll to position (with offset)
+            },
+            500);
+            $(ref).click();
+            $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-");
+            // attempt to highlight lemma in text, jump to position and open corresponding popover ...
+        });
+        $(document).on('shown.bs.tab', 'a[href="#editorial"]', function (e) {
+            $('.popover').popover('hide');
+            $('html, body').animate({
+                scrollTop: $(ref).offset().top - 400
+            },
+            500);
+        });
+    } else if (hasTab) {
         hasTab.tab('show');
     }
     
@@ -222,34 +246,6 @@ $('.toc a[href~="'+window.location.pathname+window.location.hash+'"]').parentsUn
 $('.appendix a[href^="'+window.location.pathname+window.location.hash+'"]').parentsUntil(".appendix-div").addClass("active");
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
 
-
-var headerHeight = 300, // adds margins to the total height
-    footerHeight = $('.documentFooter').outerHeight() + 60,
-    getParentWidth = $('.toc-side').parent().width();
-
-$('.toc-side').affix({
-    offset: {
-        top: headerHeight,
-        bottom: footerHeight
-    }
-}).css({
-        'width': getParentWidth
-});
-
-/* dynamically adjust width of side-toc */
-$(function() {
-function changeAffixBoxWidth() {
-  $('.toc-side').css({
-        'width': getParentWidth
-  })
-}
-$(window).on('resize', function() {
-	changeAffixBoxWidth();
-})
-$('.toc-side').on('affixed.bs.affix', function() {
-	changeAffixBoxWidth();
-})
-});
 
 /*
  * used for Guidelines TOC as well as for Wikipedia
@@ -405,7 +401,7 @@ $.fn.preview_popover = function() {
              */
             if(container.next().length === 0) {
                 popover_data = popover_node.data('bs.popover');
-                popover_data.options.content = container.parents('div.popover-content').children();
+                popover_data.config.content = container.parents('div.popover-body').children();
                 popover_node.popover('show');
             }
             
@@ -423,7 +419,7 @@ $('.preview, .noteMarker').on('click', function() {
         "html": true,
         "trigger": "manual",
         "container": 'body',
-        'placement': 'auto top',
+        'placement': 'auto',
         "title": "Loading …", // This is just a dummy title otherwise the content function will be called twice, see  https://github.com/twbs/bootstrap/issues/12563
         "content": popover_template
     });
@@ -439,7 +435,7 @@ $('.preview, .noteMarker').on('click', function() {
 /*
  * A simple template for the popover based on page.html#carousel-popover
  * NB: we do not make use of the generic popover-title since we want 
- * to insert all AJAX content simply into popover-content
+ * to insert all AJAX content simply into popover-body
  */
 function popover_template() {
     var carouselID = "carousel" + $.now(),
@@ -448,7 +444,7 @@ function popover_template() {
     $('.carousel-indicators li', template).attr('data-target', '#'+carouselID);
     $('a.carousel-control', template).attr('href', '#'+carouselID);
     $('.carousel-indicators, a.carousel-control', template).hide();
-    template.removeClass('hidden');
+    template.removeClass('d-none');
     return template;
 };
 
@@ -459,9 +455,9 @@ function popover_template() {
  * we need to take care of several methods ourselves:
  * - grabbing external content from href or data-ref (could be a whitespace separated list) attributes
  * - internal links from href or data-ref (prefixed with '#')
- * - content provided on data-popover-content and data-popover-title attributes (NB: we need to distinguish from the default attributes supported by bootstrap)
+ * - content provided on data-popover-body and data-popover-title attributes (NB: we need to distinguish from the default attributes supported by bootstrap)
  * 
- * Every logical popover is wrapped into a <div class="item"/> within the <div class="popover-content"/>  
+ * Every logical popover is wrapped into a <div class="item"/> within the <div class="popover-body"/>  
  */
 function popover_callBack() {
     var urls = [],
@@ -469,6 +465,7 @@ function popover_callBack() {
         dataRefs = $(this).attr('data-ref'),
         popoverID = $(this).attr('aria-describedby'),
         popover = $('#'+popoverID),
+        suppressCrosslink  = $(this).hasClass("arabic"),
         li_templ = $('.carousel-indicators li:last', popover),
         li_clone,
         popover_div,
@@ -491,10 +488,13 @@ function popover_callBack() {
         popover_div.attr('data-ref', e);
         
         if(e.startsWith('#')) { // local references to endnotes and commentaries
-            $('.item-title', popover_div).html($(e).attr('data-title'));
+            $('.item-title-content', popover_div).html($(e).attr('data-title'));
+            $('.item-counter', popover_div).html($(e).attr('data-counter'));
+            $('.item-counter',popover_div).attr('data-href',$(e).attr('data-href'));
+            if (suppressCrosslink) { $('.item-counter',popover_div).remove() } else {}; // remove .item-counter e.g. for classic footnotes
             $('.item-content', popover_div).html($(e).html());
             popover_data = popover.data('bs.popover');
-            popover_data.options.content = $('div.popover-content', popover).clone().children();
+            popover_data.config.content = $('div.popover-body', popover).clone().children();
             popover.popover('show');
         }
         else { // external content via AJAX
@@ -514,16 +514,16 @@ function popover_callBack() {
     })
     if(urls.length > 1) {
         $('.carousel-indicators, a.carousel-control', popover).show();
-        $('.popover-content', popover).addClass('popover-multi');
+        $('.popover-body', popover).addClass('popover-multi');
     }
     
-    // content provided via data-popover-content and data-popover-title attributes on the anchor element
-    if(undefined != $(this).attr('data-popover-content')) {
+    // content provided via data-popover-body and data-popover-title attributes on the anchor element
+    if(undefined != $(this).attr('data-popover-body')) {
         popover_div = $('div.item:last', popover);
         $('.item-title', popover_div).html($(this).attr('data-popover-title'));
-        $('.item-content', popover_div).html($(this).attr('data-popover-content'));
+        $('.item-content', popover_div).html($(this).attr('data-popover-body'));
         popover_data = popover.data('bs.popover');
-        popover_data.options.content = $('div.popover-content', popover).children();
+        popover_data.config.content = $('div.popover-body', popover).children();
         popover.popover('show');
     }
 };
@@ -757,7 +757,7 @@ function ajaxCall(container,url,callback) {
         
 $.fn.activatePagination = function(container) {
     /*  Two possible locations:  */
-    var activeTab = $('li.resp-tab-active a, ul.nav-tabs li.active a'),
+    var activeTab = $('li.resp-tab-active a, ul.nav-tabs li a.active'),
     /*  with different attributes */
         baseUrl = activeTab.attr('data-target')? activeTab.attr('data-target'): activeTab.attr('data-tab-url'),
         url = baseUrl + $(this).attr('data-url'),
@@ -769,7 +769,7 @@ $.fn.activatePagination = function(container) {
      * and we use it to remove filters from the backlinks AJAX page
      */
     if($('.nav-tabs .active a[data-tab-callback]').length === 1) {
-        callback = window[$('.nav-tabs .active a').attr('data-tab-callback')];
+        callback = window[$('.nav-tabs a.active').attr('data-tab-callback')];
     }    
     
     ajaxCall(container,url,callback);
@@ -840,7 +840,7 @@ function initFacsimile() {
     
     viewer = OpenSeadragon({
         id: "map",
-        prefixUrl: "$resources/lib/openseadragon/build/openseadragon/images/",
+        prefixUrl: "$resources/lib/openseadragon/openseadragon/images/",
         sequenceMode: true,
         showRotationControl: true,
         showReferenceStrip: true,
@@ -1001,4 +1001,3 @@ $('#create-newID').on('click', function() {
         $('#newID-result span').show();
     });
 });
-

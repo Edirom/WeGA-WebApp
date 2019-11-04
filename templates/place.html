@@ -14,10 +14,10 @@
                 <div class="col-sm-10">
                     <ol class="breadcrumb">
                         <li><a href="$link/index">Home</a></li>
-                        <li data-template="app:document-title">Frankfurt am Main</li>
+                        <li><span data-template="app:document-title">Frankfurt am Main</span></li>
                     </ol>
                 </div>
-                <div class="col-sm-2 hidden-xs backLinkInBreadcrumb" onclick="history.back();">
+                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
                     <i class="fa fa-arrow-left"/> <span data-template="lang:translate">back</span> 
                 </div>
             </div>
@@ -30,7 +30,7 @@
                 <div class="col-md-3 col-sm-6">
                     <div class="portrait large">
                         <div class="front">
-                            <img class="img-responsive" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
+                            <img class="img-fluid" src="$resources/img/icons/icon_person_placeholder.png" alt="Placeholder Image" data-template="img:portrait" data-template-size="large"/>
                         </div>
                         <div class="back colored">
                             <h3 data-template="lang:translate">imageSource</h3>
@@ -43,7 +43,7 @@
                     <ol class="media">
                         <li class="media names" data-template="app-shared:each" data-template-from="names" data-template-to="name">
                             <div class="pull-left">
-                                <i class="fa fa-map-marker media-object"/>
+                                <i class="fa fa-map-marker"/>
                             </div>
                             <div class="media-body"> 
                                 <span data-template="app-shared:print" data-template-key="name">Frankfurt am Main</span> 
@@ -51,7 +51,7 @@
                         </li>
                         <li class="media">
                             <div class="pull-left">
-                                <i class="fa fa-globe media-object"/>
+                                <i class="fa fa-globe"/>
                             </div>
                             <div class="media-body"> 
                                 <span>GeoNames ID:</span> <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="geoNames">2661881</a> 
@@ -59,7 +59,7 @@
                         </li>
                         <li class="media">
                             <div class="pull-left">
-                                <i class="fa fa-location-arrow media-object"/>
+                                <i class="fa fa-location-arrow"/>
                             </div>
                             <div class="media-body"> 
                                 <span data-template="app-shared:print" data-template-key="coordinates">223.232 3254.12</span> <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="osm">OpenStreetMap</a>, <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="google">Google</a>
@@ -81,7 +81,7 @@
         <div id="details">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-10 col-xs-12">
+                    <div class="col-md-10 col-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links easyResponsiveTabs">
                                 <li><a data-template="app:person-main-tab" href="#biographies">descriptions</a></li>
@@ -95,38 +95,38 @@
             <div class="colored borderTop none-sm">
                 <div class="container">
                     <div class="row">
-                        <div class="col-xs-12 ">
+                        <div class="col-12 ">
                             <div class="resp-tabs-container colored easyResponsiveTabs">
                                 <!-- Biographie-->
                                 <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
                                     <div class="row">
-                                        <div class="col-md-3 col-md-push-9">
+                                        <div class="col-md-3 order-2 side-col">
                                             <div class="allFilter">
                                                 <h2 data-template="lang:translate">documents</h2>
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs">
-                                                    <li class="gradient-light active">
-                                                        <a data-toggle="tab" href="#geonames">GeoNames</a>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link active" data-toggle="tab" href="#geonames">GeoNames</a>
                                                     </li>
-                                                    <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
                                                     </li>
-                                                    <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gndText" data-template="app:ajax-tab">gnd-entry</a>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#gndText" data-template="app:ajax-tab">gnd-entry</a>
                                                     </li>
-                                                    <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#gnd-beacon" data-template="app:ajax-tab">gnd-beacon</a>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-template="app:ajax-tab">gnd-beacon</a>
                                                     </li>
-                                                    <li class="gradient-light">
-                                                        <a data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
                                                     </li>
-                                                    <li class="gradient-light">
-                                                        <a href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
                                                     </li>
                                                 </ul>
                                             </div>
                                         </div>
-                                        <div class="col-md-9 col-md-pull-3 ">
+                                        <div class="col-md-9 ">
                                             <!-- Tab panes -->
                                             <div class="tab-content">
                                                 <div class="tab-pane active fade in" id="geonames">

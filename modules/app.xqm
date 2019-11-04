@@ -325,7 +325,7 @@ declare
                 }
             else
                 element {name($node)} {
-                    attribute class {'deactivated'}
+                    attribute class {'nav-link deactivated'}
                 }
 };
 
@@ -376,30 +376,25 @@ declare
             }
         }
         let $last-page := ceiling(count($model('search-results')) div config:entries-per-page()) 
-        return (
-            <li>{
-                if($page le 1) then (
-                    attribute {'class'}{'disabled'},
-                    <span>{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</span>
-                )
-                else $a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) 
-            }</li>,
-            if($page gt 3) then <li>{$a-element(1, '1')}</li> else (),
-            if($page gt 4) then <li>{$a-element(2, '2')}</li> else (),
-            if($page gt 5) then <li class="disabled"><span>…</span></li> else (),
-            ($page - 2, $page - 1)[. gt 0] ! <li>{$a-element(., string(.))}</li>,
-            <li class="active"><span>{$page}</span></li>,
-            ($page + 1, $page + 2)[. le $last-page] ! <li>{$a-element(., string(.))}</li>,
-            if($page + 4 lt $last-page) then <li class="disabled"><span>…</span></li> else (),
-            if($page + 3 lt $last-page) then <li>{$a-element($last-page - 1, string($last-page - 1))}</li> else (),
-            if($page + 2 lt $last-page) then <li>{$a-element($last-page, string($last-page))}</li> else (),
-            <li>{
-                if($page ge $last-page) then (
-                    attribute {'class'}{'disabled'},
-                    <span>{lang:get-language-string('paginationNext', $lang) || ' &#x00BB;'}</span>
-                )
-                else $a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')
-            }</li>
+        return
+        (
+            if($page le 1) then
+             <li class="page-item disabled"><a class="page-link">{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</a></li>
+             else <li class="page-item">{$a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) }</li>,
+            if($page gt 3) then <li class="page-item">{$a-element(1, '1')}</li> else (),
+            if($page gt 4) then <li class="page-item">{$a-element(2, '2')}</li> else (),
+            if($page gt 5) then <li class="page-item disabled"><a href="page-link">…</a></li> else (),
+            ($page - 2, $page - 1)[. gt 0] ! <li class="page-item">{$a-element(., string(.))}</li>,
+            <li class="page-item active"><a class="page-link">{$page}</a></li>,
+            ($page + 1, $page + 2)[. le $last-page] ! <li class="page-item">{$a-element(., string(.))}</li>,
+            if($page + 4 lt $last-page) then <li class="page-item disabled"><a class="page-link">…</a></li> else (),
+            if($page + 3 lt $last-page) then <li class="page-item">{$a-element($last-page - 1, string($last-page - 1))}</li> else (),
+            if($page + 2 lt $last-page) then <li class="page-item">{$a-element($last-page, string($last-page))}</li> else (),
+            if($page ge $last-page) then
+                <li class="page-item disabled">{
+                    <a class="page-link">{lang:get-language-string('paginationNext', $lang) || ' &#x00BB;'}</a>
+                }</li>
+            else <li class="page-item">{$a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')}</li>
         )
 };
 
@@ -407,13 +402,14 @@ declare
     %templates:wrap
     function app:set-entries-per-page($node as node(), $model as map(*)) as map() {
 		map {
-			'limit' : config:entries-per-page()
+			'limit' : config:entries-per-page(),
+			'moreresults' := if ( count($model('search-results')) gt config:entries-per-page() ) then 'true' else ()
 		}
 };
 
 declare function app:switch-limit($node as node(), $model as map(*)) as element() {
 	element {name($node)} {
-		if($model?limit = number($node)) then attribute class {'active'} else (),
+		if($model?limit = number($node)) then attribute class {'page-item active'} else attribute class {'page-item'},
 		element a {
 			attribute class {'page-link'},
 			(: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
@@ -488,6 +484,7 @@ declare
                 
                 (: Child element a takes the link :)
                 element a {
+                    attribute class {"nav-link"},
                     attribute href {
                         if($isActive) then '#'
                         else controller:translate-URI(request:get-uri(), $lang, lower-case(normalize-space($node)))
@@ -650,6 +647,7 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
     if(exists($persName/@key)) then 
         if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        else if ($order eq 's') then app:createDocLink(core:doc($persName/string(@key)), substring-before(query:title($persName/@key),','), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
         else app:createDocLink(core:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
     else if(not(functx:all-whitespace($persName))) then 
         if ($order eq 'fs') then <xhtml:span class="noDataFound">{wega-util:print-forename-surname-from-nameLike-element($persName)}</xhtml:span>
@@ -1318,9 +1316,8 @@ declare
     let $textSourcesCount := count(query:text-sources($model?doc))
     return
         map {
-            'textSources' : query:text-sources($model?doc),
-            'textSourcesCountString' : if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else "",
-            'countClass' : if ($textSourcesCount > 1) then "decimal" else "none"
+            'textSources' := query:text-sources($model?doc),
+            'textSourcesCountString' := if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else ""
         }
 };
 
@@ -1329,6 +1326,7 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:print-Source($node as node(), $model as map(*), $key as xs:string) as map()* {
+        let $sourceCount := $model($key)/ancestor::tei:listWit/count(tei:witness)
         let $sourceLink-content :=
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:msIdentifier, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
@@ -1343,16 +1341,17 @@ declare
             typeswitch($model($key))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:*[not(self::tei:msIdentifier)], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 default return ()
-        let $source-id := util:hash(generate-id($model($key)),'md5')
+        let $source-id := concat("source_",util:hash(generate-id($model($key)),'md5'))
         let $collapse := exists($sourceData-content) or exists($model($key)/tei:additional) or exists($model($key)/tei:relatedItem)
         return
             map {
-                'collapse' : $collapse,
-                'sourceLink' : concat("#",$source-id),
-                'sourceId' : $source-id,
-                'sourceLink-content' : $sourceLink-content,
-                'sourceData-content' : $sourceData-content,
-                'sourceCategory' : $sourceCategory
+                'witness' : if ($sourceCount > 1) then concat($model($key)/parent::tei:witness/@n,".") else "",
+                'collapse' := $collapse,
+                'sourceLink' := concat("#",$source-id),
+                'sourceId' := $source-id,
+                'sourceLink-content' := $sourceLink-content,
+                'sourceData-content' := $sourceData-content,
+                'sourceCategory' := $sourceCategory
             }
 };
 
@@ -1502,9 +1501,9 @@ declare
         return (
             app:createDocLink($letter, $normDate, $lang, ()), 
             ": ",
-            lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang),
+            lower-case(lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang)),
             " ",
-            app:printCorrespondentName($partner, $lang, 'sf')
+            app:printCorrespondentName($partner, $lang, 's')
         )
 };
 

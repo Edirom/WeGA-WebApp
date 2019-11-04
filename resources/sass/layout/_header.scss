@@ -1,0 +1,96 @@
+// Navigation
+
+.brand
+{
+    margin-top: 1px;
+    margin-right: 2px;
+    margin-bottom: 0px;
+    vertical-align: text-bottom;
+}
+
+.navbar-light
+{
+    margin-top: 20px;
+    margin-bottom: 0px;
+    border-bottom: 4px solid $gray-lighter;
+}
+
+#navbarCollapse .navbar-nav {
+    margin-bottom: -5px;
+    margin-top: 29px;
+    li > a:after {
+        border-top: 5px solid transparent;
+        content: "";
+        display: block;
+        height: 0;
+        left: 0;
+        width: 100%;
+    }
+    li.active > a:after {
+        border-top: 5px solid $primary;
+        content: "";
+        display: block;
+        height: 0;
+        left: 0;
+        width: 100%;
+    }
+    li a {
+            font-size: $font-size-lg;
+            line-height: 63px;
+            padding-top: 4px;
+    }
+    ul.dropdown-menu {
+        top: 94%;
+        margin:0px;
+        padding: 0px;
+        border: none;
+        li {
+            background-color: $gray-lighter;            
+            border: none;
+            border-left: 4px solid $gray-lighter;
+            box-shadow: 0 2px 2px 0 $gray;
+            &:hover { border-left: 4px solid $primary; }            
+            a {
+                color: rgba(0, 0, 0, 0.6)!important;
+                font-size: smaller!important;
+                font-size: 16px;
+                padding: 5px 20px;
+                line-height: 35px;
+                background-color: #fff;
+                &:hover {
+                    color: rgba(0, 0, 0, 0.8);
+                    background-color: $gray-lighter;
+                    }
+                &:after { border:none; }
+                }
+            }
+        }
+}
+
+.navbar {
+    padding-bottom: 0;
+    .nav-link {
+        padding-bottom: 0;
+    }
+}
+
+.divider
+{
+    margin: 23px;
+    background-color: $gray-light;
+    height:24px;
+    width: 1px;
+}
+
+.header {
+    background: url(../img/header.png) no-repeat center top;
+    border-bottom: 10px solid $primary;
+    color:$gray-dark;
+}
+
+/* hover open for larger screens */
+@include media-breakpoint-up(md) {
+    .nav-item.dropdown:hover>.dropdown-menu {
+      display: block;
+    }
+}
