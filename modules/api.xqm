@@ -147,7 +147,7 @@ declare %private function api:findByID($id as xs:string) as document-node()* {
     if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then core:doc($id)
     else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then core:doc(substring-after($id, 'de/'))
     else if(matches(normalize-space($id), 'https?://d-nb.info/gnd/')) then query:doc-by-gnd(substring-after($id, '/gnd/'))
-    else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then query:doc-by-gnd(wega-util:viaf2gnd(substring-after($id, '/viaf/')))
+    else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then try { query:doc-by-gnd(wega-util:viaf2gnd(substring-after($id, '/viaf/'))) } catch * {()}
     else error($api:UNSUPPORTED_ID_SCHEMA, 'Failed to recognize ID schema for "' || $id || '"')
 };
 
