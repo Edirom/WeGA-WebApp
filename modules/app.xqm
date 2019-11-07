@@ -138,6 +138,7 @@ declare
                     switch($format)
                     case 'WeGA' return $url
                     case 'tei_all' return $url || '?format=tei_all'
+                    case 'mei_all' return $url || '?format=mei_all'
                     case 'tei_simplePrint' return $url || '?format=tei_simplePrint'
                     case 'text' return replace($url, '\.xml', '.txt')
                     case 'dta' return $url || '?format=dta'

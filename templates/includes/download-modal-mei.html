@@ -1,0 +1,43 @@
+<div xmlns="http://www.w3.org/1999/xhtml" class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content" data-template="app-shared:if-not-matches" data-template-key="lang" data-template-value="de">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Download options</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <p>You can download the current document in the following formats:</p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml" data-template="app:download-link" data-template-format="WeGA">WeGA <i class="fa fa-download"/></a></h4>
+                <p>
+                    The WeGA native format as documented in our <a href="$link/project/editorialGuidelines-text.html">Guidelines</a>.
+                </p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=mei_all" data-template="app:download-link" data-template-format="mei_all">MEI all <i class="fa fa-download"/></a></h4>
+                <p> 
+                    The 'standard' MEI version. 
+                    Various WeGA modifications are mapped to appropriate generic elements,
+                    but no information needs to be dropped.
+                </p>
+                <p>More information for developers can be found in our <a href="$link/help/apiDocumentation.html" data-template="lang:translate">apiDocumentation</a></p>
+            </div>
+        </div>
+        <div class="modal-content" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml" data-template="app:download-link" data-template-format="WeGA">WeGA <i class="fa fa-download"/></a></h4>
+                <p>
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="$link/project/editorialGuidelines-text.html">Richtlinien</a> dokumentiert ist.
+                </p>
+                <h4><a href="http://localhost:8080/exist/apps/WeGA-WebApp/A040677.xml?format=mei_all" data-template="app:download-link" data-template-format="mei_all">MEI all <i class="fa fa-download"/></a></h4>
+                <p> 
+                    Die 'Standard' MEI Version. 
+                    Alle WeGA Modifiaktionen werden in generische MEI-Elemente überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
