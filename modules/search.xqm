@@ -135,12 +135,12 @@ declare
  :)
 declare 
     %templates:wrap
-    %templates:default("maxLines", "8")
+    %templates:default("maxLines", "6")
     function search:kwic($node as node(), $model as map(*), $maxLines as xs:string) as element(xhtml:p)* {
         let $max := 
             if($maxLines castable as xs:int) 
             then $maxLines cast as xs:int 
-            else 8
+            else 6
         return
         if(exists($model('result-page-hits-per-entry'))) then 
             let $hits := $model('result-page-hits-per-entry')($model('docID'))
