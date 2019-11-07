@@ -147,8 +147,12 @@ declare
             let $expanded := $hits ! kwic:get-matches(.)
             (: reduce result set and merge different hits from e.g. tei:TEI and tei:body by calling functx:distinct-deep() on the parent nodes of the matches :)
             let $matches := functx:distinct-deep($expanded/parent::*)/exist:match 
-            return
-                subsequence($matches, 1, $max) ! kwic:get-summary(./root(), ., <config width="40"/>)
+            return (
+                (subsequence($matches, 1, $max) ! kwic:get-summary(./root(), ., <config width="40"/>)),
+                if(count($matches) gt $max) 
+                then <xhtml:p>…</xhtml:p>
+                else ()
+            )
         else ()
 };
 
