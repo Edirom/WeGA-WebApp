@@ -235,7 +235,7 @@ declare %private function search:fulltext($items as item()*, $searchString as xs
 (:~
  : Parse the query string and create an XML query element for the lucene search
 ~:)
-declare %private function search:create-lucene-query-element($searchString as xs:string) as element(query) {
+declare function search:create-lucene-query-element($searchString as xs:string) as element(query) {
     let $groups := analyze-string($searchString, '(-?"(.+?)")')/* (: split into fn:match – for expressions in parentheses – and fn:non-match elements :)
     let $queryElement := function($elementName as xs:string, $token as item()) as element() {
         element {$elementName} {
