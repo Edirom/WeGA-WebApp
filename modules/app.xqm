@@ -1718,7 +1718,7 @@ declare
         return
             element {name($node)} {
                 $node/@*[not(name(.) = 'href')],
-                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
+                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang) || (if(map:contains($model, 'query-string-org')) then ('?q=' || $model?query-string-org) else ())}
                 else (),
                 if($title instance of xs:string or $title instance of text() or count($title) gt 1) then $title
                 else $title/node()
