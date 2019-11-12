@@ -17,6 +17,8 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
+import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $search:ERROR := QName("http://xquery.weber-gesamtausgabe.de/modules/search", "Error");
@@ -458,4 +460,22 @@ declare %private function search:search-session($model as map(), $callback as fu
         if($session-exists)
         then session:get-attribute('wegasearch')
         else $callback($updatedModel)
+};
+
+declare 
+    %templates:wrap
+    function search:get-session-for-singleview($node as node(), $model as map(*)) as map()? {
+        let $wegasearch := session:get-attribute('wegasearch')
+        let $index-of-current-doc := functx:index-of-node($wegasearch?search-results?doc, $model?doc)
+        let $url := controller:resolve-link('$link/search', $model) || '?q=' || $wegasearch?query-string-org || '&amp;d=' || string-join($wegasearch?query-docTypes, '&amp;d=')
+        let $search-prev-item-url := app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc - 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org 
+        let $search-next-item-url := app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc + 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org
+        return
+            map:merge((
+                $wegasearch, 
+                map:entry('index-of-current-doc', $index-of-current-doc),
+                map:entry('search-backlink', $url),
+                map:entry('search-prev-item-url', $search-prev-item-url),
+                map:entry('search-next-item-url', $search-next-item-url)
+            ))
 };
