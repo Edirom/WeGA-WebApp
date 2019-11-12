@@ -67,7 +67,7 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
     let $lease := function($dateTimeOfCache) as xs:boolean {
         config:eXistDbWasUpdatedAfterwards($dateTimeOfCache) and $useCache
     }
-    let $onFailure := function($errCode as item(), $errDesc as item()) {
+    let $onFailure := function($errCode as item(), $errDesc as item()?) {
         core:logToFile('error', concat($errCode, ': ', $errDesc))
     }
     let $callBack := function() {
