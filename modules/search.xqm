@@ -46,7 +46,7 @@ declare
         return
             switch($docType)
             (: search page :)
-            case 'search' return search:search(map:merge(($model, $filters, map:entry('docID', 'indices'))))
+            case 'search' return search:search-session(map:merge(($model, $filters, map:entry('docID', 'indices'))), search:search#1)
             (: controller sends docType=persons which needs to be turned into "personsPlus" here :)
             case 'persons' return search:list(map:merge(($filters, map:put($model, 'docType', 'personsPlus'))))
             (: various list views :)
@@ -160,7 +160,7 @@ declare
  : Search results and other goodies for the *search* page 
 ~:)
 declare %private function search:search($model as map(*)) as map(*) {
-    let $updatedModel := search:prepare-search-string($model)
+    let $updatedModel := $model
     let $docTypes := 
         if($updatedModel?query-docTypes = 'all') then ($search:wega-docTypes, 'var', 'addenda') (: silently add 'var' (= special pages, e.g. "Impressum/About" or "Sonderband/Special Volume") to the list of docTypes :)
         else $search:wega-docTypes[.=$updatedModel?query-docTypes]
@@ -176,6 +176,10 @@ declare %private function search:search($model as map(*)) as map(*) {
     let $fulltext-search :=
         if($updatedModel('query-string')) then search:merge-hits($docTypes ! search:fulltext($filtered-results, $updatedModel('query-string'), $updatedModel?filters, .))
         else $filtered-results 
+    let $store-session := 
+        if(count($fulltext-search) gt 0) 
+        then session:set-attribute('wegasearch', map:merge(($updatedModel, map:entry('search-results', $fulltext-search))))
+        else ()
     return
         map:merge(($updatedModel, map:entry('search-results', $fulltext-search)))
 };  
@@ -431,4 +435,27 @@ declare %private function search:prepare-search-string($model as map()) as map(*
                 'query-string-org' : $query-string-org
             }
         ))
+};
+
+(:~
+ : Cache search results in browser session
+ : 
+ : @param $model the current model map of the templating module
+ : @param $callback a callback function to actually do the search if the session is empty
+ : @return a map object {'filters': {}, 'search-results': {}, 'query-string-org': '', 'query-docTypes': ('') }
+~:)
+declare %private function search:search-session($model as map(), $callback as function() as map(*)) as map(*) {
+    let $updatedModel := search:prepare-search-string($model)
+    let $session-exists :=
+        try { 
+            count(session:get-attribute('wegasearch')?search-results) gt 0
+            and session:get-attribute('wegasearch')?query-string-org = $updatedModel?query-string-org
+            and functx:sequence-deep-equal(session:get-attribute('wegasearch')?filters?*, $updatedModel?filters?*)
+            and functx:sequence-deep-equal(session:get-attribute('wegasearch')?query-docTypes, $updatedModel?query-docTypes)
+        }
+        catch * {false()}
+    return 
+        if($session-exists)
+        then session:get-attribute('wegasearch')
+        else $callback($updatedModel)
 };
