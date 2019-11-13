@@ -467,9 +467,14 @@ declare
     function search:get-session-for-singleview($node as node(), $model as map(*)) as map()? {
         let $wegasearch := session:get-attribute('wegasearch')
         let $index-of-current-doc := functx:index-of-node($wegasearch?search-results?doc, $model?doc)
-        let $url := controller:resolve-link('$link/search', $model) || '?q=' || $wegasearch?query-string-org || '&amp;d=' || string-join($wegasearch?query-docTypes, '&amp;d=')
-        let $search-prev-item-url := app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc - 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org 
-        let $search-next-item-url := app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc + 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org
+        let $page := ceiling($index-of-current-doc div config:entries-per-page())
+        let $url := controller:resolve-link('$link/search', $model) || '?q=' || $wegasearch?query-string-org || '&amp;d=' || string-join($wegasearch?query-docTypes, '&amp;d=') || '&amp;page=' || $page
+        let $search-prev-item-url := 
+            if($index-of-current-doc gt 1) then app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc - 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org
+            else '#'
+        let $search-next-item-url := 
+            if($index-of-current-doc lt count($wegasearch?search-results)) then app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc + 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org
+            else '#'
         return
             map:merge((
                 $wegasearch, 
