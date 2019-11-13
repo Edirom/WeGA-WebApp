@@ -10,17 +10,32 @@
     </div>
     <div class="colored borderBottom">
         <div class="container">
-            <div class="row">
-                <div class="col-sm-10">
-                    <ol class="breadcrumb">
-                        <li><a href="$link/index">Home</a></li>
-                        <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
-                        <li><a data-template="app:breadcrumb-docType">Werke</a></li>
-                        <li><span data-template="app-shared:print" data-template-key="docID">A020040</span> <span data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><span data-template="app:status" class="docStatus">in Bearbeitung</span></span></li>
-                    </ol>
+            <div data-template="templates:if-parameter-unset" data-template-param="q">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <ol class="breadcrumb">
+                            <li><a href="$link/index">Home</a></li>
+                            <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
+                            <li><a data-template="app:breadcrumb-docType">Werke</a></li>
+                            <li><span data-template="app-shared:print" data-template-key="docID">A020040</span> <span data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no"><span data-template="app:status" class="docStatus">in Bearbeitung</span></span></li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
+                        <i class="fa fa-arrow-left"/> <span data-template="lang:translate">back</span> 
+                    </div>
                 </div>
-                <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
-                    <i class="fa fa-arrow-left"/> <span data-template="lang:translate">back</span> 
+            </div>
+            <div data-template="templates:if-parameter-set" data-template-param="q">
+                <div class="row" data-template="search:get-session-for-singleview">
+                    <div class="col-md-4">
+                        <a href="$link/search" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="search-prev-item-url"><i class="fa fa-arrow-left"/> Zurück in der Trefferliste</a>
+                    </div>
+                    <div class="col-md-4">
+                        <span data-template="app-shared:print" data-template-key="index-of-current-doc">15</span> / <a href="$link/search" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="search-backlink"><span data-template="search:results-count">124 Suchergebnisse</span></a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="$link/search" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="search-next-item-url">Vor in der Trefferliste <i class="fa fa-arrow-right"/></a>
+                    </div>
                 </div>
             </div>
         </div>
