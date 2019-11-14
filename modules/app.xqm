@@ -49,7 +49,7 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
  : @return xs:string
 :)
 declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:string) as xs:string? {
-    let $path :=  controller:path-to-resource($doc, $lang)
+    let $path :=  controller:path-to-resource($doc, $lang)[1]
     return
         if($doc and $path) then core:link-to-current-app($path || '.html')
         else ()
@@ -181,10 +181,9 @@ declare function app:set-line-wrap($node as node(), $model as map(*)) as element
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        let $authorElem := query:get-author-element($model?doc)[1]
+        let $authorElem := query:get-author-element($model?doc)[(@key, @dbkey) = tokenize($model?('exist:path'), '/')]
         let $authorID := 
             if(config:is-person($model('docID'))) then $model('docID')
-            else if($model?docType='diaries') then 'A002068'
             else $authorElem/(@key, @dbkey)
         let $href :=
             if ($authorID = config:get-option('anonymusID')) then ()
@@ -205,11 +204,10 @@ declare
 declare
     %templates:default("lang", "en")
     function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        let $authorID := query:get-authorID($model('doc'))
-        let $href := core:link-to-current-app(functx:substring-before-last(controller:path-to-resource($model('doc'), $lang), '/'))
+        let $href := core:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
         let $display-name := replace(functx:substring-after-last($href, '/'), '_', ' ')
         let $elem := 
-            if($href and not($authorID = config:get-option('anonymusID'))) then QName('http://www.w3.org/1999/xhtml', 'a')
+            if($href and not(contains($href, config:get-option('anonymusID')))) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
         return
             element {$elem} {
@@ -251,7 +249,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element() {
-        let $pathTokens := tokenize(request:get-attribute('$exist:path'), '/')
+        let $pathTokens := tokenize($model?('$exist:path'), '/')
         return 
             element {node-name($node)} {
                 $node/@*,
@@ -314,7 +312,7 @@ declare
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
         let $ajax-url :=
-        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang) || '/' || $ajax-resource)
+        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang)[1] || '/' || $ajax-resource)
         	else if(gl:spec($model?specID, $model?schemaID) and $ajax-resource) then core:link-to-current-app(replace($model('exist:path'), '\.[xhtml]+$', '') || '/' || $ajax-resource)
         	else ()
         return
@@ -1532,7 +1530,7 @@ declare
     %templates:default("lang", "en")
     function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
         let $doc := $model('doc')
-        let $correspondent-1-key := query:get-authorID($doc)       
+        let $correspondent-1-key := query:get-authorID($doc)[1]
         let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
         let $correspondent-2-key := ($doc//tei:correspAction[@type = 'received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])[1]
         let $correspondent-2-gnd := query:get-gnd($correspondent-2-key)
@@ -1575,15 +1573,15 @@ declare
  : @return element html:p
  :)
 declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(p)? {
-    let $authorID := query:get-authorID($doc)
+    let $authorElem := query:get-author-element($doc)
     let $dateFormat := 
         if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
                           else '[FNn], [MNn] [D], [Y]'
     return 
-        if($authorID) then 
+        if(count($authorElem) gt 0) then 
             element p {
                 attribute class {'authorDate'},
-                app:printCorrespondentName(query:get-author-element($doc), $lang, 'fs'),
+                app:printCorrespondentName($authorElem, $lang, 'fs'),
                 concat(', ', date:format-date(xs:date($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)), $dateFormat, $lang))
             }
         else()

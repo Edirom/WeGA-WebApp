@@ -43,13 +43,13 @@ declare function query:title($key as xs:string) as xs:string {
  : @param $item the id of the TEI document (or the document node itself) to grab the author from
  : @return xs:string the WeGA ID
 :)
-declare function query:get-authorID($doc as document-node()?) as xs:string {
-    let $author-element := query:get-author-element($doc)[1]
+declare function query:get-authorID($doc as document-node()?) as xs:string* {
+    let $author-element := query:get-author-element($doc)
     let $id := $author-element/@key | $author-element/@dbkey
     return
-        if(exists($doc) and $id) then string($id)
+        if(exists($doc) and count($id) gt 0) then $id ! string(.)
         else if(exists($doc)) then config:get-option('anonymusID')
-        else ''
+        else ()
 };
 
 (:~
