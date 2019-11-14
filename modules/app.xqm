@@ -181,14 +181,14 @@ declare function app:set-line-wrap($node as node(), $model as map(*)) as element
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        let $authorElem := query:get-author-element($model?doc)[(@key, @dbkey) = tokenize($model?('exist:path'), '/')]
-        let $authorID := 
-            if(config:is-person($model('docID'))) then $model('docID')
-            else $authorElem/(@key, @dbkey)
+        let $authorID := tokenize($model?('exist:path'), '/')[3]
+        let $anonymusID := config:get-option('anonymusID')
+        let $authorElem :=
+            if ($authorID = $anonymusID) then query:get-author-element($model?doc)[count((@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)]
+            else query:get-author-element($model?doc)[(@key, @dbkey) = $authorID]
         let $href :=
-            if ($authorID = config:get-option('anonymusID')) then ()
-            else if($authorID) then app:createUrlForDoc(core:doc($authorID), $lang)
-            else ()
+            if ($authorID = $anonymusID) then ()
+            else app:createUrlForDoc(core:doc($authorID), $lang)
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
