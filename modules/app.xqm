@@ -1530,7 +1530,7 @@ declare
     %templates:default("lang", "en")
     function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
         let $doc := $model('doc')
-        let $correspondent-1-key := query:get-authorID($doc)[1]
+        let $correspondent-1-key := tokenize($model?('exist:path'), '/')[3]
         let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
         let $correspondent-2-key := ($doc//tei:correspAction[@type = 'received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])[1]
         let $correspondent-2-gnd := query:get-gnd($correspondent-2-key)
