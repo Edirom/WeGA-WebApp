@@ -1704,7 +1704,7 @@ declare
         return 
             for $docType in $search:wega-docTypes
             let $class := 
-                if($docType = $selected-docTypes) then normalize-space($node/@class) || ' active'
+                if($docType = $selected-docTypes or empty($selected-docTypes)) then normalize-space($node/@class) || ' active'
                 else normalize-space($node/@class)
             let $displayTitle := lang:get-language-string($docType, $lang)
             order by $displayTitle
