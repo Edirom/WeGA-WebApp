@@ -1718,7 +1718,7 @@ declare
                         if($docType = $selected-docTypes) then attribute checked {'checked'}
                         else ()
                     },
-                    $displayTitle
+                    <span>{$displayTitle}</span>
                 }
 };
 
