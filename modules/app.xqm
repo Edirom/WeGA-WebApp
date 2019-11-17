@@ -259,34 +259,6 @@ declare
             }
 };
 
-
-declare
-    %templates:default("lang", "en")
-    function app:breadcrumb-var2($node as node(), $model as map(*), $lang as xs:string) as element() {
-        let $docID := $model('docID')
-        let $breadcrumb :=
-            for $document in $docID
-            return switch ($document)
-            case "A070001"      return "editorialGuidelines-text"
-            case "A070002"      return "about"
-            case "A070003"      return "bio"
-            case "A070004"      return "faq"
-            case "A070006"      return "projectDescription"
-            case "A070009"      return "contact"
-            case "A070010"      return "editorialGuidelines-music"
-            case "A070011"      return "volContents"
-            case "A070012"      return "apiDocumentation"
-            case "A070013"      return "credits"
-            case "A070090"      return "specialVolume"
-            default             return $docID
-        return
-            element {node-name($node)} {
-                $node/@*,
-                if (matches($breadcrumb,'[a-z]')) then lang:get-language-string($breadcrumb,$lang) else $breadcrumb
-            }
-};
-
-
 declare 
     %templates:wrap
     %templates:default("lang", "en")
