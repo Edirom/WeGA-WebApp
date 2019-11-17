@@ -670,6 +670,19 @@ function updatePage(params) {
     }
 }
 
+/* manage search filter checkboxes */
+// Check All
+$('.checkall').on('click', function() {
+   $(this).parents(".filterHead").next(".btn-group").find(":checkbox").attr("checked", true);
+   $(this).parents(".filterHead").next(".btn-group").find(":checkbox").parent("label").addClass("active");
+});
+// Uncheck All
+$('.uncheckall').on('click', function() {
+    $(this).parents(".filterHead").next(".btn-group").find(":checkbox").attr("checked", false);
+    $(this).parents(".filterHead").next(".btn-group").find(":checkbox").parent("label").removeClass("active");
+});
+
+
 /* activate tooltips for jubilees on start page 
  * as well as for Julian dates on person pages
  */
