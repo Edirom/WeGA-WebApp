@@ -28,9 +28,9 @@
         <div class="row paddingBottomIcon paddingTopIcon">
             <form role="form" class="searchfilter">
             <div class="col-md-3 order-2 side-col">
-                <div class="allFilter">
+                <div class="allFilter">  
                     <h2>Filter</h2>
-                    <div class="searchDocTypeFilter">
+                    <div class="filterGroup searchDocTypeFilter">
                         <div class="filterHead">
                             <h3 data-template="lang:translate">docType</h3>
                             <div>
@@ -38,8 +38,8 @@
                                 <a href="#" class="checkall"><span data-template="lang:translate">all</span></a>
                             </div>
                         </div>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn gradient-light" data-template="app:search-filter">
+                        <div class="btn-group" data-toggle="buttons">                            
+                            <label class="btn btn-checkbox" data-template="app:search-filter">
                                 <input type="checkbox" name="d" value="persons"/> persons
                             </label>
                         </div>
@@ -56,12 +56,14 @@
                 <div class="row">
                     
                     <div class="col-md-9 searchform">
+                        
                             <div class="input-group">
                                 <input type="text" class="query-input form-control" name="q" id="query-input" data-template="app:search-input"/>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
                                 </span>
                             </div>
+                        
                     </div>
                     
                     <!--<div class="col-md-3">

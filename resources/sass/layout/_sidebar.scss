@@ -2,17 +2,18 @@
 
 form.searchfilter {
     display: flex;
+    width: 100%;
 }
 
-.searchDocTypeFilter .btn, .filtersection .btn {
-    padding-left: 40px;
+.searchDocTypeFilter label, .filtersection .btn {
+    padding-left: 30px;
     &:before {
         content: "\f096\00a0";
         font-family: "FontAwesome";
         vertical-align: text-top;
         margin-right:11px;
         position: absolute;
-        left:20px;
+        left:10px;
     }
     span {
         vertical-align: text-top;
@@ -20,7 +21,7 @@ form.searchfilter {
     
 }
 
-.searchDocTypeFilter .btn.active:before, .filtersection .btn.active:before {
+.searchDocTypeFilter label.active:before, .filtersection .btn.active:before {
         content: "\f14a\00a0";
         color: $primary;
         margin-right:10px;
@@ -88,7 +89,7 @@ form.searchfilter {
         width: 100%!important;
     }
     
-    label.btn {
+    label {
         overflow:hidden;
         text-overflow:ellipsis;
     }
@@ -292,6 +293,11 @@ form.searchfilter {
 }
 
 // Single Collapse Elements in Sidebar
+.filtersection .panel-collapse {
+    background: $gray-lighter;
+    padding: 4px;
+}
+
 .panel-collapse.collapse
 {
      margin-bottom: 30px;

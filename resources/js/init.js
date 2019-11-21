@@ -671,15 +671,27 @@ function updatePage(params) {
 }
 
 /* manage search filter checkboxes */
-// Check All
+function checkAll(that) {
+   $(that).parents(".filterGroup").find(".btn-group :checkbox").attr("checked", true);
+   $(that).parents(".filterGroup").find(".btn-group :checkbox").parent("label").addClass("active");
+}
+function uncheckAll(that) {
+    $(that).parents(".filterGroup").find(".btn-group :checkbox").attr("checked", false);
+    $(that).parents(".filterGroup").find(".btn-group :checkbox").parent("label").removeClass("active");
+}
+
 $('.checkall').on('click', function() {
-   $(this).parents(".filterHead").next(".btn-group").find(":checkbox").attr("checked", true);
-   $(this).parents(".filterHead").next(".btn-group").find(":checkbox").parent("label").addClass("active");
+    checkAll(this);
 });
-// Uncheck All
+
 $('.uncheckall').on('click', function() {
-    $(this).parents(".filterHead").next(".btn-group").find(":checkbox").attr("checked", false);
-    $(this).parents(".filterHead").next(".btn-group").find(":checkbox").parent("label").removeClass("active");
+    uncheckAll(this);
+});
+
+$('a.checkbox-only').on('click', function() {
+    uncheckAll(this);
+    $(this).prev(":checkbox").attr("checked", true);
+    $(this).prev(":checkbox").parent("label").addClass("active");
 });
 
 
