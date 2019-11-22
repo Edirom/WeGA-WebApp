@@ -28,6 +28,7 @@ import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at 
 import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 import module namespace functx="http://www.functx.com";
+import module namespace kwic="http://exist-db.org/xquery/kwic";
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace app-shared="http://xquery.weber-gesamtausgabe.de/modules/app-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/app-shared.xqm";
@@ -899,7 +900,8 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)* {
-        let $bio := wega-util:transform($model('doc')//(tei:note[@type='bioSummary'] | tei:event[tei:head] | tei:note[parent::tei:org]), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
+        let $query-result:= app:inject-query($model?doc/*)
+        let $bio := wega-util:transform($query-result//(tei:note[@type='bioSummary'] | tei:event[tei:head] | tei:note[parent::tei:org]), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
         return
             if(some $i in $bio satisfies $i instance of element()) then $bio
             else 
@@ -1251,11 +1253,11 @@ declare
             default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
         let $textRoot :=
             switch($docType)
-            case 'diaries' return $doc/tei:ab
-            case 'works' return $doc/mei:mei
-            case 'var' case 'addenda' return $doc//tei:text/tei:body/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
-            case 'thematicCommentaries' return $doc//tei:text/(tei:body | tei:back)
-            default return $doc//tei:text/tei:body
+            case 'diaries' return $doc/tei:ab ! app:inject-query(.)
+            case 'works' return $doc/mei:mei ! app:inject-query(.)
+            case 'var' case 'addenda' return ($doc//tei:text/tei:body ! app:inject-query(.))/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
+            case 'thematicCommentaries' return $doc//tei:text/tei:body ! app:inject-query(.) | $doc//tei:text/tei:back
+            default return $doc//tei:text/tei:body ! app:inject-query(.)
         let $body := 
              if(functx:all-whitespace(<root>{$textRoot}</root>))
              then 
@@ -1287,6 +1289,27 @@ declare
                 'transcription' : (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
                 'apparatus' : $body/descendant-or-self::*[@class='apparatus']
             }
+};
+
+(:~
+ : Search and highlight query strings in a document
+ : Helper function for app:prepare-text()
+ :
+ : @param $input must be node() that is indexed by Lucene
+ : @return if a hit was found in $input, an expanded copy of the $input with exist:match elements wrapping the hits. 
+ :      If no hit was found, the initial $input is returned
+ :)
+declare %private function app:inject-query($input as node()) {
+    let $q := request:get-parameter('q', '')
+    return 
+        if($q) then
+            let $sanitized-query-string := wega-util:strip-diacritics(str:normalize-space(str:sanitize(string-join($q, ' '))))
+            let $query := search:create-lucene-query-element($sanitized-query-string)
+            let $result := ft:query($input, $query) 
+            return
+                if($result) then $result ! kwic:expand(.)
+                else $input
+        else $input
 };
 
 declare 
@@ -1695,7 +1718,7 @@ declare
         return
             element {name($node)} {
                 $node/@*[not(name(.) = 'href')],
-                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
+                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang) || (if(map:contains($model, 'query-string-org')) then ('?q=' || $model?query-string-org) else ())}
                 else (),
                 if($title instance of xs:string or $title instance of text() or count($title) gt 1) then $title
                 else $title/node()

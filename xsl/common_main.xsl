@@ -8,7 +8,9 @@
     xmlns:functx="http://www.functx.com" 
     xmlns:xs="http://www.w3.org/2001/XMLSchema" 
     xmlns:teix="http://www.tei-c.org/ns/Examples" 
-    xmlns:mei="http://www.music-encoding.org/ns/mei" version="2.0">
+    xmlns:mei="http://www.music-encoding.org/ns/mei"
+    xmlns:exist="http://exist.sourceforge.net/NS/exist" 
+    version="2.0">
     
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
 
@@ -823,6 +825,17 @@
         <xsl:attribute name="colspan">
             <xsl:value-of select="."/>
         </xsl:attribute>
+    </xsl:template>
+    
+    <!--  *********************************************  -->
+    <!--  * Templates for highlighting search resutls *  -->
+    <!--  *********************************************  -->
+    
+    <xsl:template match="exist:match">
+        <xsl:element name="span">
+            <xsl:attribute name="class">hi</xsl:attribute>
+            <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
     
 </xsl:stylesheet>
