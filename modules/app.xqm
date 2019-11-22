@@ -6,7 +6,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
-declare namespace gndo="http://d-nb.info/standards/elementset/gnd#";
+declare namespace gndo="https://d-nb.info/standards/elementset/gnd#";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace gn="http://www.geonames.org/ontology#";
@@ -1536,7 +1536,7 @@ declare
         let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
         let $correspondent-2-key := ($doc//tei:correspAction[@type = 'received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])[1]
         let $correspondent-2-gnd := query:get-gnd($correspondent-2-key)
-        let $gnd-uri := config:get-option("dnb") (: 'http://d-nb.info/gnd/' :)        
+        let $gnd-uri := config:get-option("dnb") (: 'https://d-nb.info/gnd/' :)        
         (: Element-Parameter :)
         let $data-correspondent-1-id := if ($correspondent-1-gnd) then concat($gnd-uri,$correspondent-1-gnd) else ""
         let $data-correspondent-1-name :=

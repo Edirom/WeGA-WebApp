@@ -47,7 +47,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
         switch($resource)
         case 'wikipediaVIAF' return (er:grab-external-resource-wikidata($gnd, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'wikipedia' return (er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
-        case 'dnb' return concat('http://d-nb.info/gnd/', $gnd, '/about/rdf')
+        case 'dnb' return concat('https://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf') (: $gnd is actually the geonames ID :)
         case 'dbpedia' return concat('http://www.wikidata.org/entity/', $gnd, '.rdf') (: $gnd is actually the dbpedia(wikidata?) ID :)
@@ -126,14 +126,14 @@ declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as x
  :  Make a request to linked data resources
  :  This is in fact a wrapper function around the expath `http:send-request` method, see http://expath.org/modules/http-client/
  : 
- :  @param $elem an element (e.g. `<gndo:formOfWorkAndExpression rdf:resource="http://d-nb.info/gnd/4043582-9"/>`) bearing 
+ :  @param $elem an element (e.g. `<gndo:formOfWorkAndExpression rdf:resource="https://d-nb.info/gnd/4043582-9"/>`) bearing 
  :      an `@rdf:resource` attribute which indicates the resource to fetch
  :  @return an er:response element if successful, the empty sequence otherwise. For a description of the `er:response` element
  :      see http://expath.org/modules/http-client/
 ~:)
 declare function er:resolve-rdf-resource($elem as element()) as element(er:response)? {
     let $uri := 
-        if(starts-with($elem/@rdf:resource, 'http://d-nb.info/gnd')) then ($elem/@rdf:resource || '/about/lds.rdf')
+        if(starts-with($elem/@rdf:resource, 'https://d-nb.info/gnd')) then ($elem/@rdf:resource || '/about/lds.rdf')
         else if(starts-with($elem/@rdf:resource, 'http://dbpedia.org/resource/')) then (replace($elem/@rdf:resource, 'resource', 'data') || '.rdf')
         else ()
     let $filename := util:hash($uri, 'md5') || '.xml'
