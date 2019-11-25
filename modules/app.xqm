@@ -68,11 +68,11 @@ declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:strin
  : @param $context the current (author) context, e.g. 'A002068'
  : @return xs:string
 :)
-declare function app:createUrlForDocInContext($doc as document-node()?, $lang as xs:string, $context as xs:string) as xs:string? {
+declare function app:createUrlForDocInContext($doc as document-node()?, $lang as xs:string, $contextID as xs:string) as xs:string? {
     let $path := controller:path-to-resource($doc, $lang)
     return
-        if($doc and $path[contains(., $context)]) then core:link-to-current-app($path[contains(., $context)] || '.html')
-        else if($doc and $path) then core:link-to-current-app($path || '.html')
+        if($doc and count($path[contains(., $contextID)]) = 1) then core:link-to-current-app($path[contains(., $contextID)] || '.html')
+        else if($doc and count($path) gt 0) then core:link-to-current-app($path[1] || '.html')
         else ()
 };
 
