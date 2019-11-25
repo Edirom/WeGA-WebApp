@@ -368,10 +368,18 @@ declare function query:contributors($doc as document-node()?) as xs:string* {
 
 (:~
  : Query the letter context, i.e. preceding and following letters
+ :
+ : @param $doc the TEI document with correspondence information provided in tei:correspDesc
+ : @param $senderID optional sender ID for co-authorship letters. If none is provided, the first sender in $doc will be taken.
+ : @return a map object with objects representing 'context-letter-absolute-prev', 'context-letter-absolute-next',
+ :      'context-letter-korrespondenzstelle-prev', and 'context-letter-korrespondenzstelle-next', e.g.  { 'context-letter-absolute-prev': { 'fromTo': 'to', 'doc': document-node() } } 
 ~:)
-declare function query:correspContext($doc as document-node()) as map(*)? {
+declare function query:correspContext($doc as document-node(), $senderID as xs:string?) as map(*)? {
     let $docID := $doc/tei:TEI/data(@xml:id)
-    let $authorID := $doc//tei:fileDesc/tei:titleStmt/tei:author[1]/@key (:$doc//tei:sender/tei:persName[1]/@key:)
+    let $authorID := 
+        if($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$senderID])
+        then $senderID
+        else ($doc//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
     let $addresseeID := ($doc//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]/@key
     let $authorColl := 
         if($authorID) then core:getOrCreateColl('letters', $authorID, true())

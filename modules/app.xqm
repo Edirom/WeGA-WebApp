@@ -56,6 +56,26 @@ declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:strin
 };
 
 (:~
+ : Creates link to doc
+ : This 3-arity function version will honour the current (author) context by returning
+ : a link depending on the author ID. If the provided context does not match the requested 
+ : document, the canonical link will be returned.
+ :
+ : @author Peter Stadler
+ : @param $doc document node
+ : @param $lang the current language (de|en)
+ : @param $context the current (author) context, e.g. 'A002068'
+ : @return xs:string
+:)
+declare function app:createUrlForDocInContext($doc as document-node()?, $lang as xs:string, $context as xs:string) as xs:string? {
+    let $path := controller:path-to-resource($doc, $lang)
+    return
+        if($doc and $path[contains(., $context)]) then core:link-to-current-app($path[contains(., $context)] || '.html')
+        else if($doc and $path) then core:link-to-current-app($path || '.html')
+        else ()
+};
+
+(:~
  : Creates an xhtml:a link to a WeGA document
  :
  : @author Peter Stadler
@@ -1474,11 +1494,13 @@ declare
 declare 
     %templates:wrap
     function app:context($node as node(), $model as map(*)) as map(*)? {
+        let $senderID := tokenize($model?('exist:path'), '/')[3]
         let $context := 
             switch($model?docType)
             case 'letters' return map:merge((
                 query:context-relatedItems($model?doc), 
-                query:correspContext($model?doc)
+                query:correspContext($model?doc, $senderID),
+                map:entry('senderID', $senderID)
             ))
             default return query:context-relatedItems($model?doc)
         return
@@ -1498,7 +1520,10 @@ declare
             default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
         let $normDate := query:get-normalized-date($letter)
         return (
-            app:createDocLink($letter, $normDate, $lang, ()), 
+            element a {
+                attribute href {app:createUrlForDocInContext($letter, $lang, $model?senderID)},
+                $normDate
+            },
             ": ",
             lower-case(lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang)),
             " ",
@@ -1668,7 +1693,9 @@ declare
         map {
             'doc' : $model('result-page-entry'),
             'docID' : $model('result-page-entry')/root()/*/data(@xml:id),
-            'docURL' : app:createUrlForDoc($model('result-page-entry'), $lang),
+            'docURL' : 
+                if(config:is-person($model?parent-docID)) then app:createUrlForDocInContext($model?result-page-entry, $lang, $model?parent-docID)
+                else app:createUrlForDoc($model('result-page-entry'), $lang),
             'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
@@ -1693,7 +1720,7 @@ declare
         return
             element {name($node)} {
                 $node/@*[not(name(.) = 'href')],
-                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
+                if($node[self::xhtml:a]) then attribute href {$model?docURL}
                 else (),
                 if($title instance of xs:string or $title instance of text() or count($title) gt 1) then $title
                 else $title/node()
