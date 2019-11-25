@@ -205,7 +205,7 @@ declare
         let $authorID := tokenize($model?('exist:path'), '/')[3]
         let $anonymusID := config:get-option('anonymusID')
         let $authorElem :=
-            if ($authorID = $anonymusID) then query:get-author-element($model?doc)[count((@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)]
+            if ($authorID = $anonymusID) then query:get-author-element($model?doc)[(count(@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)]
             else query:get-author-element($model?doc)[(@key, @dbkey) = $authorID]
         let $href :=
             if ($authorID = $anonymusID) then ()
