@@ -1514,6 +1514,11 @@ declare
 };
 
 
+(:~
+ : Add context information to the current model map
+ : NB: If no context information is found, an empty sequence will be returned
+ : effectively removing the HTML subtree under $node from the output.
+ :)
 declare 
     %templates:wrap
     function app:context($node as node(), $model as map(*)) as map(*)? {
@@ -1522,12 +1527,12 @@ declare
             switch($model?docType)
             case 'letters' return map:merge((
                 query:context-relatedItems($model?doc), 
-                query:correspContext($model?doc, $senderID),
-                map:entry('senderID', $senderID)
+                query:correspContext($model?doc, $senderID)
             ))
             default return query:context-relatedItems($model?doc)
         return
-            if(wega-util-shared:has-content($context)) then $context
+            if(wega-util-shared:has-content($context)) 
+            then map:merge(($context, map:entry('senderID', $senderID)))
             else ()
 };
 
