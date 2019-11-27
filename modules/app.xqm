@@ -259,6 +259,18 @@ declare
             }
 };
 
+declare
+    %templates:default("lang", "en")
+    function app:breadcrumb-var2($node as node(), $model as map(*), $lang as xs:string) as element() {
+        let $docID := $model('docID')
+        let $breadcrumb := $controller:projectNav[?docID=$docID]?title
+        return
+            element {node-name($node)} {
+                $node/@*,
+                lang:get-language-string($breadcrumb,$lang)
+            }
+};
+
 declare 
     %templates:wrap
     %templates:default("lang", "en")
