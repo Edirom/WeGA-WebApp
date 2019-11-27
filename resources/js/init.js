@@ -836,6 +836,7 @@ function initFacsimile() {
     var viewer,
         tileSources = [],
         imageAttributions = [],
+        promises = [],
         manifestUrls = $('#map').attr('data-url').split(/\s+/);
     
     viewer = OpenSeadragon({
@@ -849,21 +850,39 @@ function initFacsimile() {
         viewportMargins: {top: 30, left: 20, right: 20, bottom: 10}
     });
     
-    $(manifestUrls).each(function(i,url) {
-        // Grab an IIIF manifest
-        $.getJSON(url, function(data) {
-            // Grab the attribution property from the IIIF manifest
-            manifestAttribution = data.attribution;
-            
+    /* add the JSON responses to the tile sources */
+    const addToTileSources = function(responses) {
+        $(responses).each(function(i, data) {
+            var manifestAttribution = data.attribution;
+            /* console.log(manifestAttribution); */
+        
             $(data.sequences[0].canvases).each(function(_, val) {
                 tileSources.push(val.images[0].resource.service['@id'] + '/info.json'),
                 imageAttributions.push(manifestAttribution);
             })
-            // open viewer with the new tile sources
+            /*  open viewer with the new tile sources  */
             viewer.open(tileSources, 0)
-            //console.log('added tiles to viewer')
-        });
+        })
+    }
+    
+    /* create a promise for every manifest URL */
+    $(manifestUrls).each(function(i,url) {
+        promises.push(
+            new Promise(
+                function(resolve, reject) {
+                    /*  Grab the IIIF manifest */
+                    $.getJSON(url, function(data) {
+                        resolve(data)
+                    })
+            })
+        )
     })
+    
+    Promise.all(promises).then(
+        function(responses) {
+            addToTileSources(responses)
+        }
+    )
     
     // add open-handler for adding image attributions as overlays 
     viewer.addHandler('open', function(obj) {
