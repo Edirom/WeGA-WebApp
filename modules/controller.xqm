@@ -26,48 +26,48 @@ import module namespace functx="http://www.functx.com";
 
 declare variable $controller:projectNav :=
     map {
-        'docID' := 'A070001',
-        'title' := 'editorialGuidelines'
+        'docID': 'A070001',
+        'title': 'editorialGuidelines-text'
     },
     map {
-        'docID' := 'A070002',
-        'title' := 'about'
+        'docID': 'A070002',
+        'title': 'about'
     },
     map {
-        'docID' := 'A070003',
-        'title' := 'bio'
+        'docID': 'A070003',
+        'title': 'bio'
     },
     map {
-        'docID' := 'A070004',
-        'title' := 'faq'
+        'docID': 'A070004',
+        'title': 'faq'
     },
     map {
-        'docID' := 'A070006',
-        'title' := 'projectDescription'
+        'docID': 'A070006',
+        'title': 'projectDescription'
     },
     map {
-        'docID' := 'A070009',
-        'title' := 'contact'
+        'docID': 'A070009',
+        'title': 'contact'
     },
     map {
-        'docID' := 'A070010',
-        'title' := 'editorialGuidelines'
+        'docID': 'A070010',
+        'title': 'editorialGuidelines-music'
     },
     map {
-        'docID' := 'A070011',
-        'title' := 'volContents'
+        'docID': 'A070011',
+        'title': 'volContents'
     },
     map {
-        'docID' := 'A070012',
-        'title' := 'apiDocumentation'
+        'docID': 'A070012',
+        'title': 'apiDocumentation'
     },
     map {
-        'docID' := 'A070013',
-        'title' := 'credits'
+        'docID': 'A070013',
+        'title': 'credits'
     },
     map {
-        'docID' := 'A070090',
-        'title' := 'specialVolume'
+        'docID': 'A070090',
+        'title': 'specialVolume'
     };
 
 (:~
@@ -240,12 +240,10 @@ declare function controller:dispatch-project($exist-vars as map(*)) as element(e
     let $request := request:get-uri()
     let $a := distinct-values($project-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars)) = $request]/parent::*)
     return
-        switch($a)
-        case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
+        if($a = ('bibliography', 'news')) then controller:dispatch-register($exist-vars)
         (: Need to inject the corresponding IDs of special pages here :)
-        case 'projectDescription' case 'editorialGuidelines-text' case 'editorialGuidelines-music' case 'contact' case 'volContents' case 'credits'
-            return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', $controller:projectNav[?title=$a]?docID), map:entry('docType', 'var'))))
-        default return controller:error($exist-vars, 404)
+        else if($a = $controller:projectNav?title) then controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', $controller:projectNav[?title=$a]?docID), map:entry('docType', 'var'))))
+        else controller:error($exist-vars, 404)
 };
 
 (:~
