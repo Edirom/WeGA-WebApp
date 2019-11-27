@@ -22,6 +22,54 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 import module namespace functx="http://www.functx.com";
 
+
+
+declare variable $controller:projectNav :=
+    map {
+        'docID': 'A070001',
+        'title': 'editorialGuidelines-text'
+    },
+    map {
+        'docID': 'A070002',
+        'title': 'about'
+    },
+    map {
+        'docID': 'A070003',
+        'title': 'bio'
+    },
+    map {
+        'docID': 'A070004',
+        'title': 'faq'
+    },
+    map {
+        'docID': 'A070006',
+        'title': 'projectDescription'
+    },
+    map {
+        'docID': 'A070009',
+        'title': 'contact'
+    },
+    map {
+        'docID': 'A070010',
+        'title': 'editorialGuidelines-music'
+    },
+    map {
+        'docID': 'A070011',
+        'title': 'volContents'
+    },
+    map {
+        'docID': 'A070012',
+        'title': 'apiDocumentation'
+    },
+    map {
+        'docID': 'A070013',
+        'title': 'credits'
+    },
+    map {
+        'docID': 'A070090',
+        'title': 'specialVolume'
+    };
+
 (:~
  : HTML output. Forwards to a given template and takes care of ETag caching
  :
@@ -192,17 +240,10 @@ declare function controller:dispatch-project($exist-vars as map(*)) as element(e
     let $request := request:get-uri()
     let $a := distinct-values($project-nav/@href[controller:encode-path-segments-for-uri(controller:resolve-link(.,$exist-vars)) = $request]/parent::*)
     return
-        switch($a)
-        case 'bibliography' case 'news' return controller:dispatch-register($exist-vars)
+        if($a = ('bibliography', 'news')) then controller:dispatch-register($exist-vars)
         (: Need to inject the corresponding IDs of special pages here :)
-        case 'projectDescription' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070006'), map:entry('docType', 'var')))) 
-        case 'editorialGuidelines-text'  return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070001'), map:entry('docType', 'var'))))
-        case 'editorialGuidelines-music'  return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070010'), map:entry('docType', 'var'))))
-        case 'contact' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070009'), map:entry('docType', 'var'))))
-        case 'about' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070002'), map:entry('docType', 'var'))))
-        case 'volContents' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070011'), map:entry('docType', 'var'))))
-        case 'credits' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070013'), map:entry('docType', 'var'))))
-        default return controller:error($exist-vars, 404)
+        else if($a = $controller:projectNav?title) then controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', $controller:projectNav[?title=$a]?docID), map:entry('docType', 'var'))))
+        else controller:error($exist-vars, 404)
 };
 
 (:~
@@ -215,8 +256,7 @@ declare function controller:dispatch-help($exist-vars as map(*)) as element(exis
     return
         switch($a)
         (: Need to inject the corresponding IDs of special pages here :)
-        case 'faq' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070004'), map:entry('docType', 'var')))) 
-        case 'apiDocumentation'  return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070012'), map:entry('docType', 'var'))))
+        case 'faq' case 'apiDocumentation' return controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', $controller:projectNav[?title=$a]?docID), map:entry('docType', 'var'))))
         default return controller:error($exist-vars, 404)
 };
 
