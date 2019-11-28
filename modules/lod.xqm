@@ -70,7 +70,8 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
     let $schema.org-type := lod:schema.org-type($model)
     let $identifier := lod:DC.identifier($model)
     let $url := 
-        if($model?doc) then core:permalink(controller:path-to-resource($model?doc, $lang))
+        (: multiple URLs are generated when the document features multiple authors :)
+        if($model?doc) then controller:path-to-resource($model?doc, $lang) ! core:permalink(.)
         else $identifier
     let $jsonld-common := map {
         '@id': $identifier,
@@ -97,14 +98,24 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
         (:array {
             distinct-values(($model?doc//tei:text//tei:*[@key] | $model?doc/tei:ab//tei:*[@key])/@key) ! lod:jsonld-entity(<tei:rs key="{.}"/>, $lang)
         }:)
-    let $image := 
-        if($model?docID = 'home') then core:permalink('resources/img/logo_weber.png')
+    let $homepageSpecials := 
+        if($model?docID = 'home') then map { 
+            'image': core:permalink('resources/img/logo_weber.png'),
+            'logo': core:permalink('resources/favicons/mstile-150x150.png'),
+            "potentialAction": array { 
+                map {
+                    "@type": "SearchAction",
+                    "target": core:permalink('de/Suche?q={search_term_string}'),
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        }
         else ()
     return
         map:merge((
             $jsonld-common, (: always included :)
             
-            if($image) then map { 'image': $image } else (), (: include image if available :)
+            $homepageSpecials, (: specials for the landing page :)
             
             if($schema.org-type = ('CreativeWork', 'Article', 'NewsArticle')) then map:merge((
                 $jsonld-common,
@@ -126,13 +137,16 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
  : Helper function for setting a schema.org type
  :)
 declare %private function lod:schema.org-type($model as map(*)) as xs:string {
-    switch(config:get-doctype-by-id($model?docID))
-    case 'news' return 'NewsArticle'
-    case 'persons' return 'Person'
-    case 'orgs' return 'Organization'
-    case 'places' return 'Place'
-    case 'addenda' case 'thematicCommentary' return 'Article'
-    default return 'CreativeWork'
+    if($model?docID = 'home') 
+    then 'WebSite' 
+    else 
+        switch(config:get-doctype-by-id($model?docID))
+        case 'news' return 'NewsArticle'
+        case 'persons' return 'Person'
+        case 'orgs' return 'Organization'
+        case 'places' return 'Place'
+        case 'addenda' case 'thematicCommentary' return 'Article'
+        default return 'CreativeWork'
 };
 
 (:~

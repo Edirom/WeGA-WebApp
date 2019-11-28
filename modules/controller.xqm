@@ -200,12 +200,12 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
             map:entry('media-type', $media-type)
         ))
     let $doc := core:doc($docID)
-    let $path := controller:encode-path-segments-for-uri(controller:path-to-resource($doc, $exist-vars('lang')))
+    let $path := controller:path-to-resource($doc, $exist-vars('lang')) ! controller:encode-path-segments-for-uri(.)
 (:    let $log := util:log-system-out($exist-vars('exist:path')):)
 (:    let $log := util:log-system-out($path):)
     return 
-        if($media-type and $exist-vars('exist:path') eq $path || '.' || $media-type) then controller:forward-document($updated-exist-vars)
-        else if($media-type and $path) then controller:redirect-absolute('/' || $path || '.' || $media-type)
+        if($media-type and $exist-vars('exist:path') = ($path ! (. || '.' || $media-type))) then controller:forward-document($updated-exist-vars)
+        else if($media-type and count($path) gt 0) then controller:redirect-absolute('/' || $path[1] || '.' || $media-type)
         (: last else case: document does not exist :)
         else controller:error(map:put($updated-exist-vars, 'error-message', 'resource not found'), 404)
 };
@@ -421,8 +421,10 @@ declare function controller:encode-path-segments-for-uri($uri-string as xs:strin
  : Warning: 
  : * No URL encoding here, see controller:encode-path-segments-for-uri()
  : * resulting paths do not include exist:prefix, see core:link-to-current-app()
+ :
+ : @return a sequence of valid (external) paths for a document, based on the authors and docType 
 ~:)
-declare function controller:path-to-resource($doc as document-node()?, $lang as xs:string) as xs:string? {
+declare function controller:path-to-resource($doc as document-node()?, $lang as xs:string) as xs:string* {
     let $docID := $doc/*/@xml:id
     let $docType := config:get-doctype-by-id($docID) (: Die originale Darstellung der doctypes, also 'persons', 'letters' etc:)
     let $displayName := (: Die Darstellung als URL, also 'Korrespondenz', 'Tagebücher' etc. :)
@@ -442,7 +444,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         if($docType = ('persons', 'orgs', 'places')) then str:join-path-elements(('/', $lang, $docID))
         else if($docType = 'var') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), $docID))
         else if($docType = 'addenda') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string('volContents', $lang), $docID))
-        else if($authorID and $displayName) then str:join-path-elements(('/', $lang, $authorID, $displayName, $docID))
+        else if(count($authorID) gt 0 and $displayName) then $authorID ! str:join-path-elements(('/', $lang, ., $displayName, $docID))
         else core:logToFile('error', 'controller:path-to-resource(): could not create path for ' || $docID)
 };
 
@@ -463,7 +465,7 @@ declare function controller:docType-url-for-author($author as document-node(), $
         case 'letters' return 'correspondence'
         default return $docType
     return
-        core:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang), $docType-path-segment || '.html')))
+        core:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang)[1], $docType-path-segment || '.html')))
 };
 
 (:
@@ -518,7 +520,7 @@ declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(ex
     let $doc := query:doc-by-gnd(controller:basename($exist-vars('exist:resource')))[last()]
     let $media-type := controller:media-type($exist-vars)
     return
-        if(exists($doc) and $media-type) then controller:redirect-absolute(controller:path-to-resource($doc, $exist-vars('lang')) || '.' || $media-type)
+        if(exists($doc) and $media-type) then controller:redirect-absolute(controller:path-to-resource($doc, $exist-vars('lang'))[1] || '.' || $media-type)
         else controller:error($exist-vars, 404)
 };
 

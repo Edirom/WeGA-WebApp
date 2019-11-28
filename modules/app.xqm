@@ -50,9 +50,29 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
  : @return xs:string
 :)
 declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:string) as xs:string? {
-    let $path :=  controller:path-to-resource($doc, $lang)
+    let $path :=  controller:path-to-resource($doc, $lang)[1]
     return
         if($doc and $path) then core:link-to-current-app($path || '.html')
+        else ()
+};
+
+(:~
+ : Creates link to doc
+ : This 3-arity function version will honour the current (author) context by returning
+ : a link depending on the author ID. If the provided context does not match the requested 
+ : document, the canonical link will be returned.
+ :
+ : @author Peter Stadler
+ : @param $doc document node
+ : @param $lang the current language (de|en)
+ : @param $context the current (author) context, e.g. 'A002068'
+ : @return xs:string
+:)
+declare function app:createUrlForDocInContext($doc as document-node()?, $lang as xs:string, $contextID as xs:string) as xs:string? {
+    let $path := controller:path-to-resource($doc, $lang)
+    return
+        if($doc and count($path[contains(., $contextID)]) = 1) then core:link-to-current-app($path[contains(., $contextID)] || '.html')
+        else if($doc and count($path) gt 0) then core:link-to-current-app($path[1] || '.html')
         else ()
 };
 
@@ -182,15 +202,14 @@ declare function app:set-line-wrap($node as node(), $model as map(*)) as element
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        let $authorElem := query:get-author-element($model?doc)[1]
-        let $authorID := 
-            if(config:is-person($model('docID'))) then $model('docID')
-            else if($model?docType='diaries') then 'A002068'
-            else $authorElem/(@key, @dbkey)
+        let $authorID := tokenize($model?('exist:path'), '/')[3]
+        let $anonymusID := config:get-option('anonymusID')
+        let $authorElem :=
+            if ($authorID = $anonymusID) then query:get-author-element($model?doc)[(count(@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)]
+            else query:get-author-element($model?doc)[(@key, @dbkey) = $authorID]
         let $href :=
-            if ($authorID = config:get-option('anonymusID')) then ()
-            else if($authorID) then app:createUrlForDoc(core:doc($authorID), $lang)
-            else ()
+            if ($authorID = $anonymusID) then ()
+            else app:createUrlForDoc(core:doc($authorID), $lang)
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
@@ -206,11 +225,10 @@ declare
 declare
     %templates:default("lang", "en")
     function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        let $authorID := query:get-authorID($model('doc'))
-        let $href := core:link-to-current-app(functx:substring-before-last(controller:path-to-resource($model('doc'), $lang), '/'))
-        let $display-name := replace(functx:substring-after-last($href, '/'), '_', ' ')
+        let $href := core:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
+        let $display-name := replace(xmldb:decode(functx:substring-after-last($href, '/')), '_', ' ')
         let $elem := 
-            if($href and not($authorID = config:get-option('anonymusID'))) then QName('http://www.w3.org/1999/xhtml', 'a')
+            if($href and not(contains($href, config:get-option('anonymusID')))) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
         return
             element {$elem} {
@@ -252,7 +270,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element() {
-        let $pathTokens := tokenize(request:get-attribute('$exist:path'), '/')
+        let $pathTokens := tokenize($model?('$exist:path'), '/')
         return 
             element {node-name($node)} {
                 $node/@*,
@@ -327,7 +345,7 @@ declare
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
         let $ajax-url :=
-        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang) || '/' || $ajax-resource)
+        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang)[1] || '/' || $ajax-resource)
         	else if(gl:spec($model?specID, $model?schemaID) and $ajax-resource) then core:link-to-current-app(replace($model('exist:path'), '\.[xhtml]+$', '') || '/' || $ajax-resource)
         	else ()
         return
@@ -1508,18 +1526,25 @@ declare
 };
 
 
+(:~
+ : Add context information to the current model map
+ : NB: If no context information is found, an empty sequence will be returned
+ : effectively removing the HTML subtree under $node from the output.
+ :)
 declare 
     %templates:wrap
     function app:context($node as node(), $model as map(*)) as map(*)? {
+        let $senderID := tokenize($model?('exist:path'), '/')[3]
         let $context := 
             switch($model?docType)
             case 'letters' return map:merge((
                 query:context-relatedItems($model?doc), 
-                query:correspContext($model?doc)
+                query:correspContext($model?doc, $senderID)
             ))
             default return query:context-relatedItems($model?doc)
         return
-            if(wega-util-shared:has-content($context)) then $context
+            if(wega-util-shared:has-content($context)) 
+            then map:merge(($context, map:entry('senderID', $senderID)))
             else ()
 };
 
@@ -1535,7 +1560,10 @@ declare
             default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
         let $normDate := query:get-normalized-date($letter)
         return (
-            app:createDocLink($letter, $normDate, $lang, ()), 
+            element a {
+                attribute href {app:createUrlForDocInContext($letter, $lang, $model?senderID)},
+                $normDate
+            },
             ": ",
             lower-case(lang:get-language-string($model('letter-norm-entry')('fromTo'), $lang)),
             " ",
@@ -1567,7 +1595,7 @@ declare
     %templates:default("lang", "en")
     function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
         let $doc := $model('doc')
-        let $correspondent-1-key := query:get-authorID($doc)       
+        let $correspondent-1-key := tokenize($model?('exist:path'), '/')[3]
         let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
         let $correspondent-2-key := ($doc//tei:correspAction[@type = 'received']//@key[parent::tei:persName or parent::name or parent::tei:orgName])[1]
         let $correspondent-2-gnd := query:get-gnd($correspondent-2-key)
@@ -1610,15 +1638,15 @@ declare
  : @return element html:p
  :)
 declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(p)? {
-    let $authorID := query:get-authorID($doc)
+    let $authorElem := query:get-author-element($doc)
     let $dateFormat := 
         if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
                           else '[FNn], [MNn] [D], [Y]'
     return 
-        if($authorID) then 
+        if(count($authorElem) gt 0) then 
             element p {
                 attribute class {'authorDate'},
-                app:printCorrespondentName(query:get-author-element($doc), $lang, 'fs'),
+                app:printCorrespondentName($authorElem, $lang, 'fs'),
                 concat(', ', date:format-date(xs:date($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)), $dateFormat, $lang))
             }
         else()
@@ -1705,7 +1733,9 @@ declare
         map {
             'doc' : $model('result-page-entry'),
             'docID' : $model('result-page-entry')/root()/*/data(@xml:id),
-            'docURL' : app:createUrlForDoc($model('result-page-entry'), $lang),
+            'docURL' : 
+                if(config:is-person($model?parent-docID)) then app:createUrlForDocInContext($model?result-page-entry, $lang, $model?parent-docID)
+                else app:createUrlForDoc($model('result-page-entry'), $lang),
             'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
@@ -1730,7 +1760,7 @@ declare
         return
             element {name($node)} {
                 $node/@*[not(name(.) = 'href')],
-                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang) || (if(map:contains($model, 'query-string-org')) then ('?q=' || $model?query-string-org) else ())}
+                if($node[self::xhtml:a]) then attribute href {$model?docURL || (if(map:contains($model, 'query-string-org')) then ('?q=' || $model?query-string-org) else ())}
                 else (),
                 if($title instance of xs:string or $title instance of text() or count($title) gt 1) then $title
                 else $title/node()
