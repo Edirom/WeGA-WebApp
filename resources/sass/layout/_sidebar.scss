@@ -54,7 +54,7 @@ a.checkbox-only {
 }
 
 .checkbox label {
-    margin-top: -24px;
+    color: $gray;
     position: relative;
     display: inline-block;
     margin-bottom: 0px;
@@ -63,14 +63,16 @@ a.checkbox-only {
 .checkbox input[type="checkbox"] + label::before {
     content: "\f096\00a0";
     font-family: "FontAwesome";
-    margin-right:11px;
+    margin-right:8px;
+    margin-left:2px;
     color: $gray;
 }
 
 .checkbox input[type="checkbox"]:checked + label::before {
     content: "\f14a\00a0";
     font-family: "FontAwesome";
-    margin-right:10px;
+    margin-right:8px;
+    margin-left:2px;
     color: $primary;
 }
 
@@ -78,13 +80,18 @@ a.checkbox-only {
 
 .allFilter {
     margin-bottom: 30px;
+
+    &.panel-collapse {
+        padding: 10px;
+        background: $gray-lightest;
+    }
     
     .nav {
         margin-top: 0px;
     }
     
     h2 {
-        margin-bottom:10px!important;
+        margin-bottom:12px!important;
     }
     
     h4 {
@@ -300,11 +307,15 @@ a.checkbox-only {
 
 // Single Collapse Elements in Sidebar
 .filtersection .panel-collapse {
-    background: $gray-lighter;
-    padding: 4px;
+    background: $gray-lightest;
+}
+
+.panel-collapse {
+    margin-top: -10px;
 }
 
 .panel-collapse.collapse
 {
-     margin-bottom: 30px;
+    margin-top: -4px;
+    margin-bottom: 30px;
 }
