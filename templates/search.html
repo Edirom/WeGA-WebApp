@@ -28,15 +28,8 @@
         <div class="row paddingBottomIcon paddingTopIcon">
             <form role="form" class="searchfilter">
             <div class="col-md-3 order-2 side-col">
-                <div class="allFilter">  
-                    <div class="row">
-                        <div class="col-md-9 col-12">
-                            <h2>Filter</h2>
-                        </div>
-                        <div class="col-md-3 col-12">
-                            <button type="button" class="btn btn-link" onclick="checkBoxRefresh()"><i class="fa fa-refresh" aria-hidden="true"></i></button>
-                        </div>
-                    </div>
+                <h2><a href="#allFilter" class="collapseSingle" data-toggle="collapse"><span data-template="lang:translate">filter</span></a></h2>
+                <div class="allFilter panel-collapse collapse show" id="allFilter">
                     <div class="filterGroup searchDocTypeFilter">
                         <div class="filterHead">
                             <h3 data-template="lang:translate">docType</h3>
@@ -50,6 +43,7 @@
                                 <input type="checkbox" name="d" value="persons"/> persons
                             </label>
                         </div>
+                        <button type="button" class="mt-4 btn btn-primary btn-sm" onclick="checkBoxRefresh()"><span data-template="lang:translate">applyFilter</span></button>
                     </div>
                 </div>
             </div>
