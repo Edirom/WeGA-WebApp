@@ -88,6 +88,7 @@ $.fn.rangeSlider = function ()
         grid: true,
         skin: "flat",
         step: 100,
+        force_edges: true,
         type: "double",
         //force_edges: true,
         grid_num: 3,
