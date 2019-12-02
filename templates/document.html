@@ -183,6 +183,15 @@
                             <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
                         </div>-->
                         
+                        <div data-template="app-shared:if-exists" data-template-key="authors">
+                            <h3 data-template="lang:translate" class="media-heading">authors</h3>
+                            <ul>
+                                <li data-template="app-shared:each" data-template-from="authors" data-template-to="author">
+                                    <span data-template="app-shared:print" data-template-key="author"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        
                         <div data-template="app-shared:if-exists" data-template-key="summary">
                             <h3 data-template="lang:translate" class="media-heading">summary</h3>
                             <div data-template="app:print-summary"/>
