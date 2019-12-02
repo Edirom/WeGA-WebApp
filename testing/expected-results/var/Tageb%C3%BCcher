@@ -232,30 +232,30 @@
                 <div class="row">
     <div class="col-md-3 order-2 side-col">
         <div>
-            <h2>Kalender</h2>
-            <div id="datePicker" style="margin-bottom:4ex;" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+            <h2><a href="#datePicker" class="collapseSingle" data-toggle="collapse"><span>Kalender</span></a></h2>
+            <div id="datePicker" class="panel-collapse collapse show" style="margin-bottom:4ex;" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
         </div>
         
-        <div class="allFilter">
-            <h2>Filter</h2>
+        <h2><a href="#allFilter" class="collapseSingle" data-toggle="collapse"><span>Filter</span></a></h2>
+        <div class="allFilter panel-collapse collapse show" id="allFilter">
             <h4>Chronologie</h4>
             <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1810-03-01" data-max-slider="1826-05-13" data-from-slider="1810-03-01" data-to-slider="1826-05-13" />
             
             <h4>Personen</h4>
             <select multiple="multiple" name="persons" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="diaries">
-                                        <option value="">Alle</option></select>
+                                        <option value="">alle</option></select>
             
             <h4>Werke</h4>
             <select multiple="multiple" name="works" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="diaries">
-                                        <option value="">Alle</option></select>
+                                        <option value="">alle</option></select>
             
             <h4>Orte</h4>
             <select multiple="multiple" name="places" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="diaries">
-                                        <option value="">Alle</option></select>
+                                        <option value="">alle</option></select>
             
             <h4>Dokumentenstatus</h4>
             <select multiple="multiple" name="docStatus" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="diaries">
-                                        <option value="">Alle</option></select>
+                                        <option value="">alle</option></select>
         </div>
     </div>
 	<div class="col-md-9 main-col searchResults">

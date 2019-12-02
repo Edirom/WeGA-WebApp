@@ -192,10 +192,10 @@ declare function facets:filter-value($node as node(), $model as map(*)) as eleme
     }
 };
 
-declare function facets:filter-label($node as node(), $model as map(*)) as element(span) {
+declare function facets:filter-label($node as node(), $model as map(*), $lang as xs:string) as element(span) {
     element {name($node)} {
         $node/@*[not(name(.) = 'title')],
-        attribute title {$model('filterOption')('label')},
+        attribute title {lang:get-language-string("facetsFilterLabel",$model('filterOption')('label'),$lang)},
         $model('filterOption')('label')
     }
 };

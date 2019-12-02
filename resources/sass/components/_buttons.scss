@@ -1,8 +1,8 @@
-.btn input {
+label input, .btn input {
     display:none;
 }
 
-.btn:not(.gradient-light)
+.btn.btn-primary
 {    border-radius:0;
      padding: 9px 20px;
      &:hover { 
@@ -11,13 +11,24 @@
      }
 }
 
+.btn.btn-checkbox {
+    margin-bottom: 0px;
+    a {
+        display: none;
+        float:right; 
+        }
+        &:hover a {
+        display: inline;
+    }
+}
+
 .btn-group {
     display: block;
-    .btn {
+    .btn, label {
         color: $gray!important;
         font-size: 16px!important;
         line-height: 19px!important;
-        padding: 14px 20px;
+        /*         padding: 14px 20px; */
         margin-left: 0px!important ;
         text-align: left; 
     }
@@ -34,6 +45,7 @@
     background-color: $primary!important;
     color: #fff!important;
 }*/
+
 
 .gradient-light
 {
@@ -69,6 +81,6 @@ li.nav-item.gradient-light > .active, btn.gradient-light.active {
 }
 
 li.nav-item.gradient-light > .nav-link {
-    border-left:4px solid $gray-lighter;
+    border-left:4px solid $gray-light;
 }
 

@@ -1704,22 +1704,23 @@ declare
         return 
             for $docType in $search:wega-docTypes
             let $class := 
-                if($docType = $selected-docTypes) then normalize-space($node/@class) || ' active'
+                if($docType = $selected-docTypes or empty($selected-docTypes)) then normalize-space($node/@class) || ' active'
                 else normalize-space($node/@class)
             let $displayTitle := lang:get-language-string($docType, $lang)
             order by $displayTitle
-            return
-                element {name($node)} {
-                    $node/@*[not(name(.) = 'class')],
-                    attribute class {$class},
-                    element input {
-                        $node/xhtml:input/@*[not(name(.) = 'value')],
-                        attribute value {$docType},
-                        if($docType = $selected-docTypes) then attribute checked {'checked'}
-                        else ()
-                    },
-                    $displayTitle
-                }
+            return                
+             element {name($node)} {
+                 $node/@*[not(name(.) = 'class')],
+                 attribute class {$class},
+                 element input {
+                     $node/xhtml:input/@*[not(name(.) = 'value')],
+                     attribute value {$docType},
+                     if($docType = $selected-docTypes or empty($selected-docTypes)) then attribute checked {'checked'}
+                     else ()
+                 },
+                 <span>{$displayTitle}</span>,
+                 <a href="#" class="checkbox-only">{lang:get-language-string("only",$lang)}</a>
+             }
 };
 
 (:~

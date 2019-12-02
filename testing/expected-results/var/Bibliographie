@@ -231,9 +231,9 @@
                 
                 <div class="row">
     <div class="col-md-3 order-2 side-col">
+        <h2><a href="#allFilter" class="collapseSingle" data-toggle="collapse"><span>Filter</span></a></h2>
         
-        <div class="allFilter">
-            <h2>Filter</h2>
+        <div class="allFilter panel-collapse collapse show" id="allFilter">
             <h4>Chronologie</h4>
             <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="" data-max-slider="" data-from-slider="" data-to-slider="" />
             <div class="input-group facet-group checkbox">
@@ -243,17 +243,17 @@
             
             <h4>Autor</h4>
             <select multiple="multiple" name="authors" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="biblio">
-                                        <option value="">Alle</option></select>
+                                        <option value="">alle</option></select>
             
             <h4>Herausgeber</h4>
             <select multiple="multiple" name="editors" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="biblio">
-                                        <option value="">Alle</option></select>
+                                        <option value="">alle</option></select>
             
             
             
             <h4>Literaturtyp</h4>
             <select multiple="multiple" name="biblioType" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="biblio">
-                                        <option value="">Alle</option></select>
+                                        <option value="">alle</option></select>
         </div>
     </div>
 	<div class="col-md-9 main-col searchResults">

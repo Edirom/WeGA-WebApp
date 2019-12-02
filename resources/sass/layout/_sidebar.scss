@@ -1,14 +1,19 @@
 /* filter */
 
-.searchDocTypeFilter .btn, .filtersection .btn {
-    padding-left: 40px;
+form.searchfilter {
+    display: flex;
+    width: 100%;
+}
+
+.searchDocTypeFilter label, .filtersection .btn {
+    padding-left: 30px;
     &:before {
         content: "\f096\00a0";
         font-family: "FontAwesome";
         vertical-align: text-top;
         margin-right:11px;
         position: absolute;
-        left:20px;
+        left:10px;
     }
     span {
         vertical-align: text-top;
@@ -16,10 +21,24 @@
     
 }
 
-.searchDocTypeFilter .btn.active:before, .filtersection .btn.active:before {
+.searchDocTypeFilter label.active:before, .filtersection .btn.active:before {
         content: "\f14a\00a0";
         color: $primary;
         margin-right:10px;
+}
+
+
+.filterHead {
+    display:flex;
+    line-height: $line-height-base;
+    div {
+        margin-left: auto;
+        font-size: smaller;
+    }
+}
+
+a.checkbox-only {
+    font-size: smaller;
 }
 
 /* input restyling */
@@ -35,7 +54,7 @@
 }
 
 .checkbox label {
-    margin-top: -24px;
+    color: $gray;
     position: relative;
     display: inline-block;
     margin-bottom: 0px;
@@ -44,14 +63,16 @@
 .checkbox input[type="checkbox"] + label::before {
     content: "\f096\00a0";
     font-family: "FontAwesome";
-    margin-right:11px;
+    margin-right:8px;
+    margin-left:2px;
     color: $gray;
 }
 
 .checkbox input[type="checkbox"]:checked + label::before {
     content: "\f14a\00a0";
     font-family: "FontAwesome";
-    margin-right:10px;
+    margin-right:8px;
+    margin-left:2px;
     color: $primary;
 }
 
@@ -59,13 +80,18 @@
 
 .allFilter {
     margin-bottom: 30px;
+
+    &.panel-collapse {
+        padding: 10px;
+        background: $gray-lightest;
+    }
     
     .nav {
         margin-top: 0px;
     }
     
     h2 {
-        margin-bottom:10px!important;
+        margin-bottom:12px!important;
     }
     
     h4 {
@@ -76,7 +102,7 @@
         width: 100%!important;
     }
     
-    label.btn {
+    label {
         overflow:hidden;
         text-overflow:ellipsis;
     }
@@ -280,7 +306,16 @@
 }
 
 // Single Collapse Elements in Sidebar
+.filtersection .panel-collapse {
+    background: $gray-lightest;
+}
+
+.panel-collapse {
+    margin-top: -10px;
+}
+
 .panel-collapse.collapse
 {
-     margin-bottom: 30px;
+    margin-top: -4px;
+    margin-bottom: 30px;
 }

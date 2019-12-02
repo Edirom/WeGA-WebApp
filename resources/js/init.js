@@ -88,6 +88,7 @@ $.fn.rangeSlider = function ()
         grid: true,
         skin: "flat",
         step: 100,
+        force_edges: true,
         type: "double",
         //force_edges: true,
         grid_num: 3,
@@ -534,14 +535,43 @@ $(document).on('change', '.facet-group input', function() {
     updatePage(params);
 })
 
-/* Start search by clicking on filter button */
-$('.searchDocTypeFilter').on('change', 'label', function() {
-    /* No need to refresh the page when there's no query string */
-    if($('.query-input').val().length) {
+/* manage search filter checkboxes */
+function checkAll(that) {
+   $(that).parents(".filterGroup").find(".btn-group :checkbox").prop('checked', true);
+   $(that).parents(".filterGroup").find(".btn-group :checkbox").parent("label").addClass("active");
+}
+
+function uncheckAll(that) {
+    $(that).parents(".filterGroup").find(".btn-group :checkbox").prop('checked', false);
+    $(that).parents(".filterGroup").find(".btn-group :checkbox").parent("label").removeClass("active");
+}
+
+function checkBoxRefresh() {
+    if($('.query-input').val().length) { /* No need to refresh the page when there's no query string */
         var params = active_facets();
+        console.log(params);
         updatePage(params);
-    }
-})
+        }
+}
+
+$('.checkall').on('click', function() {
+    checkAll(this);
+    var params = active_facets();
+    console.log(params);
+});
+
+$('.uncheckall').on('click', function() {
+    uncheckAll(this);
+    var params = active_facets();
+    console.log(params);
+});
+
+$('a.checkbox-only').on('click', function() {    
+    uncheckAll(this);
+    $(this).siblings(":checkbox").prop('checked',true);
+    $(this).parents(".filterGroup").find(".btn-group :checkbox").parent("label").removeClass("active");    
+    checkBoxRefresh();
+});
 
 $('.glSchemaIDFilter').on('change', 'input', function(a) {
     self.location = '?schemaID=' + a.target.value;
