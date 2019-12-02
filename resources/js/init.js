@@ -740,7 +740,7 @@ $('.resp-tab-item a').toggleTab();
 $('.greedy').greedyNav();
 
 /* Watch filters and highlight spans in text */
-$('.allFilter input').change(
+$('.allFilter input').click( 
   function() {
     var key = $(this).attr('value');
     $('.' + key).toggleClass('hi-' + key);
