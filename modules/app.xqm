@@ -1761,9 +1761,16 @@ declare
         return
             element {name($node)} {
                 $node/@*[not(name(.) = 'href')],
-                if($node[self::xhtml:a]) then attribute href {$model?docURL || (if(map:contains($model, 'query-string-org')) then ('?q=' || $model?query-string-org) else ())}
+                if($node[self::xhtml:a])
+                then attribute href {
+                    $model?docURL || (
+                        if(map:contains($model, 'query-string-org'))
+                        then ('?q=' || string-join(($model?query-string-org, $model?query-docTypes), '&amp;d=')) 
+                        else ()
+                )}
                 else (),
-                if($title instance of xs:string or $title instance of text() or count($title) gt 1) then $title
+                if($title instance of xs:string or $title instance of text() or count($title) gt 1) 
+                then $title
                 else $title/node()
             }
 };

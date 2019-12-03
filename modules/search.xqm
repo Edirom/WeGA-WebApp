@@ -78,20 +78,7 @@ declare
         let $page := if($page castable as xs:int) then xs:int($page) else 1
         let $entries-per-page := xs:int(config:entries-per-page())
         let $subseq := subsequence($model('search-results'), ($page - 1) * $entries-per-page + 1, $entries-per-page)
-        let $docs := 
-            (: This whole code block is not very elegant:
-             : the results of the fulltext search are of type map()* and need to be turned into document-node
-             : the results of the list of examples from the spec pages are elements and need *not* to be processed
-             : other searches and/or list views simply return document-node()*
-            :)
-            for $doc in $subseq
-            return
-                if($doc instance of document-node()) then $doc
-                else if($doc instance of map()) then $doc?doc
-                else if($doc instance of element()) then $doc 
-                else if($doc instance of node()) then error($search:ERROR, 'unable to process node: ' || functx:node-kind($doc) || ' ' || name($doc))
-                else if($doc instance of xs:anyAtomicType) then error($search:ERROR, 'unable to process atomic type: ' || functx:atomic-type($doc))
-                else error($search:ERROR, 'unknown result entry')
+        let $docs := search:normalize-result-entries($subseq)
         let $result-page-hits-per-entry := map:merge(
             for $doc in $subseq
             return (
@@ -419,19 +406,20 @@ declare %private function search:prepare-search-string($model as map()) as map(*
     let $analyzed-query-string := analyze-string($sanitized-query-string, '\d{4}-\d{2}-\d{2}')
     let $dates := $analyzed-query-string/fn:match/text()
     let $query-string := str:normalize-space(string-join($analyzed-query-string/fn:non-match/text(), ' '))
-    let $filters := 
-        (: push recognized dates to the filters 
-            NB: these need to be explicitly casted to xs:string, 
+    let $searchDate :=
+        (: 
+            NB: these dates need to be explicitly casted to xs:string, 
             otherwise we faced some issues with false positives from search:searchDate-filter,
             see https://github.com/Edirom/WeGA-WebApp/issues/318 
         :)
-        if(count($dates) gt 0) then map:put($model?filters, 'searchDate', $dates ! string(.))
-        else $model?filters
+        if(count($dates) gt 0) 
+        then map:entry('searchDate', $dates ! string(.))
+        else ()
     return
         map:merge((
             $model, 
             map {
-                'filters' : $filters, (: the original filters from $model gets overridden :)
+                'filters' : map:merge(($model?filters, $searchDate)), (: push recognized dates to the filters :)
                 'query-string' : wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
                 'query-docTypes' : $query-docTypes,
                 'query-string-org' : $query-string-org
@@ -459,21 +447,22 @@ declare %private function search:search-session($model as map(), $callback as fu
     return 
         if($session-exists)
         then session:get-attribute('wegasearch')
-        else $callback($updatedModel)
+        else ($callback($updatedModel), util:log-system-out('new search'))
 };
 
 declare 
     %templates:wrap
     function search:get-session-for-singleview($node as node(), $model as map(*)) as map()? {
-        let $wegasearch := session:get-attribute('wegasearch')
-        let $index-of-current-doc := functx:index-of-node($wegasearch?search-results?doc, $model?doc)
+        let $wegasearch := (:session:get-attribute('wegasearch'):) search:search-session($model, search:search#1)
+        let $docs := search:normalize-result-entries($wegasearch?search-results)
+        let $index-of-current-doc := functx:index-of-node($docs, $model?doc)
         let $page := ceiling($index-of-current-doc div config:entries-per-page())
         let $url := controller:resolve-link('$link/search', $model) || '?q=' || $wegasearch?query-string-org || '&amp;d=' || string-join($wegasearch?query-docTypes, '&amp;d=') || '&amp;page=' || $page
         let $search-prev-item-url := 
-            if($index-of-current-doc gt 1) then app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc - 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org
+            if($index-of-current-doc gt 1) then app:createUrlForDoc($docs[$index-of-current-doc - 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
             else '#'
         let $search-next-item-url := 
-            if($index-of-current-doc lt count($wegasearch?search-results)) then app:createUrlForDoc($wegasearch?search-results[$index-of-current-doc + 1]?doc, $model?lang) || '?q=' || $wegasearch?query-string-org
+            if($index-of-current-doc lt count($docs)) then app:createUrlForDoc($docs[$index-of-current-doc + 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
             else '#'
         return
             map:merge((
@@ -483,4 +472,24 @@ declare
                 map:entry('search-prev-item-url', $search-prev-item-url),
                 map:entry('search-next-item-url', $search-next-item-url)
             ))
+};
+
+(:~
+ : Extract the documents from the search results
+ : Helper function for search:get-session-for-singleview() and search:result-page()
+ :
+ : NB: This whole code block is not very elegant:
+ : the results of the fulltext search are of type map()* and need to be turned into document-node
+ : the results of the list of examples from the spec pages are elements and need *not* to be processed
+ : other searches and/or list views simply return document-node()*
+ :)
+declare %private function search:normalize-result-entries($entries as item()*) as item()* {
+    for $doc in $entries
+    return
+        if($doc instance of document-node()) then $doc
+        else if($doc instance of map()) then $doc?doc
+        else if($doc instance of element()) then $doc 
+        else if($doc instance of node()) then error($search:ERROR, 'unable to process node: ' || functx:node-kind($doc) || ' ' || name($doc))
+        else if($doc instance of xs:anyAtomicType) then error($search:ERROR, 'unable to process atomic type: ' || functx:atomic-type($doc))
+        else error($search:ERROR, 'unknown result entry')
 };
