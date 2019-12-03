@@ -48,21 +48,18 @@
 
     </head>
     <body>
+        <div class="container">
         <nav class="navbar navbar-light navbar-default navbar-expand-md">
-            <div class="container">
-                <div class="row flex-grow-1 flex-row-reverse">
-                    <!-- Brand and toggle get grouped for better mobile display -->
-                    <div class="navbar-header"> <!-- old class: navbar-right -->
-                        <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggler">
-                            <span class="navbar-toggler-icon"/>
-                        </button>
-                        <a href="$link/index" class="nav-link navbar-brand"> <!-- old class: navbar-right -->
-                            <img src="$resources/img/logo_weber.png" class="brand" alt="navbar-background-image"/>
-                        </a>
-                    </div>
+                <!-- Brand and toggle get grouped for better mobile display -->
+                    <button type="button" data-target="#navbarCollapse" data-toggle="collapse" class="navbar-toggler">
+                        <span class="navbar-toggler-icon"/>
+                    </button>
+                    <a href="$link/index" class="nav-link navbar-brand order-3">
+                        <img src="$resources/img/logo_weber.png" class="brand" alt="navbar-background-image"/>
+                    </a>
+                    
                     <!-- Collection of nav links and other content for toggling -->
                     <div id="navbarCollapse" class="navbar-collapse collapse">
-                        <!-- old classes: collapse navbar-collapse navbar-left col-md-9 -->
                         <ul class="nav navbar-nav" data-template="app:active-nav">
                             <li class="nav-item" data-template="app:set-active-nav">
                                 <a class="nav-link" href="$link/index">Home</a>
@@ -171,9 +168,10 @@
                             <li class="nav-item" data-template="app:set-active-lang">En</li>
                         </ul>
                     </div>
-                </div>
-            </div>
+                
+            
         </nav>
+        </div>
         <div id="content">
             <!-- content gets filled by templating module-->
         </div>
