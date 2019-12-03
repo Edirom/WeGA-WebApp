@@ -1208,25 +1208,40 @@ declare
         )
 };
 
-(:~
- : set link to Bach Digital for person pages
- : for those data sets originating from the Bach Institut
- :)
-declare function app:bach-digital-url($node as node(), $model as map(*)) as element() {
-    let $url := 
-        if($model?doc//tei:idno[@type='bd'])
-        then 'https://www.bach-digital.de/receive/' || $model?doc//tei:idno[@type='bd']
-        else if ($node/@href) 
-        then $node/data(@href)
-        else 'https://www.bach-digital.de'
-    return
-    element {node-name($node)} {
-        $node/@*[not(local-name(.) eq 'href')],
-        attribute href {$url},
-        templates:process($node/node(), $model)
-    }
+declare function app:external-data-disclaimer($node as node(), $model as map(*)) as map(*)? {
+    if($model?source = 'WeGA') then ()
+    else
+        let $external-data-url := 
+            if($model?source = 'Bach') then
+                if($model?doc//tei:idno[@type='bd'])
+                then 'https://www.bach-digital.de/receive/' || $model?doc//tei:idno[@type='bd']
+                else 'https://www.bach-digital.de'
+            else ()
+        let $external-data-text := 
+            switch($model?source) 
+            case 'Bach' return 'Bach digital'
+            case 'MB' return (<i>Giacomo Meyerbeer. Briefwechsel und Tagebücher</i>, ', Bd. 1 (1960)')
+            case 'BGA' return 'der Gesamtausgabe des Beethoven-Briefwechsels (1996–1998)'
+            case 'LoB' return (<i>Albert Lortzing. Sämtliche Briefe</i>, ' (1995)')
+            case 'SchTb' return 'der Ausgabe der Schumann-Tagebücher, Bd. 1 (1971)'
+            case 'SchEnd' return (<i>Robert Schumann in Endenich (1854–1856)</i>, ', hg. von Bernhard R. Appel (2006)')
+            default return 'Fremddaten'
+        return
+            map {
+                'external-data-url': $external-data-url,
+                'external-data-text': $external-data-text
+            }
 };
 
+declare function app:print-external-data-disclaimer($node as node(), $model as map(*)) as item()* {
+    element {node-name($node)} {
+        if($model?external-data-url) then attribute href {
+            $model?external-data-url
+        }
+        else (),
+        $model?external-data-text
+    }
+};
 
 (:
  : ****************************
