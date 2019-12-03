@@ -1208,8 +1208,11 @@ declare
         )
 };
 
+(:~
+ : Add a disclaimer to our "FFFI-Fremddaten"
+~:)
 declare function app:external-data-disclaimer($node as node(), $model as map(*)) as map(*)? {
-    if($model?source = 'WeGA') then ()
+    if($model?source = 'WeGA' or $model?docType ne 'persons') then ()
     else
         let $external-data-url := 
             if($model?source = 'Bach') then
