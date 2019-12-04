@@ -447,7 +447,7 @@ declare %private function search:search-session($model as map(), $callback as fu
     return 
         if($session-exists)
         then session:get-attribute('wegasearch')
-        else ($callback($updatedModel), util:log-system-out('new search'))
+        else $callback($updatedModel)
 };
 
 declare 
