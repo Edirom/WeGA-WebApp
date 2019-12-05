@@ -56,6 +56,16 @@
     margin: 0px 1em;
 }
 
+.inline-list li {
+    display: inline;
+    list-style-type: none;
+}
+
+
+.inline-list *:not(:last-of-type) :after {
+    content:';'
+}
+
 .borderBottom
 {
     border-bottom: 1px solid $gray-light;
