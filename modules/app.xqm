@@ -1722,7 +1722,7 @@ declare
         return 
             for $docType in $search:wega-docTypes
             let $class := 
-                if($docType = $selected-docTypes or empty($selected-docTypes)) then normalize-space($node/@class) || ' active'
+                if(($docType, 'all') = $selected-docTypes or empty($selected-docTypes)) then normalize-space($node/@class) || ' active'
                 else normalize-space($node/@class)
             let $displayTitle := lang:get-language-string($docType, $lang)
             order by $displayTitle
@@ -1733,7 +1733,7 @@ declare
                  element input {
                      $node/xhtml:input/@*[not(name(.) = 'value')],
                      attribute value {$docType},
-                     if($docType = $selected-docTypes or empty($selected-docTypes)) then attribute checked {'checked'}
+                     if(($docType, 'all') = $selected-docTypes or empty($selected-docTypes)) then attribute checked {'checked'}
                      else ()
                  },
                  <span>{$displayTitle}</span>,
