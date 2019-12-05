@@ -1542,8 +1542,8 @@ declare
             'incipit' : query:incipit($model('doc')),
             'summary' : query:summary($model('doc'), $lang),
             'generalRemark' : query:generalRemark($model('doc')),
-            'authors' : if ( count(query:get-author-element($model('doc'))) > 1 ) then
-                for $author in query:get-author-element($model('doc')) return wega-util:print-forename-surname-from-nameLike-element($author)  else ()
+            'authors' : if (count(query:get-author-element($model('doc'))) > 1 ) then
+                for $author in query:get-author-element($model('doc')) return app:printCorrespondentName($author,$lang,'fs') else ()
         }
 };
 
