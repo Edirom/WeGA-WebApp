@@ -446,7 +446,14 @@ declare %private function search:search-session($model as map(), $callback as fu
         catch * {false()}
     return 
         if($session-exists)
-        then session:get-attribute('wegasearch')
+        then map:merge((
+            (:  need to do that merge here as a hack 
+                because simply returning session:get-attribute('wegasearch') 
+                yields strange caching(?) artifacts of empty result sets 
+            :)
+            map {'search-results': session:get-attribute('wegasearch')?search-results}, 
+            $updatedModel
+        ))
         else $callback($updatedModel)
 };
 
