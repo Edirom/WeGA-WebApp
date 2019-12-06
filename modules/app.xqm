@@ -1228,6 +1228,8 @@ declare function app:external-data-disclaimer($node as node(), $model as map(*))
             case 'LoB' return (<i>Albert Lortzing. Sämtliche Briefe</i>, ' (1995)')
             case 'SchTb' return 'der Ausgabe der Schumann-Tagebücher, Bd. 1 (1971)'
             case 'SchEnd' return (<i>Robert Schumann in Endenich (1854–1856)</i>, ', hg. von Bernhard R. Appel (2006)')
+            case 'HoB' return 'der Edition von E. T. A. Hoffmanns Briefwechsel, hg. von Friedrich Schnapp (1967–1969)'
+            case 'Wies' return 'einer CellistInnen-Datenbank von Christiane Wiesenfeldt'
             default return 'Fremddaten'
         return
             map {
