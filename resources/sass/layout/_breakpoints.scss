@@ -23,7 +23,7 @@
 
 }
 
-//navigation for sm down 
+//navigation for md down 
 @include media-breakpoint-down(md) 
 {
     .navbar-nav.nav li
@@ -79,7 +79,21 @@
     }
 }
 
-// front page for sm down
+
+// side col for sm down
+@include media-breakpoint-down(sm)
+{
+.side-col {
+    order: 1;
+}
+
+.main-col {
+    order: 2;
+}
+
+}
+
+// front page for md down
 @include media-breakpoint-down(md)
 {
    .brand
