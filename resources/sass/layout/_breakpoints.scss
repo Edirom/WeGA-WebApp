@@ -24,7 +24,7 @@
 }
 
 //navigation for sm down 
-@include media-breakpoint-down(sm) 
+@include media-breakpoint-down(md) 
 {
     .navbar-nav.nav li
     {
@@ -65,6 +65,7 @@
    }
 
    #navbarCollapse {
+        order: 3;
        .divider {
             display: none;
        }
@@ -79,7 +80,7 @@
 }
 
 // front page for sm down
-@include media-breakpoint-down(sm)
+@include media-breakpoint-down(md)
 {
    .brand
     {      
@@ -134,7 +135,7 @@
         }
 
         .brand {
-            margin-top: 29px;
+            /*margin-top: 29px;*/
             margin-bottom: 0px;
             width: 200px;;
         }
