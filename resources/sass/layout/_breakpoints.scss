@@ -5,6 +5,8 @@
     }
 } 
 
+
+//navigation for md down 
 @include media-breakpoint-down(md) 
 {
     .teaser
@@ -17,15 +19,15 @@
             font-size:0.9rem!important;
         }
     }
+    
+    .navbar-brand {
+        padding: 0;
+    }
+    
     .brand {
        width: 180px;
     }
 
-}
-
-//navigation for sm down 
-@include media-breakpoint-down(sm) 
-{
     .navbar-nav.nav li
     {
       padding: 0px;
@@ -52,7 +54,9 @@
     
     .navbar-nav ul.dropdown-menu li 
     {
-      border: none;    
+      border: none;
+      box-shadow: none!important;
+      border-left: none!important;
     }
     
     
@@ -60,17 +64,13 @@
     {
         background-color: $gray-lighter;
         padding: 15px 35px!important;
-        
    }
-   
-   .divider
-   {
-       width: 100%!important;
-       margin: 0px;
-       padding: 0px;
-       
-       height:10px;
-       background-color: $primary;
+
+   #navbarCollapse {
+        order: 3;
+       .divider {
+            display: none;
+       }
    }
     
     .resp-tabs-container .resp-tab-content-active
@@ -81,8 +81,22 @@
     }
 }
 
-// front page for sm down
+
+// side col for sm down
 @include media-breakpoint-down(sm)
+{
+.side-col {
+    order: 1;
+}
+
+.main-col {
+    order: 2;
+}
+
+}
+
+// front page for md down
+@include media-breakpoint-down(md)
 {
    .brand
     {      
@@ -137,7 +151,7 @@
         }
 
         .brand {
-            margin-top: 29px;
+            /*margin-top: 29px;*/
             margin-bottom: 0px;
             width: 200px;;
         }
