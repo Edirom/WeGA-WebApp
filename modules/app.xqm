@@ -1512,7 +1512,7 @@ declare
  :  @param $lang the current language (de|en)
  :)
 declare %private function app:compute-incipit($doc as document-node(), $lang as xs:string) as xs:string? {
-    let $myTextNodes := $doc//tei:text/tei:body/tei:div[not(@type='address')]/(* except tei:dateline except tei:opener | text())
+    let $myTextNodes := $doc//tei:text/tei:body/tei:div[not(@type='address')]/(* except tei:dateline except tei:opener except tei:head | text())
     return
         if(string-length(normalize-space(string-join($myTextNodes, ' '))) gt 20) then str:shorten-TEI($myTextNodes, 80, $lang)
         else str:shorten-TEI($doc//tei:text/tei:body, 80, $lang)
