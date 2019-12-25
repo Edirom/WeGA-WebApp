@@ -593,8 +593,16 @@ $.fn.initPortraitCredits = function() {
 $(".portrait").initPortraitCredits();
 
 
-/* Open the first collapsable filter by default */
-$('.allFilter .collapse').first().collapse('show');
+$(window).on("load", function () {
+    if ($(this).width() > 767) {
+        /* Open the first collapsable filter by default */
+        $('.side-col .collapse').first().collapse('show');
+    } else {
+        /* Close all collapsibles (needed for already opened filter on register page) */
+        $('.side-col .collapse').collapse('hide');
+    }
+});
+
 
 /* 
  * Toggle line wrap for XML preview 

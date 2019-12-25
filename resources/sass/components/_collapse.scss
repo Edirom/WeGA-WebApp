@@ -9,7 +9,7 @@ a.collapseSingle, a.collapseSingle:hover
     text-decoration:none;
 }
 
-.collapseSingle.collapsed:after
+.collapseSingle[aria-expanded="false"]:after
 {
     font-family: FontAwesome;
     font-style: normal;
@@ -30,7 +30,7 @@ a.collapseSingle, a.collapseSingle:hover
     font-size: smaller;
 }
 
-.collapseSingle.collapsed
+.collapseSingle[aria-expanded="false"]
 {
     margin-bottom: 15px;
     border-bottom: 4px solid $gray-lighter!important;

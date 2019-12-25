@@ -60,7 +60,7 @@
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div>
-                        <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle" data-toggle="collapse">document</a></h2>
+                        <h2><a href="#dokument" data-template="lang:translate" class="collapseSingle" aria-expanded="true" data-toggle="collapse">document</a></h2>
                         <div id="dokument" class="panel-collapse collapse show">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
@@ -72,8 +72,8 @@
                         </div>
                     </div>
                     <div data-template="app-shared:each" data-template-from="filterSections" data-template-to="filterSection" class="filtersection">
-                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head" href="#">Personen</a></h2>
-                        <div class="panel-collapse collapse" data-template="facets:filter-body">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" aria-expanded="false" data-template="facets:filter-head" href="#">Personen</a></h2>
+                        <div class="panel-collapse panel-collapse collapse" data-template="facets:filter-body">
                             <div data-toggle="buttons" class="btn-group primary" data-template="facets:filter-options">
                                 <label class="btn gradient-light" data-template="app-shared:each" data-template-from="filterOptions" data-template-to="filterOption">
                                     <input type="checkbox" name="options" data-template="facets:filter-value"/> <span data-template="facets:filter-label">Weber, Carl Maria von</span> 

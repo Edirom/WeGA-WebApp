@@ -1,0 +1,280 @@
+@font-face {
+	font-family: "musical-symbols";
+	src: url("../fonts/Bravura.eot");
+	src: local("☺"),
+		url("../fonts/Bravura.woff") format("woff"),
+		url("../fonts/Bravura.otf") format("opentype"),
+		url("../fonts/Bravura.svg") format("svg");
+}
+
+.musical-symbols {
+	font-family: musical-symbols;
+	vertical-align:middle;
+}
+
+#transcription {
+    color: @gray;
+} 
+
+.tei_hi_underline1 {
+/*    border-bottom: 1px solid black;*/
+    background-image: url(../img/underline1.gif);
+    background-position: center bottom;
+    background-repeat: repeat-x;
+}
+
+.tei_hi_underline2andMore {
+    background-image: url(../img/underline2.gif);
+    background-position: center bottom;
+    background-repeat: repeat-x;
+/*    border-bottom: 2px solid black;*/
+}
+
+.tei_hi_latintype, .tei_hi_italic, .tei_hi_antiqua, .noRdg {
+    font-style: italic;
+}
+
+.tei_hi_bold, .tei_mentioned {
+    font-weight: bold;
+}
+
+.tei_hi_spaced_out {
+    letter-spacing: 0.15em;
+}
+
+.tei_hi_superscript {
+    vertical-align: super;
+    font-size: 0.8em;
+    line-height: 0.7em;
+}
+
+.endnote_backlink {
+    padding-right:0.5em;
+    .tei_hi_superscript;
+}
+
+.tei_hi_subscript {
+    vertical-align: sub;
+    font-size: 0.8em;
+    line-height: 0.7em;
+}
+
+.tei_hi_small-caps {
+    font-variant: small-caps;
+}
+
+.tei_hi_smaller {
+    font-size: smaller;
+}
+
+/* Used in wikipedia transformations */
+.tei_hi_typewriter {
+    font-family: monospace;
+    font-size: 1.2em;
+}
+
+.tei_del, .tei_del_overwritten, .tei_del_strikethrough {
+    text-decoration:line-through;
+}
+
+/* @gray ist die Standardtextfarbe */
+/*
+.tei_supplied, .tei_pb, .tei_cb {
+    color: @gray;
+}
+*/
+.tei_pb, .tei_cb {
+    cursor: help;
+}
+
+.tei_pb_block, .tei_cb_block {
+    .tei_pb;
+    float:left;
+    display:block;
+}
+
+/*  for development … */
+.tei_cssUndefined {
+    border: 1px solid red;
+    color: red;
+    display:block;
+}
+
+/* @gray ist die Standardtextfarbe */
+/* Unsichere Daten und Orte */
+/*.cert_medium, .cert_low, .cert_unknown {
+    color: @gray;
+}*/
+
+/* @gray ist die Standardtextfarbe */
+.cert_medium:after, .cert_low:after, .cert_unknown:after{
+    content:" ?"; /* ACHTUNG: hier &thinsp; ist aber im Editor nicht zu erkennen */
+/*    color: @gray;*/
+}
+
+div.poem {
+   margin: 0.5pc 0em 0.5pc 10%; 
+}
+
+div.poem h2 {
+    text-align: center;
+/*    margin-left: -30%;*/
+    font-size: 1.2em;
+}
+
+div.poem h3 {
+    text-align: left;
+    font-size: 1em;
+}
+
+.lg {
+    margin: 0.5pc auto;
+    width: 90%;
+    display: block;
+    text-align: center;
+}
+
+.verseLine {
+    display: block;
+}
+
+.tei_code {
+    font-family: monospace;
+}
+
+/*.eg {
+    display: block;
+    font-family: monospace;
+    width: 90%;
+    margin: auto;
+    text-align: left;
+    white-space:pre-wrap;
+}
+*/
+li.listTitle {
+    .heading3;
+    font-size: @font-size-h3;
+    list-style:none;
+    margin-bottom:0px;
+}
+
+li.listSubTitle {
+    .heading4;
+    font-size: @font-size-h4;
+    list-style:none;
+}
+
+.tei_simpleList {
+	list-style-type: none;
+}
+
+.tei_list {
+    list-style: disc;
+    margin-left:1em;
+}
+
+.tei_orderedList {
+    list-style: none;
+    margin-left:1em;
+    counter-reset: ol-items;
+    li::before {
+        counter-increment: ol-items 1;
+        content: counter(ol-items) ". ";
+    }
+    li.listTitle::before {
+        content: " ";
+        counter-increment: ol-items 0;
+    }
+}
+
+/* 
+    <signed> und <seg> werden als 'block' gesetzt, 
+    damit die Textausrichtung (s.u.) modifiziert werden kann 
+*/
+.tei_signed, .tei_segBlock {
+    display: block;
+}
+
+.textAlign-right {
+    text-align: right;
+}
+
+.textAlign-center {
+    text-align: center;
+}
+
+.textAlign-left {
+    text-align: left;
+}
+
+.biblio-entry {
+    .title, .journalTitle, .collectionTitle {
+        font-style:italic;
+    }
+}
+
+/* some css for diaries */
+.hiddenText {
+    color: #ffffff;
+}
+
+.tableLeft {
+    float: left;
+    width: 79%;
+}
+
+.tableRight {
+    float: left;
+    width: 21%;
+}
+
+.gr, .pf, .xr {
+    margin-left: 3em;
+    margin-right: -2em;
+}
+
+.rh, .f, .fd {
+    margin-right: -2em;
+}
+
+.tableLeft .tei_pb, .tableRight .tei_pb {
+    display: block;
+    font-style: italic;
+/*    font-family: Helvetica, Verdana, Tahoma, Geneva, Arial, sans-serif;*/
+    border-bottom: 1px solid @gray-light;
+    color: @gray-light;
+    font-size: 0.8em;
+    line-height: 1.6em;
+    margin-top: 0.5em;
+}
+
+.suppliedCurrencySymbol {
+    color: @gray-light;
+}
+
+.teiLetter_address {
+    margin-bottom:@line-height-computed;
+}
+/*
+ * add extra margin between writingSessions
+ */
+.writingSession ~ .writingSession {
+    margin-top: 3 * @line-height-computed;
+}
+#endNotes li {
+    margin-bottom: 2ex;
+}
+
+/* treatment of inline closers */
+.inlineEnd, .inlineStart {
+    display: inline;
+}
+
+/* square brackets should always be recte, never slanted */
+.brackets_supplied {
+    font-style:normal;
+}
+
+.tei_dateline {
+    display:block;
+}

@@ -36,7 +36,7 @@
 
     .navbar-nav.nav li a
     {
-        padding:  0px;
+        padding: 0px;
         padding-left: 20px;
         line-height: 70px;
     }
@@ -45,7 +45,6 @@
     {
         color: $primary;
     }
-    
     
     .navbar-nav.nav.nav li > a:after, .nav li.active > a:after 
     {
@@ -59,12 +58,11 @@
       border-left: none!important;
     }
     
-    
     ul.dropdown-menu li a
     {
         background-color: $gray-lighter;
         padding: 15px 35px!important;
-   }
+    }
 
    #navbarCollapse {
         order: 3;
@@ -72,7 +70,7 @@
             display: none;
        }
    }
-    
+
     .resp-tabs-container .resp-tab-content-active
     {
       border-left: 1px solid $gray-light;
@@ -81,18 +79,38 @@
     }
 }
 
-
-// side col for sm down
 @include media-breakpoint-down(sm)
 {
-.side-col {
-    order: 1;
-}
+// side col and index headline for sm down
+    h1.home, h1.document {
+        font-size: 24px!important;
+    }
+    
+    .side-col {
+        order: 1;
+    }
+    
+    .main-col {
+        order: 2;
+    }
 
-.main-col {
-    order: 2;
-}
+// smaller breadcrumbs, remove last li
+    ol.breadcrumb {
+        font-size: smaller;
+        li:last-child {
+            display:none;
+        }
+    }
 
+// reduce text padding
+    .paddingTopIcon {
+        padding-top: 25px;    
+    }
+    
+// hide filtersections on document pages
+    .allFilter .filtersection {
+        display: none;
+    }
 }
 
 // front page for md down
