@@ -88,10 +88,12 @@
     
     .side-col {
         order: 1;
+        margin-bottom: 1rem;
     }
     
     .main-col {
         order: 2;
+        padding-right: 0px;
     }
 
 // smaller breadcrumbs, remove last li
@@ -100,6 +102,14 @@
         li:last-child {
             display:none;
         }
+    }
+//front page adjjustements    
+    form.form-inline {
+        display: block;
+    }
+    
+    .teaser {
+        float: right;
     }
 
 // reduce text padding
@@ -144,17 +154,31 @@
         border: none;
     }
 
-    .unterschriftweber img    
-    {
-     display: none;
+    .unterschriftweber {
+     margin-bottom: 24px;
+     img {
+        right: 10px;
+        bottom: -10px;
+        }
+    }
+    
+    .paddingBottomIcon {
+        padding-bottom: 25px;
     }
 
     .navbar-nav ul.dropdown-menu li {
         box-shadow: none;
     }
+    
+    a.teaser {
+        background-size: contain;
+    }
+    
+    .teaser {
+        height: 120px;
+        width: 120px;
+     }
 }    
-
-
 
 
 @include media-breakpoint-down(lg)
