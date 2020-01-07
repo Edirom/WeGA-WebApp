@@ -7,8 +7,17 @@
 
 
 //navigation for md down 
-@include media-breakpoint-down(md) 
+@include media-breakpoint-down(md)
 {
+// smaller breadcrumbs, overflow scrolling
+    ol.breadcrumb {
+        font-size: smaller;
+        display: block !important;
+        overflow: scroll;
+        white-space: nowrap;
+        li { display:inline; }
+    }
+
     .teaser
     { 
         margin-top: 30px;    
@@ -31,7 +40,6 @@
     .navbar-nav.nav li
     {
       padding: 0px;
-
     }
 
     .navbar-nav.nav li a
@@ -96,14 +104,7 @@
         padding-right: 0px;
     }
 
-// smaller breadcrumbs, remove last li
-    ol.breadcrumb {
-        font-size: smaller;
-        li:last-child {
-            display:none;
-        }
-    }
-//front page adjjustements    
+//front page adjustements
     form.form-inline {
         display: block;
     }
@@ -114,7 +115,7 @@
 
 // reduce text padding
     .paddingTopIcon {
-        padding-top: 25px;    
+        padding-top: 25px;
     }
     
 // hide filtersections on document pages
