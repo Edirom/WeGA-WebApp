@@ -8,7 +8,9 @@
   padding-left: 15px;
 } 
 
-/* main column padding */
-.main-col {
-    padding-right: 40px;
+/* main column padding (only md upwards) */
+@include media-breakpoint-up(md) {
+    .main-col {
+        padding-right: 40px;
+    }
 }
