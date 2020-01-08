@@ -600,6 +600,7 @@ $(window).on("load", function () {
     } else {
         /* Close all collapsibles (needed for already opened filter on register page) */
         $('.side-col .collapse').collapse('hide');
+        $(window).scrollTop(0);
     }
 });
 
