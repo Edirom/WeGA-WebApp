@@ -27,106 +27,54 @@
     <div class="container">
         <div class="paddingBottomIcon paddingTopIcon">
             <form role="form" class="searchfilter row">
-            <div class="col-12 col-md-3 order-2 side-col">
-                <h2><a href="#allFilter" class="collapseSingle" aria-expanded="true" data-toggle="collapse"><span data-template="lang:translate">filter</span></a></h2>
-                <div class="allFilter panel-collapse collapse show" id="allFilter">
-                    <div class="filterGroup searchDocTypeFilter">
-                        <div class="filterHead">
-                            <h3 data-template="lang:translate">docType</h3>
-                            <div>
-                                <a href="#" class="uncheckall"><span data-template="lang:translate">none</span></a>
-                                <a href="#" class="checkall"><span data-template="lang:translate">all</span></a>
+                <div class="col-12 col-md-4 col-lg-3 order-2 side-col">
+                    <h2><a href="#allFilter" class="collapseSingle" aria-expanded="true" data-toggle="collapse"><span data-template="lang:translate">filter</span></a></h2>
+                    <div class="allFilter panel-collapse collapse show" id="allFilter">
+                        <div class="filterGroup searchDocTypeFilter">
+                            <div class="filterHead">
+                                <h3 data-template="lang:translate">docType</h3>
+                                <div>
+                                    <a href="#" class="uncheckall"><span data-template="lang:translate">none</span></a>
+                                    <a href="#" class="checkall"><span data-template="lang:translate">all</span></a>
+                                </div>
                             </div>
+                            <div class="btn-group" data-toggle="buttons">
+                                <label class="btn btn-checkbox" data-template="app:search-filter">
+                                    <input type="checkbox" name="d" value="persons"/> persons
+                                </label>
+                            </div>
+                            <button type="button" class="mt-4 btn btn-primary btn-sm" onclick="checkBoxRefresh()"><span data-template="lang:translate">applyFilter</span></button>
                         </div>
-                        <div class="btn-group" data-toggle="buttons">
-                            <label class="btn btn-checkbox" data-template="app:search-filter">
-                                <input type="checkbox" name="d" value="persons"/> persons
-                            </label>
-                        </div>
-                        <button type="button" class="mt-4 btn btn-primary btn-sm" onclick="checkBoxRefresh()"><span data-template="lang:translate">applyFilter</span></button>
                     </div>
                 </div>
-            </div>
-            
-            <div class="col-12 col-md-9 main-col" data-template="search:results" data-template-docType="search">
-                <div class="row">
-                    <div class="col-12 d-none d-md-block">
-                        <h2 data-template="lang:translate">pleaseEnterSearchTerms</h2>
-                    </div>
-                </div>    
-                <div class="row">
-                    <div class="col-12 col-md-9 searchform">
+                
+                <div class="col-12 col-md-8 col-lg-9 main-col" data-template="search:results" data-template-docType="search">
+                    <div class="row">
+                        <div class="col-12 d-none d-md-block">
+                            <h2 data-template="lang:translate">pleaseEnterSearchTerms</h2>
+                        </div>
+                    </div>    
+                    <div class="row">
+                        <div class="col-12 col-lg-9 searchform">
                             <div class="input-group">
                                 <input type="text" class="query-input form-control" name="q" id="query-input" data-template="app:search-input"/>
                                 <span class="input-group-btn">
                                     <button type="submit" class="btn btn-primary" data-template="lang:translate">suchen</button>
                                 </span>
                             </div>
+                        </div>
+                        
+                        <!--<div class="col-md-3">
+                            <a class="advancedSearch" href="#">Zur erweiterten Suche <i class="fa fa-arrow-right"/></a>
+                        </div>-->
                     </div>
                     
-                    <!--<div class="col-md-3">
-                        <a class="advancedSearch" href="#">Zur erweiterten Suche <i class="fa fa-arrow-right"/></a>
-                    </div>-->
-                </div>
-                
-                <div class="row searchResultList">
-                    <div class="col-12 textBlock searchResults" data-template="search:result-page">
+                    <div class="row searchResultList">
                         <div data-template="templates:if-parameter-set" data-template-param="q">
-                            <h2 data-template="search:results-count">124 Suchergebnisse</h2>
-                            <p data-template="app-shared:print" data-template-key="query-string" style="display:none;" id="query-string"/>
-                            <div data-template="app:set-entries-per-page">
-                                <div data-template="app-shared:if-matches" data-template-key="moreresults" data-template-value="true">
-                                    <div class="row">
-                                        <div class="col-sm-8">
-                                            <ul class="pagination" data-template="app:pagination">
-                                                <li><a href="#">&lt;</a></li>
-                                            </ul>
-                                        </div>
-                                        <div class="col-sm-4">
-                                            <ul class="pagination switch-limit">
-                                                <li class="page-item disabled"><a class="page-link" href="#" data-template="lang:translate">perPage</a></li>
-                                                <li data-template="app:switch-limit"><a class="page-link" href="#">10</a></li>
-                                                <li data-template="app:switch-limit"><a class="page-link" href="#">25</a></li>
-                                                <li data-template="app:switch-limit"><a class="page-link" href="#">50</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-12">
-                                    <ul class="media-list">
-                                        <li class="media" data-template="app-shared:each" data-template-from="result-page-entries" data-template-to="result-page-entry">
-                                            <div data-template="search:dispatch-preview"/>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div data-template="templates:if-parameter-set" data-template-param="q">
-                                <div data-template="app:set-entries-per-page">
-                                    <div data-template="app-shared:if-matches" data-template-key="moreresults" data-template-value="true">
-                                        <div class="row">
-                                            <div class="col-sm-8">
-                                                <ul class="pagination" data-template="app:pagination">
-                                                    <li><a href="#">&lt;</a></li>
-                                                </ul>
-                                            </div>
-                                            <div class="col-sm-4">
-                                                <ul class="pagination switch-limit">
-                                                    <li class="page-item disabled"><a class="page-link" href="#" data-template="lang:translate">perPage</a></li>
-                                                    <li data-template="app:switch-limit"><a class="page-link" href="#">10</a></li>
-                                                    <li data-template="app:switch-limit"><a class="page-link" href="#">25</a></li>
-                                                    <li data-template="app:switch-limit"><a class="page-link" href="#">50</a></li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <div data-template="templates:include" data-template-path="templates/includes/search-results.html"/>
                         </div>
                     </div>
                 </div>
-            </div>
             </form>
         </div>
     </div>
