@@ -274,7 +274,6 @@ function removeFilter(html, trigger, container, data) {
     $('.col-md-3', html).remove();
     
     /* and adjust the width of the remains  */
-    html.removeClass('row');
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
     
     /* 
@@ -801,7 +800,7 @@ $.fn.activatePagination = function(container) {
      * this is provided by the nav-tabs remote data plugin 
      * and we use it to remove filters from the backlinks AJAX page
      */
-    if($('.nav-tabs .active a[data-tab-callback]').length === 1) {
+    if($('.nav-tabs a.active[data-tab-callback]').length === 1) {
         callback = window[$('.nav-tabs a.active').attr('data-tab-callback')];
     }    
     
