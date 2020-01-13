@@ -170,7 +170,7 @@ a.checkbox-only {
 }
 
 /* 
- * loading spinner for selectize plugin (.allFilter)
+ * loading spinner for selectize plugin (.selectize-control)
  * and AJAX tabs on person pages (.nav-item)
  */
 .loading::before {
@@ -180,12 +180,13 @@ a.checkbox-only {
 	position: absolute;
     @extend .fa-spin;
     @extend .fa;
-    .allFilter & {
-        right: .5em;
-    }
     .nav-item & {
         right: 1.5em;
     }
+}
+.selectize-control.loading::before {
+    right: .5em;
+    top: .5em;
 }
 
 .bootstrap-select

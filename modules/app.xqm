@@ -205,7 +205,7 @@ declare
         let $authorID := tokenize($model?('exist:path'), '/')[3]
         let $anonymusID := config:get-option('anonymusID')
         let $authorElem :=
-            if ($authorID = $anonymusID) then query:get-author-element($model?doc)[(count(@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)]
+            if ($authorID = $anonymusID) then (query:get-author-element($model?doc)[(count(@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)])[1]
             else query:get-author-element($model?doc)[(@key, @dbkey) = $authorID]
         let $href :=
             if ($authorID = $anonymusID) then ()
@@ -1494,9 +1494,26 @@ declare
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit ! element p { app:enquote-html(./xhtml:p/node(), $lang) }
             else element p {
                 if(exists($incipit)) then app:enquote-html($incipit, $lang)
-                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then app:enquote-html(str:shorten-TEI($model('doc')//tei:text/tei:body, 80, $lang), $lang)
+                else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then app:enquote-html(app:compute-incipit($model?doc, $lang), $lang)
                 else '–'
             }
+};
+
+(:~
+ :  Compute the incipit for a text 
+ :  Helper function for app:print-incipit()
+ :
+ :  Incipits for letters shall not be taken from the address or the opener, but only from the letter text (proper)
+ :  The current implementation is more or less a stub and can be expanded …
+ :
+ :  @param $doc the TEI document to compute the incipit from
+ :  @param $lang the current language (de|en)
+ :)
+declare %private function app:compute-incipit($doc as document-node(), $lang as xs:string) as xs:string? {
+    let $myTextNodes := $doc//tei:text/tei:body/tei:div[not(@type='address')]/(* except tei:dateline except tei:opener except tei:head | text())
+    return
+        if(string-length(normalize-space(string-join($myTextNodes, ' '))) gt 20) then str:shorten-TEI($myTextNodes, 80, $lang)
+        else str:shorten-TEI($doc//tei:text/tei:body, 80, $lang)
 };
 
 declare 

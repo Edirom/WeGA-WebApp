@@ -274,7 +274,6 @@ function removeFilter(html, trigger, container, data) {
     $('.col-md-3', html).remove();
     
     /* and adjust the width of the remains  */
-    html.removeClass('row');
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
     
     /* 
@@ -356,8 +355,11 @@ $.fn.A090280 = function () {
     }
 };
 
-/* Some special treatment of headings here */
-$('h3').A090280();
+/* 
+ * Some special treatment of headings here for special pages 
+ * NB: this is a hack!
+ */
+$('h3[id]').A090280();
 
 // load and activate person tab
 function activateTab() {
@@ -807,7 +809,7 @@ $.fn.activatePagination = function(container) {
      * this is provided by the nav-tabs remote data plugin 
      * and we use it to remove filters from the backlinks AJAX page
      */
-    if($('.nav-tabs .active a[data-tab-callback]').length === 1) {
+    if($('.nav-tabs a.active[data-tab-callback]').length === 1) {
         callback = window[$('.nav-tabs a.active').attr('data-tab-callback')];
     }    
     
@@ -1036,9 +1038,16 @@ function getDiaryDate() {
     return date
 };
 
-/* Get the document ID from the breadcrumb */
+/* Get the document ID from the XML download link */
 function getID() {
-    return $('.breadcrumb li:last').text().trim()
+    var xmlLink = $('.nav-link[href="#XMLPreview"]').attr('data-tab-url'),
+        tokens = []; 
+    if(xmlLink !== undefined) {
+        tokens = xmlLink.split('/');
+        if(tokens.length > 2) {
+            return tokens[tokens.length -2]
+        }
+    }
 };
 
 /* Add search option for advanced search */
