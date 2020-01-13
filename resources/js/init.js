@@ -356,8 +356,11 @@ $.fn.A090280 = function () {
     }
 };
 
-/* Some special treatment of headings here */
-$('h3').A090280();
+/* 
+ * Some special treatment of headings here for special pages 
+ * NB: this is a hack!
+ */
+$('h3[id]').A090280();
 
 // load and activate person tab
 function activateTab() {
@@ -1027,9 +1030,16 @@ function getDiaryDate() {
     return date
 };
 
-/* Get the document ID from the breadcrumb */
+/* Get the document ID from the XML download link */
 function getID() {
-    return $('.breadcrumb li:last').text().trim()
+    var xmlLink = $('.nav-link[href="#XMLPreview"]').attr('data-tab-url'),
+        tokens = []; 
+    if(xmlLink !== undefined) {
+        tokens = xmlLink.split('/');
+        if(tokens.length > 2) {
+            return tokens[tokens.length -2]
+        }
+    }
 };
 
 /* Add search option for advanced search */
