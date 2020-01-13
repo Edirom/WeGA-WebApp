@@ -7,8 +7,17 @@
 
 
 //navigation for md down 
-@include media-breakpoint-down(md) 
+@include media-breakpoint-down(md)
 {
+// smaller breadcrumbs, overflow scrolling
+    ol.breadcrumb {
+        font-size: smaller;
+        display: block !important;
+        overflow: scroll;
+        white-space: nowrap;
+        li { display:inline; }
+    }
+
     .teaser
     { 
         margin-top: 30px;    
@@ -31,12 +40,11 @@
     .navbar-nav.nav li
     {
       padding: 0px;
-
     }
 
     .navbar-nav.nav li a
     {
-        padding:  0px;
+        padding: 0px;
         padding-left: 20px;
         line-height: 70px;
     }
@@ -45,7 +53,6 @@
     {
         color: $primary;
     }
-    
     
     .navbar-nav.nav.nav li > a:after, .nav li.active > a:after 
     {
@@ -59,12 +66,11 @@
       border-left: none!important;
     }
     
-    
     ul.dropdown-menu li a
     {
         background-color: $gray-lighter;
         padding: 15px 35px!important;
-   }
+    }
 
    #navbarCollapse {
         order: 3;
@@ -72,27 +78,49 @@
             display: none;
        }
    }
-    
-    .resp-tabs-container .resp-tab-content-active
+
+/*    .resp-tabs-container .resp-tab-content-active
     {
       border-left: 1px solid $gray-light;
       border-right: 1px solid $gray-light;
       border-bottom: 1px solid $gray-light;
-    }
+    }*/
 }
 
-
-// side col for sm down
 @include media-breakpoint-down(sm)
 {
-.side-col {
-    order: 1;
-}
+// side col and index headline for sm down
+    h1.home, h1.document {
+        font-size: 24px!important;
+    }
+    
+    .side-col {
+        order: 1;
+        margin-bottom: 1rem;
+    }
+    
+    .main-col {
+        order: 2;
+    }
 
-.main-col {
-    order: 2;
-}
+//front page adjustements
+    form.form-inline {
+        display: block;
+    }
+    
+    .teaser {
+        float: right;
+    }
 
+// reduce text padding
+    .paddingTopIcon {
+        padding-top: 25px;
+    }
+    
+// hide filtersections on document pages
+    .allFilter .filtersection {
+        display: none;
+    }
 }
 
 // front page for md down
@@ -126,17 +154,31 @@
         border: none;
     }
 
-    .unterschriftweber img    
-    {
-     display: none;
+    .unterschriftweber {
+     margin-bottom: 24px;
+     img {
+        right: 10px;
+        bottom: -10px;
+        }
+    }
+    
+    .paddingBottomIcon {
+        padding-bottom: 25px;
     }
 
     .navbar-nav ul.dropdown-menu li {
         box-shadow: none;
     }
+    
+    a.teaser {
+        background-size: contain;
+    }
+    
+    .teaser {
+        height: 120px;
+        width: 120px;
+     }
 }    
-
-
 
 
 @include media-breakpoint-down(lg)

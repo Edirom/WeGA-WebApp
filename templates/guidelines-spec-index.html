@@ -19,7 +19,7 @@
 						<li><span data-template="gl:chapter-heading">elements</span></li>
 					</ol>
 				</div>
-				<div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
+				<div class="col-sm-2 d-none d-lg-block backLinkInBreadcrumb" onclick="history.back();">
 					<i class="fa fa-arrow-left"/>
 					<span data-template="lang:translate">back</span>
 				</div>
@@ -42,7 +42,7 @@
 			</div>
 			<form>
 				<div class="col-md-3">
-					<h2><a data-toggle="collapse" class="collapseSingle collapsed" href="#sidefilter">Filter</a></h2>
+					<h2><a data-toggle="collapse" aria-expanded="false" class="collapseSingle collapsed" href="#sidefilter">Filter</a></h2>
 					<div class="panel-collapse collapse" id="sidefilter">
 						<div class="allFilter glSchemaIDFilter">
 							<div class="btn-group" data-toggle="buttons">
@@ -54,7 +54,7 @@
 					</div>
 					<div class="toc-side d-none d-md-block">
 						<h2>
-							<a data-template="lang:translate" data-toggle="collapse" class="collapseSingle" href="#sidetoc">toc</a>
+							<a data-template="lang:translate" data-toggle="collapse" class="collapseSingle" aria-expanded="false" href="#sidetoc">toc</a>
 						</h2>
 						<div id="sidetoc">
 							<div data-template="templates:include" data-template-path="templates/includes/guidelines-toc.html"/>

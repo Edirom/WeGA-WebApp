@@ -13,7 +13,7 @@
         <div class="container">
             <div data-template="templates:if-parameter-unset" data-template-param="q">
                 <div class="row">
-                    <div class="col-sm-10">
+                    <div class="col-12 col-md-10">
                         <ol class="breadcrumb">
                             <li>
                                 <a href="$link/index">Home</a>
@@ -31,7 +31,7 @@
                             </li>
                         </ol>
                     </div>
-                    <div class="col-sm-2 d-none d-sm-block backLinkInBreadcrumb" onclick="history.back();">
+                    <div class="col-2 col-sm-2 d-none d-lg-block backLinkInBreadcrumb" onclick="history.back();">
                         <i class="fa fa-arrow-left"/>
                         <span data-template="lang:translate">back</span>
                     </div>
@@ -54,17 +54,17 @@
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="app:doc-details">
         <div class="row">
-            <div class="col-md-3 order-2">
+            <div class="col-md-3 order-2 side-col">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="diaries">
                         <h2>
-                            <a href="#datePicker" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">calendar</a>
+                            <a href="#datePicker" data-template="lang:translate" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">calendar</a>
                         </h2>
                         <div class="panel-collapse collapse" id="datePicker" data-template="app:inject-api-base"/>
                     </div>
                     <div>
                         <h2>
-                            <a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">document</a>
+                            <a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">document</a>
                         </h2>
                         <div id="dokument" class="panel-collapse collapse">
                             <!-- Nav tabs -->
@@ -95,7 +95,7 @@
                     <div data-template="templates:include" data-template-path="templates/includes/download-modal-tei.html"/>
                     <div data-template="app:context">
                         <h2>
-                            <a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" data-toggle="collapse">context</a>
+                            <a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">context</a>
                         </h2>
                         <div id="kontext" class="panel-collapse collapse borderBox">
                                 <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters">            
@@ -158,7 +158,7 @@
                     </div>
                     <div data-template="app-shared:each" data-template-from="filterSections" data-template-to="filterSection" class="filtersection">
                         <h2>
-                            <a class="collapseSingle collapsed" data-toggle="collapse" data-template="facets:filter-head" href="#">Personen</a>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" aria-expanded="false" data-template="facets:filter-head" href="#">Personen</a>
                         </h2>
                         <div class="panel-collapse collapse" data-template="facets:filter-body">
                             <div data-toggle="buttons" class="btn-group" data-template="facets:filter-options">
@@ -233,7 +233,7 @@
                                         </span>
                                         <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
                                         <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
-                                            <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed"/>                                                                                                                                                                               
+                                            <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed"/>                                                                                                                                                                               
                                         </span>                                      
                                         <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse apparatus-details">
                                             <div data-template="app-shared:output" data-template-key="sourceData-content"/>
@@ -250,7 +250,7 @@
                                                             </span>
                                                             <span data-template="app-shared:output" data-template-key="sourceLink-content" class="collapse"/>
                                                             <span data-template="app-shared:if-matches" data-template-key="collapse" data-template-value="true">
-                                                                <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" title="Details" class="collapseMarker collapsed apparatus-details"/>
+                                                                <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="sourceLink" data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details"/>
                                                             </span>  
                                                             <div data-template="app-shared:set-attr" data-template-attr="id" data-template-key="sourceId" class="collapse">
                                                                 <div data-template="app-shared:output" data-template-key="sourceData-content"/>

@@ -58,7 +58,7 @@
     }
     &.resp-tab-active
     {
-        background: $gray-lighter!important;
+        background: $gray-lightest!important;
     }
     &.resp-tab-active a
     {
@@ -70,15 +70,9 @@
 }
 
 li.resp-tab-item {
-  margin: 0px 0px -4px 3px!important;
-  &:first-child { margin-left: 0px!important; }
+    margin: 0px 0px -4px 3px!important;
+    &:first-child { margin-left: 0px!important; }
 }
-
-button.resp-tab-active, li.resp-tab-active {
-    border-bottom: 3px solid $gray-lighter!important;
-    border-top: 4px solid $gray;
-}
-
 
 // Tabs
 .resp-tab-content
@@ -105,11 +99,10 @@ button.resp-tab-active, li.resp-tab-active {
         &.resp-tab-active
         {
             color: $gray;
-            background: $gray-lighter;
-            
+            background: $gray-lightest!important;
             border: 1px solid $gray-light!important;
-            border-top: 4px solid $gray!important;
-            border-bottom: 3px solid $gray-lighter!important;
+            border-top: 4px solid $primary!important;
+            border-bottom: none!important;
             a
             {
                 color: $gray;

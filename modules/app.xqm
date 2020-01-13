@@ -413,15 +413,13 @@ declare
             if($page le 1) then
              <li class="page-item disabled"><a class="page-link">{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</a></li>
              else <li class="page-item">{$a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) }</li>,
-            if($page gt 3) then <li class="page-item">{$a-element(1, '1')}</li> else (),
-            if($page gt 4) then <li class="page-item">{$a-element(2, '2')}</li> else (),
-            if($page gt 5) then <li class="page-item disabled"><a href="page-link">…</a></li> else (),
-            ($page - 2, $page - 1)[. gt 0] ! <li class="page-item">{$a-element(., string(.))}</li>,
+            if($page gt 3) then <li class="page-item d-none d-sm-inline">{$a-element(1, '1')}</li> else (),
+            if($page gt 4) then <li class="page-item disabled d-none d-sm-inline"><a class="page-link">…</a></li> else (),
+            ($page - 2, $page - 1)[. gt 0] ! <li class="page-item d-none d-lg-inline">{$a-element(., string(.))}</li>,
             <li class="page-item active"><a class="page-link">{$page}</a></li>,
-            ($page + 1, $page + 2)[. le $last-page] ! <li class="page-item">{$a-element(., string(.))}</li>,
-            if($page + 4 lt $last-page) then <li class="page-item disabled"><a class="page-link">…</a></li> else (),
-            if($page + 3 lt $last-page) then <li class="page-item">{$a-element($last-page - 1, string($last-page - 1))}</li> else (),
-            if($page + 2 lt $last-page) then <li class="page-item">{$a-element($last-page, string($last-page))}</li> else (),
+            ($page + 1, $page + 2)[. le $last-page] ! <li class="page-item d-none d-lg-inline">{$a-element(., string(.))}</li>,
+            if($page + 3 lt $last-page) then <li class="page-item disabled d-none d-sm-inline"><a class="page-link">…</a></li> else (),
+            if($page + 2 lt $last-page) then <li class="page-item d-none d-sm-inline">{$a-element($last-page, string($last-page))}</li> else (),
             if($page ge $last-page) then
                 <li class="page-item disabled">{
                     <a class="page-link">{lang:get-language-string('paginationNext', $lang) || ' &#x00BB;'}</a>
