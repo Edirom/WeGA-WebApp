@@ -205,8 +205,10 @@ declare
         let $authorID := tokenize($model?('exist:path'), '/')[3]
         let $anonymusID := config:get-option('anonymusID')
         let $authorElem :=
+            (: NB: there might be multiple anonymous authors :)
             if ($authorID = $anonymusID) then (query:get-author-element($model?doc)[(count(@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)])[1]
-            else query:get-author-element($model?doc)[(@key, @dbkey) = $authorID]
+            (: NB: there might be multiple occurences of the same person as e.g. composer and lyricist :)
+            else (query:get-author-element($model?doc)[(@key, @dbkey) = $authorID])[1]
         let $href :=
             if ($authorID = $anonymusID) then ()
             else app:createUrlForDoc(core:doc($authorID), $lang)
