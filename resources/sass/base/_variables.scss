@@ -187,3 +187,32 @@ $text-muted:                  $gray-light;
 $blockquote-small-color:      $gray-light;
 //** Blockquote font size
 $blockquote-font-size:        ($font-size-base * 1.25);
+
+//** Extra color definitions for later data:image urls
+$white:    #fff !default;
+$black:    #000 !default;
+$gray-800: #343a40 !default;
+$navbar-dark-color:                 rgba($white, .5) !default;
+$custom-select-indicator-color:     $gray-800 !default;
+$component-active-color:      $white !default;
+$custom-control-indicator-checked-color:        $component-active-color !default;
+$custom-checkbox-indicator-indeterminate-color:        $custom-control-indicator-checked-color !default;
+$navbar-light-color:                rgba($black, .5) !default;
+$carousel-control-color:             $white !default;
+
+//** rewrite spaces as %20 so our minifier yuicomporess won't compress these
+$custom-checkbox-indicator-icon-checked: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='8'%20height='8'%20viewBox='0%200%208%208'><path%20fill='#{$custom-control-indicator-checked-color}'%20d='M6.564.75l-3.59%203.612-1.538-1.55L0%204.26l2.974%202.99L8%202.193z'/></svg>") !default;
+
+$custom-checkbox-indicator-icon-indeterminate: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='4'%20height='4'%20viewBox='0%200%204%204'><path%20stroke='#{$custom-checkbox-indicator-indeterminate-color}'%20d='M0%202h4'/></svg>") !default;
+
+$custom-radio-indicator-icon-checked: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='12'%20height='12'%20viewBox='-4%20-4%208%208'><circle%20r='3'%20fill='#{$custom-control-indicator-checked-color}'/></svg>") !default;
+
+$custom-select-indicator: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='4'%20height='5'%20viewBox='0%200%204%205'><path%20fill='#{$custom-select-indicator-color}'%20d='M2%200L0%202h4zm0%205L0%203h4z'/></svg>") !default;
+
+$navbar-dark-toggler-icon-bg: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='30'%20height='30'%20viewBox='0%200%2030%2030'><path%20stroke='#{$navbar-dark-color}'%20stroke-linecap='round'%20stroke-miterlimit='10'%20stroke-width='2'%20d='M4%207h22M4%2015h22M4%2023h22'/></svg>") !default;
+
+$navbar-light-toggler-icon-bg: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20width='30'%20height='30'%20viewBox='0%200%2030%2030'><path%20stroke='#{$navbar-light-color}'%20stroke-linecap='round'%20stroke-miterlimit='10'%20stroke-width='2'%20d='M4%207h22M4%2015h22M4%2023h22'/></svg>") !default;
+
+$carousel-control-prev-icon-bg: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20fill='#{$carousel-control-color}'%20width='8'%20height='8'%20viewBox='0%200%208%208'><path%20d='M5.25%200l-4%204%204%204%201.5-1.5L4.25%204l2.5-2.5L5.25%200z'/></svg>") !default;
+
+$carousel-control-next-icon-bg: url("data:image/svg+xml,<svg%20xmlns='http://www.w3.org/2000/svg'%20fill='#{$carousel-control-color}'%20width='8'%20height='8'%20viewBox='0%200%208%208'><path%20d='M2.75%200l-1.5%201.5L3.75%204l-2.5%202.5L2.75%208l4-4-4-4z'/></svg>") !default;
