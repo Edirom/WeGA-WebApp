@@ -47,7 +47,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             core:data-collection('orgs')[descendant::tei:org][descendant-or-self::tei:orgName]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('orgs', wdt:orgs(())('init-collection')(), function($node) { wdt:orgs($node)('title')('txt') }, ())
+            sort:create-index-callback('orgs', wdt:orgs(())('init-collection')(), function($node) { wdt:orgs($node)('title')('txt') }, ())
         },
         'title' : function($serialization as xs:string) as item()? {
             let $org := 
@@ -106,7 +106,7 @@ declare function wdt:persons($item as item()*) as map(*) {
             core:data-collection('persons')[descendant::tei:person][descendant-or-self::tei:persName]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('persons', wdt:persons(())('init-collection')(), wdt:sort-key-person#1, ())
+            sort:create-index-callback('persons', wdt:persons(())('init-collection')(), wdt:sort-key-person#1, ())
         },
         'title' : function($serialization as xs:string) as item()? {
             let $person := 
@@ -198,7 +198,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             core:data-collection('letters')/descendant::tei:text[@type = $text-types]/root()
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
+            sort:create-index-callback('letters', wdt:letters(())('init-collection')(), function($node) {
                 let $normDate := query:get-normalized-date($node)
                 let $n :=  functx:pad-integer-to-length(($node//tei:correspAction[@type='sent']/tei:date)[1]/data(@n), 4)
                 return
@@ -262,7 +262,7 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
             wdt:orgs($item)('init-collection')() | wdt:persons($item)('init-collection')()
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('personsPlus', wdt:personsPlus(())('init-collection')(), function($node) {
+            sort:create-index-callback('personsPlus', wdt:personsPlus(())('init-collection')(), function($node) {
                 if($node/tei:org) then lower-case(str:normalize-space($node//tei:orgName[@type = 'reg']))
                 else wdt:sort-key-person($node)
             }, ())
@@ -307,7 +307,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             core:data-collection('writings')/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert_announcements')]/root() 
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {
+            sort:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {
                 let $normDate := query:get-normalized-date($node)
                 let $source := query:get-main-source($node)
                 let $journal := string-join($source/tei:monogr/tei:title[@level = 'j']/str:normalize-space(.), '. ')
@@ -375,7 +375,7 @@ declare function wdt:works($item as item()*) as map(*) {
             core:data-collection('works')[mei:mei][descendant::mei:meiHead]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('works', wdt:works(())('init-collection')(), function($node) { 
+            sort:create-index-callback('works', wdt:works(())('init-collection')(), function($node) { 
                 functx:pad-integer-to-length(($node//mei:seriesStmt/mei:title[@level])[1]/xs:int(@n), 4) || 
                 $node//mei:altId[@type = 'WeV']/string(@subtype) || 
                 (if($node//mei:altId[@type = 'WeV']/@n castable as xs:int) then
@@ -447,7 +447,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
             core:data-collection('diaries')[tei:ab/@where]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
+            sort:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
         },
         'title' : function($serialization as xs:string) as item()? {
             let $ab := 
@@ -512,7 +512,7 @@ declare function wdt:news($item as item()*) as map(*) {
             core:data-collection('news')[descendant::tei:text]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
+            sort:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
         },
         'title' : function($serialization as xs:string) as item()? {
             let $TEI := 
@@ -562,7 +562,7 @@ declare function wdt:iconography($item as item()*) as map(*) {
             core:data-collection('iconography')[descendant::tei:person/@corresp]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('iconography', wdt:iconography(())('init-collection')(), function($node) { $node//tei:person/data(@corresp) }, ())
+            sort:create-index-callback('iconography', wdt:iconography(())('init-collection')(), function($node) { $node//tei:person/data(@corresp) }, ())
         },
         'memberOf' : ('unary-docTypes'),
         'search' : ()
@@ -654,7 +654,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
             core:data-collection('biblio')[descendant::tei:monogr]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('biblio', wdt:biblio(())('init-collection')(), function($node) { 
+            sort:create-index-callback('biblio', wdt:biblio(())('init-collection')(), function($node) { 
                 let $date := query:get-normalized-date($node)
                 return
                     (if(exists($date)) then $date else '0000') ||
@@ -711,7 +711,7 @@ declare function wdt:places($item as item()*) as map(*) {
             core:data-collection('places')[descendant::tei:placeName]
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('places', wdt:places(())('init-collection')(), function($node) { str:normalize-space($node//tei:placeName[@type='reg']) }, ())
+            sort:create-index-callback('places', wdt:places(())('init-collection')(), function($node) { str:normalize-space($node//tei:placeName[@type='reg']) }, ())
         },
         'title' : function($serialization as xs:string) as item()? {
             let $place := 
@@ -807,7 +807,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             core:data-collection('thematicCommentaries')/descendant::tei:text[@type='thematicCom']/root()
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('thematicCommentaries', wdt:thematicCommentaries(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
+            sort:create-index-callback('thematicCommentaries', wdt:thematicCommentaries(())('init-collection')(), function($node) { replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '') }, ())
         },
         'title' : function($serialization as xs:string) as item()? {
             let $TEI := 
@@ -863,7 +863,7 @@ declare function wdt:documents($item as item()*) as map(*) {
             core:data-collection('documents')/descendant::tei:text[@type=$text-types]/root()
         },
         'init-sortIndex' : function() as item()* {
-            wdt:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) {
+            sort:create-index-callback('documents', wdt:documents(())('init-collection')(), function($node) {
                 let $normDate := query:get-normalized-date($node)
                 let $title := replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '')
                 return 
@@ -1101,14 +1101,6 @@ declare function wdt:indices($item as item()*) as map(*) {
 };
 
 (:~
- : Helper function to avoid trouble with type checks for parameter 2
-~:)
-declare %private function wdt:create-index-callback($id as xs:string, $item as item()*, $callback as function() as xs:string?, $options as element()?) as item()* {
-(:  Probably try to cache the dateTime of index creation?!  :)
-    sort:create-index-callback($id, $item, $callback, $options)
-};
-
-(:~
  : Helper function for creating a sort key for persons
  : Called by wdt:persons and wdt:personsPlus
 ~:)
@@ -1179,7 +1171,7 @@ declare function wdt:members($memberOf as xs:string+) as item()* {
 declare variable $wdt:functions := 
     for $func in inspect:module-functions()
     return 
-        if(function-name($func) = (xs:QName('wdt:functions-available'), xs:QName('wdt:lookup'), xs:QName('wdt:members'), xs:QName('wdt:create-index-callback'), xs:QName('wdt:sort-key-person'))) then ()
+        if(function-name($func) = (xs:QName('wdt:functions-available'), xs:QName('wdt:lookup'), xs:QName('wdt:members'), xs:QName('wdt:sort-key-person'))) then ()
         else $func
 ;
 
