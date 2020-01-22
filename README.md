@@ -1,3 +1,7 @@
+<a href="https://weber-gesamtausgabe.de/" style="float:right;">
+<img alt="WeGA Logo" src="https://github.com/Edirom/WeGA-WebApp/raw/develop/resources/img/logo_weber.png"/>
+</a>
+
 # WeGA WebApp
 
 [![](https://img.shields.io/badge/license-BSD2-green.svg)](https://github.com/Edirom/WeGA-WebApp/blob/develop/LICENSE)
