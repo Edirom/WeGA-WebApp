@@ -435,7 +435,7 @@ declare
     function app:set-entries-per-page($node as node(), $model as map(*)) as map() {
 		map {
 			'limit' : config:entries-per-page(),
-			'moreresults' := if ( count($model('search-results')) gt config:entries-per-page() ) then 'true' else ()
+			'moreresults' : if ( count($model('search-results')) gt config:entries-per-page() ) then 'true' else ()
 		}
 };
 
@@ -1390,8 +1390,8 @@ declare
     let $textSourcesCount := count(query:text-sources($model?doc))
     return
         map {
-            'textSources' := query:text-sources($model?doc),
-            'textSourcesCountString' := if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else ""
+            'textSources' : query:text-sources($model?doc),
+            'textSourcesCountString' : if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else ""
         }
 };
 
@@ -1420,12 +1420,12 @@ declare
         return
             map {
                 'witness' : if ($sourceCount > 1) then concat($model($key)/parent::tei:witness/@n,".") else "",
-                'collapse' := $collapse,
-                'sourceLink' := concat("#",$source-id),
-                'sourceId' := $source-id,
-                'sourceLink-content' := $sourceLink-content,
-                'sourceData-content' := $sourceData-content,
-                'sourceCategory' := $sourceCategory
+                'collapse' : $collapse,
+                'sourceLink' : concat("#",$source-id),
+                'sourceId' : $source-id,
+                'sourceLink-content' : $sourceLink-content,
+                'sourceData-content' : $sourceData-content,
+                'sourceCategory' : $sourceCategory
             }
 };
 
