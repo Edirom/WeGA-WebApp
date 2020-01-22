@@ -1,6 +1,4 @@
-<a href="https://weber-gesamtausgabe.de/" style="float:right;">
-<img alt="WeGA Logo" src="https://github.com/Edirom/WeGA-WebApp/raw/develop/resources/img/logo_weber.png"/>
-</a>
+[![WeGA Logo](https://github.com/Edirom/WeGA-WebApp/raw/develop/resources/img/logo_weber.png)](https://weber-gesamtausgabe.de/)
 
 # WeGA WebApp
 
