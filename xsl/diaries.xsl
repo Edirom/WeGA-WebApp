@@ -62,6 +62,17 @@
             </xsl:element>
         </xsl:if>
         <xsl:element name="br"/>
+        <!-- 
+            special treatment for linebreaks in segs that span more than one line;
+            occurs rarely but see A062344, A062374, and A065590 
+        -->
+        <xsl:if test="ancestor::tei:seg[@rend]">
+            <xsl:element name="span">
+                <!--    Erzwingt vertikalen Abstand bei Zeilenumbrüchen -->
+                <xsl:attribute name="class" select="'hiddenText'"/>
+                <xsl:text>|</xsl:text>
+            </xsl:element>
+        </xsl:if>
     </xsl:template>
     
     <xsl:template match="tei:seg">
