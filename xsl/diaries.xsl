@@ -167,6 +167,21 @@
                 <xsl:if test="ancestor::tei:del">
                     <xsl:value-of select="' tei_del'"/>
                 </xsl:if>
+                <!-- need to process ancestor tei:hi elements with rendition information here -->
+                <xsl:for-each select="ancestor::tei:hi">
+                    <xsl:text> </xsl:text>
+                    <xsl:choose>
+                        <xsl:when test="@n &gt; 1 or ancestor::tei:hi[@rend='underline']">
+                            <xsl:value-of select="'tei_hi_underline2andMore'"/>
+                        </xsl:when>
+                        <xsl:when test="@rend='underline' and (not(@n) or @n='1')">
+                            <xsl:value-of select="'tei_hi_underline1'"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat('tei_hi_', @rend)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:for-each>
             </xsl:attribute>
             <xsl:apply-templates mode="#default"/>
             <!-- Wenn kein Währungssymbol angegeben ist, setzen wir eins hinzu -->
