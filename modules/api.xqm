@@ -57,7 +57,10 @@ declare function api:documents-findByDate($model as map()) as map()* {
 
 declare function api:documents-findByMention($model as map()) as map()* {
     let $mentioned-doc := api:findByID($model('docID'))
-    let $backlinks :=core:getOrCreateColl('backlinks', $mentioned-doc/*/data(@xml:id), true())
+    let $backlinks := 
+        if($mentioned-doc) 
+        then core:getOrCreateColl('backlinks', $mentioned-doc/*/data(@xml:id), true())
+        else ()
     let $documents := 
         for $docType in api:resolve-docTypes($model)
         return wdt:lookup($docType, $backlinks)('filter')()
@@ -70,8 +73,12 @@ declare function api:documents-findByMention($model as map()) as map()* {
 declare function api:documents-findByAuthor($model as map()) as map()* {
     let $author := api:findByID($model('authorID'))
     let $documents := 
-        for $docType in api:resolve-docTypes($model)
-        return core:getOrCreateColl($docType, $author/tei:person/data(@xml:id), true())
+        if($author)
+        then ( 
+            for $docType in api:resolve-docTypes($model)
+            return core:getOrCreateColl($docType, $author/tei:person/data(@xml:id), true())
+            )
+        else ()
     return (
         map { 'totalRecordCount': count($documents) },
         api:document(api:subsequence($documents, $model), $model)
