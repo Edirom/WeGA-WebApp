@@ -197,7 +197,7 @@ declare %private function lod:DC.description($model as map(*), $lang as xs:strin
         default return
             switch($model('docType'))
             case 'persons' return 
-                let $dates := concat(date:printDate($model('doc')//tei:birth/tei:date[1],$lang,lang:get-language-string(?,?,$lang), $config:default-date-picture-string), '–', date:printDate($model('doc')//tei:death/tei:date[1],$lang,lang:get-language-string(?,?,$lang), $config:default-date-picture-string))
+                let $dates := concat(date:printDate($model('doc')//tei:birth/tei:date[1],$lang,lang:get-language-string#3, $config:default-date-picture-string), '–', date:printDate($model('doc')//tei:death/tei:date[1],$lang,lang:get-language-string#3, $config:default-date-picture-string))
                 let $occupations := string-join($model('doc')//tei:occupation/normalize-space(), ', ')
                 let $placesOfAction := string-join($model('doc')//tei:residence/normalize-space(), ', ')
                 return concat(
