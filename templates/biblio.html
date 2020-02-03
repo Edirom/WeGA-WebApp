@@ -44,15 +44,18 @@
         <div class="row" id="meta">
             <div class="col-md paddingBottomIcon col-sm-6 basicdata" data-template="app:biblio-basic-data">
                 <h2 data-template="lang:translate">basic_data</h2>
-                <ol class="media" data-template="app-shared:each" data-template-from="author" data-template-to="authors">
-                    <li><strong data-template="lang:translate">author</strong>: <span data-template="app-shared:output" data-template-key="author">Ein Autor</span></li>
+                <ol class="media">
+                    <li><strong data-template="lang:translate">biblioType</strong>: <span data-template="app-shared:output" data-template-key="type">Monographie</span></li>
                 </ol>
                 <ol class="media">
-                    <li><strong data-template="lang:translate">title</strong>: <span data-template="app:document-title">Booktitle</span></li>
+                    <li><strong data-template="lang:translate">author</strong>: <span data-template="app-shared:output" data-template-key="authors">Autoren</span></li>
                 </ol>
                 <ol class="media">
-                    <li><strong>ISBN</strong>: <span/></li>
-                    <li><strong>DNB</strong>: <span/></li>
+                    <li><strong data-template="lang:translate">title</strong>: <span data-template="app-shared:print" data-template-key="title">Der Titel</span></li>
+                </ol>
+                <ol class="media">
+                    <li><strong>DNB</strong>: <span data-template="app-shared:print" data-template-key="dnb">DNB</span></li>
+                    <li><strong>ISBN</strong>: <span data-template="app-shared:print" data-template-key="isbn">ISBN</span></li>
                 </ol>
             </div>
         </div>
