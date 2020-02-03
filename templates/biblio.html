@@ -1,0 +1,166 @@
+<div xmlxns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1 data-template="app:document-title">Frankfurt am Main</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="colored borderBottom">
+        <div class="container">
+            <div data-template="templates:if-parameter-unset" data-template-param="q">
+                <div class="row">
+                    <div class="col-sm-10">
+                        <ol class="breadcrumb">
+                            <li><a href="$link/index">Home</a></li>
+                            <!--<li><span data-template="app:document-title">Booktitle</span></li>-->
+                            <li><span data-template="app-shared:print" data-template-key="docID">A020040</span> </li>
+                        </ol>
+                    </div>
+                    <div class="col-sm-2 d-none d-lg-block backLinkInBreadcrumb" onclick="history.back();">
+                        <i class="fa fa-arrow-left"/> <span data-template="lang:translate">back</span> 
+                    </div>
+                </div>
+            </div>
+            <div data-template="templates:if-parameter-set" data-template-param="q">
+                <div class="row breadcrumb" data-template="search:get-session-for-singleview">
+                    <div class="col-md-4">
+                        <a href="$link/search" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="search-prev-item-url"><i class="fa fa-arrow-left"/> <span data-template="lang:translate">prevMatch</span></a>
+                    </div>
+                    <div class="col-md-4">
+                        <span data-template="app-shared:print" data-template-key="index-of-current-doc">15</span> / <a href="$link/search" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="search-backlink"><span data-template="search:results-count">124 Suchergebnisse</span> (»<span data-template="app-shared:print" data-template-key="query-string-org">Carl Weber</span>«)</a>
+                    </div>
+                    <div class="col-md-4">
+                        <a href="$link/search" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="search-next-item-url"><span data-template="lang:translate">nextMatch</span> <i class="fa fa-arrow-right"/></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container paddingTopIcon paddingBottomIcon">
+        <div data-template="templates:include" data-template-path="templates/includes/download-modal-tei.html"/>
+        <div class="row" id="meta">
+            <div class="col-md paddingBottomIcon col-sm-6 basicdata" data-template="app:biblio-basic-data">
+                <h2 data-template="lang:translate">basic_data</h2>
+                <ol class="media" data-template="app-shared:each" data-template-from="author" data-template-to="authors">
+                    <li><strong data-template="lang:translate">author</strong>: <span data-template="app-shared:output" data-template-key="author">Ein Autor</span></li>
+                </ol>
+                <ol class="media">
+                    <li><strong data-template="lang:translate">title</strong>: <span data-template="app:document-title">Booktitle</span></li>
+                </ol>
+                <ol class="media">
+                    <li><strong>ISBN</strong>: <span/></li>
+                    <li><strong>DNB</strong>: <span/></li>
+                </ol>
+            </div>
+        </div>
+    </div>
+            
+        <!-- Nav tabs -->
+        <div id="details" data-template="app:biblio-details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-10 col-12">
+                        <nav class="greedy">
+                            <ul class="resp-tabs-list links easyResponsiveTabs">
+                                <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
+                                <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+            <div class="colored borderTop">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 ">
+                            <div class="resp-tabs-container colored easyResponsiveTabs">
+                                <!-- Biographie-->
+                                <div class="biografien paddingTopIcon paddingBottomIcon textBlock" id="biographies">
+                                    <div class="row">
+                                        <div class="col-md-3 order-2 side-col">
+                                            <div class="allFilter">
+                                                <h2 data-template="lang:translate">documents</h2>
+                                                <!-- Nav tabs -->
+                                                <ul class="nav nav-tabs">
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
+                                                    </li>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#gndText" data-template="app:ajax-tab">dnb-entry</a>
+                                                    </li>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-template="app:ajax-tab">gnd-beacon</a>
+                                                    </li>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
+                                                    </li>
+                                                    <li class="nav-item gradient-light">
+                                                        <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-9 ">
+                                            <!-- Tab panes -->
+                                            <div class="tab-content">
+                                                <div class="tab-pane fade" id="wikipediaText">
+                                                    <h2>Wikipedia</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="gndText">
+                                                    <h2>GND</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="gnd-beacon">
+                                                    <h2>GND Beacon Links</h2>
+                                                </div>
+                                                <div class="tab-pane fade" id="XMLPreview">
+                                                    <h2>XML</h2>
+                                                    <!--<pre class="prettyprint"><code class="language-xml"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></code></pre>-->
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Korrespondenz -->
+                                <div class="tab-pane paddingTopIcon paddingBottomIcon textBlock korrespondenz" id="correspondence">
+                                    <!-- loaded via ajax -->
+                                </div>
+                                <!-- Backlinks -->
+                                <div class="backlinks paddingTopIcon paddingBottomIcon textBlock" id="backlinks">
+                                    <!-- loaded via ajax -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="colored">
+            <div class="container documentFooter" data-template="app:documentFooter">
+                <div class="row permaLink">
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">
+                        <h4>Empfohlene Zitierweise</h4>
+                        <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                            <br/>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                    </div>
+                    <div class="col-md-9" data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">
+                        <h4>Proposed citation</h4>
+                        <p>Complete Works of Carl Maria von Weber. Digital Edition, <span data-template="app-shared:print" data-template-key="permalink">http://www.weber-gesamtausgabe.de/wega/A000154</span> (<span data-template="app-shared:print" data-template-key="versionNews">Version 1.2dev vom 12. Juni 2014</span>)
+                            <br/>
+                            <span data-template="app-shared:print" data-template-key="latestChange">Letzte Änderung dieses Dokuments am 22. Mai 2014 durch Peter Stadler</span></p>
+                    </div>
+                </div>
+                <div class="row bugreport">
+                    <div class="col-md-9">
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br/>so bitten wir um eine kurze Nachricht an
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                        <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">If you've spotted some error or inaccurateness please do not hesitate to inform us via 
+                            <a href="#" class="obfuscate-email" data-template="app-shared:print" data-template-key="bugEmail">bugEmail</a>.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>
