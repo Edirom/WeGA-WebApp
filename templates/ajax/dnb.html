@@ -1,12 +1,22 @@
 <div data-template="app:dnb">
     <h2 data-template="lang:translate">infoFromGND</h2>
+    
     <dl data-template="app-shared:if-exists" data-template-key="dnbName">
         <dt data-template="lang:translate">pnd_name</dt>
         <dd data-template="app-shared:print" data-template-key="dnbName">Ein Name</dd>
-    </dl>
+    </dl>    
     <dl data-template="app-shared:if-exists" data-template-key="preferredNameForTheWork">
         <dt data-template="lang:translate">title</dt>
         <dd data-template="app-shared:print" data-template-key="preferredNameForTheWork">Faniska</dd>
+    </dl>
+    <dl data-template="app-shared:if-exists" data-template-key="dcTitle">
+        <dt data-template="lang:translate">title</dt>
+        <dd data-template="app-shared:print" data-template-key="dcTitle">Der Freischütz</dd>
+    </dl>
+    
+    <dl data-template="app-shared:if-exists" data-template-key="dcPublisher">
+        <dt data-template="lang:translate">edt</dt>
+        <dd data-template="app-shared:print" data-template-key="dcPublisher">Verlag</dd>
     </dl>
     <dl data-template="app-shared:if-exists" data-template-key="dnbBirths">
         <dt data-template="lang:translate">pnd_dates</dt>
