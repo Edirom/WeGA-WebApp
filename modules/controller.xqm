@@ -627,6 +627,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
     case 'html' return
         switch($exist-vars('docType'))
         case 'persons' case 'orgs' return controller:forward-html('/templates/person.html', $exist-vars)
+        case 'biblio' return controller:forward-html('/templates/biblio.html', $exist-vars)
         case 'places' return controller:forward-html('/templates/place.html', $exist-vars)
         case 'works' return controller:forward-html('/templates/work.html', $exist-vars)
         case 'var' case 'thematicCommentaries' case 'addenda' return controller:forward-html('/templates/var.html', $exist-vars)
