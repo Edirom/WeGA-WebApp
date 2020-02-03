@@ -731,12 +731,10 @@ declare
 
 declare
     %templates:wrap
-    function app:biblio-basic-data($node as node(), $model as map(*)) as map(*) {
-    let $author := $model?doc//tei:author
+    function app:biblio-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    let $source := query:get-main-source($model('doc'))
     return
-        map {
-        'author' := $author
-        }
+    bibl:dataMap($source,$lang)
 };
 
 

@@ -13,6 +13,27 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 (:import module namespace functx="http://www.functx.com";:)
 
+(:~ Create a map with basic bibliographic information
+ :
+ :)
+
+declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as xs:string) as map()* {
+    let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang)
+    let $title :=  bibl:printTitles($biblStruct//tei:title)
+    let $note :=  bibl:printNote($biblStruct/tei:note[1])
+    let $type := $biblStruct/@type
+    let $gnd := $biblStruct//tei:idno[@type="gnd"]
+    let $isbn := $biblStruct//tei:idno[@type="isbn"]
+    return map {
+        'authors' := $authors,
+        'title' := $title,
+        'note' := $note,
+        'type' := lang:get-language-string($type,$lang),
+        'dnb' := $gnd,
+        'isbn' := $isbn
+    }
+};
+
 (:~
  : Create a bibliographic citation from a biblStruct
  : 

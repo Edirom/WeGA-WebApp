@@ -47,7 +47,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
         switch($resource)
         case 'wikipediaVIAF' return (er:grab-external-resource-wikidata($gnd, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'wikipedia' return (er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
-        case 'dnb' return if (string-length($gnd) eq 9) then concat('https://d-nb.info/gnd/', $gnd, '/about/rdf') else concat('https://d-nb.info/', $gnd, '/about/rdf')
+        case 'dnb' return if ($docType = 'biblio') then concat('https://d-nb.info/', $gnd, '/about/rdf') else concat('https://d-nb.info/gnd/', $gnd, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
         case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf') (: $gnd is actually the geonames ID :)
         case 'dbpedia' return concat('http://www.wikidata.org/entity/', $gnd, '.rdf') (: $gnd is actually the dbpedia(wikidata?) ID :)
