@@ -7,6 +7,8 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace gndo="https://d-nb.info/standards/elementset/gnd#";
+declare namespace dc="http://purl.org/dc/elements/1.1/";
+declare namespace dcterms="http://purl.org/dc/terms/";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace gn="http://www.geonames.org/ontology#";
@@ -342,7 +344,7 @@ declare
                 else ()
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
-            case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
+            case 'gnd-entry' case 'dnb-entry' return if($model('gnd') or $model('dnb')) then 'dnb.html' else ()
             case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
@@ -718,6 +720,35 @@ declare
                 $displayTitle
             }
 };
+
+
+(:
+ : ****************************
+ : Biblio pages
+ : ****************************
+:)
+
+
+declare
+    %templates:wrap
+    function app:biblio-basic-data($node as node(), $model as map(*)) as map(*) {
+    let $author := $model?doc//tei:author
+    return
+        map {
+        'author' := $author
+        }
+};
+
+
+
+declare function app:biblio-details($node as node(), $model as map(*)) as map(*) {
+    let $gnd := query:get-gnd($model('doc'))
+    return
+    map {
+              'gnd' : $gnd
+      }
+};
+
 
 
 (:
@@ -1165,7 +1196,9 @@ declare
                 'dnbURL' : config:get-option('dnb') || $gnd,
                 'preferredNameForTheWork' : $dnbContent//gndo:preferredNameForTheWork  ! str:normalize-space(.),
                 'variantNamesForTheWork' : $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
-                'subjectHeadings' : $subjectHeadings
+                'subjectHeadings' : $subjectHeadings,
+                'dcTitle' := $dnbContent//rdf:RDF/rdf:Description/dc:title ! str:normalize-space(.),
+                'dcPublisher' := $dnbContent//rdf:RDF/rdf:Description/dc:publisher ! str:normalize-space(.)
             }
 };
 
