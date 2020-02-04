@@ -20,15 +20,16 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as xs:string) as map()* {
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang)
     let $editors := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
-    let $title :=  bibl:printTitles($biblStruct//tei:title)
+    let $title :=  if ($biblStruct/tei:analytic) then bibl:printTitles($biblStruct/tei:analytic/tei:title) else  bibl:printTitles($biblStruct/tei:monogr/tei:title)
     let $note :=  bibl:printNote($biblStruct/tei:note[1])
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
-    let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
-    let $journalTitle := if ($biblStruct/tei:monogr) then <xhtml:span class="journalTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</xhtml:span> else ()
+    let $series := if(exists($biblStruct/tei:series/tei:title) and $biblStruct/tei:analytic) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
+    let $journalTitle := if ($biblStruct/tei:monogr and $biblStruct/tei:analytic) then <xhtml:span class="journalTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</xhtml:span> else ()
     let $biblScope := bibl:biblScope($biblStruct/tei:monogr/tei:imprint[1], $lang)
     let $type := $biblStruct/@type
     let $gnd := $biblStruct//tei:idno[@type="gnd"]
     let $isbn := $biblStruct//tei:idno[@type="isbn"]
+    let $keywords := $biblStruct//tei:keywords[@scheme="WeGA_biblio"]
     return map {
         'authors' := $authors,
         'editors' := $editors,
@@ -40,7 +41,8 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
         'type' := lang:get-language-string($type,$lang),
         'pubPlaceNYear' := $pubPlaceNYear,
         'dnb' := $gnd,
-        'isbn' := $isbn
+        'isbn' := $isbn,
+        'keywords' := $keywords
     }
 };
 
