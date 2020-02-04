@@ -50,9 +50,25 @@
                 <ol class="media">
                     <li><strong data-template="lang:translate">author</strong>: <span data-template="app-shared:output" data-template-key="authors">Autoren</span></li>
                 </ol>
+                <ol class="media" data-template="app-shared:if-exists" data-template-key="editors">
+                    <li><strong data-template="lang:translate">edt</strong>: <span data-template="app-shared:output" data-template-key="editors">Herausgeber</span></li>
+                </ol>
+                <ol class="media" data-template="app-shared:if-exists" data-template-key="pubPlaceNYear">
+                    <li><strong data-template="lang:translate">publication</strong>: <span data-template="app-shared:print" data-template-key="pubPlaceNYear">Ort und Datum</span></li>
+                </ol>
                 <ol class="media">
                     <li><strong data-template="lang:translate">title</strong>: <span data-template="app-shared:print" data-template-key="title">Der Titel</span></li>
                 </ol>
+                <ol class="media" data-template="app-shared:if-exists" data-template-key="series journalTitle">
+                    <li><strong data-template="lang:translate">series</strong>:
+                        <span data-template="app-shared:output" data-template-key="journalTitle">Journaltitel</span>
+                        <span data-template="app-shared:output" data-template-key="series">Die Serie</span>
+                        <span data-template="app-shared:output" data-template-key="biblScope">Umfang</span>
+                    </li>
+                </ol>
+                <!--<ol class="media" data-template="app-shared:if-exists" data-template-key="biblScope">
+                    <li><strong>in</strong>: <span data-template="app-shared:output" data-template-key="biblScope">Umfang</span></li>
+                </ol>-->
                 <ol class="media">
                     <li><strong>DNB</strong>: <span data-template="app-shared:print" data-template-key="dnb">DNB</span></li>
                     <li><strong>ISBN</strong>: <span data-template="app-shared:print" data-template-key="isbn">ISBN</span></li>
