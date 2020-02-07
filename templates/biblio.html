@@ -86,6 +86,7 @@
                     <div class="col-md-10 col-12">
                         <nav class="greedy">
                             <ul class="resp-tabs-list links easyResponsiveTabs">
+                                <li><a data-template="app:person-main-tab" href="#biographies">descriptions</a></li>
                                 <li><a data-template="app:person-main-tab" href="#correspondence" data-target="$docID/correspondence.html">correspondence</a></li>
                                 <li><a data-template="app:person-main-tab" href="#backlinks" data-target="$docID/backlinks.html">backlinks</a></li>
                             </ul>
@@ -107,8 +108,9 @@
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs">
                                                     <li class="nav-item gradient-light">
-                                                        <a class="nav-link" data-toggle="tab" href="#biblioInfo" data-template="app:ajax-tab">biblio-info</a>
+                                                        <a class="nav-link active" data-toggle="tab" href="#biblioInfo"><span data-template="lang:translate">biblio-info</span></a>
                                                     </li>
+                                                    
                                                     <li class="nav-item gradient-light">
                                                         <a class="nav-link" data-toggle="tab" href="#gndText" data-template="app:ajax-tab">dnb-entry</a>
                                                     </li>
@@ -124,8 +126,18 @@
                                         <div class="col-md-9 ">
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div class="tab-pane fade" id="biblioInfo">
-                                                    <h2><span data-template="lang:translate">biblio-info</span></h2>
+                                                <div class="tab-pane show active" id="biblioInfo">
+                                                    <div data-template="app:biblio-basic-data">
+                                                        <h2 data-template="lang:translate">biblio-info</h2>
+                                                        <p data-template="app-shared:if-exists" data-template-key="note">
+                                                        <h3 data-template="lang:translate">gl_notes</h3>
+                                                        <p data-template="app-shared:print" data-template-key="note"/>
+                                                        </p>
+                                                        <h3 data-template="lang:translate">citation</h3>
+                                                        <p data-template="app-shared:output" data-template-key="citation">Zitation</p>
+                                                        <h3 data-template="lang:translate">furtherBiblio</h3>
+                                                        <ul data-template="app:biblio-search" class="ref-list"/>
+                                                    </div>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>
@@ -140,10 +152,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <!-- Korrespondenz -->
-                                <div class="tab-pane paddingTopIcon paddingBottomIcon textBlock korrespondenz" id="correspondence">
-                                    <!-- loaded via ajax -->
                                 </div>
                                 <!-- Backlinks -->
                                 <div class="backlinks paddingTopIcon paddingBottomIcon textBlock" id="backlinks">

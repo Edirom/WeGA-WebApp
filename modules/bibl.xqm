@@ -33,7 +33,7 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
     let $citation := bibl:printCitation($biblStruct, <xhtml:p/>, $lang)
     return map {
         'authors' := $authors,
-        'authorids' := $biblStruct/tei:analytic/tei:author[1]/@key,
+        'authorids' := $biblStruct/(tei:analytic/tei:author[1],tei:monogr/tei:author[1])/@key,
         'edtids' := $biblStruct/tei:monogr/tei:editor/@key,
         'editors' := $editors,
         'title' := $title,

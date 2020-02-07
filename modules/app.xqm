@@ -343,8 +343,7 @@ declare
             case 'wikipedia-article' return 
                 if($model?gnd and exists(er:grab-external-resource-wikidata($model?gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
                 else if($model?viaf and exists(er:grab-external-resource-wikidata($model?viaf, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
-                else ()
-            case 'biblio-info' return 'biblio-info.html'
+                else ()            
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
             case 'gnd-entry' case 'dnb-entry' return if($model('gnd') or $model('dnb')) then 'dnb.html' else ()
@@ -740,11 +739,14 @@ declare
     bibl:dataMap($source,$lang)
 };
 
-declare function app:biblio-details($node as node(), $model as map(*)) as map(*) {
+declare 
+    %templates:wrap
+    function app:biblio-details($node as node(), $model as map(*)) as map(*) {
     let $gnd := query:get-gnd($model('doc'))
     return
     map {
-              'gnd' : $gnd
+              'gnd' : $gnd,
+              'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true())
       }
 };
 
