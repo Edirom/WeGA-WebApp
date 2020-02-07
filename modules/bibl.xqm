@@ -22,7 +22,7 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
     let $editors := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
     let $title :=  if ($biblStruct/tei:analytic) then bibl:printTitles($biblStruct/tei:analytic/tei:title) else  bibl:printTitles($biblStruct/tei:monogr/tei:title)
     let $note :=  $biblStruct/tei:note
-    let $pubPlaceNYear := if ($biblStruct/tei:monogr/tei:imprint) then bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint) else ()
+    let $pubPlaceNYear := if ($biblStruct/tei:monogr/tei:imprint and not($biblStruct/tei:analytic)) then bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint) else ()
     let $series := if(exists($biblStruct/tei:series/tei:title) and $biblStruct/tei:analytic) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
     let $journalTitle := if ($biblStruct/tei:monogr and $biblStruct/tei:analytic) then <xhtml:span class="journalTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</xhtml:span> else ()
     let $biblScope := bibl:biblScope($biblStruct/tei:monogr/tei:imprint[1], $lang)
@@ -33,6 +33,8 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
     let $citation := bibl:printCitation($biblStruct, <xhtml:p/>, $lang)
     return map {
         'authors' := $authors,
+        'authorids' := $biblStruct/tei:analytic/tei:author[1]/@key,
+        'edtids' := $biblStruct/tei:monogr/tei:editor/@key,
         'editors' := $editors,
         'title' := $title,
         'series' := $series,
