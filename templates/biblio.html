@@ -15,6 +15,8 @@
                     <div class="col-sm-10">
                         <ol class="breadcrumb">
                             <li><a href="$link/index">Home</a></li>
+                            <li><a data-template="app:breadcrumb-person">Carl Maria von Weber</a></li>
+                            <li><a data-template="app:breadcrumb-docType">Bibliographie</a></li>
                             <!--<li><span data-template="app:document-title">Booktitle</span></li>-->
                             <li><span data-template="app-shared:print" data-template-key="docID">A020040</span> </li>
                         </ol>
@@ -45,7 +47,7 @@
             <div class="col-md paddingBottomIcon col-sm-6 basicdata" data-template="app:biblio-basic-data">
                 <h2 data-template="lang:translate">basic_data</h2>
                 <ol class="media">
-                    <li><strong data-template="lang:translate">biblioType</strong>: <span data-template="app-shared:output" data-template-key="type">Monographie</span></li>
+                    <li><strong data-template="lang:translate">biblioType</strong>: <span data-template="app-shared:output" data-template-key="type-lang">Monographie</span></li>
                 </ol>
                 <ol class="media">
                     <li><strong data-template="lang:translate">author</strong>: <span data-template="app-shared:output" data-template-key="authors">Autoren</span></li>
@@ -66,15 +68,12 @@
                         <span data-template="app-shared:output" data-template-key="biblScope">Umfang</span>
                     </li>
                 </ol>
-                <!--<ol class="media" data-template="app-shared:if-exists" data-template-key="biblScope">
-                    <li><strong>in</strong>: <span data-template="app-shared:output" data-template-key="biblScope">Umfang</span></li>
-                </ol>-->
                 <ol class="media">
-                    <li><strong>DNB</strong>: <span data-template="app-shared:print" data-template-key="dnb">DNB</span></li>
-                    <li><strong>ISBN</strong>: <span data-template="app-shared:print" data-template-key="isbn">ISBN</span></li>
+                    <li data-template="app-shared:if-exists" data-template-key="dnb"><strong>DNB</strong>: <span data-template="app-shared:print" data-template-key="dnb">DNB</span></li>
+                    <li data-template="app-shared:if-exists" data-template-key="isbn"><strong>ISBN</strong>: <span data-template="app-shared:print" data-template-key="isbn">ISBN</span></li>
                 </ol>
-                <ol class="media" data-template="app-shared:if-exists" data-template-key="keywords">
-                    <li><strong data-template="lang:translate">keywords</strong>: <span data-template="app-shared:print" data-template-key="keywords">Schlagworte</span></li>
+                <ol class="media" data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development">
+                    <li data-template="app-shared:if-exists" data-template-key="keywords"><strong data-template="lang:translate">keywords</strong>: <span data-template="app-shared:print" data-template-key="keywords">Schlagworte</span></li>
                 </ol>
             </div>
         </div>
@@ -108,13 +107,10 @@
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs">
                                                     <li class="nav-item gradient-light">
-                                                        <a class="nav-link" data-toggle="tab" href="#wikipediaText" data-template="app:ajax-tab">wikipedia-article</a>
+                                                        <a class="nav-link" data-toggle="tab" href="#biblioInfo" data-template="app:ajax-tab">biblio-info</a>
                                                     </li>
                                                     <li class="nav-item gradient-light">
                                                         <a class="nav-link" data-toggle="tab" href="#gndText" data-template="app:ajax-tab">dnb-entry</a>
-                                                    </li>
-                                                    <li class="nav-item gradient-light">
-                                                        <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-template="app:ajax-tab">gnd-beacon</a>
                                                     </li>
                                                     <li class="nav-item gradient-light">
                                                         <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-template="app:ajax-tab">XML-Preview</a>
@@ -128,8 +124,8 @@
                                         <div class="col-md-9 ">
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div class="tab-pane fade" id="wikipediaText">
-                                                    <h2>Wikipedia</h2>
+                                                <div class="tab-pane fade" id="biblioInfo">
+                                                    <h2><span data-template="lang:translate">biblio-info</span></h2>
                                                 </div>
                                                 <div class="tab-pane fade" id="gndText">
                                                     <h2>GND</h2>

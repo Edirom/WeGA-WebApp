@@ -21,8 +21,8 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
     let $authors := bibl:printCitationAuthors($biblStruct//tei:author, $lang)
     let $editors := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
     let $title :=  if ($biblStruct/tei:analytic) then bibl:printTitles($biblStruct/tei:analytic/tei:title) else  bibl:printTitles($biblStruct/tei:monogr/tei:title)
-    let $note :=  bibl:printNote($biblStruct/tei:note[1])
-    let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
+    let $note :=  $biblStruct/tei:note
+    let $pubPlaceNYear := if ($biblStruct/tei:monogr/tei:imprint) then bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint) else ()
     let $series := if(exists($biblStruct/tei:series/tei:title) and $biblStruct/tei:analytic) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
     let $journalTitle := if ($biblStruct/tei:monogr and $biblStruct/tei:analytic) then <xhtml:span class="journalTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</xhtml:span> else ()
     let $biblScope := bibl:biblScope($biblStruct/tei:monogr/tei:imprint[1], $lang)
@@ -30,6 +30,7 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
     let $gnd := $biblStruct//tei:idno[@type="gnd"]
     let $isbn := $biblStruct//tei:idno[@type="isbn"]
     let $keywords := $biblStruct//tei:keywords[@scheme="WeGA_biblio"]
+    let $citation := bibl:printCitation($biblStruct, <xhtml:p/>, $lang)
     return map {
         'authors' := $authors,
         'editors' := $editors,
@@ -38,11 +39,13 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
         'journalTitle' := $journalTitle,
         'biblScope' := $biblScope,
         'note' := $note,
-        'type' := lang:get-language-string($type,$lang),
+        'type' := $type,
+        'type-lang' := lang:get-language-string($type,$lang),
         'pubPlaceNYear' := $pubPlaceNYear,
         'dnb' := $gnd,
         'isbn' := $isbn,
-        'keywords' := $keywords
+        'keywords' := $keywords,
+        'citation' := $citation
     }
 };
 

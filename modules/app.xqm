@@ -9,7 +9,9 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace gndo="https://d-nb.info/standards/elementset/gnd#";
 declare namespace dc="http://purl.org/dc/elements/1.1/";
 declare namespace dcterms="http://purl.org/dc/terms/";
+declare namespace rdau="http://rdaregistry.info/Elements/u/";
 declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
+declare namespace isbd="http://iflastandards.info/ns/isbd/elements/";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace gn="http://www.geonames.org/ontology#";
 declare namespace sr="http://www.w3.org/2005/sparql-results#";
@@ -342,6 +344,7 @@ declare
                 if($model?gnd and exists(er:grab-external-resource-wikidata($model?gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
                 else if($model?viaf and exists(er:grab-external-resource-wikidata($model?viaf, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
                 else ()
+            case 'biblio-info' return 'biblio-info.html'
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
             case 'gnd-entry' case 'dnb-entry' return if($model('gnd') or $model('dnb')) then 'dnb.html' else ()
@@ -733,11 +736,9 @@ declare
     %templates:wrap
     function app:biblio-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
     let $source := query:get-main-source($model('doc'))
-    return
+    return 
     bibl:dataMap($source,$lang)
 };
-
-
 
 declare function app:biblio-details($node as node(), $model as map(*)) as map(*) {
     let $gnd := query:get-gnd($model('doc'))
@@ -747,6 +748,22 @@ declare function app:biblio-details($node as node(), $model as map(*)) as map(*)
       }
 };
 
+declare    
+    function app:biblio-search($node as node(), $model as map(*), $lang as xs:string) as element() {
+    let $title := lang:get-language-string("metaTitleIndex-biblio",$lang)
+    let $type := $model('type')
+    let $type-lang := $model('type-lang')
+    let $date := substring-after($model('pubPlaceNYear'), ' ')
+    let $place := substring-before($model('pubPlaceNYear'), ' ')
+    let $indexurl := core:link-to-current-app(concat(controller:path-to-register("biblio",$lang),"?limit=&amp;"))
+    let $dateParam := if ($date) then concat("fromDate=",$date,"-01-01&amp;toDate=",number($date)+1,"-01-01") else ()
+    let $typeParam := concat("biblioType=",$type)
+    return element {name($node)} {
+        $node/@*,
+        <li><a href="{concat($indexurl,$dateParam)}">{$title}: {$date}</a></li>,
+        <li><a href="{concat($indexurl,$typeParam)}">{$title}: {$type-lang}</a></li>
+    }
+};
 
 
 (:
@@ -1191,12 +1208,15 @@ declare
                 ),
                 'gndDefinition' : $dnbContent//gndo:definition,
                 'lang' : $lang,
-                'dnbURL' : config:get-option('dnb') || $gnd,
+                'dnbURL' : $dnbContent//rdf:RDF/rdf:Description/@rdf:about/data(),
                 'preferredNameForTheWork' : $dnbContent//gndo:preferredNameForTheWork  ! str:normalize-space(.),
                 'variantNamesForTheWork' : $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
                 'subjectHeadings' : $subjectHeadings,
                 'dcTitle' := $dnbContent//rdf:RDF/rdf:Description/dc:title ! str:normalize-space(.),
-                'dcPublisher' := $dnbContent//rdf:RDF/rdf:Description/dc:publisher ! str:normalize-space(.)
+                'dcPublisher' := $dnbContent//rdf:RDF/rdf:Description/dc:publisher ! str:normalize-space(.),
+                'dcIssued' := $dnbContent//rdf:RDF/rdf:Description/dcterms:issued ! str:normalize-space(.),
+                'subtitle' := $dnbContent//rdf:RDF/rdf:Description/rdau:P60327 ! str:normalize-space(.),
+                'dnbDetails' := ($dnbContent//rdf:RDF/rdf:Description/isbd:P1053,'/', $dnbContent//rdf:RDF/rdf:Description/rdau:P60539) ! str:normalize-space(.)
             }
 };
 

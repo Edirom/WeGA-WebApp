@@ -9,15 +9,34 @@
         <dt data-template="lang:translate">title</dt>
         <dd data-template="app-shared:print" data-template-key="preferredNameForTheWork">Faniska</dd>
     </dl>
+    
     <dl data-template="app-shared:if-exists" data-template-key="dcTitle">
         <dt data-template="lang:translate">title</dt>
-        <dd data-template="app-shared:print" data-template-key="dcTitle">Der Freischütz</dd>
+        <dd>
+            <span data-template="app-shared:print" data-template-key="dcTitle">Der Freischütz</span>
+            <span data-template="app-shared:if-exists" data-template-key="subtitle"> / <span data-template="app-shared:print" data-template-key="subtitle">Nebentitel</span></span>
+        </dd>
     </dl>
     
     <dl data-template="app-shared:if-exists" data-template-key="dcPublisher">
         <dt data-template="lang:translate">edt</dt>
         <dd data-template="app-shared:print" data-template-key="dcPublisher">Verlag</dd>
     </dl>
+    
+    <dl data-template="app-shared:if-exists" data-template-key="dcIssued">
+        <dt data-template="lang:translate">date</dt>
+        <dd data-template="app-shared:print" data-template-key="dcIssued">Datum</dd>
+    </dl>
+    
+    <dl data-template="app-shared:if-exists" data-template-key="dnbDetails">
+        <dt data-template="lang:translate">gndDefinition</dt>
+        <dd>
+            <span data-template="templates:each" data-template-from="dnbDetails" data-template-to="dnbDetail">
+                <span data-template="app-shared:print" data-template-key="dnbDetail">weitere Details</span>
+            </span>
+        </dd>
+    </dl>
+
     <dl data-template="app-shared:if-exists" data-template-key="dnbBirths">
         <dt data-template="lang:translate">pnd_dates</dt>
         <dd data-template="templates:each" data-template-from="dnbBirths" data-template-to="dataBirth">

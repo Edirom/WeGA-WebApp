@@ -57,10 +57,11 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
     let $onFailureFunc := function($errCode, $errDesc) {
         core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
+    let $log := util:log-system-out(concat('DEBUGGING doctype: ', $docType, ' url: ', $url))
     let $response := 
         if($botPresent or not($url)) then ()
         else mycache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
-    return 
+    return        
         if($response//er:response/@statusCode eq '200') 
         then $response//er:response
         else ()
