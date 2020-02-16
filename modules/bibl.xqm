@@ -25,6 +25,7 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
     let $pubPlaceNYear := if ($biblStruct/tei:monogr/tei:imprint and not($biblStruct/tei:analytic)) then bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint) else ()
     let $series := if(exists($biblStruct/tei:series/tei:title) and $biblStruct/tei:analytic) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
     let $journalTitle := if ($biblStruct/tei:monogr and $biblStruct/tei:analytic) then <xhtml:span class="journalTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</xhtml:span> else ()
+    let $date := $biblStruct/tei:monogr/tei:imprint/tei:date/@when
     let $biblScope := bibl:biblScope($biblStruct/tei:monogr/tei:imprint[1], $lang)
     let $type := $biblStruct/@type
     let $gnd := $biblStruct//tei:idno[@type="gnd"]
@@ -39,6 +40,7 @@ declare function bibl:dataMap($biblStruct as element(tei:biblStruct), $lang as x
         'title' := $title,
         'series' := $series,
         'journalTitle' := $journalTitle,
+        'date' := $date,
         'biblScope' := $biblScope,
         'note' := $note,
         'type' := $type,

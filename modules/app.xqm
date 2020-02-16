@@ -755,7 +755,7 @@ declare
     let $title := concat(lang:get-language-string("browse",$lang), " ", lang:get-language-string("metaTitleIndex-biblio",$lang))
     let $type := $model('type')
     let $type-lang := $model('type-lang')
-    let $date := substring-after($model('pubPlaceNYear'), ' ')
+    let $date :=  substring($model('date'), 1, 4)
     let $place := substring-before($model('pubPlaceNYear'), ' ')
     let $author := $model('authorids')
     let $indexurl := core:link-to-current-app(concat(controller:path-to-register("biblio",$lang),"?limit=&amp;"))
