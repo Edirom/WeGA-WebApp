@@ -9,7 +9,7 @@ LABEL maintainer="Peter Stadler"
 ENV WEGA_BUILD_HOME="/opt/wega"
 ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
 
-ADD https://deb.nodesource.com/setup_8.x /tmp/nodejs_setup 
+ADD https://deb.nodesource.com/setup_13.x /tmp/nodejs_setup 
 
 # installing Saxon, Node and Git
 RUN apt-get update \
