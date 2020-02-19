@@ -739,9 +739,7 @@ declare
     bibl:dataMap($source,$lang)
 };
 
-declare 
-    %templates:wrap
-    function app:biblio-details($node as node(), $model as map(*)) as map(*) {
+declare function app:biblio-details($node as node(), $model as map(*)) as map(*) {
     let $gnd := query:get-gnd($model('doc'))
     return
     map {
@@ -750,25 +748,30 @@ declare
       }
 };
 
-declare    
+declare
     function app:biblio-search($node as node(), $model as map(*), $lang as xs:string) as element() {
     let $title := concat(lang:get-language-string("browse",$lang), " ", lang:get-language-string("metaTitleIndex-biblio",$lang))
     let $type := $model('type')
     let $type-lang := $model('type-lang')
     let $date :=  substring($model('date'), 1, 4)
     let $place := substring-before($model('pubPlaceNYear'), ' ')
-    let $author := $model('authorids')
     let $indexurl := core:link-to-current-app(concat(controller:path-to-register("biblio",$lang),"?limit=&amp;"))
     let $dateParam := if ($date) then concat("fromDate=",$date,"-01-01&amp;toDate=",$date,"-12-31") else ()
     let $typeParam := concat("biblioType=",$type)
-    let $authorParam := concat("authors=",$author)
-    let $edtParam := concat("editor=", $model('edtids'))
     return element {name($node)} {
         $node/@*,
         if ($date) then <li><a href="{concat($indexurl,$dateParam)}">{$title}: {$date}</a></li> else (),
         if ($type) then <li><a href="{concat($indexurl,$typeParam)}">{$title}: {$type-lang}</a></li> else (),
-        if ($author) then <li><a href="{concat($indexurl,$authorParam)}">{$title}: {$model('authors')}</a></li> else (),
-        if ($model('edtids')) then <li><a href="{concat($indexurl,$edtParam)}">{$title}: {$model('editors')}</a></li> else ()
+        if ($model('authorids')) then for $a in $model('authorids')
+            let $authorParam := concat("authors=",$a)
+            let $person := query:title($a)
+            return <li><a href="{concat($indexurl,$authorParam)}">{$title}: {$person} ({lang:get-language-string("author",$lang)})</a></li>
+        else (),
+        if ($model('edtids')) then for $e in $model('edtids')
+            let $edtParam := concat("editors=", $e)
+            let $person := query:title($e)
+            return <li><a href="{concat($indexurl,$edtParam)}">{$title}: {$person} ({lang:get-language-string("edt",$lang)})</a></li>
+        else ()
     }
 };
 
