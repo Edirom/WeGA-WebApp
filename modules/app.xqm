@@ -736,10 +736,12 @@ declare
     function app:biblio-basic-data($node as node(), $model as map(*), $lang as xs:string) as map(*) {
     let $source := query:get-main-source($model('doc'))
     return 
-    bibl:dataMap($source,$lang)
+        bibl:dataMap($source,$lang)
 };
 
-declare function app:biblio-details($node as node(), $model as map(*)) as map(*) {
+declare
+%templates:wrap
+    function app:biblio-details($node as node(), $model as map(*)) as map(*) {
     let $gnd := query:get-gnd($model('doc'))
     return
     map {
