@@ -1841,7 +1841,7 @@ declare
                 else app:createUrlForDoc($model('result-page-entry'), $lang),
             'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' : query:relators($model('result-page-entry')),
-            'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
+            'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type) ! lang:get-language-string(.,$lang),
             'workType' : $model('result-page-entry')//mei:term/data(@classcode),
             'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string(?,?,$lang), $config:default-date-picture-string)
         }
