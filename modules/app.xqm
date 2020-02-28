@@ -953,7 +953,7 @@ declare
     return
         for $placeName at $count in wega-util-shared:order-by-cert($placeNames)
         let $preposition :=
-            if(matches(normalize-space($placeName), '^(auf|bei)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
+            if(matches(normalize-space($placeName), '^(auf|bei|im)')) then ' ' (: Präposition 'in' weglassen wenn schon eine andere vorhanden :)
             else concat(' ', lower-case(lang:get-language-string('in', $model('lang'))), ' ')
         return (
             $preposition || str:normalize-space($placeName),
