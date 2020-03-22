@@ -770,9 +770,19 @@
     </xsl:template>
     
     <xsl:template match="tei:note[@type='thematicCom']">
-        <xsl:element name="a">
+        <xsl:variable name="targets" select="tokenize(@target, '\s+')" as="xs:string*"/>
+        <xsl:element name="{if(count($targets) eq 1) then 'a' else 'span'}">
             <xsl:attribute name="class" select="'noteMarker'"/>
-            <xsl:attribute name="href" select="wega:createLinkToDoc(substring-after(tokenize(@target, '\s+')[1], 'wega:'), $lang)"/>
+            <xsl:choose>
+                <xsl:when test="count($targets) eq 1">
+                    <xsl:attribute name="href" select="wega:createLinkToDoc(substring-after(tokenize(@target, '\s+'), 'wega:'), $lang)"/>
+                </xsl:when>
+                <xsl:when test="count($targets) gt 1">
+                    <xsl:attribute name="data-ref">
+                        <xsl:value-of select="for $t in $targets return wega:createLinkToDoc(substring-after($t, 'wega:'), $lang)"/>
+                    </xsl:attribute>
+                </xsl:when>
+            </xsl:choose>
             <xsl:text>T</xsl:text>
         </xsl:element>
     </xsl:template>
