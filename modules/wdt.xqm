@@ -747,7 +747,7 @@ declare function wdt:sources($item as item()*) as map(*) {
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
             if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@codedval = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
-            else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root()
+            else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root() | $item/root()/descendant::mei:relation[@target=concat('wega:', $personID)]/root()
             else ()
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
