@@ -22,7 +22,7 @@ $.fn.prettyselect = function ()
 {
     $(this).each( function(a, b) {
         $(b).selectize({        
-            inputClass: 'form-control input selectize-input', 
+            inputClass: 'form-control input selectize-input',
             dropdownParent: "body",
             create: false,            
             onInitialize: function() {
@@ -78,6 +78,7 @@ $.fn.facets = function ()
     })
 };
 
+
 $.fn.rangeSlider = function () 
 {
     this.ionRangeSlider({
@@ -121,6 +122,88 @@ $.fn.rangeSlider = function ()
     });
 };
 
+
+$.fn.rangePicker = function(range) 
+{
+    var min_slider = $(".rangeSlider").attr('data-min-slider'),
+    max_slider = $(".rangeSlider").attr('data-max-slider'),
+    lang = getLanguage(),    
+    from_slider = $(".rangeSlider").attr('data-from-slider'),
+    to_slider = $(".rangeSlider").attr('data-to-slider');
+    
+    moment.locale(lang);
+
+$(".rangepicker").daterangepicker({
+      minDate: min_slider,
+      maxDate: max_slider,
+      startDate: from_slider,
+      periods:["day","month","year"],
+      endDate: to_slider,
+      orientation:"left",
+      expanded:true,
+      ranges: {
+        'Gesamter Zeitraum': [min_slider, max_slider],
+        'Letztes Jahr': [+moment(max_slider).subtract(1, 'year').add(1,'day'),+moment(max_slider).add(1,'day')],
+        'Letzte hundert Jahre' : [+moment(max_slider).subtract(100, 'year').add(1,'day'), +moment(max_slider)],
+        'Benutzerdefiniert': 'custom'
+        }
+    }, function (startDate, endDate, period) {
+                var params = active_facets(),
+                newFrom = startDate.format('YYYY-MM-DD'),
+                newTo = endDate.format('YYYY-MM-DD');
+                /* DEBUGGING */
+                console.log("DEBUG: startDate " + min_slider + " endDate " + max_slider);
+                console.log("DEBUG: minDate " + from_slider + " maxDate " + to_slider);
+                console.log("DEBUG: startDate " + newFrom + " endDate " + newTo + " period " + period);
+                params.sliderDates['fromDate'] = newFrom;
+                params.sliderDates['toDate'] = newTo;
+                /*  params.sliderDates['oldFromDate'] = min_slider;
+                params.sliderDates['oldToDate'] = max_slider; */
+                /* console.log("DEBUG: params " + params.toString());*/
+                updatePage(params);
+    
+    });
+    if (lang === "de") {
+        $(".period:contains('Year')").text("Jahr");
+        $(".period:contains('Month')").text("Monat");
+        $(".period:contains('Day')").text("Tag");
+        $("button.apply-btn:contains('Apply')").text("Bestätigen");
+        $("button.cancel-btn:contains('Cancel')").text("Abbrechen");
+        $(".calendar-title:contains('End')").text("Ende");
+    }
+};
+
+
+$.fn.initDatepicker = function () {
+    // set language for datepicker widget
+    var lang = getLanguage(),
+    firstDate = "1810-02-26",
+    lastDate = "1826-06-03";
+    moment.locale(lang);
+   
+    $("#datePicker").daterangepicker({
+      minDate: firstDate,
+      maxDate : lastDate,
+      startDate:getDiaryDate(),
+      periods:["day"],
+      standalone:true,
+      single:true,
+      ranges: {
+        'Gesamter Zeitraum': 'all-time',
+        'Letztes Jahr': [+moment(lastDate).subtract(1, 'year').add(1,'day'), moment()],
+        'Benutzerdefiniert': 'custom'
+        }
+    }, function (date, period) {
+            var day = moment(date).format('YYYY-MM-DD');
+            if (checkValidDiaryDate(moment(day))) { jump2diary(day) } else {} // hier fehlt leider eine vorgelagerte Filtermöglichkeit :(
+    });
+     if (lang === "de") {
+        $(".period:contains('Year')").text("Jahr");
+        $(".period:contains('Month')").text("Monat");
+        $(".period:contains('Day')").text("Tag");
+    }
+};
+
 $.fn.obfuscateEMail = function () {
     if($(this).length === 0) {}
     else {
@@ -129,7 +212,7 @@ $.fn.obfuscateEMail = function () {
             r = '' + e + '@' + t ;
         $(this).attr('href',' mailto:' +r).html(r);
     }
-}
+};
 
 /* Load portraits via AJAX */
 $.fn.loadPortrait = function () {
@@ -145,31 +228,6 @@ $('#otd').each(function() {
         url = $(this).attr('data-target') + '?otd-date=' + date ;
     $(this).load(url);
 });
-
-/* Initialise datepicker for diaries */
-$.fn.initDatepicker = function () {
-    // set language for datepicker widget
-    var lang = getLanguage();
-    if(lang === 'de') { $.datepicker.setDefaults( $.datepicker.regional[ "de" ] ) }
-    else { $.datepicker.setDefaults( $.datepicker.regional[ "" ]) }
-    
-    $(this).each(function(a,b) {
-        $(b).datepicker({
-            dateFormat: "yy-mm-dd",
-            minDate: "1810-02-26",
-            maxDate: "1826-06-03",
-            defaultDate: getDiaryDate(),
-            changeMonth: true,
-            changeYear: true,
-            onSelect: function(dateText, inst) { 
-                jump2diary(dateText)
-            },
-            beforeShowDay: function(date) {
-                return [ checkValidDiaryDate(date)  ]
-            }
-        })
-    })
-};
 
 
 /* 
@@ -676,7 +734,8 @@ function active_facets() {
         max=slider.attr('data-max-slider');
         params.sliderDates['fromDate'] = (from > min)? from: '';
         params.sliderDates['toDate'] = (to < max)? to: '';
-    }
+    }    
+    
     /* get values from checkboxes for docTypes at search page 
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'
      */
@@ -725,6 +784,11 @@ $('.prettyselect').prettyselect();
 
 /* Initialise range slider for index pages */
 $('.allFilter:visible .rangeSlider').rangeSlider();
+$('.allFilter:visible .rangePicker').rangePicker();
+
+/*$('.allFilter:visible .rangePicker.start-date').rangePicker("start");
+$('.allFilter:visible .rangePicker.end-date').rangePicker("end");*/
+
 
 
 $('h1').h1FitText();
@@ -830,6 +894,7 @@ $("[data-hovered-src]").hover(
 );
 
 $("#datePicker").initDatepicker();
+
 
 /*
  * initialise facsimile viewer if it's not already loaded
@@ -1014,28 +1079,17 @@ function getLanguage() {
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
-    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace(/<br.+/, '') : $('h1.document').html().replace(/<br.+/, '') ,
+    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace(/<br.+/, '') : $('h1.document').html().replace(/<br.+/, ''),
 		 lang = getLanguage(),
-		 format,
+         locale,	 
 		 date = '';
-    if(lang === 'de') { 
-        format = "DD, dd. MM yy" 
-    } 
-    else { 
-        format = "DD, MM dd, yy" 
-    } ; 
-    
-    try { 
-        date = 
-            $.datepicker.parseDate( format, title, {
-              dayNamesShort: $.datepicker.regional[ lang ].dayNamesShort,
-              dayNames: $.datepicker.regional[ lang ].dayNames,
-              monthNamesShort: $.datepicker.regional[ lang ].monthNamesShort,
-              monthNames: $.datepicker.regional[ lang ].monthNames
-            });
-    }
-    catch(err) { date = '' }
-    return date
+		 if (lang === 'de') {
+		     date = moment(title, "dddd, DD. MMMM YYYY");
+		 }
+		 else {
+		     date = moment(title, "dddd, MMMM DD, YYYY");
+		 }
+    return moment(date).format("YYYY-MM-DD")
 };
 
 /* Get the document ID from the XML download link */
