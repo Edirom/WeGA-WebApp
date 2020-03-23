@@ -804,7 +804,7 @@ declare
         map {
             'ids' : $model?doc//mei:altId[not(@type='gnd')],
             'relators' : query:relators($model?doc),
-            'workType' : $model?doc//mei:term/data(@classcode),
+            'workType' : $model?doc//mei:term/data(@class),
             'titles' : $print-titles($model?doc, false()),
             'altTitles' : $print-titles($model?doc, true())
         }
@@ -1779,7 +1779,7 @@ declare
             'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
-            'workType' : $model('result-page-entry')//mei:term/data(@classcode),
+            'workType' : $model('result-page-entry')//mei:term/data(@class),
             'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string#3, $config:default-date-picture-string)
         }
 };
