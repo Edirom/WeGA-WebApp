@@ -206,9 +206,9 @@ declare
         let $anonymusID := config:get-option('anonymusID')
         let $authorElem :=
             (: NB: there might be multiple anonymous authors :)
-            if ($authorID = $anonymusID) then (query:get-author-element($model?doc)[(count(@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)])[1]
+            if ($authorID = $anonymusID) then (query:get-author-element($model?doc)[(count(@key | @codedval) = 0) or ((@key, @codedval) = $anonymusID)])[1]
             (: NB: there might be multiple occurences of the same person as e.g. composer and lyricist :)
-            else (query:get-author-element($model?doc)[(@key, @dbkey) = $authorID])[1]
+            else (query:get-author-element($model?doc)[(@key, @codedval) = $authorID])[1]
         let $href :=
             if ($authorID = $anonymusID) then ()
             else app:createUrlForDoc(core:doc($authorID), $lang)
@@ -1899,7 +1899,7 @@ declare
     %templates:default("lang", "en")
     %templates:default("popover", "false")
     function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string, $popover as xs:string) as element() {
-        let $key := $model('relator')/@dbkey | $model('relator')/@key
+        let $key := $model('relator')/@codedval | $model('relator')/@key
         let $myPopover := 
             if($popover castable as xs:boolean) then xs:boolean($popover)
             else false()

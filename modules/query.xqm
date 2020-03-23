@@ -45,7 +45,7 @@ declare function query:title($key as xs:string) as xs:string {
 :)
 declare function query:get-authorID($doc as document-node()?) as xs:string* {
     let $author-element := query:get-author-element($doc)
-    let $id := $author-element/@key | $author-element/@dbkey
+    let $id := $author-element/@key | $author-element/@codedval
     return
         if(exists($doc) and count($id) gt 0) then $id ! string(.)
         else if(exists($doc)) then config:get-option('anonymusID')
@@ -304,10 +304,10 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'placeOfAddressee' return $collection//tei:settlement[parent::tei:correspAction/@type='received']/@key
     case 'journals' return $collection//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]
     case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]/@key
-    case 'dedicatees' return $collection//mei:persName[@role='dte']/@dbkey
-    case 'lyricists' return $collection//mei:persName[@role='lyr']/@dbkey
-    case 'librettists' return $collection//mei:persName[@role='lbt']/@dbkey
-    case 'composers' return $collection//mei:persName[@role='cmp']/@dbkey
+    case 'dedicatees' return $collection//mei:persName[@role='dte']/@codedval
+    case 'lyricists' return $collection//mei:persName[@role='lyr']/@codedval
+    case 'librettists' return $collection//mei:persName[@role='lbt']/@codedval
+    case 'composers' return $collection//mei:persName[@role='cmp']/@codedval
     case 'docSource' return $collection/tei:person/@source
     case 'occupations' return $collection//tei:occupation
     case 'residences' return $collection//tei:settlement[parent::tei:residence]/@key
