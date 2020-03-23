@@ -1889,8 +1889,8 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:preview-creation($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
-        if($model('doc')/mei:source/mei:pubStmt) then string-join($model('doc')/mei:source/mei:pubStmt/*, ', ')
-        else if($model('doc')/mei:source/mei:creation) then str:normalize-space($model('doc')/mei:source/mei:creation)
+        if($model('doc')/mei:manifestation/mei:pubStmt) then string-join($model('doc')/mei:manifestation/mei:pubStmt/*, ', ')
+        else if($model('doc')/mei:manifestation/mei:creation) then str:normalize-space($model('doc')/mei:manifestation/mei:creation)
         else ()
 };
 

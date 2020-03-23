@@ -743,7 +743,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             else false()
         },
         'filter' : function() as document-node()* {
-            $item/root()[mei:source][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
+            $item/root()[mei:manifestation][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
             if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@codedval = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
@@ -765,10 +765,10 @@ declare function wdt:sources($item as item()*) as map(*) {
         'title' : function($serialization as xs:string) as item()? {
             let $source := 
                 typeswitch($item)
-                case xs:string return core:doc($item)/mei:source
-                case xdt:untypedAtomic return core:doc($item)/mei:source
-                case document-node() return $item/mei:source
-                default return $item/root()/mei:source
+                case xs:string return core:doc($item)/mei:manifestation
+                case xdt:untypedAtomic return core:doc($item)/mei:manifestation
+                case document-node() return $item/mei:manifestation
+                default return $item/root()/mei:manifestation
             let $title-element := ($source/mei:titleStmt/mei:title[not(@type)])[1]
             return
                 switch($serialization)
