@@ -206,9 +206,9 @@ declare
         let $anonymusID := config:get-option('anonymusID')
         let $authorElem :=
             (: NB: there might be multiple anonymous authors :)
-            if ($authorID = $anonymusID) then (query:get-author-element($model?doc)[(count(@key | @dbkey) = 0) or ((@key, @dbkey) = $anonymusID)])[1]
+            if ($authorID = $anonymusID) then (query:get-author-element($model?doc)[(count(@key | @codedval) = 0) or ((@key, @codedval) = $anonymusID)])[1]
             (: NB: there might be multiple occurences of the same person as e.g. composer and lyricist :)
-            else (query:get-author-element($model?doc)[(@key, @dbkey) = $authorID])[1]
+            else (query:get-author-element($model?doc)[(@key, @codedval) = $authorID])[1]
         let $href :=
             if ($authorID = $anonymusID) then ()
             else app:createUrlForDoc(core:doc($authorID), $lang)
@@ -804,7 +804,7 @@ declare
         map {
             'ids' : $model?doc//mei:altId[not(@type='gnd')],
             'relators' : query:relators($model?doc),
-            'workType' : $model?doc//mei:term/data(@classcode),
+            'workType' : $model?doc//mei:term/data(@class),
             'titles' : $print-titles($model?doc, false()),
             'altTitles' : $print-titles($model?doc, true())
         }
@@ -1779,7 +1779,7 @@ declare
             'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
-            'workType' : $model('result-page-entry')//mei:term/data(@classcode),
+            'workType' : $model('result-page-entry')//mei:term/data(@class),
             'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string#3, $config:default-date-picture-string)
         }
 };
@@ -1889,8 +1889,8 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:preview-creation($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
-        if($model('doc')/mei:source/mei:pubStmt) then string-join($model('doc')/mei:source/mei:pubStmt/*, ', ')
-        else if($model('doc')/mei:source/mei:creation) then str:normalize-space($model('doc')/mei:source/mei:creation)
+        if($model('doc')/mei:manifestation/mei:pubStmt) then string-join($model('doc')/mei:manifestation/mei:pubStmt/*, ', ')
+        else if($model('doc')/mei:manifestation/mei:creation) then str:normalize-space($model('doc')/mei:manifestation/mei:creation)
         else ()
 };
 
@@ -1899,7 +1899,7 @@ declare
     %templates:default("lang", "en")
     %templates:default("popover", "false")
     function app:preview-relator-name($node as node(), $model as map(*), $lang as xs:string, $popover as xs:string) as element() {
-        let $key := $model('relator')/@dbkey | $model('relator')/@key
+        let $key := $model('relator')/@codedval | $model('relator')/@key
         let $myPopover := 
             if($popover castable as xs:boolean) then xs:boolean($popover)
             else false()

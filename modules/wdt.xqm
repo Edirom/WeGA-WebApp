@@ -356,7 +356,7 @@ declare function wdt:works($item as item()*) as map(*) {
             $item/root()[mei:mei][descendant::mei:meiHead]
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
-            $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root() 
+            $item/root()/descendant::mei:persName[@codedval = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root() 
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             if(empty(($dateFrom, $dateTo))) then $item/root() 
@@ -743,11 +743,11 @@ declare function wdt:sources($item as item()*) as map(*) {
             else false()
         },
         'filter' : function() as document-node()* {
-            $item/root()[mei:source][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
+            $item/root()[mei:manifestation][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
-            if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
-            else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root()
+            if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@codedval = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
+            else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root() | $item/root()/descendant::mei:relation[@target=concat('wega:', $personID)]/root()
             else ()
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
@@ -765,10 +765,10 @@ declare function wdt:sources($item as item()*) as map(*) {
         'title' : function($serialization as xs:string) as item()? {
             let $source := 
                 typeswitch($item)
-                case xs:string return core:doc($item)/mei:source
-                case xdt:untypedAtomic return core:doc($item)/mei:source
-                case document-node() return $item/mei:source
-                default return $item/root()/mei:source
+                case xs:string return core:doc($item)/mei:manifestation
+                case xdt:untypedAtomic return core:doc($item)/mei:manifestation
+                case document-node() return $item/mei:manifestation
+                default return $item/root()/mei:manifestation
             let $title-element := ($source/mei:titleStmt/mei:title[not(@type)])[1]
             return
                 switch($serialization)
@@ -1019,7 +1019,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('news')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()  |
                 core:data-collection('thematicCommentaries')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()  |
                 core:data-collection('documents')//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() |
-                core:data-collection('works')//mei:persName[@dbkey = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root()
+                core:data-collection('works')//mei:persName[@codedval = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:fileDesc]/root()
             let $docsMentioned := 
                 core:data-collection('letters')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() | 
                 core:data-collection('diaries')//tei:*[contains(@key,$personID)]/root() |
@@ -1032,7 +1032,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('thematicCommentaries')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('documents')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 core:data-collection('var')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
-                core:data-collection('works')//mei:*[contains(@dbkey,$personID)][not(ancestor::mei:revisionDesc)]/root() |
+                core:data-collection('works')//mei:*[contains(@codedval,$personID)][not(ancestor::mei:revisionDesc)]/root() |
                 (: <ref target="wega:A002068"/> :)
                 core:data-collection('letters')//tei:*[contains(@target, 'wega:' || $personID)]/root() |
                 core:data-collection('diaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |

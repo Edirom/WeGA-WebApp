@@ -428,8 +428,8 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
     let $sex := 
         if(config:is-org($model('docID'))) then 'org'
         else if(config:is-place($model('docID'))) then 'place'
-        else if($model('doc')//mei:term/data(@classcode) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork') then 'musicalWork'
-        else if(config:is-work($model('docID')) and not($model('doc')//mei:term/data(@classcode) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork')) then 'otherWork'
+        else if($model('doc')//mei:term/data(@class) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork') then 'musicalWork'
+        else if(config:is-work($model('docID')) and not($model('doc')//mei:term/data(@class) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork')) then 'otherWork'
         else $model('doc')//tei:sex/text()
     return
         map {

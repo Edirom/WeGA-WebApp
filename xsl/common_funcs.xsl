@@ -20,8 +20,8 @@
         <xsl:choose>
             <xsl:when test="wega:isWork($docID) and exists($doc)">
                 <xsl:choose>
-                    <xsl:when test="$doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/@dbkey">
-                        <xsl:value-of select="$doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/string(@dbkey)"/>
+                    <xsl:when test="$doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/@codedval">
+                        <xsl:value-of select="$doc//mei:titleStmt/mei:respStmt/mei:persName[@role = 'cmp'][1]/string(@codedval)"/>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:value-of select="wega:getOption('anonymusID')"/>

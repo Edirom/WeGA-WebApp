@@ -422,7 +422,7 @@ declare function wega-util:check-if-update-necessary($currentDateTimeOfFile as x
  : @return xs:string
  :)
 declare function wega-util:print-forename-surname-from-nameLike-element($nameLikeElement as element()?) as xs:string? {
-    let $id := $nameLikeElement/(@key, @dbkey)
+    let $id := $nameLikeElement/(@key, @codedval)
     return
         (: the most specific case first: a reg-name with leading forename, e.g. `<persName type="reg"><forename>Eugen</forename> <forename>Friedrich</forename>…`  :)
         if(($nameLikeElement/element()[1])[self::tei:forename]) then str:normalize-space($nameLikeElement)

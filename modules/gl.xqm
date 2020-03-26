@@ -349,7 +349,7 @@ declare
 	            'docURL' : app:createUrlForDoc($doc, $lang),
 	            'relators' : $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
 	            'biblioType' : $doc/tei:biblStruct/data(@type),
-	            'workType' : $doc//mei:term/data(@classcode),
+	            'workType' : $doc//mei:term/data(@class),
 	            'codeSample' : $codeSample?codeSample,
 	            'icon-src' : '$resources/img/icons/icon_' || $docType || '.png'
 	        }

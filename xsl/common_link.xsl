@@ -21,7 +21,7 @@
     <!--  *********************************************  -->
     <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement | mei:geogName" mode="#all">
         <xsl:choose>
-            <xsl:when test="@key or @dbkey">
+            <xsl:when test="@key or @codedval">
                 <xsl:call-template name="createLink"/>
             </xsl:when>
             <xsl:otherwise>
@@ -108,19 +108,19 @@
         </xsl:attribute>
     </xsl:template>
     
-    <xsl:template match="@key[not(matches(., '\s'))] | @dbkey[not(matches(., '\s'))]">
+    <xsl:template match="@key[not(matches(., '\s'))] | @codedval[not(matches(., '\s'))]">
         <xsl:attribute name="href" select="wega:createLinkToDoc(., $lang)"/>
     </xsl:template>
 
     <xsl:template name="createLink">
         <xsl:choose>
-            <xsl:when test="exists((@key, @dbkey, @target)) and not(descendant::*[local-name(.) = $linkableElements])">
+            <xsl:when test="exists((@key, @codedval, @target)) and not(descendant::*[local-name(.) = $linkableElements])">
                 <xsl:element name="a">
                     <xsl:attribute name="class">
                         <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:attribute>
-                    <!--<xsl:attribute name="href" select="wega:createLinkToDoc((@key, @dbkey), $lang)"/>-->
-                    <xsl:apply-templates select="@key | @dbkey | @target"/>
+                    <!--<xsl:attribute name="href" select="wega:createLinkToDoc((@key, @codedval), $lang)"/>-->
+                    <xsl:apply-templates select="@key | @codedval | @target"/>
                     <xsl:apply-templates mode="#current"/>
                 </xsl:element>
             </xsl:when>
@@ -136,7 +136,7 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>
-                    <xsl:when test="exists((@key, @dbkey, @target))">
+                    <xsl:when test="exists((@key, @codedval, @target))">
                         <xsl:value-of select="wega:preview-class(.)"/>
                     </xsl:when>
                     <xsl:otherwise>
@@ -147,9 +147,9 @@
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:attribute>
-            <xsl:if test="exists((@key, @dbkey, @target))">
+            <xsl:if test="exists((@key, @codedval, @target))">
                 <xsl:variable name="urls" as="xs:string+">
-                    <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@dbkey | descendant-or-self::*/@target[starts-with(., 'wega:')]">
+                    <xsl:for-each select="descendant-or-self::*/@key | descendant-or-self::*/@codedval | descendant-or-self::*/@target[starts-with(., 'wega:')]">
                         <xsl:for-each select="tokenize(normalize-space(.), '\s+')">
                             <xsl:choose>
                                 <xsl:when test="starts-with(.,'wega:')">
@@ -174,7 +174,7 @@
     <xsl:function name="wega:preview-class" as="xs:string">
         <xsl:param name="myNode" as="element()"/>
         <xsl:variable name="keys" select="
-            for $key in tokenize(($myNode/@key, $myNode/@dbkey, $myNode/@target/replace(., 'wega:', '')), '\s+')
+            for $key in tokenize(($myNode/@key, $myNode/@codedval, $myNode/@target/replace(., 'wega:', '')), '\s+')
             return substring($key, 1, 7)
             " as="xs:string+"/>
         <xsl:variable name="class" as="xs:string">
