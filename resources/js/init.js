@@ -129,7 +129,9 @@ $.fn.rangePicker = function(range)
     max_slider = $(".rangeSlider").attr('data-max-slider'),
     lang = getLanguage(),    
     from_slider = $(".rangeSlider").attr('data-from-slider'),
-    to_slider = $(".rangeSlider").attr('data-to-slider');
+    to_slider = $(".rangeSlider").attr('data-to-slider'),
+    oldFromDate = $(".rangeSlider").attr('data-min-slider'),
+    oldToDate = $(".rangeSlider").attr('data-max-slider');
     
     moment.locale(lang);
 
@@ -155,12 +157,15 @@ $(".rangepicker").daterangepicker({
                 console.log("DEBUG: startDate " + min_slider + " endDate " + max_slider);
                 console.log("DEBUG: minDate " + from_slider + " maxDate " + to_slider);
                 console.log("DEBUG: startDate " + newFrom + " endDate " + newTo + " period " + period);
+                console.log("DEBUG: oldFromDate " + oldFromDate + " oldToDate " + oldToDate);
                 params.sliderDates['fromDate'] = newFrom;
                 params.sliderDates['toDate'] = newTo;
-                /*  params.sliderDates['oldFromDate'] = min_slider;
-                params.sliderDates['oldToDate'] = max_slider; */
+                params.sliderDates['oldFromDate'] = oldFromDate;
+                params.sliderDates['oldToDate'] = oldToDate;
                 /* console.log("DEBUG: params " + params.toString());*/
                 updatePage(params);
+
+
     
     });
     if (lang === "de") {
