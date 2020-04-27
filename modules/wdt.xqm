@@ -241,7 +241,7 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         'name' : 'personsPlus',
         'prefix' : (),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then (wdt:orgs($item)('check')() or wdt:persons($item)('check')())
+            if($item castable as xs:string) then matches($item, '^A0[08][0-9A-F]{4}$')
             else false()
         },
         'filter' : function() as document-node()* {
@@ -279,7 +279,7 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
 
 declare function wdt:writings($item as item()*) as map(*) {
     let $filter := function($docs as document-node()*) as document-node()* {
-        $docs/root()/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert_announcements')]/root() 
+        $docs/root()/descendant::tei:text[range:eq(@type, ('performance-review', 'historic-news', 'concert_announcements'))]/root() 
     }
     return
     map {
@@ -293,7 +293,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             $filter($item) 
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
-            $item/root()//tei:author[@key = $personID][ancestor::tei:fileDesc]/root() => $filter()
+            $filter($item)//tei:author[@key = $personID][ancestor::tei:fileDesc]/root()
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             $wdt:filter-by-date($item, $dateFrom, $dateTo)[(parent::tei:imprint and not(ancestor::tei:additional)) or parent::tei:creation]/root() => $filter()
@@ -304,7 +304,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             for $i in $filter($item) order by sort:index('writings', $i) ascending return $i
         },
         'init-collection' : function() as document-node()* {
-            core:data-collection('writings')/descendant::tei:text[@type=('performance-review', 'historic-news', 'concert_announcements')]/root() 
+            core:data-collection('writings')/descendant::tei:text[range:eq(@type, ('performance-review', 'historic-news', 'concert_announcements'))]/root() 
         },
         'init-sortIndex' : function() as item()* {
             sort:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {

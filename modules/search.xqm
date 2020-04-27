@@ -382,7 +382,7 @@ declare %private function search:get-latest-date($coll as document-node()*, $doc
             (: reverse order :)
             string(query:get-normalized-date($coll[1]))
         case 'letters' case 'writings' case 'diaries' case 'documents' return 
-            let $date := query:get-normalized-date($coll[last()])
+            let $date := query:get-normalized-date(wdt:lookup($docType, ($coll except core:undated($docType)))?('sort')(())[last()])
             return 
                 if(exists($date)) then string($date)
                 else if(count($coll) gt 1) then search:get-latest-date(subsequence($coll, 1, count($coll) -1), $docType)
