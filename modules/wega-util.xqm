@@ -232,7 +232,7 @@ declare function wega-util:stopwatch($func as function() as item(), $func-params
         else if(count($func-params) eq 2) then $func($func-params[1], $func-params[2])
         else if(count($func-params) eq 3) then $func($func-params[1], $func-params[2], $func-params[3])
         else if(count($func-params) eq 4) then $func($func-params[1], $func-params[2], $func-params[3], $func-params[4])
-        else error(xs:QName('wega-util:error'), 'Too many arguments to calback function of wega-util:stopwatch()')
+        else error(xs:QName('wega-util:error'), 'Too many arguments to callback function of wega-util:stopwatch()')
     let $message := 
         if(exists($mesg)) then ' [' || $mesg || ']'
         else ()
