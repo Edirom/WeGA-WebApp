@@ -50,6 +50,7 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
         case 'works' return norm:create-norm-doc-works()
 (:        case 'places' return norm:create-norm-doc-places():)
         case 'orgs' return norm:create-norm-doc-orgs()
+        case 'documents' return norm:create-norm-doc-documents()
         default return core:logToFile('warn', 'norm:create-norm-doc: Unsupported docType "' || $docType || '". Could not find callback function.')
 };
 
@@ -217,6 +218,27 @@ declare %private function norm:create-norm-doc-works() as element(norm:catalogue
                 attribute n {$n},
                 (:$normDate:)
                 $title
+            }
+    }</catalogue>
+};
+
+declare %private function norm:create-norm-doc-documents() as element(norm:catalogue) {
+    <catalogue xmlns="http://xquery.weber-gesamtausgabe.de/modules/norm">{
+        for $doc in core:getOrCreateColl('documents', 'indices', true())
+        let $docID := $doc/tei:TEI/data(@xml:id)
+        let $normDate := query:get-normalized-date($doc)
+        (: $authorIDs should be in sync with the definition at core:createColl()  :)
+        let $authorIDs := distinct-values($doc//tei:author[ancestor::tei:fileDesc]/@key)
+        return 
+            element entry {
+                attribute docID {$docID},
+                attribute authorID {string-join($authorIDs, ' ')},
+                if ($normDate castable as xs:date) then (
+                    attribute year {year-from-date($normDate cast as xs:date)}, 
+                    attribute month {month-from-date($normDate cast as xs:date)}, 
+                    attribute day {day-from-date($normDate cast as xs:date)}) 
+                else (),
+                $normDate
             }
     }</catalogue>
 };
