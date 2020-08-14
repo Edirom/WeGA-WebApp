@@ -36,45 +36,35 @@ $.fn.prettyselect = function ()
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
 {
+    var curParams = active_facets(),
+        newParams;
     $(this).each( function(a, b) {
-        $(b).selectize({
-            plugins: ['remove_button'],
-            hideSelected: true,
-            onChange: function(e){
-                /* Get active facets to append as URL params */
-                var params = active_facets();
-                //console.log(params.toString());
-                updatePage(params);
-            },
-            preload: "focus",
-            valueField: "value",
-            labelField: "label",
-            sortField: "label",
-            searchField: ["label"],
-            loadThrottle: 100,
-            load: function(query, callback) {
-                if (query.length) return callback();
-                
-                var params = active_facets(),
-                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage();
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'json',
-                    error: function() {
-                        callback();
-                    },
-                    success: function(res) {
-                        callback(res);
-                    }
-                });
-            },
-            render: {
-                option: function (item, escape) {
-                    return '<div>' + escape(item.label) + ' (' + escape(item.frequency) + ')</div>';
+        $(b).select2({
+            closeOnSelect: false,
+            selectOnClose: false,
+            minimumInputLength: 2,
+            width: '100%',
+            ajax: {
+                url: $(b).attr('data-api-url') + curParams.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage(),
+                dataType: 'json',
+                processResults: function (data) {
+                    // Transforms the top-level key of the response object from 'items' to 'results'
+                    return {
+                        results: $.map(data, function (obj) {
+                            obj.id = obj.id || obj.value;
+                            obj.text = obj.text || obj.label + ' (' + obj.frequency + ')';
+                            return obj;
+                        })
+                    };
                 }
             }
-        })
+        }).on('select2:close', function (e) {
+            newParams = active_facets();
+            // check whether we need to reload the page
+            if ($(newParams.facets).not(curParams.facets).length !== 0 || $(curParams.facets).not(newParams.facets).length !== 0) {
+                updatePage(newParams);
+            }
+        });
     })
 };
 
