@@ -37,25 +37,49 @@ $.fn.prettyselect = function ()
 $.fn.facets = function ()
 {
     var curParams = active_facets(),
+        limit = 10,
         newParams;
     $(this).each( function(a, b) {
         $(b).select2({
             closeOnSelect: false,
             selectOnClose: false,
-            minimumInputLength: 2,
+            //minimumInputLength: 2,
             width: '100%',
             ajax: {
-                url: $(b).attr('data-api-url') + curParams.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage(),
+                // url: $(b).attr('data-api-url') + curParams.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage(),
+                url: $(b).attr('data-api-url'), //' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage(),
                 dataType: 'json',
-                processResults: function (data) {
-                    // Transforms the top-level key of the response object from 'items' to 'results'
-                    return {
-                        results: $.map(data, function (obj) {
-                            obj.id = obj.id || obj.value;
-                            obj.text = obj.text || obj.label + ' (' + obj.frequency + ')';
-                            return obj;
-                        })
+                data: function(params) {
+                    var query = {
+                        scope: $(b).attr('data-doc-id'),
+                        docType: $(b).attr('data-doc-type'),
+                        term: params.term,
+                        offset: params.page || 1,
+                        limit: limit
+                        //lang: getLanguage()
+                    }
+                    return query;
+                },
+                transport: function(params, success, failure) {
+                    var read_headers = function(data, textStatus, jqXHR) {
+                        var total = parseInt(jqXHR.getResponseHeader('totalRecordCount')) || 0;
+                        // console.log('total: ' + total + '; limit: ' + limit + 'page: ' + params.data.offset);
+                        return {
+                            // transform the results to the select2 data format
+                            results: $.map(data, function (obj) {
+                                obj.id = obj.id || obj.value;
+                                obj.text = obj.text || obj.label + ' (' + obj.frequency + ')';
+                                return obj;
+                            }),
+                            pagination: {
+                                // check whether there are more pages to fetch
+                                more: (params.data.offset * limit) < total
+                            }
+                        };
                     };
+                    var $request = $.ajax(params);
+                    $request.then(read_headers).then(success);
+                    $request.fail(failure);
                 }
             }
         }).on('select2:close', function (e) {

@@ -38,10 +38,13 @@ declare
     function facets:select($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:select) {
         let $facet := $node/data(@name)
         let $selected := $model?filters?($facet)
+        let $selectedObjs as array(*)? := 
+            if(count($selected) gt 0) then facets:createFacets($model?search-results, $facet, -1, $lang)
+            else ()
         return
             element {name($node)} {
                 $node/@*,
-                attribute data-api-url {core:link-to-current-app('dev/api.xql')},
+                attribute data-api-url {config:api-base() || '/facets/' || $facet},
                 attribute data-doc-id {$model?docID},
                 attribute data-doc-type {$model?docType},
                 element option {
@@ -49,16 +52,14 @@ declare
                     lang:get-language-string('all', $lang)
                 },
                 for $i in $selected 
+(:                let $log := util:log-system-out($i):)
                 let $display-term := facets:display-term($facet, $i, $lang)
                 order by $display-term
                 return
                     element option {
                         attribute selected {'selected'},
                         attribute value {$i},
-                        (: mieser hack da der field-index nicht immer etwas findet und dann in den Facetten der Name leer bleibt … :)
-                        if($display-term) then $display-term
-                        else if(wdt:persons(@docID)('check')()) then wdt:persons(@docID)('label-facets')()
-                        else wdt:orgs(@docID)('label-facets')() (:$facets:persons-norm-file//norm:entry[range:eq(@docID,$i)]:)
+                        $display-term || ' (' || $selectedObjs?*[?value = $i]?frequency || ')'
                     }
             }
 };

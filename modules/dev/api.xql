@@ -133,14 +133,6 @@ declare function local:create-beacon($params as map(*)) as xs:string {
         )
 };
 
-(:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?func=facets&docID=indices&docType=letters&facet=sender&format=json:)
-declare function local:facets($params as map(*))  {
-    let $search := search:results(<span/>, map { 'docID' : $params('docID') }, $params('docType'))
-    let $lang := config:guess-language($params('lang'))
-    return 
-        facets:facets($search?search-results, $params('facet'), -1, $lang)
-};
-
 declare function local:serialize-xml($response as item()*) {
     let $serializationParameters := ('method=xml', 'media-type=application/xml', 'indent=no', 'omit-xml-declaration=no', 'encoding=utf-8')
     let $setHeader1 := response:set-header('cache-control','max-age=0, no-cache, no-store')

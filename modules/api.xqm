@@ -143,6 +143,20 @@ declare function api:application-newID($model as map(*)) as map()* {
         }
 };
 
+declare function api:facets($model as map(*)) as map()* {
+    let $search := search:results(<span/>, map { 'docID' : $model('scope') }, $model('docType'))
+    let $lang := config:guess-language($model('lang'))
+    let $allFacets := facets:facets($search?search-results, $model('facet'), -1, $lang)?*
+    let $facets := 
+        if($model?term) 
+        then $allFacets[?label[contains(., $model?term)]]
+        else $allFacets
+    return (
+        map { 'totalRecordCount': count($facets) },
+        api:subsequence($facets, $model)
+    )
+};
+
 (:~
  :  Find document by ID.
  :  IDs are accepted in the following formats:
@@ -215,7 +229,7 @@ declare %private function api:subsequence($seq as item()*, $model as map()) {
 }; 
 
 (:~
- :  Helper function for creating an URI for a resource
+ :  Helper function for creating a Document object
 ~:)
 declare %private function api:document($documents as document-node()*, $model as map()) as map()* {
     let $host := $model('swagger:config')?host
@@ -298,7 +312,7 @@ declare function api:validate-namespace($model as map()) as map()? {
         map { 'namespace' : xmldb:decode-uri($model?namespace) }
     else 
         error($api:INVALID_PARAMETER, 'Unsupported namespace notation: "' || $model('namespace') || '". 
-            The namespace should be castable to an xs:anyURI, e.g. "http://www.tei-c.org/ns/1.0" und must not contain some special characters.'
+            The namespace should be castable to an xs:anyURI, e.g. "http://www.tei-c.org/ns/1.0" und must not contain special characters.'
         )
 };
 
@@ -339,7 +353,7 @@ declare function api:validate-toDate($model as map()) as map()? {
 ~:)
 declare function api:validate-docID($model as map()) as map()? {
     (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
-    map { 'docID' : xmldb:decode-uri($model?docID) }
+    map { 'docID': xmldb:decode-uri($model?docID) }
 };
 
 (:~
@@ -347,7 +361,31 @@ declare function api:validate-docID($model as map()) as map()? {
 ~:)
 declare function api:validate-authorID($model as map()) as map()? {
     (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
-    map { 'authorID' : xmldb:decode-uri($model?authorID) }
+    map { 'authorID': xmldb:decode-uri($model?authorID) }
+};
+
+(:~
+ : Check parameter facet
+~:)
+declare function api:validate-facet($model as map()) as map()? {
+    if($model('facet') = $search:valid-params) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "facet". It must be one of the following values: ' || string-join($search:valid-params, ', '))
+};
+
+(:~
+ : Check parameter term (= search term for facets)
+~:)
+declare function api:validate-term($model as map()) as map()? {
+    if($model('term') castable as xs:string) then map { 'term': xmldb:decode-uri($model?term) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "term".')
+};
+
+(:~
+ : Check parameter scope
+~:)
+declare function api:validate-scope($model as map()) as map()? {
+    if(matches($model('scope'), '^(indices|A[A-F0-9]{6})$')) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "scope". It must be either a WeGA ID or the term "indices".' )
 };
 
 (:~
