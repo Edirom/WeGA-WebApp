@@ -39,7 +39,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
         
         
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
@@ -236,27 +236,27 @@
             <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1619-07-11" data-max-slider="1863-06-20" data-from-slider="1619-07-11" data-to-slider="1863-06-20" />
             
             <h4>Personen</h4>
-            <select multiple="multiple" name="persons" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="documents">
+            <select multiple="multiple" name="persons" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/persons" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
             
             <h4>Werke</h4>
-            <select multiple="multiple" name="works" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="documents">
+            <select multiple="multiple" name="works" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/works" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
             
             <h4>Orte</h4>
-            <select multiple="multiple" name="places" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="documents">
+            <select multiple="multiple" name="places" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/places" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
             
             <h4>Dokumenttyp</h4>
-            <select multiple="multiple" name="docTypeSubClass" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="documents">
+            <select multiple="multiple" name="docTypeSubClass" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/docTypeSubClass" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
             
             <h4>Bibliothek</h4>
-            <select multiple="multiple" name="repository" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="documents">
+            <select multiple="multiple" name="repository" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/repository" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
             
             <h4>Dokumentenstatus</h4>
-            <select multiple="multiple" name="docStatus" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="documents">
+            <select multiple="multiple" name="docStatus" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/docStatus" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
         </div>
     </div>
@@ -776,7 +776,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>

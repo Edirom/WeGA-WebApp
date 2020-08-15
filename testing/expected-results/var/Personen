@@ -39,7 +39,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
         
         
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
@@ -235,31 +235,31 @@
             
             
         	<h4>Nachnamen</h4>
-        	<select multiple="multiple" name="surnames" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+        	<select multiple="multiple" name="surnames" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/surnames" data-doc-id="indices" data-doc-type="personsPlus">
                                         <option value="">alle</option></select>
         	
         	<h4>Vornamen</h4>
-        	<select multiple="multiple" name="forenames" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+        	<select multiple="multiple" name="forenames" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/forenames" data-doc-id="indices" data-doc-type="personsPlus">
                                         <option value="">alle</option></select>
             
             <h4>Wirkorte</h4>
-            <select multiple="multiple" name="residences" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+            <select multiple="multiple" name="residences" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/residences" data-doc-id="indices" data-doc-type="personsPlus">
                                         <option value="">alle</option></select>
             
             <h4>Tätigkeiten</h4>
-            <select multiple="multiple" name="occupations" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+            <select multiple="multiple" name="occupations" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/occupations" data-doc-id="indices" data-doc-type="personsPlus">
                                         <option value="">alle</option></select>
             
             <h4>Geschlecht</h4>
-            <select multiple="multiple" name="sex" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+            <select multiple="multiple" name="sex" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/sex" data-doc-id="indices" data-doc-type="personsPlus">
                                         <option value="">alle</option></select>
             
             <h4>Datenherkunft</h4>
-            <select multiple="multiple" name="docSource" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+            <select multiple="multiple" name="docSource" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/docSource" data-doc-id="indices" data-doc-type="personsPlus">
                                         <option value="">alle</option></select>
             
             <h4>Dokumentenstatus</h4>
-            <select multiple="multiple" name="docStatus" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="personsPlus">
+            <select multiple="multiple" name="docStatus" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/docStatus" data-doc-id="indices" data-doc-type="personsPlus">
                                         <option value="">alle</option></select>
             
         </div>
@@ -1084,7 +1084,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
