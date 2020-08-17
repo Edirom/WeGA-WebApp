@@ -19,6 +19,8 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev/dev.xqm";
+import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
@@ -37,15 +39,6 @@ declare function api:documents($model as map()) as map()* {
         api:document(api:subsequence($ids, $model), $model)
     )
 };
-
-(:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?works=A020062&fromDate=1798-10-10&toDate=1982-06-08&func=facets&format=json&facet=persons&docID=indices&docType=writings:)
-(:http://localhost:8080/exist/apps/WeGA-WebApp/dev/api.xql?&fromDate=1801-01-15&toDate=1982-06-08&func=facets&format=json&facet=places&docID=A002068&docType=writings:)
-(:declare function api:facets($model as map()) {
-    let $search := search:results(<span/>, map { 'docID' : $model('docID') }, tokenize($model(exist:resource), '/')[last() -2])
-    return 
-        facets:facets($search?search-results, $model('facet'), -1, 'de')
-};
-:)
 
 declare function api:documents-findByDate($model as map()) as map()* {
     let $documents := for $docType in api:resolve-docTypes($model) return wdt:lookup($docType, core:getOrCreateColl($docType, 'indices', true()))?filter-by-date($model?fromDate, $model?toDate)
@@ -144,9 +137,13 @@ declare function api:application-newID($model as map(*)) as map()* {
 };
 
 declare function api:facets($model as map(*)) as map()* {
-    let $search := search:results(<span/>, map { 'docID' : $model('scope') }, $model('docType'))
-    let $lang := config:guess-language($model('lang'))
-    let $allFacets := facets:facets($search?search-results, $model('facet'), -1, $lang)?*
+    let $fileName := util:hash($model?facet || $model?scope || $model?docType, 'md5')
+    let $localFilepath := str:join-path-elements(($config:tmp-collection-path, 'facets', $fileName || '.json'))
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+    let $onFailureFunc := function($errCode, $errDesc) {
+            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+    let $allFacets := mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
     let $facets := 
         if($model?term) 
         then $allFacets[?label[contains(., $model?term)]]
@@ -155,6 +152,21 @@ declare function api:facets($model as map(*)) as map()* {
         map { 'totalRecordCount': count($facets) },
         api:subsequence($facets, $model)
     )
+};
+
+(:~
+ :  Helper function for api:facets()
+ :)
+declare %private function api:get-facets($model as map(*)) as array(*) {
+    let $search := search:results(<span/>, map { 'docID' : $model('scope') }, $model('docType'))
+    let $lang := config:guess-language($model('lang'))
+    let $allFacets as map()* := facets:facets($search?search-results, $model('facet'), -1, $lang)?*
+    return
+        array {
+            for $i in $allFacets
+            order by $i?label collation "?lang=de;strength=primary"
+            return $i
+        }
 };
 
 (:~
