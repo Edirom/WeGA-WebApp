@@ -144,7 +144,12 @@ declare function api:facets($model as map(*)) as map()* {
     let $onFailureFunc := function($errCode, $errDesc) {
             core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
         }
-    let $allFacets := mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
+    (: check whether the result set is already filtered  :)
+    let $filtered := map:keys($model)[not(.= ('term', 'facet', 'scope', 'docType'))] = $search:valid-params
+    let $allFacets :=
+    (: if the result set is already filtered, do not use the cached version which is only to speed up 'vanilla' sets :)
+        if($filtered) then api:get-facets($model)?*
+        else mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
     let $facets := 
         if($model?term) 
         then $allFacets[?label[contains(., $model?term)]]
