@@ -52,15 +52,14 @@ $.fn.facets = function ()
                 delay: 250,
                 traditional: true,
                 data: function(params) {
-                    var query = {
+                    var query = $.extend( curParams.facets, {
                         scope: $(b).attr('data-doc-id'),
                         docType: $(b).attr('data-doc-type'),
                         term: params.term,
                         offset: params.page || 1,
-                        ...curParams.facets,
                         limit: limit // need to go after curParams.facets to overwrite the limit setting there
                         //lang: getLanguage()
-                    }
+                    })
                     return query;
                 },
                 transport: function(params, success, failure) {
