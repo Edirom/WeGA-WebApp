@@ -18,6 +18,7 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
 import module namespace dev="http://xquery.weber-gesamtausgabe.de/modules/dev" at "dev/dev.xqm";
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
@@ -378,14 +379,16 @@ declare function api:validate-authorID($model as map()) as map()? {
 
 (:~
  : Check parameter facet
+ : only one value allowed
 ~:)
 declare function api:validate-facet($model as map()) as map()? {
-    if($model('facet') = $search:valid-params) then $model 
+    if($model?facet castable as xs:string and $model?facet = $search:valid-params) then $model 
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "facet". It must be one of the following values: ' || string-join($search:valid-params, ', '))
 };
 
 (:~
  : Check parameter term (= search term for facets)
+ : only one value allowed
 ~:)
 declare function api:validate-term($model as map()) as map()? {
     if($model('term') castable as xs:string) then map { 'term': xmldb:decode-uri($model?term) }
@@ -393,12 +396,327 @@ declare function api:validate-term($model as map()) as map()? {
 };
 
 (:~
- : Check parameter scope
+ : Check parameter scope (either 'indices' or a WeGA ID)
+ : only one value allowed
 ~:)
 declare function api:validate-scope($model as map()) as map()? {
-    if(matches($model('scope'), '^(indices|A[A-F0-9]{6})$')) then $model 
+    if($model?scope castable as xs:string and (matches($model?scope, '^indices$') or config:get-doctype-by-id($model?scope))) then $model 
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "scope". It must be either a WeGA ID or the term "indices".' )
 };
+
+(:~
+ : Check parameter placeOfAddressee
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-placeOfAddressee($model as map()) as map()? {
+    if(every $i in $model?placeOfAddressee ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'placeOfAddressee': $model?placeOfAddressee ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "placeOfAddressee". It must be a WeGA place ID.' )
+}; 
+
+(:~
+ : Check parameter biblioType
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-biblioType($model as map()) as map()? {
+    if(every $i in $model?biblioType ! tokenize(., ',') satisfies wdt:biblio($i)('check')()) then map { 'biblioType': $model?biblioType ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "biblioType". It must be a WeGA biblio ID.' )
+}; 
+
+(:~
+ : Check parameter editors
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-editors($model as map()) as map()? {
+    if(every $i in $model?editors ! tokenize(., ',') satisfies wdt:persons($i)('check')()) then map { 'editors': $model?editors ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "editors". It must be a WeGA person ID.' )
+}; 
+
+(:~
+ : Check parameter authors
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-authors($model as map()) as map()? {
+    if(every $i in $model?authors ! tokenize(., ',') satisfies wdt:persons($i)('check')()) then map { 'authors': $model?authors ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "authors". It must be a WeGA person ID.' )
+}; 
+
+(:~
+ : Check parameter works
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-works($model as map()) as map()? {
+    if(every $i in $model?works ! tokenize(., ',') satisfies wdt:works($i)('check')()) then map { 'works': $model?works ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "works". It must be a WeGA work ID.' )
+}; 
+
+(:~
+ : Check parameter persons
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-persons($model as map()) as map()? {
+    if(every $i in $model?persons ! tokenize(., ',') satisfies wdt:personsPlus($i)('check')()) then map { 'persons': $model?persons ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "persons". It must be a WeGA person or org ID.' )
+}; 
+
+(:~
+ : Check parameter orgs
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-orgs($model as map()) as map()? {
+    if(every $i in $model?orgs ! tokenize(., ',') satisfies wdt:orgs($i)('check')()) then map { 'orgs': $model?orgs ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "orgs". It must be a WeGA org ID.' )
+}; 
+
+(:~
+ : Check parameter occupations
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-occupations($model as map()) as map()? {
+    if(every $i in $model?occupations ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'occupations': $model?occupations ! tokenize(., ',') ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "occupations".' )
+}; 
+
+(:~
+ : Check parameter docSource
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-docSource($model as map()) as map()? {
+    if(every $i in $model?docSource ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'docSource': $model?docSource ! tokenize(., ',') ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "docSource".' )
+}; 
+
+(:~
+ : Check parameter composers
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-composers($model as map()) as map()? {
+    if(every $i in $model?composers ! tokenize(., ',') satisfies wdt:persons($i)('check')()) then map { 'composers': $model?composers ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "composers". It must be a WeGA person ID.' )
+}; 
+
+(:~
+ : Check parameter librettists
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-librettists($model as map()) as map()? {
+    if(every $i in $model?librettists ! tokenize(., ',') satisfies wdt:persons($i)('check')()) then map { 'librettists': $model?librettists ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "librettists". It must be a WeGA person ID.' )
+}; 
+
+(:~
+ : Check parameter lyricists
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-lyricists($model as map()) as map()? {
+    if(every $i in $model?lyricists ! tokenize(., ',') satisfies wdt:persons($i)('check')()) then map { 'lyricists': $model?lyricists ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "lyricists". It must be a WeGA person ID.' )
+}; 
+
+(:~
+ : Check parameter dedicatees
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-dedicatees($model as map()) as map()? {
+    if(every $i in $model?dedicatees ! tokenize(., ',') satisfies wdt:persons($i)('check')()) then map { 'dedicatees': $model?dedicatees ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "dedicatees". It must be a WeGA person ID.' )
+}; 
+
+(:~
+ : Check parameter journals
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-journals($model as map()) as map()? {
+    if(every $i in $model?journals ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'journals': $model?journals ! tokenize(., ',') ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "journals".' )
+}; 
+
+(:~
+ : Check parameter docStatus ('approved','candidate','proposed')
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-docStatus($model as map()) as map()? {
+    if(every $i in $model?docStatus ! tokenize(., ',') satisfies $i = ('approved','candidate','proposed')) then map { 'docStatus': $model?docStatus ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "docStatus". It must be one of "approved", "candidate", or "proposed".' )
+}; 
+
+(:~
+ : Check parameter addressee
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-addressee($model as map()) as map()? {
+    if(every $i in $model?addressee ! tokenize(., ',') satisfies wdt:personsPlus($i)('check')()) then map { 'addressee': $model?addressee ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "addressee". It must be a WeGA person or org ID.' )
+}; 
+
+(:~
+ : Check parameter sender
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-sender($model as map()) as map()? {
+    if(every $i in $model?sender ! tokenize(., ',') satisfies wdt:personsPlus($i)('check')()) then map { 'sender': $model?sender ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "sender". It must be a WeGA person or org ID.' )
+}; 
+
+(:~
+ : Check parameter textType
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-textType($model as map()) as map()? {
+    if($model?textType castable as xs:string) then map { 'textType': xmldb:decode-uri($model?textType) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "textType".' )
+}; 
+
+(:~
+ : Check parameter residences
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-residences($model as map()) as map()? {
+    if(every $i in $model?residences ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'residences': $model?residences ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "residences". It must be a WeGA place ID.' )
+}; 
+
+(:~
+ : Check parameter places
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-places($model as map()) as map()? {
+    if(every $i in $model?places ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'places': $model?places ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "places". It must be a WeGA place ID.' )
+}; 
+
+(:~
+ : Check parameter placeOfSender
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-placeOfSender($model as map()) as map()? {
+    if(every $i in $model?placeOfSender ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'placeOfSender': $model?placeOfSender ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "placeOfSender". It must be a WeGA place ID.' )
+}; 
+
+(:~
+ : Check parameter undated (true|false)
+ : only one value allowed
+~:)
+declare function api:validate-undated($model as map()) as map()? {
+    if($model?undated castable as xs:string) then map { 'undated': wega-util-shared:semantic-boolean($model?undated) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "undated".' )
+}; 
+
+(:~
+ : Check parameter hideRevealed (true|false)
+ : only one value allowed
+~:)
+declare function api:validate-hideRevealed($model as map()) as map()? {
+    if($model?hideRevealed castable as xs:string) then map { 'hideRevealed': wega-util-shared:semantic-boolean($model?hideRevealed) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "hideRevealed".' )
+}; 
+
+(:~
+ : Check parameter docTypeSubClass
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-docTypeSubClass($model as map()) as map()? {
+    if($model?docTypeSubClass castable as xs:string) then map { 'docTypeSubClass': xmldb:decode-uri($model?docTypeSubClass) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "docTypeSubClass".' )
+}; 
+
+(:~
+ : Check parameter sex ('f','m','unknown','Art der Institution')
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-sex($model as map()) as map()? {
+    if(xmldb:decode-uri($model?sex) = ('f','m','unknown','Art der Institution')) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "sex". Must be one of "f", "m", "unknown", or "Art der Institution".')
+}; 
+
+(:~
+ : Check parameter surnames
+~:)
+declare function api:validate-surnames($model as map()) as map()? {
+    if($model?surnames castable as xs:string) then map { 'surnames': xmldb:decode-uri($model?surnames) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "surnames".' )
+}; 
+
+(:~
+ : Check parameter forenames
+~:)
+declare function api:validate-forenames($model as map()) as map()? {
+    if($model?forenames castable as xs:string) then map { 'forenames': xmldb:decode-uri($model?forenames) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "forenames".' )
+}; 
+
+(:~
+ : Check parameter asksam-cat
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-asksam-cat($model as map()) as map()? {
+    if($model?asksam-cat castable as xs:string) then map { 'asksam-cat': xmldb:decode-uri($model?asksam-cat) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "asksam-cat".' )
+};
+
+(:~
+ : Check parameter vorlageform
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-vorlageform($model as map()) as map()? {
+    if($model?vorlageform castable as xs:string) then map { 'vorlageform': xmldb:decode-uri($model?vorlageform) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "vorlageform".' )
+}; 
+
+(:~
+ : Check parameter einrichtungsform
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-einrichtungsform($model as map()) as map()? {
+    if($model?einrichtungsform castable as xs:string) then map { 'einrichtungsform': xmldb:decode-uri($model?einrichtungsform) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "einrichtungsform".' )
+}; 
+
+(:~
+ : Check parameter placenames
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-placenames($model as map()) as map()? {
+    if(every $i in $model?placenames ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'placenames': $model?placenames ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "placenames". It must be a WeGA place ID.' )
+}; 
+
+(:~
+ : Check parameter repository
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-repository($model as map()) as map()? {
+    if($model?repository castable as xs:string) then map { 'repository': xmldb:decode-uri($model?repository) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "repository".' )
+}; 
 
 (:~
  : Fallback for unknown API parameters 
