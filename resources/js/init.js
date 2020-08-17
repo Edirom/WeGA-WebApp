@@ -37,8 +37,9 @@ $.fn.prettyselect = function ()
 $.fn.facets = function ()
 {
     var curParams = active_facets(),
-        limit = 10,
+        limit = 25,
         newParams;
+    //console.log(curParams);
     $(this).each( function(a, b) {
         $(b).select2({
             closeOnSelect: false,
@@ -46,22 +47,25 @@ $.fn.facets = function ()
             //minimumInputLength: 2,
             width: '100%',
             ajax: {
-                // url: $(b).attr('data-api-url') + curParams.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage(),
-                url: $(b).attr('data-api-url'), //' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage(),
+                url: $(b).attr('data-api-url'), 
                 dataType: 'json',
+                delay: 250,
+                traditional: true,
                 data: function(params) {
                     var query = {
                         scope: $(b).attr('data-doc-id'),
                         docType: $(b).attr('data-doc-type'),
                         term: params.term,
                         offset: params.page || 1,
-                        limit: limit
+                        ...curParams.facets,
+                        limit: limit // need to go after curParams.facets to overwrite the limit setting there
                         //lang: getLanguage()
                     }
                     return query;
                 },
                 transport: function(params, success, failure) {
-                    var read_headers = function(data, textStatus, jqXHR) {
+                    var $request,
+                        read_headers = function(data, textStatus, jqXHR) {
                         var total = parseInt(jqXHR.getResponseHeader('totalRecordCount')) || 0;
                         // console.log('total: ' + total + '; limit: ' + limit + 'page: ' + params.data.offset);
                         return {
@@ -77,7 +81,7 @@ $.fn.facets = function ()
                             }
                         };
                     };
-                    var $request = $.ajax(params);
+                    $request = $.ajax(params);
                     $request.then(read_headers).then(success);
                     $request.fail(failure);
                 }
@@ -85,7 +89,7 @@ $.fn.facets = function ()
         }).on('select2:close', function (e) {
             newParams = active_facets();
             // check whether we need to reload the page
-            if ($(newParams.facets).not(curParams.facets).length !== 0 || $(curParams.facets).not(newParams.facets).length !== 0) {
+            if (JSON.stringify(newParams.facets) !== JSON.stringify(curParams.facets)) {
                 updatePage(newParams);
             }
         });
