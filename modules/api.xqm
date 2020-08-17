@@ -152,7 +152,7 @@ declare function api:facets($model as map(*)) as map()* {
         else mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
     let $facets := 
         if($model?term) 
-        then $allFacets[?label[contains(., $model?term)]]
+        then $allFacets[?label[contains(wega-util:strip-diacritics(lower-case(.)), wega-util:strip-diacritics(lower-case($model?term)))]]
         else $allFacets
     return (
         map { 'totalRecordCount': count($facets) },
