@@ -653,33 +653,26 @@ function init_line_wrap_toggle() {
  */
 function active_facets() {
     var params = {
-            facets:[],
+            facets: {},
             sliderDates: {
                 fromDate:'',
                 toDate:'',
                 oldFromDate:'',
                 oldToDate:''
             },
-            toString:function(){
-                for (var key in this.sliderDates){
-                    if(this.sliderDates[key] !== '') {
-                        this.facets.push(key + '=' + this.sliderDates[key]);
-                    };
-                }
-                return '?' + this.facets.join('&')
-            }
+            toString: function() { return '?' + $.param(this.facets, true) }
         },
         slider, from, to, min, max;
      
     /* Pushing the limit parameter to the facets array */
-    params['facets'].push('limit='+$('.switch-limit .active a:first').text());
+    params.facets.limit = $('.switch-limit .active a:first').text();
      
     /* Set filters from the side menu */
     $('.allFilter:visible :selected').each(function() {
         var facet = $(this).parent().attr('name'),
             value = $(this).attr('value');
-        /*console.log(facet + '=' + value);*/
-        params['facets'].push(facet + '=' + encodeURI(value))
+        if(params.facets[facet] === undefined) { params.facets[facet] = [] }
+        params.facets[facet].push(value);
     })
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
@@ -697,13 +690,13 @@ function active_facets() {
     $('.allFilter:visible :checked').each(function() {
         var facet = $(this).attr('name'),
             value = $(this).attr('value')? $(this).attr('value'): 'true';
-        if(undefined != facet) { params['facets'].push(facet + '=' + encodeURI(value)) }
+        if(undefined != facet) { params.facets[facet] = value }
     })
     if($('.query-input').val()) {
-        params['facets'].push('q=' + $('.query-input').val());
+        params.facets.q = $('.query-input').val();
     }
     else if($('#query-string').length) {
-        params['facets'].push('q=' + $('#query-string').text());
+        params.facets.q = $('#query-string').text();
     }
     return params;
 }
