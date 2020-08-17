@@ -565,21 +565,21 @@ function uncheckAll(that) {
 function checkBoxRefresh() {
     if($('.query-input').val().length) { /* No need to refresh the page when there's no query string */
         var params = active_facets();
-        console.log(params);
+        //console.log(params);
         updatePage(params);
         }
 }
 
 $('.checkall').on('click', function() {
     checkAll(this);
-    var params = active_facets();
-    console.log(params);
+    //var params = active_facets();
+    //console.log(params);
 });
 
 $('.uncheckall').on('click', function() {
     uncheckAll(this);
-    var params = active_facets();
-    console.log(params);
+    //var params = active_facets();
+    //console.log(params);
 });
 
 $('a.checkbox-only').on('click', function() {    
