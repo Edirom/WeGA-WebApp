@@ -23,11 +23,15 @@ $.fn.extend({
 $.fn.prettyselect = function () 
 {
     $(this).each( function(a, b) {
+        var width = '150px';
+        if(this.id === 'newID-select') {
+            width = '120px';
+        }
         $(b).select2({
             minimumResultsForSearch: Infinity,
             closeOnSelect: true,
             selectOnClose: false,
-            width: '150px'
+            width: width
             }).on('select2:close', function (e) {
                 if(this.id === 'search-select') {
                     $('.query-input').focus();
@@ -1103,13 +1107,23 @@ function addSearchOption(that)
 $('#create-newID').on('click', newID);
 
 function newID() {
-        var docType = $('#newID-select :selected').val(),
+    var docType = $('#newID-select :selected').val(),
         url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType ;
     $('#newID-result span').hide();
     $('#newID-result i').show();
     $.getJSON(url, function(response) {
-        $('#newID-result span').html(response.docID);
-        $('#newID-result i').hide();
-        $('#newID-result span').show();
+        $('#newID-result span').html(response.docID + ' <i class="fa fa-clipboard"></i>');
+        $('#newID-result i.fa-spin').hide();
+        $('#newID-result span').show().tooltip();
     });
 };
+
+$('.copy-to-clipboard').on('click', function() {
+    var copyText = $('#newID-result span')[0].innerText.trim();
+    navigator.clipboard.writeText(copyText);
+    $('#newID-result span').attr({
+        'data-original-title': 'copied!',
+        'title': 'copied!'
+    });
+    $('#newID-result span').tooltip('show');
+});
