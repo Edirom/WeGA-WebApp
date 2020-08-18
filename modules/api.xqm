@@ -152,7 +152,17 @@ declare function api:facets($model as map(*)) as map()* {
         else mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
     let $facets := 
         if($model?term) 
-        then $allFacets[?label[contains(wega-util:strip-diacritics(lower-case(.)), wega-util:strip-diacritics(lower-case($model?term)))]]
+        then 
+            for $facet in $allFacets[?label[contains(wega-util:strip-diacritics(lower-case(.)), wega-util:strip-diacritics(lower-case($model?term)))]]
+            let $matches := functx:index-of-string(wega-util:strip-diacritics(lower-case($facet?label)), wega-util:strip-diacritics(lower-case($model?term)))
+            order by $matches[1], $facet?label
+            return
+                map:merge(( $facet, map { 
+                    'matches': array { for $match in $matches return map { 
+                        'start': $match - 1, (: subtract 1 because Javascript frontend starts counting at 0 :) 
+                        'length':  string-length(wega-util:strip-diacritics(lower-case($model?term))) (: the length is just a stub but can be elaborated on when even-better-searching is implemented ;) :)
+                    }} 
+                }))
         else $allFacets
     return (
         map { 'totalRecordCount': count($facets) },

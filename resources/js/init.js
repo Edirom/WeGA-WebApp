@@ -44,6 +44,7 @@ $.fn.facets = function ()
         $(b).select2({
             closeOnSelect: false,
             selectOnClose: false,
+            templateResult: formatFacet,
             //minimumInputLength: 2,
             width: '100%',
             ajax: {
@@ -75,6 +76,7 @@ $.fn.facets = function ()
                             results: $.map(data, function (obj) {
                                 obj.id = obj.value;
                                 obj.text = obj.label + ' (' + obj.frequency + ')';
+                                obj.term = params.data.term; // add search term for templating function
                                 return obj;
                             }),
                             pagination: {
@@ -96,6 +98,28 @@ $.fn.facets = function ()
             }
         });
     })
+};
+
+/*
+ * Helper function for $.fn.facets
+ * for highlighting search result in facets select boxes
+ * see https://select2.org/dropdown
+ */
+function formatFacet (facet) {
+    if(!facet.matches) {
+        return facet.text
+    }
+    var slicer = function(total, currentValue, currentIndex, arr) {
+        var len = facet.text.length; // the maximum length for the suffix part
+        if(arr.length > currentIndex + 1) {
+            len = arr[currentIndex + 1].start; // if there's another match => shorten the maximum length accordingly 
+        }
+        return total + '<u>' + facet.text.slice(currentValue.start, currentValue.start + currentValue.length) + '</u>' + facet.text.slice(currentValue.start + currentValue.length, len)
+    };
+    $facet = $(
+        '<span>' + facet.matches.reduce(slicer, facet.text.slice(0, facet.matches[0].start)) + '</span>'
+    );
+    return $facet;
 };
 
 $.fn.rangeSlider = function () 
