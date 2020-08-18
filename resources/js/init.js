@@ -17,17 +17,24 @@ $.fn.extend({
     }
 });
 
-
+/*
+ * select dropdown on start page for search and new IDs
+ */
 $.fn.prettyselect = function () 
 {
     $(this).each( function(a, b) {
-        $(b).selectize({        
-            inputClass: 'form-control input selectize-input', 
-            dropdownParent: "body",
-            create: false,            
-            onInitialize: function() {
-                this.$control_input.attr('readonly', true);
-            }
+        $(b).select2({
+            minimumResultsForSearch: Infinity,
+            closeOnSelect: true,
+            selectOnClose: false,
+            width: '150px'
+            }).on('select2:close', function (e) {
+                if(this.id === 'search-select') {
+                    $('.query-input').focus();
+                }
+                if(this.id === 'newID-select') {
+                    newID();
+                }
             })
     });
 }
@@ -753,11 +760,10 @@ function updatePage(params) {
  */
 $('.jubilee, .jul').tooltip();
 
-/* Initialise selectize plugin for facets on index pages */
+/* Initialise select2 plugin for facets on index pages */
 $('.allFilter select').facets();
 
-
-
+/* Initialise select2 plugin for dropdown on start page */
 $('.prettyselect').prettyselect();
 
 /* Initialise range slider for index pages */
@@ -1094,8 +1100,10 @@ function addSearchOption(that)
 }
 
 /* Development only: request a new ID */
-$('#create-newID').on('click', function() {
-    var docType = $('#newID-select :selected').val(),
+$('#create-newID').on('click', newID);
+
+function newID() {
+        var docType = $('#newID-select :selected').val(),
         url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType ;
     $('#newID-result span').hide();
     $('#newID-result i').show();
@@ -1104,4 +1112,4 @@ $('#create-newID').on('click', function() {
         $('#newID-result i').hide();
         $('#newID-result span').show();
     });
-});
+};
