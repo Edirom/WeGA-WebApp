@@ -49,17 +49,19 @@ $.fn.facets = function ()
             ajax: {
                 url: $(b).attr('data-api-url'), 
                 dataType: 'json',
-                delay: 250,
+                delay: 500,
                 traditional: true,
                 data: function(params) {
-                    var query = $.extend( curParams.facets, {
+                    var query = $.extend( {
                         scope: $(b).attr('data-doc-id'),
                         docType: $(b).attr('data-doc-type'),
                         term: params.term,
-                        offset: params.page || 1,
-                        limit: limit // need to go after curParams.facets to overwrite the limit setting there
+                        offset: params.page || 1
                         //lang: getLanguage()
-                    })
+                        },
+                        curParams.facets,
+                        { limit: limit } // need to go after curParams.facets to overwrite the limit setting there 
+                    )
                     return query;
                 },
                 transport: function(params, success, failure) {
@@ -71,8 +73,8 @@ $.fn.facets = function ()
                         return {
                             // transform the results to the select2 data format
                             results: $.map(data, function (obj) {
-                                obj.id = obj.id || obj.value;
-                                obj.text = obj.text || obj.label + ' (' + obj.frequency + ')';
+                                obj.id = obj.value;
+                                obj.text = obj.label + ' (' + obj.frequency + ')';
                                 return obj;
                             }),
                             pagination: {
