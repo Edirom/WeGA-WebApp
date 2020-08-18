@@ -56,7 +56,7 @@ $.fn.facets = function ()
                         scope: $(b).attr('data-doc-id'),
                         docType: $(b).attr('data-doc-type'),
                         term: params.term,
-                        offset: params.page || 1
+                        offset: (params.page - 1) * limit + 1 || 1
                         //lang: getLanguage()
                         },
                         curParams.facets,
@@ -79,7 +79,7 @@ $.fn.facets = function ()
                             }),
                             pagination: {
                                 // check whether there are more pages to fetch
-                                more: (params.data.offset * limit) < total
+                                more: (params.data.offset + limit) < total
                             }
                         };
                     };
