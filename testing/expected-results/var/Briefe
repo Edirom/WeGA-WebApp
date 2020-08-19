@@ -39,7 +39,7 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
         
         
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/css/selectize.bootstrap3.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
@@ -242,28 +242,28 @@
                 <label for="hideRevealed">blende erschlossene Briefe aus</label>
             </div>
             <h4>Absender</h4>
-            <select multiple="multiple" name="sender" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="sender" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/sender" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
             <h4>Empfänger</h4>
-            <select multiple="multiple" name="addressee" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="addressee" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/addressee" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
             <h4>Schreibort</h4>
-            <select multiple="multiple" name="placeOfSender" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="placeOfSender" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/placeOfSender" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
             <h4>Empfangsort</h4>
-            <select multiple="multiple" name="placeOfAddressee" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="placeOfAddressee" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/placeOfAddressee" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
             <h4>Dokumenttyp</h4>
-            <select multiple="multiple" name="docTypeSubClass" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="docTypeSubClass" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/docTypeSubClass" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
             <h4>Werke</h4>
-            <select multiple="multiple" name="works" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="works" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/works" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
             <h4>Bibliothek</h4>
-            <select multiple="multiple" name="repository" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="repository" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/repository" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
             <h4>Dokumentenstatus</h4>
-            <select multiple="multiple" name="docStatus" data-api-url="/exist/apps/WeGA-WebApp/dev/api.xql" data-doc-id="indices" data-doc-type="letters">
+            <select multiple="multiple" name="docStatus" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/docStatus" data-doc-id="indices" data-doc-type="letters">
                                         <option value="">alle</option></select>
         </div>
     </div>
@@ -646,7 +646,7 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/selectize/dist/js/standalone/selectize.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>

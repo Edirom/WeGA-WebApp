@@ -17,17 +17,28 @@ $.fn.extend({
     }
 });
 
-
+/*
+ * select dropdown on start page for search and new IDs
+ */
 $.fn.prettyselect = function () 
 {
     $(this).each( function(a, b) {
-        $(b).selectize({        
-            inputClass: 'form-control input selectize-input', 
-            dropdownParent: "body",
-            create: false,            
-            onInitialize: function() {
-                this.$control_input.attr('readonly', true);
-            }
+        var width = '150px';
+        if(this.id === 'newID-select') {
+            width = '120px';
+        }
+        $(b).select2({
+            minimumResultsForSearch: Infinity,
+            closeOnSelect: true,
+            selectOnClose: false,
+            width: width
+            }).on('select2:close', function (e) {
+                if(this.id === 'search-select') {
+                    $('.query-input').focus();
+                }
+                if(this.id === 'newID-select') {
+                    newID();
+                }
             })
     });
 }
@@ -36,46 +47,90 @@ $.fn.prettyselect = function ()
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
 {
+    var curParams = active_facets(),
+        limit = 25,
+        newParams;
+    //console.log(curParams);
     $(this).each( function(a, b) {
-        $(b).selectize({
-            plugins: ['remove_button'],
-            hideSelected: true,
-            onChange: function(e){
-                /* Get active facets to append as URL params */
-                var params = active_facets();
-                //console.log(params.toString());
-                updatePage(params);
-            },
-            preload: "focus",
-            valueField: "value",
-            labelField: "label",
-            sortField: "label",
-            searchField: ["label"],
-            loadThrottle: 100,
-            load: function(query, callback) {
-                if (query.length) return callback();
-                
-                var params = active_facets(),
-                    url = $(b).attr('data-api-url') + params.toString() + '&func=facets&format=json&facet=' + $(b).attr('name') + '&docID=' + $(b).attr('data-doc-id') + '&docType=' + $(b).attr('data-doc-type') + '&lang=' + getLanguage();
-                $.ajax({
-                    url: url,
-                    type: 'GET',
-                    dataType: 'json',
-                    error: function() {
-                        callback();
-                    },
-                    success: function(res) {
-                        callback(res);
-                    }
-                });
-            },
-            render: {
-                option: function (item, escape) {
-                    return '<div>' + escape(item.label) + ' (' + escape(item.frequency) + ')</div>';
+        $(b).select2({
+            closeOnSelect: false,
+            selectOnClose: false,
+            templateResult: formatFacet,
+            //minimumInputLength: 2,
+            width: '100%',
+            ajax: {
+                url: $(b).attr('data-api-url'), 
+                dataType: 'json',
+                delay: 500,
+                traditional: true,
+                data: function(params) {
+                    var query = $.extend( {
+                        scope: $(b).attr('data-doc-id'),
+                        docType: $(b).attr('data-doc-type'),
+                        term: params.term,
+                        offset: (params.page - 1) * limit + 1 || 1
+                        //lang: getLanguage()
+                        },
+                        curParams.facets,
+                        { limit: limit } // need to go after curParams.facets to overwrite the limit setting there 
+                    )
+                    return query;
+                },
+                transport: function(params, success, failure) {
+                    var $request,
+                        read_headers = function(data, textStatus, jqXHR) {
+                        var total = parseInt(jqXHR.getResponseHeader('totalRecordCount')) || 0;
+                        // console.log('total: ' + total + '; limit: ' + limit + 'page: ' + params.data.offset);
+                        if(total === 1) { data = [ data ] } // this is a hack because single results are not properly sent as array
+                        return {
+                            // transform the results to the select2 data format
+                            results: $.map(data, function (obj) {
+                                obj.id = obj.value;
+                                obj.text = obj.label + ' (' + obj.frequency + ')';
+                                obj.term = params.data.term; // add search term for templating function
+                                return obj;
+                            }),
+                            pagination: {
+                                // check whether there are more pages to fetch
+                                more: (params.data.offset + limit) < total
+                            }
+                        };
+                    };
+                    $request = $.ajax(params);
+                    $request.then(read_headers).then(success);
+                    $request.fail(failure);
                 }
             }
-        })
+        }).on('select2:close', function (e) {
+            newParams = active_facets();
+            // check whether we need to reload the page
+            if (JSON.stringify(newParams.facets) !== JSON.stringify(curParams.facets)) {
+                updatePage(newParams);
+            }
+        });
     })
+};
+
+/*
+ * Helper function for $.fn.facets
+ * for highlighting search result in facets select boxes
+ * see https://select2.org/dropdown
+ */
+function formatFacet (facet) {
+    if(!facet.matches) {
+        return facet.text
+    }
+    var slicer = function(total, currentValue, currentIndex, arr) {
+        var len = facet.text.length; // the maximum length for the suffix part
+        if(arr.length > currentIndex + 1) {
+            len = arr[currentIndex + 1].start; // if there's another match => shorten the maximum length accordingly 
+        }
+        return total + '<u>' + facet.text.slice(currentValue.start, currentValue.start + currentValue.length) + '</u>' + facet.text.slice(currentValue.start + currentValue.length, len)
+    };
+    $facet = $(
+        '<span>' + facet.matches.reduce(slicer, facet.text.slice(0, facet.matches[0].start)) + '</span>'
+    );
+    return $facet;
 };
 
 $.fn.rangeSlider = function () 
@@ -109,13 +164,11 @@ $.fn.rangeSlider = function ()
             
             /* 
              * Overwrite date params with new values from the slider 
-             * when the new values equal the min/max values, reset to the empty string
              */
-            params.sliderDates['fromDate'] = (data.from != data.min)? newFrom: '';
-            params.sliderDates['toDate'] = (data.to != data.max)? newTo: '';
-            params.sliderDates['oldFromDate'] = moment(data.min).locale("de").format("YYYY-MM-DD");
-            params.sliderDates['oldToDate'] = moment(data.max).locale("de").format("YYYY-MM-DD");
-            
+            if(data.from != data.min) { params.sliderDates.fromDate = newFrom }
+            if(data.to != data.max) { params.sliderDates.toDate = newTo }
+            params.sliderDates.oldFromDate = moment(data.min).locale("de").format("YYYY-MM-DD");
+            params.sliderDates.oldToDate = moment(data.max).locale("de").format("YYYY-MM-DD");
             updatePage(params);
         }
     });
@@ -551,21 +604,21 @@ function uncheckAll(that) {
 function checkBoxRefresh() {
     if($('.query-input').val().length) { /* No need to refresh the page when there's no query string */
         var params = active_facets();
-        console.log(params);
+        //console.log(params);
         updatePage(params);
         }
 }
 
 $('.checkall').on('click', function() {
     checkAll(this);
-    var params = active_facets();
-    console.log(params);
+    //var params = active_facets();
+    //console.log(params);
 });
 
 $('.uncheckall').on('click', function() {
     uncheckAll(this);
-    var params = active_facets();
-    console.log(params);
+    //var params = active_facets();
+    //console.log(params);
 });
 
 $('a.checkbox-only').on('click', function() {    
@@ -639,33 +692,26 @@ function init_line_wrap_toggle() {
  */
 function active_facets() {
     var params = {
-            facets:[],
+            facets: {},
             sliderDates: {
-                fromDate:'',
+                /*fromDate:'',
                 toDate:'',
                 oldFromDate:'',
-                oldToDate:''
+                oldToDate:''*/
             },
-            toString:function(){
-                for (var key in this.sliderDates){
-                    if(this.sliderDates[key] !== '') {
-                        this.facets.push(key + '=' + this.sliderDates[key]);
-                    };
-                }
-                return '?' + this.facets.join('&')
-            }
+            toString: function() { return '?' + $.param($.extend( {}, this.facets, this.sliderDates), true) }
         },
         slider, from, to, min, max;
      
     /* Pushing the limit parameter to the facets array */
-    params['facets'].push('limit='+$('.switch-limit .active a:first').text());
+    params.facets.limit = $('.switch-limit .active a:first').text();
      
     /* Set filters from the side menu */
     $('.allFilter:visible :selected').each(function() {
         var facet = $(this).parent().attr('name'),
             value = $(this).attr('value');
-        /*console.log(facet + '=' + value);*/
-        params['facets'].push(facet + '=' + encodeURI(value))
+        if(params.facets[facet] === undefined) { params.facets[facet] = [] }
+        params.facets[facet].push(value);
     })
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
@@ -674,8 +720,8 @@ function active_facets() {
         to=slider.attr('data-to-slider');
         min=slider.attr('data-min-slider');
         max=slider.attr('data-max-slider');
-        params.sliderDates['fromDate'] = (from > min)? from: '';
-        params.sliderDates['toDate'] = (to < max)? to: '';
+        if(from > min) { params.sliderDates.fromDate = from }
+        if(to < max) { params.sliderDates.toDate = to }
     }
     /* get values from checkboxes for docTypes at search page 
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'
@@ -683,13 +729,13 @@ function active_facets() {
     $('.allFilter:visible :checked').each(function() {
         var facet = $(this).attr('name'),
             value = $(this).attr('value')? $(this).attr('value'): 'true';
-        if(undefined != facet) { params['facets'].push(facet + '=' + encodeURI(value)) }
+        if(undefined != facet) { params.facets[facet] = value }
     })
     if($('.query-input').val()) {
-        params['facets'].push('q=' + $('.query-input').val());
+        params.facets.q = $('.query-input').val();
     }
     else if($('#query-string').length) {
-        params['facets'].push('q=' + $('#query-string').text());
+        params.facets.q = $('#query-string').text();
     }
     return params;
 }
@@ -716,11 +762,10 @@ function updatePage(params) {
  */
 $('.jubilee, .jul').tooltip();
 
-/* Initialise selectize plugin for facets on index pages */
+/* Initialise select2 plugin for facets on index pages */
 $('.allFilter select').facets();
 
-
-
+/* Initialise select2 plugin for dropdown on start page */
 $('.prettyselect').prettyselect();
 
 /* Initialise range slider for index pages */
@@ -1057,14 +1102,26 @@ function addSearchOption(that)
 }
 
 /* Development only: request a new ID */
-$('#create-newID').on('click', function() {
+$('#create-newID').on('click', newID);
+
+function newID() {
     var docType = $('#newID-select :selected').val(),
         url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType ;
     $('#newID-result span').hide();
     $('#newID-result i').show();
     $.getJSON(url, function(response) {
-        $('#newID-result span').html(response.docID);
-        $('#newID-result i').hide();
-        $('#newID-result span').show();
+        $('#newID-result span').html(response.docID + ' <i class="fa fa-clipboard"></i>');
+        $('#newID-result i.fa-spin').hide();
+        $('#newID-result span').show().tooltip();
     });
+};
+
+$('.copy-to-clipboard').on('click', function() {
+    var copyText = $('#newID-result span')[0].innerText.trim();
+    navigator.clipboard.writeText(copyText);
+    $('#newID-result span').attr({
+        'data-original-title': 'copied!',
+        'title': 'copied!'
+    });
+    $('#newID-result span').tooltip('show');
 });
