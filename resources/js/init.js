@@ -164,13 +164,11 @@ $.fn.rangeSlider = function ()
             
             /* 
              * Overwrite date params with new values from the slider 
-             * when the new values equal the min/max values, reset to the empty string
              */
-            params.sliderDates['fromDate'] = (data.from != data.min)? newFrom: '';
-            params.sliderDates['toDate'] = (data.to != data.max)? newTo: '';
-            params.sliderDates['oldFromDate'] = moment(data.min).locale("de").format("YYYY-MM-DD");
-            params.sliderDates['oldToDate'] = moment(data.max).locale("de").format("YYYY-MM-DD");
-            
+            if(data.from != data.min) { params.sliderDates.fromDate = newFrom }
+            if(data.to != data.max) { params.sliderDates.toDate = newTo }
+            params.sliderDates.oldFromDate = moment(data.min).locale("de").format("YYYY-MM-DD");
+            params.sliderDates.oldToDate = moment(data.max).locale("de").format("YYYY-MM-DD");
             updatePage(params);
         }
     });
@@ -696,12 +694,12 @@ function active_facets() {
     var params = {
             facets: {},
             sliderDates: {
-                fromDate:'',
+                /*fromDate:'',
                 toDate:'',
                 oldFromDate:'',
-                oldToDate:''
+                oldToDate:''*/
             },
-            toString: function() { return '?' + $.param(this.facets, true) }
+            toString: function() { return '?' + $.param($.extend( {}, this.facets, this.sliderDates), true) }
         },
         slider, from, to, min, max;
      
@@ -722,8 +720,8 @@ function active_facets() {
         to=slider.attr('data-to-slider');
         min=slider.attr('data-min-slider');
         max=slider.attr('data-max-slider');
-        params.sliderDates['fromDate'] = (from > min)? from: '';
-        params.sliderDates['toDate'] = (to < max)? to: '';
+        if(from > min) { params.sliderDates.fromDate = from }
+        if(to < max) { params.sliderDates.toDate = to }
     }
     /* get values from checkboxes for docTypes at search page 
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'
