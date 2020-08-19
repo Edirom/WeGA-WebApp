@@ -319,7 +319,7 @@ declare function api:validate-docType($model as map()) as map()? {
             'docType',
             for $docType in tokenize($model('docType'),',')
             return
-                if($docType = $wega-docTypes) then $docType
+                if($docType = ($wega-docTypes, 'personsPlus')) then $docType
                 else error($api:INVALID_PARAMETER, 'There is no document type "' || $docType || '"')
         )
 };
