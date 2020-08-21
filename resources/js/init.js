@@ -670,10 +670,10 @@ function init_line_wrap_toggle() {
     
     // set toggle on load 
     if(pre.hasClass('line-wrap')) {
-        input.bootstrapToggle('on');
+        input.attr('checked', 'checked')
     }
     else {
-        input.bootstrapToggle('off');
+        input.removeAttr('checked');
     }
     
     // set listener for toggle
