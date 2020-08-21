@@ -191,10 +191,8 @@ else if (matches($exist:path, concat('^/', $lang, '/[pg]nd/', '[-0-9X]+(\.\w+)?$
 (: PND Beacon :)
 else if (matches($exist:path, '^/pnd_beacon.txt$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
-    	   <add-parameter name="func" value="create-beacon"/>
-    	   <add-parameter name="type" value="pnd"/>
-    	   <add-parameter name="format" value="txt"/>
+    	<forward url="{concat($exist:controller, '/modules/beacon.xql')}">
+    	   <set-attribute name="beacon" value="pnd"/>
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
@@ -202,10 +200,8 @@ else if (matches($exist:path, '^/pnd_beacon.txt$')) then
 (: GKD Beacon :)
 else if (matches($exist:path, '^/gkd_beacon.txt$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
-    	   <add-parameter name="func" value="create-beacon"/>
-    	   <add-parameter name="type" value="gkd"/>
-    	   <add-parameter name="format" value="txt"/>
+    	<forward url="{concat($exist:controller, '/modules/beacon.xql')}">
+    	   <set-attribute name="beacon" value="gkd"/>
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
@@ -213,10 +209,8 @@ else if (matches($exist:path, '^/gkd_beacon.txt$')) then
 (: Works Beacon :)
 else if (matches($exist:path, '^/works_beacon.txt$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/dev/api.xql')}">
-    	   <add-parameter name="func" value="create-beacon"/>
-    	   <add-parameter name="type" value="works"/>
-    	   <add-parameter name="format" value="txt"/>
+    	<forward url="{concat($exist:controller, '/modules/beacon.xql')}">
+    	   <set-attribute name="beacon" value="works"/>
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
@@ -269,12 +263,6 @@ else if (matches($exist:path, '^/schema/v\d+\.\d+\.\d+/')) then
 		</error-handler>
     </dispatch>
 :)
-
-(: allow access to API (needed for datePicker) :)
-else if($exist:path eq  '/dev/api.xql') then 
-    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-        <forward url="{concat($exist:controller, '/modules/dev/', $exist:resource)}"/>
-    </dispatch>
 
 (: general forwarding of folder 'dev' for development XQueries :)
 else if($config:isDevelopment and starts-with($exist:path, '/dev/')) then 
