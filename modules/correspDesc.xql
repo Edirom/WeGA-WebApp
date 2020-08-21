@@ -138,6 +138,7 @@ declare %private function ct:uuid-starting-with-nonDigit() as xs:string {
 
 declare variable $ct:source-uuid := ct:uuid-starting-with-nonDigit();
 
+response:set-header('Access-Control-Allow-Origin', '*'),
 mycache:doc(str:join-path-elements(
     ($config:tmp-collection-path, 'correspDesc.xml')), 
     ct:corresp-list#0, 
