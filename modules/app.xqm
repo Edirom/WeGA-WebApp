@@ -244,7 +244,10 @@ declare
     %templates:default("lang", "en")
     function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as item() {
         switch($model('docType')) 
-        case 'indices' return lang:get-language-string('indices', $lang)
+        case 'indices' return 
+            element span {
+                lang:get-language-string('indices', $lang)
+            }
         case 'biblio' case 'news' return 
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
