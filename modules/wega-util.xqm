@@ -99,7 +99,7 @@ declare function wega-util:inject-version-info($nodes as node()*) as item()* {
             (: replace the schema location from development to current stable version :)
             if($node[ancestor::node()]) then $node
             else (
-                processing-instruction xml-model {replace($node, '(master|develop)', 'v' || config:get-option('ODDversion'))}
+                processing-instruction xml-model {replace($node, '(main|master|develop)', 'v' || config:get-option('ODDversion'))}
             )
         )
         (: inject editionStmt element after the titleStmt :)
