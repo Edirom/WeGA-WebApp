@@ -52,7 +52,7 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
 
 (:~
  : Processing XML files for display (and download)
- : Comments and not-whitelisted facsimile information will be removed
+ : Comments and not-greenlisted facsimile information will be removed
  :
  : @author Peter Stadler 
  : @param $nodes the nodes to transform

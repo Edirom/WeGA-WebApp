@@ -441,20 +441,20 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
 };
 
 (:~
- : Return the TEI facsimile elements if present and on the whitelist supplied in the options file.
+ : Return the TEI facsimile elements if present and on the greenlist supplied in the options file.
  : External references to IIIF manifests via the @sameAs attribute on the tei:facsimile element are *always* passed on
  :
  : @param $doc the TEI document to look for the facsimile elements
  : @return TEI facsimile elements if available, the empty sequence otherwise
 ~:)
 declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)* {
-    let $facsimileWhiteList := tokenize(config:get-option('facsimileWhiteList'), '\s+')
+    let $facsimileGreenList := tokenize(config:get-option('facsimileGreenList'), '\s+')
     return
         if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]
-(:        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
+(:        else if($doc//tei:repository[@n=$facsimileGreenList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
 (:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
         else $doc//tei:facsimile[@sameAs castable as xs:anyURI] 
-            | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileWhiteList]][tei:graphic/@url]
+            | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileGreenList]][tei:graphic/@url]
             | $doc//tei:facsimile[tei:graphic[starts-with(@url, 'http')]]
 };
 
