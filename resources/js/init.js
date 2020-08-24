@@ -1110,7 +1110,12 @@ function newID() {
     $('#newID-result span').hide();
     $('#newID-result i').show();
     $.getJSON(url, function(response) {
-        $('#newID-result span').html(response.docID + ' <i class="fa fa-clipboard"></i>');
+        $('#newID-result span').html(
+            response.docID + ' <i class="fa fa-clipboard"></i>'
+        ).attr({
+            'data-original-title': 'Copy to clipboard',
+            'title': 'Copy to clipboard'
+        });
         $('#newID-result i.fa-spin').hide();
         $('#newID-result span').show().tooltip();
     });
