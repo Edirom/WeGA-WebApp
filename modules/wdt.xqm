@@ -1043,7 +1043,8 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 core:data-collection('biblio')//tei:*[contains(@target,'wega:' || $personID)]/root() |
                 core:data-collection('thematicCommentaries')//tei:*[contains(@target,'wega:' || $personID)]/root() |
                 core:data-collection('documents')//tei:*[contains(@target,'wega:' || $personID)]/root() |
-                core:data-collection('var')//tei:*[contains(@target,'wega:' || $personID)]/root() 
+                core:data-collection('var')//tei:*[contains(@target,'wega:' || $personID)]/root() |
+                core:data-collection('works')//mei:*[contains(@target,'wega:' || $personID)]/root()
             return
                 $docsMentioned except $docsAuthor
         },
