@@ -733,6 +733,17 @@ declare function api:validate-repository($model as map()) as map()? {
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "repository".' )
 }; 
 
+
+(:~
+ : Check parameter facsimile ('internal','external','without')
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-facsimile($model as map()) as map()? {
+    if(xmldb:decode-uri($model?facsimile) = ('internal','external','without')) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "facsimile". Must be one of "internal", "external", or "without".')
+};
+
 (:~
  : Fallback for unknown API parameters 
  : Simply returns an error message

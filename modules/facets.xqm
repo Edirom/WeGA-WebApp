@@ -39,7 +39,7 @@ declare
         let $facet := $node/data(@name)
         let $selected := $model?filters?($facet)
         let $selectedObjs as array(*)? := 
-            if(count($selected) gt 0) then facets:createFacets($model?search-results, $facet, -1, $lang)
+            if(count($selected) gt 0) then facets:facets($model?search-results, $facet, -1, $lang)
             else ()
         return
             element {name($node)} {
@@ -67,6 +67,7 @@ declare
 declare function facets:facets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*)  {
     switch($facet)
     case 'textType' return facets:from-docType($nodes, $facet, $lang)
+    case 'facsimile' return facets:facsimile($nodes, $facet, $lang)
     default return facets:createFacets($nodes, $facet, $max, $lang)
 };
 
@@ -83,6 +84,32 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
             }
     ]
 };
+
+declare %private function facets:facsimile($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
+    let $facsimiles := $collection ! query:facsimile(.)
+    let $external := count($facsimiles[@sameAs]/root())
+    let $internal := count($facsimiles[not(@sameAs)][tei:graphic]/root())
+    let $noFacs := count($collection) - $external - $internal
+    return
+        [
+            map {
+                'value' : 'internal',
+                'label' : lang:get-language-string('internal', $lang),
+                'frequency' : $internal
+            },
+            map {
+                'value' : 'external',
+                'label' : lang:get-language-string('external', $lang),
+                'frequency' : $external
+            },
+            map {
+                'value' : 'without',
+                'label' : lang:get-language-string('without', $lang),
+                'frequency' : $noFacs
+            }
+        ]
+};
+
 
 (:~
  : Create facets

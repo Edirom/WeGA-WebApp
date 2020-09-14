@@ -34,7 +34,7 @@ declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'w
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
     'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames', 
-    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames', 'repository');
+    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames', 'repository', 'facsimile');
 
 (:~
  : Main function called from the templating module
@@ -302,6 +302,7 @@ declare %private function search:filter-result($collection as document-node()*, 
         else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
         else if($filter = 'textType') then search:textType-filter($collection, $filters)
         else if($filter = 'hideRevealed') then search:revealed-filter($collection, $filters)
+        else if($filter = 'facsimile') then search:facsimile-filter($collection, $filters)
         (: exact search for terms -> range:eq :)
         else if($filter = ('journals', 'forenames', 'surnames', 'sex', 'occupations')) then query:get-facets($collection, $filter)[range:eq(.,$filters($filter))]/root()
         (: range:contains for tokens within key values  :)
@@ -348,6 +349,15 @@ declare %private function search:textType-filter($collection as document-node()*
 
 declare %private function search:revealed-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
     $collection//tei:correspDesc[not(@n='revealed')]/root()
+};
+
+declare %private function search:facsimile-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
+    let $facsimiles := $collection ! query:facsimile(.)
+    return
+        switch($filters?facsimile)
+        case 'internal' return $facsimiles[not(@sameAs)][tei:graphic]/root()
+        case 'external' return $facsimiles[@sameAs]/root()
+        default return $collection except $facsimiles/root()
 };
 
 (:~
