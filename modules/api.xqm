@@ -653,7 +653,7 @@ declare function api:validate-hideRevealed($model as map()) as map()? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-docTypeSubClass($model as map()) as map()? {
-    if($model?docTypeSubClass castable as xs:string) then map { 'docTypeSubClass': xmldb:decode-uri($model?docTypeSubClass) }
+    if(every $i in $model?docTypeSubClass ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'docTypeSubClass': ($model?docTypeSubClass ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "docTypeSubClass".' )
 }; 
 
@@ -663,23 +663,27 @@ declare function api:validate-docTypeSubClass($model as map()) as map()? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-sex($model as map()) as map()? {
-    if(xmldb:decode-uri($model?sex) = ('f','m','unknown','Art der Institution')) then $model
+    if(every $i in $model?sex ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'sex':  (($model?sex ! tokenize(., ',')) ! xmldb:decode-uri(.))[. = ('f','m','unknown','Art der Institution')] }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "sex". Must be one of "f", "m", "unknown", or "Art der Institution".')
 }; 
 
 (:~
  : Check parameter surnames
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-surnames($model as map()) as map()? {
-    if($model?surnames castable as xs:string) then map { 'surnames': xmldb:decode-uri($model?surnames) }
+    if(every $i in $model?surnames ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'surnames': ($model?surnames ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "surnames".' )
 }; 
 
 (:~
  : Check parameter forenames
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-forenames($model as map()) as map()? {
-    if($model?forenames castable as xs:string) then map { 'forenames': xmldb:decode-uri($model?forenames) }
+    if(every $i in $model?forenames ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'forenames': ($model?forenames ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "forenames".' )
 }; 
 
@@ -689,7 +693,7 @@ declare function api:validate-forenames($model as map()) as map()? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-asksam-cat($model as map()) as map()? {
-    if($model?asksam-cat castable as xs:string) then map { 'asksam-cat': xmldb:decode-uri($model?asksam-cat) }
+    if(every $i in $model?asksam-cat ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'asksam-cat': ($model?asksam-cat ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "asksam-cat".' )
 };
 
@@ -699,7 +703,7 @@ declare function api:validate-asksam-cat($model as map()) as map()? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-vorlageform($model as map()) as map()? {
-    if($model?vorlageform castable as xs:string) then map { 'vorlageform': xmldb:decode-uri($model?vorlageform) }
+    if(every $i in $model?vorlageform ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'vorlageform': ($model?vorlageform ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "vorlageform".' )
 }; 
 
@@ -709,7 +713,7 @@ declare function api:validate-vorlageform($model as map()) as map()? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-einrichtungsform($model as map()) as map()? {
-    if($model?einrichtungsform castable as xs:string) then map { 'einrichtungsform': xmldb:decode-uri($model?einrichtungsform) }
+    if(every $i in $model?einrichtungsform ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'einrichtungsform': ($model?einrichtungsform ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "einrichtungsform".' )
 }; 
 
@@ -729,10 +733,9 @@ declare function api:validate-placenames($model as map()) as map()? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-repository($model as map()) as map()? {
-    if($model?repository castable as xs:string) then map { 'repository': xmldb:decode-uri($model?repository) }
+    if(every $i in $model?repository ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'repository': ($model?repository ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "repository".' )
 }; 
-
 
 (:~
  : Check parameter facsimile ('internal','external','without')
@@ -740,7 +743,7 @@ declare function api:validate-repository($model as map()) as map()? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-facsimile($model as map()) as map()? {
-    if(every $i in $model?facsimile satisfies $i castable as xs:string) then map { 'facsimile': ($model?facsimile ! tokenize(., ','))[. = ('internal','external','without')] }
+    if(every $i in $model?facsimile ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'facsimile': (($model?facsimile ! tokenize(., ',')) ! xmldb:decode-uri(.))[. = ('internal','external','without')] }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "facsimile". Must be one of "internal", "external", or "without".')
 };
 
