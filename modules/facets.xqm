@@ -87,27 +87,35 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
 
 declare %private function facets:facsimile($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
     let $facsimiles := $collection ! query:facsimile(.)
-    let $external := count($facsimiles[@sameAs]/root())
-    let $internal := count($facsimiles[not(@sameAs)][tei:graphic]/root())
-    let $noFacs := count($collection) - $external - $internal
+    let $external := $facsimiles[@sameAs]/root()
+    let $internal := $facsimiles[not(@sameAs)][tei:graphic]/root()
+    let $internalCount := count($internal)
+    let $externalCount := count($external)
+    let $noFacsCount := count($collection) - count($external | $internal)
     return
-        [
-            map {
-                'value' : 'internal',
-                'label' : lang:get-language-string('internal', $lang),
-                'frequency' : $internal
-            },
-            map {
-                'value' : 'external',
-                'label' : lang:get-language-string('external', $lang),
-                'frequency' : $external
-            },
-            map {
-                'value' : 'without',
-                'label' : lang:get-language-string('without', $lang),
-                'frequency' : $noFacs
-            }
-        ]
+        array {
+            if($internalCount > 0) then
+                map {
+                    'value' : 'internal',
+                    'label' : lang:get-language-string('internal', $lang),
+                    'frequency' : $internalCount
+                }
+            else (),
+            if($externalCount > 0) then
+                map {
+                    'value' : 'external',
+                    'label' : lang:get-language-string('external', $lang),
+                    'frequency' : $externalCount
+                }
+            else (),
+            if($noFacsCount > 0) then
+                map {
+                    'value' : 'without',
+                    'label' : lang:get-language-string('without', $lang),
+                    'frequency' : $noFacsCount
+                }
+            else ()
+        }
 };
 
 
