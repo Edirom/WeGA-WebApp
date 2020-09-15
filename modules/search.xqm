@@ -6,9 +6,14 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
-
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace session="http://exist-db.org/xquery/session";
+declare namespace range="http://exist-db.org/xquery/range";
+declare namespace ft="http://exist-db.org/xquery/lucene";
 import module namespace kwic="http://exist-db.org/xquery/kwic";
 import module namespace templates="http://exist-db.org/xquery/templates";
+import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -20,7 +25,7 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
-import module namespace functx="http://www.functx.com";
+
 
 declare variable $search:ERROR := QName("http://xquery.weber-gesamtausgabe.de/modules/search", "Error");
 
@@ -83,7 +88,7 @@ declare
         let $result-page-hits-per-entry := map:merge(
             for $doc in $subseq
             return (
-                if($doc instance of map() and exists($doc?hits)) then 
+                if($doc instance of map(*) and exists($doc?hits)) then 
                     map:entry($doc?doc/*/data(@xml:id), $doc?hits)
                 else ()
             )
@@ -201,7 +206,7 @@ declare %private function search:list($model as map(*)) as map(*) {
  : Sorting and merging search results
  : Helper function for search:search()
 ~:)
-declare %private function search:merge-hits($hits as item()*) as map()* {
+declare %private function search:merge-hits($hits as item()*) as map(*)* {
     for $hit in $hits
     group by $doc := $hit/root()
     let $score := sum($hit ! ft:score(.))
@@ -218,7 +223,7 @@ declare %private function search:merge-hits($hits as item()*) as map()* {
  :  Do a full text search 
  :  by looking up the appropriate search function in the wdt module 
 ~:)
-declare %private function search:fulltext($items as item()*, $searchString as xs:string, $filters as map(), $docType as xs:string) as item()* {
+declare %private function search:fulltext($items as item()*, $searchString as xs:string, $filters as map(*), $docType as xs:string) as item()* {
     let $query := search:create-lucene-query-element($searchString)
     let $search-func := wdt:lookup(., $items)?search
     return
@@ -293,10 +298,10 @@ declare %private function search:create-filters() as map(*) {
             for $param in $params
             let $lookup := function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/api', 'api:validate-' || $param), 1) 
             return
-                if(exists($lookup)) then $lookup(map {$param := request:get-parameter($param, ()) })
-                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param := request:get-parameter($param, ()) })
+                if(exists($lookup)) then $lookup(map:entry($param, request:get-parameter($param, ())))
+                else if(exists($validate-unknown-param)) then $validate-unknown-param(map:entry($param, request:get-parameter($param, ())))
                 else (
-                    util:log-system-out('It seems you did not provide a validate-unknown-param function'),
+                    core:logToFile('warn', 'It seems you did not provide a validate-unknown-param function'),
                     error($search:ERROR, 'Unknown parameter "' || $param || '". Details should be provided in the system log.') 
                 )
         )
@@ -422,7 +427,7 @@ declare %private function search:get-latest-date($coll as document-node()*, $doc
  :
  : @return a map with sanitized query string, parameters and recognized dates
 ~:)
-declare %private function search:prepare-search-string($model as map()) as map(*) {
+declare %private function search:prepare-search-string($model as map(*)) as map(*) {
     let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
     let $query-string-org := request:get-parameter('q', '')
     let $sanitized-query-string := str:normalize-space(str:sanitize(string-join($query-string-org, ' ')))
@@ -457,7 +462,7 @@ declare %private function search:prepare-search-string($model as map()) as map(*
  : @param $callback a callback function to actually do the search if the session is empty
  : @return a map object {'filters': {}, 'search-results': {}, 'query-string-org': '', 'query-docTypes': ('') }
 ~:)
-declare %private function search:search-session($model as map(), $callback as function() as map(*)) as map(*) {
+declare %private function search:search-session($model as map(*), $callback as function() as map(*)) as map(*) {
     let $updatedModel := search:prepare-search-string($model)
     let $session-exists :=
         try { 
@@ -482,7 +487,7 @@ declare %private function search:search-session($model as map(), $callback as fu
 
 declare 
     %templates:wrap
-    function search:get-session-for-singleview($node as node(), $model as map(*)) as map()? {
+    function search:get-session-for-singleview($node as node(), $model as map(*)) as map(*)? {
         let $wegasearch := (:session:get-attribute('wegasearch'):) search:search-session($model, search:search#1)
         let $docs := search:normalize-result-entries($wegasearch?search-results)
         let $index-of-current-doc := functx:index-of-node($docs, $model?doc)
@@ -517,7 +522,7 @@ declare %private function search:normalize-result-entries($entries as item()*) a
     for $doc in $entries
     return
         if($doc instance of document-node()) then $doc
-        else if($doc instance of map()) then $doc?doc
+        else if($doc instance of map(*)) then $doc?doc
         else if($doc instance of element()) then $doc 
         else if($doc instance of node()) then error($search:ERROR, 'unable to process node: ' || functx:node-kind($doc) || ' ' || name($doc))
         else if($doc instance of xs:anyAtomicType) then error($search:ERROR, 'unable to process atomic type: ' || functx:atomic-type($doc))
