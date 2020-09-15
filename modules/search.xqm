@@ -19,6 +19,7 @@ import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang"
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
+import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $search:ERROR := QName("http://xquery.weber-gesamtausgabe.de/modules/search", "Error");
@@ -278,14 +279,26 @@ declare %private function search:additional-mappings($str as xs:string) as eleme
 
 (:~
  : Creates a map of to-be-applied-filters from URL request parameters
+ : Makes use of the `api:validate-*` functions for checking the sanity of parameter values
 ~:)
 declare %private function search:create-filters() as map(*) {
-    let $params := request:get-parameter-names()[.=$search:valid-params]
+    let $paramsOrg := request:get-parameter-names()[.=$search:valid-params]
+    let $params :=
+        (: "undated" takes precedence over date filter :)
+        if($paramsOrg[.='undated']) then $paramsOrg[not(.= ('fromDate', 'toDate'))] 
+        else $paramsOrg
+    let $validate-unknown-param := function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/api', 'api:validate-unknown-param'), 1)
     return
         map:merge(
-            (: "undated" takes precedence over date filter :)
-            if($params[.='undated']) then $params[not(.= ('fromDate', 'toDate'))] ! map:entry(., request:get-parameter(., ()))
-            else $params ! map:entry(., request:get-parameter(., ()))
+            for $param in $params
+            let $lookup := function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/api', 'api:validate-' || $param), 1) 
+            return
+                if(exists($lookup)) then $lookup(map {$param := request:get-parameter($param, ()) })
+                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param := request:get-parameter($param, ()) })
+                else (
+                    util:log-system-out('It seems you did not provide a validate-unknown-param function'),
+                    error($search:ERROR, 'Unknown parameter "' || $param || '". Details should be provided in the system log.') 
+                )
         )
 };
 
