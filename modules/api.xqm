@@ -365,6 +365,7 @@ declare function api:validate-limit($model as map()) as map()? {
 ~:)
 declare function api:validate-fromDate($model as map()) as map()? {
     if($model('fromDate') castable as xs:date) then $model
+    else if($model?fromDate ='') then () (: an empty string is simply dropped :)
     else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('fromDate') || '". Should be YYYY-MM-DD.')
 };
 
@@ -373,6 +374,7 @@ declare function api:validate-fromDate($model as map()) as map()? {
 ~:)
 declare function api:validate-toDate($model as map()) as map()? {
     if($model('toDate') castable as xs:date) then $model
+    else if($model?toDate ='') then () (: an empty string is simply dropped :)
     else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('toDate') || '". Should be YYYY-MM-DD.')
 };
 
