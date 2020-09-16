@@ -11,6 +11,10 @@ declare namespace expath="http://expath.org/ns/pkg";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace session="http://exist-db.org/xquery/session";
 
 import module namespace json="http://www.json.org";
 import module namespace templates="http://exist-db.org/xquery/templates";
@@ -394,7 +398,7 @@ declare function config:getCurrentSvnRev() as xs:int? {
  : @return map()
 :)
 
-declare function config:get-svn-props($docID as xs:string) as map() {
+declare function config:get-svn-props($docID as xs:string) as map(*) {
     map:merge(
         for $prop in $config:svn-change-history-file//id($docID)/@*
         return map:entry(local-name($prop), data($prop))
@@ -408,7 +412,7 @@ declare function config:get-svn-props($docID as xs:string) as map() {
  : @author Peter Stadler
  : @return parameters
 :)
-declare function config:get-xsl-params($params as map()?) as element(parameters) {
+declare function config:get-xsl-params($params as map(*)?) as element(parameters) {
     <parameters>
         <param name="lang" value="{config:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
@@ -513,7 +517,7 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
 declare %private function config:map-put-recursive($map as map(*), $key as xs:string+, $value as item()*) as map(*) {
     if(count($key) eq 1) 
     then map:put($map, $key, $value)
-    else if(map:contains($map, $key[1]) and $map($key[1]) instance of map())
+    else if(map:contains($map, $key[1]) and $map($key[1]) instance of map(*))
     then
         map:put(
             $map,

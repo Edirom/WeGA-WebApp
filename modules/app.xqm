@@ -435,7 +435,7 @@ declare
 
 declare
     %templates:wrap
-    function app:set-entries-per-page($node as node(), $model as map(*)) as map() {
+    function app:set-entries-per-page($node as node(), $model as map(*)) as map(*) {
 		map {
 			'limit' : config:entries-per-page(),
 			'moreresults' : if ( count($model('search-results')) gt config:entries-per-page() ) then 'true' else ()
@@ -483,7 +483,7 @@ declare %private function app:page-link($model as map(*), $params as map(*)) as 
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function app:active-nav($node as node(), $model as map(*), $lang as xs:string) as map() {
+    function app:active-nav($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $active := $node//xhtml:a/@href[controller:encode-path-segments-for-uri(controller:resolve-link(functx:substring-before-if-contains(., '#'), $model)) = request:get-uri()]
         return
             map {'active-nav': $active}
@@ -1402,7 +1402,7 @@ declare
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function app:print-Source($node as node(), $model as map(*), $key as xs:string) as map()* {
+    function app:print-Source($node as node(), $model as map(*), $key as xs:string) as map(*)* {
         let $sourceCount := $model($key)/ancestor::tei:listWit/count(tei:witness)
         let $sourceLink-content :=
             typeswitch($model($key))

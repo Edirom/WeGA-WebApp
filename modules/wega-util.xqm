@@ -15,6 +15,9 @@ declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
 declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace schema="http://schema.org/";
+declare namespace util="http://exist-db.org/xquery/util";
+declare namespace transform="http://exist-db.org/xquery/transform";
+declare namespace range="http://exist-db.org/xquery/range";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -147,7 +150,7 @@ declare function wega-util:inject-version-info($nodes as node()*) as item()* {
 (:~
  : Helper function for wega-util:inject-version-info()
 ~:)
-declare %private function wega-util:editionStmt() as map() {
+declare %private function wega-util:editionStmt() as map(*) {
     let $lang := config:guess-language(())
     return
         map {

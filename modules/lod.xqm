@@ -10,6 +10,8 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";

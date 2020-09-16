@@ -8,6 +8,10 @@ declare default collation "?lang=de;strength=primary";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace gn="http://www.geonames.org/ontology#";
+declare namespace range="http://exist-db.org/xquery/range";
+declare namespace sort="http://exist-db.org/xquery/sort";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace xdt="http://www.w3.org/2005/xpath-datatypes";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
@@ -118,7 +122,7 @@ declare function query:get-gnd($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
             case xs:string return core:doc($item)
-            case xdt:untypedAtomic return core:doc(string($item))
+            case xs:untypedAtomic return core:doc(string($item))
             case attribute() return core:doc(string($item))
             case element() return $item
             case document-node() return $item
@@ -143,7 +147,7 @@ declare function query:get-viaf($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
             case xs:string return core:doc($item)
-            case xdt:untypedAtomic return core:doc(string($item))
+            case xs:untypedAtomic return core:doc(string($item))
             case attribute() return core:doc(string($item))
             case element() return $item
             case document-node() return $item
@@ -170,7 +174,7 @@ declare function query:get-geonamesID($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
             case xs:string return core:doc($item)
-            case xdt:untypedAtomic return core:doc(string($item))
+            case xs:untypedAtomic return core:doc(string($item))
             case attribute() return core:doc(string($item))
             case element() return $item
             case document-node() return $item
@@ -420,7 +424,7 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
     let $replyLetterFromSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
     let $replyLetterFromSender := wdt:letters($replyLetterFromSenderColl)('sort')(())[1]/root()
     
-    let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
+    let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map(*)? {
         if($letter and exists(query:get-normalized-date($letter))) then
             map {
                 'fromTo' : $fromTo,
@@ -496,7 +500,7 @@ declare function query:witness-facsimile($source as element()) as element(tei:fa
  : @return a map with only one key 'context-relatedItems'. 
  :      The value of this key is a sequence of maps, each containing the keys 'context-relatedItem-type', 'context-relatedItem-doc' and 'context-relatedItem-n'
 ~:)
-declare function query:context-relatedItems($doc as document-node()?) as map()? {
+declare function query:context-relatedItems($doc as document-node()?) as map(*)? {
     let $relatedItems :=  
         for $relatedItem in $doc//tei:notesStmt/tei:relatedItem
         return 

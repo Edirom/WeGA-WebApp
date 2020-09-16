@@ -13,6 +13,7 @@ declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace beacon="https://de.wikipedia.org/wiki/Wikipedia:BEACON";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace response="http://exist-db.org/xquery/response";
+declare namespace util="http://exist-db.org/xquery/util";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";

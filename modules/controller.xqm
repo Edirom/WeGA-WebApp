@@ -12,6 +12,9 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace response="http://exist-db.org/xquery/response";
+declare namespace util="http://exist-db.org/xquery/util";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -76,7 +79,7 @@ declare variable $controller:projectNav :=
  : @param $html-template the HTML template for processing by the templating module. The path must be given relative to the app root collection
  : @param $exist-vars the keys of this map object will get passed through to the following modules by sending them as request attributes
 ~:)
-declare function controller:forward-html($html-template as xs:string, $exist-vars as map()*) as element(exist:dispatch) {
+declare function controller:forward-html($html-template as xs:string, $exist-vars as map(*)*) as element(exist:dispatch) {
     let $etag := controller:etag($exist-vars('exist:path'))
     let $modified := not(request:get-header('If-None-Match') = $etag)
     return (
@@ -126,7 +129,7 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
 (:~
  :  XML Output
 ~:)
-declare function controller:forward-xml($exist-vars as map()*) as element(exist:dispatch) {
+declare function controller:forward-xml($exist-vars as map(*)*) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-xml.xql'}">
             {
@@ -141,7 +144,7 @@ declare function controller:forward-xml($exist-vars as map()*) as element(exist:
 (:~
  :  Plain text output
 ~:)
-declare function controller:forward-txt($exist-vars as map()*) as element(exist:dispatch) {
+declare function controller:forward-txt($exist-vars as map(*)*) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-txt.xql'}">
             {
@@ -156,7 +159,7 @@ declare function controller:forward-txt($exist-vars as map()*) as element(exist:
 (:~
  :  JSON-LD output
  :)
-declare function controller:forward-jsonld($exist-vars as map()*) as element(exist:dispatch) {
+declare function controller:forward-jsonld($exist-vars as map(*)*) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{map:get($exist-vars, 'exist:controller') || '/modules/view-jsonld.xql'}">
             {
@@ -473,7 +476,7 @@ declare function controller:docType-url-for-author($author as document-node(), $
  : these links are resolved here
  : 
  :)
-declare function controller:resolve-link($link as xs:string, $exist-vars as map()) as xs:string? {
+declare function controller:resolve-link($link as xs:string, $exist-vars as map(*)) as xs:string? {
     let $tokens := 
         for $token in tokenize(substring-after($link, '$link/'), '/')
         let $has-suffix := contains($token, '.')
@@ -531,7 +534,7 @@ declare function controller:lookup-url-mappings($exist-vars as map(*)) {
     return
         if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri($mapping/normalize-space(@to)))
         (: zum debuggen rausgenommen um Fehler anzuzeigen:)
-        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('exist:path'))
+        else if($config:isDevelopment) then core:logToFile('warn', 'fail for: ' || $exist-vars('exist:path'))
         else controller:error($exist-vars, 404)
 };
 
@@ -543,7 +546,7 @@ declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
         else ()
     return
         if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri(normalize-space($mapping)))
-        else if($config:isDevelopment) then util:log-system-out('fail for: ' || $exist-vars('exist:path'))
+        else if($config:isDevelopment) then core:logToFile('warn','fail for: ' || $exist-vars('exist:path'))
         else controller:error($exist-vars, 404)
 };
 

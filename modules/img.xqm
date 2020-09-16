@@ -21,6 +21,10 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
 declare namespace templates="http://exist-db.org/xquery/templates";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace util="http://exist-db.org/xquery/util";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -570,7 +574,7 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
  : @param 
  : @return a image object
  :)
-declare %private function img:iiif-image($model as map()) as map(*) {
+declare %private function img:iiif-image($model as map(*)) as map(*) {
     map {
         "@type" : "oa:Annotation",
         "@id" : $model?image-id || '/annotation', 
