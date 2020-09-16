@@ -312,67 +312,74 @@ declare %private function search:create-filters() as map(*) {
  : Recursively applies this function until the filter map is empty
 ~:)
 declare %private function search:filter-result($collection as document-node()*, $filters as map(*), $docType as xs:string) as document-node()* {
-    let $filter := map:keys($filters)[1]
-    let $filtered-coll := 
-      if($filter) then 
-        if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
-        else if($filter = 'searchDate') then search:searchDate-filter($collection, $filters)
-        else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
-        else if($filter = 'textType') then search:textType-filter($collection, $filters)
-        else if($filter = 'hideRevealed') then search:revealed-filter($collection, $filters)
-        else if($filter = 'facsimile') then search:facsimile-filter($collection, $filters)
-        (: exact search for terms -> range:eq :)
-        else if($filter = ('journals', 'forenames', 'surnames', 'sex', 'occupations')) then query:get-facets($collection, $filter)[range:eq(.,$filters($filter))]/root()
-        (: range:contains for tokens within key values  :)
-        else if($filter = ('addressee', 'sender')) then query:get-facets($collection, $filter)[range:contains(.,$filters($filter))]/root()
-        (: exact match for everything else :)
-        else query:get-facets($collection, $filter)[range:eq(.,$filters($filter))]/root()
-      else $collection
-    let $newFilter :=
-        if($filter = ('fromDate', 'toDate')) then 
-            try { map:remove(map:remove($filters, 'toDate'), 'fromDate') }
-            catch * {()}
-        else 
-            try { map:remove($filters, $filter) }
-            catch * {map {} }
-    return
-        if(exists(map:keys($newFilter))) then search:filter-result($filtered-coll, $newFilter, $docType)
-        else $filtered-coll
+    if(count($filters?*) gt 0) then (
+        let $filter := map:keys($filters)[1]
+        let $filtered-coll := 
+            if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
+            else if($filter = 'searchDate') then search:searchDate-filter($collection, $filters($filter)[1])
+            else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
+            else if($filter = 'textType') then search:textType-filter($collection, $filters($filter)[1])
+            else if($filter = 'hideRevealed') then search:revealed-filter($collection)
+            else if($filter = 'facsimile') then search:facsimile-filter($collection, $filters($filter)[1])
+            (: exact search for terms -> range:eq :)
+            else if($filter = ('journals', 'forenames', 'surnames', 'sex', 'occupations')) then query:get-facets($collection, $filter)[range:eq(.,$filters($filter)[1])]/root()
+            (: range:contains for tokens within key values  :)
+            else if($filter = ('addressee', 'sender')) then query:get-facets($collection, $filter)[range:contains(.,$filters($filter)[1])]/root()
+            (: exact match for everything else :)
+            else query:get-facets($collection, $filter)[range:eq(.,$filters($filter)[1])]/root()
+        let $newFilter :=
+            if($filter = ('fromDate', 'toDate')) then 
+                try { map:remove(map:remove($filters, 'toDate'), 'fromDate') }
+                catch * {()}
+            else if(count($filters($filter)) gt 1) then 
+                map:merge(($filters, map:entry($filter, subsequence($filters($filter), 2))))
+            else
+                map:remove($filters, $filter)
+        return
+            if(count($newFilter?*) gt 0) then (
+                search:filter-result($filtered-coll, $newFilter, $docType)
+            )
+            else $filtered-coll
+    )
+    else $collection
 };
 
 (:~
  : Helper function for search:filter-result()
  : Queries dates within TEI and MEI documents
+ : Dates are expected to be xs:string, yet castable to xs:date
 ~:)
-declare %private function search:searchDate-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
-    (
-        $collection//tei:date[@when=$filters?searchDate] 
-        | $collection//tei:date[@notBefore le $filters?searchDate][@notAfter ge $filters?searchDate] 
-        | $collection//tei:date[@from le $filters?searchDate][@to ge $filters?searchDate]
-        | $collection//mei:date[@isodate=$filters?searchDate] 
-        | $collection//mei:date[@notbefore le $filters?searchDate][@notafter ge $filters?searchDate] 
-        | $collection//mei:date[@startdate le $filters?searchDate][@enddate ge $filters?searchDate]
-    )/root()
+declare %private function search:searchDate-filter($collection as document-node()*, $dates as xs:string*) as document-node()* {
+    for $date in $dates[. castable as xs:date]
+    return
+        (
+            $collection//tei:date[@when=$date] 
+            | $collection//tei:date[@notBefore le $date][@notAfter ge $date] 
+            | $collection//tei:date[@from le $date][@to ge $date]
+            | $collection//mei:date[@isodate=$date] 
+            | $collection//mei:date[@notbefore le $date][@notafter ge $date] 
+            | $collection//mei:date[@startdate le $date][@enddate ge $date]
+        )/root()
 };
 
 (:~
  : Helper function for search:filter-result()
  : Applies textType filter for backlinks
 ~:)
-declare %private function search:textType-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
-    wdt:lookup($filters?textType, 
-        $collection
-    )('sort')(map {})
+declare %private function search:textType-filter($collection as document-node()*, $textTypes as xs:string*) as document-node()* {
+    for $textType in $textTypes
+    return
+        wdt:lookup($textType, $collection)('sort')(map {})
 };
 
-declare %private function search:revealed-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
+declare %private function search:revealed-filter($collection as document-node()*) as document-node()* {
     $collection//tei:correspDesc[not(@n='revealed')]/root()
 };
 
-declare %private function search:facsimile-filter($collection as document-node()*, $filters as map(*)) as document-node()* {
+declare %private function search:facsimile-filter($collection as document-node()*, $filters as xs:string*) as document-node()* {
     let $facsimiles := $collection ! query:facsimile(.)
     return
-        for $filter in $filters?facsimile
+        for $filter in $filters
         return 
             switch($filter)
             case 'internal' return $facsimiles[not(@sameAs)][tei:graphic]/root()
