@@ -47,7 +47,7 @@ declare
  : Print all items from a sequence identified by $model($key)
 ~:)
 declare function lod:each-meta($node as node(), $model as map(*), $key as xs:string) as element(meta)* {
-    $model($key) ! element {name($node)} { $node/@*[not(name(.) = 'content')], attribute content {.} }
+    $model($key) ! element {node-name($node)} { $node/@*[not(name(.) = 'content')], attribute content {.} }
 };
 
 declare 
@@ -55,7 +55,7 @@ declare
     function lod:hreflang($node as node(), $model as map(*), $lang as xs:string) as element()* {
         for $l in $config:valid-languages 
         return
-            element { name($node) } { 
+            element { node-name($node) } { 
                 $node/@*,
                 attribute href {
                     if($l eq $lang) then config:get-option('permaLinkPrefix') || request:get-uri()

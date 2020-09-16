@@ -153,7 +153,7 @@ declare
     function app:download-link($node as node(), $model as map(*), $format as xs:string) as element() {
         let $url := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         return 
-            element {name($node)} {
+            element {node-name($node)} {
                 $node/@* except $node/@href,
                 attribute href {
                     switch($format)
@@ -182,7 +182,7 @@ declare
 };
 
 declare function app:set-line-wrap($node as node(), $model as map(*)) as element() {
-    element {name($node)} {
+    element {node-name($node)} {
         if($model('line-wrap')) then ( 
             $node/@*[not(name(.)='class')],
             attribute class {string-join(($node/@class, 'line-wrap'), ' ')}
@@ -320,14 +320,14 @@ declare
         let $alwaysShowNoCount := $tabTitle = ('biographies', 'history', 'descriptions')
         return
             if($count gt 0 or $alwaysShowNoCount) then
-                element {name($node)} {
+                element {node-name($node)} {
                         $node/@*[not(name(.)='data-target')],
                         if($node/@data-target) then attribute data-target {replace($node/@data-target, '\$docID', $model('docID'))} else (),
                         lang:get-language-string($tabTitle, $lang),
                         if($alwaysShowNoCount) then () else <small>{' (' || $count || ')'}</small>
                     }
             else 
-                element {name($node)} {
+                element {node-name($node)} {
                     attribute class {'deactivated'}
                 }
 };
@@ -355,13 +355,13 @@ declare
         	else ()
         return
             if($ajax-url) then 
-                element {name($node)} {
+                element {node-name($node)} {
                     $node/@*,
                     attribute data-tab-url {$ajax-url},
                     lang:get-language-string(normalize-space($node), $lang)
                 }
             else
-                element {name($node)} {
+                element {node-name($node)} {
                     attribute class {'nav-link deactivated'}
                 }
 };
@@ -371,12 +371,12 @@ declare
     %templates:default("lang", "en")
     function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
         if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then 
-            element {name($node)} {
+            element {node-name($node)} {
                 $node/@*,
                 lang:get-language-string(normalize-space($node), $lang)
             }
         else
-            element {name($node)} {
+            element {node-name($node)} {
                 attribute class {'deactivated'}
             }
 };
@@ -386,12 +386,12 @@ declare
     function app:tab($node as node(), $model as map(*), $lang as xs:string) as element() {
         (: Currently only needed for "PND Beacon Links" :)
         if($model('gnd')) then
-            element {name($node)} {
+            element {node-name($node)} {
                 $node/@*,
                 normalize-space($node)
             }
         else
-            element {name($node)} {
+            element {node-name($node)} {
                 attribute class {'deactivated'}
             }
 };
@@ -443,7 +443,7 @@ declare
 };
 
 declare function app:switch-limit($node as node(), $model as map(*)) as element() {
-	element {name($node)} {
+	element {node-name($node)} {
 		if($model?limit = number($node)) then attribute class {'page-item active'} else attribute class {'page-item'},
 		element a {
 			attribute class {'page-link'},
@@ -494,7 +494,7 @@ declare
     function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(li) {
         let $active := exists($node//xhtml:a[@href = $model('active-nav')])
         return
-            element {name($node)} {
+            element {node-name($node)} {
                 if($active) then (
                     $node/@*[not(name(.)='class')],
                     attribute class {string-join(($node/@class, 'active'), ' ')}
@@ -510,7 +510,7 @@ declare
         let $curLang := lower-case(normalize-space($node))
         let $isActive := $lang = $curLang
         return
-            element {name($node)} {
+            element {node-name($node)} {
                 if($isActive) then (
                     $node/@*[not(name(.)='class')],
                     attribute class {string-join(($node/@class, 'active'), ' ')}
@@ -538,7 +538,7 @@ declare
     %templates:default("fromDate", "")
     %templates:default("toDate", "")
     function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
-    element {name($node)} {
+    element {node-name($node)} {
          $node/@*,
          attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
          attribute data-max-slider {if($model('oldToDate') castable as xs:date) then $model('oldToDate') else $model('latestDate')},
@@ -548,7 +548,7 @@ declare
 };
 
 declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(input) {
-    element {name($node)} {
+    element {node-name($node)} {
          $node/@*,
          if(map:contains($model('filters'), $key)) then attribute checked {'checked'}
          else ()
@@ -716,7 +716,7 @@ declare
         let $displayTitle := lang:get-language-string($docType, $lang)
         order by $displayTitle
         return
-            element {name($node)} {
+            element {node-name($node)} {
                 attribute value {$docType},
                 $displayTitle
             }
@@ -938,7 +938,7 @@ declare
         return
             if(some $i in $bio satisfies $i instance of element()) then $bio
             else 
-                element {name($node)} {
+                element {node-name($node)} {
                     $node/@*,
                     if($bio instance of xs:string) then <p>{$bio}</p>
                     else templates:process($node/node(), $model)
@@ -1700,7 +1700,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
  : for a client side renderer. 
  :)
 declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
         if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then (
             attribute {'data-url'} { normalize-space(
@@ -1731,7 +1731,7 @@ declare
     function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(input)* {
     let $placeholder := lang:get-language-string("searchTerm",$lang)
     return
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@*[not(name(.) = ('value', 'placeholder'))],
         if($model('query-string-org') ne '') then attribute {'value'} {$model('query-string-org')}
         else (),
@@ -1751,7 +1751,7 @@ declare
             let $displayTitle := lang:get-language-string($docType, $lang)
             order by $displayTitle
             return                
-             element {name($node)} {
+             element {node-name($node)} {
                  $node/@*[not(name(.) = 'class')],
                  attribute class {$class},
                  element input {
@@ -1801,7 +1801,7 @@ declare
     function app:preview-title($node as node(), $model as map(*), $lang as xs:string) as element() {
         let $title := wdt:lookup(config:get-doctype-by-id($model('docID')), $model('doc'))?title('html')
         return
-            element {name($node)} {
+            element {node-name($node)} {
                 $node/@*[not(name(.) = 'href')],
                 if($node[self::xhtml:a])
                 then attribute href {
@@ -1830,7 +1830,7 @@ declare
         return 
             typeswitch($source)
             case element(tei:biblStruct) return 
-                element {name($node)} {
+                element {node-name($node)} {
                     $node/@*,
                     bibl:printCitation($source, <xhtml:p/>, $lang)/node()
                 }
@@ -1851,7 +1851,7 @@ declare
     %templates:default("lang", "en")
     function app:preview-opus-no($node as node(), $model as map(*), $lang as xs:string) as element()? {
         if(exists($model('doc')//mei:altId[@type != 'gnd'])) then 
-            element {name($node)} {
+            element {node-name($node)} {
                 $node/@*[not(name(.) = 'href')],
                 if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
                 else (),
@@ -1868,7 +1868,7 @@ declare
         let $sub-titles := $model?doc//mei:fileDesc/mei:titleStmt/mei:title[@type = 'sub'][string(@xml:lang) = $main-title/string(@xml:lang)]
         return 
             if($sub-titles) then
-                element {name($node)} {
+                element {node-name($node)} {
                     $node/@*,
                     data(
                         (: output the first matching subtitle :)

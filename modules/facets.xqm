@@ -42,7 +42,7 @@ declare
             if(count($selected) gt 0) then facets:createFacets($model?search-results, $facet, -1, $lang)
             else ()
         return
-            element {name($node)} {
+            element {node-name($node)} {
                 $node/@*,
                 attribute data-api-url {config:api-base() || '/facets/' || $facet},
                 attribute data-doc-id {$model?docID},
@@ -167,7 +167,7 @@ declare
 };
 
 declare function facets:filter-body($node as node(), $model as map(*)) as element(div) {
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@class,
         (: That should be safe because there's always only one key in filterSection :)
         attribute id {map:keys($model('filterSection'))},
@@ -178,7 +178,7 @@ declare function facets:filter-body($node as node(), $model as map(*)) as elemen
 declare 
     %templates:default("lang", "en") 
     function facets:filter-head($node as node(), $model as map(*), $lang as xs:string) as element() {
-        element {name($node)} {
+        element {node-name($node)} {
             $node/@*[not(name(.) = 'href')],
             (: That should be safe because there's always only one key in filterSection :)
             attribute href {'#' || map:keys($model('filterSection'))},
@@ -187,14 +187,14 @@ declare
 };
 
 declare function facets:filter-value($node as node(), $model as map(*)) as element(input) {
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@*[not(name(.) = 'id')],
         attribute value {$model('filterOption')('key')}
     }
 };
 
 declare function facets:filter-label($node as node(), $model as map(*), $lang as xs:string) as element(span) {
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@*[not(name(.) = 'title')],
         attribute title {lang:get-language-string("facetsFilterLabel",$model('filterOption')('label'),$lang)},
         $model('filterOption')('label')
