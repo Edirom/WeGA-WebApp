@@ -59,7 +59,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space($org/tei:orgName[@type = 'reg'])
-                case 'html' return <span>{str:normalize-space($org/tei:orgName[@type = 'reg'])}</span> 
+                case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space($org/tei:orgName[@type = 'reg'])}</span> 
                 default return core:logToFile('error', 'wdt:orgs()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' : function() as xs:string {
@@ -118,7 +118,7 @@ declare function wdt:persons($item as item()*) as map(*) {
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))
-                case 'html' return <span>{str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))}</span> 
+                case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))}</span> 
                 default return core:logToFile('error', 'wdt:persons()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' : function() as xs:string? {
@@ -397,7 +397,7 @@ declare function wdt:works($item as item()*) as map(*) {
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
-                case 'html' return <span>{wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span> 
+                case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span> 
                 default return core:logToFile('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
         'label-facets' : function() as xs:string? {
@@ -472,7 +472,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
             return 
                 switch($serialization)
                     case 'txt' return concat($formattedDate, ' (', $formattedPlaces, ')')
-                    case 'html' return <span>{$formattedDate}<br/>{$formattedPlaces}</span> 
+                    case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{$formattedDate}<br xmlns="http://www.w3.org/1999/xhtml"/>{$formattedPlaces}</span> 
                     default return core:logToFile('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' : ('search', 'indices', 'sitemap', 'unary-docTypes'),
@@ -723,7 +723,7 @@ declare function wdt:places($item as item()*) as map(*) {
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space($place/tei:placeName[@type = 'reg'])
-                case 'html' return <span>{str:normalize-space($place/tei:placeName[@type = 'reg'])}</span> 
+                case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space($place/tei:placeName[@type = 'reg'])}</span> 
                 default return core:logToFile('error', 'wdt:places()("title"): unsupported serialization "' || $serialization || '"')
         },
         'memberOf' : ('unary-docTypes', 'search', 'indices'),
