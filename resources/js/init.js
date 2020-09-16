@@ -51,6 +51,8 @@ $.fn.facets = function ()
         limit = 25,
         newParams;
     //console.log(curParams);
+    delete curParams.sliderDates.oldFromDate; // delete the property oldFromDate and oldToDate which we don't need for the facets and which is not a valid API parameter 
+    delete curParams.sliderDates.oldToDate;
     $(this).each( function(a, b) {
         $(b).select2({
             closeOnSelect: false,
@@ -72,6 +74,7 @@ $.fn.facets = function ()
                         //lang: getLanguage()
                         },
                         curParams.facets,
+                        curParams.sliderDates,
                         { limit: limit } // need to go after curParams.facets to overwrite the limit setting there 
                     )
                     return query;
@@ -720,8 +723,14 @@ function active_facets() {
         to=slider.attr('data-to-slider');
         min=slider.attr('data-min-slider');
         max=slider.attr('data-max-slider');
-        if(from > min) { params.sliderDates.fromDate = from }
-        if(to < max) { params.sliderDates.toDate = to }
+        if(from > min) { 
+            params.sliderDates.fromDate = from;
+            params.sliderDates.oldFromDate = min;
+        }
+        if(to < max) { 
+            params.sliderDates.toDate = to;
+            params.sliderDates.oldToDate = max;
+        }
     }
     /* get values from checkboxes for docTypes at search page 
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'
