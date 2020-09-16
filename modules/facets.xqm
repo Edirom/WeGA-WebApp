@@ -54,12 +54,16 @@ declare
                 for $i in $selected 
 (:                let $log := util:log-system-out($i):)
                 let $display-term := facets:display-term($facet, $i, $lang)
-                order by $display-term
+                let $freq := 
+                    if ($selectedObjs?*[?value = $i]?frequency castable as xs:int) 
+                    then $selectedObjs?*[?value = $i]?frequency
+                    else 0
+                    order by $display-term
                 return
                     element option {
                         attribute selected {'selected'},
                         attribute value {$i},
-                        $display-term || ' (' || $selectedObjs?*[?value = $i]?frequency || ')'
+                        $display-term || ' (' || $freq || ')'
                     }
             }
 };
