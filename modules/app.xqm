@@ -89,7 +89,7 @@ declare function app:createDocLink($doc as document-node()?, $content as xs:stri
     let $href := app:createUrlForDoc($doc, $lang)
     let $docID :=  $doc/root()/*/@xml:id
     return 
-    element a {
+    element xhtml:a {
         attribute href {$href},
         if(exists($attributes)) then for $att in $attributes return attribute {substring-before($att, '=')} {substring-after($att, '=')} 
         else (),
@@ -245,7 +245,7 @@ declare
     function app:breadcrumb-register1($node as node(), $model as map(*), $lang as xs:string) as item() {
         switch($model('docType')) 
         case 'indices' return 
-            element span {
+            element xhtml:span {
                 lang:get-language-string('indices', $lang)
             }
         case 'biblio' case 'news' return 
@@ -403,7 +403,7 @@ declare
     function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(li)* {
         let $page := if($page castable as xs:int) then xs:int($page) else 1
         let $a-element := function($page as xs:int, $text as xs:string) {
-            element a {
+            element xhtml:a {
                 attribute class {'page-link'},
                 (: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
                 if($model('docID') = 'indices') then attribute href {app:page-link($model, map { 'page': $page} )}
@@ -416,20 +416,20 @@ declare
         return
         (
             if($page le 1) then
-             <li class="page-item disabled"><a class="page-link">{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</a></li>
-             else <li class="page-item">{$a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) }</li>,
-            if($page gt 3) then <li class="page-item d-none d-sm-inline">{$a-element(1, '1')}</li> else (),
-            if($page gt 4) then <li class="page-item disabled d-none d-sm-inline"><a class="page-link">…</a></li> else (),
-            ($page - 2, $page - 1)[. gt 0] ! <li class="page-item d-none d-lg-inline">{$a-element(., string(.))}</li>,
-            <li class="page-item active"><a class="page-link">{$page}</a></li>,
-            ($page + 1, $page + 2)[. le $last-page] ! <li class="page-item d-none d-lg-inline">{$a-element(., string(.))}</li>,
-            if($page + 3 lt $last-page) then <li class="page-item disabled d-none d-sm-inline"><a class="page-link">…</a></li> else (),
-            if($page + 2 lt $last-page) then <li class="page-item d-none d-sm-inline">{$a-element($last-page, string($last-page))}</li> else (),
+             <li xmlns="http://www.w3.org/1999/xhtml" class="page-item disabled"><a class="page-link">{'&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)}</a></li>
+             else <li xmlns="http://www.w3.org/1999/xhtml" class="page-item">{$a-element($page - 1, '&#x00AB; ' || lang:get-language-string('paginationPrevious', $lang)) }</li>,
+            if($page gt 3) then <li xmlns="http://www.w3.org/1999/xhtml" class="page-item d-none d-sm-inline">{$a-element(1, '1')}</li> else (),
+            if($page gt 4) then <li xmlns="http://www.w3.org/1999/xhtml" class="page-item disabled d-none d-sm-inline"><a class="page-link">…</a></li> else (),
+            ($page - 2, $page - 1)[. gt 0] ! <li xmlns="http://www.w3.org/1999/xhtml" class="page-item d-none d-lg-inline">{$a-element(., string(.))}</li>,
+            <li xmlns="http://www.w3.org/1999/xhtml" class="page-item active"><a class="page-link">{$page}</a></li>,
+            ($page + 1, $page + 2)[. le $last-page] ! <li xmlns="http://www.w3.org/1999/xhtml" class="page-item d-none d-lg-inline">{$a-element(., string(.))}</li>,
+            if($page + 3 lt $last-page) then <li xmlns="http://www.w3.org/1999/xhtml" class="page-item disabled d-none d-sm-inline"><a class="page-link">…</a></li> else (),
+            if($page + 2 lt $last-page) then <li xmlns="http://www.w3.org/1999/xhtml" class="page-item d-none d-sm-inline">{$a-element($last-page, string($last-page))}</li> else (),
             if($page ge $last-page) then
-                <li class="page-item disabled">{
+                <li xmlns="http://www.w3.org/1999/xhtml" class="page-item disabled">{
                     <a class="page-link">{lang:get-language-string('paginationNext', $lang) || ' &#x00BB;'}</a>
                 }</li>
-            else <li class="page-item">{$a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')}</li>
+            else <li xmlns="http://www.w3.org/1999/xhtml" class="page-item">{$a-element($page + 1, lang:get-language-string('paginationNext', $lang) || ' &#x00BB;')}</li>
         )
 };
 
@@ -445,7 +445,7 @@ declare
 declare function app:switch-limit($node as node(), $model as map(*)) as element() {
 	element {node-name($node)} {
 		if($model?limit = number($node)) then attribute class {'page-item active'} else attribute class {'page-item'},
-		element a {
+		element xhtml:a {
 			attribute class {'page-link'},
 			(: for AJAX pages (e.g. correspondence) called from a person page we need the data-url attribute :) 
             if($model('docID') = 'indices') then attribute href {app:page-link($model, map { 'limit': string($node) } )}
@@ -518,7 +518,7 @@ declare
                 else $node/@*,
                 
                 (: Child element a takes the link :)
-                element a {
+                element xhtml:a {
                     attribute class {"nav-link"},
                     attribute href {
                         if($isActive) then '#'
@@ -630,7 +630,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
         else if($teiDate/parent::tei:death) then 'dies'
         else ()
     return (
-        element span {
+        element xhtml:span {
             if($isJubilee) then (
                 attribute class {'jubilee event-year'},
                 attribute title {lang:get-language-string('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)},
@@ -640,7 +640,7 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
             else attribute class {'event-year'},
             date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang)
         },
-        element span {
+        element xhtml:span {
         	attribute class {'event-text'},
             if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
             (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
@@ -792,7 +792,7 @@ declare
             for $title in $doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type='sub')][exists(@type='alt') = $alt]
             let $titleLang := $title/string(@xml:lang) 
             let $subTitle := ($title/following-sibling::mei:title[@type='sub'][string(@xml:lang) = $titleLang])[1]
-            return <span>{
+            return <span xmlns="http://www.w3.org/1999/xhtml">{
                 string-join((
                     wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())),
                     wega-util:transform($subTitle, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))
@@ -926,7 +926,7 @@ declare
                     order by $beaconMap($i)[2] collation "?lang=de-DE"
                     return 
                         (: replacement in @href for invalid links from www.sbn.it :)
-                        <a title="{$i}" href="{replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a>
+                        <a xmlns="http://www.w3.org/1999/xhtml" title="{$i}" href="{replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a>
             }
 };
 
@@ -993,7 +993,7 @@ declare
                     
                     for $date at $count in subsequence($orderedDates, 2)
                     return 
-                        <span>{
+                        <span xmlns="http://www.w3.org/1999/xhtml">{
                             date:printDate($date, $model?lang, lang:get-language-string#3, $config:default-date-picture-string),
                             if($date[@calendar='Julian'][@when]) then ($julian-tooltip(xs:date($date/@when), $model?lang))
                             else (),
@@ -1015,7 +1015,7 @@ declare
         else (
             $model('portrait')('source'),
             if(contains($model('portrait')('linkTarget'), config:get-option('iiifImageApi'))) then ()
-            else (<br/>, element a {
+            else (<br/>, element xhtml:a {
                 attribute href {$model('portrait')('linkTarget')},
                 $model('portrait')('linkTarget')
             })
@@ -1067,24 +1067,24 @@ declare
             switch($lang) 
             case 'de' return (
                 'Der Text unter der Überschrift „Wikipedia“ entstammt dem Artikel „',
-                <a href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
                 '“ aus der freien Enzyklopädie ',
-                <a href="http://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>, 
+                <a xmlns="http://www.w3.org/1999/xhtml" href="http://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>, 
                 ' und steht unter der ',
-                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
                 '. In der Wikipedia findet sich auch die ',
-                <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title='Autoren und Versionsgeschichte des Wikipedia Artikels zu "{$model('wikiName')}"'>Versionsgeschichte mitsamt Autorennamen</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title='Autoren und Versionsgeschichte des Wikipedia Artikels zu "{$model('wikiName')}"'>Versionsgeschichte mitsamt Autorennamen</a>,
                 ' für diesen Artikel.'
             )
             default return (
                 'The text under the headline “Wikipedia” is taken from the article “',
-                <a href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
                 '” from ',
-                <a href="http://en.wikipedia.org">Wikipedia</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="http://en.wikipedia.org">Wikipedia</a>,
                 ' the free encyclopedia, and is released under a ',
-                <a href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
                 '. You will find the ',
-                <a href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
                 ' of this article in Wikipedia.'
             )
         else ()
@@ -1192,13 +1192,13 @@ declare
     function app:person-addrLine($node as node(), $model as map(*), $lang as xs:string) as item()* {
         switch ($model('addrLine')/@n)
         case 'email' return 
-            element a {
+            element xhtml:a {
                 attribute class {'obfuscate-email'},
                 normalize-space($model('addrLine'))
             }
         case 'telephone' return (
             lang:get-language-string('tel',$lang) || ': ',
-            element a {
+            element xhtml:a {
                 attribute href {'tel:' || replace(normalize-space($model('addrLine')), '-|–|(\(0\))|\s', '')},
                 normalize-space($model('addrLine'))
             }
@@ -1319,8 +1319,8 @@ declare
                         (: revealed correspondence which has backlinks gets a direct link to the backlinks, see https://github.com/Edirom/WeGA-WebApp/issues/304 :)
                         if($doc//tei:correspDesc[@n = 'revealed'] and $model('backlinks')) then (
                             substring-before(lang:get-language-string('correspondenceTextNotAvailable', $lang),"."), ' ',
-                            <span>({lang:get-language-string('see', $lang)}</span>, ' ',
-                            <span><a href="#backlinks">{lang:get-language-string('backlinks', $lang)}</a>).</span>, ' ',
+                            <span xmlns="http://www.w3.org/1999/xhtml">({lang:get-language-string('see', $lang)}</span>, ' ',
+                            <span xmlns="http://www.w3.org/1999/xhtml"><a href="#backlinks">{lang:get-language-string('backlinks', $lang)}</a>).</span>, ' ',
                             substring-after(lang:get-language-string('correspondenceTextNotAvailable',$lang),".") )
                         (: … for revealed correspondence without backlinks drop that link :)
                         else if($doc//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable',$lang)
@@ -1328,7 +1328,7 @@ declare
                         else lang:get-language-string('correspondenceTextNotYetAvailable', $lang),
                         (: adding link to editorial :)
                         lang:get-language-string('forFurtherDetailsSee', $lang), ' ',
-                        <a href="#editorial">{lang:get-language-string('editorial', $lang)}</a>, '.'
+                        <a xmlns="http://www.w3.org/1999/xhtml" href="#editorial">{lang:get-language-string('editorial', $lang)}</a>, '.'
                 }
              else (
                 wega-util:transform($textRoot, $xslt1, $xslParams)
@@ -1410,9 +1410,9 @@ declare
                 case element(tei:biblStruct) return bibl:printCitation($model($key), <xhtml:span class="biblio-entry"/>, $model('lang'))
                 case element(tei:bibl) return 
                     let $processed := wega-util:transform($model($key), doc(concat($config:xsl-collection-path, '/document.xsl')), config:get-xsl-params(()))
-                    return if ($processed instance of xs:string+) then <span>{$processed}</span>
+                    return if ($processed instance of xs:string+) then <span xmlns="http://www.w3.org/1999/xhtml">{$processed}</span>
                     else $processed
-                default return <span class="noDataFound">{lang:get-language-string('noDataFound',$model('lang'))}</span>
+                default return <span xmlns="http://www.w3.org/1999/xhtml" class="noDataFound">{lang:get-language-string('noDataFound',$model('lang'))}</span>
         let $sourceCategory := if($model($key)/@rend) then lang:get-language-string($model($key)/@rend,$model('lang')) else ()
         let $sourceData-content :=
             typeswitch($model($key))
@@ -1602,7 +1602,7 @@ declare
             default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
         let $normDate := query:get-normalized-date($letter)
         return (
-            element a {
+            element xhtml:a {
                 attribute href {app:createUrlForDocInContext($letter, $lang, $model?senderID)},
                 $normDate
             },
@@ -1760,8 +1760,8 @@ declare
                      if(($docType, 'all') = $selected-docTypes or empty($selected-docTypes)) then attribute checked {'checked'}
                      else ()
                  },
-                 <span>{$displayTitle}</span>,
-                 <a href="#" class="checkbox-only">{lang:get-language-string("only",$lang)}</a>
+                 <span xmlns="http://www.w3.org/1999/xhtml">{$displayTitle}</span>,
+                 <a xmlns="http://www.w3.org/1999/xhtml" href="#" class="checkbox-only">{lang:get-language-string("only",$lang)}</a>
              }
 };
 
@@ -1908,7 +1908,7 @@ declare
             else false()
         return
             if($key and $myPopover) then app:createDocLink(core:doc($key), query:title($key), $lang, (), true())
-            else element span {
+            else element xhtml:span {
                 str:normalize-space($model('relator'))
             }
 };
