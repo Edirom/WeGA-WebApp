@@ -464,8 +464,8 @@ declare function app:switch-limit($node as node(), $model as map(*)) as element(
  : @param $params the new parameters that will override (eventually existing parameters from $model)
  : @return a string starting with "?"
 ~:)
-declare %private function app:page-link($model as map(), $params as map()) as xs:string {
-	let $URLparams := request:get-parameter-names()[.=($search:valid-params, 'd', 'q')]
+declare %private function app:page-link($model as map(*), $params as map(*)) as xs:string {
+	let $URLparams := request:get-parameter-names()[.=($search:valid-params, 'd', 'q', 'oldFromDate', 'oldToDate')]
     let $paramsMap := map:merge((map { 'limit': config:entries-per-page() }, $model('filters'), $URLparams ! map:entry(., request:get-parameter(., ())), $params))
     return
         replace(
