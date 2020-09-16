@@ -1382,8 +1382,8 @@ declare
         return
             for $respStmt in $respStmts
             return (
-                <dt>{str:normalize-space($respStmt/tei:resp)}</dt>,
-                <dd>{str:normalize-space(string-join($respStmt/tei:name, '; '))}</dd>
+                <dt xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space($respStmt/tei:resp)}</dt>,
+                <dd xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space(string-join($respStmt/tei:name, '; '))}</dd>
             )
 };
 
