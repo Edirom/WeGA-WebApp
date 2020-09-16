@@ -711,7 +711,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:search-options($node as node(), $model as map(*), $lang as xs:string) as element(option)* {
-        <option value="all">{lang:get-language-string('all', $lang)}</option>,
+        <option xmlns="http://www.w3.org/1999/xhtml" value="all">{lang:get-language-string('all', $lang)}</option>,
         for $docType in $search:wega-docTypes
         let $displayTitle := lang:get-language-string($docType, $lang)
         order by $displayTitle
@@ -940,7 +940,7 @@ declare
             else 
                 element {node-name($node)} {
                     $node/@*,
-                    if($bio instance of xs:string) then <p>{$bio}</p>
+                    if($bio instance of xs:string) then <p xmlns="http://www.w3.org/1999/xhtml">{$bio}</p>
                     else templates:process($node/node(), $model)
                 }
 };
@@ -1314,7 +1314,7 @@ declare
         let $body := 
              if(functx:all-whitespace(<root>{$textRoot}</root>))
              then 
-                element p {
+                element xhtml:p {
                         attribute class {'notAvailable'},
                         (: revealed correspondence which has backlinks gets a direct link to the backlinks, see https://github.com/Edirom/WeGA-WebApp/issues/304 :)
                         if($doc//tei:correspDesc[@n = 'revealed'] and $model('backlinks')) then (
@@ -1469,9 +1469,9 @@ declare
             else '–'
         return (
             if(exists($summary) and (every $i in $summary satisfies $i instance of element())) then $summary
-            else if($summary = '–' and $revealedNote) then <div><p>{$revealedNote}</p></div>
+            else if($summary = '–' and $revealedNote) then <div xmlns="http://www.w3.org/1999/xhtml"><p>{$revealedNote}</p></div>
             else if($summary = '–' and $node/ancestor-or-self::xhtml:div[@data-template="app:preview"]) then ()
-            else <div><p>{$summary}</p></div>
+            else <div xmlns="http://www.w3.org/1999/xhtml"><p>{$summary}</p></div>
         )
 };
 
@@ -1496,8 +1496,8 @@ declare
     function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
         let $incipit := wega-util:transform(query:incipit($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
-            if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit ! element p { app:enquote-html(./xhtml:p/node(), $lang) }
-            else element p {
+            if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit ! element xhtml:p { app:enquote-html(./xhtml:p/node(), $lang) }
+            else element xhtml:p {
                 if(exists($incipit)) then app:enquote-html($incipit, $lang)
                 else if($generate castable as xs:boolean and xs:boolean($generate) and not(functx:all-whitespace($model('doc')//tei:text/tei:body))) then app:enquote-html(app:compute-incipit($model?doc, $lang), $lang)
                 else '–'
@@ -1527,7 +1527,7 @@ declare
         let $generalRemark := wega-util:transform(query:generalRemark($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($generalRemark) and (every $i in $generalRemark satisfies $i instance of element())) then $generalRemark
-            else element p {
+            else element xhtml:p {
                 if(exists($generalRemark)) then $generalRemark
                 else '–'
             }
@@ -1686,7 +1686,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
                           else '[FNn], [MNn] [D], [Y]'
     return 
         if(count($authorElem) gt 0) then 
-            element p {
+            element xhtml:p {
                 attribute class {'authorDate'},
                 app:printCorrespondentName($authorElem, $lang, 'fs'),
                 concat(', ', date:format-date(xs:date($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)), $dateFormat, $lang))
