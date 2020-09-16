@@ -1015,7 +1015,7 @@ declare
         else (
             $model('portrait')('source'),
             if(contains($model('portrait')('linkTarget'), config:get-option('iiifImageApi'))) then ()
-            else (<br/>, element xhtml:a {
+            else (<br xmlns="http://www.w3.org/1999/xhtml"/>, element xhtml:a {
                 attribute href {$model('portrait')('linkTarget')},
                 $model('portrait')('linkTarget')
             })
