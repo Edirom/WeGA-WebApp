@@ -939,8 +939,19 @@ function initFacsimile() {
     /* add the JSON responses to the tile sources */
     const addToTileSources = function(responses) {
         $(responses).each(function(i, data) {
-            var manifestAttribution = data.attribution;
             /* console.log(manifestAttribution); */
+            if(data.attribution !== undefined ) {
+                /* the attribution property should tell us what to print next to the image */
+                var manifestAttribution = data.attribution;
+            }
+            else if (data.metadata.find(function(obj) {return obj.label === 'Digitalisierer'; }).value !== undefined) {
+                /* yet some providers don't provide an attribution but idiosyncratic metadata */
+                var manifestAttribution = data.metadata.find(function(obj) {return obj.label === 'Digitalisierer'; }).value;
+            }
+            else {
+                /* this is just the fallback if we're completely clueless */
+                var manifestAttribution = 'for source information see editorial';
+            } 
         
             $(data.sequences[0].canvases).each(function(_, val) {
                 tileSources.push(val.images[0].resource.service['@id'] + '/info.json'),
