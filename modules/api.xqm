@@ -314,16 +314,17 @@ declare function api:codeSample($nodes as node()*, $model as map(*)) as map(*)* 
 :)
 
 (:~
- : Check parameter docType and split comma separated value into a sequence
+ : Check parameter docType and split comma separated values into a sequence
 ~:)
 declare function api:validate-docType($model as map(*)) as map(*)? {
-    let $wega-docTypes := for $func in wdt:members('unary-docTypes') return $func(())('name')
+    let $unary-docTypes := for $func in wdt:members('unary-docTypes') return $func(())('name') 
+    let $wega-docTypes := ($unary-docTypes, 'personsPlus', 'backlinks', 'contacts')
     return
         map:entry(
             'docType',
             for $docType in tokenize($model('docType'),',')
             return
-                if($docType = ($wega-docTypes, 'personsPlus')) then $docType
+                if($docType = $wega-docTypes) then $docType
                 else error($api:INVALID_PARAMETER, 'There is no document type "' || $docType || '"')
         )
 };
