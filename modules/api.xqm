@@ -141,6 +141,14 @@ declare function api:application-newID($model as map(*)) as map(*)* {
         }
 };
 
+(:~
+ : API endpoint for filter facets
+ : Current output format is a JSON object like 
+ : `{"value":"A001980","matches":[{"start":1,"length":2}],"label":"Treitschke, Georg Friedrich","frequency":7}`
+ : to be consumed by the select2 plugin
+ :
+ : Expected parameters in the $model object are `facet`, `scope`, `docType`, and optionally `term`. 
+ :)
 declare function api:facets($model as map(*)) as map(*)* {
     let $fileName := util:hash($model?facet || $model?scope || $model?docType, 'md5')
     let $localFilepath := str:join-path-elements(($config:tmp-collection-path, 'facets', $fileName || '.json'))
@@ -154,19 +162,31 @@ declare function api:facets($model as map(*)) as map(*)* {
     (: if the result set is already filtered, do not use the cached version which is only to speed up 'vanilla' sets :)
         if($filtered) then api:get-facets($model)?*
         else mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
+    let $terms :=
+        if($model?term) then (tokenize(xmldb:decode($model?term), '\s+') ! wega-util:strip-diacritics(lower-case(.)))
+        else ()
     let $facets := 
-        if($model?term) 
+        if(count($terms) gt 0) 
         then 
-            for $facet in $allFacets[?label[contains(wega-util:strip-diacritics(lower-case(.)), wega-util:strip-diacritics(lower-case($model?term)))]]
-            let $matches := functx:index-of-string(wega-util:strip-diacritics(lower-case($facet?label)), wega-util:strip-diacritics(lower-case($model?term)))
-            order by $matches[1], $facet?label
+            for $facet in $allFacets[?label[every $t in $terms satisfies contains(wega-util:strip-diacritics(lower-case(.)), $t)]]
+            let $matches :=
+                for $term in $terms
+                let $hits := functx:index-of-string(wega-util:strip-diacritics(lower-case($facet?label)), $term)
+                return
+                    for $hit in $hits 
+                    order by $hit
+                    return map { 
+                            'start': $hit - 1, (: subtract 1 because Javascript frontend starts counting at 0 :) 
+                            'length': string-length($term) (: the length is just a stub but can be elaborated on when even-better-searching is implemented ;) :)
+                    } 
+            order by $matches[1]?start[1], $facet?label
             return
-                map:merge(( $facet, map { 
-                    'matches': array { for $match in $matches return map { 
-                        'start': $match - 1, (: subtract 1 because Javascript frontend starts counting at 0 :) 
-                        'length':  string-length(wega-util:strip-diacritics(lower-case($model?term))) (: the length is just a stub but can be elaborated on when even-better-searching is implemented ;) :)
-                    }} 
-                }))
+                map:merge(( 
+                    $facet,
+                    map { 
+                        'matches': array { for $m in $matches order by $m?start return $m}
+                    }
+                ))
         else $allFacets
     return (
         map { 'totalRecordCount': count($facets) },
