@@ -736,8 +736,9 @@
     
     <xsl:template match="tei:q" priority="0.5" mode="#all">
         <!-- Always(!) surround with quotation marks -->
+        <xsl:variable name="doubleQuotes" select="(count(ancestor::tei:q | ancestor::tei:quote) mod 2) = 0"/>
         <xsl:call-template name="enquote">
-            <xsl:with-param name="double" select="true()"/>
+            <xsl:with-param name="double" select="$doubleQuotes"/>
         </xsl:call-template>
     </xsl:template>
     

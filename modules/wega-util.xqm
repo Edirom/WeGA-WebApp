@@ -268,7 +268,9 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         case element(tei:pb) return 
             if($node[@type='inWord']) then ()
             else ' '
-        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
+        case element(tei:q) return 
+            if((count($node/ancestor::tei:q | $node/ancestor::tei:quote) mod 2) = 0) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
+            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
         case element(tei:quote) return 
             if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
             else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
