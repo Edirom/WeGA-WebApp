@@ -85,12 +85,16 @@ declare variable $config:default-date-picture-string := function($lang as xs:str
  :)
 declare function config:guess-language($lang as xs:string?) as xs:string {
     let $urlPathSegment := if(request:exists()) then tokenize(request:get-attribute('$exist:path'), '/')[2] else ()
+    let $browserLanguage := function() as xs:string* {
+        (config:get-ordered-browser-languages()[.=$config:valid-languages])[1]
+    }
     let $sessionParam := if(session:exists()) then session:get-attribute('lang') else ()
     let $default-option := $config:valid-languages[1]
     return
         if($lang = $config:valid-languages) then ($lang, session:set-attribute('lang', $lang))
         else if($urlPathSegment = $config:valid-languages) then ($urlPathSegment, session:set-attribute('lang', $urlPathSegment))
         else if($sessionParam = $config:valid-languages) then $sessionParam
+        else if($browserLanguage()) then ($browserLanguage(), session:set-attribute('lang', $browserLanguage()))
         else $default-option
 };
 
@@ -535,4 +539,21 @@ declare %private function config:map-put-recursive($map as map(*), $key as xs:st
             $key[1],
             config:map-put-recursive(map {}, subsequence($key, 2), $value)
         )
+};
+
+(:~
+ : Get browser languages from Accept-Language header and return them in order
+ :
+ : @return the language tags in order of `q` value and (secondly) in original order 
+ :)
+declare function config:get-ordered-browser-languages() as xs:string* {
+    if(request:exists()) then
+        for $val at $index in tokenize(request:get-header('Accept-Language'), '\s*,\s*')
+        let $q := 
+            if(substring-after($val, 'q=') castable as xs:double) then number(substring-after($val, 'q='))
+            else 1
+        let $lang := tokenize($val, ';')[1]
+        order by $q descending, $index ascending
+        return $lang
+    else ()
 };
