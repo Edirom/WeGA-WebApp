@@ -92,7 +92,14 @@
     -->
     <xsl:template match="tei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))] |
         mei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))]" mode="#all">
-        <xsl:call-template name="createLink"/>
+        <xsl:choose>
+            <xsl:when test="count(tokenize(@target, '\s+')) gt 1">
+                <xsl:call-template name="createSpan"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="createLink"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template match="@target[not(matches(., '\s'))]">
