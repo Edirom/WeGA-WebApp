@@ -150,7 +150,9 @@ declare function api:application-newID($model as map(*)) as map(*)* {
  : Expected parameters in the $model object are `facet`, `scope`, `docType`, and optionally `term`. 
  :)
 declare function api:facets($model as map(*)) as map(*)* {
-    let $fileName := util:hash($model?facet || $model?scope || $model?docType, 'md5')
+    let $lang := config:guess-language($model('lang'))
+    let $model := map:merge(($model, map {'lang': $lang} ))
+    let $fileName := util:hash($model?facet || $model?scope || $model?docType || $lang, 'md5')
     let $localFilepath := str:join-path-elements(($config:tmp-collection-path, 'facets', $fileName || '.json'))
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $onFailureFunc := function($errCode, $errDesc) {
@@ -199,8 +201,7 @@ declare function api:facets($model as map(*)) as map(*)* {
  :)
 declare %private function api:get-facets($model as map(*)) as array(*) {
     let $search := search:results(<span/>, map { 'docID' : $model('scope') }, $model('docType'))
-    let $lang := config:guess-language($model('lang'))
-    let $allFacets as map(*)* := facets:facets($search?search-results, $model('facet'), -1, $lang)?*
+    let $allFacets as map(*)* := facets:facets($search?search-results, $model('facet'), -1, $model?lang)?*
     return
         array {
             for $i in $allFacets

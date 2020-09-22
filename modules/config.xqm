@@ -76,17 +76,22 @@ declare variable $config:default-date-picture-string := function($lang as xs:str
 
 (:~
  : get and set language variable
+ : if $lang is an empty-sequence or an empty string, the function first looks at the URL, 
+ : second at the current session before falling back to the first entry in $config:valid-languages
  :
  : @author Peter Stadler
  : @param $lang the language to set
  : @return xs:string the (newly) set language variable 
  :)
 declare function config:guess-language($lang as xs:string?) as xs:string {
-    if($lang = $config:valid-languages) then $lang
-    (: else try to guess from the URL path segment :)
-    else if(request:exists() and tokenize(request:get-attribute('$exist:path'), '/')[2] = $config:valid-languages) then tokenize(request:get-attribute('$exist:path'), '/')[2]  
-    (: else default language :)
-    else $config:valid-languages[1]
+    let $urlPathSegment := if(request:exists()) then tokenize(request:get-attribute('$exist:path'), '/')[2] else ()
+    let $sessionParam := if(session:exists()) then session:get-attribute('lang') else ()
+    let $default-option := $config:valid-languages[1]
+    return
+        if($lang = $config:valid-languages) then ($lang, session:set-attribute('lang', $lang))
+        else if($urlPathSegment = $config:valid-languages) then ($urlPathSegment, session:set-attribute('lang', $urlPathSegment))
+        else if($sessionParam = $config:valid-languages) then $sessionParam
+        else $default-option
 };
 
 (:~
