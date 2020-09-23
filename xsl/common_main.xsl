@@ -143,6 +143,7 @@
     <xsl:template name="enquote">
         <xsl:param name="double" select="true()"/>
         <xsl:param name="ellipsis" select="false()"/>
+        <xsl:param name="lang" select="$lang"/>
         <xsl:choose>
             <!-- German double quotation marks -->
             <xsl:when test="$lang eq 'de' and $double">
@@ -172,6 +173,11 @@
                 <xsl:apply-templates mode="#current"/>
                 <xsl:text>’</xsl:text>
             </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>"</xsl:text>
+                <xsl:apply-templates mode="#current"/>
+                <xsl:text>"</xsl:text>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
@@ -739,6 +745,16 @@
         <xsl:variable name="doubleQuotes" select="(count(ancestor::tei:q | ancestor::tei:quote) mod 2) = 0"/>
         <xsl:call-template name="enquote">
             <xsl:with-param name="double" select="$doubleQuotes"/>
+            <xsl:with-param name="lang">
+                <xsl:choose>
+                    <xsl:when test="ancestor::tei:body">
+                        <xsl:value-of select="wega:get-doc-languages($docID)[1]"/>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:value-of select="$lang"/>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:with-param>
         </xsl:call-template>
     </xsl:template>
     
@@ -748,6 +764,16 @@
             <xsl:when test="@rend">
                 <xsl:call-template name="enquote">
                     <xsl:with-param name="double" select="@rend='double-quotes'"/>
+                    <xsl:with-param name="lang">
+                        <xsl:choose>
+                            <xsl:when test="ancestor::tei:body">
+                                <xsl:value-of select="wega:get-doc-languages($docID)[1]"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$lang"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
             <!-- no quotation marks as default -->

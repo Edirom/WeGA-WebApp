@@ -509,6 +509,14 @@
         </xsl:variable>
         <xsl:sequence select="substring-before($enquoted, 'dummy'), $input, substring-after($enquoted, 'dummy')"/>
     </xsl:function>
+    
+    <xsl:function name="wega:get-doc-languages" as="xs:string*">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:variable name="doc" select="wega:doc($docID)"/>
+        <xsl:for-each select="$doc//tei:language">
+            <xsl:value-of select="substring-before(@ident, '-')"/>
+        </xsl:for-each>
+    </xsl:function>
 
     <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->
