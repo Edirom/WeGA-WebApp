@@ -11,6 +11,10 @@ declare namespace expath="http://expath.org/ns/pkg";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace session="http://exist-db.org/xquery/session";
 
 import module namespace json="http://www.json.org";
 import module namespace templates="http://exist-db.org/xquery/templates";
@@ -72,17 +76,26 @@ declare variable $config:default-date-picture-string := function($lang as xs:str
 
 (:~
  : get and set language variable
+ : if $lang is an empty-sequence or an empty string, the function first looks at the URL, 
+ : second at the current session before falling back to the first entry in $config:valid-languages
  :
  : @author Peter Stadler
  : @param $lang the language to set
  : @return xs:string the (newly) set language variable 
  :)
 declare function config:guess-language($lang as xs:string?) as xs:string {
-    if($lang = $config:valid-languages) then $lang
-    (: else try to guess from the URL path segment :)
-    else if(request:exists() and tokenize(request:get-attribute('$exist:path'), '/')[2] = $config:valid-languages) then tokenize(request:get-attribute('$exist:path'), '/')[2]  
-    (: else default language :)
-    else $config:valid-languages[1]
+    let $urlPathSegment := if(request:exists()) then tokenize(request:get-attribute('$exist:path'), '/')[2] else ()
+    let $browserLanguage := function() as xs:string* {
+        (config:get-ordered-browser-languages()[.=$config:valid-languages])[1]
+    }
+    let $sessionParam := if(session:exists()) then session:get-attribute('lang') else ()
+    let $default-option := $config:valid-languages[1]
+    return
+        if($lang = $config:valid-languages) then ($lang, session:set-attribute('lang', $lang))
+        else if($urlPathSegment = $config:valid-languages) then ($urlPathSegment, session:set-attribute('lang', $urlPathSegment))
+        else if($sessionParam = $config:valid-languages) then $sessionParam
+        else if($browserLanguage()) then ($browserLanguage(), session:set-attribute('lang', $browserLanguage()))
+        else $default-option
 };
 
 (:~
@@ -428,7 +441,7 @@ declare function config:getCurrentSvnRev() as xs:int? {
  : @return map()
 :)
 
-declare function config:get-svn-props($docID as xs:string) as map() {
+declare function config:get-svn-props($docID as xs:string) as map(*) {
     map:merge(
         for $prop in $config:svn-change-history-file//id($docID)/@*
         return map:entry(local-name($prop), data($prop))
@@ -442,7 +455,7 @@ declare function config:get-svn-props($docID as xs:string) as map() {
  : @author Peter Stadler
  : @return parameters
 :)
-declare function config:get-xsl-params($params as map()?) as element(parameters) {
+declare function config:get-xsl-params($params as map(*)?) as element(parameters) {
     <parameters>
         <param name="lang" value="{config:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
@@ -547,7 +560,7 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
 declare %private function config:map-put-recursive($map as map(*), $key as xs:string+, $value as item()*) as map(*) {
     if(count($key) eq 1) 
     then map:put($map, $key, $value)
-    else if(map:contains($map, $key[1]) and $map($key[1]) instance of map())
+    else if(map:contains($map, $key[1]) and $map($key[1]) instance of map(*))
     then
         map:put(
             $map,
@@ -560,4 +573,21 @@ declare %private function config:map-put-recursive($map as map(*), $key as xs:st
             $key[1],
             config:map-put-recursive(map {}, subsequence($key, 2), $value)
         )
+};
+
+(:~
+ : Get browser languages from Accept-Language header and return them in order
+ :
+ : @return the language tags in order of `q` value and (secondly) in original order 
+ :)
+declare function config:get-ordered-browser-languages() as xs:string* {
+    if(request:exists()) then
+        for $val at $index in tokenize(request:get-header('Accept-Language'), '\s*,\s*')
+        let $q := 
+            if(substring-after($val, 'q=') castable as xs:double) then number(substring-after($val, 'q='))
+            else 1
+        let $lang := tokenize($val, ';')[1]
+        order by $q descending, $index ascending
+        return $lang
+    else ()
 };

@@ -10,7 +10,7 @@
     <xsl:param name="secNoOffset" select="0"/>
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note tei:lem tei:rdg"/>
+    <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note tei:lem tei:rdg tei:add"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
 	<xsl:include href="tagdocs.xsl"/>

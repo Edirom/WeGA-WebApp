@@ -509,6 +509,19 @@
         </xsl:variable>
         <xsl:sequence select="substring-before($enquoted, 'dummy'), $input, substring-after($enquoted, 'dummy')"/>
     </xsl:function>
+    
+    <!--
+        Return the languages given in the TEI document
+        NB: country, region, or any other information is stripped off 
+        and only the base language tags are returned.
+    -->
+    <xsl:function name="wega:get-doc-languages" as="xs:string*">
+        <xsl:param name="docID" as="xs:string"/>
+        <xsl:variable name="doc" select="wega:doc($docID)"/>
+        <xsl:for-each select="$doc//tei:language">
+            <xsl:value-of select="functx:substring-before-if-contains(@ident, '-')"/>
+        </xsl:for-each>
+    </xsl:function>
 
     <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->

@@ -15,6 +15,9 @@ declare namespace rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#";
 declare namespace rdfs="http://www.w3.org/2000/01/rdf-schema#";
 declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace schema="http://schema.org/";
+declare namespace util="http://exist-db.org/xquery/util";
+declare namespace transform="http://exist-db.org/xquery/transform";
+declare namespace range="http://exist-db.org/xquery/range";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -52,7 +55,7 @@ declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) 
 
 (:~
  : Processing XML files for display (and download)
- : Comments and not-whitelisted facsimile information will be removed
+ : Comments and not-greenlisted facsimile information will be removed
  :
  : @author Peter Stadler 
  : @param $nodes the nodes to transform
@@ -99,7 +102,7 @@ declare function wega-util:inject-version-info($nodes as node()*) as item()* {
             (: replace the schema location from development to current stable version :)
             if($node[ancestor::node()]) then $node
             else (
-                processing-instruction xml-model {replace($node, '(master|develop)', 'v' || config:get-option('ODDversion'))}
+                processing-instruction xml-model {replace($node, '(main|master|develop)', 'v' || config:get-option('ODDversion'))}
             )
         )
         (: inject editionStmt element after the titleStmt :)
@@ -147,7 +150,7 @@ declare function wega-util:inject-version-info($nodes as node()*) as item()* {
 (:~
  : Helper function for wega-util:inject-version-info()
 ~:)
-declare %private function wega-util:editionStmt() as map() {
+declare %private function wega-util:editionStmt() as map(*) {
     let $lang := config:guess-language(())
     return
         map {
@@ -232,7 +235,7 @@ declare function wega-util:stopwatch($func as function() as item(), $func-params
         else if(count($func-params) eq 2) then $func($func-params[1], $func-params[2])
         else if(count($func-params) eq 3) then $func($func-params[1], $func-params[2], $func-params[3])
         else if(count($func-params) eq 4) then $func($func-params[1], $func-params[2], $func-params[3], $func-params[4])
-        else error(xs:QName('wega-util:error'), 'Too many arguments to calback function of wega-util:stopwatch()')
+        else error(xs:QName('wega-util:error'), 'Too many arguments to callback function of wega-util:stopwatch()')
     let $message := 
         if(exists($mesg)) then ' [' || $mesg || ']'
         else ()
@@ -265,7 +268,9 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         case element(tei:pb) return 
             if($node[@type='inWord']) then ()
             else ' '
-        case element(tei:q) return str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
+        case element(tei:q) return 
+            if((count($node/ancestor::tei:q | $node/ancestor::tei:quote) mod 2) = 0) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
+            else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
         case element(tei:quote) return 
             if($node[@rend='double-quotes']) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))
             else str:enquote-single($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))

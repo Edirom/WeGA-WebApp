@@ -8,6 +8,8 @@ module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace request="http://exist-db.org/xquery/request";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+declare namespace util="http://exist-db.org/xquery/util";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
@@ -155,7 +157,7 @@ declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
  : @param $exist-vars a map object with current settings for "exist:prefix" and "exist:controller"
  : @return the complete URL for $relLink
 ~:)
-declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as map()) as xs:string {
+declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as map(*)) as xs:string {
 (:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
     str:join-path-elements(('/', request:get-context-path(), $exist-vars("exist:prefix"), $exist-vars('exist:controller'), $relLink))
 };

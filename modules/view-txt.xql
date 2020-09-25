@@ -1,7 +1,10 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace response="http://exist-db.org/xquery/response";
 
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -12,7 +15,10 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod" at "lod.xqm";
 
-declare option exist:serialize "method=text media-type=plain/text indent=no encoding=utf-8";
+declare option output:method "xhtml";
+declare option output:media-type "text/html";
+declare option output:indent "no";
+(:declare option exist:serialize "method=text media-type=plain/text indent=no encoding=utf-8";:)
 
 declare function local:header($doc as document-node()) as xs:string {
     let $docID := $doc/*/data(@xml:id)

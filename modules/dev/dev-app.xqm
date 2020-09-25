@@ -59,19 +59,17 @@ declare
  : @return map with entries 'rev' and 'success'
  :)
 declare 
-    %templates:wrap 
+    %templates:wrap
     function dev-app:ant-log($node as node(), $model as map(*)) as map(*) {
-    let $logFile := util:binary-doc(str:join-path-elements(($config:tmp-collection-path, 'logs', max(xmldb:get-child-resources($config:tmp-collection-path || '/logs')))))
-    let $logLines := tokenize(util:binary-to-string($logFile), '\n')
-    let $rev := substring-after($logLines[contains(., 'Current revision of the working copy: ')], ': ')
-    return
-        if($rev) then 
-            map {
-                'ant-log-rev' : $rev,
-                'ant-log-success' : ($logLines = 'BUILD SUCCESSFUL'),
-                'ant-log-url' : core:link-to-current-app('logs/' || $rev || '.log')
-            }
-        else map {}
+        let $rev := config:getCurrentSvnRev()
+        return
+            if($rev) then 
+                map {
+                    'ant-log-rev' : $rev,
+                    'ant-log-success' : true(),
+                    'ant-log-url' : 'https://ci.edirom.de/job/WeGA-update-development/'
+                }
+            else map {}
 };
 
 declare 

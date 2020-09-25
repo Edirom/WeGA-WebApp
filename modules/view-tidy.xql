@@ -1,20 +1,21 @@
 (:~
  : This is the XQuery which will tidy up the result created by the templating module
  :)
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace request="http://exist-db.org/xquery/request";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
-
-(:import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";:)
+import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
-import module namespace functx="http://www.functx.com";
 
-declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
+declare option output:method "xhtml5";
+declare option output:media-type "text/html";
 
 declare function local:tidy($node as node()) as node()? {
     typeswitch ($node)

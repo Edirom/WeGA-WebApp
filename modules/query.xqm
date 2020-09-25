@@ -8,6 +8,10 @@ module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace gn="http://www.geonames.org/ontology#";
+declare namespace range="http://exist-db.org/xquery/range";
+declare namespace sort="http://exist-db.org/xquery/sort";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace xdt="http://www.w3.org/2005/xpath-datatypes";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
@@ -118,7 +122,7 @@ declare function query:get-gnd($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
             case xs:string return core:doc($item)
-            case xdt:untypedAtomic return core:doc(string($item))
+            case xs:untypedAtomic return core:doc(string($item))
             case attribute() return core:doc(string($item))
             case element() return $item
             case document-node() return $item
@@ -143,7 +147,7 @@ declare function query:get-viaf($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
             case xs:string return core:doc($item)
-            case xdt:untypedAtomic return core:doc(string($item))
+            case xs:untypedAtomic return core:doc(string($item))
             case attribute() return core:doc(string($item))
             case element() return $item
             case document-node() return $item
@@ -170,7 +174,7 @@ declare function query:get-geonamesID($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
             case xs:string return core:doc($item)
-            case xdt:untypedAtomic return core:doc(string($item))
+            case xs:untypedAtomic return core:doc(string($item))
             case attribute() return core:doc(string($item))
             case element() return $item
             case document-node() return $item
@@ -309,8 +313,8 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'librettists' return $collection//mei:persName[@role='lbt']/@codedval
     case 'composers' return $collection//mei:persName[@role='cmp']/@codedval
     case 'docSource' return $collection/tei:person/@source
-    case 'occupations' return $collection//tei:occupation
-    case 'residences' return $collection//tei:settlement[parent::tei:residence]/@key
+    case 'occupations' return $collection//tei:occupation | $collection//tei:label[.='Art der Institution']/following-sibling::tei:desc
+    case 'residences' return $collection//tei:settlement[parent::tei:residence]/@key | $collection//tei:label[.='Ort']/following-sibling::tei:desc/tei:settlement/@key
         (: index-keys does not work with multiple whitespace separated keys
             probably need to change to ft:query() someday?!
         :)
@@ -322,7 +326,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'docTypeSubClass' return $collection//tei:text/@type
     case 'sex' return $collection//tei:sex | $collection//tei:label[.='Art der Institution'] (:/following-sibling::tei:desc:)
     case 'forenames' return $collection//tei:forename[not(@full)]
-    case 'surnames' return $collection//tei:surname
+    case 'surnames' return $collection//tei:surname | $collection//tei:orgName[@type]
     case 'einrichtungsform' return $collection//mei:term[@label='einrichtungsform']
     case 'vorlageform' return $collection//mei:term[@label='vorlageform']
     case 'asksam-cat' return $collection//mei:term[@label='asksam-cat']
@@ -420,7 +424,7 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
     let $replyLetterFromSenderColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
     let $replyLetterFromSender := wdt:letters($replyLetterFromSenderColl)('sort')(())[1]/root()
     
-    let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map()? {
+    let $create-map := function($letter as document-node()?, $fromTo as xs:string) as map(*)? {
         if($letter and exists(query:get-normalized-date($letter))) then
             map {
                 'fromTo' : $fromTo,
@@ -441,20 +445,20 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
 };
 
 (:~
- : Return the TEI facsimile elements if present and on the whitelist supplied in the options file.
+ : Return the TEI facsimile elements if present and on the greenlist supplied in the options file.
  : External references to IIIF manifests via the @sameAs attribute on the tei:facsimile element are *always* passed on
  :
  : @param $doc the TEI document to look for the facsimile elements
  : @return TEI facsimile elements if available, the empty sequence otherwise
 ~:)
 declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)* {
-    let $facsimileWhiteList := tokenize(config:get-option('facsimileWhiteList'), '\s+')
+    let $facsimileGreenList := tokenize(config:get-option('facsimileGreenList'), '\s+')
     return
         if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]
-(:        else if($doc//tei:repository[@n=$facsimileWhiteList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
+(:        else if($doc//tei:repository[@n=$facsimileGreenList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
 (:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
         else $doc//tei:facsimile[@sameAs castable as xs:anyURI] 
-            | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileWhiteList]][tei:graphic/@url]
+            | $doc//tei:facsimile[query:facsimile-witness(.)//tei:repository[@n=$facsimileGreenList]][tei:graphic/@url]
             | $doc//tei:facsimile[tei:graphic[starts-with(@url, 'http')]]
 };
 
@@ -496,7 +500,7 @@ declare function query:witness-facsimile($source as element()) as element(tei:fa
  : @return a map with only one key 'context-relatedItems'. 
  :      The value of this key is a sequence of maps, each containing the keys 'context-relatedItem-type', 'context-relatedItem-doc' and 'context-relatedItem-n'
 ~:)
-declare function query:context-relatedItems($doc as document-node()?) as map()? {
+declare function query:context-relatedItems($doc as document-node()?) as map(*)? {
     let $relatedItems :=  
         for $relatedItem in $doc//tei:notesStmt/tei:relatedItem
         return 

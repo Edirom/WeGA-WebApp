@@ -3,6 +3,8 @@ xquery version "3.1" encoding "UTF-8";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-force-correspDesc";
+declare namespace util="http://exist-db.org/xquery/util";
+declare namespace response="http://exist-db.org/xquery/response";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -11,6 +13,20 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
+
+
+(:~
+ :  create a UUID that starts with a non-digit
+ :  (because we'll use this as an xml:id)
+~:)
+declare %private function ct:uuid-starting-with-nonDigit() as xs:string {
+    let $uuid := util:uuid()
+    return
+        if(matches($uuid, '^\d')) then ct:uuid-starting-with-nonDigit()
+        else $uuid
+};
+
+declare variable $ct:source-uuid := ct:uuid-starting-with-nonDigit();
 
 declare function ct:create-header() as element(tei:teiHeader) {
     <teiHeader xmlns="http://www.tei-c.org/ns/1.0">
@@ -125,19 +141,7 @@ declare function ct:onFailure($errCode, $errDesc) {
     core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
 };
 
-(:~
- :  create a UUID that starts with a non-digit
- :  (because we'll use this as an xml:id)
-~:)
-declare %private function ct:uuid-starting-with-nonDigit() as xs:string {
-    let $uuid := util:uuid()
-    return
-        if(matches($uuid, '^\d')) then ct:uuid-starting-with-nonDigit()
-        else $uuid
-};
-
-declare variable $ct:source-uuid := ct:uuid-starting-with-nonDigit();
-
+response:set-header('Access-Control-Allow-Origin', '*'),
 mycache:doc(str:join-path-elements(
     ($config:tmp-collection-path, 'correspDesc.xml')), 
     ct:corresp-list#0, 

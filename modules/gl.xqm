@@ -170,7 +170,7 @@ declare
 (:            let $displayTitle := lang:get-language-string($docType, $lang):)
             order by $schema
             return
-                element {name($node)} {
+                element {node-name($node)} {
                     $node/@*[not(name(.) = 'class')],
                     attribute class {$class},
                     element input {
@@ -363,7 +363,7 @@ declare function gl:print-customization($node as node(), $model as map(*)) {
 		if ($model?customization/ancestor::tei:schemaSpec) then gl:wega-customization($model) 
 		else gl:tei-source($model?customization)
 	return
-		element {name($node)} {
+		element {node-name($node)} {
 	        $node/@*[not(local-name(.) eq 'class')],
 	        attribute class {string-join((tokenize($node/@class, '\s+'), if($modified) then 'bg-warning' else 'bg-success'), ' ')},
 	        element a {

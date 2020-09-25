@@ -1,14 +1,18 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 
-declare option exist:serialize "method=xml media-type=application/tei+xml indent=no encoding=utf-8";
+declare option output:method "xml";
+declare option output:media-type "application/tei+xml";
+declare option output:indent "no";
+(:declare option exist:serialize "method=xml media-type=application/tei+xml indent=no encoding=utf-8";:)
 
 declare function local:format() as xs:string? {
     let $req-format := request:get-parameter('format', ())
@@ -44,7 +48,7 @@ let $transformed :=
         wega-util:transform(
             $content, 
             doc($config:xsl-external-schemas-collection-path || '/to-' || $format || '.xsl'), 
-            config:get-xsl-params( map { 'current-tei-version': $TEIversion, 'facsimileWhiteList': config:get-option('facsimileWhiteList') } )
+            config:get-xsl-params( map { 'current-tei-version': $TEIversion, 'facsimileGreenList': config:get-option('facsimileGreenList') } )
         )
     else $content
 let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')

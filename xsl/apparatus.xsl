@@ -150,7 +150,7 @@
                </xsl:when>
                <xsl:otherwise>
                   <!-- Ansonsten werden die letzten fünf Wörter vor der note als Lemma gewählt -->
-                  <xsl:variable name="textTokens" select="tokenize(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])], ' '), '\s+')"/>
+                  <xsl:variable name="textTokens" select="tokenize(normalize-space(string-join(preceding-sibling::text() | preceding-sibling::tei:*//text()[not(ancestor::tei:note or ancestor::tei:rdg or ancestor::tei:corr[parent::tei:choice] or ancestor::tei:del[parent::tei:subst])], ' ')), '\s+')"/>
                   <xsl:sequence select="('… ', subsequence($textTokens, count($textTokens) - 4))"/>
                </xsl:otherwise>
             </xsl:choose>
@@ -375,7 +375,7 @@
       <xsl:variable name="addedText">
          <xsl:apply-templates mode="lemma"/>
       </xsl:variable>
-      <xsl:variable name="tokens" select="tokenize($addedText, '\s+')"/>
+      <xsl:variable name="tokens" select="tokenize(normalize-space($addedText), '\s+')"/>
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.add',$lang)"/>
          <xsl:with-param name="lemma">
@@ -416,7 +416,7 @@
       <xsl:variable name="unclearText">
          <xsl:apply-templates mode="lemma"/>
       </xsl:variable>
-      <xsl:variable name="tokens" select="tokenize($unclearText, '\s+')"/>
+      <xsl:variable name="tokens" select="tokenize(normalize-space($unclearText), '\s+')"/>
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="title" select="wega:getLanguageString('unclearDefault',$lang)"/>
          <xsl:with-param name="lemma">

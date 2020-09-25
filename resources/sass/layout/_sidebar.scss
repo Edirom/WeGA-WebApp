@@ -17,6 +17,7 @@ form.searchfilter {
     }
     span {
         vertical-align: text-top;
+        pointer-events: none;
     }
     
 }
@@ -111,62 +112,20 @@ a.checkbox-only {
 
 }
 
-
-/* selectize */
-
-.selectize-dropdown-content {
-    padding: 0px;    
-    div { padding: 8px; }
-}
-
-.selectize-control.multi .selectize-input > div {
-    margin: 0;
-    top: 2px;
-}
-
-.selectize-input {
-    border-radius: 0px!important;
-    -webkit-border-radius: 0px!important;
-    -moz-border-radius:0px!important;
-    
-    .item {
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          max-width: 80%;
+/*
+ * select2 settings for dropdowns on start page
+ */
+.prettyselect + .select2-container .select2-selection {
+    height: 50px;
+    border-radius: 0px;
+    -webkit-border-radius: 0px;
+    -moz-border-radius:0px;
+    padding-top: 10px;
+    /*width: 140px;*/
+    border: 1px solid #ced4da;
+    .select2-selection__arrow {
+        top: 12px;
     }
-    
-    > * {
-          vertical-align: middle;
-    }
-}
-
-
-/* styling for selectize select */
-
-.selectize-input.form-control {
-    height:50px;
-    width:100%!important;           
-}
-
-.selectize-control.form-control {    
-    border:none!important;
-}
-
-.form-control .item {
-    line-height:38px;    
-}
-
-.selectize-dropdown-content .option.active {
-    background: $gray-lighter;   
-}
-
-.selectize-dropdown {
-  min-width:175px;
-}
-
-.input-group-addon {
-  text-align:left!important;    
 }
 
 /* 

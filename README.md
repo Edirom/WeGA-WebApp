@@ -32,7 +32,7 @@ If you have a running eXist database you can simply install the `WeGA-data-sampl
 
 ## Branches
 
-* `master`: our stable branch, i.e. the current release version
+* `main`: our stable branch, i.e. the current release version
 * `develop`: our development branch
 * other branches are experimental and and will get merged (or just some features) into develop at some point
 

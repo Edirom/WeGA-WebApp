@@ -143,6 +143,7 @@
     <xsl:template name="enquote">
         <xsl:param name="double" select="true()"/>
         <xsl:param name="ellipsis" select="false()"/>
+        <xsl:param name="lang" select="$lang"/>
         <xsl:choose>
             <!-- German double quotation marks -->
             <xsl:when test="$lang eq 'de' and $double">
@@ -172,6 +173,11 @@
                 <xsl:apply-templates mode="#current"/>
                 <xsl:text>’</xsl:text>
             </xsl:when>
+            <xsl:otherwise>
+                <xsl:text>"</xsl:text>
+                <xsl:apply-templates mode="#current"/>
+                <xsl:text>"</xsl:text>
+            </xsl:otherwise>
         </xsl:choose>
     </xsl:template>
 
@@ -201,8 +207,8 @@
         tei:seg und tei:signed mit @rend werden schon als block-level-Elemente gesetzt, 
         brauchen daher keinen Zeilenumbruch mehr 
     -->
-    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:seg[@rend]]" priority="0.6"/>
-    <xsl:template match="tei:lb[following-sibling::*[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
+    <xsl:template match="tei:lb[(following-sibling::text()[not(functx:all-whitespace(.))] | following-sibling::*)[1] = following-sibling::tei:seg[@rend]]" priority="0.6"/>
+    <xsl:template match="tei:lb[(following-sibling::text()[not(functx:all-whitespace(.))] | following-sibling::*)[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
 
     <xsl:template match="text()" mode="#all">
         <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols, $fa-exclamation-circle), '|')"/>
@@ -734,22 +740,36 @@
         </xsl:element>
     </xsl:template>
     
-    <xsl:template match="tei:q" priority="0.5" mode="#all">
-        <!-- Always(!) surround with quotation marks -->
-        <xsl:call-template name="enquote">
-            <xsl:with-param name="double" select="true()"/>
-        </xsl:call-template>
-    </xsl:template>
-    
-    <xsl:template match="tei:quote" priority="0.5" mode="#all">
+    <xsl:template match="tei:q|tei:quote" priority="0.5" mode="#all">
         <xsl:choose>
-            <!-- Surround with quotation marks if @rend is set -->
-            <xsl:when test="@rend">
+            <!-- Surround with quotation marks if current node is `<q>`, or `@rend` is set on `<quote>` -->
+            <xsl:when test="@rend or self::tei:q">
+                <xsl:variable name="doubleQuotes" select="
+                    (
+                        (count(ancestor::tei:q | ancestor::tei:quote[@rend]) mod 2) = 0
+                        or @rend='double-quotes'
+                    )
+                    and not(@rend='single-quotes')
+                    "/>
                 <xsl:call-template name="enquote">
-                    <xsl:with-param name="double" select="@rend='double-quotes'"/>
+                    <xsl:with-param name="double" select="$doubleQuotes"/>
+                    <xsl:with-param name="lang">
+                        <!-- for quotes occuring in the text body try to use the 
+                            proper quotation marks corresponding to the language of the text 
+                        -->
+                        <xsl:variable name="docLang" select="wega:get-doc-languages($docID)[1]"/>
+                        <xsl:choose>
+                            <xsl:when test="ancestor::tei:body and $docLang = ('de', 'en')">
+                                <xsl:value-of select="$docLang"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:value-of select="$lang"/>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:with-param>
                 </xsl:call-template>
             </xsl:when>
-            <!-- no quotation marks as default -->
+            <!-- no quotation marks as default for `<quote>` -->
             <xsl:otherwise>
                 <xsl:apply-templates mode="#current"/>
             </xsl:otherwise>

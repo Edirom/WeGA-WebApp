@@ -64,7 +64,7 @@
         <xsl:call-template name="createSpan"/>
     </xsl:template>
 
-    <xsl:template match="tei:ref" mode="#all">
+    <xsl:template match="tei:ref | mei:ref" mode="#all">
         <xsl:element name="a">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates select="@target"/>
@@ -90,8 +90,16 @@
         for previews. Hence, links with fragment identifiers (e.g. `<ref target='wega:A090092#chapter-links'>`)
         will be transformed to simple links without preview popover
     -->
-    <xsl:template match="tei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))]" mode="#all">
-        <xsl:call-template name="createLink"/>
+    <xsl:template match="tei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))] |
+        mei:ref[contains(@target, 'wega:')][not(contains(@target, '#'))]" mode="#all">
+        <xsl:choose>
+            <xsl:when test="count(tokenize(@target, '\s+')) gt 1">
+                <xsl:call-template name="createSpan"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:call-template name="createLink"/>
+            </xsl:otherwise>
+        </xsl:choose>
     </xsl:template>
     
     <xsl:template match="@target[not(matches(., '\s'))]">

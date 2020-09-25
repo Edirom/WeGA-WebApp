@@ -10,6 +10,8 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
@@ -45,7 +47,7 @@ declare
  : Print all items from a sequence identified by $model($key)
 ~:)
 declare function lod:each-meta($node as node(), $model as map(*), $key as xs:string) as element(meta)* {
-    $model($key) ! element {name($node)} { $node/@*[not(name(.) = 'content')], attribute content {.} }
+    $model($key) ! element {node-name($node)} { $node/@*[not(name(.) = 'content')], attribute content {.} }
 };
 
 declare 
@@ -53,7 +55,7 @@ declare
     function lod:hreflang($node as node(), $model as map(*), $lang as xs:string) as element()* {
         for $l in $config:valid-languages 
         return
-            element { name($node) } { 
+            element { node-name($node) } { 
                 $node/@*,
                 attribute href {
                     if($l eq $lang) then config:get-option('permaLinkPrefix') || request:get-uri()

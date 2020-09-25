@@ -3,7 +3,7 @@
  : to process any URI ending with ".html". It receives the HTML from
  : the controller and passes it to the templating system.
  :)
-xquery version "3.0";
+xquery version "3.1";
 
 import module namespace templates="http://exist-db.org/xquery/templates";
 
@@ -11,6 +11,8 @@ import module namespace templates="http://exist-db.org/xquery/templates";
  : The following modules provide functions which will be called by the 
  : templating.
  :)
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
@@ -24,7 +26,8 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 
-declare option exist:serialize "method=xhtml5 media-type=text/html enforce-xhtml=yes";
+declare option output:method "xhtml5";
+declare option output:media-type "text/html";
 
 let $config := map {
     $templates:CONFIG_APP_ROOT : $config:app-root,

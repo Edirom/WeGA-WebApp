@@ -1,4 +1,5 @@
 xquery version "3.0" encoding "UTF-8";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
@@ -9,6 +10,7 @@ declare namespace compression="http://exist-db.org/xquery/compression";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace sm="http://exist-db.org/xquery/securitymanager";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";

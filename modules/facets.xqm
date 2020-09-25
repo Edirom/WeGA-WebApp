@@ -38,10 +38,13 @@ declare
     function facets:select($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:select) {
         let $facet := $node/data(@name)
         let $selected := $model?filters?($facet)
+        let $selectedObjs as array(*)? := 
+            if(count($selected) gt 0) then facets:facets($model?search-results, $facet, -1, $lang)
+            else ()
         return
-            element {name($node)} {
+            element {node-name($node)} {
                 $node/@*,
-                attribute data-api-url {core:link-to-current-app('dev/api.xql')},
+                attribute data-api-url {config:api-base() || '/facets/' || $facet},
                 attribute data-doc-id {$model?docID},
                 attribute data-doc-type {$model?docType},
                 element option {
@@ -49,16 +52,18 @@ declare
                     lang:get-language-string('all', $lang)
                 },
                 for $i in $selected 
+(:                let $log := util:log-system-out($i):)
                 let $display-term := facets:display-term($facet, $i, $lang)
-                order by $display-term collation "?lang=de;strength=primary"
+                let $freq := 
+                    if ($selectedObjs?*[?value = $i]?frequency castable as xs:int) 
+                    then $selectedObjs?*[?value = $i]?frequency
+                    else 0
+                    order by $display-term collation "?lang=de;strength=primary"
                 return
                     element option {
                         attribute selected {'selected'},
                         attribute value {$i},
-                        (: mieser hack da der field-index nicht immer etwas findet und dann in den Facetten der Name leer bleibt … :)
-                        if($display-term) then $display-term
-                        else if(wdt:persons(@docID)('check')()) then wdt:persons(@docID)('label-facets')()
-                        else wdt:orgs(@docID)('label-facets')() (:$facets:persons-norm-file//norm:entry[range:eq(@docID,$i)]:)
+                        $display-term || ' (' || $freq || ')'
                     }
             }
 };
@@ -66,6 +71,7 @@ declare
 declare function facets:facets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*)  {
     switch($facet)
     case 'textType' return facets:from-docType($nodes, $facet, $lang)
+    case 'facsimile' return facets:facsimile($nodes, $facet, $lang)
     default return facets:createFacets($nodes, $facet, $max, $lang)
 };
 
@@ -82,6 +88,40 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
             }
     ]
 };
+
+declare %private function facets:facsimile($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
+    let $facsimiles := $collection ! query:facsimile(.)
+    let $external := $facsimiles[@sameAs]/root()
+    let $internal := $facsimiles[not(@sameAs)][tei:graphic]/root()
+    let $internalCount := count($internal)
+    let $externalCount := count($external)
+    let $noFacsCount := count($collection) - count($external | $internal)
+    return
+        array {
+            if($internalCount > 0) then
+                map {
+                    'value' : 'internal',
+                    'label' : lang:get-language-string('internal', $lang),
+                    'frequency' : $internalCount
+                }
+            else (),
+            if($externalCount > 0) then
+                map {
+                    'value' : 'external',
+                    'label' : lang:get-language-string('external', $lang),
+                    'frequency' : $externalCount
+                }
+            else (),
+            if($noFacsCount > 0) then
+                map {
+                    'value' : 'without',
+                    'label' : lang:get-language-string('without', $lang),
+                    'frequency' : $noFacsCount
+                }
+            else ()
+        }
+};
+
 
 (:~
  : Create facets
@@ -117,7 +157,7 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
     case 'sex' return 
         if($term ='Art der Institution') then lang:get-language-string('organisationsInstitutions', $lang)
         else lang:get-language-string('sex_' || $term, $lang)
-    case 'docTypeSubClass' case 'docStatus' case 'textType' return lang:get-language-string($term, $lang)
+    case 'docTypeSubClass' case 'docStatus' case 'textType' case 'facsimile' return lang:get-language-string($term, $lang)
     case 'repository' return facets:display-term-repository($term)
     default return str:normalize-space($term)
 };
@@ -166,7 +206,7 @@ declare
 };
 
 declare function facets:filter-body($node as node(), $model as map(*)) as element(div) {
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@class,
         (: That should be safe because there's always only one key in filterSection :)
         attribute id {map:keys($model('filterSection'))},
@@ -177,7 +217,7 @@ declare function facets:filter-body($node as node(), $model as map(*)) as elemen
 declare 
     %templates:default("lang", "en") 
     function facets:filter-head($node as node(), $model as map(*), $lang as xs:string) as element() {
-        element {name($node)} {
+        element {node-name($node)} {
             $node/@*[not(name(.) = 'href')],
             (: That should be safe because there's always only one key in filterSection :)
             attribute href {'#' || map:keys($model('filterSection'))},
@@ -186,14 +226,14 @@ declare
 };
 
 declare function facets:filter-value($node as node(), $model as map(*)) as element(input) {
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@*[not(name(.) = 'id')],
         attribute value {$model('filterOption')('key')}
     }
 };
 
 declare function facets:filter-label($node as node(), $model as map(*), $lang as xs:string) as element(span) {
-    element {name($node)} {
+    element {node-name($node)} {
         $node/@*[not(name(.) = 'title')],
         attribute title {lang:get-language-string("facetsFilterLabel",$model('filterOption')('label'),$lang)},
         $model('filterOption')('label')
