@@ -976,12 +976,25 @@ declare
             case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
             default return ()
         let $orderedDates := wega-util-shared:order-by-cert($dates)
-        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(sup) {
-            <sup class="jul" 
-                data-toggle="tooltip" 
-                data-container="body" 
-                title="{concat(lang:get-language-string('julianDate', $lang), ': ', date:format-date(date:gregorian2julian($date), $config:default-date-picture-string($lang), $lang))}"
-                >greg.</sup>
+        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(sup)? {
+            let $julian-date := date:gregorian2julian($date)
+            let $formated-julian-date := 
+                if($julian-date castable as xs:date) then date:format-date(xs:date($julian-date), $config:default-date-picture-string($lang), $lang)
+                (: special case for Julian leap years :)
+                else if(ends-with($julian-date, '-02-29')) then replace(
+                    date:format-date(xs:date('1600' || substring($julian-date, 5)), $config:default-date-picture-string($lang), $lang),
+                    '1600',
+                    substring($julian-date, 1, 4)
+                )
+                else ()
+            return
+                if($formated-julian-date) then
+                <sup class="jul" 
+                    data-toggle="tooltip" 
+                    data-container="body" 
+                    title="{concat(lang:get-language-string('julianDate', $lang), ': ', $formated-julian-date)}"
+                    >greg.</sup>
+                else ()
         }
         return (
             date:printDate($orderedDates[1], $model?lang, lang:get-language-string#3, $config:default-date-picture-string),
