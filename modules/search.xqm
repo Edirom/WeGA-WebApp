@@ -50,7 +50,7 @@ declare
     %templates:default("docType", "letters")
     %templates:wrap
     function search:results($node as node(), $model as map(*), $docType as xs:string) as map(*) {
-        let $filters := map { 'filters' : search:create-filters(), 'api-base' : core:link-to-current-app('/api/v1')}
+        let $filters := map { 'filters' : search:create-filters(), 'api-base' : config:link-to-current-app('/api/v1')}
         return
             switch($docType)
             (: search page :)
@@ -301,7 +301,7 @@ declare %private function search:create-filters() as map(*) {
                 if(exists($lookup)) then $lookup(map:entry($param, request:get-parameter($param, ())))
                 else if(exists($validate-unknown-param)) then $validate-unknown-param(map:entry($param, request:get-parameter($param, ())))
                 else (
-                    core:logToFile('warn', 'It seems you did not provide a validate-unknown-param function'),
+                    wega-util:log-to-file('warn', 'It seems you did not provide a validate-unknown-param function'),
                     error($search:ERROR, 'Unknown parameter "' || $param || '". Details should be provided in the system log.') 
                 )
         )

@@ -19,7 +19,6 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -55,7 +54,7 @@ declare function er:grabExternalResource($resource as xs:string, $gnd as xs:stri
         default return config:get-option($resource) || $gnd
     let $fileName := string-join(($gnd, $lang, 'xml'), '.')
     let $onFailureFunc := function($errCode, $errDesc) {
-        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
     let $response := 
         if($botPresent or not($url)) then ()
@@ -110,7 +109,7 @@ declare function er:lookup-gnd-from-beaconProvider($beaconProvider as xs:string,
 declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as xs:string) as xs:anyURI? {
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $onFailureFunc := function($errCode, $errDesc) {
-            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+            wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
         }
     let $filename := util:hash($beaconURI, 'md5') || '.xml'
     let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'beaconFiles', $filename))
@@ -154,7 +153,7 @@ declare function er:http-get($url as xs:anyURI) as element(wega:externalResource
     let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
     let $response := 
         try { http:send-request($req) }
-        catch * {core:logToFile(if(contains($err:description, 'Read timed out')) then 'info' else 'warn', string-join(('er:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
+        catch * {wega-util:log-to-file(if(contains($err:description, 'Read timed out')) then 'info' else 'warn', string-join(('er:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
     let $statusCode := $response[1]/data(@status)
     return
         <wega:externalResource date="{current-date()}">
@@ -179,13 +178,13 @@ declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $fileName := util:hash($escapedWikiFilename, 'md5') || '.xml'
     let $onFailureFunc := function($errCode, $errDesc) {
-        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
     let $response := mycache:doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
     return 
         if($response//er:response/@statusCode eq '200') then 
             try { parse-json(util:binary-to-string($response//er:body)) }
-            catch * {core:logToFile('warn', string-join(('er:wikimedia-ifff', $err:code, $err:description, 'wikiFilename: ' || $wikiFilename), ' ;; '))}
+            catch * {wega-util:log-to-file('warn', string-join(('er:wikimedia-ifff', $err:code, $err:description, 'wikiFilename: ' || $wikiFilename), ' ;; '))}
         else ()
 };
 
@@ -201,7 +200,7 @@ declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string) as element(er:response)? {
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $onFailureFunc := function($errCode, $errDesc) {
-            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+            wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
         }
     return
         er:cached-external-request($uri, $localFilepath, $lease, $onFailureFunc)
@@ -291,4 +290,64 @@ declare %private function er:parse-beacon($beaconURI as xs:anyURI) as element(er
                     replace($target, '\{ID\}', $gnd)
                 }</er:gnd>
         }</er:beacon>
+};
+
+(:~
+ :  Lookup VIAF ID for a given GND ID.
+ :  (This is a shortcut function for `wega-util:translate-authority-id()`)
+ :
+ :  @param $gnd a GND identifier
+ :  @return the corresponding VIAF identifier(s) as string(s)
+~:)
+declare function er:gnd2viaf($gnd as xs:string) as xs:string* {
+    er:translate-authority-id(<tei:idno type="gnd">{$gnd}</tei:idno>, 'viaf')
+};
+
+(:~
+ :  Lookup GND ID for a given VIAF ID.
+ :  (This is a shortcut function for `wega-util:translate-authority-id()`)
+ :
+ :  @param $viaf a VIAF identifier
+ :  @return the corresponding GND identifier(s) as string(s)
+~:)
+declare function er:viaf2gnd($viaf as xs:string) as xs:string* {
+    er:translate-authority-id(<tei:idno type="viaf">{$viaf}</tei:idno>, 'gnd')
+};
+
+(:~
+ : Translate any authority ID via wikidata (which serves as a central hub)
+ :
+ : @param $idno a `<tei:idno>`-element, e.g. `<idno type='geonames'>2759794</idno>`
+ : @param $to the desired authority-provider, e.g. 'gnd'
+ : @return the translated authority ID 
+~:)
+declare function er:translate-authority-id($idno as element(), $to as xs:string) as xs:string*  {
+    let $wikidata := er:grab-external-resource-wikidata(string($idno), $idno/@type)
+    return
+        $wikidata//sr:binding[@name=$to] ! str:normalize-space(.) 
+};
+
+declare function er:beacon-map($gnd as xs:string, $docType as xs:string) as map(*) {
+    let $findbuchResponse := 
+        switch($docType)
+        case 'persons' return er:grabExternalResource('beacon', $gnd, $docType, 'de')
+        default return er:grabExternalResource('gnd-beacon', $gnd, $docType, 'de')
+    (:let $log := util:log-system-out($gnd):)
+    let $jxml := 
+        if(exists($findbuchResponse)) then 
+            if($findbuchResponse/er:body/@encoding = 'Base64Encoded') then parse-json(util:binary-to-string($findbuchResponse))
+            else parse-json($findbuchResponse)
+        else ()
+    return 
+        if(exists($jxml)) then
+            map:merge(
+                for $i in 1 to array:size($jxml?2)
+                let $link  := str:normalize-space($jxml?4?($i))
+                let $title := str:normalize-space($jxml?3?($i))
+                let $text  := str:normalize-space($jxml?2?($i))
+                return
+                    if(matches($link,"weber-gesamtausgabe.de")) then ()
+                    else map:entry($title, ($link, $text))
+            )
+        else map {}
 };

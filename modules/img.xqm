@@ -56,10 +56,10 @@ declare
         let $docType := config:get-doctype-by-id($model?docID)
         let $func := 
             try { function-lookup(xs:QName('img:iconography4' || $docType), 3) } 
-            catch * { core:logToFile('error', 'Failed to lookup iconography-function for ' || $docType ) }
+            catch * { wega-util:log-to-file('error', 'Failed to lookup iconography-function for ' || $docType ) }
         return 
             if(exists($func)) then $func($node, $model, $lang)
-            else core:logToFile('debug', 'Missing iconography-function for ' || $docType )
+            else wega-util:log-to-file('debug', 'Missing iconography-function for ' || $docType )
 };
 
 (:~
@@ -444,22 +444,22 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
                 switch($size)
                 case 'thumb' case 'small' return 
                     switch($sex)
-                    case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau.png')
-                    case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann.png')
-                    case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs.png')
-                    case 'place' return core:link-to-current-app('resources/img/icons/icon_places.png')
-                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks.png')
-                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works.png')
-                    default return core:link-to-current-app('resources/img/icons/icon_persons.png')
+                    case 'f' return config:link-to-current-app('resources/img/icons/icon_person_frau.png')
+                    case 'm' return config:link-to-current-app('resources/img/icons/icon_person_mann.png')
+                    case 'org' return config:link-to-current-app('resources/img/icons/icon_orgs.png')
+                    case 'place' return config:link-to-current-app('resources/img/icons/icon_places.png')
+                    case 'musicalWork' return config:link-to-current-app('resources/img/icons/icon_musicalWorks.png')
+                    case 'otherWork' return config:link-to-current-app('resources/img/icons/icon_works.png')
+                    default return config:link-to-current-app('resources/img/icons/icon_persons.png')
                 default return 
                     switch($sex)
-                    case 'f' return core:link-to-current-app('resources/img/icons/icon_person_frau_gross.png')
-                    case 'm' return core:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
-                    case 'org' return core:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
-                    case 'place' return core:link-to-current-app('resources/img/icons/icon_places_gross.png')
-                    case 'musicalWork' return core:link-to-current-app('resources/img/icons/icon_musicalWorks_gross.png')
-                    case 'otherWork' return core:link-to-current-app('resources/img/icons/icon_works_gross.png')
-                    default return core:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
+                    case 'f' return config:link-to-current-app('resources/img/icons/icon_person_frau_gross.png')
+                    case 'm' return config:link-to-current-app('resources/img/icons/icon_person_mann_gross.png')
+                    case 'org' return config:link-to-current-app('resources/img/icons/icon_orgs_gross.png')
+                    case 'place' return config:link-to-current-app('resources/img/icons/icon_places_gross.png')
+                    case 'musicalWork' return config:link-to-current-app('resources/img/icons/icon_musicalWorks_gross.png')
+                    case 'otherWork' return config:link-to-current-app('resources/img/icons/icon_works_gross.png')
+                    default return config:link-to-current-app('resources/img/icons/icon_person_unbekannt_gross.png')
             }
         }
 };

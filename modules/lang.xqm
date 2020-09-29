@@ -11,7 +11,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
 (:~ 
@@ -39,7 +39,7 @@ declare function lang:get-language-string($key as xs:string, $lang as xs:string)
     let $lookup := normalize-space($catalogue//id($key))
     return
         if($lookup) then $lookup
-        else core:logToFile('warn', 'No dictionary entry found for ' || $key)
+        else wega-util:log-to-file('warn', 'No dictionary entry found for ' || $key)
 };
 
 (:~
@@ -60,7 +60,7 @@ declare function lang:get-language-string($key as xs:string, $replacements as xs
         return $x
     return 
         if($catalogueEntry) then functx:replace-multi($catalogueEntry,$placeHolders,$replacements)
-        else core:logToFile('warn', 'No dictionary entry found for ' || $key)
+        else wega-util:log-to-file('warn', 'No dictionary entry found for ' || $key)
 };
 
 (:~

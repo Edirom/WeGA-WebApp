@@ -19,10 +19,6 @@ declare namespace util="http://exist-db.org/xquery/util";
 
 import module namespace json="http://www.json.org";
 import module namespace functx="http://www.functx.com";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
@@ -134,7 +130,7 @@ declare function config:get-option($key as xs:string?) as xs:string? {
     let $result := str:normalize-space($config:options-file/id($key))
     return
         if($result) then $result
-        else core:logToFile('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
+        else config:log('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
 };
 
 (:~
@@ -151,16 +147,16 @@ declare function config:set-option($key as xs:string, $value as xs:string) as xs
     return
         if($old) then try {(
             update value $old with $value,
-            core:logToFile('debug', 'set preference "' || $key || '" to "' || $value || '"'),
+            config:log('debug', 'set preference "' || $key || '" to "' || $value || '"'),
             $value
             )}
-            catch * { core:logToFile('error', 'failed to set preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+            catch * { config:log('error', 'failed to set preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
         else try {( 
             update insert <entry xml:id="{$key}">{$value}</entry> into $config:options-file/id('various'),
-            core:logToFile('debug', 'added preference "' || $key || '" with value "' || $value || '"'),
+            config:log('debug', 'added preference "' || $key || '" with value "' || $value || '"'),
             $value
             )}
-            catch * { core:logToFile('error', 'failed to add preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+            catch * { config:log('error', 'failed to add preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
 };
 
 (:~
@@ -459,7 +455,7 @@ declare function config:get-xsl-params($params as map(*)?) as element(parameters
     <parameters>
         <param name="lang" value="{config:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
-        <param name="baseHref" value="{core:link-to-current-app(())}"/>
+        <param name="baseHref" value="{config:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>
         <param name="catalogues-collection-path" value="{$config:catalogues-collection-path}"/>
         <param name="data-collection-path" value="{$config:data-collection-path}"/>
@@ -484,7 +480,7 @@ declare function config:entries-per-page() as xs:int {
         if($urlParam castable as xs:int and xs:int($urlParam) <= 50) then (xs:int($urlParam), session:set-attribute('limit', xs:int($urlParam)))
         else if($sessionParam castable as xs:int) then $sessionParam
         else if($default-option castable as xs:int) then xs:int($default-option)
-        else (10, core:logToFile('error', 'Failed to get default "entriesPerPage" from options file. Falling back to "10"!'))
+        else (10, config:log('error', 'Failed to get default "entriesPerPage" from options file. Falling back to "10"!'))
 };
 
 (:~
@@ -500,7 +496,7 @@ declare function config:line-wrap() as xs:boolean {
             else (false(), session:set-attribute('line-wrap', false()))
         else if($sessionParam instance of xs:boolean) then $sessionParam
         else if($default-option instance of xs:boolean) then $default-option
-        else (true(), core:logToFile('error', 'Failed to get default "line-wrap" from options file. Falling back to "true"!'))
+        else (true(), config:log('error', 'Failed to get default "line-wrap" from options file. Falling back to "true"!'))
 };
 
 (:~
@@ -534,7 +530,7 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
         case node() return parse-json(json:xml-to-json($value)) (: the output of json:xml-to-json() seems to be a string, not a map object :)
         case array(*) return $value
         case map(*) return $value
-        default return core:logToFile('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
+        default return config:log('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
     let $update := config:map-put-recursive($swagger.json, $key, $valueJSON)
     let $serialize-json := function($json as item()) as xs:string {
         serialize($json, <output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
@@ -545,9 +541,9 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
     let $update := 
         try { 
             xmldb:store($collection, $fileName, $update2string, 'application/json'),
-            core:logToFile('debug', 'set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '"')
+            config:log('debug', 'set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '"')
         }
-        catch * { core:logToFile('error', 'config:set-swagger-option(): failed to set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+        catch * { config:log('error', 'config:set-swagger-option(): failed to set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
     return
         if($update) then $valueJSON
         else ()
@@ -590,4 +586,63 @@ declare function config:get-ordered-browser-languages() as xs:string* {
         order by $q descending, $index ascending
         return $lang
     else ()
+};
+
+(:~
+ :  Private logging function for the config module
+ :  This is a simple wrapper around the public `wega-util:log-to-file()` to avoid importing this module directly
+ :
+ :  For a description of params see there
+ :)
+declare function config:log($errLevel as xs:string, $errMsg as xs:string) as empty-sequence() {
+    let $logger := 
+        try { function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/wega-util', 'wega-util:log-to-file'), 2) } 
+        catch * {()}
+    return
+        if(exists($logger)) then $logger($errLevel, $errMsg)
+        else ()(:error(QName("http://xquery.weber-gesamtausgabe.de/modules/config", "LogError"), 'Unable to create logger'):)
+};
+
+(:~
+ : Create a link within the current app context (this is the 1-arity version)
+ :
+ : @author Peter Stadler
+ : @param $relLink a relative path to be added to the returned path
+ : @return the complete URL for $relLink
+ :)
+declare function config:link-to-current-app($relLink as xs:string?) as xs:string? {
+    (:  
+        for the 1-arity version we need to use the default eXist attributes (= prefixed with "$") 
+        because our unprefixed WeGA versions are being set only at a later stage.
+        Thus, redirects would fail …
+    :)
+    if(request:exists()) 
+    then str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
+    else config:log('warn', 'request object does not exist; failing to create a link')
+};
+
+(:~
+ : Create a link within the current app context (this is the 2-arity version)
+ : 
+ : @param $relLink a relative path to be added to the returned path
+ : @param $exist-vars a map object with current settings for "exist:prefix" and "exist:controller"
+ : @return the complete URL for $relLink
+~:)
+declare function config:link-to-current-app($relLink as xs:string?, $exist-vars as map(*)) as xs:string? {
+(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
+    if(request:exists())
+    then str:join-path-elements(('/', request:get-context-path(), $exist-vars("exist:prefix"), $exist-vars('exist:controller'), $relLink))
+    else config:log('warn', 'request object does not exist; failing to create a link')
+};
+
+(:~
+ : Creates a permalink by concatenating the $permaLinkPrefix (set in options) with the given path piped through config:link-to-current-app()
+ : Mainly used for creating persistent links to documents by simply passing the docID  
+ :
+ : @author Peter Stadler
+ : @param $relLink a relative path within the current app
+ : @return permalink to resource
+ :)
+declare function config:permalink($relLink as xs:string) as xs:anyURI? {
+    xs:anyURI(config:get-option('permaLinkPrefix') || config:link-to-current-app($relLink))
 };

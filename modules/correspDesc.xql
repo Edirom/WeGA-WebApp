@@ -6,7 +6,7 @@ declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-fo
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace response="http://exist-db.org/xquery/response";
 
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -53,7 +53,7 @@ declare function ct:create-header() as element(tei:teiHeader) {
             </sourceDesc>
         </fileDesc>
         <profileDesc>
-            {core:getOrCreateColl('letters', 'indices', true())//tei:correspDesc ! ct:identity-transform-with-switches(.)}
+            {crud:data-collection('letters')//tei:correspDesc ! ct:identity-transform-with-switches(.)}
         </profileDesc>
     </teiHeader>
 };
@@ -138,7 +138,7 @@ declare function ct:corresp-list() as element(tei:TEI) {
 };
 
 declare function ct:onFailure($errCode, $errDesc) {
-    core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+    wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
 };
 
 response:set-header('Access-Control-Allow-Origin', '*'),

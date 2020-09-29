@@ -14,7 +14,7 @@ import module namespace templates="http://exist-db.org/xquery/templates";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
 import module namespace app-shared="http://xquery.weber-gesamtausgabe.de/modules/app-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/app-shared.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -47,7 +47,7 @@ let $model :=
 		),
 		map:entry('environment', config:get-option('environment')),
 		if(config:get-doctype-by-id(request:get-attribute('docID'))) then
-		  map:entry('doc', try { core:doc(request:get-attribute('docID')) } catch * {()})
+		  map:entry('doc', try { crud:doc(request:get-attribute('docID')) } catch * {()})
 	    else ()
 	))
     

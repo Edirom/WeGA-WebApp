@@ -14,15 +14,15 @@ declare namespace request="http://exist-db.org/xquery/request";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 
 import module namespace templates="http://exist-db.org/xquery/templates";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 
 declare 
     %templates:wrap
@@ -73,7 +73,7 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
     let $identifier := lod:DC.identifier($model)
     let $url := 
         (: multiple URLs are generated when the document features multiple authors :)
-        if($model?doc) then controller:path-to-resource($model?doc, $lang) ! core:permalink(.)
+        if($model?doc) then controller:path-to-resource($model?doc, $lang) ! config:permalink(.)
         else $identifier
     let $jsonld-common := map {
         '@id': $identifier,
@@ -102,12 +102,12 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
         }:)
     let $homepageSpecials := 
         if($model?docID = 'home') then map { 
-            'image': core:permalink('resources/img/logo_weber.png'),
-            'logo': core:permalink('resources/favicons/mstile-150x150.png'),
+            'image': config:permalink('resources/img/logo_weber.png'),
+            'logo': config:permalink('resources/favicons/mstile-150x150.png'),
             "potentialAction": array { 
                 map {
                     "@type": "SearchAction",
-                    "target": core:permalink('de/Suche?q={search_term_string}'),
+                    "target": config:permalink('de/Suche?q={search_term_string}'),
                     "query-input": "required name=search_term_string"
                 }
             }
@@ -166,11 +166,11 @@ declare %private function lod:jsonld-entity($elem as element(), $lang as xs:stri
                     else if($elem/self::tei:orgName or $elem/self::tei:rs[@type='org']) then 'Organization'
                     else if($elem/self::tei:persName or $elem/self::tei:author or $elem/self::tei:rs[@type='person']) then 'Person'
                     else if($elem/self::tei:settlement or $elem/self::tei:placeName or $elem/self::tei:region or $elem/self::tei:country or $elem/self::tei:rs[@type='place']) then 'Place'
-                    else core:logToFile('debug',  'Failed to infer schema.org type for ' || serialize($elem))
+                    else wega-util:log-to-file('debug',  'Failed to infer schema.org type for ' || serialize($elem))
             },
             if($elem/@key) then map {
-                '@id': core:permalink($elem/@key),
-                'url': core:permalink($lang || '/' || $elem/@key)
+                '@id': config:permalink($elem/@key),
+                'url': config:permalink($lang || '/' || $elem/@key)
             }
             else (),
             if(query:get-gnd($elem/@key)) then map {
@@ -220,7 +220,7 @@ declare %private function lod:DC.description($model as map(*), $lang as xs:strin
             case 'works' return lang:get-language-string('workName', $lang)
             case 'addenda' return lang:get-language-string($model?docType, $lang)
             case 'error' return lang:get-language-string('metaDescriptionError', $lang)
-            default return core:logToFile('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
+            default return wega-util:log-to-file('warn', 'Missing HTML meta description for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
 
 (:~
@@ -245,7 +245,7 @@ declare %private function lod:page-title($model as map(*), $lang as xs:string) a
             case 'diaries' return concat(query:get-authorName($model('doc')), ' – ', lang:get-language-string('diarySingleViewTitle', wdt:lookup($model('docType'), $model('doc'))('title')('txt'), $lang))
             case 'orgs' return query:title($model('docID')) || ' (' || str:list($model('doc')//tei:state[tei:label='Art der Institution']/tei:desc, $lang, 0, lang:get-language-string#2) || ') – ' || lang:get-language-string('tabTitle_bioOrgs', $lang)
             case 'error' return lang:get-language-string('metaTitleError', $lang)
-            default return core:logToFile('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
+            default return wega-util:log-to-file('warn', 'Missing HTML page title for ' || $model('docID') || ' – ' || $model('docType') || ' – ' || request:get-uri())
 };
 
 (:~
@@ -298,6 +298,6 @@ declare %private function lod:DC.identifier($model as map(*)) as xs:string? {
     if($model('docID') = ('indices', 'search')) then request:get-url()
     else if($model('docID') = 'home') then 'http://weber-gesamtausgabe.de'
     else if($model?specID or $model?chapID) then request:get-url()
-    else if(config:get-doctype-by-id($model('docID'))) then core:permalink($model('docID'))
+    else if(config:get-doctype-by-id($model('docID'))) then config:permalink($model('docID'))
     else ()
 };

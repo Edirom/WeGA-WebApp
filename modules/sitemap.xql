@@ -72,7 +72,7 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
         if($updateNecessary) then (
             let $newSitemap := local:createSitemap($sitemapLang)
             let $logMessage := concat('Creating sitemap: ', $fileName)
-            let $logToFile := core:logToFile('info', $logMessage)
+            let $logToFile := wega-util:log-to-file('info', $logMessage)
             return 
                 if(exists($newSitemap)) then (
                     let $compression := functx:substring-after-last($fileName, '.')
@@ -94,7 +94,7 @@ declare function local:getMimeType($compression as xs:string) as xs:string? {
 declare function local:createSitemapCollection($path as xs:string) as empty-sequence() {
     let $createCollection := 
         try { xmldb:create-collection(functx:substring-before-last($path, '/'), functx:substring-after-last($path, '/')) }
-        catch * {core:logToFile('error', 'failed to create sitemap collection')}
+        catch * {wega-util:log-to-file('error', 'failed to create sitemap collection')}
     let $setPermissions :=
         if(xmldb:collection-available($path)) then (
             sm:chown(xs:anyURI($path), 'guest'),

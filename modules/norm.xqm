@@ -32,7 +32,7 @@ declare function norm:get-norm-doc($docType as xs:string) as document-node()? {
     let $fileName := 'normFile-' || $docType || '.xml'
     let $docURI := str:join-path-elements(($config:tmp-collection-path, $fileName))
     let $onFailureFunc := function($errCode as item(), $errDesc as item()?) {
-        core:logToFile('error', string-join(('norm:get-norm-doc: Unsupported docType ' || $docType, $errCode, $errDesc), ' ;; '))
+        wega-util:log-to-file('error', string-join(('norm:get-norm-doc: Unsupported docType ' || $docType, $errCode, $errDesc), ' ;; '))
     }
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     return 
@@ -51,7 +51,7 @@ declare function norm:create-norm-doc($docType as xs:string) as element(norm:cat
 (:        case 'places' return norm:create-norm-doc-places():)
         case 'orgs' return norm:create-norm-doc-orgs()
         case 'documents' return norm:create-norm-doc-documents()
-        default return core:logToFile('warn', 'norm:create-norm-doc: Unsupported docType "' || $docType || '". Could not find callback function.')
+        default return wega-util:log-to-file('warn', 'norm:create-norm-doc: Unsupported docType "' || $docType || '". Could not find callback function.')
 };
 
 declare %private function norm:create-norm-doc-biblio() as element(norm:catalogue) {

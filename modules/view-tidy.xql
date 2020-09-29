@@ -9,9 +9,8 @@ declare namespace request="http://exist-db.org/xquery/request";
 
 import module namespace templates="http://exist-db.org/xquery/templates" ;
 import module namespace functx="http://www.functx.com";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
-import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 
 declare option output:method "xhtml5";
@@ -46,13 +45,13 @@ declare function local:tidy-attr($node as node()) as node()? {
         if(starts-with(node-name($node), 'data-template')) then ()
         
         else if(starts-with($node, '$resources')) then 
-            attribute { node-name($node) } {core:link-to-current-app(substring-after($node, '$'))}
+            attribute { node-name($node) } {config:link-to-current-app(substring-after($node, '$'))}
         
         else if(starts-with($node, '$link')) then 
             attribute { node-name($node) } {controller:resolve-link(data($node), $exist-vars)}
 
         else if(starts-with($node, '$dev')) then 
-            attribute { node-name($node) } {core:link-to-current-app(substring($node, 2))}
+            attribute { node-name($node) } {config:link-to-current-app(substring($node, 2))}
             
         else $node
 };

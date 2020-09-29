@@ -7,7 +7,7 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -26,7 +26,7 @@ let $image := request:get-attribute('image')
 let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
 return
     if($type eq 'manifest') then 
-        let $doc := core:doc($docID)
+        let $doc := crud:doc($docID)
         let $allowedFacsimiles := query:facsimile($doc)
         let $requestedFacsimile := $doc//tei:facsimile[substring(@source,2) = string($sourceID)]
         return
@@ -35,7 +35,7 @@ return
                 img:iiif-manifest#1, 
                 $requestedFacsimile, 
                 function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, xs:dayTimeDuration('P999D')) }, 
-                function($errCode, $errDesc) { core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; ')) }
+                function($errCode, $errDesc) { wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; ')) }
             )
             else ()
 (:    else if($type eq 'collection') then img:iiif-collection($docID):)

@@ -16,15 +16,15 @@ declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace util="http://exist-db.org/xquery/util";
 
+import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
-import module namespace functx="http://www.functx.com";
-
+import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
 
 declare variable $controller:projectNav :=
@@ -181,7 +181,7 @@ declare function controller:forward-jsonld($exist-vars as map(*)*) as element(ex
 declare function controller:redirect-absolute($path as xs:string) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{
-            core:link-to-current-app($path) || (
+            config:link-to-current-app($path) || (
             if(request:get-parameter-names() = 'format') then ('?format=' || request:get-parameter('format', ''))
             else ()
             )
@@ -202,7 +202,7 @@ declare function controller:dispatch($exist-vars as map(*)) as element(exist:dis
             map:entry('docType', config:get-doctype-by-id($docID)),
             map:entry('media-type', $media-type)
         ))
-    let $doc := core:doc($docID)
+    let $doc := crud:doc($docID)
     let $path := controller:path-to-resource($doc, $exist-vars('lang')) ! controller:encode-path-segments-for-uri(.)
 (:    let $log := util:log-system-out($exist-vars('exist:path')):)
 (:    let $log := util:log-system-out($path):)
@@ -423,7 +423,7 @@ declare function controller:encode-path-segments-for-uri($uri-string as xs:strin
 (:~
  : Warning: 
  : * No URL encoding here, see controller:encode-path-segments-for-uri()
- : * resulting paths do not include exist:prefix, see core:link-to-current-app()
+ : * resulting paths do not include exist:prefix, see config:link-to-current-app()
  :
  : @return a sequence of valid (external) paths for a document, based on the authors and docType 
 ~:)
@@ -448,7 +448,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
         else if($docType = 'var') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), $docID))
         else if($docType = 'addenda') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string('volContents', $lang), $docID))
         else if(count($authorID) gt 0 and $displayName) then $authorID ! str:join-path-elements(('/', $lang, ., $displayName, $docID))
-        else core:logToFile('error', 'controller:path-to-resource(): could not create path for ' || $docID)
+        else wega-util:log-to-file('error', 'controller:path-to-resource(): could not create path for ' || $docID)
 };
 
 (:~
@@ -459,7 +459,7 @@ declare function controller:path-to-register($docType as xs:string, $lang as xs:
     else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = 'indices') then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang)))
     else if($docType = 'project') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang)))
-    else core:logToFile('error', 'controller:path-to-register(): could not create path for ' || $docType)
+    else wega-util:log-to-file('error', 'controller:path-to-register(): could not create path for ' || $docType)
 };
 
 declare function controller:docType-url-for-author($author as document-node(), $docType as xs:string, $lang as xs:string) as xs:string {
@@ -468,7 +468,7 @@ declare function controller:docType-url-for-author($author as document-node(), $
         case 'letters' return 'correspondence'
         default return $docType
     return
-        core:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang)[1], $docType-path-segment || '.html')))
+        config:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang)[1], $docType-path-segment || '.html')))
 };
 
 (:
@@ -489,7 +489,7 @@ declare function controller:resolve-link($link as xs:string, $exist-vars as map(
             if($translation) then replace($translation, '\s+', '_') 
             else $token:)
     return 
-        core:link-to-current-app(str:join-path-elements(($exist-vars?lang, $tokens)), $exist-vars)
+        config:link-to-current-app(str:join-path-elements(($exist-vars?lang, $tokens)), $exist-vars)
 };
 
 declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:string, $targetLang as xs:string) as xs:string {
@@ -515,7 +515,7 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
             else if($suffix) then lang:translate-language-string(controller:url-decode(substring-before($token, '.' || $suffix)), $sourceLang, $targetLang) || '.' || $suffix
             else lang:translate-language-string(controller:url-decode($token), $sourceLang, $targetLang)
     return
-        core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens))) || $URLparams
+        config:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens))) || $URLparams
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {
@@ -534,7 +534,7 @@ declare function controller:lookup-url-mappings($exist-vars as map(*)) {
     return
         if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri($mapping/normalize-space(@to)))
         (: zum debuggen rausgenommen um Fehler anzuzeigen:)
-        else if($config:isDevelopment) then core:logToFile('warn', 'fail for: ' || $exist-vars('exist:path'))
+        else if($config:isDevelopment) then wega-util:log-to-file('warn', 'fail for: ' || $exist-vars('exist:path'))
         else controller:error($exist-vars, 404)
 };
 
@@ -546,7 +546,7 @@ declare function controller:lookup-typo3-mappings($exist-vars as map(*)) {
         else ()
     return
         if($mapping) then controller:redirect-absolute(controller:encode-path-segments-for-uri(normalize-space($mapping)))
-        else if($config:isDevelopment) then core:logToFile('warn','fail for: ' || $exist-vars('exist:path'))
+        else if($config:isDevelopment) then wega-util:log-to-file('warn','fail for: ' || $exist-vars('exist:path'))
         else controller:error($exist-vars, 404)
 };
 

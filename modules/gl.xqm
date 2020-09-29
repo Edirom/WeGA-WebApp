@@ -14,8 +14,10 @@ declare namespace teieg="http://www.tei-c.org/ns/Examples";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 (:import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";:)
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -29,7 +31,7 @@ import module namespace functx="http://www.functx.com";
 declare variable $gl:guidelines-collection-path as xs:string := $config:app-root || '/guidelines';
 declare variable $gl:main-source as document-node()? := 
     try { doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml'))) }
-    catch * {core:logToFile('error', 'failed to load main Guidelines source')};
+    catch * {wega-util:log-to-file('error', 'failed to load main Guidelines source')};
 
 declare variable $gl:schemaSpec-idents as xs:string* := gl:schemaSpec-idents();
 
@@ -120,7 +122,7 @@ declare
 declare 
 	%templates:wrap
 	%templates:default("specKey", "")
-	function gl:spec-details($node as node(), $model as map(*), $specKey as xs:string) as map() {
+	function gl:spec-details($node as node(), $model as map(*), $specKey as xs:string) as map(*) {
 		let $spec := 
 		  if($specKey) then $model($specKey)
 		  else gl:spec($model('specID'), $model('schemaID'))
@@ -145,11 +147,11 @@ declare
 
 declare 
 	%templates:wrap
-	function gl:breadcrumb($node as node(), $model as map(*)) as map() {
+	function gl:breadcrumb($node as node(), $model as map(*)) as map(*) {
 	   (:util:log-system-out(request:get-parameter-names()),:)
 	   map {
 	       'specType' : lang:get-language-string(gl:specType(gl:spec($model?specID, $model?schemaID)), $model?lang),
-	       'editorialGuidelines-text_specType_url' : core:link-to-current-app(str:join-path-elements((
+	       'editorialGuidelines-text_specType_url' : config:link-to-current-app(str:join-path-elements((
 	           lang:get-language-string('project', $model?lang),
 	           lang:get-language-string('editorialGuidelines-text', $model?lang),
 	           lang:get-language-string(gl:specType(gl:spec($model('specID'), $model('schemaID'))), $model?lang),
@@ -185,7 +187,7 @@ declare
 
 declare 
 	%templates:wrap
-	function gl:spec-customizations($node as node(), $model as map(*)) as map() {
+	function gl:spec-customizations($node as node(), $model as map(*)) as map(*) {
 		let $schemaSpecs := collection($gl:guidelines-collection-path)//tei:schemaSpec
 		let $spec := $model?spec (:gl:spec($model('specID'), $model('schemaID')):)
 		let $teiSpec := doc(str:join-path-elements(($gl:guidelines-collection-path, 'p5subset.xml')))//(tei:elementSpec, tei:classSpec, tei:macroSpec, tei:dataSpec)[@ident=$model('specID')]
@@ -197,7 +199,7 @@ declare
 
 declare 
 	%templates:wrap
-	function gl:attributes($node as node(), $model as map(*)) as map()? {
+	function gl:attributes($node as node(), $model as map(*)) as map(*)? {
 	   let $spec := $model?spec
 	   let $attClasses := $spec/tei:classes/tei:memberOf[starts-with(@key, 'att.')]/@key
 	   let $attRefs := 
@@ -216,7 +218,7 @@ declare
 
 declare 
 	%templates:wrap
-	function gl:members($node as node(), $model as map(*)) as map()? {
+	function gl:members($node as node(), $model as map(*)) as map(*)? {
 	   let $spec := $model?spec
 (:	   let $schema := $spec/ancestor::tei:schemaSpec:)
 	   let $members := gl:class-members($spec)
@@ -250,7 +252,7 @@ declare
 ~:)
 declare 
 	%templates:wrap
-	function gl:examples($node as node(), $model as map(*)) as map()? {
+	function gl:examples($node as node(), $model as map(*)) as map(*)? {
 		let $spec := gl:spec($model('exist:path'))
 		let $map := map {
 			'element' : $spec/data(@ident), 
@@ -275,7 +277,7 @@ declare
 ~:)
 declare 
 	%templates:wrap
-	function gl:doc-details($node as node(), $model as map(*)) as map()? {
+	function gl:doc-details($node as node(), $model as map(*)) as map(*)? {
         let $chapter := (
             gl:chapter($model?chapID),
             (: inject divGen for creating chapter endnotes :)
@@ -293,12 +295,12 @@ declare
     %templates:wrap 
     %templates:default("type", "toc")
     function gl:divGen($node as node(), $model as map(*), $type as xs:string) as map(*) {
-        let $recurse := function($div as element(tei:div), $depth as xs:string?, $callBack as function() as map()?) as map()? {
+        let $recurse := function($div as element(tei:div), $depth as xs:string?, $callBack as function() as map(*)?) as map(*)? {
             let $new-depth := string-join(($depth, count($div/preceding-sibling::tei:div) + 1), '.&#8201;')
             return
                 map {
                     'label' : $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
-                    'url' :  core:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
+                    'url' :  config:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
                     'sub-items' : for $sub-item in $div/tei:div return $callBack($sub-item, $new-depth, $callBack)
                 }
         }
@@ -338,9 +340,9 @@ declare function gl:print-divGen-item($node as node(), $model as map(*)) {
 declare 
 	%templates:wrap
 	%templates:default("lang", "en")
-	function gl:preview($node as node(), $model as map(*), $lang as xs:string) as map() {
+	function gl:preview($node as node(), $model as map(*), $lang as xs:string) as map(*) {
 		let $codeSample := api:codeSample($model('result-page-entry'), $model)
-		let $doc := core:doc($codeSample?docID)
+		let $doc := crud:doc($codeSample?docID)
 		let $docType := config:get-doctype-by-id($codeSample?docID)
 		return
 			map {
@@ -418,7 +420,7 @@ declare
 ~:)
 declare 
     %templates:wrap
-    function gl:spec-list($node as node(), $model as map(*)) as map()? {
+    function gl:spec-list($node as node(), $model as map(*)) as map(*)? {
         let $chapID := if (exists($node/@data-chapID)) then $node/@data-chapID/string() else $model?chapID
         let $specType := substring-after($chapID, 'index-')
         let $specIDs := gl:spec-idents($model?schemaID, $specType)
@@ -437,7 +439,7 @@ declare
             }
 };
 
-declare function gl:spec-list-items($node as node(), $model as map(*)) as map()? {
+declare function gl:spec-list-items($node as node(), $model as map(*)) as map(*)? {
     let $links := 
         for $i in $model?specs-by-initial?items
         let $url := gl:link-to-spec($i, $model?lang, 'html', $model?schemaID)
@@ -466,7 +468,7 @@ declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:stri
         else lang:get-language-string('elements', $lang)
     let $url-param := if($schemaID) then ('?schemaID=' || $schemaID) else ()
     return
-        core:link-to-current-app(
+        config:link-to-current-app(
     		str:join-path-elements((
     			$lang,
     			lang:get-language-string('project', $lang),
@@ -480,7 +482,7 @@ declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:stri
 (:~
  : Helper function for gl:print-customization()
 ~:)
-declare %private function gl:tei-source($spec as element()) as map() {
+declare %private function gl:tei-source($spec as element()) as map(*) {
 	let $specID := $spec/@ident
 	let $teiVersion := $spec/root()//tei:teiHeader/tei:fileDesc/tei:editionStmt/tei:edition/tei:ref[matches(., '^\d+\.\d+\.\d+$')]/data()
 	let $url := 'http://www.tei-c.org/Vault/P5/' || $teiVersion || '/doc/tei-p5-doc/en/html/ref-' || $specID || '.html'
@@ -495,7 +497,7 @@ declare %private function gl:tei-source($spec as element()) as map() {
 (:~
  : Helper function for gl:print-customization()
 ~:)
-declare %private function gl:wega-customization($model as map(*)) as map() {
+declare %private function gl:wega-customization($model as map(*)) as map(*) {
 	let $specID := $model?customization/@ident
 	let $customizationIdent := $model?customization/ancestor::tei:schemaSpec/data(@ident)
 	let $url := gl:link-to-spec($specID, $model?lang, 'html', $customizationIdent)

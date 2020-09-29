@@ -17,6 +17,7 @@ declare namespace ft="http://exist-db.org/xquery/lucene";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
@@ -54,7 +55,7 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
 declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:string) as xs:string? {
     let $path :=  controller:path-to-resource($doc, $lang)[1]
     return
-        if($doc and $path) then core:link-to-current-app($path || '.html')
+        if($doc and $path) then config:link-to-current-app($path || '.html')
         else ()
 };
 
@@ -73,8 +74,8 @@ declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:strin
 declare function app:createUrlForDocInContext($doc as document-node()?, $lang as xs:string, $contextID as xs:string) as xs:string? {
     let $path := controller:path-to-resource($doc, $lang)
     return
-        if($doc and count($path[contains(., $contextID)]) = 1) then core:link-to-current-app($path[contains(., $contextID)] || '.html')
-        else if($doc and count($path) gt 0) then core:link-to-current-app($path[1] || '.html')
+        if($doc and count($path[contains(., $contextID)]) = 1) then config:link-to-current-app($path[contains(., $contextID)] || '.html')
+        else if($doc and count($path) gt 0) then config:link-to-current-app($path[1] || '.html')
         else ()
 };
 
@@ -128,14 +129,14 @@ declare
         let $date := xs:dateTime(map:get($svnProps, 'dateTime'))
         let $formatedDate := 
             try { date:format-date($date, $config:default-date-picture-string($lang), $lang) }
-            catch * { core:logToFile('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
+            catch * { wega-util:log-to-file('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
         let $version := concat(config:expath-descriptor()/@version, if($config:isDevelopment) then 'dev' else '')
         let $versionDate := date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
         return
             map {
                 'bugEmail' : config:get-option('bugEmail'),
-                'permalink' : core:permalink($model('docID')),
-                'versionNews' : app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ()),
+                'permalink' : config:permalink($model('docID')),
+                'versionNews' : app:createDocLink(crud:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ()),
                 'latestChange' :
                     if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',($formatedDate,$author),$lang)
                     else lang:get-language-string('lastChangeDateWithoutAuthor', $formatedDate, $lang)
@@ -165,7 +166,7 @@ declare
                     case 'tei_simplePrint' return $url || '?format=tei_simplePrint'
                     case 'text' return replace($url, '\.xml', '.txt')
                     case 'dta' return $url || '?format=dta'
-                    default return core:logToFile('warn', 'app:download-link(): unsupported format "' || $format || '"!')
+                    default return wega-util:log-to-file('warn', 'app:download-link(): unsupported format "' || $format || '"!')
                 },
                 templates:process($node/node(), $model)
             }
@@ -203,7 +204,7 @@ declare function app:set-line-wrap($node as node(), $model as map(*)) as element
 :)
 declare 
     %templates:default("lang", "en")
-    function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+    function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a) {
         let $authorID := tokenize($model?('exist:path'), '/')[3]
         let $anonymusID := config:get-option('anonymusID')
         let $authorElem :=
@@ -213,7 +214,7 @@ declare
             else (query:get-author-element($model?doc)[(@key, @codedval) = $authorID])[1]
         let $href :=
             if ($authorID = $anonymusID) then ()
-            else app:createUrlForDoc(core:doc($authorID), $lang)
+            else app:createUrlForDoc(crud:doc($authorID), $lang)
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
@@ -228,8 +229,8 @@ declare
 
 declare
     %templates:default("lang", "en")
-    function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(a) {
-        let $href := core:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
+    function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a) {
+        let $href := config:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
         let $display-name := replace(xmldb:decode(functx:substring-after-last($href, '/')), '_', ' ')
         let $elem := 
             if($href and not(contains($href, config:get-option('anonymusID')))) then QName('http://www.w3.org/1999/xhtml', 'a')
@@ -258,14 +259,14 @@ declare
         default return
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
-                attribute href {core:link-to-current-app(controller:path-to-register('indices', $lang))},
+                attribute href {config:link-to-current-app(controller:path-to-register('indices', $lang))},
                 lang:get-language-string('indices', $lang)
             }
 };
 
 declare 
     %templates:default("lang", "en")
-    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as element(a)? {
+    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a)? {
         if($model('docType') = 'indices') then ()
         else 
             element {node-name($node)} {
@@ -352,8 +353,8 @@ declare
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
         let $ajax-url :=
-        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang)[1] || '/' || $ajax-resource)
-        	else if(gl:spec($model?specID, $model?schemaID) and $ajax-resource) then core:link-to-current-app(replace($model('exist:path'), '\.[xhtml]+$', '') || '/' || $ajax-resource)
+        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then config:link-to-current-app(controller:path-to-resource($model('doc'), $lang)[1] || '/' || $ajax-resource)
+        	else if(gl:spec($model?specID, $model?schemaID) and $ajax-resource) then config:link-to-current-app(replace($model('exist:path'), '\.[xhtml]+$', '') || '/' || $ajax-resource)
         	else ()
         return
             if($ajax-url) then 
@@ -402,7 +403,7 @@ declare
     %templates:wrap
     %templates:default("page", "1")
     %templates:default("lang", "en")
-    function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(li)* {
+    function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(xhtml:li)* {
         let $page := if($page castable as xs:int) then xs:int($page) else 1
         let $a-element := function($page as xs:int, $text as xs:string) {
             element xhtml:a {
@@ -493,7 +494,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(li) {
+    function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:li) {
         let $active := exists($node//xhtml:a[@href = $model('active-nav')])
         return
             element {node-name($node)} {
@@ -508,7 +509,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:set-active-lang($node as node(), $model as map(*), $lang as xs:string) as element(li) {
+    function app:set-active-lang($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:li) {
         let $curLang := lower-case(normalize-space($node))
         let $isActive := $lang = $curLang
         return
@@ -539,7 +540,7 @@ declare
 declare 
     %templates:default("fromDate", "")
     %templates:default("toDate", "")
-    function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
+    function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(xhtml:input) {
     element {node-name($node)} {
          $node/@*,
          attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
@@ -549,7 +550,7 @@ declare
     }
 };
 
-declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(input) {
+declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(xhtml:input) {
     element {node-name($node)} {
          $node/@*,
          if(map:contains($model('filters'), $key)) then attribute checked {'checked'}
@@ -588,14 +589,14 @@ declare
         let $random :=
             if(count($words) gt 1) then util:random(count($words) - 1) + 1 (: util:random may return 0 and takes as argument positiveInteger! :)
             else if(count($words) eq 1) then 1
-            else core:logToFile('info', 'app:word-of-the-day(): no words of the day found')
+            else wega-util:log-to-file('info', 'app:word-of-the-day(): no words of the day found')
         return 
             map {
                 'wordOfTheDay' : 
                     if($random) then str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang)
                     else str:normalize-space($node/xhtml:h1),
                 'wordOfTheDayURL' : 
-                    if($random) then app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+                    if($random) then app:createUrlForDoc(crud:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
                     else '#'
             }
 };
@@ -620,7 +621,7 @@ declare
         }
 };
 
-declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(span)* {
+declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:span)* {
     let $date := $model?otd-date
     let $teiDate := $model('event')
     let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
@@ -651,8 +652,8 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
     )
 };
 
-declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
-    <h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
+declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:h2) {
+    <xhtml:h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</xhtml:h2>
 };
 
 (:~
@@ -683,9 +684,9 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
     if(exists($persName/@key)) then 
-        if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
-        else if ($order eq 's') then app:createDocLink(core:doc($persName/string(@key)), substring-before(query:title($persName/@key),','), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
-        else app:createDocLink(core:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        if ($order eq 'fs') then app:createDocLink(crud:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        else if ($order eq 's') then app:createDocLink(crud:doc($persName/string(@key)), substring-before(query:title($persName/@key),','), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
+        else app:createDocLink(crud:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
     else if(not(functx:all-whitespace($persName))) then 
         if ($order eq 'fs') then <xhtml:span class="noDataFound">{wega-util:print-forename-surname-from-nameLike-element($persName)}</xhtml:span>
         else <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
@@ -712,7 +713,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:search-options($node as node(), $model as map(*), $lang as xs:string) as element(option)* {
+    function app:search-options($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:option)* {
         <option xmlns="http://www.w3.org/1999/xhtml" value="all">{lang:get-language-string('all', $lang)}</option>,
         for $docType in $search:wega-docTypes
         let $displayTitle := lang:get-language-string($docType, $lang)
@@ -897,7 +898,7 @@ declare
         'contacts' : core:getOrCreateColl('contacts', $model('docID'), true()),
         'biblio' : core:getOrCreateColl('biblio', $model('docID'), true()),
         'news' : core:getOrCreateColl('news', $model('docID'), true()),
-        (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
+        (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! crud:doc(.),:)
         'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
         'thematicCommentaries' : core:getOrCreateColl('thematicCommentaries', $model('docID'), true()),
         'documents' : core:getOrCreateColl('documents', $model('docID'), true()),
@@ -907,7 +908,7 @@ declare
         'viaf' : query:get-viaf($model?doc),
         'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
-        (:                'xml-download-URL' : core:link-to-current-app($model('docID') || '.xml'):)
+        (:                'xml-download-URL' : config:link-to-current-app($model('docID') || '.xml'):)
     }
 };
 
@@ -920,7 +921,7 @@ declare
     function app:beacon($node as node(), $model as map(*)) as map(*) {
         let $gnd := query:get-gnd($model?doc)
         let $beaconMap := 
-            if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
+            if($gnd) then er:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
             else map {}
         return
             map { 'beaconLinks': 
@@ -934,7 +935,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)* {
+    function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div)* {
         let $query-result:= app:inject-query($model?doc/*)
         let $bio := wega-util:transform($query-result//(tei:note[@type='bioSummary'] | tei:event[tei:head] | tei:note[parent::tei:org]), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
         return
@@ -978,7 +979,7 @@ declare
             case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
             default return ()
         let $orderedDates := wega-util-shared:order-by-cert($dates)
-        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(sup)? {
+        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(xhtml:sup)? {
             let $julian-date := date:gregorian2julian($date)
             let $formated-julian-date := 
                 if($julian-date castable as xs:date) then date:format-date(xs:date($julian-date), $config:default-date-picture-string($lang), $lang)
@@ -991,7 +992,8 @@ declare
                 else ()
             return
                 if($formated-julian-date) then
-                <sup class="jul" 
+                <sup xmlns="http://www.w3.org/1999/xhtml"
+                    class="jul" 
                     data-toggle="tooltip" 
                     data-container="body" 
                     title="{concat(lang:get-language-string('julianDate', $lang), ': ', $formated-julian-date)}"
@@ -1195,7 +1197,7 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
         let $docID := $model('docID')
         let $serializationParameters := <output:serialization-parameters><output:method>xml</output:method><output:media-type>application/xml</output:media-type><output:indent>no</output:indent></output:serialization-parameters>
         let $doc :=
-        	if(config:get-doctype-by-id($docID)) then core:doc($docID)
+        	if(config:get-doctype-by-id($docID)) then crud:doc($docID)
         	else gl:spec($model('exist:path'))
         return
             if($config:isDevelopment) then serialize($doc, $serializationParameters)
@@ -1475,7 +1477,7 @@ declare
 :)
 declare 
     %templates:default("lang", "en")
-    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element()* {
         let $revealedNote := 
             if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
             else ()
@@ -1508,7 +1510,7 @@ declare %private function app:enquote-html($items as item()*, $lang as xs:string
 declare 
     %templates:default("lang", "en")
     %templates:default("generate", "false")
-    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
+    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(xhtml:p)* {
         let $incipit := wega-util:transform(query:incipit($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit ! element xhtml:p { app:enquote-html(./xhtml:p/node(), $lang) }
@@ -1538,7 +1540,7 @@ declare %private function app:compute-incipit($doc as document-node(), $lang as 
 
 declare 
     %templates:default("lang", "en")
-    function app:print-generalRemark($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+    function app:print-generalRemark($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:p)* {
         let $generalRemark := wega-util:transform(query:generalRemark($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($generalRemark) and (every $i in $generalRemark satisfies $i instance of element())) then $generalRemark
@@ -1550,8 +1552,8 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-thematicCom($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
-        let $thematicCom := core:doc(substring-after($model('thematicCom'), 'wega:'))
+    function app:print-thematicCom($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:p)* {
+        let $thematicCom := crud:doc(substring-after($model('thematicCom'), 'wega:'))
         return
             element { node-name($node) } {
                 attribute href { app:createUrlForDoc($thematicCom, $lang) },
@@ -1614,7 +1616,7 @@ declare
             (: There may be multiple addressees or senders! :)
             case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
             case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
-            default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
+            default return wega-util:log-to-file('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
         let $normDate := query:get-normalized-date($letter)
         return (
             element xhtml:a {
@@ -1633,7 +1635,7 @@ declare
     function app:print-context-relatedItem($node as node(), $model as map(*), $lang as xs:string) as item()* {
         if($model?context-relatedItem?context-relatedItem-doc) 
         then app:createDocLink($model?context-relatedItem?context-relatedItem-doc, wdt:lookup(config:get-doctype-by-id($model?context-relatedItem?context-relatedItem-doc/*/data(@xml:id)), $model?context-relatedItem?context-relatedItem-doc)?title('txt'), $lang, ())
-        else core:logToFile('warn', 'unable to process related items for ' || $model?docID)
+        else wega-util:log-to-file('warn', 'unable to process related items for ' || $model?docID)
 };
 
 declare 
@@ -1650,7 +1652,7 @@ declare
  :)
 declare 
     %templates:default("lang", "en")
-    function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
+    function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div) {        
         let $doc := $model('doc')
         let $correspondent-1-key := tokenize($model?('exist:path'), '/')[3]
         let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
@@ -1694,7 +1696,7 @@ declare
  : @param $lang the current language (de|en)
  : @return element html:p
  :)
-declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(p)? {
+declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(xhtml:p)? {
     let $authorElem := query:get-author-element($doc)
     let $dateFormat := 
         if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
@@ -1714,7 +1716,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
  : by writing a whitespace separated list of IIIF manifest URLs to the `@data-url` attribute
  : for a client side renderer. 
  :)
-declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
+declare function app:init-facsimile($node as node(), $model as map(*)) as element(xhtml:div) {
     element {node-name($node)} {
         $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
         if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then (
@@ -1743,7 +1745,7 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
 ~:)
 declare
 %templates:default("lang", "en")
-    function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(input)* {
+    function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:input)* {
     let $placeholder := lang:get-language-string("searchTerm",$lang)
     return
     element {node-name($node)} {
@@ -1756,7 +1758,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:search-filter($node as node(), $model as map(*), $lang as xs:string) as element(label)* {
+    function app:search-filter($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:label)* {
         let $selected-docTypes := request:get-parameter('d', ()) 
         return 
             for $docType in $search:wega-docTypes
@@ -1840,7 +1842,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:preview-citation($node as node(), $model as map(*), $lang as xs:string) as element(p)? {
+    function app:preview-citation($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:p)? {
         let $source := query:get-main-source($model('doc'))
         return 
             typeswitch($source)
@@ -1900,7 +1902,7 @@ declare
     function app:preview-relator-role($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
         if($model('relator')/self::mei:*/@role) then lang:get-language-string($model('relator')/data(@role), $lang)
         else if($model('relator')/self::tei:author) then lang:get-language-string('aut', $lang)
-        else core:logToFile('warn', 'app:preview-relator-role(): Failed to reckognize role')
+        else wega-util:log-to-file('warn', 'app:preview-relator-role(): Failed to reckognize role')
 };
 
 declare 
@@ -1922,7 +1924,7 @@ declare
             if($popover castable as xs:boolean) then xs:boolean($popover)
             else false()
         return
-            if($key and $myPopover) then app:createDocLink(core:doc($key), query:title($key), $lang, (), true())
+            if($key and $myPopover) then app:createDocLink(crud:doc($key), query:title($key), $lang, (), true())
             else element xhtml:span {
                 str:normalize-space($model('relator'))
             }
