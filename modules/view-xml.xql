@@ -5,7 +5,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 
@@ -31,10 +31,10 @@ let $schemaID := request:get-attribute('schemaID')
 let $chapID := request:get-attribute('chapID')
 let $dbPath := request:get-attribute('dbPath')
 let $content := 
-	if(config:get-doctype-by-id($docID)) then try { core:doc($docID) } catch  * {()}
+	if(config:get-doctype-by-id($docID)) then try { crud:doc($docID) } catch  * {()}
 	else if($specID) then gl:spec($specID, $schemaID)
 	else if($chapID) then gl:chapter($chapID)
-	else if($dbPath) then try {doc($dbPath)} catch * { core:logToFile('error', 'Failed to load XML document at "' || $dbPath  || '"') }
+	else if($dbPath) then try {doc($dbPath)} catch * { wega-util:log-to-file('error', 'Failed to load XML document at "' || $dbPath  || '"') }
 	else ()
 let $format := local:format()
 

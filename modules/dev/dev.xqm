@@ -18,7 +18,8 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "../crud.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "../wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
@@ -33,12 +34,12 @@ declare function dev:createNewID($docType as xs:string) as xs:string {
     let $IDFileName := concat($docType, '-tmpIDs.xml')
     let $IDFileURI := str:join-path-elements(($config:tmp-collection-path, $IDFileName))
     let $onFailureFunc := function($errCode, $errDesc) {
-        core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+        wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
     }
     let $IDFile := mycache:doc($IDFileURI, dev:create-empty-idfile#2, ($docType, $IDFileURI), xs:dayTimeDuration('P1D'), $onFailureFunc)
        (: if(not(doc-available(concat($config:tmp-collection-path, $IDFileName)))) then doc(xmldb:store($config:tmp-collection-path, $IDFileName, <dictionary xml:id="{$IDFileName}"/>))
         else doc(concat($config:tmp-collection-path, $IDFileName)):)
-    let $coll1 := core:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
+    let $coll1 := crud:data-collection($docType)/*/data(@xml:id) (: core:getOrCreateColl() geht nicht, da hier auch die Dubletten mit berücksichtigt werden müssen! :)
     let $coll2 := $IDFile//dev:entry/substring(@xml:id, 2)
     let $removeOldTempIDS := dev:removeOldEntries($IDFile)
     let $maxID := count($coll1) + count($coll2) + 200
@@ -62,7 +63,7 @@ declare %private function dev:addFffiEntry($IDFile as document-node(), $id as xs
     let $newNode := <entry xml:id="{$id}" dateTime="{$currentdateTime}" xmlns="http://xquery.weber-gesamtausgabe.de/modules/dev"/>
     let $storeNode := 
         if (config:get-doctype-by-id(substring($id, 2))) then update insert $newNode into $IDFile/dev:dictionary
-        else core:logToFile('error', 'dev:addFffiEntry(): got wrong ID: ' || $id || '. Request was: ' || request:get-uri() || '?' || request:get-query-string())
+        else wega-util:log-to-file('error', 'dev:addFffiEntry(): got wrong ID: ' || $id || '. Request was: ' || request:get-uri() || '?' || request:get-query-string())
     return 
         $IDFile//id($id)/string(@xml:id)
 };

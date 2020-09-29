@@ -56,10 +56,10 @@ declare
         let $docType := config:get-doctype-by-id($model?docID)
         let $func := 
             try { function-lookup(xs:QName('img:iconography4' || $docType), 3) } 
-            catch * { core:logToFile('error', 'Failed to lookup iconography-function for ' || $docType ) }
+            catch * { wega-util:log-to-file('error', 'Failed to lookup iconography-function for ' || $docType ) }
         return 
             if(exists($func)) then $func($node, $model, $lang)
-            else core:logToFile('debug', 'Missing iconography-function for ' || $docType )
+            else wega-util:log-to-file('debug', 'Missing iconography-function for ' || $docType )
 };
 
 (:~

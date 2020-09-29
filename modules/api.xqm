@@ -16,9 +16,11 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace repo="http://exist-db.org/xquery/repo";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
 import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/search" at "search.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
+import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -108,7 +110,7 @@ declare function api:code-findByElement($model as map(*)) {
 };
 
 declare function api:application-status($model as map(*)*) as map(*)* {
-    let $healthy := query:facsimile(core:doc('A040043'))[tei:graphic/@url]
+    let $healthy := query:facsimile(crud:doc('A040043'))[tei:graphic/@url]
                     and core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
     return
     (
@@ -156,7 +158,7 @@ declare function api:facets($model as map(*)) as map(*)* {
     let $localFilepath := str:join-path-elements(($config:tmp-collection-path, 'facets', $fileName || '.json'))
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $onFailureFunc := function($errCode, $errDesc) {
-            core:logToFile('warn', string-join(($errCode, $errDesc), ' ;; '))
+            wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
         }
     (: check whether the result set is already filtered  :)
     let $filtered := map:keys($model)[not(.= ('term', 'facet', 'scope', 'docType'))] = $search:valid-params
@@ -218,10 +220,10 @@ declare %private function api:get-facets($model as map(*)) as array(*) {
  :  * GND, e.g. http://d-nb.info/gnd/118629662
 ~:)
 declare %private function api:findByID($id as xs:string) as document-node()* {
-    if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then core:doc($id)
-    else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then core:doc(substring-after($id, 'de/'))
+    if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then crud:doc($id)
+    else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then crud:doc(substring-after($id, 'de/'))
     else if(matches(normalize-space($id), 'https?://d-nb.info/gnd/')) then query:doc-by-gnd(substring-after($id, '/gnd/'))
-    else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then try { query:doc-by-gnd(wega-util:viaf2gnd(substring-after($id, '/viaf/'))) } catch * {()}
+    else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then try { query:doc-by-gnd(er:viaf2gnd(substring-after($id, '/viaf/'))) } catch * {()}
     else error($api:UNSUPPORTED_ID_SCHEMA, 'Failed to recognize ID schema for "' || $id || '"')
 };
 
@@ -240,7 +242,7 @@ declare function api:ant-deleteResources($model as map(*)) {
         if(count(($fullPathCollection, $fullPathResource)) eq 1) then
             if($fullPathResource) then xmldb:remove(functx:substring-before-last($fullPathResource, '/'), functx:substring-after-last($fullPathResource, '/'))
             else xmldb:remove($fullPathCollection)
-        else if(count(($fullPathCollection, $fullPathResource)) eq 0) then core:logToFile('info', 'Resource ' || $path || ' not available')
+        else if(count(($fullPathCollection, $fullPathResource)) eq 0) then wega-util:log-to-file('info', 'Resource ' || $path || ' not available')
         else error(QName('wega','error'), 'ambigious delete target: ' || $path)
     :\)
 };

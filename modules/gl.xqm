@@ -17,7 +17,7 @@ declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 (:import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";:)
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -31,7 +31,7 @@ import module namespace functx="http://www.functx.com";
 declare variable $gl:guidelines-collection-path as xs:string := $config:app-root || '/guidelines';
 declare variable $gl:main-source as document-node()? := 
     try { doc(str:join-path-elements(($gl:guidelines-collection-path, 'guidelines-de-wega_all.compiled.xml'))) }
-    catch * {core:logToFile('error', 'failed to load main Guidelines source')};
+    catch * {wega-util:log-to-file('error', 'failed to load main Guidelines source')};
 
 declare variable $gl:schemaSpec-idents as xs:string* := gl:schemaSpec-idents();
 
@@ -342,7 +342,7 @@ declare
 	%templates:default("lang", "en")
 	function gl:preview($node as node(), $model as map(*), $lang as xs:string) as map(*) {
 		let $codeSample := api:codeSample($model('result-page-entry'), $model)
-		let $doc := core:doc($codeSample?docID)
+		let $doc := crud:doc($codeSample?docID)
 		let $docType := config:get-doctype-by-id($codeSample?docID)
 		return
 			map {

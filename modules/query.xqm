@@ -14,6 +14,7 @@ declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace xdt="http://www.w3.org/2005/xpath-datatypes";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
@@ -101,7 +102,7 @@ declare function query:doc-by-gnd($gnd as xs:string) as document-node()* {
  : @return xs:string
 :)
 declare function query:doc-by-viaf($viaf as xs:string) as document-node()? {
-    let $gnd := wega-util:viaf2gnd($viaf)
+    let $gnd := er:viaf2gnd($viaf)
     return
         core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$viaf][@type='viaf']/root() |
         core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$viaf][@type='viaf']/root() |
@@ -121,17 +122,17 @@ declare function query:doc-by-viaf($viaf as xs:string) as document-node()? {
 declare function query:get-gnd($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
-            case xs:string return core:doc($item)
-            case xs:untypedAtomic return core:doc(string($item))
-            case attribute() return core:doc(string($item))
+            case xs:string return crud:doc($item)
+            case xs:untypedAtomic return crud:doc(string($item))
+            case attribute() return crud:doc(string($item))
             case element() return $item
             case document-node() return $item
             default return ()
     return
         (: WARNING: there might be several IDs of the same kind :)
         if($doc//tei:idno[@type = 'gnd']) then ($doc//tei:idno[@type = 'gnd'])[1]
-        else if($doc//tei:idno[@type='viaf']) then ($doc//tei:idno[@type='viaf'] ! wega-util:translate-authority-id(., 'gnd'))[1]
-        else if($doc//tei:idno[@type='geonames']) then ($doc//tei:idno[@type='geonames'] ! wega-util:translate-authority-id(., 'gnd'))[1]
+        else if($doc//tei:idno[@type='viaf']) then ($doc//tei:idno[@type='viaf'] ! er:translate-authority-id(., 'gnd'))[1]
+        else if($doc//tei:idno[@type='geonames']) then ($doc//tei:idno[@type='geonames'] ! er:translate-authority-id(., 'gnd'))[1]
         else if($doc//mei:altId[@type = 'gnd']) then ($doc//mei:altId[@type = 'gnd'])[1]
         else ()
 };
@@ -146,19 +147,19 @@ declare function query:get-gnd($item as item()?) as xs:string? {
 declare function query:get-viaf($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
-            case xs:string return core:doc($item)
-            case xs:untypedAtomic return core:doc(string($item))
-            case attribute() return core:doc(string($item))
+            case xs:string return crud:doc($item)
+            case xs:untypedAtomic return crud:doc(string($item))
+            case attribute() return crud:doc(string($item))
             case element() return $item
             case document-node() return $item
             default return ()
     return
         (: WARNING: there might be several IDs of the same kind :)
         if($doc//tei:idno[@type = 'viaf']) then ($doc//tei:idno[@type = 'viaf'])[1]
-        else if($doc//tei:idno[@type='gnd']) then ($doc//tei:idno[@type='gnd'] ! wega-util:translate-authority-id(., 'viaf'))[1]
-        else if($doc//tei:idno[@type='geonames']) then ($doc//tei:idno[@type='geonames'] ! wega-util:translate-authority-id(., 'viaf'))[1]
+        else if($doc//tei:idno[@type='gnd']) then ($doc//tei:idno[@type='gnd'] ! er:translate-authority-id(., 'viaf'))[1]
+        else if($doc//tei:idno[@type='geonames']) then ($doc//tei:idno[@type='geonames'] ! er:translate-authority-id(., 'viaf'))[1]
         else if($doc//mei:altId[@type = 'viaf']) then ($doc//mei:altId[@type = 'viaf'])[1]
-        else if($doc//mei:altId[@type='gnd']) then ($doc//mei:altId[@type='gnd'] ! wega-util:translate-authority-id(., 'viaf'))[1]
+        else if($doc//mei:altId[@type='gnd']) then ($doc//mei:altId[@type='gnd'] ! er:translate-authority-id(., 'viaf'))[1]
         else ()
 };
 
@@ -173,9 +174,9 @@ declare function query:get-viaf($item as item()?) as xs:string? {
 declare function query:get-geonamesID($item as item()?) as xs:string? {
     let $doc := 
         typeswitch($item)
-            case xs:string return core:doc($item)
-            case xs:untypedAtomic return core:doc(string($item))
-            case attribute() return core:doc(string($item))
+            case xs:string return crud:doc($item)
+            case xs:untypedAtomic return crud:doc(string($item))
+            case attribute() return crud:doc(string($item))
             case element() return $item
             case document-node() return $item
             default return ()
@@ -405,7 +406,7 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
     let $nextLetterToSender := wdt:letters($nextLetterToSenderColl)('sort')(())[1]/root()
     (: Direkter vorausgehender Brief des Korrespondenzpartners (worauf dieser eine Antwort ist) :)
     let $prevLetterFromAddressee :=
-        if($doc//tei:correspContext) then core:doc($doc//tei:correspContext/tei:ref[@type='previousLetterFromAddressee']/string(@target))
+        if($doc//tei:correspContext) then crud:doc($doc//tei:correspContext/tei:ref[@type='previousLetterFromAddressee']/string(@target))
         else (
             let $prevLetterFromAddresseeColl := $authorColl[sort:index('letters', .) lt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
             return wdt:letters($prevLetterFromAddresseeColl)('sort')(())[last()]/root()
@@ -415,7 +416,7 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
     let $prevLetterFromAuthorToAddressee := wdt:letters($prevLetterFromAuthorToAddresseeColl)('sort')(())[last()]/root()
     (: Direkter Antwortbrief des Adressaten:)
     let $replyLetterFromAddressee := 
-        if($doc//tei:correspContext) then core:doc($doc//tei:correspContext/tei:ref[@type='nextLetterFromAddressee']/string(@target))
+        if($doc//tei:correspContext) then crud:doc($doc//tei:correspContext/tei:ref[@type='nextLetterFromAddressee']/string(@target))
         else (
             let $replyLetterFromAddresseeColl := $authorColl[sort:index('letters', .) gt $indexOfCurrentLetter]//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name][@key=$addresseeID]
             return wdt:letters($replyLetterFromAddresseeColl)('sort')(())[1]/root()
@@ -506,7 +507,7 @@ declare function query:context-relatedItems($doc as document-node()?) as map(*)?
         return 
             map {
                 'context-relatedItem-type': data($relatedItem/@type),
-                'context-relatedItem-doc': core:doc(substring-after($relatedItem/@target, ':')),
+                'context-relatedItem-doc': crud:doc(substring-after($relatedItem/@target, ':')),
                 'context-relatedItem-n': data($relatedItem/@n)
             }
     return

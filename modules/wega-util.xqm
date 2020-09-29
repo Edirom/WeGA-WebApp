@@ -21,37 +21,12 @@ declare namespace range="http://exist-db.org/xquery/range";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
-declare function wega-util:beacon-map($gnd as xs:string, $docType as xs:string) as map(*) {
-    let $findbuchResponse := 
-        switch($docType)
-        case 'persons' return er:grabExternalResource('beacon', $gnd, $docType, 'de')
-        default return er:grabExternalResource('gnd-beacon', $gnd, $docType, 'de')
-    (:let $log := util:log-system-out($gnd):)
-    let $jxml := 
-        if(exists($findbuchResponse)) then 
-            if($findbuchResponse/er:body/@encoding = 'Base64Encoded') then parse-json(util:binary-to-string($findbuchResponse))
-            else parse-json($findbuchResponse)
-        else ()
-    return 
-        if(exists($jxml)) then
-            map:merge(
-                for $i in 1 to array:size($jxml?2)
-                let $link  := str:normalize-space($jxml?4?($i))
-                let $title := str:normalize-space($jxml?3?($i))
-                let $text  := str:normalize-space($jxml?2?($i))
-                return
-                    if(matches($link,"weber-gesamtausgabe.de")) then ()
-                    else map:entry($title, ($link, $text))
-            )
-        else map {}
-};
 
 (:~
  : Processing XML files for display (and download)
@@ -241,7 +216,7 @@ declare function wega-util:stopwatch($func as function() as item(), $func-params
         else ()
     return (
         $result, 
-        core:logToFile('debug', 'stopwatch (' || function-name($func) || '): ' || string(seconds-from-duration(util:system-time() - $startTime)) || $message)
+        wega-util:log-to-file('debug', 'stopwatch (' || function-name($func) || '): ' || string(seconds-from-duration(util:system-time() - $startTime)) || $message)
     )
 };
 
@@ -344,46 +319,11 @@ declare function wega-util:spherical-law-of-cosines-distance($latLon1 as array(*
 };
 
 declare function wega-util:distance-between-places($placeID1 as xs:string, $placeID2 as xs:string) as xs:double {
-   let $places := core:getOrCreateColl('places', 'indices', true())
+   let $places := crud:data-collection('places')
    let $latLon1 := array { tokenize($places/id($placeID1)//tei:geo, '\s+') ! . cast as xs:double }
    let $latLon2 := array { tokenize($places/id($placeID2)//tei:geo, '\s+') ! . cast as xs:double }
    return 
       wega-util:spherical-law-of-cosines-distance($latLon1, $latLon2)
-};
-
-(:~
- :  Lookup VIAF ID for a given GND ID.
- :  (This is a shortcut function for `wega-util:translate-authority-id()`)
- :
- :  @param $gnd a GND identifier
- :  @return the corresponding VIAF identifier(s) as string(s)
-~:)
-declare function wega-util:gnd2viaf($gnd as xs:string) as xs:string* {
-    wega-util:translate-authority-id(<tei:idno type="gnd">{$gnd}</tei:idno>, 'viaf')
-};
-
-(:~
- :  Lookup GND ID for a given VIAF ID.
- :  (This is a shortcut function for `wega-util:translate-authority-id()`)
- :
- :  @param $viaf a VIAF identifier
- :  @return the corresponding GND identifier(s) as string(s)
-~:)
-declare function wega-util:viaf2gnd($viaf as xs:string) as xs:string* {
-    wega-util:translate-authority-id(<tei:idno type="viaf">{$viaf}</tei:idno>, 'gnd')
-};
-
-(:~
- : Translate any authority ID via wikidata (which serves as a central hub)
- :
- : @param $idno a `<tei:idno>`-element, e.g. `<idno type='geonames'>2759794</idno>`
- : @param $to the desired authority-provider, e.g. 'gnd'
- : @return the translated authority ID 
-~:)
-declare function wega-util:translate-authority-id($idno as element(), $to as xs:string) as xs:string*  {
-    let $wikidata := er:grab-external-resource-wikidata(string($idno), $idno/@type)
-    return
-        $wikidata//sr:binding[@name=$to] ! str:normalize-space(.) 
 };
 
 (:~
@@ -408,7 +348,7 @@ declare function wega-util:check-if-update-necessary($currentDateTimeOfFile as x
         if(exists($lease)) then $lease
         else 
             try { config:get-option('lease-duration') cast as xs:dayTimeDuration }
-            catch * { xs:dayTimeDuration('P1D'), core:logToFile('error', string-join(('wega-util:check-if-update-necessary', $err:code, $err:description, ' no default "lease-duration" with the datatype xs:dayTimeDuration was found in the options file. Moving on with caching for one day, i.e. "P1D.'), ' ;; '))}
+            catch * { xs:dayTimeDuration('P1D'), wega-util:log-to-file('error', string-join(('wega-util:check-if-update-necessary', $err:code, $err:description, ' no default "lease-duration" with the datatype xs:dayTimeDuration was found in the options file. Moving on with caching for one day, i.e. "P1D.'), ' ;; '))}
     return
         (: Aktualisierung entweder bei geänderter Datenbank oder bei veraltetem Cache :) 
         config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or $currentDateTimeOfFile + $my-lease lt current-dateTime()
@@ -432,7 +372,7 @@ declare function wega-util:print-forename-surname-from-nameLike-element($nameLik
         (: the most specific case first: a reg-name with leading forename, e.g. `<persName type="reg"><forename>Eugen</forename> <forename>Friedrich</forename>…`  :)
         if(($nameLikeElement/element()[1])[self::tei:forename]) then str:normalize-space($nameLikeElement)
         (: any other persName will recursively apply this function :)
-        else if($id and config:is-person($id)) then wega-util:print-forename-surname-from-nameLike-element(core:doc($id)//tei:persName[@type='reg'])
+        else if($id and config:is-person($id)) then wega-util:print-forename-surname-from-nameLike-element(crud:doc($id)//tei:persName[@type='reg'])
         (: the default case for persnames: swap the order of forename und surname :)
         else if($nameLikeElement[@type='reg']) then str:print-forename-surname($nameLikeElement)
         (: org with key:)
@@ -451,6 +391,23 @@ declare function wega-util:print-forename-surname-from-nameLike-element($nameLik
  : @return the corresponding WeGA ID for the settlement
  :)
 declare function wega-util:settlement-key-from-rism-siglum($siglum as xs:string) as xs:string {
-    let $keys := core:data-collection('letters')//tei:repository[range:field-eq('rism-siglum', $siglum)]/preceding-sibling::tei:settlement/@key
+    let $keys := crud:data-collection('letters')//tei:repository[range:field-eq('rism-siglum', $siglum)]/preceding-sibling::tei:settlement/@key
     return string($keys[1])
+};
+
+(:~
+ : Write log message to log file
+ :
+ : @author Peter Stadler
+ : @param $priority to be used by util:log-app:  'error', 'warn', 'debug', 'info', 'trace'
+ : @param $message the log message
+:)
+declare function wega-util:log-to-file($priority as xs:string, $message as xs:string) as empty-sequence() {
+    let $file := config:get-option('errorLogFile')
+    let $message := concat($message, ' (rev. ', config:getCurrentSvnRev(), ')')
+    return (
+        util:log-app($priority, $file, $message),
+        if($config:isDevelopment and ($priority = ('error', 'warn', 'debug'))) then util:log-system-out($message)
+        else ()
+    )
 };

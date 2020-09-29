@@ -556,13 +556,13 @@ declare function config:get-ordered-browser-languages() as xs:string* {
 
 (:~
  :  Private logging function for the config module
- :  This is a simple wrapper around the public `core:logToFile()` to avoid importing this module directly
+ :  This is a simple wrapper around the public `wega-util:log-to-file()` to avoid importing this module directly
  :
  :  For a description of params see there
  :)
 declare function config:log($errLevel as xs:string, $errMsg as xs:string) as empty-sequence() {
     let $logger := 
-        try { function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/core', 'core:logToFile'), 2) } 
+        try { function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/wega-util', 'wega-util:log-to-file'), 2) } 
         catch * {()}
     return
         if(exists($logger)) then $logger($errLevel, $errMsg)
@@ -599,4 +599,16 @@ declare function config:link-to-current-app($relLink as xs:string?, $exist-vars 
     if(request:exists())
     then str:join-path-elements(('/', request:get-context-path(), $exist-vars("exist:prefix"), $exist-vars('exist:controller'), $relLink))
     else config:log('warn', 'request object does not exist; failing to create a link')
+};
+
+(:~
+ : Creates a permalink by concatenating the $permaLinkPrefix (set in options) with the given path piped through config:link-to-current-app()
+ : Mainly used for creating persistent links to documents by simply passing the docID  
+ :
+ : @author Peter Stadler
+ : @param $relLink a relative path within the current app
+ : @return permalink to resource
+ :)
+declare function config:permalink($relLink as xs:string) as xs:anyURI? {
+    xs:anyURI(config:get-option('permaLinkPrefix') || config:link-to-current-app($relLink))
 };

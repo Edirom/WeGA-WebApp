@@ -14,7 +14,7 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 :)
 import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod" at "lod.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 
@@ -23,7 +23,7 @@ declare option output:media-type "application/ld+json";
 
 
 let $docID := request:get-attribute('docID')
-let $doc := core:doc($docID)
+let $doc := crud:doc($docID)
 let $docType := config:get-doctype-by-id($docID)
 let $model := map {'docID': $docID, 'doc': $doc, 'docType': $docType}
 let $jsonld := 

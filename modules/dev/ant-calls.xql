@@ -6,7 +6,6 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "../wdt.xqm";
 
@@ -34,7 +33,7 @@ declare function local:delete-resources($data as xs:string) {
         if(count(($fullPathCollection, $fullPathResource)) eq 1) then
             if($fullPathResource) then xmldb:remove(functx:substring-before-last($fullPathResource, '/'), functx:substring-after-last($fullPathResource, '/'))
             else xmldb:remove($fullPathCollection)
-        else if(count(($fullPathCollection, $fullPathResource)) eq 0) then core:logToFile('info', 'Resource ' || $path || ' not available')
+        else if(count(($fullPathCollection, $fullPathResource)) eq 0) then wega-util:log-to-file('info', 'Resource ' || $path || ' not available')
         else error(QName('wega','error'), 'ambigious delete target: ' || $path)
 };
 

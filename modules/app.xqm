@@ -17,6 +17,7 @@ declare namespace ft="http://exist-db.org/xquery/lucene";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
@@ -128,14 +129,14 @@ declare
         let $date := xs:dateTime(map:get($svnProps, 'dateTime'))
         let $formatedDate := 
             try { date:format-date($date, $config:default-date-picture-string($lang), $lang) }
-            catch * { core:logToFile('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
+            catch * { wega-util:log-to-file('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
         let $version := concat(config:expath-descriptor()/@version, if($config:isDevelopment) then 'dev' else '')
         let $versionDate := date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
         return
             map {
                 'bugEmail' : config:get-option('bugEmail'),
-                'permalink' : core:permalink($model('docID')),
-                'versionNews' : app:createDocLink(core:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ()),
+                'permalink' : config:permalink($model('docID')),
+                'versionNews' : app:createDocLink(crud:doc(config:get-option('versionNews')), lang:get-language-string('versionInformation',($version, $versionDate), $lang), $lang, ()),
                 'latestChange' :
                     if($config:isDevelopment) then lang:get-language-string('lastChangeDateWithAuthor',($formatedDate,$author),$lang)
                     else lang:get-language-string('lastChangeDateWithoutAuthor', $formatedDate, $lang)
@@ -165,7 +166,7 @@ declare
                     case 'tei_simplePrint' return $url || '?format=tei_simplePrint'
                     case 'text' return replace($url, '\.xml', '.txt')
                     case 'dta' return $url || '?format=dta'
-                    default return core:logToFile('warn', 'app:download-link(): unsupported format "' || $format || '"!')
+                    default return wega-util:log-to-file('warn', 'app:download-link(): unsupported format "' || $format || '"!')
                 },
                 templates:process($node/node(), $model)
             }
@@ -213,7 +214,7 @@ declare
             else (query:get-author-element($model?doc)[(@key, @codedval) = $authorID])[1]
         let $href :=
             if ($authorID = $anonymusID) then ()
-            else app:createUrlForDoc(core:doc($authorID), $lang)
+            else app:createUrlForDoc(crud:doc($authorID), $lang)
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
@@ -588,14 +589,14 @@ declare
         let $random :=
             if(count($words) gt 1) then util:random(count($words) - 1) + 1 (: util:random may return 0 and takes as argument positiveInteger! :)
             else if(count($words) eq 1) then 1
-            else core:logToFile('info', 'app:word-of-the-day(): no words of the day found')
+            else wega-util:log-to-file('info', 'app:word-of-the-day(): no words of the day found')
         return 
             map {
                 'wordOfTheDay' : 
                     if($random) then str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang)
                     else str:normalize-space($node/xhtml:h1),
                 'wordOfTheDayURL' : 
-                    if($random) then app:createUrlForDoc(core:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+                    if($random) then app:createUrlForDoc(crud:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
                     else '#'
             }
 };
@@ -683,9 +684,9 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
     if(exists($persName/@key)) then 
-        if ($order eq 'fs') then app:createDocLink(core:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
-        else if ($order eq 's') then app:createDocLink(core:doc($persName/string(@key)), substring-before(query:title($persName/@key),','), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
-        else app:createDocLink(core:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        if ($order eq 'fs') then app:createDocLink(crud:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
+        else if ($order eq 's') then app:createDocLink(crud:doc($persName/string(@key)), substring-before(query:title($persName/@key),','), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
+        else app:createDocLink(crud:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
     else if(not(functx:all-whitespace($persName))) then 
         if ($order eq 'fs') then <xhtml:span class="noDataFound">{wega-util:print-forename-surname-from-nameLike-element($persName)}</xhtml:span>
         else <xhtml:span class="noDataFound">{string($persName)}</xhtml:span>
@@ -897,7 +898,7 @@ declare
         'contacts' : core:getOrCreateColl('contacts', $model('docID'), true()),
         'biblio' : core:getOrCreateColl('biblio', $model('docID'), true()),
         'news' : core:getOrCreateColl('news', $model('docID'), true()),
-        (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! core:doc(.),:)
+        (:distinct-values(core:getOrCreateColl('letters', $model('docID'), true())//@key[ancestor::tei:correspDesc][. != $model('docID')]) ! crud:doc(.),:)
         'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
         'thematicCommentaries' : core:getOrCreateColl('thematicCommentaries', $model('docID'), true()),
         'documents' : core:getOrCreateColl('documents', $model('docID'), true()),
@@ -920,7 +921,7 @@ declare
     function app:beacon($node as node(), $model as map(*)) as map(*) {
         let $gnd := query:get-gnd($model?doc)
         let $beaconMap := 
-            if($gnd) then wega-util:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
+            if($gnd) then er:beacon-map($gnd, config:get-doctype-by-id($model('docID')))
             else map {}
         return
             map { 'beaconLinks': 
@@ -1196,7 +1197,7 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
         let $docID := $model('docID')
         let $serializationParameters := <output:serialization-parameters><output:method>xml</output:method><output:media-type>application/xml</output:media-type><output:indent>no</output:indent></output:serialization-parameters>
         let $doc :=
-        	if(config:get-doctype-by-id($docID)) then core:doc($docID)
+        	if(config:get-doctype-by-id($docID)) then crud:doc($docID)
         	else gl:spec($model('exist:path'))
         return
             if($config:isDevelopment) then serialize($doc, $serializationParameters)
@@ -1552,7 +1553,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:print-thematicCom($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:p)* {
-        let $thematicCom := core:doc(substring-after($model('thematicCom'), 'wega:'))
+        let $thematicCom := crud:doc(substring-after($model('thematicCom'), 'wega:'))
         return
             element { node-name($node) } {
                 attribute href { app:createUrlForDoc($thematicCom, $lang) },
@@ -1615,7 +1616,7 @@ declare
             (: There may be multiple addressees or senders! :)
             case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
             case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
-            default return core:logToFile('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
+            default return wega-util:log-to-file('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
         let $normDate := query:get-normalized-date($letter)
         return (
             element xhtml:a {
@@ -1634,7 +1635,7 @@ declare
     function app:print-context-relatedItem($node as node(), $model as map(*), $lang as xs:string) as item()* {
         if($model?context-relatedItem?context-relatedItem-doc) 
         then app:createDocLink($model?context-relatedItem?context-relatedItem-doc, wdt:lookup(config:get-doctype-by-id($model?context-relatedItem?context-relatedItem-doc/*/data(@xml:id)), $model?context-relatedItem?context-relatedItem-doc)?title('txt'), $lang, ())
-        else core:logToFile('warn', 'unable to process related items for ' || $model?docID)
+        else wega-util:log-to-file('warn', 'unable to process related items for ' || $model?docID)
 };
 
 declare 
@@ -1901,7 +1902,7 @@ declare
     function app:preview-relator-role($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
         if($model('relator')/self::mei:*/@role) then lang:get-language-string($model('relator')/data(@role), $lang)
         else if($model('relator')/self::tei:author) then lang:get-language-string('aut', $lang)
-        else core:logToFile('warn', 'app:preview-relator-role(): Failed to reckognize role')
+        else wega-util:log-to-file('warn', 'app:preview-relator-role(): Failed to reckognize role')
 };
 
 declare 
@@ -1923,7 +1924,7 @@ declare
             if($popover castable as xs:boolean) then xs:boolean($popover)
             else false()
         return
-            if($key and $myPopover) then app:createDocLink(core:doc($key), query:title($key), $lang, (), true())
+            if($key and $myPopover) then app:createDocLink(crud:doc($key), query:title($key), $lang, (), true())
             else element xhtml:span {
                 str:normalize-space($model('relator'))
             }
