@@ -203,7 +203,7 @@ declare function app:set-line-wrap($node as node(), $model as map(*)) as element
 :)
 declare 
     %templates:default("lang", "en")
-    function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+    function app:breadcrumb-person($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a) {
         let $authorID := tokenize($model?('exist:path'), '/')[3]
         let $anonymusID := config:get-option('anonymusID')
         let $authorElem :=
@@ -228,7 +228,7 @@ declare
 
 declare
     %templates:default("lang", "en")
-    function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(a) {
+    function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a) {
         let $href := core:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
         let $display-name := replace(xmldb:decode(functx:substring-after-last($href, '/')), '_', ' ')
         let $elem := 
@@ -265,7 +265,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as element(a)? {
+    function app:breadcrumb-register2($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a)? {
         if($model('docType') = 'indices') then ()
         else 
             element {node-name($node)} {
@@ -402,7 +402,7 @@ declare
     %templates:wrap
     %templates:default("page", "1")
     %templates:default("lang", "en")
-    function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(li)* {
+    function app:pagination($node as node(), $model as map(*), $page as xs:string, $lang as xs:string) as element(xhtml:li)* {
         let $page := if($page castable as xs:int) then xs:int($page) else 1
         let $a-element := function($page as xs:int, $text as xs:string) {
             element xhtml:a {
@@ -493,7 +493,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(li) {
+    function app:set-active-nav($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:li) {
         let $active := exists($node//xhtml:a[@href = $model('active-nav')])
         return
             element {node-name($node)} {
@@ -508,7 +508,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:set-active-lang($node as node(), $model as map(*), $lang as xs:string) as element(li) {
+    function app:set-active-lang($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:li) {
         let $curLang := lower-case(normalize-space($node))
         let $isActive := $lang = $curLang
         return
@@ -539,7 +539,7 @@ declare
 declare 
     %templates:default("fromDate", "")
     %templates:default("toDate", "")
-    function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(input) {
+    function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(xhtml:input) {
     element {node-name($node)} {
          $node/@*,
          attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
@@ -549,7 +549,7 @@ declare
     }
 };
 
-declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(input) {
+declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(xhtml:input) {
     element {node-name($node)} {
          $node/@*,
          if(map:contains($model('filters'), $key)) then attribute checked {'checked'}
@@ -620,7 +620,7 @@ declare
         }
 };
 
-declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(span)* {
+declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:span)* {
     let $date := $model?otd-date
     let $teiDate := $model('event')
     let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
@@ -651,8 +651,8 @@ declare function app:print-event($node as node(), $model as map(*), $lang as xs:
     )
 };
 
-declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(h2) {
-    <h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</h2>
+declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:h2) {
+    <xhtml:h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</xhtml:h2>
 };
 
 (:~
@@ -712,7 +712,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:search-options($node as node(), $model as map(*), $lang as xs:string) as element(option)* {
+    function app:search-options($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:option)* {
         <option xmlns="http://www.w3.org/1999/xhtml" value="all">{lang:get-language-string('all', $lang)}</option>,
         for $docType in $search:wega-docTypes
         let $displayTitle := lang:get-language-string($docType, $lang)
@@ -934,7 +934,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(div)* {
+    function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div)* {
         let $query-result:= app:inject-query($model?doc/*)
         let $bio := wega-util:transform($query-result//(tei:note[@type='bioSummary'] | tei:event[tei:head] | tei:note[parent::tei:org]), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
         return
@@ -978,7 +978,7 @@ declare
             case 'funeral' return $model('doc')//tei:death/tei:date[@type = 'funeral']
             default return ()
         let $orderedDates := wega-util-shared:order-by-cert($dates)
-        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(sup)? {
+        let $julian-tooltip := function($date as xs:date, $lang as xs:string) as element(xhtml:sup)? {
             let $julian-date := date:gregorian2julian($date)
             let $formated-julian-date := 
                 if($julian-date castable as xs:date) then date:format-date(xs:date($julian-date), $config:default-date-picture-string($lang), $lang)
@@ -991,7 +991,8 @@ declare
                 else ()
             return
                 if($formated-julian-date) then
-                <sup class="jul" 
+                <sup xmlns="http://www.w3.org/1999/xhtml"
+                    class="jul" 
                     data-toggle="tooltip" 
                     data-container="body" 
                     title="{concat(lang:get-language-string('julianDate', $lang), ': ', $formated-julian-date)}"
@@ -1475,7 +1476,7 @@ declare
 :)
 declare 
     %templates:default("lang", "en")
-    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+    function app:print-summary($node as node(), $model as map(*), $lang as xs:string) as element()* {
         let $revealedNote := 
             if($model('doc')//tei:correspDesc[@n = 'revealed']) then lang:get-language-string('correspondenceTextNotAvailable', $lang)
             else ()
@@ -1508,7 +1509,7 @@ declare %private function app:enquote-html($items as item()*, $lang as xs:string
 declare 
     %templates:default("lang", "en")
     %templates:default("generate", "false")
-    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(p)* {
+    function app:print-incipit($node as node(), $model as map(*), $lang as xs:string, $generate as xs:string) as element(xhtml:p)* {
         let $incipit := wega-util:transform(query:incipit($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($incipit) and (every $i in $incipit satisfies $i instance of element())) then $incipit ! element xhtml:p { app:enquote-html(./xhtml:p/node(), $lang) }
@@ -1538,7 +1539,7 @@ declare %private function app:compute-incipit($doc as document-node(), $lang as 
 
 declare 
     %templates:default("lang", "en")
-    function app:print-generalRemark($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+    function app:print-generalRemark($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:p)* {
         let $generalRemark := wega-util:transform(query:generalRemark($model('doc')), doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
         return 
             if(exists($generalRemark) and (every $i in $generalRemark satisfies $i instance of element())) then $generalRemark
@@ -1550,7 +1551,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:print-thematicCom($node as node(), $model as map(*), $lang as xs:string) as element(p)* {
+    function app:print-thematicCom($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:p)* {
         let $thematicCom := core:doc(substring-after($model('thematicCom'), 'wega:'))
         return
             element { node-name($node) } {
@@ -1650,7 +1651,7 @@ declare
  :)
 declare 
     %templates:default("lang", "en")
-    function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(div) {        
+    function app:csLink($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div) {        
         let $doc := $model('doc')
         let $correspondent-1-key := tokenize($model?('exist:path'), '/')[3]
         let $correspondent-1-gnd := query:get-gnd($correspondent-1-key)
@@ -1694,7 +1695,7 @@ declare
  : @param $lang the current language (de|en)
  : @return element html:p
  :)
-declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(p)? {
+declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(xhtml:p)? {
     let $authorElem := query:get-author-element($doc)
     let $dateFormat := 
         if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
@@ -1714,7 +1715,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
  : by writing a whitespace separated list of IIIF manifest URLs to the `@data-url` attribute
  : for a client side renderer. 
  :)
-declare function app:init-facsimile($node as node(), $model as map(*)) as element(div) {
+declare function app:init-facsimile($node as node(), $model as map(*)) as element(xhtml:div) {
     element {node-name($node)} {
         $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
         if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then (
@@ -1743,7 +1744,7 @@ declare function app:init-facsimile($node as node(), $model as map(*)) as elemen
 ~:)
 declare
 %templates:default("lang", "en")
-    function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(input)* {
+    function app:search-input($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:input)* {
     let $placeholder := lang:get-language-string("searchTerm",$lang)
     return
     element {node-name($node)} {
@@ -1756,7 +1757,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:search-filter($node as node(), $model as map(*), $lang as xs:string) as element(label)* {
+    function app:search-filter($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:label)* {
         let $selected-docTypes := request:get-parameter('d', ()) 
         return 
             for $docType in $search:wega-docTypes
@@ -1840,7 +1841,7 @@ declare
 
 declare 
     %templates:default("lang", "en")
-    function app:preview-citation($node as node(), $model as map(*), $lang as xs:string) as element(p)? {
+    function app:preview-citation($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:p)? {
         let $source := query:get-main-source($model('doc'))
         return 
             typeswitch($source)
