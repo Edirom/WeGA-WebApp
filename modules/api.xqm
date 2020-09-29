@@ -748,13 +748,13 @@ declare function api:validate-einrichtungsform($model as map(*)) as map(*)? {
 }; 
 
 (:~
- : Check parameter placenames
+ : Check parameter placenames (NB: this is supposed to be a string value, not a WeGA ID)
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-placenames($model as map(*)) as map(*)? {
-    if(every $i in $model?placenames ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'placenames': $model?placenames ! tokenize(., ',') }
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "placenames". It must be a WeGA place ID.' )
+    if(every $i in $model?placenames ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'placenames': ($model?placenames ! tokenize(., ',')) ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "placenames".' )
 }; 
 
 (:~
