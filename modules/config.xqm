@@ -134,7 +134,7 @@ declare function config:get-option($key as xs:string?) as xs:string? {
     let $result := str:normalize-space($config:options-file/id($key))
     return
         if($result) then $result
-        else core:logToFile('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
+        else config:log('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
 };
 
 (:~
@@ -151,16 +151,16 @@ declare function config:set-option($key as xs:string, $value as xs:string) as xs
     return
         if($old) then try {(
             update value $old with $value,
-            core:logToFile('debug', 'set preference "' || $key || '" to "' || $value || '"'),
+            config:log('debug', 'set preference "' || $key || '" to "' || $value || '"'),
             $value
             )}
-            catch * { core:logToFile('error', 'failed to set preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+            catch * { config:log('error', 'failed to set preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
         else try {( 
             update insert <entry xml:id="{$key}">{$value}</entry> into $config:options-file/id('various'),
-            core:logToFile('debug', 'added preference "' || $key || '" with value "' || $value || '"'),
+            config:log('debug', 'added preference "' || $key || '" with value "' || $value || '"'),
             $value
             )}
-            catch * { core:logToFile('error', 'failed to add preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+            catch * { config:log('error', 'failed to add preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
 };
 
 (:~
@@ -450,7 +450,7 @@ declare function config:entries-per-page() as xs:int {
         if($urlParam castable as xs:int and xs:int($urlParam) <= 50) then (xs:int($urlParam), session:set-attribute('limit', xs:int($urlParam)))
         else if($sessionParam castable as xs:int) then $sessionParam
         else if($default-option castable as xs:int) then xs:int($default-option)
-        else (10, core:logToFile('error', 'Failed to get default "entriesPerPage" from options file. Falling back to "10"!'))
+        else (10, config:log('error', 'Failed to get default "entriesPerPage" from options file. Falling back to "10"!'))
 };
 
 (:~
@@ -466,7 +466,7 @@ declare function config:line-wrap() as xs:boolean {
             else (false(), session:set-attribute('line-wrap', false()))
         else if($sessionParam instance of xs:boolean) then $sessionParam
         else if($default-option instance of xs:boolean) then $default-option
-        else (true(), core:logToFile('error', 'Failed to get default "line-wrap" from options file. Falling back to "true"!'))
+        else (true(), config:log('error', 'Failed to get default "line-wrap" from options file. Falling back to "true"!'))
 };
 
 (:~
@@ -500,7 +500,7 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
         case node() return parse-json(json:xml-to-json($value)) (: the output of json:xml-to-json() seems to be a string, not a map object :)
         case array(*) return $value
         case map(*) return $value
-        default return core:logToFile('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
+        default return config:log('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
     let $update := config:map-put-recursive($swagger.json, $key, $valueJSON)
     let $serialize-json := function($json as item()) as xs:string {
         serialize($json, <output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
@@ -511,9 +511,9 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
     let $update := 
         try { 
             xmldb:store($collection, $fileName, $update2string, 'application/json'),
-            core:logToFile('debug', 'set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '"')
+            config:log('debug', 'set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '"')
         }
-        catch * { core:logToFile('error', 'config:set-swagger-option(): failed to set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+        catch * { config:log('error', 'config:set-swagger-option(): failed to set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
     return
         if($update) then $valueJSON
         else ()
@@ -556,4 +556,13 @@ declare function config:get-ordered-browser-languages() as xs:string* {
         order by $q descending, $index ascending
         return $lang
     else ()
+};
+
+declare function config:log($errLevel as xs:string, $errMsg as xs:string) as empty-sequence() {
+    let $logger := 
+        try { function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/core', 'core:logToFile'), 2) } 
+        catch * {()}
+    return
+        if(exists($logger)) then $logger($errLevel, $errMsg)
+        else error(QName("http://xquery.weber-gesamtausgabe.de/modules/config", "LogError"), 'Unable to create logger')
 };
