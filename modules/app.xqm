@@ -12,6 +12,9 @@ declare namespace request="http://exist-db.org/xquery/request";
 declare namespace gn="http://www.geonames.org/ontology#";
 declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace ft="http://exist-db.org/xquery/lucene";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -26,7 +29,6 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
-import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 import module namespace functx="http://www.functx.com";
 import module namespace kwic="http://exist-db.org/xquery/kwic";
 import module namespace templates="http://exist-db.org/xquery/templates";

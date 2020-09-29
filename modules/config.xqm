@@ -15,9 +15,9 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace session="http://exist-db.org/xquery/session";
+declare namespace util="http://exist-db.org/xquery/util";
 
 import module namespace json="http://www.json.org";
-import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
