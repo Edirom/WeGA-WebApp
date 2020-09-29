@@ -181,7 +181,7 @@ declare function controller:forward-jsonld($exist-vars as map(*)*) as element(ex
 declare function controller:redirect-absolute($path as xs:string) as element(exist:dispatch) {
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <redirect url="{
-            core:link-to-current-app($path) || (
+            config:link-to-current-app($path) || (
             if(request:get-parameter-names() = 'format') then ('?format=' || request:get-parameter('format', ''))
             else ()
             )
@@ -423,7 +423,7 @@ declare function controller:encode-path-segments-for-uri($uri-string as xs:strin
 (:~
  : Warning: 
  : * No URL encoding here, see controller:encode-path-segments-for-uri()
- : * resulting paths do not include exist:prefix, see core:link-to-current-app()
+ : * resulting paths do not include exist:prefix, see config:link-to-current-app()
  :
  : @return a sequence of valid (external) paths for a document, based on the authors and docType 
 ~:)
@@ -468,7 +468,7 @@ declare function controller:docType-url-for-author($author as document-node(), $
         case 'letters' return 'correspondence'
         default return $docType
     return
-        core:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang)[1], $docType-path-segment || '.html')))
+        config:link-to-current-app(str:join-path-elements((controller:path-to-resource($author, $lang)[1], $docType-path-segment || '.html')))
 };
 
 (:
@@ -489,7 +489,7 @@ declare function controller:resolve-link($link as xs:string, $exist-vars as map(
             if($translation) then replace($translation, '\s+', '_') 
             else $token:)
     return 
-        core:link-to-current-app(str:join-path-elements(($exist-vars?lang, $tokens)), $exist-vars)
+        config:link-to-current-app(str:join-path-elements(($exist-vars?lang, $tokens)), $exist-vars)
 };
 
 declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:string, $targetLang as xs:string) as xs:string {
@@ -515,7 +515,7 @@ declare function controller:translate-URI($uri as xs:string, $sourceLang as xs:s
             else if($suffix) then lang:translate-language-string(controller:url-decode(substring-before($token, '.' || $suffix)), $sourceLang, $targetLang) || '.' || $suffix
             else lang:translate-language-string(controller:url-decode($token), $sourceLang, $targetLang)
     return
-        core:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens))) || $URLparams
+        config:link-to-current-app(str:join-path-elements(($targetLang,$translated-tokens))) || $URLparams
 };
 
 declare function controller:redirect-by-gnd($exist-vars as map(*)) as element(exist:dispatch) {

@@ -2,6 +2,8 @@ xquery version "1.0";
 
 import module namespace xdb="http://exist-db.org/xquery/xmldb";
 import module namespace sm="http://exist-db.org/xquery/securitymanager";
+(: need to import core module here for logging in config module :)
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "modules/core.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "modules/config.xqm";
 
 (: The following external variables are set by the repo:deploy function :)

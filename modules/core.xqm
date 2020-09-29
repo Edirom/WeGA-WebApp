@@ -135,35 +135,7 @@ declare function core:logToFile($priority as xs:string, $message as xs:string) a
 };
 
 (:~
- : Create a link within the current app context (this is the 1-arity version)
- :
- : @author Peter Stadler
- : @param $relLink a relative path to be added to the returned path
- : @return the complete URL for $relLink
- :)
-declare function core:link-to-current-app($relLink as xs:string?) as xs:string {
-    (:  
-        for the 1-arity version we need to use the default eXist attributes (= prefixed with "$") 
-        because our unprefixed WeGA versions are being set only at a later stage.
-        Thus, redirects would fail …
-    :)
-    str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
-};
-
-(:~
- : Create a link within the current app context (this is the 2-arity version)
- : 
- : @param $relLink a relative path to be added to the returned path
- : @param $exist-vars a map object with current settings for "exist:prefix" and "exist:controller"
- : @return the complete URL for $relLink
-~:)
-declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as map(*)) as xs:string {
-(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
-    str:join-path-elements(('/', request:get-context-path(), $exist-vars("exist:prefix"), $exist-vars('exist:controller'), $relLink))
-};
-
-(:~
- : Creates a permalink by concatenating the $permaLinkPrefix (set in options) with the given path piped through core:link-to-current-app()
+ : Creates a permalink by concatenating the $permaLinkPrefix (set in options) with the given path piped through config:link-to-current-app()
  : Mainly used for creating persistent links to documents by simply passing the docID  
  :
  : @author Peter Stadler
@@ -171,5 +143,5 @@ declare function core:link-to-current-app($relLink as xs:string?, $exist-vars as
  : @return xs:anyURI
  :)
 declare function core:permalink($relLink as xs:string) as xs:anyURI? {
-    xs:anyURI(config:get-option('permaLinkPrefix') || core:link-to-current-app($relLink))
+    xs:anyURI(config:get-option('permaLinkPrefix') || config:link-to-current-app($relLink))
 };

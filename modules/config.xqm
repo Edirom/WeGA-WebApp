@@ -19,10 +19,6 @@ declare namespace util="http://exist-db.org/xquery/util";
 
 import module namespace json="http://www.json.org";
 import module namespace functx="http://www.functx.com";
-import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
-import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 
@@ -425,7 +421,7 @@ declare function config:get-xsl-params($params as map(*)?) as element(parameters
     <parameters>
         <param name="lang" value="{config:guess-language(())}"/>
         <param name="optionsFile" value="{$config:options-file-path}"/>
-        <param name="baseHref" value="{core:link-to-current-app(())}"/>
+        <param name="baseHref" value="{config:link-to-current-app(())}"/>
         <param name="smufl-decl" value="{$config:smufl-decl-file-path}"/>
         <param name="catalogues-collection-path" value="{$config:catalogues-collection-path}"/>
         <param name="data-collection-path" value="{$config:data-collection-path}"/>
@@ -558,11 +554,49 @@ declare function config:get-ordered-browser-languages() as xs:string* {
     else ()
 };
 
+(:~
+ :  Private logging function for the config module
+ :  This is a simple wrapper around the public `core:logToFile()` to avoid importing this module directly
+ :
+ :  For a description of params see there
+ :)
 declare function config:log($errLevel as xs:string, $errMsg as xs:string) as empty-sequence() {
     let $logger := 
         try { function-lookup(QName('http://xquery.weber-gesamtausgabe.de/modules/core', 'core:logToFile'), 2) } 
         catch * {()}
     return
         if(exists($logger)) then $logger($errLevel, $errMsg)
-        else error(QName("http://xquery.weber-gesamtausgabe.de/modules/config", "LogError"), 'Unable to create logger')
+        else ()(:error(QName("http://xquery.weber-gesamtausgabe.de/modules/config", "LogError"), 'Unable to create logger'):)
+};
+
+(:~
+ : Create a link within the current app context (this is the 1-arity version)
+ :
+ : @author Peter Stadler
+ : @param $relLink a relative path to be added to the returned path
+ : @return the complete URL for $relLink
+ :)
+declare function config:link-to-current-app($relLink as xs:string?) as xs:string? {
+    (:  
+        for the 1-arity version we need to use the default eXist attributes (= prefixed with "$") 
+        because our unprefixed WeGA versions are being set only at a later stage.
+        Thus, redirects would fail …
+    :)
+    if(request:exists()) 
+    then str:join-path-elements(('/', request:get-context-path(), request:get-attribute("$exist:prefix"), request:get-attribute('$exist:controller'), $relLink))
+    else config:log('warn', 'request object does not exist; failing to create a link')
+};
+
+(:~
+ : Create a link within the current app context (this is the 2-arity version)
+ : 
+ : @param $relLink a relative path to be added to the returned path
+ : @param $exist-vars a map object with current settings for "exist:prefix" and "exist:controller"
+ : @return the complete URL for $relLink
+~:)
+declare function config:link-to-current-app($relLink as xs:string?, $exist-vars as map(*)) as xs:string? {
+(:    templates:link-to-app($config:expath-descriptor/@name, $relLink):)
+    if(request:exists())
+    then str:join-path-elements(('/', request:get-context-path(), $exist-vars("exist:prefix"), $exist-vars('exist:controller'), $relLink))
+    else config:log('warn', 'request object does not exist; failing to create a link')
 };

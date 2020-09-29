@@ -54,7 +54,7 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
 declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:string) as xs:string? {
     let $path :=  controller:path-to-resource($doc, $lang)[1]
     return
-        if($doc and $path) then core:link-to-current-app($path || '.html')
+        if($doc and $path) then config:link-to-current-app($path || '.html')
         else ()
 };
 
@@ -73,8 +73,8 @@ declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:strin
 declare function app:createUrlForDocInContext($doc as document-node()?, $lang as xs:string, $contextID as xs:string) as xs:string? {
     let $path := controller:path-to-resource($doc, $lang)
     return
-        if($doc and count($path[contains(., $contextID)]) = 1) then core:link-to-current-app($path[contains(., $contextID)] || '.html')
-        else if($doc and count($path) gt 0) then core:link-to-current-app($path[1] || '.html')
+        if($doc and count($path[contains(., $contextID)]) = 1) then config:link-to-current-app($path[contains(., $contextID)] || '.html')
+        else if($doc and count($path) gt 0) then config:link-to-current-app($path[1] || '.html')
         else ()
 };
 
@@ -229,7 +229,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a) {
-        let $href := core:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
+        let $href := config:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
         let $display-name := replace(xmldb:decode(functx:substring-after-last($href, '/')), '_', ' ')
         let $elem := 
             if($href and not(contains($href, config:get-option('anonymusID')))) then QName('http://www.w3.org/1999/xhtml', 'a')
@@ -258,7 +258,7 @@ declare
         default return
             element {node-name($node)} {
                 $node/@*[not(local-name(.) eq 'href')],
-                attribute href {core:link-to-current-app(controller:path-to-register('indices', $lang))},
+                attribute href {config:link-to-current-app(controller:path-to-register('indices', $lang))},
                 lang:get-language-string('indices', $lang)
             }
 };
@@ -352,8 +352,8 @@ declare
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
         let $ajax-url :=
-        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then core:link-to-current-app(controller:path-to-resource($model('doc'), $lang)[1] || '/' || $ajax-resource)
-        	else if(gl:spec($model?specID, $model?schemaID) and $ajax-resource) then core:link-to-current-app(replace($model('exist:path'), '\.[xhtml]+$', '') || '/' || $ajax-resource)
+        	if(config:get-doctype-by-id($model('docID')) and $ajax-resource) then config:link-to-current-app(controller:path-to-resource($model('doc'), $lang)[1] || '/' || $ajax-resource)
+        	else if(gl:spec($model?specID, $model?schemaID) and $ajax-resource) then config:link-to-current-app(replace($model('exist:path'), '\.[xhtml]+$', '') || '/' || $ajax-resource)
         	else ()
         return
             if($ajax-url) then 
@@ -907,7 +907,7 @@ declare
         'viaf' : query:get-viaf($model?doc),
         'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
-        (:                'xml-download-URL' : core:link-to-current-app($model('docID') || '.xml'):)
+        (:                'xml-download-URL' : config:link-to-current-app($model('docID') || '.xml'):)
     }
 };
 

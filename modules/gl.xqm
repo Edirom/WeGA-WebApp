@@ -151,7 +151,7 @@ declare
 	   (:util:log-system-out(request:get-parameter-names()),:)
 	   map {
 	       'specType' : lang:get-language-string(gl:specType(gl:spec($model?specID, $model?schemaID)), $model?lang),
-	       'editorialGuidelines-text_specType_url' : core:link-to-current-app(str:join-path-elements((
+	       'editorialGuidelines-text_specType_url' : config:link-to-current-app(str:join-path-elements((
 	           lang:get-language-string('project', $model?lang),
 	           lang:get-language-string('editorialGuidelines-text', $model?lang),
 	           lang:get-language-string(gl:specType(gl:spec($model('specID'), $model('schemaID'))), $model?lang),
@@ -300,7 +300,7 @@ declare
             return
                 map {
                     'label' : $new-depth || ' ' || str:normalize-space($div/tei:head[not(@type='sub')]),
-                    'url' :  core:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
+                    'url' :  config:link-to-current-app(str:join-path-elements((lang:get-language-string('project', $model?lang),lang:get-language-string('editorialGuidelines-text', $model?lang)))) || '/' || ($div/ancestor-or-self::tei:div)[1]/data(@xml:id) || '.html' || ( if($div/parent::tei:div) then '#' || data($div/@xml:id) else () ),
                     'sub-items' : for $sub-item in $div/tei:div return $callBack($sub-item, $new-depth, $callBack)
                 }
         }
@@ -468,7 +468,7 @@ declare %private function gl:link-to-spec($specID as xs:string, $lang as xs:stri
         else lang:get-language-string('elements', $lang)
     let $url-param := if($schemaID) then ('?schemaID=' || $schemaID) else ()
     return
-        core:link-to-current-app(
+        config:link-to-current-app(
     		str:join-path-elements((
     			$lang,
     			lang:get-language-string('project', $lang),
