@@ -10,10 +10,13 @@ xquery version "3.1" encoding "UTF-8";
  : 4. You may provide other functions for checking/validating params. The naming scheme of the function is simply 'validate-$paraName$' and it must accept one string as a parameter (i.e. the param value)
 ~:)
 
+declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
+declare namespace util="http://exist-db.org/xquery/util";
 (:import module namespace functx="http://www.functx.com";:)
 
 (: Change this line to point at your local api module :)
@@ -42,18 +45,18 @@ declare variable $local:INVALID_PARAMETER := QName("http://xquery.weber-gesamtau
  :  We create a map object and add these variables
  :  This map gets later forwarded to every subsequent API function 
 ~:)
-declare variable $local:defaults as map() := map {
-    'exist:path' := $exist:path, 
-    'exist:resource' := $exist:resource, 
-    'exist:controller' := $exist:controller || '/../../', 
-    'exist:prefix' := $exist:prefix
+declare variable $local:defaults as map(*) := map {
+    'exist:path' : $exist:path, 
+    'exist:resource' : $exist:resource, 
+    'exist:controller' : $exist:controller || '/../../', 
+    'exist:prefix' : $exist:prefix
 };
 
 (:~
  :  Another map object with the HTTP request parameters
  :  This map gets later forwarded to every subsequent API function 
 ~:)
-declare variable $local:url-parameters as map() := map:merge((
+declare variable $local:url-parameters as map(*) := map:merge((
     for $i in request:get-parameter-names() return map:entry($i, request:get-parameter($i, ''))
 ));
 
@@ -68,11 +71,11 @@ declare function local:serialize-json($response as item()*) {
     let $setHeader1 := response:set-header('cache-control','max-age=0, no-cache, no-store')
     let $setHeader2 := response:set-header('pragma','no-cache')
     let $setHeader3 := 
-        if($response[1] instance of map() and map:contains($response[1],'code')) 
+        if($response[1] instance of map(*) and map:contains($response[1],'code')) 
         then response:set-status-code($response[1]?code) 
         else ()
     let $setHeader4 := 
-        if($response[1] instance of map() and map:contains($response[1],'totalRecordCount'))
+        if($response[1] instance of map(*) and map:contains($response[1],'totalRecordCount'))
         then response:set-header('totalRecordCount', $response[1]?totalRecordCount)
         else ()
     let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
@@ -99,11 +102,11 @@ declare function local:serialize-json($response as item()*) {
 ~:)
 declare function local:serialize-xml($response as item()*, $root as xs:string) as element() {
     let $setHeader3 := 
-        if($response[1] instance of map() and map:contains($response[1],'code')) 
+        if($response[1] instance of map(*) and map:contains($response[1],'code')) 
         then response:set-status-code($response[1]?code) 
         else ()
     let $setHeader4 := 
-        if($response[1] instance of map() and map:contains($response[1],'totalRecordCount'))
+        if($response[1] instance of map(*) and map:contains($response[1],'totalRecordCount'))
         then response:set-header('totalRecordCount', $response[1]?totalRecordCount)
         else ()
     return
@@ -111,7 +114,7 @@ declare function local:serialize-xml($response as item()*, $root as xs:string) a
             for $i in subsequence($response, if(count($response) gt 1) then 2 else 1)
             return 
                 typeswitch($i)
-                case map() return map:keys($i) ! local:serialize-xml($i(.), .)
+                case map(*) return map:keys($i) ! local:serialize-xml($i(.), .)
                 case function() as item() return <array>{ for $j in $i?* return local:serialize-xml($j, 'root')/node() }</array>
                 default return $response
         }
@@ -124,7 +127,7 @@ declare function local:serialize-xml($response as item()*, $root as xs:string) a
  :  Swagger path variables are removed from the path and put into a map{} which gets passed on to the function,
  :  e.g. "/foo/{bar}/baz" --> api:foo-baz(map{bar: $bar-value$})
 ~:)
-let $lookup as map()? := 
+let $lookup as map(*)? := 
     (
     for $swagger-path in map:keys($local:swagger-config?paths)
     let $swagger-path-tokens := tokenize($swagger-path, '/')
@@ -136,8 +139,8 @@ let $lookup as map()? :=
             let $params := for $token at $pos in $swagger-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), xmldb:decode(tokenize($exist:path, '/')[$pos])) else ()
             return
                 map {
-                    'func' := function-lookup(xs:QName($local:api-module-prefix || ':' || $func-name), 1),
-                    'path-params' := map:merge($params)
+                    'func' : function-lookup(xs:QName($local:api-module-prefix || ':' || $func-name), 1),
+                    'path-params' : map:merge($params)
                 }
         else ()
     (: return the most specific function, e.g. the function "a-b()" is prefered over the function "a(b)" :)
@@ -148,14 +151,14 @@ let $lookup as map()? :=
 
 let $validate-unknown-param := function-lookup(xs:QName($local:api-module-prefix || ':validate-unknown-param'), 1)
 
-let $validate-params := function($params as map()?) as map()? {
+let $validate-params := function($params as map(*)?) as map(*)? {
     if(exists($params)) then
         map:merge(
             for $param in map:keys($params)
             let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
             return
-                if(exists($lookup)) then $lookup(map {$param := $params($param), 'swagger:config' := $local:swagger-config })
-                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param := $params($param), 'swagger:config' := $local:swagger-config })
+                if(exists($lookup)) then $lookup(map {$param : $params($param), 'swagger:config' : $local:swagger-config })
+                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param : $params($param), 'swagger:config' : $local:swagger-config })
                 else (
                     util:log-system-out('It seems you did not provide a validate-unknown-param function'),
                     error($local:INVALID_PARAMETER, 'Unknown parameter "' || $param || '". Details should be provided in the system log.') 
@@ -173,8 +176,8 @@ let $response := function($lookup as map(*)) {
    (: typeswitch($lookup?func)
     case empty-sequence() return $unknown-function
     default return :)
-        try { $lookup?func(map:merge(($local:defaults, map {'swagger:config' := $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
-        catch * { map {'code' := 404, 'message' := $err:description, 'fields' := 'Error Code: ' ||  $err:code} }
+        try { $lookup?func(map:merge(($local:defaults, map {'swagger:config' : $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
+        catch * { map {'code' : 404, 'message' : $err:description, 'fields' : 'Error Code: ' ||  $err:code} }
 }
 
 (:~
@@ -183,7 +186,7 @@ let $response := function($lookup as map(*)) {
 ~:)
 let $accept-header := tokenize(request:get-header('Accept'), '[,;]')
 let $unknown-function := 
-     map {'code' := 404, 'message' := 'Unknown/unsupported API function. Please refer to the swagger.conf file for supported functions.', 'fields' := ''}
+     map {'code' : 404, 'message' : 'Unknown/unsupported API function. Please refer to the swagger.conf file for supported functions.', 'fields' : ''}
 
 return (:(
     util:log-system-out($exist:path),
@@ -191,7 +194,7 @@ return (:(
     ):)
     if($exist:resource eq 'swagger.json') then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
-    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' := 'en'} )))
+    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{concat($exist:controller, '/../../resources/', substring-after($exist:path, '/resources/'))}">
