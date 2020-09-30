@@ -45,41 +45,6 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
 :)
 
 (:~
- : Creates link to doc
- :
- : @author Peter Stadler
- : @param $doc document node
- : @param $lang the current language (de|en)
- : @return xs:string
-:)
-declare function app:createUrlForDoc($doc as document-node()?, $lang as xs:string) as xs:string? {
-    let $path :=  controller:path-to-resource($doc, $lang)[1]
-    return
-        if($doc and $path) then config:link-to-current-app($path || '.html')
-        else ()
-};
-
-(:~
- : Creates link to doc
- : This 3-arity function version will honour the current (author) context by returning
- : a link depending on the author ID. If the provided context does not match the requested 
- : document, the canonical link will be returned.
- :
- : @author Peter Stadler
- : @param $doc document node
- : @param $lang the current language (de|en)
- : @param $context the current (author) context, e.g. 'A002068'
- : @return xs:string
-:)
-declare function app:createUrlForDocInContext($doc as document-node()?, $lang as xs:string, $contextID as xs:string) as xs:string? {
-    let $path := controller:path-to-resource($doc, $lang)
-    return
-        if($doc and count($path[contains(., $contextID)]) = 1) then config:link-to-current-app($path[contains(., $contextID)] || '.html')
-        else if($doc and count($path) gt 0) then config:link-to-current-app($path[1] || '.html')
-        else ()
-};
-
-(:~
  : Creates an xhtml:a link to a WeGA document
  :
  : @author Peter Stadler
@@ -89,7 +54,7 @@ declare function app:createUrlForDocInContext($doc as document-node()?, $lang as
  : @param $attributes a sequence of attribute-value-pairs, e.g. ('class=xy', 'style=display:block')
  :)
 declare function app:createDocLink($doc as document-node()?, $content as xs:string, $lang as xs:string, $attributes as xs:string*) as element(xhtml:a) {
-    let $href := app:createUrlForDoc($doc, $lang)
+    let $href := controller:create-url-for-doc($doc, $lang)
     let $docID :=  $doc/root()/*/@xml:id
     return 
     element xhtml:a {
@@ -154,7 +119,7 @@ declare
 declare 
     %templates:default("format", "WeGA")
     function app:download-link($node as node(), $model as map(*), $format as xs:string) as element() {
-        let $url := replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+        let $url := replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml')
         return 
             element {node-name($node)} {
                 $node/@* except $node/@href,
@@ -214,7 +179,7 @@ declare
             else (query:get-author-element($model?doc)[(@key, @codedval) = $authorID])[1]
         let $href :=
             if ($authorID = $anonymusID) then ()
-            else app:createUrlForDoc(crud:doc($authorID), $lang)
+            else controller:create-url-for-doc(crud:doc($authorID), $lang)
         let $elem := 
             if($href) then QName('http://www.w3.org/1999/xhtml', 'a')
             else QName('http://www.w3.org/1999/xhtml', 'span')
@@ -596,7 +561,7 @@ declare
                     if($random) then str:enquote(str:normalize-space(string-join(str:txtFromTEI($words[$random], $lang), '')), $lang)
                     else str:normalize-space($node/xhtml:h1),
                 'wordOfTheDayURL' : 
-                    if($random) then app:createUrlForDoc(crud:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
+                    if($random) then controller:create-url-for-doc(crud:doc($words[$random]/ancestor::tei:TEI/string(@xml:id)), $lang)
                     else '#'
             }
 };
@@ -707,7 +672,7 @@ declare
         map {
             'title' : wdt:news($model?newsItem)?title('html'),
             'date' : date:printDate($model?newsItem//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string#3, $config:default-date-picture-string),
-            'url' : app:createUrlForDoc($model?newsItem, $lang)
+            'url' : controller:create-url-for-doc($model?newsItem, $lang)
         }
 };
 
@@ -741,7 +706,7 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
             'gnd' : $gnd,
             'names' : $model?doc//tei:placeName[@type],
             'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
-            'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+            'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
             'geonames_alternateNames' : 
                 for $alternateName in $gn-doc//gn:alternateName 
                 group by $name := $alternateName/text()
@@ -831,7 +796,7 @@ declare
             'dedicatees' : $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role='dte'],
             'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
             'gnd' : query:get-gnd($model('doc')),
-            'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+            'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml')
         }
 };
 
@@ -906,7 +871,7 @@ declare
         'source' : $model('doc')/tei:person/data(@source),
         'gnd' : query:get-gnd($model?doc),
         'viaf' : query:get-viaf($model?doc),
-        'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml')
+        'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml')
         (:core:getOrCreateColl('letters', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('diaries', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('writings', 'indices', true())//@key[.=$model('docID')]/root() | core:getOrCreateColl('persons', 'indices', true())//@key[.=$model('docID')]/root(),:)
         (:                'xml-download-URL' : config:link-to-current-app($model('docID') || '.xml'):)
     }
@@ -1285,7 +1250,7 @@ declare
                 'localFacsimiles' : $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]],
                 'externalIIIFManifestFacsimiles' : $facs[@sameAs],
                 'hasCreation' : exists($model?doc//tei:creation),
-                'xml-download-url' : replace(app:createUrlForDoc($model('doc'), $model('lang')), '\.html', '.xml'),
+                'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
                 'thematicCommentaries' : distinct-values($model('doc')//tei:note[@type='thematicCom']/@target/tokenize(., '\s+')),
                 'backlinks' : wdt:backlinks(())('filter-by-person')($model?docID)
             }
@@ -1556,7 +1521,7 @@ declare
         let $thematicCom := crud:doc(substring-after($model('thematicCom'), 'wega:'))
         return
             element { node-name($node) } {
-                attribute href { app:createUrlForDoc($thematicCom, $lang) },
+                attribute href { controller:create-url-for-doc($thematicCom, $lang) },
                 wdt:thematicCommentaries($thematicCom)('title')('html')
             }
 };
@@ -1620,7 +1585,7 @@ declare
         let $normDate := query:get-normalized-date($letter)
         return (
             element xhtml:a {
-                attribute href {app:createUrlForDocInContext($letter, $lang, $model?senderID)},
+                attribute href {controller:create-url-for-doc-in-context($letter, $lang, $model?senderID)},
                 $normDate
             },
             ": ",
@@ -1794,8 +1759,8 @@ declare
             'doc' : $model('result-page-entry'),
             'docID' : $model('result-page-entry')/root()/*/data(@xml:id),
             'docURL' : 
-                if(config:is-person($model?parent-docID)) then app:createUrlForDocInContext($model?result-page-entry, $lang, $model?parent-docID)
-                else app:createUrlForDoc($model('result-page-entry'), $lang),
+                if(config:is-person($model?parent-docID)) then controller:create-url-for-doc-in-context($model?result-page-entry, $lang, $model?parent-docID)
+                else controller:create-url-for-doc($model('result-page-entry'), $lang),
             'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
@@ -1870,7 +1835,7 @@ declare
         if(exists($model('doc')//mei:altId[@type != 'gnd'])) then 
             element {node-name($node)} {
                 $node/@*[not(name(.) = 'href')],
-                if($node[self::xhtml:a]) then attribute href {app:createUrlForDoc($model('doc'), $lang)}
+                if($node[self::xhtml:a]) then attribute href {controller:create-url-for-doc($model('doc'), $lang)}
                 else (),
                 if(exists($model('doc')//mei:altId[@type='WeV'])) then concat('(WeV ', $model('doc')//mei:altId[@type='WeV'], ')') (: Weber-Werke :)
                 else concat('(', $model('doc')//(mei:altId[@type != 'gnd'])[1]/string(@type), ' ', $model('doc')//(mei:altId[@type != 'gnd'])[1], ')') (: Fremd-Werke :)

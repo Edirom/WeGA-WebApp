@@ -23,7 +23,6 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
-import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 
 
@@ -503,10 +502,10 @@ declare
         let $page := ceiling($index-of-current-doc div config:entries-per-page())
         let $url := controller:resolve-link('$link/search', $model) || '?q=' || $wegasearch?query-string-org || '&amp;d=' || string-join($wegasearch?query-docTypes, '&amp;d=') || '&amp;page=' || $page
         let $search-prev-item-url := 
-            if($index-of-current-doc gt 1) then app:createUrlForDoc($docs[$index-of-current-doc - 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
+            if($index-of-current-doc gt 1) then controller:create-url-for-doc($docs[$index-of-current-doc - 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
             else '#'
         let $search-next-item-url := 
-            if($index-of-current-doc lt count($docs)) then app:createUrlForDoc($docs[$index-of-current-doc + 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
+            if($index-of-current-doc lt count($docs)) then controller:create-url-for-doc($docs[$index-of-current-doc + 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
             else '#'
         return
             map:merge((

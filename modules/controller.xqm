@@ -587,6 +587,41 @@ declare %private function controller:resource-id($exist-vars as map(*)) as xs:st
 };
 
 (:~
+ : Create link to doc
+ :
+ : @author Peter Stadler
+ : @param $doc document node
+ : @param $lang the current language (de|en)
+ : @return the URL for the document 
+:)
+declare function controller:create-url-for-doc($doc as document-node()?, $lang as xs:string) as xs:string? {
+    let $path :=  controller:path-to-resource($doc, $lang)[1]
+    return
+        if($doc and $path) then config:link-to-current-app($path || '.html')
+        else ()
+};
+
+(:~
+ : Create link to doc
+ : This 3-arity function version will honour the current (author) context by returning
+ : a link depending on the author ID. If the provided context does not match the requested 
+ : document, the canonical link will be returned.
+ :
+ : @author Peter Stadler
+ : @param $doc document node
+ : @param $lang the current language (de|en)
+ : @param $context the current (author) context, e.g. 'A002068'
+ : @return the URL for the document
+:)
+declare function controller:create-url-for-doc-in-context($doc as document-node()?, $lang as xs:string, $contextID as xs:string) as xs:string? {
+    let $path := controller:path-to-resource($doc, $lang)
+    return
+        if($doc and count($path[contains(., $contextID)]) = 1) then config:link-to-current-app($path[contains(., $contextID)] || '.html')
+        else if($doc and count($path) gt 0) then config:link-to-current-app($path[1] || '.html')
+        else ()
+};
+
+(:~
  : Figure out the requested mime type for a resource by looking at its file extension and HTTP request headers.
  : The file extension gets precedence over HTTP headers; 
  : when no supported file extension nor HTTP headers are given, the empty sequence is returned.

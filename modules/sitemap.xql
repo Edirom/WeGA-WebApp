@@ -10,10 +10,12 @@ declare namespace compression="http://exist-db.org/xquery/compression";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace sm="http://exist-db.org/xquery/securitymanager";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace sitemap="http://xquery.weber-gesamtausgabe.de/modules/sitemap";
 
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
+import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
+import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -21,17 +23,17 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 
 declare option exist:serialize "method=xml media-type=application/xml indent=yes omit-xml-declaration=no encoding=utf-8";
 
-declare variable $local:languages := ('en', 'de');
-declare variable $local:defaultCompression := 'gz'; (: gz or zip :)
-declare variable $local:host := config:get-option('permaLinkPrefix');
-declare variable $local:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography', 'specialVolume', 'volContents');
-declare variable $local:databaseEntries := for $func in wdt:members('sitemap') return $func(())('name');
+declare variable $sitemap:languages := ('en', 'de');
+declare variable $sitemap:defaultCompression := 'gz'; (: gz or zip :)
+declare variable $sitemap:host := config:get-option('permaLinkPrefix');
+declare variable $sitemap:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography', 'specialVolume', 'volContents');
+declare variable $sitemap:databaseEntries := for $func in wdt:members('sitemap') return $func(())('name');
 
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in core:getOrCreateColl($type, 'indices', true())
     (: In rare cases (when a file was deleted from a wrong folder and a file with the same name exists) there are two svn entries :)
     let $lastmod := max($config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime))
-    let $loc := $local:host || app:createUrlForDoc($x, $lang)
+    let $loc := $sitemap:host || controller:create-url-for-doc($x, $lang)
     return 
         <url xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">{
             element loc {$loc},
@@ -42,11 +44,11 @@ declare function local:getUrlList($type as xs:string, $lang as xs:string) as ele
 
 declare function local:createSitemap($lang as xs:string) as element(urlset) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-        {for $i in $local:standardEntries return 
-            <url><loc>{$local:host || str:join-path-elements(('/', $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
+        {for $i in $sitemap:standardEntries return 
+            <url><loc>{$sitemap:host || str:join-path-elements(('/', $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
         }
         {
-        for $k in $local:databaseEntries return local:getUrlList($k, $lang)
+        for $k in $sitemap:databaseEntries return local:getUrlList($k, $lang)
         }
     </urlset>
 };
@@ -54,7 +56,7 @@ declare function local:createSitemap($lang as xs:string) as element(urlset) {
 declare function local:createSitemapIndex($fileNames as xs:string*) as element(sitemapindex) {
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $fileName in $fileNames
-        return <sitemap><loc>{$local:host || str:join-path-elements(('/', config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
+        return <sitemap><loc>{$sitemap:host || str:join-path-elements(('/', config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
         }
     </sitemapindex>
 };
@@ -115,8 +117,8 @@ declare function local:compressXML($xml as element(), $fileName as xs:string, $c
 };
 
 let $resource := request:get-parameter('resource', '')
-let $compression := if(ends-with($resource, 'zip')) then 'zip' else $local:defaultCompression
-let $properFileNames := for $lang in $local:languages return concat('sitemap_', $lang, '.xml.', $compression)
+let $compression := if(ends-with($resource, 'zip')) then 'zip' else $sitemap:defaultCompression
+let $properFileNames := for $lang in $sitemap:languages return concat('sitemap_', $lang, '.xml.', $compression)
 
 return
     if($properFileNames = $resource) then response:stream-binary(local:getSetSitemap($resource), local:getMimeType($compression), $resource)
