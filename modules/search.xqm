@@ -456,7 +456,7 @@ declare %private function search:prepare-search-string($model as map(*)) as map(
             $model, 
             map {
                 'filters' : map:merge(($model?filters, $searchDate)), (: push recognized dates to the filters :)
-                'query-string' : wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
+                'query-string' : str:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
                 'query-docTypes' : $query-docTypes,
                 'query-string-org' : $query-string-org
             }

@@ -1111,7 +1111,7 @@ declare %private function wdt:sort-key-person($node as node()) as xs:string? {
         else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
     let $name := str:normalize-space($node//tei:persName[@type='reg'])
     return 
-        lower-case(replace(wega-util:strip-diacritics($sortName || $name), "'", ""))
+        lower-case(replace(str:strip-diacritics($sortName || $name), "'", ""))
 };
 
 (:~

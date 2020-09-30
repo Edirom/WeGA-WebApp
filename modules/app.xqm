@@ -1338,7 +1338,7 @@ declare %private function app:inject-query($input as node()) {
     let $q := request:get-parameter('q', '')
     return 
         if($q) then
-            let $sanitized-query-string := wega-util:strip-diacritics(str:normalize-space(str:sanitize(string-join($q, ' '))))
+            let $sanitized-query-string := str:strip-diacritics(str:normalize-space(str:sanitize(string-join($q, ' '))))
             let $query := search:create-lucene-query-element($sanitized-query-string)
             let $result := ft:query($input, $query) 
             return

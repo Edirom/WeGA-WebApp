@@ -327,15 +327,6 @@ declare function wega-util:distance-between-places($placeID1 as xs:string, $plac
 };
 
 (:~
- : create a flattened version of strings without diacritics, e.g. "Méhul" --> "Mehul"
- : see http://exist.2174344.n4.nabble.com/stripping-diacritics-with-fn-normalize-unicode-tp4657960.html
-~:)
-declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
-    for $i in $str
-    return replace(normalize-unicode($i, 'NFKD'),  '[\p{M}]', '')
-};
-
-(:~
  :  Checker whether we need to update a given (cached) file
  :  (Helper function for caching functions, e.g. cache:doc() from namespace http://xquery.weber-gesamtausgabe.de/modules/cache )
  :

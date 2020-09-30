@@ -167,15 +167,15 @@ declare function api:facets($model as map(*)) as map(*)* {
         if($filtered) then api:get-facets($model)?*
         else mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
     let $terms :=
-        if($model?term) then (tokenize(xmldb:decode($model?term), '\s+') ! wega-util:strip-diacritics(lower-case(.)))
+        if($model?term) then (tokenize(xmldb:decode($model?term), '\s+') ! str:strip-diacritics(lower-case(.)))
         else ()
     let $facets := 
         if(count($terms) gt 0) 
         then 
-            for $facet in $allFacets[?label[every $t in $terms satisfies contains(wega-util:strip-diacritics(lower-case(.)), $t)]]
+            for $facet in $allFacets[?label[every $t in $terms satisfies contains(str:strip-diacritics(lower-case(.)), $t)]]
             let $matches :=
                 for $term in $terms
-                let $hits := functx:index-of-string(wega-util:strip-diacritics(lower-case($facet?label)), $term)
+                let $hits := functx:index-of-string(str:strip-diacritics(lower-case($facet?label)), $term)
                 return
                     for $hit in $hits 
                     order by $hit
