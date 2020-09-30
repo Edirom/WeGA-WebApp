@@ -12,7 +12,6 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 import module namespace functx="http://www.functx.com";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace bibl="http://xquery.weber-gesamtausgabe.de/modules/bibl" at "bibl.xqm";
@@ -91,7 +90,6 @@ declare function wdt:persons($item as item()*) as map(*) {
             $item[descendant-or-self::tei:person][descendant-or-self::tei:persName]/root() | $item[ancestor-or-self::tei:person]/root()
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
-            (:distinct-values((norm:get-norm-doc('letters')//@addresseeID[contains(., $personID)]/parent::norm:entry | norm:get-norm-doc('letters')//@authorID[contains(., $personID)]/parent::norm:entry)/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! crud:doc(.):)
             ()
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
@@ -123,8 +121,8 @@ declare function wdt:persons($item as item()*) as map(*) {
         },
         'label-facets' : function() as xs:string? {
             typeswitch($item)
-                case xs:string return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
-                case xdt:untypedAtomic return norm:get-norm-doc('persons')//norm:entry[@docID=$item]/str:normalize-space(.)
+                case xs:string return crud:doc($item)//tei:persName[@type = 'reg']/str:normalize-space(.)
+                case xdt:untypedAtomic return crud:doc($item)//tei:persName[@type = 'reg']/str:normalize-space(.)
                 case document-node() return str:normalize-space(($item//tei:persName[@type = 'reg']))
                 case element() return str:normalize-space(($item/root()//tei:persName[@type = 'reg']))
                 default return wega-util:log-to-file('error', 'wdt:persons()("label-facests"): failed to get string')
@@ -402,8 +400,8 @@ declare function wdt:works($item as item()*) as map(*) {
         },
         'label-facets' : function() as xs:string? {
             typeswitch($item)
-            case xs:string return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
-            case xdt:untypedAtomic return norm:get-norm-doc('works')//norm:entry[@docID=$item]/str:normalize-space(.)
+            case xs:string return str:normalize-space((crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
+            case xdt:untypedAtomic return str:normalize-space((crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             default return wega-util:log-to-file('error', 'wdt:works()("label-facests"): failed to get string')
@@ -975,12 +973,7 @@ declare function wdt:contacts($item as item()*) as map(*) {
             ()
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
-            let $norm-doc := norm:get-norm-doc('letters')
-            let $entries := 
-                $norm-doc//norm:entry[contains(@addresseeID, $personID)] | 
-                $norm-doc//norm:entry[contains(@authorID, $personID)]
-            return 
-                distinct-values($entries/(@authorID, @addresseeID)/tokenize(., '\s+'))[. != $personID] ! crud:doc(.)
+            map:keys(query:correspondence-partners($personID)) ! crud:doc(.)
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             ()
