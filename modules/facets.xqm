@@ -24,10 +24,6 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace functx="http://www.functx.com";
 import module namespace templates="http://exist-db.org/xquery/templates";
 
-(:~
- : Trying to reduce function calls to norm:get-norm-doc() when creating facets
-~:)
-(:declare variable $facets:persons-norm-file := doc($config:tmp-collection-path || '/normFile-persons.xml');:)
 
 (:~
  : 
