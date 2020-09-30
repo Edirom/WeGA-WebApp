@@ -12,6 +12,7 @@ declare namespace range="http://exist-db.org/xquery/range";
 declare namespace sort="http://exist-db.org/xquery/sort";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace xdt="http://www.w3.org/2005/xpath-datatypes";
+declare namespace ft="http://exist-db.org/xquery/lucene";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
