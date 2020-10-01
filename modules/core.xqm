@@ -77,11 +77,6 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  :)
 declare function core:undated($docType as xs:string) as document-node()* {
     switch($docType)
-    case 'letters' case 'writings' case 'documents' return 
-        for $doc in crud:data-collection($docType)//tei:TEI[ft:query(., (), map { "fields": ("date") })]
-        order by ft:field($doc, 'date')
-        return
-            if(ft:field($doc, 'date')) then ()
-            else $doc/root()
+    case 'letters' case 'writings' case 'documents' return crud:data-collection($docType)/tei:TEI[ft:query(., 'date:undated')][not(tei:ref)]/root()
     default return ()
 };
