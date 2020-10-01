@@ -71,8 +71,6 @@ declare function wdt:orgs($item as item()*) as map(*) {
             return
                 wdt:orgs($doc)('title')('txt') || ' (' || string-join($doc//tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
         },
-        'undated' : (),
-        'date' : (),
         'memberOf' : ('sitemap', 'unary-docTypes'), (: index, search :)
         'search' : ()
     }
