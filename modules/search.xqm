@@ -391,15 +391,8 @@ declare %private function search:facsimile-filter($collection as document-node()
 declare %private function search:get-earliest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
     if(count($coll) gt 0) then 
         switch ($docType)
-        case 'news' case 'biblio' return
-            (: reverse order :)
-            let $date := query:get-normalized-date($coll[last()])
-            return 
-                if(exists($date)) then string($date)
-                else if(count($coll) gt 1) then search:get-earliest-date(subsequence($coll, 1, count($coll) -1), $docType)
-                else ()
-        case 'letters' case 'writings' case 'diaries' case 'documents' return 
-            string(query:get-normalized-date($coll[1]))
+        case 'news' case 'biblio' case 'letters' case 'writings' case 'diaries' case 'documents' return 
+            min(core:index-keys-for-field($coll, 'date')[not(.='undated')])
         case 'persons' case 'orgs' return ()
         case 'works' return ()
         case 'places' return ()
@@ -413,15 +406,8 @@ declare %private function search:get-earliest-date($coll as document-node()*, $d
 declare %private function search:get-latest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
     if(count($coll) gt 0) then 
         switch ($docType)
-        case 'news' case 'biblio' return
-            (: reverse order :)
-            string(query:get-normalized-date($coll[1]))
-        case 'letters' case 'writings' case 'diaries' case 'documents' return 
-            let $date := query:get-normalized-date(wdt:lookup($docType, ($coll except core:undated($docType)))?('sort')(())[last()])
-            return 
-                if(exists($date)) then string($date)
-                else if(count($coll) gt 1) then search:get-latest-date(subsequence($coll, 1, count($coll) -1), $docType)
-                else ()
+        case 'news' case 'biblio' case 'letters' case 'writings' case 'diaries' case 'documents' return
+            max(core:index-keys-for-field($coll, 'date')[not(.='undated')])
         case 'persons' case 'orgs' return ()
         case 'works' return ()
         case 'places' return ()

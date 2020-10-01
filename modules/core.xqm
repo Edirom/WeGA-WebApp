@@ -80,3 +80,11 @@ declare function core:undated($docType as xs:string) as document-node()* {
     case 'letters' case 'writings' case 'documents' return crud:data-collection($docType)/tei:TEI[ft:query(., 'date:undated')][not(tei:ref)]/root()
     default return ()
 };
+
+declare function core:index-keys-for-field($coll as document-node()*, $field as xs:string) as xs:string* {
+    distinct-values(
+        for $i in $coll/tei:TEI[ft:query(., (), map { "fields": $field })] | $coll/tei:ab[ft:query(., (), map { "fields": $field })] | $coll/tei:biblStruct[ft:query(., (), map { "fields": $field })]
+        return
+            ft:field($i, $field)
+    )
+};
