@@ -84,7 +84,6 @@ $.fn.facets = function ()
                         read_headers = function(data, textStatus, jqXHR) {
                         var total = parseInt(jqXHR.getResponseHeader('totalRecordCount')) || 0;
                         // console.log('total: ' + total + '; limit: ' + limit + 'page: ' + params.data.offset);
-                        if(total === 1) { data = [ data ] } // this is a hack because single results are not properly sent as array
                         return {
                             // transform the results to the select2 data format
                             results: $.map(data, function (obj) {

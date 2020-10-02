@@ -182,15 +182,16 @@ declare %private function search:search($model as map(*)) as map(*) {
 ~:)
 declare %private function search:list($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
-    let $search-results := 
-        if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
+    (: awkward hack to create a new map for $model. It seems $model gets modified by some strange side effect when pushed directly to search:filter-result() :)
+    let $filters := map:merge(for $i in map:keys($model?filters) return map:entry($i, $model?filters($i)))
+    let $search-results as document-node()* := 
+        if(count(map:keys($filters)) gt 0) then search:filter-result($coll, $filters, $model?docType)
         else $coll
     let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')( map { 'personID' : $model('docID')} )
     return
         map:merge((
             $model,
             map {
-                'filters' : $model('filters'),
                 'search-results' : $sorted-results,
                 'earliestDate' : search:get-earliest-date($sorted-results, $model('docType')),
                 'latestDate' : search:get-latest-date($sorted-results, $model('docType')),
@@ -310,7 +311,7 @@ declare %private function search:create-filters() as map(*) {
  : Recursively applies this function until the filter map is empty
 ~:)
 declare %private function search:filter-result($collection as document-node()*, $filters as map(*), $docType as xs:string) as document-node()* {
-    if(count($filters?*) gt 0) then (
+    if(count(map:keys($filters)) gt 0) then (
         let $filter := map:keys($filters)[1]
         let $filtered-coll := 
             if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
@@ -334,7 +335,7 @@ declare %private function search:filter-result($collection as document-node()*, 
             else
                 map:remove($filters, $filter)
         return
-            if(count($newFilter?*) gt 0) then (
+            if(count(map:keys($newFilter)) gt 0) then (
                 search:filter-result($filtered-coll, $newFilter, $docType)
             )
             else $filtered-coll
