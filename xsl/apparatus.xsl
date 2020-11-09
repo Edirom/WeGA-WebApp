@@ -36,6 +36,9 @@
                <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
             </xsl:element>
          </xsl:if>
+         <xsl:if test="$doc//tei:notesStmt/tei:note[@type='textConst']">
+            <xsl:apply-templates select="$doc//tei:notesStmt/tei:note[@type='textConst']"/>
+         </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
             <xsl:for-each select="$textConstitutionPath">
