@@ -52,4 +52,11 @@
         </xsl:element>
     </xsl:template>
     
+    <xsl:template match="mei:annot">
+        <xsl:element name="p">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
 </xsl:stylesheet>
