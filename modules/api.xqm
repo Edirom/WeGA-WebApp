@@ -465,8 +465,8 @@ declare function api:validate-placeOfAddressee($model as map(*)) as map(*)? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-biblioType($model as map(*)) as map(*)? {
-    if(every $i in $model?biblioType ! tokenize(., ',') satisfies wdt:biblio($i)('check')()) then map { 'biblioType': $model?biblioType ! tokenize(., ',') }
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "biblioType". It must be a WeGA biblio ID.' )
+    if(every $i in $model?biblioType ! tokenize(., ',') satisfies config:is-biblioType($i)) then map { 'biblioType': $model?biblioType ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "biblioType". It must be a valid WeGA biblioType, e.g. "book" or "artivle".' )
 }; 
 
 (:~
