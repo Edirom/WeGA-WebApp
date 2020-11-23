@@ -1397,16 +1397,11 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:respStmts($node as node(), $model as map(*), $lang as xs:string) as element()* {
-        let $respStmts :=
-            switch($model('docType'))
-            case 'diaries' return <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>
-            default return $model('doc')//tei:respStmt[parent::tei:titleStmt]
-        return
-            for $respStmt in $respStmts
-            return (
-                <dt xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space($respStmt/tei:resp)}</dt>,
-                <dd xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space(string-join($respStmt/tei:name, '; '))}</dd>
-            )
+        for $respStmt in $model?respStmts
+        return (
+            <dt xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space($respStmt/tei:resp)}</dt>,
+            <dd xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space(string-join($respStmt/tei:name, '; '))}</dd>
+        )
 };
 
 declare 
@@ -1585,7 +1580,11 @@ declare
             'summary' : query:summary($model('doc'), $lang),
             'generalRemark' : query:generalRemark($model('doc')),
             'authors' : if (count(query:get-author-element($model('doc'))) > 1 ) then
-                for $author in query:get-author-element($model('doc')) return app:printCorrespondentName($author,$lang,'fs') else ()
+                for $author in query:get-author-element($model('doc')) return app:printCorrespondentName($author,$lang,'fs') else (),
+            'respStmts': 
+                switch($model('docType'))
+                case 'diaries' return <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>
+                default return $model('doc')//tei:respStmt[parent::tei:titleStmt]
         }
 };
 
