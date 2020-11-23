@@ -579,8 +579,8 @@
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <xsl:apply-templates mode="#current"/>
-         <xsl:call-template name="popover"/>
       </xsl:element>
+      <xsl:call-template name="popover"/>
    </xsl:template>
 
    <xsl:template match="tei:supplied">
