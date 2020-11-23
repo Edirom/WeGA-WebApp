@@ -793,6 +793,11 @@ declare
                 config:get-xsl-params( map {'dbPath' : document-uri($model?doc), 'docID' : $model?docID })
                 ), 
             'dedicatees' : $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role='dte'],
+            'notesStmt': wega-util:transform(
+                $model?doc//mei:notesStmt,
+                doc(concat($config:xsl-collection-path, '/works.xsl')), 
+                config:get-xsl-params( map {'dbPath' : document-uri($model?doc), 'docID' : $model?docID })
+                ), 
             'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
             'gnd' : query:get-gnd($model('doc')),
             'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml')
@@ -1822,7 +1827,7 @@ declare
     %templates:wrap
     %templates:default("max", "200")
     function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
-        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung']
+        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung'] (: letzter Fall für sources :)
         return
             str:shorten-TEI($textXML, number($max), $model?lang)
 };
