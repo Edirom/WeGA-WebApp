@@ -738,7 +738,10 @@ function active_facets() {
     $('.allFilter:visible :checked').each(function() {
         var facet = $(this).attr('name'),
             value = $(this).attr('value')? $(this).attr('value'): 'true';
-        if(undefined != facet) { params.facets[facet] = value }
+        if(undefined != facet) {
+            if(params.facets[facet] === undefined) { params.facets[facet] = [] }
+            params.facets[facet].push(value);
+        }
     })
     if($('.query-input').val()) {
         params.facets.q = $('.query-input').val();
