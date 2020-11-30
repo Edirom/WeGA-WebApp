@@ -171,7 +171,7 @@ declare
                 for $filter in $filterSections
                 let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-combined-doctype-by-id(.) = $filter])
                 let $characterNames := 
-                    if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
+                    if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)] ! normalize-space(.))
                     else ()
                 return 
                     if(exists($keys)) then map { $filter : $keys}
