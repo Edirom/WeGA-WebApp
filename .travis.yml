@@ -5,6 +5,8 @@ addons:
   apt:
     packages:
       - ant
+      - curl
+      - libsaxonhe-java
 
 services:
   - docker
@@ -12,10 +14,9 @@ services:
 before_install:
   - ant docker_run
   - npm install prettydiff
-  - docker cp wega:/opt/exist/lib/endorsed/Saxon-HE-9.6.0-7.jar .
 
 script:
-  - ant -lib . test
+  - ant -lib /usr/share/java test
 
 after_failure:
   - docker exec -it wega tail -2000 webapp/WEB-INF/logs/exist.log 
