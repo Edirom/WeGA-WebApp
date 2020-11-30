@@ -50,7 +50,7 @@
             <arg value="-c"/>
             <arg value="while read url; 
                 do echo cURLing $url ; 
-                docker exec ${docker.container.name} curl -LsS $url > `basename $url`;
+                curl -LsS $url > `basename $url`;
                 done &lt;${basedir}/${tmp.dir}/${docType}.txt"/>
         </exec>
     </target>
