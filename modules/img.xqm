@@ -540,16 +540,17 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
  : @return a canvas object
  :)
 declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
-    let $docID := $graphic/ancestor::tei:TEI/@xml:id
-    let $iiifImageApi := config:get-option('iiifImageApi')
-    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
-    let $image-id := $iiifImageApi || encode-for-uri(str:join-path-elements(($db-path, $docID, $graphic/@url)))
+    let $image-id :=
+        if(starts-with($graphic/@sameAs, 'wega:')) then xs:anyURI(config:get-option('iiifImageApi') || substring-after($graphic/@sameAs, 'wega:'))
+        else if($graphic/@sameAs) then xs:anyURI($graphic/@sameAs)
+        else if($graphic/@url) then img:relative-WeGA-image-path2iiif-image-id($graphic)
+        else ()
     let $page-label := 
         if($graphic/@xml:id) then $graphic/string(@xml:id)
         else 'page' || count($graphic/preceding::tei:graphic) + 1
     let $manifest-id := controller:iiif-manifest-id($graphic/parent::tei:facsimile)
     let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
-    let $image-info :=  parse-json(util:base64-decode(er:http-get(xs:anyURI($image-id))//*:response)) (: why is this not cached? :)
+    let $image-info :=  parse-json(util:base64-decode(er:http-get($image-id)//*:response)) (: why is this not cached? :)
     return 
         map:merge((
             map:entry("@context", "http://iiif.io/api/presentation/2/context.json"),
@@ -611,4 +612,19 @@ declare %private function img:iiif-manifest-attribution($facsimile as element(te
         case element(tei:biblStruct) return str:normalize-space($source/tei:monogr/tei:title[1])
         case element(tei:bibl) return str:normalize-space($source)
         default return 'Carl-Maria-von-Weber-Gesamtausgabe'
+};
+
+(:~
+ : Turn relative image paths into proper IIIF image IDs
+ : Helper function for img:iiif-canvas()
+ :
+ : @param $graphic a TEI graphic element (within a tei:facsimile element)
+ : @return the proper IIIF URL to address this image resource
+ :)
+declare %private function img:relative-WeGA-image-path2iiif-image-id($graphic as element(tei:graphic)) as xs:anyURI {
+    let $docID := $graphic/ancestor::tei:TEI/@xml:id
+    let $iiifImageApi := config:get-option('iiifImageApi')
+    let $db-path := substring-after(config:getCollectionPath($docID), $config:data-collection-path || '/')
+    return
+        xs:anyURI($iiifImageApi || encode-for-uri(str:join-path-elements(($db-path, $docID, $graphic/@url))))
 };
