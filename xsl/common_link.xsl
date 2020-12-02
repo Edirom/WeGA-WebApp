@@ -19,7 +19,7 @@
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
-    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement | mei:geogName" mode="#all">
+    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement | mei:settlement" mode="#all">
         <xsl:choose>
             <xsl:when test="@key or @codedval">
                 <xsl:call-template name="createLink"/>
