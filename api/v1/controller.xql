@@ -68,23 +68,26 @@ declare variable $local:url-parameters as map(*) := map:merge((
 ~:)
 declare function local:serialize-json($response as item()*) {
     let $serializationParameters := ('method=text', 'media-type=application/json', 'encoding=utf-8')
+    let $responseBody :=
+        if($response instance of map(*) and map:contains($response,'results')) then $response?results
+        else if($response instance of map(*) and map:contains($response,'core')) then $response
+        else map {'code' : 500, 'message' : 'Internal server error', 'fields' : ''} 
     let $setHeader1 := response:set-header('cache-control','max-age=0, no-cache, no-store')
     let $setHeader2 := response:set-header('pragma','no-cache')
     let $setHeader3 := 
-        if($response[1] instance of map(*) and map:contains($response[1],'code')) 
-        then response:set-status-code($response[1]?code) 
+        if($response instance of map(*) and map:contains($response,'code')) 
+        then response:set-status-code($response?code) 
+        else if($responseBody instance of map(*) and map:contains($responseBody,'code')) 
+        then response:set-status-code($responseBody?code)
         else ()
     let $setHeader4 := 
-        if($response[1] instance of map(*) and map:contains($response[1],'totalRecordCount'))
-        then response:set-header('totalRecordCount', $response[1]?totalRecordCount)
+        if($response instance of map(*) and map:contains($response,'totalRecordCount'))
+        then response:set-header('totalRecordCount', $response?totalRecordCount)
         else ()
     let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
-    (:let $setHeader3 := 
-        if(exists($response)) then response:set-header('ETag', util:hash($response, 'md5'))
-        else ():)
     return 
         response:stream(
-            serialize(subsequence($response, if(count($response) gt 1) then 2 else 1), 
+            serialize($responseBody, 
                 <output:serialization-parameters>
                     <output:method>json</output:method>
                 </output:serialization-parameters>
