@@ -704,7 +704,8 @@
          </xsl:if>
          <xsl:if test="$explanation">
             <xsl:sequence select="$explanation"/>
-            <xsl:if test="not(matches($explanation, '(\.|\?|!)\s*$'))">
+            <xsl:variable name="quotation-marks" as="xs:string">\s*("|“|”|»|'|‘|’|›|«|‹)*</xsl:variable>
+            <xsl:if test="matches(normalize-space($explanation), concat('(\w|\)|\])', $quotation-marks, '$'))">
                <xsl:text>.</xsl:text>
             </xsl:if>
          </xsl:if>
