@@ -8,16 +8,12 @@
 [![DOI](https://zenodo.org/badge/7872550.svg)](https://zenodo.org/badge/latestdoi/7872550)
 [![Build Status](https://travis-ci.com/Edirom/WeGA-WebApp.svg?branch=develop)](https://travis-ci.com/Edirom/WeGA-WebApp)
 
-This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [www.weber-gesamtausgabe.de](http://www.weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `example-data` and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
-
-Since version 1.2 the WeGA-WebApp is designed as an eXist app package and should happily live together with other installed apps.
+This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [weber-gesamtausgabe.de](https://weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `example-data` and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
 
 
 ## Prerequisites
 
-A recent [eXist-db](http://exist-db.org/) with support for XQuery 3.1 (!)
-
-NB: Due to a regression in the eXist-db code ([1550](https://github.com/eXist-db/exist/issues/1550), [2678](https://github.com/eXist-db/exist/issues/2678), [2779](https://github.com/eXist-db/exist/issues/2779)) we currently need to stick to eXist-db version 3.3.0!
+A recent [eXist-db 5](http://exist-db.org/) with support for XQuery 3.1
 
 
 ## Quick start guide
