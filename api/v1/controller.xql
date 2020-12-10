@@ -70,7 +70,7 @@ declare function local:serialize-json($response as item()*) {
     let $serializationParameters := ('method=text', 'media-type=application/json', 'encoding=utf-8')
     let $responseBody :=
         if($response instance of map(*) and map:contains($response,'results')) then $response?results
-        else if($response instance of map(*) and map:contains($response,'core')) then $response
+        else if($response instance of map(*) and map:contains($response,'code')) then $response
         else map {'code' : 500, 'message' : 'Internal server error', 'fields' : ''} 
     let $setHeader1 := response:set-header('cache-control','max-age=0, no-cache, no-store')
     let $setHeader2 := response:set-header('pragma','no-cache')
