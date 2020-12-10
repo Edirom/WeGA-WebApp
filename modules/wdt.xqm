@@ -275,7 +275,7 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
 
 declare function wdt:writings($item as item()*) as map(*) {
     let $filter := function($docs as document-node()*) as document-node()* {
-        $docs/root()/descendant::tei:text[range:eq(@type, ('performance-review', 'historic-news', 'concert_announcements', 'work-review'))]/root() 
+        $docs/root()/descendant::tei:text[range:eq(@type, ('performance-review', 'historic-news', 'concert_announcements', 'work-review', 'biographical', 'literature'))]/root() 
     }
     return
     map {
@@ -300,7 +300,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             for $i in $filter($item) order by sort:index('writings', $i) ascending return $i
         },
         'init-collection' : function() as document-node()* {
-            crud:data-collection('writings')/descendant::tei:text[range:eq(@type, ('performance-review', 'historic-news', 'concert_announcements', 'work-review'))]/root()  
+            crud:data-collection('writings')/descendant::tei:text[range:eq(@type, ('performance-review', 'historic-news', 'concert_announcements', 'work-review', 'biographical', 'literature'))]/root()  
         },
         'init-sortIndex' : function() as item()* {
             sort:create-index-callback('writings', wdt:writings(())('init-collection')(), function($node) {
