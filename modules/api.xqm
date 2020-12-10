@@ -37,25 +37,29 @@ declare variable $api:max-limit := function($swagger-conf as map(*)) as xs:integ
     $swagger-conf?parameters?limitParam?maximum
 };
 
-declare function api:documents($model as map(*)) as map(*)* {
+declare function api:documents($model as map(*)) as map(*) {
     let $ids :=
         if(exists($model('docID'))) then api:findByID($model('docID'))
         else for $docType in api:resolve-docTypes($model) return core:getOrCreateColl($docType, 'indices', true())
     return (
-        map { 'totalRecordCount': count($ids) },
-        api:document(api:subsequence($ids, $model), $model)
+        map { 
+            'totalRecordCount': count($ids),
+            'results': api:document(api:subsequence($ids, $model), $model)
+        }
     )
 };
 
-declare function api:documents-findByDate($model as map(*)) as map(*)* {
+declare function api:documents-findByDate($model as map(*)) as map(*) {
     let $documents := for $docType in api:resolve-docTypes($model) return wdt:lookup($docType, core:getOrCreateColl($docType, 'indices', true()))?filter-by-date($model?fromDate, $model?toDate)
     return (
-        map { 'totalRecordCount': count($documents) },
-        api:document(api:subsequence($documents, $model), $model)
+        map { 
+            'totalRecordCount': count($documents),
+            'results': api:document(api:subsequence($documents, $model), $model)
+        }
     )
 };
 
-declare function api:documents-findByMention($model as map(*)) as map(*)* {
+declare function api:documents-findByMention($model as map(*)) as map(*) {
     let $mentioned-doc := api:findByID($model('docID'))
     let $backlinks := 
         if($mentioned-doc) 
@@ -65,12 +69,14 @@ declare function api:documents-findByMention($model as map(*)) as map(*)* {
         for $docType in api:resolve-docTypes($model)
         return wdt:lookup($docType, $backlinks)('filter')()
     return (
-        map { 'totalRecordCount': count($documents) },
-        api:document(api:subsequence($documents, $model), $model)
+        map { 
+            'totalRecordCount': count($documents),
+            'results': api:document(api:subsequence($documents, $model), $model)
+        }
     )
 };
 
-declare function api:documents-findByAuthor($model as map(*)) as map(*)* {
+declare function api:documents-findByAuthor($model as map(*)) as map(*) {
     let $author := api:findByID($model('authorID'))
     let $documents := 
         if($author)
@@ -80,8 +86,10 @@ declare function api:documents-findByAuthor($model as map(*)) as map(*)* {
             )
         else ()
     return (
-        map { 'totalRecordCount': count($documents) },
-        api:document(api:subsequence($documents, $model), $model)
+        map { 
+            'totalRecordCount': count($documents),
+            'results': api:document(api:subsequence($documents, $model), $model)
+        }
     )
 };
 
@@ -104,36 +112,39 @@ declare function api:code-findByElement($model as map(*)) {
         (: The 'secret' $total switch is used for our list of examples on the spec pages and is of type element()*; 
             regular output from the API is the following subsequence of type map(*)* :)
         else (
-            map { 'totalRecordCount': count($eval) },
-            api:codeSample(api:subsequence($eval, $model), $model)
+            map { 
+                'totalRecordCount': count($eval),
+                'results': api:codeSample(api:subsequence($eval, $model), $model)
+            }
         )
 };
 
-declare function api:application-status($model as map(*)*) as map(*)* {
+declare function api:application-status($model as map(*)*) as map(*) {
     let $healthy := query:facsimile(crud:doc('A040043'))[tei:graphic/@url]
                     and core:getOrCreateColl('letters', 'A002068', true())//tei:seg[@type='wordOfTheDay']
     return
-    (
         map:merge(( 
-            map:entry('totalRecordCount', 1),
-            if(not($healthy)) then map:entry('code', 500) else ()
-        )),
-        map {
-            "status": if($healthy) then "healthy" else "unhealthy",
-            "svnRevision": if (config:getCurrentSvnRev()) then config:getCurrentSvnRev() else 0,
-            "deployment": xs:dateTime($config:repo-descriptor/repo:deployed),
-            "version": config:expath-descriptor()/data(@version)
-        }
-    )
+            if(not($healthy)) then map:entry('code', 500) else (),
+            map:entry('results',
+                 map {
+                 "status": if($healthy) then "healthy" else "unhealthy",
+                 "svnRevision": if (config:getCurrentSvnRev()) then config:getCurrentSvnRev() else 0,
+                 "deployment": xs:dateTime($config:repo-descriptor/repo:deployed),
+                 "version": config:expath-descriptor()/data(@version)
+             }
+            )
+        ))
 };
 
-declare function api:application-newID($model as map(*)) as map(*)* {
+declare function api:application-newID($model as map(*)) as map(*) {
     if($config:isDevelopment) 
     then (
-        map { 'totalRecordCount': 1 },
-        map {
-            'docID': dev:createNewID($model?docType),
-            'docType': $model?docType
+        map { 
+            'results': 
+                map {
+                    'docID': dev:createNewID($model?docType),
+                    'docType': $model?docType
+                }
         }
     )
     else 
@@ -151,7 +162,7 @@ declare function api:application-newID($model as map(*)) as map(*)* {
  :
  : Expected parameters in the $model object are `facet`, `scope`, `docType`, and optionally `term`. 
  :)
-declare function api:facets($model as map(*)) as map(*)* {
+declare function api:facets($model as map(*)) as map(*) {
     let $lang := config:guess-language($model('lang'))
     let $model := map:merge(($model, map {'lang': $lang} ))
     let $fileName := util:hash($model?facet || $model?scope || $model?docType || $lang, 'md5')
@@ -167,15 +178,15 @@ declare function api:facets($model as map(*)) as map(*)* {
         if($filtered) then api:get-facets($model)?*
         else mycache:doc($localFilepath, api:get-facets#1, $model, $lease, $onFailureFunc)?*
     let $terms :=
-        if($model?term) then (tokenize(xmldb:decode($model?term), '\s+') ! wega-util:strip-diacritics(lower-case(.)))
+        if($model?term) then (tokenize(xmldb:decode($model?term), '\s+') ! str:strip-diacritics(lower-case(.)))
         else ()
     let $facets := 
         if(count($terms) gt 0) 
         then 
-            for $facet in $allFacets[?label[every $t in $terms satisfies contains(wega-util:strip-diacritics(lower-case(.)), $t)]]
+            for $facet in $allFacets[?label[every $t in $terms satisfies contains(str:strip-diacritics(lower-case(.)), $t)]]
             let $matches :=
                 for $term in $terms
-                let $hits := functx:index-of-string(wega-util:strip-diacritics(lower-case($facet?label)), $term)
+                let $hits := functx:index-of-string(str:strip-diacritics(lower-case($facet?label)), $term)
                 return
                     for $hit in $hits 
                     order by $hit
@@ -193,8 +204,10 @@ declare function api:facets($model as map(*)) as map(*)* {
                 ))
         else $allFacets
     return (
-        map { 'totalRecordCount': count($facets) },
-        api:subsequence($facets, $model)
+        map { 
+            'totalRecordCount': count($facets),
+            'results': array { api:subsequence($facets, $model) }
+        }
     )
 };
 
@@ -286,40 +299,44 @@ declare %private function api:subsequence($seq as item()*, $model as map(*)) {
 (:~
  :  Helper function for creating a Document object
 ~:)
-declare %private function api:document($documents as document-node()*, $model as map(*)) as map(*)* {
+declare %private function api:document($documents as document-node()*, $model as map(*)) as array(*) {
     let $host := $model('swagger:config')?host
     let $basePath := $model('swagger:config')?basePath
     let $scheme := $model('swagger:config')?schemes[1]
     return 
-        for $doc in $documents
-        let $id := $doc/*/data(@xml:id)
-        let $docType := config:get-doctype-by-id($id)
-        let $supportsHTML := $docType = ('letters', 'persons', 'diaries', 'writings', 'news', 'documents', 'thematicCommentaries')
-        return
-            map { 
-                'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
-                'docID' : $id,
-                'docType' : $docType,
-                'title' : wdt:lookup($docType, $doc)('title')('txt')
-            } 
+        array {
+            for $doc in $documents
+            let $id := $doc/*/data(@xml:id)
+            let $docType := config:get-doctype-by-id($id)
+            let $supportsHTML := $docType = ('letters', 'persons', 'diaries', 'writings', 'news', 'documents', 'thematicCommentaries')
+            return
+                map { 
+                    'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
+                    'docID' : $id,
+                    'docType' : $docType,
+                    'title' : wdt:lookup($docType, $doc)('title')('txt')
+                }
+        }
 };
 
 (:~
  :  Helper function for creating a CodeSample object 
 ~:)
-declare function api:codeSample($nodes as node()*, $model as map(*)) as map(*)* {
+declare function api:codeSample($nodes as node()*, $model as map(*)) as array(*) {
     let $host := $model('swagger:config')?host
     let $basePath := $model('swagger:config')?basePath
     let $scheme := $model('swagger:config')?schemes?1
     return 
-        for $node in $nodes
-        let $docID := $node/root()/*/data(@xml:id)
-        return
-            map { 
-                'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
-                'docID' : $docID,
-                'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
-            }
+        array {
+            for $node in $nodes
+            let $docID := $node/root()/*/data(@xml:id)
+            return
+                map { 
+                    'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
+                    'docID' : $docID,
+                    'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
+                }
+        }
 };
 
 (:~

@@ -8,14 +8,13 @@ xquery version "3.1" encoding "UTF-8";
  :)
 
 module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets";
-declare default collation "?lang=de;strength=primary";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace util = "http://exist-db.org/xquery/util";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
@@ -24,10 +23,6 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace functx="http://www.functx.com";
 import module namespace templates="http://exist-db.org/xquery/templates";
 
-(:~
- : Trying to reduce function calls to norm:get-norm-doc() when creating facets
-~:)
-(:declare variable $facets:persons-norm-file := doc($config:tmp-collection-path || '/normFile-persons.xml');:)
 
 (:~
  : 
@@ -57,7 +52,7 @@ declare
                     if ($selectedObjs?*[?value = $i]?frequency castable as xs:int) 
                     then $selectedObjs?*[?value = $i]?frequency
                     else 0
-                    order by $display-term
+                    order by $display-term collation "?lang=de;strength=primary"
                 return
                     element option {
                         attribute selected {'selected'},
@@ -176,7 +171,7 @@ declare
                 for $filter in $filterSections
                 let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-combined-doctype-by-id(.) = $filter])
                 let $characterNames := 
-                    if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)])
+                    if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)] ! normalize-space(.))
                     else ()
                 return 
                     if(exists($keys)) then map { $filter : $keys}
@@ -199,7 +194,7 @@ declare
                         switch($i)
                         case 'characterNames' return string-join(string-to-codepoints(normalize-space($j)) ! string(.), '')
                         default return $j
-                    order by $label ascending
+                    order by $label ascending collation "?lang=de;strength=primary"
                     return map { 'key' : $key, 'label' : $label}
         }
 };

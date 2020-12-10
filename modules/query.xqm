@@ -4,7 +4,7 @@ xquery version "3.1" encoding "UTF-8";
  : Functions for querying data from the WeGA-data app 
 :)
 module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query";
-declare default collation "?lang=de;strength=primary";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace gn="http://www.geonames.org/ontology#";
@@ -12,10 +12,10 @@ declare namespace range="http://exist-db.org/xquery/range";
 declare namespace sort="http://exist-db.org/xquery/sort";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace xdt="http://www.w3.org/2005/xpath-datatypes";
+declare namespace ft="http://exist-db.org/xquery/lucene";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -274,7 +274,7 @@ declare function query:text-sources($doc as document-node()) as element()* {
 
 (:~
  : Get the normalized date for a document
- : (needed for core:sortColl() as well as norm:get-norm-doc())
+ : NB: This should be aligned with the function `facets:normalize-date()` from the WeGA-data facets module! 
  :
  : @author Peter Stadler
  : @param $doc the TEI document
@@ -336,13 +336,29 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     default return ()
 };
 
+(:~
+ :  Compute correspondence partners
+ :  For each correspondent (addressees and senders) of $id 
+ :  the sum of incoming and outgoing correspondence will be computed  
+ :
+ :  @param $id the person ID for which to compute the partners
+ :  @return a map object with all correspondence partner IDs and the respective weights, 
+ :      e.g. map {"A000915": 2, "A008673": 57}  
+ :)
 declare function query:correspondence-partners($id as xs:string) as map(*) {
-    map:merge(
-        for $i in (norm:get-norm-doc('letters')//norm:entry[contains(@addresseeID, $id)] | norm:get-norm-doc('letters')//norm:entry[contains(@authorID, $id)])/(@authorID, @addresseeID)/tokenize(., '\s+') 
-        group by $partnerID := data($i)
-        return
-            map:entry($partnerID, count($i))
-    )
+    let $id-as-sender := map {  "facets": map { "sender": $id } }
+    let $id-as-addressee := map { "facets": map { "addressee": $id } }
+    let $result1 := crud:data-collection('letters')/tei:TEI[ft:query(., (), $id-as-sender)] 
+    let $facets1 := ft:facets($result1, "addressee", ())
+    let $result2 := crud:data-collection('letters')/tei:TEI[ft:query(., (), $id-as-addressee)] 
+    let $facets2 := ft:facets($result2, "sender", ())
+    return
+        map:merge((
+            $facets2,
+            map:for-each($facets1, function($label, $count) {
+                map:entry($label, sum(($count, $facets2($label))))
+            })
+        ))
 };
 
 (:~

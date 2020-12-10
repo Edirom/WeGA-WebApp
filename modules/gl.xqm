@@ -22,7 +22,7 @@ import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud"
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
-import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
+import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace templates="http://exist-db.org/xquery/templates";
@@ -348,7 +348,7 @@ declare
 			map {
 	            'doc' : $doc,
 	            'docID' : $codeSample?docID,
-	            'docURL' : app:createUrlForDoc($doc, $lang),
+	            'docURL' : controller:create-url-for-doc($doc, $lang),
 	            'relators' : $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
 	            'biblioType' : $doc/tei:biblStruct/data(@type),
 	            'workType' : $doc//mei:term/data(@class),

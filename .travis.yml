@@ -1,10 +1,13 @@
-dist: xenial
+os: linux
+dist: focal
 language: java
 
 addons:
   apt:
     packages:
       - ant
+      - curl
+      - unzip
 
 services:
   - docker
@@ -12,10 +15,12 @@ services:
 before_install:
   - ant docker_run
   - npm install prettydiff
-  - docker cp wega:/opt/exist/lib/endorsed/Saxon-HE-9.6.0-7.jar .
+  - curl -L https://sourceforge.net/projects/saxon/files/Saxon-HE/9.9/SaxonHE9-9-1-8J.zip/download -o saxon.zip
+  - unzip saxon.zip -d saxon
 
 script:
-  - ant -lib . test
+  - ant -lib saxon test
 
 after_failure:
-  - docker exec -it wega tail -2000 webapp/WEB-INF/logs/exist.log 
+  - docker cp wega:/exist/logs/exist.log .
+  - tail -2000 exist.log 

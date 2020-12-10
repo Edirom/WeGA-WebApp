@@ -4,17 +4,17 @@ xquery version "3.1";
  : Core functions of the WeGA-WebApp
  :)
 module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core";
-declare default collation "?lang=de;strength=primary";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace util="http://exist-db.org/xquery/util";
+declare namespace ft="http://exist-db.org/xquery/lucene";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
@@ -76,7 +76,15 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
  : @return document-node()*
  :)
 declare function core:undated($docType as xs:string) as document-node()* {
-    let $norm-file := norm:get-norm-doc($docType)
-    for $i in $norm-file//norm:entry[not(text())]
-    return crud:doc($i/@docID)
+    switch($docType)
+    case 'letters' case 'writings' case 'documents' return crud:data-collection($docType)/tei:TEI[ft:query(., 'date:undated')][not(tei:ref)]/root()
+    default return ()
+};
+
+declare function core:index-keys-for-field($coll as document-node()*, $field as xs:string) as xs:string* {
+    distinct-values(
+        for $i in $coll/tei:TEI[ft:query(., (), map { "fields": $field })] | $coll/tei:ab[ft:query(., (), map { "fields": $field })] | $coll/tei:biblStruct[ft:query(., (), map { "fields": $field })]
+        return
+            ft:field($i, $field)
+    )
 };

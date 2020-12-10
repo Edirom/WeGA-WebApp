@@ -274,16 +274,39 @@
                 "produces": ["application/json"],
                 "responses": {
                     "200": {
-                        "description": "A single object with status information",
+                        "description": "Healthy \u2013 A single object with status information",
                         "schema": {
                             "type": "object",
                             "properties": {
                                 "status": {
                                     "type": "string",
-                                    "enum": [
-                                        "healthy",
-                                        "unhealthy"
-                                    ],
+                                    "default": "healthy",
+                                    "description": "Status (healthy|unhealthy) of the currently running WeGA-WebApp"
+                                },
+                                "svnRevision": {
+                                    "type": "integer",
+                                    "description": "The Subversion revision of the currently installed WeGA-data"
+                                },
+                                "deployment": {
+                                    "type": "string",
+                                    "format": "date-time",
+                                    "description": "The datetime of the deployment of the WeGA-WebApp"
+                                },
+                                "version": {
+                                    "type": "string",
+                                    "pattern": "^\\d+\\.\\d+\\.\\d+$"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Unhealthy \u2013 A single object with status information",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "status": {
+                                    "type": "string",
+                                    "default": "unhealthy",
                                     "description": "Status (healthy|unhealthy) of the currently running WeGA-WebApp"
                                 },
                                 "svnRevision": {
@@ -333,6 +356,20 @@
                                     "type": "string",
                                     "description": "The WeGA document type"
                                 }
+                            }
+                        }
+                    },
+                    "403": {
+                        "description": "The creation of new IDs is only available in the development environment",
+                        "schema": {
+                            "type": "object",
+                            "properties": {
+                                "code": {
+                                    "type": "integer",
+                                    "format": "int32",
+                                    "default": 403
+                                },
+                                "message": {"type": "string"}
                             }
                         }
                     },

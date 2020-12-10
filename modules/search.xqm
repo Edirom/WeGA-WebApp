@@ -15,7 +15,6 @@ import module namespace kwic="http://exist-db.org/xquery/kwic";
 import module namespace templates="http://exist-db.org/xquery/templates";
 import module namespace functx="http://www.functx.com";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
-import module namespace norm="http://xquery.weber-gesamtausgabe.de/modules/norm" at "norm.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
@@ -23,7 +22,6 @@ import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" a
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
-import module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app" at "app.xqm";
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 
 
@@ -184,15 +182,16 @@ declare %private function search:search($model as map(*)) as map(*) {
 ~:)
 declare %private function search:list($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
-    let $search-results := 
-        if(exists($model('filters'))) then search:filter-result($coll, $model('filters'), $model('docType'))
+    (: awkward hack to create a new map for $model. It seems $model gets modified by some strange side effect when pushed directly to search:filter-result() :)
+    let $filters := map:merge(for $i in map:keys($model?filters) return map:entry($i, $model?filters($i)))
+    let $search-results as document-node()* := 
+        if(count(map:keys($filters)) gt 0) then search:filter-result($coll, $filters, $model?docType)
         else $coll
     let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')( map { 'personID' : $model('docID')} )
     return
         map:merge((
             $model,
             map {
-                'filters' : $model('filters'),
                 'search-results' : $sorted-results,
                 'earliestDate' : search:get-earliest-date($sorted-results, $model('docType')),
                 'latestDate' : search:get-latest-date($sorted-results, $model('docType')),
@@ -312,7 +311,7 @@ declare %private function search:create-filters() as map(*) {
  : Recursively applies this function until the filter map is empty
 ~:)
 declare %private function search:filter-result($collection as document-node()*, $filters as map(*), $docType as xs:string) as document-node()* {
-    if(count($filters?*) gt 0) then (
+    if(count(map:keys($filters)) gt 0) then (
         let $filter := map:keys($filters)[1]
         let $filtered-coll := 
             if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
@@ -336,7 +335,7 @@ declare %private function search:filter-result($collection as document-node()*, 
             else
                 map:remove($filters, $filter)
         return
-            if(count($newFilter?*) gt 0) then (
+            if(count(map:keys($newFilter)) gt 0) then (
                 search:filter-result($filtered-coll, $newFilter, $docType)
             )
             else $filtered-coll
@@ -393,15 +392,8 @@ declare %private function search:facsimile-filter($collection as document-node()
 declare %private function search:get-earliest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
     if(count($coll) gt 0) then 
         switch ($docType)
-        case 'news' case 'biblio' return
-            (: reverse order :)
-            let $date := query:get-normalized-date($coll[last()])
-            return 
-                if(exists($date)) then string($date)
-                else if(count($coll) gt 1) then search:get-earliest-date(subsequence($coll, 1, count($coll) -1), $docType)
-                else ()
-        case 'letters' case 'writings' case 'diaries' case 'documents' return 
-            string(query:get-normalized-date($coll[1]))
+        case 'news' case 'biblio' case 'letters' case 'writings' case 'diaries' case 'documents' return 
+            min(core:index-keys-for-field($coll, 'date')[not(.='undated')])
         case 'persons' case 'orgs' return ()
         case 'works' return ()
         case 'places' return ()
@@ -415,15 +407,8 @@ declare %private function search:get-earliest-date($coll as document-node()*, $d
 declare %private function search:get-latest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
     if(count($coll) gt 0) then 
         switch ($docType)
-        case 'news' case 'biblio' return
-            (: reverse order :)
-            string(query:get-normalized-date($coll[1]))
-        case 'letters' case 'writings' case 'diaries' case 'documents' return 
-            let $date := query:get-normalized-date($coll[last()])
-            return 
-                if(exists($date)) then string($date)
-                else if(count($coll) gt 1) then search:get-latest-date(subsequence($coll, 1, count($coll) -1), $docType)
-                else ()
+        case 'news' case 'biblio' case 'letters' case 'writings' case 'diaries' case 'documents' return
+            max(core:index-keys-for-field($coll, 'date')[not(.='undated')])
         case 'persons' case 'orgs' return ()
         case 'works' return ()
         case 'places' return ()
@@ -457,7 +442,7 @@ declare %private function search:prepare-search-string($model as map(*)) as map(
             $model, 
             map {
                 'filters' : map:merge(($model?filters, $searchDate)), (: push recognized dates to the filters :)
-                'query-string' : wega-util:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
+                'query-string' : str:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
                 'query-docTypes' : $query-docTypes,
                 'query-string-org' : $query-string-org
             }
@@ -503,10 +488,10 @@ declare
         let $page := ceiling($index-of-current-doc div config:entries-per-page())
         let $url := controller:resolve-link('$link/search', $model) || '?q=' || $wegasearch?query-string-org || '&amp;d=' || string-join($wegasearch?query-docTypes, '&amp;d=') || '&amp;page=' || $page
         let $search-prev-item-url := 
-            if($index-of-current-doc gt 1) then app:createUrlForDoc($docs[$index-of-current-doc - 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
+            if($index-of-current-doc gt 1) then controller:create-url-for-doc($docs[$index-of-current-doc - 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
             else '#'
         let $search-next-item-url := 
-            if($index-of-current-doc lt count($docs)) then app:createUrlForDoc($docs[$index-of-current-doc + 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
+            if($index-of-current-doc lt count($docs)) then controller:create-url-for-doc($docs[$index-of-current-doc + 1], $model?lang) || '?q=' || string-join(($wegasearch?query-string-org, $wegasearch?query-docTypes), '&amp;d=')
             else '#'
         return
             map:merge((

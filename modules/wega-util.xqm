@@ -4,7 +4,7 @@ xquery version "3.1" encoding "UTF-8";
  : Various utility functions for the WeGA WebApp
 :)
 module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util";
-declare default collation "?lang=de;strength=primary";
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
@@ -324,15 +324,6 @@ declare function wega-util:distance-between-places($placeID1 as xs:string, $plac
    let $latLon2 := array { tokenize($places/id($placeID2)//tei:geo, '\s+') ! . cast as xs:double }
    return 
       wega-util:spherical-law-of-cosines-distance($latLon1, $latLon2)
-};
-
-(:~
- : create a flattened version of strings without diacritics, e.g. "Méhul" --> "Mehul"
- : see http://exist.2174344.n4.nabble.com/stripping-diacritics-with-fn-normalize-unicode-tp4657960.html
-~:)
-declare function wega-util:strip-diacritics($str as xs:string*) as xs:string* {
-    for $i in $str
-    return replace(normalize-unicode($i, 'NFKD'),  '[\p{M}]', '')
 };
 
 (:~
