@@ -206,14 +206,20 @@
     
     <target name="deploy" depends="clean, xar">
         <path id="classpath.core">
-            <fileset dir="${exist.home}/lib/core">
+            <fileset dir="${exist.home}/lib/core" erroronmissingdir="no">
                 <include name="*.jar"/>
             </fileset>
             <pathelement path="${exist.home}/exist.jar"/>
             <pathelement path="${exist.home}/exist-optional.jar"/>
         </path>
+        <path id="classpath.eXist5" erroronmissingdir="no">
+            <fileset dir="${exist5.libs}">
+                <include name="*.jar"/>
+            </fileset>
+        </path>
         <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
             <classpath refid="classpath.core"/>
+            <classpath refid="classpath.eXist5"/>
         </typedef>
         
         <!-- store xar-file in eXist-db -->
