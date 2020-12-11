@@ -795,6 +795,16 @@ declare function api:validate-facsimile($model as map(*)) as map(*)? {
 };
 
 (:~
+ : Check parameter series ('internal','external','without')
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-series($model as map(*)) as map(*)? {
+    if(every $i in $model?series ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'series': ($model?series ! tokenize(., ',')) ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "series".')
+};
+
+(:~
  : Fallback for unknown API parameters 
  : Simply returns an error message
 ~:)

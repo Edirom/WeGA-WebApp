@@ -38,7 +38,7 @@ declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'w
     'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
     'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
     'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames', 
-    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames', 'repository', 'facsimile');
+    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames', 'repository', 'facsimile', 'series');
 
 (:~
  : Main function called from the templating module

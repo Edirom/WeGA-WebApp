@@ -333,6 +333,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'asksam-cat' return $collection//mei:term[@label='asksam-cat']
     case 'placenames' return $collection//tei:placeName[@type='reg']
     case 'repository' return $collection//tei:repository/@n
+    case 'series' return $collection//mei:seriesStmt/mei:title[@level='s']
     default return ()
 };
 
