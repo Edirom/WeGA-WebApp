@@ -212,8 +212,8 @@
             <pathelement path="${exist.home}/exist.jar"/>
             <pathelement path="${exist.home}/exist-optional.jar"/>
         </path>
-        <path id="classpath.eXist5" erroronmissingdir="no">
-            <fileset dir="${exist5.libs}">
+        <path id="classpath.eXist5">
+            <fileset dir="${exist5.libs}" erroronmissingdir="no">
                 <include name="*.jar"/>
             </fileset>
         </path>
