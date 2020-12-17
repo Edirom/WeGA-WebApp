@@ -238,10 +238,10 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         case element(tei:subst) return $node/child::element() ! wega-util:txtFromTEI(.)
         case element(tei:note) return ()
         case element(tei:lb) return 
-            if($node[@type='inWord']) then ()
+            if($node[@type='inWord' or @break='no']) then ()
             else '&#10;'
         case element(tei:pb) return 
-            if($node[@type='inWord']) then ()
+            if($node[@type='inWord' or @break='no']) then ()
             else ' '
         case element(tei:q) return 
             if((count($node/ancestor::tei:q | $node/ancestor::tei:quote) mod 2) = 0) then str:enquote($node/child::node() ! wega-util:txtFromTEI(.), config:guess-language(()))

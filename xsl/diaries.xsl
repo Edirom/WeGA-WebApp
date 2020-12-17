@@ -55,7 +55,7 @@
         which drops line breaks following a tei:seg[@rend]
     -->
     <xsl:template match="tei:lb" priority="0.8">
-        <xsl:if test="@type='inWord'">
+        <xsl:if test="@type='inWord' or @break='no'">
             <xsl:element name="span">
                 <xsl:attribute name="class" select="'break_inWord'"/>
                 <xsl:text>-</xsl:text>

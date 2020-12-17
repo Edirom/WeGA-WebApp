@@ -187,7 +187,7 @@
     <xsl:template match="tei:reg"/>
 
     <xsl:template match="tei:lb" priority="0.5">
-        <xsl:if test="@type='inWord'">
+        <xsl:if test="@type='inWord' or @break='no'">
             <xsl:element name="span">
                 <xsl:attribute name="class" select="'break_inWord'"/>
                 <xsl:text>-</xsl:text>
@@ -320,7 +320,7 @@
                 <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
             </xsl:if>
             <xsl:choose>
-                <xsl:when test="@type='inWord'">
+                <xsl:when test="@type='inWord' or @break='no'">
                     <xsl:value-of select="normalize-space($division-sign)"/>
                 </xsl:when>
                 <xsl:otherwise>
