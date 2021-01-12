@@ -147,6 +147,7 @@
                 <exclude name="less/"/>
                 <exclude name="sass/"/>
                 <exclude name="lodash/"/>
+                <exclude name="minify/"/>
                 <exclude name="rx/"/>
                 <exclude name="vnu/"/>
                 <exclude name="vnu-jar/"/>
@@ -171,34 +172,31 @@
         </copy>
     </target>
     
-    <target name="yuicompress" depends="dist">
-        <apply executable="java" parallel="false" dest="${dist.dir}/resources/css">
+    <target name="minify" depends="dist">
+        <echo>Run minify on CSS files</echo>
+        <apply executable="${dev_libs.dir}/minify/bin/minify.js" parallel="false">
             <fileset dir="${dist.dir}/resources/css" includes="*.css" excludes="*min.css"/>
-            <arg line="-jar ${dev_libs.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
-            <srcfile/>
-            <arg line="-o"/>
-            <mapper type="glob" from="*.css" to="*-min.css"/>
-            <targetfile/>
+            <redirector>
+                <outputmapper type="glob" from="*.css" to="${dist.dir}/resources/css/*-min.css"/>
+            </redirector>
         </apply>
-        <apply executable="java" parallel="false" dest="${dist.dir}/resources/js">
+        <echo>Run minify on JS files</echo>
+        <apply executable="${dev_libs.dir}/minify/bin/minify.js" parallel="false">
             <fileset dir="${dist.dir}/resources/js" includes="*.js" excludes="*min.js"/>
-            <arg line="-jar ${dev_libs.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
-            <srcfile/>
-            <arg line="-o"/>
-            <mapper type="glob" from="*.js" to="*-min.js"/>
-            <targetfile/>
+            <redirector>
+                <outputmapper type="glob" from="*.js" to="${dist.dir}/resources/js/*-min.js"/>
+            </redirector>
         </apply>
-        <apply executable="java" parallel="false" dest="${dist.dir}/resources/lib/jquery-ui/ui/widgets">
+        <echo>Run minify on datepicker.js</echo>
+        <apply executable="${dev_libs.dir}/minify/bin/minify.js" parallel="false">
             <fileset dir="${dist.dir}/resources/lib/jquery-ui/ui/widgets" includes="datepicker.js" excludes="*min.js"/>
-            <arg line="-jar ${dev_libs.dir}/yuicompressor/build/yuicompressor-2.4.8.jar -v"/>
-            <srcfile/>
-            <arg line="-o"/>
-            <mapper type="glob" from="*.js" to="*-min.js"/>
-            <targetfile/>
+            <redirector>
+                <outputmapper type="glob" from="*.js" to="${dist.dir}/resources/lib/jquery-ui/ui/widgets/*-min.js"/>
+            </redirector>
         </apply>
     </target>
     
-    <target name="xar" depends="init, dist, yuicompress">
+    <target name="xar" depends="init, dist, minify">
         <zip destfile="${build.dir}/${project.app}-${project.version}.xar">
             <fileset dir="${dist.dir}"/>
         </zip>
