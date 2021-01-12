@@ -7,6 +7,9 @@
    exclude-result-prefixes="xs" version="2.0">
 
    <xsl:variable name="doc" select="wega:doc($docID)"/>
+   <xsl:variable name="textConstitutionNodes" as="node()*" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
+   <xsl:variable name="commentaryNodes" as="node()*" select=".//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
+   <xsl:variable name="rdgNodes" as="node()*" select=".//tei:app"/>
 
    <!--
       Mode: default (i.e. template rules without a @mode attribute)
@@ -15,22 +18,19 @@
       
       Mode: lemma
       This mode is used for creating lemmata (for notes and apparatus entries, etc.) and will
-      be almost plain text, with the exception of html:span for musical symbols and the like.
+      be plain text only, with the exception of html:span for musical symbols and the like.
       
       Mode: apparatus
-      This mode is used for outputting the apparatus entries (wiht the variant forms).
+      This mode is used for outputting the apparatus entries (with the variant forms).
    -->
    
    <xsl:template name="createApparatus">
-      <xsl:variable name="textConstitutionPath" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
-      <xsl:variable name="commentaryPath" select=".//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
-      <xsl:variable name="rdgPath" select=".//tei:app"/>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
          <xsl:if test="wega:isNews($docID)">
             <xsl:attribute name="style">display:none</xsl:attribute>
          </xsl:if>
-         <xsl:if test="$textConstitutionPath or $doc//tei:notesStmt/tei:note[@type='textConst']">
+         <xsl:if test="$textConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst']">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
@@ -41,7 +41,7 @@
          </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
-            <xsl:for-each select="$textConstitutionPath">
+            <xsl:for-each select="$textConstitutionNodes">
                <xsl:element name="li">
                   <xsl:element name="div">
                      <xsl:attribute name="class">row</xsl:attribute>
@@ -51,7 +51,7 @@
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
-                           <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/> <!-- should be in a variable -->
+                           <xsl:number count="$textConstitutionNodes" level="any"/>
                            <xsl:text>.</xsl:text>
                         </xsl:element>
                      </xsl:element>
@@ -60,7 +60,7 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
-         <xsl:if test="$commentaryPath">
+         <xsl:if test="$commentaryNodes">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('note_commentary', $lang)"/>
@@ -68,7 +68,7 @@
          </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus commentary</xsl:attribute>
-            <xsl:for-each select="$commentaryPath">
+            <xsl:for-each select="$commentaryNodes">
                <xsl:element name="li">
                   <xsl:element name="div">
                      <xsl:attribute name="class">row</xsl:attribute>
@@ -78,7 +78,7 @@
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
-                           <xsl:number count="tei:note[@type=('commentary', 'definition')] | tei:choice" level="any"/>
+                           <xsl:number count="$commentaryNodes" level="any"/>
                            <xsl:text>.</xsl:text>
                         </xsl:element>
                      </xsl:element>
@@ -87,7 +87,7 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
-         <xsl:if test="$rdgPath">
+         <xsl:if test="$rdgNodes">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('appRdgs', $lang)"/>
@@ -95,7 +95,7 @@
          </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus rdg</xsl:attribute>
-            <xsl:for-each select="$rdgPath">
+            <xsl:for-each select="$rdgNodes">
                <xsl:element name="li">
                   <xsl:element name="div">
                      <xsl:attribute name="class">row</xsl:attribute>
@@ -105,7 +105,7 @@
                            <xsl:attribute name="href">#transcription</xsl:attribute>
                            <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
-                           <xsl:number level="any"/>
+                           <xsl:number count="$rdgNodes" level="any"/>
                            <xsl:text>.</xsl:text>
                         </xsl:element>
                      </xsl:element>
