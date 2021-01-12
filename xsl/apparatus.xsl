@@ -705,7 +705,7 @@
          <xsl:if test="$explanation">
             <xsl:sequence select="$explanation"/>
             <xsl:variable name="quotation-marks" as="xs:string">\s*("|“|”|»|'|‘|’|›|«|‹)*</xsl:variable>
-            <xsl:if test="matches(normalize-space($explanation), concat('(\w|\)|\])', $quotation-marks, '$'))">
+            <xsl:if test="matches(normalize-space($explanation), concat('(\w|\)|\])', $quotation-marks, '$')) and not(some $node in $textConstitutionNodes satisfies $node is .)">
                <xsl:text>.</xsl:text>
             </xsl:if>
          </xsl:if>
