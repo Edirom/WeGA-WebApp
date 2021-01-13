@@ -1371,10 +1371,11 @@ declare
 declare 
     %templates:wrap
     function app:textSources($node as node(), $model as map(*)) as map(*) {
-    let $textSourcesCount := count(query:text-sources($model?doc))
+    let $textSources := query:text-sources($model?doc)
+    let $textSourcesCount := count($textSources)
     return
         map {
-            'textSources' : query:text-sources($model?doc),
+            'textSources' : $textSources | $textSources/tei:msFrag,
             'textSourcesCountString' : if($textSourcesCount > 1) then concat("in ", $textSourcesCount, " ", lang:get-language-string("textSources",$model('lang'))) else ""
         }
 };
@@ -1384,9 +1385,12 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:print-Source($node as node(), $model as map(*), $key as xs:string) as map(*)* {
-        let $sourceCount := $model($key)/ancestor::tei:listWit/count(tei:witness)
+        let $witOrFragPreceding := $model($key)/parent::tei:witness/preceding-sibling::tei:witness | $model($key)/self::tei:msFrag/preceding-sibling::tei:msFrag
+        let $titlePrefix := if($model($key)/self::tei:msFrag or $model($key)/parent::tei:witness) then string(count($witOrFragPreceding) + 1) || '.' else ''
+        let $title := if($model($key)/self::tei:msFrag) then 'fragment' else 'textSource'
         let $sourceLink-content :=
             typeswitch($model($key))
+                case element(tei:msFrag) return wega-util:transform($model($key)/tei:msIdentifier, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 case element(tei:msDesc) return wega-util:transform($model($key)/tei:msIdentifier, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 case element(tei:biblStruct) return bibl:printCitation($model($key), <xhtml:span class="biblio-entry"/>, $model('lang'))
                 case element(tei:bibl) return 
@@ -1397,13 +1401,14 @@ declare
         let $sourceCategory := if($model($key)/@rend) then lang:get-language-string($model($key)/@rend,$model('lang')) else ()
         let $sourceData-content :=
             typeswitch($model($key))
-                case element(tei:msDesc) return wega-util:transform($model($key)/tei:*[not(self::tei:msIdentifier)], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+                case element(tei:msFrag) return wega-util:transform($model($key)/tei:*[not(self::tei:msIdentifier)], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+                case element(tei:msDesc) return wega-util:transform($model($key)/tei:*[not(self::tei:msIdentifier or self::tei:msFrag)], doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
                 default return ()
         let $source-id := concat("source_",util:hash(generate-id($model($key)),'md5'))
         let $collapse := exists($sourceData-content) or exists($model($key)/tei:additional) or exists($model($key)/tei:relatedItem)
         return
             map {
-                'witness' : if ($sourceCount > 1) then concat($model($key)/parent::tei:witness/@n,".") else "",
+                'title' : $titlePrefix || ' ' || lang:get-language-string($title,$model?lang),
                 'collapse' : $collapse,
                 'sourceLink' : concat("#",$source-id),
                 'sourceId' : $source-id,
@@ -1418,7 +1423,7 @@ declare
     function app:additionalSources($node as node(), $model as map(*)) as map(*) {
         (: tei:msDesc, tei:bibl, tei:biblStruct als mögliche Kindelemente von tei:additional/tei:listBibl :)
         map {
-            'additionalSources' : $model('textSource')//tei:additional/tei:listBibl/tei:* | $model('textSource')/tei:relatedItem/tei:*[not(./self::tei:listBibl)] | $model('textSource')/tei:relatedItem/tei:listBibl/tei:* 
+            'additionalSources' : $model('textSource')/tei:additional/tei:listBibl/tei:* | $model('textSource')/tei:relatedItem/tei:*[not(./self::tei:listBibl)] | $model('textSource')/tei:relatedItem/tei:listBibl/tei:* 
         }
 };
 
