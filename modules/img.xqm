@@ -134,7 +134,7 @@ declare %private function img:iconography4works($node as node(), $model as map(*
  : @return an HTML element <a> with a nested <img>
 ~:)
 declare function img:iconographyImage($node as node(), $model as map(*)) as element(a) {
-    <a href="{$model('iconographyImage')('linkTarget')}"><img title="{$model('iconographyImage')('caption')}" alt="{$model('iconographyImage')('caption')}" src="{$model('iconographyImage')('url')('thumb')}"/></a>
+    <xhtml:a href="{$model('iconographyImage')('linkTarget')}"><xhtml:img title="{$model('iconographyImage')('caption')}" alt="{$model('iconographyImage')('caption')}" src="{$model('iconographyImage')('url')('thumb')}"/></xhtml:a>
 };
 
 (:~
