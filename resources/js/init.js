@@ -749,8 +749,9 @@ function updatePage(params) {
 
 /* activate tooltips for jubilees on start page 
  * as well as for Julian dates on person pages
+ * and symbols elsewhere in texts
  */
-$('.jubilee, .jul').tooltip();
+$('.jubilee, .jul, .symbol').tooltip();
 
 /* Initialise select2 plugin for facets on index pages */
 $('.allFilter select').facets();

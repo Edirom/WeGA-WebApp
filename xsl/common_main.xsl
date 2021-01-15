@@ -20,6 +20,7 @@
 <!--    <xsl:variable name="optionsFile" select="'/db/webapp/xml/wegaOptions.xml'"/>-->
     <xsl:variable name="blockLevelElements" as="xs:string+" select="('p', 'list', 'table')"/>
     <xsl:variable name="musical-symbols" as="xs:string" select="'[&#x1d100;-&#x1d1ff;♭-♯]+'"/>
+    <xsl:variable name="symbols" as="xs:string">[&#9711;&#402;&#2114;]</xsl:variable>
     <xsl:variable name="fa-exclamation-circle" as="xs:string" select="'&#xf06a;'"/>
     <xsl:param name="optionsFile"/>
     <xsl:param name="baseHref"/>
@@ -211,7 +212,7 @@
     <xsl:template match="tei:lb[(following-sibling::text()[not(functx:all-whitespace(.))] | following-sibling::*)[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
 
     <xsl:template match="text()" mode="#all">
-        <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols, $fa-exclamation-circle), '|')"/>
+        <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols, $fa-exclamation-circle, $symbols), '|')"/>
         <xsl:analyze-string select="." regex="{$regex}">
             <xsl:matching-substring>
                 <!--       Ersetzen von Pfundzeichen in Bild         -->
@@ -236,6 +237,15 @@
                     <xsl:element name="i">
                         <xsl:attribute name="class" select="'fa fa-exclamation-circle'"/>
                         <xsl:attribute name="aria-hidden" select="'true'"/>
+                    </xsl:element>
+                </xsl:if>
+                <xsl:if test="matches(., $symbols)">
+                    <xsl:element name="span">
+                        <xsl:attribute name="title" select="wega:getLanguageString(., $lang)"/>
+                        <xsl:attribute name="data-toggle">tooltip</xsl:attribute>
+                        <xsl:attribute name="tabindex">0</xsl:attribute>
+                        <xsl:attribute name="class">symbol</xsl:attribute>
+                        <xsl:value-of select="."/>
                     </xsl:element>
                 </xsl:if>
             </xsl:matching-substring>
