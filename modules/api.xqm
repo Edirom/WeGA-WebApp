@@ -612,7 +612,7 @@ declare function api:validate-journals($model as map(*)) as map(*)? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-docStatus($model as map(*)) as map(*)? {
-    if(every $i in $model?docStatus ! tokenize(., ',') satisfies $i = ('approved','candidate','proposed')) then map { 'docStatus': $model?docStatus ! tokenize(., ',') }
+    if(every $i in $model?docStatus ! tokenize(., ',') satisfies $i = ('approved','candidate','proposed')) then map { 'docStatus': $model?docStatus ! tokenize(., ',') ! xmldb:decode(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "docStatus". It must be one of "approved", "candidate", or "proposed".' )
 }; 
 

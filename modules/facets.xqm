@@ -127,7 +127,7 @@ declare %private function facets:createFacets($nodes as node()*, $facet as xs:st
         let $label := facets:display-term($facet, $term, $lang) 
         return
         map {
-            'value' : str:normalize-space($term),
+            'value' : str:normalize-space(encode-for-uri($term)),
             'label' : $label,
             'frequency' : $data[2]
         }
