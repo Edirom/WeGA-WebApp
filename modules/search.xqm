@@ -334,13 +334,7 @@ declare %private function search:filter-result($collection as document-node()*, 
             if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
             else if($filter = 'searchDate') then search:searchDate-filter($collection, $filters($filter)[1])
             else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
-            else if($filter = 'textType') then search:textType-filter($collection, $filters($filter)[1])
             else if($filter = 'hideRevealed') then search:revealed-filter($collection)
-            else if($filter = 'facsimile') then search:facsimile-filter($collection, $filters($filter)[1])
-            (: exact search for terms -> range:eq :)
-            else if($filter = ('journals', 'forenames', 'surnames', 'sex', 'occupations')) then query:get-facets($collection, $filter)[range:eq(.,$filters($filter)[1])]/root()
-            (: range:contains for tokens within key values  :)
-            else if($filter = ('addressee', 'sender')) then query:get-facets($collection, $filter)[range:contains(.,$filters($filter)[1])]/root()
             (: exact match for everything else :)
             else query:get-facets($collection, $filter)[range:eq(.,$filters($filter)[1])]/root()
         let $newFilter :=
@@ -378,29 +372,8 @@ declare %private function search:searchDate-filter($collection as document-node(
         )/root()
 };
 
-(:~
- : Helper function for search:filter-result()
- : Applies textType filter for backlinks
-~:)
-declare %private function search:textType-filter($collection as document-node()*, $textTypes as xs:string*) as document-node()* {
-    for $textType in $textTypes
-    return
-        wdt:lookup($textType, $collection)('sort')(map {})
-};
-
 declare %private function search:revealed-filter($collection as document-node()*) as document-node()* {
     $collection//tei:correspDesc[not(@n='revealed')]/root()
-};
-
-declare %private function search:facsimile-filter($collection as document-node()*, $filters as xs:string*) as document-node()* {
-    let $facsimiles := $collection ! query:facsimile(.)
-    return
-        for $filter in $filters
-        return 
-            switch($filter)
-            case 'internal' return $facsimiles[not(@sameAs)][tei:graphic]/root()
-            case 'external' return $facsimiles[@sameAs]/root()
-            default return $collection except $facsimiles/root()
 };
 
 (:~
