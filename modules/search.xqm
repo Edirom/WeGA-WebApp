@@ -33,12 +33,26 @@ declare variable $search:ERROR := QName("http://xquery.weber-gesamtausgabe.de/mo
  :)
 declare variable $search:wega-docTypes := for $func in wdt:members('search') return $func(())('name');
 
-(: params for filtering the result set :)
-declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
-    'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
-    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames', 
-    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames', 'repository', 'facsimile', 'series');
+(:~
+ : facets available from the index configuration, see http://exist-db.org/exist/apps/doc/lucene#facets-and-fields
+ :)
+declare variable $search:index-facets := (
+    'addressee', 'sender', 'placeOfAddressee', 'placeOfSender', 'repository', 'facsimile', 'works', 
+    'docTypeSubClass', 'docStatus', 'biblioType', 'editors', 'authors', 'places',
+    'sex', 'surnames', 'forenames', 'residences', 'occupations', 'docSource',
+    'persons', 'placenames', 'asksam-cat', 'vorlageform', 'einrichtungsform',
+    'composers', 'librettists', 'lyricists', 'dedicatees', 'series',
+    'journals'
+); 
+
+declare variable $search:index-dates := (
+    'fromDate', 'toDate', 'undated'
+);
+
+(: various params for filtering the result set :)
+declare variable $search:valid-params := (  
+    (:'orgs', :)'textType', 'hideRevealed', $search:index-dates, $search:index-facets
+);
 
 (:~
  : Main function called from the templating module
@@ -182,19 +196,18 @@ declare %private function search:search($model as map(*)) as map(*) {
 ~:)
 declare %private function search:list($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
-    (: awkward hack to create a new map for $model. It seems $model gets modified by some strange side effect when pushed directly to search:filter-result() :)
-    let $filters := map:merge(for $i in map:keys($model?filters) return map:entry($i, $model?filters($i)))
-    let $search-results as document-node()* := 
-        if(count(map:keys($filters)) gt 0) then search:filter-result($coll, $filters, $model?docType)
+    let $facets := map:merge(map:keys($model?filters)[.=$search:index-facets] ! map:entry(., $model?filters(.)))
+    let $search-results as node()* := 
+        if(count(map:keys($facets)) gt 0) then $coll/*[ft:query(., (), map {'facets': $facets})]
         else $coll
-    let $sorted-results := wdt:lookup($model('docType'), $search-results)('sort')( map { 'personID' : $model('docID')} )
     return
         map:merge((
             $model,
             map {
-                'search-results' : $sorted-results,
-                'earliestDate' : search:get-earliest-date($sorted-results, $model('docType')),
-                'latestDate' : search:get-latest-date($sorted-results, $model('docType')),
+                'search-results' : $search-results/root(),
+                'ft-query-results': $search-results,
+(:                'earliestDate' : search:get-earliest-date($sorted-results, $model('docType')),:)
+(:                'latestDate' : search:get-latest-date($sorted-results, $model('docType')),:)
                 'oldFromDate' : request:get-parameter('oldFromDate', ''),
                 'oldToDate' : request:get-parameter('oldToDate', '')
             }

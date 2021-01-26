@@ -215,7 +215,7 @@ declare function api:facets($model as map(*)) as map(*) {
  :)
 declare %private function api:get-facets($model as map(*)) as array(*) {
     let $search := search:results(<span/>, map { 'docID' : $model('scope') }, $model('docType'))
-    let $allFacets as map(*)* := facets:facets($search?search-results, $model('facet'), -1, $model?lang)?*
+    let $allFacets as map(*)* := facets:facets($search?ft-query-results, $model('facet'), -1, $model?lang)?*
     return
         array {
             for $i in $allFacets

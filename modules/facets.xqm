@@ -14,6 +14,8 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace util = "http://exist-db.org/xquery/util";
+declare namespace ft="http://exist-db.org/xquery/lucene";
+declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
@@ -122,18 +124,17 @@ declare %private function facets:facsimile($collection as node()*, $facet as xs:
  :
  :)
 declare %private function facets:createFacets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*) {
-    let $facets := query:get-facets($nodes, $facet)
-    let $callback := function($term as xs:string, $data as xs:int+) {
-        let $label := facets:display-term($facet, $term, $lang) 
-        return
-        map {
-            'value' : str:normalize-space(encode-for-uri($term)),
-            'label' : $label,
-            'frequency' : $data[2]
+    let $facets := ft:facets($nodes, $facet, ())
+    return
+        array {
+            map:for-each($facets, function($term, $count) {
+                map {
+                    'value' : str:normalize-space(encode-for-uri($term)),
+                    'label': facets:display-term($facet, $term, $lang),
+                    'frequency': $count
+                }
+            })
         }
-    }
-    return 
-        array { util:index-keys($facets, (), $callback, $max, 'range-index') }
 };
 
 (:~
