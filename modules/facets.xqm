@@ -35,7 +35,7 @@ declare
         let $facet := $node/data(@name)
         let $selected := $model?filters?($facet)
         let $selectedObjs as array(*)? := 
-            if(count($selected) gt 0) then facets:facets($model?search-results, $facet, -1, $lang)
+            if(count($selected) gt 0) then facets:createFacets($model?search-results, $facet, -1, $lang)
             else ()
         return
             element {node-name($node)} {
@@ -64,41 +64,20 @@ declare
             }
 };
 
-declare function facets:facets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*)  {
-    switch($facet)
-    case 'textType' return facets:from-docType($nodes, $facet, $lang)
-    default return facets:createFacets($nodes, $facet, $max, $lang)
-};
-
-declare %private function facets:from-docType($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
-    [
-        for $i in $collection
-        group by $docTypePrefix := substring($i/*/@xml:id, 1, 3)
-        let $docType := config:get-doctype-by-id($docTypePrefix || '0000')
-        return 
-            map {
-                'value' : $docType,
-                'label' : lang:get-language-string($docType, $lang),
-                'frequency' : count($i)
-            }
-    ]
-};
-
-(:~
- : Create facets
- :
- :)
-declare %private function facets:createFacets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*) {
+declare function facets:createFacets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*) {
     let $coll :=
         if(some $node in $nodes satisfies $node instance of document-node()) then $nodes/*[ft:query(., ())]
         else $nodes
-    let $facets := ft:facets($coll, $facet, ())
+    let $this.facet := 
+        if($facet = 'textType') then 'docType' (: special mapping of textType URL param to docType index facet :)
+        else $facet
+    let $facets := ft:facets($coll, $this.facet, ())
     return
         array {
             map:for-each($facets, function($term, $count) {
                 map {
                     'value' : str:normalize-space(encode-for-uri($term)),
-                    'label': facets:display-term($facet, $term, $lang),
+                    'label': facets:display-term($this.facet, $term, $lang),
                     'frequency': $count
                 }
             })
@@ -120,7 +99,7 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
     case 'sex' return 
         if($term ='Art der Institution') then lang:get-language-string('organisationsInstitutions', $lang)
         else lang:get-language-string('sex_' || $term, $lang)
-    case 'docTypeSubClass' case 'docStatus' case 'textType' case 'facsimile' return lang:get-language-string($term, $lang)
+    case 'docTypeSubClass' case 'docStatus' case 'docType' case 'facsimile' return lang:get-language-string($term, $lang)
     default return str:normalize-space($term)
 };
 

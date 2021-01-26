@@ -51,7 +51,8 @@ declare variable $search:index-dates := (
 
 (: various params for filtering the result set :)
 declare variable $search:valid-params := (  
-    (:'orgs', :)'textType', 'hideRevealed', $search:index-dates, $search:index-facets
+    (:'orgs', :) 'hideRevealed', 'textType' (: textType=docType, needed for backlinks :), 
+    $search:index-dates, $search:index-facets
 );
 
 (:~
@@ -196,7 +197,10 @@ declare %private function search:search($model as map(*)) as map(*) {
 ~:)
 declare %private function search:list($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
-    let $facets := map:merge(map:keys($model?filters)[.=$search:index-facets] ! map:entry(., $model?filters(.)))
+    let $facets := map:merge((
+        map:keys($model?filters)[.=$search:index-facets] ! map:entry(., $model?filters(.)),
+        map {'docType': $model?filters?textType}
+    ))
     let $search-results as node()* := 
         if(count(map:keys($facets)) gt 0) then $coll/*[ft:query(., (), map {'facets': $facets})]
         else $coll

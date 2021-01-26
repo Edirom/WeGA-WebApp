@@ -215,7 +215,7 @@ declare function api:facets($model as map(*)) as map(*) {
  :)
 declare %private function api:get-facets($model as map(*)) as array(*) {
     let $search := search:results(<span/>, map { 'docID' : $model('scope') }, $model('docType'))
-    let $allFacets as map(*)* := facets:facets($search?ft-query-results, $model('facet'), -1, $model?lang)?*
+    let $allFacets as map(*)* := facets:createFacets($search?ft-query-results, $model('facet'), -1, $model?lang)?*
     return
         array {
             for $i in $allFacets
@@ -639,6 +639,7 @@ declare function api:validate-sender($model as map(*)) as map(*)? {
  : Check parameter textType
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
+ : NB: this is a very special parameter only needed for backlinks which maps to the 'docType' index facet 
 ~:)
 declare function api:validate-textType($model as map(*)) as map(*)? {
     if($model?textType castable as xs:string) then map { 'textType': xmldb:decode-uri($model?textType) }
