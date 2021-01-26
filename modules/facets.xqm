@@ -124,7 +124,10 @@ declare %private function facets:facsimile($collection as node()*, $facet as xs:
  :
  :)
 declare %private function facets:createFacets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*) {
-    let $facets := ft:facets($nodes, $facet, ())
+    let $coll :=
+        if(some $node in $nodes satisfies $node instance of document-node()) then $nodes/*[ft:query(., ())]
+        else $nodes
+    let $facets := ft:facets($coll, $facet, ())
     return
         array {
             map:for-each($facets, function($term, $count) {
