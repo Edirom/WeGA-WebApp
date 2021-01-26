@@ -121,7 +121,6 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
         if($term ='Art der Institution') then lang:get-language-string('organisationsInstitutions', $lang)
         else lang:get-language-string('sex_' || $term, $lang)
     case 'docTypeSubClass' case 'docStatus' case 'textType' case 'facsimile' return lang:get-language-string($term, $lang)
-    case 'repository' return facets:display-term-repository($term)
     default return str:normalize-space($term)
 };
 
@@ -201,16 +200,4 @@ declare function facets:filter-label($node as node(), $model as map(*), $lang as
         attribute title {lang:get-language-string("facetsFilterLabel",$model('filterOption')('label'),$lang)},
         $model('filterOption')('label')
     }
-};
-
-(:~
- : Create display term for library facet
- : Helper function for facets:display-term()
- :)
-declare %private function facets:display-term-repository($term as xs:string) as xs:string {
-    let $key := wega-util:settlement-key-from-rism-siglum($term)
-    return (
-        if($key) then wdt:places($key)('title')('txt') || ' (' || $term || ')'
-        else $term
-    )
 };
