@@ -51,8 +51,8 @@ declare
 (:                let $log := util:log-system-out($i):)
                 let $display-term := facets:display-term($facet, $i, $lang)
                 let $freq := 
-                    if ($selectedObjs?*[?value = $i]?frequency castable as xs:int) 
-                    then $selectedObjs?*[?value = $i]?frequency
+                    if ($selectedObjs?*[?value = encode-for-uri($i)]?frequency castable as xs:int) 
+                    then $selectedObjs?*[?value = encode-for-uri($i)]?frequency
                     else 0
                     order by $display-term collation "?lang=de;strength=primary"
                 return
@@ -65,9 +65,12 @@ declare
 };
 
 declare function facets:createFacets($nodes as node()*, $facet as xs:string, $max as xs:integer, $lang as xs:string) as array(*) {
-    let $coll :=
-        if(some $node in $nodes satisfies $node instance of document-node()) then $nodes/*[ft:query(., ())]
-        else $nodes
+    let $coll := (: wildcard $nodes/*[ft:query(., ())] funktioniert hier nicht :)
+        $nodes/tei:TEI[ft:query(., ())] | 
+        $nodes/tei:ab[ft:query(., ())] | 
+        $nodes/tei:person[ft:query(., ())] | 
+        $nodes/tei:org[ft:query(., ())] |
+        $nodes/mei:mei[ft:query(., ())]
     let $this.facet := 
         if($facet = 'textType') then 'docType' (: special mapping of textType URL param to docType index facet :)
         else $facet

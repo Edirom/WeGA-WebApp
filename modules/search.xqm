@@ -199,7 +199,8 @@ declare %private function search:list($model as map(*)) as map(*) {
     let $coll := core:getOrCreateColl($model('docType'), $model('docID'), true())
     let $facets := map:merge((
         map:keys($model?filters)[.=$search:index-facets] ! map:entry(., $model?filters(.)),
-        map {'docType': $model?filters?textType}
+        if($model?filters?textType) then map {'docType': $model?filters?textType}
+        else ()
     ))
     let $search-results as node()* := 
         if(count(map:keys($facets)) gt 0) then $coll/*[ft:query(., (), map {'facets': $facets})]
@@ -209,7 +210,6 @@ declare %private function search:list($model as map(*)) as map(*) {
             $model,
             map {
                 'search-results' : $search-results/root(),
-                'ft-query-results': $search-results,
 (:                'earliestDate' : search:get-earliest-date($sorted-results, $model('docType')),:)
 (:                'latestDate' : search:get-latest-date($sorted-results, $model('docType')),:)
                 'oldFromDate' : request:get-parameter('oldFromDate', ''),
