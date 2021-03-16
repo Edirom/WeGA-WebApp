@@ -1,4 +1,4 @@
-name: WeGA-WebApp 
+name: WeGA-WebApp CI
 
 on: push
 
@@ -16,3 +16,8 @@ jobs:
           java-version: 1.8
       - name: Build with Ant
         run: ant clean xar
+      - name: Archive xar package
+        uses: actions/upload-artifact@v2
+        with:
+          name: xar package
+          path: build/*.xar
