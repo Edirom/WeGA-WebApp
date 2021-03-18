@@ -684,6 +684,10 @@
                     <xsl:attribute name="class" select="'musical-symbols'"/>
                     <xsl:value-of select="codepoints-to-string(wega:hex2dec(substring-after($smuflCodepoint, 'U+')))"/>
                 </xsl:when>
+                <xsl:when test="@type='mufi'">
+                    <xsl:attribute name="class" select="'mufi-symbols'"/>
+                    <xsl:apply-templates/>
+                </xsl:when>
                 <xsl:otherwise>
                     <xsl:message>XSLT Warning: template for `tei:g` failed to recognize glyph in document <xsl:value-of select="$docID"/></xsl:message>
                     <xsl:apply-templates/>
