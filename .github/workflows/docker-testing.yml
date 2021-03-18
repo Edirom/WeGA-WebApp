@@ -15,4 +15,4 @@ jobs:
       - name: Build and run Docker image
         run: ant docker_run
       - name: Run tests
-        run: ant test
+        run: ant -lib /usr/share/java test
