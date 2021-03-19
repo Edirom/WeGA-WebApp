@@ -99,9 +99,6 @@
         
         <!-- Copy additional fonts -->
         <copy todir="${dist.dir}/resources/fonts" failonerror="false">
-            <fileset dir="${frontend_libs.dir}/bravura/redist/eot/">
-                <include name="Bravura.*"/>
-            </fileset>
             <fileset dir="${frontend_libs.dir}/bravura/redist/woff/">
                 <include name="Bravura.*"/>
             </fileset>
@@ -113,9 +110,6 @@
             </fileset>
             <fileset dir="${wega.fonts.dir}">
                 <include name="2B*.*"/>
-            </fileset>
-            <fileset dir="${frontend_libs.dir}/bootstrap/dist/fonts/">
-                <include name="*.*"/>
             </fileset>
             <fileset dir="${frontend_libs.dir}/font-awesome/fonts/">
                 <include name="*"/>
