@@ -535,13 +535,17 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
 
 (:~
  : Create an IIIF canvas for a TEI graphic element
+ : There are three supported ways to provide image resources:
+ : * via url-attribute and providing a file name (WeGA folder structure conventions are assumed): `<graphic url="1815-09-16_AM_Weber_an_GottfriedW_US-NHub_1v.tif" xml:id="facs_1v"/>`
+ : * via sameAs-attribute, pointing at an online IIIF resource: `<graphic sameAs="https://api.digitale-sammlungen.de/iiif/image/v2/bsb10527978_00173"/>`
+ : * via sameAs-attribute, using the wega-prefix notation: `<graphic sameAs="wega:/letters/A0475xx/A047515/A047515_03.jpg"/>`
  :
  : @param $graphic a TEI graphic element
  : @return a canvas object
  :)
 declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
     let $image-id :=
-        if(starts-with($graphic/@sameAs, 'wega:')) then xs:anyURI(config:get-option('iiifImageApi') || substring-after($graphic/@sameAs, 'wega:'))
+        if(starts-with($graphic/@sameAs, 'wega:')) then xs:anyURI(config:get-option('iiifImageApi') || encode-for-uri(substring-after($graphic/@sameAs, 'wega:')))
         else if($graphic/@sameAs) then xs:anyURI($graphic/@sameAs)
         else if($graphic/@url) then img:relative-WeGA-image-path2iiif-image-id($graphic)
         else ()
@@ -550,7 +554,7 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
         else 'page' || count($graphic/preceding::tei:graphic) + 1
     let $manifest-id := controller:iiif-manifest-id($graphic/parent::tei:facsimile)
     let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
-    let $image-info :=  parse-json(util:base64-decode(er:http-get($image-id)//*:response)) (: why is this not cached? :)
+    let $image-info :=  parse-json(util:base64-decode(er:http-get($image-id)//*:response)) (: why is this not cached? – the wrapper request to the manifest.json is cached! :)
     return 
         map:merge((
             map:entry("@context", "http://iiif.io/api/presentation/2/context.json"),
