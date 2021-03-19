@@ -472,7 +472,7 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
 declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)* {
     let $facsimileGreenList := tokenize(config:get-option('facsimileGreenList'), '\s+')
     return
-        if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or tei:graphic/@sameAs castable as xs:anyURI or @sameAs castable as xs:anyURI]
+        if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or tei:graphic/@sameAs or @sameAs]
 (:        else if($doc//tei:repository[@n=$facsimileGreenList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
 (:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
         else $doc//tei:facsimile[@sameAs castable as xs:anyURI] 
