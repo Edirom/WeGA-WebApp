@@ -9,7 +9,7 @@
 
     <xsl:strip-space elements="*"/>
     <xsl:preserve-space
-        elements="tei:q tei:quote tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date tei:orgName tei:note tei:lem tei:rdg tei:add"/>
+        elements="tei:q tei:quote tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date tei:orgName tei:note tei:lem tei:rdg tei:add tei:provenance tei:acquisition"/>
 
     <xsl:param name="headerMode" select="false()"/>
 
