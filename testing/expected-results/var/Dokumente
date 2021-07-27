@@ -234,6 +234,10 @@
             <h4>Chronologie</h4>
             <input type="text" class="rangeSlider" name="chronology-slider" data-min-slider="1619-07-11" data-max-slider="1863-06-20" data-from-slider="1619-07-11" data-to-slider="1863-06-20" />
             
+            <h4>Autoren</h4>
+            <select multiple="multiple" name="authors" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/authors" data-doc-id="indices" data-doc-type="documents">
+                <option value="">alle</option></select>
+            
             <h4>Personen</h4>
             <select multiple="multiple" name="persons" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/persons" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
@@ -246,8 +250,8 @@
             <select multiple="multiple" name="places" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/places" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
             
-            <h4>Dokumenttyp</h4>
-            <select multiple="multiple" name="docTypeSubClass" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/docTypeSubClass" data-doc-id="indices" data-doc-type="documents">
+            <h4>Schlagwörter</h4>
+            <select multiple="multiple" name="keywords" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/keywords" data-doc-id="indices" data-doc-type="documents">
                                         <option value="">alle</option></select>
             
             <h4>Bibliothek</h4>
