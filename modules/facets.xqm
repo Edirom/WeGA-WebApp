@@ -49,8 +49,8 @@ declare
 (:                let $log := util:log-system-out($i):)
                 let $display-term := facets:display-term($facet, $i, $lang)
                 let $freq := 
-                    if ($selectedObjs?*[?value = $i]?frequency castable as xs:int) 
-                    then $selectedObjs?*[?value = $i]?frequency
+                    if ($selectedObjs?*[?value = encode-for-uri($i)]?frequency castable as xs:int) 
+                    then $selectedObjs?*[?value = encode-for-uri($i)]?frequency
                     else 0
                     order by $display-term collation "?lang=de;strength=primary"
                 return
