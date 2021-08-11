@@ -63,8 +63,8 @@ declare function local:reindex($docType as xs:string) as xs:boolean {
     else false()
 };
 
+let $data := request:get-data()
 let $func := request:get-parameter('func', 'getCurrentSvnRev')
-let $data := request:get-data() 
 let $docType := request:get-parameter('docType', 'biblio')
 
 return 
