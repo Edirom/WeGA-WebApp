@@ -335,6 +335,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'repository' return $collection//tei:repository/@n
     case 'series' return $collection//mei:seriesStmt/mei:title[@level='s']
     case 'keywords' return $collection//tei:term[parent::tei:keywords]
+    case 'docLang' return $collection//tei:language/@ident
     default return ()
 };
 

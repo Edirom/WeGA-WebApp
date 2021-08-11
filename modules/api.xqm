@@ -814,6 +814,16 @@ declare function api:validate-keywords($model as map(*)) as map(*)? {
 };
 
 (:~
+ : Check parameter docLang
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-docLang($model as map(*)) as map(*)? {
+    if(every $i in $model?docLang ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'docLang': ($model?docLang ! tokenize(., ',')) ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "docLang".')
+};
+
+(:~
  : Fallback for unknown API parameters 
  : Simply returns an error message
 ~:)

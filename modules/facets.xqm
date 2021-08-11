@@ -152,7 +152,7 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
         if($term ='Art der Institution') then lang:get-language-string('organisationsInstitutions', $lang)
         else lang:get-language-string('sex_' || $term, $lang)
     case 'docTypeSubClass' case 'docStatus' case 'textType' 
-    case 'facsimile' case 'keywords' return lang:get-language-string($term, $lang)
+    case 'facsimile' case 'keywords' case 'docLang' return lang:get-language-string($term, $lang)
     case 'repository' return facets:display-term-repository($term)
     default return str:normalize-space($term)
 };
