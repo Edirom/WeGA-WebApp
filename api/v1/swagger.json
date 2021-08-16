@@ -13,6 +13,10 @@
             "description": "Access to the documents of the WeGA digital edition"
         },
         {
+            "name": "Search",
+            "description": "Access to search functions of the WeGA digital edition"
+        },
+        {
             "name": "Code Samples",
             "description": "Access to encoding features"
         },
@@ -35,6 +39,39 @@
                 "produces": ["application/json"],
                 "parameters": [
                     {"$ref": "#/parameters/docTypeParam"},
+                    {"$ref": "#/parameters/offsetParam"},
+                    {"$ref": "#/parameters/limitParam"}
+                ],
+                "responses": {
+                    "200": {
+                        "description": "An array of documents",
+                        "schema": {
+                            "type": "array",
+                            "items": {"$ref": "#/definitions/Document"}
+                        },
+                        "headers": {
+                            "totalrecordcount": {
+                                "type": "integer",
+                                "description": "The total size of the result set"
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "Unexpected error",
+                        "schema": {"$ref": "#/definitions/Error"}
+                    }
+                }
+            }
+        },
+        "/search/entity": {
+            "get": {
+                "summary": "Search for a WeGA entity",
+                "description": "This endpoint returns the search results for an entity's name or title.\n",
+                "tags": ["Search"],
+                "produces": ["application/json"],
+                "parameters": [
+                    {"$ref": "#/parameters/docTypeParam"},
+                    {"$ref": "#/parameters/qParam"},
                     {"$ref": "#/parameters/offsetParam"},
                     {"$ref": "#/parameters/limitParam"}
                 ],
@@ -539,6 +576,12 @@
             "description": "The latest date",
             "type": "string",
             "format": "date"
+        },
+        "qParam": {
+            "name": "q",
+            "in": "query",
+            "description": "The query string",
+            "type": "string"
         },
         "docTypeParam": {
             "name": "docType",

@@ -211,6 +211,28 @@ declare function api:facets($model as map(*)) as map(*) {
 };
 
 (:~
+ :  Search WeGA entities (persons, places, works) by name or title respectively
+ :)
+declare function api:search-entity($model as map(*)) as map(*) {
+    let $documents := 
+        for $docType in api:resolve-docTypes($model)
+        let $collection := core:getOrCreateColl($docType, 'indices', true())
+        return
+            switch($docType)
+            case 'persons' return $collection//tei:persName[ft:query(., $model?q)][@type]/root()
+            case 'orgs' return $collection//tei:orgName[ft:query(., $model?q)][@type]/root()
+            case 'places' return $collection//tei:placeName[ft:query(., $model?q)][@type]/root()
+            case 'works' return $collection//mei:title[ft:query(., $model?q)][parent::mei:titleStmt]/root()
+            default return $collection//tei:title[ft:query(., $model?q)][parent::tei:titleStmt][@level='a']/root()
+    return (
+        map { 
+            'totalRecordCount': count($documents),
+            'results': api:document(api:subsequence($documents, $model), $model)
+        }
+    )
+};
+
+(:~
  :  Helper function for api:facets()
  :)
 declare %private function api:get-facets($model as map(*)) as array(*) {
@@ -821,6 +843,15 @@ declare function api:validate-keywords($model as map(*)) as map(*)? {
 declare function api:validate-docLang($model as map(*)) as map(*)? {
     if(every $i in $model?docLang ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'docLang': ($model?docLang ! tokenize(., ',')) ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "docLang".')
+};
+
+(:~
+ : Check parameter q
+ : only one value allowed
+~:)
+declare function api:validate-q($model as map(*)) as map(*)? {
+    if($model?q castable as xs:string) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "q". It must be one of the following values: ' || string-join($search:valid-params, ', '))
 };
 
 (:~
