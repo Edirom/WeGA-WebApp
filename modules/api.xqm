@@ -214,16 +214,17 @@ declare function api:facets($model as map(*)) as map(*) {
  :  Search WeGA entities (persons, places, works) by name or title respectively
  :)
 declare function api:search-entity($model as map(*)) as map(*) {
+    let $escaped-query-string := str:escape-lucene-special-characters($model?q)
     let $documents := 
         for $docType in api:resolve-docTypes($model)
         let $collection := core:getOrCreateColl($docType, 'indices', true())
         return
             switch($docType)
-            case 'persons' return $collection//tei:persName[ft:query(., $model?q)][@type]/root()
-            case 'orgs' return $collection//tei:orgName[ft:query(., $model?q)][@type]/root()
-            case 'places' return $collection//tei:placeName[ft:query(., $model?q)][@type]/root()
-            case 'works' return $collection//mei:title[ft:query(., $model?q)][parent::mei:titleStmt]/root()
-            default return $collection//tei:title[ft:query(., $model?q)][parent::tei:titleStmt][@level='a']/root()
+            case 'persons' return $collection//tei:persName[ft:query(., $escaped-query-string)][@type]/root()
+            case 'orgs' return $collection//tei:orgName[ft:query(., $escaped-query-string)][@type]/root()
+            case 'places' return $collection//tei:placeName[ft:query(., $escaped-query-string)][@type]/root()
+            case 'works' return $collection//mei:title[ft:query(., $escaped-query-string)][parent::mei:titleStmt]/root()
+            default return $collection//tei:title[ft:query(., $escaped-query-string)][parent::tei:titleStmt][@level='a']/root()
     return (
         map { 
             'totalRecordCount': count($documents),
