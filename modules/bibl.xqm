@@ -10,6 +10,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 (:import module namespace functx="http://www.functx.com";:)
 
 (:~
@@ -79,7 +80,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
     let $editors := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
     let $title := bibl:printTitles($biblStruct/tei:monogr/tei:title)
-    let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
+    let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint, $lang)
     let $note := bibl:printNote($biblStruct/tei:note[1])
     return 
         element {$wrapperElement/name()} {
@@ -91,11 +92,9 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             $title,
             if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then (' (', $series, '), ') else ', ',
+            if($biblStruct//tei:imprint/tei:biblScope[@unit = 'vol']) then concat(lang:get-language-string('vol', $lang), '&#160;', $biblStruct//tei:imprint/tei:biblScope[@unit = 'vol'], ', ') else (),
             $pubPlaceNYear,
-            concat(
-                if($biblStruct//tei:imprint/tei:biblScope[@unit = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $biblStruct//tei:imprint/tei:biblScope[@unit = 'vol']) else (),
-                if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else ()
-            ),
+            if($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct//tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
             $note
         }
 };
@@ -140,7 +139,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $editor := bibl:printCitationAuthors($biblStruct//tei:editor, $lang)
     let $articleTitle := bibl:printTitles($biblStruct/tei:analytic/tei:title)
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</xhtml:span>
-    let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint)
+    let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct//tei:imprint, $lang)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
     let $note := bibl:printNote($biblStruct/tei:note[1])
     return 
@@ -260,7 +259,7 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
  : @param $imprint a tei:imprint element 
  : @return html:span element if any data is given, the empty sequence otherwise
  :)
-declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprint)) as element(xhtml:span)? {
+declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprint), $lang as xs:string) as element(xhtml:span)? {
     let $countPlaces := count($imprint/tei:pubPlace)
     let $places := 
         for $place at $count in $imprint/tei:pubPlace
@@ -269,8 +268,13 @@ declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprin
             else if($count eq $countPlaces - 1) then concat(normalize-space($place), ' &amp; ')
             else concat(normalize-space($place), ', ')
         )
+    let $date := 
+        if($imprint/tei:date/text()) then normalize-space($imprint/tei:date)
+        else if($imprint/tei:date/@when castable as xs:date) then date:printDate($imprint/tei:date/@when, $lang, lang:get-language-string#3, $config:default-date-picture-string)
+        else if($imprint/tei:date/@when castable as xs:gYear) then $imprint/tei:date/string(@when)
+        else ()
     return 
-        if($countPlaces ge 1 or $imprint/tei:date/@when castable as xs:date or $imprint/tei:date/@when castable as xs:gYear) then <xhtml:span class="placeNYear">{string-join($places, ''), normalize-space($imprint/tei:date)}</xhtml:span>
+        if($countPlaces ge 1 or $date) then <xhtml:span class="placeNYear">{string-join($places, ''), $date}</xhtml:span>
         else ()
 };
 
