@@ -81,7 +81,7 @@ declare variable $controller:projectNav :=
 ~:)
 declare function controller:forward-html($html-template as xs:string, $exist-vars as map(*)*) as element(exist:dispatch) {
     let $etag := controller:etag($exist-vars('exist:path'))
-    let $modified := not(request:get-header('If-None-Match') = $etag)
+    let $modified := not(functx:substring-before-if-contains(request:get-header('If-None-Match'), '--') = $etag)
     return (
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), $html-template))}"/>
