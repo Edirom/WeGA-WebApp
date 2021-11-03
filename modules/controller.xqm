@@ -121,7 +121,7 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
             else ()}
         </dispatch>,
         if(matches($html-template, 'search|register|ajax')) then response:set-header('Cache-Control', 'no-cache')
-        else response:set-header('Cache-Control', 'max-age=120,public'),
+        else response:set-header('Cache-Control', 'max-age=300,public'),
         response:set-header('ETag', $etag)
     )
 };
