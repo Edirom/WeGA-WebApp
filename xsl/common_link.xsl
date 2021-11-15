@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet 
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform" 
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities" 
@@ -14,12 +15,16 @@
         because HTML does not support nested links (aka html:a elements) we need to attach the link to the deepest element; 
         thus exclude all elements with the following child elements 
     -->
-    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 'damage', 'choice', 'unclear', 'app', 'note', 'settlement')"/>
+    <xsl:variable name="linkableElements" as="xs:string+" select="('persName', 'rs', 
+        'workName', 'characterName', 'orgName', 'sic', 'del', 'add', 'subst', 
+        'damage', 'choice', 'unclear', 'app', 'note', 'settlement')"/>
     
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
-    <xsl:template match="tei:persName | tei:author | tei:orgName | mei:persName | tei:workName | tei:settlement | mei:settlement | mei:geogName | mei:corpName | mei:title[@codedval]" mode="#all">
+    <xsl:template match="tei:persName | tei:author | tei:orgName | 
+        mei:persName | tei:workName | tei:settlement | mei:settlement | 
+        mei:geogName | mei:corpName | mei:title[@codedval]" mode="#all">
         <xsl:choose>
             <xsl:when test="@key or @codedval">
                 <xsl:call-template name="createLink"/>
