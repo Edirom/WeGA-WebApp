@@ -233,6 +233,9 @@ declare function api:search-entity($model as map(*)) as map(*) {
     )
 };
 
+(:~
+ :  Return all repositories with a RISM siglum 
+ :)
 declare function api:repositories($model as map(*)) as map(*) {
     let $docs :=
         for $docType in ('letters', 'documents', 'writings')
@@ -254,6 +257,84 @@ declare function api:repositories($model as map(*)) as map(*) {
         map { 
             'totalRecordCount': count($sigla),
             'results': array { api:subsequence($sigla, $model) }
+        }
+};
+
+(:~
+ :  Return a list of all items within the WeGA digital edition for a given repository
+ :)
+declare function api:repositories-items($model as map(*)) as map(*) {
+    let $docs :=
+        for $docType in ('letters', 'documents', 'writings')
+        return core:getOrCreateColl($docType, 'indices', true())
+    let $repos :=
+        if($model?siglum)
+        then $docs//tei:repository[@n = $model?siglum]
+        else $docs//tei:repository[@n]
+    return
+        map { 
+            'totalRecordCount': count($repos),
+            'results': api:item(api:subsequence($repos, $model), $model)
+        }
+};
+
+(:~
+ :  Helper function for creating an Item object
+ :)
+declare %private function api:item($repos as element(tei:repository)*, $model as map(*)) as array(*) {
+    array {
+        for $repo in $repos
+        return
+            map:merge((
+                api:document($repo/root(), $model)?*,
+                map {
+                    'authors': api:item-authors($repo/ancestor::tei:TEI, $model),
+                    'date': '',
+                    'incipit': $repo/preceding::tei:note[@type='incipit']  => string(),
+                    'idno': $repo/following-sibling::tei:idno => normalize-space(),
+                    'extent': $repo/parent::tei:msIdentifier/following-sibling::tei:physDesc/tei:p => string-join('; '),
+                    'comment': api:item-comment($repo/parent::tei:msIdentifier/parent::tei:*)
+                }
+            ))
+    }
+};
+
+(:~
+ :  Helper function for api:item()
+ :)
+declare %private function api:item-comment($msDescOrFrag as element()?) as xs:string {
+    (
+    if($msDescOrFrag/@rend = 'draft') then 'Entwurf'
+    else if($msDescOrFrag/@rend = 'copy') then 'Kopie'
+    else if($msDescOrFrag/@rend = 'autograph_copy') then 'autographe Kopie'
+    else if($msDescOrFrag/self::tei:msFrag) then 'Fragment'
+    else (),
+    if(starts-with($msDescOrFrag/ancestor::tei:TEI/@xml:id, 'A10')) then 'in der WeGA als Dokument geführt'
+    else ()
+    ) => string-join('; ')
+};
+
+(:~
+ :  Helper function for api:item()
+ :)
+declare %private function api:item-authors($TEI as element(tei:TEI)?, $model as map(*)) as array(*) {
+    let $host := $model('swagger:config')?host
+    let $basePath := $model('swagger:config')?basePath
+    let $scheme := $model('swagger:config')?schemes[1]
+    let $authors := 
+        if($TEI/tei:correspAction)
+        then $TEI//tei:correspAction[@type='sent']/(tei:persName | tei:name | tei:orgName)
+        else $TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author
+    return
+        array {
+            for $author in $authors
+            let $id := $author/@key => string()
+            return map {
+                'name': $author => normalize-space(),
+                'docID': $id,
+                'uri' : if($id) then ($scheme || '://' || $host || substring-before($basePath, 'api') || $id) else '',
+                'gnd': ''
+            }
         }
 };
 
@@ -888,6 +969,17 @@ declare function api:validate-cities($model as map(*)) as map(*)? {
     if(every $i in $model?cities ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'cities': $model?cities ! tokenize(., ',') }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "cities". It must be a WeGA place ID.' )
 };
+
+(:~
+ : Check parameter siglum
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-siglum($model as map(*)) as map(*)? {
+    if(every $i in $model?siglum ! tokenize(., ',') satisfies matches($i, '^[A-Z]+\-[A-Z]+[a-z]*$')) then map { 'siglum': $model?siglum ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "siglum". It must be a valid RISM siglum matching the regular expression "^[A-Z]+\-[A-Z]+[a-z]*$".' )
+};
+
 (:~
  : Fallback for unknown API parameters 
  : Simply returns an error message
