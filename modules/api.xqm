@@ -233,6 +233,30 @@ declare function api:search-entity($model as map(*)) as map(*) {
     )
 };
 
+declare function api:repositories($model as map(*)) as map(*) {
+    let $docs :=
+        for $docType in ('letters', 'documents', 'writings')
+        return core:getOrCreateColl($docType, 'indices', true())
+    let $repos :=
+        if($model?cities)
+        then $docs//tei:repository[@n][preceding-sibling::tei:settlement/@key = $model?cities]
+        else $docs//tei:repository[@n]
+    let $sigla := 
+        for $repo in $repos
+        group by $siglum := $repo/data(@n)
+        order by count($repo) descending
+        return map {
+            'name': $repo[1] => normalize-space(),
+            'siglum': $siglum,
+            'frequency': count($repo)
+        }
+    return
+        map { 
+            'totalRecordCount': count($sigla),
+            'results': array { api:subsequence($sigla, $model) }
+        }
+};
+
 (:~
  :  Helper function for api:facets()
  :)
@@ -308,7 +332,7 @@ declare %private function api:resolve-docTypes($model as map(*)) as xs:string* {
 (:~
  :  Helper function for creating a subsequence based on external parameters
 ~:)
-declare %private function api:subsequence($seq as item()*, $model as map(*)) {
+declare %private function api:subsequence($seq as item()*, $model as map(*)) as item()* {
     let $offset := if($model('offset') castable as xs:integer) then $model('offset') cast as xs:integer else 0
     let $limit := if($model('limit') castable as xs:integer) then $model('limit') cast as xs:integer else 0
     return
@@ -855,6 +879,15 @@ declare function api:validate-q($model as map(*)) as map(*)? {
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "q". It must be one of the following values: ' || string-join($search:valid-params, ', '))
 };
 
+(:~
+ : Check parameter cities
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-cities($model as map(*)) as map(*)? {
+    if(every $i in $model?cities ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'cities': $model?cities ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "cities". It must be a WeGA place ID.' )
+};
 (:~
  : Fallback for unknown API parameters 
  : Simply returns an error message
