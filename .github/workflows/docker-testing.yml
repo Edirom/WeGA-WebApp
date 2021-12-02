@@ -8,10 +8,10 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
       - name: Setup
         run: sudo apt-get install libsaxonhe-java && npm install prettydiff 
+      - name: Checkout code
+        uses: actions/checkout@v2
       - name: Build and run Docker image
         run: ant docker_run
       - name: Run tests
