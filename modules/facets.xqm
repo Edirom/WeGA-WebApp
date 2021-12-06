@@ -56,7 +56,7 @@ declare
                 return
                     element option {
                         attribute selected {'selected'},
-                        attribute value {$i},
+                        attribute value {encode-for-uri($i)},
                         $display-term || ' (' || $freq || ')'
                     }
             }
