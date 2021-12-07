@@ -1000,5 +1000,5 @@ declare function api:validate-siglum($model as map(*)) as map(*)? {
  : Simply returns an error message
 ~:)
 declare function api:validate-unknown-param($model as map(*)) as map(*)? {
-    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || string-join(map:keys($model), '; ') || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
+    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || string-join(map:keys($model)[not(.='swagger:config')], '; ') || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
 };
