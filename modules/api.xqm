@@ -15,6 +15,7 @@ declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace repo="http://exist-db.org/xquery/repo";
+declare namespace ft="http://exist-db.org/xquery/lucene";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
@@ -24,9 +25,11 @@ import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/externa
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
+import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
+import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace functx="http://www.functx.com";
 
 declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
@@ -289,8 +292,9 @@ declare %private function api:item($repos as element(tei:repository)*, $model as
                 api:document($repo/root(), $model)?*,
                 map {
                     'authors': api:item-authors($repo/ancestor::tei:TEI, $model),
-                    'date': '',
+                    'date': date:printDate(($repo/following::tei:correspAction[@type='sent']/tei:date|$repo/following::tei:profileDesc/tei:creation/tei:date)[1],'de',lang:get-language-string#3, $config:default-date-picture-string) => string(),
                     'incipit': $repo/preceding::tei:note[@type='incipit']  => string(),
+                    'repository': api:item-repository($repo/parent::tei:msIdentifier),
                     'idno': $repo/following-sibling::tei:idno => normalize-space(),
                     'extent': $repo/parent::tei:msIdentifier/following-sibling::tei:physDesc/tei:p => string-join('; '),
                     'comment': api:item-comment($repo/parent::tei:msIdentifier/parent::tei:*)
@@ -333,9 +337,20 @@ declare %private function api:item-authors($TEI as element(tei:TEI)?, $model as 
                 'name': $author => normalize-space(),
                 'docID': $id,
                 'uri' : if($id) then ($scheme || '://' || $host || substring-before($basePath, 'api') || $id) else '',
-                'gnd': ''
+                'gnd': query:get-gnd($id) => string()
             }
         }
+};
+
+(:~
+ :  Helper function for api:item()
+ :)
+declare %private function api:item-repository($msIdentifier as element(tei:msIdentifier)) as map(*) {
+    map {
+        'siglum': $msIdentifier/tei:repository/@n => string(),
+        'city': $msIdentifier/tei:settlement => normalize-space(),
+        'name': $msIdentifier/tei:repository => normalize-space()
+    }
 };
 
 (:~

@@ -660,7 +660,15 @@
                             },
                             "gnd": {
                                 "type": "string",
-                                "description": "The name of the author"
+                                "description": "The GND identifier for the author"
+                            },
+                            "uri": {
+                                "type": "string",
+                                "description": "Unique identifier representing a specific entity"
+                            },
+                            "docID": {
+                                "type": "string",
+                                "description": "The WeGA document identifier of the author"
                             }
                         }
                     }
@@ -672,6 +680,23 @@
                 "incipit": {
                     "type": "string",
                     "description": "The text incipit"
+                },
+                "repository": {
+                    "type": "object",
+                    "properties": {
+                        "siglum": {
+                            "type": "string",
+                            "description": "The RISM siglum of the repository"
+                        },
+                        "city": {
+                            "type": "string",
+                            "description": "The name of the city where the repository is located"
+                        },
+                        "name": {
+                            "type": "string",
+                            "description": "The name of the repository"
+                        }
+                    }
                 },
                 "extent": {
                     "type": "string",
