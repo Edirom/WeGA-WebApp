@@ -287,12 +287,14 @@ declare function api:repositories-items($model as map(*)) as map(*) {
 declare %private function api:item($repos as element(tei:repository)*, $model as map(*)) as array(*) {
     array {
         for $repo in $repos
+        let $date := ($repo/following::tei:correspAction[@type='sent']/tei:date|$repo/following::tei:profileDesc/tei:creation/tei:date)[1]
         return
             map:merge((
                 api:document($repo/root(), $model)?*,
                 map {
                     'authors': api:item-authors($repo/ancestor::tei:TEI, $model),
-                    'date': date:printDate(($repo/following::tei:correspAction[@type='sent']/tei:date|$repo/following::tei:profileDesc/tei:creation/tei:date)[1],'de',lang:get-language-string#3, $config:default-date-picture-string) => string(),
+                    'date': date:printDate($date,'de',lang:get-language-string#3, $config:default-date-picture-string) => string(),
+                    'sortdate': date:getOneNormalizedDate($date, true()) => string(),
                     'incipit': $repo/preceding::tei:note[@type='incipit']  => string(),
                     'repository': api:item-repository($repo/parent::tei:msIdentifier),
                     'idno': $repo/following-sibling::tei:idno => normalize-space(),
