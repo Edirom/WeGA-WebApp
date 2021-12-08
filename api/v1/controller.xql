@@ -84,8 +84,12 @@ declare function local:serialize-json($response as item()*) {
         if($response instance of map(*) and map:contains($response,'totalRecordCount'))
         then response:set-header('totalRecordCount', $response?totalRecordCount)
         else ()
+    let $setHeader4.5 := 
+        if($response instance of map(*) and map:contains($response,'filteredRecordCount'))
+        then response:set-header('filteredRecordCount', $response?filteredRecordCount)
+        else ()
     let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
-    let $setHeader6 := response:set-header('Access-Control-Expose-Headers', 'totalrecordcount')
+    let $setHeader6 := response:set-header('Access-Control-Expose-Headers', 'totalrecordcount, filteredrecordcount')
     return 
         response:stream(
             serialize($responseBody, 
@@ -113,8 +117,12 @@ declare function local:serialize-xml($response as item()*, $root as xs:string) a
         if($response[1] instance of map(*) and map:contains($response[1],'totalRecordCount'))
         then response:set-header('totalRecordCount', $response[1]?totalRecordCount)
         else ()
+    let $setHeader4.5 := 
+        if($response instance of map(*) and map:contains($response,'filteredRecordCount'))
+        then response:set-header('filteredRecordCount', $response?filteredRecordCount)
+        else ()
     let $setHeader5 := response:set-header('Access-Control-Allow-Origin', '*')
-    let $setHeader6 := response:set-header('Access-Control-Expose-Headers', 'totalrecordcount')
+    let $setHeader6 := response:set-header('Access-Control-Expose-Headers', 'totalrecordcount, filteredrecordcount')
     return
         element {$root} {
             for $i in subsequence($response, if(count($response) gt 1) then 2 else 1)
