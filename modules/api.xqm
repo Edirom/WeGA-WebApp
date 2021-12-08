@@ -244,9 +244,9 @@ declare function api:repositories($model as map(*)) as map(*) {
         for $docType in ('letters', 'documents', 'writings')
         return core:getOrCreateColl($docType, 'indices', true())
     let $repos :=
-        if($model?cities)
-        then $docs//tei:repository[@n][preceding-sibling::tei:settlement/@key = $model?cities]
-        else $docs//tei:repository[@n]
+        if($model?city)
+        then $docs//tei:repository[preceding-sibling::tei:settlement/@key = $model?city]
+        else $docs//tei:repository[preceding-sibling::tei:settlement]
     let $sigla := 
         for $repo in $repos
         group by $siglum := $repo/data(@n)
@@ -978,13 +978,13 @@ declare function api:validate-q($model as map(*)) as map(*)? {
 };
 
 (:~
- : Check parameter cities
+ : Check parameter city
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
-declare function api:validate-cities($model as map(*)) as map(*)? {
-    if(every $i in $model?cities ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'cities': $model?cities ! tokenize(., ',') }
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "cities". It must be a WeGA place ID.' )
+declare function api:validate-city($model as map(*)) as map(*)? {
+    if(every $i in $model?city ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'city': $model?city ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "city". It must be a WeGA place ID.' )
 };
 
 (:~

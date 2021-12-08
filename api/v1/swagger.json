@@ -75,11 +75,10 @@
                 "produces": ["application/json"],
                 "parameters": [
                     {
-                        "name": "cities",
+                        "name": "city",
                         "in": "query",
                         "description": "The WeGA city ID to filter for, e.g. \"A130002\" (Berlin)",
-                        "type": "string",
-                        "required": false
+                        "type": "string"
                     },
                     {"$ref": "#/parameters/offsetParam"},
                     {"$ref": "#/parameters/limitParam"}
