@@ -16,6 +16,7 @@ declare namespace util="http://exist-db.org/xquery/util";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace repo="http://exist-db.org/xquery/repo";
 declare namespace ft="http://exist-db.org/xquery/lucene";
+declare namespace sort="http://exist-db.org/xquery/sort";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace facets="http://xquery.weber-gesamtausgabe.de/modules/facets" at "facets.xqm";
@@ -270,15 +271,51 @@ declare function api:repositories-items($model as map(*)) as map(*) {
     let $docs :=
         for $docType in ('letters', 'documents', 'writings')
         return core:getOrCreateColl($docType, 'indices', true())
+    let $reposTotal := $docs//tei:repository[preceding-sibling::tei:settlement]
     let $repos :=
         if($model?siglum)
-        then $docs//tei:repository[@n = $model?siglum]
-        else $docs//tei:repository[@n]
+        then $reposTotal[@n = $model?siglum]
+        else $reposTotal
+    let $orderedRepos := api:order-repository-items($repos, $model)
     return
         map { 
-            'totalRecordCount': count($repos),
-            'results': api:item(api:subsequence($repos, $model), $model)
+            'totalRecordCount': count($reposTotal),
+            'filteredRecordCount': count($repos),
+            'results': api:item(api:subsequence($orderedRepos, $model), $model)
         }
+};
+
+(:~
+ :  Helper function for api:repositories-items()
+ :)
+declare %private function api:order-repository-items($repos as element(tei:repository)*, $model as map(*)) as element(tei:repository)* {
+    let $index-name := 'repository-items-' || $model?orderby
+    let $callback := function($repo as element(tei:repository)) as xs:string? {
+        let $date := ($repo/following::tei:correspAction[@type='sent']/tei:date|$repo/following::tei:profileDesc/tei:creation/tei:date)[1]
+        let $sortdate := date:getOneNormalizedDate($date, true())
+        let $id := $repo/ancestor::tei:TEI/data(@xml:id)
+        return
+            switch($model?orderby)
+            case 'docID' return $id => string()
+            case 'sortdate' return 
+                if($sortdate instance of xs:date) then string($sortdate)
+                else ()
+            case 'idno' return 
+                if($repo/following-sibling::tei:idno) then $repo/following-sibling::tei:idno => normalize-space()
+                else ()
+            case 'docType' return config:get-doctype-by-id($id)
+            default return ()
+    }
+    return (
+        if(sort:has-index($index-name)) then ()
+        else sort:create-index-callback($index-name, $repos, $callback, <options order='ascending' empty='greatest'/>),
+        for $repo in $repos
+        order by 
+            (: hacky syntax, credits to https://jaketrent.com/post/xquery-dynamic-order :)
+            if($model?orderdir = 'asc') then sort:index($index-name, $repo) else () ascending,
+            if($model?orderdir = 'asc') then () else sort:index($index-name, $repo) descending
+        return $repo
+    )
 };
 
 (:~
@@ -995,6 +1032,24 @@ declare function api:validate-city($model as map(*)) as map(*)? {
 declare function api:validate-siglum($model as map(*)) as map(*)? {
     if(every $i in $model?siglum ! tokenize(., ',') satisfies matches($i, '^[A-Z]+\-[A-Z]+[a-z]*$')) then map { 'siglum': $model?siglum ! tokenize(., ',') }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "siglum". It must be a valid RISM siglum matching the regular expression "^[A-Z]+\-[A-Z]+[a-z]*$".' )
+};
+
+(:~
+ : Check parameter orderby (docID|idno|sortdate|docType)
+ : only one value allowed
+~:)
+declare function api:validate-orderby($model as map(*)) as map(*)? {
+    if($model?orderby castable as xs:string and ($model?orderby = ('docID', 'idno', 'sortdate', 'docType'))) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "orderby". It must be either "desc" or "asc".' )
+};
+
+(:~
+ : Check parameter orderdir (desc|asc)
+ : only one value allowed
+~:)
+declare function api:validate-orderdir($model as map(*)) as map(*)? {
+    if($model?orderdir castable as xs:string and ($model?orderdir = ('desc', 'asc'))) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "orderdir". It must be either "desc" or "asc".' )
 };
 
 (:~

@@ -115,8 +115,35 @@
                         "name": "siglum",
                         "in": "query",
                         "description": "The RISM siglum to filter for, e.g. \"D-B\" (Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung)",
+                        "type": "string"
+                    },
+                    {
+                        "name": "term",
+                        "in": "query",
+                        "description": "The search term to be looked for in this item's description",
+                        "type": "string"
+                    },
+                    {
+                        "name": "orderby",
+                        "in": "query",
+                        "description": "The property to which ordering should be applied",
                         "type": "string",
-                        "required": false
+                        "enum": [
+                            "idno",
+                            "docID",
+                            "sortdate",
+                            "docType"
+                        ]
+                    },
+                    {
+                        "name": "orderdir",
+                        "in": "query",
+                        "description": "The ordering direction for the property given in 'orderby'",
+                        "type": "string",
+                        "enum": [
+                            "asc",
+                            "desc"
+                        ]
                     },
                     {"$ref": "#/parameters/offsetParam"},
                     {"$ref": "#/parameters/limitParam"}
