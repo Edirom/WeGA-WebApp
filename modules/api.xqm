@@ -294,6 +294,7 @@ declare %private function api:order-repository-items($repos as element(tei:repos
         let $date := ($repo/following::tei:correspAction[@type='sent']/tei:date|$repo/following::tei:profileDesc/tei:creation/tei:date)[1]
         let $sortdate := date:getOneNormalizedDate($date, true())
         let $id := $repo/ancestor::tei:TEI/data(@xml:id)
+        let $docType := config:get-doctype-by-id($id)
         return
             switch($model?orderby)
             case 'docID' return $id => string()
@@ -303,7 +304,8 @@ declare %private function api:order-repository-items($repos as element(tei:repos
             case 'idno' return 
                 if($repo/following-sibling::tei:idno) then $repo/following-sibling::tei:idno => normalize-space()
                 else ()
-            case 'docType' return config:get-doctype-by-id($id)
+            case 'docType' return $docType
+            case 'title' return wdt:lookup($docType, $repo/root())('title')('txt')
             default return ()
     }
     return (
@@ -1035,12 +1037,12 @@ declare function api:validate-siglum($model as map(*)) as map(*)? {
 };
 
 (:~
- : Check parameter orderby (docID|idno|sortdate|docType)
+ : Check parameter orderby (docID|idno|sortdate|docType|title)
  : only one value allowed
 ~:)
 declare function api:validate-orderby($model as map(*)) as map(*)? {
-    if($model?orderby castable as xs:string and ($model?orderby = ('docID', 'idno', 'sortdate', 'docType'))) then $model
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "orderby". It must be either "desc" or "asc".' )
+    if($model?orderby castable as xs:string and ($model?orderby = ('docID', 'idno', 'sortdate', 'docType', 'title'))) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "orderby". It must be either "docID", "idno", "sortdate", "docType", or "title".' )
 };
 
 (:~
