@@ -373,10 +373,13 @@ declare %private function api:item-authors($TEI as element(tei:TEI)?, $model as 
     return
         array {
             for $author in $authors
-            let $id := $author/@key => string()
+            let $id := $author/@key 
+            let $name := 
+                if($id) then query:title($id)
+                else $author
             return map {
-                'name': $author => normalize-space(),
-                'docID': $id,
+                'name': $name => normalize-space(),
+                'docID': $id => string(),
                 'uri' : if($id) then ($scheme || '://' || $host || substring-before($basePath, 'api') || $id) else '',
                 'gnd': query:get-gnd($id) => string()
             }
