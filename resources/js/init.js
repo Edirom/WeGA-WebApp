@@ -1152,3 +1152,35 @@ $('.copy-to-clipboard').on('click', function() {
     });
     $('#newID-result span').tooltip('show');
 });
+
+$('#datatables')
+    .on('xhr.dt', function ( e, settings, json, xhr ) {
+        //console.log(xhr.getAllResponseHeaders());
+        json.recordsTotal = xhr.getResponseHeader('totalRecordCount')
+        json.recordsFiltered = xhr.getResponseHeader('filteredrecordcount')
+    } )
+    .DataTable( {
+        "processing": true,
+        "serverSide": true,
+        "ajax": { 
+            url: $('#datatables').attr('data-api-base') + "/repositories/items?siglum=D-B",
+            cache: true,
+            dataSrc: '',
+            data: function(d) {
+                //console.log(d)
+                return { 
+                    limit: d.length,
+                    offset: d.start +1,
+                    orderby: d.columns[d.order[0].column].name,
+                    orderdir: d.order[0].dir
+                }
+            }
+        },
+        "columns": [
+            { "data": "docID", "name": "docID", "orderable": true, "render": function(data, type, row, meta) { return '<a href="https://dev.weber-gesamtausgabe.de/' + data + '">' + data + '</a>'; } },
+            { "data": "authors", "name": "author", "orderable": false, "render":  "[; ].name" },
+            { "data": "date", "name": "sortdate", "orderable": true },
+            { "data": "title", "name": "title", "orderable": true },
+            { "data": "idno", "name": "idno", "orderable": true }
+        ]
+    } );

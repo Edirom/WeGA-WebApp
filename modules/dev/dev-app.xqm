@@ -98,3 +98,9 @@ declare
             lang:get-language-string($model?newID-docType, $model?lang)
         }
 };
+
+declare
+    %templates:wrap
+    function dev-app:datatables($node as node(), $model as map(*)) as map() {
+        map {'api-base' : config:api-base()}
+};
