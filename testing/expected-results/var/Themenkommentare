@@ -43,8 +43,10 @@
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"license":"https://creativecommons.org/licenses/by/4.0/","author":[],"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Themenkommentare","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Themenkommentare","@context":"http://schema.org","funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"},"@type":"CreativeWork","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Themenkommentare","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"description":"Eine Liste der von der Carl-Maria-von-Weber-Gesamtausgabe erstellten Themenkommentare. Diese erläutern über Einzelstellenkommentare hinausreichende Sachverhalte und vernetzen dergestalt die verschiedenen Editionen der Brief, Tagebücher und Schriften Webers."}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Eine Liste der von der Carl-Maria-von-Weber-Gesamtausgabe erstellten Themenkommentare. Diese erläutern über Einzelstellenkommentare hinausreichende Sachverhalte und vernetzen dergestalt die verschiedenen Editionen der Brief, Tagebücher und Schriften Webers.","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"name":"Carl-Maria-von-Weber-Gesamtausgabe – Register der Themenkommentare","@id":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Themenkommentare","license":"https://creativecommons.org/licenses/by/4.0/","url":"http://localhost:8080/exist/apps/WeGA-WebApp/de/Register/Themenkommentare","author":[],"funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"}}</script>
 
 
     </head>
@@ -257,9 +259,9 @@
 					<ul class="pagination">
                                                     <li class="page-item disabled"><a class="page-link">« zurück</a></li>
                                                     <li class="page-item active"><a class="page-link">1</a></li>
-                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?limit=10&amp;page=2">2</a></li>
+                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?limit=10&amp;page=3">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?limit=10&amp;page=2">weiter »</a></li>
                                                 </ul>
 				</div>
 				<div class="d-none d-lg-block col-auto">
@@ -496,9 +498,9 @@
 					<ul class="pagination">
                                                     <li class="page-item disabled"><a class="page-link">« zurück</a></li>
                                                     <li class="page-item active"><a class="page-link">1</a></li>
-                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?page=2&amp;limit=10">2</a></li>
-                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?page=3&amp;limit=10">3</a></li>
-                                                    <li class="page-item"><a class="page-link" href="?page=2&amp;limit=10">weiter »</a></li>
+                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?limit=10&amp;page=2">2</a></li>
+                                                    <li class="page-item d-none d-lg-inline"><a class="page-link" href="?limit=10&amp;page=3">3</a></li>
+                                                    <li class="page-item"><a class="page-link" href="?limit=10&amp;page=2">weiter »</a></li>
                                                 </ul>
 				</div>
 				<div class="d-none d-lg-block col-auto">
@@ -628,6 +630,11 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/openseadragon/openseadragon.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
         
         
