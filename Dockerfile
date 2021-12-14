@@ -45,7 +45,7 @@ RUN ant -lib /usr/share/java
 # Now running the eXist-db
 # and adding our freshly built xar-package
 #########################
-FROM existdb/existdb:5.2.0
+FROM existdb/existdb:5.3.1
 
 ADD https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-22662_updatedWorks.xar ${EXIST_HOME}/autodeploy/
 COPY --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
