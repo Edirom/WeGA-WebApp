@@ -25,7 +25,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
-import module namespace templates="http://exist-db.org/xquery/templates";
+import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace functx="http://www.functx.com";
 
 declare variable $gl:guidelines-collection-path as xs:string := $config:app-root || '/guidelines';

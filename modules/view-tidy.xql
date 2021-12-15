@@ -7,7 +7,7 @@ declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace request="http://exist-db.org/xquery/request";
 
-import module namespace templates="http://exist-db.org/xquery/templates" ;
+import module namespace templates="http://exist-db.org/xquery/html-templating" ;
 import module namespace functx="http://www.functx.com";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";

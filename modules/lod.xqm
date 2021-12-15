@@ -13,7 +13,7 @@ declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 
-import module namespace templates="http://exist-db.org/xquery/templates";
+import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";

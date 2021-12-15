@@ -11,7 +11,7 @@ module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-a
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
-declare namespace templates="http://exist-db.org/xquery/templates";
+declare namespace templates="http://exist-db.org/xquery/html-templating";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace util="http://exist-db.org/xquery/util";
