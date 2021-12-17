@@ -313,9 +313,12 @@ declare %private function api:order-repository-items($repos as element(tei:repos
         else sort:create-index-callback($index-name, $repos, $callback, <options order='ascending' empty='greatest'/>),
         for $repo in $repos
         order by 
-            (: hacky syntax, credits to https://jaketrent.com/post/xquery-dynamic-order :)
-            if($model?orderdir = 'asc') then sort:index($index-name, $repo) else () ascending,
-            if($model?orderdir = 'asc') then () else sort:index($index-name, $repo) descending
+            (: 
+                hacky syntax, credits to https://jaketrent.com/post/xquery-dynamic-order
+                had to replace the empty sequence with 1, though, to make it work with eXist 5.x
+            :)
+            if($model?orderdir = 'asc') then sort:index($index-name, $repo) else 1 ascending,
+            if($model?orderdir = 'asc') then 1 else sort:index($index-name, $repo) descending
         return $repo
     )
 };
