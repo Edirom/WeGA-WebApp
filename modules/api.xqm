@@ -302,10 +302,10 @@ declare %private function api:order-repository-items($repos as element(tei:repos
                 if($sortdate instance of xs:date) then string($sortdate)
                 else ()
             case 'idno' return 
-                if($repo/following-sibling::tei:idno) then $repo/following-sibling::tei:idno => normalize-space()
+                if($repo/following-sibling::tei:idno) then $repo/following-sibling::tei:idno => normalize-space() => lower-case()
                 else ()
             case 'docType' return $docType
-            case 'title' return wdt:lookup($docType, $repo/root())('title')('txt')
+            case 'title' return wdt:lookup($docType, $repo/root())('title')('txt') => str:strip-diacritics() => lower-case()
             default return ()
     }
     return (
