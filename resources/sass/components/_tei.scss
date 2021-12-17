@@ -1,3 +1,5 @@
+$tei_list-indent: $font-size-base;
+
 .musical-symbols {
 	font-family: musical-symbols;
 	vertical-align:middle;
@@ -166,12 +168,15 @@ li.listSubTitle {
 
 .tei_list {
     list-style: disc;
-    margin-left:1em;
+    margin-left: $tei_list-indent;
+    li.listTitle, li.listSubTitle {
+        margin-left: -$tei_list-indent;
+    }
 }
 
 .tei_orderedList {
     list-style: none;
-    margin-left:1em;
+    margin-left: $tei_list-indent;
     counter-reset: ol-items;
     li::before {
         counter-increment: ol-items 1;
