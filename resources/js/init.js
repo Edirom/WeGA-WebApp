@@ -404,7 +404,7 @@ $.fn.toggleTab = function () {
 };
 
 $.fn.A090280 = function () {
-    if(['A090280', 'A090148', 'A090065', 'A090164'].indexOf(getID()) > -1) {
+    if(['A090280', 'A090148', 'A090065', 'A090164', 'A090113'].indexOf(getID()) > -1) {
         $(this).addClass('bg-info');
         $(this).css({'margin-bottom': '0px'});
     }
