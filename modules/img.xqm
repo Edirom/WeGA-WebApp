@@ -513,10 +513,10 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
             "attribution" : $attribution,
             "license" : query:licence($facsimile/root()),
             "logo" : map {
-                "@id" : "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                "@id" : config:get-option('permaLinkPrefix') || config:get-option('resourceImgPath') || config:get-option('logoFileName'),
                 "service" : map {
                     "@context" : "http://iiif.io/api/image/2/context.json",
-                    "@id" : "https://weber-gesamtausgabe.de/resources/img/logo_weber.png",
+                    "@id" : config:get-option('permaLinkPrefix') || config:get-option('resourceImgPath') || config:get-option('logoFileName'),
                     "profile" : "http://iiif.io/api/image/2/level2.json"
                 }
             },

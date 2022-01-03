@@ -102,7 +102,7 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
         }:)
     let $homepageSpecials := 
         if($model?docID = 'home') then map { 
-            'image': config:permalink('resources/img/logo_weber.png'),
+            'image': config:permalink(config:get-option('resourceImgPath') || config:get-option('logoFileName')),
             'logo': config:permalink('resources/favicons/mstile-150x150.png'),
             "potentialAction": array { 
                 map {
