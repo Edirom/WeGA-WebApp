@@ -481,7 +481,7 @@ declare function controller:resolve-link($link as xs:string, $exist-vars as map(
         for $token in tokenize(substring-after($link, '$link/'), '/')
         let $has-suffix := contains($token, '.')
         return 
-            if(matches($token, 'A[A-F0-9]{6}')) then $token
+            if(matches($token, config:get-option('generalIdPattern'))) then $token
             else if(matches($token, 'dev|test-html')) then $token
             else if($has-suffix) then lang:get-language-string(controller:basename($token), $exist-vars?lang) || '.' || controller:suffix($token)
             else lang:get-language-string($token, $exist-vars?lang)
@@ -580,7 +580,7 @@ declare function controller:url-encode($string as xs:string?) as xs:string {
 };
 
 declare %private function controller:resource-id($exist-vars as map(*)) as xs:string? {
-    let $regex := '^A\d{2}[0-9A-F]{4}\.' || string-join($config:valid-resource-suffixes, '|') || '$'
+    let $regex := '^' || config:get-option('generalIdPattern') || '\.' || string-join($config:valid-resource-suffixes, '|') || '$'
     return
         if(matches($exist-vars('exist:resource'), $regex)) then substring-before($exist-vars('exist:resource'), '.')
         else ()

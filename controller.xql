@@ -81,7 +81,7 @@ else if (matches($exist:path, '^/(en/|de/)(Index)?$')) then
  : Resolving von allen Dokument-IDs, die als resource angesprochen werden,
  : d.h. letzer Teil des URL-Pfades sind.
  :)    
-else if (matches($exist:resource, '^A\d{2}[0-9A-F]{4}(\.\w{3,6})?$')) then 
+else if (matches($exist:resource, '^' || config:get-option('generalIdPattern') || '(\.\w{3,6})?$')) then 
     controller:dispatch($exist-vars)
     
 (:
@@ -114,39 +114,39 @@ else if (contains($exist:path, concat('/', lang:get-language-string('help', $lan
     controller:dispatch-help($exist-vars)
 
 (: Korrespondenz :)
-else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('correspondence', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('correspondence', $lang), '.html#correspondence'))
 
 (: Tagebücher :)
-else if (matches($exist:path, 'A00[A-F0-9]{4}/' || controller:url-encode(lang:get-language-string('diaries', $lang)) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsIdPattern') || '/' || controller:url-encode(lang:get-language-string('diaries', $lang)) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || controller:url-encode(lang:get-language-string('diaries', $lang)), '.html#diaries'))
 
 (: Schriften :)
-else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('writings', $lang) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('writings', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('writings', $lang), '.html#writings'))
 
 (: Werke :)
-else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('works', $lang) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('works', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
 (: Bibliographie :)
-else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('biblio', $lang) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('biblio', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))
 
 (: News :)
-else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('news', $lang) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('news', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('news', $lang), '.html#news'))
 
 (: Themenkommentare :)
-else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || controller:url-encode(lang:get-language-string('thematicCommentaries', $lang)) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || controller:url-encode(lang:get-language-string('thematicCommentaries', $lang)) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || controller:url-encode(lang:get-language-string('thematicCommentaries', $lang)), '.html#thematicCommentaries'))
 
 (: Dokumente :)
-else if (matches($exist:path, 'A0[08][A-F0-9]{4}/' || lang:get-language-string('documents', $lang) || '/?$')) then
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('documents', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('documents', $lang), '.html#documents'))
     
 (: IIIF manifest meta data :)
-else if (matches($exist:path, '/IIIF/A[0-9A-F]{6}(.*)/manifest.json')) then
+else if (matches($exist:path, '/IIIF/' || config:get-option('generalIdPattern') || '(.*)/manifest.json')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
         <forward url="{concat($exist:controller, '/modules/view-json.xql')}">
             <set-attribute name="docID" value="{substring(substring-after($exist:path, 'IIIF/'), 1, 7)}"/>

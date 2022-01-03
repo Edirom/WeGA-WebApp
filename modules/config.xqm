@@ -134,6 +134,21 @@ declare function config:get-option($key as xs:string?) as xs:string? {
 };
 
 (:~
+ :  Returns a regular expression to match an id by pattern
+ :  
+ : @author Dennis Ried
+ : @param $pattern the pattern to check 
+ : @return xs:string a regular expression that can be used, e.g., at match() otherwise an empty sequence.
+ :)
+declare function config:wrap-regex($key as xs:string?) as xs:string? {
+    let $option := config:get-option($key)
+    let $pattern := concat('^', $option, '$')
+    return
+        if($option) then $pattern
+        else config:log('warn', 'config:wrap-regex(): unable to retrieve the key "' || $key || '"')
+};
+
+(:~
  :  Set or add a preference for the WeGA WebApp
  :  This can be used by a trigger to inject options on startup or to change options dynamically during runtime
  :  NB: You have to be logged in as admin to be able to update preferences!
@@ -201,7 +216,7 @@ declare function config:get-combined-doctype-by-id($id as xs:string?) as xs:stri
  : @return xs:boolean
 :)
 declare function config:is-person($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A00[0-9A-F]{4}$')
+    matches($docID, config:wrap-regex('personsIdPattern'))
 };
 
 (:~
@@ -212,7 +227,7 @@ declare function config:is-person($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-iconography($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A01\d{4}$')
+    matches($docID, config:wrap-regex('iconographyIdPattern'))
 };
 
 (:~
@@ -223,7 +238,7 @@ declare function config:is-iconography($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-work($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A02\d{4}$')
+    matches($docID, config:wrap-regex('worksIdPattern'))
 };
 
 (:~
@@ -234,7 +249,7 @@ declare function config:is-work($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-writing($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A03\d{4}$')
+    matches($docID, config:wrap-regex('writingsIdPattern'))
 };
 
 (:~
@@ -245,7 +260,7 @@ declare function config:is-writing($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-letter($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A04\d{4}$')
+    matches($docID, config:wrap-regex('lettersIdPattern'))
 };
 
 (:~
@@ -256,7 +271,7 @@ declare function config:is-letter($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-news($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A05\d{4}$')
+    matches($docID, config:wrap-regex('newsIdPattern'))
 };
 
 (:~
@@ -267,7 +282,7 @@ declare function config:is-news($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-diary($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A06\d{4}$')
+    matches($docID, config:wrap-regex('diariesIdPattern'))
 };
 
 (:~
@@ -278,7 +293,7 @@ declare function config:is-diary($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-var($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A07\d{4}$')
+    matches($docID, config:wrap-regex('varIdPattern'))
 };
 
 (:~
@@ -289,7 +304,7 @@ declare function config:is-var($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-org($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A08\d{4}$')
+    matches($docID, config:wrap-regex('orgsIdPattern'))
 };
 
 (:~
@@ -300,7 +315,7 @@ declare function config:is-org($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-thematicCommentary($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A09\d{4}$')
+    matches($docID, config:wrap-regex('thematicCommentariesIdPattern'))
 };
 
 (:~
@@ -311,7 +326,7 @@ declare function config:is-thematicCommentary($docID as xs:string?) as xs:boolea
  : @return xs:boolean
 :)
 declare function config:is-document($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A10\d{4}$')
+    matches($docID, config:wrap-regex('documentsIdPattern'))
 };
 
 (:~
@@ -322,7 +337,7 @@ declare function config:is-document($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-biblio($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A11\d{4}$')
+    matches($docID, config:wrap-regex('biblioIdPattern'))
 };
 
 (:~
@@ -333,7 +348,7 @@ declare function config:is-biblio($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-addenda($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A12\d{4}$')
+    matches($docID, config:wrap-regex('addendaIdPattern'))
 };
 
 (:~
@@ -344,7 +359,7 @@ declare function config:is-addenda($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-place($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A13\d{4}$')
+    matches($docID, config:wrap-regex('placesIdPattern'))
 };
 
 (:~
@@ -355,7 +370,7 @@ declare function config:is-place($docID as xs:string?) as xs:boolean {
  : @return xs:boolean
 :)
 declare function config:is-source($docID as xs:string?) as xs:boolean {
-    matches($docID, '^A22\d{4}$')
+    matches($docID, config:wrap-regex('sourcesIdPattern'))
 };
 
 (:~

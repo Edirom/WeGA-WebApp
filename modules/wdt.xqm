@@ -22,9 +22,9 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 declare function wdt:orgs($item as item()*) as map(*) {
     map {
         'name' : 'orgs',
-        'prefix' : 'A08',
+        'prefix' : substring(config:get-option('orgsIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A08\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('orgsIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -79,9 +79,9 @@ declare function wdt:orgs($item as item()*) as map(*) {
 declare function wdt:persons($item as item()*) as map(*) {
     map {
         'name' : 'persons',
-        'prefix' : 'A00',
+        'prefix' : substring(config:get-option('personsIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A00[0-9A-F]{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('personsIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -131,7 +131,7 @@ declare function wdt:persons($item as item()*) as map(*) {
 };
 
 declare function wdt:letters($item as item()*) as map(*) {
-    let $text-types := ('albumblatt', 'letter', 'guestbookEntry', 'dedication', 'eingabe', 'vortrag', 'weisung')
+    let $text-types := tokenize(config:get-option('textTypes'), '\s+')
     let $constructLetterHead := function($TEI as element(tei:TEI)) as element(tei:title) {
         (: Support for Albumblätter?!? :)
         let $id := $TEI/data(@xml:id)
@@ -169,9 +169,9 @@ declare function wdt:letters($item as item()*) as map(*) {
     return 
     map {
         'name' : 'letters',
-        'prefix' : 'A04',
+        'prefix' : substring(config:get-option('lettersIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A04\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('lettersIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -237,7 +237,7 @@ declare function wdt:personsPlus($item as item()*) as map(*) {
         'name' : 'personsPlus',
         'prefix' : (),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A0[08][0-9A-F]{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('personsPlusIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -280,9 +280,9 @@ declare function wdt:writings($item as item()*) as map(*) {
     return
     map {
         'name' : 'writings',
-        'prefix' : 'A03',
+        'prefix' : substring(config:get-option('writingsIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A03\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('writingsIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -343,9 +343,9 @@ declare function wdt:writings($item as item()*) as map(*) {
 declare function wdt:works($item as item()*) as map(*) {
     map {
         'name' : 'works',
-        'prefix' : 'A02',
+        'prefix' : substring(config:get-option('worksIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A02\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('worksIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -415,9 +415,9 @@ declare function wdt:works($item as item()*) as map(*) {
 declare function wdt:diaries($item as item()*) as map(*) {
     map {
         'name' : 'diaries',
-        'prefix' : 'A06',
+        'prefix' : substring(config:get-option('diariesIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A06\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('diariesIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -485,9 +485,9 @@ declare function wdt:news($item as item()*) as map(*) {
     return
     map {
         'name' : 'news',
-        'prefix' : 'A05',
+        'prefix' : substring(config:get-option('newsIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A05\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('newsIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -535,9 +535,9 @@ declare function wdt:news($item as item()*) as map(*) {
 declare function wdt:iconography($item as item()*) as map(*) {
     map {
         'name' : 'iconography',
-        'prefix' : 'A01',
+        'prefix' : substring(config:get-option('iconographyIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A01\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('iconographyIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -572,9 +572,9 @@ declare function wdt:var($item as item()*) as map(*) {
     return
     map {
         'name' : 'var',
-        'prefix' : 'A07',
+        'prefix' : substring(config:get-option('varIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A07\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('varIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -625,9 +625,9 @@ declare function wdt:biblio($item as item()*) as map(*) {
     return
     map {
         'name' : 'biblio',
-        'prefix' : 'A11',
+        'prefix' : substring(config:get-option('biblioIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A11\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('biblioIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -684,9 +684,9 @@ declare function wdt:biblio($item as item()*) as map(*) {
 declare function wdt:places($item as item()*) as map(*) {
     map {
         'name' : 'places',
-        'prefix' : 'A13',
+        'prefix' : substring(config:get-option('placesIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A13\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('placesIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -733,9 +733,9 @@ declare function wdt:places($item as item()*) as map(*) {
 declare function wdt:sources($item as item()*) as map(*) {
     map {
         'name' : 'sources',
-        'prefix' : 'A22',
+        'prefix' : substring(config:get-option('sourcesIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A22\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('sourcesIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -780,9 +780,9 @@ declare function wdt:sources($item as item()*) as map(*) {
 declare function wdt:thematicCommentaries($item as item()*) as map(*) {
     map {
         'name' : 'thematicCommentaries',
-        'prefix' : 'A09',
+        'prefix' : substring(config:get-option('thematicCommentariesIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A09\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('thematicCommentariesIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -836,9 +836,9 @@ declare function wdt:documents($item as item()*) as map(*) {
     return
     map {
         'name' : 'documents',
-        'prefix' : 'A10',
+        'prefix' : substring(config:get-option('documentsIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A10\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('documentsIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {
@@ -897,9 +897,9 @@ declare function wdt:addenda($item as item()*) as map(*) {
     return
     map {
         'name' : 'addenda',
-        'prefix' : 'A12',
+        'prefix' : substring(config:get-option('addendaIdPattern'), 1, 3),
         'check' : function() as xs:boolean {
-            if($item castable as xs:string) then matches($item, '^A12\d{4}$')
+            if($item castable as xs:string) then matches($item, config:wrap-regex('addendaIdPattern'))
             else false()
         },
         'filter' : function() as document-node()* {

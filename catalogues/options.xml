@@ -47,4 +47,27 @@
         <entry xml:id="portraitindexBeacon">http://www.portraitindex.de/pnd_beacon_portrait.txt</entry>
         <entry xml:id="munich-stadtmuseumBeacon">http://www.historische-kommission-muenchen-editionen.de/beacond/beacon_portraet_stadtmus_muenchen.txt</entry>
     </div>
+    <div xml:id="wdt">
+        <entry xml:id="generalIdPattern">A[0-9A-F]{6}</entry>
+        <!-- The first three counts of the regex will be extracted as prefix    -->
+        <!-- except: personsPlusIdPattern. So make all other prefixes explicit. -->
+        <entry xml:id="orgsIdPattern">A08\d{4}</entry>
+        <entry xml:id="personsIdPattern">A00[0-9A-F]{4}</entry>
+        <entry xml:id="personsPlusIdPattern">A0[08][0-9A-F]{4}</entry>
+        <entry xml:id="lettersIdPattern">A04[0-9A-F]{4}</entry>
+        <entry xml:id="writingsIdPattern">A03[0-9A-F]{4}</entry>
+        <entry xml:id="worksIdPattern">A02[0-9A-F]{4}</entry>
+        <entry xml:id="diariesIdPattern">A06[0-9A-F]{4}</entry>
+        <entry xml:id="newsIdPattern">A05[0-9A-F]{4}</entry>
+        <entry xml:id="iconographyIdPattern">A01[0-9A-F]{4}</entry>
+        <entry xml:id="varIdPattern">A07[0-9A-F]{4}</entry>
+        <entry xml:id="biblioIdPattern">A11[0-9A-F]{4}</entry>
+        <entry xml:id="placesIdPattern">A13[0-9A-F]{4}</entry>
+        <entry xml:id="sourcesIdPattern">A22[0-9A-F]{4}</entry>
+        <entry xml:id="thematicCommentariesIdPattern">A09[0-9A-F]{4}</entry>
+        <entry xml:id="documentsIdPattern">A10[0-9A-F]{4}</entry>
+        <entry xml:id="addendaIdPattern">A12[0-9A-F]{4}</entry>
+        <!-- insert textType values as whitespace seperated list -->
+        <entry xml:id="textTypes">albumblatt letter guestbookEntry dedication eingabe vortrag weisung</entry>
+    </div>
 </dictionary>
