@@ -9,10 +9,10 @@ jobs:
     
     steps:
       - name: Setup
-        run: sudo apt-get install libsaxonhe-java && npm install prettydiff 
+        run: sudo apt-get install libsaxonhe-java && npm install -g prettydiff 
       - name: Checkout code
         uses: actions/checkout@v2
       - name: Build and run Docker image
         run: ant docker_run
       - name: Run tests
-        run: ant -lib /usr/share/java test
+        run: ant -lib /usr/share/java -Dprettydiff.cmd=`which prettydiff` test
