@@ -17,6 +17,7 @@ declare variable $local:wega-docTypes as xs:string+ := for $func in wdt:members(
 declare function local:patch-subversion-history($patch as document-node()) {
     if($patch/dictionary/@head castable as xs:integer) then (
         update value $config:svn-change-history-file/dictionary/@head with $patch/dictionary/data(@head),
+        update value $config:svn-change-history-file/dictionary/@dateTime with $patch/dictionary/data(@dateTime),
         for $entry in $patch//entry
         let $id := $entry/data(@xml:id)
         let $old := $config:svn-change-history-file//id($id)
