@@ -225,7 +225,7 @@ declare %private function search:merge-hits($hits as item()*) as map(*)* {
 ~:)
 declare %private function search:fulltext($items as item()*, $searchString as xs:string, $filters as map(*), $docType as xs:string) as item()* {
     let $query := search:create-lucene-query-element($searchString)
-    let $search-func := wdt:lookup(., $items)?search
+    let $search-func := wdt:lookup($docType, $items)?search
     return
         try { $search-func($query) }
         catch * { error($search:ERROR, 'failed to search collection with docType "' || $docType || '"') }
