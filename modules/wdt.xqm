@@ -52,7 +52,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             let $org := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:org
-                case xdt:untypedAtomic return crud:doc($item)/tei:org
+                case xs:untypedAtomic return crud:doc($item)/tei:org
                 case document-node() return $item/tei:org
                 default return $item/root()/tei:org
             return
@@ -65,7 +65,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             let $doc := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)
-                case xdt:untypedAtomic return crud:doc($item)
+                case xs:untypedAtomic return crud:doc($item)
                 case document-node() return $item
                 default return $item/root()
             return
@@ -108,7 +108,7 @@ declare function wdt:persons($item as item()*) as map(*) {
             let $person := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:person
-                case xdt:untypedAtomic return crud:doc($item)/tei:person
+                case xs:untypedAtomic return crud:doc($item)/tei:person
                 case document-node() return $item/tei:person
                 default return $item/root()/tei:person
             return
@@ -120,7 +120,7 @@ declare function wdt:persons($item as item()*) as map(*) {
         'label-facets' : function() as xs:string? {
             typeswitch($item)
                 case xs:string return crud:doc($item)//tei:persName[@type = 'reg']/str:normalize-space(.)
-                case xdt:untypedAtomic return crud:doc($item)//tei:persName[@type = 'reg']/str:normalize-space(.)
+                case xs:untypedAtomic return crud:doc($item)//tei:persName[@type = 'reg']/str:normalize-space(.)
                 case document-node() return str:normalize-space(($item//tei:persName[@type = 'reg']))
                 case element() return str:normalize-space(($item/root()//tei:persName[@type = 'reg']))
                 default return wega-util:log-to-file('error', 'wdt:persons()("label-facests"): failed to get string')
@@ -205,7 +205,7 @@ declare function wdt:letters($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:TEI
-                case xdt:untypedAtomic return crud:doc($item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := 
@@ -320,7 +320,7 @@ declare function wdt:writings($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:TEI
-                case xdt:untypedAtomic return crud:doc($item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -386,7 +386,7 @@ declare function wdt:works($item as item()*) as map(*) {
             let $mei := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/mei:mei
-                case xdt:untypedAtomic return crud:doc($item)/mei:mei
+                case xs:untypedAtomic return crud:doc($item)/mei:mei
                 case document-node() return $item/mei:mei
                 default return $item/root()/mei:mei
             let $title-element := ($mei//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
@@ -399,7 +399,7 @@ declare function wdt:works($item as item()*) as map(*) {
         'label-facets' : function() as xs:string? {
             typeswitch($item)
             case xs:string return str:normalize-space((crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            case xdt:untypedAtomic return str:normalize-space((crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
+            case xs:untypedAtomic return str:normalize-space((crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
             default return wega-util:log-to-file('error', 'wdt:works()("label-facests"): failed to get string')
@@ -449,7 +449,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
             let $ab := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:ab
-                case xdt:untypedAtomic return crud:doc($item)/tei:ab
+                case xs:untypedAtomic return crud:doc($item)/tei:ab
                 case document-node() return $item/tei:ab
                 default return ()
             let $lang := config:guess-language(())
@@ -514,7 +514,7 @@ declare function wdt:news($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:TEI
-                case xdt:untypedAtomic return crud:doc($item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -599,7 +599,7 @@ declare function wdt:var($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:TEI
-                case xdt:untypedAtomic return crud:doc($item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $lang := config:guess-language(())
@@ -661,7 +661,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
             let $biblStruct := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:biblStruct
-                case xdt:untypedAtomic return crud:doc($item)/tei:biblStruct
+                case xs:untypedAtomic return crud:doc($item)/tei:biblStruct
                 case document-node() return $item/tei:biblStruct
                 default return $item/root()/tei:biblStruct
             let $html-title := bibl:printCitation($biblStruct, <xhtml:p/>, 'de')
@@ -713,7 +713,7 @@ declare function wdt:places($item as item()*) as map(*) {
             let $place := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:place
-                case xdt:untypedAtomic return crud:doc($item)/tei:place
+                case xs:untypedAtomic return crud:doc($item)/tei:place
                 case document-node() return $item/tei:place
                 default return $item/root()/tei:place
             return
@@ -762,7 +762,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             let $source := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/mei:manifestation
-                case xdt:untypedAtomic return crud:doc($item)/mei:manifestation
+                case xs:untypedAtomic return crud:doc($item)/mei:manifestation
                 case document-node() return $item/mei:manifestation
                 default return $item/root()/mei:manifestation
             let $title-element := ($source/mei:titleStmt/mei:title[not(@type)])[1]
@@ -809,7 +809,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:TEI
-                case xdt:untypedAtomic return crud:doc($item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -870,7 +870,7 @@ declare function wdt:documents($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:TEI
-                case xdt:untypedAtomic return crud:doc($item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -924,7 +924,7 @@ declare function wdt:addenda($item as item()*) as map(*) {
             let $TEI := 
                 typeswitch($item)
                 case xs:string return crud:doc($item)/tei:TEI
-                case xdt:untypedAtomic return crud:doc($item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($item)/tei:TEI
                 case document-node() return $item/tei:TEI
                 default return $item/root()/tei:TEI
             let $lang := config:guess-language(())

@@ -6,7 +6,6 @@ declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-fo
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace xdt="http://www.w3.org/2005/xpath-datatypes";
 
 import module namespace functx="http://www.functx.com";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
@@ -165,7 +164,7 @@ declare %private function ct:check-If-Modified-Since() as xs:boolean {
     then
         try { 
             (: need to subtract another second since $ct:last-modified features milliseconds and the ietf-date not :)
-            (request:get-header('If-Modified-Since') => parse-ietf-date()) lt ($ct:last-modified - xdt:dayTimeDuration('PT1S'))
+            (request:get-header('If-Modified-Since') => parse-ietf-date()) lt ($ct:last-modified - xs:dayTimeDuration('PT1S'))
         }
         catch * { true() }
     else true()
