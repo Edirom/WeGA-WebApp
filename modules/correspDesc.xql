@@ -5,7 +5,10 @@ declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-force-correspDesc";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace response="http://exist-db.org/xquery/response";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace xdt="http://www.w3.org/2005/xpath-datatypes";
 
+import module namespace functx="http://www.functx.com";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
@@ -15,18 +18,15 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 
-(:~
- :  create a UUID that starts with a non-digit
- :  (because we'll use this as an xml:id)
-~:)
-declare %private function ct:uuid-starting-with-nonDigit() as xs:string {
-    let $uuid := util:uuid()
-    return
-        if(matches($uuid, '^\d')) then ct:uuid-starting-with-nonDigit()
-        else $uuid
-};
-
-declare variable $ct:source-uuid := ct:uuid-starting-with-nonDigit();
+declare variable $ct:source-uuid := config:get-option('cmifID');
+declare variable $ct:last-modified as xs:dateTime? := 
+    if($config:svn-change-history-file/dictionary/@dateTime castable as xs:dateTime) 
+    then $config:svn-change-history-file/dictionary/xs:dateTime(@dateTime)
+    else ();
+declare variable $ct:etag as xs:string? := 
+    if(exists($ct:last-modified))
+    then util:hash($ct:last-modified, 'md5')
+    else ();
 
 declare function ct:create-header() as element(tei:teiHeader) {
     <teiHeader xmlns="http://www.tei-c.org/ns/1.0">
@@ -40,7 +40,7 @@ declare function ct:create-header() as element(tei:teiHeader) {
                     <ref target="{config:get-option('permaLinkPrefix')}">Carl-Maria-von-Weber-Gesamtausgabe</ref>
                 </publisher>
                 <idno type="url">{config:get-option('permaLinkPrefix')}/correspDesc.xml</idno>
-                <date when="{current-dateTime()}"/>
+                <date when="{$ct:last-modified}"/>
                 <availability>
                     <licence target="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</licence>
                     <licence target="http://opensource.org/licenses/BSD-2-Clause">BSD-2</licence>
@@ -141,11 +141,55 @@ declare function ct:onFailure($errCode, $errDesc) {
     wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
 };
 
-response:set-header('Access-Control-Allow-Origin', '*'),
-mycache:doc(str:join-path-elements(
-    ($config:tmp-collection-path, 'correspDesc.xml')), 
-    ct:corresp-list#0, 
-    (), 
-    function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, xs:dayTimeDuration('P999D')) }, 
-    ct:onFailure#2
+declare %private function ct:response-headers() as empty-sequence() {
+    response:set-header('Access-Control-Allow-Origin', '*'),
+    if(exists($ct:last-modified))
+    then (
+        response:set-header('Last-Modified', date:rfc822($ct:last-modified)),
+        response:set-header('ETag', $ct:etag),
+        response:set-header('Cache-Control', 'max-age=300,public')
+    )
+    else ()
+};
+
+(:~
+ : checks whether a valid If-Modified-Since header was sent 
+ : and if our last-modified is younger.
+ : Returns true() when we need to send back the whole document 
+:)
+declare %private function ct:check-If-Modified-Since() as xs:boolean {
+    (:  need to check for existence of the If-Modified-Since header first
+        otherwise the lt comparison yields an empty-sequence (for an empty header)
+    :)
+    if(request:get-header('If-Modified-Since'))
+    then
+        try { 
+            (: need to subtract another second since $ct:last-modified features milliseconds and the ietf-date not :)
+            (request:get-header('If-Modified-Since') => parse-ietf-date()) lt ($ct:last-modified - xdt:dayTimeDuration('PT1S'))
+        }
+        catch * { true() }
+    else true()
+};
+
+(: check Etag :)
+if(exists($ct:etag) and functx:substring-before-if-contains(request:get-header('If-None-Match'), '--') = $ct:etag)
+then (
+    ct:response-headers(),
+    response:set-status-code(304)
+)
+(: check "If-Modified-Since" header as fallback if no "If-None-Match" header was sent :)
+else if(exists($ct:last-modified) and not(request:get-header('If-None-Match') or ct:check-If-Modified-Since()))
+then (
+    ct:response-headers(),
+    response:set-status-code(304)
+)
+else (
+    ct:response-headers(),
+    mycache:doc(str:join-path-elements(
+        ($config:tmp-collection-path, 'correspDesc.xml')), 
+        ct:corresp-list#0, 
+        (), 
+        function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, xs:dayTimeDuration('P999D')) }, 
+        ct:onFailure#2
+    )
 )
