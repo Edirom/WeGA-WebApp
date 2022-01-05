@@ -439,7 +439,7 @@ declare %private function app:page-link($model as map(*), $params as map(*)) as 
 	        string-join(
 	            map:keys($paramsMap) ! (
 	                '&amp;' || string(.) || '=' || string-join(
-	                    encode-for-uri($paramsMap(.)),
+	                    ($paramsMap(.) ! encode-for-uri(.)),
 	                    '&amp;' || string(.) || '=')
 	                ), 
 	            ''),
