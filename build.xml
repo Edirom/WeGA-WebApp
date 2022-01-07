@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project default="xar" name="WeGA-WebApp" xmlns:unless="ant:unless">
+<project default="xar" name="WeGA-WebApp" basedir="." xmlns:unless="ant:unless">
+    <dirname property="WeGA-WebApp.basedir" file="${ant.file.WeGA-WebApp}"/>
     
     <!-- import default properties from file -->
-    <property file="local.build.properties"/>
-    <property file="build.properties"/>
+    <property file="${WeGA-WebApp.basedir}/local.build.properties"/>
+    <property file="${WeGA-WebApp.basedir}/build.properties"/>
     
     <!-- import ANT file for tests -->
     <import file="testing/ant-testing.xml"/>
