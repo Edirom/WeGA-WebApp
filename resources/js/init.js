@@ -1178,7 +1178,7 @@ $('#datatables')
         },
         "columns": [
             { "data": "docID", "name": "docID", "orderable": true, "render": function(data, type, row, meta) { return '<a href="https://dev.weber-gesamtausgabe.de/' + data + '">' + data + '</a>'; } },
-            { "data": "authors", "name": "author", "orderable": false, "render":  "[; ].name" },
+            { "data": "related_entities", "name": "author", "orderable": false, "render": function(data, type, row, meta) { var authors = []; data.forEach(function(item) { if(item.rel==='author') { authors.push( item.name ) }}); return authors.join('; ') } },
             { "data": "date", "name": "sortdate", "orderable": true },
             { "data": "title", "name": "title", "orderable": true },
             { "data": "idno", "name": "idno", "orderable": true }

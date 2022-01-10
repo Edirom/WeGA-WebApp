@@ -334,7 +334,7 @@ declare %private function api:item($repos as element(tei:repository)*, $model as
             map:merge((
                 api:document($repo/root(), $model)?*,
                 map {
-                    'authors': api:item-authors($repo/ancestor::tei:TEI, $model),
+                    'related_entities': api:item-related-entities($repo/ancestor::tei:TEI, $model),
                     'date': date:printDate($date,'de',lang:get-language-string#3, $config:default-date-picture-string) => string(),
                     'sortdate': date:getOneNormalizedDate($date, true()) => string(),
                     'incipit': $repo/preceding::tei:note[@type='incipit']  => string(),
@@ -365,27 +365,30 @@ declare %private function api:item-comment($msDescOrFrag as element()?) as xs:st
 (:~
  :  Helper function for api:item()
  :)
-declare %private function api:item-authors($TEI as element(tei:TEI)?, $model as map(*)) as array(*) {
+declare %private function api:item-related-entities($TEI as element(tei:TEI)?, $model as map(*)) as array(*) {
     let $host := $model('swagger:config')?host
     let $basePath := $model('swagger:config')?basePath
     let $scheme := $model('swagger:config')?schemes[1]
-    let $authors := 
-        if($TEI/tei:correspAction)
-        then $TEI//tei:correspAction[@type='sent']/(tei:persName | tei:name | tei:orgName)
-        else $TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author
+    let $mappify := function($elem as element(), $rel as xs:string) {
+        let $id := $elem/@key 
+        let $name := 
+            if($id) then query:title($id)
+            else $elem
+        return map {
+            'name': $name => normalize-space(),
+            'docID': $id => string(),
+            'uri' : if($id) then ($scheme || '://' || $host || substring-before($basePath, 'api') || $id) else '',
+            'gnd': query:get-gnd($id) => string(),
+            'rel': $rel
+        }
+    }
     return
         array {
-            for $author in $authors
-            let $id := $author/@key 
-            let $name := 
-                if($id) then query:title($id)
-                else $author
-            return map {
-                'name': $name => normalize-space(),
-                'docID': $id => string(),
-                'uri' : if($id) then ($scheme || '://' || $host || substring-before($basePath, 'api') || $id) else '',
-                'gnd': query:get-gnd($id) => string()
-            }
+            $TEI/tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:author ! $mappify(., 'author'),
+            $TEI//tei:correspAction[@type='sent']/(tei:persName | tei:name | tei:orgName) ! $mappify(., 'sender'),
+            $TEI//tei:correspAction[@type='received']/(tei:persName | tei:name | tei:orgName) ! $mappify(., 'recipient'),
+            $TEI//tei:correspAction[@type='sent']/(tei:placeName | tei:settlement) ! $mappify(., 'place_of_sender'),
+            $TEI//tei:correspAction[@type='received']/(tei:placeName | tei:settlement) ! $mappify(., 'place_of_recipient')
         }
 };
 

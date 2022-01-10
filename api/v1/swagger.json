@@ -679,7 +679,7 @@
                     "type": "string",
                     "description": "The WeGA title of the item"
                 },
-                "authors": {
+                "related_entities": {
                     "type": "array",
                     "items": {
                         "type": "object",
@@ -687,11 +687,11 @@
                         "properties": {
                             "name": {
                                 "type": "string",
-                                "description": "The name of the author"
+                                "description": "The name of the related entity"
                             },
                             "gnd": {
                                 "type": "string",
-                                "description": "The GND identifier for the author"
+                                "description": "The GND identifier for the related entity"
                             },
                             "uri": {
                                 "type": "string",
@@ -699,7 +699,11 @@
                             },
                             "docID": {
                                 "type": "string",
-                                "description": "The WeGA document identifier of the author"
+                                "description": "The WeGA document identifier of the related entity"
+                            },
+                            "rel": {
+                                "type": "string",
+                                "description": "Defines the relationship between the related entity and the current item"
                             }
                         }
                     }
