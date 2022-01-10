@@ -3,22 +3,16 @@
 # 1. set up the build environment and build the expath-package
 # 2. run the eXist-db
 #########################
-FROM openjdk:8-jdk as builder
+FROM openjdk:17-jdk-bullseye as builder
 LABEL maintainer="Peter Stadler"
 
 ENV WEGA_BUILD_HOME="/opt/wega"
 ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
 
-ADD https://deb.nodesource.com/setup_12.x /tmp/nodejs_setup 
 
 # installing Saxon, Node and Git
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends apt-transport-https ant git libsaxonhe-java \
-    # installing nodejs
-    && chmod 755 /tmp/nodejs_setup \
-    && /tmp/nodejs_setup \
-    && apt-get install -y nodejs \
-    && ln -s /usr/bin/nodejs /usr/local/bin/node \
+    && apt-get install -y --no-install-recommends apt-transport-https ant git libsaxonhe-java npm \
     && npm install -g yarn
 
 
@@ -31,15 +25,11 @@ RUN git clone https://github.com/Edirom/WeGA-WebApp-lib.git . \
 # now building the main WeGA-WebApp
 WORKDIR ${WEGA_BUILD_HOME}
 COPY . .
-RUN addgroup wegabuilder \
-    && adduser wegabuilder --ingroup wegabuilder --disabled-password --system \
-    && chown -R wegabuilder:wegabuilder ${WEGA_BUILD_HOME}
 
-# running the main build script as non-root user
-USER wegabuilder:wegabuilder
+
+# running the main build script
 RUN ant -lib /usr/share/java 
 
-#CMD ["/bin/bash"]
 
 #########################
 # Now running the eXist-db
