@@ -76,182 +76,77 @@
 
     <xsl:function name="wega:isPerson" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('personsIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('personsIdPattern'))"/>
     </xsl:function>
-
+    
     <xsl:function name="wega:isIconography" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('iconographyIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('iconographyIdPattern'))"/>
     </xsl:function>
-
+    
     <xsl:function name="wega:isWork" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('worksIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('worksIdPattern'))"/>
     </xsl:function>
-
+    
     <xsl:function name="wega:isWriting" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('writingsIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('writingsIdPattern'))"/>
     </xsl:function>
-
+    
     <xsl:function name="wega:isLetter" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('lettersIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('lettersIdPattern'))"/>
     </xsl:function>
-
+    
     <xsl:function name="wega:isNews" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('newsIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('newsIdPattern'))"/>
     </xsl:function>
-
+    
     <xsl:function name="wega:isDiary" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('diariesIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('diariesIdPattern'))"/>
     </xsl:function>
-
+    
     <xsl:function name="wega:isVar" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('varIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('varIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:isBiblio" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('biblioIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('biblioIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:isPlace" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('placesIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('placesIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:isSource" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('sourcesIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('sourcesIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:isOrg" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('orgsIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('orgsIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:isThematicCom" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('thematicCommentariesIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('thematicCommentariesIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:isDocument" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('documentsIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('documentsIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:isAddendum" as="xs:boolean">
         <xsl:param name="docID" as="xs:string"/>
-        <xsl:choose>
-            <xsl:when test="matches($docID, wega:wrap-regex('addendaIdPattern'))">
-                <xsl:value-of select="true()"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:value-of select="false()"/>
-            </xsl:otherwise>
-        </xsl:choose>
+        <xsl:sequence select="matches($docID, wega:wrap-regex('addendaIdPattern'))"/>
     </xsl:function>
     
     <xsl:function name="wega:get-doctype-by-id" as="xs:string?">
