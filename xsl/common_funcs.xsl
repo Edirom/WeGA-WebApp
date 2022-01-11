@@ -56,9 +56,11 @@
         <xsl:value-of select="string-join(($data-collection-path, wega:get-doctype-by-id($docID), concat(substring($docID, 1, 5), 'xx')), '/')"/>
     </xsl:function>
 
-    <xsl:function name="wega:getOption" as="xs:string">
+    <xsl:function name="wega:getOption" as="xs:string?">
         <xsl:param name="key" as="xs:string"/>
-        <xsl:value-of select="wega:doc($optionsFile)//entry[@xml:id = $key]/text()"/>
+        <xsl:if test="doc-available($optionsFile)">
+            <xsl:value-of select="string(doc($optionsFile)//entry[@xml:id = $key])"/>    
+        </xsl:if>
     </xsl:function>
     
     <xsl:function name="wega:wrap-regex" as="xs:string">
