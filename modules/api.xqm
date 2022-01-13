@@ -274,7 +274,7 @@ declare function api:repositories-items($model as map(*)) as map(*) {
     let $reposTotal := $docs//tei:repository[preceding-sibling::tei:settlement]
     let $repos :=
         if($model?siglum)
-        then $reposTotal[@n = $model?siglum]
+        then $docs//tei:repository[@n = $model?siglum]
         else $reposTotal
     let $orderedRepos := api:order-repository-items($repos, $model)
     return
