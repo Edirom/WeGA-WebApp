@@ -500,7 +500,6 @@ declare %private function api:document($documents as document-node()*, $model as
             for $doc in $documents
             let $id := $doc/*/data(@xml:id)
             let $docType := config:get-doctype-by-id($id)
-            let $supportsHTML := $docType = ('letters', 'persons', 'diaries', 'writings', 'news', 'documents', 'thematicCommentaries')
             return
                 map { 
                     'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
