@@ -1899,7 +1899,8 @@ declare
         return
             if($key and $myPopover) then app:createDocLink(crud:doc($key), query:title($key), $lang, (), true())
             else element xhtml:span {
-                str:normalize-space($model('relator'))
+                if($key) then wdt:lookup(config:get-doctype-by-id($key), data($key))?title('txt')
+                else str:normalize-space($model('relator'))
             }
 };
 
