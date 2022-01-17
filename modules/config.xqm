@@ -43,6 +43,8 @@ declare variable $config:app-root as xs:string :=
 declare variable $config:catalogues-collection-path as xs:string := $config:app-root || '/catalogues';
 declare variable $config:options-file-path as xs:string := $config:catalogues-collection-path || '/options.xml';
 declare variable $config:options-file as document-node() := doc($config:options-file-path);
+(: provide quick access to the options by pushing them to a map object :)
+declare variable $config:options as map(xs:string, xs:string*) := map:merge($config:options-file//entry ! map:entry(./string(@xml:id), str:normalize-space(.)));
 declare variable $config:data-collection-path as xs:string := config:get-option('dataCollectionPath');
 declare variable $config:svn-change-history-file as document-node()? := 
     if(doc-available($config:data-collection-path || '/subversionHistory.xml')) then doc($config:data-collection-path || '/subversionHistory.xml')
@@ -121,13 +123,14 @@ declare function config:expath-descriptor() as element(expath:package) {
 
 (:~
  :  Returns the requested option value from an option file given by the variable $wega:optionsFile
+ :  This function is a simple wrapper for accessing the options map object   
  :  
  : @author Peter Stadler
  : @param $key the key to look for in the options file
  : @return xs:string the option value as string identified by the key otherwise the empty sequence
  :)
 declare function config:get-option($key as xs:string?) as xs:string? {
-    let $result := str:normalize-space($config:options-file/id($key))
+    let $result := $config:options?($key)
     return
         if($result) then $result
         else config:log('warn', 'config:get-option(): unable to retrieve the key "' || $key || '"')
