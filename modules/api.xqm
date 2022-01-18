@@ -4,7 +4,7 @@ xquery version "3.1" encoding "UTF-8";
  : WeGA API XQuery-Module
  :
  : @author Peter Stadler 
- : @version 1.0
+ : @version 2.0
  :)
  
 module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api";
