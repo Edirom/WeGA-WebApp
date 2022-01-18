@@ -37,7 +37,7 @@ declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausg
 declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
 
 declare variable $api:max-limit := function($openapi-conf as map(*)) as xs:integer {
-    $openapi-conf?parameters?limitParam?maximum
+    $openapi-conf?components?parameters?limitParam?schema?maximum
 };
 
 declare function api:documents($model as map(*)) as map(*) {
@@ -366,9 +366,6 @@ declare %private function api:item-comment($msDescOrFrag as element()?) as xs:st
  :  Helper function for api:item()
  :)
 declare %private function api:item-related-entities($TEI as element(tei:TEI)?, $model as map(*)) as array(*) {
-    let $host := $model('openapi:config')?host
-    let $basePath := $model('openapi:config')?basePath
-    let $scheme := $model('openapi:config')?schemes[1]
     let $mappify := function($elem as element(), $rel as xs:string) {
         let $id := $elem/@key 
         let $name := 
@@ -377,7 +374,7 @@ declare %private function api:item-related-entities($TEI as element(tei:TEI)?, $
         return map {
             'name': $name => normalize-space(),
             'docID': $id => string(),
-            'uri' : if($id) then ($scheme || '://' || $host || substring-before($basePath, 'api') || $id) else '',
+            'uri' : if($id) then (config:link-to-current-app($id) => string()) else '',
             'gnd': query:get-gnd($id) => string(),
             'rel': $rel
         }
@@ -492,42 +489,34 @@ declare %private function api:subsequence($seq as item()*, $model as map(*)) as 
  :  Helper function for creating a Document object
 ~:)
 declare %private function api:document($documents as document-node()*, $model as map(*)) as array(*) {
-    let $host := $model('openapi:config')?host
-    let $basePath := $model('openapi:config')?basePath
-    let $scheme := $model('openapi:config')?schemes[1]
-    return 
-        array {
-            for $doc in $documents
-            let $id := $doc/*/data(@xml:id)
-            let $docType := config:get-doctype-by-id($id)
-            return
-                map { 
-                    'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
-                    'docID' : $id,
-                    'docType' : $docType,
-                    'title' : wdt:lookup($docType, $doc)('title')('txt')
-                }
-        }
+    array {
+        for $doc in $documents
+        let $id := $doc/*/data(@xml:id)
+        let $docType := config:get-doctype-by-id($id)
+        return
+            map { 
+                'uri' : config:link-to-current-app($id) => string(),
+                'docID' : $id,
+                'docType' : $docType,
+                'title' : wdt:lookup($docType, $doc)('title')('txt')
+            }
+    }
 };
 
 (:~
  :  Helper function for creating a CodeSample object 
 ~:)
 declare function api:codeSample($nodes as node()*, $model as map(*)) as array(*) {
-    let $host := $model('openapi:config')?host
-    let $basePath := $model('openapi:config')?basePath
-    let $scheme := $model('openapi:config')?schemes?1
-    return 
-        array {
-            for $node in $nodes
-            let $docID := $node/root()/*/data(@xml:id)
-            return
-                map { 
-                    'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
-                    'docID' : $docID,
-                    'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
-                }
-        }
+    array {
+        for $node in $nodes
+        let $docID := $node/root()/*/data(@xml:id)
+        return
+            map { 
+                'uri' : config:link-to-current-app($docID) => string(),
+                'docID' : $docID,
+                'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
+            }
+    }
 };
 
 (:~

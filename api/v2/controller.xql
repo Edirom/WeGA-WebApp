@@ -20,7 +20,7 @@ declare namespace util="http://exist-db.org/xquery/util";
 (:import module namespace functx="http://www.functx.com";:)
 
 (: Change this line to point at your local api module :)
-import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api_v2" at "../../modules/api_v2.xqm";
+import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "../../modules/api.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../../modules/config.xqm";
 
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../../modules/controller.xqm";
@@ -208,7 +208,7 @@ return (:(
     ):)
     if($exist:resource eq 'openapi.json') then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
-    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
+    else if($exist:resource eq 'index.html') then controller:forward-html('api/v2/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{concat($exist:controller, '/../../resources/', substring-after($exist:path, '/resources/'))}">

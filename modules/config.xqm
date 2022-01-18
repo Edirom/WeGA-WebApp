@@ -523,7 +523,7 @@ declare function config:line-wrap() as xs:boolean {
 declare function config:api-base() as xs:string {
     let $openapi-config := json-doc($config:openapi-config-path)
     return
-        $openapi-config?schemes[1] || '://' || $openapi-config?host || $openapi-config?basePath 
+        $openapi-config?servers(1)?url 
 };
 
 (:~
