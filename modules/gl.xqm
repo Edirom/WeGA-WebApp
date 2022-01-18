@@ -258,7 +258,7 @@ declare
 			'element' : $spec/data(@ident), 
 			'docType' : gl:schemaIdent2docType($spec/ancestor::tei:schemaSpec/data(@ident)), 
 			'namespace' : 'http://www.tei-c.org/ns/1.0', 
-			'swagger:config' : json-doc($config:swagger-config-path), 
+			'openapi:config' : json-doc($config:openapi-config-path), 
 			'total' : true() 
 		}
 		let $examples := api:code-findByElement($map)
