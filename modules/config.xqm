@@ -518,12 +518,20 @@ declare function config:line-wrap() as xs:boolean {
 };
 
 (:~
- : Return the openapi API base path
+ : Return the (first) openapi base path from an openapi config
+ : If the openapi config is not explicitly passed, 
+ : the default is taken from $config:openapi-config-path
+ : 
+ : @return API base path
 ~:)
-declare function config:api-base() as xs:string {
-    let $openapi-config := json-doc($config:openapi-config-path)
+declare function config:api-base($openapi-config as map(*)?) as xs:string? {
+    let $openapi-config := 
+        if($openapi-config instance of map(*)) then $openapi-config
+        else json-doc($config:openapi-config-path)
     return
-        $openapi-config?servers(1)?url 
+        if(map:contains($openapi-config, 'swagger')) 
+        then $openapi-config?schemes(1) || '://' || $openapi-config?host || $openapi-config?basePath  
+        else $openapi-config?servers(1)?url 
 };
 
 (:~

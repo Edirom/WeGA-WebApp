@@ -38,7 +38,7 @@ declare
         return
             element {node-name($node)} {
                 $node/@*,
-                attribute data-api-url {config:api-base() || '/facets/' || $facet},
+                attribute data-api-url {config:api-base(()) || '/facets/' || $facet},
                 attribute data-doc-id {$model?docID},
                 attribute data-doc-type {$model?docType},
                 element option {
