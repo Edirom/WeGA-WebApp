@@ -26,7 +26,7 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../../modules/controller.xqm";
 
 (: Change this line to point at your swagger config file :)
-declare variable $local:swagger-config := json-doc('swagger.json');
+declare variable $local:swagger-config := json-doc($config:app-root || '/api/v1/swagger.json');
 
 (: Change this if you are using a different prefix for your module in line XX :)
 declare variable $local:api-module-prefix as xs:string := 'api'; 
