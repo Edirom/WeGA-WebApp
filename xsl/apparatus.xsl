@@ -455,7 +455,7 @@
          <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/>
       </xsl:variable>
       <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry col-xs-11</xsl:attribute>
+         <xsl:attribute name="class">apparatusEntry col-11</xsl:attribute>
          <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('gapDefault',$lang)"/>
