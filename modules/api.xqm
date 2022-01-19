@@ -40,6 +40,18 @@ declare variable $api:max-limit := function($openapi-conf as map(*)) as xs:integ
     $openapi-conf?components?parameters?limitParam?schema?maximum
 };
 
+(:~
+ :  Function for creating a canonical reference (aka permalink) to a document.
+ :
+ :  This is a 'stateless' local replacement for config:permalink() which 
+ :  is dependent on an existing session 
+ :)
+declare %private function api:document-uri($docID as xs:string?, $model as map(*)) as xs:string? {
+    if($docID and $model('openapi:config') instance of map(*))
+    then config:api-base($model('openapi:config')) => substring-before('/api/') || '/' || $docID
+    else wega-util:log-to-file('warn', 'api:document-uri(): failed to construct URI for $docID "' || $docID || '". Is the server URL set in openapi.json?')
+};
+
 declare function api:documents($model as map(*)) as map(*) {
     let $ids :=
         if(exists($model('docID'))) then api:findByID($model('docID'))
@@ -374,7 +386,7 @@ declare %private function api:item-related-entities($TEI as element(tei:TEI)?, $
         return map {
             'name': $name => normalize-space(),
             'docID': $id => string(),
-            'uri' : if($id) then (config:link-to-current-app($id) => string()) else '',
+            'uri' : if($id) then (api:document-uri($id, $model) => string()) else '',
             'gnd': query:get-gnd($id) => string(),
             'rel': $rel
         }
@@ -495,7 +507,7 @@ declare %private function api:document($documents as document-node()*, $model as
         let $docType := config:get-doctype-by-id($id)
         return
             map { 
-                'uri' : config:link-to-current-app($id) => string(),
+                'uri' : api:document-uri($id, $model),
                 'docID' : $id,
                 'docType' : $docType,
                 'title' : wdt:lookup($docType, $doc)('title')('txt')
@@ -512,7 +524,7 @@ declare function api:codeSample($nodes as node()*, $model as map(*)) as array(*)
         let $docID := $node/root()/*/data(@xml:id)
         return
             map { 
-                'uri' : config:link-to-current-app($docID) => string(),
+                'uri' : api:document-uri($docID, $model),
                 'docID' : $docID,
                 'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
             }
