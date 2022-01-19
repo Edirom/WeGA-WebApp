@@ -1,5 +1,5 @@
 $(function () {
-    var url = $('.swagger-section').attr('data-api-base') + "/swagger.json";
+    var url = $('.swagger-section').attr('data-openapi');
     
     // Begin Swagger UI call region
     const ui = SwaggerUIBundle({
