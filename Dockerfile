@@ -37,6 +37,6 @@ RUN ant -lib /usr/share/java
 #########################
 FROM existdb/existdb:5.3.1
 
-ADD https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-29464.xar ${EXIST_HOME}/autodeploy/
+ADD https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-29470.xar ${EXIST_HOME}/autodeploy/
 COPY --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
 COPY --from=builder /opt/wega/build/*.xar ${EXIST_HOME}/autodeploy/
