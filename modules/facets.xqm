@@ -170,7 +170,10 @@ declare
         map {
             'filterSections' : 
                 for $filter in $filterSections
-                let $keys := distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-combined-doctype-by-id(.) = $filter])
+                let $keys := 
+                    if($filter = 'personsPlus') 
+                    then distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-combined-doctype-by-id(.) = $filter])
+                    else distinct-values($model('doc')//@key[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)]/tokenize(., '\s+')[config:get-doctype-by-id(.) = $filter])
                 let $characterNames := 
                     if($filter = 'characterNames') then distinct-values($model('doc')//tei:characterName[ancestor::tei:text or ancestor::tei:ab][not(ancestor::tei:note)] ! normalize-space(.))
                     else ()
