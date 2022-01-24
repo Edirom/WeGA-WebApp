@@ -206,7 +206,7 @@ return (:(
     util:log-system-out($exist:path),
     util:log-system-out($exist:resource)
     ):)
-    if($exist:resource eq 'openapi.json') then response:set-header('Access-Control-Allow-Origin', '*')
+    if($exist:resource = ('openapi.json', 'swagger.json')) then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v2/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
