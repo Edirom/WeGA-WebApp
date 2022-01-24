@@ -284,6 +284,11 @@ else if($config:isDevelopment and starts-with($exist:path, '/logs/')) then
 (: typo3ContentMappings :)
 else if($exist:resource = 'index.php') then controller:lookup-typo3-mappings($exist-vars)
 
+else if(matches($exist:path, '^/api/?$')) then 
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <redirect url="{config:api-base(())}"/>
+    </dispatch>
+
 else controller:lookup-url-mappings($exist-vars)
 
 )
