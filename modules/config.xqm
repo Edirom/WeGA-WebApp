@@ -52,7 +52,7 @@ declare variable $config:svn-change-history-file as document-node()? :=
 declare variable $config:tmp-collection-path as xs:string := $config:app-root || '/tmp';
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
 declare variable $config:smufl-decl-file-path as xs:string := $config:catalogues-collection-path || '/charDecl.xml';
-declare variable $config:openapi-config-path as xs:string := $config:app-root || '/api/v2/openapi.json';
+declare variable $config:openapi-config-path as xs:string := $config:app-root || '/api/v1/openapi.json';
 
 declare variable $config:isDevelopment as xs:boolean := $config:options-file/id('environment') eq 'development';
 
