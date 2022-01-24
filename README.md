@@ -23,6 +23,7 @@ If you have a running eXist database you can simply install the `WeGA-data-sampl
 
 ### Dependencies on other eXist apps/libs
 * `functx` [http://www.functx.com](http://www.xqueryfunctions.com), installable via dashboard
+* [eXist HTML Templating Library](https://github.com/eXist-db/templating), installable via dashboard
 * `WeGA-WebApp-lib`, get it from [https://github.com/Edirom/WeGA-WebApp-lib](https://github.com/Edirom/WeGA-WebApp-lib)
 
 
