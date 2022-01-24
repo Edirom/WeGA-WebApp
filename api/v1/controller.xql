@@ -200,7 +200,7 @@ let $response := function($lookup as map(*)) {
 ~:)
 let $accept-header := tokenize(request:get-header('Accept'), '[,;]')
 let $unknown-function := 
-     map {'code' : 404, 'message' : 'Unknown/unsupported API function. Please refer to the openapi.conf file for supported functions.', 'fields' : ''}
+     map {'code' : 404, 'message' : 'Unknown/unsupported API function. Please refer to the openapi.json file for supported functions.', 'fields' : ''}
 
 return (:(
     util:log-system-out($exist:path),
@@ -219,6 +219,6 @@ return (:(
         if($accept-header[.='application/xml']) then local:serialize-xml($response($lookup), if(empty($lookup)) then 'Error' else $exist:resource )
         else local:serialize-json($response($lookup))
         (:else if($accept-header[.='application/json']) then local:serialize-json($response($lookup))
-        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the openapi.conf file for supported response formats.', 'code':= 406 }, 'apiResponse'):)
+        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the openapi.json file for supported response formats.', 'code':= 406 }, 'apiResponse'):)
     else if($accept-header[.='application/xml']) then local:serialize-xml($unknown-function, 'apiResponse')
     else local:serialize-json($unknown-function)
