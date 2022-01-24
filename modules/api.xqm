@@ -260,19 +260,31 @@ declare function api:repositories($model as map(*)) as map(*) {
         if($model?city)
         then $docs//tei:repository[preceding-sibling::tei:settlement/@key = $model?city]
         else $docs//tei:repository[preceding-sibling::tei:settlement]
-    let $sigla := 
-        for $repo in $repos
-        group by $siglum := $repo/data(@n)
-        order by count($repo) descending
+    let $sigla := (
+        for $repo in $repos[@n]
+        group by $siglum := $repo/string(@n)
         return map {
             'name': $repo[1] => normalize-space(),
             'siglum': $siglum,
             'frequency': count($repo)
+        },
+        for $repo in $repos[not(@n)]
+        group by $name := $repo => normalize-space()
+        return map {
+            'name': $name,
+            'siglum': '',
+            'frequency': count($repo)
         }
+    )
+    let $ordered_sigla := 
+        for $siglum in $sigla
+        order by number($siglum?frequency) descending
+        return 
+            $siglum
     return
         map { 
-            'totalRecordCount': count($sigla),
-            'results': array { api:subsequence($sigla, $model) }
+            'totalRecordCount': count($ordered_sigla),
+            'results': array { api:subsequence($ordered_sigla, $model) }
         }
 };
 
