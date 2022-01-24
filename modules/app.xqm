@@ -1928,13 +1928,19 @@ declare
         map {
             'bugEmail' : config:get-option('bugEmail') 
         }
-}; 
+};
 
 (:~
- : Inject the @data-api-base attribute at the given node 
+ : Inject the @data-api-base attribute at the given node
+ :
+ : The value is taken from the "openapi" object within $model. 
+ : If this key is missing, it defaults to $config:openapi-config-path 
+ : (see `config:api-base()`)
  :
  : @author Peter Stadler
  :)
 declare function app:inject-api-base($node as node(), $model as map(*))  {
-    app-shared:set-attr($node, map:merge(($model, map {'api-base' : config:api-base()})), 'data-api-base', 'api-base')
+    let $api-base := config:api-base($model?openapi)
+    return
+        app-shared:set-attr($node, map:merge(($model, map {'api-base' : $api-base})), 'data-api-base', 'api-base')
 };

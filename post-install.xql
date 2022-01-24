@@ -29,8 +29,8 @@ declare function local:mkcol-recursive($collection, $components) {
 declare function local:set-options() as xs:string* {
     for $opt in available-environment-variables()[starts-with(., 'WEGA_WEBAPP_')]
     return
-        if(starts-with($opt, 'WEGA_WEBAPP_SWAGGER_'))
-        then config:set-swagger-option(substring($opt, 21), string(environment-variable($opt)))
+        if(starts-with($opt, 'WEGA_WEBAPP_OPENAPI_'))
+        then config:set-openapi-option(substring($opt, 21), string(environment-variable($opt)))
         else config:set-option(substring($opt, 13), string(environment-variable($opt)))
 };
 

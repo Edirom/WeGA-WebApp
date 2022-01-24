@@ -52,7 +52,7 @@ declare variable $config:svn-change-history-file as document-node()? :=
 declare variable $config:tmp-collection-path as xs:string := $config:app-root || '/tmp';
 declare variable $config:xsl-collection-path as xs:string := $config:app-root || '/xsl';
 declare variable $config:smufl-decl-file-path as xs:string := $config:catalogues-collection-path || '/charDecl.xml';
-declare variable $config:swagger-config-path as xs:string := $config:app-root || '/api/v1/swagger.json';
+declare variable $config:openapi-config-path as xs:string := $config:app-root || '/api/v1/openapi.json';
 
 declare variable $config:isDevelopment as xs:boolean := $config:options-file/id('environment') eq 'development';
 
@@ -518,16 +518,24 @@ declare function config:line-wrap() as xs:boolean {
 };
 
 (:~
- : Return the Swagger API base path
+ : Return the (first) openapi base path from an openapi config
+ : If the openapi config is not explicitly passed, 
+ : the default is taken from $config:openapi-config-path
+ : 
+ : @return API base path
 ~:)
-declare function config:api-base() as xs:string {
-    let $swagger-config := json-doc($config:swagger-config-path)
+declare function config:api-base($openapi-config as map(*)?) as xs:string? {
+    let $openapi-config := 
+        if($openapi-config instance of map(*)) then $openapi-config
+        else json-doc($config:openapi-config-path)
     return
-        $swagger-config?schemes[1] || '://' || $swagger-config?host || $swagger-config?basePath 
+        if(map:contains($openapi-config, 'swagger')) 
+        then $openapi-config?schemes(1) || '://' || $openapi-config?host || $openapi-config?basePath  
+        else $openapi-config?servers(1)?url 
 };
 
 (:~
- : set/update object in swagger.json description.
+ : set/update object in openapi.json description.
  : NB: You have to be logged in as admin to be able to update preferences!
  :
  : @param $key a sequence of keys navigating to the object; 
@@ -538,8 +546,8 @@ declare function config:api-base() as xs:string {
  :  environment variables. NB: JSON strings need to be wrapped in double quotes!  
  : @return the new value if successful, the empty sequence otherwise
  :)
-declare function config:set-swagger-option($key as xs:string*, $value as item()?) as item()? {
-    let $swagger.json := fn:json-doc($config:swagger-config-path)
+declare function config:set-openapi-option($key as xs:string*, $value as item()?) as item()? {
+    let $openapi.json := fn:json-doc($config:openapi-config-path)
     let $valueJSON := 
         typeswitch($value)
         case xs:string return
@@ -548,20 +556,20 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
         case node() return parse-json(json:xml-to-json($value)) (: the output of json:xml-to-json() seems to be a string, not a map object :)
         case array(*) return $value
         case map(*) return $value
-        default return config:log('warn', 'config:set-swagger-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
-    let $update := config:map-put-recursive($swagger.json, $key, $valueJSON)
+        default return config:log('warn', 'config:set-openapi-option(): failed to convert value of ' || string-join($key, '.') || ' to a JSON object.')
+    let $update := config:map-put-recursive($openapi.json, $key, $valueJSON)
     let $serialize-json := function($json as item()) as xs:string {
         serialize($json, <output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
     }
     let $update2string := $serialize-json($update)
-    let $fileName := functx:substring-after-last($config:swagger-config-path, '/')
-    let $collection := functx:substring-before-last($config:swagger-config-path, '/')
+    let $fileName := functx:substring-after-last($config:openapi-config-path, '/')
+    let $collection := functx:substring-before-last($config:openapi-config-path, '/')
     let $update := 
         try { 
             xmldb:store($collection, $fileName, $update2string, 'application/json'),
-            config:log('debug', 'set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '"')
+            config:log('debug', 'set openapi option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '"')
         }
-        catch * { config:log('error', 'config:set-swagger-option(): failed to set swagger option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+        catch * { config:log('error', 'config:set-openapi-option(): failed to set openapi option "' || string-join($key, '.') || '" to "' || $serialize-json($valueJSON) || '" -- Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
     return
         if($update) then $valueJSON
         else ()
@@ -569,7 +577,7 @@ declare function config:set-swagger-option($key as xs:string*, $value as item()?
 
 (:~
  : Recursively walk through a map object and update map objects therein.
- : Helper function for config:set-swagger-option()
+ : Helper function for config:set-openapi-option()
  :)
 declare %private function config:map-put-recursive($map as map(*), $key as xs:string+, $value as item()*) as map(*) {
     if(count($key) eq 1) 

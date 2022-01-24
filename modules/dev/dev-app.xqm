@@ -102,5 +102,5 @@ declare
 declare
     %templates:wrap
     function dev-app:datatables($node as node(), $model as map(*)) as map() {
-        map {'api-base' : config:api-base()}
+        map {'api-base' : config:api-base(())}
 };

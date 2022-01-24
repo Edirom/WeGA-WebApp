@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "WeGA API",
-        "description": "The OpenAPI documentation for the RESTful interface of the Carl-Maria-von-Weber-Gesamtausgabe. <br/> (No registration, authentication, or API key is required) <br/> For feedback or requests about this API please contact stadler@weber-gesamtausgabe.de or start the discussion at https://github.com/Edirom/WeGA-WebApp",
+        "description": "⚠️<b>DEPRECATION WARNING</b>⚠️<br/>This version of the WeGA API specification is outdated and superseded by [version 1.1.0](https://weber-gesamtausgabe.de/api/v1/openapi.json).  <br/> <br/> For feedback or requests about this API please contact stadler@weber-gesamtausgabe.de or start the discussion at https://github.com/Edirom/WeGA-WebApp",
         "version": "1.0.0"
     },
     "host": "localhost:8080",
@@ -27,10 +27,6 @@
         {
             "name": "Facets",
             "description": "Access to facets for filtering result sets"
-        },
-        {
-            "name": "Repositories",
-            "description": "Access to items within the WeGA digital edition by repository" 
         }
     ],
     "basePath": "/exist/apps/WeGA-WebApp/api/v1",
@@ -57,113 +53,6 @@
                             "totalrecordcount": {
                                 "type": "integer",
                                 "description": "The total size of the result set"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "schema": {"$ref": "#/definitions/Error"}
-                    }
-                }
-            }
-        },
-        "/repositories": {
-            "get": {
-                "summary": "Lists all repositories",
-                "description": "The endpoint returns a list of all repositories within the WeGA digital edition.\n",
-                "tags": ["Repositories"],
-                "produces": ["application/json"],
-                "parameters": [
-                    {
-                        "name": "city",
-                        "in": "query",
-                        "description": "The WeGA city ID to filter for, e.g. \"A130002\" (Berlin)",
-                        "type": "string"
-                    },
-                    {"$ref": "#/parameters/offsetParam"},
-                    {"$ref": "#/parameters/limitParam"}
-                ],
-                "responses": {
-                    "200": {
-                        "description": "An array of repositories",
-                        "schema": {
-                            "type": "array",
-                            "items": {"$ref": "#/definitions/Repository"}
-                        },
-                        "headers": {
-                            "totalrecordcount": {
-                                "type": "integer",
-                                "description": "The total size of the result set"
-                            }
-                        }
-                    },
-                    "default": {
-                        "description": "Unexpected error",
-                        "schema": {"$ref": "#/definitions/Error"}
-                    }
-                }
-            }
-        },
-        "/repositories/items": {
-            "get": {
-                "summary": "Lists all items from a repository within the WeGA",
-                "description": "The endpoint returns a list of all items within the WeGA digital edition for a given repository.\n",
-                "tags": ["Repositories"],
-                "produces": ["application/json"],
-                "parameters": [
-                    {
-                        "name": "siglum",
-                        "in": "query",
-                        "description": "The RISM siglum to filter for, e.g. \"D-B\" (Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung)",
-                        "type": "string"
-                    },
-                    {
-                        "name": "term",
-                        "in": "query",
-                        "description": "The search term to be looked for in this item's description",
-                        "type": "string"
-                    },
-                    {
-                        "name": "orderby",
-                        "in": "query",
-                        "description": "The property to which ordering should be applied",
-                        "type": "string",
-                        "enum": [
-                            "idno",
-                            "docID",
-                            "sortdate",
-                            "docType",
-                            "title"
-                        ]
-                    },
-                    {
-                        "name": "orderdir",
-                        "in": "query",
-                        "description": "The ordering direction for the property given in 'orderby'",
-                        "type": "string",
-                        "enum": [
-                            "asc",
-                            "desc"
-                        ]
-                    },
-                    {"$ref": "#/parameters/offsetParam"},
-                    {"$ref": "#/parameters/limitParam"}
-                ],
-                "responses": {
-                    "200": {
-                        "description": "An array of items",
-                        "schema": {
-                            "type": "array",
-                            "items": {"$ref": "#/definitions/Item"}
-                        },
-                        "headers": {
-                            "totalrecordcount": {
-                                "type": "integer",
-                                "description": "The total size of the result set"
-                            },
-                            "filteredrecordcount": {
-                                "type": "integer",
-                                "description": "The total size of the result set after appplying a filter"
                             }
                         }
                     },
@@ -640,115 +529,6 @@
                 "frequency": {
                     "type": "integer",
                     "description": "The sum of occurences of the object for the current result set"
-                }
-            }
-        },
-        "Repository": {
-            "type": "object",
-            "properties": {
-                "name": {
-                    "type": "string",
-                    "description": "The name or title of the repository"
-                },
-                "siglum": {
-                    "type": "string",
-                    "description": "The siglum according to RISM, see https://rism.info/community/sigla/about.html"
-                },
-                "frequency": {
-                    "type": "integer",
-                    "description": "The absolute number of occurence of this repository"
-                }
-            }
-        },
-        "Item": {
-            "type": "object",
-            "properties": {
-                "uri": {
-                    "type": "string",
-                    "description": "Unique identifier representing a specific document"
-                },
-                "docID": {
-                    "type": "string",
-                    "description": "The WeGA document identifier representing a specific document"
-                },
-                "docType": {
-                    "type": "string",
-                    "description": "The WeGA document type"
-                },
-                "title": {
-                    "type": "string",
-                    "description": "The WeGA title of the item"
-                },
-                "related_entities": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "required": "name",
-                        "properties": {
-                            "name": {
-                                "type": "string",
-                                "description": "The name of the related entity"
-                            },
-                            "gnd": {
-                                "type": "string",
-                                "description": "The GND identifier for the related entity"
-                            },
-                            "uri": {
-                                "type": "string",
-                                "description": "Unique identifier representing a specific entity"
-                            },
-                            "docID": {
-                                "type": "string",
-                                "description": "The WeGA document identifier of the related entity"
-                            },
-                            "rel": {
-                                "type": "string",
-                                "description": "Defines the relationship between the related entity and the current item"
-                            }
-                        }
-                    }
-                },
-                "date": {
-                    "type": "string",
-                    "description": "The creation date of the item as verbal representation including ranges and uncertainties"
-                },
-                "sortdate": {
-                    "type": "string",
-                    "format": "date",
-                    "description": "The normalized creation date of the item in yyyy-mm-dd format"
-                },
-                "incipit": {
-                    "type": "string",
-                    "description": "The text incipit"
-                },
-                "repository": {
-                    "type": "object",
-                    "properties": {
-                        "siglum": {
-                            "type": "string",
-                            "description": "The RISM siglum of the repository"
-                        },
-                        "city": {
-                            "type": "string",
-                            "description": "The name of the city where the repository is located"
-                        },
-                        "name": {
-                            "type": "string",
-                            "description": "The name of the repository"
-                        }
-                    }
-                },
-                "extent": {
-                    "type": "string",
-                    "description": "Extent of the item"
-                },
-                "idno": {
-                    "type": "string",
-                    "description": "The shelf mark or other identifier for the item within the repository"
-                },
-                "comment": {
-                    "type": "string",
-                    "description": "Some comment regarding the item"
                 }
             }
         },

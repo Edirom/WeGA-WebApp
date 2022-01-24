@@ -4,7 +4,7 @@ xquery version "3.1" encoding "UTF-8";
  : WeGA API XQuery-Module
  :
  : @author Peter Stadler 
- : @version 1.0
+ : @version 2.0
  :)
  
 module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api";
@@ -36,8 +36,20 @@ import module namespace functx="http://www.functx.com";
 declare variable $api:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "ParameterError");
 declare variable $api:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api", "UnsupportedIDSchema");
 
-declare variable $api:max-limit := function($swagger-conf as map(*)) as xs:integer {
-    $swagger-conf?parameters?limitParam?maximum
+declare variable $api:max-limit := function($openapi-conf as map(*)) as xs:integer {
+    $openapi-conf?components?parameters?limitParam?schema?maximum
+};
+
+(:~
+ :  Function for creating a canonical reference (aka permalink) to a document.
+ :
+ :  This is a 'stateless' local replacement for config:permalink() which 
+ :  is dependent on an existing session 
+ :)
+declare %private function api:document-uri($docID as xs:string?, $model as map(*)) as xs:string? {
+    if($docID and $model('openapi:config') instance of map(*))
+    then config:api-base($model('openapi:config')) => substring-before('/api/') || '/' || $docID
+    else wega-util:log-to-file('warn', 'api:document-uri(): failed to construct URI for $docID "' || $docID || '". Is the server URL set in openapi.json?')
 };
 
 declare function api:documents($model as map(*)) as map(*) {
@@ -248,19 +260,31 @@ declare function api:repositories($model as map(*)) as map(*) {
         if($model?city)
         then $docs//tei:repository[preceding-sibling::tei:settlement/@key = $model?city]
         else $docs//tei:repository[preceding-sibling::tei:settlement]
-    let $sigla := 
-        for $repo in $repos
-        group by $siglum := $repo/data(@n)
-        order by count($repo) descending
+    let $sigla := (
+        for $repo in $repos[@n]
+        group by $siglum := $repo/string(@n)
         return map {
             'name': $repo[1] => normalize-space(),
             'siglum': $siglum,
             'frequency': count($repo)
+        },
+        for $repo in $repos[not(@n)]
+        group by $name := $repo => normalize-space()
+        return map {
+            'name': $name,
+            'siglum': '',
+            'frequency': count($repo)
         }
+    )
+    let $ordered_sigla := 
+        for $siglum in $sigla
+        order by number($siglum?frequency) descending
+        return 
+            $siglum
     return
         map { 
-            'totalRecordCount': count($sigla),
-            'results': array { api:subsequence($sigla, $model) }
+            'totalRecordCount': count($ordered_sigla),
+            'results': array { api:subsequence($ordered_sigla, $model) }
         }
 };
 
@@ -366,9 +390,6 @@ declare %private function api:item-comment($msDescOrFrag as element()?) as xs:st
  :  Helper function for api:item()
  :)
 declare %private function api:item-related-entities($TEI as element(tei:TEI)?, $model as map(*)) as array(*) {
-    let $host := $model('swagger:config')?host
-    let $basePath := $model('swagger:config')?basePath
-    let $scheme := $model('swagger:config')?schemes[1]
     let $mappify := function($elem as element(), $rel as xs:string) {
         let $id := $elem/@key 
         let $name := 
@@ -377,8 +398,7 @@ declare %private function api:item-related-entities($TEI as element(tei:TEI)?, $
         return map {
             'name': $name => normalize-space(),
             'docID': $id => string(),
-            'uri' : if($id) then ($scheme || '://' || $host || substring-before($basePath, 'api') || $id) else '',
-            'gnd': query:get-gnd($id) => string(),
+            'uri' : if($id) then (api:document-uri($id, $model) => string()) else '',
             'rel': $rel
         }
     }
@@ -483,51 +503,43 @@ declare %private function api:subsequence($seq as item()*, $model as map(*)) as 
     let $limit := if($model('limit') castable as xs:integer) then $model('limit') cast as xs:integer else 0
     return
         if($offset gt 0 and $limit gt 0) then subsequence($seq, $offset, $limit)
-        else if($offset gt 0) then subsequence($seq, $offset, $api:max-limit($model('swagger:config')))
+        else if($offset gt 0) then subsequence($seq, $offset, $api:max-limit($model('openapi:config')))
         else if($limit gt 0) then subsequence($seq, 1, $limit)
-        else subsequence($seq, 1, $api:max-limit($model('swagger:config')))
+        else subsequence($seq, 1, $api:max-limit($model('openapi:config')))
 }; 
 
 (:~
  :  Helper function for creating a Document object
 ~:)
 declare %private function api:document($documents as document-node()*, $model as map(*)) as array(*) {
-    let $host := $model('swagger:config')?host
-    let $basePath := $model('swagger:config')?basePath
-    let $scheme := $model('swagger:config')?schemes[1]
-    return 
-        array {
-            for $doc in $documents
-            let $id := $doc/*/data(@xml:id)
-            let $docType := config:get-doctype-by-id($id)
-            return
-                map { 
-                    'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $id,
-                    'docID' : $id,
-                    'docType' : $docType,
-                    'title' : wdt:lookup($docType, $doc)('title')('txt')
-                }
-        }
+    array {
+        for $doc in $documents
+        let $id := $doc/*/data(@xml:id)
+        let $docType := config:get-doctype-by-id($id)
+        return
+            map { 
+                'uri' : api:document-uri($id, $model),
+                'docID' : $id,
+                'docType' : $docType,
+                'title' : wdt:lookup($docType, $doc)('title')('txt')
+            }
+    }
 };
 
 (:~
  :  Helper function for creating a CodeSample object 
 ~:)
 declare function api:codeSample($nodes as node()*, $model as map(*)) as array(*) {
-    let $host := $model('swagger:config')?host
-    let $basePath := $model('swagger:config')?basePath
-    let $scheme := $model('swagger:config')?schemes?1
-    return 
-        array {
-            for $node in $nodes
-            let $docID := $node/root()/*/data(@xml:id)
-            return
-                map { 
-                    'uri' : $scheme || '://' || $host || substring-before($basePath, 'api') || $docID,
-                    'docID' : $docID,
-                    'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
-                }
-        }
+    array {
+        for $node in $nodes
+        let $docID := $node/root()/*/data(@xml:id)
+        return
+            map { 
+                'uri' : api:document-uri($docID, $model),
+                'docID' : $docID,
+                'codeSample' : serialize(functx:change-element-ns-deep(wega-util:process-xml-for-display($node), '', ''))
+            }
+    }
 };
 
 (:~
@@ -592,8 +604,8 @@ declare function api:validate-offset($model as map(*)) as map(*)? {
  : Check parameter limit
 ~:)
 declare function api:validate-limit($model as map(*)) as map(*)? {
-    if($model('limit') castable as xs:positiveInteger and xs:integer($model('limit')) le $api:max-limit($model('swagger:config'))) then $model 
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "limit". It should be a positive integer less or equal to ' || $api:max-limit($model('swagger:config')) || '.')
+    if($model('limit') castable as xs:positiveInteger and xs:integer($model('limit')) le $api:max-limit($model('openapi:config'))) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "limit". It should be a positive integer less or equal to ' || $api:max-limit($model('openapi:config')) || '.')
 };
 
 (:~
@@ -1067,5 +1079,5 @@ declare function api:validate-orderdir($model as map(*)) as map(*)? {
  : Simply returns an error message
 ~:)
 declare function api:validate-unknown-param($model as map(*)) as map(*)? {
-    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || string-join(map:keys($model)[not(.='swagger:config')], '; ') || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
+    error($api:INVALID_PARAMETER, 'Unsupported parameter "' || string-join(map:keys($model)[not(.='openapi:config')], '; ') || '". If you believe this to be an error please send a note to bugs@weber-gesamtausgabe.de.')
 };

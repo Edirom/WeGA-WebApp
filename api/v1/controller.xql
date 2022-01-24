@@ -5,7 +5,7 @@ xquery version "3.1" encoding "UTF-8";
  :
  : If you adopt this for your repository, you'll need to do the following:
  : 1. Create an API module and reference it in line XX
- : 2. Adjust settings in this file (path to swagger.json and api prefix) 
+ : 2. Adjust settings in this file (path to openapi.json and api prefix) 
  : 3. You must provide a function called 'validate-unknown-param' in your API module which takes two strings as parameters (i.e. the param name and the value)
  : 4. You may provide other functions for checking/validating params. The naming scheme of the function is simply 'validate-$paraName$' and it must accept one string as a parameter (i.e. the param value)
 ~:)
@@ -25,8 +25,8 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../../modules/controller.xqm";
 
-(: Change this line to point at your swagger config file :)
-declare variable $local:swagger-config := json-doc($config:swagger-config-path);
+(: Change this line to point at your openapi config file :)
+declare variable $local:openapi-config := json-doc($config:openapi-config-path);
 
 (: Change this if you are using a different prefix for your module in line XX :)
 declare variable $local:api-module-prefix as xs:string := 'api'; 
@@ -136,21 +136,21 @@ declare function local:serialize-xml($response as item()*, $root as xs:string) a
 
 (:~
  :  Try to lookup a function for the requested path and extract path parameters
- :  Swagger paths get mapped to functions by concatenating path segments with dashes, 
+ :  openapi paths get mapped to functions by concatenating path segments with dashes, 
  :  e.g. "/foo/bar/baz" --> api:foo-bar-baz() 
- :  Swagger path variables are removed from the path and put into a map{} which gets passed on to the function,
+ :  openapi path variables are removed from the path and put into a map{} which gets passed on to the function,
  :  e.g. "/foo/{bar}/baz" --> api:foo-baz(map{bar: $bar-value$})
 ~:)
 let $lookup as map(*)? := 
     (
-    for $swagger-path in map:keys($local:swagger-config?paths)
-    let $swagger-path-tokens := tokenize($swagger-path, '/')
-    let $path-regex := '^' || replace($swagger-path, '\{[^\}]+\}', '[^/]+') || '$'
+    for $openapi-path in map:keys($local:openapi-config?paths)
+    let $openapi-path-tokens := tokenize($openapi-path, '/')
+    let $path-regex := '^' || replace($openapi-path, '\{[^\}]+\}', '[^/]+') || '$'
 (:    let $log := util:log-system-out(string-join(($path-regex, $exist:path), ' ; ')):)
     let $possible-matches :=
         if(matches($exist:path, $path-regex)) then 
-            let $func-name := string-join($swagger-path-tokens ! replace(., '\{[^\}]+\}', '')[.], '-')
-            let $params := for $token at $pos in $swagger-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), xmldb:decode(tokenize($exist:path, '/')[$pos])) else ()
+            let $func-name := string-join($openapi-path-tokens ! replace(., '\{[^\}]+\}', '')[.], '-')
+            let $params := for $token at $pos in $openapi-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), xmldb:decode(tokenize($exist:path, '/')[$pos])) else ()
             return
                 map {
                     'func' : function-lookup(xs:QName($local:api-module-prefix || ':' || $func-name), 1),
@@ -171,8 +171,8 @@ let $validate-params := function($params as map(*)?) as map(*)? {
             for $param in map:keys($params)
             let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
             return
-                if(exists($lookup)) then $lookup(map {$param : $params($param), 'swagger:config' : $local:swagger-config })
-                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param : $params($param), 'swagger:config' : $local:swagger-config })
+                if(exists($lookup)) then $lookup(map {$param : $params($param), 'openapi:config' : $local:openapi-config })
+                else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param : $params($param), 'openapi:config' : $local:openapi-config })
                 else (
                     util:log-system-out('It seems you did not provide a validate-unknown-param function'),
                     error($local:INVALID_PARAMETER, 'Unknown parameter "' || $param || '". Details should be provided in the system log.') 
@@ -190,7 +190,7 @@ let $response := function($lookup as map(*)) {
    (: typeswitch($lookup?func)
     case empty-sequence() return $unknown-function
     default return :)
-        try { $lookup?func(map:merge(($local:defaults, map {'swagger:config' : $local:swagger-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
+        try { $lookup?func(map:merge(($local:defaults, map {'openapi:config' : $local:openapi-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
         catch * { map {'code' : 404, 'message' : $err:description, 'fields' : 'Error Code: ' ||  $err:code} }
 }
 
@@ -200,13 +200,13 @@ let $response := function($lookup as map(*)) {
 ~:)
 let $accept-header := tokenize(request:get-header('Accept'), '[,;]')
 let $unknown-function := 
-     map {'code' : 404, 'message' : 'Unknown/unsupported API function. Please refer to the swagger.conf file for supported functions.', 'fields' : ''}
+     map {'code' : 404, 'message' : 'Unknown/unsupported API function. Please refer to the openapi.json file for supported functions.', 'fields' : ''}
 
 return (:(
     util:log-system-out($exist:path),
     util:log-system-out($exist:resource)
     ):)
-    if($exist:resource eq 'swagger.json') then response:set-header('Access-Control-Allow-Origin', '*')
+    if($exist:resource = ('openapi.json', 'swagger.json')) then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
@@ -219,6 +219,6 @@ return (:(
         if($accept-header[.='application/xml']) then local:serialize-xml($response($lookup), if(empty($lookup)) then 'Error' else $exist:resource )
         else local:serialize-json($response($lookup))
         (:else if($accept-header[.='application/json']) then local:serialize-json($response($lookup))
-        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the swagger.conf file for supported response formats.', 'code':= 406 }, 'apiResponse'):)
+        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the openapi.json file for supported response formats.', 'code':= 406 }, 'apiResponse'):)
     else if($accept-header[.='application/xml']) then local:serialize-xml($unknown-function, 'apiResponse')
     else local:serialize-json($unknown-function)
