@@ -387,7 +387,6 @@ declare %private function api:item-related-entities($TEI as element(tei:TEI)?, $
             'name': $name => normalize-space(),
             'docID': $id => string(),
             'uri' : if($id) then (api:document-uri($id, $model) => string()) else '',
-            'gnd': query:get-gnd($id) => string(),
             'rel': $rel
         }
     }
