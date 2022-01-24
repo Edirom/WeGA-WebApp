@@ -964,7 +964,14 @@
                 },
                 "rel": {
                   "type": "string",
-                  "description": "Defines the relationship between the related entity and the current item"
+                  "description": "Defines the relationship between the related entity and the current item",
+                  "enum": [
+                    "author",
+                    "sender",
+                    "recipient",
+                    "place_of_sender",
+                    "place_of_recipient"
+                  ]
                 }
               }
             }
