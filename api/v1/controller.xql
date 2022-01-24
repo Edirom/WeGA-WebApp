@@ -208,7 +208,7 @@ return (:(
     ):)
     if($exist:resource = ('openapi.json', 'swagger.json')) then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
-    else if($exist:resource eq 'index.html') then controller:forward-html('api/v2/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
+    else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{concat($exist:controller, '/../../resources/', substring-after($exist:path, '/resources/'))}">
