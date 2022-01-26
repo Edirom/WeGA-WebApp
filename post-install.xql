@@ -26,7 +26,7 @@ declare function local:mkcol-recursive($collection, $components) {
         ()
 };
 
-declare function local:set-options() as xs:string* {
+declare function local:set-options() as item()* {
     for $opt in available-environment-variables()[starts-with(., 'WEGA_WEBAPP_')]
     return
         if(starts-with($opt, 'WEGA_WEBAPP_OPENAPI_'))
