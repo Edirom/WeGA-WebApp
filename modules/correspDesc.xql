@@ -104,7 +104,9 @@ declare function ct:participant($input as element()) as element() {
         else local-name($input)
     return 
         element {QName('http://www.tei-c.org/ns/1.0', $elemName)} {
-            if($gnd) then attribute {'ref'} {'http://d-nb.info/gnd/' || $gnd} else (),
+            if($gnd) then attribute {'ref'} {'http://d-nb.info/gnd/' || $gnd}
+            else if($id) then attribute {'ref'} {config:get-option('permaLinkPrefix') || '/' || $id}
+            else (),
             normalize-space($input)
         }
 };
@@ -114,7 +116,9 @@ declare function ct:place($input as element()) as element(tei:placeName) {
     let $geoID := query:get-geonamesID($id)
     return 
         element {QName('http://www.tei-c.org/ns/1.0', 'placeName')} {
-            if($geoID) then attribute {'ref'} {'http://www.geonames.org/' || $geoID} else (),
+            if($geoID) then attribute {'ref'} {'http://www.geonames.org/' || $geoID}
+            else if($id) then attribute {'ref'} {config:get-option('permaLinkPrefix') || '/' || $id}
+            else (),
             normalize-space($input)
         }
 };
