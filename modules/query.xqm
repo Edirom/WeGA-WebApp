@@ -311,7 +311,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'dedicatees' return $collection//mei:persName[@role='dte']/@codedval
     case 'lyricists' return $collection//mei:persName[@role='lyr']/@codedval
     case 'librettists' return $collection//mei:persName[@role='lbt']/@codedval
-    case 'composers' return $collection//mei:persName[@role='cmp']/@codedval
+    case 'composers' return $collection//mei:persName[@role=('cmp','aut')]/@codedval
     case 'docSource' return $collection/tei:person/@source
     case 'occupations' return $collection//tei:occupation | $collection//tei:label[.='Art der Institution']/following-sibling::tei:desc
     case 'residences' return $collection//tei:settlement[parent::tei:residence]/@key | $collection//tei:label[.='Ort']/following-sibling::tei:desc/tei:settlement/@key
