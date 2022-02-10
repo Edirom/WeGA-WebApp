@@ -110,7 +110,7 @@ declare function ct:participant($input as element()) as element() {
 };
 
 declare function ct:place($input as element()) as element(tei:placeName) {
-    let $id := ($input//@key)[1]
+    let $id := ($input//@key)[1] (: take care of nested structures like <placeName key="zzz"><settlement key="yyy">foo</settlement> :)
     let $geoID := query:get-geonamesID($id)
     return 
         element {QName('http://www.tei-c.org/ns/1.0', 'placeName')} {
