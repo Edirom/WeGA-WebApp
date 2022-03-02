@@ -83,13 +83,13 @@ declare function query:get-author-element($doc as document-node()?) as element()
  : Retrieves a document by GND identifier
  :
  : @author Peter Stadler
- : @param $gnd the GND (Gemeinsame Normdatei = German Authority File) identifier
- : @return xs:string
+ : @param $gndID the GND (Gemeinsame Normdatei = German Authority File) identifier
+ : @return the documents identified by the identifier
 :)
-declare function query:doc-by-gnd($gnd as xs:string) as document-node()* {
-    core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
-    core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
-    core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gnd][@type='gnd']/root() 
+declare function query:doc-by-gnd($gndID as xs:string) as document-node()* {
+    core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gndID][@type='gnd']/root() |
+    core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gndID][@type='gnd']/root() |
+    core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gndID][@type='gnd']/root() 
 };
 
 
@@ -97,18 +97,39 @@ declare function query:doc-by-gnd($gnd as xs:string) as document-node()* {
  : Retrieves a document by VIAF identifier
  :
  : @author Peter Stadler
- : @param $viaf the VIAF (Virtual International Authority File) identifier
- : @return xs:string
+ : @param $viafID the VIAF (Virtual International Authority File) identifier
+ : @return the documents identified by the identifier
 :)
-declare function query:doc-by-viaf($viaf as xs:string) as document-node()? {
-    let $gnd := er:viaf2gnd($viaf)
+declare function query:doc-by-viaf($viafID as xs:string) as document-node()* {
+    let $gndID := er:viaf2gnd($viafID)
     return
-        core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$viaf][@type='viaf']/root() |
-        core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$viaf][@type='viaf']/root() |
-        core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$viaf][@type='viaf']/root() |
-        core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
-        core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gnd][@type='gnd']/root() |
-        core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gnd][@type='gnd']/root() 
+        core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$viafID][@type='viaf']/root() |
+        core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$viafID][@type='viaf']/root() |
+        core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$viafID][@type='viaf']/root() |
+        core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$gndID][@type='gnd']/root() |
+        core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$gndID][@type='gnd']/root() |
+        core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$gndID][@type='gnd']/root() 
+};
+
+(:~
+ : Retrieves a document by Wikidata Q-identifier
+ :
+ : @author Peter Stadler
+ : @param $wikidataID the Wikidata Q-Identifier
+ : @return the documents identified by the identifier
+:)
+declare function query:doc-by-wikidata($wikidataID as xs:string) as document-node()* {
+    let $annotatedDocs := 
+        core:getOrCreateColl('persons', 'indices', true())//tei:idno[.=$wikidataID][@type='wikidata']/root() |
+        core:getOrCreateColl('orgs', 'indices', true())//tei:idno[.=$wikidataID][@type='wikidata']/root() |
+        core:getOrCreateColl('works', 'indices', true())//mei:altId[.=$wikidataID][@type='wikidata']/root()
+    let $queriedDocs :=
+        if(count($annotatedDocs) lt 1)
+        then er:translate-authority-id(<tei:idno type="wikidata">{$wikidataID}</tei:idno>, 'wega') ! crud:doc(.)
+        else ()
+    return (
+        $annotatedDocs, $queriedDocs
+    )
 };
 
 (:~

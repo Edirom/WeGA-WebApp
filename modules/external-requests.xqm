@@ -17,6 +17,7 @@ declare namespace sr="http://www.w3.org/2005/sparql-results#";
 declare namespace schema="http://schema.org/";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
+declare namespace wikidata-property="http://www.wikidata.org/prop/direct/";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -79,7 +80,7 @@ declare function er:grab-external-resource-via-beacon($beaconProvider as xs:stri
  : Query the Wikidata API for images and mappings for a given authority ID (e.g. Geonames, GND)
  : 
  : @param $id some external authority ID (e.g. Geonames, GND)
- : @param $authority-provider the respective authority-provider string (e.g. 'geonames', or 'gnd')
+ : @param $authority-provider the respective authority-provider string (geonames|gnd|viaf|wega)
  : @return a er:response element if successful, the empty sequence otherwise. For a description of the `er:response` element
  :      see http://expath.org/modules/http-client/
  :)
@@ -223,7 +224,7 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
 
 (:~
  : construct wikidata query URL
- : (Helper function for er:grabExternalResource())
+ : Helper function for `er:grab-external-resource-wikidata()`
 ~:)
 declare %private function er:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI {
     (:  
@@ -233,15 +234,17 @@ declare %private function er:wikidata-url($id as xs:string, $authority-provider 
     let $properties := map {
         'geonames': 'wdt:P1566',
         'gnd': 'wdt:P227',
-        'viaf': 'wdt:P214'
+        'viaf': 'wdt:P214',
+        'wega': 'wdt:P8589'
     }
     let $propFrom := $properties($authority-provider)
     let $sparql-query := encode-for-uri(
-        'SELECT ?item ?viaf ?gnd ?geonames ?wappenbild ?flaggenbild ?image ?articleDE ?articleEN WHERE '
+        'SELECT ?item ?viaf ?gnd ?geonames ?wega ?wappenbild ?flaggenbild ?image ?articleDE ?articleEN WHERE '
         || '{ ?item ' || $propFrom ||' "' || str:normalize-space($id) || '". '
         || 'OPTIONAL { ?item ' || $properties?geonames || ' ?geonames. } '
         || 'OPTIONAL { ?item ' || $properties?gnd || ' ?gnd. } '
         || 'OPTIONAL { ?item ' || $properties?viaf || ' ?viaf. } '
+        || 'OPTIONAL { ?item ' || $properties?wega || ' ?wega. } '
         || 'OPTIONAL { ?item ' || 'wdt:P94' || ' ?wappenbild. } '
         || 'OPTIONAL { ?item ' || 'wdt:P41' || ' ?flaggenbild. } '
         || 'OPTIONAL { ?item ' || 'wdt:P18' || ' ?image. } '
@@ -317,14 +320,27 @@ declare function er:viaf2gnd($viaf as xs:string) as xs:string* {
 (:~
  : Translate any authority ID via wikidata (which serves as a central hub)
  :
- : @param $idno a `<tei:idno>`-element, e.g. `<idno type='geonames'>2759794</idno>`
+ : @param $idno a `<tei:idno>`-element or `<mei:altId>`-element, e.g. `<idno type='geonames'>2759794</idno>`
  : @param $to the desired authority-provider, e.g. 'gnd'
  : @return the translated authority ID 
 ~:)
 declare function er:translate-authority-id($idno as element(), $to as xs:string) as xs:string*  {
-    let $wikidata := er:grab-external-resource-wikidata(string($idno), $idno/@type)
-    return
-        $wikidata//sr:binding[@name=$to] ! str:normalize-space(.) 
+    let $wikidata :=
+        switch($idno/@type)
+        case 'wikidata' return er:cached-external-request(xs:anyURI('http://www.wikidata.org/entity/' || string($idno) || '.rdf'), str:join-path-elements(($config:tmp-collection-path, 'wikidata', string($idno) || '.xml')))
+        case 'gnd' case 'viaf' case 'geonames' return er:grab-external-resource-wikidata(string($idno), $idno/@type)
+        default return ()
+    return (
+        $wikidata//sr:binding[@name=$to] (: default for SPARQL responses:)
+        | ( (: additional cases for grabbing whole wikidata RDF files :)
+            switch($to)
+            case 'gnd' return $wikidata//wikidata-property:P227
+            case 'viaf' return $wikidata//wikidata-property:P214
+            case 'wega' return $wikidata//wikidata-property:P8589
+            case 'geonames' return $wikidata//wikidata-property:P1566
+            default return ()
+        )
+    ) ! str:normalize-space(.) 
 };
 
 declare function er:beacon-map($gnd as xs:string, $docType as xs:string) as map(*) {

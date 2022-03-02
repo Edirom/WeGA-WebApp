@@ -449,6 +449,7 @@ declare %private function api:findByID($id as xs:string) as document-node()* {
     else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then crud:doc(substring-after($id, 'de/'))
     else if(matches(normalize-space($id), 'https?://d-nb.info/gnd/')) then query:doc-by-gnd(substring-after($id, '/gnd/'))
     else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then try { query:doc-by-gnd(er:viaf2gnd(substring-after($id, '/viaf/'))) } catch * {()}
+    else if(matches(normalize-space($id), 'https?://www.wikidata.org/entity/')) then query:doc-by-wikidata(substring-after($id, '/entity/'))
     else error($api:UNSUPPORTED_ID_SCHEMA, 'Failed to recognize ID schema for "' || $id || '"')
 };
 
