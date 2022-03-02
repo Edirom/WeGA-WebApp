@@ -772,7 +772,7 @@ declare
         }
         return
         map {
-            'ids' : $model?doc//mei:altId[not(@type='gnd')],
+            'ids' : $model?doc//mei:altId[not(@type=('gnd', 'wikidata', 'dracor.einakter'))],
             'relators' : query:relators($model?doc),
             'workType' : $model?doc//mei:term/data(@class),
             'titles' : $print-titles($model?doc, false()),
@@ -1840,13 +1840,13 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:preview-opus-no($node as node(), $model as map(*), $lang as xs:string) as element()? {
-        if(exists($model('doc')//mei:altId[@type != 'gnd'])) then 
+        if(count($model('doc')//mei:altId[not(@type=('gnd', 'wikidata', 'dracor.einakter'))]) gt 0) then 
             element {node-name($node)} {
                 $node/@*[not(name(.) = 'href')],
                 if($node[self::xhtml:a]) then attribute href {controller:create-url-for-doc($model('doc'), $lang)}
                 else (),
                 if(exists($model('doc')//mei:altId[@type='WeV'])) then concat('(WeV ', $model('doc')//mei:altId[@type='WeV'], ')') (: Weber-Werke :)
-                else concat('(', $model('doc')//(mei:altId[@type != 'gnd'])[1]/string(@type), ' ', $model('doc')//(mei:altId[@type != 'gnd'])[1], ')') (: Fremd-Werke :)
+                else concat('(', $model('doc')//(mei:altId[not(@type=('gnd', 'wikidata', 'dracor.einakter'))])[1]/string(@type), ' ', $model('doc')//(mei:altId[not(@type=('gnd', 'wikidata', 'dracor.einakter'))])[1], ')') (: Fremd-Werke :)
             }
         else()
 };
