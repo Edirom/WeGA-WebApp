@@ -326,6 +326,7 @@ declare %private function search:filter-result($collection as document-node()*, 
             (: range:contains for tokens within key values  :)
             else if($filter = ('addressee', 'sender')) then query:get-facets($collection, $filter)[range:contains(.,$filters($filter)[1])]/root()
             (: exact match for everything else :)
+            else if($filter = ('wev', 'jv', 'ks')) then search:search-alt-identifiers($collection, map { 'provider': $filter, 'id': $filters?($filter) })
             else query:get-facets($collection, $filter)[range:eq(.,$filters($filter)[1])]/root()
         let $newFilter :=
             if($filter = ('fromDate', 'toDate')) then 
@@ -426,28 +427,38 @@ declare %private function search:prepare-search-string($model as map(*)) as map(
     let $query-docTypes := request:get-parameter('d', 'all') ! str:sanitize(.)
     let $query-string-org := request:get-parameter('q', '')
     let $sanitized-query-string := str:normalize-space(str:sanitize(string-join($query-string-org, ' ')))
-    let $analyzed-query-string := analyze-string($sanitized-query-string, '\d{4}-\d{2}-\d{2}')
-    let $dates := $analyzed-query-string/fn:match/text()
-    let $query-string := str:normalize-space(string-join($analyzed-query-string/fn:non-match/text(), ' '))
-    let $searchDate :=
-        (: 
-            NB: these dates need to be explicitly casted to xs:string, 
-            otherwise we faced some issues with false positives from search:searchDate-filter,
-            see https://github.com/Edirom/WeGA-WebApp/issues/318 
-        :)
-        if(count($dates) gt 0) 
-        then map:entry('searchDate', $dates ! string(.))
-        else ()
+    let $analyzed-query-string as map(xs:string,xs:string) := search:analyse-query-string(map { 'query-string': $sanitized-query-string })
     return
         map:merge((
             $model, 
             map {
-                'filters' : map:merge(($model?filters, $searchDate)), (: push recognized dates to the filters :)
-                'query-string' : str:strip-diacritics($query-string), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
+                'filters' : map:merge(($model?filters, map:remove($analyzed-query-string, 'query-string'))), (: push recognized filters to the filters :)
+                'query-string' : $analyzed-query-string?query-string => normalize-space() => str:strip-diacritics(), (: flatten input search string, e.g. 'mèhul' --> 'mehul' for use with the NoDiacriticsStandardAnalyzer :) 
                 'query-docTypes' : $query-docTypes,
                 'query-string-org' : $query-string-org
             }
         ))
+};
+
+(:~
+ : (recursively) analyse a query string regarding magic keywords or dates
+ : Helper function for search:prepare-search-string#1
+ : 
+ : @param $model a map object with at least a "query-string" property as xs:string 
+ : @return a map object with the recognised filters (searchDate, wev, jv, ks) and the remaining "query-string" (the non-matches)
+ :)
+declare %private function search:analyse-query-string($model as map(xs:string,xs:string)) {
+    let $q := $model?query-string
+    let $dates := analyze-string($q, '\d{4}-\d{2}-\d{2}')
+    let $jv := analyze-string($q, 'jv:((Anh\. )?\d+|deest)')
+    let $wev := analyze-string($q, 'wev:([A-Za-z](\.\d+)?)')
+    let $ks := analyze-string($q, 'ks:(\d+)')
+    return
+        if($dates/fn:match) then search:analyse-query-string(map:put($model, 'searchDate', $dates/fn:match ! string(.)) => map:put('query-string', $dates/fn:non-match/text() => string-join()))
+        else if($jv/fn:match) then search:analyse-query-string(map:put($model, 'jv', $jv/fn:match/fn:group ! string(.)) => map:put('query-string', $jv/fn:non-match/text() => string-join()))
+        else if($wev/fn:match) then search:analyse-query-string(map:put($model, 'wev', $wev/fn:match/fn:group ! string(.)) => map:put('query-string', $wev/fn:non-match/text() => string-join()))
+        else if($ks/fn:match) then search:analyse-query-string(map:put($model, 'ks', $ks/fn:match/fn:group ! string(.)) => map:put('query-string', $ks/fn:non-match/text() => string-join()))
+        else $model
 };
 
 (:~
@@ -522,4 +533,12 @@ declare %private function search:normalize-result-entries($entries as item()*) a
         else if($doc instance of node()) then error($search:ERROR, 'unable to process node: ' || functx:node-kind($doc) || ' ' || name($doc))
         else if($doc instance of xs:anyAtomicType) then error($search:ERROR, 'unable to process atomic type: ' || functx:atomic-type($doc))
         else error($search:ERROR, 'unknown result entry')
+};
+
+declare %private function search:search-alt-identifiers($collection as document-node()*, $altID as map(xs:string,xs:string)) as document-node()* {
+    switch($altID?provider)
+    case 'jv' return $collection//mei:altId[@type='JV'][matches(., '^' || $altID?id || '(\D.*)?$')]/root()
+    case 'wev' return $collection//mei:altId[@type='WeV'][matches(., '^' || $altID?id || '(\D.*)?$')]/root()
+    case 'ks' return $collection//tei:idno[@type='KS'][@n=$altID?id]/root()
+    default return ()
 };
