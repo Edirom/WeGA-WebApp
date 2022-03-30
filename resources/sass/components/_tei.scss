@@ -9,10 +9,6 @@ $tei_list-indent: $font-size-base;
 	font-family: mufi-symbols;
 }
 
-#transcription {
-    color: $gray;
-} 
-
 .tei_hi_underline1 {
 /*    border-bottom: 1px solid black;*/
     background-image: url(../img/underline1.gif);
@@ -74,12 +70,6 @@ $tei_list-indent: $font-size-base;
     text-decoration:line-through;
 }
 
-/* $gray ist die Standardtextfarbe */
-/*
-.tei_supplied, .tei_pb, .tei_cb {
-    color: $gray;
-}
-*/
 .tei_pb, .tei_cb {
     cursor: help;
 }
@@ -98,16 +88,9 @@ $tei_list-indent: $font-size-base;
     display:block;
 }
 
-/* $gray ist die Standardtextfarbe */
-/* Unsichere Daten und Orte */
-/*.cert_medium, .cert_low, .cert_unknown {
-    color: $gray;
-}*/
 
-/* $gray ist die Standardtextfarbe */
 .cert_medium:after, .cert_low:after, .cert_unknown:after{
     content:" ?"; /* ACHTUNG: hier &thinsp; ist aber im Editor nicht zu erkennen */
-/*    color: $gray;*/
 }
 
 div.poem {
