@@ -524,7 +524,7 @@ function popover_callBack() {
         popoverID = $(this).attr('aria-describedby'),
         popover = $('#'+popoverID),
         suppressCrosslink  = $(this).hasClass("arabic"),
-        li_templ = $('.carousel-indicators li:last', popover),
+        li_templ,
         li_clone,
         popover_div,
         popover_data;
@@ -544,6 +544,7 @@ function popover_callBack() {
     $(urls).each(function(i,e) {
         popover_div = $('div.item:last', popover);
         popover_div.attr('data-ref', e);
+        li_templ = $('.carousel-indicators li:last', popover);
         
         if(e.startsWith('#')) { // local references to endnotes and commentaries
             $('.item-title-content', popover_div).html($(e).attr('data-title'));
