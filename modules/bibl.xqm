@@ -242,7 +242,11 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
         let $authorElem :=
             if($i/@sameAs) then $i/root()/id($i/substring(@sameAs, 2))
             else $i
-        let $author := <xhtml:span class="{local-name($i)}">{wega-util:print-forename-surname-from-nameLike-element($authorElem)}</xhtml:span>
+        let $prefix := 
+            if($authorElem/@full) 
+            then '[' || lang:get-language-string('siglum', $lang) || '] ' 
+            else ()
+        let $author := <xhtml:span class="{local-name($i)}">{$prefix || wega-util:print-forename-surname-from-nameLike-element($authorElem)}</xhtml:span>
         return (
             $author,
             if($counter lt $countAuthors - 1) then ', '
