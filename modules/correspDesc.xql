@@ -108,7 +108,7 @@ declare function ct:correspAction($input as element()) as element(tei:correspAct
         $input/@*,
         ct:identity-transform-with-switches($input/node()),
         (: add unknown persName if no sender or addressee is given, see https://github.com/Edirom/WeGA-WebApp/issues/404 :)
-        if(not(tei:persName | tei:rs | tei:name | tei:orgName))
+        if(not($input/tei:persName | $input/tei:rs | $input/tei:name | $input/tei:orgName))
         then ct:identity-transform-with-switches(<persName xmlns="http://www.tei-c.org/ns/1.0">Unbekannt</persName>)
         else ()
     }
