@@ -62,6 +62,7 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
     return
         typeswitch($node)
         case element(tei:correspDesc) return ct:correspDesc($node)
+        case element(tei:correspAction) return ct:correspAction($node)
         case element(tei:persName) return ct:participant($node)
         case element(tei:name) return ct:participant($node)
         case element(tei:orgName) return ct:participant($node)
@@ -91,7 +92,25 @@ declare function ct:correspDesc($input as element(tei:correspDesc)) as element(t
         $input/@* except ($input/@source | $input/@ref),
         attribute ref {config:get-option('permaLinkPrefix') || '/' || $input/ancestor::tei:TEI/@xml:id},
         attribute source {concat('#', $ct:source-uuid)},
-        ct:identity-transform-with-switches($input/node())
+        ct:identity-transform-with-switches($input/node()),
+        (: add empty correspAction for type=(received|sent) if not given, see https://github.com/Edirom/WeGA-WebApp/issues/404 :)
+        if(not($input/tei:correspAction[@type='sent'])) 
+        then ct:identity-transform-with-switches(<correspAction xmlns="http://www.tei-c.org/ns/1.0" type="sent"><persName>Unbekannt</persName></correspAction>)
+        else (),
+        if(not($input/tei:correspAction[@type='received']))
+        then ct:identity-transform-with-switches(<correspAction xmlns="http://www.tei-c.org/ns/1.0" type="received"><persName>Unbekannt</persName></correspAction>)
+        else ()
+    }
+};
+
+declare function ct:correspAction($input as element()) as element(tei:correspAction) {
+    element {node-name($input)} {
+        $input/@*,
+        ct:identity-transform-with-switches($input/node()),
+        (: add unknown persName if no sender or addressee is given, see https://github.com/Edirom/WeGA-WebApp/issues/404 :)
+        if(not(tei:persName | tei:rs | tei:name | tei:orgName))
+        then ct:identity-transform-with-switches(<persName xmlns="http://www.tei-c.org/ns/1.0">Unbekannt</persName>)
+        else ()
     }
 };
 
