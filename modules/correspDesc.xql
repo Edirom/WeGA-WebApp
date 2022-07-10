@@ -119,7 +119,8 @@ declare function ct:participant($input as element()) as element() {
     (: no support for multiple keys, e.g. `<rs type="persons" key="A000914 A008040">Jähns, F. W. und Ida</rs>` :)
     let $gnd := if(string-length($id) = 7) then query:get-gnd(string($id)) else ()
     let $elemName := 
-        if(local-name($input) = 'rs') then 'name'
+        (: map everything (except orgName) to persName, since correspSearch only supports these :)
+        if(local-name($input) = ('rs', 'name')) then 'persName'
         else local-name($input)
     return 
         element {QName('http://www.tei-c.org/ns/1.0', $elemName)} {
