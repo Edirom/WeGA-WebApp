@@ -26,7 +26,7 @@ declare option exist:serialize "method=xml media-type=application/xml indent=yes
 declare variable $sitemap:languages := ('en', 'de');
 declare variable $sitemap:defaultCompression := 'gz'; (: gz or zip :)
 declare variable $sitemap:host := config:get-option('permaLinkPrefix');
-declare variable $sitemap:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography', 'specialVolume', 'volContents');
+declare variable $sitemap:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography', 'specialVolume', 'volContents', 'team');
 declare variable $sitemap:databaseEntries := for $func in wdt:members('sitemap') return $func(())('name');
 
 declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
