@@ -115,9 +115,9 @@ declare function ct:correspAction($input as element()) as element(tei:correspAct
 };
 
 declare function ct:participant($input as element()) as element() {
-    let $id := $input/@key
+    let $id := $input/@key => tokenize('\s+')
     (: no support for multiple keys, e.g. `<rs type="persons" key="A000914 A008040">Jähns, F. W. und Ida</rs>` :)
-    let $gnd := if(string-length($id) = 7) then query:get-gnd(string($id)) else ()
+    let $gnd := if(count($id) = 1) then query:get-gnd($id) else ()
     let $elemName := 
         (: map everything (except orgName) to persName, since correspSearch only supports these :)
         if(local-name($input) = ('rs', 'name')) then 'persName'
@@ -125,7 +125,7 @@ declare function ct:participant($input as element()) as element() {
     return 
         element {QName('http://www.tei-c.org/ns/1.0', $elemName)} {
             if($gnd) then attribute {'ref'} {'http://d-nb.info/gnd/' || $gnd}
-            else if($id) then attribute {'ref'} {config:get-option('permaLinkPrefix') || '/' || $id}
+            else if(count($id) = 1) then attribute {'ref'} {config:get-option('permaLinkPrefix') || '/' || $id}
             else (),
             normalize-space($input)
         }
