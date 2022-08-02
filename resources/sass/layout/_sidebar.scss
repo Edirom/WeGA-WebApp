@@ -106,9 +106,20 @@ a.checkbox-only {
     label {
         overflow:hidden;
         text-overflow:ellipsis;
+        &.custom-control-label {
+            overflow: inherit;
+            line-height:1.875;
+        }
+        &.gradient-light { 
+            margin-bottom: 0px!important; 
+        }
     }
     
-    label.gradient-light { margin-bottom: 0px!important; }
+    .custom-control {
+        background-color: #F5F5F5;
+        border-left: 4px solid #B5B5B5;
+        padding-left: 3.5em;
+    }
 
 }
 
