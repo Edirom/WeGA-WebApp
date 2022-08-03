@@ -169,6 +169,12 @@ declare function api:application-newID($model as map(*)) as map(*) {
         }
 };
 
+declare function api:application-preferences($model as map(*)*) as map(*) {
+    if(request:get-method() = 'POST')
+    then map { 'results': config:set-preferences(map {'limit': 18} ) }
+    else map { 'results': config:get-preferences() }
+};
+
 (:~
  : API endpoint for filter facets
  : Current output format is a JSON object like 

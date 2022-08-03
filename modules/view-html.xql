@@ -36,7 +36,8 @@ let $config := map {
 
 (:~
  : Initialise the model map for the templating 
- : with the attributes that are passed by the controller
+ : with the attributes that are passed by the controller,
+ : and with user preferences
 ~:)
 let $model := 
 	map:merge((
@@ -46,6 +47,7 @@ let $model :=
 			map:entry($var, request:get-attribute($var))
 		),
 		map:entry('environment', config:get-option('environment')),
+		map:entry('settings', config:get-preferences()),
 		if(config:get-doctype-by-id(request:get-attribute('docID'))) then
 		  map:entry('doc', try { crud:doc(request:get-attribute('docID')) } catch * {()})
 	    else ()
