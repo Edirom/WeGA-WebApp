@@ -5,8 +5,8 @@
     <div id="settings" class="panel-collapse collapse">
         <p data-template="lang:translate">show_markers_paragraph</p>
         <div class="custom-control custom-switch">
-            <input class="custom-control-input" type="checkbox" id="lesarten-marker" checked="checked" data-toggle-class=".noteMarker:contains('Δ')"/>
-            <label class="custom-control-label" for="lesarten-marker"><span data-template="lang:translate">appRdgs</span> Δ</label>
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" checked="checked" data-toggle-class=".noteMarker:contains('Δ')" data-template="app:init-marker-switch"/>
+            <label class="custom-control-label" for="rdg-marker"><span data-template="lang:translate">appRdgs</span> Δ</label>
         </div>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="textConst-marker" checked="checked" data-toggle-class=".noteMarker:contains('‡')"/>
@@ -35,7 +35,8 @@
         }
         function init_settings() {
             let input = $('#settings input'),
-                marker;
+                marker,
+                data;
             
             // initially hide markers for unchecked inputs
             for (const i of input.not(':checked')) {
@@ -48,6 +49,15 @@
                 function() {
                     marker = this.getAttribute('data-toggle-class');
                     $(marker).toggle();
+                    data = { "rdg-marker": "true" };
+                    fetch("http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/application/preferences", {
+                        method: 'POST'//,
+                        headers: {
+                            "Content-Type": "application/json",
+                            "Accept": "application/json"
+                        },
+                        body: JSON.stringify(data),
+                    });
                 }
             )
          }

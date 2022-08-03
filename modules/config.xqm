@@ -165,16 +165,16 @@ declare function config:set-option($key as xs:string, $value as xs:string) as xs
     return
         if($old) then try {(
             update value $old with $value,
-            config:log('debug', 'set preference "' || $key || '" to "' || $value || '"'),
+            config:log('debug', 'set app preference "' || $key || '" to "' || $value || '"'),
             $value
             )}
-            catch * { config:log('error', 'failed to set preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+            catch * { config:log('error', 'failed to set app preference "' || $key || '" to "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
         else try {( 
             update insert <entry xml:id="{$key}">{$value}</entry> into $config:options-file/id('various'),
-            config:log('debug', 'added preference "' || $key || '" with value "' || $value || '"'),
+            config:log('debug', 'added app preference "' || $key || '" with value "' || $value || '"'),
             $value
             )}
-            catch * { config:log('error', 'failed to add preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
+            catch * { config:log('error', 'failed to add app preference "' || $key || '" with value "' || $value || '". Error was ' || string-join(($err:code, $err:description), ' ;; ')) }
 };
 
 (:~
@@ -518,6 +518,62 @@ declare function config:line-wrap() as xs:boolean {
 };
 
 (:~
+ : Set user preferences and save to the current session
+ :
+ : @param $settings the new settings as map
+ : @return a map object like `map {
+            'line-wrap': true(),
+            'limit': 10,
+            'rdg-marker': false(),
+            'textConst-marker': true(),
+            'supplied-marker': true(),
+            'note-marker': true(),
+            'thematicCommentaries-marker': true()
+        }` 
+ :)
+declare function config:set-preferences($settings as map(*)) as map(*) {
+    let $currentSettings := config:get-preferences()
+    let $mergedSettings := map:merge(($currentSettings, $settings), map{"duplicates":"use-last"})
+    return (
+        session:set-attribute('preferences', $mergedSettings),
+        $mergedSettings
+    )
+};
+
+(:~
+ : Get user preferences.
+ : The values are taken from a stored session object if possible, 
+ : or from default values otherwise.
+ :
+ : @return a map object like `map {
+            'line-wrap': true(),
+            'limit': 10,
+            'rdg-marker': false(),
+            'textConst-marker': true(),
+            'supplied-marker': true(),
+            'note-marker': true(),
+            'thematicCommentaries-marker': true()
+        }`
+ :)
+declare function config:get-preferences() as map(*) {
+    let $defaultSettings := 
+        map {
+            'line-wrap': true(),
+            'limit': config:get-option('entriesPerPage'),
+            'rdg-marker': false(),
+            'textConst-marker': true(),
+            'supplied-marker': true(),
+            'note-marker': true(),
+            'thematicCommentaries-marker': true()
+        }
+    let $sessionSettings := if(session:exists()) then session:get-attribute('preferences') else ()
+    return
+        if(exists($sessionSettings))
+        then $sessionSettings
+        else $defaultSettings
+};
+
+(:~
  : Return the (first) openapi base path from an openapi config
  : If the openapi config is not explicitly passed, 
  : the default is taken from $config:openapi-config-path
@@ -536,7 +592,7 @@ declare function config:api-base($openapi-config as map(*)?) as xs:string? {
 
 (:~
  : set/update object in openapi.json description.
- : NB: You have to be logged in as admin to be able to update preferences!
+ : NB: You have to be logged in as admin to be able to update app preferences!
  :
  : @param $key a sequence of keys navigating to the object; 
  :  e.g. the sequence ('foo', 'bar') will select the object 'bar' within the object 'foo'. 
