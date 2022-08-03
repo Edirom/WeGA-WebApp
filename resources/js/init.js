@@ -653,8 +653,8 @@ $(".portrait").initPortraitCredits();
 
 $(window).on("load", function () {
     if ($(this).width() > 767) {
-        /* Open the first collapsable filter by default */
-        $('.side-col .collapse').first().collapse('show');
+        /* Open the first collapsable filter – that is not "settings" – by default */
+        $('.side-col .collapse:not(#settings)').first().collapse('show');
     } else {
         /* Close all collapsibles (needed for already opened filter on register page) */
         $('.side-col .collapse').collapse('hide');
