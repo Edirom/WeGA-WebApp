@@ -1,0 +1,56 @@
+<div xmlns="http://www.w3.org/1999/xhtml">
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse" data-template="lang:translate">settings</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse">
+        <p data-template="lang:translate">show_markers_paragraph</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="lesarten-marker" checked="checked" data-toggle-class=".noteMarker:contains('Δ')"/>
+            <label class="custom-control-label" for="lesarten-marker"><span data-template="lang:translate">appRdgs</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" checked="checked" data-toggle-class=".noteMarker:contains('‡')"/>
+            <label class="custom-control-label" for="textConst-marker"><span data-template="lang:translate">textConstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" checked="checked" data-toggle-class=".tei_supplied"/>
+            <label class="custom-control-label" for="supplied-marker"><span data-template="lang:translate">supplied-marker</span> [&#x2009;]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" checked="checked" data-toggle-class=".noteMarker:contains('*')"/>
+            <label class="custom-control-label" for="note-marker"><span data-template="lang:translate">note_commentary</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" checked="checked" data-toggle-class=".noteMarker:contains('T')"/>
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span data-template="lang:translate">thematicCommentaries</span> T</label>
+        </div>
+    </div>
+    <script>
+        function defer(method) {
+            if (window.jQuery) {
+                method();
+            } else {
+                setTimeout(function() { defer(method) }, 50);
+            }
+        }
+        function init_settings() {
+            let input = $('#settings input'),
+                marker;
+            
+            // initially hide markers for unchecked inputs
+            for (const i of input.not(':checked')) {
+                marker = i.getAttribute('data-toggle-class');
+                $(marker).hide();
+            }
+            
+            // add a listener to toggle markers
+            input.change(
+                function() {
+                    marker = this.getAttribute('data-toggle-class');
+                    $(marker).toggle();
+                }
+            )
+         }
+        defer(init_settings);
+    </script>
+</div>
