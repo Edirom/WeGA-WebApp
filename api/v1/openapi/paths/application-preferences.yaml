@@ -1,0 +1,34 @@
+# /application/preferences path
+get:
+  tags:
+    - Application
+  summary: Get user preferences
+  responses:
+    200:
+      description: User preferences
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/preferences.yaml'
+    default:
+      $ref: '../responses/unexpectedError.yaml'
+
+post: 
+  tags:
+    - Application
+  summary: Set user preferences
+  requestBody:
+    description: User preferences
+    content: 
+      'application/json':
+        schema:
+          $ref: '../schemas/preferences.yaml'
+  responses:
+    200:
+      description: User preferences
+      content:
+        application/json:
+          schema:
+            $ref: '../schemas/preferences.yaml'
+    default:
+      $ref: '../responses/unexpectedError.yaml'

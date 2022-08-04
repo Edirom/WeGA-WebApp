@@ -1,0 +1,36 @@
+# preferences schema
+type: object
+properties:
+  line-wrap: 
+    type: boolean
+    description: Set line wrap for xml preview
+    default: true
+  limit:
+    type: integer
+    format: int32
+    description: Set the limit for list views
+    default: 10
+    enum:
+      - 10
+      - 25
+      - 50
+  rdg-marker:
+    type: boolean
+    description: Show reading markers within the text view 
+    default: false
+  textConst-marker:
+    type: boolean
+    description: Show text constitution markers within the text view 
+    default: true
+  supplied-marker:
+    type: boolean
+    description: Show supplied markers within the text view 
+    default: true
+  note-marker:
+    type: boolean
+    description: Show note markers within the text view 
+    default: true
+  thematicCommentaries-marker:
+    type: boolean
+    description: Show thematic commentaries markers within the text view 
+    default: true
