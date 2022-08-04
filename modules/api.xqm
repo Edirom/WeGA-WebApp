@@ -171,7 +171,11 @@ declare function api:application-newID($model as map(*)) as map(*) {
 
 declare function api:application-preferences($model as map(*)*) as map(*) {
     if(request:get-method() = 'POST')
-    then map { 'results': config:set-preferences(map {'limit': 18} ) }
+    then (
+        let $data := request:get-data() => api:validate-preferences()
+        return 
+            map { 'results': config:set-preferences($data) }
+    )
     else map { 'results': config:get-preferences() }
 };
 
@@ -1079,6 +1083,12 @@ declare function api:validate-orderby($model as map(*)) as map(*)? {
 declare function api:validate-orderdir($model as map(*)) as map(*)? {
     if($model?orderdir castable as xs:string and ($model?orderdir = ('desc', 'asc'))) then $model
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "orderdir". It must be either "desc" or "asc".' )
+};
+
+declare function api:validate-preferences($data as item()) as map(*)? {
+    try {
+        util:base64-decode($data) => fn:parse-json()
+    } catch * {map {}}
 };
 
 (:~
