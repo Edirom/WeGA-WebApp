@@ -1,0 +1,31 @@
+# /repositories path
+get:
+  tags:
+    - Repositories
+  summary: Lists all repositories
+  description: |
+    The endpoint returns a list of all repositories within the WeGA digital edition.
+  parameters:
+    - name: city
+      in: query
+      description: 'The WeGA city ID to filter for, e.g. "A130002" (Berlin)'
+      schema:
+        type: string
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/limit.yaml'
+  responses:
+    '200':
+      description: An array of repositories
+      headers:
+        totalrecordcount:
+          description: The total size of the result set
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/repository.yaml'
+    default:
+      $ref: '../responses/unexpectedError.yaml'

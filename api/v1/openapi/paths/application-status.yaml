@@ -1,0 +1,50 @@
+# /application/status path
+get:
+  tags:
+    - Application
+  summary: Get status information about the running WeGA-WebApp
+  responses:
+    '200':
+      description: Healthy – A single object with status information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Status (healthy|unhealthy) of the currently running WeGA-WebApp
+                default: healthy
+              svnRevision:
+                type: integer
+                description: The Subversion revision of the currently installed WeGA-data
+              deployment:
+                type: string
+                description: The datetime of the deployment of the WeGA-WebApp
+                format: date-time
+              version:
+                pattern: ^\d+\.\d+\.\d+$
+                type: string
+    '500':
+      description: Unhealthy – A single object with status information
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              status:
+                type: string
+                description: Status (healthy|unhealthy) of the currently running WeGA-WebApp
+                default: unhealthy
+              svnRevision:
+                type: integer
+                description: The Subversion revision of the currently installed WeGA-data
+              deployment:
+                type: string
+                description: The datetime of the deployment of the WeGA-WebApp
+                format: date-time
+              version:
+                pattern: ^\d+\.\d+\.\d+$
+                type: string
+    default:
+      $ref: '../responses/unexpectedError.yaml'

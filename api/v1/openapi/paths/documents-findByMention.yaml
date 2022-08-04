@@ -1,0 +1,35 @@
+# /documents/findByMention/{docID} path
+get:
+  tags:
+    - Documents
+  summary: Finds documents by reference
+  description: |
+    This endpoint returns a list of documents that reference a particular docID – optionally filtered by document type. 
+  parameters:
+    - name: docID
+      in: path
+      description: |
+        The document ID that is to be mentioned. Accepted ID formats are WeGA, e.g. A002068 or http://weber-gesamtausgabe.de/A002068, VIAF, e.g. http://viaf.org/viaf/14959938, Wikidata, e.g. http://www.wikidata.org/entity/Q154812, or GND, e.g. http://d-nb.info/gnd/118629662
+      required: true
+      schema:
+        type: string
+        default: A002068
+    - $ref: '../parameters/docType.yaml'
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/limit.yaml'
+  responses:
+    '200':
+      description: An array of documents
+      headers:
+        totalrecordcount:
+          description: The total size of the result set
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/document.yaml'
+    default:
+      $ref: '../responses/unexpectedError.yaml'

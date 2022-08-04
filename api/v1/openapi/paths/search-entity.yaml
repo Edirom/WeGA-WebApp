@@ -1,0 +1,28 @@
+# /search/entity path
+get:
+  tags:
+    - Search
+  summary: Search for a WeGA entity
+  description: |
+    This endpoint returns the search results for an entity's name or title.
+  parameters:
+    - $ref: '../parameters/docType.yaml'
+    - $ref: '../parameters/q.yaml'
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/limit.yaml'
+  responses:
+    '200':
+      description: An array of documents
+      headers:
+        totalrecordcount:
+          description: The total size of the result set
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/document.yaml'
+    default:
+      $ref: '../responses/unexpectedError.yaml'

@@ -1,0 +1,71 @@
+# item schema
+type: object
+properties:
+  uri:
+    type: string
+    description: Unique identifier representing a specific document
+  docID:
+    type: string
+    description: The WeGA document identifier representing a specific document
+  docType:
+    type: string
+    description: The WeGA document type
+  title:
+    type: string
+    description: The WeGA title of the item
+  related_entities:
+    type: array
+    items:
+      required:
+        - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the related entity
+        uri:
+          type: string
+          description: Unique identifier representing a specific entity
+        docID:
+          type: string
+          description: The WeGA document identifier of the related entity
+        rel:
+          type: string
+          description: Defines the relationship between the related entity and the current item
+          enum:
+            - author
+            - sender
+            - recipient
+            - place_of_sender
+            - place_of_recipient
+  date:
+    type: string
+    description: The creation date of the item as verbal representation including ranges and uncertainties
+  sortdate:
+    type: string
+    description: The normalized creation date of the item in yyyy-mm-dd format
+    format: date
+  incipit:
+    type: string
+    description: The text incipit
+  repository:
+    type: object
+    properties:
+      siglum:
+        type: string
+        description: The RISM siglum of the repository
+      city:
+        type: string
+        description: The name of the city where the repository is located
+      name:
+        type: string
+        description: The name of the repository
+  extent:
+    type: string
+    description: Extent of the item
+  idno:
+    type: string
+    description: The shelf mark or other identifier for the item within the repository
+  comment:
+    type: string
+    description: Some comment regarding the item

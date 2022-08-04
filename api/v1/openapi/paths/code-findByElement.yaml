@@ -1,0 +1,37 @@
+# /code/findByElement/{element} path
+get:
+  tags:
+    - Code Samples
+  summary: Finds code samples by XML element
+  parameters:
+    - name: element
+      in: path
+      description: The XML element to search for
+      required: true
+      schema:
+        type: string
+    - name: namespace
+      in: query
+      description: The element namespace. Defaults to the TEI namespace
+      schema:
+        type: string
+        default: 'http://www.tei-c.org/ns/1.0'
+    - $ref: '../parameters/docType.yaml'
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/limit.yaml'
+  responses:
+    '200':
+      description: An array of documents
+      headers:
+        totalrecordcount:
+          description: The total size of the result set
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/codeSample.yaml'
+    default:
+      $ref: '../responses/unexpectedError.yaml'
