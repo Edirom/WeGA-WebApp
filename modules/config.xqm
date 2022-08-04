@@ -533,7 +533,7 @@ declare function config:line-wrap() as xs:boolean {
  :)
 declare function config:set-preferences($settings as map(*)) as map(*) {
     let $currentSettings := config:get-preferences()
-    let $mergedSettings := map:merge(($currentSettings, $settings), map{"duplicates":"use-last"})
+    let $mergedSettings := map:merge(($currentSettings, $settings))
     return (
         session:set-attribute('preferences', $mergedSettings),
         $mergedSettings
