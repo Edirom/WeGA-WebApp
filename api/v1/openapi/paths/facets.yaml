@@ -6,13 +6,45 @@ get:
   parameters:
     - name: facet
       in: path
-      description: The facet to search for
+      description: |
+        The facet to search for. NB, most facets are tied to a 
+        specific docType, e.g. "addressee" is only applicable to
+        the docType "letters".
       required: true
       schema:
         type: string
         enum:
-          - sender
           - addressee
+          - asksam-cat
+          - authors
+          - biblioType
+          - composers
+          - dedicatees
+          - docLang
+          - docSource
+          - docStatus
+          - docTypeSubClass
+          - editors
+          - einrichtungsform
+          - forenames
+          - journals
+          - keywords
+          - librettists
+          - lyricists
+          - occupations
+          - persons
+          - placeOfAddressee
+          - placeOfSender
+          - placenames
+          - places
+          - repository
+          - residences
+          - sender
+          - series
+          - sex
+          - surnames
+          - vorlageform
+          - works
     - name: scope
       in: query
       description: 'The scope of the result set, i.e. ''indices'' or a WeGA ID'
