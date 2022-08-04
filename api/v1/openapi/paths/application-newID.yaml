@@ -1,0 +1,37 @@
+# /application/newID path
+get:
+  tags:
+    - Application
+  summary: Create a new WeGA ID
+  parameters:
+    - $ref: '../parameters/docTypeRequired.yaml'
+  responses:
+    200:
+      description: A single object with a fresh WeGA ID
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              docID:
+                pattern: '^A[A-F0-9]{6}$'
+                type: string
+                description: The WeGA ID
+              docType:
+                type: string
+                description: The WeGA document type
+    403:
+      description: The creation of new IDs is only available in the development environment
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                format: int32
+                default: 403
+              message:
+                type: string
+    default:
+      $ref: '../responses/unexpectedError.yaml'

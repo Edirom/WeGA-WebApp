@@ -1,0 +1,59 @@
+# /repositories/items path
+get:
+  tags:
+    - Repositories
+  summary: Lists all items from a repository within the WeGA
+  description: |
+    The endpoint returns a list of all items within the WeGA digital edition for a given repository.
+  parameters:
+    - name: siglum
+      in: query
+      description: 'The RISM siglum to filter for, e.g. "D-B" (Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung)'
+      schema:
+        type: string
+    - name: term
+      in: query
+      description: The search term to be looked for in this item's description
+      schema:
+        type: string
+    - name: orderby
+      in: query
+      description: The property to which ordering should be applied
+      schema:
+        type: string
+        enum:
+          - idno
+          - docID
+          - sortdate
+          - docType
+          - title
+    - name: orderdir
+      in: query
+      description: The ordering direction for the property given in 'orderby'
+      schema:
+        type: string
+        enum:
+          - asc
+          - desc
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/limit.yaml'
+  responses:
+    '200':
+      description: An array of items
+      headers:
+        totalrecordcount:
+          description: The total size of the result set
+          schema:
+            type: integer
+        filteredrecordcount:
+          description: The total size of the result set after appplying a filter
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              $ref: '../schemas/item.yaml'
+    default:
+      $ref: '../responses/unexpectedError.yaml'

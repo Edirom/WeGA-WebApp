@@ -1,0 +1,72 @@
+openapi: 3.0.1
+info:
+  title: WeGA API
+  description: 'The OpenAPI documentation for the RESTful interface of the Carl-Maria-von-Weber-Gesamtausgabe. <br/> (No registration, authentication, or API key is required) <br/> For feedback or requests about this API please contact stadler@weber-gesamtausgabe.de or start the discussion at https://github.com/Edirom/WeGA-WebApp'
+  version: 1.1.0
+servers:
+  - url: 'http://localhost:8080/exist/apps/WeGA-WebApp/api/v1'
+tags:
+  - name: Documents
+    description: Access to the documents of the WeGA digital edition
+  - name: Search
+    description: Access to search functions of the WeGA digital edition
+  - name: Code Samples
+    description: Access to encoding features
+  - name: Application
+    description: Access to application settings
+  - name: Facets
+    description: Access to facets for filtering result sets
+  - name: Repositories
+    description: Access to items within the WeGA digital edition by repository
+paths:
+  /documents:
+    $ref: "./openapi/paths/documents.yaml"
+  /repositories:
+    $ref: "./openapi/paths/repositories.yaml"
+  /repositories/items:
+    $ref: "./openapi/paths/repositories-items.yaml"
+  /search/entity:
+    $ref: "./openapi/paths/search-entity.yaml"
+  /documents/{docID}:
+    $ref: "./openapi/paths/documents-docID.yaml"
+  /documents/findByDate:
+    $ref: "./openapi/paths/documents-findByDate.yaml"
+  /documents/findByMention/{docID}:
+    $ref: "./openapi/paths/documents-findByMention.yaml"
+  /documents/findByAuthor/{authorID}:
+    $ref: "./openapi/paths/documents-findByAuthor.yaml"
+  /code/findByElement/{element}:
+    $ref: "./openapi/paths/code-findByElement.yaml"
+  /application/status:
+    $ref: "./openapi/paths/application-status.yaml"
+  /application/newID:
+    $ref: "./openapi/paths/application-newID.yaml"
+  /facets/{facet}:
+    $ref: "./openapi/paths/facets.yaml"
+components:
+  schemas:
+    Document:
+      $ref: "./openapi/schemas/document.yaml"
+    CodeSample:
+      $ref: "./openapi/schemas/codeSample.yaml"
+    Facet:
+      $ref: "./openapi/schemas/facet.yaml"
+    Repository:
+      $ref: "./openapi/schemas/repository.yaml"
+    Item:
+      $ref: "./openapi/schemas/item.yaml"
+    Error:
+      $ref: "./openapi/schemas/error.yaml"
+  parameters:
+    offsetParam:
+      $ref: "./openapi/parameters/offset.yaml"
+    limitParam:
+      $ref: "./openapi/parameters/limit.yaml"
+    fromDateParam:
+      $ref: "./openapi/parameters/fromDate.yaml"
+    toDateParam:
+      $ref: "./openapi/parameters/toDate.yaml"
+    qParam:
+      $ref: "./openapi/parameters/q.yaml"
+    docTypeParam:
+      $ref: "./openapi/parameters/docType.yaml"
