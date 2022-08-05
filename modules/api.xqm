@@ -658,8 +658,8 @@ declare function api:validate-authorID($model as map(*)) as map(*)? {
  : only one value allowed
 ~:)
 declare function api:validate-facet($model as map(*)) as map(*)? {
-    if($model?facet castable as xs:string and $model?facet = $search:valid-params) then $model 
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "facet". It must be one of the following values: ' || string-join($search:valid-params, ', '))
+    if($model?facet castable as xs:string and $model?facet = $model('openapi:config')?components?schemas?Facets?enum) then $model 
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "facet". It must be one of the following values: ' || string-join($model('openapi:config')?components?schemas?Facets?enum, ', '))
 };
 
 (:~
@@ -1108,6 +1108,16 @@ declare function api:validate-preferences($data as item(), $model as map(*)) as 
     } catch * {
         error($api:INVALID_PARAMETER, string-join(($err:code, $err:description)))
     }
+};
+
+(:~
+ : Check parameter workTitle
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-workTitle($model as map(*)) as map(*)? {
+    if(every $i in $model?workTitle ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'workTitle': ($model?workTitle ! tokenize(., ',')) ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "workTitle".')
 };
 
 (:~
