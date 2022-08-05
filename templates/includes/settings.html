@@ -25,45 +25,4 @@
             <label class="custom-control-label" for="thematicCommentaries-marker"><span data-template="lang:translate">thematicCommentaries</span> T</label>
         </div>
     </div>
-    <script>
-        function defer(method) {
-            if (window.jQuery) {
-                method();
-            } else {
-                setTimeout(function() { defer(method) }, 50);
-            }
-        }
-        function init_settings() {
-            let input = $('#settings input'),
-                endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences',
-                marker,
-                data;
-            
-            // initially hide markers for unchecked inputs
-            for (const i of input.not(':checked')) {
-                marker = i.getAttribute('data-toggle-class');
-                $(marker).hide();
-            }
-            
-            // add a listener to toggle markers
-            input.change(
-                function() {
-                    marker = this.getAttribute('data-toggle-class');
-                    // toggle markers within the text
-                    $(marker).toggle();
-                    // update preferences by POSTing changes to the API endpoint 
-                    data = { [this.getAttribute('id')]: this.checked };
-                    fetch(endpoint_url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify(data),
-                    });
-                }
-            )
-         }
-        defer(init_settings);
-    </script>
 </div>

@@ -5,39 +5,7 @@
         <label class="custom-control-label" for="line-wrap"><span data-template="lang:translate">linewrap</span> </label>
     </div>
     <pre class="prettyprint" data-template="app:set-line-wrap"><code class="language-xml" data-template="app:xml-prettify"><![CDATA[<element xmlns="http://bla.org"><foo>some text</foo></element>]]></code></pre>
-    <script type="text/javascript">
-        function defer(method) {
-            if (window.jQuery) {
-                method();
-            } else {
-                setTimeout(function() { defer(method) }, 50);
-            }
-        }
-        
-        function init_line_wrap_toggle() {
-            let pre = $('.line-wrap-toggle ~ pre'),
-                input = $('.line-wrap-toggle input'),
-                endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
-        
-            // set listener for toggle
-            input.change(
-                function(a,b) {
-                    pre.toggleClass('line-wrap');
-                    // update session
-                    data = { [this.getAttribute('id')]: this.checked };
-                    fetch(endpoint_url, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                            'Accept': 'application/json'
-                        },
-                        body: JSON.stringify(data),
-                    });
-                }
-            )
-            prettyPrint();
-        }
-        
-        defer(init_line_wrap_toggle);
+    <script>
+        init_line_wrap_toggle();
     </script>
 </div>
