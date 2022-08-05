@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -426,9 +453,9 @@
                                         
                                         <span>Privatbesitz</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_845533235742caf491e1518a19bcbbac"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_ba7ca00967c20ab7983d7ccaa52fe465"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_845533235742caf491e1518a19bcbbac">
+                                        <div class="collapse apparatus-details" id="source_ba7ca00967c20ab7983d7ccaa52fe465">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>E. Gedicht mit e. Namenszug "Krautsalat"</li>
@@ -454,7 +481,7 @@
                                                             
                                                             <span>Nohl 1867, S. 202–203</span>
                                                               
-                                                            <div class="collapse" id="source_e2fe2eed47e817025cbcdf1d744db258">
+                                                            <div class="collapse" id="source_0a2cfa158772b984d265e563a0dd3a52">
                                                                 
                                                             </div>
                                                         </div>
@@ -464,7 +491,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 517–519 (Nr. 58)</span>
                                                               
-                                                            <div class="collapse" id="source_36f525c7b7a3100a4e260f296d662c8f">
+                                                            <div class="collapse" id="source_24ae42bace56aadfa62d1843e6f2b2cb">
                                                                 
                                                             </div>
                                                         </div>
@@ -474,7 +501,7 @@
                                                             
                                                             <span>Worbs 1982, S. 34–35</span>
                                                               
-                                                            <div class="collapse" id="source_09ec49452168eb42917f38bf3ef15fe4">
+                                                            <div class="collapse" id="source_10810ae600fbc18ca95c384af84b8663">
                                                                 
                                                             </div>
                                                         </div>

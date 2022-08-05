@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -249,6 +248,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -462,9 +489,9 @@
                                         
                                         <span class="biblio-entry book"><span class="author">Max Maria von Weber</span>, <span class="title">Carl Maria von Weber. Ein Lebensbild</span>,  Bd. 1, <span class="placeNYear">Leipzig 1864</span>, S. 527–529</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_7621ba895bf68c635ac73d8496031ee7"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_fac8aa60146387e2aa51743d9cfee607"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_7621ba895bf68c635ac73d8496031ee7">
+                                        <div class="collapse apparatus-details" id="source_fac8aa60146387e2aa51743d9cfee607">
                                             
                                             
                                             <div>
@@ -477,9 +504,9 @@
                                                             
                                                             <span>Dresden (D), Sächsisches Hauptstaatsarchiv (D-Dla)<br /><i>Signatur</i>: 10026, Geheimes Kabinett Loc. 15146/03 (Bd. 19), Bl. 358–359</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_bb1711b151dba32d8d40d62d69f5f1c8"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_3034297e3209dfe0d2e2ee1cf4e4fe41"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_bb1711b151dba32d8d40d62d69f5f1c8">
+                                                            <div class="collapse" id="source_3034297e3209dfe0d2e2ee1cf4e4fe41">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>1 DBl. (3 b. S.)</li>

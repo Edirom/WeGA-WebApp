@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -251,6 +250,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -608,9 +635,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. X, Nr. 23</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_0a179589e337c924bde973e5da1664da"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_59b42a8872c5248f9212e997722c8f05"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_0a179589e337c924bde973e5da1664da">
+                                        <div class="collapse apparatus-details" id="source_59b42a8872c5248f9212e997722c8f05">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>2 DBll. (7 b. S. nebst Adr.)</li>
@@ -633,7 +660,7 @@
                               Staatsbibliothek zu Berlin – PK. Die Briefe Carl Baermanns an
                               Friedrich Wilhelm Jähns</span>, in: <span class="journalTitle">Weberiana. Mitteilungen der Internationalen Carl-Maria-von-Weber-Gesellschaft e. V.</span>, Heft 8 (1999), S. 5–47</span>
                                                               
-                                                            <div class="collapse" id="source_94f147a763d123d81ac57387004828d7">
+                                                            <div class="collapse" id="source_5b113dea4c79c4b98d9a3eba4e950ea9">
                                                                 
                                                             </div>
                                                         </div>

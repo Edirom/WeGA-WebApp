@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -433,9 +460,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Berlinische Nachrichten von Staats- und gelehrten Sachen</span>, Jg. 73, Nr. 107 (5. September 1812), S. 6</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_dc1f0c289ed6a0174e8c48e0551ef4f3"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_a41ff9d508f781d68bd78a66197ce3e8"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_dc1f0c289ed6a0174e8c48e0551ef4f3">
+                                        <div class="collapse apparatus-details" id="source_a41ff9d508f781d68bd78a66197ce3e8">
                                             
                                             
                                             <div>
@@ -448,7 +475,7 @@
                                                             
                                                             <span class="noDataFound">Keine Angaben gefunden</span>
                                                               
-                                                            <div class="collapse" id="source_4cf02ff385c82bdcee0cfbabfd5b76dc">
+                                                            <div class="collapse" id="source_b41470f95a52085ede665fa8bede7206">
                                                                 
                                                             </div>
                                                         </div>
@@ -458,7 +485,7 @@
                                                             
                                                             <span class="tei_bibl">Badisches Magazin, Jg. 2, Nr. 239 (14. Oktober 1812), S. 945–946 (s. auch <a class="preview writings A031162" href="">Rezension in der AmZ</a>)</span>
                                                               
-                                                            <div class="collapse" id="source_950527b301a2b6c59e6140d35dd0048b">
+                                                            <div class="collapse" id="source_83b51e820fe0b3f1f05e6541837e0abe">
                                                                 
                                                             </div>
                                                         </div>
@@ -468,7 +495,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 181f. (Nr. 46)</span>
                                                               
-                                                            <div class="collapse" id="source_43e46f87f4fe22cf872498d6916bad05">
+                                                            <div class="collapse" id="source_f66f3f08c454ccd0a0087ba078e6a562">
                                                                 
                                                             </div>
                                                         </div>
@@ -491,9 +518,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (V) Bl. 37a/r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_74585ff590e404de09fd42d810d25ee4"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_0985529e700824a58cd8e1e75ad8d95c"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_74585ff590e404de09fd42d810d25ee4">
+                                        <div class="collapse apparatus-details" id="source_0985529e700824a58cd8e1e75ad8d95c">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript "Zwölf 4stimmige Gesänge, für 2 Sop:, Tenor und Baß mit begl. P.f. dem H: Abt Vogler pp als Zeichen ausgezeichneter Hochachtung gewidmet von Gottfried Weber. Augsb: Gomb: M: H: in 3 Abtheilungen"; Incipit: "Herr Gottfr: W: in Mannheim der musikalischen Welt rühmlichst bekannt"; datiert: "Berlin d: 29t August [ohne Jahr]"</li>

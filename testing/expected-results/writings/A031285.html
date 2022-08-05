@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -475,9 +502,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, Abt. I, Bl. 5r–6v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_dcaeb30b9286b1e571bfc03374620905"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_4802028b5decd7760c88bcd23c0b7bc1"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_dcaeb30b9286b1e571bfc03374620905">
+                                        <div class="collapse apparatus-details" id="source_4802028b5decd7760c88bcd23c0b7bc1">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>2 Bl. (4 b. S.); Text unvollständig</li>
@@ -496,7 +523,7 @@
                                                             
                                                             <span>"Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird", in: Morgenblatt für gebildete Stände, Jg. 3, Nr. 309 (27. Dezember 1809), S. 1233f.</span>
                                                               
-                                                            <div class="collapse" id="source_133cd5846f15e3f7cc1bd6e60322de50">
+                                                            <div class="collapse" id="source_0d96536f29db9e84a95341427c41dea7">
                                                                 
                                                             </div>
                                                         </div>
@@ -506,7 +533,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="tei_hi_italic">Minerva als Beilage zum allg. musik. Anzeiger</span>, Jg. 1, Nr. 37 (14. März 1827), S. 289–293, bezeichnet als "Traum von Carl Maria von Weber"</span>
                                                               
-                                                            <div class="collapse" id="source_60a40c705eb662c4cffac553113bf3c0">
+                                                            <div class="collapse" id="source_c8c21f5bc38f037a7658aa63b34531ef">
                                                                 
                                                             </div>
                                                         </div>
@@ -516,7 +543,7 @@
                                                             
                                                             <span>HellS I, S. 41–47 (Zum zwei und zwanzigsten Kapitel. Fragment aus einer musikalischen Reise, die vielleicht erscheinen wird.)</span>
                                                               
-                                                            <div class="collapse" id="source_ed990be41bf63d7cb73284e32373217d">
+                                                            <div class="collapse" id="source_934f3cca57bf08e5e87b1ada2679cf04">
                                                                 
                                                             </div>
                                                         </div>
@@ -526,7 +553,7 @@
                                                             
                                                             <span>MMW III, S. 256–260 (Zum zweiundzwanzigsten Kapitel)</span>
                                                               
-                                                            <div class="collapse" id="source_2d3ac0eceb84de2416c5115a10f2b444">
+                                                            <div class="collapse" id="source_94dd129083d0ba39211adbfcf22ca498">
                                                                 
                                                             </div>
                                                         </div>
@@ -536,7 +563,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 462–466 (Viertes Kapitel) (Nr. 160)</span>
                                                               
-                                                            <div class="collapse" id="source_542ecbcd14cec60dfab6358916d737d7">
+                                                            <div class="collapse" id="source_0ecd71b84f7fed1eaaca9b80ec5a2341">
                                                                 
                                                             </div>
                                                         </div>
@@ -546,7 +573,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A110173" data-ref="">Jaiser</span>, S. 172/174/176</span>
                                                               
-                                                            <div class="collapse" id="source_3bac5db48d4e88a676e2a453e3aa3b56">
+                                                            <div class="collapse" id="source_939e024a7b6dabe3eb6f0bdedfc98194">
                                                                 
                                                             </div>
                                                         </div>

@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -431,9 +458,9 @@
                                         
                                         <span>Hamburg (D), Universität Hamburg, Zentrum für Theaterforschung, Theatersammlung (D-Hth)<br /><i>Signatur</i>: in: Mappe 2</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_41026b22dfe8a43c60ebac63a6eabcae"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_59e9b178cafd0e3de16c2f43baaaa6e1"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_41026b22dfe8a43c60ebac63a6eabcae">
+                                        <div class="collapse apparatus-details" id="source_59e9b178cafd0e3de16c2f43baaaa6e1">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Kopistenabschrift (5 b. S.)</li>
@@ -449,7 +476,7 @@
                                                             
                                                             <span>Nohl 1867, S. 281–283 (ungenau)</span>
                                                               
-                                                            <div class="collapse" id="source_3c0c18235cb6f342e4467b065a0a712b">
+                                                            <div class="collapse" id="source_16fff60ff06bc47b334ba4cb0342567a">
                                                                 
                                                             </div>
                                                         </div>
@@ -459,7 +486,7 @@
                                                             
                                                             <span>Hirschberg, Reliquienschrein, S. 85–87 (nach Jähns)</span>
                                                               
-                                                            <div class="collapse" id="source_04926dda370544c8c21d323c0a2232ee">
+                                                            <div class="collapse" id="source_1fbe66470c1a4f3b0786137136e955af">
                                                                 
                                                             </div>
                                                         </div>
@@ -469,7 +496,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 519–521 (Nr. 59; hier nur die zwei Tenorstimmen abgedruckt)</span>
                                                               
-                                                            <div class="collapse" id="source_9d00fc645f8fa1e9c50143ca75872277">
+                                                            <div class="collapse" id="source_9edc68df1087869d572acc615e26bc1d">
                                                                 
                                                             </div>
                                                         </div>
@@ -479,7 +506,7 @@
                                                             
                                                             <span>Frank Ziegler, JV 180 – Puzzle-Teile zu einem musikalischen Freundschaftsdienst und Anmerkungen zu weiteren dichterisch-musikalischen Eintagsfliegen, in: Weberiana. Mitteilungen der Internationalen Carl-Maria-von-Weber-Gesellschaft e. V., Heft 17 (2007), S. 67–80 (hier Deklamatorium mit musikalischen Einlagen komplett abgedruckt)</span>
                                                               
-                                                            <div class="collapse" id="source_b08f24d3e90d97079dcdb6edc1e9dfab">
+                                                            <div class="collapse" id="source_273e33bebf799773576503f44d4d866c">
                                                                 
                                                             </div>
                                                         </div>

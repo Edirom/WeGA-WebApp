@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -663,9 +690,9 @@
                                         
                                         <span>Dresden (D), Sächsische Landesbibliothek Staats- und Universitätsbibliothek Dresden (D-Dl)<br /><i>Signatur</i>: Mscr.Dresd.App.2075.342.1-28</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_6653db3979a4812307249de8c3da86b4"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_83784090466905642c14e10d8acc46b3"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_6653db3979a4812307249de8c3da86b4">
+                                        <div class="collapse apparatus-details" id="source_83784090466905642c14e10d8acc46b3">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>28 b.S., einzelne Zettel, nachträglich in der oberen rechten Ecke jeweils auf der recto-Seite gezählt (von 1 bis 26) (unklar bleibt, ob der fehlende Anfangsteil separat entand bzw. überliefert war)</li>
@@ -689,9 +716,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. V (Mappe XVIII), Abt. 4 B, Nr. 14 H</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_c21e2e81609e7668dcc38d15b7c3125a"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_702f993dc4ab8da9e36dfe6afc4bbacb"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_c21e2e81609e7668dcc38d15b7c3125a">
+                                        <div class="collapse apparatus-details" id="source_702f993dc4ab8da9e36dfe6afc4bbacb">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Abschrift von Friedrich Wilhelm Jähns (als Beilage zur Kopie des <a class="preview letters A045790" href="/exist/apps/WeGA-WebApp/de/A000409/Korrespondenz/A045790.html">Briefes</a> von Dusch an Max Maria von Weber vom 11. Dezember 1860)</li>
@@ -707,7 +734,7 @@
                                                             
                                                             <span id="Baser" class="tei_bibl">Friedrich Baser, <span class="tei_hi_italic">Mannheim-Heidelberger Freundschaft zur Zeit der Romantik. Karl Maria von Weber und Freiherr Alexander von Dusch</span>, in: <span class="tei_hi_italic">Die Musik</span>, Jg. 26, Nr. 4 (Januar 1934), S. 277–281 (Es handelt sich um eine gekürzte und offensichtlich teils eigenständig etwas umformulierte Wiedergabe, bei der nur die Abschnitte zu Weber ausgewertet wurden, nicht jene zu Meyerbeer).</span>
                                                               
-                                                            <div class="collapse" id="source_7b8a4c86a33d1e04339f3d5f87f48a61">
+                                                            <div class="collapse" id="source_9b290ea02e30db18dc586f2676f6850e">
                                                                 
                                                             </div>
                                                         </div>
@@ -741,8 +768,7 @@
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <p>Die vorliegende Textwiedergabe setzt sich aus zwei Quellen zusammen. Die von <a class="preview persons A000409" href="">Alexander von Duschs</a> Hand stammende Quelle 1 aus der SLUB Dresden stellt offensichtlich eine erste Niederschrift dar (darauf lassen zahlreiche Korrekturen im Prozess des Niederschreibens schließen).
                     Die (nachträglich ab „1“ gezählten) Blätter beginnen jedoch erst ab der Textstelle <a href="A032347#Duschtext">„Es wäre vergeblich“</a>. Der davor stehende Text ist bislang nur in einer Abschrift von <a class="preview persons A000914" href="">Friedrich Wilhelm Jähns</a> (Quelle 2) überliefert. Jähns gibt zu seiner Abschrift an: „Die <span class="tei_hi_underline1">Aufzeichnungen</span> waren eine schön geschriebene Copie nach <span class="tei_hi_latintype">Duschs</span> Handschrift.“ 
-                    <a class="preview persons A000914" href="">Jähns</a> hat seine Abschrift mit einigen Randglossen versehen, die im Folgenden nur in seinem Textteil (in Form von Anmerkungen) wiedergegeben sind. Man kann gegenwärtig nur vermuten, dass es eine Reinschrift <a class="preview persons A000409" href="">Duschs</a> gab, die beide Textteile umfasste. Ob die beiden darin vereinten Teile ursprünglich getrennt waren oder zeitlich versetzt entstanden, bleibt ungeklärt. Zu der Kopie, nach der <a class="preview persons A000914" href="">Jähns</a>’ Abschrift entstand, vgl. auch den <a class="preview letters A045790" href="/exist/apps/WeGA-WebApp/de/A000409/Korrespondenz/A045790.html">Brief von Alexander von Dusch an Jähns vom <span class="tei_date">11. Dezember 1860</span>
-                    </a>.
+                    <a class="preview persons A000914" href="">Jähns</a> hat seine Abschrift mit einigen Randglossen versehen, die im Folgenden nur in seinem Textteil (in Form von Anmerkungen) wiedergegeben sind. Man kann gegenwärtig nur vermuten, dass es eine Reinschrift <a class="preview persons A000409" href="">Duschs</a> gab, die beide Textteile umfasste. Ob die beiden darin vereinten Teile ursprünglich getrennt waren oder zeitlich versetzt entstanden, bleibt ungeklärt. Zu der Kopie, nach der <a class="preview persons A000914" href="">Jähns</a>’ Abschrift entstand, vgl. auch den <a class="preview letters A045790" href="/exist/apps/WeGA-WebApp/de/A000409/Korrespondenz/A045790.html">Brief von Alexander von Dusch an Jähns vom <span class="tei_date">11. Dezember 1860</span></a>.
                     <br />Die von Jähns erwähnte Kopie in Familienbesitz dürfte Grundlage der (stark gekürzten und auf die Angaben zu Carl Maria von Weber beschränkten) <span class="preview biblio A111496" data-ref="">Publikation von Friedrich Baser</span> gewesen sein, denn dieser gibt in einer Fußnote auf S. 280 zu den im Text erwähnten Briefautographen an: „Die Briefe scheinen verlorengegangen zu sein, finden sich jedenfalls nicht mehr im Besitz des Landgerichtsrates Freiherrn von Dusch in Heidelberg“.</p>
                                     <ul class="apparatus textConstitution">
                                         <li>

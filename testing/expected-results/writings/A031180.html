@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -457,9 +484,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg. 17, Nr. 37 (13. September 1815), Sp. 617–622</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_e3171cff502ef74be30e3148b0eaa88c"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_aee695f1d3dd6f93e87310c6649064ed"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e3171cff502ef74be30e3148b0eaa88c">
+                                        <div class="collapse apparatus-details" id="source_aee695f1d3dd6f93e87310c6649064ed">
                                             
                                             
                                             <div>
@@ -472,7 +499,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 149–155 (Nr. 61)</span>
                                                               
-                                                            <div class="collapse" id="source_24033096d18a720200cbae47920f501e">
+                                                            <div class="collapse" id="source_4b04cbefca77a047f66a70124866247a">
                                                                 
                                                             </div>
                                                         </div>
@@ -495,9 +522,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (V) Bl. 39a/v - 40r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_c421d6196b32715fbc851a369321e73d"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_d3d62d43bc0ea0970cb64a948b814f09"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_c421d6196b32715fbc851a369321e73d">
+                                        <div class="collapse apparatus-details" id="source_d3d62d43bc0ea0970cb64a948b814f09">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript "Ueber Prag."; Incipit: "Es ist wahrlich hohe Zeit, daß auch einmal"; Datierung: "Für die Musik: Zeitung geschrieben München d: 11–12. August 1815"; unterzeichnet: "M-l:-s"</li>
@@ -515,7 +542,7 @@
                                                             
                                                             <span>HellS II, S. 125–133</span>
                                                               
-                                                            <div class="collapse" id="source_f42d108d8bf54d18642a50b3ea38d6a5">
+                                                            <div class="collapse" id="source_5dde2847f8ddc162f6af933937ce18c7">
                                                                 
                                                             </div>
                                                         </div>

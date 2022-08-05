@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -472,9 +499,9 @@
                                         
                                         <span>Verbleib unbekannt</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_b25dd76e2b74848305c6e053e7799a37"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_9f62bef116fb5e602cd7a5e76fc765c1"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_b25dd76e2b74848305c6e053e7799a37">
+                                        <div class="collapse apparatus-details" id="source_9f62bef116fb5e602cd7a5e76fc765c1">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Liepmannssohn Verst. 35 (<span class="tei_date">26.-27. Mai 1905</span>), Nr. 1025</li>
@@ -498,9 +525,9 @@
                                         
                                         <span class="biblio-entry"><span class="author">Anonym</span>, <span class="title">Ungedruckte Briefe Carl Maria von Webers</span>, in: <span class="journalTitle">Allgemeiner Anzeiger</span>, Nr. 162 (12. Juni 1904) 6. Beiblatt</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_e29f17ff6cf2300f584c71feb4a612e9"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_3604e8f653ae8bd349b5a9d07878c731"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e29f17ff6cf2300f584c71feb4a612e9">
+                                        <div class="collapse apparatus-details" id="source_3604e8f653ae8bd349b5a9d07878c731">
                                             
                                             
                                             <div>
@@ -513,7 +540,7 @@
                                                             
                                                             <span class="biblio-entry"><span class="title">Unbekannte Briefe Karl Maria von Webers</span>, in: <span class="journalTitle">Neue Musik-Zeitung</span>, Jg. 26, Nr. 22 (17. August 1905), S. 488f.</span>
                                                               
-                                                            <div class="collapse" id="source_1949dc16d8ac83913d897b0c7d0520ed">
+                                                            <div class="collapse" id="source_ab60934bb88874d340046ff9fa606e61">
                                                                 
                                                             </div>
                                                         </div>

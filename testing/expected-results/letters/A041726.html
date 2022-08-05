@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -249,6 +248,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -526,9 +553,9 @@
                                         
                                         <span>Hamburg (D), Staats- und Universitätsbibliothek Carl von Ossietzky (D-Hs)<br /><i>Signatur</i>: Nachlass Fr. L. Schmidt, Bl. 507</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_9f7cb4b34a6b98239d835499187275d1"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_53ca00351f9afee1feb0c418a1073ca8"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_9f7cb4b34a6b98239d835499187275d1">
+                                        <div class="collapse apparatus-details" id="source_53ca00351f9afee1feb0c418a1073ca8">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.)</li>
@@ -555,7 +582,7 @@
                                                             
                                                             <span class="tei_bibl">Uhde, Hermann, <span class="tei_hi_italic">Der „Freischütz“ in Hamburg. Nachtrag</span>, in: <span class="tei_hi_italic">Hamburger Nachrichten</span>, 1872, Nr. 243 (12. Oktober)</span>
                                                               
-                                                            <div class="collapse" id="source_291309c30b57d7ef1e84acbdcf0f200d">
+                                                            <div class="collapse" id="source_657a5ad5fa319a293424b47ed55ad679">
                                                                 
                                                             </div>
                                                         </div>
@@ -565,7 +592,7 @@
                                                             
                                                             <span>Berlinische Nachrichten von Staats- und gelehrten Sachen, Nr. 350 (19. Oktober 1872), 1. Beilage, Morgenausgabe (nur Ausschnitt)</span>
                                                               
-                                                            <div class="collapse" id="source_5d27080b99ffae1491b2cc99904b4354">
+                                                            <div class="collapse" id="source_03d26c8cf9de0003922969c3bd312ee0">
                                                                 
                                                             </div>
                                                         </div>
@@ -575,7 +602,7 @@
                                                             
                                                             <span id="printSchmidt" class="tei_bibl"><span class="tei_hi_italic">Denkwürdigkeiten des Schauspielers, Schauspieldichters und Schauspieldirektors Friedrich Ludwig Schmidt (1772–1841)</span>, hg. von Hermann Uhde, Bd. 2, Hamburg 1875, S. 167f. (unter Auslassung der Passage zum Weimarer Theater)</span>
                                                               
-                                                            <div class="collapse" id="source_959c8a37c4296b5053166646a37e2856">
+                                                            <div class="collapse" id="source_e4e1aa134f8f262e8f247a150d019a63">
                                                                 
                                                             </div>
                                                         </div>
@@ -585,7 +612,7 @@
                                                             
                                                             <span>Neue Berliner Musikzeitung, Jg. 29, Nr. 40 (5. Oktober 1875), S. 313f. (nach den Denkwürdigkeiten)</span>
                                                               
-                                                            <div class="collapse" id="source_3815f9798d9d111fa5c3344e048e20f0">
+                                                            <div class="collapse" id="source_cafe0c08249da7df38520e68bd87ba72">
                                                                 
                                                             </div>
                                                         </div>

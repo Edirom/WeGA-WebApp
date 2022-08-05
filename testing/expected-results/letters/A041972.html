@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -526,9 +553,9 @@
                                         
                                         <span>Krakau (PL), Uniwersytet Jagielloński. Biblioteka Jagiellońska  (PL-Kj)<br /><i>Signatur</i>: Slg. Varnhagen, MS. 273</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_79b760950507fb6c22e9ea5d94aeeb1a"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_4c5d9e6463b2ccd889ca32775572aa2e"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_79b760950507fb6c22e9ea5d94aeeb1a">
+                                        <div class="collapse apparatus-details" id="source_4c5d9e6463b2ccd889ca32775572aa2e">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. o. Adr.)</li>
@@ -544,7 +571,7 @@
                                                             
                                                             <span id="printNZfM" class="tei_bibl">Chezy, H.v.: <span class="tei_hi_italic">Carl Maria von Weber’s Euryanthe. Ein Beitrag zur Geschichte der deutschen Oper</span>, in: NZfM 13.Jg., Nr. 10 (1. August 1840), S. 37</span>
                                                               
-                                                            <div class="collapse" id="source_8c9611a65f0d1d922f69f6f63e3f71b4">
+                                                            <div class="collapse" id="source_8135a5e4068feea032b7b177443f4e10">
                                                                 
                                                             </div>
                                                         </div>
@@ -554,7 +581,7 @@
                                                             
                                                             <span id="printBdS" class="tei_bibl">Anon.: <span class="tei_hi_italic">Unveröffentlichte Briefe Carl Maria von Webers</span>, in: <span class="tei_hi_italic">Blätter der Staatsoper</span>, Jg. 3, Heft 1 (Oktober 1922), S. 11–12</span>
                                                               
-                                                            <div class="collapse" id="source_1e5383b00be8e97078a19287f51e068c">
+                                                            <div class="collapse" id="source_77a854e1560415d95499b1a687cddc0c">
                                                                 
                                                             </div>
                                                         </div>

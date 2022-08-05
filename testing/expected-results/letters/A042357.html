@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -558,9 +585,9 @@
                                         
                                         <span>New Haven (US), Yale University, Beinecke Rare Book and Manuscript Library (US-NHub), Frederick R. Koch Foundation</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_2d42ab37304e57c9f1870ac7df9ee18a"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_73384fc88edd2fb0b5397acee0fd131b"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_2d42ab37304e57c9f1870ac7df9ee18a">
+                                        <div class="collapse apparatus-details" id="source_73384fc88edd2fb0b5397acee0fd131b">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (3 b. S. einschl. Adr.)</li>
@@ -579,7 +606,7 @@
                                                             
                                                             <span class="tei_bibl">Anon.: <span class="tei_hi_italic">Eine Reihenfolge von Briefen C.M.v.Webers</span> in: <span class="tei_hi_italic">Caecilia</span> Bd. 7 (1828), Heft 25, S. 31–34</span>
                                                               
-                                                            <div class="collapse" id="source_44457b13f4a6ae14f37c96221c16cda8">
+                                                            <div class="collapse" id="source_3408149dd15411de5003c25f0264c586">
                                                                 
                                                             </div>
                                                         </div>
@@ -589,7 +616,7 @@
                                                             
                                                             <span>Bollert/Lemke 1972, S. 89–90</span>
                                                               
-                                                            <div class="collapse" id="source_cbaeeedc9eb173cc35a58ee54fec5513">
+                                                            <div class="collapse" id="source_257d4ad9712768328773234b5cc0a6f7">
                                                                 
                                                             </div>
                                                         </div>

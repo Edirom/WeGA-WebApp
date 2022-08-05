@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -520,11 +547,11 @@
                                     <div>
                                         <strong><span>1. Textzeuge</span>:</strong>
                                         
-                                        <span class="biblio-entry book"><span class="title">Zwölf Choräle von Seb. Bach, umgearbeitet von Vogler, zergliedert von C. M. von Weber</span>, <span class="placeNYear">Leipzig 1810</span><a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" id="PD2012N3l4l2l10l2l2l3l6" data-popover-body="Erstausgabe bei A. Kühnel (Bureau de Musique), PN 843; nachgewiesene Exemplare: Landes- und Hochschulbibliothek Darmstadt, Musikabteilung, Sign.: Mus. 3434 und Staatsbibliothek Berlin, Musikabteilung, Sign.: N.Mus.0.4973; Titelauflage bei C. F. Peters/Leipzig (nach 1814) mit identischer PN: 843">*</a></span>
+                                        <span class="biblio-entry book"><span class="title">Zwölf Choräle von Seb. Bach, umgearbeitet von Vogler, zergliedert von C. M. von Weber</span>, <span class="placeNYear">Leipzig 1810</span><a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" id="PD2222N3l4l2l10l2l2l3l6" data-popover-body="Erstausgabe bei A. Kühnel (Bureau de Musique), PN 843; nachgewiesene Exemplare: Landes- und Hochschulbibliothek Darmstadt, Musikabteilung, Sign.: Mus. 3434 und Staatsbibliothek Berlin, Musikabteilung, Sign.: N.Mus.0.4973; Titelauflage bei C. F. Peters/Leipzig (nach 1814) mit identischer PN: 843">*</a></span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_62f294cdb3d19a31787d54a374d64623"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_edffd71427202c807efb3137bf2c5439"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_62f294cdb3d19a31787d54a374d64623">
+                                        <div class="collapse apparatus-details" id="source_edffd71427202c807efb3137bf2c5439">
                                             
                                             
                                             <div>
@@ -537,7 +564,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 229–242 (Nr. 14)</span>
                                                               
-                                                            <div class="collapse" id="source_bff3460944e71f758849862fb69e090e">
+                                                            <div class="collapse" id="source_877af22e654e0d83db2b378bb53b1a1c">
                                                                 
                                                             </div>
                                                         </div>
@@ -560,9 +587,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (II) Bl. 21r - 23r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_72a8e9aafec29b7ee06666aaa3f19be8"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_77874d2f3bd535915e214dee58866a04"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_72a8e9aafec29b7ee06666aaa3f19be8">
+                                        <div class="collapse apparatus-details" id="source_77874d2f3bd535915e214dee58866a04">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. + 1DBL. + 1 Bl., 7 b. S., S. 8 leer, Kettl. ca. 2,8 cm, </li>
@@ -582,7 +609,7 @@
                                                             
                                                             <span>HellS II, S. 44–56</span>
                                                               
-                                                            <div class="collapse" id="source_e37ac8a419a942e469de750b00e630cc">
+                                                            <div class="collapse" id="source_9a5033efee28816e76c07917e604c7e7">
                                                                 
                                                             </div>
                                                         </div>
@@ -592,7 +619,7 @@
                                                             
                                                             <span>MMW III, S. 10–18</span>
                                                               
-                                                            <div class="collapse" id="source_8b4fb5477e180097618cfe1d90c1f6ac">
+                                                            <div class="collapse" id="source_36d03900ccff0c0d195f160074cc01c3">
                                                                 
                                                             </div>
                                                         </div>

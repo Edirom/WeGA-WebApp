@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -467,9 +494,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: 55 Ep 179</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_38f99765de6d90d0d16b3789930e2a6d"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_5da234e9f9f365712b0179ef9e193e2c"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_38f99765de6d90d0d16b3789930e2a6d">
+                                        <div class="collapse apparatus-details" id="source_5da234e9f9f365712b0179ef9e193e2c">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. o. Adr.)</li>
@@ -496,9 +523,9 @@
                                                             
                                                             <span>Leipzig (Deutschland), Leipziger Stadtbibliothek – Musikbibliothek (D-LEm)<br /><i>Signatur</i>: PB 37 (Nr. 38)</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_ff97d47a04fe8b1b829a0d3d34f88f43"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_f42be6ad06aff668ef60790c10a0853d"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_ff97d47a04fe8b1b829a0d3d34f88f43">
+                                                            <div class="collapse" id="source_f42be6ad06aff668ef60790c10a0853d">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>Abschrift von Lichtenstein</li>
@@ -511,7 +538,7 @@
                                                             
                                                             <span>Rungenhagen, Carl Friedrich, Nachrichten aus dem Leben und über die Musik-Werke Carl Maria von Weber's mit dem sehr ähnlichen Bildnisse desselben, Berlin: T. Trautwein, 1826, S. 6</span>
                                                               
-                                                            <div class="collapse" id="source_d4fc593f09f7e4a2c38d9062fe8120e8">
+                                                            <div class="collapse" id="source_ada346e3542ac0d1e061d8e6b5b0212c">
                                                                 
                                                             </div>
                                                         </div>
@@ -521,7 +548,7 @@
                                                             
                                                             <span>Rudorff: Westermanns illustrierte deutsche Monats-Hefte, 44. Jg. (1899), 87. Bd., S. 180 (als Beilage zum Br. an Lichtenstein v. 18.12.)</span>
                                                               
-                                                            <div class="collapse" id="source_2acaa4a281faa5dd622f5ecf4fd7f342">
+                                                            <div class="collapse" id="source_ec30faf5def0a5e03235b7bef4157abc">
                                                                 
                                                             </div>
                                                         </div>
@@ -531,7 +558,7 @@
                                                             
                                                             <span class="tei_bibl">Nusser, G.: „Bisher unveröffentlichte Briefe hervorragender Musiker“, in: Der Zeitgeist. Beiblatt zum ’Berliner Tageblatt’, Nr. 21 (22. Mai 1899)</span>
                                                               
-                                                            <div class="collapse" id="source_5b091070c798cb3599643eebb51444ed">
+                                                            <div class="collapse" id="source_401cfd85517e21176be9538877ae40a8">
                                                                 
                                                             </div>
                                                         </div>
@@ -541,7 +568,7 @@
                                                             
                                                             <span>Rudorff 1900, S. 117–119 (ebf. als Beil. zum Br. an L. v. 18.12.)</span>
                                                               
-                                                            <div class="collapse" id="source_ba16ad0184838c2751b0fdbda4fc4cf8">
+                                                            <div class="collapse" id="source_520d5b840bea3f879c7fad98fad080f1">
                                                                 
                                                             </div>
                                                         </div>

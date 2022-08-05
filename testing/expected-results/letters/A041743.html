@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -251,6 +250,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -543,7 +570,7 @@
                                         
                                         <span class="biblio-entry"><span class="title">Briefe von Karl Maria v. Weber, an Friedrich Kind</span>, in: <span class="journalTitle">Zeitung für die elegante Welt</span>, Bd. 32, Heft 121 (23. Juni 1832), Sp. 963–964<a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" id="N_01" data-popover-body="Mit Namen-Auslassungen">*</a></span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_253e4f37c46b8d5175d548d81137a4aa">
+                                        <div class="collapse apparatus-details" id="source_e26a7696a4cdcb22cf53fc54fd741661">
                                             
                                             
                                             <div>
@@ -564,7 +591,7 @@
                                         
                                         <span class="biblio-entry book"><span class="author">Friedrich Kind</span>, <span class="title">Freischütz-Buch</span>, <span class="placeNYear">1843</span>, S. 159–161</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_5a9ccd92080971a86918126d700ed62f">
+                                        <div class="collapse apparatus-details" id="source_837068e9efc802ddd22e1902c20718b7">
                                             
                                             
                                             <div>
@@ -585,9 +612,9 @@
                                         
                                         <span>Verbleib unbekannt</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_a58ab78c8038e9839a2769ebde6bda8b"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_9393b101f4e8da9517695c4bda3461dc"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a58ab78c8038e9839a2769ebde6bda8b">
+                                        <div class="collapse apparatus-details" id="source_9393b101f4e8da9517695c4bda3461dc">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li><a class="preview orgs A080017" href="">Henrici</a> Kat. 114 (<span class="tei_date">6./7. Dez. 1926</span>, mit <a class="preview orgs A080018" href="">Liepmannssohn</a> = Slg. Heyer I), Nr. 596</li>

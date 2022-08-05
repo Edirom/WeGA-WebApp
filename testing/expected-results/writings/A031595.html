@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -642,9 +669,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, Abt. I, Bl. 8a/r–10b/r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_84f4c553a42a3a92b345c18471079dec"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_313d7539beed9c3fd33327a273657c67"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_84f4c553a42a3a92b345c18471079dec">
+                                        <div class="collapse apparatus-details" id="source_313d7539beed9c3fd33327a273657c67">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>3 DBl. (9 b. S.)</li>
@@ -663,7 +690,7 @@
                                                             
                                                             <span class="biblio-entry"><span class="author"></span>, <span class="title">12. Dichterreliquie. Viertes Bruchstück aus: Tonkünstlers Leben. Eine Arabeske. Von Carl Maria von Weber</span>, in: <span class="collectionTitle">W. G. Beckers Taschenbuch zum geselligen Vergnügen</span>, hg. von <span class="editor">Friedrich Kind</span>, <span class="placeNYear">Leipzig 1827</span>, S. 371–385</span>
                                                               
-                                                            <div class="collapse" id="source_8026d5803cc89b52fd2f61de4864d1ef">
+                                                            <div class="collapse" id="source_a6468499a08327b645b7eb84d7e89722">
                                                                 
                                                             </div>
                                                         </div>
@@ -673,7 +700,7 @@
                                                             
                                                             <span>HellS I, S. 63–83 (Größere Bruchstücke aus andern Kapiteln II.)</span>
                                                               
-                                                            <div class="collapse" id="source_c508389deb315dab8b11429a771cd070">
+                                                            <div class="collapse" id="source_4d6163b7674fc1cfe5b9feb2f556cbea">
                                                                 
                                                             </div>
                                                         </div>
@@ -683,7 +710,7 @@
                                                             
                                                             <span>MMW III, S. 269–283</span>
                                                               
-                                                            <div class="collapse" id="source_386d6064856db05cd7ccb255173b88b6">
+                                                            <div class="collapse" id="source_1a9a9542759fe347411d92af3fc6c303">
                                                                 
                                                             </div>
                                                         </div>
@@ -693,7 +720,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 476–490 (Sechstes Kapitel) (Nr. 160)</span>
                                                               
-                                                            <div class="collapse" id="source_04000153c237a4d280ab594cf7df744e">
+                                                            <div class="collapse" id="source_183cf960fb90cb3546d8a52dc62ec722">
                                                                 
                                                             </div>
                                                         </div>
@@ -703,7 +730,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A110173" data-ref="">Jaiser</span>, S. 181–191</span>
                                                               
-                                                            <div class="collapse" id="source_3ae71170e3b5a345c88c4ff0d9089c2a">
+                                                            <div class="collapse" id="source_49f7e4c6da24cec3ce7b585a4b8813db">
                                                                 
                                                             </div>
                                                         </div>

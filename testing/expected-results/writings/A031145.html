@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -435,9 +462,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Gesellschaftsblatt für gebildete Stände</span>, Jg. 1, Nr. 59 (27. Juli 1811), Sp. 478–479</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_2f634cd1370a74ef6a184a051d84274e"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_53dc96ffbba3e19dcd4b3282507d6fdb"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_2f634cd1370a74ef6a184a051d84274e">
+                                        <div class="collapse apparatus-details" id="source_53dc96ffbba3e19dcd4b3282507d6fdb">
                                             
                                             
                                             <div>
@@ -450,7 +477,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 113–115 (Nr. 31)</span>
                                                               
-                                                            <div class="collapse" id="source_9b08afa41a8a66a5c38af1e4dff6672e">
+                                                            <div class="collapse" id="source_773b008af2ca532a73478e2d1ed1750b">
                                                                 
                                                             </div>
                                                         </div>
@@ -473,9 +500,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (IV) Bl. 35a/r - 35a/v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_1463e1a2228537fbdb6c664556241c1e"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_7365f116b532820ace792b8fca5f1be6"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1463e1a2228537fbdb6c664556241c1e">
+                                        <div class="collapse apparatus-details" id="source_7365f116b532820ace792b8fca5f1be6">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript "Dramaturgische Bruchstükke.";  Incipit: "Donnerstag d. 25: July. sahen wir die Oper Makdonald mit Musik von Dalleyrak";  keine Datierung in A; nur Vermerk Webers über ED</li>
@@ -493,7 +520,7 @@
                                                             
                                                             <span>HellS II, S. 77–80</span>
                                                               
-                                                            <div class="collapse" id="source_97ba4812af967fc5c7649c94845c3b0f">
+                                                            <div class="collapse" id="source_4dacd07f89cc86cdd6c6139af7ab06dc">
                                                                 
                                                             </div>
                                                         </div>
@@ -503,7 +530,7 @@
                                                             
                                                             <span>MMW III, S. 42–44</span>
                                                               
-                                                            <div class="collapse" id="source_b48fafbe923057ffdff9a199ed5319cc">
+                                                            <div class="collapse" id="source_1c9f27411117e2d665194a5977f48b97">
                                                                 
                                                             </div>
                                                         </div>

@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -249,6 +248,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -678,9 +705,9 @@ darunter der <a class="preview works A020126" href="">Damon</a>, und das <a clas
                                         
                                         <span>New Haven (US), Yale University, Beinecke Rare Book and Manuscript Library (US-NHub)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_2099872e4192b5e0e0f6de18f6fd363d"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_70be01b8adcab6ec67e71b60ca72140b"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_2099872e4192b5e0e0f6de18f6fd363d">
+                                        <div class="collapse apparatus-details" id="source_70be01b8adcab6ec67e71b60ca72140b">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S. einschl. Adr.)</li>
@@ -702,7 +729,7 @@ darunter der <a class="preview works A020126" href="">Damon</a>, und das <a clas
                                                             
                                                             <span>Bollert/Lemke 1972, S. 28–29.(unvollst.)</span>
                                                               
-                                                            <div class="collapse" id="source_eaa9c2f713e5c9b27fae47b87d3f1eae">
+                                                            <div class="collapse" id="source_c30f9f169a3aad71a61ccb18583c8418">
                                                                 
                                                             </div>
                                                         </div>
@@ -712,7 +739,7 @@ darunter der <a class="preview works A020126" href="">Damon</a>, und das <a clas
                                                             
                                                             <span>tV: MMW I, S. 263–265</span>
                                                               
-                                                            <div class="collapse" id="source_4a1308d18264493bd016de38dd587b95">
+                                                            <div class="collapse" id="source_752f0d4a80d9146c3862b33d72b15a42">
                                                                 
                                                             </div>
                                                         </div>

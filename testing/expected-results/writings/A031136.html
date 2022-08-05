@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -439,9 +466,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg. 13, Nr. 34 (21. August 1811), Sp. 570–572</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_5118d2fd61c0df6d4bef439002e80abb"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_5c73aee75647b39b397908fb20e7768b"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_5118d2fd61c0df6d4bef439002e80abb">
+                                        <div class="collapse apparatus-details" id="source_5c73aee75647b39b397908fb20e7768b">
                                             
                                             
                                             <div>
@@ -454,7 +481,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 242–245 (Nr. 25)</span>
                                                               
-                                                            <div class="collapse" id="source_e16771b20e932bf00792fdecf0ccfd3d">
+                                                            <div class="collapse" id="source_7f35a16b74805199aff4ef3b63254028">
                                                                 
                                                             </div>
                                                         </div>
@@ -477,9 +504,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (IV) Bl. 32b/v - 33a/r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_3d62a93707e797776703d3b17d6222d5"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_99df1a55a6600ba6440f167a59fed62d"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_3d62a93707e797776703d3b17d6222d5">
+                                        <div class="collapse apparatus-details" id="source_99df1a55a6600ba6440f167a59fed62d">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript oben "Berlin. im May 1811."; Incipit: "Unter den mancherley KunstProdukten"; Datierung: "an die M: Z: abgeschikt d: 18t Juny 1811 von München aus."; unterzeichnet mit "Niemand."</li>
@@ -496,7 +523,7 @@
                                                             
                                                             <span>HellS II, S. 59–64</span>
                                                               
-                                                            <div class="collapse" id="source_c6b7bd5751cd9e94c457e35469ce6e87">
+                                                            <div class="collapse" id="source_73244cea992140d12adb58d9999094c6">
                                                                 
                                                             </div>
                                                         </div>
@@ -506,7 +533,7 @@
                                                             
                                                             <span>MMW III, S. 30–33</span>
                                                               
-                                                            <div class="collapse" id="source_d4916ed8176653c7cbf6a3b1a6eb9eab">
+                                                            <div class="collapse" id="source_e6f9444cb6dd0622a4d367213ef9f16f">
                                                                 
                                                             </div>
                                                         </div>
