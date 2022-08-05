@@ -147,7 +147,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -168,10 +167,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -237,6 +236,10 @@
         
         <div class="allFilter panel-collapse collapse show" id="allFilter">
 
+            
+            <h4>Titel</h4>
+            <select multiple="multiple" name="workTitle" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/workTitle" data-doc-id="indices" data-doc-type="works">
+                                        <option value="">alle</option></select>
             
             <h4>Komponiert/Verfasst von</h4>
             <select multiple="multiple" name="composers" data-api-url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/facets/composers" data-doc-id="indices" data-doc-type="works">
