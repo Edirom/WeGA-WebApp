@@ -140,18 +140,10 @@ declare
  : get and set line-wrap variable
  : (whether a user prefers code examples with or without wrapped lines)
  :)
-declare 
-    %templates:wrap
-    function app:line-wrap($node as node(), $model as map(*)) as map(*)? {
-        map {
-            'line-wrap' : config:line-wrap()
-        }
-};
-
 declare function app:set-line-wrap($node as node(), $model as map(*)) as element() {
     element {node-name($node)} {
-        if($model('line-wrap')) then ( 
-            $node/@*[not(name(.)='class')],
+        if(wega-util-shared:semantic-boolean($model?settings?('line-wrap'))) then ( 
+            $node/@* except $node/@class,
             attribute class {string-join(($node/@class, 'line-wrap'), ' ')}
         )
         else $node/@*,
@@ -1950,7 +1942,7 @@ declare function app:inject-api-base($node as node(), $model as map(*))  {
  : depending on the `$model?settings` property which is injected 
  : in view-html.xql.
  :)
-declare function app:init-marker-switch($node as node(), $model as map(*)) as element(xhtml:input) {
+declare function app:init-custom-switch($node as node(), $model as map(*)) as element(xhtml:input) {
     element {node-name($node)} {
         $node/@* except $node/@checked,
         if(wega-util-shared:semantic-boolean($model?settings($node/@id))) 
