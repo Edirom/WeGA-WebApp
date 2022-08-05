@@ -488,17 +488,16 @@ declare function config:get-xsl-params($params as map(*)?) as element(parameters
 };
 
 (:~
- : get (from URL parameter, or session, or options file) and set (to the session) the default entries per page
-~:)
+ : Get from URL parameter and set (to the session) the default entries per page (= limit parameter).
+ : This dedicated function is needed to update the "limit" preference which is not
+ : POSTed to the API by the frontend but set via GET parameter.
+ :)
 declare function config:entries-per-page() as xs:int {
     let $urlParam := if(request:exists()) then request:get-parameter('limit', ()) else ()
-    let $sessionParam := if(session:exists()) then session:get-attribute('limit') else ()
-    let $default-option := config:get-option('entriesPerPage')
     return
-        if($urlParam castable as xs:int and xs:int($urlParam) <= 50) then (xs:int($urlParam), session:set-attribute('limit', xs:int($urlParam)))
-        else if($sessionParam castable as xs:int) then $sessionParam
-        else if($default-option castable as xs:int) then xs:int($default-option)
-        else (10, config:log('error', 'Failed to get default "entriesPerPage" from options file. Falling back to "10"!'))
+        if($urlParam castable as xs:int and xs:int($urlParam) = (10,25,50))
+        then config:set-preferences(map { 'limit': xs:int($urlParam) })?limit
+        else config:get-preferences()?limit
 };
 
 (:~
