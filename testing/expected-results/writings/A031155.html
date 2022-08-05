@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -608,7 +635,7 @@
                                         
                                         <span class="tei_msName">Original in zwei Teilen</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_b1caa1b7f3a3c5aeb60819cfc8efda10">
+                                        <div class="collapse apparatus-details" id="source_dcd1ce27445b44c7fcf9c9e0bc62b5bf">
                                             
                                             
                                             <div>
@@ -629,9 +656,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. C. M. v. Weber Varia 9</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_aafcc9a4a7ab20b3ed9554eb6b807ca2"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_01765dfb0d80e54fcae93459ab6e32b2"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_aafcc9a4a7ab20b3ed9554eb6b807ca2">
+                                        <div class="collapse apparatus-details" id="source_01765dfb0d80e54fcae93459ab6e32b2">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Manuskript ohne Titel; undatiert</li>
@@ -656,7 +683,7 @@
                                                             
                                                             <span class="biblio-entry"><span class="author"></span>, <span class="title">ohne Titel</span>, in: <span class="journalTitle">Weber-Studien. Bericht über das Symposium „Carl Maria von Weber und das Virtuosentum seiner Zeit“ (Dresden 2011) sowie Beiträge zu Weber in Stuttgart und Gotha</span>, Bd. 9 (2014), S. 57–60</span>
                                                               
-                                                            <div class="collapse" id="source_2b1d173ad7a8433df90e2bd95394b6b8">
+                                                            <div class="collapse" id="source_3806a2c4c8acfe1d8d6eac3cad2329e7">
                                                                 
                                                             </div>
                                                         </div>
@@ -666,7 +693,7 @@
                                                             
                                                             <span>Faksimile (Fragment 1) in Weberiana, Heft 4 (1995), S. 46f.</span>
                                                               
-                                                            <div class="collapse" id="source_cbcaf076bce1672b8afcab48db57532e">
+                                                            <div class="collapse" id="source_e82d78c369ae20e907e265543cf2f20d">
                                                                 
                                                             </div>
                                                         </div>
@@ -687,9 +714,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (XXII), Nr. 3</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_a79af80425788fb8001fcd18b7f4eaed"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_3c5c81924ec88ac85db7d21bd7806a7c"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a79af80425788fb8001fcd18b7f4eaed">
+                                        <div class="collapse apparatus-details" id="source_3c5c81924ec88ac85db7d21bd7806a7c">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Incipit: "FinanzWesen Winter. wenn die Opern aufgehört haben,"</li>

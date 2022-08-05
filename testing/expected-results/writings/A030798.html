@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -248,6 +247,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -878,7 +905,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Die Muse. Monatsschrift für Freunde der Poesie und der mit ihr verschwisterten Künste</span>, Bd. 2, Heft 5 (Mai 1822) Grundlage der vorliegenden Edition, S. 105–129</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_2c64a8ef6a45e3787920d0e0fe9969b5">
+                                        <div class="collapse apparatus-details" id="source_66924ca249687cb55e180020d7d03b10">
                                             
                                             
                                             <div>
@@ -899,7 +926,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Nr. 46 (22. Februar 1822), S. 184</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_de35ae100105535d39ac44301b2e9973">
+                                        <div class="collapse apparatus-details" id="source_c934d98e13a57359730ef859c093baa3">
                                             
                                             
                                             <div>
@@ -927,7 +954,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Nr. 47 (23. Februar 1822) Fortsetzung, S. 188</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_634753e1f0fc9e146c73f1c38685e761">
+                                        <div class="collapse apparatus-details" id="source_6bd651fa09d37ea1af152f7e5894f8a1">
                                             
                                             
                                             <div>
@@ -955,7 +982,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Wegweiser im Gebiete der Künste und Wissenschaften. (Beilage zur Abend-Zeitung)</span>, Nr. 47 (23. Februar 1822) Beschluss, S. 61–63</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_827f9f415d5695c6dfa86c2677aa7f63">
+                                        <div class="collapse apparatus-details" id="source_031ecb9e1530ac1bcb99e2f72227d0b0">
                                             
                                             
                                             <div>
@@ -2165,7 +2192,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798</span> (<a href="">Version 4.4.0dev vom 12. September 2021</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798</span> (<a href="">Version 4.6.0dev vom 26. Januar 2022</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>

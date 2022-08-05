@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -451,7 +478,7 @@
                                         
                                         <span class="biblio-entry"><span class="author">Aloys Fuchs</span>, <span class="title">Karl Maria von Weber an die, welche sich der Kunst widmen möchten</span>, in: <span class="journalTitle">BamZ</span>, Jg. 3, Nr. 38 (26. Sept. 1826), S. 301–302</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_799bfa536526151318aa07adef5fa5a1">
+                                        <div class="collapse apparatus-details" id="source_75931e30904a18d21fd63a5329c3c1c3">
                                             
                                             
                                             <div>
@@ -472,9 +499,9 @@
                                         
                                         <span class="biblio-entry book"><span class="author">Theodor Hell</span>, <span class="title">Hinterlassene Schriften von Carl Maria von Weber</span>,  Bd. 1, <span class="placeNYear">Dresden &amp; Leipzig 1828</span>, S. XXXII–XXXV</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_8e1fa382af7ef4da92471b47ebb5e55d"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_b1b60921db0bed308db957b2463f6dae"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_8e1fa382af7ef4da92471b47ebb5e55d">
+                                        <div class="collapse apparatus-details" id="source_b1b60921db0bed308db957b2463f6dae">
                                             
                                             
                                             <div>
@@ -487,7 +514,7 @@
                                                             
                                                             <span>Laux, Karl: Kunstansichten. 1977, S. 241–242</span>
                                                               
-                                                            <div class="collapse" id="source_968c3279557a5e1fdfd171a80f7adcd5">
+                                                            <div class="collapse" id="source_6eadbdc5a116bbdfee140019b6725284">
                                                                 
                                                             </div>
                                                         </div>
@@ -497,7 +524,7 @@
                                                             
                                                             <span>Kaiser (Schriften) Nr. 152 und S. 52–54</span>
                                                               
-                                                            <div class="collapse" id="source_3d56a0c5ca9d5126162a18429b3c8ea1">
+                                                            <div class="collapse" id="source_d514e90472d63dfca416f81e969e3505">
                                                                 
                                                             </div>
                                                         </div>

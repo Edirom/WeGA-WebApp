@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -248,6 +247,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -420,9 +447,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Cäcilia, eine Zeitschrift für die musikalische Welt, Intelligenzbatt</span>, Bd. 1 (1824), Nr. 3, S. 57</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_1f32e1e95a45a10ed0f8764d8792565a"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_460a6ed20626f1b09aebada8fb9d02cf"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1f32e1e95a45a10ed0f8764d8792565a">
+                                        <div class="collapse apparatus-details" id="source_460a6ed20626f1b09aebada8fb9d02cf">
                                             
                                             
                                             <div>
@@ -435,7 +462,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="tei_hi_italic">Berliner allgemeine musikalische Zeitung</span>, Jg. 1, Nr. 30 (28. Juli 1824), S. 262</span>
                                                               
-                                                            <div class="collapse" id="source_a434fd0b824f34559fd1083063ee98c6">
+                                                            <div class="collapse" id="source_db815e2446732666f9fd3e390fd3faaf">
                                                                 
                                                             </div>
                                                         </div>
@@ -445,7 +472,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 26, Intelligenz-Blatt Nr. 7 (August 1824), Sp. 29f.</span>
                                                               
-                                                            <div class="collapse" id="source_3154cad311764ed3937c62a79b8e19c7">
+                                                            <div class="collapse" id="source_0b7344bb08a27907415a7b739322a3ba">
                                                                 
                                                             </div>
                                                         </div>
@@ -455,7 +482,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="tei_hi_italic">Wiener allgemeine musikalische Zeitung mit besonderer Rücksicht auf den österreichischen Kaiserstaat</span>, Jg. 8, Nr. 96 (1. Dezember 1824), S. 382f.</span>
                                                               
-                                                            <div class="collapse" id="source_17f2f97d46b6c20be5837df07204e3f6">
+                                                            <div class="collapse" id="source_59ad5e054d52a7152c2a757e3359447e">
                                                                 
                                                             </div>
                                                         </div>
@@ -476,7 +503,7 @@
                                         
                                         <span>Wien (A), Österreichische Nationalbibliothek, Musiksammlung (A-Wn)<br /><i>Signatur</i>: Beilage zu Autogr. 7/120-2</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_b394f2a7580c0ec5d3f5e4d6b89c2c5a">
+                                        <div class="collapse apparatus-details" id="source_ae4dfd68006ed8940ab0ecbb7be5ab00">
                                             
                                             
                                             <div>

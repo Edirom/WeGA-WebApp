@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -543,9 +570,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. C. M. v. Weber 57</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_50a03ce0026c9a8500e059b05fa82a51"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_13ede7ad6cbe927a38e6f83366a8b468"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_50a03ce0026c9a8500e059b05fa82a51">
+                                        <div class="collapse apparatus-details" id="source_13ede7ad6cbe927a38e6f83366a8b468">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S. einschl. Adr.)</li>
@@ -567,7 +594,7 @@
                                                             <span class="tei_bibl">Hans Christoph Worbs, <span class="tei_hi_latintype">Carl Maria von Weber. Briefe</span>, Frankfurt 1982, S. 66–70
                      </span>
                                                               
-                                                            <div class="collapse" id="source_540f61852ce30eda378e7fa7c6d555d3">
+                                                            <div class="collapse" id="source_0df6e4c16019eef134f9453495cd5af6">
                                                                 
                                                             </div>
                                                         </div>
@@ -577,7 +604,7 @@
                                                             
                                                             <span>Bartlitz (Muks), S. 151–157 (Nr. 24)</span>
                                                               
-                                                            <div class="collapse" id="source_40dbc4d596ed20ed228655568f89b71c">
+                                                            <div class="collapse" id="source_5a65bdb41136faf678b4f1635fb14f9a">
                                                                 
                                                             </div>
                                                         </div>
@@ -587,7 +614,7 @@
                                                             
                                                             <span>tV: MMW I, S. 484 (nur Auszug)</span>
                                                               
-                                                            <div class="collapse" id="source_a55ad1ecd35515f518e59fed8c7fdb27">
+                                                            <div class="collapse" id="source_1b8360a627842c8efe7c10cedb1bb0ed">
                                                                 
                                                             </div>
                                                         </div>

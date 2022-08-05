@@ -148,7 +148,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -169,10 +168,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -246,6 +245,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -397,9 +424,9 @@
                                         
                                         <span>(D), Kirchenbuch (Taufregister) der Ev.-Luth. Kirchengemeinde Eutin</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_d91349b91fb1bc2d63d3de9c3118134d"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_3a8eb593f432e613cdd1ab17a2866d3f"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_d91349b91fb1bc2d63d3de9c3118134d">
+                                        <div class="collapse apparatus-details" id="source_3a8eb593f432e613cdd1ab17a2866d3f">
                                             
                                             
                                             <div>
@@ -412,7 +439,7 @@
                                                             
                                                             <span class="tei_bibl">Gerd Bockwoldt, <span class="tei_hi_italic">Von wegen Maria. Was das Taufregister der Eutiner Hofgemeinde verrät</span>, in: <span class="tei_hi_italic">Die Zeit</span>, Nr. 14 (28. März 1986), S. 82</span>
                                                               
-                                                            <div class="collapse" id="source_f43e27584b54ef164383c56ea81f58fc">
+                                                            <div class="collapse" id="source_633f8924b3cc8e9057afc6f371694e6e">
                                                                 
                                                             </div>
                                                         </div>
@@ -422,7 +449,7 @@
                                                             
                                                             <span class="tei_bibl">Ernst Rocholl, <span class="tei_hi_italic">Carl Maria von Weber und seine Mutter Genovefa von Weber geb. Brenner. Lebensstationen. Ausstellungs-Dokumentation Marktoberdorf 1998</span>, Marktoberdorf 1999, S. 25</span>
                                                               
-                                                            <div class="collapse" id="source_be0568f5a4da83fcb21974d458286d8c">
+                                                            <div class="collapse" id="source_bd34a8181f698f3e16d76e908ecf1e3c">
                                                                 
                                                             </div>
                                                         </div>

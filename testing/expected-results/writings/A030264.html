@@ -151,7 +151,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -172,10 +171,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -249,6 +248,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -484,9 +511,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 2, Nr. 142 (16. Juni 1818), Bl. 2v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_2c7a35ce33732f1033f447c8c41115d6"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_f6c0a1c38ecb5838da444e678f8057c6"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_2c7a35ce33732f1033f447c8c41115d6">
+                                        <div class="collapse apparatus-details" id="source_f6c0a1c38ecb5838da444e678f8057c6">
                                             
                                             
                                             <div>
@@ -499,7 +526,7 @@
                                                             
                                                             <span>HellS III, S. 124–128</span>
                                                               
-                                                            <div class="collapse" id="source_f925692321f6479dead86ea015f80295">
+                                                            <div class="collapse" id="source_8f35675ddf5edf33ede15e2e6b2c269f">
                                                                 
                                                             </div>
                                                         </div>
@@ -509,7 +536,7 @@
                                                             
                                                             <span>MMW III, S. 189–192</span>
                                                               
-                                                            <div class="collapse" id="source_320f56eed5be983202ae815b42710f5f">
+                                                            <div class="collapse" id="source_181cdf77aca161a121e5d7229c141250">
                                                                 
                                                             </div>
                                                         </div>
@@ -519,7 +546,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 302–304 (Nr. 131)</span>
                                                               
-                                                            <div class="collapse" id="source_03c93bcaf10f7bc301c0b05c32b4690a">
+                                                            <div class="collapse" id="source_e1a22c39e3a4f09a15ad5603284a9e5b">
                                                                 
                                                             </div>
                                                         </div>
@@ -542,9 +569,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (VIII) Bl. 60r - 60v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_3e6be8e211f8abdd72b063c8f1fd9daf"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_ec7cac7622aaebf9c2026f927070dafe"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_3e6be8e211f8abdd72b063c8f1fd9daf">
+                                        <div class="collapse apparatus-details" id="source_ec7cac7622aaebf9c2026f927070dafe">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript Titel: "Dramatisch musikalische Notizen pp."; Incipit: "Mittwoch d: 17t. Juny 1818 erscheint zum erstenmal auf dem Königl. Hoftheater Mozarts herrliche Schöpfg. Oper. Die Entführung aus dem Serail."; keine Dat. in A</li>

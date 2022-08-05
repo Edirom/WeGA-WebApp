@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -672,9 +699,9 @@ gestehen daß ich <span class="tei_ptr"></span>ein paar ältere Meßen<a class="
                                         
                                         <span>New Haven (US), Yale University, Beinecke Rare Book and Manuscript Library (US-NHub)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_7ed81e62591d9dea08a2fe1b3b03647b"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_426a2eb4d75076d230af7bb7fa61d10e"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_7ed81e62591d9dea08a2fe1b3b03647b">
+                                        <div class="collapse apparatus-details" id="source_426a2eb4d75076d230af7bb7fa61d10e">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S. einschl. Adr.)</li>
@@ -693,7 +720,7 @@ gestehen daß ich <span class="tei_ptr"></span>ein paar ältere Meßen<a class="
                                                             
                                                             <span>Bollert/Lemke 1972, S. 29–32</span>
                                                               
-                                                            <div class="collapse" id="source_69b0227fc943d0de58ed3c6867b97227">
+                                                            <div class="collapse" id="source_cce72df88dceb1eb7b2d8f6e8eb990a1">
                                                                 
                                                             </div>
                                                         </div>
@@ -703,7 +730,7 @@ gestehen daß ich <span class="tei_ptr"></span>ein paar ältere Meßen<a class="
                                                             
                                                             <span>tV: MMW I, S. 267–269</span>
                                                               
-                                                            <div class="collapse" id="source_ef08c2c7153c4d22305f33294594817c">
+                                                            <div class="collapse" id="source_4b406ee89c3fe5d1599b2f6ba68db4ec">
                                                                 
                                                             </div>
                                                         </div>

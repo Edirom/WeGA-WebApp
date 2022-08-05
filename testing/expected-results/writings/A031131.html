@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -455,9 +482,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 5, Nr. 118 (17. Mai 1811), S. 472</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_e612084ee36ce947e58331d0b78b16e1"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_5f5b69084dd40e2a9283f41b947b6e7c"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e612084ee36ce947e58331d0b78b16e1">
+                                        <div class="collapse apparatus-details" id="source_5f5b69084dd40e2a9283f41b947b6e7c">
                                             
                                             
                                             <div>
@@ -470,7 +497,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 155–157 (nach ED, ergänzt durch ersten Absatz aus Entwurf) (Nr. 21)</span>
                                                               
-                                                            <div class="collapse" id="source_e1e9ec1632d79f3195aea450a094e132">
+                                                            <div class="collapse" id="source_d9545ed1e1e6d0c5a884c9621c00e189">
                                                                 
                                                             </div>
                                                         </div>
@@ -493,9 +520,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (IV) Bl. 34a/r – 34b/r oben</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_9b5e4994c59b4d37db451b25fae69701"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_a8a6cc80977f9c272d47b51c96073d09"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_9b5e4994c59b4d37db451b25fae69701">
+                                        <div class="collapse apparatus-details" id="source_a8a6cc80977f9c272d47b51c96073d09">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript "Kunstzustand in Darmstadt". Incipit: Ich möchte hier wohl mit dem <span class="7210111611610997110110">Hettmann</span> in <a class="preview works A020715" href="">Benjowsky</a> sprechen"; keine Datierung </li>
@@ -513,7 +540,7 @@
                                                             
                                                             <span>HellS II, S. 65–68</span>
                                                               
-                                                            <div class="collapse" id="source_4d605bf8d5b7669e1ac857bdc3b868b8">
+                                                            <div class="collapse" id="source_b1cb97f8fd42335169cfbf7d8b719b84">
                                                                 
                                                             </div>
                                                         </div>
@@ -523,7 +550,7 @@
                                                             
                                                             <span>MMW I, S. 243–245</span>
                                                               
-                                                            <div class="collapse" id="source_e9e081a130ad49ca7eb11f7ccc477f9b">
+                                                            <div class="collapse" id="source_0b387dc9747e453f4441c033b3ae50a1">
                                                                 
                                                             </div>
                                                         </div>

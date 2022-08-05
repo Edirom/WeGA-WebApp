@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -480,9 +507,9 @@
                                         
                                         <span>Darmstadt (D), Hessisches Staatsarchiv (D-DSsa)<br /><i>Signatur</i>: D 12, Nr. 49/32, fol. 7</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_baa151f1aff427787d7bb2c7edb6e6ec"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_0186a0bd0acc08c2a9d5887eff5bbaf6"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_baa151f1aff427787d7bb2c7edb6e6ec">
+                                        <div class="collapse apparatus-details" id="source_0186a0bd0acc08c2a9d5887eff5bbaf6">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (1 b. S. o. Adr.)</li>
@@ -502,7 +529,7 @@
                                                             
                                                             <span class="tei_bibl">Esselborn, Karl: <span class="tei_hi_italic">Carl Maria von Weber und Darmstadt</span>, in: <span class="tei_hi_italic">Darmstädter Blätter für Theater und Kunst</span>, 1925/26, Heft 35/36 (24.Mai u. 1.Juni 1926), S. 213–214</span>
                                                               
-                                                            <div class="collapse" id="source_7a7abbfbb0babd199e60732783024c83">
+                                                            <div class="collapse" id="source_d757a93449cad7b068295f81ad52c39e">
                                                                 
                                                             </div>
                                                         </div>
@@ -512,7 +539,7 @@
                                                             
                                                             <span class="tei_bibl">J. Veit, Fr. Ziegler, <span class="tei_hi_italic">Carl Maria von Weber in Darmstadt</span>, Tutzing 1997, S. 116 (mit Zitat S. 117)</span>
                                                               
-                                                            <div class="collapse" id="source_a7a78f89bbb9029ed88c0f74fe3e6089">
+                                                            <div class="collapse" id="source_7aa044f9a11c7887bab3e6db157cc206">
                                                                 
                                                             </div>
                                                         </div>

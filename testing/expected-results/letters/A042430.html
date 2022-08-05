@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -468,9 +495,9 @@
                                         
                                         <span>In Privatbesitz</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_c9ef5f644011eba5845c98ebb9d3fbaa"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_fda6f9df6bee34d80bc2333158847c69"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_c9ef5f644011eba5845c98ebb9d3fbaa">
+                                        <div class="collapse apparatus-details" id="source_fda6f9df6bee34d80bc2333158847c69">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Dbl. (2 b. S.)</li>
@@ -492,7 +519,7 @@
                                                             
                                                             <span class="tei_bibl">Friedrich Wilhelm Gubitz, <span class="tei_hi_italic">Carl Maria von Weber</span>, in: <span class="tei_hi_italic">Jahrbuch des Nützlichen und Unterhaltenden</span>, Jg. 28, Berlin 1862, S. 35–45 (Briefzitat S. 43), Anhang zu: <span class="tei_hi_italic">Deutscher Volks-Kalender</span>, hg. von Friedrich Wilhelm Gubitz, Jg. 28 (1862)</span>
                                                               
-                                                            <div class="collapse" id="source_4e02548c0bbc67f59e27ba430dcc1449">
+                                                            <div class="collapse" id="source_997f0054ebcce7d004dd24e714ad17e8">
                                                                 
                                                             </div>
                                                         </div>
@@ -502,7 +529,7 @@
                                                             
                                                             <span class="tei_bibl">Friedrich Wilhelm Gubitz, <span class="preview biblio A112249" data-ref=""><span class="tei_hi_italic">Erlebnisse. Nach Erinnerungen und Aufzeichnungen</span></span>, Bd. 2, Berlin 1868, S. 201–203</span>
                                                               
-                                                            <div class="collapse" id="source_db544233084355a8e3f80141ec947daf">
+                                                            <div class="collapse" id="source_a517270deb53606f1851a435426ca296">
                                                                 
                                                             </div>
                                                         </div>
@@ -512,7 +539,7 @@
                                                             
                                                             <span id="printPaul" class="tei_bibl">Friedrich, Paul (Hg.): <span class="tei_hi_italic">Bilder aus Romantik und Biedermeier. Erlebnisse von F.W. Gubitz</span>, Berlin 1922, S. 329f.</span>
                                                               
-                                                            <div class="collapse" id="source_84c8a71831f31dcc7929d93463be7222">
+                                                            <div class="collapse" id="source_d697abfb349bca3e6d632c8461ae68f0">
                                                                 
                                                             </div>
                                                         </div>

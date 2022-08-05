@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -250,6 +249,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -524,9 +551,9 @@
                                         
                                         <span>Leipzig (D), Leipziger Stadtbibliothek – Musikbibliothek (D-LEm)<br /><i>Signatur</i>: PB 37 (Nr. 48)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_a17bcca7512470f22b5a7641fe36ef21"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_11b6436bf703c27b0a74d26934fc7d27"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a17bcca7512470f22b5a7641fe36ef21">
+                                        <div class="collapse apparatus-details" id="source_11b6436bf703c27b0a74d26934fc7d27">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S.); Beilage zum <a class="preview letters A042283" href="">Brief von Weber an Lichtenstein vom 12. April 1824</a>
@@ -546,7 +573,7 @@
                                                             
                                                             <span>MMW II, S. 556–558</span>
                                                               
-                                                            <div class="collapse" id="source_304b510a7dc2ea907a2d97fe81c68efc">
+                                                            <div class="collapse" id="source_fc1e41da9cd16546154e6dd5db922b85">
                                                                 
                                                             </div>
                                                         </div>
@@ -556,7 +583,7 @@
                                                             
                                                             <span>Rudorff: Westermanns illustrierte deutsche Monats-Hefte, 44. Jg. (1899), 87. Bd., S. 368–369</span>
                                                               
-                                                            <div class="collapse" id="source_3ebc5d27366affdb18b5915a6baf1c1b">
+                                                            <div class="collapse" id="source_18d4d9851722d6fc15b8cf367300ba48">
                                                                 
                                                             </div>
                                                         </div>
@@ -566,7 +593,7 @@
                                                             
                                                             <span>Rudorff 1900, S. 137–141</span>
                                                               
-                                                            <div class="collapse" id="source_f642d12f097141a20ba78baf76acad7f">
+                                                            <div class="collapse" id="source_cb410f3968a12e4e5e2a40acff73c973">
                                                                 
                                                             </div>
                                                         </div>
@@ -587,9 +614,9 @@
                                         
                                         <span>Dresden (D), Sächsische Landesbibliothek - Staats- und Universitätsbibliothek (D-Dl)<br /><i>Signatur</i>: Mscr.Dresd. App. 514 A, 2344</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_7789e780660de93c845cd75ba57d70e9"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_5e09a8bfe7dfd1f066359b97d0f2603f"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_7789e780660de93c845cd75ba57d70e9">
+                                        <div class="collapse apparatus-details" id="source_5e09a8bfe7dfd1f066359b97d0f2603f">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>von DBl. S. 1v-2r oben; Bestandteil des <a class="preview letters A042284" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042284.html">Briefes von Weber an Brühl vom 12. April 1824</a>

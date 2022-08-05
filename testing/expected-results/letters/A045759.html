@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -248,6 +247,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -673,9 +700,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. V (Mappe XVIII), Abt. 4 B, Nr. 14 A u. 14 B</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_a5a4d2cb54da86696d68463773002ed9"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_4fd5d8cd1124ef2dac603c4a03b6f8e2"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a5a4d2cb54da86696d68463773002ed9">
+                                        <div class="collapse apparatus-details" id="source_4fd5d8cd1124ef2dac603c4a03b6f8e2">
                                             
                                             
                                             <div>
@@ -689,7 +716,7 @@
                                                             <span class="tei_bibl">Teilwiedergabe in: Frank Ziegler, <span class="tei_hi_italic">Carl Maria von Webers Familie und ihr „Adel“ – zur Entstehung einer Legende</span>, in: <span class="tei_hi_italic">Jahrbuch für Heimatkunde Eutin</span>, Jg. 46 (2012), Eutin 2013, S. 63–65
                            </span>
                                                               
-                                                            <div class="collapse" id="source_44f6a439a1cdf4e9d76723585926585e">
+                                                            <div class="collapse" id="source_214b8938c932c321ae634da0ea50132d">
                                                                 
                                                             </div>
                                                         </div>
@@ -712,7 +739,7 @@
                                         
                                         <span>Eutin (D), Landesbibliothek (D-EUl)<br /><i>Signatur</i>: Hellwags Weber-Mappen, Reliquien IX(C)8</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_a45fb3f8c8bd9baf737bd735625a46d5">
+                                        <div class="collapse apparatus-details" id="source_f64045e174cadc130bf59208c5821b70">
                                             
                                             
                                             <div>

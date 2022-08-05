@@ -149,7 +149,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -170,10 +169,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -247,6 +246,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -417,9 +444,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6, (VI) Bl. 47b/r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_de63f107d94c463920f903d1030a2c4f"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_9c229f6650437a6b46b174999275659a"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_de63f107d94c463920f903d1030a2c4f">
+                                        <div class="collapse apparatus-details" id="source_9c229f6650437a6b46b174999275659a">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>auf Bl. 2r  von DBl., Format 34,8x20,8 cm, WZ: Lilienblüte, Gegenmarke durch Beschnitt nicht mehr vollständig: B?, Kettlinien ca. 2,5 cm; im Entwurf Anfang und Ende des Textes mit Sternchen in Rötel markiert</li>
@@ -443,9 +470,9 @@
                                                             
                                                             <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Kopie: Weberiana, Cl.II B, 4, Nr. 3, S. 941–942 (unter 20. Dez.)</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_f7be3c228ed6b30908982dcc5e68f6a0"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_c8dd6ec771047bcc3c83ee3da5ab6ec9"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_f7be3c228ed6b30908982dcc5e68f6a0">
+                                                            <div class="collapse" id="source_c8dd6ec771047bcc3c83ee3da5ab6ec9">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>Kopie von Jähns mit eigenhändigem Vermerk: Nach einer für <span class="tei_hi_latintype">Max von Weber</span> angefertigten Abschrift copirt. F.W.J.</li>
@@ -458,7 +485,7 @@
                                                             
                                                             <span>MMW III 1866, S. 120–121</span>
                                                               
-                                                            <div class="collapse" id="source_a9e200e026e5e450e6e2346e8c14120f">
+                                                            <div class="collapse" id="source_1e06789bd27d48f9261dfe89e0b9f99b">
                                                                 
                                                             </div>
                                                         </div>
@@ -468,7 +495,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 364f. (Nr. 105)</span>
                                                               
-                                                            <div class="collapse" id="source_8e74b366a6bed8b67edd217c71c0db02">
+                                                            <div class="collapse" id="source_440bad33cb549fd19732307898548d4d">
                                                                 
                                                             </div>
                                                         </div>

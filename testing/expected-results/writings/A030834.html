@@ -150,7 +150,6 @@
                                     
                                     
                                     
-                                
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
                                     </li>
@@ -171,10 +170,10 @@
                                     </li>
                                 <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
-                                  </li>
-                                     <li>
+                                    </li>
+                                <li>
                                         <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
-                                     </li>
+                                    </li>
                             </ul>
                             </li>
                             <li id="help-nav" class="nav-item dropdown">
@@ -248,6 +247,34 @@
         <div class="row">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter">
+                    <div>
+    <h2>
+        <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
+    </h2>
+    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+        <p>Zeige Markierungen im Text</p>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
+            <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡')" checked="checked" />
+            <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="supplied-marker" data-toggle-class=".tei_supplied" checked="checked" />
+            <label class="custom-control-label" for="supplied-marker"><span>Herausgeberergänzungen</span> [ ]</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="note-marker" data-toggle-class=".noteMarker:contains('*')" checked="checked" />
+            <label class="custom-control-label" for="note-marker"><span>Einzelstellenerläuterung</span> *</label>
+        </div>
+        <div class="custom-control custom-switch">
+            <input class="custom-control-input" type="checkbox" id="thematicCommentaries-marker" data-toggle-class=".noteMarker:contains('T')" checked="checked" />
+            <label class="custom-control-label" for="thematicCommentaries-marker"><span>Themenkommentare</span> T</label>
+        </div>
+    </div>
+</div>
                     
                     <div>
                         <h2>
@@ -406,9 +433,9 @@
                                         
                                         <span class="biblio-entry book"><span class="title">Erstdruck „Dem Großherzoglich Hessischen Geistlichen Geheimen Rathe, Großkreuz des Ludewigs Verdienst-Ordens etc. Abbé Vogler Ihrem theuersten Lehrer zu Seinem Geburtsfeste den 15. Juny 1810“</span>, <span class="placeNYear">15. Juni 1810</span></span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_0e22e5730d51a9cb19c04b3f19739049"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" href="#source_60a3a98894efd3225056c27f4f08abf8"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_0e22e5730d51a9cb19c04b3f19739049">
+                                        <div class="collapse apparatus-details" id="source_60a3a98894efd3225056c27f4f08abf8">
                                             
                                             
                                             <div>
@@ -421,9 +448,9 @@
                                                             
                                                             <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. V [Mappe I A], Abt. 3, Nr. 3b</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_a6feb24b385cc3c6244fb5dcd527e6cb"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_9467ce5285a38ee4c2a6a6924e484e34"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_a6feb24b385cc3c6244fb5dcd527e6cb">
+                                                            <div class="collapse" id="source_9467ce5285a38ee4c2a6a6924e484e34">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>Erstdruck des Kantaten-Textes</li>
@@ -437,7 +464,7 @@
                                                             
                                                             <span>Hell S I (Vorwort), S. LXX-LXXI</span>
                                                               
-                                                            <div class="collapse" id="source_79f4be71e256b316396d90ebb89d462a">
+                                                            <div class="collapse" id="source_c97142b7f6f1c089466ef2a08fc10bfe">
                                                                 
                                                             </div>
                                                         </div>
@@ -447,7 +474,7 @@
                                                             
                                                             <span>MMW I, S. 206–207</span>
                                                               
-                                                            <div class="collapse" id="source_60616ccabb18a90d60d68d82ee669eb3">
+                                                            <div class="collapse" id="source_ee55307f3351ad59b3cff31ad84eec78">
                                                                 
                                                             </div>
                                                         </div>
@@ -457,7 +484,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 516–517 (Nr. 10)</span>
                                                               
-                                                            <div class="collapse" id="source_32eff09846b36ad41c29a6db35260982">
+                                                            <div class="collapse" id="source_cb6152a7b78bb20407cf694e079ebc06">
                                                                 
                                                             </div>
                                                         </div>
@@ -467,9 +494,9 @@
                                                             
                                                             <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. V [Mappe I A], Abt. 3, Nr. 3a</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_4dbf637bc9cc4cd496104e6b41677335"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" href="#source_8b19d025fa30cf7bb77b6e49876ee3eb"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_4dbf637bc9cc4cd496104e6b41677335">
+                                                            <div class="collapse" id="source_8b19d025fa30cf7bb77b6e49876ee3eb">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>Partiturkopie der Kantate mit autographem Titelblatt und weiteren Eintragungen von Giacomo Meyerbeer</li>
