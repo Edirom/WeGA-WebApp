@@ -1945,10 +1945,15 @@ declare function app:inject-api-base($node as node(), $model as map(*))  {
         app-shared:set-attr($node, map:merge(($model, map {'api-base' : $api-base})), 'data-api-base', 'api-base')
 };
 
+(:~
+ : Set "checked" attribute for user preferences switches
+ : depending on the `$model?settings` property which is injected 
+ : in view-html.xql.
+ :)
 declare function app:init-marker-switch($node as node(), $model as map(*)) as element(xhtml:input) {
     element {node-name($node)} {
         $node/@* except $node/@checked,
-        if($model?settings($node/@id)) 
+        if(wega-util-shared:semantic-boolean($model?settings($node/@id))) 
         then attribute checked {'checked'} 
         else (),
         $node/*
