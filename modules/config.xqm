@@ -501,7 +501,9 @@ declare function config:entries-per-page() as xs:int {
 };
 
 (:~
- : Set user preferences and save to the current session
+ : Set user preferences and save to the current session.
+ : NB, no checks (for valid keys/values) are implemented here 
+ : but should be present in the calling function
  :
  : @param $settings the new settings as map
  : @return a map object like `map {
@@ -539,16 +541,13 @@ declare function config:set-preferences($settings as map(*)) as map(*) {
         }`
  :)
 declare function config:get-preferences() as map(*) {
+    let $openapiPrefs := json-doc($config:openapi-config-path)?components?schemas?Preferences?properties
     let $defaultSettings := 
-        map {
-            'line-wrap': true(),
-            'limit': config:get-option('entriesPerPage'),
-            'rdg-marker': false(),
-            'textConst-marker': true(),
-            'supplied-marker': true(),
-            'note-marker': true(),
-            'thematicCommentaries-marker': true()
-        }
+        map:merge(
+            for $pref in map:keys($openapiPrefs)
+            return
+                map:entry($pref, $openapiPrefs?($pref)?default)
+        )
     let $sessionSettings := if(session:exists()) then session:get-attribute('preferences') else ()
     return
         if(exists($sessionSettings))
