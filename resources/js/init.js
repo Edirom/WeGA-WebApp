@@ -664,32 +664,6 @@ $(window).on("load", function () {
 
 
 /* 
- * Toggle line wrap for XML preview 
- */
-function init_line_wrap_toggle() {
-    var pre = $('.line-wrap-toggle ~ pre'),
-        input = $('.line-wrap-toggle input'),
-        url = $('.allFilter .nav-tabs .loaded').attr('data-tab-url');
-    
-    // set toggle on load 
-    if(pre.hasClass('line-wrap')) {
-        input.attr('checked', 'checked')
-    }
-    else {
-        input.removeAttr('checked');
-    }
-    
-    // set listener for toggle
-    input.change(
-        function(a,b) {
-            pre.toggleClass('line-wrap');
-            // update session
-            $.get(url + '?line-wrap=' + pre.hasClass('line-wrap'));
-        }
-    )
-};
-
-/* 
  * Helper function
  * Get active facets to append as URL parameters 
  */
