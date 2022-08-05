@@ -469,10 +469,12 @@
          <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
          <xsl:text> </xsl:text>
          <xsl:if test="@unit and @quantity">
-            <xsl:text>(ca. </xsl:text>
+            <xsl:text>(</xsl:text>
+            <xsl:value-of select="wega:getLanguageString('approx', $lang)"/>
+            <xsl:text> </xsl:text>
             <xsl:value-of select="@quantity"/>
             <xsl:text> </xsl:text>
-            <xsl:value-of select="@unit"/>
+            <xsl:value-of select="wega:getLanguageString(@unit, $lang)"/>
             <xsl:text>)</xsl:text>
          </xsl:if>
       </xsl:element>
