@@ -220,7 +220,7 @@ $.fn.initDatepicker = function () {
                 jump2diary(dateText)
             },
             beforeShowDay: function(date) {
-                return [ checkValidDiaryDate(date)  ]
+                return [ checkValidDiaryDate(date), ''  ]
             }
         })
     })
