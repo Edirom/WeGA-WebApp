@@ -782,7 +782,7 @@ $('.resp-tab-item a').toggleTab();
 $('.greedy').greedyNav();
 
 /* Watch filters and highlight spans in text */
-$('.allFilter input').click( 
+$('.allFilter .filtersection input').click( 
   function() {
     var key = $(this).attr('value');
     $('.' + key).toggleClass('hi-' + key);
@@ -1159,3 +1159,66 @@ $('#datatables')
             { "data": "idno", "name": "idno", "orderable": true }
         ]
     } );
+
+/* 
+ * Initialise line wrap toggle for XML previews
+ */
+function init_line_wrap_toggle() {
+    let pre = $('.line-wrap-toggle ~ pre'),
+        input = $('.line-wrap-toggle input'),
+        endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
+
+    // set listener for toggle
+    input.change(
+        function(a,b) {
+            pre.toggleClass('line-wrap');
+            // update session
+            data = { [this.getAttribute('id')]: this.checked };
+            fetch(endpoint_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data),
+            });
+        }
+    )
+    prettyPrint();
+}
+
+/*
+ * Initialise user settings functionality:
+ * custom switches and toggle markers within the text  
+ */
+$.fn.init_settings = function () {
+    let endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences',
+        marker,
+        data;
+        
+    this.each(function() {
+        // initially hide markers for unchecked inputs
+        if(this.checked === false) {
+            marker = this.getAttribute('data-toggle-class');
+            $(marker).hide();
+        }
+        // add a listener to toggle markers
+        $(this).change(function(){
+            marker = this.getAttribute('data-toggle-class');
+            // toggle markers within the text
+            $(marker).toggle();
+            // update preferences by POSTing changes to the API endpoint 
+            data = { [this.getAttribute('id')]: this.checked };
+            fetch(endpoint_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(data)
+            });
+        })
+    })
+    return this;
+};
+$('#settings input').init_settings();
