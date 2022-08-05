@@ -474,7 +474,10 @@
             <xsl:text> </xsl:text>
             <xsl:value-of select="@quantity"/>
             <xsl:text> </xsl:text>
-            <xsl:value-of select="wega:getLanguageString(@unit, $lang)"/>
+            <xsl:value-of select="
+               if(@quantity = 1) then wega:getLanguageString(@unit || 'Sg', $lang)
+               else wega:getLanguageString(@unit, $lang)
+               "/>
             <xsl:text>)</xsl:text>
          </xsl:if>
       </xsl:element>
