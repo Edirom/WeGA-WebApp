@@ -172,7 +172,7 @@ declare function api:application-newID($model as map(*)) as map(*) {
 declare function api:application-preferences($model as map(*)*) as map(*) {
     if(request:get-method() = 'POST')
     then (
-        let $data := request:get-data() => api:validate-preferences()
+        let $data := request:get-data() => api:validate-preferences($model)
         return 
             map { 'results': config:set-preferences($data) }
     )
@@ -1085,10 +1085,29 @@ declare function api:validate-orderdir($model as map(*)) as map(*)? {
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "orderdir". It must be either "desc" or "asc".' )
 };
 
-declare function api:validate-preferences($data as item()) as map(*)? {
+(:~
+ : Check POST data for preferences.
+ : Wrong values will be reported and cause the function to fail 
+ : with an $api:INVALID_PARAMETER error 
+ : while unknown keys will be discarded silently
+ :)
+declare function api:validate-preferences($data as item(), $model as map(*)) as map(*)? {
     try {
-        util:base64-decode($data) => fn:parse-json()
-    } catch * {map {}}
+        let $prefs := $model('openapi:config')?components?schemas?Preferences?properties
+        let $request-obj := util:base64-decode($data) => fn:parse-json()
+        return
+            map:merge(
+                for $pref in map:keys($request-obj)[.=map:keys($prefs)] 
+                return
+                    if($pref = 'limit')
+                    then if(number($request-obj?($pref)) = $prefs?limit?enum) 
+                        then map:entry($pref, $request-obj?($pref) => xs:int())
+                        else error($api:INVALID_PARAMETER, 'limit parameter must be one of ' || string-join($prefs?limit?enum, ', '))
+                    else map:entry($pref, $request-obj?($pref) => wega-util-shared:semantic-boolean())
+            )
+    } catch * {
+        error($api:INVALID_PARAMETER, string-join(($err:code, $err:description)))
+    }
 };
 
 (:~
