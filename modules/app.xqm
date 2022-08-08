@@ -838,9 +838,9 @@ declare
                 $model('doc')//tei:orgName[@type = 'alt'] ! string-join(str:txtFromTEI(., $lang), '')
                 ),
             'marriednames' : $model('doc')//tei:persName[@subtype = 'married'] ! string-join(str:txtFromTEI(., $lang), ''),
-            'birth' : exists($model('doc')//tei:birth[not(tei:date[@type])]),
+            'birth' : exists($model('doc')//tei:birth[not(tei:date) or tei:date[not(@type)]]),
             'baptism' : exists($model('doc')//tei:birth/tei:date[@type='baptism']),
-            'death' : exists($model('doc')//tei:death[not(tei:date[@type])]),
+            'death' : exists($model('doc')//tei:death[not(tei:date) or tei:date[not(@type)]]),
             'funeral' : exists($model('doc')//tei:death/tei:date[@type = 'funeral']),
             'occupations' : $model('doc')//tei:occupation | $model('doc')//tei:label[.='Art der Institution']/following-sibling::tei:desc,
             'residences' : $model('doc')//tei:residence | $model('doc')//tei:label[.='Ort']/following-sibling::tei:desc/tei:*,
