@@ -34,12 +34,18 @@ declare variable $search:ERROR := QName("http://xquery.weber-gesamtausgabe.de/mo
 declare variable $search:wega-docTypes := for $func in wdt:members('search') return $func(())('name');
 
 (: params for filtering the result set :)
-declare variable $search:valid-params := ('biblioType', 'editors', 'authors', 'works', 'persons', 'orgs',
-    'occupations', 'docSource', 'composers', 'librettists', 'lyricists', 'dedicatees', 'journals', 
-    'docStatus', 'addressee', 'sender', 'textType', 'residences', 'places', 'placeOfAddressee', 'placeOfSender',
-    'fromDate', 'toDate', 'undated', 'hideRevealed', 'docTypeSubClass', 'sex', 'surnames', 'forenames', 
-    'asksam-cat', 'vorlageform', 'einrichtungsform', 'placenames', 'repository', 'facsimile', 'series',
-    'keywords', 'docLang', 'city', 'siglum', 'orderby', 'orderdir', 'workTitle');
+declare variable $search:valid-params := (
+    json-doc($config:openapi-config-path)?components?schemas?Facets?enum,
+    'city',
+    'fromDate',
+    'hideRevealed',
+    'siglum',
+    'toDate',
+    'undated',
+    'orderby',
+    'orderdir',
+    'orgs'
+);
 
 (:~
  : Main function called from the templating module
