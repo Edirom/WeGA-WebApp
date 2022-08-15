@@ -32,6 +32,8 @@ declare variable $config:app-root as xs:string :=
         if (starts-with($rawPath, "xmldb:exist://")) then
             if (starts-with($rawPath, "xmldb:exist://embedded-eXist-server")) then
                 substring($rawPath, 36)
+            else if (contains($rawPath, "/xmlrpc/")) then
+                substring-after($rawPath, "/xmlrpc")
             else
                 substring($rawPath, 15)
         else
