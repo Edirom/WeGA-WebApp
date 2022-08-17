@@ -8,12 +8,12 @@
 [![DOI](https://zenodo.org/badge/7872550.svg)](https://zenodo.org/badge/latestdoi/7872550)
 [![Build Status](https://github.com/Edirom/WeGA-WebApp/actions/workflows/docker-testing.yml/badge.svg)](https://github.com/Edirom/WeGA-WebApp/actions/workflows/docker-testing.yml)
 
-This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [weber-gesamtausgabe.de](https://weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `example-data` and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
+This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [weber-gesamtausgabe.de](https://weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `data-samples` from the [release section](https://github.com/Edirom/WeGA-WebApp/releases) and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
 
 
 ## Prerequisites
 
-A recent [eXist-db 5](http://exist-db.org/) 
+A running [eXist-db](http://exist-db.org/), v5.2.0 or newer 
 
 
 ## Quick start guide
@@ -22,9 +22,9 @@ If you have a running eXist database you can simply install the `WeGA-data-sampl
 
 
 ### Dependencies on other eXist apps/libs
-* `functx` [http://www.functx.com](http://www.xqueryfunctions.com), installable via dashboard
-* [eXist HTML Templating Library](https://github.com/eXist-db/templating), installable via dashboard
-* `WeGA-WebApp-lib`, get it from [https://github.com/Edirom/WeGA-WebApp-lib](https://github.com/Edirom/WeGA-WebApp-lib)
+* `functx` [http://www.functx.com](http://www.xqueryfunctions.com), available and installable via the eXist dashboard
+* `eXist HTML Templating Library` [https://github.com/eXist-db/templating](https://github.com/eXist-db/templating), available and installable via the eXist dashboard
+* `WeGA-WebApp-lib`, available from [https://github.com/Edirom/WeGA-WebApp-lib](https://github.com/Edirom/WeGA-WebApp-lib) and installable via the eXist dashboard
 
 
 ## Branches
