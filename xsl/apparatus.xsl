@@ -4,7 +4,7 @@
    xmlns:xs="http://www.w3.org/2001/XMLSchema"
    xmlns:functx="http://www.functx.com"
    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-   exclude-result-prefixes="xs" version="2.0">
+   exclude-result-prefixes="xs" version="3.1">
 
    <xsl:variable name="doc" select="wega:doc($docID)"/>
    <xsl:variable name="textConstitutionNodes" as="node()*" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
@@ -458,18 +458,15 @@
          <xsl:attribute name="class">apparatusEntry col-11</xsl:attribute>
          <xsl:attribute name="id" select="$id"/>
          <xsl:attribute name="data-title">
-            <xsl:value-of select="wega:getLanguageString('gapDefault',$lang)"/>
-            <xsl:if test="@reason='outofScope'">
-               <xsl:text>: </xsl:text>
-               <xsl:value-of select="wega:getLanguageString('outofScope',$lang)"/>
-            </xsl:if>
+            <xsl:variable name="data-title" select="(ancestor::tei:damage/@agent, ancestor::tei:damage ! 'damageDefault', 'gapDefault')[1]" as="xs:string"/>
+            <xsl:value-of select="wega:getLanguageString($data-title, $lang)"/>
          </xsl:attribute>
          <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
          <xsl:attribute name="data-href"><xsl:value-of select="concat('#',$id)"/></xsl:attribute>
-         <xsl:value-of select="wega:getLanguageString('gapDefault', $lang)"/>
-         <xsl:text> </xsl:text>
+         <xsl:variable name="text-desc" select="(@reason, 'gapDefault')[1]" as="xs:string"/>
+         <xsl:value-of select="wega:getLanguageString($text-desc, $lang)"/>
          <xsl:if test="@unit and @quantity">
-            <xsl:text>(</xsl:text>
+            <xsl:text> (</xsl:text>
             <xsl:value-of select="wega:getLanguageString('approx', $lang)"/>
             <xsl:text> </xsl:text>
             <xsl:value-of select="@quantity"/>
