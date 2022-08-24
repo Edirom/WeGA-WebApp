@@ -68,11 +68,10 @@ let $lookup := function($functionName as xs:string, $arity as xs:int) {
  : Run it through the templating system and return the result.
 ~:)
 let $content := request:get-data()
-let $modified := request:get-attribute('modified') = 'true'
+let $modified := $model?modified eq 'true'
 return 
-    if($modified) then (:wega-util:stopwatch(templates:apply#4, ($content, $lookup, $model, $config), ()):)
-        templates:apply($content, $lookup, $model, $config)
-    else ( 
-        (:util:log-system-out('cached ' || $model('docID')),:) 
-        response:set-status-code( 304 )
-    )
+    if($modified) then 
+        if($model?method eq 'HEAD') then <html/>
+        (:wega-util:stopwatch(templates:apply#4, ($content, $lookup, $model, $config), ()):)
+        else templates:apply($content, $lookup, $model, $config)
+    else response:set-status-code( 304 )

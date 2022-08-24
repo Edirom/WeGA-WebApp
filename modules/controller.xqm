@@ -86,6 +86,7 @@ declare variable $controller:projectNav :=
 declare function controller:forward-html($html-template as xs:string, $exist-vars as map(*)*) as element(exist:dispatch) {
     let $etag := controller:etag($exist-vars('exist:path'))
     let $modified := not(functx:substring-before-if-contains(request:get-header('If-None-Match'), '--') = $etag)
+    let $method := request:get-method()
     return (
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
             <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), $html-template))}"/>
@@ -98,6 +99,8 @@ declare function controller:forward-html($html-template as xs:string, $exist-var
                 	}
                     <!-- Need to provoke 304 error in view-html.xql if unmodified -->
                     <set-attribute name="modified" value="{$modified cast as xs:string}"/>
+                    <!-- Forward original request method to view-html.xql -->
+                    <set-attribute name="method" value="{$method}"/>
                 </forward>
                 {if($modified) then 
                 <forward url="{str:join-path-elements((map:get($exist-vars, 'exist:controller'), 'modules/view-tidy.xql'))}">
