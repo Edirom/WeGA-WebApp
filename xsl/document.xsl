@@ -2,14 +2,19 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-    xmlns:tei="http://www.tei-c.org/ns/1.0" xmlns:functx="http://www.functx.com"
-    xmlns:rng="http://relaxng.org/ns/structure/1.0" xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:functx="http://www.functx.com"
+    xmlns:rng="http://relaxng.org/ns/structure/1.0" 
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
     version="2.0">
+    
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
-
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space
-        elements="tei:q tei:quote tei:item tei:cell tei:p tei:dateline tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date tei:orgName tei:note tei:lem tei:rdg tei:add tei:provenance tei:acquisition"/>
+    <xsl:preserve-space elements="tei:q tei:quote tei:item tei:cell tei:p tei:dateline 
+        tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName 
+        tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date 
+        tei:orgName tei:note tei:lem tei:rdg tei:add tei:provenance 
+        tei:acquisition tei:damage"/>
 
     <xsl:param name="headerMode" select="false()"/>
 
