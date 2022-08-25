@@ -448,36 +448,27 @@
       </xsl:element>
    </xsl:template>
 
-   <!-- TODO: Beschreibung von gap noch etwas dürftig bzw. gedoppelt in Titel und Beschreibung -->
    <xsl:template match="tei:gap" mode="apparatus">
-      <xsl:variable name="id" select="wega:createID(.)"/>
-      <xsl:variable name="counter">
-         <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst'] | tei:supplied[parent::tei:damage]" level="any"/>
-      </xsl:variable>
-      <xsl:element name="div">
-         <xsl:attribute name="class">apparatusEntry col-11</xsl:attribute>
-         <xsl:attribute name="id" select="$id"/>
-         <xsl:attribute name="data-title">
-            <xsl:variable name="data-title" select="(ancestor::tei:damage/@agent, ancestor::tei:damage ! 'damageDefault', 'gapDefault')[1]" as="xs:string"/>
-            <xsl:value-of select="wega:getLanguageString($data-title, $lang)"/>
-         </xsl:attribute>
-         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
-         <xsl:attribute name="data-href"><xsl:value-of select="concat('#',$id)"/></xsl:attribute>
-         <xsl:variable name="text-desc" select="(@reason, 'gapDefault')[1]" as="xs:string"/>
-         <xsl:value-of select="wega:getLanguageString($text-desc, $lang)"/>
-         <xsl:if test="@unit and @quantity">
-            <xsl:text> (</xsl:text>
-            <xsl:value-of select="wega:getLanguageString('approx', $lang)"/>
-            <xsl:text> </xsl:text>
-            <xsl:value-of select="@quantity"/>
-            <xsl:text> </xsl:text>
-            <xsl:value-of select="
-               if(@quantity = 1) then wega:getLanguageString(@unit || 'Sg', $lang)
-               else wega:getLanguageString(@unit, $lang)
-               "/>
-            <xsl:text>)</xsl:text>
-         </xsl:if>
-      </xsl:element>
+      <xsl:variable name="data-title" select="(ancestor::tei:damage/@agent, ancestor::tei:damage ! 'damageDefault', 'gapDefault')[1]" as="xs:string"/>
+      <xsl:variable name="text-desc" select="(@reason, 'gapDefault')[1]" as="xs:string"/>
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString($data-title, $lang)"/>
+         <xsl:with-param name="explanation">
+            <xsl:value-of select="wega:getLanguageString($text-desc, $lang)"/>
+            <xsl:if test="@unit and @quantity">
+               <xsl:text> (</xsl:text>
+               <xsl:value-of select="wega:getLanguageString('approx', $lang)"/>
+               <xsl:text> </xsl:text>
+               <xsl:value-of select="@quantity"/>
+               <xsl:text> </xsl:text>
+               <xsl:value-of select="
+                  if(@quantity = 1) then wega:getLanguageString(@unit || 'Sg', $lang)
+                  else wega:getLanguageString(@unit, $lang)
+                  "/>
+               <xsl:text>)</xsl:text>
+            </xsl:if>
+         </xsl:with-param>
+      </xsl:call-template>
    </xsl:template>
 
    <xsl:template match="tei:choice">
