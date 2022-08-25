@@ -1,3 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
    xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
    xmlns:tei="http://www.tei-c.org/ns/1.0"
@@ -438,7 +439,18 @@
       </xsl:call-template>
    </xsl:template>
 
-   <!-- TODO: gap in damage, del, add und unclear?!? -->
+   <!--
+      whitespace is preserved for tei:damage via xsl:preserve-space;
+      we'll suppress it though when there's only one child element 
+   -->
+   <xsl:template match="tei:damage[count(*) eq 1]">
+      <xsl:element name="span">
+         <xsl:apply-templates select="@xml:id"/>
+         <xsl:attribute name="class">tei_damage</xsl:attribute>
+         <xsl:apply-templates select="*"/>
+      </xsl:element>
+   </xsl:template>
+
    <xsl:template match="tei:gap">
       <xsl:element name="span">
          <xsl:text>[…]</xsl:text>
