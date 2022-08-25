@@ -7,7 +7,7 @@
    exclude-result-prefixes="xs" version="3.1">
 
    <xsl:variable name="doc" select="wega:doc($docID)"/>
-   <xsl:variable name="textConstitutionNodes" as="node()*" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst']"/>
+   <xsl:variable name="textConstitutionNodes" as="node()*" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst'] | .//tei:supplied[parent::tei:damage]"/>
    <xsl:variable name="commentaryNodes" as="node()*" select=".//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
    <xsl:variable name="rdgNodes" as="node()*" select=".//tei:app"/>
 
@@ -452,7 +452,7 @@
    <xsl:template match="tei:gap" mode="apparatus">
       <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:variable name="counter">
-         <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/>
+         <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst'] | tei:supplied[parent::tei:damage]" level="any"/>
       </xsl:variable>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry col-11</xsl:attribute>
@@ -588,7 +588,7 @@
    <xsl:template match="tei:supplied">
       <xsl:element name="span">
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <xsl:attribute name="id" select="wega:createID(.)"/>
+<!--         <xsl:attribute name="id" select="wega:createID(.)"/>-->
          <xsl:element name="span">
             <xsl:attribute name="class">brackets_supplied</xsl:attribute>
             <xsl:text>[</xsl:text>
@@ -598,9 +598,25 @@
             <xsl:attribute name="class">brackets_supplied</xsl:attribute>
             <xsl:text>]</xsl:text>
          </xsl:element>
+         <xsl:if test="parent::tei:damage">
+            <xsl:call-template name="popover"/>
+         </xsl:if>
       </xsl:element>
    </xsl:template>
-
+   
+   <xsl:template match="tei:supplied[parent::tei:damage]" mode="apparatus">
+      <xsl:variable name="data-title" select="(ancestor::tei:damage/@agent, 'damageDefault')[1]" as="xs:string"/>
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="title" select="wega:getLanguageString($data-title,$lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:apply-templates mode="lemma"/>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:value-of select="wega:getLanguageString('supplied',$lang)"/>
+         </xsl:with-param>
+      </xsl:call-template>
+   </xsl:template>
+   
    <xsl:template match="tei:sic[not(parent::tei:choice)]" mode="apparatus">
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="title" select="local-name()"/>
@@ -686,7 +702,7 @@
                <xsl:number count="tei:note[@type=('commentary', 'definition')] | tei:choice" level="any"/>
             </xsl:when>
             <xsl:otherwise>
-                  <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst']" level="any"/>
+               <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst'] | tei:supplied[parent::tei:damage]" level="any"/>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:variable>
@@ -713,6 +729,7 @@
          </xsl:if>
       </xsl:element>
    </xsl:template>
+   
    <xsl:function name="wega:createID">
       <xsl:param name="elem" as="element()"/>
       <xsl:choose>
