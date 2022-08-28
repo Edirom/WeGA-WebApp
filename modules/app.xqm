@@ -94,7 +94,7 @@ declare
         let $formatedDate := 
             try { date:format-date($date, $config:default-date-picture-string($lang), $lang) }
             catch * { wega-util:log-to-file('warn', 'Failed to get Subversion properties for ' || $model('docID') ) }
-        let $version := concat(config:expath-descriptor()/@version, if($config:isDevelopment) then 'dev' else '')
+        let $version := config:expath-descriptor()/@version => string()
         let $versionDate := date:format-date(xs:date(config:get-option('versionDate')), $config:default-date-picture-string($lang), $lang)
         return
             map {

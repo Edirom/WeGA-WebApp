@@ -77,7 +77,7 @@
     
     <xsl:template match="html:div[contains(@class, 'iconographie')]"/>
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
-    <xsl:template match="html:a[matches(., '^Version \d+\.\d+(\.\d+)?dev vom \d\d?\. \w+ \d{4}')]"/>
+    <xsl:template match="html:a[matches(., '^Version \d+\.\d+(\.\d+)?(\-alpha)? vom \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:h2[matches(., '^\d+ Suchergebnisse$')]"/>
     <xsl:template match="html:small[matches(., '^ \(\d+\)$')]"/><!-- Anzahl der jeweiligen Dokumente (Backlinks, Briefe, etc.) in den Personentabs -->
     <xsl:template match="html:a[@class='page-link'][matches(@href, '\?page=\d+')]"/>
