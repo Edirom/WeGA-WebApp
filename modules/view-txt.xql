@@ -12,10 +12,9 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod" at "lod.xqm";
 
-declare option output:method "xhtml";
-declare option output:media-type "text/html";
+declare option output:method "text";
+declare option output:media-type "text/plain";
 declare option output:indent "no";
-(:declare option exist:serialize "method=text media-type=plain/text indent=no encoding=utf-8";:)
 
 declare function local:header($doc as document-node()) as xs:string {
     let $docID := $doc/*/data(@xml:id)
