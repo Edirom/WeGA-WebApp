@@ -23,7 +23,7 @@ $.fn.extend({
 $.fn.prettyselect = function () 
 {
     $(this).each( function(a, b) {
-        var width = '150px';
+        let width = '150px';
         if(this.id === 'newID-select') {
             width = '120px';
         }
@@ -32,7 +32,7 @@ $.fn.prettyselect = function ()
             closeOnSelect: true,
             selectOnClose: false,
             width: width
-            }).on('select2:close', function (e) {
+            }).on('select2:close', function () {
                 if(this.id === 'search-select') {
                     $('.query-input').focus();
                 }
@@ -47,9 +47,9 @@ $.fn.prettyselect = function ()
 /* Needs to be placed before the invoking call */
 $.fn.facets = function ()
 {
-    var curParams = active_facets(),
-        limit = 25,
-        newParams;
+    const curParams = active_facets(),
+        limit = 25;
+    let newParams;
     //console.log(curParams);
     delete curParams.sliderDates.oldFromDate; // delete the property oldFromDate and oldToDate which we don't need for the facets and which is not a valid API parameter 
     delete curParams.sliderDates.oldToDate;
@@ -66,7 +66,7 @@ $.fn.facets = function ()
                 delay: 500,
                 traditional: true,
                 data: function(params) {
-                    var query = $.extend( {
+                    return $.extend( {
                         scope: $(b).attr('data-doc-id'),
                         docType: $(b).attr('data-doc-type'),
                         term: params.term,
@@ -77,12 +77,11 @@ $.fn.facets = function ()
                         curParams.sliderDates,
                         { limit: limit } // need to go after curParams.facets to overwrite the limit setting there 
                     )
-                    return query;
                 },
                 transport: function(params, success, failure) {
-                    var $request,
+                    let $request,
                         read_headers = function(data, textStatus, jqXHR) {
-                        var total = parseInt(jqXHR.getResponseHeader('totalRecordCount')) || 0;
+                        const total = parseInt(jqXHR.getResponseHeader('totalRecordCount')) || 0;
                         // console.log('total: ' + total + '; limit: ' + limit + 'page: ' + params.data.offset);
                         return {
                             // transform the results to the select2 data format
@@ -103,7 +102,7 @@ $.fn.facets = function ()
                     $request.fail(failure);
                 }
             }
-        }).on('select2:close', function (e) {
+        }).on('select2:close', function () {
             newParams = active_facets();
             // check whether we need to reload the page
             if (JSON.stringify(newParams.facets) !== JSON.stringify(curParams.facets)) {
@@ -122,18 +121,18 @@ function formatFacet (facet) {
     if(!facet.matches) {
         return facet.text
     }
-    var slicer = function(total, currentValue, currentIndex, arr) {
-        var len = facet.text.length; // the maximum length for the suffix part
-        if(arr.length > currentIndex + 1) {
-            len = arr[currentIndex + 1].start; // if there's another match => shorten the maximum length accordingly 
+    const slicer = function (total, currentValue, currentIndex, arr) {
+        let len = facet.text.length; // the maximum length for the suffix part
+        if (arr.length > currentIndex + 1) {
+            len = arr[currentIndex + 1].start; // if there's another match => shorten the maximum length accordingly
         }
         return total + '<u>' + facet.text.slice(currentValue.start, currentValue.start + currentValue.length) + '</u>' + facet.text.slice(currentValue.start + currentValue.length, len)
     };
-    $facet = $(
+    facet = $(
         '<span>' + facet.matches.reduce(slicer, facet.text.slice(0, facet.matches[0].start)) + '</span>'
     );
-    return $facet;
-};
+    return facet;
+}
 
 $.fn.rangeSlider = function () 
 {
@@ -151,24 +150,24 @@ $.fn.rangeSlider = function ()
         grid_num: 3,
         keyboard: true,
         prettify: function (num) {
-            var lang = getLanguage(),
-                m = moment(num).locale(lang),
-                format;
+            const lang = getLanguage(),
+                m = moment(num).locale(lang);
+            let format;
             if(lang === 'de') { format = "D. MMM YYYY"}
             else { format = "MMM D, YYYY" }
             return m.format(format);
         },
         onFinish: function (data) {
             /* Get active facets to append as URL params */
-            var params = active_facets(),
+            const params = active_facets(),
                 newFrom = moment(data.from).locale("de").format("YYYY-MM-DD"),
                 newTo = moment(data.to).locale("de").format("YYYY-MM-DD");
             
             /* 
              * Overwrite date params with new values from the slider 
              */
-            if(data.from != data.min) { params.sliderDates.fromDate = newFrom }
-            if(data.to != data.max) { params.sliderDates.toDate = newTo }
+            if(data.from !== data.min) { params.sliderDates.fromDate = newFrom }
+            if(data.to !== data.max) { params.sliderDates.toDate = newTo }
             params.sliderDates.oldFromDate = moment(data.min).locale("de").format("YYYY-MM-DD");
             params.sliderDates.oldToDate = moment(data.max).locale("de").format("YYYY-MM-DD");
             updatePage(params);
@@ -179,7 +178,7 @@ $.fn.rangeSlider = function ()
 $.fn.obfuscateEMail = function () {
     if($(this).length === 0) {}
     else {
-        var e = $(this).html().substring(0, $(this).html().indexOf('[')).trim(),
+        const e = $(this).html().substring(0, $(this).html().indexOf('[')).trim(),
             t = $(this).html().substring($(this).html().indexOf(']') +1).trim(),
             r = '' + e + '@' + t ;
         $(this).attr('href',' mailto:' +r).html(r);
@@ -189,22 +188,22 @@ $.fn.obfuscateEMail = function () {
 /* Load portraits via AJAX */
 $.fn.loadPortrait = function () {
     $(this).each( function(a, b) {
-        var url = $(b).children('a').attr('href').replace('.html', '/portrait.html');
+        const url = $(b).children('a').attr('href').replace('.html', '/portrait.html');
         $(b).children('a').load(url + " img");
     })
 };
 
 /* Load the what-happened-on-this-day div for the start page */
 $('#otd').each(function() {
-    var date = moment(new Date()).format("YYYY-MM-DD"),
-        url = $(this).attr('data-target') + '?otd-date=' + date ;
+    const date = moment(new Date()).format("YYYY-MM-DD"),
+        url = $(this).attr('data-target') + '?otd-date=' + date;
     $(this).load(url);
 });
 
 /* Initialise datepicker for diaries */
 $.fn.initDatepicker = function () {
     // set language for datepicker widget
-    var lang = getLanguage();
+    const lang = getLanguage();
     if(lang === 'de') { $.datepicker.setDefaults( $.datepicker.regional[ "de" ] ) }
     else { $.datepicker.setDefaults( $.datepicker.regional[ "" ]) }
     
@@ -216,7 +215,7 @@ $.fn.initDatepicker = function () {
             defaultDate: getDiaryDate(),
             changeMonth: true,
             changeYear: true,
-            onSelect: function(dateText, inst) { 
+            onSelect: function(dateText) {
                 jump2diary(dateText)
             },
             beforeShowDay: function(date) {
@@ -233,18 +232,18 @@ $.fn.initDatepicker = function () {
  */
 $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="#transcription"]', function (e) {
     // code taken from the bootstrap remote nav tabs plugin
-    var url = $(e)[0].target.href,
-    hash = url.substring(url.indexOf('#') + 1),
-    hasTab = $('[data-toggle=tab][href*=' + hash + ']'),
-    hasAccordion = $('[data-toggle=collapse][href*=' + hash + ']');
-    apparatusLink = $(this).hasClass("apparatus-link"),
-    ref = $(this).attr("data-href");
+    const url = $(e)[0].target.href,
+        hash = url.substring(url.indexOf('#') + 1),
+        hasTab = $('[data-toggle=tab][href*=' + hash + ']'),
+        hasAccordion = $('[data-toggle=collapse][href*=' + hash + ']'),
+        apparatusLink = $(this).hasClass("apparatus-link"),
+        ref = $(this).attr("data-href");
 
     if (hasTab && apparatusLink) {
-        // if clicked link is an link within the apparatus (marked with class .apparatus-link)
+        // if clicked link is a link within the apparatus (marked with class .apparatus-link)
         hasTab.tab('show');
         // open tab
-        $(document).on('shown.bs.tab', 'a[href="#transcription"]', function (e) {
+        $(document).on('shown.bs.tab', 'a[href="#transcription"]', function () {
             //wait for tab to be loaded
             $(".hi-").removeClass("hi-");
             //remove previous highlight
@@ -256,7 +255,7 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
             $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-");
             // attempt to highlight lemma in text, jump to position and open corresponding popover ...
         });
-        $(document).on('shown.bs.tab', 'a[href="#editorial"]', function (e) {
+        $(document).on('shown.bs.tab', 'a[href="#editorial"]', function () {
             $('.popover').popover('hide');
             $('html, body').animate({
                 scrollTop: $(ref).offset().top - 400
@@ -269,7 +268,7 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
     
     if (hasAccordion) {
         // for some reason we cannot execute the 'show' event for an accordion properly, so here's a workaround
-        if (hasAccordion[0] != $('[data-toggle=collapse]:first')[0]) {
+        if (hasAccordion[0] !== $('[data-toggle=collapse]:first')[0]) {
             hasAccordion.click();
         }
     }
@@ -296,8 +295,9 @@ $('body').on('click touchstart', function (e) {
 /*
  * hide/reveal sub items of the table of contents of the Guidelines and Wikipedia
  */
-$('.toggle-toc-item').on('click', toggleTocItems);
-$('.toggle-toc-item').each(toggleTocItems);
+$('.toggle-toc-item')
+    .on('click', toggleTocItems)
+    .each(toggleTocItems);
 $('.toc a[href~="'+window.location.pathname+window.location.hash+'"]').parentsUntil(".guidelines").addClass("active");
 $('.appendix a[href^="'+window.location.pathname+window.location.hash+'"]').parentsUntil(".appendix-div").addClass("active");
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
@@ -307,7 +307,7 @@ $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
  * used for Guidelines TOC as well as for Wikipedia
  */
 function toggleTocItems() {
-    var subItem = $(this).siblings('ul');
+    const subItem = $(this).siblings('ul');
     if(subItem.length === 1) {
         subItem.toggle();
         $('ul', subItem).toggle();
@@ -316,7 +316,7 @@ function toggleTocItems() {
     else {
         $('i', this).hide();
     }
-};
+}
 
 /* 
  * callback function for removing the filter container from the AJAX page
@@ -324,7 +324,7 @@ function toggleTocItems() {
  * as well as ajaxCall() (all subsequent calls by clicks on the pagination).
  * At present this is only needed for backlinks. 
  */
-function removeFilter(html, trigger, container, data) {
+function removeFilter(html, trigger) {
     /* currently, we simply remove all filters  */
     $('.col-md-3', html).remove();
     
@@ -349,16 +349,16 @@ function removeFilter(html, trigger, container, data) {
             }
         );
     }
-};
+}
 
 /*
  * set the right tab and location for person pages
  */
 $.fn.toggleTab = function () {
-    var tabHash = location.hash,
+    let tabHash = location.hash,
         tabRef,
         target;
-    
+
     /* make "biographies" the default if no fragment identifier is given */
     if($(tabHash).length === 0) { target = '#biographies' }
     
@@ -389,7 +389,7 @@ $.fn.toggleTab = function () {
      */
     $(this).each(function(n,tab) {
         tabRef = tab.href.substring(tab.href.indexOf('#'));
-        if(tabRef == target) {
+        if(tabRef === target) {
             $(tab).parent().addClass('resp-tab-active');
             $(tabRef).addClass('resp-tab-content-active');
         }else {
@@ -418,32 +418,32 @@ $('h3[id]').A090280();
 
 // load and activate person tab
 function activateTab() {
-    var activeTab = $('li.resp-tab-active a'),
+    const activeTab = $('li.resp-tab-active a'),
         container = activeTab.attr('href'),
         url = activeTab.attr('data-target');
 
-        // Do not load the page twice
+    // Do not load the page twice
         if ($(container).contents().length === 1 || $(container).contents()[1].nodeType !== 1) {
             ajaxCall(container, url)
         }
         /* update facets */
 /*        $('select').selectpicker({});*/
 /*        $(href).unmask;*/
-};
+}
 
 /*
  * Grab the URL from the $container$/@data-ref and replace the container div with the AJAX response
  * Makes a nice popover for previews of pages :)
  */
 $.fn.preview_popover = function() {
-    var url = $(this).attr('data-ref').replace('.html', '/popover.html'),
+    let url = $(this).attr('data-ref').replace('.html', '/popover.html'),
         container = $(this),
         popover_node = container.parents('div.popover'),
         popover_data;
     $.ajax({
         url: url,
         success: function(response){
-            var source = $(response),
+            const source = $(response),
                 title = source.find('h3').html(),
                 content = source.children();
             // special rule for previews without title, e.g. biblio  
@@ -496,15 +496,15 @@ $('.preview, .noteMarker').on('click', function() {
  * to insert all AJAX content simply into popover-body
  */
 function popover_template() {
-    var carouselID = "carousel" + $.now(),
+    const carouselID = "carousel" + $.now(),
         template = $('#carousel-popover').clone().attr('id', carouselID).removeAttr('style');
-    
+
     $('.carousel-indicators li', template).attr('data-target', '#'+carouselID);
     $('a.carousel-control', template).attr('href', '#'+carouselID);
     $('.carousel-indicators, a.carousel-control', template).hide();
     template.removeClass('d-none');
     return template;
-};
+}
 
 /*
  * Prepare the container divs and the carousel controls (if needed) for the popover
@@ -518,27 +518,27 @@ function popover_template() {
  * Every logical popover is wrapped into a <div class="item"/> within the <div class="popover-body"/>  
  */
 function popover_callBack() {
-    var urls = [],
-        href = $(this).attr('href'),
+    const href = $(this).attr('href'),
         dataRefs = $(this).attr('data-ref'),
         popoverID = $(this).attr('aria-describedby'),
-        popover = $('#'+popoverID),
-        suppressCrosslink  = $(this).hasClass("arabic"),
+        popover = $('#' + popoverID),
+        suppressCrosslink = $(this).hasClass("arabic");
+    let urls = [],
         li_templ,
         li_clone,
         popover_div,
         popover_data;
-    
-	/* 
-	 * break out of this function if we already created some content 
-	 * (and removed the progress bar from the template) 
-	 */
+
+    /*
+     * break out of this function if we already created some content
+     * (and removed the progress bar from the template)
+     */
     if($('.progress', popover).length === 0) { return }
     
-    if(undefined != href) {
+    if(undefined !== href) {
         urls.push(href);
     }
-    else if(undefined !=  dataRefs) {
+    else if(undefined !==  dataRefs) {
         urls = dataRefs.split(/\s+/);
     }
     $(urls).each(function(i,e) {
@@ -550,7 +550,7 @@ function popover_callBack() {
             $('.item-title-content', popover_div).html($(e).attr('data-title'));
             $('.item-counter', popover_div).html($(e).attr('data-counter'));
             $('.item-counter',popover_div).attr('data-href',$(e).attr('data-href'));
-            if (suppressCrosslink) { $('.item-counter',popover_div).remove() } else {}; // remove .item-counter e.g. for classic footnotes
+            if (suppressCrosslink) { $('.item-counter',popover_div).remove() } else {} // remove .item-counter e.g. for classic footnotes
             $('.item-content', popover_div).html($(e).html());
             popover_data = popover.data('bs.popover');
             popover_data.config.content = $('div.popover-body', popover).clone().children();
@@ -577,7 +577,7 @@ function popover_callBack() {
     }
     
     // content provided via data-popover-body and data-popover-title attributes on the anchor element
-    if(undefined != $(this).attr('data-popover-body')) {
+    if(undefined !== $(this).attr('data-popover-body')) {
         popover_div = $('div.item:last', popover);
         $('.item-title', popover_div).html($(this).attr('data-popover-title'));
         $('.item-content', popover_div).html($(this).attr('data-popover-body'));
@@ -585,11 +585,11 @@ function popover_callBack() {
         popover_data.config.content = $('div.popover-body', popover).children();
         popover.popover('show');
     }
-};
+}
 
 /* checkbox for display of undated documents */
 $(document).on('change', '.facet-group input', function() {
-    var params = active_facets();
+    const params = active_facets();
     updatePage(params);
 })
 
@@ -606,7 +606,7 @@ function uncheckAll(that) {
 
 function checkBoxRefresh() {
     if($('.query-input').val().length) { /* No need to refresh the page when there's no query string */
-        var params = active_facets();
+        const params = active_facets();
         //console.log(params);
         updatePage(params);
         }
@@ -638,7 +638,7 @@ $('.glSchemaIDFilter').on('change', 'input', function(a) {
 $('.obfuscate-email').obfuscateEMail();
 
 $.fn.initPortraitCredits = function() {
-    $(this).each( function(_, portrait) {
+    $(this).each( function() {
         /* Hiding the flip back when no image information is available */
         if($('.back p').is(':empty')) { $('.back').hide(); }
         else 
@@ -668,7 +668,7 @@ $(window).on("load", function () {
  * Get active facets to append as URL parameters 
  */
 function active_facets() {
-    var params = {
+    let params = {
             facets: {},
             sliderDates: {
                 /*fromDate:'',
@@ -676,16 +676,18 @@ function active_facets() {
                 oldFromDate:'',
                 oldToDate:''*/
             },
-            toString: function() { return '?' + $.param($.extend( {}, this.facets, this.sliderDates), true) }
+            toString: function () {
+                return '?' + $.param($.extend({}, this.facets, this.sliderDates), true)
+            }
         },
         slider, from, to, min, max;
-     
+
     /* Pushing the limit parameter to the facets array */
     params.facets.limit = $('.switch-limit .active a:first').text();
      
     /* Set filters from the side menu */
     $('.allFilter:visible :selected').each(function() {
-        var facet = $(this).parent().attr('name'),
+        const facet = $(this).parent().attr('name'),
             value = $(this).attr('value');
         if(params.facets[facet] === undefined) { params.facets[facet] = [] }
         params.facets[facet].push(value);
@@ -710,9 +712,9 @@ function active_facets() {
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'
      */
     $('.allFilter:visible :checked').each(function() {
-        var facet = $(this).attr('name'),
-            value = $(this).attr('value')? $(this).attr('value'): 'true';
-        if(undefined != facet) {
+        const facet = $(this).attr('name'),
+            value = $(this).attr('value') ? $(this).attr('value') : 'true';
+        if(undefined !== facet) {
             if(params.facets[facet] === undefined) { params.facets[facet] = [] }
             params.facets[facet].push(value);
         }
@@ -732,9 +734,11 @@ function active_facets() {
  */
 function updatePage(params) {
     /* AJAX call for personal writings etc. */
-    if($('li.resp-tab-active').length === 1) {
-        var url = $('li.resp-tab-active a').attr('data-target') + params.toString(),
-            container = $('li.resp-tab-active a').attr('href');
+    const li_respTab_active = $('li.resp-tab-active'),
+        li_respTab_active_a = $('a', li_respTab_active);
+    if(li_respTab_active.length === 1) {
+        const url = li_respTab_active_a.attr('data-target') + params.toString(),
+            container = li_respTab_active_a.attr('href');
         ajaxCall(container, url)
     }
     /* Refresh page for indices */
@@ -783,10 +787,10 @@ $('.greedy').greedyNav();
 
 /* Watch filters and highlight spans in text */
 $('.allFilter .filtersection input').click( 
-  function() {
-    var key = $(this).attr('value');
-    $('.' + key).toggleClass('hi-' + key);
-  }
+    function() {
+        const key = $(this).attr('value');
+        $('.' + key).toggleClass('hi-' + key);
+    }
 )
 
 /* Highlight original (historic) footnotes when clicking on a reference in the text */
@@ -798,7 +802,7 @@ $('.fn-ref').on('click', function() {
 function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
-        if ( status == "error" ) {
+        if ( status === "error" ) {
             console.log(xhr.status + ": " + xhr.statusText);
         }
         else {
@@ -825,16 +829,16 @@ function ajaxCall(container,url,callback) {
             $("#datePicker").initDatepicker();
         }
     });
-};
+}
         
 $.fn.activatePagination = function(container) {
     /*  Two possible locations:  */
-    var activeTab = $('li.resp-tab-active a, ul.nav-tabs li a.active'),
-    /*  with different attributes */
-        baseUrl = activeTab.attr('data-target')? activeTab.attr('data-target'): activeTab.attr('data-tab-url'),
-        url = baseUrl + $(this).attr('data-url'),
-        callback;
-    
+    const activeTab = $('li.resp-tab-active a, ul.nav-tabs li a.active'),
+        /*  with different attributes */
+        baseUrl = activeTab.attr('data-target') ? activeTab.attr('data-target') : activeTab.attr('data-tab-url'),
+        url = baseUrl + $(this).attr('data-url');
+    let callback;
+
     /* 
      * the data-tab-callback attribute may contain the name of a callback function
      * this is provided by the nav-tabs remote data plugin 
@@ -882,7 +886,7 @@ $('.query-input').focus();
 
 /* Umbruch der Teaserüberschriften abhängig von Textlänge */
 $('.teaser + h2 a').each(function(a,b) {
-    var string = $(b).text().trim(),
+    let string = $(b).text().trim(),
         tokens = string.split(' '),
         i = 0,
         newText = '',
@@ -905,7 +909,7 @@ $('.preview').setTextWrap();
  */
 function initFacsimile() {
     
-    var viewer,
+    let viewer,
         tileSources = [],
         imageAttributions = [],
         promises = [],
@@ -925,7 +929,7 @@ function initFacsimile() {
     /* add the JSON responses to the tile sources */
     const addToTileSources = function(responses) {
         $(responses).each(function(i, data) {
-            var manifestAttribution;
+            let manifestAttribution;
             if(data.attribution !== undefined ) {
                 /* the attribution property should tell us what to print next to the image */
                 manifestAttribution = data.attribution;
@@ -940,7 +944,7 @@ function initFacsimile() {
             } 
         
             $(data.sequences[0].canvases).each(function(_, val) {
-                tileSources.push(val.images[0].resource.service['@id'] + '/info.json'),
+                tileSources.push(val.images[0].resource.service['@id'] + '/info.json');
                 imageAttributions.push(manifestAttribution);
             })
             /*  open viewer with the new tile sources  */
@@ -952,7 +956,7 @@ function initFacsimile() {
     $(manifestUrls).each(function(i,url) {
         promises.push(
             new Promise(
-                function(resolve, reject) {
+                function(resolve) {
                     /*  Grab the IIIF manifest */
                     $.getJSON(url, function(data) {
                         resolve(data)
@@ -970,7 +974,7 @@ function initFacsimile() {
     // add open-handler for adding image attributions as overlays 
     viewer.addHandler('open', function(obj) {
         //console.log('open handler')
-        var source_x = obj.eventSource.source.width, 
+        let source_x = obj.eventSource.source.width,
             elem = document.createElement("div");
         elem.innerHTML = imageAttributions[obj.eventSource._sequenceIndex];
         elem.className = 'image-attribution'
@@ -980,15 +984,15 @@ function initFacsimile() {
             placement: 'BOTTOM_RIGHT'
         });
     });
-};
+}
 
 
 function jump2diary(dateText) {
-    var url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText ;
+    const url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
     $.getJSON(url, function(data) {
         self.location=data[0].uri + '.html';
     })
-};
+}
 
 /* Exclude diary days from datePicker */
 /* (some days are missing from Weber's diaries) */
@@ -1006,31 +1010,31 @@ function checkValidDiaryDate(date) {
     /* 29 April 1819 */
     /* 3-4 Mai 1819 */
     /* 9-11 Mai 1819*/
-   
-    var start1 =  new Date('04/05/1814'),
-		 end1 =  new Date('04/20/1814'),
-		 start2 =  new Date('05/26/1814'),
-		 end2 =  new Date('05/31/1814'),
-		 start3 =  new Date('06/01/1814'),
-		 end3 =  new Date('06/09/1814'),
-		 start4 =  new Date('06/19/1814'),
-		 end4 =  new Date('06/30/1814'),
-		 start5 =  new Date('07/01/1814'),
-		 end5 =  new Date('07/26/1814'),
-		 start6 =  new Date('08/01/1814'),
-		 end6 =  new Date('12/31/1814'),
-		 start7 =  new Date('04/09/1819'),
-		 end7 =  new Date('04/16/1819'),
-		 start8 =  new Date('04/18/1819'),
-		 end8 =  new Date('04/21/1819'),
-		 day9 =  new Date('04/23/1819'),
-		 start10 =  new Date('04/26/1819'),
-		 end10 =  new Date('04/27/1819'),
-		 day11 =  new Date('04/29/1819'),
-		 start12 =  new Date('05/03/1819'),
-		 end12 =  new Date('05/04/1819'),
-		 start13 =  new Date('05/09/1819'),
-		 end13 =  new Date('05/11/1819');
+
+    const start1 = new Date('04/05/1814'),
+        end1 = new Date('04/20/1814'),
+        start2 = new Date('05/26/1814'),
+        end2 = new Date('05/31/1814'),
+        start3 = new Date('06/01/1814'),
+        end3 = new Date('06/09/1814'),
+        start4 = new Date('06/19/1814'),
+        end4 = new Date('06/30/1814'),
+        start5 = new Date('07/01/1814'),
+        end5 = new Date('07/26/1814'),
+        start6 = new Date('08/01/1814'),
+        end6 = new Date('12/31/1814'),
+        start7 = new Date('04/09/1819'),
+        end7 = new Date('04/16/1819'),
+        start8 = new Date('04/18/1819'),
+        end8 = new Date('04/21/1819'),
+        day9 = new Date('04/23/1819'),
+        start10 = new Date('04/26/1819'),
+        end10 = new Date('04/27/1819'),
+        day11 = new Date('04/29/1819'),
+        start12 = new Date('05/03/1819'),
+        end12 = new Date('05/04/1819'),
+        start13 = new Date('05/09/1819'),
+        end13 = new Date('05/11/1819');
     return !(
         (date >= start1 && date <= end1) ||
         (date >= start2 && date <= end2) ||
@@ -1046,26 +1050,27 @@ function checkValidDiaryDate(date) {
         (date >= start12 && date <= end12) ||
         (date >= start13 && date <= end13)
     )
-};
+}
 
 /* Get the current language from the top navigation */
 function getLanguage() {
     return $('#navbarCollapse li.active:last a').html().toLowerCase()
-};
+}
 
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
-    var title = ($('h1.document').length === 0)? $('h3.media-heading a').html().replace(/<br.+/, '') : $('h1.document').html().replace(/<br.+/, '') ,
-		 lang = getLanguage(),
-		 format,
-		 date = '';
+    let h1_document = $('h1.document'),
+        title = (h1_document.length === 0) ? $('h3.media-heading a').html().replace(/<br.+/, '') : h1_document.html().replace(/<br.+/, ''),
+        lang = getLanguage(),
+        format,
+        date;
     if(lang === 'de') { 
         format = "DD, dd. MM yy" 
     } 
     else { 
         format = "DD, MM dd, yy" 
-    } ; 
+    }
     
     try { 
         date = 
@@ -1078,54 +1083,59 @@ function getDiaryDate() {
     }
     catch(err) { date = '' }
     return date
-};
+}
 
 /* Get the document ID from the XML download link */
 function getID() {
-    var xmlLink = $('.nav-link[href="#XMLPreview"]').attr('data-tab-url'),
-        tokens = []; 
+    let xmlLink = $('.nav-link[href="#XMLPreview"]').attr('data-tab-url'),
+        tokens = [];
     if(xmlLink !== undefined) {
         tokens = xmlLink.split('/');
         if(tokens.length > 2) {
             return tokens[tokens.length -2]
         }
     }
-};
+}
 
 /* Add search option for advanced search */
+/*
 function addSearchOption(that)
 {
     $(that).closest(".col-md-9").append("<div class='searchform'>"+$(that).closest(".searchform").html()+"</div>");
 }
+*/
 
 /* Development only: request a new ID */
 $('#create-newID').on('click', newID);
 
 function newID() {
-    var docType = $('#newID-select :selected').val(),
-        url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType ;
-    $('#newID-result span').hide();
-    $('#newID-result i').show();
+    const docType = $('#newID-select :selected').val(),
+        url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType,
+        newID_result = $('#newID-result'),
+        newID_result_span = $('span', newID_result);
+    newID_result_span.hide();
+    $('i', newID_result).show();
     $.getJSON(url, function(response) {
-        $('#newID-result span').html(
+        newID_result_span.html(
             response.docID + ' <i class="fa fa-clipboard"></i>'
         ).attr({
             'data-original-title': 'Copy to clipboard',
             'title': 'Copy to clipboard'
         });
-        $('#newID-result i.fa-spin').hide();
-        $('#newID-result span').show().tooltip();
+        $('i.fa-spin', newID_result).hide();
+        newID_result_span.show().tooltip();
     });
-};
+}
 
 $('.copy-to-clipboard').on('click', function() {
-    var copyText = $('#newID-result span')[0].innerText.trim();
+    const newID_result_span = $('#newID-result span'),
+        copyText = newID_result_span[0].innerText.trim();
     navigator.clipboard.writeText(copyText);
-    $('#newID-result span').attr({
+    newID_result_span.attr({
         'data-original-title': 'copied!',
         'title': 'copied!'
     });
-    $('#newID-result span').tooltip('show');
+    newID_result_span.tooltip('show');
 });
 
 
@@ -1139,10 +1149,10 @@ function init_line_wrap_toggle() {
 
     // set listener for toggle
     input.change(
-        function(a,b) {
+        function() {
             pre.toggleClass('line-wrap');
             // update session
-            data = { [this.getAttribute('id')]: this.checked };
+            let data = { [this.getAttribute('id')]: this.checked };
             fetch(endpoint_url, {
                 method: 'POST',
                 headers: {
