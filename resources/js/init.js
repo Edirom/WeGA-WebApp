@@ -910,9 +910,10 @@ $('.preview').setTextWrap();
 function initFacsimile() {
     
     let viewer,
-        tileSources = [],
         imageAttributions = [],
         promises = [],
+        tileSources,
+        manifestAttribution,
         manifestUrls = $('#map').attr('data-url').split(/\s+/);
     
     viewer = OpenSeadragon({
@@ -929,24 +930,29 @@ function initFacsimile() {
     /* add the JSON responses to the tile sources */
     const addToTileSources = function(responses) {
         $(responses).each(function(i, data) {
-            let manifestAttribution;
+            manifestAttribution = getIiifAttribution(data, 'de');
+            tileSources = getIiifTilesources(data);
+            /*
             if(data.attribution !== undefined ) {
-                /* the attribution property should tell us what to print next to the image */
+                /* the attribution property should tell us what to print next to the image *\/
                 manifestAttribution = data.attribution;
             }
             else if (data.metadata.find(function(obj) {return obj.label === 'Digitalisierer'; }).value !== undefined) {
-                /* yet some providers don't provide an attribution but idiosyncratic metadata */
+                /* yet some providers don't provide an attribution but idiosyncratic metadata *\/
                 manifestAttribution = data.metadata.find(function(obj) {return obj.label === 'Digitalisierer'; }).value;
             }
             else {
-                /* this is just the fallback if we're completely clueless */
+                /* this is just the fallback if we're completely clueless *\/
                 manifestAttribution = 'for source information see editorial';
-            } 
-        
+            }
+            */
+        /*
             $(data.sequences[0].canvases).each(function(_, val) {
                 tileSources.push(val.images[0].resource.service['@id'] + '/info.json');
                 imageAttributions.push(manifestAttribution);
             })
+            */
+
             /*  open viewer with the new tile sources  */
             viewer.open(tileSources, 0)
         })
@@ -976,7 +982,7 @@ function initFacsimile() {
         //console.log('open handler')
         let source_x = obj.eventSource.source.width,
             elem = document.createElement("div");
-        elem.innerHTML = imageAttributions[obj.eventSource._sequenceIndex];
+        elem.innerHTML = manifestAttribution;
         elem.className = 'image-attribution'
         viewer.addOverlay({ 
             element: elem, 
@@ -986,6 +992,32 @@ function initFacsimile() {
     });
 }
 
+function getIiifAttribution(manifest ,lang) {
+    if(manifest['@context'] === 'http://iiif.io/api/presentation/2/context.json') {
+        return 'something needs to go here'
+    }
+    else if(manifest['@context'] === 'http://iiif.io/api/presentation/3/context.json') {
+        if(manifest.requiredStatement.value[lang].length) {
+            return manifest.requiredStatement.value[lang] + ': ' + manifest.requiredStatement.label[lang]
+        }
+    }
+    else return 'unknown manifest provider'
+}
+
+function getIiifTilesources(manifest) {
+    let tileSources = [];
+    if(manifest['@context'] === 'http://iiif.io/api/presentation/2/context.json') {
+        $(manifest.sequences[0].canvases).each(function(_, canvas) {
+            tileSources.push(canvas.images[0].resource.service['@id'] + '/info.json');
+        })
+    }
+    else if(manifest['@context'] === 'http://iiif.io/api/presentation/3/context.json') {
+        $(manifest.items).each(function(_, canvas) {
+            tileSources.push(canvas.items[0].body.id + '/info.json');
+        })
+    }
+    return tileSources
+}
 
 function jump2diary(dateText) {
     const url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
