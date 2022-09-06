@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de">
+    <head prefix="dc: http://purl.org/dc/elements/1.1/; dcterms: http://purl.org/dc/terms/">
+        <meta charset="UTF-8" />
+        
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>API Dokumentation</title>
+        
+        <meta property="dc:title" content="API Dokumentation" />
+        <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
+        <meta property="dc:type" content="Text" />
+        <meta property="dc:format" content="text/html" />
+        <meta property="dc:contributor" content="Peter Stadler" />
+        <meta property="dc:creator" content="" />
+        <meta property="dc:date" content="" />
+        <meta property="dc:identifier" content="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012" />
+        <meta property="dc:description" content="Die Seiten der WeGA werden seit 2018 nur noch über verschlüsseltes https ausgeliefert. Anfragen via http werden nach https umgeleitet. Die folgenden …" />
+        <meta name="description" content="Die Seiten der WeGA werden seit 2018 nur noch über verschlüsseltes https ausgeliefert. Anfragen via http werden nach https umgeleitet. Die folgenden …" />
+        <meta property="dc:subject" content="Varia" />
+        <meta property="dc:language" content="de" />
+        <meta property="dc:rights" content="http://creativecommons.org/licenses/by/4.0/" />
+        <meta name="google-site-verification" content="EAO5d_GiQPkJeTGACYYOFahJm2HRNvJUWwIkyw4j0Ys" />
+        <meta name="msvalidate.01" content="AE39DA5613844228642EE48196AAA94A" />
+        <meta name="robots" content="noimageindex" />
+        
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070012.html" hreflang="de" />
+        <link rel="alternate" href="http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/en/Project/A070012.html" hreflang="en" />
+        <link rel="apple-touch-icon" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+        <link rel="apple-touch-icon" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+        <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+        <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+        <link rel="manifest" href="/manifest.json" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#0066cc" />
+        <meta name="msapplication-TileColor" content="#2d89ef" />
+        <meta name="theme-color" content="#ffffff" />
+
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/css/easy-responsive-tabs.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/jquery.loadmask.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/css/styles.css" />
+        
+        
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
+        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
+        
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Die Seiten der WeGA werden seit 2018 nur noch über verschlüsseltes https ausgeliefert. Anfragen via http werden nach https umgeleitet. Die folgenden …","publisher":{"name":"Carl-Maria-von-Weber-Gesamtausgabe","url":"http://weber-gesamtausgabe.de","@type":"Organization"},"name":"API Dokumentation","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012","license":"http://creativecommons.org/licenses/by/4.0/","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070012","author":[{"name":"Stadler, Peter","@type":"Person","url":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","@id":"http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001","sameAs":"http://d-nb.info/gnd/143058045"}],"funder":{"name":"Akademie der Wissenschaften und der Literatur, Mainz","url":"http://adwmainz.de","@type":"Organization"}}</script>
+
+
+    </head>
+    <body>
+        <div class="container">
+        <nav class="navbar navbar-light navbar-default navbar-expand-lg">
+                
+                    <button type="button" data-target="#navbarCollapse" aria-expanded="false" data-toggle="collapse" class="navbar-toggler">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <a href="/exist/apps/WeGA-WebApp/de/Index" class="nav-link navbar-brand order-3">
+                        <img src="/exist/apps/WeGA-WebApp/resources/img/logo_weber.png" class="brand" alt="navbar-background-image" />
+                    </a>
+                    
+                    
+                    <div id="navbarCollapse" class="navbar-collapse collapse">
+                        <ul class="nav navbar-nav">
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
+                            </li>
+                            <li class="dropdown nav-item">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Weber</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068/Biographie.html">Biographie</a>
+                                    </li>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#documents">Dokumente</a>
+                                    </li>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#correspondence">Korrespondenz</a>
+                                    </li>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#writings">Schriften</a>
+                                    </li>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#diaries">Tagebücher</a>
+                                    </li>
+                                <li class="">
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/A002068.html#works">Werke</a>
+                                    </li>
+                            </ul>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Register</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Briefe">Briefe</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Dokumente">Dokumente</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Orte">Orte</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Personen">Personen</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Schriften">Schriften</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Tagebücher">Tagebücher</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Themenkommentare">Themenkommentare</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Register/Werke">Werke</a>
+                                    </li>
+                            </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Suche">Suche</a>
+                            </li>
+                           <li id="project-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Projekt</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                    
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Aktuelles">Aktuelles</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht.html">Bandübersicht</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Bibliographie">Bibliographie</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Musik.html">Editionsrichtlinien Musik</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Editionsrichtlinien Text</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Projektbeschreibung.html">Projektbeschreibung</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Projekt/Team.html">Team</a>
+                                    </li>
+                            </ul>
+                            </li>
+                            <li id="help-nav" class="nav-item dropdown">
+                                <a class="nav-link dropdown-secondlevel-nav dropdown-toggle" data-toggle="dropdown" href="#">Hilfe</a>
+                                <ul class="dropdown-menu" role="menu">
+                                    
+                                    
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a>
+                                    </li>
+                                <li>
+                                        <a class="dropdown-item" href="/exist/apps/WeGA-WebApp/de/Hilfe/FAQ.html">FAQ</a>
+                                    </li>
+                            </ul>
+                            </li>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/exist/apps/WeGA-WebApp/de/Sonderband.html">Sonderband</a>
+                            </li>
+                            <li class="nav-item divider"></li>
+                            <li class="nav-item active"><a class="nav-link" href="#" hreflang="de" lang="de">De</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/exist/apps/WeGA-WebApp/en/Project/A070012.html" hreflang="en" lang="en">En</a></li>
+                        </ul>
+                    </div>
+                
+            
+        </nav>
+        </div>
+        <div id="content">
+    <div class="header">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <h1>API Dokumentation</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="colored borderBottom">
+        <div class="container">
+            
+                <div class="row">
+                    <div class="col-sm-10">
+                        <ol class="breadcrumb">
+                            <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
+                            <li><span>Projekt</span></li>
+                            
+                            <li><span>API Dokumentation</span></li>
+                        </ol>
+                        
+                        
+                    </div>
+                    <div class="col-sm-2 d-none d-lg-block backLinkInBreadcrumb" onclick="history.back();">
+                        <i class="fa fa-arrow-left"></i>
+                        <span>Zurück</span>
+                    </div>
+                </div>
+            
+            
+        </div>
+    </div>
+    <div class="container documentText paddingTopIcon paddingBottomIcon">
+        <div class="row">
+            <div class="modal fade" id="downloadModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="myModalLabel">Download Optionen</h3>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+            </div>
+            <div class="modal-body">
+                <p>Sie können das aktuelle Dokument in den folgenden Formaten herunterladen:</p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070012.xml">WeGA <i class="fa fa-download"></i></a></h4>
+                <p>
+                    Das native WeGA (Arbeits-)Format, wie es in unseren <a href="/exist/apps/WeGA-WebApp/de/Projekt/Editionsrichtlinien_Text.html">Richtlinien</a> dokumentiert ist.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070012.xml?format=tei_all">TEI all <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    Die 'Standard' TEI Version. 
+                    Idiosynkratische WeGA Elemente wie <code>workName</code> werden in ein generisches <code>name</code>-Element überführt,
+                    sodass keine strukturellen Informationen verloren gehen.
+                </p>
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070012.xml?format=tei_simplePrint">TEI simplePrint <i class="fa fa-download"></i></a></h4>
+                <p> 
+                    TEI simplePrint ist eine TEI-Anpassung speziell für "Einsteiger", die auf die Anforderungen von westeuropäischen, gedruckten Texten der Neuzeit ausgelegt ist. 
+                    (vgl. <a href="http://www.tei-c.org/Guidelines/Customization/">http://www.tei-c.org/Guidelines/Customization/</a>).
+                    Diese Anpassung erleichtert das Prozessieren und Darstellen der Inhalte, allerdings können nicht alle Konzepte der WeGA verlustfrei in dieses Format überführt werden. Daher an dieser Stelle eine Warnung, dass dies ein <i>verlustbehaftetes</i> Exportformat ist. 
+                </p>
+                
+                
+                <h4><a href="/exist/apps/WeGA-WebApp/de/Projekt/A070012.txt">Plain Text <i class="fa fa-download"></i></a></h4>
+                <p>
+                    Der Versuch, eine einfache plain-text-Variante zur Verfügung zu stellen.
+                    Alle Lesarten, Abkürzungen etc. sind aufgelöst und die Textstruktur ist lediglich durch Leerzeilen angedeutet.
+                    NB: Dies ist ein experimentelles Format!
+                </p>
+                <p>
+                    Weitere Informationen für Entwickler*innen finden sich in unserer 
+                    <a href="/exist/apps/WeGA-WebApp/de/Hilfe/API_Dokumentation.html">API Dokumentation</a></p>
+            </div>
+            
+        </div>
+    </div>
+</div>
+            <div class="col-md-3 order-2 side-col">
+                <div class="allFilter">
+                    <div>
+                        <h2><a href="#dokument" class="collapseSingle" aria-expanded="true" data-toggle="collapse">Dokument</a></h2>
+                        <div id="dokument" class="panel-collapse collapse show">
+                            
+                            <ul class="nav nav-tabs">
+                                <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link deactivated"></a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070012/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-md-9 main-col">
+                
+                <div class="tab-content">
+                    <div class="tab-pane active fade in" id="transcription">
+                        <div id="toc">
+                                    <h2>Inhaltsverzeichnis</h2>
+                                    <ul>
+                                        <li class="secLevel1"><a href="#d12e3">http/https</a></li>
+                                        <li class="secLevel1"><a href="#contentNegotiationDE">Ausgabeformate und Content Negotiation</a></li>
+                                        <li class="secLevel1"><a href="#d12e109">TEI-Ausgabeformate</a></li>
+                                        <li class="secLevel1"><a href="#sprachwahl">Sprachauswahl</a></li>
+                                        <li class="secLevel1"><a href="#d12e182">Abfragen von GND IDs</a></li>
+                                        <li class="secLevel1"><a href="#d12e235">Correspondence Metadata Interchange-Format (CMIF)</a></li>
+                                        <li class="secLevel1"><a href="#d12e260">International Image Interoperability Framework (IIIF)</a></li>
+                                        <li class="secLevel1"><a href="#d12e301">Swagger OpenAPI</a></li>
+                                    </ul>
+                                </div>
+                                <div id="d12e2">
+                                    <h2 id="d12e3">http/https</h2>
+                                    <p>Die Seiten der WeGA werden seit 2018  nur noch über verschlüsseltes <code>https</code> ausgeliefert.
+               Anfragen via  <code>http</code> werden nach <code>https</code> umgeleitet.
+               Die folgenden URL-Beispiele gelten somit immer für beide Protokolle.</p>
+                                </div>
+                                <div id="contentNegotiationDE">
+                                    <h2 id="d12e17">Ausgabeformate und Content Negotiation</h2>
+                                    <p>Via Content Negotiation lassen sich zu einer Ressource verschiedene Ausgabeformate wählen. 
+               Aktuell werden HTML, TEI-XML, JSON-LD und Plain Text unterstützt, wobei das gewünschte Ausgabeformat entweder 
+               über ein Suffix oder über den HTTP Accept Header angegeben werden kann.
+               Wird beides angegeben, hat das Suffix Vorrang. 
+               NB: Die Plain-Text-Ausgabe ist als experimentelles Feature zu verstehen!
+            </p>
+                                    <div class="table-wrapper">
+                                        <table id="d12e21" class="table">
+                                            <tbody>
+                                                <tr>
+                                                    <th>Format</th>
+                                                    <th>Suffix</th>
+                                                    <th>Accept Header</th>
+                                                </tr>
+                                                <tr>
+                                                    <td>HTML</td>
+                                                    <td><code>.html</code>, <code>.htm</code></td>
+                                                    <td><code>text/html</code>, <code>application/xhtml+xml</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>TEI XML</td>
+                                                    <td><code>.tei</code>, <code>.xml</code></td>
+                                                    <td><code>application/xml</code>, <code>application/tei+xml</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Plain Text</td>
+                                                    <td><code>.txt</code></td>
+                                                    <td><code>text/plain</code></td>
+                                                </tr>
+                                                <tr>
+                                                    <td>JSON-LD</td>
+                                                    <td><code>.jsonld</code></td>
+                                                    <td><code>application/ld+json</code></td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <p>Die persistente URL jeder Ressource setzt sich dabei aus der Domäne „weber-gesamtausgabe.de“ und der ID zusammen. </p>
+                                    <div class="card panel-info">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Beispiele mit curl</h4>
+                                        </div>
+                                        <div class="card-body">
+               
+               <code># curl -L https://weber-gesamtausgabe.de/A002068.xml </code>
+               <br /><code># curl -L https://weber-gesamtausgabe.de/A002068.html </code>
+               <br /><code># curl -L -H "Accept: text/html" https://weber-gesamtausgabe.de/A002068 </code>
+               <br /><code># curl -L -H "Accept: application/xml" https://weber-gesamtausgabe.de/A002068 </code>
+            </div>
+                                    </div>
+                                    <p>Bitte beachten Sie, dass der Parameter <code>-L</code> hier benötigt wird, da ggf. eine Weiterleitung erfolgt
+               und dass zwingend die Angabe des gewünschten Ausgabeformats (via Suffixnotation oder HTTP Accept Header) erforderlich ist.</p>
+                                </div>
+                                <div id="d12e108">
+                                    <h2 id="d12e109">TEI-Ausgabeformate</h2>
+                                    <p>Wird eine TEI-Datei abgerufen (siehe <a href="#contentNegotiationDE">Content Negotiation</a>), so wird diese standardmäßig im WeGA-TEI-Format ausgeliefert.
+               Dieses Format ist eine „TEI-Customization“ und dokumentiert unter <a href="https://github.com/Edirom/WeGA-ODD">https://github.com/Edirom/WeGA-ODD</a>.
+               Alternativ kann über den URL-Parameter <code>format</code> auch eine Ausgabe kompatibel zu „TEI all“ (<code>format=tei_all</code>) 
+               oder „TEI simplePrint“ (<code>format=tei_simplePrint</code>) gewählt werden.</p>
+                                    <div class="card panel-info">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Beispiele mit curl</h4>
+                                        </div>
+                                        <div class="card-body">
+               
+               <code># curl -L "https://weber-gesamtausgabe.de/A002068.xml?format=tei_all" </code>
+               <br /><code># curl -L -H "Accept: application/xml" "https://weber-gesamtausgabe.de/A002068?format=tei_simplePrint" </code>
+            </div>
+                                    </div>
+                                    <p>Siehe auch die <a class="preview news A050229" href="">News vom 29. November 2017</a> zu „alternativen TEI-Ausgabeformaten“.</p>
+                                </div>
+                                <div id="sprachwahl">
+                                    <h2 id="d12e159">Sprachauswahl</h2>
+                                    <p>Die HTML-Ausgabe der Ressourcen kann in mehreren Sprachen (Aktuell Deutsch und Englisch) erfolgen. 
+               Dabei werden allerdings nur die Navigations- und Menüelemente übersetzt, nicht jedoch die eigentlichen Texte!
+               Die Sprachwahl erfolgt über eine URL-Pfadkomponente, <code>de</code> für Deutsch und <code>en</code> für Englisch.</p>
+                                    <div class="card panel-info">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Beispiele mit curl</h4>
+                                        </div>
+                                        <div class="card-body">
+               
+               <code># curl -L https://weber-gesamtausgabe.de/de/A002068.html </code>
+               <br /><code># curl -L -H "Accept: text/html" https://weber-gesamtausgabe.de/en/A002068 </code>
+            </div>
+                                    </div>
+                                </div>
+                                <div id="d12e181">
+                                    <h2 id="d12e182">Abfragen von GND IDs</h2>
+                                    <p> 
+               Von der API werden aktuell GNDs vom Typ „Person“ (früher PND), „Organisation/Körperschaft“ (früher GKD),
+               sowie „Werk“ unterstützt, 
+               welche über BEACON-Dateien zur Verfügung gestellt werden. 
+               Die Adressen der BEACON-Dateien sind <code>https://weber-gesamtausgabe.de/pnd_beacon.txt</code>,
+               <code>https://weber-gesamtausgabe.de/gkd_beacon.txt</code>,
+               bzw. <code>https://weber-gesamtausgabe.de/works_beacon.txt</code>.
+               Abfragen können durch Anhängen einer gültigen GND an die Adresse <code>https://weber-gesamtausgabe.de/de/gnd/</code>
+               gemacht werden. (Zur Sprachwahl siehe <a href="#sprachwahl">oben</a>.)
+            </p>
+                                    <div class="card panel-info">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Beispiele mit curl</h4>
+                                        </div>
+                                        <div class="card-body">
+               
+               <code># curl -L -H "Accept: application/tei+xml" https://weber-gesamtausgabe.de/de/gnd/118629662 </code>
+               <br /><code># curl -L https://weber-gesamtausgabe.de/de/gnd/118629662.jsonld </code>
+            </div>
+                                    </div>
+                                    <p>Bitte beachten Sie, dass der Parameter <code>-L</code> hier zwingend benötigt wird, da eine Weiterleitung erfolgt
+               und dass ebenfalls die Angabe des gewünschten Ausgabeformats (via Suffixnotation oder HTTP Accept Header) erforderlich ist.</p>
+                                    <p>Detaillierte Informationen zum BEACON-Format finden sich unter <a href="https://de.wikipedia.org/wiki/Wikipedia:BEACON">https://de.wikipedia.org/wiki/Wikipedia:BEACON <i class="fa fa-external-link" aria-hidden="true"></i></a>.</p>
+                                </div>
+                                <div id="d12e234">
+                                    <h2 id="d12e235">Correspondence Metadata Interchange-Format (CMIF)</h2>
+                                    <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMIF)
+               zur Verfügung. Adresse der BEACON-Datei: <code>https://weber-gesamtausgabe.de/correspDesc.xml</code>.
+            </p>
+                                    <p>Detaillierte Informationen zum CMI-Format finden sich auf den Seiten des <a href="https://correspsearch.net/de/mitmachen.html">correspSearch Webservice <i class="fa fa-external-link" aria-hidden="true"></i></a>
+               und unter <a href="https://github.com/TEI-Correspondence-SIG/CMIF">https://github.com/TEI-Correspondence-SIG/CMIF <i class="fa fa-external-link" aria-hidden="true"></i></a>.
+               Siehe auch die <a class="preview news A050122" href="">News vom 7. Mai 2014</a> zur ersten Einrichtung eines „experimentellen Corresp-Beacon“. 
+            </p>
+                                </div>
+                                <div id="d12e259">
+                                    <h2 id="d12e260"><span class="tei_hi_italic">International Image Interoperability Framework</span> (IIIF)</h2>
+                                    <p>Die WeGA stellt die digitalen Faksimiles, die sie selber hosten und veröffentlichen darf, 
+               nach dem <a href="https://iiif.io">IIIF-Standard <i class="fa fa-external-link" aria-hidden="true"></i></a> zur Verfügung. 
+               Die Metadaten der einzelnen Bilder (<code>info.json</code>) werden dabei von dem bei uns eingesetzten 
+               <a href="https://robcast.github.io/digilib/index.html">Digilib-Imageserver <i class="fa fa-external-link" aria-hidden="true"></i></a> 
+               automatisch erzeugt, und die „Resource Structure“ für die IIIF Presentation API (<code>manifest.json</code>)
+               wird aus den TEI-Dokumenten durch die WeGA-WebApp generiert.</p>
+                                    <p>Die persistente URL jeder Ressource setzt sich dabei aus der Domäne „weber-gesamtausgabe.de“ und dem Pfad „/IIIF/<code>$ID</code>/manifest.json“ zusammen. </p>
+                                    <div class="card panel-info">
+                                        <div class="card-header">
+                                            <h4 class="card-title">Beispiele mit curl</h4>
+                                        </div>
+                                        <div class="card-body">
+               
+               <code># curl -L -H "Accept: application/json" https://weber-gesamtausgabe.de/IIIF/A040709/manifest.json </code>
+            </div>
+                                    </div>
+                                </div>
+                                <div id="d12e300">
+                                    <h2 id="d12e301">Swagger OpenAPI</h2>
+                                    <p>Die WeGA bietet unter <a href="https://weber-gesamtausgabe.de/api/v1/">https://weber-gesamtausgabe.de/api/v1/</a> 
+               ebenfalls eine REST-Schnittstelle nach der <a href="https://swagger.io/specification/">Swagger OpenAPI Spezifikation 3.0 <i class="fa fa-external-link" aria-hidden="true"></i></a> an. 
+               Diese Schnittstelle soll ein schnelles und komfortables 
+               Auffinden von Dokumenten aus der digitalen Edition ermöglichen.</p>
+                                </div>
+                    </div>
+                    <div class="tab-pane fade" id="backlinks">
+                        <h2>Rückverweise</h2>
+                        
+                    </div>
+                    <div class="tab-pane fade" id="XMLPreview">
+                        <h2>XML</h2>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+    
+    <div class="container documentFooter">
+        <div class="row permaLink">
+            <div class="col-md-9">
+                <h4>Empfohlene Zitierweise</h4>
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>http://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<a href="">Version 4.7.0-alpha vom 26. August 2022</a>)
+                    <br />
+                    <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
+            </div>
+            
+        </div>
+        <div class="row bugreport">
+            <div class="col-md-9">
+                <p>Wenn Ihnen auf dieser Seite ein Fehler oder eine Ungenauigkeit aufgefallen ist, <br />so bitten wir um eine kurze Nachricht an
+                    <a href="#" class="obfuscate-email">bugs [@] weber-gesamtausgabe.de</a>.</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+        <div class="greyLight">
+            <div class="container footer">
+                <div class="row">
+                    <div class="col-md-4 col-6">
+                        <a href="https://www.uni-paderborn.de/">
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_uni_paderborn_farbe.png" alt="Logo der Universität Paderborn" />
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <a href="https://www.hfm-detmold.de/">
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_hfm_detmold_farbe.png" alt="Logo der Hochschule für Musik Detmold" />
+                        </a>
+                    </div>
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
+                        <a href="https://staatsbibliothek-berlin.de/">
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_staatsbib_berlin_farbe.png" alt="Logo der Staatsbibliothek zu Berlin" />
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <a href="https://www.adwmainz.de/">
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_akademie_mainz_sw.png" alt="Emblem der Akademie Mainz" />
+                        </a>
+                    </div>
+                    <div class="clearfix d-none d-xs-block d-sm-none"></div>
+                    <div class="col-md-4 col-6">
+                        <a href="http://exist-db.org/">
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_existdb_farbe.png" alt="eXist-db logo" />
+                        </a>
+                    </div>
+                    <div class="col-md-4 col-6">
+                        <a href="https://tei-c.org/">
+                            <img class="img-fluid" src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_sw.png" data-hovered-src="/exist/apps/WeGA-WebApp/resources/img/logo_tei_farbe.png" alt="Text Encoding Initiative logo" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="greyDark footerbottom">
+            <div class="container ">
+                <div class="row">
+                    <div class="col-12">
+                        <ul class="footerNav">
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
+                            </li>
+                            <li>
+                                <a href="/exist/apps/WeGA-WebApp/de/Projekt/Impressum.html">Impressum</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">CC-BY International 4.0</a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://github.com/Edirom/WeGA-WebApp">Source Code on GitHub <i class="fa fa-github" aria-hidden="true"></i></a>
+                            </li>
+                            <li>
+                                <a target="_blank" href="https://doi.org/10.5281/zenodo.3520700">Data on Zenodo</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div id="carousel-popover" class="carousel slide d-none" data-interval="false">
+            <div class="carousel-inner" role="listbox">
+                <div class="carousel-item item active">
+                    <h3 class="item-title">
+                        <span class="item-title-content">Loading …</span>
+                        <a href="#editorial" class="apparatus-link item-counter">1</a>
+                    </h3>
+                    <div class="item-content">
+                        <div class="progress" style="min-width:244px">
+                            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width:100%;"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-controls">
+                <a class="carousel-control carousel-control-prev left" href="#carousel-popover" data-slide="prev">
+                    <span class="fa fa-angle-double-left"></span>
+                </a>
+                <ol class="carousel-indicators">
+                    <li data-target="#carousel-popover" data-slide-to="0" class="active"></li>
+                </ol>
+                <a class="carousel-control carousel-control-next right" href="#carousel-popover" data-slide="next">
+                    <span class="fa fa-angle-double-right"></span>
+                </a>
+            </div> 
+        </div>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery/dist/jquery.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fittextjs/index.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/Easy-Responsive-Tabs-to-Accordion/js/easyResponsiveTabs.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-hover-dropdown/bootstrap-hover-dropdown.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/jquery.loadmask.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/openseadragon/openseadragon/openseadragon.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
+        
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        
+        
+        
+        
+    </body>
+</html>
