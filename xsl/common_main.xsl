@@ -521,7 +521,7 @@
         </xsl:variable>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
-            <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc"/>
+            <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc" mode="plain"/>
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="starts-with(@url, 'http')">
@@ -861,8 +861,12 @@
         </xsl:attribute>
     </xsl:template>
     
+    <xsl:template match="text()" mode="plain">
+        <xsl:value-of select="normalize-space(.)"/>
+    </xsl:template>
+    
     <!--  *********************************************  -->
-    <!--  * Templates for highlighting search resutls *  -->
+    <!--  * Templates for highlighting search results *  -->
     <!--  *********************************************  -->
     
     <xsl:template match="exist:match">
