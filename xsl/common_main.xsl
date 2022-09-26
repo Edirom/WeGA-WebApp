@@ -521,20 +521,20 @@
         </xsl:variable>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
-            <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc" mode="plain"/>
+            <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc"/>
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="starts-with(@url, 'http')">
                 <xsl:element name="img">
-                    <xsl:attribute name="title" select="$title"/>
-                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="title" select="normalize-space($title)"/>
+                    <xsl:attribute name="alt" select="normalize-space($title)"/>
                     <xsl:attribute name="src" select="@url"/>
                 </xsl:element>
             </xsl:when>
             <xsl:when test="starts-with(@url, 'wega:')">
                 <xsl:element name="img">
-                    <xsl:attribute name="title" select="$title"/>
-                    <xsl:attribute name="alt" select="$title"/>
+                    <xsl:attribute name="title" select="normalize-space($title)"/>
+                    <xsl:attribute name="alt" select="normalize-space($title)"/>
                     <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifImageApi'))"/>
                 </xsl:element>
             </xsl:when>
@@ -543,7 +543,7 @@
                     <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
                     <xsl:element name="img">
                         <!--<xsl:attribute name="title" select="$title"/>-->
-                        <xsl:attribute name="alt" select="$title"/>
+                        <xsl:attribute name="alt" select="normalize-space($title)"/>
                         <xsl:attribute name="src" select="concat($localURL, '/full/', $figureSize, '/0/native.jpg')"/>
                     </xsl:element>
                 </xsl:element>
@@ -859,10 +859,6 @@
         <xsl:attribute name="colspan">
             <xsl:value-of select="."/>
         </xsl:attribute>
-    </xsl:template>
-    
-    <xsl:template match="text()" mode="plain">
-        <xsl:value-of select="normalize-space(.)"/>
     </xsl:template>
     
     <!--  *********************************************  -->
