@@ -516,15 +516,13 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="localURL">
-            <xsl:value-of select="concat(wega:getOption('iiifImageApi'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
-        </xsl:variable>
         <xsl:variable name="title">
             <!-- desc within notatedMusic and figDesc within figures -->
             <xsl:apply-templates select="parent::*/tei:desc | parent::*/tei:figDesc"/>
         </xsl:variable>
         <xsl:choose>
             <xsl:when test="starts-with(@url, 'http')">
+                <!-- external images -->
                 <xsl:element name="img">
                     <xsl:attribute name="title" select="normalize-space($title)"/>
                     <xsl:attribute name="alt" select="normalize-space($title)"/>
@@ -532,19 +530,33 @@
                 </xsl:element>
             </xsl:when>
             <xsl:when test="starts-with(@url, 'wega:')">
-                <xsl:element name="img">
-                    <xsl:attribute name="title" select="normalize-space($title)"/>
-                    <xsl:attribute name="alt" select="normalize-space($title)"/>
-                    <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifImageApi'))"/>
+                <!-- 
+                    images provided by the WeGA via "wega" prefix 
+                    (e.g. `<graphic url="wega:letters%252FA0451xx%252FA045161%252FA045161_3.jpg/full/,400/0/native.jpg"/>`)
+                -->
+                <xsl:element name="a">
+                    <xsl:attribute name="href" select="replace(concat(substring-before(@url, '/'), '/full/full/0/native.jpg'), 'wega:', wega:getOption('iiifImageApi'))"/>
+                    <xsl:element name="img">
+                        <xsl:attribute name="title" select="normalize-space($title)"/>
+                        <xsl:attribute name="alt" select="normalize-space($title)"/>
+                        <xsl:attribute name="src" select="replace(@url, 'wega:', wega:getOption('iiifImageApi'))"/>
+                    </xsl:element>
                 </xsl:element>
             </xsl:when>
             <xsl:otherwise>
+                <!-- 
+                    images provided by the WeGA by simply naming the file 
+                    (e.g. `<graphic url="TheaterLeipzigInnen.jpg"/>`) 
+                -->
+                <xsl:variable name="imageBaseURL">
+                    <xsl:value-of select="concat(wega:getOption('iiifImageApi'), encode-for-uri(wega:join-path-elements((replace(concat(wega:getCollectionPath($docID), '/'), $data-collection-path, ''), $docID, @url))))"/>
+                </xsl:variable>
                 <xsl:element name="a">
-                    <xsl:attribute name="href" select="concat($localURL, '/full/full/0/native.jpg')"/>
+                    <xsl:attribute name="href" select="concat($imageBaseURL, '/full/full/0/native.jpg')"/>
                     <xsl:element name="img">
-                        <!--<xsl:attribute name="title" select="$title"/>-->
+                        <xsl:attribute name="title" select="normalize-space($title)"/>
                         <xsl:attribute name="alt" select="normalize-space($title)"/>
-                        <xsl:attribute name="src" select="concat($localURL, '/full/', $figureSize, '/0/native.jpg')"/>
+                        <xsl:attribute name="src" select="concat($imageBaseURL, '/full/', $figureSize, '/0/native.jpg')"/>
                     </xsl:element>
                 </xsl:element>
             </xsl:otherwise>
