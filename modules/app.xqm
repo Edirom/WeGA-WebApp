@@ -1662,15 +1662,22 @@ declare
  : @return element html:p
  :)
 declare %private function app:get-news-foot($doc as document-node(), $lang as xs:string) as element(xhtml:p)? {
-    let $authorElem := query:get-author-element($doc)
+    let $authorElems := query:get-author-element($doc)
+    let $authorElemsCount := count($authorElems)
     let $dateFormat := 
         if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
                           else '[FNn], [MNn] [D], [Y]'
     return 
-        if(count($authorElem) gt 0) then 
+        if($authorElemsCount gt 0) then 
             element xhtml:p {
                 attribute class {'authorDate'},
-                app:printCorrespondentName($authorElem, $lang, 'fs'),
+                for $authorElem at $count in $authorElems
+                return (
+                    app:printCorrespondentName($authorElem, $lang, 'fs'),
+                    if($count le $authorElemsCount -2) then ', '
+                    else if($count eq $authorElemsCount -1) then ' ' || lang:get-language-string('and', $lang) || ' '
+                    else()
+                ),
                 concat(', ', date:format-date(xs:date($doc//tei:publicationStmt/tei:date/xs:dateTime(@when)), $dateFormat, $lang))
             }
         else()
