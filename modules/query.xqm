@@ -357,6 +357,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'keywords' return $collection//tei:term[parent::tei:keywords]
     case 'docLang' return $collection//tei:language/@ident
     case 'workTitle' return $collection//mei:title[parent::mei:titleStmt]
+    case 'geonamesFeatureClass' return $collection//tei:place/@typeof
     default return ()
 };
 
