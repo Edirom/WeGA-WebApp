@@ -708,6 +708,9 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
         }
 };
 
+(:
+ : Some additional data that is used in the preview and in the single view
+ :)
 declare 
     %templates:wrap
     function app:place-basic-data($node as node(), $model as map(*)) as map(*) {
