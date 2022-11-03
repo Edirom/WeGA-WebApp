@@ -64,6 +64,22 @@
                                 <span data-template="app-shared:print" data-template-key="name">Frankfurt am Main</span> 
                             </div>
                         </li>
+                        <li class="media geonamesFeatureCode" data-template="app-shared:if-exists" data-template-key="geonamesFeatureCode">
+                            <div class="pull-left">                  
+                                <i class="fa fa-map-marker"/>
+                            </div>
+                            <div class="media-body" data-template="app-shared:join" data-template-key="geonamesFeatureCode">
+                                Gasthaus, Hotel
+                            </div>
+                        </li>
+                        <li class="media residences" data-template="app-shared:if-exists" data-template-key="residences">
+                            <div class="pull-left">                  
+                                <i class="fa fa-map-marker"/>
+                            </div>
+                            <div class="media-body" data-template="app-shared:join" data-template-key="residences">
+                                Köln, Gotha
+                            </div>
+                        </li>
                         <li class="media" data-template="app-shared:if-exists" data-template-key="geonames-id">
                             <div class="pull-left">
                                 <i class="fa fa-globe"/>

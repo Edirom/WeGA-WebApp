@@ -716,7 +716,9 @@ declare
     function app:place-basic-data($node as node(), $model as map(*)) as map(*) {
         map {
             'geonames-id' : str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1]),
-            'coordinates' : str:normalize-space($model?doc//tei:geo)
+            'coordinates' : str:normalize-space($model?doc//tei:geo),
+            'residences': $model('doc')//tei:label[.='Ort'][parent::tei:state]/following-sibling::tei:desc/tei:* ! str:normalize-space(.),
+            'geonamesFeatureCode': $model('doc')//tei:label[.='Kategorie'][parent::tei:state]/following-sibling::tei:desc ! str:normalize-space(.)
         }
 };
 
