@@ -767,6 +767,10 @@ $('h1').h1FitText();
 /* hide tabs with no respective div content */
 $('li').has('a.deactivated').hide();
 
+/* only mark the first div and tab "active" on place pages when tei:note and GeoNames are both present */
+$('.nav-tabs a.active').first().parent().nextAll().has('a.active').children().removeClass('active')
+$('.tab-content div.active').first().nextAll('.active').removeClass('active') 
+
 /* 
  * Initialise easyResponsiveTabs for person.html 
  */

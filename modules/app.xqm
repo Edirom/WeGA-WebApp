@@ -692,20 +692,25 @@ declare function app:place-details($node as node(), $model as map(*)) as map(*) 
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
     let $gnd := query:get-gnd($model('doc'))
     let $gn-doc := er:grabExternalResource('geonames', $geonames-id, '', ())
+    let $basic-data := app:place-basic-data($node, $model)
     return
-        map {
-            'gnd' : $gnd,
-            'names' : $model?doc//tei:placeName[@type],
-            'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
-            'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
-            'geonames_alternateNames' : 
-                for $alternateName in $gn-doc//gn:alternateName 
-                group by $name := $alternateName/text()
-                order by $name 
-                return
-                    ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
-            'geonames_parentCountry' : $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() ! query:get-geonames-name(.)
-        }
+        map:merge((
+            map {
+                'gnd' : $gnd,
+                'names' : $model?doc//tei:placeName[@type],
+                'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
+                'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
+                'note' : exists($model?doc/tei:place/tei:note),
+                'geonames_alternateNames' : 
+                    for $alternateName in $gn-doc//gn:alternateName 
+                    group by $name := $alternateName/text()
+                    order by $name 
+                    return
+                        ($name || ' (' || $alternateName/data(@xml:lang) => string-join(', ') || ')'),
+                'geonames_parentCountry' : $gn-doc//gn:parentCountry/analyze-string(@rdf:resource, '/(\d+)/')//fn:group/text() ! query:get-geonames-name(.)
+            },
+            $basic-data
+        ))
 };
 
 (:
@@ -903,7 +908,7 @@ declare
     %templates:default("lang", "en")
     function app:print-wega-bio($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:div)* {
         let $query-result:= app:inject-query($model?doc/*)
-        let $bio := wega-util:transform($query-result//(tei:note[@type='bioSummary'] | tei:event[tei:head] | tei:note[parent::tei:org]), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
+        let $bio := wega-util:transform($query-result//(tei:note[@type='bioSummary'] | tei:event[tei:head] | tei:note[parent::tei:org] | tei:note[parent::tei:place]), doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(()))
         return
             if(some $i in $bio satisfies $i instance of element()) then $bio
             else 
