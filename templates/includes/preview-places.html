@@ -13,6 +13,10 @@
             <i class="fa fa-globe"/>
             <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="geoNames">2661881</a>
         </p>-->
+        <p data-template="app-shared:if-exists" data-template-key="geonamesFeatureCode">
+            <i class="fa fa-compass"/>
+            <span data-template="app-shared:join" data-template-key="geonamesFeatureCode">Gasthof</span>
+        </p>
         <p data-template="app-shared:if-exists" data-template-key="coordinates">
             <i class="fa fa-location-arrow"/>
             <span data-template="app-shared:print" data-template-key="coordinates">50.59403 8.95866</span>
