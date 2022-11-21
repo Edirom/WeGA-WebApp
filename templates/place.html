@@ -53,7 +53,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-md paddingBottomIcon col-sm-6 basicdata" data-template="app:place-basic-data">
+                <div class="col-md paddingBottomIcon col-sm-6 basicdata">
                     <h2 data-template="lang:translate">basic_data</h2>
                     <ol class="media">
                         <li class="media names" data-template="app-shared:each" data-template-from="names" data-template-to="name">
@@ -64,7 +64,23 @@
                                 <span data-template="app-shared:print" data-template-key="name">Frankfurt am Main</span> 
                             </div>
                         </li>
-                        <li class="media">
+                        <li class="media geonamesFeatureCode" data-template="app-shared:if-exists" data-template-key="geonamesFeatureCode">
+                            <div class="pull-left">                  
+                                <i class="fa fa-compass"/>
+                            </div>
+                            <div class="media-body" data-template="app-shared:join" data-template-key="geonamesFeatureCode">
+                                Gasthaus, Hotel
+                            </div>
+                        </li>
+                        <li class="media residences" data-template="app-shared:if-exists" data-template-key="residences">
+                            <div class="pull-left">                  
+                                <i class="fa fa-map-marker"/>
+                            </div>
+                            <div class="media-body" data-template="app-shared:join" data-template-key="residences">
+                                Köln, Gotha
+                            </div>
+                        </li>
+                        <li class="media" data-template="app-shared:if-exists" data-template-key="geonames-id">
                             <div class="pull-left">
                                 <i class="fa fa-globe"/>
                             </div>
@@ -72,7 +88,7 @@
                                 <span>GeoNames ID:</span> <a href="http://www.geonames.org/2661881/aarau.html" data-template="app:place-link" data-template-provider="geoNames">2661881</a> 
                             </div>
                         </li>
-                        <li class="media">
+                        <li class="media" data-template="app-shared:if-exists" data-template-key="coordinates">
                             <div class="pull-left">
                                 <i class="fa fa-location-arrow"/>
                             </div>
@@ -120,7 +136,14 @@
                                                 <h2 data-template="lang:translate">documents</h2>
                                                 <!-- Nav tabs -->
                                                 <ul class="nav nav-tabs">
-                                                    <li class="nav-item gradient-light">
+                                                    <li class="nav-item gradient-light" data-template="app-shared:if-exists" data-template-key="note">
+                                                        <!-- 
+                                                            need to mark both "wegaText" and "geonames" as 'active'. 
+                                                            IFF both are actually present, some Javascript will keep only the first one 
+                                                        -->
+                                                        <a class="nav-link active" data-toggle="tab" href="#wegaText">WeGA Text</a>
+                                                    </li>
+                                                    <li class="nav-item gradient-light" data-template="app-shared:if-exists" data-template-key="geonames-id">
                                                         <a class="nav-link active" data-toggle="tab" href="#geonames">GeoNames</a>
                                                     </li>
                                                     <li class="nav-item gradient-light">
@@ -144,7 +167,15 @@
                                         <div class="col-md-9 ">
                                             <!-- Tab panes -->
                                             <div class="tab-content">
-                                                <div class="tab-pane active fade in" id="geonames">
+                                                <div class="tab-pane active fade in" id="wegaText" data-template="app-shared:if-exists" data-template-key="note">
+                                                    <!-- 
+                                                        need to mark both "wegaText" and "geonames" as 'active'. 
+                                                        IFF both are actually present, some Javascript will keep only the first one 
+                                                    -->
+                                                    <h2>WeGA Text</h2>
+                                                    <div data-template="app:print-wega-bio"></div>
+                                                </div>
+                                                <div class="tab-pane active fade in" id="geonames" data-template="app-shared:if-exists" data-template-key="geonames-id">
                                                     <h2>GeoNames</h2>
                                                     <dl>
                                                         <dt data-template="lang:translate">pnd_otherNames</dt>

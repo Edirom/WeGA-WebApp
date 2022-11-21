@@ -1068,6 +1068,16 @@ declare function api:validate-siglum($model as map(*)) as map(*)? {
 };
 
 (:~
+ : Check parameter geonamesFeatureClass
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-geonamesFeatureClass($model as map(*)) as map(*)? {
+    if(every $i in $model?geonamesFeatureClass ! tokenize(., ',') satisfies matches($i, '^[A-Z]$')) then map { 'geonamesFeatureClass': $model?geonamesFeatureClass ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "geonamesFeatureClass". It must be a valid geonamesFeatureClass matching the regular expression "^[A-Z]$".' )
+};
+
+(:~
  : Check parameter orderby (docID|idno|sortdate|docType|title)
  : only one value allowed
 ~:)
