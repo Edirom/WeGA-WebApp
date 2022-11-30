@@ -47,7 +47,7 @@ large = x340
 
 (:~
  : Main function for creating a map of all images (from various sources)
- : for a given person.
+ : for a given entity.
 ~:)
 declare 
     %templates:default("lang", "en")
@@ -97,10 +97,18 @@ declare %private function img:iconography4places($node as node(), $model as map(
         return 
             if($map?coa) then $map 
             else ()
+    let $bildindex-images :=
+        (: 
+          only request Bildindex-images for single view (not list views) 
+          since we're not able to cache these requests 
+        :)
+        if($node/@id='meta') 
+        then img:bildindex-images($model, $lang)
+        else ()
     return
         map { 
-                'iconographyImages' : $wikidata-images,
-                'portrait' : ($coa, $wikidata-images, img:get-generic-portrait($model, $lang))[1]
+                'iconographyImages' : ($wikidata-images, $bildindex-images),
+                'portrait' : ($coa, $wikidata-images, $bildindex-images, img:get-generic-portrait($model, $lang))[1]
             }
 };
 
@@ -366,6 +374,38 @@ declare %private function img:munich-stadtmuseum-images($model as map(*), $lang 
                     'caption' : str:normalize-space($a/xhtml:img/@title) || ' (Quelle: Münchner Stadtmuseum)',
                     'linkTarget' : 'https://stadtmuseum.bayerische-landesbibliothek-online.de/pnd/' || $gnd,
                     'source' : 'Münchner Stadtmuseum',
+                    'url' : function($size) {
+                        $picURI
+                    }
+                }
+            else ()
+};
+
+(:~
+ : Helper function for grabbing images from the "Bildindex der Kunst und Architektur" (Bildarchiv Foto Marburg) 
+ :
+ : @author Peter Stadler 
+ : @param 
+ : @param $lang the language variable (de|en)
+ : @return 
+ :)
+declare %private function img:bildindex-images($model as map(*), $lang as xs:string) as map(*)* {
+    let $gnd := query:get-gnd($model('doc'))
+    let $url := config:get-option('bildindex') || $gnd
+    let $page :=
+        (: regrettably we can't cache the request because the bildindex page is creating fast-vanishing image links on the fly :)
+        if($gnd) then er:http-get($url)//er:response
+        else ()
+    let $divs := $page//xhtml:div[contains(@class, 'ssy_galleryElement')]
+    return 
+        for $div in $divs
+        let $picURI := $div/xhtml:figure/xhtml:a/xhtml:img/@edp-src
+        return 
+            if($picURI castable as xs:anyURI) then
+                map {
+                    'caption' : str:normalize-space($div//xhtml:span[contains(@class, 'galHeadline')]) || ' (Quelle: Bildindex der Kunst und Architektur)',
+                    'linkTarget' : $div/xhtml:figure/xhtml:a/@href,
+                    'source' : 'Bildindex der Kunst und Architektur',
                     'url' : function($size) {
                         $picURI
                     }
