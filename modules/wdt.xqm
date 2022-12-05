@@ -541,10 +541,10 @@ declare function wdt:iconography($item as item()*) as map(*) {
             else false()
         },
         'filter' : function() as document-node()* {
-            $item/root()[descendant::tei:person/@corresp]
+            $item/root()/descendant::tei:person[@corresp]/root() | $item/root()/descendant::tei:place[@corresp]/root()
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
-            $item/root()/descendant::tei:person[@corresp = $personID]/root()
+            $item/root()/descendant::tei:person[@corresp = $personID]/root() | $item/root()/descendant::tei:place[@corresp = $personID]/root()
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
             ()
@@ -555,10 +555,10 @@ declare function wdt:iconography($item as item()*) as map(*) {
             for $i in wdt:iconography($item)('filter')() order by sort:index('iconography', $i) descending return $i
         },
         'init-collection' : function() as document-node()* {
-            crud:data-collection('iconography')[descendant::tei:person/@corresp]
+            crud:data-collection('iconography')//(tei:place|tei:person)[@corresp]/root()
         },
         'init-sortIndex' : function() as item()* {
-            sort:create-index-callback('iconography', wdt:iconography(())('init-collection')(), function($node) { $node//tei:person/data(@corresp) }, ())
+            sort:create-index-callback('iconography', wdt:iconography(())('init-collection')(), function($node) { $node//data(@corresp) }, ())
         },
         'memberOf' : ('unary-docTypes'),
         'search' : ()

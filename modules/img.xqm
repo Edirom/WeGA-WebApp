@@ -91,6 +91,7 @@ declare %private function img:iconography4persons($node as node(), $model as map
  :
 ~:)
 declare %private function img:iconography4places($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+    let $local-images := img:wega-images($model, $lang)
     let $wikidata-images := img:wikidata-images($model, $lang)
     let $coa := 
         for $map in $wikidata-images 
@@ -107,8 +108,8 @@ declare %private function img:iconography4places($node as node(), $model as map(
         else ()
     return
         map { 
-                'iconographyImages' : ($wikidata-images, $bildindex-images),
-                'portrait' : ($coa, $wikidata-images, $bildindex-images, img:get-generic-portrait($model, $lang))[1]
+                'iconographyImages' : ($local-images, $wikidata-images, $bildindex-images),
+                'portrait' : ($coa, $local-images, $wikidata-images, $bildindex-images, img:get-generic-portrait($model, $lang))[1]
             }
 };
 
@@ -425,7 +426,10 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
     let $iiifImageApi := config:get-option('iiifImageApi')
     return
         for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
-        let $iiifURI := $iiifImageApi || encode-for-uri(string-join(('persons', substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
+        let $docType := 
+            if($fig/tei:figDesc/tei:listPlace) then 'places'
+            else 'persons'
+        let $iiifURI := $iiifImageApi || encode-for-uri(string-join(($docType, substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
         order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
         return 
             map {
