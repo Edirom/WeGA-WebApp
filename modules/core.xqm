@@ -52,7 +52,7 @@ declare function core:getOrCreateColl($collName as xs:string, $cacheKey as xs:st
     }
     return
         (: Do not cache all collections. This will result in too much memory consumption :)
-        if($cacheKey = ('indices', 'A002068', 'A130001', 'A130002', 'A000213', 'A130003', 'A000914', 'A020040', 'A130004', 'A130005', 'A130006', 'A001002', 'A002078', 'A020043', 'A002160', 'A002085')) then mycache:collection($collName || $cacheKey, $callBack, $lease, $onFailure)
+        if($useCache and $cacheKey = ('indices', 'A002068', 'A130001', 'A130002', 'A000213', 'A130003', 'A000914', 'A020040', 'A130004', 'A130005', 'A130006', 'A001002', 'A002078', 'A020043', 'A002160', 'A002085')) then mycache:collection($collName || $cacheKey, $callBack, $lease, $onFailure)
         else $callBack()
 };
 
