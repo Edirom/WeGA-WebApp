@@ -323,8 +323,7 @@ declare function er:viaf2gnd($viaf as xs:string) as xs:string* {
 declare function er:translate-authority-id($idno as element(), $to as xs:string) as xs:string*  {
     let $wikidata :=
         switch($idno/@type)
-        case 'wikidata' return er:cached-external-request(er:grab-external-resource-wikidata(string($idno), 'wikidata'), str:join-path-elements(($config:tmp-collection-path, 'wikidata', string($idno) || '.xml')))
-        case 'gnd' case 'viaf' case 'geonames' return er:grab-external-resource-wikidata(string($idno), $idno/@type)
+        case 'wikidata' case 'gnd' case 'viaf' case 'geonames' return er:grab-external-resource-wikidata(string($idno), $idno/@type)
         default return ()
     return (
         $wikidata//sr:binding[@name=$to] (: default for SPARQL responses:)
