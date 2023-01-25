@@ -29,41 +29,34 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
 
 
 (:~
- : Get resources from the web by PND and store the result in a cache object with the current date. 
+ : Get resources from the web by authority ID and store the result in a cache object with the current date. 
  : If the date does match with today's date then the result will be taken from the cache; otherwise the external resource will be queried.
  :
  : @author Peter Stadler 
  : @param $resource the external resource (wikipedia|adb|dnb|beacon)
- : @param $gnd the PND number
+ : @param $id the external authority ID
  : @param $lang the language variable (de|en). If no language is specified, the default (German) resource is grabbed and served
  : @param $useCache use cached version or force a reload of the external resource
  : @return node
  :)
-declare function er:grabExternalResource($resource as xs:string, $gnd as xs:string, $docType as xs:string, $lang as xs:string?) as element(er:response)? {
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+declare function er:grabExternalResource($resource as xs:string, $id as xs:string, $docType as xs:string, $lang as xs:string?) as element(er:response)? {
     (: Prevent the grabbing of external resources when a web crawler comes around … :)
     let $botPresent := er:bot-present()
     let $url := 
         switch($resource)
-        case 'wikipediaVIAF' return (er:grab-external-resource-wikidata($gnd, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
-        case 'wikipedia' return (er:grab-external-resource-wikidata($gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
-        case 'dnb' return concat('https://d-nb.info/gnd/', $gnd, '/about/rdf')
-        case 'viaf' return concat('https://viaf.org/viaf/', $gnd, '.rdf')
-        case 'geonames' return concat('http://sws.geonames.org/', $gnd, '/about.rdf') (: $gnd is actually the geonames ID :)
-        case 'dbpedia' return concat('http://www.wikidata.org/entity/', $gnd, '.rdf') (: $gnd is actually the dbpedia(wikidata?) ID :)
-        case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $gnd || '.html'
-        default return config:get-option($resource) || $gnd
-    let $fileName := string-join(($gnd, $lang, 'xml'), '.')
-    let $onFailureFunc := function($errCode, $errDesc) {
-        wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
-    }
-    let $response := 
-        if($botPresent or not($url)) then ()
-        else mycache:doc(str:join-path-elements(($config:tmp-collection-path, $resource, $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
-    return 
-        if($response//er:response/@statusCode eq '200') 
-        then $response//er:response
-        else ()
+        case 'wikipediaVIAF' return (er:grab-external-resource-wikidata($id, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
+        case 'wikipedia' return (er:grab-external-resource-wikidata($id, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
+        case 'dnb' return concat('https://d-nb.info/gnd/', $id, '/about/rdf')
+        case 'viaf' return concat('https://viaf.org/viaf/', $id, '.rdf')
+        case 'geonames' return concat('http://sws.geonames.org/', $id, '/about.rdf') (: $id is actually the geonames ID :)
+        case 'dbpedia' return concat('http://www.wikidata.org/entity/', $id, '.rdf') (: $id is actually the dbpedia(wikidata?) ID :)
+        case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $id || '.html'
+        default return config:get-option($resource) || $id
+    let $fileName := string-join(($id, $lang, 'xml'), '.')
+    let $fullFilePath := str:join-path-elements(($config:tmp-collection-path, $resource, $fileName))
+    return
+        if($botPresent or not($url) or not($url castable as xs:anyURI)) then ()
+        else er:cached-external-request(xs:anyURI($url), $fullFilePath)
 };
 
 declare function er:grab-external-resource-via-beacon($beaconProvider as xs:string, $gnd as xs:string) as element(er:response)? {
