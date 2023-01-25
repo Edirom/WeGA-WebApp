@@ -12,12 +12,6 @@ ol.breadcrumb > li:not(:first-child) >  {
         font-family: "FontAwesome";
         font-size:smaller;
     }
-    a:before {
-        color: $link-color;
-    }
-    span:before {
-        color:$gray-light;
-    }
 }
 
 /*
@@ -36,7 +30,7 @@ div.breadcrumb {
 }
 
 .backLinkInBreadcrumb {
-    color: $primary;
+    color: $link-color;
     cursor: pointer;
     display: inline-block;
     margin-top: 10px;
@@ -46,8 +40,7 @@ div.breadcrumb {
 }
 
 .backLinkInBreadcrumb:hover {
-    color: #018eff;
-   
+    color: $link-hover-color;
 }
 
 /* Hide parantheses for empty docStatus */
