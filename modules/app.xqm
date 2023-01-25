@@ -691,7 +691,7 @@ declare
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
     let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
     let $gnd := query:get-gnd($model('doc'))
-    let $gn-doc := er:grabExternalResource('geonames', $geonames-id, '', ())
+    let $gn-doc := er:grabExternalResource('geonames', $geonames-id, ())
     let $basic-data := app:place-basic-data($node, $model)
     return
         map:merge((
@@ -1024,8 +1024,8 @@ declare
         let $gnd := query:get-gnd($model('doc'))
         let $viaf := if($gnd) then () else query:get-viaf($model('doc'))
         let $wikiContent := 
-            if($gnd) then er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
-            else er:grabExternalResource('wikipediaVIAF', $viaf, config:get-doctype-by-id($model('docID')), $lang)
+            if($gnd) then er:grabExternalResource('wikipedia', $gnd, $lang)
+            else er:grabExternalResource('wikipediaVIAF', $viaf, $lang)
         let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
         let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
         return 
@@ -1124,7 +1124,7 @@ declare
     %templates:default("lang", "en")
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
-        let $dnbContent := er:grabExternalResource('dnb', $gnd, config:get-doctype-by-id($model('docID')), ())
+        let $dnbContent := er:grabExternalResource('dnb', $gnd, ())
         let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
         return

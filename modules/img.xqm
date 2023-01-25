@@ -180,7 +180,7 @@ declare %private function img:wikidata-images($model as map(*), $lang as xs:stri
 declare %private function img:wikipedia-images($model as map(*), $lang as xs:string) as map(*)* {
     let $gnd := query:get-gnd($model('doc'))
     let $wikiArticle := 
-        if($gnd) then er:grabExternalResource('wikipedia', $gnd, config:get-doctype-by-id($model('docID')), $lang)
+        if($gnd) then er:grabExternalResource('wikipedia', $gnd, $lang)
         else ()
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
     let $images := $wikiArticle//xhtml:img[@class='thumbimage' or ancestor::xhtml:table[contains(@class, 'vcard') or contains(@class, 'toptextcells')] or ancestor::xhtml:div[@class='thumbinner']]
@@ -301,7 +301,7 @@ declare %private function img:portraitindex-images($model as map(*), $lang as xs
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
         if($gnd) then er:grab-external-resource-via-beacon('portraitindexBeacon', $gnd) 
-        (:er:grabExternalResource('portraitindex', $gnd, config:get-doctype-by-id($model('docID')), $lang):)
+        (:er:grabExternalResource('portraitindex', $gnd, $lang):)
         else ()
     let $pics := $page//xhtml:div[@class='listItemThumbnail']
     return 
@@ -332,7 +332,7 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
         if($gnd) then er:grab-external-resource-via-beacon('tripotaBeacon', $gnd)
-        (:er:grabExternalResource('tripota', $gnd, config:get-doctype-by-id($model('docID')), $lang):)
+        (:er:grabExternalResource('tripota', $gnd, $lang):)
         else ()
     let $pics := $page//xhtml:td
     return 
@@ -363,7 +363,7 @@ declare %private function img:munich-stadtmuseum-images($model as map(*), $lang 
     let $gnd := query:get-gnd($model('doc'))
     let $page := 
         if($gnd) then er:grab-external-resource-via-beacon('munich-stadtmuseumBeacon', $gnd)
-        (:er:grabExternalResource('munich-stadtmuseum', $gnd, config:get-doctype-by-id($model('docID')), $lang):)
+        (:er:grabExternalResource('munich-stadtmuseum', $gnd, $lang):)
         else ()
     let $pics := $page//xhtml:a[@class='imagelink'][ancestor::xhtml:div[@id='main']]
     return 

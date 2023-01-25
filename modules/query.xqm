@@ -212,7 +212,7 @@ declare function query:get-geonamesID($item as item()?) as xs:string? {
  : @return the main name as given in the GeoNames RDF as gn:name 
 :)
 declare function query:get-geonames-name($gn-id as xs:string) as xs:string? {
-    er:grabExternalResource('geonames', $gn-id, '', ())//gn:name
+    er:grabExternalResource('geonames', $gn-id, ())//gn:name
 };
 
 

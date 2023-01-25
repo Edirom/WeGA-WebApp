@@ -36,10 +36,9 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
  : @param $resource the external resource (wikipedia|adb|dnb|beacon)
  : @param $id the external authority ID
  : @param $lang the language variable (de|en). If no language is specified, the default (German) resource is grabbed and served
- : @param $useCache use cached version or force a reload of the external resource
- : @return node
+ : @return response element
  :)
-declare function er:grabExternalResource($resource as xs:string, $id as xs:string, $docType as xs:string, $lang as xs:string?) as element(er:response)? {
+declare function er:grabExternalResource($resource as xs:string, $id as xs:string, $lang as xs:string?) as element(er:response)? {
     (: Prevent the grabbing of external resources when a web crawler comes around … :)
     let $botPresent := er:bot-present()
     let $url := 
@@ -339,8 +338,8 @@ declare function er:translate-authority-id($idno as element(), $to as xs:string)
 declare function er:beacon-map($gnd as xs:string, $docType as xs:string) as map(*) {
     let $findbuchResponse := 
         switch($docType)
-        case 'persons' return er:grabExternalResource('beacon', $gnd, $docType, 'de')
-        default return er:grabExternalResource('gnd-beacon', $gnd, $docType, 'de')
+        case 'persons' return er:grabExternalResource('beacon', $gnd, 'de')
+        default return er:grabExternalResource('gnd-beacon', $gnd, 'de')
     (:let $log := util:log-system-out($gnd):)
     let $jxml := 
         if(exists($findbuchResponse)) then 
