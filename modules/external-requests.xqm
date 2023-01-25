@@ -18,6 +18,7 @@ declare namespace schema="http://schema.org/";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace wikidata-property="http://www.wikidata.org/prop/direct/";
+declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -43,6 +44,7 @@ declare function er:grabExternalResource($resource as xs:string, $id as xs:strin
     let $botPresent := er:bot-present()
     let $url := 
         switch($resource)
+        (: the first two are deprecated and are to be replaced by `er:wikipedia-article#2` :)
         case 'wikipediaVIAF' return (er:grab-external-resource-wikidata($id, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'wikipedia' return (er:grab-external-resource-wikidata($id, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'dnb' return concat('https://d-nb.info/gnd/', $id, '/about/rdf')
@@ -77,7 +79,9 @@ declare function er:grab-external-resource-via-beacon($beaconProvider as xs:stri
  :      see http://expath.org/modules/http-client/
  :)
 declare function er:grab-external-resource-wikidata($id as xs:string, $authority-provider as xs:string) as element(er:response)? {
-    let $uri := er:wikidata-url($id, $authority-provider)
+    let $uri := 
+        if($authority-provider eq 'wikidata') then xs:anyURI('http://www.wikidata.org/entity/' || $id || '.rdf')
+        else er:wikidata-url($id, $authority-provider)
     let $fileName := util:hash($uri, 'md5') || '.xml'
     return
         if(er:bot-present() or not($uri)) 
@@ -319,7 +323,7 @@ declare function er:viaf2gnd($viaf as xs:string) as xs:string* {
 declare function er:translate-authority-id($idno as element(), $to as xs:string) as xs:string*  {
     let $wikidata :=
         switch($idno/@type)
-        case 'wikidata' return er:cached-external-request(xs:anyURI('http://www.wikidata.org/entity/' || string($idno) || '.rdf'), str:join-path-elements(($config:tmp-collection-path, 'wikidata', string($idno) || '.xml')))
+        case 'wikidata' return er:cached-external-request(er:grab-external-resource-wikidata(string($idno), 'wikidata'), str:join-path-elements(($config:tmp-collection-path, 'wikidata', string($idno) || '.xml')))
         case 'gnd' case 'viaf' case 'geonames' return er:grab-external-resource-wikidata(string($idno), $idno/@type)
         default return ()
     return (
@@ -358,4 +362,49 @@ declare function er:beacon-map($gnd as xs:string, $docType as xs:string) as map(
                     else map:entry($title, ($link, $text))
             )
         else map {}
+};
+
+(:~
+ :  Fetch Wikipedia article URL via any authority ID
+ :  Internally, Wikidata is recursively queried for the given IDs until a match is returned
+ :  
+ :  @param $idno a sequence of either tei:idno or mei:altId elements
+ :  @param $lang the language variable (de|en)
+ :  @return a sequence of URLs to Wikipedia articles (usually that should be only one article URL, though)
+ :)
+declare function er:wikipedia-article-url($idno as element()*, $lang as xs:string) as xs:anyURI* {
+    let $supported-authority-providers := ('gnd', 'viaf', 'wikidata', 'geonames')
+    let $ids := $idno[self::tei:idno or self::mei:altId][@type=$supported-authority-providers] => sort() (: sort items for reproducability :)
+    let $cur-id := $ids[1]
+    let $url := 
+        switch($cur-id/@type => string())
+        case 'wikidata' return (er:grab-external-resource-wikidata($cur-id, 'wikidata')//rdf:Description[starts-with(@rdf:about, 'https://de.wikipedia.org/wiki')][rdf:type/@rdf:resource="http://schema.org/Article"]/@rdf:about)
+        case '' return ()
+        default return (er:grab-external-resource-wikidata($cur-id, $cur-id/@type)//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))
+    return
+        if ($url) then $url
+        else if(count($ids) gt 1) then er:wikipedia-article-url(subsequence($ids, 2), $lang)
+        else ()
+};
+
+(:~
+ :  Fetch Wikipedia article
+ :  
+ :  @param $wikiUrls the URLs of the Wikipedia articles (see `er:wikipedia-article-url#2`)
+ :  @param $lang the language variable (de|en)
+ :  @return a sequence of map objects with the keys 'wikiContent', 'wikiUrl', and 'wikiName'
+ :)
+declare function er:wikipedia-article($wikiUrls as xs:anyURI*, $lang as xs:string) as map(*)* {
+    for $wikiUrl in $wikiUrls
+    let $fileName := util:hash($wikiUrl, 'md5') || '.xml'
+    let $wikiContent := 
+        if($wikiUrl) then er:cached-external-request($wikiUrl, str:join-path-elements(($config:tmp-collection-path, 'wikipedia', $fileName)))
+        else ()
+    let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
+    return 
+        map {
+            'wikiContent' : $wikiContent,
+            'wikiUrl' : $wikiUrl,
+            'wikiName' : $wikiName
+        }
 };

@@ -178,10 +178,8 @@ declare %private function img:wikidata-images($model as map(*), $lang as xs:stri
  : @return 
  :)
 declare %private function img:wikipedia-images($model as map(*), $lang as xs:string) as map(*)* {
-    let $gnd := query:get-gnd($model('doc'))
-    let $wikiArticle := 
-        if($gnd) then er:grabExternalResource('wikipedia', $gnd, $lang)
-        else ()
+    let $wikiModel := ($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang) => er:wikipedia-article($lang)
+    let $wikiArticle := $wikiModel?wikiContent 
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
     let $images := $wikiArticle//xhtml:img[@class='thumbimage' or ancestor::xhtml:table[contains(@class, 'vcard') or contains(@class, 'toptextcells')] or ancestor::xhtml:div[@class='thumbinner']]
     return 

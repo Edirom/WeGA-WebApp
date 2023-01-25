@@ -299,8 +299,7 @@ declare
             case 'XML-Preview' return 'xml.html'
             case 'examples' return if(gl:schemaIdent2docType($model?schemaID) = (for $func in $wdt:functions return $func(())('name'))) then 'examples.html' else ()
             case 'wikipedia-article' return 
-                if($model?gnd and exists(er:grab-external-resource-wikidata($model?gnd, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
-                else if($model?viaf and exists(er:grab-external-resource-wikidata($model?viaf, 'viaf')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))) then 'wikipedia.html'
+                if(($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang)) then 'wikipedia.html'
                 else ()
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
@@ -689,10 +688,9 @@ declare
 :)
 
 declare function app:place-details($node as node(), $model as map(*)) as map(*) {
-    let $geonames-id := str:normalize-space(($model?doc//tei:idno[@type='geonames'])[1])
-    let $gnd := query:get-gnd($model('doc'))
-    let $gn-doc := er:grabExternalResource('geonames', $geonames-id, ())
     let $basic-data := app:place-basic-data($node, $model)
+    let $gnd := query:get-gnd($model('doc'))
+    let $gn-doc := er:grabExternalResource('geonames', $basic-data?geonames-id, ())
     return
         map:merge((
             map {
@@ -1021,19 +1019,11 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $gnd := query:get-gnd($model('doc'))
-        let $viaf := if($gnd) then () else query:get-viaf($model('doc'))
-        let $wikiContent := 
-            if($gnd) then er:grabExternalResource('wikipedia', $gnd, $lang)
-            else er:grabExternalResource('wikipediaVIAF', $viaf, $lang)
-        let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href)
-        let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
-        return 
-            map {
-                'wikiContent' : $wikiContent,
-                'wikiUrl' : $wikiUrl,
-                'wikiName' : $wikiName
-            }
+        (: wikiUrl including the version info :)
+       (: let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href) :)
+        let $wikiUrl as xs:anyURI := ($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang)
+        return
+            er:wikipedia-article($wikiUrl, $lang)
 };
 
 
