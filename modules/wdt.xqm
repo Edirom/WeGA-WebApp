@@ -117,13 +117,13 @@ declare function wdt:persons($item as item()*) as map(*) {
                 case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{str:normalize-space(string-join(str:txtFromTEI($person/tei:persName[@type = 'reg'], config:guess-language(())), ''))}</span> 
                 default return wega-util:log-to-file('error', 'wdt:persons()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'label-facets' : function() as xs:string? {
+        'label-facets' : function() as xs:string {
             typeswitch($item)
-                case xs:string return crud:doc($item)//tei:persName[@type = 'reg']/str:normalize-space(.)
-                case xs:untypedAtomic return crud:doc($item)//tei:persName[@type = 'reg']/str:normalize-space(.)
-                case document-node() return str:normalize-space(($item//tei:persName[@type = 'reg']))
-                case element() return str:normalize-space(($item/root()//tei:persName[@type = 'reg']))
-                default return wega-util:log-to-file('error', 'wdt:persons()("label-facests"): failed to get string')
+                case xs:string return crud:doc($item)//tei:persName[@type = 'reg'] => str:normalize-space()
+                case xs:untypedAtomic return crud:doc($item)//tei:persName[@type = 'reg'] => str:normalize-space()
+                case document-node() return $item//tei:persName[@type = 'reg'] => str:normalize-space()
+                case element() return $item/root()//tei:persName[@type = 'reg'] => str:normalize-space()
+                default return wega-util:log-to-file('error', 'wdt:persons()("label-facests"): failed to get string') => string()
         },
         'memberOf' : ('sitemap', 'unary-docTypes'),
         'search' : ()
@@ -396,13 +396,13 @@ declare function wdt:works($item as item()*) as map(*) {
                 case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span> 
                 default return wega-util:log-to-file('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
         },
-        'label-facets' : function() as xs:string? {
+        'label-facets' : function() as xs:string {
             typeswitch($item)
-            case xs:string return str:normalize-space((crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            case xs:untypedAtomic return str:normalize-space((crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            case document-node() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            case element() return str:normalize-space(($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1])
-            default return wega-util:log-to-file('error', 'wdt:works()("label-facests"): failed to get string')
+            case xs:string return (crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1] => str:normalize-space()
+            case xs:untypedAtomic return (crud:doc($item)//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1] => str:normalize-space()
+            case document-node() return ($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1] => str:normalize-space()
+            case element() return ($item//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1] => str:normalize-space()
+            default return wega-util:log-to-file('error', 'wdt:works()("label-facests"): failed to get string') => string()
         },
         'memberOf' : ('search', 'indices', 'unary-docTypes', 'sitemap'),
         'search' : function($query as element(query)) {
