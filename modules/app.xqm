@@ -1162,7 +1162,7 @@ declare function app:xml-prettify($node as node(), $model as map(*)) {
         	else gl:spec($model('exist:path'))
         return
             if($config:isDevelopment) then serialize($doc, $serializationParameters)
-            else serialize(wega-util:inject-version-info(wega-util:process-xml-for-display($doc)), $serializationParameters)
+            else serialize(document { wega-util:inject-version-info(wega-util:process-xml-for-display($doc)) }, $serializationParameters)
 };
 
 declare 
