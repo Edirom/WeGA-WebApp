@@ -57,7 +57,8 @@ declare function wega-util:process-xml-for-display($nodes as node()*) as node()*
                 $node/@*,
                 wega-util:process-xml-for-display($node/node())
             }
-        case document-node() return wega-util:process-xml-for-display($node/node())
+        case document-node() return document { wega-util:process-xml-for-display($node/node()) }
+        
         default return $node
 };
 
@@ -118,7 +119,7 @@ declare function wega-util:inject-version-info($nodes as node()*) as item()* {
                 $node/@*,
                 wega-util:inject-version-info($node/node())
             }
-        else if($node instance of document-node()) then wega-util:inject-version-info($node/node())
+        else if($node instance of document-node()) then document { wega-util:inject-version-info($node/node()) }
         else $node
 };
 
@@ -180,7 +181,7 @@ declare function wega-util:substitute-wega-element-additions($nodes as node()*) 
                 $node/@*,
                 wega-util:substitute-wega-element-additions($node/node())
             }
-        else if($node instance of document-node()) then wega-util:substitute-wega-element-additions($node/node())
+        else if($node instance of document-node()) then document { wega-util:substitute-wega-element-additions($node/node()) }
         else $node
 };
 
@@ -276,7 +277,7 @@ declare function wega-util:remove-elements-by-class($nodes as node()*, $classes 
 	                    $node/@*,
 	                    wega-util:remove-elements-by-class($node/node(), $classes)
 	                }
-	        case document-node() return wega-util:remove-elements-by-class($node/node(), $classes)
+	        case document-node() return document { wega-util:remove-elements-by-class($node/node(), $classes) }
 	        default return $node
     else $nodes
 };
