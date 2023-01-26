@@ -381,7 +381,7 @@ declare function er:wikipedia-article-url($idno as element()*, $lang as xs:strin
         case '' return ()
         default return (er:grab-external-resource-wikidata($cur-id, $cur-id/@type)//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))
     return
-        if ($url) then $url
+        if (count($url) gt 0) then $url
         else if(count($ids) gt 1) then er:wikipedia-article-url(subsequence($ids, 2), $lang)
         else ()
 };
@@ -396,9 +396,7 @@ declare function er:wikipedia-article-url($idno as element()*, $lang as xs:strin
 declare function er:wikipedia-article($wikiUrls as xs:anyURI*, $lang as xs:string) as map(*)* {
     for $wikiUrl in $wikiUrls
     let $fileName := util:hash($wikiUrl, 'md5') || '.xml'
-    let $wikiContent := 
-        if($wikiUrl) then er:cached-external-request($wikiUrl, str:join-path-elements(($config:tmp-collection-path, 'wikipedia', $fileName)))
-        else ()
+    let $wikiContent := er:cached-external-request($wikiUrl, str:join-path-elements(($config:tmp-collection-path, 'wikipedia', $fileName)))
     let $wikiName := normalize-space($wikiContent//xhtml:h1[@id = 'firstHeading'])
     return 
         map {

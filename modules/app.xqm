@@ -299,7 +299,7 @@ declare
             case 'XML-Preview' return 'xml.html'
             case 'examples' return if(gl:schemaIdent2docType($model?schemaID) = (for $func in $wdt:functions return $func(())('name'))) then 'examples.html' else ()
             case 'wikipedia-article' return 
-                if(($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang)) then 'wikipedia.html'
+                if(count(($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang)) gt 0) then 'wikipedia.html'
                 else ()
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
@@ -1019,9 +1019,8 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:wikipedia($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        (: wikiUrl including the version info :)
-       (: let $wikiUrl := $wikiContent//xhtml:div[@class eq 'printfooter']/xhtml:a[1]/data(@href) :)
-        let $wikiUrl as xs:anyURI := ($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang)
+        (: the return value of `er:wikipedia-article-url` is a sequence of URLs :)
+        let $wikiUrl as xs:anyURI := (($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang))[1]
         return
             er:wikipedia-article($wikiUrl, $lang)
 };
