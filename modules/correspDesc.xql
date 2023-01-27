@@ -6,6 +6,7 @@ declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-fo
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace response="http://exist-db.org/xquery/response";
 declare namespace request="http://exist-db.org/xquery/request";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 
 import module namespace functx="http://www.functx.com";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
@@ -16,6 +17,9 @@ import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date"
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
+declare option output:method "xml";
+declare option output:media-type "application/xml";
+declare option output:indent "yes";
 
 declare variable $ct:source-uuid := config:get-option('cmifID');
 declare variable $ct:last-modified as xs:dateTime? := 
