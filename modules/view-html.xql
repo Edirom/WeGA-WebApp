@@ -26,8 +26,9 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 import module namespace dev-app="http://xquery.weber-gesamtausgabe.de/modules/dev/dev-app" at "dev/dev-app.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 
-declare option output:method "xhtml5";
+declare option output:method "xhtml";
 declare option output:media-type "text/html";
+declare option output:html-version "5";
 
 let $config := map {
     $templates:CONFIG_APP_ROOT : $config:app-root,

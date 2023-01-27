@@ -13,8 +13,9 @@ import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/con
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "controller.xqm";
 
-declare option output:method "xhtml5";
+declare option output:method "xhtml";
 declare option output:media-type "text/html";
+declare option output:html-version "5";
 
 declare function local:tidy($node as node()) as node()? {
     typeswitch ($node)
