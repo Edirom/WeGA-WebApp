@@ -19,7 +19,9 @@ declare option output:media-type "text/html";
 declare function local:tidy($node as node()) as node()? {
     typeswitch ($node)
         case document-node() return
-            for $child in $node/node() return local:tidy($child)     
+            document {
+                for $child in $node/node() return local:tidy($child)
+            }
                         
         case element() return
             (:if($node/xhtml:a[@class='deactivated']) then ()
