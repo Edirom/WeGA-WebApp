@@ -3,6 +3,9 @@ xquery version "3.1" encoding "UTF-8";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
+declare namespace request="http://exist-db.org/xquery/request";
+declare namespace response="http://exist-db.org/xquery/response";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
@@ -12,7 +15,6 @@ import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at 
 declare option output:method "xml";
 declare option output:media-type "application/tei+xml";
 declare option output:indent "no";
-(:declare option exist:serialize "method=xml media-type=application/tei+xml indent=no encoding=utf-8";:)
 
 declare function local:format() as xs:string? {
     let $req-format := request:get-parameter('format', ())
