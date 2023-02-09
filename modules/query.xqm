@@ -526,9 +526,9 @@ declare function query:facsimile-witness($facsimile as element(tei:facsimile)) a
  : (this is the inverse function of query:facsimile-witness())
  :
  : @param $source the TEI 'biblLike' element (e.g. msDesc, or biblStruct)
- : @return a TEI facsimile element if available, the empty sequence otherwise
+ : @return a sequence of TEI facsimile elements if available, the empty sequence otherwise
 ~:)
-declare function query:witness-facsimile($source as element()) as element(tei:facsimile)? {
+declare function query:witness-facsimile($source as element()) as element(tei:facsimile)* {
     let $sourceID := ($source/@xml:id, $source/parent::tei:witness/@xml:id)[1] (: the ID can be given on the 'biblLike' element itself or the parent witness element :) 
     return 
         if($sourceID) then $source/following::tei:facsimile[@source = concat('#', $sourceID)]
