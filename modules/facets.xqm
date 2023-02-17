@@ -85,8 +85,8 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
 
 declare %private function facets:facsimile($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
     let $facsimiles := $collection ! query:facsimile(.)
-    let $external := $facsimiles[@sameAs]/root()
-    let $internal := $facsimiles[not(@sameAs)][tei:graphic]/root()
+    let $external := ($facsimiles[matches(@sameAs, '^http')] | $facsimiles[tei:graphic[matches(@sameAs, '^http')]])/root()
+    let $internal := $facsimiles[@sameAs or tei:graphic]/root() except $external
     let $internalCount := count($internal)
     let $externalCount := count($external)
     let $noFacsCount := count($collection) - count($external | $internal)
