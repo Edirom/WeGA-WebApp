@@ -587,8 +587,8 @@ declare function img:iiif-manifest($facsimile as element(tei:facsimile)) as map(
  :)
 declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
     let $image-id as xs:anyURI? :=
-        if(starts-with($graphic/@sameAs, 'wega:')) then config:get-option('iiifImageApi') || encode-for-uri(substring-after($graphic/@sameAs, 'wega:'))
-        else if($graphic/@sameAs) then $graphic/@sameAs
+        if(starts-with($graphic/@sameAs, 'wega:')) then xs:anyURI(config:get-option('iiifImageApi') || encode-for-uri(substring-after($graphic/@sameAs, 'wega:')))
+        else if($graphic/@sameAs) then xs:anyURI($graphic/@sameAs)
         else if($graphic/@url) then img:relative-WeGA-image-path2iiif-image-id($graphic)
         else ()
     let $page-label := 
