@@ -505,6 +505,47 @@ declare function query:facsimile($doc as document-node()?) as element(tei:facsim
 };
 
 (:~
+ : Group a collection of TEI documents by having internal, external, or no facsimiles
+ : 
+ : @param $collection the collection of TEI documents
+ : @return an array of three map objects with the keys 'value' (internal|external|without), 
+ :  'documents' (a sequence of document-nodes), and 'frequency' (the number of documents) 
+~:)
+declare function query:group-collection-by-facsimiles($collection as document-node()*) as array(*) {
+    let $facsimiles as element(tei:facsimile)* := $collection ! query:facsimile(.)
+    let $external as document-node()* := ($facsimiles[matches(@sameAs, '^http')] | $facsimiles[tei:graphic[matches(@sameAs, '^http')]])/root()
+    let $internal as document-node()* := $facsimiles[@sameAs or tei:graphic]/root() except $external
+    let $noFacs as document-node()* := $collection except ($external | $internal)
+    let $internalCount := count($internal)
+    let $externalCount := count($external)
+    let $noFacsCount := count($noFacs)
+    return
+        array {
+            if($internalCount > 0) then
+                map {
+                    'value' : 'internal',
+                    'documents' : $internal,
+                    'frequency' : $internalCount
+                }
+            else (),
+            if($externalCount > 0) then
+                map {
+                    'value' : 'external',
+                    'documents' : $external,
+                    'frequency' : $externalCount
+                }
+            else (),
+            if($noFacsCount > 0) then
+                map {
+                    'value' : 'without',
+                    'documents' : $noFacs,
+                    'frequency' : $noFacsCount
+                }
+            else ()
+        }
+};
+
+(:~
  : Return the appropriate source element for a given TEI facsimile element
  : (this is the inverse function of query:witness-facsimile())
  :

@@ -84,36 +84,12 @@ declare %private function facets:from-docType($collection as node()*, $facet as 
 };
 
 declare %private function facets:facsimile($collection as node()*, $facet as xs:string, $lang as xs:string) as array(*) {
-    let $facsimiles := $collection ! query:facsimile(.)
-    let $external := ($facsimiles[matches(@sameAs, '^http')] | $facsimiles[tei:graphic[matches(@sameAs, '^http')]])/root()
-    let $internal := $facsimiles[@sameAs or tei:graphic]/root() except $external
-    let $internalCount := count($internal)
-    let $externalCount := count($external)
-    let $noFacsCount := count($collection) - count($external | $internal)
-    return
-        array {
-            if($internalCount > 0) then
-                map {
-                    'value' : 'internal',
-                    'label' : lang:get-language-string('internal', $lang),
-                    'frequency' : $internalCount
-                }
-            else (),
-            if($externalCount > 0) then
-                map {
-                    'value' : 'external',
-                    'label' : lang:get-language-string('external', $lang),
-                    'frequency' : $externalCount
-                }
-            else (),
-            if($noFacsCount > 0) then
-                map {
-                    'value' : 'without',
-                    'label' : lang:get-language-string('without', $lang),
-                    'frequency' : $noFacsCount
-                }
-            else ()
+    array:for-each(
+        query:group-collection-by-facsimiles($collection),
+        function($obj) as map(*) {
+            map:remove($obj, 'documents') => map:put('label', lang:get-language-string($obj?value, $lang))
         }
+    )
 };
 
 

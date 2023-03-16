@@ -384,14 +384,14 @@ declare %private function search:revealed-filter($collection as document-node()*
 };
 
 declare %private function search:facsimile-filter($collection as document-node()*, $filters as xs:string*) as document-node()* {
-    let $facsimiles := $collection ! query:facsimile(.)
+    let $facsimiles as array(*) := $collection => query:group-collection-by-facsimiles()
     return
         for $filter in $filters
         return 
             switch($filter)
-            case 'internal' return $facsimiles[not(@sameAs)][tei:graphic]/root()
-            case 'external' return $facsimiles[@sameAs]/root()
-            default return $collection except $facsimiles/root()
+            case 'internal' return $facsimiles?*[.?value='internal']?documents
+            case 'external' return $facsimiles?*[.?value='external']?documents
+            default return $facsimiles?*[.?value='without']?documents
 };
 
 (:~
