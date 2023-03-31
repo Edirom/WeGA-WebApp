@@ -928,7 +928,14 @@ function initFacsimile() {
             "window": {
                 "allowClose": true,
                 "allowFullscreen": true,
-                "sideBarOpenByDefault": false
+                "sideBarOpenByDefault": false,
+                "defaultView": "single",
+                "views": [
+                  { key: "single", behaviors: ["individuals", "paged"] },
+                  { key: "book", behaviors: ["paged"] },
+                  { key: "scroll", behaviors: ["continuous"] },
+                  { key: "gallery" }
+                ]
             },
             "windows": 
                 manifestUrls.map(
