@@ -913,6 +913,7 @@ $('.preview').setTextWrap();
  */
 function initFacsimile() {
     let manifestUrls = $('#map').attr('data-url').split(/\s+/),
+        canvasIndices = $('#map').attr('data-canvasindex').split(/\s+/),
         mirador = Mirador.viewer({
             "id": "map",
             "themes": {
@@ -939,7 +940,10 @@ function initFacsimile() {
             },
             "windows": 
                 manifestUrls.map(
-                    manifest => ({"manifestId": manifest})
+                    (manifest, index) => ({
+                        "manifestId": manifest,
+                        "canvasIndex": canvasIndices[index]
+                    })
                 )
         });
 }

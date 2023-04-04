@@ -328,7 +328,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:facsimile-tab($node as node(), $model as map(*), $lang as xs:string) as element() {
-        if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then 
+        if(count($model?IIIFImagesMap) gt 0) then 
             element {node-name($node)} {
                 $node/@*,
                 lang:get-language-string(normalize-space($node), $lang)
@@ -1239,16 +1239,43 @@ declare
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
         let $facs := query:facsimile($model?doc)
+        let $localFacsimiles := $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]]
+        let $externalIIIFManifestFacsimiles := $facs[@sameAs]
+        let $IIIFImagesMap := ($localFacsimiles | $externalIIIFManifestFacsimiles) ! app:create-IIIFImagesMap(., $model)
         return
             map {
                 'facsimile' : $facs,
-                'localFacsimiles' : $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]],
-                'externalIIIFManifestFacsimiles' : $facs[@sameAs],
+                'localFacsimiles' : $localFacsimiles,
+                'externalIIIFManifestFacsimiles' : $externalIIIFManifestFacsimiles,
+                'IIIFImagesMap': $IIIFImagesMap,
                 'hasCreation' : exists($model?doc//tei:creation),
                 'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
                 'thematicCommentaries' : distinct-values($model('doc')//tei:note[@type='thematicCom']/@target/tokenize(., '\s+')),
                 'backlinks' : wdt:backlinks(())('filter-by-person')($model?docID)
             }
+};
+
+(:~
+ : Helper function for app:doc-details#2
+ : This function creates a map object from a tei:facsimile element and provides the keys "url" and "canvasStartIndex"
+ : iff the tei:facsimile element points to an IIIF manifest  
+ :)
+declare %private function app:create-IIIFImagesMap($facsimile as element(tei:facsimile), $model as map(*)) as map(*) {
+    let $url :=
+        if($facsimile/@sameAs) then $facsimile/@sameAs => normalize-space()
+        else controller:iiif-manifest-id($facsimile)
+    let $canvasStartIndex :=
+        if($model?doc/tei:ab/@facs)
+        (: special case for diaries; need to subtract -1 since Javascript starts counting with 0 and the tei:surfaces are starting at @n=1 :)
+        then crud:data-collection('diaries')/id($model?doc/tei:ab/@facs => substring(2))/parent::tei:surface/@n => number() - 1
+        else if($facsimile/tei:surface/@n)
+        then $facsimile/tei:surface/@n
+        else 0
+    return
+        map {
+            "url": $url,
+            "canvasStartIndex": $canvasStartIndex
+        }
 };
 
 declare
@@ -1421,6 +1448,8 @@ declare
 
 (:~
  : Fetch all (external) facsimiles for a text source
+ : that are not provided via IIIF, thus will be output 
+ : as links in the editorial section 
  :)
 declare 
     %templates:wrap
@@ -1693,12 +1722,14 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
 declare function app:init-facsimile($node as node(), $model as map(*)) as element(xhtml:div) {
     element {node-name($node)} {
         $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
-        if(count($model?localFacsimiles | $model?externalIIIFManifestFacsimiles) gt 0) then (
+        if(count($model?IIIFImagesMap) gt 0) 
+        then (
             attribute {'data-url'} { normalize-space(
-                string-join($model?externalIIIFManifestFacsimiles/@sameAs, ' ') ||
-                ' ' ||
-                string-join(($model?localFacsimiles except $model?externalIIIFManifestFacsimiles) ! controller:iiif-manifest-id(.), ' ') 
-            )}
+                string-join($model?IIIFImagesMap?url, ' ') 
+            )},
+            attribute {'data-canvasindex'} {normalize-space(
+                string-join($model?IIIFImagesMap?canvasStartIndex, ' ') 
+            )} 
         )
         else ()
     }
