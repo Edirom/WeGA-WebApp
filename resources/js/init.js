@@ -938,6 +938,9 @@ function initFacsimile() {
                   { key: "gallery" }
                 ]
             },
+            "workspace": {
+                "showZoomControls": true
+            },
             "windows": 
                 manifestUrls.map(
                     (manifest, index) => ({
