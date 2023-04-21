@@ -59,15 +59,15 @@
                     <div data-template="templates:include" data-template-path="templates/includes/settings.html"/>
                     <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="diaries">
                         <h2>
-                            <a href="#datePicker" data-template="lang:translate" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">calendar</a>
+                            <a href="#datePicker" data-template="lang:translate" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">calendar</a>
                         </h2>
-                        <div class="panel-collapse collapse" id="datePicker" data-template="app:inject-api-base"/>
+                        <div class="panel-collapse collapse show" id="datePicker" data-template="app:inject-api-base"/>
                     </div>
                     <div>
                         <h2>
-                            <a href="#dokument" data-template="lang:translate" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">document</a>
+                            <a href="#dokument" data-template="lang:translate" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">document</a>
                         </h2>
-                        <div id="dokument" class="panel-collapse collapse">
+                        <div id="dokument" class="panel-collapse collapse show">
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light">

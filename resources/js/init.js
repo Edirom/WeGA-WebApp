@@ -651,12 +651,11 @@ $.fn.initPortraitCredits = function() {
 $(".portrait").initPortraitCredits();
 
 
+/* 
+ * Close all side menu collapsibles for small screens
+ */
 $(window).on("load", function () {
-    if ($(this).width() > 767) {
-        /* Open the first collapsable filter – that is not "settings" – by default */
-        $('.side-col .collapse:not(#settings)').first().collapse('show');
-    } else {
-        /* Close all collapsibles (needed for already opened filter on register page) */
+    if ($(this).width() < 768) {
         $('.side-col .collapse').collapse('hide');
         $(window).scrollTop(0);
     }
