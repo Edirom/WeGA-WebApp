@@ -186,7 +186,7 @@ declare
 declare
     %templates:default("lang", "en")
     function app:breadcrumb-docType($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:a) {
-        let $href := config:link-to-current-app(functx:substring-before-last($model('$exist:path'), '/'))
+        let $href := config:link-to-current-app(functx:substring-before-last($model('exist:path'), '/'))
         let $display-name := replace(xmldb:decode(functx:substring-after-last($href, '/')), '_', ' ')
         let $elem := 
             if($href and not(contains($href, config:get-option('anonymusID')))) then QName('http://www.w3.org/1999/xhtml', 'a')
@@ -234,7 +234,7 @@ declare
 declare 
     %templates:default("lang", "en")
     function app:breadcrumb-var($node as node(), $model as map(*), $lang as xs:string) as element() {
-        let $pathTokens := tokenize($model?('$exist:path'), '/')
+        let $pathTokens := tokenize($model?('exist:path'), '/')
         return 
             element {node-name($node)} {
                 $node/@*,
