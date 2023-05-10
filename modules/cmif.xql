@@ -42,7 +42,7 @@ declare function ct:create-header() as element(tei:teiHeader) {
                 <publisher>
                     <ref target="{config:get-option('permaLinkPrefix')}">Carl-Maria-von-Weber-Gesamtausgabe</ref>
                 </publisher>
-                <idno type="url">{config:get-option('permaLinkPrefix')}/correspDesc.xml</idno>
+                <idno type="url">{config:get-option('permaLinkPrefix')}/cmif.xml</idno>
                 <date when="{$ct:last-modified}"/>
                 <availability>
                     <licence target="http://creativecommons.org/licenses/by/4.0/">CC-BY 4.0</licence>
@@ -213,7 +213,7 @@ then (
 else (
     ct:response-headers(),
     mycache:doc(str:join-path-elements(
-        ($config:tmp-collection-path, 'correspDesc.xml')), 
+        ($config:tmp-collection-path, 'cmif.xml')), 
         ct:corresp-list#0, 
         (), 
         function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, xs:dayTimeDuration('P999D')) }, 
