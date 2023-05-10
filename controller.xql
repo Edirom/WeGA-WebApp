@@ -216,9 +216,9 @@ else if (matches($exist:path, '^/works_beacon.txt$')) then
     </dispatch>
     
 (: correspDesc Beacon :)
-else if (matches($exist:path, '^/correspDesc.xml$')) then
+else if (matches($exist:path, '^/(correspDesc|cmif).xml$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
-    	<forward url="{concat($exist:controller, '/modules/correspDesc.xql')}">
+    	<forward url="{concat($exist:controller, '/modules/cmif.xql')}">
     	   <cache-control cache="yes"/>
     	</forward>
     </dispatch>
