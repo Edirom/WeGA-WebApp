@@ -3,7 +3,7 @@
 # 1. set up the build environment and build the expath-package
 # 2. run the eXist-db
 #########################
-FROM openjdk:17-jdk-bullseye as builder
+FROM node:18-bullseye as builder
 LABEL maintainer="Peter Stadler"
 
 ENV WEGA_BUILD_HOME="/opt/wega"
@@ -12,8 +12,7 @@ ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
 
 # installing Saxon, Node and Git
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends apt-transport-https ant git libsaxonhe-java npm \
-    && npm install -g yarn
+    && apt-get install -y --no-install-recommends apt-transport-https ant libsaxonhe-java 
 
 
 # first building WeGA-WebApp-lib
