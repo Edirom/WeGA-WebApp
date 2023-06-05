@@ -1543,7 +1543,10 @@ declare
                 for $author in query:get-author-element($model('doc')) return app:printCorrespondentName($author,$lang,'fs') else (),
             'respStmts': 
                 switch($model('docType'))
-                case 'diaries' return <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>
+                case 'diaries' return (
+                    <tei:respStmt><tei:resp>Übertragung</tei:resp><tei:name>Dagmar Beck</tei:name></tei:respStmt>,
+                    <tei:respStmt><tei:resp>Kommentar</tei:resp><tei:name>Dagmar Beck</tei:name><tei:name>Frank Ziegler</tei:name></tei:respStmt>
+                    )
                 default return $model('doc')//tei:respStmt[parent::tei:titleStmt]
         }
 };
