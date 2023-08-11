@@ -168,8 +168,12 @@ else if (matches($exist:path, '/IIIF/' || config:get-option('generalIdPattern') 
 else if ($exist:path eq '/en/A002068/Biography.html' or $exist:path eq '/de/A002068/Biographie.html') then
     controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070003'), map:entry('docType', 'var'))))
 
+(: Special Publications:)
+else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-language-string('specialPublications', $lang)) || '.html')) then
+    controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070089'), map:entry('docType', 'var'))))
+
 (: Bartlitz Sonderband :)
-else if ($exist:path eq '/de/Sonderband.html' or $exist:path eq '/en/Special_Volume.html') then
+else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-language-string('specialVolume', $lang)) || '.html')) then
     controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070090'), map:entry('docType', 'var'))))
     
 (: Weber-Studien Einzelansicht:)
