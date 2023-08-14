@@ -205,8 +205,8 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
         let $caption := 
             if($img/ancestor::xhtml:td[@class='infobox-image']) then
                 $img/ancestor::xhtml:td[@class='infobox-image']//xhtml:div[@class='infobox-caption']
-            else if($img/ancestor::xhtml:figure//xhtml:figcaption) then 
-                $img/ancestor::xhtml:figure//xhtml:figcaption
+            else if($img/ancestor::xhtml:figure[1]/xhtml:figcaption) then 
+                $img/ancestor::xhtml:figure[1]/xhtml:figcaption
             else ()
         return 
             if($thumbURI castable as xs:anyURI) then
