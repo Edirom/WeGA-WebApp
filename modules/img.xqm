@@ -181,7 +181,9 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
     let $wikiModel := ($model?doc//tei:idno | $model?doc//mei:altId) => er:wikipedia-article-url($lang) => er:wikipedia-article($lang)
     let $wikiArticle := $wikiModel?wikiContent 
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
-    let $images := $wikiArticle//xhtml:img[@class='thumbimage' or ancestor::xhtml:table[contains(@class, 'vcard') or contains(@class, 'toptextcells')] or ancestor::xhtml:div[@class='thumbinner']]
+    let $images := 
+        $wikiArticle//xhtml:td[@class='infobox-image']//xhtml:img |
+        $wikiArticle//xhtml:figure[@typeof='mw:File/Thumb']//xhtml:img
     return 
         for $img in $images
         let $tmpPicURI := ($img/@src)[1]
@@ -201,11 +203,11 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
             https://github.com/Toollabs/zoomviewer
         :)
         let $caption := 
-(:            if($div[self::xhtml:table]) then ($div/xhtml:tr[.//xhtml:img]/preceding::xhtml:tr)[1] :)
-            if($img/ancestor::xhtml:table) then 
-                let $td-pos := count(($img/ancestor::xhtml:td)[1]/preceding-sibling::xhtml:td) + 1 
-                return ($img/ancestor::xhtml:table)[1]//(xhtml:tr except $img/ancestor::xhtml:tr)[1]/xhtml:td[$td-pos]
-            else ($img/ancestor::xhtml:div/xhtml:div[@class='thumbcaption'])[1]
+            if($img/ancestor::xhtml:td[@class='infobox-image']) then
+                $img/ancestor::xhtml:td[@class='infobox-image']//xhtml:div[@class='infobox-caption']
+            else if($img/ancestor::xhtml:figure//xhtml:figcaption) then 
+                $img/ancestor::xhtml:figure//xhtml:figcaption
+            else ()
         return 
             if($thumbURI castable as xs:anyURI) then
                 map {
