@@ -913,7 +913,7 @@ $('.preview').setTextWrap();
 function initFacsimile() {
     let manifestUrls = $('#map').attr('data-url').split(/\s+/),
         canvasIndices = $('#map').attr('data-canvasindex').split(/\s+/),
-        mirador = Mirador.viewer({
+        mirador = renderMirador({
             "id": "map",
             "themes": {
                 "light": {
@@ -944,7 +944,9 @@ function initFacsimile() {
                 manifestUrls.map(
                     (manifest, index) => ({
                         "manifestId": manifest,
-                        "canvasIndex": canvasIndices[index]
+                        "canvasIndex": canvasIndices[index],
+                        "imageToolsEnabled": true,
+                        "imageToolsOpen": true
                     })
                 )
         });
