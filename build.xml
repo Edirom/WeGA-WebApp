@@ -54,6 +54,13 @@
         </exec>
     </target>
     
+    <target name="wega-mirador" depends="init">
+        <description>Update javascript libraries via yarn</description>
+        <get src="https://github.com/Edirom/WeGA-WebApp-Mirador/releases/download/v0.1.1/WeGA-WebApp-Mirador.zip" dest="${tmp.dir}" skipexisting="yes"/>
+        <mkdir dir="${dist.dir}/resources/lib/wega-mirador"/>
+        <unzip src="${tmp.dir}/WeGA-WebApp-Mirador.zip" dest="${dist.dir}/resources/lib/wega-mirador"/>
+    </target>
+    
     <target name="sass" depends="init">
         <description>Create CSS files via sass</description>
         <exec executable="${sass.cmd}">
@@ -71,7 +78,7 @@
         </exec>
     </target>
     
-    <target name="dist" depends="init, yarn, sass, swagger-cli">
+    <target name="dist" depends="init, yarn, wega-mirador, sass, swagger-cli">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>

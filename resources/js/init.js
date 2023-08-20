@@ -651,12 +651,11 @@ $.fn.initPortraitCredits = function() {
 $(".portrait").initPortraitCredits();
 
 
+/* 
+ * Close all side menu collapsibles for small screens
+ */
 $(window).on("load", function () {
-    if ($(this).width() > 767) {
-        /* Open the first collapsable filter – that is not "settings" – by default */
-        $('.side-col .collapse:not(#settings)').first().collapse('show');
-    } else {
-        /* Close all collapsibles (needed for already opened filter on register page) */
+    if ($(this).width() < 768) {
         $('.side-col .collapse').collapse('hide');
         $(window).scrollTop(0);
     }
@@ -876,7 +875,7 @@ $("#datePicker").initDatepicker();
 $('#facsimile-tab').on('click', function() {
     // need to set timeout for correct display of referenceStrip
     setTimeout(function() {
-       if ($('.openseadragon-container').length === 0){
+       if ($('.mirador-viewer').length === 0){
            initFacsimile();
        }
    }, 500);
@@ -908,86 +907,49 @@ $('.teaser + h2 a').each(function(a,b) {
 $('.preview').setTextWrap();
 
 /*
- * initialize openseadragon viewer
+ * initialize Mirador viewer
  * from the IIIF manifest URLs given as @data-url attribute on div[@id=map]
  */
 function initFacsimile() {
-    
-    let viewer,
-        tileSources = [],
-        imageAttributions = [],
-        promises = [],
-        manifestUrls = $('#map').attr('data-url').split(/\s+/);
-    
-    viewer = OpenSeadragon({
-        id: "map",
-        prefixUrl: "$resources/lib/openseadragon/openseadragon/images/",
-        sequenceMode: true,
-        showRotationControl: true,
-        showReferenceStrip: true,
-        //placeholderFillStyle: '',
-        defaultZoomLevel: 0,
-        viewportMargins: {top: 30, left: 20, right: 20, bottom: 10}
-    });
-    
-    /* add the JSON responses to the tile sources */
-    const addToTileSources = function(responses) {
-        $(responses).each(function(i, data) {
-            let manifestAttribution;
-            if(data.attribution !== undefined ) {
-                /* the attribution property should tell us what to print next to the image */
-                manifestAttribution = data.attribution;
-            }
-            else if (data.metadata.find(function(obj) {return obj.label === 'Digitalisierer'; }).value !== undefined) {
-                /* yet some providers don't provide an attribution but idiosyncratic metadata */
-                manifestAttribution = data.metadata.find(function(obj) {return obj.label === 'Digitalisierer'; }).value;
-            }
-            else {
-                /* this is just the fallback if we're completely clueless */
-                manifestAttribution = 'for source information see editorial';
-            } 
-        
-            $(data.sequences[0].canvases).each(function(_, val) {
-                tileSources.push(val.images[0].resource.service['@id'] + '/info.json');
-                imageAttributions.push(manifestAttribution);
-            })
-            /*  open viewer with the new tile sources  */
-            viewer.open(tileSources, 0)
-        })
-    }
-    
-    /* create a promise for every manifest URL */
-    $(manifestUrls).each(function(i,url) {
-        promises.push(
-            new Promise(
-                function(resolve) {
-                    /*  Grab the IIIF manifest */
-                    $.getJSON(url, function(data) {
-                        resolve(data)
+    let manifestUrls = $('#map').attr('data-url').split(/\s+/),
+        canvasIndices = $('#map').attr('data-canvasindex').split(/\s+/),
+        mirador = renderMirador({
+            "id": "map",
+            "themes": {
+                "light": {
+                    "palette": {
+                        "type": "light",
+                        "primary": {
+                            "main": "#0064B4"
+                        }
+                    }
+                }
+            },
+            "window": {
+                "allowClose": true,
+                "allowFullscreen": true,
+                "sideBarOpenByDefault": false,
+                "defaultView": "single",
+                "views": [
+                  { key: "single", behaviors: ["individuals", "paged"] },
+                  { key: "book", behaviors: ["paged"] },
+                  { key: "scroll", behaviors: ["continuous"] },
+                  { key: "gallery" }
+                ]
+            },
+            "workspace": {
+                "showZoomControls": true
+            },
+            "windows": 
+                manifestUrls.map(
+                    (manifest, index) => ({
+                        "manifestId": manifest,
+                        "canvasIndex": canvasIndices[index],
+                        "imageToolsEnabled": true,
+                        "imageToolsOpen": true
                     })
-            })
-        )
-    })
-    
-    Promise.all(promises).then(
-        function(responses) {
-            addToTileSources(responses)
-        }
-    )
-    
-    // add open-handler for adding image attributions as overlays 
-    viewer.addHandler('open', function(obj) {
-        //console.log('open handler')
-        let source_x = obj.eventSource.source.width,
-            elem = document.createElement("div");
-        elem.innerHTML = imageAttributions[obj.eventSource._sequenceIndex];
-        elem.className = 'image-attribution'
-        viewer.addOverlay({ 
-            element: elem, 
-            location: viewer.viewport.imageToViewportCoordinates(source_x, 0),
-            placement: 'BOTTOM_RIGHT'
+                )
         });
-    });
 }
 
 
