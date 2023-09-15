@@ -11,10 +11,13 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "../core.xqm";
 
-declare option exist:serialize "method=text media-type=text/plain indent=no omit-xml-declaration=yes encoding=utf-8";
+declare option output:method "text";
+declare option output:media-type "text/plain";
+declare option output:indent "no";
 
 declare function local:randomize($seq as item()*) as item()* {
     for $i in $seq

@@ -21,7 +21,9 @@ import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core"
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 
-declare option exist:serialize "method=xml media-type=application/xml indent=yes omit-xml-declaration=no encoding=utf-8";
+declare option output:method "xml";
+declare option output:media-type "application/xml";
+declare option output:indent "yes";
 
 declare variable $sitemap:languages := ('en', 'de');
 declare variable $sitemap:defaultCompression := 'gz'; (: gz or zip :)
