@@ -31,7 +31,7 @@ declare variable $sitemap:host := config:get-option('permaLinkPrefix');
 declare variable $sitemap:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography', 'specialVolume', 'volContents', 'team');
 declare variable $sitemap:databaseEntries := for $func in wdt:members('sitemap') return $func(())('name');
 
-declare function local:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
+declare function sitemap:getUrlList($type as xs:string, $lang as xs:string) as element(url)* {
     for $x in core:getOrCreateColl($type, 'indices', true())
     (: In rare cases (when a file was deleted from a wrong folder and a file with the same name exists) there are two svn entries :)
     let $lastmod := max($config:svn-change-history-file//id($x/*/@xml:id)/string(@dateTime))
@@ -44,18 +44,18 @@ declare function local:getUrlList($type as xs:string, $lang as xs:string) as ele
         }</url>
 };
 
-declare function local:createSitemap($lang as xs:string) as element(urlset) {
+declare function sitemap:createSitemap($lang as xs:string) as element(urlset) {
     <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $i in $sitemap:standardEntries return 
             <url><loc>{$sitemap:host || str:join-path-elements(('/', $lang, replace(lang:get-language-string($i, $lang), '\s', '_')))}</loc></url>
         }
         {
-        for $k in $sitemap:databaseEntries return local:getUrlList($k, $lang)
+        for $k in $sitemap:databaseEntries return sitemap:getUrlList($k, $lang)
         }
     </urlset>
 };
 
-declare function local:createSitemapIndex($fileNames as xs:string*) as element(sitemapindex) {
+declare function sitemap:createSitemapIndex($fileNames as xs:string*) as element(sitemapindex) {
     <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
         {for $fileName in $fileNames
         return <sitemap><loc>{$sitemap:host || str:join-path-elements(('/', config:get-option('html_sitemapDir'), $fileName))}</loc></sitemap>
@@ -63,25 +63,25 @@ declare function local:createSitemapIndex($fileNames as xs:string*) as element(s
     </sitemapindex>
 };
 
-declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary {
+declare function sitemap:getSetSitemap($fileName as xs:string) as xs:base64Binary {
     let $sitemapLang := substring-after(substring-before($fileName, '.'), '_')
     let $folderName := $config:tmp-collection-path || '/sitemap'
     let $currentDateTimeOfFile := 
         if(xmldb:collection-available($folderName)) then xmldb:last-modified($folderName, $fileName) 
-        else local:createSitemapCollection($folderName) 
+        else sitemap:createSitemapCollection($folderName) 
     let $updateNecessary := typeswitch($currentDateTimeOfFile) 
 	   case xs:dateTime return config:eXistDbWasUpdatedAfterwards($currentDateTimeOfFile) or not(util:binary-doc-available(str:join-path-elements(($folderName, $fileName))))
 	   default return true()
     return 
         if($updateNecessary) then (
-            let $newSitemap := local:createSitemap($sitemapLang)
+            let $newSitemap := sitemap:createSitemap($sitemapLang)
             let $logMessage := concat('Creating sitemap: ', $fileName)
             let $logToFile := wega-util:log-to-file('info', $logMessage)
             return 
                 if(exists($newSitemap)) then (
                     let $compression := functx:substring-after-last($fileName, '.')
-                    let $compressedData := local:compressXML($newSitemap, functx:substring-before-last($fileName, '.'), $compression)
-                    let $storedData := xmldb:store($folderName, $fileName, $compressedData, local:getMimeType($compression))
+                    let $compressedData := sitemap:compressXML($newSitemap, functx:substring-before-last($fileName, '.'), $compression)
+                    let $storedData := xmldb:store($folderName, $fileName, $compressedData, sitemap:getMimeType($compression))
                     return util:binary-doc($storedData)
                 )
                 else ()
@@ -89,13 +89,13 @@ declare function local:getSetSitemap($fileName as xs:string) as xs:base64Binary 
         else util:binary-doc(str:join-path-elements(($folderName, $fileName)))
 };
 
-declare function local:getMimeType($compression as xs:string) as xs:string? {
+declare function sitemap:getMimeType($compression as xs:string) as xs:string? {
     if($compression eq 'zip') then 'application/zip' 
     else if($compression eq 'gz') then 'application/gzip'
     else ()
 };
 
-declare function local:createSitemapCollection($path as xs:string) as empty-sequence() {
+declare function sitemap:createSitemapCollection($path as xs:string) as empty-sequence() {
     let $createCollection := 
         try { xmldb:create-collection(functx:substring-before-last($path, '/'), functx:substring-after-last($path, '/')) }
         catch * {wega-util:log-to-file('error', 'failed to create sitemap collection')}
@@ -109,7 +109,7 @@ declare function local:createSitemapCollection($path as xs:string) as empty-sequ
     return ()
 };
 
-declare function local:compressXML($xml as element(), $fileName as xs:string, $compression as xs:string) as xs:base64Binary? {
+declare function sitemap:compressXML($xml as element(), $fileName as xs:string, $compression as xs:string) as xs:base64Binary? {
     if($compression eq 'zip') then compression:zip(<entry name="{$fileName}" type="xml" method="deflate">{$xml}</entry>, false())
     else if($compression eq 'gz') then (
         let $serializationParameters := <output:serialization-parameters><output:method>xml</output:method><output:media-type>application/xml</output:media-type><output:indent>no</output:indent></output:serialization-parameters>
@@ -123,5 +123,5 @@ let $compression := if(ends-with($resource, 'zip')) then 'zip' else $sitemap:def
 let $properFileNames := for $lang in $sitemap:languages return concat('sitemap_', $lang, '.xml.', $compression)
 
 return
-    if($properFileNames = $resource) then response:stream-binary(local:getSetSitemap($resource), local:getMimeType($compression), $resource)
-    else local:createSitemapIndex($properFileNames)
+    if($properFileNames = $resource) then response:stream-binary(sitemap:getSetSitemap($resource), sitemap:getMimeType($compression), $resource)
+    else sitemap:createSitemapIndex($properFileNames)
