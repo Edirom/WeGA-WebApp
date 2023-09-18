@@ -2,9 +2,7 @@ xquery version "3.1" encoding "UTF-8";
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
-declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
-declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace compression="http://exist-db.org/xquery/compression";
 declare namespace response="http://exist-db.org/xquery/response";
@@ -66,7 +64,7 @@ declare function sitemap:createSitemapIndex($fileNames as xs:string*) as element
 declare function sitemap:getSetSitemap($fileName as xs:string, $useCache as xs:boolean) as xs:base64Binary? {
     let $sitemapLang := substring-after(substring-before($fileName, '.'), '_')
     let $lease := function($dateTimeOfCache) as xs:boolean {
-        config:eXistDbWasUpdatedAfterwards($dateTimeOfCache) and $useCache
+        config:eXistDbWasUpdatedAfterwards($dateTimeOfCache) or not($useCache)
     }
     let $onFailure := function($errCode as item(), $errDesc as item()?) {
         wega-util:log-to-file('error', concat($errCode, ': ', $errDesc))
@@ -76,20 +74,6 @@ declare function sitemap:getSetSitemap($fileName as xs:string, $useCache as xs:b
     }
     return 
         mycache:doc(str:join-path-elements(($config:tmp-collection-path, 'sitemap', $fileName)), $callback, ($sitemapLang, $fileName), $lease, $onFailure)
-        (:if($updateNecessary) then (
-            let $newSitemap := sitemap:createSitemap($sitemapLang)
-            let $logMessage := concat('Creating sitemap: ', $fileName)
-            let $logToFile := wega-util:log-to-file('info', $logMessage)
-            return 
-                if(exists($newSitemap)) then (
-                    let $compression := functx:substring-after-last($fileName, '.')
-                    let $compressedData := sitemap:compressXML($newSitemap, functx:substring-before-last($fileName, '.'), $compression)
-                    let $storedData := xmldb:store($folderName, $fileName, $compressedData, sitemap:getMimeType($compression))
-                    return util:binary-doc($storedData)
-                )
-                else ()
-        )
-        else util:binary-doc(str:join-path-elements(($folderName, $fileName))):)
 };
 
 declare function sitemap:getMimeType($compression as xs:string) as xs:string? {
@@ -112,5 +96,5 @@ let $compression := if(ends-with($resource, 'zip')) then 'zip' else $sitemap:def
 let $properFileNames := for $lang in $sitemap:languages return concat('sitemap_', $lang, '.xml.', $compression)
 
 return
-    if($properFileNames = $resource) then response:stream-binary(sitemap:getSetSitemap($resource, false()), sitemap:getMimeType($compression), $resource)
+    if($properFileNames = $resource) then response:stream-binary(sitemap:getSetSitemap($resource, true()), sitemap:getMimeType($compression), $resource)
     else sitemap:createSitemapIndex($properFileNames)
