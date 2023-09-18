@@ -63,7 +63,7 @@ declare function sitemap:createSitemapIndex($fileNames as xs:string*) as element
     </sitemapindex>
 };
 
-declare function sitemap:getSetSitemap($fileName as xs:string) as xs:base64Binary {
+declare function sitemap:getSetSitemap($fileName as xs:string, $useCache as xs:boolean) as xs:base64Binary? {
     let $sitemapLang := substring-after(substring-before($fileName, '.'), '_')
     let $lease := function($dateTimeOfCache) as xs:boolean {
         config:eXistDbWasUpdatedAfterwards($dateTimeOfCache) and $useCache
@@ -112,5 +112,5 @@ let $compression := if(ends-with($resource, 'zip')) then 'zip' else $sitemap:def
 let $properFileNames := for $lang in $sitemap:languages return concat('sitemap_', $lang, '.xml.', $compression)
 
 return
-    if($properFileNames = $resource) then response:stream-binary(sitemap:getSetSitemap($resource), sitemap:getMimeType($compression), $resource)
+    if($properFileNames = $resource) then response:stream-binary(sitemap:getSetSitemap($resource, false()), sitemap:getMimeType($compression), $resource)
     else sitemap:createSitemapIndex($properFileNames)
