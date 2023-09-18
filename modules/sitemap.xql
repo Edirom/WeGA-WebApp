@@ -25,7 +25,7 @@ declare option output:method "xml";
 declare option output:media-type "application/xml";
 declare option output:indent "yes";
 
-declare variable $sitemap:languages := ('en', 'de');
+declare variable $sitemap:languages := $config:valid-languages; (: ('en', 'de') :)
 declare variable $sitemap:defaultCompression := 'gz'; (: gz or zip :)
 declare variable $sitemap:host := config:get-option('permaLinkPrefix');
 declare variable $sitemap:standardEntries := ('index', 'search', 'help', 'projectDescription', 'contact', 'editorialGuidelines'(:, 'publications':), 'bibliography', 'specialVolume', 'volContents', 'team');
