@@ -74,7 +74,7 @@
     <target name="swagger-cli" depends="init">
         <description>Bundle openapi.json file from YAML definitions</description>
         <exec executable="${swagger-cli.cmd}">
-            <arg line="bundle api/v1/openapi.yaml --output ${dist.dir}/api/v1/openapi.json --format json"/>
+            <arg line="bundle api/v1/openapi.yaml --output ${dist.dir}/api/v1/openapi.json --format json --dereferenced"/>
         </exec>
     </target>
     
