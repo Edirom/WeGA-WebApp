@@ -1167,3 +1167,19 @@ $.fn.init_settings = function () {
     return this;
 };
 $('#settings input').init_settings();
+
+
+/*
+ * Check for changes to the location hash and trigger a reload
+ * IFF the new hash matches an URL from the top navigation.
+ * 
+ * See https://github.com/Edirom/WeGA-WebApp/issues/202 
+ */
+$(window).on('hashchange', function(ev) {
+    let location = ev.target.location.href;
+    $('nav a.dropdown-item').each( function(index, element) {
+        if(element.href === location) {
+            window.location.reload();
+        }
+    })
+});
