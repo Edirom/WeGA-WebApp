@@ -148,14 +148,7 @@
                    </li>
                 </ol>
             </div>
-            <div class="col-md col-sm-12 iconographie" data-template="app-shared:if-not-exists" data-template-key="addrLines">
-                <div data-template="app-shared:if-exists" data-template-key="iconographyImages" data-template-wrap="no">
-                    <h2 data-template="lang:translate">iconography</h2>
-                </div>
-                <div class="iconographythumbnail" data-template="app-shared:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
-                    <img data-template="img:iconographyImage" src="dummy.jpg"/>
-                </div>
-            </div>
+            <div data-template="templates:include" data-template-path="templates/includes/iconography.html"/>
             <div class="col-md-4 col-sm-12 address" data-template="app-shared:if-exists" data-template-key="addrLines">
                 <h2 data-template="lang:translate">address</h2>
                 <ul>

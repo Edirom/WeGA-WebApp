@@ -70,14 +70,7 @@
                 	<li><strong data-template="app:preview-relator-role"/>: <span data-template="app:preview-relator-name" data-template-popover="true"/></li>
                 </ol>
             </div>
-            <div class="col-md col-sm-12 iconographie">
-                <div data-template="app-shared:if-exists" data-template-key="iconographyImages" data-template-wrap="no">
-                    <h2 data-template="lang:translate">iconography</h2>
-                </div>
-                <div class="iconographythumbnail" data-template="app-shared:each" data-template-from="iconographyImages" data-template-to="iconographyImage" data-template-max="30">
-                    <img data-template="img:iconographyImage" src="dummy.jpg"/>
-                </div>
-            </div>
+            <div data-template="templates:include" data-template-path="templates/includes/iconography.html"/>
         </div>
     </div>
     <!-- Nav tabs -->
