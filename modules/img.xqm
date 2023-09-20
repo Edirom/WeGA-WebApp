@@ -140,10 +140,18 @@ declare %private function img:iconography4works($node as node(), $model as map(*
 (:~
  : Function for outputting an image from the iconography
  :
- : @return an HTML element <a> with a nested <img>
+ : @return an HTML element <a> with a nested <img> or <i> element
 ~:)
 declare function img:iconographyImage($node as node(), $model as map(*)) as element(a) {
-    <xhtml:a href="{$model('iconographyImage')('linkTarget')}"><xhtml:img title="{$model('iconographyImage')('caption')}" alt="{$model('iconographyImage')('caption')}" src="{$model('iconographyImage')('url')('thumb')}"/></xhtml:a>
+    <xhtml:a href="{$model('iconographyImage')('linkTarget')}">{
+        if(exists($model('iconographyImage')('url')('thumb')))
+        then
+            <xhtml:img 
+                title="{$model('iconographyImage')('caption')}" 
+                alt="{$model('iconographyImage')('caption')}" 
+                src="{$model('iconographyImage')('url')('thumb')}"/>
+        else <xhtml:i class="fa-regular fa-image fa-2xl"/>
+    }</xhtml:a>
 };
 
 (:~
@@ -408,7 +416,9 @@ declare %private function img:bildindex-images($model as map(*), $lang as xs:str
                     'linkTarget' : $div/xhtml:figure/xhtml:a/@href,
                     'source' : 'Bildindex der Kunst und Architektur',
                     'url' : function($size) {
-                        $picURI
+                        if($picURI = '/images/nopic_large.png')
+                        then ()
+                        else $picURI
                     }
                 }
             else ()
