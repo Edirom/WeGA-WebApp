@@ -55,7 +55,7 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
 declare function bibl:printGenericCitation($biblStruct as element(tei:biblStruct), $wrapperElement as element(), $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct/*/tei:author, $lang)
     let $title := bibl:printTitles($biblStruct/*/tei:title)
-    let $note := bibl:printNote($biblStruct/tei:note[1])
+    let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
@@ -81,7 +81,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
     let $title := bibl:printTitles($biblStruct/tei:monogr/tei:title)
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $lang)
-    let $note := bibl:printNote($biblStruct/tei:note[1])
+    let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@* except $wrapperElement/@class,
@@ -112,7 +112,7 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
     let $authors := bibl:printCitationAuthors($biblStruct/tei:analytic/tei:author, $lang) 
     let $articleTitle := $biblStruct/tei:analytic/tei:title (: could be several subtitles:)
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, <xhtml:span/>, $lang)
-    let $note := bibl:printNote($biblStruct/tei:note[1])
+    let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
@@ -141,7 +141,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title)/node()}</xhtml:span>
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $lang)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
-    let $note := bibl:printNote($biblStruct/tei:note[1])
+    let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
@@ -314,16 +314,18 @@ declare %private function bibl:printTitles($titles as element(tei:title)*) as el
 (:~
  : Create note marker and popover for notes which are a direct child of biblStruct
 ~:)
-declare %private function bibl:printNote($notes as element(tei:note)*) {
+declare %private function bibl:printNote($notes as element(tei:note)*, $lang as xs:string) as element()* {
     for $note in $notes
     let $id := 
         if($note/@xml:id) then $note/data(@xml:id)
         else generate-id($note)
-    let $content := 
-      wega-util:transform($note, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
-(:      str:txtFromTEI($note/node(), config:guess-language(())):)
+    let $content := wega-util:transform(
+        $note, 
+        doc(concat($config:xsl-collection-path, '/var.xsl')), 
+        config:get-xsl-params(())
+    )
     return (
-        <xhtml:a class="noteMarker" data-toggle="popover" data-ref="#{$id}">*</xhtml:a>,
-        <xhtml:div id="{$id}" data-title="this is the title" style="display:none;">{$content}</xhtml:div>
+        <xhtml:a class="noteMarker biblioNote" data-toggle="popover" data-ref="#{$id}">*</xhtml:a>,
+        <xhtml:div id="{$id}" data-title="{lang:get-language-string('gl_note', $lang)}" style="display:none;">{$content}</xhtml:div>
       )
 };
