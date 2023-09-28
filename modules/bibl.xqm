@@ -314,12 +314,16 @@ declare %private function bibl:printTitles($titles as element(tei:title)*) as el
 (:~
  : Create note marker and popover for notes which are a direct child of biblStruct
 ~:)
-declare %private function bibl:printNote($notes as element(tei:note)*) as element(xhtml:a)? {
+declare %private function bibl:printNote($notes as element(tei:note)*) {
     for $note in $notes
     let $id := 
         if($note/@xml:id) then $note/data(@xml:id)
         else generate-id($note)
-    let $content := str:txtFromTEI($note/node(), config:guess-language(()))
-    return
-        <xhtml:a class="noteMarker" data-toggle="popover" data-popover-title="Anmerkung" id="{$id}" data-popover-body="{$content}">*</xhtml:a>
+    let $content := 
+      wega-util:transform($note, doc(concat($config:xsl-collection-path, '/var.xsl')), config:get-xsl-params(()))
+(:      str:txtFromTEI($note/node(), config:guess-language(())):)
+    return (
+        <xhtml:a class="noteMarker" data-toggle="popover" data-ref="#{$id}">*</xhtml:a>,
+        <xhtml:div id="{$id}" data-title="this is the title" style="display:none;">{$content}</xhtml:div>
+      )
 };
