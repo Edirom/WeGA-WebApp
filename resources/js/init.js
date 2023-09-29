@@ -522,7 +522,7 @@ function popover_callBack() {
         dataRefs = $(this).attr('data-ref'),
         popoverID = $(this).attr('aria-describedby'),
         popover = $('#' + popoverID),
-        suppressCrosslink = $(this).hasClass("arabic");
+        suppressCrosslink = $(this).hasClass("arabic") || $(this).hasClass("biblioNote");
     let urls = [],
         li_templ,
         li_clone,
