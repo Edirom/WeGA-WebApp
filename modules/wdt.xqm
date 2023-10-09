@@ -457,7 +457,15 @@ declare function wdt:diaries($item as item()*) as map(*) {
             let $dateFormat := 
                 if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
                 else '[FNn], [MNn] [D], [Y]'
-            let $formattedDate := date:format-date(xs:date($ab/@n), $dateFormat, $lang)
+            let $dates := $ab/@n => tokenize('\s+')
+            let $formattedDate := 
+                if(count($dates) eq 1)
+                then date:format-date(xs:date($dates), $dateFormat, $lang)
+                else string-join((
+                        date:format-date(xs:date($dates[1]), $dateFormat, $lang),
+                        lang:get-language-string('chronoTo', $lang), 
+                        date:format-date(xs:date($dates[last()]), $dateFormat, $lang)
+                        ), ' ')
             let $formattedPlaces := 
                 switch(array:size($diaryPlaces))
                 case 0 return ()
