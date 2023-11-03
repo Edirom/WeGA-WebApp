@@ -1114,8 +1114,12 @@ declare
     function app:dnb($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $gnd := query:get-gnd($model('doc'))
         let $dnbContent := er:grabExternalResource('dnb', $gnd, ())
-        let $dnbOccupations := ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
-        let $subjectHeadings := (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.)
+        let $dnbOccupations := 
+            try { ($dnbContent//rdf:RDF/rdf:Description/gndo:professionOrOccupation//rdf:*[starts-with(@rdf:resource, 'https://d-nb.info')] ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.) }
+            catch * { wega-util:log-to-file('warn', string-join(($err:code, $err:description), ' ;; ')) }
+        let $subjectHeadings := 
+            try { (($dnbContent//rdf:RDF/rdf:Description/gndo:broaderTermInstantial | $dnbContent//rdf:RDF/rdf:Description/gndo:formOfWorkAndExpression) ! er:resolve-rdf-resource(.))//gndo:preferredNameForTheSubjectHeading/str:normalize-space(.) }
+            catch * { wega-util:log-to-file('warn', string-join(($err:code, $err:description), ' ;; ')) }
         return
             map {
                 'docType' : config:get-doctype-by-id($model?docID),
