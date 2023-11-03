@@ -87,7 +87,7 @@ declare function lod:jsonld($model as map(*), $lang as xs:string) as map(*) {
     }
     let $publisher := map {
         'name':'Carl-Maria-von-Weber-Gesamtausgabe',
-        'url':'http://weber-gesamtausgabe.de',
+        'url': config:get-option('permaLinkPrefix'),
         '@type':'Organization'
     }
     let $funder := map {
