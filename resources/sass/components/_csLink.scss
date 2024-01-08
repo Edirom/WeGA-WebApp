@@ -6,7 +6,7 @@
     }
 }
 
-.popover[id*='BV_popover'] {
+.popover[id*='bv_popover_3'] {
    table {
         font-size:unset;
    }
@@ -15,16 +15,9 @@
         padding-right: 2em;
    }
    
-   .popover-body [id*="_BVID_"].tabs {
-        max-height:400px;
-        padding: 10px;
-        .tab-content {
-            overflow-y:auto;
-            font-size:smaller;
-            p {
-                margin-bottom:unset;
-            }
-        }
+    
+    .tab-content {
+        padding: 0.5rem 0.75rem;
     }
     
     .popover-header:empty {
@@ -32,8 +25,8 @@
     }
     
     .nav {
-        margin:4px 0 4px 0;
         flex-wrap:nowrap;
+        background-color: #F5F5F5;
     }
     
     .nav-tabs li {
@@ -50,6 +43,7 @@
                 color:gray;
                 &.active {
                     border-bottom: 4px solid #0064bb;
+                    background-color: #F5F5F5;
                 }
             }
         }
