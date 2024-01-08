@@ -165,14 +165,16 @@ declare function ct:date($input as element()) as element(tei:date) {
 declare function ct:cmif2-note($doc as document-node()) as element(tei:note)? {
     let $persons := ct:mentioned-entity-by-wega-facet($doc, 'persons', 'cmif:mentionsPerson')
     let $places := ct:mentioned-entity-by-wega-facet($doc, 'places', 'cmif:mentionsPlace')
+    let $fullTextURL := config:permalink($doc/*/@xml:id) || '.xml?format=tei_all'
     return
-        if(count($persons | $places) gt 0) 
-        then
-            element {QName('http://www.tei-c.org/ns/1.0', 'note')} {
-                $persons,
-                $places
+        element {QName('http://www.tei-c.org/ns/1.0', 'note')} {
+            $persons,
+            $places,
+            element {QName('http://www.tei-c.org/ns/1.0', 'ref')} {
+                attribute {'type'} {'cmif:isAvailableAsTEIfile'},
+                attribute {'target'} {$fullTextURL}
             }
-        else ()
+        }
 };
 
 declare function ct:corresp-list() as element(tei:TEI) {
