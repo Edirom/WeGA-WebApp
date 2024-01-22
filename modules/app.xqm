@@ -894,11 +894,10 @@ declare
             else map {}
         return
             map { 'beaconLinks': 
-                    for $i in map:keys($beaconMap)
-                    order by $beaconMap($i)[2]
+                    for $i in $beaconMap?*
+                    order by $i?text => lower-case() collation "?lang=de;strength=primary"
                     return 
-                        (: replacement in @href for invalid links from www.sbn.it :)
-                        <a xmlns="http://www.w3.org/1999/xhtml" title="{$i}" href="{replace($beaconMap($i)[1], '\\', '%5C')}">{$beaconMap($i)[2]}</a>
+                        <a xmlns="http://www.w3.org/1999/xhtml" title="{map:keys($i)}" href="{$i?link}">{$i?text}</a>
             }
 };
 
