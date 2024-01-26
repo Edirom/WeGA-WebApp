@@ -338,29 +338,33 @@ declare function er:translate-authority-id($idno as element(), $to as xs:string)
     ) ! str:normalize-space(.) 
 };
 
+(:~
+ :  Fetch linked resources from a Beacon aggregator service for a given GND
+ :  At present https://data.deutsche-biographie.de/beta/beacon-open/ is used
+ :
+ :  @param $gnd a GND identifier
+ :  @param $docType the document type (e.g., letters, writings, persons)
+ :  @return a map object like { "providerA": {"link": $link, "text": $text }, "providerB": {"link": $link, "text": $text } }
+ :)
 declare function er:beacon-map($gnd as xs:string, $docType as xs:string) as map(*) {
-    let $findbuchResponse := 
-        switch($docType)
-        case 'persons' return er:grabExternalResource('beacon', $gnd, 'de')
-        default return er:grabExternalResource('gnd-beacon', $gnd, 'de')
-    (:let $log := util:log-system-out($gnd):)
-    let $jxml := 
-        if(exists($findbuchResponse)) then 
-            if($findbuchResponse/er:body/@encoding = 'Base64Encoded') then parse-json(util:binary-to-string($findbuchResponse))
-            else parse-json($findbuchResponse)
-        else ()
-    return 
-        if(exists($jxml)) then
-            map:merge(
-                for $i in 1 to array:size($jxml?2)
-                let $link  := str:normalize-space($jxml?4?($i))
-                let $title := str:normalize-space($jxml?3?($i))
-                let $text  := str:normalize-space($jxml?2?($i))
-                return
-                    if(matches($link,"weber-gesamtausgabe.de")) then ()
-                    else map:entry($title, ($link, $text))
-            )
-        else map {}
+    let $fileName := $gnd || '.xml'
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'beacon', $fileName))
+    let $uri := 'https://data.deutsche-biographie.de/rest/bd/gnd/' || $gnd || '/alle_de'
+    let $response as element(er:response)? := 
+        if(er:bot-present() or not($gnd)) 
+        then map {}
+        else er:cached-external-request($uri, $localFilePath)
+    return
+        map:merge(
+            for $item in $response//item[ref]
+            let $link  := str:normalize-space($item/ref/@target)
+            let $title := str:normalize-space($item/@type)
+            let $text  := str:normalize-space($item/ref)
+            return
+                if(matches($link, "weber-gesamtausgabe.de|#adbcontent") or not(starts-with($link, "http"))) 
+                then ()
+                else map { $title: map {"link": $link, "text": $text }}
+        )
 };
 
 (:~
