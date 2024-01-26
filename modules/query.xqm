@@ -343,8 +343,8 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
         (: index-keys does not work with multiple whitespace separated keys
             probably need to change to ft:query() someday?!
         :)
-    case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab]/@key)
-    case 'works' return $collection//tei:workName[ancestor::tei:text or ancestor::tei:ab]/@key[string-length(.) = 7] | $collection//tei:rs[@type='work'][ancestor::tei:text or ancestor::tei:ab]/@key[string-length(.) = 7]
+    case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key)
+    case 'works' return $collection//tei:workName[ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7] | $collection//tei:rs[@type='work'][ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7]
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
