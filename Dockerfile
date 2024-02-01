@@ -3,14 +3,14 @@
 # 1. set up the build environment and build the expath-package
 # 2. run the eXist-db
 #########################
-FROM node:18-bullseye as builder
+FROM node:20-bookworm as builder
 LABEL maintainer="Peter Stadler"
 
 ENV WEGA_BUILD_HOME="/opt/wega"
 ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
 
 
-# installing Saxon, Node and Git
+# installing Saxon and ANT
 RUN apt-get update \
     && apt-get install -y --no-install-recommends apt-transport-https ant libsaxonhe-java 
 
