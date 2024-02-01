@@ -13,7 +13,7 @@ jobs:
       - name: Setup
         run: sudo apt-get install libsaxonhe-java && npm install -g prettydiff@99 
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
       - name: Build and run Docker image
         run: ant docker_run
       - name: Run tests
