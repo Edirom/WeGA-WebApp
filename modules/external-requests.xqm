@@ -170,6 +170,7 @@ declare function er:http-get($url as xs:anyURI) as element(wega:externalResource
 declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
     (: kanonische Adresse wäre eigentlich https://tools.wmflabs.org/zoomviewer/iiif.php?f=$DATEINAME$, bestimmte Weiterleitungen funktionieren dann aber nicht :)
     (: zum Dienst siehe https://github.com/toollabs/zoomviewer :)
+    (: zu IIIF@Wikipedia: siehe https://commons.wikimedia.org/wiki/Commons:International_Image_Interoperability_Framework :)
     let $escapedWikiFilename := replace($wikiFilename, ' ', '_')
     let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $escapedWikiFilename || '/info.json'
     let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
