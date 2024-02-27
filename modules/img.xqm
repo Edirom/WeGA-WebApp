@@ -229,8 +229,9 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                            let $iiifInfo := er:wikimedia-iiif(functx:substring-after-last($linkTarget, ':'))
                            return
                               try {
-                                 if($iiifInfo('height') > 340) then $iiifInfo('@id') || '/full/,340/0/native.jpg'
-                                 else $iiifInfo('@id') || '/full/full/0/native.jpg'
+                                 (: need to fix the IIIF image id due to some bug(?) in the zoomviewer.toolforge.org service :)
+                                 if($iiifInfo('height') gt 340) then replace($iiifInfo('@id'), 'cache/', 'fcgi-bin/iipsrv.fcgi/?iiif=cache%2F') || '/full/,340/0/native.jpg'
+                                 else replace($iiifInfo('@id'), 'cache/', 'fcgi-bin/iipsrv.fcgi/?iiif=cache%2F') || '/full/full/0/native.jpg'
                               }
                               catch * { $thumbURI }
                         default return 
