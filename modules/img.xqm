@@ -439,6 +439,7 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
         for $fig in core:getOrCreateColl('iconography', $model('docID'), true())//tei:figure[tei:graphic]
         let $docType := 
             if($fig/tei:figDesc/tei:listPlace) then 'places'
+            else if($fig/tei:figDesc/tei:listOrg) then 'orgs'
             else 'persons'
         let $iiifURI := $iiifImageApi || encode-for-uri(string-join(($docType, substring($model('docID'), 1, 5) || 'xx', $model('docID'), $fig/tei:graphic/@url), '/'))
         order by $fig/@n (: markup with <figure n="portrait"> takes precedence  :)
