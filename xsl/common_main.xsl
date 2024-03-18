@@ -95,13 +95,24 @@
                 <xsl:for-each select="//tei:footNote">
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="@xml:id"/>
+                        <!-- the value of @data-title will be injected as the title of the popover -->
+                        <xsl:attribute name="data-title" select="concat(wega:getLanguageString('originalFootnotes', $lang), ' ', position())"/>
                         <xsl:element name="a">
                             <xsl:attribute name="href" select="wega:get-backref-link(@xml:id)"/>
                             <xsl:attribute name="class">fn-backref</xsl:attribute>
-                            <xsl:element name="i">
-                                <xsl:attribute name="class">fa fa-arrow-up</xsl:attribute>
-                                <xsl:attribute name="aria-hidden">true</xsl:attribute>
-                            </xsl:element>
+                            <xsl:choose>
+                                <!-- for automatically numbered footnotes -->
+                                <xsl:when test="@n">
+                                    <xsl:value-of select="position()"/>
+                                </xsl:when>
+                                <!-- default footnote backlink symbol -->
+                                <xsl:otherwise>
+                                    <xsl:element name="i">
+                                        <xsl:attribute name="class">fa fa-arrow-up</xsl:attribute>
+                                        <xsl:attribute name="aria-hidden">true</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:element>
                         <xsl:apply-templates/>
                     </xsl:element>
@@ -708,6 +719,16 @@
     </xsl:template>
 
     <xsl:template match="tei:footNote"/>
+    
+    <!--
+        (historic) footnotes with @n attribute will be treated like modern footnotes,
+        i.e. footnote reference numbers will be sequentially numbered and added automatically 
+    -->
+    <xsl:template match="tei:footNote[@n]" priority="2">
+        <xsl:call-template name="popover">
+            <xsl:with-param name="marker" select="'arabic'"/>
+        </xsl:call-template>
+    </xsl:template>
 
     <xsl:template match="tei:g">
         <xsl:variable name="smuflCodepoint" as="xs:string">
