@@ -96,14 +96,14 @@
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="@xml:id"/>
                         <!-- the value of @data-title will be injected as the title of the popover -->
-                        <xsl:attribute name="data-title" select="concat(wega:getLanguageString('originalFootnotes', $lang), ' ', position())"/>
+                        <xsl:attribute name="data-title" select="concat(wega:getLanguageString('originalFootnotes', $lang), ' ', @n)"/>
                         <xsl:element name="a">
                             <xsl:attribute name="href" select="wega:get-backref-link(@xml:id)"/>
                             <xsl:attribute name="class">fn-backref</xsl:attribute>
                             <xsl:choose>
                                 <!-- for automatically numbered footnotes -->
                                 <xsl:when test="@n">
-                                    <xsl:value-of select="position()"/>
+                                    <xsl:value-of select="@n"/>
                                 </xsl:when>
                                 <!-- default footnote backlink symbol -->
                                 <xsl:otherwise>
