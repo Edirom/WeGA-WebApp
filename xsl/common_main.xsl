@@ -63,8 +63,14 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="class">
+            <xsl:choose>
+                <xsl:when test="$marker castable as xs:int">arabic</xsl:when>
+                <xsl:otherwise><xsl:value-of select="$marker"/></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:element name="a">
-            <xsl:attribute name="class" select="string-join(('noteMarker', $marker), ' ')"/>
+            <xsl:attribute name="class" select="string-join(('noteMarker', $class), ' ')"/>
             <xsl:attribute name="id" select="wega:get-backref-id($id)"/>
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
@@ -73,6 +79,9 @@
             <xsl:choose>
                 <xsl:when test="$marker eq 'arabic'">
                     <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
+                </xsl:when>
+                <xsl:when test="$marker castable as xs:int">
+                    <xsl:value-of select="$marker"/>
                 </xsl:when>
                 <xsl:when test="not($marker) and self::tei:note[not(@type='textConst')]">
                     <xsl:text>*</xsl:text>
@@ -726,7 +735,7 @@
     -->
     <xsl:template match="tei:footNote[@n]" priority="2">
         <xsl:call-template name="popover">
-            <xsl:with-param name="marker" select="'arabic'"/>
+            <xsl:with-param name="marker" select="@n"/>
         </xsl:call-template>
     </xsl:template>
 
