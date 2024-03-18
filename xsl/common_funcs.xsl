@@ -424,6 +424,23 @@
             <xsl:value-of select="functx:substring-before-if-contains(@ident, '-')"/>
         </xsl:for-each>
     </xsl:function>
+    
+    <!--
+        Return a standardized back-reference id  
+    -->
+    <xsl:function name="wega:get-backref-id" as="xs:string">
+        <xsl:param name="id" as="xs:string?"/>
+        <xsl:value-of select="concat('backref-', $id)"/>
+    </xsl:function>
+    
+    <!--
+        Return a standardized back-reference link
+        by calling wega:get-backref-id#1 and prefixing with a '#' 
+    -->
+    <xsl:function name="wega:get-backref-link" as="xs:string">
+        <xsl:param name="id" as="xs:string?"/>
+        <xsl:value-of select="concat('#', wega:get-backref-id($id))"/>
+    </xsl:function>
 
     <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->

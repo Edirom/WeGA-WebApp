@@ -50,7 +50,7 @@
                         <xsl:attribute name="class">col-1 text-nowrap</xsl:attribute>
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
-                           <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
+                           <xsl:attribute name="data-href" select="wega:get-backref-link(wega:createID(.))"/>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
                            <xsl:number count="$textConstitutionNodes" level="any"/>
                            <xsl:text>.</xsl:text>
@@ -77,7 +77,7 @@
                         <xsl:attribute name="class">col-1 text-nowrap</xsl:attribute>
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
-                           <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
+                           <xsl:attribute name="data-href" select="wega:get-backref-link(wega:createID(.))"/>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
                            <xsl:number count="$commentaryNodes" level="any"/>
                            <xsl:text>.</xsl:text>
@@ -104,7 +104,7 @@
                         <xsl:attribute name="class">col-1 text-nowrap</xsl:attribute>
                         <xsl:element name="a">
                            <xsl:attribute name="href">#transcription</xsl:attribute>
-                           <xsl:attribute name="data-href"><xsl:value-of select="concat('#ref-',wega:createID(.))"/></xsl:attribute>
+                           <xsl:attribute name="data-href" select="wega:get-backref-link(wega:createID(.))"/>
                            <xsl:attribute name="class">apparatus-link</xsl:attribute>
                            <xsl:number count="$rdgNodes" level="any"/>
                            <xsl:text>.</xsl:text>
@@ -294,8 +294,8 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="wega:getLanguageString('appRdgs',$lang)"/>
          </xsl:attribute>
-         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
-         <xsl:attribute name="data-href"><xsl:value-of select="concat('#',$id)"/></xsl:attribute>
+         <xsl:attribute name="data-counter" select="$counter"/>
+         <xsl:attribute name="data-href" select="concat('#',$id)"/>
          <xsl:element name="div">
             <xsl:element name="strong">
                <!-- source containing the lemma the first available (not lost) text source by definition' -->
@@ -715,8 +715,8 @@
          <xsl:attribute name="data-title">
             <xsl:value-of select="$title"/>
          </xsl:attribute>
-         <xsl:attribute name="data-counter"><xsl:value-of select="$counter"/></xsl:attribute>
-         <xsl:attribute name="data-href"><xsl:value-of select="concat('#',$id)"/></xsl:attribute>
+         <xsl:attribute name="data-counter" select="$counter"/>
+         <xsl:attribute name="data-href" select="concat('#',$id)"/>
          <xsl:if test="$lemma">
             <xsl:element name="span">
                <xsl:attribute name="class" select="'tei_lemma'"/>

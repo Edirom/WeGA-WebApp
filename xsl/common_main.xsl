@@ -65,7 +65,7 @@
         </xsl:variable>
         <xsl:element name="a">
             <xsl:attribute name="class" select="string-join(('noteMarker', $marker), ' ')"/>
-            <xsl:attribute name="id" select="concat('ref-', $id)"/>
+            <xsl:attribute name="id" select="wega:get-backref-id($id)"/>
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
             <xsl:attribute name="tabindex">0</xsl:attribute>
@@ -96,7 +96,7 @@
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="@xml:id"/>
                         <xsl:element name="a">
-                            <xsl:attribute name="href" select="concat('#backref-', @xml:id)"/>
+                            <xsl:attribute name="href" select="wega:get-backref-link(@xml:id)"/>
                             <xsl:attribute name="class">fn-backref</xsl:attribute>
                             <xsl:element name="i">
                                 <xsl:attribute name="class">fa fa-arrow-up</xsl:attribute>

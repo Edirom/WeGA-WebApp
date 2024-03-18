@@ -300,7 +300,7 @@
                         <xsl:attribute name="data-title" select="concat(wega:getLanguageString('endNote', $lang), '&#160;', position())"/>
                         <xsl:element name="a">
                             <xsl:attribute name="class">endnote_backlink</xsl:attribute>
-                            <xsl:attribute name="href" select="concat('#ref-', @xml:id)"/>
+                            <xsl:attribute name="href" select="wega:get-backref-link(@xml:id)"/>
                             <xsl:value-of select="position()"/>
                         </xsl:element>
                         <xsl:apply-templates/>
