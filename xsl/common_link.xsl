@@ -75,7 +75,7 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates select="@target"/>
             <xsl:if test="@type='footnoteAnchor'">
-                <xsl:attribute name="id" select="concat('backref-', substring(@target, 2))"/>
+                <xsl:attribute name="id" select="wega:get-backref-id(substring(@target, 2))"/>
                 <xsl:attribute name="class">fn-ref</xsl:attribute>
             </xsl:if>
             <xsl:apply-templates mode="#current"/>
