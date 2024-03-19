@@ -443,6 +443,7 @@ declare function gl:spec-list-items($node as node(), $model as map(*)) as map(*)
     let $links := 
         for $i in $model?specs-by-initial?items
         let $url := gl:link-to-spec($i, $model?lang, 'html', $model?schemaID)
+        order by $i
         return 
             element a {
                 attribute href {$url},
