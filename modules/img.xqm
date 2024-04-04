@@ -190,7 +190,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
     let $wikiArticle := $wikiModel?wikiContent 
     (: Look for images in wikipedia infobox (for organizations and english wikipedia) and thumbnails  :)
     let $images := 
-        $wikiArticle//xhtml:td[@class='infobox-image']//xhtml:img |
+        $wikiArticle//xhtml:td[contains(@class, 'infobox-image')]//xhtml:img |
         $wikiArticle//xhtml:figure[@typeof='mw:File/Thumb']//xhtml:img
     return 
         for $img in $images
