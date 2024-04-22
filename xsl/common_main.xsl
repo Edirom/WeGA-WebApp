@@ -31,6 +31,7 @@
     <xsl:param name="data-collection-path"/>
     <xsl:param name="catalogues-collection-path"/>
     <xsl:param name="environment"/>
+    <xsl:param name="maxSize">600</xsl:param>
     
     <xsl:include href="common_funcs.xsl"/>
     
@@ -487,7 +488,7 @@
     </xsl:template>
 
     <xsl:template match="tei:notatedMusic | tei:figure">
-        <xsl:element name="span">
+        <xsl:element name="figure">
             <xsl:attribute name="class" select="string-join((concat('tei_', local-name()), @rend), ' ')"/>
             <xsl:choose>
                 <xsl:when test="tei:graphic">
@@ -501,6 +502,11 @@
                     <xsl:text>]</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
+            <xsl:if test="tei:figDesc/@rend='caption'">
+                <xsl:element name="figcaption">
+                    <xsl:apply-templates select="tei:figDesc/node()"/>
+                </xsl:element>
+            </xsl:if>
         </xsl:element>
     </xsl:template>
     
@@ -508,8 +514,14 @@
         <xsl:variable name="figureSize">
             <!-- There's more to do here: different images for different screen sizes and resolutions, etc. -->
             <xsl:choose>
+                <xsl:when test="parent::tei:*/@rend='align-horizontally'">
+                    <xsl:value-of select="concat($maxSize div count(parent::tei:*/tei:graphic) -1, ',')"/>
+                </xsl:when>
                 <xsl:when test="parent::tei:*/@rend='maxSize'">
-                    <xsl:value-of select="'600,'"/>
+                    <xsl:value-of select="concat($maxSize, ',')"/>
+                </xsl:when>
+                <xsl:when test="parent::tei:*/@rend=('float-left', 'float-right')">
+                    <xsl:value-of select="concat($maxSize div 3, ',')"/>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="concat(',',wega:getOption('figureHeight'))"/>
