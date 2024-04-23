@@ -488,7 +488,18 @@
     </xsl:template>
 
     <xsl:template match="tei:notatedMusic | tei:figure">
-        <xsl:element name="figure">
+        <xsl:variable name="elem">
+            <!-- 
+                inline figures will be transformed to html:span elements
+                while 'real' figures will be transformed to html:figure.
+                html:figure elements will need to be placed outside of paragraphs and can contain captions. 
+            -->
+            <xsl:choose>
+                <xsl:when test="@rend='inline'">span</xsl:when>
+                <xsl:otherwise>figure</xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:element name="{$elem}">
             <xsl:attribute name="class" select="string-join((concat('tei_', local-name()), @rend), ' ')"/>
             <xsl:choose>
                 <xsl:when test="tei:graphic">
@@ -502,7 +513,7 @@
                     <xsl:text>]</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
-            <xsl:if test="tei:figDesc/@rend='caption'">
+            <xsl:if test="tei:figDesc/@rend='caption' and $elem = 'figure'">
                 <xsl:element name="figcaption">
                     <xsl:apply-templates select="tei:figDesc/node()"/>
                 </xsl:element>
@@ -841,7 +852,7 @@
                 <xsl:text>inlineEnd</xsl:text>
             </xsl:if>
         </xsl:variable>
-        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teix:egXML|tei:eg|tei:figure">
+        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teix:egXML|tei:eg|tei:figure[not(@rend='inline')]">
             <xsl:if test="current-group()[
                     not(self::tei:list 
                     or self::tei:specList 
@@ -849,7 +860,7 @@
                     or self::tei:table 
                     or self::tei:floatingText
                     or self::tei:eg
-                    or self::tei:figure)]
+                    or self::tei:figure[not(@rend='inline')])]
                     [matches(., '\S')] 
                     or current-group()[
                     not(self::tei:list 
@@ -858,7 +869,7 @@
                     or self::tei:table 
                     or self::tei:floatingText 
                     or self::tei:eg
-                    or self::tei:figure)]
+                    or self::tei:figure[not(@rend='inline')])]
                     [self::element()]">
                 <xsl:element name="p">
                     <xsl:if test="position() eq 1">
@@ -874,7 +885,7 @@
                         or self::tei:table 
                         or self::tei:floatingText 
                         or self::tei:eg
-                        or self::tei:figure)]"/>
+                        or self::tei:figure[not(@rend='inline')])]"/>
                 </xsl:element>
             </xsl:if>
             <xsl:apply-templates select="current-group()[
@@ -884,7 +895,7 @@
                 or self::tei:table 
                 or self::tei:floatingText 
                 or self::tei:eg
-                or self::tei:figure]"/>
+                or self::tei:figure[not(@rend='inline')]]"/>
         </xsl:for-each-group>
     </xsl:template>
 
