@@ -52,23 +52,28 @@ div.table-wrapper {
 }
 
 figure {
-    &.align-horizontally, 
+    &.align-horizontally {
+        text-align:center;        
+    }
     &.float-left,
     &.float-right {
-        text-align:center;
+        max-width: 50%;
+        img {
+            padding: .5em 1em;
+            max-width: 100%;
+        }
     }
 }
 
-.float-left img {
-    margin: 0px 2em 1em 0px;
-    padding: .5em 1em;
-    max-width: 100%;
-}
-
-.float-right img {
-    margin: 0px 0px 1em 2em;
-    padding: .5em 1em;
-    max-width: 100%;
+@include media-breakpoint-down(md) {
+    figure {
+        &.float-left,
+        &.float-right {
+            text-align:center;
+            max-width: 100%;
+            width: 100%;
+        }
+    }
 }
 
 /* caption text below images */
@@ -78,6 +83,9 @@ figcaption {
     font-size: smaller;
     margin: auto;
     max-width:75%;
+    .tei_hi_italic, .tei_hi_latintype {
+        font-style:normal;
+    }
 }
 
 /*
