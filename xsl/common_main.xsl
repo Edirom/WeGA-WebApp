@@ -490,12 +490,14 @@
     <xsl:template match="tei:notatedMusic | tei:figure">
         <xsl:variable name="elem">
             <!-- 
-                inline figures will be transformed to html:span elements
+                inline figures and notatedMusic will be transformed to html:span elements
                 while 'real' figures will be transformed to html:figure.
                 html:figure elements will need to be placed outside of paragraphs and can contain captions. 
             -->
             <xsl:choose>
                 <xsl:when test="@rend='inline'">span</xsl:when>
+                <xsl:when test="self::tei:notatedMusic[@rend='maxSize']">figure</xsl:when>
+                <xsl:when test="self::tei:notatedMusic[not(@rend='maxSize')]">span</xsl:when>
                 <xsl:otherwise>figure</xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
@@ -852,7 +854,7 @@
                 <xsl:text>inlineEnd</xsl:text>
             </xsl:if>
         </xsl:variable>
-        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teix:egXML|tei:eg|tei:figure[not(@rend='inline')]">
+        <xsl:for-each-group select="node()" group-ending-with="tei:list|tei:specList|teix:egXML|tei:eg|tei:figure[not(@rend='inline')]|tei:notatedMusic[@rend='maxSize']">
             <xsl:if test="current-group()[
                     not(self::tei:list 
                     or self::tei:specList 
@@ -860,7 +862,8 @@
                     or self::tei:table 
                     or self::tei:floatingText
                     or self::tei:eg
-                    or self::tei:figure[not(@rend='inline')])]
+                    or self::tei:figure[not(@rend='inline')]
+                    or self::tei:notatedMusic[@rend='maxSize'])]
                     [matches(., '\S')] 
                     or current-group()[
                     not(self::tei:list 
@@ -869,7 +872,8 @@
                     or self::tei:table 
                     or self::tei:floatingText 
                     or self::tei:eg
-                    or self::tei:figure[not(@rend='inline')])]
+                    or self::tei:figure[not(@rend='inline')]
+                    or self::tei:notatedMusic[@rend='maxSize'])]
                     [self::element()]">
                 <xsl:element name="p">
                     <xsl:if test="position() eq 1">
@@ -885,7 +889,8 @@
                         or self::tei:table 
                         or self::tei:floatingText 
                         or self::tei:eg
-                        or self::tei:figure[not(@rend='inline')])]"/>
+                        or self::tei:figure[not(@rend='inline')]
+                        or self::tei:notatedMusic[@rend='maxSize'])]"/>
                 </xsl:element>
             </xsl:if>
             <xsl:apply-templates select="current-group()[
@@ -895,7 +900,8 @@
                 or self::tei:table 
                 or self::tei:floatingText 
                 or self::tei:eg
-                or self::tei:figure[not(@rend='inline')]]"/>
+                or self::tei:figure[not(@rend='inline')]
+                or self::tei:notatedMusic[@rend='maxSize']]"/>
         </xsl:for-each-group>
     </xsl:template>
 
