@@ -212,7 +212,18 @@
                 <xsl:with-param name="dot" select="true()"/>
             </xsl:call-template>
         </xsl:if>
-        <xsl:value-of select="count($div/preceding-sibling::tei:div[not(following::tei:divGen)][tei:head][ancestor-or-self::tei:div/@xml:lang=$lang]) + 1 +$offset"/>
+        <xsl:variable name="preceding-divs" as="node()*">
+            <!-- when xml:lang information is present only the respective divs need to be taken into account -->
+            <xsl:choose>
+                <xsl:when test="$div/ancestor-or-self::tei:div/@xml:lang">
+                    <xsl:sequence select="$div/preceding-sibling::tei:div[not(following::tei:divGen)][tei:head][ancestor-or-self::tei:div/@xml:lang=$lang]"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:sequence select="$div/preceding-sibling::tei:div[not(following::tei:divGen)][tei:head]"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <xsl:value-of select="count($preceding-divs) + 1 +$offset"/>
         <xsl:if test="$dot">
             <xsl:text>.&#8201;</xsl:text>
         </xsl:if>
