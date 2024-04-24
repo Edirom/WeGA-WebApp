@@ -53,7 +53,7 @@
 
     <xsl:template name="popover">
         <xsl:param name="marker" as="xs:string?"/>
-        <xsl:variable name="id">
+        <xsl:variable name="id" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="@xml:id">
                     <xsl:value-of select="@xml:id"/>
@@ -63,9 +63,10 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <xsl:variable name="class">
+        <xsl:variable name="class" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="$marker castable as xs:int">arabic</xsl:when>
+                <xsl:when test="empty($marker)"/>
                 <xsl:otherwise><xsl:value-of select="$marker"/></xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
