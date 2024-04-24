@@ -105,8 +105,10 @@
                 <xsl:for-each select="//tei:footNote">
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="@xml:id"/>
-                        <!-- the value of @data-title will be injected as the title of the popover -->
-                        <xsl:attribute name="data-title" select="concat(wega:getLanguageString('originalFootnotes', $lang), ' ', @n)"/>
+                        <xsl:if test="@n">
+                            <!-- the value of @data-title will be injected as the title of the popover -->
+                            <xsl:attribute name="data-title" select="concat(wega:getLanguageString('originalFootnotes', $lang), ' ', @n)"/>
+                        </xsl:if>
                         <xsl:element name="a">
                             <xsl:attribute name="href" select="wega:get-backref-link(@xml:id)"/>
                             <xsl:attribute name="class">fn-backref</xsl:attribute>
