@@ -53,7 +53,11 @@ div.table-wrapper {
 
 figure {
     &.align-horizontally {
-        text-align:center;        
+        text-align:center;
+        img {
+            margin: 0 1em;
+            max-height: calc(var(--breakpoint-sm) / 1.5);
+        }
     }
     &.float-left,
     &.float-right {
