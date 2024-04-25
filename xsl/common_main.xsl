@@ -53,7 +53,7 @@
 
     <xsl:template name="popover">
         <xsl:param name="marker" as="xs:string?"/>
-        <xsl:variable name="id">
+        <xsl:variable name="id" as="xs:string?">
             <xsl:choose>
                 <xsl:when test="@xml:id">
                     <xsl:value-of select="@xml:id"/>
@@ -63,9 +63,16 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
+        <xsl:variable name="class" as="xs:string?">
+            <xsl:choose>
+                <xsl:when test="$marker castable as xs:int">arabic</xsl:when>
+                <xsl:when test="empty($marker)"/>
+                <xsl:otherwise><xsl:value-of select="$marker"/></xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
         <xsl:element name="a">
-            <xsl:attribute name="class" select="string-join(('noteMarker', $marker), ' ')"/>
-            <xsl:attribute name="id" select="concat('ref-', $id)"/>
+            <xsl:attribute name="class" select="string-join(('noteMarker', $class), ' ')"/>
+            <xsl:attribute name="id" select="wega:get-backref-id($id)"/>
             <xsl:attribute name="data-toggle">popover</xsl:attribute>
             <xsl:attribute name="data-trigger">focus</xsl:attribute>
             <xsl:attribute name="tabindex">0</xsl:attribute>
@@ -73,6 +80,9 @@
             <xsl:choose>
                 <xsl:when test="$marker eq 'arabic'">
                     <xsl:value-of select="count(preceding::tei:note[@type=('commentary','definition','textConst')]) + 1"/>
+                </xsl:when>
+                <xsl:when test="$marker castable as xs:int">
+                    <xsl:value-of select="$marker"/>
                 </xsl:when>
                 <xsl:when test="not($marker) and self::tei:note[not(@type='textConst')]">
                     <xsl:text>*</xsl:text>
@@ -95,13 +105,26 @@
                 <xsl:for-each select="//tei:footNote">
                     <xsl:element name="li">
                         <xsl:attribute name="id" select="@xml:id"/>
+                        <xsl:if test="@n">
+                            <!-- the value of @data-title will be injected as the title of the popover -->
+                            <xsl:attribute name="data-title" select="concat(wega:getLanguageString('originalFootnotes', $lang), ' ', @n)"/>
+                        </xsl:if>
                         <xsl:element name="a">
-                            <xsl:attribute name="href" select="concat('#backref-', @xml:id)"/>
+                            <xsl:attribute name="href" select="wega:get-backref-link(@xml:id)"/>
                             <xsl:attribute name="class">fn-backref</xsl:attribute>
-                            <xsl:element name="i">
-                                <xsl:attribute name="class">fa fa-arrow-up</xsl:attribute>
-                                <xsl:attribute name="aria-hidden">true</xsl:attribute>
-                            </xsl:element>
+                            <xsl:choose>
+                                <!-- for automatically numbered footnotes -->
+                                <xsl:when test="@n">
+                                    <xsl:value-of select="@n"/>
+                                </xsl:when>
+                                <!-- default footnote backlink symbol -->
+                                <xsl:otherwise>
+                                    <xsl:element name="i">
+                                        <xsl:attribute name="class">fa fa-arrow-up</xsl:attribute>
+                                        <xsl:attribute name="aria-hidden">true</xsl:attribute>
+                                    </xsl:element>
+                                </xsl:otherwise>
+                            </xsl:choose>
                         </xsl:element>
                         <xsl:apply-templates/>
                     </xsl:element>
@@ -708,6 +731,16 @@
     </xsl:template>
 
     <xsl:template match="tei:footNote"/>
+    
+    <!--
+        (historic) footnotes with @n attribute will be treated like modern footnotes,
+        i.e. footnote reference numbers will be sequentially numbered and added automatically 
+    -->
+    <xsl:template match="tei:footNote[@n]" priority="2">
+        <xsl:call-template name="popover">
+            <xsl:with-param name="marker" select="@n"/>
+        </xsl:call-template>
+    </xsl:template>
 
     <xsl:template match="tei:g">
         <xsl:variable name="smuflCodepoint" as="xs:string">

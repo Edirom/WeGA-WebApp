@@ -18,13 +18,13 @@
         </xsl:copy>
     </xsl:template>
     
-    <xsl:template match="@href">
-        <xsl:attribute name="href">
+    <xsl:template match="@href|@data-href">
+        <xsl:attribute name="{name()}">
             <xsl:choose>
                 <xsl:when test="contains(., '/Scaler/')">
                     <xsl:value-of select="replace(., '.*/Scaler/', '/Scaler/')"/>
                 </xsl:when>
-                <xsl:when test="matches(., '#(source_)?[a-f0-9]+')">
+                <xsl:when test="matches(., '^#(source_|ref\-|backref\-)?[a-f0-9]+$')">
                     <xsl:value-of select="'some_computed_id'"/>
                 </xsl:when>
                 <xsl:otherwise>
