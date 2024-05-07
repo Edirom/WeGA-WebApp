@@ -414,7 +414,7 @@ declare %private function img:bildindex-images($model as map(*), $lang as xs:str
             if($picURI castable as xs:anyURI) then
                 map {
                     'caption' : str:normalize-space($div//xhtml:span[contains(@class, 'galHeadline')]) || ' (Quelle: Bildindex der Kunst und Architektur)',
-                    'linkTarget' : $div/xhtml:figure/xhtml:a/@href,
+                    'linkTarget' : $div/xhtml:figure/xhtml:a/data(@href),
                     'source' : 'Bildindex der Kunst und Architektur',
                     'url' : function($size) {
                         if($picURI = '/images/nopic_large.png')
