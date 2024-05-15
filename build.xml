@@ -56,7 +56,7 @@
     
     <target name="wega-mirador" depends="init">
         <description>Update javascript libraries via yarn</description>
-        <get src="https://github.com/Edirom/WeGA-WebApp-Mirador/releases/download/v0.1.1/WeGA-WebApp-Mirador.zip" dest="${tmp.dir}" skipexisting="yes"/>
+        <get src="https://github.com/Edirom/WeGA-WebApp-Mirador/releases/download/v0.2.0/WeGA-WebApp-Mirador.zip" dest="${tmp.dir}" skipexisting="yes"/>
         <mkdir dir="${dist.dir}/resources/lib/wega-mirador"/>
         <unzip src="${tmp.dir}/WeGA-WebApp-Mirador.zip" dest="${dist.dir}/resources/lib/wega-mirador"/>
     </target>
