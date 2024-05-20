@@ -205,15 +205,19 @@ declare %private function bibl:biblScope($parent as element(), $lang as xs:strin
 };
 
 (:~
- : 
+ : Helper function for bibl:biblScope#2
  :)
 declare %private function bibl:print-single-biblScope-unit($separator as xs:string?, $biblScope as element(tei:biblScope), $lang as xs:string) as xs:string {
-    $separator || 
-    lang:get-language-string($biblScope/@unit, $lang) || 
-    '&#160;' || 
-    bibl:normalize-hyphen($biblScope)
+    concat(
+        $separator,
+        (: eventually add brackets, see https://github.com/Edirom/WeGA-WebApp/issues/460 :)
+        if($biblScope/@rend='bracketed') then '[' else (),
+        lang:get-language-string($biblScope/@unit, $lang),
+        '&#160;',
+        bibl:normalize-hyphen($biblScope),
+        if($biblScope/@rend='bracketed') then ']' else ()
+    )
 };
-
 
 (:~
  : Create a bibliographic citation for a series
