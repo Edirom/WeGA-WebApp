@@ -94,7 +94,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             if(exists($series)) then (' (', $series, '), ') else ', ',
             if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol']) then concat(lang:get-language-string('vol', $lang), '&#160;', $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol'], ', ') else (),
             $pubPlaceNYear,
-            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
+            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', bibl:normalize-hyphen($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'])) else (),
             $note
         }
 };
@@ -152,7 +152,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             if(exists($editor)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editor) else (),
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
-            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
+            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', bibl:normalize-hyphen($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'])) else (),
             $note
         }
 };
@@ -198,9 +198,9 @@ declare %private function bibl:biblScope($parent as element(), $lang as xs:strin
         (: Alle anderen Datumsausgaben hier :)
         if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
         if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
-        if($parent/tei:biblScope/@unit = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', replace($parent/tei:biblScope[@unit = 'pp'], '-', '–')) else (),
-        if($parent/tei:biblScope/@unit = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', replace($parent/tei:biblScope[@unit = 'col'], '-', '–')) else (),
-        if($parent/tei:biblScope/@unit = 'leaf') then concat(', ', lang:get-language-string('leaf', $lang), '&#160;', replace($parent/tei:biblScope[@unit = 'leaf'], '-', '–')) else ()
+        if($parent/tei:biblScope/@unit = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', bibl:normalize-hyphen($parent/tei:biblScope[@unit = 'pp'])) else (),
+        if($parent/tei:biblScope/@unit = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', bibl:normalize-hyphen($parent/tei:biblScope[@unit = 'col'])) else (),
+        if($parent/tei:biblScope/@unit = 'leaf') then concat(', ', lang:get-language-string('leaf', $lang), '&#160;', bibl:normalize-hyphen($parent/tei:biblScope[@unit = 'leaf'])) else ()
     )
 };
 
@@ -313,7 +313,7 @@ declare %private function bibl:printTitles($titles as element(tei:title)*) as el
 
 (:~
  : Create note marker and popover for notes which are a direct child of biblStruct
-~:)
+ :)
 declare %private function bibl:printNote($notes as element(tei:note)*, $lang as xs:string) as element()* {
     for $note in $notes
     let $id := 
@@ -328,4 +328,11 @@ declare %private function bibl:printNote($notes as element(tei:note)*, $lang as 
         <xhtml:a class="noteMarker biblioNote" data-toggle="popover" data-ref="#{$id}">*</xhtml:a>,
         <xhtml:div id="{$id}" data-title="{lang:get-language-string('gl_note', $lang)}" style="display:none;">{$content}</xhtml:div>
       )
+};
+
+(:~
+ : Replace standard hyphens with ndashs 
+ :)
+declare %private function bibl:normalize-hyphen($biblScope as element(tei:biblScope)) as xs:string {
+    replace($biblScope, '-', '–')
 };
