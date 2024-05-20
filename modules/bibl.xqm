@@ -92,9 +92,9 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             $title,
             if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
             if(exists($series)) then (' (', $series, '), ') else ', ',
-            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol']) then concat(lang:get-language-string('vol', $lang), '&#160;', $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol'], ', ') else (),
+            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol']) then bibl:print-single-biblScope-unit((), $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol'], $lang) || ', ' else (),
             $pubPlaceNYear,
-            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', bibl:normalize-hyphen($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'])) else (),
+            if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then bibl:print-single-biblScope-unit(', ', $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'], $lang) else (),
             $note
         }
 };
@@ -189,20 +189,31 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
     concat(
-        if($parent/tei:biblScope/@unit = 'vol') then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $parent/tei:biblScope[@unit = 'vol']) else (),
+        if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
         if($parent/tei:biblScope/@unit = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
         if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:biblScope/@unit = 'issue') then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $parent/tei:biblScope[@unit = 'issue']) else (),
+        if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
         if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
         (: Alle anderen Datumsausgaben hier :)
         if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
         if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
-        if($parent/tei:biblScope/@unit = 'pp') then concat(', ', lang:get-language-string('pp', $lang), '&#160;', bibl:normalize-hyphen($parent/tei:biblScope[@unit = 'pp'])) else (),
-        if($parent/tei:biblScope/@unit = 'col') then concat(', ', lang:get-language-string('col', $lang), '&#160;', bibl:normalize-hyphen($parent/tei:biblScope[@unit = 'col'])) else (),
-        if($parent/tei:biblScope/@unit = 'leaf') then concat(', ', lang:get-language-string('leaf', $lang), '&#160;', bibl:normalize-hyphen($parent/tei:biblScope[@unit = 'leaf'])) else ()
+        if($parent/tei:biblScope/@unit = 'pp') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'pp'], $lang) else (),
+        if($parent/tei:biblScope/@unit = 'col') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'col'], $lang) else (),
+        if($parent/tei:biblScope/@unit = 'leaf') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'leaf'], $lang) else ()
     )
 };
+
+(:~
+ : 
+ :)
+declare %private function bibl:print-single-biblScope-unit($separator as xs:string?, $biblScope as element(tei:biblScope), $lang as xs:string) as xs:string {
+    $separator || 
+    lang:get-language-string($biblScope/@unit, $lang) || 
+    '&#160;' || 
+    bibl:normalize-hyphen($biblScope)
+};
+
 
 (:~
  : Create a bibliographic citation for a series
