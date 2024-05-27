@@ -371,5 +371,6 @@ declare %private function bibl:idno($idnos as element(tei:idno)*) as element(xht
     return
         switch($idno/@type)
         case 'DOI' return <xhtml:span class="idno_DOI">, DOI: <xhtml:a href="{concat('https://doi.org/',  normalize-space($idno))}">{$idno => data(), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a></xhtml:span>
+        case 'WeGA' return <xhtml:span class="idno_WeGA">, Volltext verfügbar unter <xhtml:a href="{config:permalink($idno)}">{$idno => data()}</xhtml:a></xhtml:span>
         default return <xhtml:span class="{concat('idno_', $idno/@type)}">, online unter <xhtml:a href="{$idno => data()}">{$idno => data(), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a></xhtml:span>
 };
