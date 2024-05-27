@@ -23,7 +23,7 @@ declare
     %test:args('A111355')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Enchanted Wanderer.  The Life of Carl Maria von Weber</xhtml:span>")
     %test:args('A111377')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Die Beziehungen Carl Maria v. Webers zu thüringischen Musikern</xhtml:span>")
     %test:args('A111038')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>„… wer Flöte bläst, kauft doch allemahl von meinen Werken“. Anton Bernhard Fürstenaus Briefkontakte zum Verlag B. Schott’s Söhne zwischen 1819 und 1825</xhtml:span>")
-    %test:args('A111057')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Die Rezeption von Carl Maria von Webers „Der Freischütz“ als deutsche Nationaloper. <xhtml:a href='https://doi.org/10.25365/thesis.25680'>Diplomarbeit <xhtml:i class='fa fa-external-link' aria-hidden='true'/></xhtml:a> zum Magistra der Philosophie (Mag. phil.) an der Universität Wien</xhtml:span>")
+    %test:args('A111057')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Die Rezeption von Carl Maria von Webers „Der Freischütz“ als deutsche Nationaloper. Diplomarbeit zum Magistra der Philosophie (Mag. phil.) an der Universität Wien</xhtml:span>")
     %test:args('A111055')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Das <xhtml:span class='tei_hi_italic'>Freischütz</xhtml:span>-Libretto: Quellensituation und intertextuelle Referenzen</xhtml:span>")
     function bt:test-title($a as xs:string) as element()+ {
         let $doc := crud:doc($a)
@@ -67,4 +67,28 @@ declare
         let $doc := crud:doc($a)
         return
             bibl:printCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='placeNYear']
+};
+
+declare 
+    %test:args('A111057')         %test:assertXPath("$result//xhtml:span[@class='idno_DOI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='placeNYear']")
+    function bt:test-printBookCitation($a as xs:string) as element() {
+        let $doc := crud:doc($a)
+        return
+            bibl:printBookCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
+};
+
+declare 
+    %test:args('A112915')         %test:assertXPath("$result//xhtml:span[@class='idno_URI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='journalTitle']")
+    function bt:test-printArticleCitation($a as xs:string) as element() {
+        let $doc := crud:doc($a)
+        return
+            bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
+};
+
+declare 
+    %test:args('A113081')         %test:assertXPath("$result//xhtml:span[@class='idno_DOI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='collectionTitle'] and $result//xhtml:span[@class='editor']  and $result//xhtml:span[@class='placeNYear'] and $result//xhtml:span[@class='seriesTitle']")
+    function bt:test-printIncollectionCitation($a as xs:string) as element() {
+        let $doc := crud:doc($a)
+        return
+            bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
 };
