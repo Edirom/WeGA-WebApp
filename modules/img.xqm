@@ -477,8 +477,11 @@ declare
             return
                 element {node-name($node)} {
                     $node/@*[not(local-name(.) = ('src', 'title', 'alt'))],
-                    attribute title {$model('portrait')('caption')},
-                    attribute alt {$model('portrait')('caption')},
+                    if($model('portrait')('caption')) then (
+                        attribute title {$model('portrait')('caption')},
+                        attribute alt {$model('portrait')('caption')}
+                    )
+                    else attribute alt {'Preview Icon'},
                     attribute src {$url}
                 }
         else $node
@@ -491,9 +494,13 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
         else if($model('doc')//mei:term/data(@class) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork') then 'musicalWork'
         else if(config:is-work($model('docID')) and not($model('doc')//mei:term/data(@class) = 'http://d-nb.info/standards/elementset/gnd#MusicalWork')) then 'otherWork'
         else $model('doc')//tei:sex/text()
+    let $caption :=
+        if(config:is-person($model('docID')))
+        then 'no portrait available'
+        else ()
     return
         map {
-            'caption' : 'no portrait available',
+            'caption' : $caption,
             'linkTarget' : (),
             'source' : 'Carl-Maria-von-Weber-Gesamtausgabe',
             'url' : function($size) {
