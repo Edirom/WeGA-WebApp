@@ -23,7 +23,7 @@ declare
     %test:args('A111355')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Enchanted Wanderer.  The Life of Carl Maria von Weber</xhtml:span>")
     %test:args('A111377')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Die Beziehungen Carl Maria v. Webers zu thüringischen Musikern</xhtml:span>")
     %test:args('A111038')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>„… wer Flöte bläst, kauft doch allemahl von meinen Werken“. Anton Bernhard Fürstenaus Briefkontakte zum Verlag B. Schott’s Söhne zwischen 1819 und 1825</xhtml:span>")
-    %test:args('A111057')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Die Rezeption von Carl Maria von Webers „Der Freischütz“ als deutsche Nationaloper. Diplomarbeit zum Magistra der Philosophie (Mag. phil.) an der Universität Wien</xhtml:span>")
+    %test:args('A111057')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Die Rezeption von Carl Maria von Webers „Der Freischütz“ als deutsche Nationaloper. Diplomarbeit zur Magistra der Philosophie (Mag. phil.) an der Universität Wien</xhtml:span>")
     %test:args('A111055')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='title'>Das <xhtml:span class='tei_hi_italic'>Freischütz</xhtml:span>-Libretto: Quellensituation und intertextuelle Referenzen</xhtml:span>")
     function bt:test-title($a as xs:string) as element()+ {
         let $doc := crud:doc($a)
