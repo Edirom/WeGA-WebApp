@@ -86,6 +86,29 @@ declare
 };
 
 declare 
+    %test:args('A110876')         %test:assertEquals(
+        "<xhtml:span class='author' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Karl Robert Brachtel</xhtml:span>", 
+        ",  [Rezension] ", 
+        "<xhtml:span class='title' xmlns:xhtml='http://www.w3.org/1999/xhtml'><a xmlns='http://www.w3.org/1999/xhtml' class='preview biblio A110900' href='/exist/apps/eXide/de/A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>", 
+        ", in: ", 
+        "<xhtml:span class='journalTitle' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Das Orchester</xhtml:span>", 
+        ", Jg.&#160;27 (1979), S.&#160;774"
+    )
+    %test:args('A111363')         %test:assertEquals(
+        "<xhtml:span class='author' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Ursula Lehmann</xhtml:span>", 
+        ",  [Rezension] ", 
+        "<xhtml:span class='title' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Wilhelm Pültz: Die Geburt der deutschen Oper. Roman um Carl Maria v. Weber, Erschienen in Leipzig; Hase &amp;amp; Koehler</xhtml:span>", 
+        ", in: ", 
+        "<xhtml:span class='journalTitle' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Allgemeine Musikzeitung</xhtml:span>", 
+        ", Jg.&#160;66 (1939), S.&#160;562"
+    )
+    function bt:test-printReview($a as xs:string) as node()* {
+        let $doc := crud:doc($a)
+        return
+            bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')/node()
+};
+
+declare 
     %test:args('A113081')         %test:assertXPath("$result//xhtml:span[@class='idno_DOI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='collectionTitle'] and $result//xhtml:span[@class='editor']  and $result//xhtml:span[@class='placeNYear'] and $result//xhtml:span[@class='seriesTitle']")
     function bt:test-printIncollectionCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
