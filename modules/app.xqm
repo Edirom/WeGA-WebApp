@@ -627,20 +627,20 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 };
 
 (:~
- : Construct a name from a tei:persName or tei:name element wrapped in a <span> 
- : If a @key is given on persName the regularized form will be returned, otherwise the content of persName.
- : If persName is empty than "unknown" is returned.
+ : Construct a name from a tei:persName, tei:orgName, or tei:name element wrapped in a <span> 
+ : If a @key is given on the element the regularized form will be returned, otherwise the content of the element.
+ : If the element is empty than "unknown" is returned.
  : 
  : @author Peter Stadler
- : @param $persName the tei:persName element
+ : @param $persName the tei:persName, tei:orgName, or tei:name element
  : @param $lang the current language (de|en)
- : @param $order (sf|fs) whether to print "surname, forename" or "forename surname"
- : @return 
+ : @param $order (sf|fs|s) whether to print "surname, forename", or "forename surname", or just the surname
+ : @return a html:span element with the constructed name
  :)
-declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element() {
+declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element(xhtml:span) {
     if(exists($persName/@key)) then 
         if ($order eq 'fs') then app:createDocLink(crud:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
-        else if ($order eq 's') then app:createDocLink(crud:doc($persName/string(@key)), substring-before(query:title($persName/@key),','), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
+        else if ($order eq 's') then app:createDocLink(crud:doc($persName/string(@key)), functx:substring-before-if-contains(query:title($persName/@key), ', '), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
         else app:createDocLink(crud:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
     else if(not(functx:all-whitespace($persName))) then 
         if ($order eq 'fs') then <xhtml:span class="noDataFound">{wega-util:print-forename-surname-from-nameLike-element($persName)}</xhtml:span>
