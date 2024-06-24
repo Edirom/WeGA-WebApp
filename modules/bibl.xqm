@@ -91,7 +91,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             else if(exists($editors)) then ($editors, concat(' (', lang:get-language-string('ed', $lang), '), '))
             else (), 
             $title,
-            if(exists($editors) and exists($authors)) then bibl:edited-by($biblStruct, $lang),
+            if(exists($editors) and exists($authors)) then bibl:edited-by($biblStruct, $lang) else (),
             if(exists($series)) then (' (', $series, '), ') else ', ',
             if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol']) then bibl:print-single-biblScope-unit((), $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol'], $lang) || ', ' else (),
             $pubPlaceNYear,
