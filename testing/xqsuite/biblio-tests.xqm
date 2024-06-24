@@ -71,6 +71,8 @@ declare
 
 declare 
     %test:args('A111057')         %test:assertXPath("$result//xhtml:span[@class='idno_DOI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='placeNYear']")
+    %test:args('A112745')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml' class='book'><xhtml:span class='author'>Ferdinand Zehentreiter</xhtml:span>, <xhtml:span class='title'>„Dem folgt deutscher Gesang“. Adornos Physiognomik des <span xmlns='http://www.w3.org/1999/xhtml' class='tei_hi_italic'>Freischütz</span></xhtml:span> (<xhtml:span><xhtml:span class='seriesTitle'>Caprices</xhtml:span>, Bd.&#160;1</xhtml:span>), <xhtml:span class='placeNYear'>Hofheim am Taunus 2019</xhtml:span></xhtml:div>")
+    %test:args('A110124')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml' class='book'><xhtml:span class='editor'>Joachim Veit</xhtml:span>, <xhtml:span class='editor'>Eveline Bartlitz</xhtml:span> und <xhtml:span class='editor'>Dagmar Beck</xhtml:span> (Hg.), <xhtml:span class='title'>„...die Hoffnung muß das Beste thun.“ Die Emser Briefe Carl Maria von Webers an seine Frau</xhtml:span>, <xhtml:span class='placeNYear'>München 2003</xhtml:span></xhtml:div>")
     function bt:test-printBookCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
@@ -110,6 +112,7 @@ declare
 
 declare 
     %test:args('A113081')         %test:assertXPath("$result//xhtml:span[@class='idno_DOI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='collectionTitle'] and $result//xhtml:span[@class='editor']  and $result//xhtml:span[@class='placeNYear'] and $result//xhtml:span[@class='seriesTitle']")
+    %test:args('A110779')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Joachim Veit</xhtml:span>, <xhtml:span class='title'>Zum Formproblem in den Kopfsätzen der Sinfonien Carl Maria von Webers</xhtml:span>, in: <xhtml:span class='collectionTitle'>Festschrift Arno Forchert zum 60. Gebrutstag</xhtml:span>, hg. von <xhtml:span class='editor'>Gerhard Allroggen</xhtml:span> und <xhtml:span class='editor'>Detlef Altenburg</xhtml:span>, <xhtml:span class='placeNYear'>Kassel 1986</xhtml:span>, S.&#160;184–199</xhtml:div>")
     function bt:test-printIncollectionCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
