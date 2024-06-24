@@ -91,7 +91,7 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             else if(exists($editors)) then ($editors, concat(' (', lang:get-language-string('ed', $lang), '), '))
             else (), 
             $title,
-            if(exists($editors) and exists($authors)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) else (),
+            if(exists($editors) and exists($authors)) then bibl:edited-by($biblStruct, $lang),
             if(exists($series)) then (' (', $series, '), ') else ', ',
             if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol']) then bibl:print-single-biblScope-unit((), $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol'], $lang) || ', ' else (),
             $pubPlaceNYear,
@@ -139,7 +139,6 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
  :)
 declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblStruct), $wrapperElement as element(), $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct/tei:analytic/tei:author, $lang)
-    let $editor := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
     let $articleTitle := bibl:printTitles($biblStruct/tei:analytic/tei:title, ())
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title, $biblStruct/tei:monogr/tei:edition)/node()}</xhtml:span>
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $biblStruct/tei:monogr/tei:edition, $lang)
@@ -152,7 +151,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             $articleTitle,
             ', in: ',
             $bookTitle,
-            if(exists($editor)) then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editor) else (),
+            bibl:edited-by($biblStruct, $lang),
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
             if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', bibl:normalize-hyphen($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'])) else (),
@@ -373,4 +372,15 @@ declare %private function bibl:idno($idnos as element(tei:idno)*) as element(xht
         case 'DOI' return <xhtml:span class="idno_DOI">, DOI: <xhtml:a href="{concat('https://doi.org/',  normalize-space($idno))}">{$idno => data(), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a></xhtml:span>
         case 'WeGA' return <xhtml:span class="idno_WeGA">, Volltext verfügbar unter <xhtml:a href="{config:permalink($idno)}">{$idno => data()}</xhtml:a></xhtml:span>
         default return <xhtml:span class="{concat('idno_', $idno/@type)}">, online unter <xhtml:a href="{$idno => data()}">{$idno => data(), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a></xhtml:span>
+};
+
+(:~
+ : 
+ :)
+declare %private function bibl:edited-by($biblStruct as element(tei:biblStruct), $lang as xs:string) as item()* {
+    let $editors := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
+    return
+        if(exists($editors)) 
+        then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) 
+        else ()
 };
