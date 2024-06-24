@@ -73,6 +73,7 @@ declare
     %test:args('A111057')         %test:assertXPath("$result//xhtml:span[@class='idno_DOI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='placeNYear']")
     %test:args('A112745')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml' class='book'><xhtml:span class='author'>Ferdinand Zehentreiter</xhtml:span>, <xhtml:span class='title'>„Dem folgt deutscher Gesang“. Adornos Physiognomik des <span xmlns='http://www.w3.org/1999/xhtml' class='tei_hi_italic'>Freischütz</span></xhtml:span> (<xhtml:span><xhtml:span class='seriesTitle'>Caprices</xhtml:span>, Bd.&#160;1</xhtml:span>), <xhtml:span class='placeNYear'>Hofheim am Taunus 2019</xhtml:span></xhtml:div>")
     %test:args('A110124')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml' class='book'><xhtml:span class='editor'>Joachim Veit</xhtml:span>, <xhtml:span class='editor'>Eveline Bartlitz</xhtml:span> und <xhtml:span class='editor'>Dagmar Beck</xhtml:span> (Hg.), <xhtml:span class='title'>„...die Hoffnung muß das Beste thun.“ Die Emser Briefe Carl Maria von Webers an seine Frau</xhtml:span>, <xhtml:span class='placeNYear'>München 2003</xhtml:span></xhtml:div>")
+    %test:args('A111337')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml' class='book'><xhtml:span class='author'>August Apel</xhtml:span>, <xhtml:span class='title'>Die Freischützsage und ihre Wandlungen. Vom Gespensterbuch zur Oper<xhtml:span class='edition'>, Neuausgabe der Freischützsage aus dem Gespensterbuch</xhtml:span></xhtml:span>, hg. von <xhtml:span class='editor'>Otto Daube</xhtml:span>, <xhtml:span class='placeNYear'>Detmold 1941</xhtml:span></xhtml:div>")
     function bt:test-printBookCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
@@ -81,6 +82,7 @@ declare
 
 declare 
     %test:args('A112915')         %test:assertXPath("$result//xhtml:span[@class='idno_URI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='journalTitle']")
+    %test:args('A112660')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Kurt Mey</xhtml:span>, <xhtml:span class='title'>Richard Wagners Webertrauermarsch</xhtml:span>, in: <xhtml:span class='journalTitle'>Die Musik.  Illustrierte Halbmonatsschrift</xhtml:span>, Jg.&#160;6 (1907), Heft&#160;12, S.&#160;331–336</xhtml:div>")
     function bt:test-printArticleCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
@@ -113,6 +115,8 @@ declare
 declare 
     %test:args('A113081')         %test:assertXPath("$result//xhtml:span[@class='idno_DOI'] and $result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='collectionTitle'] and $result//xhtml:span[@class='editor']  and $result//xhtml:span[@class='placeNYear'] and $result//xhtml:span[@class='seriesTitle']")
     %test:args('A110779')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Joachim Veit</xhtml:span>, <xhtml:span class='title'>Zum Formproblem in den Kopfsätzen der Sinfonien Carl Maria von Webers</xhtml:span>, in: <xhtml:span class='collectionTitle'>Festschrift Arno Forchert zum 60. Gebrutstag</xhtml:span>, hg. von <xhtml:span class='editor'>Gerhard Allroggen</xhtml:span> und <xhtml:span class='editor'>Detlef Altenburg</xhtml:span>, <xhtml:span class='placeNYear'>Kassel 1986</xhtml:span>, S.&#160;184–199</xhtml:div>")
+    %test:args('A112665')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Romy Donath</xhtml:span>, <xhtml:span class='title'>Deutsche Nationaloper oder romantische Gruselstory?</xhtml:span>, in: <xhtml:span class='collectionTitle'>200 Jahre Freischütz.  Festschrift des Carl-Maria-von-Weber-Museums</xhtml:span>, hg. von <xhtml:span class='editor'>ders.</xhtml:span>, <xhtml:span class='placeNYear'>Niederjahna 2021</xhtml:span>, S.&#160;7–29</xhtml:div>")
+    %test:args('A111266')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Günter Haußwald</xhtml:span>, <xhtml:span class='title'>Zur Dramaturgie des „Freischütz“</xhtml:span>, in: <xhtml:span class='collectionTitle'>Carl Maria von Weber.  Eine Gedenkschrift</xhtml:span>, hg. von <xhtml:span class='editor'>dems.</xhtml:span>, <xhtml:span class='placeNYear'>Dresden 1951</xhtml:span>, S.&#160;139–151</xhtml:div>")
     function bt:test-printIncollectionCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
