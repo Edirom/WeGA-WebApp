@@ -7,6 +7,7 @@ declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
@@ -375,12 +376,29 @@ declare %private function bibl:idno($idnos as element(tei:idno)*) as element(xht
 };
 
 (:~
- : 
+ : Process editors
+ : Helper function for bibl:printBookCitation and bibl:printIncollectionCitation
  :)
 declare %private function bibl:edited-by($biblStruct as element(tei:biblStruct), $lang as xs:string) as item()* {
     let $editors := bibl:printCitationAuthors($biblStruct/tei:monogr/tei:editor, $lang)
+    let $ders as xs:boolean := 
+        count($biblStruct/tei:monogr/tei:editor) eq 1 and 
+        count($biblStruct/tei:analytic/tei:author) eq 1 and 
+        exists($biblStruct/tei:monogr/tei:editor/@key) and
+        exists($biblStruct/tei:analytic/tei:author/@key) and
+        $biblStruct/tei:monogr/tei:editor/@key = $biblStruct/tei:analytic/tei:author/@key
+    let $sex := 
+        if($ders)
+        then crud:doc($biblStruct/tei:monogr/tei:editor/@key)//tei:sex
+        else ()
     return
         if(exists($editors)) 
-        then (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) 
+        then 
+            if($sex = 'm') 
+            then (concat(', ', lang:get-language-string('edBy', $lang), ' '), <xhtml:span class="editor">{lang:get-language-string('edByIdemM', $lang)}</xhtml:span>)
+            else 
+                if($sex = 'f') 
+                then (concat(', ', lang:get-language-string('edBy', $lang), ' '), <xhtml:span class="editor">{lang:get-language-string('edByIdemF', $lang)}</xhtml:span>)
+                else (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) 
         else ()
 };
