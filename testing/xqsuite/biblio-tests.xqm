@@ -122,3 +122,15 @@ declare
         return
             bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
 };
+
+declare 
+    %test:args('A110779')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='editor'>Gerhard Allroggen</xhtml:span>", "<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='editor'>Detlef Altenburg</xhtml:span>")
+    %test:args('A110211')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='editor'>Bernhard R. Appel</xhtml:span>", "<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='editor'>Joachim Veit</xhtml:span>")
+    %test:args('A112665')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='editor'>ders.</xhtml:span>")
+    %test:args('A111266')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='editor'>dems.</xhtml:span>")
+    %test:args('A110035')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='editor'>dens.</xhtml:span>")
+    function bt:test-ed-by($a as xs:string) as element()* {
+        let $doc := crud:doc($a)
+        return
+            bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='editor']
+};

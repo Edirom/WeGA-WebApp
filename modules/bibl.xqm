@@ -387,6 +387,12 @@ declare %private function bibl:edited-by($biblStruct as element(tei:biblStruct),
         exists($biblStruct/tei:monogr/tei:editor/@key) and
         exists($biblStruct/tei:analytic/tei:author/@key) and
         $biblStruct/tei:monogr/tei:editor/@key = $biblStruct/tei:analytic/tei:author/@key
+    let $dens as xs:boolean :=
+        count($biblStruct/tei:monogr/tei:editor) gt 1 and 
+        count($biblStruct/tei:analytic/tei:author) gt 1 and
+        count($biblStruct/tei:analytic/tei:author) eq count($biblStruct/tei:monogr/tei:editor) and 
+        (every $i in ($biblStruct/tei:analytic/tei:author | $biblStruct/tei:monogr/tei:editor) satisfies $i/@key) and 
+        (every $i in $biblStruct/tei:analytic/tei:author/@key satisfies $i = $biblStruct/tei:monogr/tei:editor/@key)
     let $sex := 
         if($ders)
         then crud:doc($biblStruct/tei:monogr/tei:editor/@key)//tei:sex
@@ -394,11 +400,14 @@ declare %private function bibl:edited-by($biblStruct as element(tei:biblStruct),
     return
         if(exists($editors)) 
         then 
-            if($sex = 'm') 
-            then (concat(', ', lang:get-language-string('edBy', $lang), ' '), <xhtml:span class="editor">{lang:get-language-string('edByIdemM', $lang)}</xhtml:span>)
-            else 
-                if($sex = 'f') 
-                then (concat(', ', lang:get-language-string('edBy', $lang), ' '), <xhtml:span class="editor">{lang:get-language-string('edByIdemF', $lang)}</xhtml:span>)
-                else (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) 
+            if($dens)
+            then (concat(', ', lang:get-language-string('edBy', $lang), ' '), <xhtml:span class="editor">{lang:get-language-string('edByIdemPl', $lang)}</xhtml:span>)
+            else
+                if($sex = 'm') 
+                then (concat(', ', lang:get-language-string('edBy', $lang), ' '), <xhtml:span class="editor">{lang:get-language-string('edByIdemM', $lang)}</xhtml:span>)
+                else 
+                    if($sex = 'f') 
+                    then (concat(', ', lang:get-language-string('edBy', $lang), ' '), <xhtml:span class="editor">{lang:get-language-string('edByIdemF', $lang)}</xhtml:span>)
+                    else (concat(', ', lang:get-language-string('edBy', $lang), ' '), $editors) 
         else ()
 };
