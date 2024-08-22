@@ -62,10 +62,11 @@ declare function oai:oai($model as map(*)) as node() {
 declare function oai:record($model as map(*)) as node() {
     let $docID := $model('docID')
     let $lang := $model('lang')
+    let $lod-metadata := lod:metadata(<node/>, $model, $lang)
     return
     	<record xmlns="http://www.openarchives.org/OAI/2.0/">
         	<header>
-              <identifier>{lod:DC.identifier($model)}</identifier>
+              <identifier>{$lod-metadata?DC.identifier}</identifier>
               <datestamp>{fn:current-dateTime()}</datestamp>
               <setSpec>{$model('docType')}</setSpec>
             </header>
@@ -75,10 +76,10 @@ declare function oai:record($model as map(*)) as node() {
                  xmlns:dc="http://purl.org/dc/elements/1.1/" 
                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
                  xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/oai_dc/ http://www.openarchives.org/OAI/2.0/oai_dc.xsd">
-               <dc:title>{lod:page-title($model, $lang)}</dc:title>
-               <dc:creator>{lod:DC.creator($model)}</dc:creator>
-               <dc:subject>{lod:DC.subject($model, $lang)}</dc:subject>
-               <dc:description>{lod:DC.description($model, $lang)}</dc:description>
+               <dc:title>{$lod-metadata?meta-page-title}</dc:title>
+               <dc:creator>{$lod-metadata?DC.creator}</dc:creator>
+               <dc:subject>{$lod-metadata?DC.subject}</dc:subject>
+               <dc:description>{$lod-metadata?DC.description}</dc:description>
                <dc:date>{substring($oai:last-modified,1,10)}</dc:date>
                <dc:identifier>{$docID}</dc:identifier>
              </oai_dc:dc>
