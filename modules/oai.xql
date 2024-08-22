@@ -1,10 +1,8 @@
 xquery version "3.1" encoding "UTF-8";
 
 (:~
- :
- :  Module for exporting BEACON files
- :  see https://de.wikipedia.org/wiki/Wikipedia:BEACON
- :
+ :  Module for exporting data as oai/xml
+ :  see https://www.openarchives.org/OAI/openarchivesprotocol.html
  :)
 
 declare namespace tei="http://www.tei-c.org/ns/1.0";
@@ -31,6 +29,11 @@ declare option output:method "xml";
 declare option output:media-type "application/xml";
 declare option output:indent "yes";
 
+(:~
+ : Get the last date of modification from dataHistory.xml. Fallback: VersionDate from options.xml
+ :
+ : @author Dennis Ried 
+:)
 declare variable $oai:last-modified as xs:dateTime? := 
     if($config:svn-change-history-file/dictionary/@dateTime castable as xs:dateTime) 
     then $config:svn-change-history-file/dictionary/xs:dateTime(@dateTime)
@@ -43,12 +46,22 @@ declare variable $oai:last-modified as xs:dateTime? :=
             functx:dateTime($year,$month,$day,0,0,0)
     );
 
+(:~
+ : Create a header response
+ :
+ : @author Dennis Ried 
+:)
 declare %private function oai:response-headers() as empty-sequence() {
     response:set-header('Access-Control-Allow-Origin', '*'),
     response:set-header('Last-Modified', date:rfc822($oai:last-modified)), 
     response:set-header('Cache-Control', 'max-age=300,public')
 };
 
+(:~
+ : Creating the response for the interface (header, calling record by oai:record)
+ :
+ : @author Dennis Ried 
+:)
 declare function oai:oai($model as map(*)) as node() {
 	<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
 		 <responseDate>{fn:current-dateTime()}</responseDate>
@@ -59,6 +72,11 @@ declare function oai:oai($model as map(*)) as node() {
 	</OAI-PMH>      
 };
 
+(:~
+ : Creating the record for the called file (body of response)
+ :
+ : @author Dennis Ried 
+:)
 declare function oai:record($model as map(*)) as node() {
     let $docID := $model('docID')
     let $lang := $model('lang')
