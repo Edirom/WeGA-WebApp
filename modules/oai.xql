@@ -64,7 +64,7 @@ declare %private function oai:response-headers($docID) as empty-sequence() {
 declare function oai:oai($model as map(*)) as node() {
 	<OAI-PMH xmlns="http://www.openarchives.org/OAI/2.0/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.openarchives.org/OAI/2.0/ http://www.openarchives.org/OAI/2.0/OAI-PMH.xsd">
 		 <responseDate>{fn:current-dateTime()}</responseDate>
-		 <request verb="GetRecord" identifier="{lod:DC.identifier($model)}" metadataPrefix="oai_dc">http://www.openarchives.org/OAI/2.0/oai_dc/</request> 
+		 <request verb="GetRecord" identifier="{$lod-metadata?DC.identifier}" metadataPrefix="oai_dc">http://www.openarchives.org/OAI/2.0/oai_dc/</request> 
 		 <GetRecord>
 			  {oai:record($model)}
 		 </GetRecord> 
