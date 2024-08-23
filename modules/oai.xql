@@ -36,13 +36,12 @@ declare option output:indent "yes";
  : @param $docID The ID of the document
  : return The date ad xs:dateTime or empty 
 :)
-declare %private function oai:last-modified($docID) as xs:dateTime? { 
-    if($config:svn-change-history-file//entry[@xml:id=$docID]/@dateTime castable as xs:dateTime) 
-    then ($config:svn-change-history-file//entry[@xml:id=$docID]/@dateTime => xs:dateTime())
-    else if (config:get-option('versionDate') castable as xs:dateTime)
-    then(config:get-option('versionDate') => xs:dateTime())
-    else()
-    )
+declare %private function oai:last-modified($docID) as xs:dateTime {
+    let $props := config:get-data-props($docID)
+    return
+        if($props?dateTime castable as xs:dateTime) 
+        then ($props?dateTime => xs:dateTime())
+        else (fn:current-dateTime())
 };
 
 (:~
