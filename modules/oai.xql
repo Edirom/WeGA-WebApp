@@ -125,7 +125,8 @@ let $model :=
         'lang': $lang,
         'docID': $docID,
         'doc': $doc,
-        'docType': config:get-doctype-by-id($docID)
+        'docType': config:get-doctype-by-id($docID),
+        'lod': lod:metadata(<node/>, $model, $lang)
     }
 return
     (
