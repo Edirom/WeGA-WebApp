@@ -1,5 +1,10 @@
 xquery version "3.1" encoding "UTF-8";
 
+(:~
+ : XQuery for creating a CMIF file from the correspondence descriptions of the WeGA letters 
+ : @see https://correspsearch.net/en/documentation.html
+ :)
+
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace ct="http://wiki.tei-c.org/index.php/SIG:Correspondence/task-force-correspDesc";
