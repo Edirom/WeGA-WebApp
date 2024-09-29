@@ -154,14 +154,18 @@ declare function ct:place($input as element()) as element(tei:placeName) {
         }
 };
 
-declare function ct:date($input as element()) as element(tei:date) {
-    element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
-        $input/@*[not(local-name(.) = ('n', 'calendar'))]
-        (: 
-        no content allowed here with the schema at 
-        https://raw.githubusercontent.com/TEI-Correspondence-SIG/CMIF/master/schema/cmi-customization.rng  
-        :)
-    }
+declare function ct:date($input as element()) as element(tei:date)? {
+    (: The CMIF supports the attributes @when, @from, @to, @notBefore und @notAfter :)
+    if($input/(@when | @from | @to | @notBefore | @notAfter))
+    then
+        element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
+            $input/@*[not(local-name(.) = ('n', 'calendar', 'cert'))]
+            (: 
+            no content allowed here with the schema at 
+            https://raw.githubusercontent.com/TEI-Correspondence-SIG/CMIF/master/schema/cmi-customization.rng  
+            :)
+        }
+    else ()
 };
 
 (:~
