@@ -105,7 +105,7 @@
         <description>Run the docker image</description>
         <exec executable="${bash.command}">
             <arg value="-c"/>
-            <arg value="docker run --rm --name ${docker.container.name} -d -p ${docker.exposed.port}:8080 -e WEGA_WEBAPP_dataCollectionPath='/db/apps/WeGA-data-testing' -e JAVA_TOOL_OPTIONS='-Dfile.encoding=UTF8   -Dsun.jnu.encoding=UTF-8   -Djava.awt.headless=true   -Dorg.exist.db-connection.cacheSize=256M   -Dorg.exist.db-connection.pool.max=20   -Dlog4j.configurationFile=/exist/etc/log4j2.xml   -Dexist.home=/exist   -Dexist.configurationFile=/exist/etc/conf.xml   -Djetty.home=/exist   -Dexist.jetty.config=/exist/etc/jetty/standard.enabled-jetty-configs   -XX:+UnlockExperimentalVMOptions   -XX:+UseCGroupMemoryLimitForHeap   -XX:+UseG1GC   -XX:+UseStringDeduplication   -XX:MaxRAMFraction=2   -XX:+ExitOnOutOfMemoryError' ${docker.image.name}"/>
+            <arg value="docker run --rm --name ${docker.container.name} -d -p ${docker.exposed.port}:8080 -e WEGA_WEBAPP_dataCollectionPath='/db/apps/WeGA-data-testing' -e JAVA_TOOL_OPTIONS='-Dfile.encoding=UTF8   -Dsun.jnu.encoding=UTF-8   -Djava.awt.headless=true   -Dorg.exist.db-connection.cacheSize=256M   -Dorg.exist.db-connection.pool.max=20   -Dlog4j.configurationFile=/exist/etc/log4j2.xml   -Dexist.home=/exist   -Dexist.configurationFile=/exist/etc/conf.xml   -Djetty.home=/exist   -Dexist.jetty.config=/exist/etc/jetty/standard.enabled-jetty-configs   -XX:+UnlockExperimentalVMOptions   -XX:+UseG1GC   -XX:+UseStringDeduplication   -XX:MaxRAMPercentage=75   -XX:+ExitOnOutOfMemoryError' ${docker.image.name}"/>
         </exec>
         <exec executable="${bash.command}" failonerror="yes">
             <arg value="-c"/>
