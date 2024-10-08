@@ -3,8 +3,7 @@
 # 1. set up the build environment and build the expath-package
 # 2. run the eXist-db
 #########################
-FROM node:20-bookworm as builder
-LABEL maintainer="Peter Stadler"
+FROM node:20-bookworm AS builder
 
 ENV WEGA_BUILD_HOME="/opt/wega"
 ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
@@ -35,6 +34,7 @@ RUN ant -lib /usr/share/java
 # and adding our freshly built xar-package
 #########################
 FROM stadlerpeter/existdb:6
+LABEL org.opencontainers.image.authors="Peter Stadler"
 
 ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-31471.xar ${EXIST_HOME}/autodeploy/
 COPY --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
