@@ -242,9 +242,24 @@ li.listSubTitle {
     color: $gray-light;
 }
 
+/*
+ * address within div/@type="address" 
+ */
 .teiLetter_address {
     margin-bottom:$line-height-computed;
     p { margin-bottom: 0px; }
+}
+
+/*
+ * address within closer 
+ */
+.tei_closer .tei_address {
+    margin-top:$line-height-computed;
+    display: block;
+    text-align: left;
+    .tei_addrLine {
+        display: block;
+    }
 }
 
 .teiLetter_opener p {
