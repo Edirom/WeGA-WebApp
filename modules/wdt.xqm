@@ -658,7 +658,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
                 let $date := query:get-normalized-date($node)
                 return
                     (if(exists($date)) then $date else '0000') ||
-                    tokenize($node//tei:author, '\s+')[last()]
+                    tokenize(($node//tei:author)[1], '\s+')[last()]
                 }, ())
         },
         'title' : function($serialization as xs:string) as item()? {
