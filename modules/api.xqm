@@ -856,7 +856,7 @@ declare function api:validate-sender($model as map(*)) as map(*)? {
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
 declare function api:validate-textType($model as map(*)) as map(*)? {
-    if($model?textType castable as xs:string) then map { 'textType': xmldb:decode-uri($model?textType) }
+    if(every $i in $model?textType ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'textType': $model?textType ! tokenize(., ',') ! xmldb:decode-uri(.) }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "textType".' )
 }; 
 
