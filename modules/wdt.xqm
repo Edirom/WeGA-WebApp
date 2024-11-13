@@ -743,11 +743,19 @@ declare function wdt:sources($item as item()*) as map(*) {
             else false()
         },
         'filter' : function() as document-node()* {
-            $item/root()[mei:manifestation][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
+            $item/root()[mei:manifestation][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])] |
+            $item/root()[descendant::tei:titleStmt/tei:title = 'WeGA, Textquellen, Digitale Edition']
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
-            if(config:is-person($personID) or config:is-org($personID)) then $item/root()/descendant::mei:persName[@codedval = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root()
-            else if(config:is-work($personID)) then $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root() | $item/root()/descendant::mei:relation[@target=concat('wega:', $personID)]/root()
+            if(config:is-person($personID) or config:is-org($personID)) 
+            then 
+                $item/root()/descendant::mei:persName[@codedval = $personID][@role=('cmp', 'lbt', 'lyr', 'aut', 'trl')][ancestor::mei:titleStmt]/root() |
+                $item/root()/descendant::tei:titleStmt/tei:author[@key = $personID]/root()
+            else 
+                if(config:is-work($personID)) 
+                then 
+                    $item/root()/descendant::mei:identifier[.=$personID][@type = 'WeGA']/root() | $item/root()/descendant::mei:relation[@target=concat('wega:', $personID)]/root() |
+                    $item/root()/descendant::tei:notesStmt/tei:relatedItem[@target=concat('wega:', $personID)]/root()
             else ()
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
@@ -757,7 +765,8 @@ declare function wdt:sources($item as item()*) as map(*) {
             $item
         },
         'init-collection' : function() as document-node()* {
-            crud:data-collection('sources')[descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])]
+            crud:data-collection('sources')[descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])] |
+            crud:data-collection('sources')[descendant::tei:titleStmt/tei:title = 'WeGA, Textquellen, Digitale Edition']
         },
         'init-sortIndex' : function() as item()* {
             ()
@@ -765,11 +774,11 @@ declare function wdt:sources($item as item()*) as map(*) {
         'title' : function($serialization as xs:string) as item()? {
             let $source := 
                 typeswitch($item)
-                case xs:string return crud:doc($item)/mei:manifestation
-                case xs:untypedAtomic return crud:doc($item)/mei:manifestation
-                case document-node() return $item/mei:manifestation
-                default return $item/root()/mei:manifestation
-            let $title-element := ($source/mei:titleStmt/mei:title[not(@type)])[1]
+                case xs:string return crud:doc($item)/*
+                case xs:untypedAtomic return crud:doc($item)/*
+                case document-node() return $item/*
+                default return $item/root()/*
+            let $title-element := ($source/mei:titleStmt/mei:title[not(@type)], $source//tei:titleStmt/tei:title[@level='a'])[1]
             return
                 switch($serialization)
                 case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
