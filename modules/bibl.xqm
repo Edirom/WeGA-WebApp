@@ -57,6 +57,7 @@ declare function bibl:printGenericCitation($biblStruct as element(tei:biblStruct
     let $authors := bibl:printCitationAuthors($biblStruct/*/tei:author, $lang)
     let $title := bibl:printTitles($biblStruct/*/tei:title, $biblStruct/*/tei:edition)
     let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
+    let $imprint := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $biblStruct/tei:monogr/tei:edition, $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
@@ -64,6 +65,7 @@ declare function bibl:printGenericCitation($biblStruct as element(tei:biblStruct
             if(exists($authors)) then ', ' else (),
             $title,
             bibl:idno($biblStruct/*/tei:idno),
+            $imprint,
             $note
         }
 };
@@ -282,7 +284,7 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
  : @param $imprint a tei:imprint element 
  : @return html:span element if any data is given, the empty sequence otherwise
  :)
-declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprint), $edition as element(tei:edition)?, $lang as xs:string) as element(xhtml:span)? {
+declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprint)?, $edition as element(tei:edition)?, $lang as xs:string) as element(xhtml:span)? {
     let $countPlaces := count($imprint/tei:pubPlace)
     let $places := 
         for $place at $count in $imprint/tei:pubPlace

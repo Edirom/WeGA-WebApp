@@ -1857,7 +1857,7 @@ declare
     %templates:wrap
     %templates:default("max", "200")
     function app:preview-teaser($node as node(), $model as map(*), $max as xs:string) as xs:string {
-        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung'] (: letzter Fall für sources :)
+        let $textXML := $model('doc')/tei:ab | $model('doc')//tei:body | $model('doc')//mei:annot[@type='Kurzbeschreibung'] (: letzter Fall für MEI sources :)
         return
             str:shorten-TEI($textXML, number($max), $model?lang)
 };
@@ -1904,11 +1904,15 @@ declare
         else wega-util:log-to-file('warn', 'app:preview-relator-role(): Failed to reckognize role')
 };
 
+(:~
+ : Solely used for sources(?)
+:)
 declare 
     %templates:wrap
     %templates:default("lang", "en")
     function app:preview-creation($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
         if($model('doc')/mei:manifestation/mei:pubStmt) then string-join($model('doc')/mei:manifestation/mei:pubStmt/*, ', ')
+        else if($model('doc')//tei:sourceDesc/tei:biblStruct) then bibl:printCitation($model?doc//tei:sourceDesc/tei:biblStruct, <xhtml:span/>, $lang)
         else if($model('doc')/mei:manifestation/mei:creation) then str:normalize-space($model('doc')/mei:manifestation/mei:creation)
         else ()
 };
