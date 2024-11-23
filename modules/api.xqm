@@ -1078,34 +1078,34 @@ declare function api:validate-forenames($model as map(*)) as map(*)? {
 }; 
 
 (:~
- : Check parameter asksam-cat
+ : Check parameter sources-meta-cat
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
-declare function api:validate-asksam-cat($model as map(*)) as map(*)? {
-    if(every $i in $model?asksam-cat ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'asksam-cat': ($model?asksam-cat ! tokenize(., ',')) ! xmldb:decode-uri(.) }
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "asksam-cat".' )
+declare function api:validate-sources-meta-cat($model as map(*)) as map(*)? {
+    if(every $i in $model?sources-meta-cat ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'sources-meta-cat': ($model?sources-meta-cat ! tokenize(., ',')) ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "sources-meta-cat".' )
 };
 
 (:~
- : Check parameter vorlageform
+ : Check parameter sources-details-cat
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
-declare function api:validate-vorlageform($model as map(*)) as map(*)? {
-    if(every $i in $model?vorlageform ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'vorlageform': ($model?vorlageform ! tokenize(., ',')) ! xmldb:decode-uri(.) }
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "vorlageform".' )
-}; 
+declare function api:validate-sources-details-cat($model as map(*)) as map(*)? {
+    if(every $i in $model?sources-details-cat ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'sources-details-cat': ($model?sources-details-cat ! tokenize(., ',')) ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "sources-details-cat".' )
+};
 
 (:~
- : Check parameter einrichtungsform
+ : Check parameter pubPlace
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
 ~:)
-declare function api:validate-einrichtungsform($model as map(*)) as map(*)? {
-    if(every $i in $model?einrichtungsform ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'einrichtungsform': ($model?einrichtungsform ! tokenize(., ',')) ! xmldb:decode-uri(.) }
-    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "einrichtungsform".' )
-}; 
+declare function api:validate-pubPlace($model as map(*)) as map(*)? {
+    if(every $i in $model?pubPlace ! tokenize(., ',') satisfies wdt:places($i)('check')()) then map { 'pubPlace': $model?pubPlace ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "pubPlace". It must be a WeGA place ID.' )
+};
 
 (:~
  : Check parameter placenames (NB: this is supposed to be a string value, not a WeGA ID)

@@ -123,7 +123,7 @@ declare %private function facets:display-term($facet as xs:string, $term as xs:s
         if(wdt:persons($term)('check')()) then wdt:persons($term)('label-facets')() (:$facets:persons-norm-file//norm:entry[range:eq(@docID,$term)]/normalize-space():)
         else wdt:orgs($term)('label-facets')()
     case 'works' return wdt:works($term)('label-facets')()
-    case 'placeOfAddressee' case 'placeOfSender' case 'residences' case 'places' return wdt:places($term)('title')('txt')
+    case 'placeOfAddressee' case 'placeOfSender' case 'residences' case 'places' case 'pubPlace' return wdt:places($term)('title')('txt')
     case 'sex' return 
         if($term ='Art der Institution') then lang:get-language-string('organisationsInstitutions', $lang)
         else lang:get-language-string('sex_' || $term, $lang)
