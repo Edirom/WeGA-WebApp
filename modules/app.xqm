@@ -1911,8 +1911,8 @@ declare
     %templates:wrap
     %templates:default("lang", "en")
     function app:preview-creation($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
-        if($model('doc')/mei:manifestation/mei:pubStmt) then string-join($model('doc')/mei:manifestation/mei:pubStmt/*, ', ')
-        else if($model('doc')//tei:sourceDesc/tei:biblStruct) then bibl:printCitation($model?doc//tei:sourceDesc/tei:biblStruct, <xhtml:span/>, $lang)
+        if($model('doc')/mei:manifestation/mei:pubStmt) then ( string-join($model('doc')/mei:manifestation/mei:pubStmt/mei:pubPlace, ' &amp; ') || ' ' || $model('doc')/mei:manifestation/mei:pubStmt/mei:date )
+        else if($model('doc')//tei:sourceDesc/tei:biblStruct) then ( string-join($model('doc')//tei:sourceDesc/tei:biblStruct/tei:monogr/tei:imprint/tei:pubPlace, ' &amp; ') || ' ' || $model('doc')//tei:sourceDesc/tei:biblStruct/tei:monogr/tei:imprint/tei:date ) 
         else if($model('doc')/mei:manifestation/mei:creation) then str:normalize-space($model('doc')/mei:manifestation/mei:creation)
         else ()
 };
