@@ -762,14 +762,21 @@ declare function wdt:sources($item as item()*) as map(*) {
             () 
         },
         'sort' : function($params as map(*)?) as document-node()* {
-            $item
+            if(sort:has-index('sources')) then ()
+            else (wdt:sources(())('init-sortIndex')()),
+            for $i in wdt:sources($item)('filter')() order by sort:index('sources', $i) ascending return $i
         },
         'init-collection' : function() as document-node()* {
             crud:data-collection('sources')[descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])] |
             crud:data-collection('sources')[descendant::tei:titleStmt/tei:title = 'WeGA, Textquellen, Digitale Edition']
         },
         'init-sortIndex' : function() as item()* {
-            ()
+            sort:create-index-callback('sources', wdt:sources(())('init-collection')(), function($node) { 
+                let $date := query:get-normalized-date($node)
+                return
+                    (if(exists($date)) then $date else '0000') ||
+                    $node//*:title[1]
+                }, ())
         },
         'title' : function($serialization as xs:string) as item()? {
             let $source := 
