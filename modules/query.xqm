@@ -324,6 +324,12 @@ declare function query:get-normalized-date($doc as document-node()) as xs:date? 
         case 'diaries' return $doc/tei:ab/data(@n)
         case 'news' return $doc//tei:date[parent::tei:publicationStmt]/substring(@when,1,10)
         case 'documents' return date:getOneNormalizedDate($doc//tei:creation/tei:date, true())
+        case 'sources' return 
+            (
+                date:getOneNormalizedDate(($doc//tei:sourceDesc//tei:imprint/tei:date)[1], true()),
+                date:getOneNormalizedDate(($doc//mei:creation/mei:date)[1], true()),
+                date:getOneNormalizedDate(($doc/mei:manifestation/mei:pubStmt/mei:date)[1], true())
+            )[1]
         default return () 
     return 
         if($date castable as xs:date) then $date cast as xs:date
