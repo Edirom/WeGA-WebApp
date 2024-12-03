@@ -774,7 +774,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             sort:create-index-callback('sources', wdt:sources(())('init-collection')(), function($node) { 
                 let $date := query:get-normalized-date($node)
                 return
-                    (if(exists($date)) then $date else '0000') ||
+                    (if(exists($date)) then $date else 'xxxx-xx-xx') ||
                     $node//*:title[1]
                 }, ())
         },
