@@ -400,8 +400,10 @@ declare %private function search:facsimile-filter($collection as document-node()
 declare %private function search:get-earliest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
     if(count($coll) gt 0) then 
         switch ($docType)
-        case 'news' case 'biblio' case 'letters' case 'writings' case 'diaries' case 'documents' return 
-            min(core:index-keys-for-field($coll, 'date')[not(.='undated')])
+        case 'news' case 'biblio' case 'letters' case 'writings' 
+            case 'diaries' case 'documents' case 'sources'
+            return 
+                min(core:index-keys-for-field($coll, 'date')[not(.='undated')])
         case 'persons' case 'orgs' return ()
         case 'works' return ()
         case 'places' return ()
@@ -415,8 +417,10 @@ declare %private function search:get-earliest-date($coll as document-node()*, $d
 declare %private function search:get-latest-date($coll as document-node()*, $docType as xs:string) as xs:string? {
     if(count($coll) gt 0) then 
         switch ($docType)
-        case 'news' case 'biblio' case 'letters' case 'writings' case 'diaries' case 'documents' return
-            max(core:index-keys-for-field($coll, 'date')[not(.='undated')])
+        case 'news' case 'biblio' case 'letters' case 'writings' 
+            case 'diaries' case 'documents' case 'sources'
+            return
+                max(core:index-keys-for-field($coll, 'date')[not(.='undated')])
         case 'persons' case 'orgs' return ()
         case 'works' return ()
         case 'places' return ()
