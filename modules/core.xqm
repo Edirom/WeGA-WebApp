@@ -80,12 +80,30 @@ declare %private function core:createColl($collName as xs:string, $cacheKey as x
 declare function core:undated($docType as xs:string) as document-node()* {
     switch($docType)
     case 'letters' case 'writings' case 'documents' return crud:data-collection($docType)/tei:TEI[ft:query(., 'date:undated')][not(tei:ref)]/root()
+    case 'sources' return 
+        crud:data-collection($docType)/tei:TEI[ft:query(., 'date:undated')][not(tei:ref)]/root() |
+        crud:data-collection($docType)/mei:manifestation[ft:query(., 'date:undated')]/root()
     default return ()
 };
 
+(:~
+ : Return a sequence of unique index values for a given field 
+ : defined in the Lucene index configuration.
+ :
+ : @see http://exist-db.org/exist/apps/doc/lucene#facets-and-fields
+ : @param $coll a collection of documents
+ : @param $field the index field name, e.g. "date"
+ : @return a sequence of index entries
+ :)
 declare function core:index-keys-for-field($coll as document-node()*, $field as xs:string) as xs:string* {
     distinct-values(
-        for $i in $coll/tei:TEI[ft:query(., (), map { "fields": $field })] | $coll/tei:ab[ft:query(., (), map { "fields": $field })] | $coll/tei:biblStruct[ft:query(., (), map { "fields": $field })]
+        for $i in 
+        (
+            $coll/tei:TEI[ft:query(., (), map { "fields": $field })] | 
+            $coll/tei:ab[ft:query(., (), map { "fields": $field })] | 
+            $coll/tei:biblStruct[ft:query(., (), map { "fields": $field })] |
+            $coll/mei:manifestation[ft:query(., (), map { "fields": $field })]
+        )
         return
             ft:field($i, $field)
     )
