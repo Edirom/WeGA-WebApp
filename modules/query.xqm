@@ -368,6 +368,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'forenames' return $collection//tei:forename[not(@full)]
     case 'surnames' return $collection//tei:surname | $collection//tei:orgName[@type]
     case 'pubPlace' return ($collection//mei:pubPlace/@codedval |  $collection//tei:pubPlace/@key)
+    case 'publisher' return ($collection//mei:publisher[parent::mei:pubStmt]/@codedval |  $collection//tei:publisher[parent::tei:imprint]/@key)
     case 'sources-details-cat' return ($collection//mei:termList[@label='sources-details-cat']/mei:term | $collection//tei:keywords[@scheme='sources-details-cat']/tei:term)
     case 'sources-meta-cat' return ($collection//mei:termList[@label='sources-meta-cat']/mei:term | $collection//tei:keywords[@scheme='sources-meta-cat']/tei:term)
     case 'placenames' return $collection//tei:placeName[@type='reg']

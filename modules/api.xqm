@@ -1108,6 +1108,16 @@ declare function api:validate-pubPlace($model as map(*)) as map(*)? {
 };
 
 (:~
+ : Check parameter publisher
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-publisher($model as map(*)) as map(*)? {
+    if(every $i in $model?publisher ! tokenize(., ',') satisfies wdt:personsPlus($i)('check')()) then map { 'publisher': $model?publisher ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "publisher". It must be a WeGA org or person ID.' )
+};
+
+(:~
  : Check parameter placenames (NB: this is supposed to be a string value, not a WeGA ID)
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
