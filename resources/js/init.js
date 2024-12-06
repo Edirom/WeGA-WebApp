@@ -166,8 +166,8 @@ $.fn.rangeSlider = function ()
             /* 
              * Overwrite date params with new values from the slider 
              */
-            if(data.from !== data.min) { params.sliderDates.fromDate = newFrom }
-            if(data.to !== data.max) { params.sliderDates.toDate = newTo }
+            params.sliderDates.fromDate = newFrom;
+            params.sliderDates.toDate = newTo;
             params.sliderDates.oldFromDate = moment(data.min).locale("de").format("YYYY-MM-DD");
             params.sliderDates.oldToDate = moment(data.max).locale("de").format("YYYY-MM-DD");
             updatePage(params);
