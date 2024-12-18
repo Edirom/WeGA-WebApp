@@ -108,6 +108,30 @@ declare function api:documents-findByAuthor($model as map(*)) as map(*) {
     )
 };
 
+declare function api:documents-otd($model as map(*)) as map(*) {
+    let $date :=
+        if($model?date castable as xs:date)
+        then $model?date => substring(6, 5)
+        else current-date() => substring(6, 5)
+    let $dateElements :=
+        for $docType in api:resolve-docTypes($model)
+        return
+            switch($docType)
+            case 'letters' return
+                core:getOrCreateColl(
+                    $docType,'indices', true()
+                )//tei:TEI[ft:query(., 'date:' || $date)]//tei:correspAction[@type='sent']/tei:date[contains(@when, $date)][following::tei:text//tei:p]
+(:            case 'persons' return:)
+(:                core:getOrCreateColl($docType, 'indices', true())//tei:date[contains(@when, $month-day)][not(preceding-sibling::tei:date[contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']:)
+            default return ()
+    return (
+        map {
+            'totalRecordCount': count($dateElements),
+            'results': api:document-otd(api:subsequence($dateElements, $model), $model)
+        }
+    )
+};
+
 declare function api:code-findByElement($model as map(*)) {
     let $documents := 
         for $docType in api:resolve-docTypes($model)
@@ -528,12 +552,46 @@ declare %private function api:document($documents as document-node()*, $model as
         let $id := $doc/*/data(@xml:id)
         let $docType := config:get-doctype-by-id($id)
         return
-            map { 
-                'uri' : api:document-uri($id, $model),
-                'docID' : $id,
-                'docType' : $docType,
-                'title' : wdt:lookup($docType, $doc)('title')('txt')
+            api:document-basics($doc, $id, $docType, $model)
+    }
+};
+
+(:~
+ :  Helper function for creating a Document otd object
+~:)
+declare %private function api:document-otd($dateElements as element(tei:date)*, $model as map(*)) as array(*) {
+    array {
+        for $dateElem in $dateElements
+        let $docID := $dateElem/root()/*/data(@xml:id)
+        let $docType := config:get-doctype-by-id($docID)
+        let $typeOfEvent :=
+            if($dateElem/ancestor::tei:correspDesc) then 'letter'
+            else if($dateElem[@type='baptism']) then 'isBaptised'
+            else if($dateElem/parent::tei:birth) then 'isBorn'
+            else if($dateElem[@type='funeral']) then 'wasBuried'
+            else if($dateElem/parent::tei:death) then 'dies'
+            else ()
+        let $isJubilee := (year-from-date($model?date) - $dateElem/year-from-date(@when)) mod 25 = 0
+        return map:merge((
+            api:document-basics($dateElem/root(), $docID, $docType, $model),
+            map {
+                'otdTitle': '',
+                'otdEvent': $typeOfEvent,
+                'otdJubilee': ''
             }
+        ))
+    }
+};
+
+(:~
+ :  Helper function for api:document and api:document-otd
+:)
+declare %private function api:document-basics($doc as document-node(), $docID as xs:string, $docType as xs:string, $model as map(*)) as map(*) {
+    map {
+        'uri' : api:document-uri($docID, $model),
+        'docID' : $docID,
+        'docType' : $docType,
+        'title' : wdt:lookup($docType, $doc)('title')('txt')
     }
 };
 
@@ -635,6 +693,15 @@ declare function api:validate-toDate($model as map(*)) as map(*)? {
     if($model('toDate') castable as xs:date) then $model
     else if($model?toDate ='') then () (: an empty string is simply dropped :)
     else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('toDate') || '". Should be YYYY-MM-DD.')
+};
+
+(:~
+ : Check parameter date
+~:)
+declare function api:validate-date($model as map(*)) as map(*)? {
+    if($model('date') castable as xs:date) then $model
+    else if($model?date ='') then () (: an empty string is simply dropped :)
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('date') || '". Should be YYYY-MM-DD.')
 };
 
 (:~

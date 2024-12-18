@@ -1,0 +1,30 @@
+# Document "on this day" schema
+# This is merely a clone of the document schema
+# with additional properties for "on this day"
+type: object
+properties:
+  uri:
+    type: string
+    description: Unique identifier representing a specific document
+  docID:
+    type: string
+    description: The WeGA document identifier representing a specific document
+  docType:
+    type: string
+    description: The WeGA document type
+  title:
+    type: string
+    description: The title of the document
+  otdTitle:
+    type: string
+    description: The title of the event
+  otdEvent:
+    type: string
+    description: The type of event occurring in the document
+    enum:
+      - birth
+      - death
+  otdJubilee:
+    type: integer
+    format: int32
+    description: The years between the event and the provided on-this-day date
