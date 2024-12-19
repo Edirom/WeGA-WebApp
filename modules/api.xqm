@@ -109,7 +109,8 @@ declare function api:documents-findByAuthor($model as map(*)) as map(*) {
 };
 
 declare function api:documents-otd($model as map(*)) as map(*) {
-    let $date :=
+    let $dateWithoutYear :=
+        (: strip of the year part so only month and day are left, e.g. "12-03" :)
         if($model?date castable as xs:date)
         then $model?date => substring(6, 5)
         else current-date() => substring(6, 5)
@@ -120,9 +121,13 @@ declare function api:documents-otd($model as map(*)) as map(*) {
             case 'letters' return
                 core:getOrCreateColl(
                     $docType,'indices', true()
-                )//tei:TEI[ft:query(., 'date:' || $date)]//tei:correspAction[@type='sent']/tei:date[contains(@when, $date)][following::tei:text//tei:p]
-(:            case 'persons' return:)
-(:                core:getOrCreateColl($docType, 'indices', true())//tei:date[contains(@when, $month-day)][not(preceding-sibling::tei:date[contains(@when, $month-day)])][parent::tei:birth or parent::tei:death][ancestor::tei:person/@source='WeGA']:)
+                )//tei:TEI[ft:query(., 'date:' || $dateWithoutYear)]//tei:correspAction[@type='sent']/tei:date
+                [contains(@when, $dateWithoutYear)][following::tei:text//tei:p]
+            case 'persons' return
+                core:getOrCreateColl(
+                    $docType, 'indices', true()
+                )//tei:person[ft:query(., 'date:' || $dateWithoutYear, map{'facets': map{'docSource': 'WeGA'}})]
+                //tei:date[contains(@when, $dateWithoutYear)][parent::tei:birth or parent::tei:death]
             default return ()
     return (
         map {
@@ -571,13 +576,12 @@ declare %private function api:document-otd($dateElements as element(tei:date)*, 
             else if($dateElem[@type='funeral']) then 'wasBuried'
             else if($dateElem/parent::tei:death) then 'dies'
             else ()
-        let $isJubilee := (year-from-date($model?date) - $dateElem/year-from-date(@when)) mod 25 = 0
+        let $jubilee := year-from-date($model?date) - $dateElem/year-from-date(@when)
         return map:merge((
             api:document-basics($dateElem/root(), $docID, $docType, $model),
             map {
-                'otdTitle': '',
                 'otdEvent': $typeOfEvent,
-                'otdJubilee': ''
+                'otdJubilee': $jubilee
             }
         ))
     }
