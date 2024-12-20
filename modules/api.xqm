@@ -1131,6 +1131,16 @@ declare function api:validate-workTitle($model as map(*)) as map(*)? {
 };
 
 (:~
+ : Check parameter chronology
+ : only one value allowed
+~:)
+declare function api:validate-chronology($model as map(*)) as map(*)? {
+    if(every $i in $model?chronology ! tokenize(., ',') satisfies matches($i, '^(((\d{4}–)?\d{4})|\d{2})$'))
+    then map { 'chronology': ($model?chronology ! tokenize(., ',')) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "chronology". It must be a comma separated list of strings matching the pattern "^(((\d{4}–)?\d{4})|\d{2})$", e.g. "1800–1899,1870–1879,1876"')
+};
+
+(:~
  : Fallback for unknown API parameters 
  : Simply returns an error message
 ~:)

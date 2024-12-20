@@ -324,6 +324,7 @@ declare %private function search:filter-result($collection as document-node()*, 
             if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
             else if($filter = 'searchDate') then search:searchDate-filter($collection, $filters($filter)[1])
             else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
+            else if($filter = 'chronology') then search:chronology-filter($collection, $filters($filter))
             else if($filter = 'textType') then search:textType-filter($collection, $filters($filter)[1])
             else if($filter = 'hideRevealed') then search:revealed-filter($collection)
             else if($filter = 'facsimile') then search:facsimile-filter($collection, $filters($filter)[1])
@@ -338,6 +339,9 @@ declare %private function search:filter-result($collection as document-node()*, 
             if($filter = ('fromDate', 'toDate')) then 
                 try { map:remove(map:remove($filters, 'toDate'), 'fromDate') }
                 catch * {()}
+            else if($filter = 'chronology') then
+                try { map:remove($filters, 'chronology') }
+                catch * {()}
             else if(count($filters($filter)) gt 1) then 
                 map:merge(($filters, map:entry($filter, subsequence($filters($filter), 2))))
             else
@@ -349,6 +353,20 @@ declare %private function search:filter-result($collection as document-node()*, 
             else $filtered-coll
     )
     else $collection
+};
+
+(:~
+ : Helper function for search:filter-result()
+ : Queries the date facet from the index
+ :)
+declare %private function search:chronology-filter($collection as document-node()*, $dateTokens as xs:string*) as document-node()* {
+    let $options := map {
+        'facets': map {
+            'date': $dateTokens
+        }
+    }
+    return
+        $collection/tei:TEI[ft:query(., (), $options)]/root()
 };
 
 (:~
