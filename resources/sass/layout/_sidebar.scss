@@ -122,6 +122,39 @@ a.checkbox-only {
         padding: 0.5em;
     }
 
+    /* chronology facets */
+    .datefacets {
+        background-color: white;
+        border: 1px solid #aaa;
+        border-radius: 4px;
+        padding: 5px;
+        ul {
+            margin-bottom: 0px;
+        }
+        li ul {
+            margin-left: 1em;
+        }
+        li:has(> ul:empty) i {
+            display: none;
+        }
+        .datefacet {
+            display: flex;
+            flex-flow: row wrap;
+            align-items: start;
+            cursor: pointer;
+            color: $primary;
+            .label {
+                flex: 1;
+            }
+            .count {
+                text-align: right;
+            }
+            i {
+                vertical-align: middle;
+                padding-right: .5em;
+            }
+        }
+    }
 }
 
 /*

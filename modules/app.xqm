@@ -109,6 +109,51 @@ declare
 
 declare 
     %templates:wrap
+    function app:dateFacet($node as node(), $model as map(*)) as element(xhtml:ul) {
+        let $coll := $model('search-results')/tei:TEI[ft:query(., ())]
+        let $facets := $coll => ft:facets("date", ())
+        return
+            $facets => app:dateFacetList($coll, ())
+};
+
+(:~
+ : Helper function for app:dateFacet#2
+ : Recursively creates a list structure for date facets
+ :)
+declare
+    %private
+    function app:dateFacetList($facets as map(*), $coll as element()*, $label as xs:string*) as element(xhtml:ul) {
+    <xhtml:ul>{
+        map:for-each(
+            $facets,
+            function($subLabel, $count) {
+                let $subsubFacets := $coll => ft:facets("date", (), ($label,$subLabel))
+                return
+                    <xhtml:li>
+                        <xhtml:span class="datefacet toggle-toc-item">
+                            {
+                            if (map:size($subsubFacets) gt 0)
+                            then (
+                                <xhtml:i class="fa fa-plus-square" aria-hidden="true" style="display: none;"/>,
+                                <xhtml:i class="fa fa-minus-square" aria-hidden="true"/>
+                            )
+                            else()
+                            }
+                            <xhtml:span class="label">{$subLabel}</xhtml:span>
+                            <xhtml:span class="count">{$count}</xhtml:span>
+                        </xhtml:span>
+                        {
+                        if (map:size($subsubFacets) gt 0)
+                        then app:dateFacetList($subsubFacets, $coll, ($label,$subLabel))
+                        else ()
+                        }
+                    </xhtml:li>
+        }) => sort()
+    }</xhtml:ul>
+};
+
+declare 
+    %templates:wrap
     function app:bugreport($node as node(), $model as map(*)) as map(*) {
     	map {
                 'bugEmail' : config:get-option('bugEmail')
