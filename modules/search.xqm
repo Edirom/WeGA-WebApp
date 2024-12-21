@@ -362,7 +362,7 @@ declare %private function search:filter-result($collection as document-node()*, 
 declare %private function search:chronology-filter($collection as document-node()*, $dateTokens as xs:string*) as document-node()* {
     let $options := map {
         'facets': map {
-            'date': $dateTokens
+            'chronology': $dateTokens
         }
     }
     return
