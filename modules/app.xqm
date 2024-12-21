@@ -134,6 +134,11 @@ declare
                 let $subsubFacets := $coll => ft:facets("chronology", (), ($label,$subLabel))
                 return
                     <xhtml:li>
+                        {
+                            if(($label,$subLabel) => string-join() = $activeLabelString)
+                            then attribute class {'active'}
+                            else ()
+                        }
                         <xhtml:span class="datefacet toggle-toc-item">
                             {
                             if (map:size($subsubFacets) gt 0)
@@ -143,10 +148,7 @@ declare
                             )
                             else()
                             }
-                            <xhtml:span class="label{
-                                if(($label,$subLabel) => string-join() = $activeLabelString)
-                                then ' active'
-                                else ()}" data-value="{($label,$subLabel) => string-join(',')}">{$subLabel}</xhtml:span>
+                            <xhtml:span class="label" data-value="{($label,$subLabel) => string-join(',')}">{$subLabel}</xhtml:span>
                             <xhtml:span class="count">{$count}</xhtml:span>
                         </xhtml:span>
                         {

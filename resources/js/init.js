@@ -296,12 +296,17 @@ $('body').on('click touchstart', function (e) {
  * hide/reveal sub items of the table of contents of the Guidelines and Wikipedia
  */
 $('.toggle-toc-item')
-    .on('click', toggleTocItems)
-    .each(toggleTocItems);
+    .on('click', toggleTocItems) /* toggle on click */
+    .each(toggleTocItems); /* initially collapse all */
 $('.toc a[href~="'+window.location.pathname+window.location.hash+'"]').parentsUntil(".guidelines").addClass("active");
 $('.appendix a[href^="'+window.location.pathname+window.location.hash+'"]').parentsUntil(".appendix-div").addClass("active");
 $(".toc .active").siblings(".toggle-toc-item").each(toggleTocItems);
 
+/* initially open selected chronology facets */
+/* … along the ancestor axis */
+$('.datefacets li.active').parentsUntil('.datefacets', 'li').children('.toggle-toc-item').each(toggleTocItems);
+/* … and the (direct) child axis */
+$('.datefacets li.active').children('.toggle-toc-item').each(toggleTocItems);
 
 /*
  * used for Guidelines TOC as well as for Wikipedia
