@@ -107,13 +107,17 @@ declare
             }
 };
 
+(:~
+ : Chronology facet box
+ :)
 declare 
     %templates:wrap
     function app:dateFacet($node as node(), $model as map(*)) as element(xhtml:ul) {
         let $coll := $model('search-results')/tei:TEI[ft:query(., ())]
-        let $facets := $coll => ft:facets("date", ())
+        let $facets := $coll => ft:facets("chronology", ())
+        let $activeLabelString := $model?filters?chronology => string-join()
         return
-            $facets => app:dateFacetList($coll, ())
+            $facets => app:dateFacetList($coll, (), $activeLabelString)
 };
 
 (:~
@@ -122,12 +126,12 @@ declare
  :)
 declare
     %private
-    function app:dateFacetList($facets as map(*), $coll as element()*, $label as xs:string*) as element(xhtml:ul) {
+    function app:dateFacetList($facets as map(*), $coll as element()*, $label as xs:string*, $activeLabelString as xs:string) as element(xhtml:ul) {
     <xhtml:ul>{
         map:for-each(
             $facets,
             function($subLabel, $count) {
-                let $subsubFacets := $coll => ft:facets("date", (), ($label,$subLabel))
+                let $subsubFacets := $coll => ft:facets("chronology", (), ($label,$subLabel))
                 return
                     <xhtml:li>
                         <xhtml:span class="datefacet toggle-toc-item">
@@ -139,12 +143,15 @@ declare
                             )
                             else()
                             }
-                            <xhtml:span class="label">{$subLabel}</xhtml:span>
+                            <xhtml:span class="label{
+                                if(($label,$subLabel) => string-join() = $activeLabelString)
+                                then ' active'
+                                else ()}" data-value="{($label,$subLabel) => string-join(',')}">{$subLabel}</xhtml:span>
                             <xhtml:span class="count">{$count}</xhtml:span>
                         </xhtml:span>
                         {
                         if (map:size($subsubFacets) gt 0)
-                        then app:dateFacetList($subsubFacets, $coll, ($label,$subLabel))
+                        then app:dateFacetList($subsubFacets, $coll, ($label,$subLabel), $activeLabelString)
                         else ()
                         }
                     </xhtml:li>
