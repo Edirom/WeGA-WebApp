@@ -593,6 +593,14 @@ $(document).on('change', '.facet-group input', function() {
     updatePage(params);
 })
 
+/* checkbox for display of undated documents */
+$(document).on("click", ".datefacet .label", function(event) {
+    $(".datefacets").find(".active").removeClass("active");
+    $(this).addClass("active");
+    const params = active_facets();
+    updatePage(params);
+})
+
 /* manage search filter checkboxes */
 function checkAll(that) {
    $(that).parents(".filterGroup").find(".btn-group :checkbox").prop('checked', true);
@@ -675,6 +683,7 @@ function active_facets() {
                 oldFromDate:'',
                 oldToDate:''*/
             },
+            
             toString: function () {
                 return '?' + $.param($.extend({}, this.facets, this.sliderDates), true)
             }
@@ -691,6 +700,8 @@ function active_facets() {
         if(params.facets[facet] === undefined) { params.facets[facet] = [] }
         params.facets[facet].push(value);
     })
+    /* Get chronology facet value */
+    params.facets.chronology = $('.datefacets .active').attr('data-value');
     /* Get date values from range slider */
     if($('.rangeSlider:visible').length) {
         slider = $('.rangeSlider:visible');
