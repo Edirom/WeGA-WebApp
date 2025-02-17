@@ -109,11 +109,16 @@ declare function api:documents-findByAuthor($model as map(*)) as map(*) {
 };
 
 declare function api:documents-otd($model as map(*)) as map(*) {
+    let $date := 
+        if($model?date castable as xs:date)
+        then xs:date($model?date)
+        else current-date()
+    let $model :=
+        (: update model with date information :)
+        map:put($model, 'date', string($date))
     let $dateWithoutYear :=
         (: strip of the year part so only month and day are left, e.g. "12-03" :)
-        if($model?date castable as xs:date)
-        then $model?date => substring(6, 5)
-        else current-date() => substring(6, 5)
+        substring($date, 6, 5)
     let $dateElements :=
         for $docType in api:resolve-docTypes($model)
         return
@@ -122,12 +127,12 @@ declare function api:documents-otd($model as map(*)) as map(*) {
                 core:getOrCreateColl(
                     $docType,'indices', true()
                 )//tei:TEI[ft:query(., 'date:' || $dateWithoutYear)]//tei:correspAction[@type='sent']/tei:date
-                [contains(@when, $dateWithoutYear)][following::tei:text//tei:p]
+                [contains(@when, $dateWithoutYear)][xs:date(@when) le $date][following::tei:text//tei:p]
             case 'persons' return
                 core:getOrCreateColl(
                     $docType, 'indices', true()
                 )//tei:person[ft:query(., 'date:' || $dateWithoutYear, map{'facets': map{'docSource': 'WeGA'}})]
-                //tei:date[contains(@when, $dateWithoutYear)][parent::tei:birth or parent::tei:death]
+                //tei:date[contains(@when, $dateWithoutYear)][xs:date(@when) le $date][parent::tei:birth or parent::tei:death]
             default return ()
     return (
         map {
