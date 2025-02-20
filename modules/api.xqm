@@ -127,7 +127,7 @@ declare function api:documents-otd($model as map(*)) as map(*) {
                 core:getOrCreateColl(
                     $docType, 'indices', true()
                 )//tei:ab[ft:query(., 'date:' || $dateWithoutYear)]/self::tei:ab (: use self axis here for performance reasons :)
-                [xs:date(@n) le $date]//tei:seg[@type = ('rehearsal', 'performance')][.//tei:workName/@key]
+                [xs:date(@n) le $date]//tei:seg[@type = ('rehearsal', 'performance', 'production')][.//tei:workName/@key]
             case 'letters' return
                 core:getOrCreateColl(
                     $docType,'indices', true()
@@ -601,11 +601,23 @@ declare %private function api:document-otd($events as element()*, $model as map(
             case 'diaries' return $event/ancestor::tei:ab/@n cast as xs:date
             default return $event/tei:date/@when[contains(., $model?dateWithoutYear)] cast as xs:date
         let $jubilee := year-from-date($model?date) - year-from-date($eventDate)
+        let $relations :=
+            switch($docType)
+            case 'diaries' return (
+                ($event//tei:workName/@key ! api:document-basics(crud:doc(.), ., 'works', $model)),
+                ($event//tei:persName/@key ! api:document-basics(crud:doc(.), ., 'persons', $model))
+            )
+            case 'letters' return (
+                ($event/ancestor::tei:correspDesc//tei:persName/@key ! api:document-basics(crud:doc(.), ., 'persons', $model)),
+                ($event/ancestor::tei:correspDesc//tei:orgName/@key ! api:document-basics(crud:doc(.), ., 'orgs', $model))
+            )
+            default return ()
         return map:merge((
             api:document-basics($event/root(), $docID, $docType, $model),
             map {
                 'otdEvent': $typeOfEvent,
-                'otdJubilee': $jubilee
+                'otdJubilee': $jubilee,
+                'otdRelations': array { $relations }
             }
         ))
     }
