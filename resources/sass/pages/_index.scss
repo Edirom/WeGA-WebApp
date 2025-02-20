@@ -104,14 +104,20 @@ h1.home
 		content:":";
 	}
 	.jubilee {
-	    /* 
-	     * support for elaborated text-decoration is still miserable, see https://css-tricks.com/almanac/properties/t/text-decoration/
-	     * can't use border bottom because of cell display
-	     */
-		text-decoration: underline dotted;
-		-webkit-text-decoration: underline dotted;
-		cursor: help;
-	}
+      /*
+       * support for elaborated text-decoration is still miserable, see https://css-tricks.com/almanac/properties/t/text-decoration/
+       * can't use border bottom because of cell display
+       */
+      text-decoration: underline dotted;
+      -webkit-text-decoration: underline dotted;
+      cursor: help;
+    }
+    > div {
+        columns: 300px 2;
+    }
+    .works {
+        font-style: italic;
+    }
 }
 
 #newID-result {
