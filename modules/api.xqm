@@ -109,16 +109,16 @@ declare function api:documents-findByAuthor($model as map(*)) as map(*) {
 };
 
 declare function api:documents-otd($model as map(*)) as map(*) {
-    let $date := 
-        if($model?date castable as xs:date)
-        then xs:date($model?date)
+    let $otdDate := 
+        if($model?otdDate castable as xs:date)
+        then xs:date($model?otdDate)
         else current-date()
     let $dateWithoutYear :=
         (: strip of the year part so only month and day are left, e.g. "12-03" :)
-        substring($date, 6, 5)
+        substring($otdDate, 6, 5)
     let $model :=
         (: update model with date information :)
-        map:put($model, 'date', string($date)) => map:put('dateWithoutYear', $dateWithoutYear)
+        map:put($model, 'otdDate', string($otdDate)) => map:put('dateWithoutYear', $dateWithoutYear)
     let $eventElements :=
         for $docType in api:resolve-docTypes($model)
         return
@@ -127,22 +127,29 @@ declare function api:documents-otd($model as map(*)) as map(*) {
                 core:getOrCreateColl(
                     $docType, 'indices', true()
                 )//tei:ab[ft:query(., 'date:' || $dateWithoutYear)]/self::tei:ab (: use self axis here for performance reasons :)
-                [xs:date(@n) le $date]//tei:seg[@type = ('rehearsal', 'performance', 'production')][.//tei:workName/@key]
+                [xs:date(@n) le $otdDate]//tei:seg[@type = ('rehearsal', 'performance', 'production')][.//tei:workName/@key]
             case 'letters' return
                 core:getOrCreateColl(
                     $docType,'indices', true()
                 )//tei:TEI[ft:query(., 'date:' || $dateWithoutYear)]//tei:correspAction[@type='sent']
-                [some $cur.date in tei:date satisfies contains($cur.date/@when, $dateWithoutYear) and xs:date($cur.date/@when) le $date][following::tei:text//tei:p]
+                [some $cur.date in tei:date satisfies contains($cur.date/@when, $dateWithoutYear) and xs:date($cur.date/@when) le $otdDate][following::tei:text//tei:p]
             case 'persons' return
                 core:getOrCreateColl(
                     $docType, 'indices', true()
                 )//tei:person[ft:query(., 'date:' || $dateWithoutYear, map{'facets': map{'docSource': 'WeGA'}})]
-                //tei:date[contains(@when, $dateWithoutYear)][xs:date(@when) le $date][parent::tei:birth or parent::tei:death]/parent::*
+                //tei:date[contains(@when, $dateWithoutYear)][xs:date(@when) le $otdDate][parent::tei:birth or parent::tei:death]/parent::*
             default return ()
+    let $sortedEvents := 
+        for $event in $eventElements
+        let $docID := $event/root()/*/data(@xml:id)
+        let $docType := config:get-doctype-by-id($docID)
+        order by api:otd-event-date($event, $docType, $dateWithoutYear)
+        return $event
     return (
         map {
-            'totalRecordCount': count($eventElements),
-            'results': api:document-otd(api:subsequence($eventElements, $model), $model)
+            'otdDate' : $otdDate,
+            'totalRecordCount': count($sortedEvents),
+            'results': api:document-otd(api:subsequence($sortedEvents, $model), $model)
         }
     )
 };
@@ -596,11 +603,8 @@ declare %private function api:document-otd($events as element()*, $model as map(
                     if($event/tei:date[@type='funeral']) then 'funeral'
                     else 'death'
             default return ()
-        let $eventDate := 
-            switch($docType)
-            case 'diaries' return $event/ancestor::tei:ab/@n cast as xs:date
-            default return $event/tei:date/@when[contains(., $model?dateWithoutYear)] cast as xs:date
-        let $jubilee := year-from-date($model?date) - year-from-date($eventDate)
+        let $eventDate := api:otd-event-date($event, $docType, $model?dateWithoutYear)
+        let $jubilee := year-from-date($model?otdDate) - year-from-date($eventDate)
         let $relations :=
             switch($docType)
             case 'diaries' return (
@@ -621,6 +625,15 @@ declare %private function api:document-otd($events as element()*, $model as map(
             }
         ))
     }
+};
+
+(:~
+ :  Helper function for api:documents-otd#1 and api:document-otd#2
+ :)
+declare %private function api:otd-event-date($event as element(), $docType as xs:string, $dateWithoutYear as xs:string) as xs:date {
+    switch($docType)
+    case 'diaries' return $event/ancestor::tei:ab/@n cast as xs:date
+    default return $event/tei:date/@when[contains(., $dateWithoutYear)] cast as xs:date
 };
 
 (:~
