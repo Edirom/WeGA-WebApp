@@ -34,6 +34,8 @@ get:
           schema:
             type: array
             items:
-              $ref: '../schemas/document-otd.yaml'
+              allOf:
+                - $ref: '../schemas/document.yaml'
+                - $ref: '../schemas/document-otd.yaml'
     default:
       $ref: '../responses/unexpectedError.yaml'
