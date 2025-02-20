@@ -127,7 +127,7 @@ declare function api:documents-otd($model as map(*)) as map(*) {
                 core:getOrCreateColl(
                     $docType, 'indices', true()
                 )//tei:ab[ft:query(., 'date:' || $dateWithoutYear)]/self::tei:ab (: use self axis here for performance reasons :)
-                [xs:date(@n) le $otdDate]//tei:seg[@type = ('rehearsal', 'performance', 'production')][.//tei:workName/@key]
+                [xs:date(@n) le $otdDate]//tei:seg[@type = ('rehearsal', 'performance', 'production')][.//tei:workName[not(ancestor::tei:note)]/@key]
             case 'letters' return
                 core:getOrCreateColl(
                     $docType,'indices', true()
