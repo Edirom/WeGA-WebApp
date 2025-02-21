@@ -127,7 +127,8 @@ declare function api:documents-otd($model as map(*)) as map(*) {
                 core:getOrCreateColl(
                     $docType, 'indices', true()
                 )//tei:ab[ft:query(., 'date:' || $dateWithoutYear)]/self::tei:ab (: use self axis here for performance reasons :)
-                [xs:date(@n) le $otdDate]//tei:seg[@type = ('rehearsal', 'performance', 'production')][.//tei:workName[not(ancestor::tei:note)]/@key]
+                [xs:date(@n) le $otdDate]//tei:seg[@type = ('rehearsal', 'performance', 'production')]
+                [.//tei:workName[not(ancestor::tei:note)]/@key or .//tei:rs[@type='work'][not(ancestor::tei:note)]/@key]
             case 'letters' return
                 core:getOrCreateColl(
                     $docType,'indices', true()
@@ -608,19 +609,27 @@ declare %private function api:document-otd($events as element()*, $model as map(
         let $relations :=
             switch($docType)
             case 'diaries' return (
-                ($event//tei:workName/@key ! api:document-basics(crud:doc(.), ., 'works', $model)),
-                ($event//tei:persName/@key ! api:document-basics(crud:doc(.), ., 'persons', $model))
+                ($event//tei:workName[not(ancestor::tei:note)]/@key ! api:document-basics(crud:doc(.), ., 'works', $model)),
+                (($event//tei:rs[@type=('work', 'works')][not(ancestor::tei:note)]/@key ! tokenize(., '\s+')) ! api:document-basics(crud:doc(.), ., 'works', $model)),
+                ($event//tei:persName[not(ancestor::tei:note)]/@key ! api:document-basics(crud:doc(.), ., 'persons', $model)),
+                (($event//tei:rs[@type=('person', 'persons')][not(ancestor::tei:note)]/@key ! tokenize(., '\s+')) ! api:document-basics(crud:doc(.), ., 'persons', $model))
             )
             case 'letters' return (
-                ($event/ancestor::tei:correspDesc//tei:persName/@key ! api:document-basics(crud:doc(.), ., 'persons', $model)),
-                ($event/ancestor::tei:correspDesc//tei:orgName/@key ! api:document-basics(crud:doc(.), ., 'orgs', $model))
+                ($event/ancestor::tei:correspDesc//tei:persName[not(ancestor::tei:note)]/@key ! api:document-basics(crud:doc(.), ., 'persons', $model)),
+                ($event/ancestor::tei:correspDesc//tei:orgName[not(ancestor::tei:note)]/@key ! api:document-basics(crud:doc(.), ., 'orgs', $model))
             )
+            default return ()
+        let $teaser := 
+            switch($docType)
+            case 'diaries' return wega-util:txtFromTEI($event) => string-join() => normalize-space()
+            case 'letters' return $event/preceding::tei:note[@type='summary']/node() => wega-util:txtFromTEI() => string-join() => normalize-space()
             default return ()
         return map:merge((
             api:document-basics($event/root(), $docID, $docType, $model),
             map {
                 'otdEvent': $typeOfEvent,
                 'otdJubilee': $jubilee,
+                'otdTeaser': if($teaser) then $teaser else (), (: return NULL instead of empty strings:)
                 'otdRelations': array { $relations }
             }
         ))
@@ -633,7 +642,7 @@ declare %private function api:document-otd($events as element()*, $model as map(
 declare %private function api:otd-event-date($event as element(), $docType as xs:string, $dateWithoutYear as xs:string) as xs:date {
     switch($docType)
     case 'diaries' return $event/ancestor::tei:ab/@n cast as xs:date
-    default return $event/tei:date/@when[contains(., $dateWithoutYear)] cast as xs:date
+    default return ($event/tei:date/@when[contains(., $dateWithoutYear)])[1] cast as xs:date
 };
 
 (:~

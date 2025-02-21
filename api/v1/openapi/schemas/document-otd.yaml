@@ -19,7 +19,14 @@ properties:
     format: int32
     description: The years between the event and the provided on-this-day date
   otdRelations:
-    description: related entities or documents, e.g. addressees of a letter or works being performed or rehearsed
+    description: |
+      related entities or documents, e.g. addressees of a letter or works being performed or rehearsed.
+      Only available for docTypes "diaries" and "letters".
     type: array
     items:
       $ref: 'document.yaml'
+  otdTeaser:
+    description: |
+      Some quote or summary of the text (in German). 
+      Only available for docTypes "diaries" and "letters".
+    type: string
