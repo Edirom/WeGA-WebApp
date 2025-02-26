@@ -196,7 +196,7 @@ $.fn.loadPortrait = function () {
 /* Load the what-happened-on-this-day div for the start page */
 $('#otd').each(function() {
     const date = moment(new Date()).format("YYYY-MM-DD"),
-        url = $(this).attr('data-target') + '?otd-date=' + date;
+        url = $(this).attr('data-target') + '?otdDate=' + date;
     $(this).load(url);
 });
 

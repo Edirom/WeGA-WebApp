@@ -1,0 +1,32 @@
+# Document "on this day" schema
+# as addition to the standard document schema
+type: object
+properties:
+  otdEvent:
+    type: string
+    description: The type of event occurring in the document
+    enum:
+      - letter
+      - birth
+      - baptism
+      - death
+      - funeral
+      - performance
+      - rehearsal
+      - production
+  otdJubilee:
+    type: integer
+    format: int32
+    description: The years between the event and the provided on-this-day date
+  otdRelations:
+    description: |
+      related entities or documents, e.g. addressees of a letter or works being performed or rehearsed.
+      Only available for docTypes "diaries" and "letters".
+    type: array
+    items:
+      $ref: 'document.yaml'
+  otdTeaser:
+    description: |
+      Some quote or summary of the text (in German). 
+      Only available for docTypes "diaries" and "letters".
+    type: string

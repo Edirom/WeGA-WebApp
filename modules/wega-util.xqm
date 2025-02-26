@@ -237,6 +237,7 @@ declare function wega-util:txtFromTEI($nodes as node()*) as xs:string* {
         	else $node/child::node() ! wega-util:txtFromTEI(.)
         case element(tei:del) return ()
         case element(tei:subst) return $node/child::element() ! wega-util:txtFromTEI(.)
+        case element(tei:choice) return ($node/tei:abbr | $node/tei:corr | $node/tei:unclear[1]) ! wega-util:txtFromTEI(.)
         case element(tei:note) return ()
         case element(tei:lb) return 
             if($node[@type='inWord' or @break='no']) then ()

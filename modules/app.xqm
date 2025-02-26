@@ -16,6 +16,7 @@ declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace ft="http://exist-db.org/xquery/lucene";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
+import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
@@ -558,57 +559,46 @@ declare
 
 declare 
     %templates:wrap
-    %templates:default("otd-date", "")
-    function app:lookup-todays-events($node as node(), $model as map(*), $otd-date as xs:string) as map(*) {
-    let $date := 
-        if($otd-date castable as xs:date) then xs:date($otd-date)
-        else current-date()
-    let $events := 
-        for $i in query:getTodaysEvents($date)
-        order by $i/xs:date(@when) ascending
-        return $i
-    let $length := count($events)
-    return
-        map {
-            'otd-date' : $date,
-            'events1' : subsequence($events, 1, ceiling($length div 2)),
-            'events2' : subsequence($events, ceiling($length div 2) + 1)
-        }
+    %templates:default("otdDate", "")
+    function app:lookup-todays-events($node as node(), $model as map(*), $otdDate as xs:string) as map(*) {
+        api:documents-otd(map:put($model, 'otdDate', $otdDate) => map:put('openapi:config', json-doc($config:openapi-config-path)))
 };
 
 declare function app:print-event($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:span)* {
-    let $date := $model?otd-date
-    let $teiDate := $model('event')
-    let $isJubilee := (year-from-date($date) - $teiDate/year-from-date(@when)) mod 25 = 0
-    let $typeOfEvent := 
-        if($teiDate/ancestor::tei:correspDesc) then 'letter'
-        else if($teiDate[@type='baptism']) then 'isBaptised'
-        else if($teiDate/parent::tei:birth) then 'isBorn'
-        else if($teiDate[@type='funeral']) then 'wasBuried'
-        else if($teiDate/parent::tei:death) then 'dies'
-        else ()
+    let $event := $model?event
+    let $isJubilee := $event?otdJubilee mod 25 = 0
+    let $doc := crud:doc($event?docID)
     return (
         element xhtml:span {
             if($isJubilee) then (
                 attribute class {'jubilee event-year'},
-                attribute title {lang:get-language-string('roundYearsAgo',xs:string(year-from-date($date) - $teiDate/year-from-date(@when)), $lang)},
+                attribute title {lang:get-language-string('roundYearsAgo', $event?otdJubilee, $lang)},
                 attribute data-toggle {'tooltip'},
                 attribute data-container {'body'}
             )
             else attribute class {'event-year'},
-            date:formatYear($teiDate/year-from-date(@when) cast as xs:int, $lang)
+            date:formatYear(year-from-date($model?otdDate) - $event?otdJubilee, $lang)
         },
         element xhtml:span {
         	attribute class {'event-text'},
-            if($typeOfEvent eq 'letter') then app:createLetterLink($teiDate, $lang)
-            (:else (wega:createPersonLink($teiDate/root()/*/string(@xml:id), $lang, 'fs'), ' ', lang:get-language-string($typeOfEvent, $lang)):)
-            else (app:createDocLink($teiDate/root(), wega-util:print-forename-surname-from-nameLike-element($teiDate/ancestor::tei:person/tei:persName[@type='reg']), $lang, ('class=persons')), ' ', lang:get-language-string($typeOfEvent, $lang))
+        	switch($event?otdEvent)
+            case 'letter' return app:createLetterLink(($doc//tei:correspAction/tei:date)[1], $lang)
+            case 'birth' case 'baptism' case 'funeral' case 'death' return (
+                app:createDocLink($doc, wega-util:print-forename-surname-from-nameLike-element($doc//tei:persName[@type='reg']), $lang, ('class=persons')), ' ', 
+                lang:get-language-string('otd-' || $event?otdEvent, $lang)
+            )
+            case 'performance' case 'rehearsal' case 'production' return (
+                lang:get-language-string('otd-' || $event?otdEvent, $lang), ' ', 
+                app:createDocLink(crud:doc($event?otdRelations?1?docID), $event?otdRelations?1?title, $lang, ('class=works')), '. ',
+                app:createDocLink($doc, concat('[', lang:get-language-string('readOnDiaries', $lang), ']'), $lang, ('class=readOn'))
+            )
+            default return () 
         }
     )
 };
 
 declare function app:print-events-title($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:h2) {
-    <xhtml:h2>{lang:get-language-string('whatHappenedOn', format-date($model?otd-date, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</xhtml:h2>
+    <xhtml:h2>{lang:get-language-string('whatHappenedOn', format-date($model?otdDate, if($lang eq 'de') then '[D]. [MNn]' else '[MNn] [D]',  $lang, (), ()), $lang)}</xhtml:h2>
 };
 
 (:~
