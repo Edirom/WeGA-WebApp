@@ -102,7 +102,7 @@ declare function ct:correspDesc($input as element(tei:correspDesc)) as element(t
         $input/@* except ($input/@source | $input/@ref),
         attribute ref {config:get-option('permaLinkPrefix') || '/' || $input/ancestor::tei:TEI/@xml:id},
         attribute source {concat('#', $ct:source-uuid)},
-        ct:identity-transform-with-switches($input/node()),
+        ct:identity-transform-with-switches($input/tei:correspAction[@type=('sent', 'received')]),
         (: add empty correspAction for type=(received|sent) if not given, see https://github.com/Edirom/WeGA-WebApp/issues/404 :)
         if(not($input/tei:correspAction[@type='sent'])) 
         then ct:identity-transform-with-switches(<correspAction xmlns="http://www.tei-c.org/ns/1.0" type="sent"><persName>Unbekannt</persName></correspAction>)
