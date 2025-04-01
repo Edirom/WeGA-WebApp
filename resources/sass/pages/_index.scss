@@ -92,18 +92,19 @@ h1.home
 
 /* settings for "What happened on?" on start page */
 .history {
-	p {
-	    margin-bottom: 0px;
-	    font-family: $font-family-sans-serif-bold;
+    p {
+        margin-bottom: 0px;
+        font-family: $font-family-sans-serif-bold;
+        break-inside: avoid-column;
     }
     .event-year, .event-text {
-		display: table-cell;
-		padding-right: 0.5em;
-	}
-	.event-year::after {
-		content:":";
-	}
-	.jubilee {
+        display: table-cell;
+        padding-right: 0.5em;
+    }
+    .event-year::after {
+        content:":";
+    }
+    .jubilee {
       /*
        * support for elaborated text-decoration is still miserable, see https://css-tricks.com/almanac/properties/t/text-decoration/
        * can't use border bottom because of cell display
