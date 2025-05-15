@@ -63,7 +63,6 @@ declare function bibl:printGenericCitation($biblStruct as element(tei:biblStruct
             $authors,
             if(exists($authors)) then ', ' else (),
             $title,
-            bibl:idno($biblStruct/*/tei:idno),
             $note
         }
 };
@@ -97,7 +96,6 @@ declare function bibl:printBookCitation($biblStruct as element(tei:biblStruct), 
             if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol']) then bibl:print-single-biblScope-unit((), $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol'], $lang) || ', ' else (),
             $pubPlaceNYear,
             if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then bibl:print-single-biblScope-unit(', ', $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'], $lang) else (),
-            bibl:idno($biblStruct/tei:monogr/tei:idno),
             $note
         }
 };
@@ -124,7 +122,6 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
             if($articleTitle) then (bibl:printTitles($articleTitle, ()), ', in: ') else (),
             $journalCitation/xhtml:span,
             $journalCitation/text(),
-            bibl:idno($biblStruct/tei:analytic/tei:idno),
             $note
         }
 };
@@ -156,7 +153,6 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
             if($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp']) then concat(', ', lang:get-language-string('pp', $lang), '&#160;', bibl:normalize-hyphen($biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'pp'])) else (),
-            bibl:idno($biblStruct/tei:analytic/tei:idno),
             $note
         }
 };
@@ -361,18 +357,6 @@ declare %private function bibl:printNote($notes as element(tei:note)*, $lang as 
  :)
 declare %private function bibl:normalize-hyphen($biblScope as element(tei:biblScope)) as xs:string {
     replace($biblScope, '-', '–')
-};
-
-(:~
- : Process idno elements to output DOIs and alike
- :)
-declare %private function bibl:idno($idnos as element(tei:idno)*) as element(xhtml:span)* {
-    for $idno in $idnos
-    return
-        switch($idno/@type)
-        case 'DOI' return <xhtml:span class="idno_DOI">, DOI: <xhtml:a href="{concat('https://doi.org/',  normalize-space($idno))}">{$idno => data(), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a></xhtml:span>
-        case 'WeGA' return <xhtml:span class="idno_WeGA">, Volltext verfügbar unter <xhtml:a href="{config:permalink($idno)}">{$idno => data()}</xhtml:a></xhtml:span>
-        default return <xhtml:span class="{concat('idno_', $idno/@type)}">, online unter <xhtml:a href="{$idno => data()}">{$idno => data(), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a></xhtml:span>
 };
 
 (:~

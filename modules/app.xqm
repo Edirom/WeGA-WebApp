@@ -1799,8 +1799,29 @@ declare
             'relators' : query:relators($model('result-page-entry')),
             'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
             'workType' : $model('result-page-entry')//mei:term/data(@class),
+            'idnoTypes': distinct-values($model('result-page-entry')/tei:biblStruct//tei:idno/@type),
             'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string#3, $config:default-date-picture-string)
         }
+};
+
+declare
+    %templates:default("lang", "en")
+    function app:process-biblio-idnos($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $idnos := $model('result-page-entry')/tei:biblStruct//tei:idno[@type=$model?idnoType]
+        let $label := 
+            switch($model?idnoType)
+            case 'WeGA' return 'WeGA Volltexte'
+            default return $model?idnoType
+        let $content := 
+            switch($model?idnoType)
+            case 'DOI' return ($idnos ! <xhtml:a class="doi-link" href="{concat('https://doi.org/',  normalize-space(.))}">{normalize-space(.), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a>)
+            case 'WeGA' return ($idnos ! (app:createDocLink(crud:doc(normalize-space(.)), query:title(normalize-space(.)), $lang, ('class=wega-volltext')) ))
+            default return $idnos => string-join(', ') 
+        return
+            map {
+                'label': $label,
+                'content': $content
+            }
 };
 
 declare
