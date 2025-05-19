@@ -1813,10 +1813,13 @@ declare
             case 'WeGA' return 'WeGA Volltexte'
             default return $model?idnoType
         let $content := 
-            switch($model?idnoType)
-            case 'DOI' return ($idnos ! <xhtml:a class="doi-link" href="{concat('https://doi.org/',  normalize-space(.))}">{normalize-space(.), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a>)
-            case 'WeGA' return ($idnos ! (app:createDocLink(crud:doc(normalize-space(.)), query:title(normalize-space(.)), $lang, ('class=wega-volltext')) ))
-            default return $idnos => string-join(', ') 
+            try {
+               switch($model?idnoType)
+               case 'DOI' return ($idnos ! <xhtml:a class="doi-link" href="{concat('https://doi.org/',  normalize-space(.))}">{normalize-space(.), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a>)
+               case 'WeGA' return ($idnos ! (app:createDocLink(crud:doc(normalize-space(.)), query:title(normalize-space(.)), $lang, ('class=wega-volltext')) ))
+               default return $idnos => string-join(', ') 
+            }
+            catch * { () }
         return
             map {
                 'label': $label,
