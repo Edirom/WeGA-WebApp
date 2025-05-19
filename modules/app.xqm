@@ -1819,7 +1819,7 @@ declare
                case 'WeGA' return ($idnos ! (app:createDocLink(crud:doc(normalize-space(.)), query:title(normalize-space(.)), $lang, ('class=wega-volltext')) ))
                default return $idnos => string-join(', ') 
             }
-            catch * { () }
+            catch * { wega-util:log-to-file('error', concat("Error processing idno(s): ", $err:description)) }
         return
             map {
                 'label': $label,
