@@ -1810,13 +1810,16 @@ declare
         let $idnos := $model('result-page-entry')/tei:biblStruct//tei:idno[@type=$model?idnoType]
         let $label := 
             switch($model?idnoType)
-            case 'WeGA' return 'WeGA Volltexte'
+            case 'WeGA' return lang:get-language-string("WeGA_fullTexts", $lang)
             default return $model?idnoType
         let $content := 
-            switch($model?idnoType)
-            case 'DOI' return ($idnos ! <xhtml:a class="doi-link" href="{concat('https://doi.org/',  normalize-space(.))}">{normalize-space(.), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a>)
-            case 'WeGA' return ($idnos ! (app:createDocLink(crud:doc(normalize-space(.)), query:title(normalize-space(.)), $lang, ('class=wega-volltext')) ))
-            default return $idnos => string-join(', ') 
+            try {
+               switch($model?idnoType)
+               case 'DOI' return ($idnos ! <xhtml:a class="doi-link" href="{concat('https://doi.org/',  normalize-space(.))}">{normalize-space(.), ' '} <i class="fa fa-external-link" aria-hidden="true"></i></xhtml:a>)
+               case 'WeGA' return ($idnos ! (app:createDocLink(crud:doc(normalize-space(.)), query:title(normalize-space(.)), $lang, ('class=wega-volltext')) ))
+               default return $idnos => string-join(', ') 
+            }
+            catch * { wega-util:log-to-file('error', concat("app:process-biblio-idnos(): ", $err:description)) }
         return
             map {
                 'label': $label,
