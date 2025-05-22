@@ -1810,7 +1810,7 @@ declare
         let $idnos := $model('result-page-entry')/tei:biblStruct//tei:idno[@type=$model?idnoType]
         let $label := 
             switch($model?idnoType)
-            case 'WeGA' return 'WeGA Volltexte'
+            case 'WeGA' return lang:get-language-string("WeGA_fullTexts", $lang)
             default return $model?idnoType
         let $content := 
             try {
@@ -1819,7 +1819,7 @@ declare
                case 'WeGA' return ($idnos ! (app:createDocLink(crud:doc(normalize-space(.)), query:title(normalize-space(.)), $lang, ('class=wega-volltext')) ))
                default return $idnos => string-join(', ') 
             }
-            catch * { wega-util:log-to-file('error', concat("Error processing idno(s): ", $err:description)) }
+            catch * { wega-util:log-to-file('error', concat("app:process-biblio-idnos(): ", $err:description)) }
         return
             map {
                 'label': $label,
