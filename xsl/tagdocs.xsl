@@ -123,6 +123,14 @@
 		</xsl:element>
 	</xsl:template>
 	
+	<xsl:template match="tei:exemplum">
+		<div class="exemplum_wrapper">
+			<div class="exemplum">
+				<xsl:apply-templates/>
+			</div>
+		</div>
+	</xsl:template>
+	
 	<xsl:function name="wega:spec-link">
 		<xsl:param name="specID" as="xs:string"/>
 		<xsl:variable name="specType">

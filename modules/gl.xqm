@@ -513,17 +513,16 @@ declare %private function gl:wega-customization($model as map(*)) as map(*) {
  : Create examples from spec files
  : Helper function for gl:spec-details()
 ~:)
-declare %private function gl:print-exemplum($exemplum as element()) as item()* {
-	let $serializationParameters := 
-	   <output:serialization-parameters>
-	       <output:method>xml</output:method>
-	       <output:indent>no</output:indent>
-	       <output:media-type>application/xml</output:media-type>
-	       <output:omit-xml-declaration>yes</output:omit-xml-declaration>
-	       <output:encoding>utf-8</output:encoding>
-       </output:serialization-parameters>
-	return
-		serialize(functx:change-element-ns-deep($exemplum, '', '')/*/*, $serializationParameters)
+declare %private function gl:print-exemplum($exemplum as element()) as node()* {
+  let $params := config:get-xsl-params(map {
+    "main-source-path" : document-uri($exemplum),
+    "createSecNos" : "false"
+  })
+  return wega-util:transform(
+    $exemplum,
+    doc(concat($config:xsl-collection-path, '/var.xsl')),
+    $params
+  )/*
 };
 
 (:~
