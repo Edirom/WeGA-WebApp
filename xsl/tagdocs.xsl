@@ -58,10 +58,13 @@
 		</xsl:element>
 	</xsl:template>
 	
-	<xsl:template match="tei:gloss[not(parent::tei:eg)]/text()">
-		<xsl:text>(</xsl:text>
-		<xsl:value-of select="normalize-space(.)"/>
-		<xsl:text>)</xsl:text>
+	<xsl:template match="tei:gloss[not(parent::tei:eg)]">
+		<xsl:element name="span">
+			<xsl:attribute name="class" select="'tei_gloss'"/>
+			<xsl:text>(</xsl:text>
+			<xsl:apply-templates/>
+			<xsl:text>)</xsl:text>
+		</xsl:element>
 	</xsl:template>
 	
 	<xsl:template match="tei:tag">
