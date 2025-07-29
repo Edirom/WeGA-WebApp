@@ -77,6 +77,10 @@ declare variable $controller:projectNav :=
         'title': 'specialVolume'
     },
     map {
+        'docID': 'A070091',
+        'title': 'specialVolume'
+    },
+    map {
         'docID': 'A070014',
         'title': 'team'
     };
