@@ -97,21 +97,30 @@ declare function lang:translate-language-string($string as xs:string, $sourceLan
 };
 
 (:~
- : translate function for use with the templating module
+ : Translate function for use with the templating module
+ : Translates the element's text content
  : The language information must be given in the $model
- : If a value of @data-template-key is present, it is used as the translation
- : key instead of the element's text
  :
  : @author Peter Stadler
 ~:)
 declare function lang:translate($node as node(), $model as map(*)) as element() {
-    let $key := $node/@data-template-key
-    let $value :=
-        if ($key and $model($key)) then $model($key)
-        else normalize-space($node)
-    return
-        element {'xhtml:' || $node/local-name()} {
-            $node/@*[not(starts-with(name(.), 'data-template'))],
-            lang:get-language-string($value, $model('lang'))
-        }
+    element {'xhtml:' || $node/local-name()} {
+        $node/@*[not(starts-with(name(.), 'data-template'))],
+        lang:get-language-string(normalize-space($node), $model('lang'))
+    }
+};
+
+(:~
+ : Translate function for use with the templating module
+ : Translates the value of a key from the $model map
+ : The key is passed using the @data-template-key attribute in the HTML template
+ : The language information must be given in the $model
+ :
+ : @author Steffen Astheimer
+~:)
+declare function lang:translate($node as node(), $model as map(*), $key as xs:string) as element() {
+    element {'xhtml:' || $node/local-name()} {
+        $node/@*[not(starts-with(name(.), 'data-template'))],
+        lang:get-language-string($model($key), $model('lang'))
+    }
 };
