@@ -103,18 +103,6 @@ span.desc {
     }
 }
 
-[class^="tei_gloss"] {
-  font-style: italic;
-}
-
-[class^="tei_gloss"]::before {
-  content: "(";
-}
-
-[class^="tei_gloss"]::after {
-  content: ")";
-}
-
 /*
  * styling for source links at egXML examples
  */
@@ -181,5 +169,23 @@ div.toc {
 
     span.active {
         font-weight:800;
+    }
+}
+
+/* 
+ * styling for glosses
+ */
+ 
+.tei_specList,
+.guidelines-specs {
+    .tei_gloss,
+    .tei_gloss_replace {
+        font-style: italic;
+        &::before {
+            content: "(";
+        }
+        &::after {
+            content: ")";
+        }
     }
 }
