@@ -103,8 +103,16 @@ span.desc {
     }
 }
 
-.tei_gloss {
+[class^="tei_gloss"] {
   font-style: italic;
+}
+
+[class^="tei_gloss"]::before {
+  content: "(";
+}
+
+[class^="tei_gloss"]::after {
+  content: ")";
 }
 
 /*
