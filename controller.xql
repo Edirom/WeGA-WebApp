@@ -176,10 +176,6 @@ else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-l
 else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-language-string('specialVolume', $lang)) || '.html')) then
     controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070090'), map:entry('docType', 'var'))))
 
-(: Ikonographie Sonderband :)
-else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-language-string('specialVolume', $lang)) || '.html')) then
-    controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070091'), map:entry('docType', 'var'))))
-
 (: Weber-Studien Einzelansicht:)
 (:else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $publications, '/', $weberStudies, '/', 'A11\d{4}/?$'))) then
     let $js := if(request:get-parameter-names() = $ajaxCrawlerParameter) then 'false' else 'true'
