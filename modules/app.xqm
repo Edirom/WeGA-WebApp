@@ -1797,7 +1797,7 @@ declare
                 else controller:create-url-for-doc($model('result-page-entry'), $lang),
             'docType' : config:get-doctype-by-id($model('result-page-entry')/root()/*/data(@xml:id)),
             'relators' : query:relators($model('result-page-entry')),
-            'biblioType' : $model('result-page-entry')/tei:biblStruct/data(@type),
+            'biblioType' : data(config:get-biblioType($model('result-page-entry')/tei:biblStruct)),
             'workType' : $model('result-page-entry')//mei:term/data(@class),
             'idnoTypes': distinct-values($model('result-page-entry')/tei:biblStruct//tei:idno/@type),
             'newsDate' : date:printDate($model('result-page-entry')//tei:date[parent::tei:publicationStmt], $lang, lang:get-language-string#3, $config:default-date-picture-string)

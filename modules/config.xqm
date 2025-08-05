@@ -398,7 +398,20 @@ declare function config:is-weberStudies($doc as document-node()?) as xs:boolean 
  : @return xs:boolean
 :)
 declare function config:is-biblioType($string as xs:string?) as xs:boolean {
-    $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis')
+    $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis', 'lexicon')
+};
+
+(:~
+ : Returns the biblioType of a tei:biblStruct element
+ : Checks whether a @subtype is present but uses @type as fallback return
+ :
+ : @author Steffen Astheimer
+ : @param $biblStruct the biblStruct element
+ : @return node()
+:)
+declare function config:get-biblioType($biblStruct as element(tei:biblStruct)) as node() {
+    if ($biblStruct/@subtype) then $biblStruct/@subtype
+    else $biblStruct/@type
 };
 
 (:~

@@ -350,7 +350,7 @@ declare
 	            'docID' : $codeSample?docID,
 	            'docURL' : controller:create-url-for-doc($doc, $lang),
 	            'relators' : $doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role],
-	            'biblioType' : $doc/tei:biblStruct/data(@type),
+	            'biblioType' : data(config:get-biblioType($doc/tei:biblStruct)),
 	            'workType' : $doc//mei:term/data(@class),
 	            'codeSample' : $codeSample?codeSample,
 	            'icon-src' : '$resources/img/icons/icon_' || $docType || '.png'
