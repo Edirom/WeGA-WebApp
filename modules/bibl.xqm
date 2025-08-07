@@ -115,7 +115,6 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
     let $authors := bibl:printCitationAuthors($biblStruct/tei:analytic/tei:author, $lang) 
     let $articleTitle := $biblStruct/tei:analytic/tei:title (: could be several subtitles:)
     let $journalCitation := bibl:printJournalCitation($biblStruct/tei:monogr, <xhtml:span/>, $lang)
-    let $editors := bibl:edited-by($biblStruct, $lang)
     let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
@@ -124,7 +123,6 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
             if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
             if($articleTitle) then (bibl:printTitles($articleTitle, ()), ', in: ') else (),
             $journalCitation/xhtml:span,
-            if($biblStruct[@subtype='lexicon'] and exists($editors)) then ($editors) else (),
             $journalCitation/text(),
             $note
         }
