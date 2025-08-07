@@ -140,8 +140,8 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
 declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblStruct), $wrapperElement as element(), $lang as xs:string) as element() {
     let $authors := bibl:printCitationAuthors($biblStruct/tei:analytic/tei:author, $lang)
     let $articleTitle := bibl:printTitles($biblStruct/tei:analytic/tei:title, ())
+    let $bookAuthors := if(exists($biblStruct/tei:monogr/tei:author)) then (bibl:printCitationAuthors($biblStruct/tei:monogr/tei:author, $lang)) else ()
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title, $biblStruct/tei:monogr/tei:edition)/node()}</xhtml:span>
-    let $volume := $biblStruct/tei:monogr/tei:imprint/tei:biblScope[@unit = 'vol']
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $biblStruct/tei:monogr/tei:edition, $lang)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
     let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
@@ -151,8 +151,8 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             if(exists($authors)) then ($authors, ', ') else (),
             $articleTitle,
             ', in: ',
+            if($bookAuthors) then (' ',<xhtml:span>{$bookAuthors}</xhtml:span>,', ') else (),
             $bookTitle,
-            if ($volume) then (<xhtml:span class="volume">{concat(' (', bibl:print-single-biblScope-unit('', $volume, $lang), ')')}</xhtml:span>) else (),
             bibl:edited-by($biblStruct, $lang),
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
