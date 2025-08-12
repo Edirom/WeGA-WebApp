@@ -129,14 +129,14 @@ declare function core:create-new-ID($docType as xs:string) as xs:string? {
     let $max := count($coll1) + count($coll2) + 200
     let $exceptions := 
         switch($docType)
-        case 'persons' return ($coll1, $coll2) ! m:hex2int(.)
+        case 'persons' case 'letters' return ($coll1, $coll2) ! m:hex2int(.)
         default return ($coll1, $coll2)
     let $rand := core:random-ID($max, $exceptions)
     let $prefix := wdt:lookup($docType, ())?prefix
     let $newID := 
         if ($rand and $max lt 65535) then 
             switch($docType)
-            case 'persons' return core:add-new-entry-to-idfile($IDFile, concat('_', $prefix, m:int2hex($rand, 4)))
+            case 'persons' case 'letters' return core:add-new-entry-to-idfile($IDFile, concat('_', $prefix, m:int2hex($rand, 4)))
             default return core:add-new-entry-to-idfile($IDFile, concat('_', $prefix, functx:pad-integer-to-length($rand, 4)))
         else ()
 
