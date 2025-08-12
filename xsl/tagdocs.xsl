@@ -53,6 +53,7 @@
 				<gi xmlns="http://www.tei-c.org/ns/1.0"><xsl:value-of select="@key"/></gi>
 			</xsl:variable>
 			<xsl:apply-templates select="$gi"/>
+			<xsl:apply-templates select="$spec/tei:gloss[@xml:lang=$lang]"/>
 			<xsl:apply-templates select="$spec/tei:desc[@xml:lang=$lang]"/>
 		</xsl:element>
 	</xsl:template>

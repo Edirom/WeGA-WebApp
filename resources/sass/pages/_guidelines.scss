@@ -25,7 +25,7 @@ div.toc-side  {
 }
 
 .attribute:before, .unusedattribute:before {
-    content:"@";
+    content:"$";
 }
 
 .unusedattribute {
@@ -41,9 +41,8 @@ span.label {
     font-family:$font-family-sans-serif;
 }
 
-span.desc {
-    display: inline-block;
-    font-style: italic;
+.guidelines-specs-heading span.tei_desc {
+    display: block;
     line-height: 1.3em;
 }
 
@@ -97,7 +96,7 @@ span.desc {
 .tei_specList {
     margin-left:1em;
     margin-top:-(ceil(calc($line-height-computed / 2)));
-    li > * {
+    li * {
         display: table-cell;
         padding-right:.5em;
     }
@@ -169,5 +168,25 @@ div.toc {
 
     span.active {
         font-weight:800;
+    }
+}
+
+/* 
+ * styling for glosses
+ */
+ 
+.tei_specList,
+.guidelines-specs {
+    .tei_gloss,
+    [class*="tei_gloss_"] {
+        font-style: italic;
+        &::before {
+            content: "(";
+            font-style: normal;
+        }
+        &::after {
+            content: ")";
+            font-style: normal;
+        }
     }
 }

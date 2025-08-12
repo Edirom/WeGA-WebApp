@@ -133,7 +133,7 @@ declare
 		let $examples := if (exists($examples-selection)) then $examples-selection else $spec/tei:exemplum[@xml:lang="en"]
 		return
 			map {
-				'gloss' : $spec/tei:gloss[@xml:lang=$lang] ! ('(' || . || ')'),
+				'gloss' : $spec/tei:gloss[@xml:lang=$lang],
 				'desc' : $spec/tei:desc[@xml:lang=$lang],
 				'spec' : $spec,
 				'specIDDisplay' : if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
@@ -233,14 +233,14 @@ declare
 declare 
 	%templates:wrap
 	function gl:print-member($node as node(), $model as map(*)) {
-	   element xhtml:a {
+	   element a {
             attribute href {
                 gl:link-to-spec(($model?member)/data(@ident), $model?lang, 'html', $model?schemaID)
             },
             if(($model?member)/self::tei:classSpec) then (
                 ($model?member)/data(@ident),
                 ' [',
-                <xhtml:small>{gl:class-members($model?member)/@ident/data()}</xhtml:small>,
+                <small>{gl:class-members($model?member)/@ident/data()}</small>,
                 ']'
             )
             else ($model?member)/data(@ident)
@@ -316,23 +316,23 @@ declare
 };
 
 declare function gl:print-divGen-item($node as node(), $model as map(*)) {
-    element xhtml:span {
+    element span {
     attribute class {"toggle-toc-item"},
-        <xhtml:i class="fa fa-plus-square" aria-hidden="true" style="display:none;"/>,
-        <xhtml:i class="fa fa-minus-square" aria-hidden="true"/>
+        <i class="fa fa-plus-square" aria-hidden="true" style="display:none;"/>,
+        <i class="fa fa-minus-square" aria-hidden="true"/>
     },
     element {node-name($node)} {
         $node/@*[not(name(.) = 'class')],        
-        element xhtml:a {
+        element a {
             attribute href {$model?divGen-item?url},
             $model?divGen-item?label
        }
     },
     if(count($model?divGen-item?sub-items) gt 0) then (
-        element xhtml:ul {
+        element ul {
             for $item in $model?divGen-item?sub-items
             return
-                <xhtml:li>{gl:print-divGen-item($node, map {'divGen-item' : $item})}</xhtml:li>
+                <li>{gl:print-divGen-item($node, map {'divGen-item' : $item})}</li>
         } )
     else ()
 };
@@ -368,7 +368,7 @@ declare function gl:print-customization($node as node(), $model as map(*)) {
 		element {node-name($node)} {
 	        $node/@*[not(local-name(.) eq 'class')],
 	        attribute class {string-join((tokenize($node/@class, '\s+'), if($modified) then 'bg-warning' else 'bg-success'), ' ')},
-	        element xhtml:a {
+	        element a {
 	        	attribute href {$data?url},
 	        	$data?customizationIdent || ' (' || (if($modified) then 'modified' else 'unmodified') || ')'
         	}
@@ -377,7 +377,7 @@ declare function gl:print-customization($node as node(), $model as map(*)) {
 
 declare function gl:print-attributeClass($node as node(), $model as map(*)) {
     let $att2span := function($spec as element()) {
-        element xhtml:span {
+        element span {
             attribute class {
                 if($model?spec//tei:attDef[@ident=$spec/@ident]) then 'unusedattribute'
                 else 'attribute'
@@ -387,7 +387,7 @@ declare function gl:print-attributeClass($node as node(), $model as map(*)) {
     }
     let $atts := for $att in gl:spec($model?attClass, $model?schemaID)//tei:attDef order by $att/@ident return $att
     return
-        element xhtml:a {
+        element a {
             attribute href {
                 gl:link-to-spec($model?attClass, $model?lang, 'html', $model?schemaID)
             },
@@ -445,7 +445,7 @@ declare function gl:spec-list-items($node as node(), $model as map(*)) as map(*)
         let $url := gl:link-to-spec($i, $model?lang, 'html', $model?schemaID)
         order by $i
         return 
-            element xhtml:a {
+            element a {
                 attribute href {$url},
                 $i
             }
