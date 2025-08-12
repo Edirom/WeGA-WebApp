@@ -41,9 +41,8 @@ span.label {
     font-family:$font-family-sans-serif;
 }
 
-span.desc {
+.guidelines-specs-heading span.tei_desc {
     display: inline-block;
-    font-style: italic;
     line-height: 1.3em;
 }
 
@@ -179,13 +178,15 @@ div.toc {
 .tei_specList,
 .guidelines-specs {
     .tei_gloss,
-    .tei_gloss_replace {
+    [class*="tei_gloss_"] {
         font-style: italic;
         &::before {
             content: "(";
+            font-style: normal;
         }
         &::after {
             content: ")";
+            font-style: normal;
         }
     }
 }

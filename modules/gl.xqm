@@ -133,7 +133,7 @@ declare
 		let $examples := if (exists($examples-selection)) then $examples-selection else $spec/tei:exemplum[@xml:lang="en"]
 		return
 			map {
-				'gloss' : $spec/tei:gloss[@xml:lang=$lang] ! ('(' || . || ')'),
+				'gloss' : $spec/tei:gloss[@xml:lang=$lang],
 				'desc' : $spec/tei:desc[@xml:lang=$lang],
 				'spec' : $spec,
 				'specIDDisplay' : if($spec/self::tei:elementSpec) then '<' || $spec/@ident || '>' else $spec/@ident,
