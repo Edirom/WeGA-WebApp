@@ -104,8 +104,8 @@ declare function lang:translate-language-string($string as xs:string, $sourceLan
  : @author Peter Stadler
 ~:)
 declare function lang:translate($node as node(), $model as map(*)) as element() {
-    element {'xhtml:' || $node/local-name()} {
-        $node/@*[not(starts-with(name(.), 'data-template'))],
+    element {node-name($node)} {
+        $node/@*,
         lang:get-language-string(normalize-space($node), $model('lang'))
     }
 };
@@ -118,9 +118,9 @@ declare function lang:translate($node as node(), $model as map(*)) as element() 
  :
  : @author Steffen Astheimer
 ~:)
-declare function lang:translate($node as node(), $model as map(*), $key as xs:string) as element() {
-    element {'xhtml:' || $node/local-name()} {
-        $node/@*[not(starts-with(name(.), 'data-template'))],
+declare function lang:translate-key($node as node(), $model as map(*), $key as xs:string) as element() {
+    element {node-name($node)} {
+        $node/@*,
         lang:get-language-string($model($key), $model('lang'))
     }
 };
