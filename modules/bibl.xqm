@@ -190,9 +190,11 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  : @return xs:string*
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
+    let $isNZfM := matches(string($parent/../tei:title[not(@type='sub')]), '\(?neue zeitschrift\)? für musik', 'i')
     concat(
+        if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
+        if($parent/tei:biblScope/@unit = 'jg' and not($isNZfM)) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
         if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
         if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
