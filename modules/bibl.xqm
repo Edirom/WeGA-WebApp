@@ -27,6 +27,7 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
     (: First, for most writings we only want to display the journal :)
     if($biblStruct/tei:analytic/tei:author[@sameAs] and not($biblStruct/ancestor::tei:additional)) then bibl:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :)
     (: That's nice – we have a type! :)
+    else if($biblStruct/@type eq 'lexicon') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'book') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'score') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'article') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
