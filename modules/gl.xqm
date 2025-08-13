@@ -522,7 +522,7 @@ declare %private function gl:print-exemplum($exemplum as element()) as node()* {
     $exemplum,
     doc(concat($config:xsl-collection-path, '/var.xsl')),
     $params
-  )/*
+  )
 };
 
 (:~

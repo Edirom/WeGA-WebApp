@@ -87,6 +87,13 @@
 		</xsl:element>
 	</xsl:template>
 	
+	<xsl:template match="tei:exemplum">
+		<xsl:element name="div">
+			<xsl:attribute name="class">exemplum</xsl:attribute>
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:template>
+	
 	<xsl:template match="teix:egXML">
 		<xsl:element name="div">
 			<xsl:attribute name="class" select="'tei_egXML'"/>
@@ -121,14 +128,6 @@
 				</xsl:element>
 			</xsl:if>
 		</xsl:element>
-	</xsl:template>
-	
-	<xsl:template match="tei:exemplum">
-		<div class="exemplum_wrapper">
-			<div class="exemplum">
-				<xsl:apply-templates/>
-			</div>
-		</div>
 	</xsl:template>
 	
 	<xsl:function name="wega:spec-link">
