@@ -233,6 +233,7 @@ declare %private function bibl:print-single-biblScope-unit($separator as xs:stri
  :)
 declare %private function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as element(), $lang as xs:string) as element() {
     let $biblScope := concat(
+        if($series/tei:biblScope[@unit = 'jg']) then concat(', Jg.', '&#160;', $series/tei:biblScope[@unit = 'jg']) else (),
         if($series/tei:biblScope[@unit = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@unit = 'vol']) else (),
         if($series/tei:biblScope[@unit = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@unit = 'issue']) else ()
     )
