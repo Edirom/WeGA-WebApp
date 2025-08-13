@@ -362,9 +362,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'works' return $collection//tei:workName[ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7] | $collection//tei:rs[@type='work'][ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7]
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
-    case 'biblioType' 
-        return for $bibl in $collection/tei:biblStruct 
-            return config:get-biblioType($bibl)
+    case 'biblioType' return $collection/tei:biblStruct/@type
     case 'docTypeSubClass' return $collection//tei:text/@type
     case 'sex' return $collection//tei:sex | $collection//tei:label[.='Art der Institution'] (:/following-sibling::tei:desc:)
     case 'forenames' return $collection//tei:forename[not(@full)]

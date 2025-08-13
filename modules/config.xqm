@@ -402,19 +402,6 @@ declare function config:is-biblioType($string as xs:string?) as xs:boolean {
 };
 
 (:~
- : Returns the biblioType of a tei:biblStruct element
- : Checks whether a @subtype is present but uses @type as fallback return
- :
- : @author Steffen Astheimer
- : @param $biblStruct the biblStruct element
- : @return node()
-:)
-declare function config:get-biblioType($biblStruct as element(tei:biblStruct)) as node() {
-    if ($biblStruct/@subtype) then $biblStruct/@subtype
-    else $biblStruct/@type
-};
-
-(:~
  : Checks the id for well-formedness and returns its collection path. Doesn't check for availability!
  :
  : @author Peter Stadler
