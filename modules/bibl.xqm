@@ -283,12 +283,14 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
 declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprint)?, $edition as element(tei:edition)?, $lang as xs:string) as element(xhtml:span)? {
     let $countPlaces := count($imprint/tei:pubPlace)
     let $places := 
-        for $place at $count in $imprint/tei:pubPlace
-        return (
-            if($count eq $countPlaces) then normalize-space($place)
-            else if($count eq $countPlaces - 1) then concat(normalize-space($place), ' &amp; ')
-            else concat(normalize-space($place), ', ')
-        )
+        if ($countPlaces le 3) then
+            for $place at $count in $imprint/tei:pubPlace
+            return (
+                if($count eq $countPlaces) then normalize-space($place)
+                else if($count eq $countPlaces - 1) then concat(normalize-space($place), ' &amp; ')
+                else concat(normalize-space($place), ', ')
+            )
+        else concat(normalize-space($imprint/tei:pubPlace[1]), ' ', lang:get-language-string('etAlii', $lang), ', ')
     let $date := (
         if($edition castable as xs:integer)
         then (' ', <xhtml:sup>{number($edition)}</xhtml:sup>)
