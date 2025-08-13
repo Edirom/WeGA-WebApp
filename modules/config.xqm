@@ -398,7 +398,7 @@ declare function config:is-weberStudies($doc as document-node()?) as xs:boolean 
  : @return xs:boolean
 :)
 declare function config:is-biblioType($string as xs:string?) as xs:boolean {
-    $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis')
+    $string = ('mastersthesis', 'inbook', 'online', 'review', 'book', 'misc', 'inproceedings', 'article', 'score', 'incollection', 'phdthesis', 'lexicon')
 };
 
 (:~
