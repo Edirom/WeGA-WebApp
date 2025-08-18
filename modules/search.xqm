@@ -175,13 +175,17 @@ declare %private function search:search($model as map(*)) as map(*) {
         else $base-collection($updatedModel, $docTypes)
     let $fulltext-search :=
         if($updatedModel('query-string')) then search:merge-hits($docTypes ! search:fulltext($filtered-results, $updatedModel('query-string'), $updatedModel?filters, .))
-        else $filtered-results 
+        else $filtered-results
+    let $sorted-by-date :=
+        if (not($updatedModel('query-string')) and count($docTypes) = 1 and $docTypes[1] = 'letters') then
+            wdt:lookup('letters', $fulltext-search)('sort')(map {})
+        else $fulltext-search
     let $store-session := 
-        if(count($fulltext-search) gt 0) 
-        then session:set-attribute('wegasearch', map:merge(($updatedModel, map:entry('search-results', $fulltext-search))))
+        if(count($sorted-by-date) gt 0) 
+        then session:set-attribute('wegasearch', map:merge(($updatedModel, map:entry('search-results', $sorted-by-date))))
         else ()
     return
-        map:merge(($updatedModel, map:entry('search-results', $fulltext-search)))
+        map:merge(($updatedModel, map:entry('search-results', $sorted-by-date)))
 };  
 
 (:~
