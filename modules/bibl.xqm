@@ -172,7 +172,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
  :)
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element() {
     let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
-    let $biblScope := bibl:biblScope($monogr/tei:imprint[1], $lang)
+    let $biblScope := if(count($monogr/tei:imprint) gt 1) then bibl:biblScope-multiple-imprints($monogr, $lang) else bibl:biblScope($monogr/tei:imprint, $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
@@ -204,6 +204,86 @@ declare %private function bibl:biblScope($parent as element(), $lang as xs:strin
         if($parent/tei:biblScope/@unit = 'col') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'col'], $lang) else (),
         if($parent/tei:biblScope/@unit = 'leaf') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'leaf'], $lang) else ()
     )
+};
+
+declare %private function bibl:biblScope-multiple-imprints($monogr as element(tei:monogr), $lang as xs:string) as xs:string {
+    concat(
+        bibl:format-biblScope-units($monogr, 'vol', $lang),
+        bibl:format-biblScope-units($monogr, 'jg', $lang),
+        (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
+        if(matches(normalize-space($monogr/tei:imprint[1]/tei:date), '^\d{4}$') and $monogr/tei:imprint[1]/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $monogr/tei:imprint[1]/tei:date, ')') else (),
+        bibl:format-biblScope-units($monogr, 'issue', $lang),
+        bibl:format-biblScope-units($monogr, 'nr', $lang),
+        (: Alle anderen Datumsausgaben hier :)
+        if(string-length(normalize-space($monogr/tei:imprint[1]/tei:date)) gt 4 or (string-length(normalize-space($monogr/tei:imprint[1]/tei:date)) gt 0 and not($monogr/tei:imprint[1]/tei:biblScope/@unit = ('vol', 'jg')))) then bibl:format-multi-dates($monogr, $lang) else (),
+        bibl:format-biblScope-units($monogr, 'pp', $lang),
+        bibl:format-biblScope-units($monogr, 'col', $lang),
+        bibl:format-biblScope-units($monogr, 'leaf', $lang)
+    )
+};
+
+declare %private function bibl:format-biblScope-units($monogr as element(tei:monogr), $unit as xs:string, $lang as xs:string) as xs:string {
+    let $biblScopes := $monogr/tei:imprint/tei:biblScope[@unit = $unit]
+    let $content :=
+        if (empty($biblScopes)) then ''
+        else if ($unit = ('pp', 'col', 'leaf')) then
+            let $pageCounts := (
+                for $biblScope in $biblScopes
+                let $pageCount := normalize-space(string($biblScope))
+                where $pageCount ne ''
+                return $pageCount
+            )
+           return
+                if (empty($pageCounts)) then ''
+                else if (count($pageCounts) = 1) then $pageCounts[1]
+                else if (count($pageCounts) = 2) then string-join($pageCounts, ' &amp; ')
+                else string-join($pageCounts[position() lt last()], ', ') || ' &amp; ' || $pageCounts[last()]
+        else
+            let $entities := (
+                for $biblScope in $biblScopes
+                let $biblScope-content := normalize-space(string($biblScope))
+                where $biblScope-content castable as xs:integer
+                return xs:integer($biblScope)
+            )
+            let $sorted-entities := (
+                for $entity in distinct-values($entities)
+                order by $entity
+                return $entity
+            )
+            let $starts := (
+                for $entity at $position in $sorted-entities
+                return if ($position = 1 or $sorted-entities[$position] != $sorted-entities[$position - 1] + 1) then $position else ()
+            )
+            let $ends := (
+                for $entity at $position in $starts
+                return if ($position lt count($starts)) then $sorted-entities[$starts[$position + 1] - 1] else $sorted-entities[last()]
+            )
+            let $combined-entities := (
+                for $entity at $position in $starts
+                let $first := $sorted-entities[$entity]
+                let $second := $ends[$position]
+                return if ($first = $second) then string($first) else concat(string($first), '–', string($second))
+            )
+            return
+                if (empty($combined-entities)) then ''
+                else if (count($combined-entities) = 1) then $combined-entities[1]
+                else if (count($combined-entities) = 2) then string-join($combined-entities, ' &amp; ')
+                else string-join($combined-entities[position() lt last()], ', ') || ' &amp; ' || $combined-entities[last()]
+        return
+        if ($content = '') then ''
+        else bibl:print-single-biblScope-unit(', ', <tei:biblScope unit="{$unit}">{$content}</tei:biblScope>, $lang)
+};
+
+declare %private function bibl:format-multi-dates($monogr as element(tei:monogr), $lang as xs:string) as xs:string? {
+    let $dates :=
+        distinct-values(    
+            for $date in $monogr/tei:imprint/tei:date
+            order by $date/@when
+            return normalize-space(string($date))
+            )
+    return
+        if (empty($dates)) then ''
+        else concat(' (', string-join($dates, ', '), ')')
 };
 
 (:~
