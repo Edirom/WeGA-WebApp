@@ -172,38 +172,13 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
  :)
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element() {
     let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
-    let $biblScope := if(count($monogr/tei:imprint) gt 1) then bibl:biblScope-multiple-imprints($monogr, $lang) else bibl:biblScope($monogr/tei:imprint, $lang)
+    let $biblScope := bibl:biblScope-multiple-imprints($monogr, $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
             $journalTitle,
             $biblScope
         }
-};
-
-(:~
- : Helper function for various bibl:print*Citation() 
- : 
- : @author Peter Stadler
- : @param $parent the parent element of the tei:biblScope elements (usually tei:imprint or tei:series)
- : @param $lang the language switch (en, de)
- : @return xs:string*
- :)
-declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
-    concat(
-        if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
-        (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
-        if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
-        (: Alle anderen Datumsausgaben hier :)
-        if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
-        if($parent/tei:biblScope/@unit = 'pp') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'pp'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'col') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'col'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'leaf') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'leaf'], $lang) else ()
-    )
 };
 
 declare %private function bibl:biblScope-multiple-imprints($monogr as element(tei:monogr), $lang as xs:string) as xs:string {
@@ -216,6 +191,7 @@ declare %private function bibl:biblScope-multiple-imprints($monogr as element(te
         bibl:format-biblScope-units($monogr, 'nr', $lang),
         (: Alle anderen Datumsausgaben hier :)
         if(string-length(normalize-space($monogr/tei:imprint[1]/tei:date)) gt 4 or (string-length(normalize-space($monogr/tei:imprint[1]/tei:date)) gt 0 and not($monogr/tei:imprint[1]/tei:biblScope/@unit = ('vol', 'jg')))) then bibl:format-multi-dates($monogr, $lang) else (),
+        if($monogr/tei:imprint[1]/tei:note/@type = 'additional') then concat(' ', $monogr/tei:imprint[1]/tei:note[@type = 'additional']) else (),
         bibl:format-biblScope-units($monogr, 'pp', $lang),
         bibl:format-biblScope-units($monogr, 'col', $lang),
         bibl:format-biblScope-units($monogr, 'leaf', $lang)
@@ -227,43 +203,40 @@ declare %private function bibl:format-biblScope-units($monogr as element(tei:mon
     let $content :=
         if (empty($biblScopes)) then ''
         else if ($unit = ('pp', 'col', 'leaf')) then
-            let $pageCounts := (
+            let $pageCounts := 
                 for $biblScope in $biblScopes
                 let $pageCount := normalize-space(string($biblScope))
                 where $pageCount ne ''
                 return $pageCount
-            )
            return
                 if (empty($pageCounts)) then ''
                 else if (count($pageCounts) = 1) then $pageCounts[1]
                 else if (count($pageCounts) = 2) then string-join($pageCounts, ' &amp; ')
                 else string-join($pageCounts[position() lt last()], ', ') || ' &amp; ' || $pageCounts[last()]
         else
-            let $entities := (
+            let $entities :=
                 for $biblScope in $biblScopes
                 let $biblScope-content := normalize-space(string($biblScope))
-                where $biblScope-content castable as xs:integer
-                return xs:integer($biblScope)
-            )
-            let $sorted-entities := (
-                for $entity in distinct-values($entities)
+                where $biblScope-content ne ''
+                return $biblScope-content
+            let $string-entities := for $entity in $entities where not($entity castable as xs:integer) return $entity
+            let $integer-entities := for $entity in $entities where $entity castable as xs:integer return xs:integer($entity)
+            let $sorted-integer-entities :=
+                for $entity in distinct-values($integer-entities)
                 order by $entity
                 return $entity
-            )
-            let $starts := (
-                for $entity at $position in $sorted-entities
-                return if ($position = 1 or $sorted-entities[$position] != $sorted-entities[$position - 1] + 1) then $position else ()
-            )
-            let $ends := (
+            let $starts :=
+                for $entity at $position in $sorted-integer-entities
+                return if ($position = 1 or $sorted-integer-entities[$position] != $sorted-integer-entities[$position - 1] + 1) then $position else ()
+            let $ends :=
                 for $entity at $position in $starts
-                return if ($position lt count($starts)) then $sorted-entities[$starts[$position + 1] - 1] else $sorted-entities[last()]
-            )
-            let $combined-entities := (
+                return if ($position lt count($starts)) then $sorted-integer-entities[$starts[$position + 1] - 1] else $sorted-integer-entities[last()]
+            let $collapsed-integer-entities :=
                 for $entity at $position in $starts
-                let $first := $sorted-entities[$entity]
+                let $first := $sorted-integer-entities[$entity]
                 let $second := $ends[$position]
                 return if ($first = $second) then string($first) else concat(string($first), '–', string($second))
-            )
+            let $combined-entities := ($collapsed-integer-entities, $string-entities)
             return
                 if (empty($combined-entities)) then ''
                 else if (count($combined-entities) = 1) then $combined-entities[1]
