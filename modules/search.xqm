@@ -175,7 +175,7 @@ declare %private function search:search($model as map(*)) as map(*) {
         else $base-collection($updatedModel, $docTypes)
     let $fulltext-search :=
         if($updatedModel('query-string')) then search:merge-hits($docTypes ! search:fulltext($filtered-results, $updatedModel('query-string'), $updatedModel?filters, .))
-        else $filtered-results 
+        else $filtered-results
     let $store-session := 
         if(count($fulltext-search) gt 0) 
         then session:set-attribute('wegasearch', map:merge(($updatedModel, map:entry('search-results', $fulltext-search))))
@@ -183,6 +183,15 @@ declare %private function search:search($model as map(*)) as map(*) {
     return
         map:merge(($updatedModel, map:entry('search-results', $fulltext-search)))
 };  
+
+(:
+ : this is just a stub
+ : only standard sorting provided by the wdt-module is applied,
+ : no dedicated ordering of dates
+ :)
+declare %private function search:sort-after-date-search($collection as document-node()*, $docType as xs:string, $date as xs:string) as document-node()* {
+    wdt:lookup($docType, $collection)('sort')(map {})
+};
 
 (:~
  : Search results and other goodies for the *list view* pages 
@@ -322,7 +331,7 @@ declare %private function search:filter-result($collection as document-node()*, 
         let $filter := map:keys($filters)[1]
         let $filtered-coll := 
             if($filter = ('undated')) then ($collection intersect core:undated($docType))/root()
-            else if($filter = 'searchDate') then search:searchDate-filter($collection, $filters($filter)[1])
+            else if($filter = 'searchDate') then search:searchDate-filter($collection, $filters($filter)[1]) => search:sort-after-date-search($docType, $filters($filter)[1])
             else if($filter = ('fromDate', 'toDate')) then wdt:lookup($docType, $collection)?filter-by-date(try {$filters?fromDate cast as xs:date} catch * {()}, try {$filters?toDate cast as xs:date} catch * {()} )
             else if($filter = 'textType') then search:textType-filter($collection, $filters($filter)[1])
             else if($filter = 'hideRevealed') then search:revealed-filter($collection)
