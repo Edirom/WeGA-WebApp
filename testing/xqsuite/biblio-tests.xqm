@@ -134,3 +134,11 @@ declare
         return
             bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='editor']
 };
+
+declare
+    %test:args('A111335')         %test:assertEquals(", Jg.&#160;8, Bd.&#160;15, Nr.&#160;7 (23. Juli 1841), S.&#160;27–28")
+    function bt:test-NZfM-biblScope($a as xs:string) as text()* {
+        let $doc := crud:doc($a)
+        return
+            bibl:printJournalCitation($doc//tei:monogr, <xhtml:div/>, 'de')/node()[last()]
+};
