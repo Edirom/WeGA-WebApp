@@ -290,7 +290,7 @@ declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprin
                 else if($count eq $countPlaces - 1) then concat(normalize-space($place), ' &amp; ')
                 else concat(normalize-space($place), ', ')
             )
-        else concat(normalize-space($imprint/tei:pubPlace[1]), ' ', lang:get-language-string('etAlii', $lang), ', ')
+        else concat(normalize-space($imprint/tei:pubPlace[1]), ' ', lang:get-language-string('etAlii', $lang))
     let $date := (
         if($edition castable as xs:integer)
         then (' ', <xhtml:sup>{number($edition)}</xhtml:sup>)

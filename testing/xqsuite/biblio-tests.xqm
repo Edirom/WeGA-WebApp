@@ -63,6 +63,7 @@ declare
     %test:args('A111825')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='placeNYear'>München 1915</xhtml:span>")
     %test:args('A110159')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='placeNYear'>Stuttgart &amp;amp; Weimar 2002</xhtml:span>")
     %test:args('A110046')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='placeNYear'>Köln, Weimar &amp;amp; Wien 2008</xhtml:span>")
+    %test:args('A112739')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='placeNYear'>Berlin u.a. 2017</xhtml:span>")
     function bt:test-placeNYear($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
