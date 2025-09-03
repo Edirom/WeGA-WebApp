@@ -142,7 +142,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $articleTitle := bibl:printTitles($biblStruct/tei:analytic/tei:title, ())
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title, $biblStruct/tei:monogr/tei:edition)/node()}</xhtml:span>
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $biblStruct/tei:monogr/tei:edition, $lang)
-    let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
+    let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span class="series"/>, $lang) else ()
     let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
