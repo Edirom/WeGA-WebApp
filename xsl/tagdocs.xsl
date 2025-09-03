@@ -87,6 +87,13 @@
 		</xsl:element>
 	</xsl:template>
 	
+	<xsl:template match="tei:exemplum">
+		<xsl:element name="div">
+			<xsl:attribute name="class">exemplum</xsl:attribute>
+			<xsl:apply-templates/>
+		</xsl:element>
+	</xsl:template>
+	
 	<xsl:template match="teix:egXML">
 		<xsl:element name="div">
 			<xsl:attribute name="class" select="'tei_egXML'"/>
@@ -102,7 +109,7 @@
 				<xsl:attribute name="class">prettyprint</xsl:attribute>
 				<xsl:element name="code">
 					<xsl:attribute name="class">language-xml</xsl:attribute>
-					<xsl:apply-templates select="*|comment()|processing-instruction()" mode="verbatim"/>
+					<xsl:apply-templates select="node()" mode="verbatim"/>
 				</xsl:element>
 			</xsl:element>
 			<!-- WeGA only: create back links to documents for examples -->

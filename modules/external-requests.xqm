@@ -147,7 +147,7 @@ declare function er:resolve-rdf-resource($elem as element()) as element(er:respo
  : @return element wega:externalResource, a wrapper around er:response
  :)
 declare function er:http-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/></http:request>
+    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/><http:header name="User-Agent" value="WeGA-WebApp/{config:expath-descriptor()/@version => string()}"/></http:request>
     let $response := 
         try { http:send-request($req) }
         catch * {wega-util:log-to-file(if(contains($err:description, 'Read timed out')) then 'info' else 'warn', string-join(('er:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}

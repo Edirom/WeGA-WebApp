@@ -1,6 +1,10 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="row" data-template="search:results" data-template-docType="biblio">
     <div class="col-md-3 order-2 side-col">
-        <h2><a href="#allFilter" class="collapseSingle" aria-expanded="true" data-toggle="collapse"><span data-template="lang:translate">filter</span></a></h2>
+        <h2>
+            <a href="#allFilter" class="collapseSingle" aria-expanded="true" data-toggle="collapse">
+                <span data-template="lang:translate">filter</span>
+            </a>
+        </h2>
         <!-- Facetten Filter-->
         <div class="allFilter panel-collapse collapse show" id="allFilter">
             <h4 data-template="lang:translate">chronology</h4>
@@ -15,6 +19,20 @@
             
             <h4 data-template="lang:translate">editors</h4>
             <select multiple="multiple" data-template="facets:select" name="editors"/>
+            
+            <div data-template="app-shared:if-matches" data-template-key="environment" data-template-value="development" data-template-wrap="no">
+                <h4 data-template="lang:translate">persons_mentioned</h4>
+                <select multiple="multiple" data-template="facets:select" name="persons"/>
+                
+                <h4 data-template="lang:translate">works_mentioned</h4>
+                <select multiple="multiple" data-template="facets:select" name="works"/>
+                
+                <h4 data-template="lang:translate">places_mentioned</h4>
+                <select multiple="multiple" data-template="facets:select" name="places"/>
+                
+                <h4 data-template="lang:translate">keywords</h4>
+                <select multiple="multiple" data-template="facets:select" name="keywords_biblio"/>
+            </div>
             
             <!--<h4 data-template="lang:translate">journals</h4>
             <select multiple="multiple" data-template="facets:select" name="journals"/>-->
