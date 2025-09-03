@@ -27,6 +27,7 @@ declare function bibl:printCitation($biblStruct as element(tei:biblStruct), $wra
     (: First, for most writings we only want to display the journal :)
     if($biblStruct/tei:analytic/tei:author[@sameAs] and not($biblStruct/ancestor::tei:additional)) then bibl:printJournalCitation($biblStruct/tei:monogr, $wrapperElement, $lang) (: Soll in den writings die Ausgabe von (leerem) Autor unterdrücken; Ist aber lediglich als Notlösung zu verstehen! :)
     (: That's nice – we have a type! :)
+    else if($biblStruct/@type eq 'lexicon') then bibl:printIncollectionCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'book') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'score') then bibl:printBookCitation($biblStruct, $wrapperElement, $lang)
     else if($biblStruct/@type eq 'article') then bibl:printArticleCitation($biblStruct, $wrapperElement, $lang)
@@ -143,7 +144,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title, $biblStruct/tei:monogr/tei:edition)/node()}</xhtml:span>
     let $biblScope := $biblStruct/tei:monogr/tei:imprint/tei:biblScope[not(@unit = 'pp' or @unit = 'col')]
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $biblStruct/tei:monogr/tei:edition, $lang)
-    let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
+    let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span class="series"/>, $lang) else ()
     let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
@@ -192,9 +193,12 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  : @return xs:string*
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
+    let $isNZfM := matches(string($parent/../tei:title[not(@type='sub')]), '\(?neue zeitschrift\)? für musik', 'i')
+    return
     concat(
+        if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'jg') then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
+        if($parent/tei:biblScope/@unit = 'jg' and not($isNZfM)) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
         if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
         if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
@@ -235,6 +239,7 @@ declare %private function bibl:print-single-biblScope-unit($separator as xs:stri
  :)
 declare %private function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as element(), $lang as xs:string) as element() {
     let $biblScope := concat(
+        if($series/tei:biblScope[@unit = 'jg']) then concat(', Jg.', '&#160;', $series/tei:biblScope[@unit = 'jg']) else (),
         if($series/tei:biblScope[@unit = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@unit = 'vol']) else (),
         if($series/tei:biblScope[@unit = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@unit = 'issue']) else ()
     )
@@ -285,12 +290,14 @@ declare %private function bibl:printCitationAuthors($authors as element()*, $lan
 declare %private function bibl:printpubPlaceNYear($imprint as element(tei:imprint)?, $edition as element(tei:edition)?, $lang as xs:string) as element(xhtml:span)? {
     let $countPlaces := count($imprint/tei:pubPlace)
     let $places := 
-        for $place at $count in $imprint/tei:pubPlace
-        return (
-            if($count eq $countPlaces) then normalize-space($place)
-            else if($count eq $countPlaces - 1) then concat(normalize-space($place), ' &amp; ')
-            else concat(normalize-space($place), ', ')
-        )
+        if ($countPlaces le 3) then
+            for $place at $count in $imprint/tei:pubPlace
+            return (
+                if($count eq $countPlaces) then normalize-space($place)
+                else if($count eq $countPlaces - 1) then concat(normalize-space($place), ' &amp; ')
+                else concat(normalize-space($place), ', ')
+            )
+        else concat(normalize-space($imprint/tei:pubPlace[1]), ' ', lang:get-language-string('etAlii', $lang))
     let $date := (
         if($edition castable as xs:integer)
         then (' ', <xhtml:sup>{number($edition)}</xhtml:sup>)

@@ -347,7 +347,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'placeOfSender' return $collection//tei:settlement[parent::tei:correspAction/@type='sent']/@key
     case 'placeOfAddressee' return $collection//tei:settlement[parent::tei:correspAction/@type='received']/@key
     case 'journals' return $collection//tei:title[@level='j'][not(@type='sub')][ancestor::tei:sourceDesc]
-    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]/@key
+    case 'places' return $collection//tei:settlement[ancestor::tei:text or ancestor::tei:ab]/@key | $collection//tei:term[parent::tei:keywords][starts-with(., 'A13')]
     case 'dedicatees' return $collection//mei:persName[@role='dte']/@codedval
     case 'lyricists' return $collection//mei:persName[@role='lyr']/@codedval
     case 'librettists' return $collection//mei:persName[@role='lbt']/@codedval
@@ -358,8 +358,8 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
         (: index-keys does not work with multiple whitespace separated keys
             probably need to change to ft:query() someday?!
         :)
-    case 'persons' return ($collection//tei:persName[ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key)
-    case 'works' return $collection//tei:workName[ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7] | $collection//tei:rs[@type='work'][ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7]
+    case 'persons' return $collection//tei:persName[ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key | $collection//tei:rs[@type='person'][ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key | $collection//tei:term[parent::tei:keywords][starts-with(., 'A00')]
+    case 'works' return $collection//tei:workName[ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7] | $collection//tei:rs[@type='work'][ancestor::tei:text or ancestor::tei:ab or ancestor::tei:notesStmt]/@key[string-length(.) = 7] | $collection//tei:term[parent::tei:keywords][starts-with(., 'A02')]
     case 'authors' return $collection//tei:author/@key
     case 'editors' return $collection//tei:editor/@key
     case 'biblioType' return $collection/tei:biblStruct/@type
@@ -375,6 +375,7 @@ declare function query:get-facets($collection as node()*, $facet as xs:string) a
     case 'repository' return $collection//tei:repository/@n
     case 'series' return $collection//mei:seriesStmt/mei:title[@level='s']
     case 'keywords' return $collection//tei:term[parent::tei:keywords]
+    case 'keywords_biblio' return $collection//tei:term[parent::tei:keywords][not(matches(., '[A-F0-9]{6}'))]
     case 'docLang' return $collection//tei:language/@ident
     case 'workTitle' return $collection//mei:title[parent::mei:titleStmt]
     case 'geonamesFeatureClass' return $collection//tei:place/@typeof

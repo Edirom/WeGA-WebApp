@@ -1168,6 +1168,16 @@ declare function api:validate-keywords($model as map(*)) as map(*)? {
 };
 
 (:~
+ : Check parameter keywords_biblio
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-keywords_biblio($model as map(*)) as map(*)? {
+    if(every $i in $model?keywords_biblio ! tokenize(., ',') satisfies $i castable as xs:string) then map { 'keywords_biblio': ($model?keywords_biblio ! tokenize(., ',')) ! xmldb:decode-uri(.) }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "keywords_biblio".')
+};
+
+(:~
  : Check parameter docLang
  : multiple values allowed as input, either by providing multiple URL parameters
  : or by sending a comma separated list as the value of one URL parameter
