@@ -140,5 +140,5 @@ declare
     function bt:test-jgInSeries($a as xs:string) as element()* {
         let $doc := crud:doc($a)
         return
-            bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='seriesCitation']
+            bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='series']
 };
