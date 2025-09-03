@@ -142,7 +142,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $articleTitle := bibl:printTitles($biblStruct/tei:analytic/tei:title, ())
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title, $biblStruct/tei:monogr/tei:edition)/node()}</xhtml:span>
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $biblStruct/tei:monogr/tei:edition, $lang)
-    let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span/>, $lang) else ()
+    let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span class="series"/>, $lang) else ()
     let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
     return 
         element {$wrapperElement/name()} {
@@ -233,6 +233,7 @@ declare %private function bibl:print-single-biblScope-unit($separator as xs:stri
  :)
 declare %private function bibl:printSeriesCitation($series as element(tei:series), $wrapperElement as element(), $lang as xs:string) as element() {
     let $biblScope := concat(
+        if($series/tei:biblScope[@unit = 'jg']) then concat(', Jg.', '&#160;', $series/tei:biblScope[@unit = 'jg']) else (),
         if($series/tei:biblScope[@unit = 'vol']) then concat(', ', lang:get-language-string('vol', $lang), '&#160;', $series/tei:biblScope[@unit = 'vol']) else (),
         if($series/tei:biblScope[@unit = 'issue']) then concat(', ', lang:get-language-string('issue', $lang), '&#160;', $series/tei:biblScope[@unit = 'issue']) else ()
     )

@@ -126,3 +126,11 @@ declare
         return
             bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='editor']
 };
+
+declare
+    %test:args('A111907')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='series'><xhtml:span class='seriesTitle'>Denkmäler der Tonkunst in Bayern</xhtml:span>, Jg.&#160;7, Bd.&#160;2</xhtml:span>")
+    function bt:test-jgInSeries($a as xs:string) as element()* {
+        let $doc := crud:doc($a)
+        return
+            bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='series']
+};
