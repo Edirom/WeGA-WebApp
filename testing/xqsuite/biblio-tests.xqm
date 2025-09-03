@@ -128,6 +128,14 @@ declare
 };
 
 declare
+    %test:args('A111335')         %test:assertEquals(", Jg.&#160;8, Bd.&#160;15, Nr.&#160;7 (23. Juli 1841), S.&#160;27–28")
+    function bt:test-NZfM-biblScope($a as xs:string) as text()* {
+        let $doc := crud:doc($a)
+        return
+            bibl:printJournalCitation($doc//tei:monogr, <xhtml:div/>, 'de')/node()[last()]
+};
+
+declare
     %test:args('A111907')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='series'><xhtml:span class='seriesTitle'>Denkmäler der Tonkunst in Bayern</xhtml:span>, Jg.&#160;7, Bd.&#160;2</xhtml:span>")
     function bt:test-jgInSeries($a as xs:string) as element()* {
         let $doc := crud:doc($a)
