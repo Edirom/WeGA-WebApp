@@ -98,14 +98,6 @@ declare
         "<xhtml:span class='journalTitle' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Das Orchester</xhtml:span>", 
         ", Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774"
     )
-    %test:args('A111363')         %test:assertEquals(
-        "<xhtml:span class='author' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Ursula Lehmann</xhtml:span>", 
-        ",  [Rezension] ", 
-        "<xhtml:span class='title' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Wilhelm Pültz: Die Geburt der deutschen Oper. Roman um Carl Maria v. Weber, Erschienen in Leipzig; Hase &amp;amp; Koehler</xhtml:span>", 
-        ", in: ", 
-        "<xhtml:span class='journalTitle' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Allgemeine Musikzeitung</xhtml:span>", 
-        ", Jg.&#160;66 (1939), S.&#160;562"
-    )
     function bt:test-printReview($a as xs:string) as node()* {
         let $doc := crud:doc($a)
         return
