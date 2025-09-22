@@ -142,6 +142,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
     let $authors := bibl:printCitationAuthors($biblStruct/tei:analytic/tei:author, $lang)
     let $articleTitle := bibl:printTitles($biblStruct/tei:analytic/tei:title, ())
     let $bookTitle := <xhtml:span class="collectionTitle">{bibl:printTitles($biblStruct/tei:monogr/tei:title, $biblStruct/tei:monogr/tei:edition)/node()}</xhtml:span>
+    let $biblScope := $biblStruct/tei:monogr/tei:imprint/tei:biblScope[not(@unit = 'pp' or @unit = 'col')]
     let $pubPlaceNYear := bibl:printpubPlaceNYear($biblStruct/tei:monogr/tei:imprint, $biblStruct/tei:monogr/tei:edition, $lang)
     let $series := if(exists($biblStruct/tei:series/tei:title)) then bibl:printSeriesCitation($biblStruct/tei:series, <xhtml:span class="series"/>, $lang) else ()
     let $note := bibl:printNote($biblStruct/tei:note[1], $lang)
@@ -152,6 +153,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             $articleTitle,
             ', in: ',
             $bookTitle,
+            if ($biblScope) then (<xhtml:span class="{$biblScope/@unit}">{bibl:print-single-biblScope-unit(', ', $biblScope, $lang)}</xhtml:span>) else (),
             bibl:edited-by($biblStruct, $lang),
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
