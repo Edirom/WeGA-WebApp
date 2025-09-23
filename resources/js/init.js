@@ -637,18 +637,18 @@ $('.glSchemaIDFilter').on('change', 'input', function(a) {
 
 $('.obfuscate-email').obfuscateEMail();
 
-$.fn.initPortraitCredits = function() {
+$.fn.initFlipCard = function() {
     $(this).each( function() {
         /* Hiding the flip back when no image information is available */
         if($('.back p').is(':empty')) { $('.back').hide(); }
         else 
-            $(".portrait").flip({
+            $(".portrait, .flipcard").flip({
                 trigger: 'hover'
             });
     })
 };
 
-$(".portrait").initPortraitCredits();
+$(".portrait, .flipcard").initFlipCard();
 
 
 /* 
@@ -1182,4 +1182,18 @@ $(window).on('hashchange', function(ev) {
             window.location.reload();
         }
     })
+});
+
+$(function() {
+  const $carousel = $("#index-header-carousel");
+
+  $carousel.find(".hover-zone.left").hover(
+    () => $carousel.addClass("nudge-left"),
+    () => $carousel.removeClass("nudge-left")
+  );
+
+  $carousel.find(".hover-zone.right").hover(
+    () => $carousel.addClass("nudge-right"),
+    () => $carousel.removeClass("nudge-right")
+  );
 });

@@ -91,6 +91,115 @@
     background: url(../img/header.png) no-repeat center top;
     border-bottom: 10px solid $primary;
     color:$gray-dark;
+    
+    // carousel inside header
+    .carousel {
+        height: 350px;
+        position: relative;
+    
+        .hover-zone {
+            position: absolute;
+            top: 0;
+            width: 22%;
+            height: 100%;
+            z-index: 5;
+            pointer-events: auto;
+        }
+    
+        .hover-zone.left {
+            left: 0;
+        }
+    
+        .hover-zone.right {
+            right: 0;
+        }
+    
+        .carousel-inner {
+            transition: transform 0.3s ease;
+        }
+      
+        &.nudge-left .carousel-inner {
+            transform: translateX(10px);
+        }
+      
+        &.nudge-right .carousel-inner {
+            transform: translateX(-10px);
+        }
+    }
+
+    .carousel-inner,
+    .carousel-item {
+        height: 100%;
+    }
+  
+    .carousel-content-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .carousel-control-prev {
+        left: -7em;
+        z-index: 10;
+    }
+  
+    .carousel-control-next {
+        right: -7em;
+        z-index: 10;
+    }
+    
+    .thematicCommentary-of-the-week-image {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        height: 100%;
+    
+        img {
+            max-height: 100%;
+            width: auto;
+            object-fit: contain;
+            -webkit-mask-composite: intersect;
+            -webkit-mask-repeat: no-repeat;
+            -webkit-mask-position: center;
+            -webkit-mask-size: cover;
+        }
+    }
+    
+    .thematicCommentary-of-the-week-image.left {
+        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
+    }
+  
+    .thematicCommentary-of-the-week-image.right {
+        justify-content: flex-start;
+  
+        -webkit-mask-image: linear-gradient(to left, black 85%, transparent 95%);
+    }
+    
+    .flipcard .front,
+    .flipcard .back {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        padding: 1em;
+        text-align: center;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        backface-visibility: hidden;
+        transition: 0.5s ease-out;
+    }
+  
+    .flipcard .front {
+       z-index: 2;
+       transform: rotateY(0deg);
+    }
+  
+    .flipcard .back {
+        z-index: 1;
+        transform: rotateY(-180deg);
+    }
 }
 
 #content {
