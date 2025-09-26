@@ -190,9 +190,11 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  : @return xs:string*
  :)
 declare %private function bibl:biblScope($monogr as element(tei:monogr), $lang as xs:string) as xs:string {
-    concat(
+    let $isNZfM := matches(string($monogr/tei:title[not(@type='sub')]), '\(?neue zeitschrift\)? für musik', 'i')
+    return concat(
+        if($monogr/tei:imprint[1]/tei:biblScope/@unit = 'jg' and $isNZfM) then bibl:format-biblScope-units($monogr, 'jg', $lang) else (),
         bibl:format-biblScope-units($monogr, 'vol', $lang),
-        bibl:format-biblScope-units($monogr, 'jg', $lang),
+        if($monogr/tei:imprint[1]/tei:biblScope/@unit = 'jg' and not($isNZfM)) then bibl:format-biblScope-units($monogr, 'jg', $lang) else (),
         (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
         if(matches(normalize-space($monogr/tei:imprint[1]/tei:date), '^\d{4}$') and $monogr/tei:imprint[1]/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $monogr/tei:imprint[1]/tei:date, ')') else (),
         bibl:format-biblScope-units($monogr, 'issue', $lang),
