@@ -52,6 +52,9 @@ declare
     %test:args('A111038')         %test:assertEquals("„Ei, dem alten Herrn zoll’ ich Achtung gern’“. Festschrift für Joachim Veit zum 60. Geburtstag (2016), S. 89–99")
     %test:args('A113127')         %test:assertEquals("Salzburger Volksblatt, Jg. 28, Nr. 95 (28. April 1898), [S. 3]")
     %test:args('A110998')         %test:assertEquals("Schlesien. Eine Vierteljahresschrift für Kunst, Wissenschaft und Volkstum, Jg. 19 (1974), Nr. 3, S. 158–162")
+    %test:args('A110471')         %test:assertEquals("Frankfurter Conversationsblatt.  Belletristische und kritische Beilage zur Postzeitung, Jg. 12, Nr. 65–66 (17. und 18. März 1859), S. 258f. und 262f.")
+    %test:args('A112093')         %test:assertEquals("Neue Zeitschrift für Musik, Jg. 46, Bd. 75, Nr. 30, 32 und 34–36 (18. Juli und 1., 15., 22. und 29. August 1879), S. 301–303, 317–320, 337–338, 352–353 und 359–361")
+    %test:args('A112776')         %test:assertEquals("Blätter für Musik, Theater und Kunst, Jg. 3, Nr. 74–79, 90–91 und 93 (15., 18., 22., 25. und 29. September und 2., 6., 9. und 16. Oktober 1857), S. 298f., 302f., 306f., 310f., 314, 318f., 321f. und 330f.")
     function bt:test-printJournalCitation($a as xs:string) as xs:string {
         let $doc := crud:doc($a)
         return
