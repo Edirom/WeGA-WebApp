@@ -172,7 +172,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
  :)
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element() {
     let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
-    let $biblScope := bibl:biblScope-multiple-imprints($monogr, $lang)
+    let $biblScope := bibl:biblScope($monogr, $lang)
     return 
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
@@ -181,7 +181,15 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
         }
 };
 
-declare %private function bibl:biblScope-multiple-imprints($monogr as element(tei:monogr), $lang as xs:string) as xs:string {
+(:~
+ : Helper function to print biblScopes of one or many imprint elements
+ : 
+ : @author Peter Stadler
+ : @param $monogr the parent element of the tei:imprint elements that contain tei:biblScopes
+ : @param $lang the language switch (en, de)
+ : @return xs:string*
+ :)
+declare %private function bibl:biblScope($monogr as element(tei:monogr), $lang as xs:string) as xs:string {
     concat(
         bibl:format-biblScope-units($monogr, 'vol', $lang),
         bibl:format-biblScope-units($monogr, 'jg', $lang),
@@ -198,65 +206,106 @@ declare %private function bibl:biblScope-multiple-imprints($monogr as element(te
     )
 };
 
+(:~
+ : Helper function for bibl:biblScope to collapse tei:biblScopes from several tei:imprint elements into a citation format
+ : Splits biblScope values into strings and integers, then splits integer values into runs (non consecutive numbers) and collapses them into ranges
+ : 
+ : @author Steffen Astheimer
+ : @param $monogr the parent element of the tei:imprint elements that contain tei:biblScopes
+ : @param $unit the unit that is to be displayed
+ : @param $lang the language switch (en, de)
+ : @return xs:string
+ :)
 declare %private function bibl:format-biblScope-units($monogr as element(tei:monogr), $unit as xs:string, $lang as xs:string) as xs:string {
-    let $biblScopes := $monogr/tei:imprint/tei:biblScope[@unit = $unit]
-    let $content :=
-        if (empty($biblScopes)) then ''
-        else if ($unit = ('pp', 'col', 'leaf')) then
-            let $pageCounts := 
-                for $biblScope in $biblScopes
-                let $pageCount := normalize-space(string($biblScope))
-                where $pageCount ne ''
-                return $pageCount
-           return
-                if (empty($pageCounts)) then ''
-                else if (count($pageCounts) = 1) then $pageCounts[1]
-                else if (count($pageCounts) = 2) then string-join($pageCounts, ' &amp; ')
-                else string-join($pageCounts[position() lt last()], ', ') || ' &amp; ' || $pageCounts[last()]
-        else
-            let $entities :=
-                for $biblScope in $biblScopes
-                let $biblScope-content := normalize-space(string($biblScope))
-                where $biblScope-content ne ''
-                return $biblScope-content
-            let $string-entities := for $entity in $entities where not($entity castable as xs:integer) return $entity
-            let $integer-entities := for $entity in $entities where $entity castable as xs:integer return xs:integer($entity)
-            let $sorted-integer-entities :=
-                for $entity in distinct-values($integer-entities)
-                order by $entity
-                return $entity
-            let $starts :=
-                for $entity at $position in $sorted-integer-entities
-                return if ($position = 1 or $sorted-integer-entities[$position] != $sorted-integer-entities[$position - 1] + 1) then $position else ()
-            let $ends :=
-                for $entity at $position in $starts
-                return if ($position lt count($starts)) then $sorted-integer-entities[$starts[$position + 1] - 1] else $sorted-integer-entities[last()]
-            let $collapsed-integer-entities :=
-                for $entity at $position in $starts
-                let $first := $sorted-integer-entities[$entity]
-                let $second := $ends[$position]
-                return if ($first = $second) then string($first) else concat(string($first), '–', string($second))
-            let $combined-entities := ($collapsed-integer-entities, $string-entities)
-            return
-                if (empty($combined-entities)) then ''
-                else if (count($combined-entities) = 1) then $combined-entities[1]
-                else if (count($combined-entities) = 2) then string-join($combined-entities, ' &amp; ')
-                else string-join($combined-entities[position() lt last()], ', ') || ' &amp; ' || $combined-entities[last()]
-        return
-        if ($content = '') then ''
-        else bibl:print-single-biblScope-unit(', ', <tei:biblScope unit="{$unit}">{$content}</tei:biblScope>, $lang)
+  let $biblScopes := $monogr/tei:imprint/tei:biblScope[@unit = $unit]
+  let $values :=
+    distinct-values(
+      for $biblScope in $biblScopes
+      let $value := normalize-space(string($biblScope))
+      where $value ne ''
+      return $value
+    )
+  let $citationString :=
+    if ($unit = ('pp', 'col', 'leaf')) then bibl:join-list($values)
+    else
+      let $strValues := $values[not(. castable as xs:integer)]
+      let $intValues := 
+        for $value in $values[. castable as xs:integer]
+        return xs:integer($value)
+      let $runStartsPositions :=
+        for $value at $position in $intValues
+        return if($position = 1 or $intValues[$position] != $intValues[$position - 1] + 1) then $position else ()
+      let $runEndsValues :=
+        for $value at $position in $runStartsPositions
+        return if($position lt count($runStartsPositions))
+               then $intValues[$runStartsPositions[$position + 1] - 1]
+               else $intValues[last()]
+      let $collapsedIntValues :=
+        for $value at $position in $runStartsPositions
+        let $first := $intValues[$value]
+        let $last := $runEndsValues[$position]
+        return if($first = $last) then string($first) else concat(string($first), '–', string($last))
+      return bibl:join-list(($collapsedIntValues, $strValues)) (: currently seperates ints from strings, if bibl documents mix both types the rendering will be wrong:)
+  return 
+    if($citationString = '') then ''
+    else bibl:print-single-biblScope-unit(', ', <tei:biblScope unit="{$unit}">{$citationString}</tei:biblScope>, $lang)
 };
 
+(:~
+ : Helper function for bibl:format-biblScope-units to collapse tei:dates from several tei:imprint elements into a citation format
+ : Will group by year and month and concatenate the days with commas, naming each corresponding month and year only once at the end of a group
+ : This might lead to unwanted / unhelpful rendering if a group of imprints ranges over the change of a year
+ : 
+ : @author Steffen Astheimer
+ : @param $monogr the parent element of the tei:imprint elements that contain tei:biblScopes
+ : @param $lang the language switch (en, de)
+ : @return xs:string
+ :)
 declare %private function bibl:format-multi-dates($monogr as element(tei:monogr), $lang as xs:string) as xs:string? {
-    let $dates :=
-        distinct-values(    
-            for $date in $monogr/tei:imprint/tei:date
-            order by $date/@when
-            return normalize-space(string($date))
-            )
+  if(count($monogr/tei:imprint) = 1) then concat(' (', $monogr/tei:imprint/tei:date, ')')
+  else
+    let $whenValues :=
+      for $date in $monogr/tei:imprint/tei:date[@when]
+      let $when := normalize-space(string($date/@when))
+      where $when ne ''
+      return $when
     return
-        if (empty($dates)) then ''
-        else concat(' (', string-join($dates, ', '), ')')
+      if(empty($whenValues)) then ''
+      else if(every $when in $whenValues satisfies matches($when, '^\d{4}$')) then concat(' (', bibl:join-list(distinct-values($whenValues)), ')')
+      else
+        let $parsed :=
+          for $when in $whenValues
+          where matches($when, '^\d{4}-\d{2}-\d{2}$')
+          let $year := xs:integer(substring($when, 1, 4))
+          let $month := xs:integer(substring($when, 6, 2))
+          let $day := xs:integer(substring($when, 9, 2))
+          return map { "year": $year, "month": $month, "day": $day }
+        return
+            let $years := distinct-values($parsed?year)
+            let $multiYears := count($years) gt 1
+            let $yearGroups :=
+              for $year in $years
+              let $inYear := $parsed[$parsed?year = $year]
+              let $months := distinct-values($inYear?month)
+              let $monthPieces :=
+                for $month in $months
+                let $days := 
+                  distinct-values(
+                    for $p in $inYear
+                    where $p?month = $month
+                    return $p?day
+                  )
+                let $dayStrings := for $day in $days return concat($day, '.')
+                let $dayList := bibl:join-list($dayStrings)
+                let $monthName := lang:get-language-string(concat('month', $month), $lang)
+                return
+                  if ($multiYears) then concat($dayList, ' ', $monthName, ' ', $year)
+                  else concat($dayList, ' ', $monthName)
+              let $monthsJoined := bibl:join-list($monthPieces)
+              return
+                if ($multiYears) then $monthsJoined
+                else concat($monthsJoined, ' ', $year)
+            return concat(' (', bibl:join-list($yearGroups), ')')
 };
 
 (:~
@@ -272,6 +321,16 @@ declare %private function bibl:print-single-biblScope-unit($separator as xs:stri
         bibl:normalize-hyphen($biblScope),
         if($biblScope/@rend='bracketed') then ']' else ()
     )
+};
+
+(:~
+ : Helper function for bibl:format-biblScope-units and bibl:format-multi-dates to collapse multiple strings
+ :)
+declare %private function bibl:join-list($items as xs:string*) as xs:string {
+  if (empty($items)) then ''
+  else if (count($items) = 1) then $items[1]
+  else if (count($items) = 2) then string-join($items, ' und ')
+  else string-join($items[position() lt last()], ', ') || ' und ' || $items[last()]
 };
 
 (:~
