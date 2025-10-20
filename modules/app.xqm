@@ -559,6 +559,24 @@ declare
 
 declare 
     %templates:wrap
+    %templates:default("lang", "en")
+    function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $today := current-date()
+        let $thematicCommentary := 
+            for $entry in collection('/db/apps/WeGA-data/thematicCommentaries')/tei:TEI
+            where xs:date($entry//tei:notesStmt/tei:note/@from) le $today and xs:date($entry//tei:notesStmt/tei:note/@to) ge $today
+            return $entry
+        return 
+            map {
+                'thematicCommentaryOfTheWeek-title' : $thematicCommentary//tei:titleStmt/tei:title[@level="a"],
+                'thematicCommentaryOfTheWeek-occasion' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:head,
+                'thematicCommentaryOfTheWeek-teaser' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:p,
+                'thematicCommentaryOfTheWeek-url' : controller:create-url-for-doc(crud:doc($thematicCommentary/string(@xml:id)), $lang)
+            }
+};
+
+declare 
+    %templates:wrap
     %templates:default("otdDate", "")
     function app:lookup-todays-events($node as node(), $model as map(*), $otdDate as xs:string) as map(*) {
         api:documents-otd(map:put($model, 'otdDate', $otdDate) => map:put('openapi:config', json-doc($config:openapi-config-path)))

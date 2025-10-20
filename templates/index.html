@@ -6,25 +6,23 @@
                     <li data-target="#index-header-carousel" data-slide-to="0" class="active"></li>
                     <li data-target="#index-header-carousel" data-slide-to="1"></li>
                 </ol>
-                <div class="hover-zone left" data-slide="prev"></div>
-                <div class="hover-zone right" data-slide="next"></div>
                 <div class="carousel-inner">
                     <div class="carousel-item active">
-                        <div class="carousel-content-wrapper">
+                        <div class="carousel-content-wrapper" data-template="app:thematicCommentary-of-the-week">
                             <div class="row">
                                 <div class="col-12 col-md-3 thematicCommentary-of-the-week-image left">
                                     <img src="https://weber-gesamtausgabe.de/Scaler/IIIF/persons%2FA0020xx%2FA002068%2Fweber_bardua.jpg/full/,260/0/native.jpg"/><!-- placeholder for static jubilee picture-->
                                 </div>
                                 <div class="col-12 col-md-6 flipcard thematicCommentary-of-the-week-flipcard">
                                     <div class="front transparent">
-                                        <h2><!-- placeholder teaser phrase occasion -->Webers 200. Todestag steht vor der Tür. Aber wann genau feiern wir eigentlich seinen Geburtstag?</h2>
-                                        <h3><!-- static phrase to highlight turn functionality -->↻ Mehr dazu im "Thema der Woche". ↺</h3>
+                                        <h2 data-template="app-shared:print" data-template-key="thematicCommentaryOfTheWeek-occasion">Platzhalter Occasion</h2>
+                                        <h3>↻ Mehr dazu im "Thema der Woche". ↺</h3>
                                     </div>
                                     <div class="back transparent">
-                                        <h2><!-- placeholder thematic commentary title -->Webers Geburtstag</h2>
-                                        <h4 style="text-align: justify"><!-- placeholder teaser text -->Weber schaute nicht schlecht, als er 1817 erfuhr, dass er am 20. November 1786 in Eutin getauft worden war: Jahrelang hatte er seinen Geburtstag am 18. Dezember gefeiert! Bis heute ist der genaue Geburtstermin unklar. Weber beging ab 1818 sein Wiegenfest dann (gemeinsam mit seiner Frau) am 19. November, auch wenn er in seiner autobiographischen Skizze den 18. November favorisierte – Verwirrung auf der ganzen Linie!</h4>
+                                        <h2 data-template="app-shared:print" data-template-key="thematicCommentaryOfTheWeek-title">Platzhalter Titel</h2>
+                                        <h4 data-template="app-shared:print" data-template-key="thematicCommentaryOfTheWeek-teaser">Platzhalter Teaser</h4>
                                         <h3>
-                                            <a href="index.html#" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="wordOfTheDayURL"><!-- placeholder link -->
+                                            <a href="index.html#" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="thematicCommentaryOfTheWeek-url"><!-- placeholder link -->
                                                 Weiter zum Themenkommentar <i class="fa fa-arrow-right"/>
                                             </a>
                                         </h3>
@@ -37,15 +35,15 @@
                         </div>
                     </div>
                     <div class="carousel-item">
-                        <div class="carousel-content-wrapper">     
-                            <div data-template="app:word-of-the-day">
-                                <h1 class="home" data-template="app-shared:print" data-template-key="wordOfTheDay">„MIT HILFE DER GÖTTLICHEN <br/> TONKUNST LÄSST SICH MEHR <br/>
-                                    AUSDRÜCKEN UND AUSRICHTEN ALS MIT WORTEN.“ </h1>
-                                <h3 class="unterschriftweber">
-                                    <a href="index.html#" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="wordOfTheDayURL">
-                                        <span data-template="lang:translate">gotoletter</span> <i class="fa fa-arrow-right"/>
-                                    </a> <img src="$resources/img/unterschrift-weber.png" alt="Weber's signature"/>
-                                </h3>
+                        <div class="carousel-content-wrapper">
+                            <div class="word-of-the-day" data-template="app:word-of-the-day">
+                               <h1 class="home" data-template="app-shared:print" data-template-key="wordOfTheDay">„MIT HILFE DER GÖTTLICHEN <br/> TONKUNST LÄSST SICH MEHR <br/>
+                                   AUSDRÜCKEN UND AUSRICHTEN ALS MIT WORTEN.“ </h1>
+                               <h3 class="unterschriftweber">
+                                   <a href="index.html#" data-template="app-shared:set-attr" data-template-attr="href" data-template-key="wordOfTheDayURL">
+                                       <span data-template="lang:translate">gotoletter</span> <i class="fa fa-arrow-right"/>
+                                   </a> <img src="$resources/img/unterschrift-weber.png" alt="Weber's signature"/>
+                               </h3>
                             </div>
                         </div>
                     </div>
