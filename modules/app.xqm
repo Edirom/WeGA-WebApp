@@ -562,15 +562,27 @@ declare
     %templates:default("lang", "en")
     function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $today := current-date()
+        let $tcDoc := request:get-parameter('tc', (), false()) => crud:doc()
         let $thematicCommentary := 
-            for $entry in collection('/db/apps/WeGA-data/thematicCommentaries')/tei:TEI
-            where xs:date($entry//tei:notesStmt/tei:note/@from) le $today and xs:date($entry//tei:notesStmt/tei:note/@to) ge $today
-            return $entry
+            if($tcDoc) 
+            then $tcDoc
+            else
+                for $entry in core:getOrCreateColl('thematicCommentaries', 'indices', true())
+                where xs:date($entry//tei:notesStmt/tei:note/@from) le $today and xs:date($entry//tei:notesStmt/tei:note/@to) ge $today
+                return $entry
+        let $teaserImageURL := 
+            if($thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic/@url)
+            then $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic => wega-util:compute-image-url($model?docID)
+            else
+                if($thematicCommentary//tei:text//tei:figure/tei:graphic[@url])
+                then ($thematicCommentary//tei:text//tei:figure/tei:graphic[@url])[1] => wega-util:compute-image-url($model?docID)
+                else "https://weber-gesamtausgabe.de/Scaler/IIIF/persons%2FA0020xx%2FA002068%2F48.jpg/full/,260/0/native.jpg"
         return 
             map {
                 'thematicCommentaryOfTheWeek-title' : $thematicCommentary//tei:titleStmt/tei:title[@level="a"],
                 'thematicCommentaryOfTheWeek-occasion' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:head,
                 'thematicCommentaryOfTheWeek-teaser' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:p,
+                'thematicCommentaryOfTheWeek-teaserImageURL' : $teaserImageURL,
                 'thematicCommentaryOfTheWeek-url' : controller:create-url-for-doc(crud:doc($thematicCommentary/string(@xml:id)), $lang)
             }
 };
