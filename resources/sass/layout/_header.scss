@@ -180,32 +180,42 @@
      }
     .flipcard {
         padding: 0;
-    }
-    .flipcard .front,
-    .flipcard .back {
-        padding: 0;
-        position: absolute;
-        inset: 0;
-        width: 100%;
-        height: calc(100% - 1rem);
-        padding: 1em;
-        margin: 0.5rem 0;
-        text-align: center;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        backface-visibility: hidden;
-        transition: 0.5s ease-out;
-    }
-  
-    .flipcard .front {
-       z-index: 2;
-       transform: rotateY(0deg);
-    }
-  
-    .flipcard .back {
-        z-index: 1;
-        transform: rotateY(-180deg);
+        
+        .front,
+        .back {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding: 1.5rem 1rem;
+            box-sizing: border-box;
+            text-align: center;
+            
+            h3 {
+                margin-top: auto;
+                padding-top: 1rem;
+            }
+        }
+        
+        .front {
+            z-index: 2;
+            transform: rotateY(0deg);
+            
+            h2 {
+                margin: auto 0;
+            }
+        }
+        
+        .back {
+            z-index: 1;
+            transform: rotateY(-180deg);
+            
+            h4 {
+                flex-grow: 1;
+                justify-content: center;
+                margin: 0;
+            }
+        }
     }
     
     .word-of-the-day {
