@@ -98,15 +98,7 @@
         position: relative;
     
         .carousel-inner {
-            transition: transform 0.3s ease;
-        }
-      
-        &.nudge-left .carousel-inner {
-            transform: translateX(10px);
-        }
-      
-        &.nudge-right .carousel-inner {
-            transform: translateX(-10px);
+            transition: transform 0.5s ease;
         }
     }
 
@@ -123,13 +115,13 @@
     }
     
     .carousel-control-prev {
-        left: -4em;
-        z-index: 10;
+        justify-content: flex-start;
+        padding-left: 0.5rem;
     }
   
     .carousel-control-next {
-        right: -4em;
-        z-index: 10;
+        justify-content: flex-end;
+        padding-right: 0.5rem;
     }
     
     .thematicCommentary-of-the-week-image {
