@@ -557,19 +557,29 @@ declare
             }
 };
 
+(:~
+ : compute necessary metadata for a thematic commentary 
+ : to be featured on the index page during the 2026 jubilee
+ :)
 declare 
     %templates:wrap
     %templates:default("lang", "en")
     function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string) as map(*) {
         let $today := current-date()
-        let $tcDoc := request:get-parameter('tc', (), false()) => crud:doc()
+        (: 
+            allow to explicitly request a thematic commentary via the tc URL parameter,
+            e.g. http://localhost:8080/exist/apps/WeGA-WebApp/de/Index?tc=A090047
+        :)
+        let $tcDoc := request:get-parameter('tc', (), false()) ! crud:doc(.)
         let $thematicCommentary := 
+            (
             if($tcDoc) 
             then $tcDoc
             else
-                for $entry in core:getOrCreateColl('thematicCommentaries', 'indices', true())
-                where xs:date($entry//tei:notesStmt/tei:note/@from) le $today and xs:date($entry//tei:notesStmt/tei:note/@to) ge $today
-                return $entry
+                for $teaser in core:getOrCreateColl('thematicCommentaries', 'indices', true())//tei:note[@type='teaser']
+                where xs:date($teaser/@from) le $today and xs:date($teaser/@to) ge $today
+                return $teaser/root()
+            )[1] (: with faulty data or multiple tc URL parameters this might be a sequence :)
         let $teaserImageURL := 
             if($thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic/@url)
             then $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic => wega-util:compute-image-url($model?docID)
@@ -583,7 +593,7 @@ declare
                 'thematicCommentaryOfTheWeek-occasion' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:head,
                 'thematicCommentaryOfTheWeek-teaser' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:p,
                 'thematicCommentaryOfTheWeek-teaserImageURL' : $teaserImageURL,
-                'thematicCommentaryOfTheWeek-url' : controller:create-url-for-doc(crud:doc($thematicCommentary/string(@xml:id)), $lang)
+                'thematicCommentaryOfTheWeek-url' : $thematicCommentary ! controller:create-url-for-doc(., $lang)
             }
 };
 
