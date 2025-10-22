@@ -422,6 +422,9 @@ declare function wega-util:compute-image-url($graphic as element(tei:graphic), $
         images provided by the WeGA by simply naming the file 
         (e.g. `<graphic url="TheaterLeipzigInnen.jpg"/>`)  
     :)
-    else 
-        wega-util:log-to-file('error', 'not implemented yet')
+    else (
+      let $iiifBase := config:get-option('iiifImageApi')                 
+      let $collectionPath := str:join-path-elements((substring-after(config:getCollectionPath($docID), config:get-option('dataCollectionPath') || '/'), $docID, $graphic/@url))
+      return $iiifBase || encode-for-uri($collectionPath) || '/full/,400/0/native.jpg'
+    )
 };

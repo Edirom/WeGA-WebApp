@@ -582,10 +582,10 @@ declare
             )[1] (: with faulty data or multiple tc URL parameters this might be a sequence :)
         let $teaserImageURL := 
             if($thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic/@url)
-            then $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic => wega-util:compute-image-url($model?docID)
+            then $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic => wega-util:compute-image-url($thematicCommentary//tei:TEI/@xml:id/string())
             else
                 if($thematicCommentary//tei:text//tei:figure/tei:graphic[@url])
-                then ($thematicCommentary//tei:text//tei:figure/tei:graphic[@url])[1] => wega-util:compute-image-url($model?docID)
+                then ($thematicCommentary//tei:text//tei:figure/tei:graphic[@url])[1] => wega-util:compute-image-url($thematicCommentary//tei:TEI/@xml:id/string())
                 else "https://weber-gesamtausgabe.de/Scaler/IIIF/persons%2FA0020xx%2FA002068%2F48.jpg/full/,260/0/native.jpg"
         return 
             map {
