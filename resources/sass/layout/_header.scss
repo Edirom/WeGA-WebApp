@@ -120,14 +120,42 @@
         justify-content: center;
     }
     
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 24%;
+        transition: opacity 0.15s ease, background-color 0.15s ease;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+    
     .carousel-control-prev {
         justify-content: flex-start;
         padding-left: 0.5rem;
+        
+        &:hover {
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(255, 255, 255, 0.01) 80%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
     }
   
     .carousel-control-next {
         justify-content: flex-end;
         padding-right: 0.5rem;
+        
+        &:hover {
+            background: linear-gradient(
+                to left,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(255, 255, 255, 0.01) 80%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
     }
     
     .carousel-indicators li {
@@ -161,17 +189,21 @@
         }
         &.left{
            position: relative;
-           padding-left: 4rem;
+           padding-left: 2rem;
            padding-right: 0;
            
            .thematicCommentary-image-frame {
-            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
+            -webkit-mask-image: linear-gradient(to left, black 85%, transparent 95%);
            }
         }
         &.right{
            position: relative;
-           padding-right: 4rem;
+           padding-right: 2rem;
            padding-left: 0;
+           
+           .thematicCommentary-image-frame {
+            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
+           }
         }
      }
     .flipcard {
@@ -183,7 +215,8 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
-            padding: 1.5rem 1rem;
+            padding: 1rem 1em;
+            margin: 0.5rem 0;
             box-sizing: border-box;
             text-align: center;
             
