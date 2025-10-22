@@ -95,16 +95,22 @@
     // carousel inside header
     .carousel {
         height: 350px;
+        overflow: hidden;
         position: relative;
     
         .carousel-inner {
+            height: 100%;
+            overflow: hidden;
             transition: transform 0.5s ease;
         }
     }
-
-    .carousel-inner,
     .carousel-item {
         height: 100%;
+    }
+    
+    .carousel-item .row {
+        height: 100%;
+        align-items: stretch;
     }
   
     .carousel-content-wrapper {
@@ -127,37 +133,59 @@
     .thematicCommentary-of-the-week-image {
         display: flex;
         align-items: center;
-        justify-content: flex-end;
+        justify-content: center;
         height: 100%;
+        box-sizing: border-box;
     
-        img {
-            max-height: 100%;
-            width: auto;
-            object-fit: contain;
-            -webkit-mask-composite: intersect;
-            -webkit-mask-repeat: no-repeat;
-            -webkit-mask-position: center;
-            -webkit-mask-size: cover;
+        .thematicCommentary-image-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0.5rem 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            
+            img {
+               height: 100%;
+               width: auto;
+               object-fit: cover;
+               object-position: center;
+               display: block;
+            }
         }
+        &.left{
+           position: relative;
+           padding-left: 4rem;
+           padding-right: 0;
+           
+           .thematicCommentary-image-frame {
+            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
+           }
+        }
+        &.right{
+           position: relative;
+           padding-right: 4rem;
+           padding-left: 0;
+           
+           .thematicCommentary-image-frame {
+            -webkit-mask-image: linear-gradient(to left, black 85%, transparent 95%);
+           }
+        }
+     }
+    .flipcard {
+        padding: 0;
     }
-    
-    .thematicCommentary-of-the-week-image.left {
-        -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
-    }
-  
-    .thematicCommentary-of-the-week-image.right {
-        justify-content: flex-start;
-  
-        -webkit-mask-image: linear-gradient(to left, black 85%, transparent 95%);
-    }
-    
     .flipcard .front,
     .flipcard .back {
+        padding: 0;
         position: absolute;
         inset: 0;
         width: 100%;
-        height: 100%;
+        height: calc(100% - 1rem);
         padding: 1em;
+        margin: 0.5rem 0;
         text-align: center;
         display: flex;
         flex-direction: column;
