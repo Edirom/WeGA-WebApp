@@ -564,8 +564,9 @@ declare
 declare 
     %templates:wrap
     %templates:default("lang", "en")
-    function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string) as map(*) {
-        let $today := current-date()
+    %templates:default("otdDate", "")
+    function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string, $otdDate as xs:string) as map(*) {
+        let $today := if ($otdDate ne "" and $otdDate castable as xs:date) then xs:date($otdDate) else current-date()
         (: 
             allow to explicitly request a thematic commentary via the tc URL parameter,
             e.g. http://localhost:8080/exist/apps/WeGA-WebApp/de/Index?tc=A090047

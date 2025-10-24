@@ -193,11 +193,25 @@ $.fn.loadPortrait = function () {
     })
 };
 
+function getRequestParams() {
+    const searchParams = new URLSearchParams(window.location.search);
+    let date = searchParams.get('odtDate') || moment().format("YYYY-MM-DD");
+    searchParams.set('odtDate', date);
+    return searchParams;
+}
+
 /* Load the what-happened-on-this-day div for the start page */
 $('#otd').each(function() {
-    const date = moment(new Date()).format("YYYY-MM-DD"),
-        url = $(this).attr('data-target') + '?otdDate=' + date;
+    const url = $(this).attr('data-target') + '?' + getRequestParams().toString();
     $(this).load(url);
+});
+
+/* Load the carousel div for the start page */
+$('#carousel').each(function() {
+    const url = $(this).attr('data-target') + '?' + getRequestParams().toString();
+    $(this).load(url, function() {
+        $(".portrait, .flipcard").initFlipCard();
+    });
 });
 
 /* Initialise datepicker for diaries */
