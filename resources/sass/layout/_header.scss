@@ -112,6 +112,17 @@
         .home {
             margin-top: 1em;
         }
+        q::before,
+        quote[rend="double-quotes"]::before {
+            content: "„";
+        }
+        q::after,
+        quote[rend="double-quotes"]::after {
+            content: "“";
+        }
+        hi[rend="italic"] {
+            font-style: italic;
+        }
     }
     .carousel-item {
         height: 100%;
