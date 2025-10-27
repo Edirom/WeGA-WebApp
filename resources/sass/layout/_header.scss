@@ -116,9 +116,15 @@
         quote[rend="double-quotes"]::before {
             content: "„";
         }
+        quote[rend="single-quotes"]::before {
+            content: "‚";
+        }
         q::after,
         quote[rend="double-quotes"]::after {
             content: "“";
+        }
+        quote[rend="single-quotes"]::after {
+            content: "‘";
         }
         hi[rend="italic"] {
             font-style: italic;
