@@ -566,7 +566,7 @@ declare
     %templates:default("lang", "en")
     %templates:default("otdDate", "")
     function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string, $otdDate as xs:string) as map(*) {
-        let $today := if ($otdDate ne "" and $otdDate castable as xs:date) then xs:date($otdDate) else current-date()
+        let $today := if ($otdDate castable as xs:date) then xs:date($otdDate) else current-date()
         (: 
             allow to explicitly request a thematic commentary via the tc URL parameter,
             e.g. http://localhost:8080/exist/apps/WeGA-WebApp/de/Index?tc=A090047
@@ -590,9 +590,9 @@ declare
                 else "https://weber-gesamtausgabe.de/Scaler/IIIF/persons%2FA0020xx%2FA002068%2F48.jpg/full/,260/0/native.jpg"
         return 
             map {
-                'thematicCommentaryOfTheWeek-title' : $thematicCommentary//tei:titleStmt/tei:title[@level="a"],
-                'thematicCommentaryOfTheWeek-occasion' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:head,
-                'thematicCommentaryOfTheWeek-teaser' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:p,
+                'thematicCommentaryOfTheWeek-title' : $thematicCommentary//tei:titleStmt/tei:title[@level="a"] ! str:txtFromTEI(., $lang),
+                'thematicCommentaryOfTheWeek-occasion' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:head ! wega-util:transform(., doc(concat($config:xsl-collection-path, '/document.xsl')), config:get-xsl-params(())),
+                'thematicCommentaryOfTheWeek-teaser' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:p ! wega-util:transform(., doc(concat($config:xsl-collection-path, '/document.xsl')), config:get-xsl-params(())),
                 'thematicCommentaryOfTheWeek-teaserImageURL' : $teaserImageURL,
                 'thematicCommentaryOfTheWeek-url' : $thematicCommentary ! controller:create-url-for-doc(., $lang)
             }
