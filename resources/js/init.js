@@ -214,6 +214,12 @@ $('.ajax-loader').each(function() {
     });
 });
 
+$('#ical-events').each(function() {
+    const date = moment(new Date()).format("YYYY-MM-DD"),
+        url = $(this).attr('data-target') + '?otdDate=' + date;
+    $(this).load(url);
+});
+
 /* Initialise datepicker for diaries */
 $.fn.initDatepicker = function () {
     // set language for datepicker widget

@@ -1,0 +1,14 @@
+<div xmlns="http://www.w3.org/1999/xhtml" class="row">
+    <div class="col-md-12" data-template="app:lookup-ical-events">
+        <h2>Veranstaltungen im Jubiläumsjahr</h2>
+        <h3>Kuratierte Liste zur Verfügung gestellt von der Webergesellschaft</h3>
+        <h4>Die nächsten Veranstaltungen</h4>
+        <ul>
+            <li data-template="app-shared:each" 
+                data-template-from="ical-events"
+                data-template-to="event">
+                <span data-template="app:print-ical-event"></span>
+            </li>
+        </ul>
+    </div>
+</div>

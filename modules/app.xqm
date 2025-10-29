@@ -15,6 +15,7 @@ declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace ft="http://exist-db.org/xquery/lucene";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+declare namespace ical="urn:ietf:params:xml:ns:icalendar-2.0";
 
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -37,6 +38,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace app-shared="http://xquery.weber-gesamtausgabe.de/modules/app-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/app-shared.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
+import module namespace ics="http://xquery.weber-gesamtausgabe.de/modules/ics" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/ics.xqm";
 
 (:
  : ****************************
@@ -597,6 +599,49 @@ declare
             }
 };
 
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    %templates:default("otdDate", "")
+    %templates:default("max", "20")
+    function app:lookup-ical-events($node as node(), $model as map(*), $otdDate as xs:string, $lang as xs:string, $max as xs:string) as map(*) {
+        let $url := "https://export.kalender.digital/ics/0/2fd3e28a1cdbda468784/weber-jubilum.ics?past_months=3&amp;future_months=6"
+        let $doc := er:cached-external-request($url, str:join-path-elements(($config:tmp-collection-path, 'ical-events.xml')))
+        let $today := if ($otdDate castable as xs:date) then xs:date($otdDate) else current-date()
+        let $events := 
+            for $ev in ics:parse-ics($doc/er:body)//ical:vevent
+            where ($ev/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => substring(1,10)) gt string($today)
+            order by $ev/ical:properties/ical:dtstart/*[not(self::ical:parameters)] ascending
+            return $ev
+        let $next-events := subsequence($events, 1, number($max)) ! app:process-ical-event(., $lang)
+        return
+            map {
+                "ical-events": $next-events
+            }
+};
+
+declare %private function app:process-ical-event($event as element(ical:vevent), $lang as xs:string) as map(*) {
+    let $startDate :=
+        if($event/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => substring(1,10) castable as xs:date)
+        then $event/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => substring(1,10) => xs:date()
+        else ()
+    return
+    map {
+        "startDate": $startDate,
+        "url": $event/ical:properties/ical:url => str:normalize-space(),
+        "location": $event/ical:properties/ical:location => str:normalize-space(),
+        "summary": $event/ical:properties/ical:summary => str:normalize-space()
+    }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-ical-event($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:span) {
+        <span xmlns="http://www.w3.org/1999/xhtml">
+            {$model?event?startDate => date:format-date($config:default-date-picture-string($lang), $lang)}: <a href="{$model?event?url}">{$model?event?summary}</a>. {$model?event?location}
+        </span>
+};
+    
 declare 
     %templates:wrap
     %templates:default("otdDate", "")
