@@ -107,11 +107,34 @@
         .word-of-the-day {
             padding-left: 3em;
             padding-right: 3em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
         }
         
         .home {
             margin-top: 1em;
         }
+        p {
+            margin-bottom: 0;
+        }
+        // font size constraints for carousel content
+        --h1-min: 16px;
+        --h1-fluid: 2.6vw;
+        --h1-max: 33px;
+        --h2-min: 20px;
+        --h2-fluid: 2.6vw;
+        --h2-max: 28px;
+        --h3-min: 16px;
+        --h3-fluid: 2.6vw;
+        --h3-max: 20px;
+        --h4-min: 12px;
+        --h4-fluid: 2.6vw;
+        --h4-max: 16px;
+        h1 { font-size: clamp(var(--h1-min), var(--h1-fluid), var(--h1-max)); }
+        h2 { font-size: clamp(var(--h2-min), var(--h2-fluid), var(--h2-max)); }
+        h3 { font-size: clamp(var(--h3-min), var(--h3-fluid), var(--h3-max)); }
+        h4 { font-size: clamp(var(--h4-min), var(--h4-fluid), var(--h4-max)); }
     }
     .carousel-item {
         height: 100%;
