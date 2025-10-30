@@ -562,7 +562,6 @@ declare
  : to be featured on the index page during the 2026 jubilee
  :)
 declare 
-    %templates:wrap
     %templates:default("lang", "en")
     %templates:default("otdDate", "")
     function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string, $otdDate as xs:string) as map(*) {
