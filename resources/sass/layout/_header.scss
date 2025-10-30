@@ -122,6 +122,16 @@
         p {
             margin-bottom: 0;
         }
+        &:has(.carousel-control-next:hover) {
+            .thematicCommentary-of-the-week-image.right .thematicCommentary-image-frame {
+                -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
+            }
+        }
+        &:has(.carousel-control-prev:hover) {
+            .thematicCommentary-of-the-week-image.left .thematicCommentary-image-frame {
+                -webkit-mask-image: linear-gradient(to left, black 85%, transparent 95%);
+            }
+        }
         // font size constraints for carousel content
         --h1-min: 16px;
         --h1-fluid: 2.6vw;
@@ -207,7 +217,7 @@
         align-items: center;
         height: 100%;
         box-sizing: border-box;
-    
+        
         .thematicCommentary-image-frame {
             position: relative;
             width: 100%;
@@ -223,25 +233,19 @@
                object-fit: cover;
                object-position: center;
                display: block;
+               
+               filter: saturate(0.75) sepia(0.25) brightness(1.02) contrast(0.85);
             }
         }
         &.left{
            justify-content: flex-end;
            padding-left: 2rem;
            padding-right: 0;
-           
-           .thematicCommentary-image-frame {
-            -webkit-mask-image: linear-gradient(to left, black 85%, transparent 95%);
-           }
         }
         &.right{
            justify-content: flex-start;
            padding-right: 2rem;
            padding-left: 0;
-           
-           .thematicCommentary-image-frame {
-            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
-           }
         }
      }
     .flipcard {
@@ -281,6 +285,10 @@
                 justify-content: center;
                 margin: 0;
             }
+        }
+        
+        .transparent {
+            backdrop-filter: blur(3px);
         }
     }
 }
