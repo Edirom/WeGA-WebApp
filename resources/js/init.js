@@ -652,12 +652,14 @@ $('.glSchemaIDFilter').on('change', 'input', function(a) {
 $('.obfuscate-email').obfuscateEMail();
 
 $.fn.initFlipCard = function() {
+    const supportsHover = window.matchMedia("(hover: hover)").matches;
+    const triggerType = supportsHover ? 'hover' : 'click';
     $(this).each( function() {
         /* Hiding the flip back when no image information is available */
         if($('.back p').is(':empty')) { $('.back').hide(); }
-        else 
+        else
             $(".portrait, .flipcard").flip({
-                trigger: 'hover'
+                trigger: triggerType
             });
     })
 };
