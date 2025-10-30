@@ -200,17 +200,17 @@ function getRequestParams() {
     return searchParams;
 }
 
-/* Load the what-happened-on-this-day div for the start page */
-$('#otd').each(function() {
-    const url = $(this).attr('data-target') + '?' + getRequestParams().toString();
-    $(this).load(url);
-});
-
-/* Load the carousel div for the start page */
-$('#carousel').each(function() {
+/* 
+ * Generic ajax loader that will replace the content of the current element
+ * with the result of the Ajax request made to @data-target
+ * 
+ * Mainly used on the start page for on-this-date and word-of-the-day
+ */
+$('.ajax-loader').each(function() {
     const url = $(this).attr('data-target') + '?' + getRequestParams().toString();
     $(this).load(url, function() {
-        $(".portrait, .flipcard").initFlipCard();
+        $(".portrait, .flipcard").initFlipCard(); // necessary for the carousel on the start page
+        $(this).removeClass('invisible'); // necessary for the carousel on the start page
     });
 });
 

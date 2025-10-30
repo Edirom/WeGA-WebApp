@@ -1,7 +1,9 @@
 <div xmlns="http://www.w3.org/1999/xhtml" data-template="templates:surround" data-template-with="templates/page.html" data-template-at="content">
     <div class="header">
-        <div id="carousel" data-target="ajax/carousel.html">
-            <!-- gets populated by ajax -->
+        <div id="carousel" data-target="ajax/carousel.html" class="container ajax-loader invisible">
+            <!-- gets replaced by ajax -->
+            <!-- The following wotd serves as a fallback if the Ajax request fails -->
+            <div data-template="templates:include" data-template-path="templates/includes/wordOfTheDay.html" />
         </div>
     </div>
     <div class="colored borderBottom">
@@ -154,7 +156,7 @@
         </div>
     </div>
     <div class="colored">
-        <div id="otd" data-target="ajax/otd.html">
+        <div id="otd" data-target="ajax/otd.html" class="ajax-loader">
             <!-- gets populated by ajax -->
         </div>
     </div>
