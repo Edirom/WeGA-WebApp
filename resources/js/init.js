@@ -216,8 +216,11 @@ $('.ajax-loader').each(function() {
 
 $('#ical-events').each(function() {
     const date = moment(new Date()).format("YYYY-MM-DD"),
+        lang = getLanguage(),
         url = $(this).attr('data-target') + '?otdDate=' + date;
-    $(this).load(url);
+    $(this).load(url, function() {
+        init_fullcalendar(date, lang)
+    });
 });
 
 /* Initialise datepicker for diaries */
@@ -1219,3 +1222,16 @@ $(function() {
     () => $carousel.removeClass("nudge-right")
   );
 });
+
+function init_fullcalendar(initialDate, lang) {
+    const calendarEl = document.getElementById('calendar'),
+        icalEvents = JSON.parse( document.getElementById("calendar").lastElementChild.innerHTML ), 
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'listWeek',
+            events: icalEvents,
+            locale: lang,
+            initialDate: initialDate,
+            contentHeight: 300
+        });
+        calendar.render();
+};

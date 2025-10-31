@@ -604,19 +604,16 @@ declare
     %templates:default("lang", "en")
     %templates:default("otdDate", "")
     %templates:default("max", "20")
-    function app:lookup-ical-events($node as node(), $model as map(*), $otdDate as xs:string, $lang as xs:string, $max as xs:string) as map(*) {
+    function app:lookup-ical-events($node as node(), $model as map(*), $otdDate as xs:string, $lang as xs:string, $max as xs:string) as element(xhtml:script)  {
         let $url := "https://export.kalender.digital/ics/0/2fd3e28a1cdbda468784/weber-jubilum.ics?past_months=3&amp;future_months=6"
         let $doc := er:cached-external-request($url, str:join-path-elements(($config:tmp-collection-path, 'ical-events.xml')))
         let $today := if ($otdDate castable as xs:date) then xs:date($otdDate) else current-date()
-        let $events := 
-            for $ev in ics:parse-ics($doc/er:body)//ical:vevent
-            where ($ev/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => substring(1,10)) gt string($today)
-            order by $ev/ical:properties/ical:dtstart/*[not(self::ical:parameters)] ascending
-            return $ev
-        let $next-events := subsequence($events, 1, number($max)) ! app:process-ical-event(., $lang)
+        let $this-kw := format-date($today, "[W]")
+        let $events := ics:parse-ics($doc/er:body)//ical:vevent
         return
-            map {
-                "ical-events": $next-events
+            element xhtml:script {
+                ($events ! app:process-ical-event(., $lang)) 
+                => serialize(<output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
             }
 };
 
@@ -627,10 +624,13 @@ declare %private function app:process-ical-event($event as element(ical:vevent),
         else ()
     return
     map {
-        "startDate": $startDate,
+        "id": $event/ical:properties/ical:uid => str:normalize-space(),
+        "start": $event/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => str:normalize-space(),
+        "end": $event/ical:properties/ical:dtend/*[not(self::ical:parameters)] => str:normalize-space(),
         "url": $event/ical:properties/ical:url => str:normalize-space(),
         "location": $event/ical:properties/ical:location => str:normalize-space(),
-        "summary": $event/ical:properties/ical:summary => str:normalize-space()
+        "title": ($event/ical:properties/ical:summary,$event/ical:properties/ical:location) ! str:normalize-space(.) => string-join('. '),
+        "category": $event/ical:properties/ical:categories => str:normalize-space()
     }
 };
 
