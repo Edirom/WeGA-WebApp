@@ -39,6 +39,7 @@ import module namespace app-shared="http://xquery.weber-gesamtausgabe.de/modules
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
 import module namespace ics="http://xquery.weber-gesamtausgabe.de/modules/ics" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/ics.xqm";
+import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 (:
  : ****************************
@@ -605,11 +606,20 @@ declare
     %templates:default("otdDate", "")
     %templates:default("max", "20")
     function app:lookup-ical-events($node as node(), $model as map(*), $otdDate as xs:string, $lang as xs:string, $max as xs:string) as element(xhtml:script)  {
-        let $url := "https://export.kalender.digital/ics/0/2fd3e28a1cdbda468784/weber-jubilum.ics?past_months=3&amp;future_months=6"
-        let $doc := er:cached-external-request($url, str:join-path-elements(($config:tmp-collection-path, 'ical-events.xml')))
-        let $today := if ($otdDate castable as xs:date) then xs:date($otdDate) else current-date()
-        let $this-kw := format-date($today, "[W]")
-        let $events := ics:parse-ics($doc/er:body)//ical:vevent
+        let $url := "https://export.kalender.digital/ics/0/2fd3e28a1cdbda468784/weber-jubilum.ics?past_months=6&amp;future_months=12"
+        let $get-ical-events := function ($url as xs:string) as element(ical:icalendar)? {
+            let $response := er:http-get($url)
+            return
+                ics:parse-ics($response//er:body)
+        }
+        let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+        let $onFailureFunc := function($errCode, $errDesc) {
+            wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+        let $filename := util:hash($url, 'md5') || '.xml'
+        let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'icalFiles', $filename))
+        let $doc := mycache:doc($localFilePath, $get-ical-events, $url, xs:dayTimeDuration('P2D'), $onFailureFunc)
+        let $events := $doc//ical:vevent
         return
             element xhtml:script {
                 ($events ! app:process-ical-event(., $lang)) 
