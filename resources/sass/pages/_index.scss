@@ -129,3 +129,39 @@ h1.home
         color: $link-color;
     }
 }
+
+/*
+ * settings for fullcalendar.io section on the index page
+ */
+#ical-events {
+    padding: 2ex;
+    > div.row {
+        background-color: white;
+        border: 2px solid $gray-light;
+        padding: 2ex;
+    }
+    img.float-right {
+        max-height: 75px;
+    }
+    .fc-button {
+        border-radius: unset;
+    }
+    .fc-list-day-text, .fc-list-day-side-text {
+        color: inherit;
+    }
+    .fc .fc-list-event-title a {
+        color: $link-color;
+    }
+}
+
+/*
+ * overwrite settings for the fullcalendar.io section on the index page
+ */
+:root {
+  --fc-button-border-color: #{$primary};
+  --fc-button-bg-color: #{$primary};
+  --fc-button-hover-bg-color: #{$blue-light};
+  --fc-button-hover-border-color: #{$blue-light};
+  --fc-button-active-bg-color: #{$blue-light};
+  --fc-button-active-border-color: #{$blue-light};
+}

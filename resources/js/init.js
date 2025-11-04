@@ -1228,10 +1228,12 @@ function init_fullcalendar(initialDate, lang) {
         icalEvents = JSON.parse( document.getElementById("calendar").lastElementChild.innerHTML ), 
         calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'listWeek',
+            firstDay: 1,
             events: icalEvents,
             locale: lang,
             initialDate: initialDate,
             contentHeight: 300
         });
-        calendar.render();
+        // only render calendar when events could be retrieved
+        if (icalEvents!==null) {calendar.render()};
 };
