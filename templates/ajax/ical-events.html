@@ -2,16 +2,20 @@
     <div class="row paddingBottomIcon">
         <div class="col-md-12">
             <img src="$resources/img/webergesellschaft-logo.png" class="img-fluid float-right"/>
-            <h2>Veranstaltungen im Jubiläumsjahr 2026</h2>
-            <h3>Informationen der <a href="https://webergesellschaft.de">internationalen Webergesellschaft e.V.</a></h3>
-            
+            <h2 data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Veranstaltungen im Jubiläumsjahr 2026</h2>
+            <h2 data-template="app-shared:if-not-matches" data-template-key="lang" data-template-value="de">Events in the anniversary year 2026</h2>
+            <h3 data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Informationen der <a href="https://webergesellschaft.de">internationalen Webergesellschaft e.V.</a></h3>
+            <h3 data-template="app-shared:if-not-matches" data-template-key="lang" data-template-value="de">Information provided by the <a href="https://webergesellschaft.de">international Webergesellschaft e.V.</a></h3>
             <div id="calendar" data-template="app:lookup-ical-events"/>
             <div class="row py-2">
                 <div class="col">
-                    <p>Alle Angaben des Veranstaltungskalenders ohne Gewähr!</p>
+                    <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Alle Angaben des Veranstaltungskalenders ohne Gewähr!</p>
+                    <p data-template="app-shared:if-not-matches" data-template-key="lang" data-template-value="de">All information in the event calendar is subject to change!</p>
                 </div>
                 <div class="col-12 col-md-6 text-right">
-                    <p>Weitere Angebote der Webergesellschaft: 
+                    <p>
+                        <span data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Weitere Angebote der Webergesellschaft:</span>
+                        <span data-template="app-shared:if-not-matches" data-template-key="lang" data-template-value="de">More from the Webergesellschaft:</span>
                         <a href="https://www.instagram.com/cmvw_gesellschaft"><i class="fa-xl fa-brands fa-instagram"/></a> 
                         <a href="https://linkedin.com/company/webergesellschaft/"><i class="fa-xl fa-brands fa-linkedin"/></a> 
                         <a href="https://kalender.digital/2fd3e28a1cdbda468784"><i class="fa-xl fa-regular fa-calendar"/></a>
