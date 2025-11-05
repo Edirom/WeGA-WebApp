@@ -407,3 +407,24 @@ declare function wega-util:log-to-file($priority as xs:string, $message as xs:st
         else ()
     )
 };
+
+declare function wega-util:compute-image-url($graphic as element(tei:graphic), $docID as xs:string?) as xs:string? {
+    (: external images :)
+    if(starts-with($graphic/@url, 'http'))
+    then $graphic/string(@url)
+    (: 
+        images provided by the WeGA via "wega" prefix 
+        (e.g. `<graphic url="wega:letters%252FA0451xx%252FA045161%252FA045161_3.jpg/full/,400/0/native.jpg"/>`) 
+    :)
+    else if(starts-with($graphic/@url, 'wega:'))
+    then replace($graphic/@url, 'wega:', config:get-option('iiifImageApi'))
+    (: 
+        images provided by the WeGA by simply naming the file 
+        (e.g. `<graphic url="TheaterLeipzigInnen.jpg"/>`)  
+    :)
+    else (
+      let $iiifBase := config:get-option('iiifImageApi')                 
+      let $collectionPath := str:join-path-elements((substring-after(config:getCollectionPath($docID), config:get-option('dataCollectionPath') || '/'), $docID, $graphic/@url))
+      return $iiifBase || encode-for-uri($collectionPath) || '/full/,400/0/native.jpg'
+    )
+};

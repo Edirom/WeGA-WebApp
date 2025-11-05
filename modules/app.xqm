@@ -557,6 +557,46 @@ declare
             }
 };
 
+(:~
+ : compute necessary metadata for a thematic commentary 
+ : to be featured on the index page during the 2026 jubilee
+ :)
+declare 
+    %templates:default("lang", "en")
+    %templates:default("otdDate", "")
+    function app:thematicCommentary-of-the-week($node as node(), $model as map(*), $lang as xs:string, $otdDate as xs:string) as map(*) {
+        let $today := if ($otdDate castable as xs:date) then xs:date($otdDate) else current-date()
+        (: 
+            allow to explicitly request a thematic commentary via the tc URL parameter,
+            e.g. http://localhost:8080/exist/apps/WeGA-WebApp/de/Index?tc=A090047
+        :)
+        let $tcDoc := request:get-parameter('tc', (), false()) ! crud:doc(.)
+        let $thematicCommentary := 
+            (
+            if($tcDoc) 
+            then $tcDoc
+            else
+                for $teaser in core:getOrCreateColl('thematicCommentaries', 'indices', true())//tei:note[@type='teaser']
+                where xs:date($teaser/@from) le $today and xs:date($teaser/@to) ge $today
+                return $teaser/root()
+            )[1] (: with faulty data or multiple tc URL parameters this might be a sequence :)
+        let $teaserImageURL := 
+            if($thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic/@url)
+            then $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:graphic => wega-util:compute-image-url($thematicCommentary//tei:TEI/@xml:id/string())
+            else
+                if($thematicCommentary//tei:text//tei:figure/tei:graphic[@url])
+                then ($thematicCommentary//tei:text//tei:figure/tei:graphic[@url])[1] => wega-util:compute-image-url($thematicCommentary//tei:TEI/@xml:id/string())
+                else "https://weber-gesamtausgabe.de/Scaler/IIIF/persons%2FA0020xx%2FA002068%2F48.jpg/full/,260/0/native.jpg"
+        return 
+            map {
+                'thematicCommentaryOfTheWeek-title' : $thematicCommentary//tei:titleStmt/tei:title[@level="a"] ! str:txtFromTEI(., $lang),
+                'thematicCommentaryOfTheWeek-occasion' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:head ! wega-util:transform(., doc(concat($config:xsl-collection-path, '/document.xsl')), config:get-xsl-params(())),
+                'thematicCommentaryOfTheWeek-teaser' : $thematicCommentary//tei:notesStmt/tei:note[@type="teaser"]/tei:p ! wega-util:transform(., doc(concat($config:xsl-collection-path, '/document.xsl')), config:get-xsl-params(())),
+                'thematicCommentaryOfTheWeek-teaserImageURL' : $teaserImageURL,
+                'thematicCommentaryOfTheWeek-url' : $thematicCommentary ! controller:create-url-for-doc(., $lang)
+            }
+};
+
 declare 
     %templates:wrap
     %templates:default("otdDate", "")

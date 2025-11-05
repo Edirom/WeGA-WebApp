@@ -193,11 +193,25 @@ $.fn.loadPortrait = function () {
     })
 };
 
-/* Load the what-happened-on-this-day div for the start page */
-$('#otd').each(function() {
-    const date = moment(new Date()).format("YYYY-MM-DD"),
-        url = $(this).attr('data-target') + '?otdDate=' + date;
-    $(this).load(url);
+function getRequestParams() {
+    const searchParams = new URLSearchParams(window.location.search);
+    let date = searchParams.get('odtDate') || moment().format("YYYY-MM-DD");
+    searchParams.set('odtDate', date);
+    return searchParams;
+}
+
+/* 
+ * Generic ajax loader that will replace the content of the current element
+ * with the result of the Ajax request made to @data-target
+ * 
+ * Mainly used on the start page for on-this-date and word-of-the-day
+ */
+$('.ajax-loader').each(function() {
+    const url = $(this).attr('data-target') + '?' + getRequestParams().toString();
+    $(this).load(url, function() {
+        $(".portrait, .flipcard").initFlipCard(); // necessary for the carousel on the start page
+        $(this).removeClass('invisible'); // necessary for the carousel on the start page
+    });
 });
 
 /* Initialise datepicker for diaries */
@@ -637,18 +651,20 @@ $('.glSchemaIDFilter').on('change', 'input', function(a) {
 
 $('.obfuscate-email').obfuscateEMail();
 
-$.fn.initPortraitCredits = function() {
+$.fn.initFlipCard = function() {
+    const supportsHover = window.matchMedia("(hover: hover)").matches;
+    const triggerType = supportsHover ? 'hover' : 'click';
     $(this).each( function() {
         /* Hiding the flip back when no image information is available */
         if($('.back p').is(':empty')) { $('.back').hide(); }
-        else 
-            $(".portrait").flip({
-                trigger: 'hover'
+        else
+            $(".portrait, .flipcard").flip({
+                trigger: triggerType
             });
     })
 };
 
-$(".portrait").initPortraitCredits();
+$(".portrait, .flipcard").initFlipCard();
 
 
 /* 
@@ -1182,4 +1198,18 @@ $(window).on('hashchange', function(ev) {
             window.location.reload();
         }
     })
+});
+
+$(function() {
+  const $carousel = $("#index-header-carousel");
+
+  $carousel.find(".hover-zone.left").hover(
+    () => $carousel.addClass("nudge-left"),
+    () => $carousel.removeClass("nudge-left")
+  );
+
+  $carousel.find(".hover-zone.right").hover(
+    () => $carousel.addClass("nudge-right"),
+    () => $carousel.removeClass("nudge-right")
+  );
 });

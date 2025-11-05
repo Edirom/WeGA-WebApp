@@ -91,6 +91,206 @@
     background: url(../img/header.png) no-repeat center top;
     border-bottom: 10px solid $primary;
     color:$gray-dark;
+    
+    // carousel inside header
+    .carousel {
+        height: 350px;
+        overflow: hidden;
+        position: relative;
+    
+        .carousel-inner {
+            height: 100%;
+            overflow: hidden;
+            transition: transform 0.5s ease;
+        }
+        
+        .word-of-the-day {
+            padding-left: 3em;
+            padding-right: 3em;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            
+            .unterschriftweber {
+                align-self: center;
+            }
+        }
+        
+        .home {
+            margin-top: 1em;
+        }
+        p {
+            margin-bottom: 0;
+        }
+        &:has(.carousel-control-next:hover) {
+            .thematicCommentary-of-the-week-image.right .thematicCommentary-image-frame {
+                -webkit-mask-image: linear-gradient(to right, black 85%, transparent 95%);
+            }
+        }
+        &:has(.carousel-control-prev:hover) {
+            .thematicCommentary-of-the-week-image.left .thematicCommentary-image-frame {
+                -webkit-mask-image: linear-gradient(to left, black 85%, transparent 95%);
+            }
+        }
+        // font size constraints for carousel content
+        --h1-min: 16px;
+        --h1-fluid: 2.6vw;
+        --h1-max: 33px;
+        --h2-min: 20px;
+        --h2-fluid: 2.6vw;
+        --h2-max: 28px;
+        --h3-min: 16px;
+        --h3-fluid: 2.6vw;
+        --h3-max: 20px;
+        --h4-min: 12px;
+        --h4-fluid: 2.6vw;
+        --h4-max: 16px;
+        h1 { font-size: clamp(var(--h1-min), var(--h1-fluid), var(--h1-max)); }
+        h2 { font-size: clamp(var(--h2-min), var(--h2-fluid), var(--h2-max)); }
+        h3 { font-size: clamp(var(--h3-min), var(--h3-fluid), var(--h3-max)); }
+        h4 { font-size: clamp(var(--h4-min), var(--h4-fluid), var(--h4-max)); }
+    }
+    .carousel-item {
+        height: 100%;
+    }
+    
+    .carousel-item .row {
+        height: 100%;
+        align-items: stretch;
+    }
+  
+    .carousel-content-wrapper {
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .carousel-control-prev,
+    .carousel-control-next {
+        width: 24%;
+        transition: opacity 0.15s ease, background-color 0.15s ease;
+        
+        &:hover {
+            opacity: 1;
+        }
+    }
+    
+    .carousel-control-prev {
+        justify-content: flex-start;
+        padding-left: 0.5rem;
+        
+        &:hover {
+            background: linear-gradient(
+                to right,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(255, 255, 255, 0.01) 80%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
+    }
+  
+    .carousel-control-next {
+        justify-content: flex-end;
+        padding-right: 0.5rem;
+        
+        &:hover {
+            background: linear-gradient(
+                to left,
+                rgba(255, 255, 255, 0.8) 0%,
+                rgba(255, 255, 255, 0.01) 80%,
+                rgba(255, 255, 255, 0) 100%
+            );
+        }
+    }
+    
+    .carousel-indicators li {
+        border-bottom: 0;
+    }
+    
+    .thematicCommentary-of-the-week-row {
+        margin-right: 0;
+        margin-left: 0;
+    }
+    .thematicCommentary-of-the-week-image {
+        display: flex;
+        align-items: center;
+        height: 100%;
+        box-sizing: border-box;
+        
+        .thematicCommentary-image-frame {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            padding: 0.5rem 0;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            
+            img {
+               height: 100%;
+               width: auto;
+               object-fit: cover;
+               object-position: center;
+               display: block;
+               
+               filter: saturate(0.75) sepia(0.25) brightness(1.02) contrast(0.85);
+            }
+        }
+        &.left{
+           justify-content: flex-end;
+           padding-left: 2rem;
+           padding-right: 0;
+        }
+        &.right{
+           justify-content: flex-start;
+           padding-right: 2rem;
+           padding-left: 0;
+        }
+     }
+    .flipcard {
+        padding: 0;
+        
+        .front,
+        .back {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+            padding: 1rem 1em;
+            margin: 0.5rem 0;
+            box-sizing: border-box;
+            text-align: center;
+            
+            h3 {
+                margin-top: auto;
+            }
+        }
+        
+        .front {
+            z-index: 2;
+            transform: rotateY(0deg);
+            
+            h2 {
+                margin: auto 0;
+            }
+        }
+        
+        .back {
+            z-index: 1;
+            transform: rotateY(-180deg);
+            
+            h4 {
+                flex-grow: 1;
+                justify-content: center;
+                margin: 0;
+            }
+        }
+        
+        .transparent {
+            backdrop-filter: blur(3px);
+        }
+    }
 }
 
 #content {
