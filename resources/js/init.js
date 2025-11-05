@@ -1225,7 +1225,7 @@ $(function() {
 
 function init_fullcalendar(initialDate, lang) {
     const calendarEl = document.getElementById('calendar'),
-        icalEvents = JSON.parse( document.getElementById("calendar").lastElementChild.innerHTML ), 
+        icalEvents = JSON.parse( document.getElementById('calendar').lastElementChild.innerHTML ), 
         calendar = new FullCalendar.Calendar(calendarEl, {
             initialView: 'listWeek',
             firstDay: 1,
@@ -1235,5 +1235,8 @@ function init_fullcalendar(initialDate, lang) {
             contentHeight: 300
         });
         // only render calendar when events could be retrieved
-        if (icalEvents!==null) {calendar.render()};
+        if (icalEvents!==null) {
+            calendar.render();
+            $('#ical-events').show();
+        };
 };
