@@ -194,9 +194,11 @@ $.fn.loadPortrait = function () {
 };
 
 function getRequestParams() {
-    const searchParams = new URLSearchParams(window.location.search);
-    let date = searchParams.get('odtDate') || moment().format("YYYY-MM-DD");
-    searchParams.set('odtDate', date);
+    const searchParams = new URLSearchParams(window.location.search),
+        lang = getLanguage(),
+        date = searchParams.get('otdDate') || moment().format("YYYY-MM-DD");
+    searchParams.set('otdDate', date);
+    searchParams.set('lang', lang);
     return searchParams;
 }
 
@@ -207,19 +209,14 @@ function getRequestParams() {
  * Mainly used on the start page for on-this-date and word-of-the-day
  */
 $('.ajax-loader').each(function() {
-    const url = $(this).attr('data-target') + '?' + getRequestParams().toString();
+    const params = getRequestParams(),
+        url = $(this).attr('data-target') + '?' + params.toString();
     $(this).load(url, function() {
-        $(".portrait, .flipcard").initFlipCard(); // necessary for the carousel on the start page
+        $('.portrait, .flipcard').initFlipCard(); // necessary for the carousel on the start page
         $(this).removeClass('invisible'); // necessary for the carousel on the start page
-    });
-});
-
-$('#ical-events').each(function() {
-    const date = moment(new Date()).format("YYYY-MM-DD"),
-        lang = getLanguage(),
-        url = $(this).attr('data-target') + '?otdDate=' + date;
-    $(this).load(url, function() {
-        init_fullcalendar(date, lang)
+        if(this.id === 'ical-events') { // necessary for the ical calendar on the start page
+            init_fullcalendar(params.get('otdDate'), params.get('lang'));
+        };
     });
 });
 
