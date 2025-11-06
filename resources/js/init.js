@@ -1229,7 +1229,9 @@ function init_fullcalendar(initialDate, lang) {
             events: icalEvents,
             locale: lang,
             initialDate: initialDate,
-            contentHeight: 300
+            contentHeight: 300,
+            eventTimeFormat: { hour: '2-digit', minute: '2-digit' },
+            displayEventEnd: false
         });
         // only render calendar when events could be retrieved
         if (icalEvents!==null) {
