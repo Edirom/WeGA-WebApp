@@ -15,6 +15,7 @@ declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace ft="http://exist-db.org/xquery/lucene";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
+declare namespace ical="urn:ietf:params:xml:ns:icalendar-2.0";
 
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "api.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -37,6 +38,8 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 import module namespace app-shared="http://xquery.weber-gesamtausgabe.de/modules/app-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/app-shared.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/modules/wega-util-shared" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/wega-util-shared.xqm";
+import module namespace ics="http://xquery.weber-gesamtausgabe.de/modules/ics" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/ics.xqm";
+import module namespace mycache="http://xquery.weber-gesamtausgabe.de/modules/cache" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/cache.xqm";
 
 (:
  : ****************************
@@ -597,6 +600,58 @@ declare
             }
 };
 
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    %templates:default("otdDate", "")
+    %templates:default("max", "20")
+    function app:lookup-ical-events($node as node(), $model as map(*), $otdDate as xs:string, $lang as xs:string, $max as xs:string) as element(xhtml:script)  {
+        let $url := "https://export.kalender.digital/ics/0/2fd3e28a1cdbda468784/weber-jubilum.ics?past_months=6&amp;future_months=12"
+        let $get-ical-events := function ($url as xs:string) as element(ical:icalendar)? {
+            let $response := er:http-get($url)
+            return
+                ics:parse-ics($response//er:body)
+        }
+        let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+        let $onFailureFunc := function($errCode, $errDesc) {
+            wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+        let $filename := util:hash($url, 'md5') || '.xml'
+        let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'icalFiles', $filename))
+        let $doc := mycache:doc($localFilePath, $get-ical-events, $url, xs:dayTimeDuration('P2D'), $onFailureFunc)
+        let $events := $doc//ical:vevent
+        return
+            element xhtml:script {
+                ($events ! app:process-ical-event(., $lang)) 
+                => serialize(<output:serialization-parameters><output:method>json</output:method></output:serialization-parameters>)
+            }
+};
+
+declare %private function app:process-ical-event($event as element(ical:vevent), $lang as xs:string) as map(*) {
+    let $startDate :=
+        if($event/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => substring(1,10) castable as xs:date)
+        then $event/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => substring(1,10) => xs:date()
+        else ()
+    return
+    map {
+        "id": $event/ical:properties/ical:uid => str:normalize-space(),
+        "start": $event/ical:properties/ical:dtstart/*[not(self::ical:parameters)] => str:normalize-space(),
+        "end": $event/ical:properties/ical:dtend/*[not(self::ical:parameters)] => str:normalize-space(),
+        "url": $event/ical:properties/ical:url => str:normalize-space(),
+        "location": $event/ical:properties/ical:location => str:normalize-space(),
+        "title": ($event/ical:properties/ical:summary,$event/ical:properties/ical:location) ! str:normalize-space(.) => string-join('. '),
+        "category": $event/ical:properties/ical:categories => str:normalize-space()
+    }
+};
+
+declare 
+    %templates:default("lang", "en")
+    function app:print-ical-event($node as node(), $model as map(*), $lang as xs:string) as element(xhtml:span) {
+        <span xmlns="http://www.w3.org/1999/xhtml">
+            {$model?event?startDate => date:format-date($config:default-date-picture-string($lang), $lang)}: <a href="{$model?event?url}">{$model?event?summary}</a>. {$model?event?location}
+        </span>
+};
+    
 declare 
     %templates:wrap
     %templates:default("otdDate", "")

@@ -194,9 +194,11 @@ $.fn.loadPortrait = function () {
 };
 
 function getRequestParams() {
-    const searchParams = new URLSearchParams(window.location.search);
-    let date = searchParams.get('odtDate') || moment().format("YYYY-MM-DD");
-    searchParams.set('odtDate', date);
+    const searchParams = new URLSearchParams(window.location.search),
+        lang = getLanguage(),
+        date = searchParams.get('otdDate') || moment().format("YYYY-MM-DD");
+    searchParams.set('otdDate', date);
+    searchParams.set('lang', lang);
     return searchParams;
 }
 
@@ -207,10 +209,14 @@ function getRequestParams() {
  * Mainly used on the start page for on-this-date and word-of-the-day
  */
 $('.ajax-loader').each(function() {
-    const url = $(this).attr('data-target') + '?' + getRequestParams().toString();
+    const params = getRequestParams(),
+        url = $(this).attr('data-target') + '?' + params.toString();
     $(this).load(url, function() {
-        $(".portrait, .flipcard").initFlipCard(); // necessary for the carousel on the start page
+        $('.portrait, .flipcard').initFlipCard(); // necessary for the carousel on the start page
         $(this).removeClass('invisible'); // necessary for the carousel on the start page
+        if(this.id === 'ical-events') { // necessary for the ical calendar on the start page
+            init_fullcalendar(params.get('otdDate'), params.get('lang'));
+        };
     });
 });
 
@@ -1213,3 +1219,28 @@ $(function() {
     () => $carousel.removeClass("nudge-right")
   );
 });
+
+function init_fullcalendar(initialDate, lang) {
+    const calendarEl = document.getElementById('calendar'),
+        icalEvents = JSON.parse( document.getElementById('calendar').lastElementChild.innerHTML ), 
+        calendar = new FullCalendar.Calendar(calendarEl, {
+            initialView: 'listWeek',
+            firstDay: 1,
+            events: icalEvents,
+            locale: lang,
+            initialDate: initialDate,
+            contentHeight: 300,
+            eventTimeFormat: { hour: '2-digit', minute: '2-digit' },
+            displayEventEnd: false,
+            eventClick: function(info) {
+                // see https://fullcalendar.io/docs/eventClick
+                info.jsEvent.preventDefault(); // don't let the browser navigate
+                if (info.event.url) { window.open(info.event.url); }
+            }
+        });
+        // only render calendar when events could be retrieved
+        if (icalEvents!==null) {
+            calendar.render();
+            $('#ical-events').show();
+        };
+};
