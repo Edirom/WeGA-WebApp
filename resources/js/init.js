@@ -1231,7 +1231,12 @@ function init_fullcalendar(initialDate, lang) {
             initialDate: initialDate,
             contentHeight: 300,
             eventTimeFormat: { hour: '2-digit', minute: '2-digit' },
-            displayEventEnd: false
+            displayEventEnd: false,
+            eventClick: function(info) {
+                // see https://fullcalendar.io/docs/eventClick
+                info.jsEvent.preventDefault(); // don't let the browser navigate
+                if (info.event.url) { window.open(info.event.url); }
+            }
         });
         // only render calendar when events could be retrieved
         if (icalEvents!==null) {
