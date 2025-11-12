@@ -119,6 +119,12 @@ declare function api:documents-otd($model as map(*)) as map(*) {
     let $model :=
         (: update model with date information :)
         map:put($model, 'otdDate', string($otdDate)) => map:put('dateWithoutYear', $dateWithoutYear)
+    (:
+        The exact behaviour of the query string is still not clear to me: although enquoted, the query string (and/or the field index)
+        seems to get tokenized, at least the query strings "10-12", "10 12", and "10\-12" yield all the same results (i.e. it will all match October 10 in any year).
+        NB, it does not match any date in December 1810, what one might expect.
+        Since this behaviour might change in some future eXist version I put it here as a word of caution.
+    :)
     let $lucene-query-string := 'date:"' || $dateWithoutYear || '"'
     let $eventElements :=
         for $docType in api:resolve-docTypes($model)
