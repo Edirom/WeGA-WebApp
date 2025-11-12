@@ -119,6 +119,7 @@ declare function api:documents-otd($model as map(*)) as map(*) {
     let $model :=
         (: update model with date information :)
         map:put($model, 'otdDate', string($otdDate)) => map:put('dateWithoutYear', $dateWithoutYear)
+    let $lucene-query-string := 'date:"' || $dateWithoutYear || '"'
     let $eventElements :=
         for $docType in api:resolve-docTypes($model)
         return
@@ -126,18 +127,18 @@ declare function api:documents-otd($model as map(*)) as map(*) {
             case 'diaries' return
                 core:getOrCreateColl(
                     $docType, 'indices', true()
-                )//tei:ab[ft:query(., 'date:' || $dateWithoutYear)]/self::tei:ab (: use self axis here for performance reasons :)
+                )//tei:ab[ft:query(., $lucene-query-string)]/self::tei:ab (: use self axis here for performance reasons :)
                 [xs:date(@n) le $otdDate]//tei:seg[@type = ('rehearsal', 'performance', 'production')]
                 [.//tei:workName[not(ancestor::tei:note)]/@key or .//tei:rs[@type='work'][not(ancestor::tei:note)]/@key]
             case 'letters' return
                 core:getOrCreateColl(
                     $docType,'indices', true()
-                )//tei:TEI[ft:query(., 'date:' || $dateWithoutYear)]//tei:correspAction[@type='sent']
+                )//tei:TEI[ft:query(., $lucene-query-string)]//tei:correspAction[@type='sent']
                 [some $cur.date in tei:date satisfies contains($cur.date/@when, $dateWithoutYear) and xs:date($cur.date/@when) le $otdDate][following::tei:text//tei:p]
             case 'persons' return
                 core:getOrCreateColl(
                     $docType, 'indices', true()
-                )//tei:person[ft:query(., 'date:' || $dateWithoutYear, map{'facets': map{'docSource': 'WeGA'}})]
+                )//tei:person[ft:query(., $lucene-query-string, map{'facets': map{'docSource': 'WeGA'}})]
                 //tei:date[contains(@when, $dateWithoutYear)][xs:date(@when) le $otdDate][parent::tei:birth or parent::tei:death]/parent::*
             default return ()
     let $sortedEvents := 
