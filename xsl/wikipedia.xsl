@@ -120,4 +120,8 @@
     <xsl:template match="a[following-sibling::div/@id='mw-content-text']"/>
     <xsl:template match="table[@id='Vorlage_Begriffsklärungshinweis']"/>
     <xsl:template match="div[@class='hatnote navigation-not-searchable']"/>
+    <xsl:template match="header[parent::main]"/>
+    <xsl:template match="div[contains(@class, 'vector-column-end')]"/>
+    <xsl:template match="div[contains(@class, 'vector-page-toolbar')]"/>
+    
 </xsl:stylesheet>
