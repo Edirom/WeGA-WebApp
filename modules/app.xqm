@@ -1179,8 +1179,8 @@ declare
     %templates:default("lang", "en")
     function app:deutsche-biographie-text($node as node(), $model as map(*), $type as xs:string, $lang as xs:string) as item()* {
         let $deutsche-biographie-text := 
-            if($type = 'ndb') then wega-util:transform($model('adbndbContent')//xhtml:div[@id='ndbcontent'], doc(concat($config:xsl-collection-path, '/deutsche-biographie.xsl')), config:get-xsl-params(()))/node()
-            else wega-util:transform($model('adbndbContent')//xhtml:div[@id='adbcontent'], doc(concat($config:xsl-collection-path, '/deutsche-biographie.xsl')), config:get-xsl-params(()))/node()
+            if($type = 'ndb') then wega-util:transform($model('adbndbContent')//xhtml:h4[@id='ndbcontent_leben']/ancestor::xhtml:ul[@class='bioartikel'], doc(concat($config:xsl-collection-path, '/deutsche-biographie.xsl')), config:get-xsl-params(()))/node()
+            else wega-util:transform($model('adbndbContent')//xhtml:h4[@id='adbcontent_leben']/ancestor::xhtml:ul[@class='bioartikel'], doc(concat($config:xsl-collection-path, '/deutsche-biographie.xsl')), config:get-xsl-params(()))/node()
         return 
             if(exists($deutsche-biographie-text)) then $deutsche-biographie-text
             else lang:get-language-string('failedToLoadExternalResource', $lang)
