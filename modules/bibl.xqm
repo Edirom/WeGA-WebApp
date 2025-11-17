@@ -193,7 +193,7 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  : @return xs:string*
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
-    let $isNZfM := matches(string($parent/../tei:title[not(@type='sub')]), '\(?neue zeitschrift\)? für musik', 'i')
+    let $isNZfM := some $title in $parent/../tei:title[not(@type='sub')] satisfies matches(string($title), '\(?neue zeitschrift\)? für musik', 'i')
     return
     concat(
         if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
