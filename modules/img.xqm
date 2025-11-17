@@ -346,12 +346,12 @@ declare %private function img:tripota-images($model as map(*), $lang as xs:strin
     let $pics := $page//xhtml:td
     return 
         for $div in $pics[not(xhtml:a/xhtml:img/@src='portraits/dummy.jpg')]
-        let $picURI := concat('http://www.tripota.uni-trier.de/',  $div//xhtml:img[starts-with(@src, 'portraits')]/data(@src))
+        let $picURI := concat('https://www.tripota.uni-trier.de/',  $div//xhtml:img[starts-with(@src, 'portraits')]/data(@src))
         return 
             if($picURI castable as xs:anyURI) then
                 map {
                     'caption' : normalize-space(string-join($div/xhtml:br[2]/following-sibling::node(), ' ')) || ' (Quelle: Trierer Porträtdatenbank)',
-                    'linkTarget' : 'http://www.tripota.uni-trier.de/' || $div/xhtml:a[1]/data(@href),
+                    'linkTarget' : 'https://www.tripota.uni-trier.de/' || $div/xhtml:a[1]/data(@href),
                     'source' : 'Trierer Porträtdatenbank',
                     'url' : function($size) {
                         $picURI
