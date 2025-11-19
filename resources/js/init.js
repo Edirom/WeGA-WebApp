@@ -210,12 +210,18 @@ function getRequestParams() {
  */
 $('.ajax-loader').each(function() {
     const params = getRequestParams(),
+        dateStr = params.get('otdDate'),
+        date = moment(dateStr, "YYYY-MM-DD"),
         url = $(this).attr('data-target') + '?' + params.toString();
     $(this).load(url, function() {
         $('.portrait, .flipcard').initFlipCard(); // necessary for the carousel on the start page
         $(this).removeClass('invisible'); // necessary for the carousel on the start page
         if(this.id === 'ical-events') { // necessary for the ical calendar on the start page
-            init_fullcalendar(params.get('otdDate'), params.get('lang'));
+            const start = moment("2025-11-17", "YYYY-MM-DD"),
+                end   = moment("2026-12-31", "YYYY-MM-DD");
+            if (date.isSameOrAfter(start) && date.isSameOrBefore(end)) { // only load calendar from release 4.13 on until end of 2026
+                init_fullcalendar(params.get('otdDate'), params.get('lang'));
+            }
         };
     });
 });
