@@ -145,6 +145,12 @@ h1.home
     img.float-right {
         max-height: 75px;
     }
+    .fc-header-toolbar {
+        @include media-breakpoint-only(xs) {
+            align-items: end;
+            flex-direction: column;
+        }	
+    }
     .fc-button {
         border-radius: unset;
     }
