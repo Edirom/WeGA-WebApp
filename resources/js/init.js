@@ -1238,8 +1238,8 @@ function init_fullcalendar(initialDate, lang) {
                 if (info.event.url) { window.open(info.event.url); }
             }
         });
-        // only render calendar when events could be retrieved
-        if (icalEvents!==null) {
+        // only render calendar until end of 2026 and when events could be retrieved
+        if (icalEvents!==null && moment(initialDate, "YYYY-MM-DD").isSameOrBefore(moment("2026-12-31", "YYYY-MM-DD"))) {
             calendar.render();
             $('#ical-events').show();
         };
