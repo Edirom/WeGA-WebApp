@@ -1244,3 +1244,18 @@ function init_fullcalendar(initialDate, lang) {
             $('#ical-events').show();
         };
 };
+
+
+const btn = document.getElementById('backToTop');
+
+window.addEventListener('scroll', function () {
+  if (window.scrollY > 1000 && window.scrollY < (document.documentElement.scrollHeight - window.innerHeight - 350)) {
+    btn.classList.add('btn_visible');
+  } else {
+    btn.classList.remove('btn_visible');
+  }
+});
+
+btn.addEventListener('click', function () {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+});
