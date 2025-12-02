@@ -135,7 +135,7 @@ function formatFacet (facet) {
 }
 
 /* 
- * Helper function for rangeSlider and chronology input
+ * Helper functions for rangeSlider and chronology input
  */
 function applyChronologyFilter (data) {
     /* Get active facets to append as URL params */
@@ -151,18 +151,27 @@ function applyChronologyFilter (data) {
     updatePage(params);
 }
 
+function getInputDateFormat() {
+    const lang = getLanguage();
+    return (lang === 'de') ? "DD.MM.YYYY" : "MM/DD/YYYY";
+}
+
+function formatInputDate(timestamp) {
+    return moment(timestamp).locale(getLanguage()).format(getInputDateFormat());
+}
+
 $('.allFilter').on('change', '.chronology-from, .chronology-to', function () {
     const slider = $('.rangeSlider').data('ionRangeSlider');
     if (!slider) return;
 
-    const val = $(this).val().trim();
-        m = moment(val, "YYYY-MM-DD", true);
+    const val = $(this).val().trim(),
+        m = moment(val, getInputDateFormat(), true);
     if (!m.isValid()) return;
     
-    const timestamp = +m;
-        currentFrom = slider.result.from;
-        currentTo = slider.result.to;
-        min = slider.result.min;
+    const timestamp = +m,
+        currentFrom = slider.result.from,
+        currentTo = slider.result.to,
+        min = slider.result.min,
         max = slider.result.max;
     if (timestamp < min || timestamp > max) return;
 
@@ -210,12 +219,12 @@ $.fn.rangeSlider = function () {
             return m.format(format);
         },
         onStart: function (data) {
-            $('.chronology-from').val(moment(data.from).format("YYYY-MM-DD"));
-            $('.chronology-to').val(moment(data.to).format("YYYY-MM-DD"));
+            $('.chronology-from').val(formatInputDate(data.from));
+            $('.chronology-to').val(formatInputDate(data.to));
         },
         onChange: function (data) {
-            $('.chronology-from').val(moment(data.from).format("YYYY-MM-DD"));
-            $('.chronology-to').val(moment(data.to).format("YYYY-MM-DD"));
+            $('.chronology-from').val(formatInputDate(data.from));
+            $('.chronology-to').val(formatInputDate(data.to));
         },
         onFinish: function (data) { applyChronologyFilter(data); }
     });
