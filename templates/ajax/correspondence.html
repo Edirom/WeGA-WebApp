@@ -5,6 +5,17 @@
         <div class="allFilter panel-collapse collapse show" id="allFilter">
             <h4 data-template="lang:translate">chronology</h4>
             <input type="text" class="rangeSlider" name="chronology-slider" data-template="app:set-slider-range"/>
+            <div class="row chronology-input">
+                <div class="col-6">
+                    <h4 data-template="lang:translate">chronoFrom</h4>
+                    <input type="text" class="chronology-from"/>
+                </div>
+                <div class="col-6">
+                    <h4 data-template="lang:translate">chronoTo</h4>
+                    <input type="text" class="chronology-to"/>
+                </div>
+            </div>
+            <hr/>
             <div class="input-group facet-group checkbox">
                 <input type="checkbox" name="undated" id="undatedLetters" data-template="app:set-facet-checkbox" data-template-key="undated"/>
                 <label for="undatedLetters" data-template="lang:translate">showUndatedDocuments</label>
@@ -12,6 +23,7 @@
                 <input type="checkbox" name="hideRevealed" id="hideRevealed" data-template="app:set-facet-checkbox" data-template-key="hideRevealed"/>
                 <label for="hideRevealed" data-template="lang:translate">hideRevealedLetters</label>
             </div>
+            <hr/>
             <h4 data-template="lang:translate">sender</h4>
             <select multiple="multiple" data-template="facets:select" name="sender"/>
             <h4 data-template="lang:translate">addressees</h4>

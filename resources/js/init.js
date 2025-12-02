@@ -134,20 +134,72 @@ function formatFacet (facet) {
     return facet;
 }
 
-$.fn.rangeSlider = function () 
-{
+/* 
+ * Helper function for rangeSlider and chronology input
+ */
+function applyChronologyFilter (data) {
+    /* Get active facets to append as URL params */
+    const params = active_facets(),
+        newFrom = moment(data.from).locale("de").format("YYYY-MM-DD"),
+        newTo = moment(data.to).locale("de").format("YYYY-MM-DD");
+    
+    /* Overwrite date params with new values from the slider */
+    params.sliderDates.fromDate = newFrom;
+    params.sliderDates.toDate = newTo;
+    params.sliderDates.oldFromDate = moment(data.min).locale("de").format("YYYY-MM-DD");
+    params.sliderDates.oldToDate = moment(data.max).locale("de").format("YYYY-MM-DD");
+    updatePage(params);
+}
+
+$('.allFilter').on('change', '.chronology-from, .chronology-to', function () {
+    const slider = $('.rangeSlider').data('ionRangeSlider');
+    if (!slider) return;
+
+    const val = $(this).val().trim();
+        m = moment(val, "YYYY-MM-DD", true);
+    if (!m.isValid()) return;
+    
+    const timestamp = +m;
+        currentFrom = slider.result.from;
+        currentTo = slider.result.to;
+        min = slider.result.min;
+        max = slider.result.max;
+    if (timestamp < min || timestamp > max) return;
+
+    const isFrom = $(this).hasClass('chronology-from');
+    if (isFrom && timestamp > currentTo) return;
+    if (!isFrom && timestamp < currentFrom) return;
+
+    if (isFrom) {
+        slider.update({ from: timestamp });
+        applyChronologyFilter({
+            from: timestamp,
+            to: currentTo,
+            min: min,
+            max: max
+        });
+    } else {
+        slider.update({ to: timestamp });
+        applyChronologyFilter({
+            from: currentFrom,
+            to: timestamp,
+            min: min,
+            max: max
+        });
+    }
+});
+
+$.fn.rangeSlider = function () {
     this.ionRangeSlider({
         min: +moment($(this).attr('data-min-slider')),
         max: +moment($(this).attr('data-max-slider')),
         from: +moment($(this).attr('data-from-slider')),
         to: +moment($(this).attr('data-to-slider')),
-        grid: true,
+        grid: false,
         skin: "flat",
         step: 100,
         force_edges: true,
         type: "double",
-        //force_edges: true,
-        grid_num: 3,
         keyboard: true,
         prettify: function (num) {
             const lang = getLanguage(),
@@ -157,21 +209,15 @@ $.fn.rangeSlider = function ()
             else { format = "MMM D, YYYY" }
             return m.format(format);
         },
-        onFinish: function (data) {
-            /* Get active facets to append as URL params */
-            const params = active_facets(),
-                newFrom = moment(data.from).locale("de").format("YYYY-MM-DD"),
-                newTo = moment(data.to).locale("de").format("YYYY-MM-DD");
-            
-            /* 
-             * Overwrite date params with new values from the slider 
-             */
-            params.sliderDates.fromDate = newFrom;
-            params.sliderDates.toDate = newTo;
-            params.sliderDates.oldFromDate = moment(data.min).locale("de").format("YYYY-MM-DD");
-            params.sliderDates.oldToDate = moment(data.max).locale("de").format("YYYY-MM-DD");
-            updatePage(params);
-        }
+        onStart: function (data) {
+            $('.chronology-from').val(moment(data.from).format("YYYY-MM-DD"));
+            $('.chronology-to').val(moment(data.to).format("YYYY-MM-DD"));
+        },
+        onChange: function (data) {
+            $('.chronology-from').val(moment(data.from).format("YYYY-MM-DD"));
+            $('.chronology-to').val(moment(data.to).format("YYYY-MM-DD"));
+        },
+        onFinish: function (data) { applyChronologyFilter(data); }
     });
 };
 
