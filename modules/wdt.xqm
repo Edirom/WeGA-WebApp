@@ -453,11 +453,15 @@ declare function wdt:diaries($item as item()*) as map(*) {
                 case document-node() return $item/tei:ab
                 default return ()
             let $lang := config:guess-language(())
-            let $diaryPlaces as array(xs:string) := query:place-of-diary-day($ab/root())
+            let $diaryPlaces as array(xs:string) := 
+                if($ab) then query:place-of-diary-day($ab/root())
+                else array {}
             let $dateFormat := 
                 if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
                 else '[FNn], [MNn] [D], [Y]'
-            let $formattedDate := date:format-date(xs:date($ab/@n), $dateFormat, $lang)
+            let $formattedDate := 
+                if($ab/@n castable as xs:date) then date:format-date(xs:date($ab/@n), $dateFormat, $lang)
+                else ()
             let $formattedPlaces := 
                 switch(array:size($diaryPlaces))
                 case 0 return ()
@@ -465,11 +469,13 @@ declare function wdt:diaries($item as item()*) as map(*) {
                 case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
                 case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
                 default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces))
-            return 
-                switch($serialization)
-                    case 'txt' return concat($formattedDate, ' (', $formattedPlaces, ')')
-                    case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{$formattedDate}<br xmlns="http://www.w3.org/1999/xhtml"/>{$formattedPlaces}</span> 
-                    default return wega-util:log-to-file('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
+            return
+                if($ab) then
+                    switch($serialization)
+                        case 'txt' return concat($formattedDate, ' (', $formattedPlaces, ')')
+                        case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{$formattedDate}<br xmlns="http://www.w3.org/1999/xhtml"/>{$formattedPlaces}</span> 
+                        default return wega-util:log-to-file('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
+                else ()
         },
         'memberOf' : ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' : function($query as element(query)) {
