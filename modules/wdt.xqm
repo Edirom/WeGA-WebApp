@@ -1042,7 +1042,7 @@ declare function wdt:backlinks($item as item()*) as map(*) {
                 else ()
             let $docsMentioned := 
                 crud:data-collection('letters')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() | 
-                crud:data-collection('diaries')//tei:*[contains(@key,$personID)]/root() |
+                crud:data-collection('diaries')//tei:*[contains(@key,$personID)][ancestor::tei:ab]/root() |
                 crud:data-collection('diaries')//tei:ab[contains(@where,$personID)]/root() |
                 crud:data-collection('writings')//tei:*[contains(@key,$personID)][not(ancestor::tei:publicationStmt)]/root() |
                 crud:data-collection('persons')//tei:*[contains(@key,$personID)]/root() |
