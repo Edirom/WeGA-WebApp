@@ -132,7 +132,7 @@ declare function wdt:persons($item as item()*) as map(*) {
 
 declare function wdt:letters($item as item()*) as map(*) {
     let $text-types := tokenize(config:get-option('textTypes'), '\s+')
-    let $constructLetterHead := function($TEI as element(tei:TEI)) as element(tei:title) {
+    let $constructLetterHead := function($TEI as element(tei:TEI)?) as element(tei:title)? {
         (: Support for Albumblätter?!? :)
         let $id := $TEI/data(@xml:id)
         let $lang := config:guess-language(())
@@ -156,15 +156,16 @@ declare function wdt:letters($item as item()*) as map(*) {
         let $placeAddressee := 
             if(query:placeName-elements($TEI//tei:correspAction[@type='received'])/@key) then query:title((query:placeName-elements($TEI//tei:correspAction[@type='received'])/@key)[1])
             else str:normalize-space(query:placeName-elements($TEI//tei:correspAction[@type='received'])[1])
-        return (
-            element tei:title {
-                concat($sender, ' ', lower-case(lang:get-language-string('to',$lang)), ' ', $addressee),
-                if($placeAddressee) then concat(' ', lower-case(lang:get-language-string('in',$lang)), ' ', $placeAddressee) else(),
-                <tei:lb/>,
-                if($placeSender) then string-join(($placeSender, $date), ', ')
-                else $date
-            }
-        )
+        return 
+            if($id) then (
+                element tei:title {
+                    concat($sender, ' ', lower-case(lang:get-language-string('to',$lang)), ' ', $addressee),
+                    if($placeAddressee) then concat(' ', lower-case(lang:get-language-string('in',$lang)), ' ', $placeAddressee) else(),
+                    <tei:lb/>,
+                    if($placeSender) then string-join(($placeSender, $date), ', ')
+                    else $date
+                })
+            else ()
     }
     return 
     map {
@@ -212,10 +213,12 @@ declare function wdt:letters($item as item()*) as map(*) {
                 if(functx:all-whitespace(($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1])) then $constructLetterHead($TEI)
                 else ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
-                switch($serialization)
-                case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
-                case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
-                default return wega-util:log-to-file('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
+                if($title-element) then
+                    switch($serialization)
+                    case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
+                    case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
+                    default return wega-util:log-to-file('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
+                else ()
         },
         'memberOf' : ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' : function($query as element(query)) {
