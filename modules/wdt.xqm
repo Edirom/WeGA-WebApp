@@ -202,14 +202,15 @@ declare function wdt:letters($item as item()*) as map(*) {
                     (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n
             }, ())
         },
-        'title' : function($serialization as xs:string) as item()? {
+        'title' : function($serialization as xs:string) as item()* {
+            for $this.item in $item
             let $TEI := 
-                typeswitch($item)
-                case xs:string return crud:doc($item)/tei:TEI
-                case xs:untypedAtomic return crud:doc($item)/tei:TEI
-                case document-node() return $item/tei:TEI
-                default return $item/root()/tei:TEI
-            let $title-element := 
+                typeswitch($this.item)
+                case xs:string return crud:doc($this.item)/tei:TEI
+                case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
+                case document-node() return $this.item/tei:TEI
+                default return $this.item/root()/tei:TEI
+            let $title-element :=
                 if(functx:all-whitespace(($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1])) then $constructLetterHead($TEI)
                 else ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
@@ -448,37 +449,39 @@ declare function wdt:diaries($item as item()*) as map(*) {
         'init-sortIndex' : function() as item()* {
             sort:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
         },
-        'title' : function($serialization as xs:string) as item()? {
-            let $ab := 
-                typeswitch($item)
-                case xs:string return crud:doc($item)/tei:ab
-                case xs:untypedAtomic return crud:doc($item)/tei:ab
-                case document-node() return $item/tei:ab
-                default return ()
+        'title' : function($serialization as xs:string) as item()* {
             let $lang := config:guess-language(())
-            let $diaryPlaces as array(xs:string) := 
-                if($ab) then query:place-of-diary-day($ab/root())
-                else array {}
             let $dateFormat := 
                 if ($lang = 'de') then '[FNn], [D]. [MNn] [Y]'
                 else '[FNn], [MNn] [D], [Y]'
-            let $formattedDate := 
-                if($ab/@n castable as xs:date) then date:format-date(xs:date($ab/@n), $dateFormat, $lang)
-                else ()
-            let $formattedPlaces := 
-                switch(array:size($diaryPlaces))
-                case 0 return ()
-                case 1 return $diaryPlaces(1)
-                case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
-                case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
-                default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces))
             return
-                if($ab) then
-                    switch($serialization)
-                        case 'txt' return concat($formattedDate, ' (', $formattedPlaces, ')')
-                        case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{$formattedDate}<br xmlns="http://www.w3.org/1999/xhtml"/>{$formattedPlaces}</span> 
-                        default return wega-util:log-to-file('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
-                else ()
+                for $this.item in $item
+                let $ab := 
+                    typeswitch($this.item)
+                    case xs:string return crud:doc($this.item)/tei:ab
+                    case xs:untypedAtomic return crud:doc($this.item)/tei:ab
+                    case document-node() return $this.item/tei:ab
+                    default return ()
+                let $diaryPlaces as array(xs:string) := 
+                    if($ab) then query:place-of-diary-day($ab/root())
+                    else array {}
+                let $formattedDate := 
+                    if($ab/@n castable as xs:date) then date:format-date(xs:date($ab/@n), $dateFormat, $lang)
+                    else ()
+                let $formattedPlaces := 
+                    switch(array:size($diaryPlaces))
+                    case 0 return ()
+                    case 1 return $diaryPlaces(1)
+                    case 2 return $diaryPlaces(1) || ', ' || $diaryPlaces(2)
+                    case 3 return $diaryPlaces(1) || ', ' || $diaryPlaces(2) || ', ' || $diaryPlaces(3)
+                    default return $diaryPlaces(1) || ', …, ' || $diaryPlaces(array:size($diaryPlaces))
+                return
+                    if($ab) then
+                        switch($serialization)
+                            case 'txt' return concat($formattedDate, ' (', $formattedPlaces, ')')
+                            case 'html' return <span xmlns="http://www.w3.org/1999/xhtml">{$formattedDate}<br xmlns="http://www.w3.org/1999/xhtml"/>{$formattedPlaces}</span> 
+                            default return wega-util:log-to-file('error', 'wdt:diaries()("title"): unsupported serialization "' || $serialization || '"')
+                    else ()
         },
         'memberOf' : ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' : function($query as element(query)) {
