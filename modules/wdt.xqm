@@ -50,12 +50,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $org := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:org
-                case xs:untypedAtomic return crud:doc($this.item)/tei:org
-                case document-node() return $this.item/tei:org
-                default return $this.item/root()/tei:org
+            let $org := wdt:get-root-element($this.item)
             return
                 if($org) then 
                     switch($serialization)
@@ -66,12 +61,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
         },
         'label-facets' : function() as xs:string* {
             for $this.item in $item
-            let $org := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:org
-                case xs:untypedAtomic return crud:doc($this.item)/tei:org
-                case document-node() return $this.item/tei:org
-                default return $this.item/root()/tei:org
+            let $org := wdt:get-root-element($this.item)
             return
                 str:normalize-space($org/tei:orgName[@type = 'reg']) || ' (' || string-join($org/tei:state[tei:label='Art der Institution']/tei:desc, ', ') || ')'
         },
@@ -110,12 +100,7 @@ declare function wdt:persons($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $person := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:person
-                case xs:untypedAtomic return crud:doc($this.item)/tei:person
-                case document-node() return $this.item/tei:person
-                default return $this.item/root()/tei:person
+            let $person := wdt:get-root-element($this.item)
             return
                 if($person) then 
                     switch($serialization)
@@ -126,12 +111,7 @@ declare function wdt:persons($item as item()*) as map(*) {
         },
         'label-facets' : function() as xs:string* {
             for $this.item in $item
-            let $person := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:person
-                case xs:untypedAtomic return crud:doc($this.item)/tei:person
-                case document-node() return $this.item/tei:person
-                default return $this.item/root()/tei:person
+            let $person := wdt:get-root-element($this.item)
             return
                 if($person) 
                 then $person/tei:persName[@type = 'reg'] => str:normalize-space()
@@ -216,12 +196,7 @@ declare function wdt:letters($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $TEI := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:TEI
-                case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
-                case document-node() return $this.item/tei:TEI
-                default return $this.item/root()/tei:TEI
+            let $TEI := wdt:get-root-element($this.item)
             let $title-element :=
                 if(functx:all-whitespace(($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1])) then $constructLetterHead($TEI)
                 else ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
@@ -334,12 +309,7 @@ declare function wdt:writings($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $TEI := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:TEI
-                case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
-                case document-node() return $this.item/tei:TEI
-                default return $this.item/root()/tei:TEI
+            let $TEI := wdt:get-root-element($this.item)
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 if($title-element) then
@@ -403,12 +373,7 @@ declare function wdt:works($item as item()*) as map(*) {
         (: Sollte beim Titel noch der Komponist etc. angegeben werden? :)
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $mei := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/mei:mei
-                case xs:untypedAtomic return crud:doc($this.item)/mei:mei
-                case document-node() return $this.item/mei:mei
-                default return $this.item/root()/mei:mei
+            let $mei := wdt:get-root-element($this.item)
             let $title-element := ($mei//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
             return
                 if($title-element) then 
@@ -420,12 +385,7 @@ declare function wdt:works($item as item()*) as map(*) {
         },
         'label-facets' : function() as xs:string* {
             for $this.item in $item
-            let $mei := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/mei:mei
-                case xs:untypedAtomic return crud:doc($this.item)/mei:mei
-                case document-node() return $this.item/mei:mei
-                default return $this.item/root()/mei:mei
+            let $mei := wdt:get-root-element($this.item)
             let $title-element := ($mei//mei:fileDesc/mei:titleStmt/mei:title[not(@type)])[1]
             return
                 if($title-element) 
@@ -480,12 +440,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
                 else '[FNn], [MNn] [D], [Y]'
             return
                 for $this.item in $item
-                let $ab := 
-                    typeswitch($this.item)
-                    case xs:string return crud:doc($this.item)/tei:ab
-                    case xs:untypedAtomic return crud:doc($this.item)/tei:ab
-                    case document-node() return $this.item/tei:ab
-                    default return ()
+                let $ab := wdt:get-root-element($this.item)
                 let $diaryPlaces as array(xs:string) := 
                     if($ab) then query:place-of-diary-day($ab/root())
                     else array {}
@@ -548,12 +503,7 @@ declare function wdt:news($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $TEI := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:TEI
-                case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
-                case document-node() return $this.item/tei:TEI
-                default return $this.item/root()/tei:TEI
+            let $TEI := wdt:get-root-element($this.item)
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 if($title-element) then
@@ -642,12 +592,7 @@ declare function wdt:var($item as item()*) as map(*) {
             let $lang := config:guess-language(())
             return
                 for $this.item in $item
-                let $TEI := 
-                    typeswitch($this.item)
-                    case xs:string return crud:doc($this.item)/tei:TEI
-                    case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
-                    case document-node() return $this.item/tei:TEI
-                    default return $this.item/root()/tei:TEI
+                let $TEI := wdt:get-root-element($this.item)
                 let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
                 return
                     if($title-element) then
@@ -706,12 +651,7 @@ declare function wdt:biblio($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $biblStruct := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:biblStruct
-                case xs:untypedAtomic return crud:doc($this.item)/tei:biblStruct
-                case document-node() return $this.item/tei:biblStruct
-                default return $this.item/root()/tei:biblStruct
+            let $biblStruct := wdt:get-root-element($this.item)
             let $html-title := bibl:printCitation($biblStruct, <xhtml:p/>, 'de')
             return
                 if($biblStruct) then 
@@ -761,12 +701,7 @@ declare function wdt:places($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $place := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:place
-                case xs:untypedAtomic return crud:doc($this.item)/tei:place
-                case document-node() return $this.item/tei:place
-                default return $this.item/root()/tei:place
+            let $place := wdt:get-root-element($this.item)
             return
                 if($place) then
                     switch($serialization)
@@ -829,12 +764,7 @@ declare function wdt:sources($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $source := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/*
-                case xs:untypedAtomic return crud:doc($this.item)/*
-                case document-node() return $this.item/*
-                default return $this.item/root()/*
+            let $source := wdt:get-root-element($this.item)
             let $title-element := ($source/mei:titleStmt/mei:title[not(@type)], $source//tei:titleStmt/tei:title[@level='a'])[1]
             return
                 if($title-element) then
@@ -879,12 +809,7 @@ declare function wdt:thematicCommentaries($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $TEI := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:TEI
-                case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
-                case document-node() return $this.item/tei:TEI
-                default return $this.item/root()/tei:TEI
+            let $TEI := wdt:get-root-element($this.item)
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 if($title-element) then
@@ -943,12 +868,7 @@ declare function wdt:documents($item as item()*) as map(*) {
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
-            let $TEI := 
-                typeswitch($this.item)
-                case xs:string return crud:doc($this.item)/tei:TEI
-                case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
-                case document-node() return $this.item/tei:TEI
-                default return $this.item/root()/tei:TEI
+            let $TEI := wdt:get-root-element($this.item)
             let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
             return
                 if($title-element) then
@@ -1002,12 +922,7 @@ declare function wdt:addenda($item as item()*) as map(*) {
             let $lang := config:guess-language(())
             return
                 for $this.item in $item
-                let $TEI := 
-                    typeswitch($this.item)
-                    case xs:string return crud:doc($this.item)/tei:TEI
-                    case xs:untypedAtomic return crud:doc($this.item)/tei:TEI
-                    case document-node() return $this.item/tei:TEI
-                    default return $this.item/root()/tei:TEI
+                let $TEI := wdt:get-root-element($this.item)
                 let $title-element := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1]
                 let $title-element-sub := ($TEI//tei:fileDesc/tei:titleStmt/tei:title[@xml:lang=$lang][@level = 'a'][@type='sub'], $TEI//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'][@type='sub'])[1]
                 return
@@ -1175,6 +1090,17 @@ declare function wdt:indices($item as item()*) as map(*) {
         'memberOf' : (),
         'search' : ()
     }
+};
+
+(:~
+ : Helper function for accessing the root element
+~:)
+declare %private function wdt:get-root-element($item as item()?) as element()? {
+    typeswitch($item)
+    case xs:string return crud:doc($item)/*
+    case xs:untypedAtomic return crud:doc($item)/*
+    case document-node() return $item/*
+    default return $item/root()/*
 };
 
 (:~
