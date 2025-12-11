@@ -1174,7 +1174,14 @@ declare function wdt:members($memberOf as xs:string+) as item()* {
 declare variable $wdt:functions := 
     for $func in inspect:module-functions()
     return 
-        if(function-name($func) = (xs:QName('wdt:functions-available'), xs:QName('wdt:lookup'), xs:QName('wdt:members'), xs:QName('wdt:sort-key-person'))) then ()
+        if(function-name($func) = (
+            xs:QName('wdt:functions-available'), 
+            xs:QName('wdt:lookup'), 
+            xs:QName('wdt:members'), 
+            xs:QName('wdt:sort-key-person'),
+            xs:QName('wdt:get-root-element')
+            )) 
+        then ()
         else $func
 ;
 
