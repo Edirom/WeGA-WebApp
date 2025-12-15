@@ -22,7 +22,7 @@ jobs:
       - name: Build with Ant
         run: ant clean xar
       - name: Archive xar package
-        uses: actions/upload-artifact@v5
+        uses: actions/upload-artifact@v6
         with:
           name: xar package
           path: build/*.xar
