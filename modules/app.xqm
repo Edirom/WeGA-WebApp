@@ -2110,3 +2110,33 @@ declare function app:init-custom-switch($node as node(), $model as map(*)) as el
         $node/*
     }
 };
+
+(:~
+ :  Construct the pb-timeline custom element,
+ :  i.e. update the `@start-date` and `@end-date` attributes
+ :  as well as the `@url` attribute with the API URL. 
+ :)
+declare function app:pb-timeline($node as node(), $model as map(*)) as element(xhtml:pb-timeline) {
+    let $api-base := config:api-base($model?openapi)
+    let $docType := 
+        if(count($model?docType) eq 1 and $model?docType = $search:wega-docTypes) 
+        then $model?docType 
+        else ()
+    let $docID := 
+        if($model?docID = 'indices')
+        then ()
+        else $model?docID
+    let $url := $api-base || str:join-path-elements(('/timeline', $docType, $docID))
+    return
+        element {node-name($node)} {
+            $node/@* except $node/@start-date except $node/@end-date except $node/@url,
+            attribute url {$url},
+            if($model?filters?fromDate castable as xs:date)
+            then attribute start-date {$model?filters?fromDate}
+            else (),
+            if($model?filters?toDate castable as xs:date)
+            then attribute end-date {$model?filters?toDate}
+            else (),
+            $node/*
+        }
+};

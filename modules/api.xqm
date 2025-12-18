@@ -291,6 +291,38 @@ declare function api:facets($model as map(*)) as map(*) {
 };
 
 (:~
+ :  Return a timeline object for driving the TEIPublisher pb-timeline component
+ :  see https://cdn.tei-publisher.com/@2.23.2/dist/api.html#pb-timeline.0 
+ :)
+declare function api:timeline($model as map(*)) as map(*) {
+    let $docID := 
+        if($model?docID)
+        then $model?docID
+        else 'indices'
+    let $documents := 
+        for $docType in api:resolve-docTypes($model)
+        return search:results(<span/>, map { 'docID' : $docID }, $docType)?search-results
+            (:if(empty(($model?start, $model?end))) 
+            then core:getOrCreateColl($docType, $docID, true())
+            else wdt:lookup($docType, core:getOrCreateColl($docType, $docID, true()))?filter-by-date($model?start, $model?end) :)
+    let $dates :=
+        map:merge(
+            for $doc in $documents
+            group by $date := query:get-normalized-date($doc)
+            let $key := 
+                if(exists($date)) then $date
+                else '?' 
+            return
+                map:entry($key, count($doc))
+        )
+    return
+    map { 
+            'totalRecordCount': count(map:keys($dates)),
+            'results': $dates
+        }
+};
+
+(:~
  :  Search WeGA entities (persons, places, works) by name or title respectively
  :)
 declare function api:search-entity($model as map(*)) as map(*) {
@@ -762,6 +794,24 @@ declare function api:validate-toDate($model as map(*)) as map(*)? {
     if($model('toDate') castable as xs:date) then $model
     else if($model?toDate ='') then () (: an empty string is simply dropped :)
     else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('toDate') || '". Should be YYYY-MM-DD.')
+};
+
+(:~
+ : Check parameter start
+~:)
+declare function api:validate-start($model as map(*)) as map(*)? {
+    if($model('start') castable as xs:date) then $model
+    else if($model?start ='') then () (: an empty string is simply dropped :)
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('start') || '". Should be YYYY-MM-DD.')
+};
+
+(:~
+ : Check parameter end
+~:)
+declare function api:validate-end($model as map(*)) as map(*)? {
+    if($model('end') castable as xs:date) then $model
+    else if($model?end ='') then () (: an empty string is simply dropped :)
+    else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('end') || '". Should be YYYY-MM-DD.')
 };
 
 (:~
