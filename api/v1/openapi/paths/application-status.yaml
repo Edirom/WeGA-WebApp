@@ -24,6 +24,7 @@ get:
                 format: date-time
               version:
                 pattern: ^\d+\.\d+\.\d+$
+                example: 3.2.0
                 type: string
     '500':
       description: Unhealthy – A single object with status information
@@ -45,6 +46,7 @@ get:
                 format: date-time
               version:
                 pattern: ^\d+\.\d+\.\d+$
+                example: 3.2.0
                 type: string
     default:
       $ref: '../responses/unexpectedError.yaml'
