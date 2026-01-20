@@ -898,9 +898,25 @@ $('#facsimile-tab').on('click', function() {
     // need to set timeout for correct display of referenceStrip
     setTimeout(function() {
        if ($('.mirador-viewer').length === 0){
-           initFacsimile();
+           let mirador = initFacsimile();
+           //document.getElementById("map").viewer = mirador;
        }
    }, 500);
+   
+   /* 
+    * listen for wega-mirador-ready event and jump to initial page
+    * workaround since canvasIndex does not work properly, 
+    * see https://github.com/ProjectMirador/mirador/issues/4071
+    */
+   document.getElementById("map").addEventListener('wega-mirador-ready', (ev) => {
+       let manifestIds = $('#map').attr('data-url').split(/\s+/),
+           canvasIndices = $('#map').attr('data-canvasindex').split(/\s+/);
+       manifestIds.forEach(
+            (manifestId, index) => {
+                goToCanvas(ev.detail.viewer, manifestId, canvasIndices[index])
+            }
+       )
+   })
 });
 
 /* Load portraits via AJAX on index pages */
@@ -933,7 +949,7 @@ $('.preview').setTextWrap();
  * from the IIIF manifest URLs given as @data-url attribute on div[@id=map]
  */
 function initFacsimile() {
-    let manifestUrls = $('#map').attr('data-url').split(/\s+/),
+    let manifestIds = $('#map').attr('data-url').split(/\s+/),
         canvasIndices = $('#map').attr('data-canvasindex').split(/\s+/),
         mirador = renderMirador({
             "id": "map",
@@ -963,15 +979,45 @@ function initFacsimile() {
                 "showZoomControls": true
             },
             "windows": 
-                manifestUrls.map(
-                    (manifest, index) => ({
-                        "manifestId": manifest,
-                        "canvasIndex": canvasIndices[index],
+                manifestIds.map(
+                    (manifestId, index) => ({
+                        "manifestId": manifestId,
+                        "id": manifestId,
+                        // canvasIndex does not work in all cases, 
+                        // see https://github.com/ProjectMirador/mirador/issues/4071
+                        //"canvasIndex": canvasIndices[index],
                         "imageToolsEnabled": true,
                         "imageToolsOpen": true
                     })
                 )
         });
+        
+        // Listen to Mirador state changes
+        mirador.store.subscribe(() => {
+            const state = mirador.store.getState();
+
+            // set our own conditions to check for
+            const allManifestsLoaded = manifestIds.every(id => {
+                // manifests must be present
+                const manifest = state.manifests?.[id];
+                // canvasId must be set
+                let canvasId = Object.keys(state.windows).some(key => {
+                    return state.windows[key].manifestId === id && state.windows[key].canvasId
+                })
+                // … and no errors
+                return canvasId && manifest && !manifest.error && manifest.json;
+            });
+            
+            if (allManifestsLoaded && !mirador._readyDispatched) {
+                mirador._readyDispatched = true;
+
+                // dispatching our custom 'viewer-ready' event
+                document.getElementById("map").dispatchEvent(new CustomEvent('wega-mirador-ready', {
+                    detail: { viewer: mirador, state }
+                }));
+            }
+        });
+        return mirador;
 }
 
 
