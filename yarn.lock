@@ -613,6 +613,11 @@
   dependencies:
     undici-types "~7.16.0"
 
+"@types/node@^12.7.1", "@types/node@^12.7.2":
+  version "12.20.55"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.20.55.tgz#c329cbd434c42164f846b909bd6f85b5537f6240"
+  integrity sha512-J8xLz7q2OFulZ2cyGTLE1TbbZcjpno7FaN6zdJNrgAdrJ+DZzh/uFR6YrTb4C+nXakvud8Q4+rbhoIWlYQbUFQ==
+
 "@types/stylis@4.2.7":
   version "4.2.7"
   resolved "https://registry.yarnpkg.com/@types/stylis/-/stylis-4.2.7.tgz#1813190525da9d2a2b6976583bdd4af5301d9fd4"
@@ -1164,6 +1169,11 @@ fastq@^1.6.0:
   integrity sha512-GGToxJ/w1x32s/D2EKND7kTil4n8OVk/9mycTc4VDza13lOvpUZTGX3mFSCtV9ksdGBVzvsyAVLM6mHFThxXxw==
   dependencies:
     reusify "^1.0.4"
+
+file-saver@^2.0.2:
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/file-saver/-/file-saver-2.0.5.tgz#d61cfe2ce059f414d899e9dd6d4107ee25670c38"
+  integrity sha512-P9bmyZ3h/PRG+Nzga+rbdI4OEpNDzAVyy74uVO9ATgzLK6VtAsYybF/+TOCvrc0MO793d6+42lLyZTw7/ArVzA==
 
 fill-range@^7.1.1:
   version "7.1.1"
@@ -1886,10 +1896,14 @@ preact@~10.12.1:
   resolved "https://registry.yarnpkg.com/prettier/-/prettier-2.8.8.tgz#e8c5d7e98a4305ffe3de2e1fc4aca1a71c28b1da"
   integrity sha512-tdN8qQGvNjw4CHbY+XXk0JgCXn9QiF21a55rBe5LJAU+kDyC4WQn4+awm2Xfk2lQMk5fKup9XgzTZtGkjBdP9Q==
 
-prettydiff@^99.0.1:
-  version "99.0.1"
-  resolved "https://registry.yarnpkg.com/prettydiff/-/prettydiff-99.0.1.tgz#95a5d973358daea342161661401a79b87832b412"
-  integrity sha512-hQPZ6m3HkLKNulzM7koJK0vNwEfzXTvV+18tBEr1bywszF2ZI9wcZmtB0fgit1J+sE+UXjcmKNhOWhiZ0jy7Ew==
+prettydiff@^101.2.6:
+  version "101.2.6"
+  resolved "https://registry.yarnpkg.com/prettydiff/-/prettydiff-101.2.6.tgz#b6ffbb618f0ad55887c2c1b02a336ba31a83d243"
+  integrity sha512-/fJ33pQ8MPI7+IB8fo/lOMR58CE/4GYNZRtjcQiPYmGNMo1HS9KmaybYdtEnfmx5EOSe/ch3Sg2fJ8YkNKb/XQ==
+  dependencies:
+    "@types/node" "^12.7.2"
+    file-saver "^2.0.2"
+    sparser "^1.4.11"
 
 prismjs@^1.29.0:
   version "1.30.0"
@@ -2236,6 +2250,13 @@ source-map@^0.6.0, source-map@^0.6.1, source-map@~0.6.0, source-map@~0.6.1:
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/source-map/-/source-map-0.6.1.tgz#74722af32e9614e9c287a8d0bbde48b5e2f1a263"
   integrity sha512-UjgapumWlbMhkBgzT7Ykc5YXUT46F0iKu8SGXq0bcwP5dz/h0Plj6enJqjz1Zbq2l5WaqYnrVbwWOWMyF3F47g==
+
+sparser@^1.4.11:
+  version "1.4.12"
+  resolved "https://registry.yarnpkg.com/sparser/-/sparser-1.4.12.tgz#d591f088c2658a57b138390110d71db0f0053cb0"
+  integrity sha512-qxDcacCuwHbvsf803PpZuETRI1pU8NAmLbyzZqFHPW7QjPK9pnCoX9ZPPbOMyiti6EOocfYzqzDPWj4fICXNzw==
+  dependencies:
+    "@types/node" "^12.7.1"
 
 stickyfill@^1.1.1:
   version "1.1.1"
