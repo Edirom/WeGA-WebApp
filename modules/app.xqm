@@ -1810,7 +1810,7 @@ declare %private function app:get-news-foot($doc as document-node(), $lang as xs
  :)
 declare function app:init-facsimile($node as node(), $model as map(*)) as element(xhtml:div) {
     element {node-name($node)} {
-        $node/@*[not(name()=('data-originalMaxSize', 'data-url'))],
+        $node/@* except $node/@data-url except $node/@data-canvasindex,
         if(count($model?IIIFImagesMap) gt 0) 
         then (
             attribute {'data-url'} { normalize-space(
