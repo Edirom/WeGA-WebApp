@@ -1,0 +1,100 @@
+# (shared) schema for DTS resources and collections
+type: object
+properties:
+  "@context":
+    type: string
+    format: uri
+    default: "https://distributed-text-services.github.io/specifications/context/1.0rc1.json"
+  "@id":
+    type: string
+    format: uri
+    required: true
+    description: The identifier of the `Collection` or `Resource`.
+  "@type":
+    description: "The type: `Collection` or `Resource`"
+    type: string
+    enum:
+      - Collection
+      - Resource
+  dtsVersion:
+    type: string
+    required: true
+    description: The version of the DTS specification providing the response. Default is “1.0rc1”.
+    default: "1.0rc1"
+  title:
+    type: string
+    required: true
+    description: |
+      A name for the `Collection` or `Resource`. 
+      Additional names may be placed in dublinCore using title, e.g. for internationalization.
+  totalParents:
+    type: int
+    required: true
+    description: Total number of parent `Collection`s or `Resource`s.
+  totalChildren:
+    type: int
+    required: false
+    description: |
+      Total number of child Collections or Resources.
+      Required if `@type` is `Collection`.
+  description:
+    type: string
+    required: false
+    description: |
+      Short description of the `Collection` or `Resource`. 
+      Additional descriptions may be placed in dublinCore using description, 
+      e.g. for internationalization.
+  member:
+    type: array
+    #items:
+      #$ref: './dtsCollectionResource.yaml'
+    required: false
+    description: Contains members of the collection.
+  dublinCore:
+    type: object
+    required: false
+    description: Contains metadata following the Dublin Core Terms scheme.
+  extensions:
+    type: object
+    required: false
+    description: Contains any supplementary metadata following other schemes.
+  collection:
+    type: string
+    format: uri
+    required: true
+    description: Link to the Collection API endpoint for the `Resource`.
+  navigation:
+    type: string
+    format: uri
+    required: true
+    description: |
+      Link to the Navigation API endpoint for the Resource.
+      Applicable only if `@type` is `Resource`.
+  document:
+    type: string
+    format: uri
+    required: true
+    description: | 
+      Link to the Document API endpoint for the Resource.
+      Applicable only if `@type` is `Resource`.
+  download:
+    required: false
+    description: | 
+      A link or a "key: value" list of "media type: link" 
+      to downloadable versions of the Resource
+  citationTrees:
+    type: array
+    required: false
+    description: | 
+      A list of Citation Trees, outlining the types of citation in each of the Resources citation tree(s).
+  view:
+    $ref: "./dtsPagination.yaml"
+  mediaTypes:
+    type: array
+    items:
+      type: string
+    required: false
+    description: |
+      An array of string identifiers for the response body media types (Content-Type values) 
+      supported for the `Resource` in Document endpoint queries.
+      Applicable only if `@type` is `Resource`.

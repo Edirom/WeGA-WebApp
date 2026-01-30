@@ -1,0 +1,17 @@
+# DTS main entrypoint endpoint
+get:
+  tags:
+    - DTS
+  summary: Distributed Text Services API Entrypoint
+  description: |
+    Entrypoint of the WeGA DTS implementation (see specification 
+    <https://distributed-text-services.github.io/specifications/versions/1.0rc1/#entry-endpoint>).
+  responses:
+    '200':
+      description: |
+        Information about the DTS implementation containing URI templates of 
+        the "collection", "navigation" and "document" endpoints.
+      content:
+        application/ld+json:
+          schema:
+            $ref: '../schemas/dtsEntrypoint.yaml'

@@ -1,0 +1,37 @@
+# DTS pagination object
+type: object
+required: false
+description: A Pagination object for paginated responses.
+properties:
+  "@id":
+    type: string
+    format: uri
+    required: true
+    description: |
+      The identifier of the current page of the collection. 
+      This should be the full URI for the current request including the pagination request parameter.
+  "@type":
+    type: string
+    required: true
+    description: The type of the object. Must be Pagination.
+    default: Pagination
+  "first":
+    type: string
+    format: uri
+    required: true
+    description: The URI for the first page of the paginated result set.
+  "previous":
+    type: string
+    format: uri
+    required: true
+    description: The URI for the previous page of the paginated result set.
+  "next":
+    type: string
+    format: uri
+    required: true
+    description: The URI for the next page of the paginated result set.
+  "last":
+    type: string
+    format: uri
+    required: true
+    description: The URI for the last page of the paginated result set.

@@ -1,0 +1,40 @@
+# schema for DTS navigation object
+type: object
+properties:
+  "@context":
+    type: string
+    format: uri
+    default: "https://distributed-text-services.github.io/specifications/context/1.0rc1.json"
+  "@id":
+    type: string
+    required: true
+    description: The absolute URL of the current request including any query parameters.
+  "@type":
+    description: "The object’s RDF class which must be “Navigation”."
+    type: string
+    default: Navigation
+  dtsVersion:
+    type: string
+    required: true
+    description: The version of the DTS specification providing the response. Default is “1.0rc1”.
+    default: "1.0rc1"
+  resource:
+    required: true
+    description: The `Resource` whose citation tree is being queried.
+  ref:
+    required: false
+    description: The `CitableUnit` in the citation tree which is being queried.
+  start:
+    required: false
+    description: The `CitableUnit` at the beginning of the range in the citation tree which is being queried.
+  end:
+    required: false
+    description: The `CitableUnit` at the end of the range in the citation tree which is being queried.
+  member:
+    type: array
+    #items:
+    #$ref: './dtsCollectionResource.yaml'
+    required: false
+    description: Contains members of the collection.
+  view:
+    $ref: "./dtsPagination.yaml"

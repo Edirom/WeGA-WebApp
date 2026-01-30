@@ -1,0 +1,95 @@
+# DTS navigation endpoint
+get:
+  tags:
+    - DTS
+  summary: Distributed Text Services navigation endpoint
+  description: |
+    The Navigation endpoint provides information about a Resource’s internal structures 
+    (e.g., book, chapter, line, etc.) and how they are referenced. 
+    While the Collection endpoint allows for finding Resources within a collection, 
+    the Navigation endpoint describes the relationship between structural divisions in the text. 
+    References found in the Navigation endpoint can also be used to retrieve corresponding 
+    portions of the Resource’s text from the Document endpoint. 
+    <https://distributed-text-services.github.io/specifications/versions/1.0rc1/#navigation-endpoint>.
+  parameters:
+    - name: resource
+      in: query
+      required: false
+      description: |
+        Identifier for a collection or document. 
+        Accepted ID formats are WeGA, e.g. https://weber-gesamtausgabe.de/A002068, 
+        VIAF, e.g. https://viaf.org/viaf/14959938, Wikidata, e.g. https://www.wikidata.org/entity/Q154812, 
+        or GND, e.g. https://d-nb.info/gnd/118629662
+      schema:
+        type: string
+        format: uri
+      example: https://weber-gesamtausgabe.de/A002068
+    - name: ref
+      in: query
+      required: false
+      description: |
+        The string identifier of a single node in the citation tree for the Resource, 
+        used as the point of reference for the query.
+        NOT used with `start` and `end`.
+      schema:
+        type: string
+    - name: start
+      in: query
+      required: false
+      description: |
+        The string identifier of a node in the citation tree for the resource, 
+        used as the starting point for a range that serves as the reference point for the query. 
+        This parameter is inclusive, so the starting point is considered part of the specified range.
+        NOT used if a `ref` is specified, requires `end` as well.
+      schema:
+        type: string
+    - name: end
+      in: query
+      required: false
+      description: |
+        The string identifier of a node in the citation tree for the resource, 
+        used as the ending point for a range of passages that serves as the reference point for the query. 
+        This parameter is inclusive, so the supplied ending point is considered part of the specified range.
+        NOT used if a `ref` is specified, requires `start` as well.
+      schema:
+        type: string
+    - name: down
+      in: query
+      required: false
+      description: |
+        The maximum depth of the citation subtree to be returned, relative to the specified `ref`, 
+        the deeper of the `start`/`end` `CitableUnit`, or if these are not provided relative to the root. 
+        A value of `-1` indicates the bottom of the `Resource` citation tree.
+        If `down` is not provided only retrieve information about the queried `CitableUnit`.
+      schema:
+        type: integer
+    - name: tree
+      in: query
+      required: false
+      description: The string identifier for a `CitationTree` of the `Resource`.
+      schema:
+        type: string
+    - name: page
+      in: query
+      required: false
+      description: The number of identifying a page in paginated query results.
+      schema:
+        type: integer
+  responses:
+    '200':
+      description: The available collections
+      content:
+        application/ld+json:
+          schema:
+            $ref: '../schemas/dtsNavigation.yaml'
+    '400':
+      description: |
+        Bad Request – either no `resource` value was provided, or
+        both `ref` and either `start` or `end` were specified, or
+        `start` was provided without also specifying `end`, or vice versa.
+    '404':
+      description: |
+        Not Found – either the query specified a `ref`, `start`, or `end` value that 
+        does not exist in the queried `CitationTree`, or
+        a query specified a tree value that does not correspond 
+        to an existing `CitationTree` for the `Resource`.

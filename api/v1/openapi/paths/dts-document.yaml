@@ -1,0 +1,84 @@
+# DTS document endpoint
+get:
+  tags:
+    - DTS
+  summary: Distributed Text Services document endpoint
+  description: |
+    Return a document. Documentation see 
+    <https://distributed-text-services.github.io/specifications/versions/1.0rc1/#document-endpoint>.
+  parameters:
+    - name: resource
+      in: query
+      required: true
+      description: |
+        The unique identifier for the `Resource` whose tree or subtree must be returned. 
+        Accepted ID formats are WeGA, e.g. A002068 or https://weber-gesamtausgabe.de/A002068, 
+        VIAF, e.g. https://viaf.org/viaf/14959938, Wikidata, e.g. https://www.wikidata.org/entity/Q154812, 
+        or GND, e.g. https://d-nb.info/gnd/118629662
+      schema:
+        type: string
+      example: https://weber-gesamtausgabe.de/A002068
+    - name: ref
+      in: query
+      required: false
+      description: | 
+        The identifier of a single node in the `CitationTree` for the `Resource`, 
+        used as the root for the sub-tree to be reconstructed.
+      schema:
+        type: string
+    - name: start
+      in: query
+      required: false
+      description: |
+        The string identifier of a node in the `CitationTree` for the `Resource`, 
+        used as the starting point for a range that serves as the reference point for the query. 
+        This parameter is inclusive, so the starting point is considered part of the sub-tree to be returned.
+        NOT used if a `ref` is specified, requires `end` as well.
+      schema:
+        type: string
+    - name: end
+      in: query
+      required: false
+      description: | 
+        The string identifier of a node in the `CitationTree` for the `Resource`, 
+        used as the ending point for a range that serves as the reference point for the query. 
+        This parameter is inclusive, so the supplied ending point is considered part of the specified range.
+        NOT used if a `ref` is specified, requires `start` as well.
+      schema:
+        type: string
+    - name: mediaType
+      in: query
+      required: false
+      description: |
+        The string identifier for the media-type the `Resource` must be returned in.
+      schema:
+        type: string
+        default: tei_all
+        enum:
+          - txt
+          - simplePrint
+          - wega
+          - tei_all
+  responses:
+    '200':
+      description: The available TEI document
+      content:
+        application/tei+xml:
+          schema:
+            type: string
+            format: xml
+        text/plain:
+          schema:
+            type: string
+      headers:
+        Link:
+          description: Contains a URI that links back to the Collection endpoint for the requested `Resource`.
+          schema:
+            type: string
+            format: uri
+    '400':
+      description: Bad Request – the `resource` parameter is missing.
+    '404':
+      description: |
+        Not Found – any combination of the parameters `resource`, `tree`, `ref`, `start` 
+        and `end` does not match a `Resource` and its `CitationTree`.

@@ -1,0 +1,44 @@
+# DTS collection endpoint
+get:
+  tags:
+    - DTS
+  summary: Distributed Text Services collection endpoint
+  description: |
+    Lists the collections available. Documentation see 
+    <https://distributed-text-services.github.io/specifications/versions/1.0rc1/#collection-endpoint>.
+  parameters:
+    - name: id
+      in: query
+      required: false
+      description: |
+        Identifier for a collection or document. 
+        Accepted ID formats are WeGA, e.g. https://weber-gesamtausgabe.de/A002068, 
+        VIAF, e.g. https://viaf.org/viaf/14959938, Wikidata, e.g. https://www.wikidata.org/entity/Q154812, 
+        or GND, e.g. https://d-nb.info/gnd/118629662
+      schema:
+        type: string
+        format: uri
+      example: https://weber-gesamtausgabe.de/A002068
+    - name: page
+      in: query
+      required: false
+      description: Page of the current collection’s members.
+      schema:
+        type: integer
+    - name: nav
+      in: query
+      required: false
+      description: Determines whether the content of the member property represents parent or child items.
+      schema:
+        type: string
+        enum:
+          - parents
+          - children
+        default: children
+  responses:
+    '200':
+      description: The available collections
+      content:
+        application/ld+json:
+          schema:
+              $ref: '../schemas/dtsCollectionResource.yaml'
