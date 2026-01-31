@@ -18,34 +18,34 @@ get:
       schema:
         type: string
       example: https://weber-gesamtausgabe.de/A002068
-    - name: ref
-      in: query
-      required: false
-      description: | 
-        The identifier of a single node in the `CitationTree` for the `Resource`, 
-        used as the root for the sub-tree to be reconstructed.
-      schema:
-        type: string
-    - name: start
-      in: query
-      required: false
-      description: |
-        The string identifier of a node in the `CitationTree` for the `Resource`, 
-        used as the starting point for a range that serves as the reference point for the query. 
-        This parameter is inclusive, so the starting point is considered part of the sub-tree to be returned.
-        NOT used if a `ref` is specified, requires `end` as well.
-      schema:
-        type: string
-    - name: end
-      in: query
-      required: false
-      description: | 
-        The string identifier of a node in the `CitationTree` for the `Resource`, 
-        used as the ending point for a range that serves as the reference point for the query. 
-        This parameter is inclusive, so the supplied ending point is considered part of the specified range.
-        NOT used if a `ref` is specified, requires `start` as well.
-      schema:
-        type: string
+    #- name: ref
+    #  in: query
+    #  required: false
+    #  description: |
+    #    The identifier of a single node in the `CitationTree` for the `Resource`,
+    #    used as the root for the sub-tree to be reconstructed.
+    #  schema:
+    #    type: string
+    #- name: start
+    #  in: query
+    #  required: false
+    #  description: |
+    #    The string identifier of a node in the `CitationTree` for the `Resource`,
+    #    used as the starting point for a range that serves as the reference point for the query.
+    #    This parameter is inclusive, so the starting point is considered part of the sub-tree to be returned.
+    #    NOT used if a `ref` is specified, requires `end` as well.
+    #  schema:
+    #    type: string
+    #- name: end
+    #  in: query
+    #  required: false
+    #  description: |
+    #    The string identifier of a node in the `CitationTree` for the `Resource`,
+    #    used as the ending point for a range that serves as the reference point for the query.
+    #    This parameter is inclusive, so the supplied ending point is considered part of the specified range.
+    #    NOT used if a `ref` is specified, requires `start` as well.
+    #  schema:
+    #    type: string
     - name: mediaType
       in: query
       required: false
