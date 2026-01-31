@@ -24,12 +24,13 @@ import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" a
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../../modules/config.xqm";
 
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../../modules/controller.xqm";
+import module namespace api-dts="http://xquery.weber-gesamtausgabe.de/modules/api-dts" at "../../modules/api-dts.xqm";
 
 (: Change this line to point at your openapi config file :)
 declare variable $local:openapi-config := json-doc($config:openapi-config-path);
 
 (: Change this if you are using a different prefix for your module in line XX :)
-declare variable $local:api-module-prefix as xs:string := 'api'; 
+declare variable $local:api-module-prefix as xs:string+ := ('api', 'api-dts'); 
 
 (:~
  :  Some eXist environment variables which get passed through
@@ -153,7 +154,7 @@ let $lookup as map(*)? :=
             let $params := for $token at $pos in $openapi-path-tokens return if(contains($token, '{')) then map:entry(replace($token, '[\{\}]', ''), xmldb:decode(tokenize($exist:path, '/')[$pos])) else ()
             return
                 map {
-                    'func' : function-lookup(xs:QName($local:api-module-prefix || ':' || $func-name), 1),
+                    'func' : $local:api-module-prefix ! function-lookup(xs:QName(. || ':' || $func-name), 1),
                     'path-params' : map:merge($params)
                 }
         else ()
@@ -163,13 +164,13 @@ let $lookup as map(*)? :=
         $possible-matches
     )[1]
 
-let $validate-unknown-param := function-lookup(xs:QName($local:api-module-prefix || ':validate-unknown-param'), 1)
+let $validate-unknown-param := $local:api-module-prefix ! function-lookup(xs:QName(. || ':validate-unknown-param'), 1)
 
 let $validate-params := function($params as map(*)?) as map(*)? {
     if(exists($params)) then
         map:merge(
             for $param in map:keys($params)
-            let $lookup := function-lookup(xs:QName($local:api-module-prefix || ':validate-' || $param), 1)
+            let $lookup := $local:api-module-prefix ! function-lookup(xs:QName(. || ':validate-' || $param), 1)
             return
                 if(exists($lookup)) then $lookup(map {$param : $params($param), 'openapi:config' : $local:openapi-config })
                 else if(exists($validate-unknown-param)) then $validate-unknown-param(map {$param : $params($param), 'openapi:config' : $local:openapi-config })
@@ -191,7 +192,7 @@ let $response := function($lookup as map(*)) {
     case empty-sequence() return $unknown-function
     default return :)
         try { $lookup?func(map:merge(($local:defaults, map {'openapi:config' : $local:openapi-config}, $validate-params($lookup?path-params), $validate-params($local:url-parameters)))) }
-        catch * { map {'code' : 404, 'message' : $err:description, 'fields' : 'Error Code: ' ||  $err:code} }
+        catch * { map {'code' : 400, 'message' : $err:description, 'fields' : 'Error Code: ' ||  $err:code} }
 }
 
 (:~
@@ -202,10 +203,7 @@ let $accept-header := tokenize(request:get-header('Accept'), '[,;]')
 let $unknown-function := 
      map {'code' : 404, 'message' : 'Unknown/unsupported API function. Please refer to the openapi.json file for supported functions.', 'fields' : ''}
 
-return (:(
-    util:log-system-out($exist:path),
-    util:log-system-out($exist:resource)
-    ):)
+return 
     if($exist:resource = ('openapi.json', 'swagger.json')) then response:set-header('Access-Control-Allow-Origin', '*')
     else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
@@ -215,10 +213,17 @@ return (:(
                 <set-header name="Cache-Control" value="max-age=3600,public"/>
             </forward>
         </dispatch>
-    else if(exists($lookup)) then 
-        if($accept-header[.='application/xml']) then local:serialize-xml($response($lookup), if(empty($lookup)) then 'Error' else $exist:resource )
+    else if(exists($lookup)) then
+        (: The responses of the DTS endpoints are constructed in a dedicated module :)
+        if(starts-with($exist:path, '/dts')) then
+            let $responseMap := $response($lookup) 
+            return
+                (: if a "code" key is returned, most likely some URL parameter was not recognized so we return the error message :)
+                if(map:contains($responseMap, 'code')) then local:serialize-json($responseMap)
+                else
+                    try { api-dts:dispatch($responseMap?body, $responseMap?headers) }
+                    catch * { map {'code' : 500, 'message' : $err:description, 'fields' : 'Error Code: ' ||  $err:code} => local:serialize-json() }
+        else if($accept-header[.='application/xml']) then local:serialize-xml($response($lookup), if(empty($lookup)) then 'Error' else $exist:resource )
         else local:serialize-json($response($lookup))
-        (:else if($accept-header[.='application/json']) then local:serialize-json($response($lookup))
-        else local:serialize-xml(map { 'msg':= 'Unknown/unsupported HTTP Accept Header. Please refer to the openapi.json file for supported response formats.', 'code':= 406 }, 'apiResponse'):)
     else if($accept-header[.='application/xml']) then local:serialize-xml($unknown-function, 'apiResponse')
     else local:serialize-json($unknown-function)
