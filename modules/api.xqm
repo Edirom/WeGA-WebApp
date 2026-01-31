@@ -9,12 +9,14 @@ xquery version "3.1" encoding "UTF-8";
  
 module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api";
 
+declare namespace err="http://www.w3.org/2005/xqt-errors";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 declare namespace util="http://exist-db.org/xquery/util";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace repo="http://exist-db.org/xquery/repo";
+declare namespace request="http://exist-db.org/xquery/request";
 declare namespace ft="http://exist-db.org/xquery/lucene";
 declare namespace sort="http://exist-db.org/xquery/sort";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -54,7 +56,7 @@ declare %private function api:document-uri($docID as xs:string?, $model as map(*
 
 declare function api:documents($model as map(*)) as map(*) {
     let $ids :=
-        if(exists($model('docID'))) then api:findByID($model('docID'))
+        if(exists($model('docID'))) then query:doc-by-any-id($model('docID'))
         else for $docType in api:resolve-docTypes($model) return core:getOrCreateColl($docType, 'indices', true())
     return (
         map { 
@@ -75,7 +77,7 @@ declare function api:documents-findByDate($model as map(*)) as map(*) {
 };
 
 declare function api:documents-findByMention($model as map(*)) as map(*) {
-    let $mentioned-doc := api:findByID($model('docID'))
+    let $mentioned-doc := query:doc-by-any-id($model('docID'))
     let $backlinks := 
         if($mentioned-doc) 
         then core:getOrCreateColl('backlinks', $mentioned-doc/*/data(@xml:id), true())
@@ -92,7 +94,7 @@ declare function api:documents-findByMention($model as map(*)) as map(*) {
 };
 
 declare function api:documents-findByAuthor($model as map(*)) as map(*) {
-    let $author := api:findByID($model('authorID'))
+    let $author := query:doc-by-any-id($model('authorID'))
     let $documents := 
         if($author)
         then ( 
@@ -501,22 +503,6 @@ declare %private function api:get-facets($model as map(*)) as array(*) {
         }
 };
 
-(:~
- :  Find document by ID.
- :  IDs are accepted in the following formats:
- :  * WeGA, e.g. A002068 or http://weber-gesamtausgabe.de/A002068
- :  * VIAF, e.g. http://viaf.org/viaf/310642461
- :  * GND, e.g. http://d-nb.info/gnd/118629662
-~:)
-declare %private function api:findByID($id as xs:string) as document-node()* {
-    if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then crud:doc($id)
-    else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then crud:doc(substring-after($id, 'de/'))
-    else if(matches(normalize-space($id), 'https?://d-nb.info/gnd/')) then query:doc-by-gnd(substring-after($id, '/gnd/'))
-    else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then try { query:doc-by-gnd(er:viaf2gnd(substring-after($id, '/viaf/'))) } catch * {()}
-    else if(matches(normalize-space($id), 'https?://www.wikidata.org/entity/')) then query:doc-by-wikidata(substring-after($id, '/entity/'))
-    else error($api:UNSUPPORTED_ID_SCHEMA, 'Failed to recognize ID schema for "' || $id || '"')
-};
-
 (:
 declare function api:ant-currentSvnRev($model as map(*)) as xs:int? {
     config:getCurrentSvnRev()
@@ -777,7 +763,7 @@ declare function api:validate-date($model as map(*)) as map(*)? {
  : Check parameter docID
 ~:)
 declare function api:validate-docID($model as map(*)) as map(*)? {
-    (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
+    (: Nothing to do here but decoding, IDs will be checked within query:doc-by-any-id()   :)
     map { 'docID': xmldb:decode-uri($model?docID) }
 };
 
@@ -785,7 +771,7 @@ declare function api:validate-docID($model as map(*)) as map(*)? {
  : Check parameter authorID
 ~:)
 declare function api:validate-authorID($model as map(*)) as map(*)? {
-    (: Nothing to do here but decoding, IDs will be checked within api:findByID()   :)
+    (: Nothing to do here but decoding, IDs will be checked within query:doc-by-any-id()   :)
     map { 'authorID': xmldb:decode-uri($model?authorID) }
 };
 

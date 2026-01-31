@@ -23,6 +23,8 @@ import module namespace functx="http://www.functx.com";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
 import module namespace date="http://xquery.weber-gesamtausgabe.de/modules/date" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/date.xqm";
 
+declare variable $query:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/query", "UnsupportedIDSchema");
+
 (:~
  : Print the regularised title for a given WeGA ID
  : The function serves as a convenient shortcut to the wdt:* title functions, 
@@ -78,6 +80,27 @@ declare function query:get-author-element($doc as document-node()?) as element()
         $doc//tei:fileDesc/tei:titleStmt/tei:author
     )
 };
+
+
+(:~
+ :  Retrieves a document by any ID.
+ :  IDs are accepted in the following formats:
+ :  * WeGA, e.g. A002068 or http://weber-gesamtausgabe.de/A002068
+ :  * VIAF, e.g. http://viaf.org/viaf/310642461
+ :  * GND, e.g. http://d-nb.info/gnd/118629662
+ :
+ : @param $id the identifier
+ : @return the documents identified by the identifier
+~:)
+declare function query:doc-by-any-id($id as xs:string) as document-node()* {
+    if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then crud:doc($id)
+    else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then crud:doc(substring-after($id, 'de/'))
+    else if(matches(normalize-space($id), 'https?://d-nb.info/gnd/')) then query:doc-by-gnd(substring-after($id, '/gnd/'))
+    else if(matches(normalize-space($id), 'https?://viaf.org/viaf/')) then try { query:doc-by-gnd(er:viaf2gnd(substring-after($id, '/viaf/'))) } catch * {()}
+    else if(matches(normalize-space($id), 'https?://www.wikidata.org/entity/')) then query:doc-by-wikidata(substring-after($id, '/entity/'))
+    else error($query:UNSUPPORTED_ID_SCHEMA, 'Failed to recognize ID schema for "' || $id || '"')
+};
+
 
 (:~
  : Retrieves a document by GND identifier
