@@ -258,7 +258,7 @@ declare %private function er:wikidata-url($id as xs:string, $authority-provider 
  :
  :)
 declare %private function er:bot-present() as xs:boolean {
-    matches(request:get-header('User-Agent'), 'Baiduspider|Yandex|MegaIndex|AhrefsBot|HTTrack|bingbot|Googlebot|cliqzbot|DotBot|SemrushBot|MJ12bot', 'i')
+    matches(request:get-header('User-Agent'), 'adidxbot|adsbot-google|ahrefsbot|ai2bot|amazonbot|anthropic-ai|applebot|applebot|baiduspider|bingbot|bingpreview|botify|bytespider|ccbot|chatgpt-user|claude-searchbot|claude-user|claude-web|claudebot|cliqzbot|cohere-ai|cohere-training-data-crawler|diffbot|dotbot|duckassistbot|duckduckbot|facebookbot|facebookexternalhit|gemini-deep-research|google-cloudvertexbot|google-extended|google-inspectiontool|googlebot|googleother|gptbot|httrack|kangaroo|linkedinbot|mediapartners-google|megaindex|meta-externalagent|meta-externalfetcher|mistralai-user|mj12bot|msnbot|n/a|oai-searchbot|omgili|oncrawl|pangubot|perplexity-user|perplexitybot|petalbot|rogerbot|screaming|semrushbot|slurp|storebot-google|technicalseodotcom|twitterbot|webzio|yandex|youbot', 'i')
 };
 
 (:~
