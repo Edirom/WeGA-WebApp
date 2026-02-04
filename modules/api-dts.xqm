@@ -10,18 +10,20 @@ declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace response="http://exist-db.org/xquery/response";
-declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
 import module namespace crud="http://xquery.weber-gesamtausgabe.de/modules/crud" at "crud.xqm";
 import module namespace gl="http://xquery.weber-gesamtausgabe.de/modules/gl" at "gl.xqm";
 import module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod" at "lod.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
+import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 
 declare variable $api-dts:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "ParameterError");
 declare variable $api-dts:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "UnsupportedIDSchema");
 declare variable $api-dts:UNSUPPORTED_TRANSFORMATION := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "UnsupportedTransformation");
+declare variable $api-dts:max-limit := 50;
 declare variable $api-dts:mediaTypes := function($openapi-conf as map(*)) as xs:string* {
     $openapi-conf?paths?("/dts/document")?get?parameters?*[.?name="mediaType"]?schema?enum?*
 };
@@ -37,7 +39,7 @@ declare variable $api-dts:mediaTypes := function($openapi-conf as map(*)) as xs:
  :)
 declare function api-dts:dispatch($body as item(), $headers as map(*)) {
     switch($headers?media-type)
-    case "application/json" return api-dts:json-response($body, map:remove($headers, "media-type"))
+    case "application/json" case "application/ld+json" return api-dts:json-response($body, map:remove($headers, "media-type"))
     case "application/tei+xml" case "application/xml" return api-dts:xml-response($body, map:remove($headers, "media-type"))
     case "text/plain" return api-dts:txt-response($body, map:remove($headers, "media-type"))
     default return ()
@@ -121,6 +123,69 @@ declare function api-dts:dts-document($model as map(*)) as map(*) {
         }
 };
 
+(:~
+ :  DTS Collection endpoint
+ :)
+declare function api-dts:dts-collection($model as map(*)) as map(*) {
+    let $idTokens := tokenize($model?id, '_')
+    let $body := 
+        switch(count($idTokens))
+        case 1 return api-dts:create-dts-collection($model, $idTokens[1])
+        case 2 return api-dts:create-dts-collection-shallow($model, $idTokens[1], $idTokens[2])
+        default return ()
+    return
+        map {
+            "body": $body,
+            "headers": map {
+                    "media-type": "application/ld+json"
+                }
+        }
+};
+
+(:~
+ :  Create DTS collections
+ :)
+declare function api-dts:create-dts-collection($model as map(), $docType as xs:string) as map(*) {
+    let $coll := core:getOrCreateColl($docType, 'indices', true())
+    let $members :=
+        for $author in $coll//tei:fileDesc//tei:author
+        group by $key := $author/data(@key)
+        order by $key
+        return $key 
+    let $offset :=
+        if($model?page) then ($model?page - 1) * $api-dts:max-limit + 1
+        else 1
+    return
+        map {
+            "@context": "https://distributed-text-services.github.io/specifications/context/1.0rc1.json",
+            "@id": $docType,
+            "@type": "Collection",
+            "collection": config:api-base($model("openapi:config")) || "/dts/collection/{?id,page,nav}",
+            "dtsVersion": "1.0rc1",
+            "totalParents": 1,
+            "totalChildren": count($members),
+            "title": "Root collection of document type " || $docType,
+            "member": array { subsequence($members, $offset, $api-dts:max-limit) ! api-dts:create-dts-collection-shallow($model, $docType, .) }
+        }
+};
+
+declare function api-dts:create-dts-collection-shallow($model as map(), $docType as xs:string, $docID as xs:string) as map(*) {
+    let $coll := core:getOrCreateColl($docType, $docID, true())
+    let $offset :=
+        if($model?page) then ($model?page - 1) * $api-dts:max-limit + 1
+        else 1
+    return
+        map {
+            "@id": string-join(($docType, $docID), '_'),
+            "@type": "Collection",
+            "collection": config:api-base($model("openapi:config")) || "/dts/collection/{?id,page,nav}",
+            "totalParents": 1,
+            "totalChildren": count($coll),
+            "title": wdt:lookup("persons", $docID)('title')('txt') || " – collected " || $docType 
+        }
+};
+
+
 declare function api-dts:process-xml-document($doc as document-node(), $format as xs:string) as item()? {
     let $TEIversion := $gl:main-source/tei:TEI/processing-instruction('TEIVERSION')/analyze-string(., '\d+\.\d+\.\d+')/fn:match/text()
     let $availableTransformations := xmldb:get-child-resources($config:xsl-external-schemas-collection-path) ! (substring-before(substring-after(., 'to-'), '.xsl')) 
@@ -155,6 +220,33 @@ declare function api-dts:validate-resource($model as map(*)) as map(*)? {
 declare function api-dts:validate-mediaType($model as map(*)) as map(*)? {
     if($model?mediaType castable as xs:string and $model?mediaType = $api-dts:mediaTypes($model('openapi:config'))) then $model
     else error($api-dts:INVALID_PARAMETER, "Unsupported value for parameter 'mediaType'." )
+};
+
+(:~
+ : Check parameter id
+ : only one value allowed
+~:)
+declare function api-dts:validate-id($model as map(*)) as map(*)? {
+    if($model?id castable as xs:string) then $model
+    else error($api-dts:INVALID_PARAMETER, "Unsupported value for parameter 'id'." )
+};
+
+(:~
+ : Check parameter page
+ : only one value allowed
+~:)
+declare function api-dts:validate-page($model as map(*)) as map(*)? {
+    if($model?page castable as xs:positiveInteger) then $model
+    else error($api-dts:INVALID_PARAMETER, "Unsupported value for parameter 'page'." )
+};
+
+(:~
+ : Check parameter nav
+ : only one value allowed
+~:)
+declare function api-dts:validate-nav($model as map(*)) as map(*)? {
+    if($model?nav castable as xs:string and $model?nav=("parents", "children")) then $model
+    else error($api-dts:INVALID_PARAMETER, "Unsupported value for parameter 'nav'." )
 };
 
 declare %private function api-dts:set-headers($headers as map(*)?) as empty-sequence()  {
