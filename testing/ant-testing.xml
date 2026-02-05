@@ -58,20 +58,23 @@
     <target name="diff">
         <xslt processor="trax" style="testing/flatten.xsl" basedir="${expected.results.dir}/${docType}" destdir="${tmp.dir}/expected.results.processed/${docType}"/>
         <xslt processor="trax" style="testing/flatten.xsl" basedir="${tmp.dir}/results.raw/${docType}" destdir="${tmp.dir}/results.processed/${docType}"/>
-        <tempfile property="diff.out" destdir="${tmp.dir}" suffix=".txt" deleteonexit="false"/>
-        <exec executable="${bash.command}" output="${diff.out}">
+        <exec executable="${bash.command}">
             <arg value="-c"/>
-            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do echo &quot;File: $i&quot;; ${prettydiff.cmd} source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot;  mode:&quot;diff&quot; ; done"/>
-            <!--            <arg value="for i in ${expected.results.dir}/${docType}/* ; do echo -e '******************\nPROCESSING' `basename $i`'\n******************' ; diff -B &lt;(saxon -s:$i -xsl:flatten.xsl) &lt;(saxon -s:${results.dir}/${docType}/`basename $i` -xsl:flatten.xsl) ; done"/>-->
+            <!-- create a diff file for every html page -->
+            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do ${prettydiff.cmd} diff source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot; mode:&quot;diff&quot; > ${tmp.dir}/`basename $i`.diff ; done"/>
             <env key="LANG" value="C"/>
         </exec>
         <exec executable="${bash.command}" outputproperty="grep.out">
             <arg value="-c"/>
-            <arg value="grep -A 2 -B 11 &quot;\[3[12]m&quot; ${diff.out}"/>
+            <!-- 
+                grep the diff files for some digit e.g. "found 3 differences"; 
+                otherwise simply "Pretty Diff found no differences" is printed
+                The "-B 10" option provides some context before the final "Pretty Diff found 3 differences"
+            -->
+            <arg value="grep -B 10 &quot;36m[1-9]&quot; ${tmp.dir}/*.diff"/>
             <env key="LANG" value="C"/>
         </exec>
         <echo>${grep.out}</echo>
-        <echo>Logfile at ${diff.out}</echo>
         <fail>
             <condition>
                 <length string="${grep.out}" trim="true" when="greater" length="0"/>
