@@ -843,7 +843,7 @@ declare
         let $print-titles := function($doc as document-node(), $alt as xs:boolean) {
             for $title in $doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[not(@type='sub')][exists(@type='alt') = $alt]
             let $titleLang := $title/string(@xml:lang) 
-            let $subTitle := ($title/following-sibling::mei:title[@type='sub'][string(@xml:lang) = $titleLang])[1]
+            let $subTitle := ($doc//mei:meiHead/mei:fileDesc/mei:titleStmt/mei:title[@type='sub'][string(@xml:lang) = $titleLang])[1]
             return <span xmlns="http://www.w3.org/1999/xhtml">{
                 string-join((
                     wega-util:transform($title, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(())),
