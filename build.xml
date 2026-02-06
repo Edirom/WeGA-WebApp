@@ -29,7 +29,7 @@
         <mkdir dir="${dist.dir}"/>
     </target>
     
-    <target name="test">
+    <target name="test" depends="xqsuite">
         <description>Run the regression test, i.e. diffing HTML pages against expected results</description>
         <parallel threadCount="5" failonany="yes">
             <regressiontest doctype="addenda"/>
