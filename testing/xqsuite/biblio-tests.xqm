@@ -41,7 +41,9 @@ declare
 
 declare 
     %test:args('A111038')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='collectionTitle'>„Ei, dem alten Herrn zoll’ ich Achtung gern’“. Festschrift für Joachim Veit zum 60. Geburtstag</xhtml:span>")
-    function bt:test-collectionTitle($a as xs:string) as element() {
+    %test:args('A113126')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='collectionTitle'>Carl Maria von Weber als Wegbereiter Richard Wagners?</xhtml:span>")
+    %test:args('A110745')         %test:assertEmpty
+    function bt:test-collectionTitle($a as xs:string) as element()? {
         let $doc := crud:doc($a)
         return
             bibl:printCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='collectionTitle']
