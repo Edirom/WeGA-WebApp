@@ -142,7 +142,7 @@
         </exec>
     </target>
 
-    <target name="xqsuite">
+    <target name="xqsuite" depends="init">
         <description>Run the XQSuite unit tests</description>
         <get src="http://localhost:8080/exist/rest/db/apps/WeGA-WebApp/testing/xqsuite/run-unit-tests.xql"
              dest="${tmp.dir}/xqsuite-results.xml"/>
@@ -150,15 +150,21 @@
                   srcFile="${tmp.dir}/xqsuite-results.xml"/>
         <exec executable="${bash.command}" outputproperty="grep.out">
             <arg value="-c"/>
-            <arg value="grep testsuite ${tmp.dir}/xqsuite-results.xml
-                &amp;&amp; (! grep 'failures=&quot;[1-9]' ${tmp.dir}/xqsuite-results.xml)
-                &amp;&amp; (! grep 'errors=&quot;[1-9]' ${tmp.dir}/xqsuite-results.xml)"/>
+            <arg value="
+                (! grep 'failures=&quot;[1-9]' ${tmp.dir}/xqsuite-results.xml)
+                &amp;&amp; (! grep 'errors=&quot;[1-9]' ${tmp.dir}/xqsuite-results.xml)
+            "/>
         </exec>
         <fail>
             Some XQSuite tests failed.
             ${xqsuite.results}
             <condition>
-                <length string="${grep.out}" when="greater" length="0" trim="true"/>
+                <or>
+                    <length string="${grep.out}" when="greater" length="0" trim="true"/>
+                    <not>
+                        <contains string="${xqsuite.results}" substring="testsuite" />
+                    </not>
+                </or>
             </condition>
         </fail>
     </target>
