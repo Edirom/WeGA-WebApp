@@ -15,10 +15,10 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
-      - name: Set up Node 20
+      - name: Set up Node 25
         uses: actions/setup-node@v6
         with:
-          node-version: 20
+          node-version: 25
       - name: Build with Ant
         run: ant clean xar
       - name: Archive xar package
