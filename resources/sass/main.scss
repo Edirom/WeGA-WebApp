@@ -1,4 +1,14 @@
-/*@import "../../node_modules/bootstrap/scss/bootstrap";*/
+// Fort Awesome
+// use rules have to go first
+@use '../../node_modules/@fortawesome/fontawesome-free/scss/variables' with (
+  // customizing $font-path
+  $font-path: '../fonts'
+);
+@use '../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome';
+@use '../../node_modules/@fortawesome/fontawesome-free/scss/solid.scss' as fa-solid;
+@use '../../node_modules/@fortawesome/fontawesome-free/scss/brands.scss' as fa-brands;
+@use '../../node_modules/@fortawesome/fontawesome-free/scss/regular.scss' as fa-regular;
+
 // local variables
 @import "base/variables";
 
@@ -51,10 +61,6 @@
 @import "../../node_modules/bootstrap/scss/utilities";
 
 // non-bootstrap imports
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/fontawesome";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/solid";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/regular";
-@import "../../node_modules/@fortawesome/fontawesome-free/scss/brands";
 @import "base/fonts";
 @import "base/helpers";
 @import "base/base";
