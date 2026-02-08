@@ -153,7 +153,7 @@ declare %private function bt:normalize-hrefs($nodes as node()*) as node()* {
     return
         typeswitch($node)
         case attribute(href) return attribute {'href'} { substring-after($node, '/de/') }
-        case document-node() return document { $node/node() ! bt:normalize-refs(.) }
-        case element() return element {$node/name()} { ($node/@* | $node/node()) => bt:normalize-refs() }
+        case document-node() return document { $node/node() ! bt:normalize-hrefs(.) }
+        case element() return element {$node/name()} { ($node/@* | $node/node()) => bt:normalize-hrefs() }
         default return $node
 };
