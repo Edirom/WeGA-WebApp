@@ -173,7 +173,13 @@
             </div>
             <div class="col-md-9 main-col" data-template="app:prepare-text">
                 <!-- Tab panes -->
-                <div class="tab-content">
+                <div class="tab-content">  
+                    
+                    <div data-template="app-shared:if-exists" data-template-key="toc-content">
+                        <h3 class="media-heading">TOC<!-- --></h3>
+                        <div data-template="app-shared:output" data-template-key="toc-content"/>
+                    </div>
+                    
                     <div class="tab-pane active fade in" id="transcription">
                         <div data-template="app-shared:output" data-template-key="transcription"/>
                     </div>

@@ -1427,14 +1427,35 @@ declare
              else (
                 wega-util:transform($textRoot, $xslt1, $xslParams)
             )
+         let $tocContent :=
+            if ($docType = 'sources') then
+            element xhtml:ul {
+              for $h at $pos in $body//xhtml:h2[
+                contains-token(string(@class), 'header-level-act')
+                or contains-token(string(@class), 'header-level-scene')
+              ]
+              let $class := string($h/@class)
+              let $level := if (contains-token($class, 'header-level-act')) then 'act' else 'scene'
+              let $label := normalize-space(string-join($h//text(), ' '))
+              let $id := string($h/@id)
+              return
+                element xhtml:li {
+                  attribute class { 'toc-' || $level },
+                  element xhtml:a {
+                    attribute href { '#' || $id },
+                    $label
+                  }
+                }
+            }
+            else ()
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
             else ()
-         
          return 
             map { 
                 'transcription' : (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
-                'apparatus' : $body/descendant-or-self::*[@class='apparatus']
+                'apparatus' : $body/descendant-or-self::*[@class='apparatus'],
+                'toc-content' : $tocContent
             }
 };
 

@@ -82,8 +82,16 @@
         </xsl:variable>
         <xsl:variable name="parentDiv" select="parent::tei:div"/>
         <xsl:variable name="parentDivType" select="string($parentDiv/@type)"/>
+        <xsl:variable name="act" select="string($parentDiv/ancestor-or-self::tei:div[@type='act'][1]/@n)"/>
+        <xsl:variable name="scene" select="string($parentDiv/ancestor-or-self::tei:div[@type='scene'][1]/@n)"/>
+        <xsl:variable name="anchorId" select="
+            if ($parentDivType = 'act') then concat('act-', $act)
+            else if ($parentDivType = 'scene') then concat('act-', $act, '-scene-', $scene)
+            else ()
+            "/>
         <xsl:element name="{concat('h', $minHeadLevel + $increments)}">
             <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="id" select="$anchorId"/>
             <xsl:attribute name="class" select="string-join(('srcHeader', wega:getTextAlignment(@rend, 'left'), concat('header-level-', if($parentDivType) then $parentDivType else 'generic')), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
