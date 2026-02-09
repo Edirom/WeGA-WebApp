@@ -606,7 +606,7 @@ declare function query:witness-facsimile($source as element()) as element(tei:fa
  :      The value of this key is a sequence of maps, each containing the keys 'context-relatedItem-type', 'context-relatedItem-doc' and 'context-relatedItem-n'
 ~:)
 declare function query:context-relatedItems($doc as document-node()?) as map(*)? {
-    let $relatedItems :=  
+    let $teiRelatedItems :=  
         for $relatedItem in $doc//tei:notesStmt/tei:relatedItem
         return 
             map {
@@ -614,6 +614,16 @@ declare function query:context-relatedItems($doc as document-node()?) as map(*)?
                 'context-relatedItem-doc': crud:doc(substring-after($relatedItem/@target, ':')),
                 'context-relatedItem-n': data($relatedItem/@n)
             }
+    let $meiWeGAIdentifiers :=
+        for $WeGAIdentifier in $doc/mei:manifestation/mei:identifier[@type = 'WeGA']
+        let $key := normalize-space(string($WeGAIdentifier))
+        return
+            map {
+                'context-relatedItem-type': (), (: no equivalent in current data :)
+                'context-relatedItem-doc': crud:doc($key),
+                'context-relatedItem-n': () (: no equivalent in current data :)
+            }
+    let $relatedItems := ($teiRelatedItems, $meiWeGAIdentifiers)
     return
         if(exists($relatedItems)) then 
             map { 
