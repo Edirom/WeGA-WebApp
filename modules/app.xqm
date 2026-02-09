@@ -1726,7 +1726,8 @@ declare
     %templates:default("lang", "en")
     %templates:wrap
     function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
-        lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang)
+        let $type := $model?context-relatedItem?context-relatedItem-type
+        return if(exists($type)) then lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang) else ()
 };
 
 (:~
