@@ -286,7 +286,7 @@ declare function query:text-sources($doc as document-node()) as element()* {
                   <tei:acquisition>Umwandlung der Dauerleihgabe in eine Schenkung durch <tei:persName key="A008831">Hans-Jürgen Freiherr von Weber</tei:persName> am 15. November 1986</tei:acquisition>
                </tei:history>
             </tei:msDesc>
-        case 'works' case 'sources' return () (:$model('doc')//mei:sourceDesc:)
+        case 'works' return () (:$model('doc')//mei:sourceDesc:)
         case 'biblio' return $doc/tei:biblStruct
         default return $doc//tei:sourceDesc/tei:*
     return 
