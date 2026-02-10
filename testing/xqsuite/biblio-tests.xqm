@@ -144,3 +144,11 @@ declare
         return
             bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='series']
 };
+
+declare
+    %test:args('A031324')       %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Carl Maria von Weber</xhtml:span>, <xhtml:span class='title'>Bruchstücke aus: Tonkünstlers Leben. Eine Arabeske von Carl Maria von Weber. (Fortsetzung)</xhtml:span>, in: <xhtml:span class='collectionTitle'>Die Muse</xhtml:span><xhtml:span class='vol'>, Bd. 1</xhtml:span><xhtml:span class='issue'>, Heft 3</xhtml:span>, <xhtml:span class='placeNYear'>1821</xhtml:span>, S. 81–98</xhtml:div>")
+    function bt:test-document-imprint($a as xs:string) as element()* {
+        let $doc := crud:doc($a)
+        return
+            bibl:printCitation($doc//tei:biblStruct, <xhtml:div/>, 'de')
+};
