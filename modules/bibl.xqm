@@ -153,7 +153,7 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
             $articleTitle,
             ', in: ',
             $bookTitle,
-            if(exists($biblScopes)) then for $biblScope in $biblScopes return (<xhtml:span class="{string($biblScope/@unit)}">{bibl:print-single-biblScope-unit(', ', $biblScope, $lang)}</xhtml:span>) else (),
+            for $biblScope in $biblScopes return (<xhtml:span class="{string($biblScope/@unit)}">{bibl:print-single-biblScope-unit(', ', $biblScope, $lang)}</xhtml:span>),
             bibl:edited-by($biblStruct, $lang),
             if(exists($series)) then (' ',<xhtml:span>({$series})</xhtml:span>) else (),
             if(exists($pubPlaceNYear)) then (', ', $pubPlaceNYear) else(),
