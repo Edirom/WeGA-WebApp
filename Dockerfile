@@ -36,6 +36,6 @@ RUN ant -lib /usr/share/java
 FROM stadlerpeter/existdb:6
 LABEL org.opencontainers.image.authors="Peter Stadler"
 
-ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-44157.xar ${EXIST_HOME}/autodeploy/
+ADD --chown=wegajetty https://weber-gesamtausgabe.de/downloads/WeGA-data-testing-44180.xar ${EXIST_HOME}/autodeploy/
 COPY --from=builder /opt/wega-lib/build/*.xar ${EXIST_HOME}/autodeploy/
 COPY --from=builder /opt/wega/build/*.xar ${EXIST_HOME}/autodeploy/
