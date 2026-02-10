@@ -34,11 +34,23 @@
     </target>
     
     <target name="create-result-URLs" depends="init">
+        <description>
+            Helper target for `get-results`.
+            Simply copy the text files with the URLs to cURL
+            from the testing/urls directory to the ${tmp.dir} directory.
+            Eventually string replacements (e.g. weber-gesamtausgabe.de -> localhost) 
+            could be injected here if necessary. 
+        </description>
         <copy file="testing/urls/${docType}.txt" tofile="${tmp.dir}/${docType}.txt" overwrite="true"/>
         <!--<replace file="${tmp.dir}/letters.txt" token="http://www.weber-gesamtausgabe.de" value="http://localhost:8080/exist/apps/WeGA-WebApp"/>-->
     </target>
     
     <target name="get-results" depends="create-result-URLs">
+        <description>
+            cURL the web pages to test. 
+            This target will be called by the macro `regressiontest`, 
+            passing the ${docType} parameter.
+        </description>
         <delete dir="${tmp.dir}/results.raw/${docType}"/>
         <mkdir dir="${tmp.dir}/results.raw/${docType}"/>
         <!--<get dest="${tmp.dir}/results.raw/${docType}">
@@ -128,6 +140,33 @@
             <arg value="-c"/>
             <arg value="docker rm -f ${docker.container.name}"/>
         </exec>
+    </target>
+
+    <target name="xqsuite" depends="init">
+        <description>Run the XQSuite unit tests</description>
+        <get src="http://localhost:8080/exist/rest/db/apps/WeGA-WebApp/testing/xqsuite/run-unit-tests.xql"
+             dest="${tmp.dir}/xqsuite-results.xml"/>
+        <loadfile property="xqsuite.results"
+                  srcFile="${tmp.dir}/xqsuite-results.xml"/>
+        <exec executable="${bash.command}" outputproperty="grep.out">
+            <arg value="-c"/>
+            <arg value="
+                (! grep 'failures=&quot;[1-9]' ${tmp.dir}/xqsuite-results.xml)
+                &amp;&amp; (! grep 'errors=&quot;[1-9]' ${tmp.dir}/xqsuite-results.xml)
+            "/>
+        </exec>
+        <fail>
+            Some XQSuite tests failed.
+            ${xqsuite.results}
+            <condition>
+                <or>
+                    <length string="${grep.out}" when="greater" length="0" trim="true"/>
+                    <not>
+                        <contains string="${xqsuite.results}" substring="testsuite" />
+                    </not>
+                </or>
+            </condition>
+        </fail>
     </target>
     
     <macrodef name="regressiontest">

@@ -41,7 +41,9 @@ declare
 
 declare 
     %test:args('A111038')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='collectionTitle'>„Ei, dem alten Herrn zoll’ ich Achtung gern’“. Festschrift für Joachim Veit zum 60. Geburtstag</xhtml:span>")
-    function bt:test-collectionTitle($a as xs:string) as element() {
+    %test:args('A113126')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='collectionTitle'>Carl Maria von Weber als Wegbereiter Richard Wagners?</xhtml:span>")
+    %test:args('A110745')         %test:assertEmpty
+    function bt:test-collectionTitle($a as xs:string) as element()? {
         let $doc := crud:doc($a)
         return
             bibl:printCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='collectionTitle']
@@ -90,18 +92,11 @@ declare
 };
 
 declare 
-    %test:args('A110876')         %test:assertEquals(
-        "<xhtml:span class='author' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Karl Robert Brachtel</xhtml:span>", 
-        ",  [Rezension] ", 
-        "<xhtml:span class='title' xmlns:xhtml='http://www.w3.org/1999/xhtml'><a xmlns='http://www.w3.org/1999/xhtml' class='preview biblio A110900' href='/exist/apps/eXide/de/A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>", 
-        ", in: ", 
-        "<xhtml:span class='journalTitle' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Das Orchester</xhtml:span>", 
-        ", Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774"
-    )
+    %test:args('A110876')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Karl Robert Brachtel</xhtml:span>,  [Rezension] <xhtml:span class='title'><a class='preview biblio A110900' href='A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>, in: <xhtml:span class='journalTitle'>Das Orchester</xhtml:span>, Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774</xhtml:div>")
     function bt:test-printReview($a as xs:string) as node()* {
         let $doc := crud:doc($a)
         return
-            bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')/node()
+            bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de') => bt:normalize-hrefs()
 };
 
 declare 
@@ -151,4 +146,14 @@ declare
         let $doc := crud:doc($a)
         return
             bibl:printCitation($doc//tei:biblStruct, <xhtml:div/>, 'de')
+};
+
+declare %private function bt:normalize-hrefs($nodes as node()*) as node()* {
+    for $node in $nodes
+    return
+        typeswitch($node)
+        case attribute(href) return attribute {'href'} { substring-after($node, '/de/') }
+        case document-node() return document { $node/node() ! bt:normalize-hrefs(.) }
+        case element() return element {$node/name()} { ($node/@* | $node/node()) => bt:normalize-hrefs() }
+        default return $node
 };
