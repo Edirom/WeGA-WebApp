@@ -300,26 +300,65 @@ li.listSubTitle {
 }
 
 .teiSrc_text {
+    --page-width: 60ch;
+    --verse-width: 40ch;
+    --lg-width: 30ch;
+
+    max-width: var(--page-width);
+    margin: 0 auto;
+    text-align: center;
+    
     .teiSrc_front {
         .tei_titlePage {
-            text-align: center;
-            
             .tei_titlePart {
                 display: block;
+                margin: 1.5rem;
+                line-height: 2.5;
             }
         }
         .tei_castList {
+            display: block;
+            line-height: 2;
+            margin-bottom: 1rem;
+            
             .tei_castItem {
                 display: block;
+                text-align: left;
+                
+                .tei_role + .tei_roleDesc::before {
+                    content: " ";
+                }
             }
         }
     }
     .teiSrc_body {
-        .tei_caption, .tei_speaker {
+        .tei_caption, 
+        .tei_speaker {
             display: block;
+        }
+        .srcHeader {
+            margin-top: 1rem;
         }
         .header-level-act {
             font-size: 3rem;
+        }
+        .tei_stage_left {
+            display: block;
+            text-align: left;
+        }
+        .tei_caption {
+            font-size: 1.5rem;
+            margin: 1.2rem;
+        }
+        .lg {
+            max-width: var(--lg-width);
+            margin: 0 auto;
+            text-align: left;
+        }
+        .verseLine {
+            max-width: var(--verse-width);
+            margin: 0 auto;
+            text-align: left;
         }
     }
 }

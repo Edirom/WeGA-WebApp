@@ -92,7 +92,7 @@
         <xsl:element name="{concat('h', $minHeadLevel + $increments)}">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="id" select="$anchorId"/>
-            <xsl:attribute name="class" select="string-join(('srcHeader', wega:getTextAlignment(@rend, 'left'), concat('header-level-', if($parentDivType) then $parentDivType else 'generic')), ' ')"/>
+            <xsl:attribute name="class" select="string-join(('srcHeader', concat('header-level-', if($parentDivType) then $parentDivType else 'generic')), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
