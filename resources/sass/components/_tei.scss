@@ -308,6 +308,33 @@ li.listSubTitle {
     margin: 0 auto;
     text-align: center;
     
+    hr.tei_pb-text {
+        width: var(--page-width);
+        max-width: none;
+        margin: 3rem 0;
+        position: relative;
+        left: 50%;
+        transform: translateX(-50%);
+        
+        border: 0;
+        border-top: 2px solid var(--primary);
+        border-radius: 5px;
+        
+        &::after {
+            content: attr(data-content);
+            position: absolute;
+            left: 50%;
+            top: 0;
+            transform: translate(-50%, -50%);
+            padding: 0 1rem;
+            
+            background: #fff;
+            color: var(--primary);
+            font-size: .8rem;
+            font-style: italic;
+        }
+    }
+    
     .teiSrc_front {
         .tei_titlePage {
             .tei_titlePart {

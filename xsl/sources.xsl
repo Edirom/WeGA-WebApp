@@ -97,4 +97,23 @@
         </xsl:element>
     </xsl:template>
     
+    <!-- overwrite common_main behaviour -->
+    <xsl:template match="tei:pb" priority="1">
+        <xsl:variable name="label" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="@n">
+                    <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), ' ', @n)"/>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <hr class="tei_pb-text" title="{$label}" data-content="{$label}">
+            <xsl:if test="@facs">
+                <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
+            </xsl:if>
+        </hr>
+    </xsl:template>
+    
 </xsl:stylesheet>
