@@ -1427,36 +1427,46 @@ declare
              else (
                 wega-util:transform($textRoot, $xslt1, $xslParams)
             )
-         let $tocContent :=
-            if ($docType = 'sources') then
-            element xhtml:ul {
-              for $h at $pos in $body//xhtml:h2[
-                contains-token(string(@class), 'header-level-act')
-                or contains-token(string(@class), 'header-level-scene')
-              ]
-              let $class := string($h/@class)
-              let $level := if (contains-token($class, 'header-level-act')) then 'act' else 'scene'
-              let $label := normalize-space(string-join($h//text(), ' '))
-              let $id := string($h/@id)
-              return
-                element xhtml:li {
-                  attribute class { 'toc-' || $level },
-                  element xhtml:a {
-                    attribute href { '#' || $id },
-                    $label
-                  }
-                }
-            }
-            else ()
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
             else ()
          return 
             map { 
                 'transcription' : (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
-                'apparatus' : $body/descendant-or-self::*[@class='apparatus'],
-                'toc-content' : $tocContent
+                'apparatus' : $body/descendant-or-self::*[@class='apparatus']
             }
+};
+
+(:~
+ : Create a table of contents for acts and scenes of sources
+ : The anchors are created seperately in sources.xsl
+ :
+ : @return an xhtml:ul with a list of anchors, categorized by 'act' or 'scene'
+ :)
+declare function app:doc-toc($node as node(), $model as map(*)) as element()* {
+    element xhtml:ul {
+      for $head in $model('doc')//tei:text//tei:head[parent::tei:div[@type = ('act', 'scene')]]
+      let $parentDiv := $head/parent::tei:div
+      let $parentDivType := string($parentDiv/@type)
+      let $act := string($parentDiv/ancestor-or-self::tei:div[@type='act'][1]/@n)
+      let $scene := string($parentDiv/ancestor-or-self::tei:div[@type='scene'][1]/@n)
+
+      let $id :=
+        if ($parentDivType = 'act') then concat('act-', $act)
+        else if ($parentDivType = 'scene') then concat('act-', $act, '-scene-', $scene)
+        else ()
+
+      let $label := normalize-space(string-join($head//text(), ''))
+      where normalize-space($id) != '' and normalize-space($label) != ''
+      return
+        element xhtml:li {
+          attribute class { 'toc-' || (if ($parentDivType='act') then 'act' else 'scene') },
+          element xhtml:a {
+            attribute href { '#' || $id },
+            $label
+          }
+        }
+    }
 };
 
 (:~

@@ -84,11 +84,7 @@
         <xsl:variable name="parentDivType" select="string($parentDiv/@type)"/>
         <xsl:variable name="act" select="string($parentDiv/ancestor-or-self::tei:div[@type='act'][1]/@n)"/>
         <xsl:variable name="scene" select="string($parentDiv/ancestor-or-self::tei:div[@type='scene'][1]/@n)"/>
-        <xsl:variable name="anchorId" select="
-            if ($parentDivType = 'act') then concat('act-', $act)
-            else if ($parentDivType = 'scene') then concat('act-', $act, '-scene-', $scene)
-            else ()
-            "/>
+        <xsl:variable name="anchorId" select="if ($parentDivType = 'act') then concat('act-', $act) else if ($parentDivType = 'scene') then concat('act-', $act, '-scene-', $scene) else () "/>
         <xsl:element name="{concat('h', $minHeadLevel + $increments)}">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="id" select="$anchorId"/>
