@@ -294,13 +294,6 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
     }
 });
 
-/* Run Google Code Prettifyer for code examples */
-$.fn.googlecodeprettify = function () {
-    prettyPrint();
-}
-
-$('.prettyprint').googlecodeprettify();
-
 // remove popovers when clicking somewhere
 $('body').on('click touchstart', function (e) {
     $('[data-original-title]').each(function () {
@@ -1197,7 +1190,7 @@ function init_line_wrap_toggle() {
             });
         }
     )
-    prettyPrint();
+    //prettyPrint();
 }
 
 /*
