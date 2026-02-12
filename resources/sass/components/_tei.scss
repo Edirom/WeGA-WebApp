@@ -291,18 +291,10 @@ li.listSubTitle {
 }
 
 /* libretti */
-.toc-act {
-    font-size: 1.2rem;
-    font-weight: bold;
-}
-.toc-scene {
-    text-indent: 2rem;
-}
-
 .teiSrc_text {
-    --page-width: 60ch;
-    --verse-width: 40ch;
-    --lg-width: 30ch;
+  --page-width: min(60ch, 92vw);
+  --verse-width: min(40ch, 92vw);
+  --lg-width: min(30ch, 92vw);
 
     max-width: var(--page-width);
     margin: 0 auto;
