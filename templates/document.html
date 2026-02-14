@@ -71,11 +71,11 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link active" href="#transcription" data-toggle="tab">Text</a>
+                                    <a class="nav-link" href="#transcription" data-toggle="tab" data-template="app:set-tab-state">Text</a>
                                 </li>
                                 <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no">
                                     <li class="nav-item gradient-light">
-                                        <a class="nav-link" href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a>
+                                        <a class="nav-link" href="#editorial" data-toggle="tab" data-template="app:set-tab-state"><span data-template="lang:translate">editorial</span></a>
                                     </li>
                                 </div>
                                 <li class="nav-item gradient-light">
@@ -181,12 +181,12 @@
             </div>
             <div class="col-md-9 main-col" data-template="app:prepare-text">
                 <!-- Tab panes -->
-                <div class="tab-content">  
+                <div class="tab-content" data-template="app:check-apparatus">  
                     
-                    <div class="tab-pane active fade in" id="transcription">
+                    <div class="tab-pane fade" id="transcription" data-template="app:set-tab-state">
                         <div data-template="app-shared:output" data-template-key="transcription"/>
                     </div>
-                    <div class="tab-pane fade" id="editorial" data-template="app:check-apparatus">
+                    <div class="tab-pane fade" id="editorial" data-template="app:set-tab-state">
                         <h2 data-template="lang:translate">editorial</h2>
                         <!--<div>
                             <h3 data-template="lang:translate">series</h3>
