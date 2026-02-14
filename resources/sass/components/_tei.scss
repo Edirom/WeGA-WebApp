@@ -427,5 +427,33 @@ li.listSubTitle {
             margin: 0 auto;
             text-align: left;
         }
+        
+        /* since verseLines are aligned left to a 40ch container, 
+         * we don't use a grid here but push the brace and stage
+         * direction out of that container by a fixed amount
+         */
+        .tei_spGrp_braced-left {
+            position: relative;
+            &::before {
+                content: "";
+                position: absolute;
+                left: calc(var(--verse-width) / 2 * -1 - 3ch);
+                top: .8rem;
+                bottom: .8rem;
+                width: 1rem;
+                /* draw a brace for spGrps */
+                background: #fff;
+                border: 2px solid #000;
+                border-right: none;
+                border-radius: 1rem 0 0 1rem;
+            }
+            .tei_stage_left {
+                position: absolute;
+                top: 50%;
+                left: calc(var(--verse-width) / 2 * -1 - 4ch);
+                transform: translate(-50%, -50%) rotate(90deg);
+                transform-origin: center;
+            }
+        }
     }
 }
