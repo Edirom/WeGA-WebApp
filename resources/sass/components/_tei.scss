@@ -365,12 +365,23 @@ li.listSubTitle {
             display: block;
             text-align: left;
         }
+        .tei_stage_right {
+            display: block;
+            text-align: right;
+        }
         .tei_caption {
             font-size: 1.5rem;
             margin: 1.2rem;
         }
         .tei_speaker{
             font-size: 1.1rem;
+            &:has(+ .tei_stage_inline) {
+                display: inline;
+            }
+            + .tei_stage_inline {
+                display: inline;
+                margin-left: .3em;
+            }
         }
         .lg {
             max-width: var(--lg-width);
