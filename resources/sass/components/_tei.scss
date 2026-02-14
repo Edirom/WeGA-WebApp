@@ -348,6 +348,40 @@ li.listSubTitle {
                     content: " ";
                 }
             }
+            
+            [class^="tei_castGroup"] {
+                display: grid;
+                grid-template-columns: max-content max-content auto;
+                align-items: stretch;
+                column-gap: .5rem;
+                
+                
+                > .tei_castItem {
+                    grid-column: 1;
+                }
+                > .tei_roleDesc {
+                    grid-column: 3;
+                    grid-row: 1 / 999;
+                    display: flex;
+                    align-items: center;
+                    justify-content: flex-start;
+                }
+             }
+             .tei_castGroup_braced {
+                &::before {
+                    content: "";
+                    grid-column: 2;
+                    grid-row: 1 / 999;
+                    align-self: stretch;
+                    justify-self: center;
+                    /* draw a brace for castGroups */
+                    width: 1rem;
+                    border: 2px solid #000;
+                    border-left: none;
+                    border-radius: 0 1rem 1rem 0;
+                    margin: .8rem 0;
+                }
+            }
         }
     }
     .teiSrc_body {
