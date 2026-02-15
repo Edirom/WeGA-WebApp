@@ -38,8 +38,7 @@
     <xsl:template match="tei:text">
         <xsl:element name="div">
             <xsl:attribute name="class" select="'teiSrc_text'"/>
-            <xsl:apply-templates select="./tei:front"/>
-            <xsl:apply-templates select="./tei:body"/>
+            <xsl:apply-templates/>
         </xsl:element>
         <xsl:call-template name="createApparatus"/>
     </xsl:template>
@@ -110,6 +109,25 @@
                 <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
             </xsl:if>
         </hr>
+    </xsl:template>
+    
+    <xsl:template match="tei:lg">
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select=" concat('lg', if (@rend = 'indent') then concat('-indent-', string(@n)) else ())"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+    
+    <xsl:template match="tei:l">
+        <xsl:element name="span">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="
+                concat('verseLine',
+                    if (@part = ('I', 'M', 'F')) then concat('-', string(@part)) else (),
+                    if (@rend = 'indent') then concat('-indent-', string(@n)) else ())"/>
+            <xsl:apply-templates/>
+        </xsl:element>
     </xsl:template>
     
 </xsl:stylesheet>

@@ -115,10 +115,6 @@ div.poem h3 {
     text-align: center;
 }
 
-.verseLine {
-    display: block;
-}
-
 .tei_code {
     font-family: monospace;
 }
@@ -292,14 +288,14 @@ li.listSubTitle {
 
 /* libretti */
 .teiSrc_text {
-  --page-width: min(60ch, 92vw);
-  --verse-width: min(40ch, 92vw);
-  --lg-width: min(30ch, 92vw);
+  --page-width: min(50ch, 92vw);
+  --indent: 5ch;
 
     max-width: var(--page-width);
     margin: 0 auto;
     text-align: center;
     
+    /* styling for page breaks – a mix from WeGA diaries and HenDi page breaks */
     hr.tei_pb-text {
         width: var(--page-width);
         max-width: none;
@@ -327,21 +323,30 @@ li.listSubTitle {
         }
     }
     
+    /* some block level elements */
+    .tei_titlePart,
+    .tei_castList,
+    .tei_castItem,
+    .tei_caption, 
+    .tei_speaker,
+    [class^="lg"],
+    [class^="verseLine"],
+    [class^="tei_stage"] {
+        display: block;
+    }
+    
     .teiSrc_front {
         .tei_titlePage {
             .tei_titlePart {
-                display: block;
                 margin: 1.5rem;
                 line-height: 2.5;
             }
         }
         .tei_castList {
-            display: block;
             line-height: 2;
             margin-bottom: 1rem;
             
             .tei_castItem {
-                display: block;
                 text-align: left;
                 
                 .tei_role + .tei_roleDesc::before {
@@ -349,12 +354,12 @@ li.listSubTitle {
                 }
             }
             
+            /* styling for cast groups with optional brackets to the right */
             [class^="tei_castGroup"] {
                 display: grid;
                 grid-template-columns: max-content max-content auto;
                 align-items: stretch;
                 column-gap: .5rem;
-                
                 
                 > .tei_castItem {
                     grid-column: 1;
@@ -384,10 +389,75 @@ li.listSubTitle {
             }
         }
     }
+    
     .teiSrc_body {
-        .tei_caption, 
-        .tei_speaker {
-            display: block;
+        /* general page layout, spacing, and indenting */
+        .tei_sp {
+            [class^="lg"] {
+                margin: 0 auto;
+                text-align: left;
+                white-space: nowrap;
+                &:has(+ [class^="lg"]) {
+                    margin-bottom: 2rem;
+                }
+                /* indenting especially for verseLines inside of lg */
+                &[class*="indent"] {
+                    &[class$="-1"] > * {
+                        max-width: calc(var(--page-width) - (2 * var(--indent)));
+                    }
+                    &[class$="-2"] > * {
+                        max-width: calc(var(--page-width) - (4 * var(--indent)));
+                    }
+                    &[class$="-3"] > * {
+                        max-width: calc(var(--page-width) - (6 * var(--indent)));
+                    }
+                }
+            }
+            /* indenting for verseLines that are not inside of lgs here*/
+            [class^="verseLine"] {
+                margin: 0 auto;
+                text-align: left;
+                white-space: nowrap;
+                max-width: calc(var(--page-width) - (2 * var(--indent)));
+                
+                /* quite hacky approach to displaying 'middle' and 'final' parts of verseLines
+                 * basically there are two offsets on which the verseLines are aligned centrally */
+                &[class$="-F"] {
+                    transform: translateX(-50%);
+                    text-align: center;
+                    margin-left: calc(var(--page-width) / 2);
+                    white-space: nowrap;
+                }
+                &[class$="-M"] {
+                    transform: translateX(-50%);
+                    text-align: center;
+                    margin-left: calc(var(--page-width) / 3);
+                    white-space: nowrap;
+                }
+                &[class*="indent"] {
+                    &[class$="-1"] {
+                        text-indent: var(--indent);
+                    }
+                    &[class$="-2"] {
+                        text-indent: calc(var(--indent) * 2);
+                    }
+                    &[class$="-3"] {
+                        text-indent: calc(var(--indent) * 3);
+                    }
+                }
+            }
+        }
+        
+        /* some more font sizes, margins and adjustments */
+        [class^="tei_stage"] {
+            font-size: .9rem;
+            &[class$="_left"] {
+                text-align: justify;
+                text-align-last: center;
+            }
+            &[class$="_right"] {
+                text-align: right;
+            }
         }
         .srcHeader {
             margin-top: 1rem;
@@ -395,49 +465,45 @@ li.listSubTitle {
         .header-level-act {
             font-size: 3rem;
         }
-        .tei_stage_left {
-            display: block;
-            text-align: left;
-        }
-        .tei_stage_right {
-            display: block;
-            text-align: right;
-        }
         .tei_caption {
             font-size: 1.5rem;
-            margin: 1.2rem;
+            margin: .8rem 0;
         }
-        .tei_speaker{
+        .tei_speaker {
             font-size: 1.1rem;
-            &:has(+ .tei_stage_inline) {
-                display: inline;
-            }
+            margin: .3rem 0;
+        }
+        
+        
+        /* inline elements */
+        .tei_speaker:has(+ .tei_stage_inline) {
+            display: inline;
             + .tei_stage_inline {
                 display: inline;
                 margin-left: .3em;
             }
         }
-        .lg {
-            max-width: var(--lg-width);
-            margin: 0 auto;
+        [class^="verseLine"]:has(> .tei_stage_inline) {
+            display: inline-block;
             text-align: left;
-        }
-        .verseLine {
-            max-width: var(--verse-width);
-            margin: 0 auto;
-            text-align: left;
+            width: 100%;
+            > .tei_stage_inline {
+                display: inline;
+            }
         }
         
-        /* since verseLines are aligned left to a 40ch container, 
+        /* styling for spGrps with brackets
+         * 
+         * (since verseLines are aligned left to a 40ch container, 
          * we don't use a grid here but push the brace and stage
-         * direction out of that container by a fixed amount
+         * direction out of that container by a fixed amount)
          */
         .tei_spGrp_braced-left {
             position: relative;
             &::before {
                 content: "";
                 position: absolute;
-                left: calc(var(--verse-width) / 2 * -1 - 3ch);
+                left: calc(var(--page-width) / 2 * -1 + calc(var(--indent)) - 3ch); /* caveat: depends on the current indent */
                 top: .8rem;
                 bottom: .8rem;
                 width: 1rem;
