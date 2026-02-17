@@ -1241,7 +1241,9 @@ declare
  : Output prettified ('censored') XML
  : This function is called by the AJAX template xml.html 
 ~:)
-declare function app:xml-prettify($node as node(), $model as map(*)) {
+declare
+    %templates:wrap
+    function app:xml-prettify($node as node(), $model as map(*)) {
         let $docID := $model('docID')
         let $serializationParameters := <output:serialization-parameters><output:method>xml</output:method><output:media-type>application/xml</output:media-type><output:indent>no</output:indent></output:serialization-parameters>
         let $doc :=
