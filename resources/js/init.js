@@ -1324,3 +1324,6 @@ if (backToTopBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+// Initialize code highlighting
+document.querySelectorAll('.prettyprint code').forEach(el => {hljs.highlightElement(el)})
