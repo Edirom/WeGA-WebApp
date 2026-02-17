@@ -70,26 +70,27 @@
     <target name="diff">
         <xslt processor="trax" style="testing/flatten.xsl" basedir="${expected.results.dir}/${docType}" destdir="${tmp.dir}/expected.results.processed/${docType}"/>
         <xslt processor="trax" style="testing/flatten.xsl" basedir="${tmp.dir}/results.raw/${docType}" destdir="${tmp.dir}/results.processed/${docType}"/>
+        <mkdir dir="${tmp.dir}/diff/${docType}"/>
         <exec executable="${bash.command}">
             <arg value="-c"/>
             <!-- create a diff file for every html page -->
-            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do ${prettydiff.cmd} diff source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot; mode:&quot;diff&quot; > ${tmp.dir}/`basename $i`.diff ; done"/>
+            <arg value="for i in ${tmp.dir}/expected.results.processed/${docType}/* ; do ${prettydiff.cmd} diff source:&quot;$i&quot; diff:&quot;${tmp.dir}/results.processed/${docType}/`basename $i`&quot; diffcli:&quot;true&quot; mode:&quot;diff&quot; > ${tmp.dir}/diff/${docType}/`basename $i`.diff ; done"/>
             <env key="LANG" value="C"/>
         </exec>
-        <exec executable="${bash.command}" outputproperty="grep.out">
+        <exec executable="${bash.command}" outputproperty="diff.grep.out">
             <arg value="-c"/>
             <!-- 
                 grep the diff files for some digit e.g. "found 3 differences"; 
                 otherwise simply "Pretty Diff found no differences" is printed
                 The "-B 10" option provides some context before the final "Pretty Diff found 3 differences"
             -->
-            <arg value="grep -B 10 &quot;36m[1-9]&quot; ${tmp.dir}/*.diff"/>
+            <arg value="grep -B 10 &quot;36m[1-9]&quot; ${tmp.dir}/diff/${docType}/*.diff"/>
             <env key="LANG" value="C"/>
         </exec>
-        <echo>${grep.out}</echo>
+        <echo>${diff.grep.out}</echo>
         <fail>
             <condition>
-                <length string="${grep.out}" trim="true" when="greater" length="0"/>
+                <length string="${diff.grep.out}" trim="true" when="greater" length="0"/>
             </condition>
             Mismatch with expected results
         </fail>
@@ -148,7 +149,7 @@
              dest="${tmp.dir}/xqsuite-results.xml"/>
         <loadfile property="xqsuite.results"
                   srcFile="${tmp.dir}/xqsuite-results.xml"/>
-        <exec executable="${bash.command}" outputproperty="grep.out">
+        <exec executable="${bash.command}" outputproperty="xqsuite.grep.out">
             <arg value="-c"/>
             <arg value="
                 (! grep 'failures=&quot;[1-9]' ${tmp.dir}/xqsuite-results.xml)
@@ -160,7 +161,7 @@
             ${xqsuite.results}
             <condition>
                 <or>
-                    <length string="${grep.out}" when="greater" length="0" trim="true"/>
+                    <length string="${xqsuite.grep.out}" when="greater" length="0" trim="true"/>
                     <not>
                         <contains string="${xqsuite.results}" substring="testsuite" />
                     </not>
