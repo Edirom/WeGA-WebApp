@@ -1028,7 +1028,7 @@ function initFacsimile() {
 
 
 function jump2diary(dateText) {
-    const url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
+    const url = getAPIBase() + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
     $.getJSON(url, function(data) {
         self.location=data[0].uri + '.html';
     })
@@ -1097,6 +1097,14 @@ function getLanguage() {
     return $('#navbarCollapse li.active:last a').html().toLowerCase()
 }
 
+/*
+ * Get the API base from the footer nav
+ */
+function getAPIBase() {
+    return document.getElementById("api-base-link")
+        .getAttribute("data-api-base")
+}
+
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
@@ -1150,7 +1158,7 @@ $('#create-newID').on('click', newID);
 
 function newID() {
     const docType = $('#newID-select :selected').val(),
-        url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType,
+        url = getAPIBase() + "/application/newID?docType=" + docType,
         newID_result = $('#newID-result'),
         newID_result_span = $('span', newID_result);
     newID_result_span.hide();
@@ -1205,7 +1213,7 @@ function init_xml_tab(html, trigger, container) {
     const pre = $('.line-wrap-toggle ~ pre', html),
         code = $('code', pre),
         input = $('.line-wrap-toggle input', html),
-        endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
+        endpoint_url = getAPIBase() + '/application/preferences';
     init_line_wrap_toggle(pre, input, endpoint_url);
     hljs.highlightElement(code[0]);
 }
@@ -1218,7 +1226,7 @@ window.init_xml_tab = init_xml_tab;
  * custom switches and toggle markers within the text  
  */
 $.fn.init_settings = function () {
-    let endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences',
+    let endpoint_url = getAPIBase() + '/application/preferences',
         marker,
         data;
         
