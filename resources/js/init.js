@@ -1202,14 +1202,10 @@ function init_line_wrap_toggle(pre, input, endpoint_url) {
 }
 
 function init_xml_tab(html, trigger, container) {
-    //console.log("html ", html);
-    //console.log("trigger ", trigger);
-    //console.log("container ", container);
     const pre = $('.line-wrap-toggle ~ pre', html),
         code = $('code', pre),
         input = $('.line-wrap-toggle input', html),
         endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
-    console.log("pre ", pre);
     init_line_wrap_toggle(pre, input, endpoint_url);
     hljs.highlightElement(code[0]);
 }
