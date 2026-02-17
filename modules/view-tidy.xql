@@ -55,6 +55,9 @@ declare function local:tidy-attr($node as node()) as node()? {
 
         else if(starts-with($node, '$dev')) then 
             attribute { node-name($node) } {config:link-to-current-app(substring($node, 2))}
+        
+        else if(starts-with($node, '$api')) then 
+            attribute { node-name($node) } {config:link-to-current-app(substring($node, 2))}
             
         else $node
 };
