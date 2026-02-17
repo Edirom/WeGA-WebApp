@@ -53,6 +53,13 @@
             <arg line="install --check-files"/>
         </exec>
     </target>
+
+    <target name="webpack" depends="init">
+        <description>Use webpack to bundle Javascript file wega.js</description>
+        <exec executable="npx" failonerror="yes">
+            <arg value="webpack"/>
+        </exec>
+    </target>
     
     <target name="wega-mirador" depends="init">
         <description>Update javascript libraries via yarn</description>
@@ -82,7 +89,7 @@
         </exec>
     </target>
     
-    <target name="dist" depends="init, yarn, wega-mirador, sass, swagger-cli">
+    <target name="dist" depends="init, yarn, wega-mirador, sass, webpack, swagger-cli">
         <copy file="expath-pkg.xml.tmpl" tofile="${dist.dir}/expath-pkg.xml" filtering="true" overwrite="true">
             <filterset>
                 <filter token="project.version" value="${project.version}"/>
