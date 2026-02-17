@@ -1,5 +1,10 @@
 /* Init functions */
 
+import moment from "moment";
+import hljs from 'highlight.js/lib/core';
+import xml from 'highlight.js/lib/languages/xml';
+hljs.registerLanguage('xml', xml);
+
 /* Adjust font size of h1 headings */
 $.fn.h1FitText = function () {
     if ($(this).hasClass('document')) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
@@ -340,7 +345,7 @@ function toggleTocItems() {
 function removeFilter(html, trigger) {
     /* currently, we simply remove all filters  */
     $('.col-md-3', html).remove();
-    
+
     /* and adjust the width of the remains  */
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
     
@@ -363,6 +368,10 @@ function removeFilter(html, trigger) {
         );
     }
 }
+/* Make it available globally for callback references
+ * Used by Ajax-Tabs via `data-tab-callback`-attribute
+ */
+window.removeFilter = removeFilter;
 
 /*
  * set the right tab and location for person pages
@@ -817,6 +826,10 @@ $('.fn-ref').on('click', function() {
     $($(this).attr('href')).addClass('animated-highlight');
 })
 
+/*
+ * used by easyResponsiveTabs, i.e. the main navigation tabs at person and work pages
+ * for "Biographien", "Korrespondenz", "Werke" etc.
+ */
 function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
@@ -1169,16 +1182,12 @@ $('.copy-to-clipboard').on('click', function() {
 /* 
  * Initialise line wrap toggle for XML previews
  */
-function init_line_wrap_toggle() {
-    let pre = $('.line-wrap-toggle ~ pre'),
-        input = $('.line-wrap-toggle input'),
-        endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
-
+function init_line_wrap_toggle(pre, input, endpoint_url) {
     // set listener for toggle
     input.change(
         function() {
             pre.toggleClass('line-wrap');
-            // update session
+            // POST the switch setting to the endpoint and update the backend session
             let data = { [this.getAttribute('id')]: this.checked };
             fetch(endpoint_url, {
                 method: 'POST',
@@ -1190,8 +1199,23 @@ function init_line_wrap_toggle() {
             });
         }
     )
-    //prettyPrint();
 }
+
+function init_xml_tab(html, trigger, container) {
+    //console.log("html ", html);
+    //console.log("trigger ", trigger);
+    //console.log("container ", container);
+    const pre = $('.line-wrap-toggle ~ pre', html),
+        code = $('code', pre),
+        input = $('.line-wrap-toggle input', html),
+        endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
+    console.log("pre ", pre);
+    init_line_wrap_toggle(pre, input, endpoint_url);
+    hljs.highlightElement(code[0]);
+}
+
+// Make it available globally for callback references
+window.init_xml_tab = init_xml_tab;
 
 /*
  * Initialise user settings functionality:
