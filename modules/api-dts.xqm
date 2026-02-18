@@ -24,6 +24,7 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 declare variable $api-dts:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "ParameterError");
 declare variable $api-dts:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "UnsupportedIDSchema");
 declare variable $api-dts:UNSUPPORTED_TRANSFORMATION := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "UnsupportedTransformation");
+declare variable $api-dts:lang := "en";
 declare variable $api-dts:max-limit := 50;
 declare variable $api-dts:mediaTypes := function($openapi-conf as map(*)) as xs:string* {
     $openapi-conf?paths?("/dts/document")?get?parameters?*[.?name="mediaType"]?schema?enum?*
@@ -131,12 +132,17 @@ declare function api-dts:dts-document($model as map(*)) as map(*) {
  :  DTS Collection endpoint
  :)
 declare function api-dts:dts-collection($model as map(*)) as map(*) {
+    let $doc.wega := query:doc-by-any-id($model?id)
     let $idTokens := tokenize($model?id, '_')
     let $body := 
-        switch(count($idTokens))
-        case 1 return api-dts:create-dts-collection($model, $idTokens[1])
-        case 2 return api-dts:create-dts-collection-shallow($model, $idTokens[1], $idTokens[2])
-        default return ()
+        if($doc.wega) 
+        then api-dts:collection-resource($doc.wega, $model("openapi:config"))
+        else (
+            switch(count($idTokens))
+            case 1 return api-dts:create-dts-collection($model, $idTokens[1])
+            case 2 return api-dts:create-dts-collection-shallow($model, $idTokens[1], $idTokens[2])
+            default return ()
+        )
     return
         map {
             "body": $body,
@@ -186,6 +192,39 @@ declare function api-dts:create-dts-collection-shallow($model as map(*), $docTyp
             "totalParents": 1,
             "totalChildren": count($coll),
             "title": wdt:lookup("persons", $docID)('title')('txt') || " – collected " || $docType 
+        }
+};
+
+(:~
+ :  Return metadata object for a `Resource`
+ :)
+declare function api-dts:collection-resource($doc as document-node(), $openapi-conf as map(*)) as map(*) {
+    let $docID := $doc/*/data(@xml:id)
+    let $api.base := config:api-base($openapi-conf) 
+    let $collection.endpoint := $api.base || "/dts/collection?id=" || $docID 
+    let $navigation.endpoint := $api.base || "/dts/navigation?resource=" || $docID || "{&amp;ref}"
+    let $document.endpoint := $api.base || "/dts/document?resource=" || $docID || "{&amp;ref,start,end}"
+    let $docType := config:get-doctype-by-id($docID)
+    let $model := 
+        map {
+            "doc": $doc,
+            "docID": $docID,
+            "docType": $docType
+        }
+    let $lod.metadata := lod:metadata(<head/>, $model, $api-dts:lang) 
+    return
+    map {
+            "@context": "https://dtsapi.org/context/v1.0.json",
+            "@id": $docID,
+            "@type": "Resource",
+            "dtsVersion": "1.0",
+            "title": $lod.metadata?meta-page-title,
+            "totalParents": "",
+            "description": $lod.metadata?DC.description,
+            "collection": $collection.endpoint,
+            "navigation": $navigation.endpoint,
+            "document": $document.endpoint,
+            "mediaTypes": array { $api-dts:mediaTypes($openapi-conf) }
         }
 };
 
@@ -267,15 +306,14 @@ declare %private function api-dts:set-headers($headers as map(*)?) as empty-sequ
  :)
 declare %private function api-dts:create-text-header($doc as document-node()) as xs:string {
     let $docID := $doc/*/data(@xml:id)
-    let $lang := 'en'
     let $model := 
         map { 
-            'lang': $lang,
+            'lang': $api-dts:lang,
             'docID': $docID,
             'doc': $doc,
             'docType': config:get-doctype-by-id($docID)
         }
-    let $lod := lod:metadata(<head/>, $model, $lang)
+    let $lod := lod:metadata(<head/>, $model, $api-dts:lang)
     let $author := '## Author: ' || query:get-authorName($doc)
     let $title := '## Title: ' || $lod?meta-page-title
     let $version := '## Version: ' || config:expath-descriptor()/@version
