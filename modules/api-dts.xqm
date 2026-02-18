@@ -83,10 +83,10 @@ declare function api-dts:dts($model as map(*)) as map(*) {
     map {
         "body":
             map {
-                "@context": "https://distributed-text-services.github.io/specifications/context/1.0rc1.json",
+                "@context": "https://dtsapi.org/context/v1.0.json",
                 "@id": config:api-base($model("openapi:config")) || "/dts",
                 "@type": "EntryPoint",
-                "dtsVersion": "1.0rc1",
+                "dtsVersion": "1.0",
                 "collection": config:api-base($model("openapi:config")) || "/dts/collection{?id}",
                 "document": config:api-base($model("openapi:config")) || "/dts/document{?resource,ref,start,end}",
                 "navigation": config:api-base($model("openapi:config")) || "/dts/navigation{?resource,ref}"
@@ -157,11 +157,11 @@ declare function api-dts:create-dts-collection($model as map(), $docType as xs:s
         else 1
     return
         map {
-            "@context": "https://distributed-text-services.github.io/specifications/context/1.0rc1.json",
+            "@context": "https://dtsapi.org/context/v1.0.json",
             "@id": $docType,
             "@type": "Collection",
             "collection": config:api-base($model("openapi:config")) || "/dts/collection/{?id,page,nav}",
-            "dtsVersion": "1.0rc1",
+            "dtsVersion": "1.0",
             "totalParents": 1,
             "totalChildren": count($members),
             "title": "Root collection of document type " || $docType,

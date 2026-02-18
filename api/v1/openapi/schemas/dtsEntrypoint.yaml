@@ -4,7 +4,7 @@ properties:
   "@context":
     type: string
     format: uri
-    default: "https://distributed-text-services.github.io/specifications/context/1.0rc1.json"
+    default: "https://dtsapi.org/context/v1.0.json"
   "@id":
     type: string
     format: uri
@@ -28,10 +28,10 @@ required:
   - "navigation"
 example: |
   {
-    "@context": "https://distributed-text-services.github.io/specifications/context/1.0rc1.json",
+    "@context": "https://dtsapi.org/context/v1.0.json",
     "@id": "https://weber-gesamtausgabe.de/api/v1/dts",
     "@type": "EntryPoint",
-    "dtsVersion": "1.0rc1",
+    "dtsVersion": "1.0",
     "collection": "https://weber-gesamtausgabe.de/api/v1/dts/collection{?id}",
     "document": "https://weber-gesamtausgabe.de/api/v1/dts/document{?resource,ref,start,end}",
     "navigation": "https://weber-gesamtausgabe.de/api/v1/dts/navigation{?resource,ref}"

@@ -4,7 +4,7 @@ properties:
   "@context":
     type: string
     format: uri
-    default: "https://distributed-text-services.github.io/specifications/context/1.0rc1.json"
+    default: "https://dtsapi.org/context/v1.0.json"
   "@id":
     type: string
     required: true
@@ -16,8 +16,8 @@ properties:
   dtsVersion:
     type: string
     required: true
-    description: The version of the DTS specification providing the response. Default is “1.0rc1”.
-    default: "1.0rc1"
+    description: The version of the DTS specification providing the response. Default is “1.0”.
+    default: "1.0"
   resource:
     required: true
     description: The `Resource` whose citation tree is being queried.
