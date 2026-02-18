@@ -11,7 +11,9 @@ jobs:
     
     steps:
       - name: Setup
-        run: sudo apt-get install libsaxonhe-java && npm install -g prettydiff@99 
+        # To save time, we install not all the node dependencies but only prettydiff globally.
+        # Hence, when updating prettydiff in package.json this needs to be reflected here as well.
+        run: sudo apt-get install libsaxonhe-java && npm install -g prettydiff@101
       - name: Checkout code
         uses: actions/checkout@v6
       - name: Build and run Docker image
