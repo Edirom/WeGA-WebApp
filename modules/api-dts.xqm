@@ -10,6 +10,7 @@ declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace response="http://exist-db.org/xquery/response";
+declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace core="http://xquery.weber-gesamtausgabe.de/modules/core" at "core.xqm";
@@ -30,7 +31,7 @@ declare variable $api-dts:mediaTypes := function($openapi-conf as map(*)) as xs:
 
 (:~
  :  Main entry point to the module
- :  This function will dipatch the responses to the respective serialization functions 
+ :  This function will dispatch the responses to the respective serialization functions 
  :  depending on the "media-type" property in the `$headers` map
  :
  :  @param $body the body of the response, e.g. a TEI-XML file or a JSON object
@@ -79,6 +80,9 @@ declare function api-dts:xml-response($body as node(), $headers as map(*)) {
         $body
 };
 
+(:~
+ :  DTS Entry Endpoint
+ :)
 declare function api-dts:dts($model as map(*)) as map(*) {
     map {
         "body":
@@ -145,7 +149,7 @@ declare function api-dts:dts-collection($model as map(*)) as map(*) {
 (:~
  :  Create DTS collections
  :)
-declare function api-dts:create-dts-collection($model as map(), $docType as xs:string) as map(*) {
+declare function api-dts:create-dts-collection($model as map(*), $docType as xs:string) as map(*) {
     let $coll := core:getOrCreateColl($docType, 'indices', true())
     let $members :=
         for $author in $coll//tei:fileDesc//tei:author
@@ -169,7 +173,7 @@ declare function api-dts:create-dts-collection($model as map(), $docType as xs:s
         }
 };
 
-declare function api-dts:create-dts-collection-shallow($model as map(), $docType as xs:string, $docID as xs:string) as map(*) {
+declare function api-dts:create-dts-collection-shallow($model as map(*), $docType as xs:string, $docID as xs:string) as map(*) {
     let $coll := core:getOrCreateColl($docType, $docID, true())
     let $offset :=
         if($model?page) then ($model?page - 1) * $api-dts:max-limit + 1
