@@ -1467,30 +1467,25 @@ declare
 };
 
 (:~
- : Create a table of contents for acts and scenes of sources
- : The anchors are created seperately in sources.xsl
+ : Create a table of contents for nested headers of sources
+ : based on the sources.xsl transformation from app:prepare-text()#2
  :
  : @author Steffen Astheimer
- : @return an xhtml:ul with a list of anchors, categorized by 'act' or 'scene'
+ : @return an xhtml:ul with a list of anchors, categorized by header nesting level
  :)
 declare function app:doc-toc($node as node(), $model as map(*)) as element()* {
     element xhtml:ul {
-      for $head in $model('doc')//tei:text//tei:head[parent::tei:div[@type = ('act', 'scene')]]
-      let $parentDiv := $head/parent::tei:div
-      let $parentDivType := string($parentDiv/@type)
-      let $act := string($parentDiv/ancestor-or-self::tei:div[@type='act'][1]/@n)
-      let $scene := string($parentDiv/ancestor-or-self::tei:div[@type='scene'][1]/@n)
-
-      let $id :=
-        if ($parentDivType = 'act') then concat('act-', $act)
-        else if ($parentDivType = 'scene') then concat('act-', $act, '-scene-', $scene)
-        else ()
-
-      let $label := normalize-space(string-join($head//text(), ''))
-      where normalize-space($id) != '' and normalize-space($label) != ''
+      for $head in $model('transcription')//xhtml:h2[contains-token(@class, 'srcHeader')]
+      let $classTokens := tokenize(normalize-space(string($head/@class)), '\s+')
+      let $levelToken := ($classTokens[starts-with(., 'header-level-')])[1]
+      let $level := if ($levelToken) then substring-after($levelToken, 'header-level-') else '1'
+      let $tocClass := 'toc-level-' || $level
+      let $id := normalize-space(string($head/@id))
+      let $label := normalize-space(string-join($head//text()[not(ancestor::xhtml:a)], ''))
+      where $id != '' and $label != ''
       return
         element xhtml:li {
-          attribute class { 'toc-' || (if ($parentDivType='act') then 'act' else 'scene') },
+          attribute class { $tocClass },
           element xhtml:a {
             attribute href { '#' || $id },
             $label

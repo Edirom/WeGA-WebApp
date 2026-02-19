@@ -80,14 +80,16 @@
             <xsl:value-of select="count(.[@type='sub'])"/>
         </xsl:variable>
         <xsl:variable name="parentDiv" select="parent::tei:div"/>
-        <xsl:variable name="parentDivType" select="string($parentDiv/@type)"/>
-        <xsl:variable name="act" select="string($parentDiv/ancestor-or-self::tei:div[@type='act'][1]/@n)"/>
-        <xsl:variable name="scene" select="string($parentDiv/ancestor-or-self::tei:div[@type='scene'][1]/@n)"/>
-        <xsl:variable name="anchorId" select="if ($parentDivType = 'act') then concat('act-', $act) else if ($parentDivType = 'scene') then concat('act-', $act, '-scene-', $scene) else () "/>
+        <xsl:variable name="parentDivLevel" as="xs:integer" select="count($parentDiv/ancestor::tei:div[tei:head]) + 1"/>
+        <xsl:variable name="label" select="normalize-space(string-join(.//text(), ' '))"/>
+        <xsl:variable name="labelId" select="replace(replace(wega:resolve-umlaute($label), '[^a-z0-9]+', '-'), '(^-+|-+$)', '')"/>
+        <xsl:variable name="ancestorLabelId" select="replace(replace(wega:resolve-umlaute($parentDiv/ancestor::tei:div/tei:head[1]), '[^a-z0-9]+', '-'), '(^-+|-+$)', '')"/>
+        <xsl:variable name="headPosition" select="count($parentDiv/preceding-sibling::tei:div[tei:head]) + 1"/>
+        <xsl:variable name="anchorId" select="replace(replace(string-join(($headPosition,$ancestorLabelId, $labelId), '-'), '(^-+|-+$)', ''), '-+', '-')"/>
         <xsl:element name="{concat('h', $minHeadLevel + $increments)}">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="id" select="$anchorId"/>
-            <xsl:attribute name="class" select="string-join(('srcHeader', concat('header-level-', if($parentDivType) then $parentDivType else 'generic')), ' ')"/>
+            <xsl:attribute name="class" select="string-join(('srcHeader', concat('header-level-', $parentDivLevel)), ' ')"/>
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
