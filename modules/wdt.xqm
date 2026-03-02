@@ -5,8 +5,13 @@ xquery version "3.1";
  :)
 module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt";
 
+declare namespace err="http://www.w3.org/2005/xqt-errors";
+declare namespace ft="http://exist-db.org/xquery/lucene";
+declare namespace inspect="http://exist-db.org/xquery/inspection";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
+declare namespace range="http://exist-db.org/xquery/range";
+declare namespace sort="http://exist-db.org/xquery/sort";
 declare namespace xhtml="http://www.w3.org/1999/xhtml";
 
 import module namespace functx="http://www.functx.com";
@@ -208,6 +213,88 @@ declare function wdt:letters($item as item()*) as map(*) {
                     default return wega-util:log-to-file('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
                 else ()
         },
+        'dtsCollection' : function(
+            $offset as xs:int, $limit as xs:int, 
+            $encode-dts-id as function(xs:string) as xs:string, 
+            $endpoint-template as function(xs:string, xs:string) as xs:string) as map(*) {
+                let $letters := wdt:letters(())?init-collection()
+                let $member :=
+                    for $correspondent in $letters//tei:persName[@key][ancestor::tei:correspAction][not(ancestor::tei:note)] | $letters//tei:orgName[@key][ancestor::tei:correspAction][not(ancestor::tei:note)]
+                    group by $key := $correspondent/data(@key)
+                    order by $key
+                    return 
+                        map {
+                            "correspondentID" : $key,
+                            "count" : count($correspondent)
+                        }
+                let $memberArray :=
+                    array {
+                        for $entry in subsequence($member, $offset, $limit)
+                        let $dtsID := $encode-dts-id('letters', $entry?correspondentID)
+                        return
+                            map {
+                                "@id": $dtsID,
+                                "@type" : "Collection",
+                                "title": "Correspondence from and to " || query:title($entry?correspondentID),
+                                "collection": $endpoint-template($dtsID, "collection"),
+                                "totalParents": 1,
+                                "totalChildren": $entry?count
+                            }
+                    }
+                let $dtsID := $encode-dts-id('letters', ())
+                let $responseShallow :=
+                    map {
+                        "@id": $dtsID,
+                        "@type": "Collection",
+                        "title": "Letters",
+                        "description": "Letters collection of the WeGA",
+                        "collection": $endpoint-template($dtsID, "collection"),
+                        "totalParents": 1,
+                        "totalChildren": count($member)
+                    }
+                return
+                    if($limit le 0) 
+                    then $responseShallow
+                    else map:put($responseShallow, "member", $memberArray) 
+        },
+        'dtsSubcollection' : function(
+            $offset as xs:int, $limit as xs:int, 
+            $encode-dts-id as function(xs:string) as xs:string, 
+            $endpoint-template as function(xs:string, xs:string) as xs:string,
+            $dtsSubcollectionID as xs:string) as map(*) {
+                let $letters.all := wdt:letters(())?init-collection()
+                let $letters := wdt:letters($letters.all)?filter-by-person($dtsSubcollectionID)
+                let $memberArray :=
+                    array {
+                        for $entry in subsequence($letters, $offset, $limit)
+                        let $dtsID := $entry/*/data(@xml:id)
+                        return
+                            map {
+                                "@id": $dtsID,
+                                "@type" : "Resource",
+                                "title": wdt:letters($entry)?title('txt'),
+                                "collection": $endpoint-template($dtsID, "collection"),
+                                "totalParents": distinct-values($entry//tei:persName[@key][ancestor::tei:correspAction][not(ancestor::tei:note)]/@key | $entry//tei:orgName[@key][ancestor::tei:correspAction][not(ancestor::tei:note)]/@key) => count(),
+                                "totalChildren": 0
+                            }
+                    }
+                let $dtsID := $encode-dts-id('letters', $dtsSubcollectionID)
+                let $title := query:title($dtsSubcollectionID)
+                let $responseShallow :=
+                    map {
+                        "@id": $dtsID,
+                        "@type": "Collection",
+                        "title": $title,
+                        "description": "Correspondence from and to " || $title,
+                        "collection": $endpoint-template($dtsID, "collection"),
+                        "totalParents": 1,
+                        "totalChildren": count($letters)
+                    }
+                return
+                    if($limit le 0) 
+                    then $responseShallow
+                    else map:put($responseShallow, "member", $memberArray) 
+        },
         'memberOf' : ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' : function($query as element(query)) {
             $item[tei:TEI]//tei:body[ft:query(., $query)] | 
@@ -318,6 +405,88 @@ declare function wdt:writings($item as item()*) as map(*) {
                     case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
                     default return wega-util:log-to-file('error', 'wdt:letters()("title"): unsupported serialization "' || $serialization || '"')
                 else()
+        },
+        'dtsCollection' : function(
+            $offset as xs:int, $limit as xs:int, 
+            $encode-dts-id as function(xs:string) as xs:string, 
+            $endpoint-template as function(xs:string, xs:string) as xs:string) as map(*) {
+                let $writings := wdt:writings(())?init-collection()
+                let $member :=
+                    for $author in $writings//tei:author[@key][ancestor::tei:fileDesc] 
+                    group by $key := $author/data(@key)
+                    order by $key
+                    return 
+                        map {
+                            "authorID" : $key,
+                            "count" : count($author)
+                        }
+                let $memberArray :=
+                    array {
+                        for $entry in subsequence($member, $offset, $limit)
+                        let $dtsID := $encode-dts-id('writings', $entry?authorID)
+                        return
+                            map {
+                                "@id": $dtsID,
+                                "@type": "Collection",
+                                "title": "Writings from " || query:title($entry?authorID),
+                                "collection": $endpoint-template($dtsID, "collection"),
+                                "totalParents": 1,
+                                "totalChildren": $entry?count
+                            }
+                    }
+                let $dtsID := $encode-dts-id('writings', ())
+                let $responseShallow :=
+                    map {
+                        "@id": $dtsID,
+                        "@type": "Collection",
+                        "title": "Writings",
+                        "description": "Writings collection of the WeGA",
+                        "collection": $endpoint-template($dtsID, "collection"),
+                        "totalParents": 1,
+                        "totalChildren": count($member)
+                    }
+                return
+                    if($limit le 0) 
+                    then $responseShallow
+                    else map:put($responseShallow, "member", $memberArray) 
+        },
+        'dtsSubcollection' : function(
+            $offset as xs:int, $limit as xs:int, 
+            $encode-dts-id as function(xs:string) as xs:string, 
+            $endpoint-template as function(xs:string) as xs:string,
+            $dtsSubcollectionID as xs:string) as map(*) {
+                let $writings.all := wdt:writings(())?init-collection()
+                let $writings := wdt:writings($writings.all)?filter-by-person($dtsSubcollectionID)
+                let $memberArray :=
+                    array {
+                        for $entry in subsequence($writings, $offset, $limit)
+                        let $dtsID := $entry/*/data(@xml:id)
+                        return
+                            map {
+                                "@id": $dtsID,
+                                "@type" : "Resource",
+                                "title": wdt:writings($entry)?title('txt'),
+                                "collection": $endpoint-template($dtsID, "collection"),
+                                "totalParents": distinct-values($entry//tei:author[@key][ancestor::tei:fileDesc]/@key) => count(),
+                                "totalChildren": 0
+                            }
+                    }
+                let $dtsID := $encode-dts-id('writings', $dtsSubcollectionID)
+                let $title := query:title($dtsSubcollectionID)
+                let $responseShallow :=
+                    map {
+                        "@id": $dtsID,
+                        "@type": "Collection",
+                        "title": $title,
+                        "description": "Writings by " || $title,
+                        "collection": $endpoint-template($dtsID, "collection"),
+                        "totalParents": 1,
+                        "totalChildren": count($writings)
+                    }
+                return
+                    if($limit le 0) 
+                    then $responseShallow
+                    else map:put($responseShallow, "member", $memberArray) 
         },
         'memberOf' : ('search', 'indices', 'sitemap', 'unary-docTypes'),
         'search' : function($query as element(query)) {

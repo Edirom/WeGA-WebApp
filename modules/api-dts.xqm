@@ -5,11 +5,12 @@ xquery version "3.1" encoding "UTF-8";
  :)
 module namespace api-dts="http://xquery.weber-gesamtausgabe.de/modules/api-dts";
 
-declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace map="http://www.w3.org/2005/xpath-functions/map";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace output="http://www.w3.org/2010/xslt-xquery-serialization";
 declare namespace response="http://exist-db.org/xquery/response";
+declare namespace tei="http://www.tei-c.org/ns/1.0";
+declare namespace util="http://exist-db.org/xquery/util";
 declare namespace xmldb="http://exist-db.org/xquery/xmldb";
 
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
@@ -24,11 +25,19 @@ import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/
 declare variable $api-dts:INVALID_PARAMETER := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "ParameterError");
 declare variable $api-dts:UNSUPPORTED_ID_SCHEMA := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "UnsupportedIDSchema");
 declare variable $api-dts:UNSUPPORTED_TRANSFORMATION := QName("http://xquery.weber-gesamtausgabe.de/modules/api-dts", "UnsupportedTransformation");
+declare variable $api-dts:collections :=
+    for $func in $wdt:functions
+        return
+            if(map:contains($func(()), 'dtsCollection')) then $func(())('name')
+            else ()
+    ;
+declare variable $api-dts:rootCollectionLabel := "root"; 
 declare variable $api-dts:lang := "en";
 declare variable $api-dts:max-limit := 50;
 declare variable $api-dts:mediaTypes := function($openapi-conf as map(*)) as xs:string* {
     $openapi-conf?paths?("/dts/document")?get?parameters?*[.?name="mediaType"]?schema?enum?*
 };
+declare variable $api-dts:INVALID_COLLECTION_ID := QName("http://xquery.weber-gesamtausgabe.de/modules/dts-api", "CollectionIDError");
 
 (:~
  :  Main entry point to the module
@@ -132,73 +141,133 @@ declare function api-dts:dts-document($model as map(*)) as map(*) {
  :  DTS Collection endpoint
  :)
 declare function api-dts:dts-collection($model as map(*)) as map(*) {
-    let $doc.wega := query:doc-by-any-id($model?id)
-    let $idTokens := tokenize($model?id, '_')
+    let $id.map :=
+        if(map:contains($model, 'id')) then api-dts:decode-dts-id($model?id)
+        else api-dts:encode-dts-id($api-dts:rootCollectionLabel, ()) => api-dts:decode-dts-id()
+    let $offset :=
+        if($model?page) then ($model?page - 1) * $api-dts:max-limit + 1
+        else 1
     let $body := 
-        if($doc.wega) 
-        then api-dts:collection-resource($doc.wega, $model("openapi:config"))
-        else (
-            switch(count($idTokens))
-            case 1 return api-dts:create-dts-collection($model, $idTokens[1])
-            case 2 return api-dts:create-dts-collection-shallow($model, $idTokens[1], $idTokens[2])
-            default return ()
-        )
+        if($id.map?dtsType eq 'Resource') 
+        then $id.map?func($model("openapi:config"))
+        else $id.map?func($offset, $api-dts:max-limit, api-dts:encode-dts-id#2, api-dts:endpoint-template(config:api-base($model("openapi:config")), ?, ?))
     return
         map {
-            "body": $body,
+            "body": $body 
+                => map:put("@context", "https://dtsapi.org/context/v1.0.json")
+                => map:put("dtsVersion", "1.0"),
             "headers": map {
                     "media-type": "application/ld+json"
                 }
         }
 };
 
-(:~
- :  Create DTS collections
- :)
-declare function api-dts:create-dts-collection($model as map(*), $docType as xs:string) as map(*) {
-    let $coll := core:getOrCreateColl($docType, 'indices', true())
-    let $members :=
-        for $author in $coll//tei:fileDesc//tei:author
-        group by $key := $author/data(@key)
-        order by $key
-        return $key 
-    let $offset :=
-        if($model?page) then ($model?page - 1) * $api-dts:max-limit + 1
-        else 1
-    return
-        map {
-            "@context": "https://dtsapi.org/context/v1.0.json",
-            "@id": $docType,
-            "@type": "Collection",
-            "collection": config:api-base($model("openapi:config")) || "/dts/collection/{?id,page,nav}",
-            "dtsVersion": "1.0",
-            "totalParents": 1,
-            "totalChildren": count($members),
-            "title": "Root collection of document type " || $docType,
-            "member": array { subsequence($members, $offset, $api-dts:max-limit) ! api-dts:create-dts-collection-shallow($model, $docType, .) }
-        }
+
+declare %private function api-dts:create-root-collection(
+    $offset as xs:int, $limit as xs:int, 
+    $encode-dts-id as function(xs:string) as xs:string, 
+    $collection-endpoint-template as function(xs:string) as xs:string) as map(*) {
+        let $member :=
+            for $m in $api-dts:collections
+            order by $m
+            return $m
+        let $memberArray := 
+            array {
+                for $m in subsequence($member, $offset, $limit)
+                let $id.map := 
+                    api-dts:encode-dts-id($m, ())
+                    => api-dts:decode-dts-id()
+                return $id.map?func($offset, 0, api-dts:encode-dts-id#2, $collection-endpoint-template) 
+            }
+        let $dtsID := api-dts:encode-dts-id($api-dts:rootCollectionLabel, ())
+        return
+             map {
+                "@id": $dtsID,
+                "@type": "Collection",
+                "collection": $collection-endpoint-template($dtsID),
+                "title": $api-dts:rootCollectionLabel,
+                "description": "The root collection of the digital edition of the Carl-Maria-von-Weber-Gesamtausgabe (WeGA)",
+                "totalChildren": count($member),
+                "totalParents": 0,
+                "member": $memberArray
+             }
 };
 
-declare function api-dts:create-dts-collection-shallow($model as map(*), $docType as xs:string, $docID as xs:string) as map(*) {
-    let $coll := core:getOrCreateColl($docType, $docID, true())
-    let $offset :=
-        if($model?page) then ($model?page - 1) * $api-dts:max-limit + 1
-        else 1
+
+declare function api-dts:endpoint-template($api-base as xs:string, $dtsID as xs:string, $endpoint as xs:string) as xs:string {
+    $api-base || "/dts/" || $endpoint || "?id=" || $dtsID ||  "{&amp;page,nav}"
+};
+
+(:~
+ :  Encode collection and subcollection labels to a DTS ID
+ :
+ :  @param $collectionLabel the first level collection label, e.g. "letters", "writings"
+ :  @param $subcollectionLabel the second level collection label, e.g. "A002068"
+ :  @return a base64 encoded string that can be used as a DTS ID for the collection endpoint
+ :)
+declare function api-dts:encode-dts-id($collectionLabel as xs:string?, $subcollectionLabel as xs:string?) as xs:string {
+    string-join(($collectionLabel, $subcollectionLabel), '#') => encode-for-uri()
+};
+
+(:~
+ :  Decode a DTS ID to its individual parts
+ :
+ :  @param $dtsID the DTS ID
+ :  @return a map with the keys {collectionLabel|subcollectionLabel|dtsID|func} where
+ :      collectionLabel = the first level of the collection (e.g. "wega", "documents", "letters", etc.),
+ :      subcollectionLabel = the second level of the collection (e.g. "indices", "A002068", etc.),
+ :      dtsID = the original, encoded DTS ID,
+ :      func = function to generate the response
+ :)
+declare function api-dts:decode-dts-id($dtsID as xs:string?) as map(*)? {
+    let $parts := $dtsID => xmldb:decode() => tokenize('#')
+    let $doc.wega := 
+        try { query:doc-by-any-id($parts[1]) }
+        catch query:UnsupportedIDSchema {()}
+    let $func :=
+        switch(count($parts))
+        case 2 return 
+            try { wdt:lookup($parts[1], ())?dtsSubcollection(?,?,?,?,$parts[2]) }
+            catch * {()}
+        case 1 return 
+            if($parts[1] eq $api-dts:rootCollectionLabel)
+            then api-dts:create-root-collection#4
+            else if($parts[1] = $api-dts:collections)
+            then
+                try { wdt:lookup($parts[1], ())?dtsCollection }
+                catch * {()}
+            else if($doc.wega)
+            then api-dts:collection-resource($doc.wega, ?)
+            else ()
+        default return ()
+    let $dtsType :=
+        if($doc.wega)
+        then 'Resource'
+        else 'Collection'
     return
-        map {
-            "@id": string-join(($docType, $docID), '_'),
-            "@type": "Collection",
-            "collection": config:api-base($model("openapi:config")) || "/dts/collection/{?id,page,nav}",
-            "totalParents": 1,
-            "totalChildren": count($coll),
-            "title": wdt:lookup("persons", $docID)('title')('txt') || " – collected " || $docType 
-        }
+        if(exists($func))
+        then
+            map {
+                "collectionLabel": $parts[1],
+                "subcollectionLabel": $parts[2],
+                "dtsID": $dtsID,
+                "dtsType": $dtsType,
+                "func": $func
+            }
+        else error($api-dts:INVALID_COLLECTION_ID, 'Invalid collection ID "' || $dtsID || '"')
 };
 
 (:~
  :  Return metadata object for a `Resource`
+ :
+ :  @param $doc the TEI or MEI document
+ :  @param $openapi-conf the OpenAPI configuration as a map,
+ :      needed to compute the API base URL and the
+ :      available media types for the document endpoint
+ :  @return a map object adhering to the DTS scheme for
+ :      collection API Responses of type `Resource`
  :)
-declare function api-dts:collection-resource($doc as document-node(), $openapi-conf as map(*)) as map(*) {
+declare %private function api-dts:collection-resource($doc as document-node(), $openapi-conf as map(*)) as map(*) {
     let $docID := $doc/*/data(@xml:id)
     let $api.base := config:api-base($openapi-conf) 
     let $collection.endpoint := $api.base || "/dts/collection?id=" || $docID 
@@ -219,7 +288,7 @@ declare function api-dts:collection-resource($doc as document-node(), $openapi-c
             "@type": "Resource",
             "dtsVersion": "1.0",
             "title": $lod.metadata?meta-page-title,
-            "totalParents": "",
+            "totalParents": "to be computed",
             "description": $lod.metadata?DC.description,
             "collection": $collection.endpoint,
             "navigation": $navigation.endpoint,
@@ -229,7 +298,7 @@ declare function api-dts:collection-resource($doc as document-node(), $openapi-c
 };
 
 
-declare function api-dts:process-xml-document($doc as document-node(), $format as xs:string) as item()? {
+declare %private function api-dts:process-xml-document($doc as document-node(), $format as xs:string) as item()? {
     let $TEIversion := $gl:main-source/tei:TEI/processing-instruction('TEIVERSION')/analyze-string(., '\d+\.\d+\.\d+')/fn:match/text()
     let $availableTransformations := xmldb:get-child-resources($config:xsl-external-schemas-collection-path) ! (substring-before(substring-after(., 'to-'), '.xsl')) 
     let $doc.transformed := 
