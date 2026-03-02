@@ -92,7 +92,7 @@ declare function query:get-author-element($doc as document-node()?) as element()
  : @param $id the identifier
  : @return the documents identified by the identifier
 ~:)
-declare function query:doc-by-any-id($id as xs:string) as document-node()* {
+declare function query:doc-by-any-id($id as xs:string?) as document-node()* {
     if(matches(normalize-space($id), '^A[A-F0-9]{6}$')) then crud:doc($id)
     else if(matches(normalize-space($id), '^https?://weber-gesamtausgabe\.de/A[A-F0-9]{6}$')) then crud:doc(substring-after($id, 'de/'))
     else if(matches(normalize-space($id), 'https?://d-nb.info/gnd/')) then query:doc-by-gnd(substring-after($id, '/gnd/'))
