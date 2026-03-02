@@ -113,6 +113,7 @@ declare function api-dts:dts($model as map(*)) as map(*) {
 
 (:~
  :  DTS Document endpoint
+ :  Main entry point for the DTS resource API
  :)
 declare function api-dts:dts-document($model as map(*)) as map(*) {
     let $internalFormat :=
@@ -139,6 +140,8 @@ declare function api-dts:dts-document($model as map(*)) as map(*) {
 
 (:~
  :  DTS Collection endpoint
+ :  Main entry point for the DTS collection API.
+ :  Dispatches to the respective collection or resource function depending on the provided `id` parameter
  :)
 declare function api-dts:dts-collection($model as map(*)) as map(*) {
     let $id.map :=
@@ -162,11 +165,20 @@ declare function api-dts:dts-collection($model as map(*)) as map(*) {
         }
 };
 
-
+(:~
+ :  Create the DTS root collection
+ :
+ :  @param $offset the offset for pagination
+ :  @param $limit the limit for pagination
+ :  @param $encode-dts-id a callback function for computing DTS IDs.
+ :      Takes the collection and subcollection labels as input and returns the encoded DTS ID as a string
+ :  @param $endpoint-template a callback function to compute the endpoint URI template
+ :  @return a map object representing the DTS response
+ :)
 declare %private function api-dts:create-root-collection(
     $offset as xs:int, $limit as xs:int, 
-    $encode-dts-id as function(xs:string) as xs:string, 
-    $collection-endpoint-template as function(xs:string) as xs:string) as map(*) {
+    $encode-dts-id as function(xs:string, xs:string) as xs:string,
+    $endpoint-template as function(xs:string, xs:string) as xs:string) as map(*) {
         let $member :=
             for $m in $api-dts:collections
             order by $m
@@ -175,16 +187,16 @@ declare %private function api-dts:create-root-collection(
             array {
                 for $m in subsequence($member, $offset, $limit)
                 let $id.map := 
-                    api-dts:encode-dts-id($m, ())
+                    $encode-dts-id($m, ())
                     => api-dts:decode-dts-id()
-                return $id.map?func($offset, 0, api-dts:encode-dts-id#2, $collection-endpoint-template) 
+                return $id.map?func($offset, 0, $encode-dts-id, $endpoint-template)
             }
-        let $dtsID := api-dts:encode-dts-id($api-dts:rootCollectionLabel, ())
+        let $dtsID := $encode-dts-id($api-dts:rootCollectionLabel, ())
         return
              map {
                 "@id": $dtsID,
                 "@type": "Collection",
-                "collection": $collection-endpoint-template($dtsID),
+                "collection": $endpoint-template($dtsID, 'collection'),
                 "title": $api-dts:rootCollectionLabel,
                 "description": "The root collection of the digital edition of the Carl-Maria-von-Weber-Gesamtausgabe (WeGA)",
                 "totalChildren": count($member),
@@ -193,7 +205,14 @@ declare %private function api-dts:create-root-collection(
              }
 };
 
-
+(:~
+ :  Construct a URI template for different DTS endpoints
+ :
+ :  @param $api-base the API base, e.g. http://localhost:8080/api/v1/
+ :  @param $dtsID the DTS ID which will be appended to the endpoint via the `id` URL parameter
+ :  @param $endpoint the endpoint, e.g. "collection", or "navigation"
+ :  @return a string representing the URI template, e.g. "http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/dts/collection?id=writings%23A000091{&amp;page,nav}"
+ :)
 declare function api-dts:endpoint-template($api-base as xs:string, $dtsID as xs:string, $endpoint as xs:string) as xs:string {
     $api-base || "/dts/" || $endpoint || "?id=" || $dtsID ||  "{&amp;page,nav}"
 };
@@ -203,7 +222,7 @@ declare function api-dts:endpoint-template($api-base as xs:string, $dtsID as xs:
  :
  :  @param $collectionLabel the first level collection label, e.g. "letters", "writings"
  :  @param $subcollectionLabel the second level collection label, e.g. "A002068"
- :  @return a base64 encoded string that can be used as a DTS ID for the collection endpoint
+ :  @return a uri-encoded string that can be used as a DTS ID for the collection endpoint
  :)
 declare function api-dts:encode-dts-id($collectionLabel as xs:string?, $subcollectionLabel as xs:string?) as xs:string {
     string-join(($collectionLabel, $subcollectionLabel), '#') => encode-for-uri()
@@ -217,7 +236,8 @@ declare function api-dts:encode-dts-id($collectionLabel as xs:string?, $subcolle
  :      collectionLabel = the first level of the collection (e.g. "wega", "documents", "letters", etc.),
  :      subcollectionLabel = the second level of the collection (e.g. "indices", "A002068", etc.),
  :      dtsID = the original, encoded DTS ID,
- :      func = function to generate the response
+ :      dtsType = the DTS type, either `Collection` or `Resource`
+ :      func = function to generate the response, usually provided via the wdt module
  :)
 declare function api-dts:decode-dts-id($dtsID as xs:string?) as map(*)? {
     let $parts := $dtsID => xmldb:decode() => tokenize('#')

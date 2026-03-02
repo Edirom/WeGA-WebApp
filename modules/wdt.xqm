@@ -215,7 +215,7 @@ declare function wdt:letters($item as item()*) as map(*) {
         },
         'dtsCollection' : function(
             $offset as xs:int, $limit as xs:int, 
-            $encode-dts-id as function(xs:string) as xs:string, 
+            $encode-dts-id as function(xs:string, xs:string) as xs:string,
             $endpoint-template as function(xs:string, xs:string) as xs:string) as map(*) {
                 let $letters := wdt:letters(())?init-collection()
                 let $member :=
@@ -259,7 +259,7 @@ declare function wdt:letters($item as item()*) as map(*) {
         },
         'dtsSubcollection' : function(
             $offset as xs:int, $limit as xs:int, 
-            $encode-dts-id as function(xs:string) as xs:string, 
+            $encode-dts-id as function(xs:string, xs:string) as xs:string,
             $endpoint-template as function(xs:string, xs:string) as xs:string,
             $dtsSubcollectionID as xs:string) as map(*) {
                 let $letters.all := wdt:letters(())?init-collection()
@@ -408,7 +408,7 @@ declare function wdt:writings($item as item()*) as map(*) {
         },
         'dtsCollection' : function(
             $offset as xs:int, $limit as xs:int, 
-            $encode-dts-id as function(xs:string) as xs:string, 
+            $encode-dts-id as function(xs:string, xs:string) as xs:string,
             $endpoint-template as function(xs:string, xs:string) as xs:string) as map(*) {
                 let $writings := wdt:writings(())?init-collection()
                 let $member :=
@@ -452,8 +452,8 @@ declare function wdt:writings($item as item()*) as map(*) {
         },
         'dtsSubcollection' : function(
             $offset as xs:int, $limit as xs:int, 
-            $encode-dts-id as function(xs:string) as xs:string, 
-            $endpoint-template as function(xs:string) as xs:string,
+            $encode-dts-id as function(xs:string, xs:string) as xs:string,
+            $endpoint-template as function(xs:string, xs:string) as xs:string,
             $dtsSubcollectionID as xs:string) as map(*) {
                 let $writings.all := wdt:writings(())?init-collection()
                 let $writings := wdt:writings($writings.all)?filter-by-person($dtsSubcollectionID)
