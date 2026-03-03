@@ -80,7 +80,10 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
         case element(tei:placeName) return ct:place($node)
         case element(tei:settlement) return ct:place($node)
         case element(tei:country) return ct:place($node)
-        case element(tei:date) return ct:date($node)
+        case element(tei:date) return 
+            (: CMIF only allows for a single date :)
+            if($node/preceding-sibling::tei:date) then ()
+            else ct:date($node)
         case element(tei:note) return 
             element {QName(namespace-uri($node), local-name($node))} {
                 (: skip attributes due to danger of duplicate xml:ids – and we don't need them :)
