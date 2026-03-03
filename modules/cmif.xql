@@ -212,6 +212,21 @@ declare %private function ct:response-headers() as empty-sequence() {
 };
 
 (:~
+ : Helper function for creating CMIF v2 relations 
+ :)
+declare %private function ct:cmif2-ref(
+    $type as xs:string, 
+    $target as xs:string, 
+    $text as xs:string?) as element(tei:ref) 
+    {
+        element {QName('http://www.tei-c.org/ns/1.0', 'ref')} {
+                attribute {'type'} {$type},
+                attribute {'target'} {$target},
+                $text
+            }
+};
+
+(:~
  : Helper function to construct entity references within CMIF v2 tei:note element
  :
  : @param $doc the document to extract the features from
@@ -227,11 +242,7 @@ declare %private function ct:mentioned-entity-by-wega-facet(
         group by $id := $entity/@key
         let $target := ct:ref-target($id)
         return
-            element {QName('http://www.tei-c.org/ns/1.0', 'ref')} {
-                attribute {'type'} {$cmifURI},
-                attribute {'target'} {$target},
-                query:title($id)
-            }
+            ct:cmif2-ref($cmifURI, $target, query:title($id))
 };
 
 (:~
