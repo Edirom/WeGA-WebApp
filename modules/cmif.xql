@@ -162,7 +162,7 @@ declare function ct:date($input as element()) as element(tei:date)? {
     if($input/(@when | @from | @to | @notBefore | @notAfter))
     then
         element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
-            $input/@*[not(local-name(.) = ('n', 'calendar', 'cert'))]
+            $input/@* except $input/@n except $input/@calendar except $input/@cert
             (: 
             no content allowed here with the schema at 
             https://raw.githubusercontent.com/TEI-Correspondence-SIG/CMIF/master/schema/cmi-customization.rng  
