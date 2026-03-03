@@ -173,19 +173,20 @@ declare function ct:date($input as element()) as element(tei:date)? {
 
 (:~
  : Extract text features for CMIF v2 and put them in a tei:note
+ : See https://encoding-correspondence.bbaw.de/v1/CMIF.html#c-4-2
  :)
 declare function ct:cmif2-note($doc as document-node()) as element(tei:note)? {
     let $persons := ct:mentioned-entity-by-wega-facet($doc, 'persons', 'cmif:mentionsPerson')
     let $places := ct:mentioned-entity-by-wega-facet($doc, 'places', 'cmif:mentionsPlace')
     let $fullTextURL := config:permalink($doc/*/@xml:id) || '.xml?format=tei_all'
+    let $languages := 
+        $doc//tei:language[parent::tei:langUsage] ! ct:cmif2-ref('https://lod.academy/cmif/vocab/terms#hasLanguage', ./@ident, .)
     return
         element {QName('http://www.tei-c.org/ns/1.0', 'note')} {
             $persons,
             $places,
-            element {QName('http://www.tei-c.org/ns/1.0', 'ref')} {
-                attribute {'type'} {'cmif:isAvailableAsTEIfile'},
-                attribute {'target'} {$fullTextURL}
-            }
+            ct:cmif2-ref('cmif:isAvailableAsTEIfile', $fullTextURL, ()),
+            $languages
         }
 };
 
