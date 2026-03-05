@@ -311,6 +311,7 @@ li.listSubTitle {
         &::after {
             content: attr(data-content);
             position: absolute;
+            text-indent: initial;
             left: 50%;
             top: 0;
             transform: translate(-50%, -50%);
@@ -333,6 +334,14 @@ li.listSubTitle {
     [class^="verseLine"],
     [class^="tei_stage"] {
         display: block;
+    }
+
+    /* some default alignment overwrite */
+    p {
+        text-align: justify;
+    }
+    .tei_subst + .tei_subst::before {
+        content: " ";
     }
     
     .teiSrc_front {
@@ -396,54 +405,25 @@ li.listSubTitle {
             [class^="lg"] {
                 margin: 0 auto;
                 text-align: left;
-                white-space: nowrap;
                 &:has(+ [class^="lg"]) {
                     margin-bottom: 2rem;
                 }
-                /* indenting especially for verseLines inside of lg */
-                &[class*="indent"] {
-                    &[class$="-1"] > * {
-                        max-width: calc(var(--page-width) - (2 * var(--indent)));
-                    }
-                    &[class$="-2"] > * {
-                        max-width: calc(var(--page-width) - (4 * var(--indent)));
-                    }
-                    &[class$="-3"] > * {
-                        max-width: calc(var(--page-width) - (6 * var(--indent)));
-                    }
-                }
             }
-            /* indenting for verseLines that are not inside of lgs here*/
+                
+            /* quite hacky approach to displaying 'middle' and 'final' parts of verseLines
+             * basically there are two offsets on which the verseLines are aligned centrally */
             [class^="verseLine"] {
                 margin: 0 auto;
                 text-align: left;
-                white-space: nowrap;
-                max-width: calc(var(--page-width) - (2 * var(--indent)));
-                
-                /* quite hacky approach to displaying 'middle' and 'final' parts of verseLines
-                 * basically there are two offsets on which the verseLines are aligned centrally */
                 &[class$="-F"] {
                     transform: translateX(-50%);
                     text-align: center;
                     margin-left: calc(var(--page-width) / 2);
-                    white-space: nowrap;
                 }
                 &[class$="-M"] {
                     transform: translateX(-50%);
                     text-align: center;
                     margin-left: calc(var(--page-width) / 3);
-                    white-space: nowrap;
-                }
-                &[class*="indent"] {
-                    &[class$="-1"] {
-                        text-indent: var(--indent);
-                    }
-                    &[class$="-2"] {
-                        text-indent: calc(var(--indent) * 2);
-                    }
-                    &[class$="-3"] {
-                        text-indent: calc(var(--indent) * 3);
-                    }
                 }
             }
         }
@@ -453,7 +433,6 @@ li.listSubTitle {
             font-size: .9rem;
             &[class$="_left"] {
                 text-align: justify;
-                text-align-last: center;
             }
             &[class$="_right"] {
                 text-align: right;
@@ -473,7 +452,25 @@ li.listSubTitle {
             font-size: 1.1rem;
             margin: .3rem 0;
         }
-        
+
+        /* indenting up to indent-5 */
+        [class*="indent"] {
+            &[class$="-1"] {
+                text-indent: var(--indent);
+            }
+            &[class$="-2"] {
+                text-indent: calc(var(--indent) * 2);
+            }
+            &[class$="-3"] {
+                text-indent: calc(var(--indent) * 3);
+            }
+            &[class$="-4"] > * {
+                text-indent: calc(var(--indent) * 4);
+            }
+            &[class$="-5"] > * {
+                text-indent: calc(var(--indent) * 5);
+            }
+        }
         
         /* inline elements */
         .tei_speaker:has(+ .tei_stage_inline) {
@@ -492,33 +489,36 @@ li.listSubTitle {
             }
         }
         
-        /* styling for spGrps with brackets
-         * 
-         * (since verseLines are aligned left to a 40ch container, 
-         * we don't use a grid here but push the brace and stage
-         * direction out of that container by a fixed amount)
-         */
+        /* styling for spGrps with brackets */
         .tei_spGrp_braced-left {
-            position: relative;
+            display: grid;
+            grid-template-columns: max-content max-content auto;
+            align-items: stretch;
+            column-gap: .5rem;
+
+            > .tei_sp {
+                grid-column: 3;
+            }
+            > .tei_stage_left {
+                grid-column: 1;
+                grid-row: 1 / 999;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                writing-mode: vertical-rl;
+            }
             &::before {
                 content: "";
-                position: absolute;
-                left: calc(var(--page-width) / 2 * -1 + calc(var(--indent)) - 3ch); /* caveat: depends on the current indent */
-                top: .8rem;
-                bottom: .8rem;
-                width: 1rem;
+                grid-column: 2;
+                grid-row: 1 / 999;
+                align-self: stretch;
+                justify-self: center;
                 /* draw a brace for spGrps */
+                width: 1rem;
                 background: #fff;
                 border: 2px solid #000;
                 border-right: none;
                 border-radius: 1rem 0 0 1rem;
-            }
-            .tei_stage_left {
-                position: absolute;
-                top: 50%;
-                left: calc(var(--verse-width) / 2 * -1 - 4ch);
-                transform: translate(-50%, -50%) rotate(90deg);
-                transform-origin: center;
             }
         }
     }

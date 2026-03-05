@@ -99,7 +99,14 @@
         <xsl:variable name="label" as="xs:string">
             <xsl:choose>
                 <xsl:when test="@n">
-                    <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), ' ', @n)"/>
+                    <xsl:choose>
+                        <xsl:when test="matches(@n, '[vr]')">
+                            <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('leaf', $lang), ' ', @n)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), ' ', @n)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
