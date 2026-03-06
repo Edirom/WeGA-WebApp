@@ -94,7 +94,7 @@ $tei_list-indent: $font-size-base;
 }
 
 div.poem {
-   margin: 0.5pc 0em 0.5pc 10%; 
+   margin: 0.5pc 0em 0.5pc 10%;
 }
 
 div.poem h2 {
@@ -167,9 +167,9 @@ li.listSubTitle {
     }
 }
 
-/* 
-    <signed> und <seg> werden als 'block' gesetzt, 
-    damit die Textausrichtung (s.u.) modifiziert werden kann 
+/*
+    <signed> und <seg> werden als 'block' gesetzt,
+    damit die Textausrichtung (s.u.) modifiziert werden kann
 */
 .tei_signed, .tei_segBlock {
     display: block;
@@ -187,8 +187,8 @@ li.listSubTitle {
     text-align: left;
 }
 
-/* set titles of biblio entries in italics and 
- * set neste tei_hi_italic in normal shape 
+/* set titles of biblio entries in italics and
+ * set neste tei_hi_italic in normal shape
  */
 .biblio-entry {
     .title, .journalTitle, .collectionTitle {
@@ -239,7 +239,7 @@ li.listSubTitle {
 }
 
 /*
- * address within div/@type="address" 
+ * address within div/@type="address"
  */
 .teiLetter_address {
     margin-bottom:$line-height-computed;
@@ -247,7 +247,7 @@ li.listSubTitle {
 }
 
 /*
- * address within closer 
+ * address within closer
  */
 .tei_closer .tei_address {
     margin-top:$line-height-computed;
@@ -290,11 +290,13 @@ li.listSubTitle {
 .teiSrc_text {
   --page-width: min(50ch, 92vw);
   --indent: 5ch;
+  --lg-indent-amount: 0;
+  --l-indent-amount: 0;
 
     max-width: var(--page-width);
     margin: 0 auto;
     text-align: center;
-    
+
     /* styling for page breaks – a mix from WeGA diaries and HenDi page breaks */
     hr.tei_pb-text {
         width: var(--page-width);
@@ -303,11 +305,11 @@ li.listSubTitle {
         position: relative;
         left: 50%;
         transform: translateX(-50%);
-        
+
         border: 0;
         border-top: 2px solid var(--primary);
         border-radius: 5px;
-        
+
         &::after {
             content: attr(data-content);
             position: absolute;
@@ -316,19 +318,19 @@ li.listSubTitle {
             top: 0;
             transform: translate(-50%, -50%);
             padding: 0 1rem;
-            
+
             background: #fff;
             color: var(--primary);
             font-size: .8rem;
             font-style: italic;
         }
     }
-    
+
     /* some block level elements */
     .tei_titlePart,
     .tei_castList,
     .tei_castItem,
-    .tei_caption, 
+    .tei_caption,
     .tei_speaker,
     [class^="lg"],
     [class^="verseLine"],
@@ -343,7 +345,7 @@ li.listSubTitle {
     .tei_subst + .tei_subst::before {
         content: " ";
     }
-    
+
     .teiSrc_front {
         .tei_titlePage {
             .tei_titlePart {
@@ -354,22 +356,22 @@ li.listSubTitle {
         .tei_castList {
             line-height: 2;
             margin-bottom: 1rem;
-            
+
             .tei_castItem {
                 text-align: left;
-                
+
                 .tei_role + .tei_roleDesc::before {
                     content: " ";
                 }
             }
-            
+
             /* styling for cast groups with optional brackets to the right */
             [class^="tei_castGroup"] {
                 display: grid;
                 grid-template-columns: max-content max-content auto;
                 align-items: stretch;
                 column-gap: .5rem;
-                
+
                 > .tei_castItem {
                     grid-column: 1;
                 }
@@ -398,7 +400,7 @@ li.listSubTitle {
             }
         }
     }
-    
+
     .teiSrc_body {
         /* general page layout, spacing, and indenting */
         .tei_sp {
@@ -408,22 +410,22 @@ li.listSubTitle {
                 &:has(+ [class^="lg"]) {
                     margin-bottom: 2rem;
                 }
-                /* indenting for lg up to indent-5 */
+                /* set lg indent modifier up to indent-5 */
                 &[class*="indent"] {
                     &[class$="-1"] {
-                        margin-left: var(--indent);
+                        --lg-indent-amount: 1;
                     }
                     &[class$="-2"] {
-                        margin-left: calc(var(--indent) * 2);
+                        --lg-indent-amount: 2;
                     }
                     &[class$="-3"] {
-                        margin-left: calc(var(--indent) * 3);
+                        --lg-indent-amount: 3;
                     }
                     &[class$="-4"] > * {
-                        margin-left: calc(var(--indent) * 4);
+                        --lg-indent-amount: 4;
                     }
                     &[class$="-5"] > * {
-                        margin-left: calc(var(--indent) * 5);
+                        --lg-indent-amount: 5;
                     }
                 }
             }
@@ -433,34 +435,32 @@ li.listSubTitle {
             [class^="verseLine"] {
                 margin: 0 auto;
                 text-align: left;
-                &[class$="-F"] {
-                    transform: translateX(-50%);
-                    text-align: center;
-                    margin-left: calc(var(--page-width) / 2);
-                }
                 &[class$="-M"] {
-                    transform: translateX(-50%);
+                    margin-left: calc(var(--page-width) / 4);
+                }
+                &[class$="-F"] {
+                    margin-left: calc(var(--page-width) / 4);
                     text-align: center;
-                    margin-left: calc(var(--page-width) / 3);
                 }
                 /* indenting for verseLines up to indent-5 */
                 &[class*="indent"] {
                     &[class$="-1"] {
-                        text-indent: var(--indent);
+                        --l-indent-amount: 1;
                     }
                     &[class$="-2"] {
-                        text-indent: calc(var(--indent) * 2);
+                        --l-indent-amount: 2;
                     }
                     &[class$="-3"] {
-                        text-indent: calc(var(--indent) * 3);
+                        --l-indent-amount: 3;
                     }
                     &[class$="-4"] > * {
-                        text-indent: calc(var(--indent) * 4);
+                        --l-indent-amount: 4;
                     }
                     &[class$="-5"] > * {
-                        text-indent: calc(var(--indent) * 5);
+                        --l-indent-amount: 5;
                     }
                 }
+                text-indent: calc((var(--indent) * var(--l-indent-amount)) + (var(--indent) * var(--lg-indent-amount)));
             }
         }
         
