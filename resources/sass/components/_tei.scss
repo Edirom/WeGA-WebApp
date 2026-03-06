@@ -435,10 +435,12 @@ li.listSubTitle {
             [class^="verseLine"] {
                 margin: 0 auto;
                 text-align: left;
-                &[class$="-M"] {
+                &[class$="-M"],
+                &[class*="-M-"] {
                     margin-left: calc(var(--page-width) / 4);
                 }
-                &[class$="-F"] {
+                &[class$="-F"],
+                &[class*="-F-"] {
                     margin-left: calc(var(--page-width) / 4);
                     text-align: center;
                 }
