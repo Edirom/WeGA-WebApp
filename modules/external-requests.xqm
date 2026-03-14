@@ -378,7 +378,7 @@ declare function er:beacon-map($gnd as xs:string, $docType as xs:string) as map(
  :)
 declare function er:wikipedia-article-url($idno as element()*, $lang as xs:string) as xs:anyURI* {
     let $supported-authority-providers := ('gnd', 'viaf', 'wikidata', 'geonames')
-    let $ids := $idno[self::tei:idno or self::mei:altId][@type=$supported-authority-providers] => sort() (: sort items for reproducability :)
+    let $ids := $idno[self::tei:idno or self::mei:altId][@type=$supported-authority-providers] => sort() (: sort items for reproducibility :)
     let $cur-id := $ids[1]
     let $url := 
         switch($cur-id/@type => string())

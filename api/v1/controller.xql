@@ -10,6 +10,7 @@ xquery version "3.1" encoding "UTF-8";
  : 4. You may provide other functions for checking/validating params. The naming scheme of the function is simply 'validate-$paraName$' and it must accept one string as a parameter (i.e. the param value)
 ~:)
 
+declare namespace err="http://www.w3.org/2005/xqt-errors";
 declare namespace exist="http://exist.sourceforge.net/NS/exist";
 declare namespace request="http://exist-db.org/xquery/request";
 declare namespace response="http://exist-db.org/xquery/response";
@@ -157,7 +158,7 @@ let $lookup as map(*)? :=
                     'path-params' : map:merge($params)
                 }
         else ()
-    (: return the most specific function, e.g. the function "a-b()" is prefered over the function "a(b)" :)
+    (: return the most specific function, e.g. the function "a-b()" is preferred over the function "a(b)" :)
     order by string-length(function-name($possible-matches?func) cast as xs:string) descending
     return 
         $possible-matches
