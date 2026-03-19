@@ -800,7 +800,7 @@ declare function api:validate-toDate($model as map(*)) as map(*)? {
  : Check parameter start
 ~:)
 declare function api:validate-start($model as map(*)) as map(*)? {
-    if($model('start') castable as xs:date) then $model
+    if($model('start') castable as xs:date) then (map:put($model, 'fromDate', $model('start')) => map:remove('start'))
     else if($model?start ='') then () (: an empty string is simply dropped :)
     else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('start') || '". Should be YYYY-MM-DD.')
 };
@@ -809,7 +809,7 @@ declare function api:validate-start($model as map(*)) as map(*)? {
  : Check parameter end
 ~:)
 declare function api:validate-end($model as map(*)) as map(*)? {
-    if($model('end') castable as xs:date) then $model
+    if($model('end') castable as xs:date) then (map:put($model, 'toDate', $model('end')) => map:remove('end'))
     else if($model?end ='') then () (: an empty string is simply dropped :)
     else error($api:INVALID_PARAMETER, 'Unsupported date format given: "' || $model('end') || '". Should be YYYY-MM-DD.')
 };
