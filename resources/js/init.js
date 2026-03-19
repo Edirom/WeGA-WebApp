@@ -139,47 +139,6 @@ function formatFacet (facet) {
     return facet;
 }
 
-$.fn.rangeSlider = function () 
-{
-    this.ionRangeSlider({
-        min: +moment($(this).attr('data-min-slider')),
-        max: +moment($(this).attr('data-max-slider')),
-        from: +moment($(this).attr('data-from-slider')),
-        to: +moment($(this).attr('data-to-slider')),
-        grid: true,
-        skin: "flat",
-        step: 100,
-        force_edges: true,
-        type: "double",
-        //force_edges: true,
-        grid_num: 3,
-        keyboard: true,
-        prettify: function (num) {
-            const lang = getLanguage(),
-                m = moment(num).locale(lang);
-            let format;
-            if(lang === 'de') { format = "D. MMM YYYY"}
-            else { format = "MMM D, YYYY" }
-            return m.format(format);
-        },
-        onFinish: function (data) {
-            /* Get active facets to append as URL params */
-            const params = active_facets(),
-                newFrom = moment(data.from).locale("de").format("YYYY-MM-DD"),
-                newTo = moment(data.to).locale("de").format("YYYY-MM-DD");
-            
-            /* 
-             * Overwrite date params with new values from the slider 
-             */
-            params.sliderDates.fromDate = newFrom;
-            params.sliderDates.toDate = newTo;
-            params.sliderDates.oldFromDate = moment(data.min).locale("de").format("YYYY-MM-DD");
-            params.sliderDates.oldToDate = moment(data.max).locale("de").format("YYYY-MM-DD");
-            updatePage(params);
-        }
-    });
-};
-
 $.fn.obfuscateEMail = function () {
     if($(this).length === 0) {}
     else {
@@ -715,22 +674,6 @@ function active_facets() {
         if(params.facets[facet] === undefined) { params.facets[facet] = [] }
         params.facets[facet].push(value);
     })
-    /* Get date values from range slider */
-    if($('.rangeSlider:visible').length) {
-        slider = $('.rangeSlider:visible');
-        from=slider.attr('data-from-slider');
-        to=slider.attr('data-to-slider');
-        min=slider.attr('data-min-slider');
-        max=slider.attr('data-max-slider');
-        if(from > min) { 
-            params.sliderDates.fromDate = from;
-            params.sliderDates.oldFromDate = min;
-        }
-        if(to < max) { 
-            params.sliderDates.toDate = to;
-            params.sliderDates.oldToDate = max;
-        }
-    }
     /* get values from checkboxes for docTypes at search page 
      * as well as for other checkboxes on list pages like 'revealed' or 'undated'
      */
@@ -780,9 +723,6 @@ $('.allFilter select').facets();
 
 /* Initialise select2 plugin for dropdown on start page */
 $('.prettyselect').prettyselect();
-
-/* Initialise range slider for index pages */
-$('.allFilter:visible .rangeSlider').rangeSlider();
 
 
 $('h1').h1FitText();
@@ -839,7 +779,6 @@ function ajaxCall(container,url,callback) {
         else {
             /* update facets */
             $('.allFilter:visible select').facets();
-            $('.allFilter:visible .rangeSlider').rangeSlider();
             /* Listen for click events on pagination */
             $('.page-link:visible').on('click', 
                 function() {

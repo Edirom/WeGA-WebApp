@@ -493,22 +493,6 @@ declare
             }
 };
 
-(:~
- : set the maximum dates for the IonRangeSlider
-~:)
-declare 
-    %templates:default("fromDate", "")
-    %templates:default("toDate", "")
-    function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(xhtml:input) {
-    element {node-name($node)} {
-         $node/@*,
-         attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
-         attribute data-max-slider {if($model('oldToDate') castable as xs:date) then $model('oldToDate') else $model('latestDate')},
-         attribute data-from-slider {if($fromDate castable as xs:date) then $fromDate else $model('earliestDate')},
-         attribute data-to-slider {if($toDate castable as xs:date) then $toDate else $model('latestDate')}
-    }
-};
-
 declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(xhtml:input) {
     element {node-name($node)} {
          $node/@*,
