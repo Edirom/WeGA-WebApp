@@ -1252,7 +1252,8 @@ function init_fullcalendar(initialDate, lang) {
 };
 
 
-const backToTopBtn = document.getElementById('backToTop');
+const backToTopBtn = document.getElementById('backToTop'),
+    pbTimelineElem = document.getElementById("pb-timeline");
 
 if (backToTopBtn) {
   window.addEventListener('scroll', function () {
@@ -1270,3 +1271,76 @@ if (backToTopBtn) {
 
 // Initialize code highlighting
 document.querySelectorAll('.prettyprint code').forEach(el => {hljs.highlightElement(el)})
+
+function facetsToString(facets) {
+    const params = new URLSearchParams(
+        Object.entries(facets).flatMap(([key, value]) => 
+            Array.isArray(value) ? value.map(v => [key, v]) : [[key, value]]
+        )
+    ).toString();
+    return params
+}
+
+function pbTimelineChangeHandler(ev) {
+    //console.log(ev);
+    let params = active_facets(),
+        endDateFixed;
+    // fix endDate which is always provided as the first day of the last period by pb-timeline
+    if (ev.detail.scope) {
+        if (ev.detail.scope.includes('Y')) {
+            endDateFixed = moment(ev.detail.endDateStr).endOf("year").format("YYYY-MM-DD")
+        } else if (ev.detail.scope.includes('M')) {
+            endDateFixed = moment(ev.detail.endDateStr).endOf("month").format("YYYY-MM-DD")
+        } else if (ev.detail.scope.includes('W')) {
+            endDateFixed = moment(ev.detail.endDateStr).endOf("week").format("YYYY-MM-DD")
+        } else {
+            endDateFixed = ev.detail.endDateStr
+        }
+        params.sliderDates.fromDate = ev.detail.startDateStr;
+        params.sliderDates.toDate = endDateFixed;
+    }
+    else {
+        params.facets.undated = true;
+    }
+    updatePage(params);
+}
+
+function pbTimelineResetHandler(ev) {
+    const undatedCheckbox = document.getElementById('undated');
+    if(undatedCheckbox) {
+        undatedCheckbox.checked = false; // uncheck hidden checkbox
+    }
+    const params = active_facets();
+    params.sliderDates.fromDate = ''; // set to empty string
+    params.sliderDates.toDate = '';
+    updatePage(params);
+}
+
+function pbTimelinePresendHandler(ev) {
+    const facets = active_facets().facets;
+    delete facets.limit; // limit is not needed and not supported by the `/timline` endpoint
+    const params = facetsToString(facets)
+    if (params !== "") {
+        ev.detail.options.url = ev.detail.options.url + "&" + params;
+    }
+}
+
+if(pbTimelineElem) {
+    /*
+     * Add event listener for changes to the timeline, i.e. selecting a date range.
+     */
+    pbTimelineElem.addEventListener('pb-timeline-daterange-changed', pbTimelineChangeHandler)
+    
+    pbTimelineElem.addEventListener('pb-timeline-date-changed', pbTimelineChangeHandler)
+
+    /*
+     * Add event listener for resetting the timeline selection, i.e. hitting the big X on the timeline.
+     */
+    pbTimelineElem.addEventListener('pb-timeline-reset-selection', pbTimelineResetHandler)
+
+    /*
+     * Add event listener for intercepting AJAX requests sent by the timeline web component.
+     * Here, we rewrite the default URL parameters (start and end) and add additional URL parameters for facets
+     */
+    pbTimelineElem.addEventListener('iron-ajax-presend', pbTimelinePresendHandler)
+}
