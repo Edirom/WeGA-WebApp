@@ -81,9 +81,14 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
         case element(tei:settlement) return ct:place($node)
         case element(tei:country) return ct:place($node)
         case element(tei:date) return 
-            (: CMIF only allows for a single date :)
-            if($node/preceding-sibling::tei:date) then ()
-            else ct:date($node)
+            (: CMIF only allows for a single date.
+               Suppress this <tei:date> only if there is an earlier sibling
+               <tei:date> that would actually be emitted (i.e. has one of
+               @when/@from/@to/@notBefore/@notAfter), and only emit dates
+               that themselves have one of these attributes. :)
+            if ($node/preceding-sibling::tei:date[@when or @from or @to or @notBefore or @notAfter]) then ()
+            else if ($node/@when or $node/@from or $node/@to or $node/@notBefore or $node/@notAfter) then ct:date($node)
+            else ()
         case element(tei:note) return 
             element {QName(namespace-uri($node), local-name($node))} {
                 (: skip attributes due to danger of duplicate xml:ids – and we don't need them :)
