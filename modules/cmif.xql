@@ -80,7 +80,15 @@ declare function ct:identity-transform-with-switches($nodes as node()*) as item(
         case element(tei:placeName) return ct:place($node)
         case element(tei:settlement) return ct:place($node)
         case element(tei:country) return ct:place($node)
-        case element(tei:date) return ct:date($node)
+        case element(tei:date) return 
+            (: CMIF only allows for a single date.
+               Suppress this <tei:date> only if there is an earlier sibling
+               <tei:date> that would actually be emitted (i.e. has one of
+               @when/@from/@to/@notBefore/@notAfter), and only emit dates
+               that themselves have one of these attributes. :)
+            if ($node/preceding-sibling::tei:date[@when or @from or @to or @notBefore or @notAfter]) then ()
+            else if ($node/@when or $node/@from or $node/@to or $node/@notBefore or $node/@notAfter) then ct:date($node)
+            else ()
         case element(tei:note) return 
             element {QName(namespace-uri($node), local-name($node))} {
                 (: skip attributes due to danger of duplicate xml:ids – and we don't need them :)
@@ -159,7 +167,7 @@ declare function ct:date($input as element()) as element(tei:date)? {
     if($input/(@when | @from | @to | @notBefore | @notAfter))
     then
         element {QName('http://www.tei-c.org/ns/1.0', local-name($input))} {
-            $input/@*[not(local-name(.) = ('n', 'calendar', 'cert'))]
+            $input/@* except $input/@n except $input/@calendar except $input/@cert
             (: 
             no content allowed here with the schema at 
             https://raw.githubusercontent.com/TEI-Correspondence-SIG/CMIF/master/schema/cmi-customization.rng  
@@ -170,19 +178,20 @@ declare function ct:date($input as element()) as element(tei:date)? {
 
 (:~
  : Extract text features for CMIF v2 and put them in a tei:note
+ : See https://encoding-correspondence.bbaw.de/v1/CMIF.html#c-4-2
  :)
 declare function ct:cmif2-note($doc as document-node()) as element(tei:note)? {
     let $persons := ct:mentioned-entity-by-wega-facet($doc, 'persons', 'cmif:mentionsPerson')
     let $places := ct:mentioned-entity-by-wega-facet($doc, 'places', 'cmif:mentionsPlace')
     let $fullTextURL := config:permalink($doc/*/@xml:id) || '.xml?format=tei_all'
+    let $languages := 
+        $doc//tei:language[parent::tei:langUsage] ! ct:cmif2-ref('https://lod.academy/cmif/vocab/terms#hasLanguage', ./@ident, normalize-space(.))
     return
         element {QName('http://www.tei-c.org/ns/1.0', 'note')} {
             $persons,
             $places,
-            element {QName('http://www.tei-c.org/ns/1.0', 'ref')} {
-                attribute {'type'} {'cmif:isAvailableAsTEIfile'},
-                attribute {'target'} {$fullTextURL}
-            }
+            ct:cmif2-ref('cmif:isAvailableAsTEIfile', $fullTextURL, ()),
+            $languages
         }
 };
 
@@ -209,6 +218,21 @@ declare %private function ct:response-headers() as empty-sequence() {
 };
 
 (:~
+ : Helper function for creating CMIF v2 relations 
+ :)
+declare %private function ct:cmif2-ref(
+    $type as xs:string, 
+    $target as xs:string, 
+    $text as xs:string?) as element(tei:ref) 
+    {
+        element {QName('http://www.tei-c.org/ns/1.0', 'ref')} {
+                attribute {'type'} {$type},
+                attribute {'target'} {$target},
+                $text
+            }
+};
+
+(:~
  : Helper function to construct entity references within CMIF v2 tei:note element
  :
  : @param $doc the document to extract the features from
@@ -224,11 +248,7 @@ declare %private function ct:mentioned-entity-by-wega-facet(
         group by $id := $entity/@key
         let $target := ct:ref-target($id)
         return
-            element {QName('http://www.tei-c.org/ns/1.0', 'ref')} {
-                attribute {'type'} {$cmifURI},
-                attribute {'target'} {$target},
-                query:title($id)
-            }
+            ct:cmif2-ref($cmifURI, $target, query:title($id))
 };
 
 (:~
