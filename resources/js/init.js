@@ -1,5 +1,10 @@
 /* Init functions */
 
+import moment from "moment";
+import hljs from 'highlight.js/lib/core';
+import xml from 'highlight.js/lib/languages/xml';
+hljs.registerLanguage('xml', xml);
+
 /* Adjust font size of h1 headings */
 $.fn.h1FitText = function () {
     if ($(this).hasClass('document')) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
@@ -294,13 +299,6 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
     }
 });
 
-/* Run Google Code Prettifyer for code examples */
-$.fn.googlecodeprettify = function () {
-    prettyPrint();
-}
-
-$('.prettyprint').googlecodeprettify();
-
 // remove popovers when clicking somewhere
 $('body').on('click touchstart', function (e) {
     $('[data-original-title]').each(function () {
@@ -347,7 +345,7 @@ function toggleTocItems() {
 function removeFilter(html, trigger) {
     /* currently, we simply remove all filters  */
     $('.col-md-3', html).remove();
-    
+
     /* and adjust the width of the remains  */
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
     
@@ -370,6 +368,10 @@ function removeFilter(html, trigger) {
         );
     }
 }
+/* Make it available globally for callback references
+ * Used by Ajax-Tabs via `data-tab-callback`-attribute
+ */
+window.removeFilter = removeFilter;
 
 /*
  * set the right tab and location for person pages
@@ -824,6 +826,10 @@ $('.fn-ref').on('click', function() {
     $($(this).attr('href')).addClass('animated-highlight');
 })
 
+/*
+ * used by easyResponsiveTabs, i.e. the main navigation tabs at person and work pages
+ * for "Biographien", "Korrespondenz", "Werke" etc.
+ */
 function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
@@ -1022,7 +1028,7 @@ function initFacsimile() {
 
 
 function jump2diary(dateText) {
-    const url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
+    const url = getAPIBase() + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
     $.getJSON(url, function(data) {
         self.location=data[0].uri + '.html';
     })
@@ -1091,6 +1097,14 @@ function getLanguage() {
     return $('#navbarCollapse li.active:last a').html().toLowerCase()
 }
 
+/*
+ * Get the API base from the footer nav
+ */
+function getAPIBase() {
+    return document.getElementById("api-base-link")
+        .getAttribute("data-api-base")
+}
+
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
@@ -1144,7 +1158,7 @@ $('#create-newID').on('click', newID);
 
 function newID() {
     const docType = $('#newID-select :selected').val(),
-        url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType,
+        url = getAPIBase() + "/application/newID?docType=" + docType,
         newID_result = $('#newID-result'),
         newID_result_span = $('span', newID_result);
     newID_result_span.hide();
@@ -1176,16 +1190,12 @@ $('.copy-to-clipboard').on('click', function() {
 /* 
  * Initialise line wrap toggle for XML previews
  */
-function init_line_wrap_toggle() {
-    let pre = $('.line-wrap-toggle ~ pre'),
-        input = $('.line-wrap-toggle input'),
-        endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
-
+function init_line_wrap_toggle(pre, input, endpoint_url) {
     // set listener for toggle
     input.change(
         function() {
             pre.toggleClass('line-wrap');
-            // update session
+            // POST the switch setting to the endpoint and update the backend session
             let data = { [this.getAttribute('id')]: this.checked };
             fetch(endpoint_url, {
                 method: 'POST',
@@ -1197,15 +1207,26 @@ function init_line_wrap_toggle() {
             });
         }
     )
-    prettyPrint();
 }
+
+function init_xml_tab(html, trigger, container) {
+    const pre = $('.line-wrap-toggle ~ pre', html),
+        code = $('code', pre),
+        input = $('.line-wrap-toggle input', html),
+        endpoint_url = getAPIBase() + '/application/preferences';
+    init_line_wrap_toggle(pre, input, endpoint_url);
+    hljs.highlightElement(code[0]);
+}
+
+// Make it available globally for callback references
+window.init_xml_tab = init_xml_tab;
 
 /*
  * Initialise user settings functionality:
  * custom switches and toggle markers within the text  
  */
 $.fn.init_settings = function () {
-    let endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences',
+    let endpoint_url = getAPIBase() + '/application/preferences',
         marker,
         data;
         
@@ -1307,3 +1328,6 @@ if (backToTopBtn) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   });
 }
+
+// Initialize code highlighting
+document.querySelectorAll('.prettyprint code').forEach(el => {hljs.highlightElement(el)})
