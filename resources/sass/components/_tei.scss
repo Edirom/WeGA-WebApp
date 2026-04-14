@@ -444,25 +444,27 @@ li.listSubTitle {
                     margin-left: calc(var(--page-width) / 4);
                     text-align: center;
                 }
-                /* indenting for verseLines up to indent-5 */
-                &[class*="indent"] {
-                    &[class$="-1"] {
-                        --l-indent-amount: 1;
+                /* indenting for verseLines up to indent-5 (only on big screens) */
+                @media (min-width: 530px) {
+                    &[class*="indent"] {
+                        &[class$="-1"] {
+                            --l-indent-amount: 1;
+                        }
+                        &[class$="-2"] {
+                            --l-indent-amount: 2;
+                        }
+                        &[class$="-3"] {
+                            --l-indent-amount: 3;
+                        }
+                        &[class$="-4"] > * {
+                            --l-indent-amount: 4;
+                        }
+                        &[class$="-5"] > * {
+                            --l-indent-amount: 5;
+                        }
                     }
-                    &[class$="-2"] {
-                        --l-indent-amount: 2;
-                    }
-                    &[class$="-3"] {
-                        --l-indent-amount: 3;
-                    }
-                    &[class$="-4"] > * {
-                        --l-indent-amount: 4;
-                    }
-                    &[class$="-5"] > * {
-                        --l-indent-amount: 5;
-                    }
+                    text-indent: calc((var(--indent) * var(--l-indent-amount)) + (var(--indent) * var(--lg-indent-amount)));
                 }
-                text-indent: calc((var(--indent) * var(--l-indent-amount)) + (var(--indent) * var(--lg-indent-amount)));
             }
         }
         
