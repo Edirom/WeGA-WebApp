@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="anonym" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Ziegler, Frank" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Fremdenanzeigen Augsburg November 1790: Anreise von Edmund(?) von Weber","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100432","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100432","author":[{"@type":"Person","name":"anonym"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100432/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100432/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -357,6 +354,8 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131256" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130065" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
@@ -372,7 +371,7 @@
                                     <div class="docPart">
                                         <p>Ankommende Herrschaften und Reisende.</p>
                                         <p><span>[…]</span></p>
-                                        <p>Zum weis<span class="tei_supplied"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>en Lamm [...]<br />               
+                                        <p><a class="preview places A131256" href="">Zum weis<span class="tei_supplied"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>en Lamm [...]</a><br />               
                   Den 29. <span class="tei_supplied"><span class="brackets_supplied">[</span>Nov.<span class="brackets_supplied">]</span></span> <span>[…]</span> Hr. <span class="8710198101114">Weber</span> in Komp.<span class="tei_supplied"><span class="brackets_supplied">[</span>agnie<span class="brackets_supplied">]</span></span>, Musikus von <a class="preview places A130065" href="">Regenspurg</a>.</p>
                                     </div>
                                 </div>
@@ -390,7 +389,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>In <a class="preview places A130065" href="">Regensburg</a> hatte sich die Familie von Weber nach dem Ende ihrer <a class="preview places A130070" href="">Meininger</a> Theatersaison (19. April 1790) nur kurzzeitig aufgehalten. Nur ein Herr Weber (vermutlich <a class="preview persons A002075" href="">Fridolin</a>) war dort einige Zeit am Theater engagiert, während andere Familienmitglieder dort nur gastierten; vgl. <span class="preview biblio A110009" data-ref="">Ziegler in Weberiana 20 (2010)</span>. Die für <a class="preview places A130017" href="">Augsburg</a> bezeugte Anreise ist vermutlich auf den nachfolgend am dortigen Theater engagierten <a class="preview persons A002071" href="">Edmund von Weber</a> und seine Frau <a class="preview persons A008688" href="">Josepha</a> zu beziehen; vgl. <span class="preview biblio A110051" data-ref="">Higuchi/Ziegler in Weberiana 18 (2008)</span>, S. 14f. Es ist allerdings nicht gänzlich auszuschließen, dass sich auch ein anderes Mitglied der Familie vorübergehend in <a class="preview places A130017" href="">Augsburg</a> aufhielt.</p>
+                                        <p>In <a class="preview places A130065" href="">Regensburg</a> hatte sich die Familie von Weber nach dem Ende ihrer <a class="preview places A130070" href="">Meininger</a> Theatersaison (19. April 1790) nur kurzzeitig aufgehalten. Nur ein Herr Weber (vermutlich <a class="preview persons A002075" href="">Fridolin</a>) war dort einige Zeit am Theater engagiert, während andere Familienmitglieder dort nur gastierten; vgl. <span class="preview biblio A110009" data-ref="">Ziegler in Weberiana 20 (2010)</span>. Die für <a class="preview places A130017" href="">Augsburg</a> bezeugte Anreise ist vermutlich auf den nachfolgend am dortigen <a class="preview places A131086" href="">Theater</a> engagierten <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund von Weber</a> und seine Frau <a class="preview persons A008688" href="">Josepha</a> zu beziehen; vgl. <span class="preview biblio A110051" data-ref="">Higuchi/Ziegler in Weberiana 18 (2008)</span>, S. 14f. Es ist allerdings nicht gänzlich auszuschließen, dass sich auch ein anderes Mitglied der Familie vorübergehend in <a class="preview places A130017" href="">Augsburg</a> aufhielt.</p>
                                     </div>
                         </div>
                         
@@ -421,7 +420,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Wöchentliche Nachrichten von dem Augsburgischen auch auswärtigen Intelligenzwesen, nebst allerlei gelehrten, ökonom- und meteorologischen Artikeln [= Augsburgisches Intelligenz-Blatt]</span>, Nr. 49 (6. Dezember 1790), S. 200</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_d4a3abe8c4ef607091a212d4458fb3a6">
+                                        <div class="collapse apparatus-details" id="source_7e6a5a5d76d5b25fd7e40e7dbfbd017a">
                                             
                                             
                                             <div>
@@ -469,7 +468,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100432</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100432</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -529,6 +528,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -587,22 +589,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Böttiger, Karl August" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Hafenstein, Deborah" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Vorab-Besprechung des König Yngurd von Adolph Müllner (zur Dresdner Aufführung am 14. April 1817)","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Vorab-Besprechung für die Königl. Schaubühne zu Dresden vom 14. April 1817 (Teil 2 von 2)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030107","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000194","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000194"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -293,13 +290,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A030107/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -455,7 +452,8 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p><a class="preview works A020690" href=""><span class="tei_hi_spaced_out">König Yngurd</span></a> (<a class="preview writings A030106" href="">Beschluß</a>.)</p>
+                                        <h2 class="docHeader textAlign-left"><a class="preview works A020690" href=""><span class="tei_hi_spaced_out">König Yngurd</span></a></h2>
+                                        <p>(<a class="preview writings A030106" href="">Beschluß</a>.)</p>
                                         <p>Auf <span class="891101031171141008217115">Yngurd’s</span> <span class="tei_hi_spaced_out">nordisches</span> Riesenhaupt hat der <a class="preview persons A001386" href="">Dichter</a> alle <span class="tei_hi_spaced_out">persönliche</span> Herrlichkeit und Heldenkraft, die, wenn sie rechter Art ist, auch der Frauenliebe huldigt, gleichsam aufgehäuft, und so mußten auch außerordentliche Kräfte zusammenwirken, ihn zu stürzen. In ihren sinnreichen Verkettungen hat Müllner Ungewöhnliches geleistet und die ihn stürzende innere Verschuldung in den Sturm der Begebenheiten tüchtig eingeflochten. Daher kommt für den Zuschauer <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>alles darauf an, diese Schuld vom Wendepunkt an fest ins Auge zu fassen. In einer vor kurzem erschienenen Schrift unter dem Titel: <span class="741171009711532731159910497114105111116"><span class="tei_hi_spaced_out">Judas Ischariot</span></span> <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>  wird der Zweifel als die Folge des bösen Princips aufgestellt. <a class="preview persons A001386" href="">Müllner</a> hat durch seinen <a class="preview works A020690" href="">Yngurd</a> gezeigt, daß der Zweifel die Ursache des Bösen, ja das böse Prinzip selbst sei. Er zweifelt und <span class="tei_hi_spaced_out">will</span> nun das Böse. Daher sagt der Sterbende:</p><span class="lg"><span class="verseLine">Was ich <span class="tei_hi_spaced_out">gewollt</span>, war einmal schlimmer nur,</span><span class="verseLine">Als was ich that und – ich nicht thats, die Hölle</span><span class="verseLine">Vollzog mein Denken –</span></span>
                                         <p>Dadurch hat hier der <a class="preview persons A001386" href="">Dichter</a> die Schuld <span class="72117103111115">Hugos</span> in der <a class="preview works A020856" href=""><span class="tei_hi_spaced_out">Schuld</span></a> überboten. Dort fliegt die Kugel, hier das Wort. Das Wort allein leidet Zurechnung!</p>
                                         <p>In einem Stück, wie <a class="preview works A020690" href="">Yngurd</a> ist, wiegt auch die kleinste Nebenrolle ihr volles Pfund, und verlangt, selbst noch in der sich unterordnenden Bescheidenheit, ein meisterhaftes Spiel. Wäre es nur möglich gewesen, das unverkürzte Stück in zwei Vorstellungen zu theilen! Der <a class="preview persons A001386" href="">Dichter</a> selbst hatte in diesem Falle einen Prolog gedichtet, mit dem ein Skalde, die Vorstellung des zweiten Abends, mit dem dritten Akt beginnend, eröffnet haben würde. Allein die erste Vorstellung des Stücks <span class="tei_hi_spaced_out">muß</span> in einem einzigen Abend gegeben werden. Das wird jedem Unbefangenen einleuchten. So <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>wie es nun aufgeführt werden kann, bleibt <span class="7911599971148217115">Oscar’s</span> Rolle eine der wichtigsten. Auch in seinem Charakter tritt in der Mitte ein bestimmter Wendepunkt ein. Er tritt auf, mitten innestehend zwischen Knabe und Jüngling, ein süßträumender, in einer poetischen Welt befangener Skalden-Jüngling. Aus dem Metall, aus welchem kriegerische Könige gegossen werden, ist der im Alter erzeugte Posthumus nicht gegossen. <span class="tei_hi_spaced_out">Sein Reich ist das der Bilder und der Töne. Sein weiches Herz kann leiden nur und lieben</span>. Doch seine Nichte, Yngurd’s Tochter, <span class="6511510897">Asla</span> überblickt mit Klarheit ihren und seinen Zustand. Mit den Worten: <span class="tei_hi_spaced_out">Du Ottfrieds Sohn liebst Ottfrieds Enkelin</span> und mit dem ersten Kuß tagt’s, wie durch einen Blitzstrahl, in seiner Brust und nun kann er, in vollem Bewußtseyn ermannt, vor allen Großen des Reichs sein Reich fodern und das Schrecklichste an sich vorüber gehen lassen. Die vom <a class="preview persons A001386" href="">Dichter</a> meisterhaft motivirte Umwandlung psychologisch wahr darzustellen, ist nicht die kleinste Aufgabe.</p>
@@ -522,7 +520,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 1, Nr. 86 (10. April 1817), Bl. 1r</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_fd982694f19508e07b70396d425ad906">
+                                        <div class="collapse apparatus-details" id="source_aae18c4912f6f192e658dc104594b60e">
                                             
                                             
                                             <div>
@@ -549,7 +547,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A030107/manifest.json" data-canvasindex="0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -570,7 +568,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030107</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030107</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -630,6 +628,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -688,22 +689,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

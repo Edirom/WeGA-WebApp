@@ -12,6 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Peter Stadler" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012" />
@@ -41,11 +42,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Die Seiten der WeGA werden seit 2018 nur noch über verschlüsseltes https ausgeliefert. Anfragen via http werden nach https umgeleitet. Die folgenden …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"API Dokumentation","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070012","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","name":"Stadler, Peter","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001","sameAs":"https://d-nb.info/gnd/143058045"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -285,8 +284,8 @@
                             
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link deactivated"></a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070012/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070012/backlinks.html">Rückverweise</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070012/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -307,8 +306,8 @@
                                         <li class="secLevel1"><a href="#sprachwahl">Sprachauswahl</a></li>
                                         <li class="secLevel1"><a href="#d12e182">Abfragen von GND IDs</a></li>
                                         <li class="secLevel1"><a href="#d12e235">Correspondence Metadata Interchange-Format (CMIF)</a></li>
-                                        <li class="secLevel1"><a href="#d12e260">International Image Interoperability Framework (IIIF)</a></li>
-                                        <li class="secLevel1"><a href="#d12e301">Swagger OpenAPI</a></li>
+                                        <li class="secLevel1"><a href="#d12e280">International Image Interoperability Framework (IIIF)</a></li>
+                                        <li class="secLevel1"><a href="#d12e321">Swagger OpenAPI</a></li>
                                     </ul>
                                 </div>
                                 <div id="d12e2">
@@ -388,7 +387,7 @@
                <br /><code># curl -L -H "Accept: application/xml" "https://weber-gesamtausgabe.de/A002068?format=tei_simplePrint" </code>
             </div>
                                     </div>
-                                    <p>Siehe auch die <a class="preview news A050229" href="">News vom 29. November 2017</a> zu „alternativen TEI-Ausgabeformaten“.</p>
+                                    <p>Siehe auch die <a class="preview news A050229" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050229.html">News vom 29. November 2017</a> zu „alternativen TEI-Ausgabeformaten“.</p>
                                 </div>
                                 <div id="sprachwahl">
                                     <h2 id="d12e159">Sprachauswahl</h2>
@@ -435,15 +434,21 @@
                                 <div id="d12e234">
                                     <h2 id="d12e235">Correspondence Metadata Interchange-Format (CMIF)</h2>
                                     <p>Die WeGA stellt seit Mai 2014 alle Korrespondenz-Metadaten nach dem <span class="tei_hi_italic">Correspondence Metadata Interchange-Format</span> (CMIF)
-               zur Verfügung. Adresse der BEACON-Datei: <code>https://weber-gesamtausgabe.de/correspDesc.xml</code>.
+               zur Verfügung. Adresse der BEACON-Datei (seit <a class="preview news A050106" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050106.html">Release 4.8</a>): <code>https://weber-gesamtausgabe.de/cmif_v1.xml</code>. 
+               Die alte URL <code>https://weber-gesamtausgabe.de/correspDesc.xml</code> ist aktuell noch gültig, 
+               sollte aber nicht mehr benutzt werden und kann in einem der nächsten Releases entfernt werden.
+            </p>
+                                    <p>Mit dem <a class="preview news A050106" href="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050106.html">Release 4.8</a> wurde auch ein Endpunkt für das (noch im Entwurfsstadium befindliche) 
+               CMIF v2 unter <code>https://weber-gesamtausgabe.de/cmif_v2.xml</code> eingerichtet. Von den Erweiterungen in CMIF v2 werden 
+               hier aktuell nur <code>cmif:mentionsPerson</code> und <code>cmif:mentionsPlace</code> unterstützt.
             </p>
                                     <p>Detaillierte Informationen zum CMI-Format finden sich auf den Seiten des <a href="https://correspsearch.net/de/mitmachen.html">correspSearch Webservice <i class="fa fa-external-link" aria-hidden="true"></i></a>
                und unter <a href="https://github.com/TEI-Correspondence-SIG/CMIF">https://github.com/TEI-Correspondence-SIG/CMIF <i class="fa fa-external-link" aria-hidden="true"></i></a>.
                Siehe auch die <a class="preview news A050122" href="">News vom 7. Mai 2014</a> zur ersten Einrichtung eines „experimentellen Corresp-Beacon“. 
             </p>
                                 </div>
-                                <div id="d12e259">
-                                    <h2 id="d12e260"><span class="tei_hi_italic">International Image Interoperability Framework</span> (IIIF)</h2>
+                                <div id="d12e279">
+                                    <h2 id="d12e280"><span class="tei_hi_italic">International Image Interoperability Framework</span> (IIIF)</h2>
                                     <p>Die WeGA stellt die digitalen Faksimiles, die sie selber hosten und veröffentlichen darf, 
                nach dem <a href="https://iiif.io">IIIF-Standard <i class="fa fa-external-link" aria-hidden="true"></i></a> zur Verfügung. 
                Die Metadaten der einzelnen Bilder (<code>info.json</code>) werden dabei von dem bei uns eingesetzten 
@@ -461,8 +466,8 @@
             </div>
                                     </div>
                                 </div>
-                                <div id="d12e300">
-                                    <h2 id="d12e301">Swagger OpenAPI</h2>
+                                <div id="d12e320">
+                                    <h2 id="d12e321">Swagger OpenAPI</h2>
                                     <p>Die WeGA bietet unter <a href="https://weber-gesamtausgabe.de/api/v1/">https://weber-gesamtausgabe.de/api/v1/</a> 
                ebenfalls eine REST-Schnittstelle nach der <a href="https://swagger.io/specification/">Swagger OpenAPI Spezifikation 3.0 <i class="fa fa-external-link" aria-hidden="true"></i></a> an. 
                Diese Schnittstelle soll ein schnelles und komfortables 
@@ -490,7 +495,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070012</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -548,6 +553,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -607,22 +615,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

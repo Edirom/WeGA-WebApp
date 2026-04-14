@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100379" />
@@ -42,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Chronologisches Verzeichnis der eigenen Kompositionen von 1798 bis 1823","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100379","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100379","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Chronologisches Verzeichnis der eigenen Kompositionen von 1798 bis 1823","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100379","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100379","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -221,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente">Dokumente</a>
@@ -250,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -297,7 +295,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100379/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100379/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100379/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -641,8 +639,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020235" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020205" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020113" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020119" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -657,9 +653,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020013" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020220" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A020072" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020073" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A020220" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020065" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -833,8 +829,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020185" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020334" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020230" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020316" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -881,17 +875,19 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020085" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020209" /> <span title="Anwählen, um &#34;7 Variationen über die Romanze A peine au sortir de l'enfance aus Joseph von Etienne Nicolas Méhul&#34; im Text zu markieren.">7 Variationen über die Romanze A peine au sortir de l'enfance aus Joseph von Etienne Nicolas Méhul</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020072" /> <span title="Anwählen, um &#34;Das Turnierbankett Füllet die Humpen, mutige Knappen&#34; im Text zu markieren.">Das Turnierbankett Füllet die Humpen, mutige Knappen</span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020081" /> <span title="Anwählen, um &#34;Gute Nacht Bald heißt es wieder Gute Nacht!&#34; im Text zu markieren.">Gute Nacht Bald heißt es wieder Gute Nacht!</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020002" /> <span title="Anwählen, um &#34;Missa sancta (Nr.1) Es-Dur&#34; im Text zu markieren.">Missa sancta (Nr.1) Es-Dur</span> 
+                                    <input type="checkbox" name="options" value="A020073" /> <span title="Anwählen, um &#34;Kriegseid Wir stehn vor Gott&#34; im Text zu markieren.">Kriegseid Wir stehn vor Gott</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A020002" /> <span title="Anwählen, um &#34;Missa sancta (Nr. 1) Es-Dur&#34; im Text zu markieren.">Missa sancta (Nr. 1) Es-Dur</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020034" /> <span title="Anwählen, um &#34;Peter Schmoll und seine Nachbarn, eine Oper in zwei Aufzügen&#34; im Text zu markieren.">Peter Schmoll und seine Nachbarn, eine Oper in zwei Aufzügen</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A020205" /> <span title="Anwählen, um &#34;Quintett für Klarinette, 2 Violinen, Viola und Violoncello B-Dur&#34; im Text zu markieren.">Quintett für Klarinette, 2 Violinen, Viola und Violoncello B-Dur</span> 
                                 </label>
                             </div>
                         </div>
@@ -915,11 +911,11 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130012" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130042" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -1041,18 +1037,18 @@
                <span class="tei_hi_spaced_out"><a class="preview works A020293" href="">Fagott-Konzert</a></span>.<br />
                <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Rondo</span> in <span class="tei_hi_antiqua">Es</span> zu einem neuen <a class="preview works A020208" href="">Klavier-Konzerte</a></span>.<br />
                <span class="tei_hi_spaced_out"><a class="preview works A020235" href="">Variat. für Pf. und Klarinett</a></span>. <a class="preview orgs A080007" href="">Schlesinger</a>. <span class="tei_hi_antiqua">Op</span>. 33.<br />
-               <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Menuetto</span> zum <a class="preview works A020205" href="">Klar. Quintett</a></span>.
+               <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Menuetto</span> zum <a class="preview works A020205" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klar. Quintett</a></span>.
             </p>
                                     </div>
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">1812</span>.</h3>
                                         <p>
-               <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Adagio</span> mit <a class="preview works A020205" href="">Klar. Quintett</a></span>.<br />
+               <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Adagio</span> mit <a class="preview works A020205" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klar. Quintett</a></span>.<br />
                <span class="tei_hi_spaced_out"><span class="preview works A020113 A020119 A020136 A020144 A020276 A020014" data-ref="     ">6 Lieder</span></span>. Sonett <span class="tei_hi_spaced_out">u.s.w.</span> <a class="preview orgs A080007" href="">Schlesinger</a>. <span class="tei_hi_antiqua">Op</span>. 23.<br />
                <a class="preview works A020013" href="">Geburtstag-Lied</a>. <span class="tei_hi_antiqua">B dur</span>, sechsstimmig.<br />
-               <span class="tei_hi_spaced_out"><a class="preview works A020072" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020072.html">Turnier-Bankett</a></span> für die <a class="preview orgs A080149" href="">Liedertafel</a> in <a class="preview places A130002" href="">Berlin</a>. Doppelter Chor.<br />
+               <span class="tei_hi_spaced_out"><a class="preview works A020072" href="">Turnier-Bankett</a></span> für die <a class="preview orgs A080149" href="">Liedertafel</a> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>. Doppelter Chor.<br />
                2 <span class="tei_hi_spaced_out">neue Arien</span>, N<span class="tei_hi_superscript">o</span> 4 und 10, in die <span class="tei_hi_antiqua"><a class="preview works A020036" href="">Silvana</a></span> geschrieben.<br />
-               <span class="tei_hi_spaced_out"><span class="preview works A020220 A020073 A020014 A020276" data-ref="   ">Vierstimmige Lieder</span></span>.<br />
+               <span class="tei_hi_spaced_out"><span class="preview works A020220 A020073 A020014 A020276" data-ref=" /exist/apps/WeGA-WebApp/de/A002068/Werke/A020073.html  ">Vierstimmige Lieder</span></span>.<br />
                <a class="preview works A020209" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020209.html">Variat. f. Pf. auf die Romanze des Joseph</a>. <a class="preview orgs A080011" href="">Kühnel</a>. <span class="tei_hi_antiqua">Op</span>. 28.<br />
                <a class="preview works A020065" href=""><span class="tei_hi_spaced_out">Tenor-Scene mit doppelt. Chor aus <span class="tei_hi_antiqua">Ines de Castro</span></span></a>, für S. D. <a class="preview persons A000545" href="">Prinz Friedrich von Gotha</a>.<br />
                <span class="tei_hi_spaced_out"><a class="preview works A020015" href="">Hymne</a> von <a class="preview persons A001590" href="">Rochlitz</a></span>. Partitur und Klavier-Auszug. <a class="preview orgs A080007" href="">Schlesinger</a>. <span class="tei_hi_antiqua">Op</span>. 36.<br />
@@ -1065,7 +1061,7 @@
                                         <p>
                <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua"><a class="preview works A020289" href="">Rondo ongarese p. il Fagotto</a></span></span>. <a class="preview orgs A080007" href="">Schlesinger</a>. <span class="tei_hi_antiqua">Op</span>. 35.<br />
                <span class="tei_hi_spaced_out"><span class="preview works A020109 A020154 A020151 A020153 A020152 A020150" data-ref="     ">6 Lieder</span>, der Mad. <a class="preview persons A000111" href="">Beer</a> ded.</span> <span class="tei_hi_antiqua">Op</span>. 31.<br />
-               <span class="tei_hi_spaced_out">Allegro zu dem <a class="preview works A020205" href="">Klar. Quintett</a></span>.<br />
+               <span class="tei_hi_spaced_out">Allegro zu dem <a class="preview works A020205" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klar. Quintett</a></span>.<br />
             </p>
                                     </div>
                                     <div class="docPart">
@@ -1082,7 +1078,7 @@
                                         <p>
                <span class="tei_hi_spaced_out">Adagio und Rondo zu dem <a class="preview works A020216" href="">Duette f. Pf. und Klarinette</a></span>.<br />
                <span class="tei_hi_spaced_out"><span class="preview works A020067" data-ref="">Arie, <span class="tei_hi_antiqua">F dur</span></span>, für Mad. <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a></span>. <a class="preview orgs A080007" href="">Schlesinger</a>. <span class="tei_hi_antiqua">Op</span>. 51.<br />
-               <span class="tei_hi_spaced_out">Rondo des <a class="preview works A020205" href="">Klarinett-Quintetts</a></span>. <span class="tei_hi_antiqua">Op</span>. 34.<br />
+               <span class="tei_hi_spaced_out">Rondo des <a class="preview works A020205" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020205.html">Klarinett-Quintetts</a></span>. <span class="tei_hi_antiqua">Op</span>. 34.<br />
                <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua"><a class="preview works A020286" href="">Concertino p. il Corno</a></span>, umgearbeitet</span>. <span class="tei_hi_antiqua">Op</span>. 45.<br />
                <span class="tei_hi_spaced_out"><span class="preview works A020264 A020265" data-ref=" ">Musik</span> zu <a class="preview works A020989" href="">Liebe und Versöhnung</a>, von <a class="preview persons A000695" href="">Gubitz</a></span>.<br />
                <span class="tei_hi_spaced_out"><a class="preview works A020266" href="">Ballade</a></span> zum <a class="preview works A021122" href="">Kampfe der Gefühle</a>, Trauerspiel von <span class="preview persons A001551" data-ref=""><span class="tei_choice"><span class="tei_sic">Steinbeck</span><a class="noteMarker" id="backref-d10e1116" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1116">‡</a></span></span>.<br />
@@ -1206,7 +1202,7 @@
                Volkslied. <span class="tei_hi_antiqua">C dur</span>. <span class="musical-symbols"></span><span class="musical-symbols"></span><span class="musical-symbols"></span>. <a class="preview works A020184" href=""><span class="tei_hi_spaced_out">Sind wir geschieden</span></a>.<br />
                Volkslied. D <span class="musical-symbols"></span> <span class="musical-symbols"></span><span class="musical-symbols"></span><span class="musical-symbols"></span>. <span class="tei_hi_spaced_out"><a class="preview works A020185" href="">Herzchen, mein Schätzchen</a></span>.<br />
                d. 20.<br />
-               <span class="tei_hi_antiqua"><span class="preview works A020334" data-ref="">Rondo p. Pianoforte. <span class="tei_sic">Des</span><a class="noteMarker" id="backref-d10e1899" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1899">‡</a> dur</span></span>.<br />
+               <span class="tei_hi_antiqua"><a class="preview works A020230" href="">Rondo p. Pianoforte. Des dur</a></span>.<br />
                <span class="tei_hi_spaced_out"><a class="preview works A020230" href="">Aufforderung zum Tanze</a></span>. d. 23.<br />
                <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua"><a class="preview works A020316" href="">Trio p. Pianof., Flauto, Violonc. G moll</a></span></span>. d. 25.<br />
                3 <span class="tei_hi_spaced_out">Lieder</span> für 4 Männerstimmen, von <a class="preview persons A000966" href="">Kannegießer</a>. <span class="tei_hi_spaced_out"><a class="preview works A020081" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020081.html">Gute Nacht</a></span>, <span class="tei_hi_antiqua">C</span> <span class="musical-symbols"></span>. <span class="tei_hi_spaced_out"><a class="preview works A020082" href="">Freiheitslied</a></span>, <span class="tei_hi_antiqua">C</span> <span class="musical-symbols"></span>. <span class="tei_hi_spaced_out"><a class="preview works A020083" href="">Ermunterung</a></span>, <span class="tei_hi_antiqua">Es</span>. d. 29.
@@ -1216,7 +1212,7 @@
                                         <p>
                <span class="tei_seg"><span class="tei_hi_spaced_out">August</span>. <a class="preview places A130042" href="">Hosterwitz</a>.</span><br />
                <span class="tei_hi_spaced_out"><span class="tei_hi_antiqua"><span class="preview works A020339 A020340 A020341 A020342 A020343 A020344 A020345 A020346" data-ref="       ">Huit à 4 mains p. Pf.</span></span></span> d. 14.<br />
-               Lied: <span class="tei_hi_spaced_out"><a class="preview works A020186" href="">Schneeglöcklein</a></span>, von <a class="preview persons A002319" href="">Müller-Gerstenbergk</a>. <span class="tei_hi_antiqua">G moll</span>. d. <span class="tei_choice"><span class="tei_sic">15.</span><a class="noteMarker" id="backref-d10e1982" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1982">‡</a></span><br />
+               Lied: <span class="tei_hi_spaced_out"><a class="preview works A020186" href="">Schneeglöcklein</a></span>, von <a class="preview persons A002319" href="">Müller-Gerstenbergk</a>. <span class="tei_hi_antiqua">G moll</span>. d. <span class="tei_choice"><span class="tei_sic">15.</span><a class="noteMarker" id="backref-d10e1979" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1979">‡</a></span><br />
                <span class="tei_hi_spaced_out">Materialien</span> zur <a class="preview works A020232" href="">Sonate <span class="tei_hi_antiqua">E moll</span></a>.
             </p>
                                     </div>
@@ -1238,24 +1234,24 @@
                                         <p>
                <span class="tei_seg"><span class="tei_hi_spaced_out">Februar</span>.</span><br />
                <span class="tei_hi_spaced_out"><a class="preview works A020271" href=""><span class="tei_hi_antiqua">Agnus Dei</span> für 2 Sopr. 1 Alt</a></span>. zu dem Trauerspiele <span class="tei_hi_spaced_out"><a class="preview works A021247" href="">Carlo</a></span> des Grafen <a class="preview persons A000173" href="">Blankensee</a>.<br />
-               <span class="tei_hi_spaced_out"><span class="77105110110101108105101100">Minnelied</span> von <span class="preview persons A004710" data-ref=""><span class="tei_sic">Wergentin</span><a class="noteMarker" id="backref-d10e2092" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e2092">‡</a></span></span>, <span class="tei_hi_antiqua">F dur</span>. <a class="preview works A020191" href="">„Das war ein ganz abscheuliches Gesichte.“</a> d. 28.
+               <span class="tei_hi_spaced_out"><span class="77105110110101108105101100">Minnelied</span> von <span class="preview persons A004710" data-ref=""><span class="tei_sic">Wergentin</span><a class="noteMarker" id="backref-d10e2089" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e2089">‡</a></span></span>, <span class="tei_hi_antiqua">F dur</span>. <a class="preview works A020191" href="">„Das war ein ganz abscheuliches Gesichte.“</a> d. 28.
             </p>
                                     </div>
                                     <div class="docPart">
                                         <p>
                <span class="tei_seg"><span class="tei_hi_spaced_out">Mai</span>.</span><br />
-               Die romantische Oper von <a class="preview persons A001002" href="">Kind</a>: <span class="tei_hi_spaced_out"><a class="preview works A020040" href="">Der Freischütz</a></span>, vollendet im Bade d. 13.
+               Die romantische Oper von <a class="preview persons A001002" href="">Kind</a>: <span class="tei_hi_spaced_out"><a class="preview works A020040" href="">Der Freischütz</a></span>, vollendet im Bade<a class="noteMarker" href="">T</a> d. 13.
             </p>
                                     </div>
                                     <div class="docPart">
                                         <p>
-               <span class="tei_seg"><span class="tei_hi_spaced_out">Juni</span>, im Bade.</span><br />
+               <span class="tei_seg"><span class="tei_hi_spaced_out">Juni</span>, im Bade<a class="noteMarker" href="">T</a>.</span><br />
                Lied, <span class="tei_hi_antiqua">E</span> <span class="musical-symbols"></span>. <span class="tei_hi_spaced_out"><a class="preview works A020192" href="">Der Maler und der Sänger</a></span>. d. 21.
             </p>
                                     </div>
                                     <div class="docPart">
                                         <p>
-               <span class="tei_seg"><span class="tei_hi_spaced_out">Juli</span>, im Bade.</span><br />
+               <span class="tei_seg"><span class="tei_hi_spaced_out">Juli</span>, im Bade<a class="noteMarker" href="">T</a>.</span><br />
                <span class="tei_hi_spaced_out"><a class="preview works A020227" href="">Ouvertüre und sonstige Musik zu dem Schauspiele Preciosa</a></span>, von <a class="preview persons A002176" href="">Wolf</a>. d. 15.
             </p>
                                     </div>
@@ -1268,12 +1264,12 @@
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">1822</span>.</h3>
                                         <p>
-               <span class="preview works A020084 A020085" data-ref=" ">Lieder</span>. Op. <span class="tei_choice"><span class="tei_sic">18</span><a class="noteMarker" id="backref-d10e2173" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e2173">‡</a></span>.
+               <span class="preview works A020084 A020085" data-ref=" ">Lieder</span>. Op. <span class="tei_choice"><span class="tei_sic">18</span><a class="noteMarker" id="backref-d10e2176" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e2176">‡</a></span>.
             </p>
                                     </div>
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">1823</span>.</h3>
-                                        <p><a class="preview works A020043" href="">Euryanthe</a>.</p>
+                                        <p><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a>.</p>
                                     </div>
                                 </div>
                     </div>
@@ -1315,9 +1311,9 @@
                                         
                                         <span>Original: Verbleib unbekannt</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_f54abab09a29bd3a5360742078116ddf"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ef59a0298d3e7a354a6a284451bbd047"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_f54abab09a29bd3a5360742078116ddf">
+                                        <div class="collapse apparatus-details" id="source_ef59a0298d3e7a354a6a284451bbd047">
                                             
                                             
                                             <div>
@@ -1330,7 +1326,7 @@
                                                             
                                                             <span>EV: Hell (Schriften), Bd. 3, S. 158–172</span>
                                                               
-                                                            <div class="collapse" id="source_ada65418d9d75a1b4b346b6d39f8ac3d">
+                                                            <div class="collapse" id="source_cf8ce8af19411513863627e8d732dce9">
                                                                 
                                                             </div>
                                                         </div>
@@ -1354,6 +1350,9 @@
                                 <li>
                                     <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090220.html"><span class="tei_title">Webers „Werkverzeichnisse“</span></a>
                                 </li>
+                                        <li>
+                                    <a href=""></a>
+                                </li>
                             </ul>
                         </div>
                         
@@ -1374,14 +1373,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1899" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e1899" data-title="sic" data-counter="3" data-href="#d10e1899"><span class="tei_lemma">„Des“</span>sic!</div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e2092" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e2092" data-title="sic" data-counter="4" data-href="#d10e2092"><span class="tei_lemma">„Wergentin“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e2089" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e2089" data-title="sic" data-counter="3" data-href="#d10e2089"><span class="tei_lemma">„Wergentin“</span>sic!</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -1445,14 +1438,14 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1982" class="apparatus-link">10.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e1982" data-title="sic" data-counter="10" data-href="#d10e1982"><span class="tei_lemma">„<span class="tei_sic">15.</span>“</span>recte  „<span class="tei_corr">23.</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1979" class="apparatus-link">10.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e1979" data-title="sic" data-counter="10" data-href="#d10e1979"><span class="tei_lemma">„<span class="tei_sic">15.</span>“</span>recte  „<span class="tei_corr">23.</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e2173" class="apparatus-link">11.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e2173" data-title="sic" data-counter="11" data-href="#d10e2173"><span class="tei_lemma">„<span class="tei_sic">18</span>“</span>recte  „<span class="tei_corr">68</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e2176" class="apparatus-link">11.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e2176" data-title="sic" data-counter="11" data-href="#d10e2176"><span class="tei_lemma">„<span class="tei_sic">18</span>“</span>recte  „<span class="tei_corr">68</span>“.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -1481,7 +1474,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100379</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100379</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -1541,6 +1534,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1599,22 +1595,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

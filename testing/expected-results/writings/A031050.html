@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Gutwill Rechtens" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Schaffer, Sebastian" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"An Herrn Alexander von Dusch","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031050","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031050","author":[{"@type":"Person","name":"Gutwill Rechtens"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031050/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031050/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -363,6 +360,8 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A0015D3" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002A44" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001966" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A0009F2" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -373,6 +372,8 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008668" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A0026ED" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000501" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008635" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -382,6 +383,10 @@
                                     <input type="checkbox" name="options" value="A002170" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000268" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A001B55" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A0003E8" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002171" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -467,8 +472,8 @@
                     derjenigen rechnen wollten, von denen Sie sagen: es lohne sich nicht der Mühe,
                     sie aufzuzählen.</p>
                                         <p>Ferner thut es mir leid, daß Sie die Herren <a class="preview persons A0015D3" href="">Zuccarini</a>,
-                    <span class="6797114111">Caro</span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>, <a class="preview persons A001966" href="">Tochtermann</a>,
-                    <a class="preview persons A0009F2" href="">Schack</a> (als Tonkünstler) <a class="preview persons A000502" href="">Flerx</a>, so wie die Mes-Dames, <a class="preview persons A001119" href="">Elise</a> und <a class="preview persons A008668" href="">Anne Lang</a>, <span class="8210110511010497114100">Reinhard</span><a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>, <a class="preview persons A000501" href="">Flerx</a> und noch
+                    <a class="preview persons A002A44" href="">Caro</a>, <a class="preview persons A001966" href="">Tochtermann</a>,
+                    <a class="preview persons A0009F2" href="">Schack</a> (als Tonkünstler) <a class="preview persons A000502" href="">Flerx</a>, so wie die Mes-Dames, <a class="preview persons A001119" href="">Elise</a> und <a class="preview persons A008668" href="">Anne Lang</a>, <a class="preview persons A0026ED" href="">Reinhard</a>, <a class="preview persons A000501" href="">Flerx</a> und noch
                     manche andere brave Mitglieder des hiesigen Theaters, deren Verdienste das
                     Publikum mit gerechtem Lobe anerkennt, unter die Zahl der Unbedeutenden
                     versetzen. Sie müssen gestehen, daß Ihr Aufenthalt in
@@ -532,8 +537,7 @@
                     zum Muster aufgestellt werden, denn er theilt dieses Verdienst noch mit mehrern
                     seiner hiesigen Kollegen; wenn auch deren zu viele nicht sind.</p>
                                         <p>Haben Sie bey Gelegenheit des Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A002170" href="">Wohlbrück</a></span> so viel Rühmens machen können, so
-                    darf ich Sie nun schon fragen, warum Sie die Herren <a class="preview persons A000268" href=""><span class="tei_hi_spaced_out">Carl</span></a>, <span class="75111104114115"><span class="tei_hi_spaced_out">Kohrs</span></span>, <span class="839910411997100116107101"><span class="tei_hi_spaced_out">Schwadtke</span></span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>,
-                    <span class="72246108122101108"><span class="tei_hi_spaced_out">Hölzel</span></span>, und die Mesdames <a class="preview persons A002171" href=""><span class="tei_hi_spaced_out">Wohlbrück</span></a>, <a class="preview persons A0021D7" href=""><span class="tei_hi_spaced_out">Neumann</span></a> &amp;c. mit Stillschweigen übergingen,
+                    darf ich Sie nun schon fragen, warum Sie die Herren <a class="preview persons A000268" href=""><span class="tei_hi_spaced_out">Carl</span></a>, <a class="preview persons A001B55" href=""><span class="tei_hi_spaced_out">Kohrs</span></a>, <a class="preview persons A0003E8" href=""><span class="tei_hi_spaced_out">Schwadtke</span></a>, <span class="72246108122101108"><span class="tei_hi_spaced_out">Hölzel</span></span>, und die Mesdames <a class="preview persons A002171" href=""><span class="tei_hi_spaced_out">Wohlbrück</span></a>, <a class="preview persons A0021D7" href=""><span class="tei_hi_spaced_out">Neumann</span></a> &amp;c. mit Stillschweigen übergingen,
                     und diese von der neuen Intendance engagirte Personen dadurch der Zahl
                     derjenigen beygesellten, von denen es sich der Mühe nicht lohne, ihrer zu
                     erwähnen? Wenn Sie Hrn. <a class="preview persons A0029A1" href=""><span class="tei_hi_spaced_out">Stentzschens</span></a> Verdienst so zu
@@ -619,7 +623,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Gesellschaftsblatt für gebildete Stände</span>, Jg. 2, Nr. 43 (27. Mai 1812), Sp. 341–344</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_d3a81ac300fd248ffa5a52a7c12b3d95">
+                                        <div class="collapse apparatus-details" id="source_9b517c30b87aeb19ac4255005f3f024d">
                                             
                                             
                                             <div>
@@ -641,32 +645,7 @@
                         
                         <div class="apparatus">
                                     <ul class="apparatus textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="apparatus commentary">
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  die Herren Zuccarini , Caro“</span>Joseph Caro (1754–1839), von 1776 bis zur Pensionierung (1. Oktober 1817) am <a class="preview places A130007" href="">Münchner</a> 
-                        Hoftheater engagiert.
-                    </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„…  und Anne Lang , Reinhard“</span>Die Schauspielerin Charlotte Henriette Reinhard, geb. Sallbach (geb. 1776), Ehefrau von <a class="preview persons A001554" href="">Carl 
-                        Reinhard</a>, war von 1805 bis zur Pensionierung (1. Juni 1826) am <a class="preview places A130007" href="">Münchner</a> Hoftheater 
-                        engagiert.
-                    </div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note01"><span class="tei_lemma">„…  Carl , Kohrs , Schwadtke“</span>Carl (August Wilhelm) Schwadke, geb. 1768 in <a class="preview places A130807" href="">Prenzlau</a>, war seit 1811 Mitglied des Hoftheaters in <a class="preview places A130007" href="">München</a> und starb dort als penionierter Hofschauspieler am 12. Februar 1837.</div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <ul class="apparatus commentary"></ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
                     </div>
@@ -692,7 +671,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031050</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031050</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -752,6 +731,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -810,22 +792,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

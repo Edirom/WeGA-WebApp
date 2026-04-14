@@ -13,8 +13,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="F. Nepomuk Capeller" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031134" />
@@ -44,13 +43,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"beschreibt die Verbesserungen durch Capellers Umbau der Flöte: besteht aus drei Teilen (nur noch ein Mittelstück im Gegensatz zu bisherigen zwei), neun Klappen (neu erfundene d-Klappe), neuer Mechanismus zum Stimmen, Anfertigung bei Kunst-Drechsler in München","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Capellers Erfindung zur Vervollkommnung der Flöte","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031134","license":"http://creativecommons.org/licenses/by/4.0/","url":["https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000263/Schriften/A031134","https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031134"],"author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000263","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000263"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"beschreibt die Verbesserungen durch Capellers Umbau der Flöte: besteht aus drei Teilen (nur noch ein Mittelstück im Gegensatz zu bisherigen zwei), neun Klappen (neu erfundene d-Klappe), neuer Mechanismus zum Stimmen, Anfertigung bei Kunst-Drechsler in München","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Capellers Erfindung zur Vervollkommnung der Flöte","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031134","license":"http://creativecommons.org/licenses/by/4.0/","url":["https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000263/Schriften/A031134","https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031134"],"author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000263","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000263"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -293,13 +290,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000263/Schriften/A031134/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000263/Schriften/A031134/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000263/Schriften/A031134/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -361,7 +358,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008025" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -392,7 +389,7 @@
                                         <p>Hr. <span class="preview persons A000263" data-ref=""><span class="tei_app"><span class="tei_lem">F.</span><a class="noteMarker" id="backref-d10e16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e16">Δ</a></span> Nepomuk Capeller</span>, Mitglied des <span class="tei_app"><span class="tei_lem"><a class="preview places A130007" href="">Münchner</a></span><a class="noteMarker" id="backref-d10e23" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e23">Δ</a></span> Hof-Orchesters, hat durch eine höchst sinnreiche <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e30" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e30">Δ</a></span> Erfindung die Flöte in einem Grade vervollkommnet, dass kaum <span class="tei_app"><span class="tei_lem">noch</span><a class="noteMarker" id="backref-d10e35" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e35">Δ</a></span> etwas zu wünschen übrig bleibt, indem die Vortheile dieser Erfindung – höhere und tiefere willkührliche Stimmung, wobey dennoch alle Töne und Verhältnisse in gleicher Reinheit bleiben – und die Leichtigkeit, Triller auf allen Tönen hervorbringen zu können – umfassen, wodurch den bekannten Haupt-Mängeln dieses Instruments <span class="tei_app"><span class="tei_lem">abgeholfen</span><a class="noteMarker" id="backref-d10e41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e41">Δ</a></span> wird. <a class="preview persons A000263" href="">Hr. Cap.</a> erhielt die Grund-Idee seines neuen <span class="tei_app"><span class="tei_lem">Flötenbaues</span><a class="noteMarker" id="backref-d10e51" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e51">Δ</a></span> durch den schon früher erfundenen, sogenannten englischen <span class="tei_app"><span class="tei_lem">Metall-Kopfzug</span><a class="noteMarker" id="backref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">Δ</a></span>, dessen Fehler aber schon <a class="preview persons A008025" href="">Tromliz</a> nachgewiesen hat, und der durchaus nicht mit dieser Erfindung verwechselt werden darf, da durch den Kopfzug wol das Instrument höher und tiefer gestimmt werden konnte, aber auch zugleich seine reine Intonation verlohr.<br /></p>
                                         <p><a class="preview persons A000263" href="">Hr. Cap.</a>s neue Flöte besteht aus <span class="tei_hi_italic">drey</span> Stücken. Die sonst gewöhnlichen zwey mittleren <span class="tei_app"><span class="tei_lem">Stücke</span><a class="noteMarker" id="backref-d10e75" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e75">Δ</a></span> sind in einen Körper vereinigt, und damit dieser nicht auf solche Art durch zu grosse Länge unverhältnismässig gegen die übrigen Theile würde, bestimmte man ihm eine geringere Ausdehnung, und gab das Entbehrliche dem Mundstück zu. Die ganze Länge der Flöte ist übrigens von denen nicht verschieden, die <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e81">Δ</a></span> die tiefste c-Klappe mit enthalten. – Klappen hat sie <span class="tei_hi_italic">neun</span>, wovon die Hes-Klappe von zwey Seiten her sich öffnen lässt; der untere Hebel kann auf doppelte Art, und zwar mit grösster Bequemlichkeit, ohne die rechte Hand aus ihrer Lage zu bringen, mit dem Zeige- oder Mittelfinger der rechten Hand angespielt werden, (und dient vorzüglich, um <span class="tei_app"><span class="tei_lem">die</span><a class="noteMarker" id="backref-d10e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e89">Δ</a></span> Triller auf fis-gis, rein und leicht <span class="tei_app"><span class="tei_lem">anzugeben</span><a class="noteMarker" id="backref-d10e96" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e96">Δ</a></span>) worin diese Klappe von einer früheren Erfindung sich unterscheidet. Eine neu erfundene d-Klappe, welche mit dem Zeigefinger der rechten Hand gespielt wird, ist bestimmt, den Triller auf d-cis hervorzubringen, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> und dient zum bequemeren Anschlagen des h-cis und des dreygestrichenen d-e-Trillers. Die tiefste c-Klappe ist so angebracht, dass sich nunmehr auch von cis auf c bequem hinüberschleifen lässt, welchen Vortheil die Lage der schon bekannten c-Klappe nicht gewährt. Die übrigen Klappen sind in der Art der schon bekannten Erfindung; <span class="tei_app"><span class="tei_lem">und können, durch sie vereint, nun</span><a class="noteMarker" id="backref-d10e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e104">Δ</a></span> die Töne und Triller in allen halben und ganzen Tönen <span class="tei_hi_italic">rein</span>, und auf die leichteste Weise hervorgebracht werden.<br /></p>
                                         <p>Das Vorzüglichste und Interessanteste an dieser Flöte <span class="tei_app"><span class="tei_lem">aber ist</span><a class="noteMarker" id="backref-d10e116" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e116">Δ</a></span> der Mechanismus in Beziehung auf die Stimmung. Um dem Instrumente <span class="tei_hi_italic">diese</span>, mit immer gleicher Schärfe <span class="tei_app"><span class="tei_lem">und Reinheit</span><a class="noteMarker" id="backref-d10e125" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e125">Δ</a></span> des Tones zu sichern, gab <a class="preview persons A000263" href="">Hr. C.</a> demselben den Vortheil, eines auch beym längsten Gebrauch unveränderlich bleibenden Mundlochs. Dieses besteht aus einer ovalen Platte von Gold, welche in zierlicher Form auf dem runden Körper der Flöte aufliegt. Nicht blos der Pfropf in der Flöte, sondern auch eben dieses Mundloch, kann nach Willkühr der verlangten Stimmung gemäss durch eine ungemein leichte und schnelle Bewegung an der oberen Garnitur, vermittelst einer doppelten Schraube, auf- und abbewegt werden; wodurch der höchst wichtige Vortheil entsteht, dass die Stimmung des Instruments, ohne irgend einen nachtheiligen Einfluss auf die ganze diatonische und chromatische Tonleiter, nach den unmerklichsten Abstufungen schnell geändert werden kann.<br /></p>
-                                        <p>Die grossen Vortheile dieser Verbesserung der Flöte sind so augenscheinlich, dass es höchst überflüssig wäre, noch etwas zu ihrem Lobe beyfügen zu wollen, und der <span class="tei_app"><span class="tei_lem">Verf.</span><a class="noteMarker" id="backref-d10e136" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e136">Δ</a></span> bemerkt nur noch, dass diese Flöte nicht bey einem Instrumentenmacher, sondern bey einem hiesigen <span class="tei_app"><span class="tei_lem">Kunst-Drechsler, <span class="70105101103101108"><span class="tei_hi_italic">Fiegel</span></span></span><a class="noteMarker" id="backref-d10e142" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e142">Δ</a></span>, verfertigt worden, und zwar mit so gutem Erfolg, dass das Instrument auch von Seiten seiner Nettigkeit und Schönheit den Arbeiten der besten Instrumentenmacher des Auslandes gleichgestellt werden kann, und auch im Preis nicht höher, als eine <span class="tei_app"><span class="tei_lem">gewöhnliche gute Flöte</span><a class="noteMarker" id="backref-d10e151" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e151">Δ</a></span>, also <span class="tei_app"><span class="tei_lem">ungefähr</span><a class="noteMarker" id="backref-d10e162" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e162">Δ</a></span> 9–10 Carolin kömmt, um <span class="tei_pb" title="Seitenumbruch"> | </span> welchen Preis <a class="preview persons A000263" href="">Hr. Capeller</a> jedem Liebhaber eine solche verbesserte Flöte zu verschaffen <span class="tei_app"><span class="tei_lem">gewiss die Güte haben wird</span><a class="noteMarker" id="backref-d10e175" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e175">Δ</a></span><a href="#footnote_01" id="backref-footnote_01" class="fn-ref">*)</a>.</p><span class="tei_signed textAlign-right"><span class="tei_hi_italic"><a class="preview persons A002068" href="">Carl Marie von Weber</a>.</span></span></div>
+                                        <p>Die grossen Vortheile dieser Verbesserung der Flöte sind so augenscheinlich, dass es höchst überflüssig wäre, noch etwas zu ihrem Lobe beyfügen zu wollen, und der <span class="tei_app"><span class="tei_lem">Verf.</span><a class="noteMarker" id="backref-d10e136" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e136">Δ</a></span> bemerkt nur noch, dass diese Flöte nicht bey einem Instrumentenmacher, sondern bey einem hiesigen <span class="tei_app"><span class="tei_lem">Kunst-Drechsler, <span class="70105101103101108"><span class="tei_hi_italic">Fiegel</span></span></span><a class="noteMarker" id="backref-d10e142" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e142">Δ</a></span>, verfertigt worden, und zwar mit so gutem Erfolg, dass das Instrument auch von Seiten seiner Nettigkeit und Schönheit den Arbeiten der besten Instrumentenmacher des Auslandes gleichgestellt werden kann, und auch im Preis nicht höher, als eine <span class="tei_app"><span class="tei_lem">gewöhnliche gute Flöte</span><a class="noteMarker" id="backref-d10e151" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e151">Δ</a></span>, also <span class="tei_app"><span class="tei_lem">ungefähr</span><a class="noteMarker" id="backref-d10e162" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e162">Δ</a></span> 9–10 Carolin kömmt, um <span class="tei_pb" title="Seitenumbruch"> | </span> welchen Preis <a class="preview persons A000263" href="">Hr. Capeller</a> jedem Liebhaber eine solche verbesserte Flöte zu verschaffen <span class="tei_app"><span class="tei_lem">gewiss die Güte haben wird</span><a class="noteMarker" id="backref-d10e175" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e175">Δ</a></span><a href="#footnote_01" id="backref-footnote_01" class="fn-ref">*)</a>.</p><span class="tei_signed textAlign-right"><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Marie von Weber</a>.</span></span></div>
                                     <div id="endNotes">
                                         <h3>[Originale Fußnoten]</h3>
                                         <ul>
@@ -407,7 +404,17 @@
                         <h2>Apparat</h2>
                         
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Verfasst von</h3>
+                            <ul class="inline-list">
+                                <li>
+                                    <a href="" class="persons"></a>
+                                </li>
+                                        <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="persons">Carl Maria von Weber</a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -421,8 +428,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung); vgl. <span class="preview biblio A110700" data-ref="">Bartlitz</span>, S. 65; namentlich gezeichnet (<span class="tei_hi_italic">Carl Marie von Weber</span>.); lt. <a class="preview diaries A065285" href="">TB 30. April 1811</a> Aufsatz an die <a class="preview orgs A080000" href="">Musik. Zeitung</a> geschickt</p> 
-               
+                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung); vgl. <span class="preview biblio A110700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110700.html">Bartlitz</span>, S. 65; namentlich gezeichnet (<span class="tei_hi_italic">Carl Marie von Weber</span>.); lt. <a class="preview diaries A065285" href="">TB 30. April 1811</a> Aufsatz an die <a class="preview orgs A080000" href="">Musik. Zeitung</a> geschickt</p> 
                <p>Der Text ist lediglich nach Vorlagen von <a class="preview persons A000263" href="">Capeller</a> redigiert; große Teile des Ms. stammen von seiner Hand; zur Entstehung vgl. auch <a class="preview letters A040394" href="">Einsendeschreiben von Weber an die AmZ</a> sowie <a class="preview letters A040393" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040393.html">Brief von Weber an G. Weber vom 30. April 1811</a>; etwas früher erschien eine ausführliche Beschreibung von <a class="preview persons A000263" href="">Capellers</a> Neuerungen bereits in der <span class="tei_hi_italic">Zeitung für die elegante Welt</span> Nr. 91 (7. Mai 1811), Sp. 725ff., unterzeichnet mit „<a class="preview places A130007" href="">München</a> D.“; eine Gegenposition vertritt der Aufsatz von Heinrich Grenser in der AmZ Nr. 46 (13. November 1811), Sp. 775–778</p>
                                     </div>
                         </div>
@@ -449,9 +455,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg. 13, Nr. 22 (29. Mai 1811), Sp. 377–379</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_8cac390e59e5a9df13eff930dd8ebcd7"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a79328a96fc80451756b63eba1ed74e4"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_8cac390e59e5a9df13eff930dd8ebcd7">
+                                        <div class="collapse apparatus-details" id="source_a79328a96fc80451756b63eba1ed74e4">
                                             
                                             
                                             <div>
@@ -464,7 +470,7 @@
                                                             
                                                             <span>MMW III, S. 26–28</span>
                                                               
-                                                            <div class="collapse" id="source_941b12f139e6874eb80c7b71a1c38a6a">
+                                                            <div class="collapse" id="source_920cf1b237c2bc622c8ba29fdd38b565">
                                                                 
                                                             </div>
                                                         </div>
@@ -474,7 +480,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 349–351 (Nr. 23)</span>
                                                               
-                                                            <div class="collapse" id="source_0b7ef2d3c112152a476418fbcf9e5ed9">
+                                                            <div class="collapse" id="source_2623422d7f5d9c270b71d6b6b0044c3d">
                                                                 
                                                             </div>
                                                         </div>
@@ -497,9 +503,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (IV), Bl. 32a/r–32b/r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6c7a7e87831f4610ce19cfe4c764abc0"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_0985529e700824a58cd8e1e75ad8d95c"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_6c7a7e87831f4610ce19cfe4c764abc0">
+                                        <div class="collapse apparatus-details" id="source_0985529e700824a58cd8e1e75ad8d95c">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript oben „Neuer Versuch zur musikalischen Vervollkommnung der Flöte. Aeußere Ansicht der Flöte, insofern es ohne beigefügte Zeichnung geschehen kann.“; Incipit: „H: F: Nepo: Capeller. Mitglied des hießigen Hoforchesters“; datiert mit „München den 30t Aprill 1811.“ [von Weber Datierung korrigiert aus 18]; </li>
@@ -737,7 +743,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10527961_00213_u001/manifest" data-canvasindex="6"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -758,7 +764,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031134</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031134</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -818,6 +824,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -876,22 +885,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

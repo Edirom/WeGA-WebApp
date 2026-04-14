@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -43,13 +43,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"bittet Verzögerung seiner Antwort auf das Stellenangebot zu entschuldigen, aber er habe die Sache seinem König vorlegen wollen; da dieser ihn behalten wolle, könne er das Angebot nicht annehmen; dankt Feige für die Art seiner Verhandlungsführung","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Karl Feige in Kassel (Entwurf). Dresden, Montag, 17. September 1821","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041782","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041782","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"bittet Verzögerung seiner Antwort auf das Stellenangebot zu entschuldigen, aber er habe die Sache seinem König vorlegen wollen; da dieser ihn behalten wolle, könne er das Angebot nicht annehmen; dankt Feige für die Art seiner Verhandlungsführung","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Karl Feige in Kassel (Entwurf). Dresden, Montag, 17. September 1821","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041782","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041782","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -224,7 +222,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -253,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +298,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041782/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041782/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -363,16 +361,16 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041743.html">1821-05-31</a>:  an  <a href="" class="preview A001002 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041761.html">1821-07-31</a>:  an  <a href="" class="preview A000213 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A080005/Korrespondenz/A041712.html">1821-08-16</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A080005.html" class="preview A080005 orgs">Theaterintendanz Karlsruhe</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045969.html">1821-06-19</a>:  von  <span class="noDataFound">anonym</span>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041797.html">1821-10-25</a>:  an  <a href="" class="preview A001898 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041790.html">1821-10-14</a>:  an  <a href="" class="preview A080046 orgs"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A042078.html">1822-03-25</a>:  von  <a href="" class="preview A001936 persons"></a>
@@ -397,7 +395,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002144" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -433,7 +431,7 @@
                                         <p>Da nun <a class="preview persons A000537" href="">S: Majestät</a> nicht gerne meine Entfernung aus Ihrem Dienste zu sehen scheinen, so halte ich es hinwiederum für meine Pflicht, selbigen auch nicht zu verlaßen, und den gnädigen Ruf <a class="preview persons A002144" href="">S: K: Hoheit</a> mit tiefster Ehrfurcht und dem wahrhaften Dankgefühl welches das in mich gesezte Vertrauen in mir erwekken mußte, achtungsvollst abzulehnen.</p>
                                         <p class="tei_closer textAlign-left">Empfangen Sie geehrter <a class="preview persons A000477" href="">H: <span class="tei_hi_latintype">Gen: D:</span></a> nun besonders meinen Dank für die ungemein verbindliche Weise mit der Sie die Sache leiteten, und die es mich doppelt bedauern laßen muß nicht mit Ihnen in nähere Berührung zu kommen, und genehmigen Sie die Ausdrükke der vollkommnen Achtung mit w. ich zu sein die Ehre habe 
          
-            <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">CMvWeber</a></span></span>
+            <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">CMvWeber</a></span></span>
             <span class="tei_dateline textAlign-left"><a class="preview places A130003" href="">Dresden</a> d: 17<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Sept:</span> 1821</span>
          </p>
                                         <p class="clearer"></p>
@@ -484,9 +482,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (XI), Bl. 74a/v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_b53cf935d334b035f4b1c738df0cece6"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_754be22d5f61f04f1083b73679f3d029"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_b53cf935d334b035f4b1c738df0cece6">
+                                        <div class="collapse apparatus-details" id="source_754be22d5f61f04f1083b73679f3d029">
                                             
                                             
                                             <div>
@@ -499,7 +497,7 @@
                                                             
                                                             <span>MMW II, S. 338</span>
                                                               
-                                                            <div class="collapse" id="source_0737e350f192f60e4fa4b542ce357152">
+                                                            <div class="collapse" id="source_50be94dd21edc014d76e50cedf8ec335">
                                                                 
                                                             </div>
                                                         </div>
@@ -509,7 +507,7 @@
                                                             
                                                             <span>Arne Langer, Dokumente zu Webers geplanter Anstellung in Kassel 1821, in: Weber-Studien 3, Mainz 1996, S. 94f.</span>
                                                               
-                                                            <div class="collapse" id="source_c8955f9d31a83fbf89b5d63cc1e99c27">
+                                                            <div class="collapse" id="source_c71941417e9f4330083559e3b8f5b637">
                                                                 
                                                             </div>
                                                         </div>
@@ -686,7 +684,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041782</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041782</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -746,6 +744,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -804,22 +805,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

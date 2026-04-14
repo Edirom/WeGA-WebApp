@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Brühl, Karl Graf von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"schlägt Besetzung für den Freischütz vor (Ottokar: Beschort, Cuno: Wauer, Agathe: Seidler, Ännchen: J. Eunicke, Caspar: Blume, Max: Stümer, Samiel: Hillebrand, Eremit: G. Gern, Kilian: Wiedemann) und bittet ihn, für Frl. Eunicke als Ännchen eine Arie nachzukomponieren (die Rolle schiene ihr, wie wir sie leider kennen, nicht bedeutend genug), möglichst zwischen 3. und 4. Szene des III. Akts; aus dem böhmischen Fürsten Ottokar solle er einen regierenden Grafen Ottokar von Schreckenstein machen, da man ziemlich gut die Namen der einzelnen böhmischen Fürstenhäuser kenne; als Aufführungstermin nennt er den 21. oder 22. Mai, d. h. einen Tag nach der Einweihung des Hauses","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Graf von Brühl an Carl Maria von Weber in Dresden. Berlin, Mittwoch, 21. oder Donnerstag, 22. März 1821","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041674","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000235","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000235"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,7 +362,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  an  <a href="" class="preview A002068 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  an  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A041663.html">1821-02-09</a>:  von  <span class="noDataFound">unbekannt</span>
@@ -376,7 +374,7 @@
                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A047659.html">1822-12-13</a>:  an  <a href="" class="preview A000513 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042087.html">1823-01-13</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042320.html">1824-06-24</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                    </ul>
                                 
@@ -386,19 +384,19 @@
                                     <h4>Vorausgehend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  an  <a href="" class="preview A002068 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  an  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                         </li>
                                             <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621.html">1820-07-21</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621.html">1820-07-21</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                         </li>
                                     </ul>
                                     <h4>Folgend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A042550.html">1826-02-24</a>:  an  <a href="" class="preview A002068 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A042550.html">1826-02-24</a>:  an  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                         </li>
                                             <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042087.html">1823-01-13</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042320.html">1824-06-24</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                         </li>
                                     </ul>
                                 
@@ -412,11 +410,11 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000466" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001805" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -446,7 +444,7 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession"><span>[…]</span>
                                         <p> Eine Arie oder eine Cavatine<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> 
-               müßten Sie, mein werther Herr <a class="preview persons A002068" href="">von Weber</a>, doch noch hinzukomponiren, 
+               müßten Sie, mein werther Herr <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a>, doch noch hinzukomponiren, 
                und wenn Sie mich fragen sollten, aber wo, werde sich dies ... thun lassen, so mache ich Sie auf die 
                dritte Scene des III. Aktes aufmerksam. 
                Ehe in der 4. Scene die Brautjungfern kommen, müßte <span class="19611011099104101110">Ännchen</span> 
@@ -507,7 +505,7 @@
                                         
                                         <span class="biblio-entry book"><span class="author"></span>, <span class="title">Carl Maria von Weber. Der Freischütz. Nachbildung der Eigenschrift aus dem Besitz der preussischen Staatsbibliothek</span>, <span class="placeNYear">Berlin 1942</span>, S. 59</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_1ed629fe28597fb07ff4a9d09c8acde8">
+                                        <div class="collapse apparatus-details" id="source_e40e9927ba4d163a466a27f489068fd6">
                                             
                                             
                                             <div>
@@ -572,7 +570,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041674</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041674</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -632,6 +630,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -690,22 +691,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

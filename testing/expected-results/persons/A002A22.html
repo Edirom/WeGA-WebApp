@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Betty Urspruch. Lebensdaten: –. Tätigkeiten: Schauspielerin. Wirkorte: Frankfurt am Main, Mainz, Wiesbaden","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002A22","name":"Urspruch, Betty","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002A22"}</script>
 
@@ -384,7 +382,7 @@
                                                     <a class="nav-link deactivated"></a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A002A22/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002A22/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -402,10 +400,10 @@
                                                 
                                                 <div>
     <ul class="tei_list">
-     <li>Tochter von <a class="preview persons A008527" href="">Philipp Jacob Urspruch</a> und dessen Frau <span class="72101108101110101443210310198463290117999997114105110105">Helene, geb. Zuccarini</span>; Schwester von <a class="preview persons A008149" href="">Louis</a>, <span class="7710511011097">Minna</span> und <span class="70114105116122328511411511211411799104">Fritz Urspruch</span></li>
-       <li>gab am <a class="preview places A130020" href="">Frankfurter</a> Theater bereits Kinderrollen (seit mindestens 1810/11, vgl. Schmidts <span class="tei_hi_italic">Almanach fürs Theater 1812</span>), zwischen 1816 und 1818 Wechsel ins jugendliche Fach, von <a class="preview persons A003044" href="">Ludwig Börne</a> in seinen Theaterkritiken als „in Jugend und Schönheit strahlende“ sowie „gewandte Darstellerin heiterer und ernster Mädchenrollen“ beschrieben, spielte in der ersten Hälfte der 1820er Jahre u. a. <span class="76117105115101">Luise</span> in <a class="preview works A021088" href="">Kabale und Liebe</a>, <span class="74101971103210082176511499">Jean d’Arc</span>; von <a class="preview places A130020" href="">Frankfurt</a> aus Gastspiele u. a. in <a class="preview places A130025" href="">Würzburg</a> (Februar 1822), <a class="preview places A130002" href="">Berlin</a> (1823), <a class="preview places A130034" href="">Magdeburg</a> (Juni/Juli 1823), <a class="preview places A130028" href="">Mainz</a> (Dezember 1826), <a class="preview places A130010" href="">Mannheim</a> (Juni 1827)</li>
+     <li>Tochter von <a class="preview persons A008527" href="">Philipp Jacob Urspruch</a> und dessen Frau <a class="preview persons A000D33" href="">Helene, geb. Zuccarini</a>; Schwester von <a class="preview persons A008149" href="">Louis</a>, <span class="7710511011097">Minna</span> und <span class="70114105116122328511411511211411799104">Fritz Urspruch</span></li>
+       <li>gab am <a class="preview places A130020" href="">Frankfurter</a> Theater bereits Kinderrollen (seit mindestens 1810/11, vgl. Schmidts <span class="tei_hi_italic">Almanach fürs Theater 1812</span>), zwischen 1816 und 1818 Wechsel ins jugendliche Fach, von <a class="preview persons A003044" href="">Ludwig Börne</a> in seinen Theaterkritiken als „in Jugend und Schönheit strahlende“ sowie „gewandte Darstellerin heiterer und ernster Mädchenrollen“ beschrieben, spielte in der ersten Hälfte der 1820er Jahre u. a. <span class="76117105115101">Luise</span> in <a class="preview works A021088" href="">Kabale und Liebe</a>, <span class="74101971103210082176511499">Jean d’Arc</span>; von <a class="preview places A130020" href="">Frankfurt</a> aus Gastspiele u. a. in <a class="preview places A130025" href="">Würzburg</a> (Februar 1822), <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> (1823), <a class="preview places A130034" href="">Magdeburg</a> (Juni/Juli 1823), <a class="preview places A130028" href="">Mainz</a> (Dezember 1826), <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> (Juni 1827)</li>
      <li>ab Oktober 1827 bis mindestens 1831 am Theater <a class="preview places A130028" href="">Mainz</a> und <a class="preview places A130077" href="">Wiesbaden</a>, Fach: zunächst erste Liebhaberin, dann Heroine (dort auch die jüngere Schwester <span class="7710511011097">Minna</span> als jugendliche Liebhaberin, außerdem in Kinderrollen <span class="70114105116122328511411511211411799104">Fritz Urspruch</span>); gab u. a. die Titelrollen in <span class="831051081189711097"><a class="preview works A020036" href=""><span class="tei_hi_italic">Silvana</span></a></span> (ab der <a class="preview places A130028" href="">Mainzer</a> Erstaufführung am 11. April 1828) und <span class="tei_hi_italic"><span class="preview works A020227" data-ref=""><span class="801141019910511111597">Preciosa</span></span></span> sowie im <span class="tei_hi_italic"><a class="preview works A020045" href="">Oberon</a></span> die <span class="82111115991049711097">Roschana</span> (ab der <a class="preview places A130028" href="">Mainzer</a> Erstaufführung am 17. Dezember 1829)</li>
-     <li>lebte noch 1840 laut Karl Gutzkow (<span class="tei_hi_italic">Börne’s Leben</span>, Hamburg 1840, S. 142) „als ein bedauerlicher Schatten ihrer Vergangenheit“</li>
+     <li>lebte noch 1840 laut <a class="preview persons A001D37" href="">Karl Gutzkow</a> (<span class="tei_hi_italic">Börne’s Leben</span>, Hamburg 1840, S. 142) „als ein bedauerlicher Schatten ihrer Vergangenheit“</li>
     </ul>
  </div>
                                                 
@@ -484,7 +482,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002A22</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002A22</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -544,6 +542,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -602,22 +603,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

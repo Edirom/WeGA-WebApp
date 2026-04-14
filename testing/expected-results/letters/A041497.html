@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"dankt für ein Geschenk Schlesingers; habe seit drei Wochen außer den Dienstgeschäften nichts unternommen; sei mit der Vollendung der vierhändigen Klavierstücke beschäftigt, die er bald schicken will; habe Peters nichts Weiteres geschickt und ihm nur in Schlesingers Angelegenheit geschrieben; legt Peters' Antwort in Abschrift bei; äußert sich über den Freimüthigen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Adolph Martin Schlesinger in Berlin. Dresden, Montag, 8. Februar 1819","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041497","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041497","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"dankt für ein Geschenk Schlesingers; habe seit drei Wochen außer den Dienstgeschäften nichts unternommen; sei mit der Vollendung der vierhändigen Klavierstücke beschäftigt, die er bald schicken will; habe Peters nichts Weiteres geschickt und ihm nur in Schlesingers Angelegenheit geschrieben; legt Peters' Antwort in Abschrift bei; äußert sich über den Freimüthigen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Adolph Martin Schlesinger in Berlin. Dresden, Montag, 8. Februar 1819","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041497","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041497","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041497/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041497/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -373,10 +371,10 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041504.html">1819-02-23</a>:  an  <a href="" class="preview A001002 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041507.html">1819-03-12</a>:  an  <a href="" class="preview A000746 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  von  <a href="" class="preview A000235 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000613/Korrespondenz/A044869.html">1820-02-04</a>:  von  <a href="" class="preview A000613 persons"></a>
                                        </li>
                                    </ul>
                                 
@@ -385,9 +383,7 @@
                                     <h3>Korrespondenzstelle</h3>
                                     <h4>Vorausgehend</h4>
                                     <ul>
-                                        <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041050.html">1817-02-16</a>:  an  <a href="" class="preview A001693 persons"></a>
-                                        </li>
+                                        
                                     </ul>
                                     <h4>Folgend</h4>
                                     <ul>
@@ -416,7 +412,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001093" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -454,9 +450,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -474,7 +470,7 @@
                                         <p>berühmten Musik Verleger</p>
                                         <p>und Buchhändler</p>
                                         <p>zu</p>
-                                        <p><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span></span></p>
+                                        <p><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span></span></p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
@@ -482,16 +478,15 @@
             </div>
                                         <p>Vor allem empfangen Sie meinen und meiner <a class="preview persons A000213" href="">Frau</a> freundlichsten Dank für Ihre
                immer gleich rege Aufmerksamkeit uns etwas angenehmes zu erzeigen. und kommen Sie hübsch
-               bald einmal nach <a class="preview places A130003" href="">Dresden</a> um aus dem niedlichen <a class="preview letters A046805" href="">Körbchen</a> den Zukker zu ihrem Kaffee in
-               meinem Hause nehmen zu können.      dem Himmel sey Dank, <a class="preview persons A000213" href="">Mutter</a> und <a class="preview persons A002083" href="">Tochter</a> sind jezt sehr
+               bald einmal nach <a class="preview places A130003" href="">Dresden</a> um aus dem niedlichen Körbchen den Zukker zu ihrem Kaffee in meinem Hause nehmen zu können<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>.      dem Himmel sey Dank, <a class="preview persons A000213" href="">Mutter</a> und <a class="preview persons A002083" href="">Tochter</a> sind jezt sehr
                wohl, nach vielen überstandenen Leiden.      Es war eine harte Zeit für mich, die mich so
                angegriffen und gänzlich abgespannt hat, daß ich seit 3 Wochen nicht das geringste außer
                der täglichen Dienst-Arbeit unternehmen konnte.      Ich bin jezt mit Vollendung des <span class="preview works A020342 A020343 A020339 A020340 A020341 A020344 A020345 A020346" data-ref="       ">4 <span class="tei_hi_latintype">Mani</span></span> beschäftiget die ich Ihnen bald zu senden hoffe.</p>
                                         <p>Herrn <a class="preview persons A001463" href="">Peters</a> habe bis jezt keine Note weiter gegeben, ja nicht einmal
-               geschrieben, außer in Ihrer Angelegenheit<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> worauf ich die <a class="preview letters A046563" href="">Antwort</a> Ihnen hier in Abschrift
-               beilege. <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>Sie<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e86" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e86">‡</a></span></span> sehen daß ich das meinige gethan habe, alles zum <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>G<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e90" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e90">‡</a></span></span>uten zu lenken, und auf
-               jeden Fall ist doch das <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>R<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e95" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e95">‡</a></span></span>esultat auch ziemlich angenehm, und zeigt doch <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>H:<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e99" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e99">‡</a></span></span>
-               <a class="preview persons A001463" href="">Peters</a> gutes Gemüth und den Willen wenigstens fr<span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>iedlich<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e106" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e106">‡</a></span></span>
+               geschrieben, außer in Ihrer Angelegenheit<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a> worauf ich die <a class="preview letters A046563" href="">Antwort</a> Ihnen hier in Abschrift
+               beilege. <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>Sie<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e91" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e91">‡</a></span></span> sehen daß ich das meinige gethan habe, alles zum <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>G<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e95" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e95">‡</a></span></span>uten zu lenken, und auf
+               jeden Fall ist doch das <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>R<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e100" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e100">‡</a></span></span>esultat auch ziemlich angenehm, und zeigt doch <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>H:<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e104">‡</a></span></span>
+               <a class="preview persons A001463" href="">Peters</a> gutes Gemüth und den Willen wenigstens fr<span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>iedlich<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e111" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e111">‡</a></span></span>
                mit Ihnen zu leben.</p>
                                         <p>Ich wünsche daß Ihr Freymüthiger guten
                Fortgang haben möge. Sie wißen daß ich immer offen zu Ihnen spreche, und kann Ihnen
@@ -504,7 +499,7 @@
                und bleibe
                <span class="tei_segBlock textAlign-right">E. Wohlgebohren<br />
                ergebener<br />
-               <a class="preview persons A002068" href=""><span class="tei_hi_latintype">C. MvWeber</span></a></span>
+               <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">C. MvWeber</span></a></span>
                <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><a class="preview places A130003" href="">Dresden</a></span> d: 8<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> 1819.</span>
             </p>
                                         <p class="clearer"></p>
@@ -553,14 +548,14 @@
                                         
                                         <span>Wien (A), Österreichische Nationalbibliothek (A-Wn), Handschriften und Inkunabelsammlung<br /><i>Signatur</i>: 7/124-2</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_4fb65777ed75707b03b1ee0fd76bd59e"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_0ef105c7c2b39fe62481397211309688"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_4fb65777ed75707b03b1ee0fd76bd59e">
+                                        <div class="collapse apparatus-details" id="source_0ef105c7c2b39fe62481397211309688">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.)</li>
                                                         <li>PSt.: DRESDEN | 8. Feb. 19.</li>
-                                                        <li>auf der Adressenseite in umgekehrter Schriftrichtung Verlagsvermerk:„<span class="tei_hi_latintype">Dresden</span> | <span class="tei_hi_underline1">1819 | <span class="tei_hi_latintype">v. Weber, Carl Maria</span></span> | d 24/2 <span class="tei_hi_latintype">expe</span><span class="tei_gap"></span>“</li>
+                                                        <li>auf der Adressenseite in umgekehrter Schriftrichtung Verlagsvermerk: „<span class="tei_hi_latintype">Dresden</span> | <span class="tei_hi_underline1">1819 | <span class="tei_hi_latintype">v. Weber, Carl Maria</span></span> | d 24/2 <span class="tei_hi_latintype">expe</span><span class="tei_gap"></span>“</li>
                                                     </ul>
                                             
                                             <div>
@@ -573,7 +568,7 @@
                                                             
                                                             <span>Hirschberg77, S. 31–32 (unter 18. Febr.)</span>
                                                               
-                                                            <div class="collapse" id="source_9a170b8c745c58ddf138bc89c63f73fe">
+                                                            <div class="collapse" id="source_8c2caf0405342528b8a0e357bd64b65d">
                                                                 
                                                             </div>
                                                         </div>
@@ -598,32 +593,32 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e86" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e86" data-title="Papierverlust" data-counter="1" data-href="#d10e86"><span class="tei_lemma">„Sie“</span>ergänzt von den Hg.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e91" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e91" data-title="Papierverlust" data-counter="1" data-href="#d10e91"><span class="tei_lemma">„Sie“</span>ergänzt von den Hg.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e90" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e90" data-title="Papierverlust" data-counter="2" data-href="#d10e90"><span class="tei_lemma">„G“</span>ergänzt von den Hg.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e95" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e95" data-title="Papierverlust" data-counter="2" data-href="#d10e95"><span class="tei_lemma">„G“</span>ergänzt von den Hg.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e95" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e95" data-title="Papierverlust" data-counter="3" data-href="#d10e95"><span class="tei_lemma">„R“</span>ergänzt von den Hg.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e100" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e100" data-title="Papierverlust" data-counter="3" data-href="#d10e100"><span class="tei_lemma">„R“</span>ergänzt von den Hg.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e99" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e99" data-title="Papierverlust" data-counter="4" data-href="#d10e99"><span class="tei_lemma">„H:“</span>ergänzt von den Hg.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e104" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e104" data-title="Papierverlust" data-counter="4" data-href="#d10e104"><span class="tei_lemma">„H:“</span>ergänzt von den Hg.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e106" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e106" data-title="Papierverlust" data-counter="5" data-href="#d10e106"><span class="tei_lemma">„iedlich“</span>ergänzt von den Hg.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e111" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e111" data-title="Papierverlust" data-counter="5" data-href="#d10e111"><span class="tei_lemma">„iedlich“</span>ergänzt von den Hg.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -632,7 +627,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  geschrieben, außer in Ihrer Angelegenheit“</span>Weber hatte Schlesingers <a class="preview letters A046805" href="">Bitte</a> laut <a class="preview diaries A060819" href="">Tagebuch</a> am 19. Januar 1819 an <a class="preview persons A002116" href="">Amadeus Wendt</a> weitergeleitet, möglicherweise mit der Bitte, das Anliegen vor Ort im Gespräch zu klären. Er selbst wandte sich am selben Tag mit einem <a class="preview letters A041491" href="">Brief</a> an Peters.</div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  meinem Hause nehmen zu können“</span><a class="preview letters A046805" href="">Zusendung</a> des Geschenks laut <a class="preview diaries A060819" href="">Tagebuch</a> am 19. Januar 1819.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  geschrieben, außer in Ihrer Angelegenheit“</span>Weber hatte Schlesingers <a class="preview letters A046805" href="">Bitte</a> laut <a class="preview diaries A060819" href="">Tagebuch</a> am 19. Januar 1819 an <a class="preview persons A002116" href="">Amadeus Wendt</a> weitergeleitet, möglicherweise mit der Bitte, das Anliegen vor Ort im Gespräch zu klären. Er selbst wandte sich am selben Tag mit einem <a class="preview letters A041491" href="">Brief</a> an Peters.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -661,7 +662,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041497</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041497</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -721,6 +722,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -779,22 +783,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

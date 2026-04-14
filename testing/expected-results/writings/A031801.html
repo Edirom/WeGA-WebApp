@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031801" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"erweiterter zweiter Plan zum Roman; umfasst 23 Kapitel mit zahlreichen Randnotizen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Tonkünstlers Leben. Fragment XI – Zweiter Plan (Entwurf)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031801","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031801","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"erweiterter zweiter Plan zum Roman; umfasst 23 Kapitel mit zahlreichen Randnotizen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Tonkünstlers Leben. Fragment XI – Zweiter Plan (Entwurf)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031801","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031801","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031801/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031801/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031801/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -407,9 +404,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;Paris&#34; im Text zu markieren.">Paris</span> 
                                 </label>
                             </div>
                         </div>
@@ -438,7 +435,7 @@
                      <span class="tei_hi_underline1">Plan</span>.<br />                                
                         
                            <span class="tei_hi_underline1">Erstes Kapitel</span>. <span class="tei_hi_underline1">Ich reise</span>. Entschluß zu reisen. Aufnahme in dem <span class="tei_hi_latintype">v: X:</span> Hause.<br />
-                        2<span class="tei_hi_superscript">tes</span>. <span class="tei_hi_underline1">Der StadtMusikant</span>. Streit über UnterrichtsMethoden. – Ansichten der übrigen Musiker <span class="tei_hi_latintype">pp</span>. ganz Ermattet Abends zu Hause, und schreibt an seinen Freund der schon mehrere Jahre von ihm entfernt und gegenwärtig in <a class="preview places A130008" href="">Paris</a> ist, über daß unangenehme <span class="tei_hi_latintype">Concert</span>geben. <span class="tei_hi_latintype">pp</span>:<br />
+                        2<span class="tei_hi_superscript">tes</span>. <span class="tei_hi_underline1">Der StadtMusikant</span>. Streit über UnterrichtsMethoden. – Ansichten der übrigen Musiker <span class="tei_hi_latintype">pp</span>. ganz Ermattet Abends zu Hause, und schreibt an seinen Freund der schon mehrere Jahre von ihm entfernt und gegenwärtig in <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a> ist, über daß unangenehme <span class="tei_hi_latintype">Concert</span>geben. <span class="tei_hi_latintype">pp</span>:<br />
                         3<span class="tei_hi_superscript">tes</span> <span class="tei_hi_underline1">das <span class="tei_hi_latintype">Concert</span></span>.
                         <br />lernt im Vorübergehen ein sehr liebenswürdiges Mädchen kennen, die eben abreisen will 
                         <br />Abend das <span class="tei_hi_underline1">Konzert</span>, leer, weil eben Tanzende Hunde angekommen waren, wo auch mehrere Musiker die 24 Xr dort mehr bekamen hingegangen waren, der Gedanke an Emilien läßt ihn gut spielen – <br />
@@ -535,7 +532,7 @@
                                             </table>
                                         </div>
                                         <p>
-               <span class="tei_hi_underline1"><a class="preview places A130002" href="">Berlin</a> d: 7<span class="tei_hi_superscript">t</span> X<span class="tei_hi_superscript">ber</span>1816</span>. Beziehung gewißer Kunst und ZeitEpochen durch sich überall ähnliche Formen und Gebräuche im Leben und der Kunst. beynah auf einige Takte <span class="tei_del">Zeil</span><a class="noteMarker" id="backref-d10e533" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e533">‡</a> Verse, und Harmonien zu <span class="tei_hi_latintype">reduziren</span>. Z: B: 1<span class="tei_hi_superscript">t</span> Epoche. vor <a class="preview persons A003363" href="">Luthers</a> Zeit. durch scharfe Zeichnung, kurz, halb <span class="tei_hi_latintype">carricatur</span> deshalb. alles Alte steif und ehrenfest, Pedantisch, wie die Reifrökke. Tänze eben so. das ekkigte und hölzerne, spitzige wie die alten <span class="tei_hi_latintype">Comoden</span>, die <span class="tei_hi_latintype">Giguen</span>, <span class="tei_hi_latintype">Sarabanden</span> <span class="tei_hi_latintype">pp</span> im Gegensazze 
+               <span class="tei_hi_underline1"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> d: 7<span class="tei_hi_superscript">t</span> X<span class="tei_hi_superscript">ber</span>1816</span>. Beziehung gewißer Kunst und ZeitEpochen durch sich überall ähnliche Formen und Gebräuche im Leben und der Kunst. beynah auf einige Takte <span class="tei_del">Zeil</span><a class="noteMarker" id="backref-d10e533" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e533">‡</a> Verse, und Harmonien zu <span class="tei_hi_latintype">reduziren</span>. Z: B: 1<span class="tei_hi_superscript">t</span> Epoche. vor <a class="preview persons A003363" href="">Luthers</a> Zeit. durch scharfe Zeichnung, kurz, halb <span class="tei_hi_latintype">carricatur</span> deshalb. alles Alte steif und ehrenfest, Pedantisch, wie die Reifrökke. Tänze eben so. das ekkigte und hölzerne, spitzige wie die alten <span class="tei_hi_latintype">Comoden</span>, die <span class="tei_hi_latintype">Giguen</span>, <span class="tei_hi_latintype">Sarabanden</span> <span class="tei_hi_latintype">pp</span> im Gegensazze 
                <br /><span class="tei_hi_underline1">2<span class="tei_hi_superscript">t</span> Epoche</span>. von den neusten Bachantischen gleich wollüstigen übermüthigen Tänzen. <br />kurze Epoche. mit <span class="71101223110101114">Geßner</span> <span class="tei_hi_latintype">pp</span> von <a class="preview persons A001491" href="">Pleyel</a> und zum Theil <a class="preview persons A000777" href="">Haydn</a>. Scheinbare Unverständlichkeit <a class="preview persons A001026" href="">Klopstoks</a> und <a class="preview persons A001362" href="">Mozarts</a>.<br />
                <span class="tei_hi_underline1">Dritte</span> Epoche, Schnelle Kriege, Schnelle Tempos, Vorstellung des alten und neuen <span class="tei_hi_latintype">Allo</span>. wie sie an einander vorbeilauffen. Mystik <span class="tei_add tei_hi_superscript">und Romantik<a class="noteMarker" id="backref-d10e598" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e598">‡</a></span> in Dichtkunst und Musik. komisches Beyspiel Isegrim.<br />
                <br />
@@ -598,9 +595,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (I), Bl. 1r–1v und 2a/v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_3685e2959fada3af6e6138b9da99f638"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_734b8b05bdaf647885fffe3479c039fd"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_3685e2959fada3af6e6138b9da99f638">
+                                        <div class="collapse apparatus-details" id="source_734b8b05bdaf647885fffe3479c039fd">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S.) und 1 DBl. (davon 1 b. S.)</li>
@@ -619,7 +616,7 @@
                                                             
                                                             <span>HellS I, S. 7–13</span>
                                                               
-                                                            <div class="collapse" id="source_9a9c82916280525bd8ee19663512d17a">
+                                                            <div class="collapse" id="source_cbbd1169227929b9b487ebe05af48093">
                                                                 
                                                             </div>
                                                         </div>
@@ -629,7 +626,7 @@
                                                             
                                                             <span>MMW III, S. 236–241</span>
                                                               
-                                                            <div class="collapse" id="source_5748d1edd545a7d737a592fcd11ef019">
+                                                            <div class="collapse" id="source_3376bc31f90ba1114f004a196e752c68">
                                                                 
                                                             </div>
                                                         </div>
@@ -639,7 +636,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 440–444 (Nr. 160)</span>
                                                               
-                                                            <div class="collapse" id="source_ec2d1d2940b0b528ebc2a7f50e0fd560">
+                                                            <div class="collapse" id="source_78c899074a1e16f6d6e0fee596e15065">
                                                                 
                                                             </div>
                                                         </div>
@@ -649,7 +646,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A110173" data-ref="">Jaiser</span>, S. 204–208</span>
                                                               
-                                                            <div class="collapse" id="source_9957a8f1a1c660785fce18ce1470fd9a">
+                                                            <div class="collapse" id="source_3971ae4d8ede2e115fef33e77b7e0e75">
                                                                 
                                                             </div>
                                                         </div>
@@ -934,7 +931,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031801</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031801</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -994,6 +991,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1052,22 +1052,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

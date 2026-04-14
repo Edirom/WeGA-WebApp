@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Reaktion auf Rohdes Wunsch, vom Kasseler ans Prager Theater zu wechseln; Reisepläne im Juni/Juli (Berlin, Karlsbad); Weber-Porträt für Carl Guhr","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Matthias Rohde in Kassel. Prag, Samstag, 11. Mai 1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040901","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040901","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Reaktion auf Rohdes Wunsch, vom Kasseler ans Prager Theater zu wechseln; Reisepläne im Juni/Juli (Berlin, Karlsbad); Weber-Porträt für Carl Guhr","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Matthias Rohde in Kassel. Prag, Samstag, 11. Mai 1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040901","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040901","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040901/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040901/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,7 +362,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A045403.html">1816-04-28</a>:  an  <a href="" class="preview A000899 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040895.html">1816-04-16</a>:  an  <a href="" class="preview A000371 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001497/Korrespondenz/A040855.html">1816-03-05</a>:  von  <a href="" class="preview A001497 persons"></a>
@@ -373,7 +371,7 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040961.html">1816-12-30</a>:  an  <a href="" class="preview A000235 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040908.html">1816-06-11</a>:  an  <a href="" class="preview A000213 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  von  <a href="" class="preview A001355 persons"></a>
@@ -408,7 +406,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000701" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -434,11 +432,11 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130019" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130050" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130006" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -460,9 +458,9 @@
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">Mein lieber <a class="preview persons A001597" href="">Freund</a>.</div>
-                                        <p>Ich muß mich schämen daß ich so lange nicht Ihren lieben <a class="preview letters A045286" href="">Brief vom 13<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span></a> beantwortet habe. aber meine vielen Geschäfte und wandelbare Gesundheit hielten mich davon ab. Nach alle dem was Sie mir von Ihren Verhältnißen schreiben, ist mir Ihr Wunsch <a class="preview places A130019" href="">Kaßel</a> zu verlaßen, unbegreifflich, das heißt in GeldHinsicht und Publikum. Leider ist bey uns in jeder Hinsicht nichts beßer, und wir laboriren auch an der wenigen Hoffnung beßerer Zeiten, besonders Rüksichtlich unseres Papier Geldes. Was Gastrollen hier betrifft so ist es kaum möglich diesen Sommer, gegenwärtig ist <a class="preview persons A000628" href="">Mad: <span class="tei_hi_latintype">Gervais</span></a> da<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>. dann <a class="preview persons A002170" href="">Wohlbrük</a>, <a class="preview persons A008114" href="">Heurteur</a>, <a class="preview persons A009057" href="">Koberwein</a>, <span class="preview persons A000752" data-ref=""><span class="tei_hi_latintype"><span class="tei_add tei_hi_superscript">Häser<a class="noteMarker" id="backref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a></span></span></span> und noch ein paar die ich nicht auswendig weis.      daß <span class="tei_hi_underline1">ich</span> wenn Sie kommen alles mögliche thun werde Ihre Wünsche zu erfüllen und Ihnen Ihren Aufenthalt angenehm zu machen, versteht sich wohl von selbst. nur muß ich bemerken daß ich Anfangs <span class="tei_hi_latintype">Juny</span> nach <a class="preview places A130002" href="">Berlin</a> gehe um meine <a class="preview works A020018" href="">Kantate auf die Schlacht von <span class="tei_hi_latintype">belle Alliance</span></a> wofür mir der <a class="preview persons A007860" href="">König</a> die goldene Medaille <a class="preview letters A040848" href="">geschikt</a> hat<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090075.html">T</a> selbst aufzuführen. von da gehe ich nach <a class="preview places A130050" href=""><span class="tei_hi_latintype">Carlsbad</span></a> und bin halben <span class="tei_hi_latintype">July</span> wieder <span class="tei_hi_underline1">hier</span>.      Ende <span class="tei_hi_latintype">September</span> verlaße ich aber die hiesige Bühne ganz, und gehe wieder auf Reisen. Hier haben Sie wenigstens einen kleinen Wegweiser zu Ihrem Planen, denn es wäre gar zu arg wenn Sie hieher kämen und ich wäre nicht da.</p>
-                                        <p class="inlineEnd">Das an H: KapellMst <a class="preview persons A000701" href=""><span class="tei_hi_latintype">Guhr</span></a> abgegebene Portrait hoffe ich dann durch ein beßeres das jezt in <a class="preview places A130002" href=""><span class="tei_hi_latintype">Berlin</span></a> gestochen wird zu ersezzen.<a class="noteMarker" id="backref-c_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_001">*</a>      Herzlich freue ich mich für meinen Theil darauf <span class="tei_subst"><span class="tei_add">S</span><a class="noteMarker" id="backref-d10e148" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e148">‡</a></span>ie zu sehen, mögen Sie nur gerade einen guten Zeitpunkt treffen, den ich leider jezt nicht voraus <span class="tei_hi_underline1">bestimmen kann</span>.</p>
-                                        <p class="tei_closer textAlign-left inlineStart">     Gott erhalte Sie gesund und froh und behalten Sie lieb Ihren Freund <span class="tei_signed textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">C.M.vWeber</a></span></span>
+                                        <p>Ich muß mich schämen daß ich so lange nicht Ihren lieben <a class="preview letters A045286" href="">Brief vom 13<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span></a> beantwortet habe. aber meine vielen Geschäfte und wandelbare Gesundheit hielten mich davon ab. Nach alle dem was Sie mir von Ihren Verhältnißen schreiben, ist mir Ihr Wunsch <a class="preview places A130019" href="">Kaßel</a> zu verlaßen, unbegreifflich, das heißt in GeldHinsicht und Publikum. Leider ist bey uns in jeder Hinsicht nichts beßer, und wir laboriren auch an der wenigen Hoffnung beßerer Zeiten, besonders Rüksichtlich unseres Papier Geldes. Was Gastrollen hier betrifft so ist es kaum möglich diesen Sommer, gegenwärtig ist <a class="preview persons A000628" href="">Mad: <span class="tei_hi_latintype">Gervais</span></a> da<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>. dann <a class="preview persons A002170" href="">Wohlbrük</a>, <a class="preview persons A008114" href="">Heurteur</a>, <a class="preview persons A009057" href="">Koberwein</a>, <span class="preview persons A000752" data-ref=""><span class="tei_hi_latintype"><span class="tei_add tei_hi_superscript">Häser<a class="noteMarker" id="backref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a></span></span></span> und noch ein paar die ich nicht auswendig weis.      daß <span class="tei_hi_underline1">ich</span> wenn Sie kommen alles mögliche thun werde Ihre Wünsche zu erfüllen und Ihnen Ihren Aufenthalt angenehm zu machen, versteht sich wohl von selbst. nur muß ich bemerken daß ich Anfangs <span class="tei_hi_latintype">Juny</span> nach <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> gehe um meine <a class="preview works A020018" href="">Kantate auf die Schlacht von <span class="tei_hi_latintype">belle Alliance</span></a> wofür mir der <a class="preview persons A007860" href="">König</a> die goldene Medaille <a class="preview letters A040848" href="">geschikt</a> hat<a class="noteMarker" href="">T</a> selbst aufzuführen. von da gehe ich nach <a class="preview places A130050" href=""><span class="tei_hi_latintype">Carlsbad</span></a> und bin halben <span class="tei_hi_latintype">July</span> wieder <span class="tei_hi_underline1">hier</span>.      Ende <span class="tei_hi_latintype">September</span> verlaße ich aber die hiesige Bühne ganz, und gehe wieder auf Reisen. Hier haben Sie wenigstens einen kleinen Wegweiser zu Ihrem Planen, denn es wäre gar zu arg wenn Sie hieher kämen und ich wäre nicht da.</p>
+                                        <p class="inlineEnd">Das an H: KapellMst <a class="preview persons A000701" href=""><span class="tei_hi_latintype">Guhr</span></a> abgegebene Portrait hoffe ich dann durch ein beßeres das jezt in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html"><span class="tei_hi_latintype">Berlin</span></a> gestochen wird zu ersezzen.<a class="noteMarker" id="backref-c_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_001">*</a>      Herzlich freue ich mich für meinen Theil darauf <span class="tei_subst"><span class="tei_add">S</span><a class="noteMarker" id="backref-d10e148" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e148">‡</a></span>ie zu sehen, mögen Sie nur gerade einen guten Zeitpunkt treffen, den ich leider jezt nicht voraus <span class="tei_hi_underline1">bestimmen kann</span>.</p>
+                                        <p class="tei_closer textAlign-left inlineStart">     Gott erhalte Sie gesund und froh und behalten Sie lieb Ihren Freund <span class="tei_signed textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C.M.vWeber</a></span></span>
             <span class="tei_dateline textAlign-textAlign-left"><a class="preview places A130006" href="">Prag</a> d: 11<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span> 1816.</span></p>
                                         <p class="clearer"></p>
                                     </div>
@@ -510,9 +508,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: 55 Ep 1680</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a5da2772835aefaf3157ae855fe13250"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ce7294f24a750c27fdb472887c40123e"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a5da2772835aefaf3157ae855fe13250">
+                                        <div class="collapse apparatus-details" id="source_ce7294f24a750c27fdb472887c40123e">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.)</li>
@@ -523,8 +521,8 @@
                                                         <li>im August <span class="tei_date">2014</span> über Antiquariat Lowenherz durch die Weber-Gesellschaft für <span class="tei_hi_italic">D-B</span> erworben</li>
                                                         <li><span class="tei_date">2014</span> bei <span class="8497109105110111326511711611110311497112104115">Tamino Autographs</span>, Item #: N1863-M2-3, <a href="https://web.archive.org/web/20220530143409/https://www.taminoautographs.com/products/carl-maria-von-weber-autograph-letter-signed">online inkl. Faksimile <i class="fa fa-external-link" aria-hidden="true"></i></a></li>
                                                         <li><a class="preview orgs A080017" href="">Henrici</a> Kat. 43 (<span class="tei_date">14.-16. März 1918</span>), Nr. 447</li>
-                                                        <li>laut Liste von Kaiser (<span class="tei_date">vor 1918</span>) im Besitz von Louis Koch, Frankfurt</li>
-                                                        <li><a class="preview orgs A080088" href="">List &amp; Franke</a>, Auktion <span class="tei_date">26. Mai 1884</span>, Nr. 1779 (ohne genaues Datum)</li>
+                                                        <li>laut Liste von Kaiser (<span class="tei_date">vor 1918</span>) im Besitz von <a class="preview persons A005147" href="">Louis Koch</a>, Frankfurt</li>
+                                                        <li><a class="preview orgs A080088" href="">List &amp; Francke</a>, Auktion <span class="tei_date">26. Mai 1884</span> (Sammlung <a class="preview persons A000A38" href="">Franz August von Scholl</a>), Nr. 1779 (ohne genaues Datum)</li>
                                                     </ul>
                                             
                                             <div>
@@ -546,10 +544,10 @@
                             <h3 class="media-heading">Themenkommentare</h3>
                             <ul class="tei_list">
                                 <li>
-                                    <a href=""></a>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090068.html">Prag: Spielplan des Ständetheaters im Jahr 1816</a>
                                 </li>
                                         <li>
-                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090075.html">Dosen, Ringe und Medaillen – fürstliche Geschenke an Weber</a>
+                                    <a href=""></a>
                                 </li>
                             </ul>
                         </div>
@@ -575,13 +573,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  gegenwärtig ist Mad: Gervais da“</span>Die Sängerin war laut <a class="preview diaries A064049" href="">Tagebuch</a> am 10. Mai 1816 in <a class="preview places A130006" href="">Prag</a> eingetroffen. Zu ihren Gastauftritten vgl. den Prager Spielplan<a class="noteMarker" href="">T</a> zum 22., 25., 28. und 31. Mai sowie 10. Juni 1816.</div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  gegenwärtig ist Mad: Gervais da“</span>Die Sängerin war laut <a class="preview diaries A064049" href="">Tagebuch</a> am 10. Mai 1816 in <a class="preview places A130006" href="">Prag</a> eingetroffen. Zu ihren Gastauftritten vgl. den Prager Spielplan<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090068.html">T</a> zum 22., 25., 28. und 31. Mai sowie 10. Juni 1816.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-c_001" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="c_001" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#c_001"><span class="tei_lemma">„…  Berlin gestochen wird zu ersezzen.“</span>Gemeint ist die Aquatinta von <a class="preview persons A0005EA" href="">Friedrich Jügel</a>, die spätestens im November 1816 bei <a class="preview persons A001693" href="">Schlesinger</a> in <a class="preview places A130002" href="">Berlin</a> erschien; das erwähnte ältere Porträt müsste der Punktierstich von <span class="74111104971101103278101105100108">Johann Neidl</span> nach <a class="preview persons A001126" href="">Joseph Lange</a> von 1804 sein, der von <a class="preview persons A000656" href="">Gombart</a> vertrieben wurde.</div>
+                                                <div class="apparatusEntry col-11" id="c_001" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#c_001"><span class="tei_lemma">„…  Berlin gestochen wird zu ersezzen.“</span>Gemeint ist die Aquatinta von <a class="preview persons A0005EA" href="">Friedrich Jügel</a>, die spätestens im November 1816 bei <a class="preview persons A001693" href="">Schlesinger</a> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> erschien; das erwähnte ältere Porträt müsste der Punktierstich von <span class="74111104971101103278101105100108">Johann Neidl</span> nach <a class="preview persons A001126" href="">Joseph Lange</a> von 1804 sein, der von <a class="preview persons A000656" href="">Gombart</a> vertrieben wurde.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -610,7 +608,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040901</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040901</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -670,6 +668,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -728,22 +729,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

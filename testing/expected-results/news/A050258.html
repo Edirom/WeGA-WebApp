@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Takte 9–16 aus dem Adagio von Webers C-Dur-Klavierkonzert vom Jahre 1810 (Manuskript). Bei der vorstehenden Stelle handelt es sich um die Takte 9–16 …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Wer kennt Parallelstellen in anderen Klavierwerken des frühen 19. Jahrhunderts?","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050258","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050258","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Takte 9–16 aus dem Adagio von Webers C-Dur-Klavierkonzert vom Jahre 1810 (Manuskript). Bei der vorstehenden Stelle handelt es sich um die Takte 9–16 …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Wer kennt Parallelstellen in anderen Klavierwerken des frühen 19. Jahrhunderts?","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050258","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050258","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -287,10 +285,10 @@
                                     <a class="deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050258/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050258/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050258/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -348,15 +346,9 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008631" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A006711" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009873" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A005930" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -387,6 +379,12 @@
                                     <input type="checkbox" name="options" value="A000332" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000306" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009873" /> <span title="Anwählen, um &#34;Appel, Bernhard R.&#34; im Text zu markieren.">Appel, Bernhard R.</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;Veit, Joachim&#34; im Text zu markieren.">Veit, Joachim</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -413,11 +411,11 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d12e2">
                                     <div id="d12e3">
-                                        <h3 id="d12e4">Diskussionsdokumentation von <a class="preview persons A009000" href="">Joachim Veit</a>, Detmold</h3>
+                                        <h3 id="d12e4">Diskussionsdokumentation von <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>, Detmold</h3>
                                         <figure class="tei_figure maxSize"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fnews%2FA0502xx%2FA050258%2FRTEmagicC_klavierkonzert_02.jpg/full/full/0/native.jpg"><img title="Takte 9–16 aus dem Adagio von Webers C-Dur-Klavierkonzert vom Jahre 1810 (Manuskript)." alt="Takte 9–16 aus dem Adagio von Webers C-Dur-Klavierkonzert vom Jahre 1810 (Manuskript)." src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fnews%2FA0502xx%2FA050258%2FRTEmagicC_klavierkonzert_02.jpg/full/600,/0/native.jpg" /></a></figure>
                                         <p>
                 Bei der vorstehenden Stelle handelt es sich um die Takte 9–16 aus dem 
-               <span class="tei_hi_bold"><span class="tei_hi_italic">Adagio</span> von <a class="preview persons A002068" href="">Webers</a> 
+               <span class="tei_hi_bold"><span class="tei_hi_italic">Adagio</span> von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> 
                   <a class="preview works A020212" href="">C-Dur-Klavierkonzert vom Jahre 1810</a></span>. 
                 Zur Ausführung dieser Stelle, bei der die oberen Noten der rechten Hand und die
                tiefsten Baßtöne „normal“ notiert sind, die Zwischenakkorde aber in kleinerer Größe,
@@ -433,7 +431,7 @@
                mit angeschlagen, dann aber die Finger – als hätte man sich selbige „verbrannt“ –
                sofort wieder von diesen Tasten aufgehoben werden (vgl. dazu die folgenden ausführlicheren
                Erläuterungen). Das einzige, was ihn befremdet: In <a class="preview persons A006711" href="">Türks</a> Beispiel sind nur zwei rhythmische
-               Werte, nicht wie hier deren drei notiert. Auch bei <a class="preview persons A002068" href="">Weber</a> gibt es zwei Parallelstellen
+               Werte, nicht wie hier deren drei notiert. Auch bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gibt es zwei Parallelstellen
                in anderen Werken, in denen die Melodie entsprechend hervorgehoben und die Begleitakkorde
                nur kurz „angerissen“ werden – allerdings sind dort diese Begleitakkorde auch mit
                entsprechend kurzen rhythmischen Werten angegeben (vgl dazu ebenfalls die nachfolgenden
@@ -447,7 +445,7 @@
                                     </div>
                                     <div id="d12e62">
                                         <h3 id="d12e63">Aktueller Stand 5. Dezember 2004</h3>
-                                        <p>Vielen Dank an die Kollegen <a class="preview persons A009873" href="">Prof. Dr. Bernhard Appel</a>, <span class="6811446326610197116101327511497117115">Dr. Beate Kraus</span>, <span class="681144632729711011545871011141101011143275252116104101110">Dr. Hans-Werner
+                                        <p>Vielen Dank an die Kollegen <a class="preview persons A009873" href="/exist/apps/WeGA-WebApp/de/A009873.html">Prof. Dr. Bernhard Appel</a>, <span class="6811446326610197116101327511497117115">Dr. Beate Kraus</span>, <span class="681144632729711011545871011141101011143275252116104101110">Dr. Hans-Werner
                Küthen</span>, <span class="68114463283971081111091013282101105115101114">Dr. Salome Reiser</span>, <span class="681144632771059910497101108328311611411799107">Dr. Michael Struck</span>, <span class="681144632851191013287111108102">Dr. Uwe Wolf</span> und besonders an Herrn
                <a class="preview persons A005930" href="">Siegbert Rampe</a> für ihre vielfältigen Hinweise und Anregungen! Demnach erweist sich
                das Problem als durchaus einer ausführlicheren Diskussion würdig. Es wurden deshalb
@@ -478,7 +476,7 @@
                   eine ebenso „besondere“ Klanglichkeit des Klaviers gegenübergestellt werden, wobei
                   die Oberstimme als Melodiestimme deutlich hervorgehoben werden soll.
                </p>
-                                            <p>In <a class="preview persons A002068" href="">Webers</a> eigenen Klavierwerken finden sich zwei Stellen, die möglicherweise Hinweise
+                                            <p>In <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> eigenen Klavierwerken finden sich zwei Stellen, die möglicherweise Hinweise
                auf eine Ausführung der vorliegenden problembeladenen Notation geben könnten. Es handelt
                sich um den Anfang des II. Satzes seiner <a class="preview works A020318" href="">As-Dur-Klaviersonate Nr. 2 (JV 199)</a>
                </p>
@@ -495,13 +493,13 @@
                zusätzlich durch die Staccato-Punkte als wirklich kurze Schläge gekennzeichnet sind
                und zu einer Klanglichkeit führen, die entfernt an ein gitarrebegleitetes Lied erinnern
                mag. Diese beiden Sätze entstanden 1816 bzw. 1821, also deutlich später als das obige
-               problematische Beispiel. Könnte <a class="preview persons A002068" href="">Weber</a> dort also Ähnliches meinen, ohne bereits die
+               problematische Beispiel. Könnte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> dort also Ähnliches meinen, ohne bereits die
                spätere Notationsform zu verwenden? (<a class="preview persons A003148" href="">Hans von Bülow</a> hat in seiner Ausgabe der Klavierkonzerte
                als „Solostücke zum Concertvortrage“ bei <a class="preview persons A003483" href="">Bartholf Senff</a> in Leipzig die Notation der
                T. 9 ff. an die hier beschriebene Form angepasst und die Rhythmen der Begleitakkorde
                zu Sechzehnteln vereinheitlicht.)
             </p>
-                                            <p><a class="preview persons A009873" href="">Bernhard Appel</a> wies auf eine verwandte Stelle in der zweiten der 
+                                            <p><a class="preview persons A009873" href="/exist/apps/WeGA-WebApp/de/A009873.html">Bernhard Appel</a> wies auf eine verwandte Stelle in der zweiten der 
                   <span class="tei_hi_bold">Noveletten op. 21 von <a class="preview persons A006376" href="">Robert Schumann</a></span> hin: 
                </p>
                                             <figure class="tei_figure maxSize"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fnews%2FA0502xx%2FA050258%2FRTEmagicC_novelette2_01.jpg/full/full/0/native.jpg"><img title="Beginn der zweiten Novelette op. 21 von Robert Schumann" alt="Beginn der zweiten Novelette op. 21 von Robert Schumann" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fnews%2FA0502xx%2FA050258%2FRTEmagicC_novelette2_01.jpg/full/600,/0/native.jpg" /></a></figure>
@@ -509,8 +507,8 @@
                   die jeweils links neben dem höchsten Ton der arpeggierten Akkorde hinzugesetzten Akzente
                   sollen verdeutlichen, dass nur diese Töne als Melodie (und nicht die Akkorde insgesamt)
                   herauszuheben sind, die anderen Töne des Arpeggio verklingen sogleich wieder. Wie
-                  in <a class="preview persons A002068" href="">Webers</a> Beispiel ist diese „Melodie“ durchgängig durch Akzente bezeichnet – sollten
-                  die Begleitakkorde also auch bei <a class="preview persons A002068" href="">Weber</a> in ähnlich arpeggierter Weise gespielt werden??
+                  in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Beispiel ist diese „Melodie“ durchgängig durch Akzente bezeichnet – sollten
+                  die Begleitakkorde also auch bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> in ähnlich arpeggierter Weise gespielt werden??
                </p>
                                             <p><a class="preview persons A005930" href="">Siegbert Rampe</a> plädiert – auch vor dem Hintergrund des von <a class="preview persons A008631" href="">Warrack</a> erwähnten Zitats
                aus 
@@ -540,8 +538,6 @@
                ähneln:
                </p>
                                             <figure class="tei_figure maxSize"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fnews%2FA0502xx%2FA050258%2Fmozartkv451.jpg/full/full/0/native.jpg"><img title="T. 261 ff. des I. Satzes von Mozarts Klavierkonzert D-Dur KV 451." alt="T. 261 ff. des I. Satzes von Mozarts Klavierkonzert D-Dur KV 451." src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fnews%2FA0502xx%2FA050258%2Fmozartkv451.jpg/full/600,/0/native.jpg" /></a></figure>
-                                            <p>
-            </p>
                                             <p>Wie im Weberschen Beispiel, so sind auch hier die „besonderen“ Takte zugleich solistische:
                   In T. 258–260 (= T. 1–3 des Beispiels) begleiten Bläser und Streicher das Soloinstrument,
                   das dann in T. 261 allein fortsetzt, bevor in T. 264 (letzter Takt des Beispiels)
@@ -551,12 +547,12 @@
                   plädiert aber jeweils für eine Ausführung in Gestalt kurzer Arpeggien, wie bei <a class="preview persons A006711" href="">Türk</a>
                vorgegeben.
             </p>
-                                            <p>Zur Begründung einer möglicherweise ähnlichen Lösung im obigen <a class="preview persons A002068" href="">Weber</a>-Beispiel führt
+                                            <p>Zur Begründung einer möglicherweise ähnlichen Lösung im obigen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>-Beispiel führt
                   <a class="preview persons A005930" href="">Rampe</a> aus:
             
             „Hintergrund Ihrer Notation ist m. E. eine Uebernahme cembalistischer Praktiken auf
                die leichtgaengige Mechanik Wiener Hammerfluegel; ein solches Instrument befand sich
-               ja auch in <a class="preview persons A002068" href="">Webers</a> Besitz. <a class="preview persons A000899" href="">Hummel</a> (1828, S. 454) stellt eindeutig einen derartigen
+               ja auch in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Besitz. <a class="preview persons A000899" href="">Hummel</a> (1828, S. 454) stellt eindeutig einen derartigen
                Zusammenhang her und berichtet, dass man volle Akkorde auf Wiener Hammerklavieren
                jener Zeit im Unterschied zu solchen mit Englischer Mechanik generell gebrochen hat:
                Volle Akkorde werden z.B. meist ganz rasch gebrochen vorgetragen, und wirken so weit
@@ -641,7 +637,7 @@
                                         <li id="C_01" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#backref-C_01">1</a>Vgl. hierzu Rampe, <span class="tei_hi_italic">Mozarts Claviermusik: Klangwelt und Aufführungspraxis. Ein Handbuch</span>, Kassel u. a. 1995, S. 217 f.</li>
                                     </ol>
                                 </div>
-                                <p class="authorDate"><a href="" class="persons"></a>, Samstag, 5. März 2005</p>
+                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Samstag, 5. März 2005</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -671,7 +667,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_b7e1054055658acb288b2ae15e04e64f">
+                                        <div class="collapse apparatus-details" id="source_96a7ee9e6141eb5d449536449cbed58b">
                                             
                                             
                                             <div>
@@ -715,7 +711,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050258</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050258</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -775,6 +771,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -833,22 +832,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

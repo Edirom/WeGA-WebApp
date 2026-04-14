@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031167" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"die 1807 nach Berliner Vorbild gegründete Gesangsvereinigung begann mit wenigen Personen, wuchs aber zunehmend; Proben im Postsaal; Verein speist sich aus Mitgliederbeiträgen und präferiert Kirchenmusik","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Über Anton Dreyssigs Singakademie","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031167","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031167","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"die 1807 nach Berliner Vorbild gegründete Gesangsvereinigung begann mit wenigen Personen, wuchs aber zunehmend; Proben im Postsaal; Verein speist sich aus Mitgliederbeiträgen und präferiert Kirchenmusik","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Über Anton Dreyssigs Singakademie","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031167","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031167","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031167/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031167/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -370,9 +367,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000983" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080125" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -386,7 +383,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -401,12 +398,12 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Korrespondenz und Notizen. <br /> <span class="tei_hi_spaced_out">Aus <a class="preview places A130003" href="">Dresden</a></span>.</h2>
                                         <p>– – – – – – des Musikalisch neuen gibt es <span class="tei_app"><span class="tei_lem">so eben nicht viel</span><a class="noteMarker" id="backref-d10e14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e14">Δ</a></span> bei uns. Fremde Künstler <span class="tei_app"><span class="tei_lem">scheinen ihre Rechnung nicht immer zu finden</span><a class="noteMarker" id="backref-d10e20" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e20">Δ</a></span>.</p>
-                                        <p>Zur Freude aller wahren Verehrer der Kunst, gedeiht <span class="tei_app"><span class="tei_lem">aber eine musikalische Anstalt</span><a class="noteMarker" id="backref-d10e28" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e28">Δ</a></span> täglich mehr, die die <span class="tei_app"><span class="tei_lem">schönsten Früchte</span><a class="noteMarker" id="backref-d10e34" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e34">Δ</a></span> für die Folge verspricht, und deren sich, außer <span class="tei_hi_spaced_out"><a class="preview places A130002" href="">Berlin</a></span>, wohl wenige Städte <span class="tei_country">Deutschland</span>s zu rühmen haben mögen, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ich meine die <span class="tei_app"><span class="tei_lem">von dem Hoforganisten <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßig</span></a></span><a class="noteMarker" id="backref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">Δ</a></span> errichtete Singakademie<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. Der zunehmende Verfall der Gesang- und vorzüglich <span class="tei_app"><span class="tei_lem">der</span><a class="noteMarker" id="backref-d10e65" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e65">Δ</a></span> Chormusik, und das Beispiel jener <a class="preview orgs A080125" href="">herrlichen Anstalt</a> in <a class="preview places A130002" href="">Berlin</a>, bestimmte <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßig</span></a> zu dem Entschluß, eine <span class="tei_app"><span class="tei_lem">Singakademie</span><a class="noteMarker" id="backref-d10e82" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e82">Δ</a></span> zu gründen, in welcher ausschließend Kirchenmusik betrieben werden sollte. <span class="tei_app"><span class="tei_lem">In der katholischen Hofkirche wird gewöhnlich immer nur solche Musik aufgeführt, die von in <a class="preview places A130003" href="">Dresden</a> <span class="tei_hi_spaced_out">angestellten</span> Kapell- und Musikmeistern geschrieben ist. Die übrigen protestantischen Kirchen geben wenig oder gar keine Musik, und eine reiche Ausbeute harrte unser, da die klassischen Meisterwerke <span class="tei_hi_spaced_out"><a class="preview persons A000732" href="">Händel</a>s</span>, <span class="tei_hi_spaced_out"><a class="preview persons A001362" href="">Mozart</a>s</span>, <span class="tei_hi_spaced_out"><a class="preview persons A000777" href="">Haydn</a>s u.s.w.</span> gegeben wurden.</span><a class="noteMarker" id="backref-d10e88" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e88">Δ</a></span> Dieses sowohl als auch nothwendige Berücksichtigung mancher Verhältnisse, <span class="tei_app"><span class="tei_lem">bestimmte</span><a class="noteMarker" id="backref-d10e121" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e121">Δ</a></span> <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßig</span></a> sich vorderhand auf den Kirchenstyl zu beschränken.</p>
+                                        <p>Zur Freude aller wahren Verehrer der Kunst, gedeiht <span class="tei_app"><span class="tei_lem">aber eine musikalische Anstalt</span><a class="noteMarker" id="backref-d10e28" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e28">Δ</a></span> täglich mehr, die die <span class="tei_app"><span class="tei_lem">schönsten Früchte</span><a class="noteMarker" id="backref-d10e34" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e34">Δ</a></span> für die Folge verspricht, und deren sich, außer <span class="tei_hi_spaced_out"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span>, wohl wenige Städte <span class="tei_country">Deutschland</span>s zu rühmen haben mögen, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ich meine die <span class="tei_app"><span class="tei_lem">von dem Hoforganisten <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßig</span></a></span><a class="noteMarker" id="backref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">Δ</a></span> errichtete Singakademie<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. Der zunehmende Verfall der Gesang- und vorzüglich <span class="tei_app"><span class="tei_lem">der</span><a class="noteMarker" id="backref-d10e65" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e65">Δ</a></span> Chormusik, und das Beispiel jener <a class="preview orgs A080125" href="">herrlichen Anstalt</a> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>, bestimmte <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßig</span></a> zu dem Entschluß, eine <span class="tei_app"><span class="tei_lem">Singakademie</span><a class="noteMarker" id="backref-d10e82" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e82">Δ</a></span> zu gründen, in welcher ausschließend Kirchenmusik betrieben werden sollte. <span class="tei_app"><span class="tei_lem">In der katholischen Hofkirche wird gewöhnlich immer nur solche Musik aufgeführt, die von in <a class="preview places A130003" href="">Dresden</a> <span class="tei_hi_spaced_out">angestellten</span> Kapell- und Musikmeistern geschrieben ist. Die übrigen protestantischen Kirchen geben wenig oder gar keine Musik, und eine reiche Ausbeute harrte unser, da die klassischen Meisterwerke <span class="tei_hi_spaced_out"><a class="preview persons A000732" href="">Händel</a>s</span>, <span class="tei_hi_spaced_out"><a class="preview persons A001362" href="">Mozart</a>s</span>, <span class="tei_hi_spaced_out"><a class="preview persons A000777" href="">Haydn</a>s u.s.w.</span> gegeben wurden.</span><a class="noteMarker" id="backref-d10e88" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e88">Δ</a></span> Dieses sowohl als auch nothwendige Berücksichtigung mancher Verhältnisse, <span class="tei_app"><span class="tei_lem">bestimmte</span><a class="noteMarker" id="backref-d10e121" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e121">Δ</a></span> <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßig</span></a> sich vorderhand auf den Kirchenstyl zu beschränken.</p>
                                         <p>Mit sechs oder sieben Personen begann er im März 1807 seine Uebungen. Nach und nach, sehr langsam wuchs die Zahl der Theilnehmenden. Eine <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e134" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e134">Δ</a></span> Menge von Vorurtheilen erhoben sich dagegen, und war zu bekämpfen. <span class="tei_app"><span class="tei_lem">Indessen konnte 1809</span><a class="noteMarker" id="backref-d10e139" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e139">Δ</a></span> die Gesellschaft <span class="tei_app"><span class="tei_lem">doch</span><a class="noteMarker" id="backref-d10e156" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e156">Δ</a></span> schon einen kleinen Saal <span class="tei_app"><span class="tei_lem">beziehen</span><a class="noteMarker" id="backref-d10e161" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e161">Δ</a></span>, und endlich gelang es der eisernen Beharrlichkeit des Unternehmers, es so weit zu bringen, daß im verflossenen Jahre der größere Postsaal gemietet wurde, und <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e167" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e167">Δ</a></span>jetzt das Singpersonale aus <span class="tei_hi_spaced_out">sechszehn Sopran</span>-, <span class="tei_hi_spaced_out">zwölf Alt</span>-, <span class="tei_hi_spaced_out">eilf Tenor</span>- und <span class="tei_hi_spaced_out">zwölf Baßstimmen</span> besteht.</p>
                                         <p>Alle Donnerstage Abends um 6 Uhr versammelt man sich, und die Akademie dauert gewöhnlich bis <span class="tei_app"><span class="tei_lem">gegen</span><a class="noteMarker" id="backref-d10e187" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e187">Δ</a></span> 8 Uhr. Außerdem ist noch der Montag um 5 Uhr dazu bestimmt, Lernbegierige, Ungeübtere, in <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßigs</span></a> Wohnung zu unterrichten, und das den Donnerstag vorzunehmende mit ihnen durchzugehen. – Die Soloparthien werden von dem Direktor an die dazu fähigen abwechselnd vertheilt<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>.</p>
                                         <p><span class="tei_app"><span class="tei_lem">Zur</span><a class="noteMarker" id="backref-d10e223" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e223">Δ</a></span> Bestreitung der Unkosten, <span class="tei_app"><span class="tei_lem">als Musikalien, Beleuchtung und Heizung <span class="tei_hi_spaced_out">u.s.w.</span></span><a class="noteMarker" id="backref-d10e229" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e229">Δ</a></span>, gibt jedes Mitglied den geringen Beitrag von acht Thalern jährlich. Es ergibt sich hieraus von selbst, daß kaum die Kosten gedeckt sind, und der Gründer der Anstalt bis jetzt noch nicht den geringsten Nutzen gezogen, noch zu erwarten hat. Dieser rühmliche, ausdauernde, durch keine kleinliche Rücksichten aufzuhaltende Eifer des <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßig</span></a>, gereicht ihm zur entschiedensten Ehre, und es muß jedem <span class="tei_app"><span class="tei_lem">Musikfreunde</span><a class="noteMarker" id="backref-d10e244" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e244">Δ</a></span> innig wohl thun zu sehen, daß es auch jetzt noch Männer gibt, die mit eigener Aufopferung für das Fortschreiten und Pflegen der Kunst besorgt sind.</p>
                                         <p>Auch entspricht der Erfolg den Anstrengungen des Direktors. Wer die Schwierigkeiten kennt, ein Chorpersonale von Liebhabern mit einem bloßen Fortepiano so weit zu bringen, daß sie die theils sehr schwierigen <span class="tei_app"><span class="tei_lem">Chöre und Fugen</span><a class="noteMarker" id="backref-d10e252" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e252">Δ</a></span> der bekanntesten Meisterwerke, rein und mit Präzision singen, – <span class="tei_app"><span class="tei_lem">der</span><a class="noteMarker" id="backref-d10e258" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e258">Δ</a></span> wird gewiß mit einem angenehmen Gefühl die Singanstalt verlassen, mit Dank das Streben <a class="preview persons A004163" href="">Hrn. <span class="tei_hi_spaced_out">Dreyßigs</span></a> erkennen, und ihm Heil, Unterstützung und <span class="tei_hi_spaced_out">Anerkennung</span> wünschen. <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e271" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e271">Δ</a></span>
-            </p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="">Melos</a>.</span></div>
+            </p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Melos</a>.</span></div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -427,7 +424,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung); vgl. <span class="preview biblio A110700" data-ref="">Bartlitz</span>, S. 66; Sigle (<span class="tei_hi_italic">Melos</span>.); lt. <a class="preview diaries A065801" href="">TB, 27. September 1812</a> an <a class="preview persons A001376" href="">Müller</a> geschickt; vgl. auch <a class="preview diaries A065804" href="">TB Übersicht September 1812</a>.</p>
+                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung); vgl. <span class="preview biblio A110700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110700.html">Bartlitz</span>, S. 66; Sigle (<span class="tei_hi_italic">Melos</span>.); lt. <a class="preview diaries A065801" href="">TB, 27. September 1812</a> an <a class="preview persons A001376" href="">Müller</a> geschickt; vgl. auch <a class="preview diaries A065804" href="">TB Übersicht September 1812</a>.</p>
                <p>Knapp zehn Jahre später befasste sich Weber auf Bitten der <a class="preview persons A000402" href="">Witwe</a> mit  <a class="preview persons A004163" href="">Dreyssigs</a> Musikaliensammlung; vgl. Themenkommentar<a class="noteMarker" href="">T</a>.</p>
             </div>
                         </div>
@@ -454,9 +451,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 12, Nr. 198 (3. Oktober 1812), Sp. 1581–1582</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_8eb0f6552506bdf825467b36a681eee8"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_2506f709cb81c00df27cdf7cb9971b9e"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_8eb0f6552506bdf825467b36a681eee8">
+                                        <div class="collapse apparatus-details" id="source_2506f709cb81c00df27cdf7cb9971b9e">
                                             
                                             
                                             <div>
@@ -469,7 +466,7 @@
                                                             
                                                             <span class="tei_bibl">mit Ergänzungen nach dem Entwurf in: <span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 29–31 (Nr. 49)</span>
                                                               
-                                                            <div class="collapse" id="source_c5074ae79b988d234eb956a3d5f3bd73">
+                                                            <div class="collapse" id="source_59d210216bc3af0e265b5d25e2783cdb">
                                                                 
                                                             </div>
                                                         </div>
@@ -492,9 +489,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (V), Bl. 38a/r–38a/v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_4999c05f0a98616dc92d6a43de88b465"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_81b5bf7bfceeb97c82601b37632fca12"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_4999c05f0a98616dc92d6a43de88b465">
+                                        <div class="collapse apparatus-details" id="source_81b5bf7bfceeb97c82601b37632fca12">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript „Dresden.“; Incipit: „- - - des Musikalisch neuen giebt es wenig bey uns,“; datiert: „Gotha d: 27t. Sept. 1812.“; unterzeichnet: „Melos.“</li>
@@ -512,7 +509,7 @@
                                                             
                                                             <span>MMW III, S. 68–70</span>
                                                               
-                                                            <div class="collapse" id="source_3b90adc0927442e3edee384c62d685d8">
+                                                            <div class="collapse" id="source_43f717346b8e59ca27b0195a4ad611ec">
                                                                 
                                                             </div>
                                                         </div>
@@ -560,7 +557,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_03"><span class="tei_lemma">„…  die dazu fähigen abwechselnd vertheilt“</span>Seinen ersten öffentlichen Auftritt hatte der Chor am 9. November 1812 in der <a class="preview places A130003" href="">Dresdner</a> Dreikönigskirche; aufgeführt wurden <a class="preview persons A001362" href="">Mozarts</a> <a class="preview works A020699" href="">Requiem</a> und die Motette „Nach einer Prüfung kurzer Tage“ von <a class="preview persons A001671" href="">Schicht</a>; vgl. Th. Seemann, <span class="tei_hi_italic">Geschichte der Dreyssig’schen Singakademie in Dresden</span>, Dresden 1882 (<a href="https://digital.slub-dresden.de/werkansicht/dlf/89410/37/0/">Digitalisat <i class="fa fa-external-link" aria-hidden="true"></i></a>), S. 33.</div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_03"><span class="tei_lemma">„…  die dazu fähigen abwechselnd vertheilt“</span>Seinen ersten öffentlichen Auftritt hatte der Chor am 9. November 1812 in der <a class="preview places A130003" href="">Dresdner</a> Dreikönigskirche; aufgeführt wurden <a class="preview persons A001362" href="">Mozarts</a> <a class="preview works A020699" href="">Requiem</a> und die Motette „Nach einer Prüfung kurzer Tage“ von <a class="preview persons A001671" href="">Schicht</a>; vgl. Th. Seemann, <span class="tei_hi_italic">Geschichte der Dreyssig’schen Singakademie in Dresden</span>, Dresden 1882 (<a href="http://digital.slub-dresden.de/id383797233">Digitalisat <i class="fa fa-external-link" aria-hidden="true"></i></a>), S. 33.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -780,7 +777,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031167</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031167</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -840,6 +837,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -898,22 +898,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Begleitschreiben zur Übersendung seines autographen Canone à tre","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an den Grafen Alphonse Clarke de Feltre in Paris. Dresden, Donnerstag, 30. Juni 1825","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042464","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042464","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Begleitschreiben zur Übersendung seines autographen Canone à tre","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an den Grafen Alphonse Clarke de Feltre in Paris. Dresden, Donnerstag, 30. Juni 1825","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042464","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042464","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,10 +296,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042464/backlinks.html">Rückverweise</a>
+                                    <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042464/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042464/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -367,13 +365,13 @@
                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042458.html">1825-06-09</a>:  an  <a href="" class="preview A001711 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">1824-03-27</a>:  von  <a href="" class="preview A001864 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A080005/Korrespondenz/A042080.html">1823-12-04</a>:  von  <a href="" class="preview A080005 orgs"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042486.html">1825-08-05</a>:  an  <a href="" class="preview A0010FE persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042466.html">1825-06-30</a>:  an  <a href="" class="preview A001187 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042699.html">1826-02-21</a>:  von  <a href="" class="preview A000213 persons"></a>
@@ -394,7 +392,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000479" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -418,9 +416,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;Paris&#34; im Text zu markieren.">Paris</span> 
                                 </label>
                             </div>
                         </div>
@@ -443,7 +441,7 @@
                                         <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-center">J’ai l’honneur d’être<br />
                Monsieur le Comte<br /></span>
             <span class="tei_segBlock textAlign-right">Votre très humble Serviteur<br />
-               <span class="tei_app"><span class="tei_lem"><a class="preview persons A002068" href="">Charles Maria B: de Weber</a></span><a class="noteMarker" id="backref-d10e125" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e125">Δ</a></span></span>
+               <span class="tei_app"><span class="tei_lem"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Charles Maria B: de Weber</a></span><a class="noteMarker" id="backref-d10e125" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e125">Δ</a></span></span>
                <span class="tei_dateline textAlign-left"><a class="preview places A130003" href="">Dresde</a> le 30 Juin 1825.</span>
             </p>
                                         <p class="clearer"></p>
@@ -492,9 +490,9 @@
                                         
                                         <span>Paris (F), Bibliothèque nationale de France, Département de la Musique (F-Pn)<br /><i>Signatur</i>: W.7(14)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_f7d9fa98cebad58a5de57079b0e833c5"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_afdb87a30e28e8aabe4f3e5470353db3"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_f7d9fa98cebad58a5de57079b0e833c5">
+                                        <div class="collapse apparatus-details" id="source_afdb87a30e28e8aabe4f3e5470353db3">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>durchgehend lateinisch geschrieben</li>
@@ -514,7 +512,7 @@
                                                             
                                                             <span>Dünnebeil, Hans: Carl Maria von Weber: Ein Brevier. Berlin 1949, S. 316 (im Faks.)</span>
                                                               
-                                                            <div class="collapse" id="source_557fa8d23128e28472d6ab077a63587d">
+                                                            <div class="collapse" id="source_134ac613929bee20f1ae68c2a5d79b32">
                                                                 
                                                             </div>
                                                         </div>
@@ -537,9 +535,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (XVII), Bl. 91v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ec6b079c9bd8a98cdd4e391ba23e7408"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_d4b859ee748babe312fd6f1444410790"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_ec6b079c9bd8a98cdd4e391ba23e7408">
+                                        <div class="collapse apparatus-details" id="source_d4b859ee748babe312fd6f1444410790">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>durchgehend lateinisch geschrieben</li>
@@ -658,7 +656,7 @@
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e5" class="apparatus-link">1.</a></div>
                                                 <div id="d10e5" class="apparatusEntry col-11" data-title="Lesarten" data-counter="1" data-href="#d10e5">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
-                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">A Monsieur le Comte <a class="preview persons A000479" href="">Alphonse Clarke de Feltre</a>. Page de S: M: Charles X rue de la barouillère No 10. <a class="preview places A130008" href="">Paris</a>.</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">A Monsieur le Comte <a class="preview persons A000479" href="">Alphonse Clarke de Feltre</a>. Page de S: M: Charles X rue de la barouillère No 10. <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a>.</span>“</span></div>
                                                 </div>
                                             </div>
                                         </li>
@@ -747,8 +745,8 @@
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e125" class="apparatus-link">11.</a></div>
                                                 <div id="d10e125" class="apparatusEntry col-11" data-title="Lesarten" data-counter="11" data-href="#d10e125">
-                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview persons A002068" href="">Charles Maria B: de Weber</a></span>“</span></div>
-                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg"><a class="preview persons A002068" href="">CMvW:</a></span>“</span></div>
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Charles Maria B: de Weber</a></span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">CMvW:</a></span>“</span></div>
                                                 </div>
                                             </div>
                                         </li>
@@ -777,7 +775,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042464</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042464</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -837,6 +835,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -895,22 +896,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

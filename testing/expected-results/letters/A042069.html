@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Könneritz, Hans Heinrich von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -43,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Weber habe ihn bereits für seine ausbleibende Antwort durch Geschäftsüberlastung entschuldigt; der König habe am 29. November bewilligt ihn auf 3 Monate zur Probe anzustellen und bei Bestehen mit 700 rh anzustellen; von der Probezeit sei der König nicht abzubringen; Gegenstand des Dienstgeschäfts sei noch mündlich zu verhandeln, u.a. aber Kirchdienst, ältere Opern dirigieren, Vorproben zu Opern halten; legt ihm als Abschlagszahlung einen Creditbrief bei","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Hans Heinrich von Könneritz an Johann Gänsbacher in Innsbruck. Dresden, Montag, 1. Dezember 1823","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042069","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001045/Korrespondenz/A042069","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001045","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001045"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -251,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001045/Korrespondenz/A042069/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001045/Korrespondenz/A042069/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -361,7 +359,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A000537/Korrespondenz/A041682.html">1821-09-12</a>:  von  <a href="" class="preview A000537 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000117/Korrespondenz/A042017.html">1823-07-17</a>:  von  <a href="" class="preview A000117 persons"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
@@ -383,11 +381,11 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000584" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000537" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001045" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -415,13 +413,13 @@
                                         <div class="teiLetter_opener">
              <p class="teiLetter_salute">Wohlgeborner <a class="preview persons A000584" href="">Herr</a>.</p>
             </div>
-                                        <p>Der Kapellmeister <a class="preview persons A002068" href="">von Weber</a> hat es gefälligst übernommen, mich über die unterlaßene Beantwortung Ihres schon vor geraumer Zeit an mich gerichteten Briefes zu entschuldigen.</p>
+                                        <p>Der Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a> hat es gefälligst übernommen, mich über die unterlaßene Beantwortung Ihres schon vor geraumer Zeit an mich gerichteten Briefes zu entschuldigen.</p>
                                         <p>Der geregelte, nie aus seiner Ordnung heraustretende GeschäftsGang hat die Entscheidung Ihres Wunsches verzögert und auch jetzt noch einen Umstand unbeseitigt gelaßen, der zwar nicht für mich, doch aber für <a class="preview persons A000584" href="">Ew. Wohlgebornen</a>, der Sie mit den hiesigen Verhältnißen ganz unbekannt sind, bedenklich erscheinen könnte. - <a class="preview persons A000537" href="">S. M. der König</a> haben nämlich nach mancherlei Unterhandlungen durch ein Allerhöchstes Rescript vom <span class="tei_date">29ten <span class="tei_hi_latintype">Novbr.</span>  d. J.</span> mich angewiesen,</p>
                                         <p><span class="tei_segBlock textAlign-center">"<a class="preview persons A000584" href="">Ew. Wohlgebornen</a> zuvörderst auf drei Monate gegen Zusicherung einer monatlichen <span class="tei_hi_latintype">Gratification</span> von 100 rh. mit Einschluß der Reisekosten anher zu berufen, zugleich aber Ihnen die Versicherung zu geben, daß, wenn Sie während dieser Zeit den Erwartungen entsprechen, Sie sodann mit einem jährlichen Gehalt von sieben hundert Thl. oder 1050 <span class="tei_hi_latintype">G. E. G.</span> als Musikmeister angestellt werden sollen.</span></p>
-                                        <p>Ich begreife sehr wohl, daß <a class="preview persons A000584" href="">Ew. Wohlgebornen</a> die dreimonatliche PrüfungsZeit bedenklich erscheinen muß, inzwischen waren <a class="preview persons A000537" href="">S. Maj:</a> durchaus nicht davon abzubringen und ich habe schon sehr viel erlangt, daß die Prüfung nicht auf <span class="tei_del">drei</span><a class="noteMarker" id="backref-d10e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e55">‡</a> ein ganzes Jahr sondern nur auf drei Monate festgestellt worden ist. Wer inzwischen mit der DenkungsArt <a class="preview persons A000537" href="">S. M.</a> bekannt ist und den Geschäftsgang kennt, wird Sie über diesen Umstand beruhigen können und ich muß es nunmehro Ihrem Ermeßen überlaßen, ob Sie sofort Ihre Entlaßung aus dem K. Oester: Dienst suchen oder einstweilen nur mit einem Urlaub anhero kommen wollen. Der beiliegende Brief des Kapellmeisters <a class="preview persons A002068" href="">von Weber</a> wird Ihnen das Nähere angeben.</p>
+                                        <p>Ich begreife sehr wohl, daß <a class="preview persons A000584" href="">Ew. Wohlgebornen</a> die dreimonatliche PrüfungsZeit bedenklich erscheinen muß, inzwischen waren <a class="preview persons A000537" href="">S. Maj:</a> durchaus nicht davon abzubringen und ich habe schon sehr viel erlangt, daß die Prüfung nicht auf <span class="tei_del">drei</span><a class="noteMarker" id="backref-d10e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e55">‡</a> ein ganzes Jahr sondern nur auf drei Monate festgestellt worden ist. Wer inzwischen mit der DenkungsArt <a class="preview persons A000537" href="">S. M.</a> bekannt ist und den Geschäftsgang kennt, wird Sie über diesen Umstand beruhigen können und ich muß es nunmehro Ihrem Ermeßen überlaßen, ob Sie sofort Ihre Entlaßung aus dem K. Oester: Dienst suchen oder einstweilen nur mit einem Urlaub anhero kommen wollen. Der beiliegende Brief des Kapellmeisters <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a> wird Ihnen das Nähere angeben.</p>
                                         <p>Was Ihr eigentliches Dienstgeschäft betrift, so ist zur Zeit noch nichts festgestellt worden und da es eigentlich eine neue Stelle ist, so würde dieses auch mehr Gegenstand der mündlichen Unterhandlung bleiben. Nur soviel glaube ich <a class="preview persons A000584" href="">Ew. Wohlgebornen</a> andeuten zu müßen, daß Sie wahrscheinlich</p>
                                         <ol class="tei_orderedList">
-                                            <li><span class="tei_segBlock textAlign-center">eine bestimmte Woche <span class="tei_unclear">im<a class="noteMarker" id="backref-d10e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e74">‡</a></span><a class="noteMarker" id="backref-c_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_001">*</a> KirchenDienst bekommen und mit den übrigen Dirigenten nach Beschaffenheit der Umstände wechseln.</span></li>
+                                            <li><span class="tei_segBlock textAlign-center">eine bestimmte Woche <span class="tei_unclear">im<a class="noteMarker" id="backref-d10e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e74">‡</a></span><a class="noteMarker" id="backref-c_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#c_001">*</a> KirchenDienst<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090099.html">T</a> bekommen und mit den übrigen Dirigenten nach Beschaffenheit der Umstände wechseln.</span></li>
                                             <li><span class="tei_segBlock textAlign-center"> ältere Opern dirigiren, die bisher nicht von den KapellMeistern in Folge Ihrer Contracte dirigirt wurden, sondern dem Kirchen<span class="tei_hi_latintype">Compositeur</span> überlaßen waren.</span></li>
                                             <li><span class="tei_segBlock textAlign-center"> Vorproben von den Opern zu halten, worüber jedoch eine beßere und bestimmtere Instruction als die des bisherigen MusikMeisters und Kirchen<span class="tei_hi_latintype">Compositeurs</span> abgefaßt werden wird.</span></li>
                                         </ol>
@@ -480,9 +478,9 @@
                                         
                                         <span>Innsbruck (A), Tiroler Landesmuseum Ferdinandeum, Musiksammlung (A-Imf)<br /><i>Signatur</i>: Nr. 11</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_e4880a8561a1196ff8a29e1b35d333ef"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_152c7e7a2324aa64a2c0b144e57dcf94"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e4880a8561a1196ff8a29e1b35d333ef">
+                                        <div class="collapse apparatus-details" id="source_152c7e7a2324aa64a2c0b144e57dcf94">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (3 b. S. o. Adr.)</li>
@@ -503,7 +501,14 @@
                             </ul>
                         </div>                   
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Themenkommentare</h3>
+                            <ul class="tei_list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090099.html"><span class="tei_title"><span class="tei_persName">Webers</span> „Kirchendienste“ in der Dresdner Katholischen Hofkirche</span></a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
@@ -555,7 +560,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042069</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042069</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -615,6 +620,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -673,22 +681,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

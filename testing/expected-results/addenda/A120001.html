@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","description":"Addenda","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"WeGA, Serie III, Bd. 5: Der Freischütz, Partitur. Addenda und Corrigenda","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120001","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120001","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","description":"Addenda","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"WeGA, Serie III, Bd. 5: Der Freischütz, Partitur. Addenda und Corrigenda","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120001","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120001","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -286,7 +284,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120001/backlinks.html">Rückverweise</a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120001/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120001/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -302,13 +300,13 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001075" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001135" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001CE8" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -389,6 +387,13 @@
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td>48</td>
+                                                        <td><span class="tei_hi_bold">Nr. 1</span></td>
+                                                        <td>8<span class="tei_hi_superscript">1</span></td>
+                                                        <td>Fl 1</td>
+                                                        <td>Die erste Viertel muss <span class="tei_hi_italic">a</span><span class="tei_hi_superscript">2</span>“ sein, nicht <span class="tei_hi_italic">cis</span><span class="tei_hi_superscript">3</span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>80f.</td>
@@ -1113,8 +1118,8 @@
                                         </div>
                                         <p>Für die Mitteilung von in der Partitur vorkommenden Druckfehlern, Inkonsequenzen und Unschönheiten im Satz sowie sonstigen Hinweisen sei Herrn Dr. Isaac Selya von der Queen City Opera in Cincinnati (USA) und vor allem Herrn Tim Hüttemeister (Detmold) sehr herzlich gedankt!</p>
                                     </div>
-                                    <div id="d12e1738">
-                                        <h3 id="d12e1739">Anmerkungen und Ergänzungen zum Kritischen Bericht (Bd. 5b)</h3>
+                                    <div id="d12e1762">
+                                        <h3 id="d12e1763">Anmerkungen und Ergänzungen zum Kritischen Bericht (Bd. 5b)</h3>
                                         <div class="table-wrapper">
                                             <table id="Tabelle1" class="table">
                                                 <tbody>
@@ -1139,7 +1144,7 @@
                                                         <td>Zur <span class="tei_hi_bold">Partiturkopie Nr. 16 für <a class="preview places A130040" href="">Altenburg</a></span> (vor dem 30. März 1822): Diese Kopie tauchte jüngst bei der Katalogisierung der Altenburger Bestände für RISM wieder auf, worauf freundlicherweise Herr <span class="681144632671041141051151161111121043277101105120110101114">Dr. Christoph Meixner</span> (Thüringisches Landesmusikarchiv, Hochschule für Musik Franz Liszt, <a class="preview places A130014" href="">Weimar</a>) hinwies, der diese Partitur dann auch vorab zu einer ersten Autopsie zur Verfügung stellte.
               <br /><span class="tei_hi_bold">K-pt<span class="tei_hi_subscript">16</span></span> (<span class="tei_hi_italic">D-WRHA</span>)
                 <br />Partiturkopie für <a class="preview places A130040" href="">Altenburg</a>; Bd. 1 [= Akt I], Bd. 2 [= Akt II], Bd. 3 [= Akt III]; 30,5 x 23,5cm quer
-                <span class="tei_hi_small-caps">Titelblatt</span>: „<span class="tei_hi_latintype">Der Freyschütz | Romantische Oper in drey Aufzügen | Gedicht, von <a class="preview persons A001002" href="">Fried: Kind</a> | Musik, von <a class="preview persons A002068" href="">Carl Maria von Weber</a></span>“
+                <span class="tei_hi_small-caps">Titelblatt</span>: „<span class="tei_hi_latintype">Der Freyschütz | Romantische Oper in drey Aufzügen | Gedicht, von <a class="preview persons A001002" href="">Fried: Kind</a> | Musik, von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>“
                 <br /><span class="tei_hi_small-caps">Schreiber</span>: <a class="preview persons A001075" href="">Carl Gottlob Kretzschmar</a> (Akt I) und <a class="preview persons A001135" href="">Johann Gottlieb Lauterbach</a> (Akt II–III)
                 <br /><span class="tei_hi_small-caps">Datierung</span>: vor dem 30. März 1822
                 <br /><span class="tei_hi_small-caps">Provenienz</span>: Hofkapelle Altenburg 
@@ -1257,7 +1262,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120001</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120001</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -1315,6 +1320,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -1374,22 +1382,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

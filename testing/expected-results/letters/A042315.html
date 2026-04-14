@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"übersendet Text zur Athalia-Arie; die Funk wisse noch nicht, ob sie für den 3. Tag noch etwas besseres finde","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an den Klopstock-Verein in Quedlinburg. Dresden, Sonntag, 20. Juni 1824","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042315","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042315","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"übersendet Text zur Athalia-Arie; die Funk wisse noch nicht, ob sie für den 3. Tag noch etwas besseres finde","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an den Klopstock-Verein in Quedlinburg. Dresden, Sonntag, 20. Juni 1824","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042315","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042315","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042315/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042315/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042315/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -367,13 +365,13 @@
                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042302.html">1824-05-27</a>:  an  <a href="" class="preview A000561 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">1824-03-27</a>:  von  <a href="" class="preview A001864 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A080005/Korrespondenz/A042080.html">1823-12-04</a>:  von  <a href="" class="preview A080005 orgs"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042338.html">1824-07-31</a>:  an  <a href="" class="preview A000213 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042320.html">1824-06-24</a>:  an  <a href="" class="preview A000235 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042699.html">1826-02-21</a>:  von  <a href="" class="preview A000213 persons"></a>
@@ -394,9 +392,9 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000565" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080004" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -441,7 +439,7 @@
                                         <p>Ihrem <a class="preview letters A047266" href="">Wunsche</a> gemäß folgt hier der Text der <a class="preview works A020062" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Athalia</span></span></a>. <span class="tei_hi_latintype">Mlle: <a class="preview persons A000565" href="">Funk</a></span> war sehr erfreut über Ihre gütige Zuschrift; nur kann Sie sich noch nicht entscheiden ob sie den 3<span class="tei_hi_superscript">t</span> Tag noch etwas zwekmäßiges zu singen finden wird.      Ehrlich gesagt, möchten wir ewig Geplagten gerne diesen Tag dem schönen Harze widmen können.      doch dieß alles bespricht sich beßer mündlich.      den 28<span class="tei_hi_superscript">t</span> Abends werden wir mit Gottes Hülfe in <a class="preview places A130049" href="">Quedlinburg</a> eintreffen.</p>
                                         <p class="tei_closer textAlign-left">
             <span class="tei_segBlock textAlign-center">Mit vollkommenster Hochachtung<br /></span>
-         <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">CMvWeber</a></span></span>
+         <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">CMvWeber</a></span></span>
          
             <span class="tei_dateline textAlign-left"> <span class="tei_hi_latintype"><a class="preview places A130003" href="">Dr:</a></span> d: 20<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Juny</span> 1824.</span>
          </p>
@@ -497,9 +495,9 @@
                                         
                                         <span>Quedlinburg (D), Städtische Museen, Archiv Klopstockhaus<br /><i>Signatur</i>: V/1127/S u. Beilage V/1129/S</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_00fb30a7b2c9ef7cef0824fa36cdd51b"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_86c1bb38b48d26b22a882e3caa6b0a66"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_00fb30a7b2c9ef7cef0824fa36cdd51b">
+                                        <div class="collapse apparatus-details" id="source_86c1bb38b48d26b22a882e3caa6b0a66">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl.? (3 b. S. o. Adr.)</li>
@@ -514,9 +512,19 @@
                                                     <li>
                                                         <div>
                                                             
-                                                            <span id="firstPrint" class="tei_bibl">Thom, Eitelfriedrich: „Zur Entwicklung mitteldeutscher Musikfeste in der ersten Hälfte des 19. Jahrhunderts“, in: Beiträge zur Geschichte des Konzerts. Fs. Siegfried Kross, hg. v. Reinmar Emans u. Matthias Wendt, Bonn 1990, S. 176</span>
+                                                            <span>Selmar Kleemann, Die Hundertjahrfeier der Geburt Klopstocks in Quedlinburg am 2. Juli 1824, Quedlinburg: Ernst Klöppel [1924], S. 8 (gekürzt)</span>
                                                               
-                                                            <div class="collapse" id="source_71e56b73b57b2bc7e687726e3101be5a">
+                                                            <div class="collapse" id="source_553c17cbd5f32d81fb1a85ac940653d2">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                            <li>
+                                                        <div>
+                                                            
+                                                            <span class="tei_bibl">Thom, Eitelfriedrich: „Zur Entwicklung mitteldeutscher Musikfeste in der ersten Hälfte des 19. Jahrhunderts“, in: „Beiträge zur Geschichte des Konzerts“. Fs. Siegfried Kross, hg. v. Reinmar Emans u. Matthias Wendt, Bonn 1990, S. 176</span>
+                                                              
+                                                            <div class="collapse" id="source_d3acdab411914f4d368dc362f03b26af">
                                                                 
                                                             </div>
                                                         </div>
@@ -603,7 +611,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042315</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042315</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -663,6 +671,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -721,22 +732,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

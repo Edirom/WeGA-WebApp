@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="" />
@@ -45,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"gibt genaue Anweisungen zu Aufbau und Verwendungen von Requisiten und Bühnenkulissen sowie zu Aktionen im Freischütz, betrifft überwiegend die Wolfsschluchtszene","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Webers Bemerkungen zur szenischen Umsetzung des Freischütz","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031689","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031689","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"gibt genaue Anweisungen zu Aufbau und Verwendungen von Requisiten und Bühnenkulissen sowie zu Aktionen im Freischütz, betrifft überwiegend die Wolfsschluchtszene","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Webers Bemerkungen zur szenischen Umsetzung des Freischütz","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031689","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031689","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -224,7 +221,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -253,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031689/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031689/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -395,19 +392,19 @@
                                         <p><span class="tei_hi_underline2andMore">Finale des 2. Aktes</span>. von den 2 Gewittern kann nur eines angebracht werden, da das ganze Theater so erbaut ist, daß der Mond selbst wenig Raum mehr im Hintergrunde behält.</p>
                                         <p><span class="tei_hi_underline1">Der Todtenkopf</span>  ist <span class="tei_hi_italic">cachirt.</span></p>
                                         <p><span class="tei_hi_underline1">Die Eule</span>  von Holz sizt fest, und bewegt Kopf und Flügel, die Augen transparent.</p>
-                                        <p><span class="tei_hi_underline1">Samiel</span>  erschien in Berlin <span class="tei_hi_underline1">im Felsen</span>. <span class="7597115112101114">Kasper</span> macht seinen Kreis etwas seitwärts, um den größern Theil des Theaters für die Erscheinungen frey zu halten. an der Kouliße steht dann ein Felsenstük das auf Marly<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> gemahlt ist. hinter diesem ist eine Vorrichtung daß es von hinten schnell erleuchtet werden kann. so lange es <span class="tei_hi_underline1">dunkel</span>  ist steht <span class="8397109105101108">Samiel</span> ungesehen dahinter, so wie es aber beleuchtet wird, bewährt der Marly /:oder grobe braune <span class="tei_hi_latintype">Gaçe</span>:/ seine Durchsichtigkeit. hier hatte man den <span class="8397109105101108">Samiel</span> mit einem langen Scharlachmantel bekleidet, auch einen <span class="tei_subst"><span class="tei_add">transparenten</span><a class="noteMarker" id="backref-d10e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e69">‡</a></span>  rothen Todtenkopf, darauf seinen Hut, gegegeben, um ihn in diesem Augenblik als Höllenfürst in seinen Schreknißen zu zeigen.</p>
+                                        <p><span class="tei_hi_underline1">Samiel</span>  erschien in Berlin <span class="tei_hi_underline1">im Felsen</span>. <span class="7597115112101114">Kasper</span> macht seinen Kreis etwas seitwärts, um den größern Theil des Theaters für die Erscheinungen frey zu halten. an der Kouliße steht dann ein Felsenstük das auf Marly<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> gemahlt ist. hinter diesem ist eine Vorrichtung daß es von hinten schnell erleuchtet werden kann. so lange es <span class="tei_hi_underline1">dunkel</span>  ist steht <span class="8397109105101108">Samiel</span> ungesehen dahinter, so wie es aber beleuchtet wird, bewährt der Marly /:oder grobe braune <span class="tei_hi_latintype">Gaçe</span>:/ seine Durchsichtigkeit. hier hatte man den <span class="8397109105101108">Samiel</span> mit einem langen Scharlachmantel bekleidet, auch einen <span class="tei_subst"><span class="tei_add">transparenten</span><a class="noteMarker" id="backref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a></span>  rothen Todtenkopf, darauf seinen Hut, gegegeben, um ihn in diesem Augenblik als Höllenfürst in seinen Schreknißen zu zeigen.</p>
                                         <p><span class="tei_hi_underline1">Der Todtenkopf mit dem Hirschfänger</span>  geht mit der Versenkung hinab, und mit eben dieser komt der kleine Heerd mit glimenden Kohlen <span class="tei_hi_italic">pp</span>  herauf.</p>
-                                        <p>Reisig wird nicht aufgelegt, weil es zu viel <span class="tei_subst"><span class="tei_add">Geruch</span><a class="noteMarker" id="backref-d10e84" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e84">‡</a></span> macht. hingegen liegt etwas Pulver von bengalischem Feuer, oder sonstig grünlich brennendes dabei, wovon <span class="7597115112101114">Kasper</span> unbemerkt vom Zuschauer zuweilen etwas in die Kohlen wirft.</p>
+                                        <p>Reisig wird nicht aufgelegt, weil es zu viel <span class="tei_subst"><span class="tei_add">Geruch</span><a class="noteMarker" id="backref-d10e85" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e85">‡</a></span> macht. hingegen liegt etwas Pulver von bengalischem Feuer, oder sonstig grünlich brennendes dabei, wovon <span class="7597115112101114">Kasper</span> unbemerkt vom Zuschauer zuweilen etwas in die Kohlen wirft.</p>
                                         <p>Die <span class="tei_hi_underline1">Felsenspitze</span>  auf der <span class="7797120">Max</span> erscheint wurde wegen des Gesangs auch ganz vorn, aber sehr hoch angebracht. um aber die Dekoration nicht zu dekken hatte sie folgende Form [Zeichnung, s. Faksimile]</p>
                                         <p>und <span class="7797120">Max</span> kletterte hinten herunter. </p>
-                                        <p><span class="tei_hi_underline1">Die Erscheinung</span>  der Mutter, und <span class="6510397116104101110115">Agathens</span> von Kindern dargestellt waren im Hintergrunde auch in den Felsen angebracht, eben so hinter Marly, und nur durch die neben ihnen befindlichen schnell auf sie gerichteten Lampen, sichtbar und unsichtbar nach Erforderniß.</p>
+                                        <p><span class="tei_hi_underline1">Die Erscheinung</span>  der Mutter, und <span class="6510397116104101110115">Agathens</span> von Kindern dargestellt waren im Hintergrunde auch in den Felsen angebracht, eben so hinter Marly, und nur durch die neben ihnen befindlichen schnell auf sie gerichteten Lampen, sichtbar und <span class="tei_pb" title="Seitenumbruch"> | </span> unsichtbar nach Erforderniß.</p>
                                         <p>da das Hüpfen der <span class="tei_hi_underline1">Waldvögel</span>  leicht lächerlich wird. ließ man nach <span class="tei_hi_underline1"><span class="tei_hi_latintype">Eins</span></span>,  auch Schlangen, und Kröten am Boden sich bewegen, und Fledermäuse an Drähten vorbeyschwirren.</p>
-                                        <p>Der <span class="tei_hi_underline1">Eber</span>  kann ein halb <span class="tei_hi_italic">cachirter </span>sein. er läuft in einen Kanal <span class="tei_hi_underline1">hinter <span class="7597115112101114">Kasper</span></span>  über das Theater. <span class="tei_add tei_hi_superscript">/: so wie überhaupt alle Erscheinungen nicht zu weit vorn sein dürfen:/<a class="noteMarker" id="backref-d10e136" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e136">‡</a></span>  Er braucht nicht beweglich zu sein, weil er zu schnell vorüber geht als daß man dieß bemerken könnte.</p>
-                                        <p>Die <span class="tei_hi_underline1">feurigen Räder</span>, sind leichte <span class="tei_add tei_hi_superscript">Räder von<a class="noteMarker" id="backref-d10e144" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e144">‡</a></span>  Reifen an einer Stellage; die in dem Kanal übers</p>
+                                        <p>Der <span class="tei_hi_underline1">Eber</span>  kann ein halb <span class="tei_hi_italic">cachirter </span>sein. er läuft in einen Kanal <span class="tei_hi_underline1">hinter <span class="7597115112101114">Kasper</span></span>  über das Theater. <span class="tei_add">/: so wie überhaupt alle Erscheinungen nicht zu weit vorn sein dürfen:/<a class="noteMarker" id="backref-d10e139" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e139">‡</a></span>  Er braucht nicht beweglich zu sein, weil er zu schnell vorüber geht als daß man dieß bemerken könnte.</p>
+                                        <p>Die <span class="tei_hi_underline1">feurigen Räder</span>, sind leichte <span class="tei_add">Räder von<a class="noteMarker" id="backref-d10e147" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e147">‡</a></span>  Reifen an einer Stellage; die in dem Kanal übers</p>
                                         <p>Theater läuft: [Zeichnung, s. Faksimile]  an diesen Rädern die sich natürlich an einer Axe drehn, sind kleine Raketen befestiget. sobald diese angezündet sind drehen sie von selbst die Räder mit Schnelligkeit.</p>
                                         <p><span class="tei_hi_underline1">Die wilde Jagd</span>. sind Figuren von Jägern, Hunden, Hirschen, als Skelette, oder den Hals umgedreht <span class="tei_hi_italic">pp</span>  auf Leinwand gemahlt, weiß und grau, und dann ausgeschnitten wieder auf Marly geklebt und so in langen Streifen und Zügen unter den Soffitten über das Theater gezogen. da man den Marly nicht sieht, so schweben alle Gestalten frey in der Luft.</p>
                                         <p>Am Schluße müssen alle Regen, Einschlage und Donner Maschinen in Bewegung sein. Die <span class="tei_hi_underline2andMore">Irrlichter</span>, in Spiritus getränkte Schwämchen an Drähten und die Flammen aus der Erde müßen haufig sein. in den hinteren Koulißen hatte man wirklich Tannenbäume herausstürzen laßen die dann krachten und praßelten.</p>
-                                        <p><span class="tei_hi_underline2andMore"><span class="8397109105101108">Samiel</span></span>  steht hinter dem verdorrten Baume und hält seinen Arm so hinter deßen Ast, da<span class="tei_subst"><span class="tei_add">ß</span><a class="noteMarker" id="backref-d10e166" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e166">‡</a></span> <span class="7797120">Max</span> ihn schon gefaßt hält wenn der Baum verschwindet.</p>
+                                        <p><span class="tei_hi_underline2andMore"><span class="8397109105101108">Samiel</span></span>  steht hinter dem verdorrten Baume und hält seinen Arm so hinter deßen Ast, da<span class="tei_subst"><span class="tei_add">ß</span><a class="noteMarker" id="backref-d10e169" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e169">‡</a></span> <span class="7797120">Max</span> ihn schon gefaßt hält wenn der Baum verschwindet.</p>
                                     </div>
                                 </div>
                     </div>
@@ -429,7 +426,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Webers Niederschrift der nachfolgend wiedergegebenen Bemerkungen bezüglich szenischer Effekte bzw. Requisiten, die bis auf den ersten Absatz ausschließlich die Umsetzung des II. Finales der Oper betreffen, wird allgemein fälschlich mit der <a class="preview places A130003" href="">Dresdner</a> Einstudierung (EA 26. Januar 1822) in Verbindung gebracht. Eine erste falsche Spur in dieser Hinsicht legte <a class="preview persons A000914" href="">Friedrich Wilhelm Jähns</a>, der das ihm gehörige Autograph des Weber-Textes im Katalog seiner Weberiana-Sammlung folgendermaßen annotierte: „Wahrscheinlich amtlich für die dresdener Hofbühne geschrieben“. Eine dermaßen ausführliche Darlegung für den Dresdner Regisseur <a class="preview persons A000799" href="">Friedrich Hellwig</a> war allerdings nicht nötig, denn <a class="preview persons A000799" href="">Hellwig</a> hatte sich persönlich mit der <a class="preview places A130002" href="">Berliner</a> Inszenierung vertraut machen können. Webers Tagebuch gibt Hinweise zu dessen Berlin-Aufenthalt vom 9. bis 18. Juni 1821: Am ersten Tag besuchte <a class="preview persons A000799" href="">Hellwig</a> gemeinsam mit Weber den Bühnenbildner <a class="preview persons A000687" href="">Carl Gropius</a>; am 18. Juni, unmittelbar nach der Uraufführung, reiste er nach <a class="preview places A130003" href="">Dresden</a> zurück. Probenbesuche <a class="preview persons A000799" href="">Hellwigs</a> in <a class="preview places A130002" href="">Berlin</a> sind zu vermuten, allerdings nicht dokumentiert. Das Tagebuch ermöglicht auch die richtige Einordnung des Schriftstücks; am <a class="preview diaries A061903" href="">14. Januar 1822</a> vermerkte Weber darin: „Notizen Szenische zum <a class="preview works A020040" href="">Freyschützen</a> nach <a class="preview places A130007" href="">München</a>.“ Der Versand ist <a class="preview diaries A061907" href="">vier Tage später</a> nachgewiesen: „an <a class="preview persons A001894" href="">Stich</a> nebst Notizen […] geschrieben.“ Die Bemerkungen sind demnach für den Bayerischen Hoftheater-Intendanten <a class="preview persons A001894" href="">Joseph Stich</a> bestimmt, dürften also bei der <a class="preview places A130007" href="">Münchener</a> Erstaufführung (15. April 1822) berücksichtigt worden sein. Erstaunlicherweise fand Webers Text keine Aufnahme in die Ausgaben seiner Schriften; erstmals vollständig abgedruckt wurde er von <a class="preview persons A006378" href="">Schünemann</a> (S. 64f.).</p>
+                                        <p>Webers Niederschrift der nachfolgend wiedergegebenen Bemerkungen bezüglich szenischer Effekte bzw. Requisiten, die bis auf den ersten Absatz ausschließlich die Umsetzung des II. Finales der Oper betreffen, wird allgemein fälschlich mit der <a class="preview places A130003" href="">Dresdner</a> Einstudierung (EA 26. Januar 1822) in Verbindung gebracht. Eine erste falsche Spur in dieser Hinsicht legte <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm Jähns</a>, der das ihm gehörige Autograph des Weber-Textes im Katalog seiner Weberiana-Sammlung folgendermaßen annotierte: „Wahrscheinlich amtlich für die dresdener Hofbühne geschrieben“. Eine dermaßen ausführliche Darlegung für den Dresdner Regisseur <a class="preview persons A000799" href="">Friedrich Hellwig</a> war allerdings nicht nötig, denn <a class="preview persons A000799" href="">Hellwig</a> hatte sich persönlich mit der <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berliner</a> Inszenierung vertraut machen können. Webers Tagebuch gibt Hinweise zu dessen Berlin-Aufenthalt vom 9. bis 18. Juni 1821: Am ersten Tag besuchte <a class="preview persons A000799" href="">Hellwig</a> gemeinsam mit Weber den Bühnenbildner <a class="preview persons A000687" href="">Carl Gropius</a>; am 18. Juni, unmittelbar nach der Uraufführung, reiste er nach <a class="preview places A130003" href="">Dresden</a> zurück. Probenbesuche <a class="preview persons A000799" href="">Hellwigs</a> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> sind zu vermuten, allerdings nicht dokumentiert. Das Tagebuch ermöglicht auch die richtige Einordnung des Schriftstücks; am <a class="preview diaries A061903" href="">14. Januar 1822</a> vermerkte Weber darin: „Notizen Szenische zum <a class="preview works A020040" href="">Freyschützen</a> nach <a class="preview places A130007" href="">München</a>.“ Der Versand ist <a class="preview diaries A061907" href="">vier Tage später</a> nachgewiesen: „an <a class="preview persons A001894" href="">Stich</a> nebst Notizen […] geschrieben.“ Die Bemerkungen sind demnach für den Bayerischen Hoftheater-Intendanten <a class="preview persons A001894" href="">Joseph Stich</a> bestimmt, dürften also bei der <a class="preview places A130007" href="">Münchener</a> Erstaufführung (15. April 1822) berücksichtigt worden sein. Erstaunlicherweise fand Webers Text keine Aufnahme in die Ausgaben seiner Schriften; erstmals vollständig abgedruckt wurde er von <a class="preview persons A006378" href="">Schünemann</a> (S. 64f.).</p>
                                     </div>
                         </div>
                         
@@ -466,9 +463,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. II A. g, Nr. 2</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_bb601b0d818c5ccf334931818a94e664"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_9e4fcc648fbb55761fa9643d3a49fbf3"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_bb601b0d818c5ccf334931818a94e664">
+                                        <div class="collapse apparatus-details" id="source_9e4fcc648fbb55761fa9643d3a49fbf3">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>2 b. S.</li>
@@ -484,7 +481,7 @@
                                                             
                                                             <span class="tei_bibl">Georg Schünemann, Einleitung, in: <span class="tei_hi_italic">Der Freischütz. Nachbildung d. Eigenschrift aus dem Besitz der Preußischen Staatsbibliothek; zur Zweihundertjahrfeier der Berliner Staatsoper 1742–1942</span>, hg. von Georg Schünemann, Berlin 1942, S. 64f.</span>
                                                               
-                                                            <div class="collapse" id="source_dc9791747682974b0854c01bcba9fc19">
+                                                            <div class="collapse" id="source_61ed4dfad29c5cf2893b094f0aa1fdb5">
                                                                 
                                                             </div>
                                                         </div>
@@ -494,7 +491,7 @@
                                                             
                                                             <span class="biblio-entry book"><span class="author">Carl Maria von Weber</span> und <span class="author">Friedrich Kind</span>, <span class="title">Der Freischütz. Kritische Textbuch-Edition</span>, hg. von <span class="editor">Solveig Schreiter</span>, <span class="placeNYear">München 2007</span>, S. 244–246</span>
                                                               
-                                                            <div class="collapse" id="source_d52040abcba9152007c9cd5d701de843">
+                                                            <div class="collapse" id="source_03c3011144a6ce0a0caa842069476706">
                                                                 
                                                             </div>
                                                         </div>
@@ -519,32 +516,32 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e69" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e69" data-title="Ersetzung" data-counter="1" data-href="#d10e69"><span class="tei_lemma">„<span class="tei_add">transparenten</span>“</span>„feurigen“ durchgestrichen und ersetzt mit „<span class="tei_add">transparenten</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e70" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e70" data-title="Ersetzung" data-counter="1" data-href="#d10e70"><span class="tei_lemma">„<span class="tei_add">transparenten</span>“</span>„feurigen“ durchgestrichen und ersetzt mit „<span class="tei_add">transparenten</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e84" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e84" data-title="Ersetzung" data-counter="2" data-href="#d10e84"><span class="tei_lemma">„<span class="tei_add">Geruch</span>“</span>„Rauch“ überschrieben mit „<span class="tei_add">Geruch</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e85" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e85" data-title="Ersetzung" data-counter="2" data-href="#d10e85"><span class="tei_lemma">„<span class="tei_add">Geruch</span>“</span>„Rauch“ überschrieben mit „<span class="tei_add">Geruch</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e136" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e136" data-title="Hinzufügung" data-counter="3" data-href="#d10e136"><span class="tei_lemma">„/: so wie … vorn sein dürfen:/“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e139" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e139" data-title="Hinzufügung" data-counter="3" data-href="#d10e139"><span class="tei_lemma">„/: so wie … vorn sein dürfen:/“</span>am Rand hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e144" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e144" data-title="Hinzufügung" data-counter="4" data-href="#d10e144"><span class="tei_lemma">„Räder von“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e147" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e147" data-title="Hinzufügung" data-counter="4" data-href="#d10e147"><span class="tei_lemma">„Räder von“</span>am Rand hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e166" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e166" data-title="Ersetzung" data-counter="5" data-href="#d10e166"><span class="tei_lemma">„<span class="tei_add">ß</span>“</span>„s“ überschrieben mit „<span class="tei_add">ß</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e169" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e169" data-title="Ersetzung" data-counter="5" data-href="#d10e169"><span class="tei_lemma">„<span class="tei_add">ß</span>“</span>„s“ überschrieben mit „<span class="tei_add">ß</span>“</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -553,7 +550,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  wurde im Berliner Museum ausgestopft“</span>Vgl. auch Gottfried Mauersberger, „Der Adler der Wolfsschlucht. Eine Randnotiz zum 200. Geburtstag von Carl Maria von Weber“, in: <span class="tei_hi_italic">Der Falke</span> (ornithologische Monatsschrift), Jg. 33 (1986), S. 363.</div>
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  wurde im Berliner Museum ausgestopft“</span>Vgl. auch Gottfried Mauersberger, <span class="tei_hi_italic">Der Adler der Wolfsschlucht. Eine Randnotiz zum 200. Geburtstag von Carl Maria von Weber</span>, in: <span class="tei_hi_italic"><span class="tei_hi_italic">Der Falke Monatsschrift für Ornithologie und Vogelschutz</span></span>, Jg. 33, Nr. 11 (November 1986), S. 363.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -588,7 +585,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031689</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031689</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -648,6 +645,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -706,22 +706,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

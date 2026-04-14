@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 13t geschrieben an Hartmann. Seidler. Bürde. Gänsbacher Häser. Nieser. Bader. Kannegießer. und sämtlichen Bühnen das Rundschreiben geschikt. 1. 6 …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Montag, 13. Februar 1826 ()","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A063443","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A063443","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -220,14 +218,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
                             </li>
                             <li>
                                 <span>A063443</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -298,10 +296,10 @@
                                     <a class="deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A063443/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A063443/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A063443/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -411,16 +409,16 @@
     <span class="tei_date">d: 13<span class="tei_hi_superscript">t</span></span> 
     <span class="payment_1"><span class="preview letters A046696 A042691 A042690 A042689" data-ref="   ">geschrieben an</span> <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A00129E" href="">Hartmann</a></span></span>. <span class="tei_hi_underline1"><a class="preview persons A001805" href="">Seidler</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000247" href="">Bürde</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000584" href="">Gänsbacher</a></span><br />
         <span class="tei_hi_underline1"><a class="preview persons A000752" href="">Häser</a></span>. <span class="tei_hi_underline1"><a class="preview persons A008739" href="">Nieser</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000074" href="">Bader</a></span>. <span class="tei_hi_underline1"><a class="preview persons A000966" href="">Kannegießer</a></span>. und sämtlichen<br />
-        Bühnen das <span class="preview writings A031682" data-ref="">Rundschreiben</span> <span class="preview letters A042660 A042661 A042662 A042663 A042665 A042666 A042667" data-ref="      ">geschikt</span>.	     </span> <br />
+        Bühnen das <span class="preview writings A031682" data-ref="">Rundschreiben</span> <span class="preview letters A042660 A042661 A042662 A042663 A042665 A042666 A042667 A042657" data-ref="       /exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042657.html">geschikt</span>.	     </span> <br />
     <span>Abschieds Visiten.</span> <span><span class="tei_hi_latintype">Conferenz</span>.</span> <span><span class="tei_hi_underline1">Mittag bei <a class="preview persons A000936" href="">Prinz Johann</a></span>.<br />
         <span class="tei_hi_underline1">Memorial wegen des Nachdruks des <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span> für <span class="tei_country">Bayern</span></span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>,<br />
         <span class="tei_hi_underline1">ihm übergeben</span>. zu <a class="preview persons A008384" href="">Globig</a> deßgleichen für <span class="tei_placeName"><span class="tei_country">Sachsen</span></span><a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>.</span><br />
     <span>zu <a class="preview persons A001410" href="">Nostiz</a>.</span> <span>Abends zu Hause.</span><br />
     <span class="payment_7">100 VisitenKarten	     </span> <br />
-    <span class="payment_8">den Rahmen zu meinem Bilde zu vergolden	     </span> <br />
+    <span class="payment_8">den Rahmen zu meinem Bilde<a class="noteMarker" id="backref-nlte01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#nlte01">*</a> zu vergolden	     </span> <br />
     <span class="payment_9">Bettzeug für die Leute 16 Ellen	    </span> <br />
     <span class="payment_10"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max</a> zu einem Kleid	    </span><br />
-    <span class="payment_11"><a class="preview persons A001025" href="">Klingemanns</a> Biographie	  </span>
+    <span class="payment_11"><a class="preview persons A001025" href="">Klingemanns</a> Biographie<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>	  </span>
    
 </p>
                                 </div>
@@ -464,9 +462,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_b4650bb78f5b054b34570d0b4288e362"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_49907800171cc14563a66e0aca66983b"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_b4650bb78f5b054b34570d0b4288e362">
+                                        <div class="collapse apparatus-details" id="source_49907800171cc14563a66e0aca66983b">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -506,6 +504,18 @@
                                                 <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  zu Globig deßgleichen für Sachsen“</span>Das sächsische <a class="preview writings A031460" href="">Privileg</a> wurde bereits am 15. Februar 1826 erteilt.</div>
                                             </div>
                                         </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-nlte01" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="nlte01" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#nlte01"><span class="tei_lemma">„…  den Rahmen zu meinem Bilde“</span>Gemeint ist der am Ölgemälde von <a class="preview persons A004147" href="">F. Schimon</a>, das Weber laut <a class="preview diaries A063414" href="">Tagebuch</a> am 15. Januar 1826 erhalten hatte.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note03"><span class="tei_lemma">„…  Klingemanns Biographie“</span>Vermutlich ist Klingemanns <span class="tei_hi_italic">Kunst und Natur. Blätter aus meinem Reisetagebuche</span> (Braunschweig: Meyer, 2 Bd., 1819 bzw. 1821 bzw. Neue Aufl. von 1823) gemeint.</div>
+                                            </div>
+                                        </li>
                                     </ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
@@ -532,7 +542,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A063443</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A063443</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -592,6 +602,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -650,22 +663,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Körner, Christian Gottfried" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047171" />
@@ -42,11 +42,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Empfehlungsschreiben für Christian Theodor Weinlig für dessen Bewerbung als Thomaskantor (s. a. den Empfehlungsbrief von Weber)","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Christian Gottfried Körner an Unbekannt in Leipzig. Berlin, Samstag, 8. März 1823","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047171","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008725/Korrespondenz/A047171","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008725","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008725"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -250,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -297,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008725/Korrespondenz/A047171/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008725/Korrespondenz/A047171/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -366,6 +364,8 @@
                                     <input type="checkbox" name="options" value="A00088C" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008725" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A080239" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
                                 </label>
                             </div>
                         </div>
@@ -381,7 +381,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130084" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -397,8 +397,8 @@
                                         <div class="teiLetter_opener">
                <p class="teiLetter_salute">Ew. Wohlgebohren</p>
                </div>
-                                        <p>haben mich durch einen schätzbaren Beweis Ihres Vertrauens erfreut, und ich eile Ihre Frage nach meinem besten Wissen und so unbefangen und ausführlich, als es die Wichtigkeit der Sache erfodert, zu beantworten.      Daß Herr <a class="preview persons A002101" href="">Weinlig</a> als Theoretiker sich auszeichnet, ist Ihnen schon bekannt. Von seinen Compositionen für die Kirche wird er wohl Proben eingereicht haben. Was ich von seinen früheren Arbeiten kenne, war ernst und tüchtig, und durch einen zweyjährigen Aufenthalt in <span class="tei_country">Italien</span> sind seine Formen gefälliger geworden.      Von seinem Personlichen kann ich Folgendes bezeugen. Sein Vater wünschte ihn zum Juristen auszubilden, er überwand seine Neigung zur Musik, studirte Rechtswissenschaft mit Fleiß und Erfolg, gestand aber dem Vater, der Hofrath in <a class="preview places A130003" href="">Dresden</a> war, daß es ihm schwer werde den frühern Trieb zur Kunst zu unterdrücken. Der Vater hoffte ihn noch durch Schwierigkeiten abzuschrecken und trug seinem <a class="preview persons A0007FA" href="">Bruder</a> (dem Cantor in <a class="preview places A130003" href="">Dresden</a>) auf, dem jungen <a class="preview persons A002101" href="">Weinlig</a> den Unterricht nicht leicht zu machen. Dieß geschah, aber der junge Mann harrte aus, und gieng so vorbereitet nach <span class="tei_country">Italien</span>, daß er  in die philharmonische Academie zu <a class="preview places A130084" href="">Bologna</a> aufgenommen würde. Er ist eine ächt deutsche Natur von stiller Kraft, die sich nicht glänzend und mit Geräusch ankündigt. In seinen Verhältnissen gegen die andern Lehrer und gegen die Schüler wird er sich männlich aber ruhig betragen. Daß er bey der Creuzschule seine Lage unerträglich fand, gereicht ihm bey den Umständen, die Ihnen schon bekannt sind, nicht zum Vorwurf.      Seit sieben Jahren habe ich ihn nicht gesehen, aber damals war er körperlich gesund und kräftig, auch keineswegs mürrisch, sondern in heitrer Gesellschaft von gutem Humor. Er ist nicht ohne eignes Vermögen, und seine Stunden werden ihm gut bezahlt, da er besonders als Gesanglehrer sich die italiänischen Kunstvortheile zu Bildung des Organs zu eigen gemacht hat. Eine Schülerin von ihm, die sich durch Wohlklang der Stimme, reine Intonation und schönen Vortrag auszeichnet, habe ich selbst gekannt. Ein sicheres Einkommen mag allerdings für den Familienvater anziehend seyn, auch reizt ihn wohl die Aussicht, einem brauchbaren Chore  vorzustehen, und zu eignen Arbeiten mehr Muße zu haben.      Kurz nach meiner Überzeugung, würde ich keine Bedenken haben, ihn zu einem Nachfolger <a class="preview persons A001671" href="">Schichts</a> zu empfehlen. Es fehlt ihm auch nicht an gelehrter und geselliger Ausbildung um in jedem Zirkel zu seinem Vortheil erscheinen zu können. - </p>
-                                        <p class="tei_closer textAlign-left">Die guten Nachrichten von dem <span class="preview persons A00263C A00088C" data-ref=" ">Kunzischen</span> Hause freuen mich sehr. Sagen Sie beyden viel Herzliches von mir und den Meinigen. Daß Sie sich in Berlin so selten machen ist nicht löblich. Bessern Sie sich und vergessen Sie unser Haus nicht.<span class="tei_segBlock textAlign-center">Hochachtungsvoll</span><span class="tei_segBlock textAlign-right">Ew. Wohlgebohren<br />ganz ergebenster<br /><a class="preview persons A008725" href=""><span class="tei_hi_spaced_out">Körner</span></a></span><span class="tei_dateline textAlign-left"><a class="preview places A130002" href="">Berlin</a> den 8. März 1723.</span></p>
+                                        <p>haben mich durch einen schätzbaren Beweis Ihres Vertrauens erfreut, und ich eile Ihre Frage nach meinem besten Wissen und so unbefangen und ausführlich, als es die Wichtigkeit der Sache erfodert, zu beantworten.      Daß Herr <a class="preview persons A002101" href="">Weinlig</a> als Theoretiker sich auszeichnet, ist Ihnen schon bekannt. Von seinen Compositionen für die Kirche wird er wohl Proben eingereicht haben. Was ich von seinen früheren Arbeiten kenne, war ernst und tüchtig, und durch einen zweyjährigen Aufenthalt in <span class="tei_country">Italien</span> sind seine Formen gefälliger geworden.      Von seinem Personlichen kann ich Folgendes bezeugen. Sein Vater wünschte ihn zum Juristen auszubilden, er überwand seine Neigung zur Musik, studirte Rechtswissenschaft mit Fleiß und Erfolg, gestand aber dem Vater, der Hofrath in <a class="preview places A130003" href="">Dresden</a> war, daß es ihm schwer werde den frühern Trieb zur Kunst zu unterdrücken. Der Vater hoffte ihn noch durch Schwierigkeiten abzuschrecken und trug seinem <a class="preview persons A0007FA" href="">Bruder</a> (dem Cantor in <a class="preview places A130003" href="">Dresden</a>) auf, dem jungen <a class="preview persons A002101" href="">Weinlig</a> den Unterricht nicht leicht zu machen. Dieß geschah, aber der junge Mann harrte aus, und gieng so vorbereitet nach <span class="tei_country">Italien</span>, daß er  in die philharmonische Academie zu <a class="preview places A130084" href="">Bologna</a> aufgenommen würde. Er ist eine ächt deutsche Natur von stiller Kraft, die sich nicht glänzend und mit Geräusch ankündigt. In seinen Verhältnissen gegen die andern Lehrer und gegen die Schüler wird er sich männlich aber ruhig betragen. Daß er bey der <a class="preview orgs A080239" href="">Creuzschule</a> seine Lage unerträglich fand, gereicht ihm bey den Umständen, die Ihnen schon bekannt sind, nicht zum Vorwurf.      Seit sieben Jahren habe ich ihn nicht gesehen, aber damals war er körperlich gesund und kräftig, auch keineswegs mürrisch, sondern in heitrer Gesellschaft von gutem Humor. Er ist nicht ohne eignes Vermögen, und seine Stunden werden ihm gut bezahlt, da er besonders als Gesanglehrer sich die italiänischen Kunstvortheile zu Bildung des Organs zu eigen gemacht hat. Eine Schülerin von ihm, die sich durch Wohlklang der Stimme, reine Intonation und schönen Vortrag auszeichnet, habe ich selbst gekannt. Ein sicheres Einkommen mag allerdings für den Familienvater anziehend seyn, auch reizt ihn wohl die Aussicht, einem brauchbaren Chore  vorzustehen, und zu eignen Arbeiten mehr Muße zu haben.      Kurz nach meiner Überzeugung, würde ich keine Bedenken haben, ihn zu einem Nachfolger <a class="preview persons A001671" href="">Schichts</a> zu empfehlen. Es fehlt ihm auch nicht an gelehrter und geselliger Ausbildung um in jedem Zirkel zu seinem Vortheil erscheinen zu können. - </p>
+                                        <p class="tei_closer textAlign-left">Die guten Nachrichten von dem <span class="preview persons A00263C A00088C" data-ref=" ">Kunzischen</span> Hause freuen mich sehr. Sagen Sie beyden viel Herzliches von mir und den Meinigen. Daß Sie sich in Berlin so selten machen ist nicht löblich. Bessern Sie sich und vergessen Sie unser Haus nicht.<span class="tei_segBlock textAlign-center">Hochachtungsvoll</span><span class="tei_segBlock textAlign-right">Ew. Wohlgebohren<br />ganz ergebenster<br /><a class="preview persons A008725" href=""><span class="tei_hi_spaced_out">Körner</span></a></span><span class="tei_dateline textAlign-left"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> den 8. März 1723.</span></p>
                                         <p class="clearer"></p>
                                     </div>
                                 </div>
@@ -412,7 +412,7 @@
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
                             <div>
-                                        <p>Empfehlungsschreiben für <a class="preview persons A002101" href="">Christian Theodor Weinlig</a> für dessen Bewerbung als Thomaskantor (s. a. den <a class="preview letters A042109" href="">Empfehlungsbrief</a> von <a class="preview persons A002068" href="">Weber</a>)</p>
+                                        <p>Empfehlungsschreiben für <a class="preview persons A002101" href="">Christian Theodor Weinlig</a> für dessen Bewerbung als Thomaskantor (s. a. den <a class="preview letters A042109" href="">Empfehlungsbrief</a> von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>)</p>
                                     </div>
                         </div>
                         
@@ -439,9 +439,9 @@
                                         
                                         <span>unbekannt</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_42aef517b96acbeda122e1ea744e3017"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_caf12b839af22eee52a5b7ddd861966a"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_42aef517b96acbeda122e1ea744e3017">
+                                        <div class="collapse apparatus-details" id="source_caf12b839af22eee52a5b7ddd861966a">
                                             
                                             
                                             <div>
@@ -454,7 +454,7 @@
                                                             
                                                             <span class="tei_bibl_firstPrint"><span class="tei_supplied"><span class="brackets_supplied">[</span>Anonym<span class="brackets_supplied">]</span></span>, <span class="tei_hi_italic">Zum musikalischen Konversationslexikon</span>, in: <span class="tei_hi_italic">Die Grenzboten</span>. Zeitschrift für Politik, Literatur und Kunst, Jg. 42, 1. Quartal, Leipzig 1883, S.571-579 (Brief auf S. 578)</span>
                                                               
-                                                            <div class="collapse" id="source_1029677116d1090645d32281463694cc">
+                                                            <div class="collapse" id="source_2692e2fc9ec29d26f99226ec64e63b5e">
                                                                 
                                                             </div>
                                                         </div>
@@ -502,7 +502,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047171</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047171</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -562,6 +562,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -620,22 +623,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

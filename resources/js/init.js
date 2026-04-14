@@ -1,5 +1,10 @@
 /* Init functions */
 
+import moment from "moment";
+import hljs from 'highlight.js/lib/core';
+import xml from 'highlight.js/lib/languages/xml';
+hljs.registerLanguage('xml', xml);
+
 /* Adjust font size of h1 headings */
 $.fn.h1FitText = function () {
     if ($(this).hasClass('document')) { $(this).fitText(1.4, {minFontSize: '32px', maxFontSize: '40px'}) }
@@ -294,13 +299,6 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
     }
 });
 
-/* Run Google Code Prettifyer for code examples */
-$.fn.googlecodeprettify = function () {
-    prettyPrint();
-}
-
-$('.prettyprint').googlecodeprettify();
-
 // remove popovers when clicking somewhere
 $('body').on('click touchstart', function (e) {
     $('[data-original-title]').each(function () {
@@ -347,7 +345,7 @@ function toggleTocItems() {
 function removeFilter(html, trigger) {
     /* currently, we simply remove all filters  */
     $('.col-md-3', html).remove();
-    
+
     /* and adjust the width of the remains  */
     $('.col-md-9', html).removeClass('col-md-9 col-md-pull-3');
     
@@ -370,6 +368,10 @@ function removeFilter(html, trigger) {
         );
     }
 }
+/* Make it available globally for callback references
+ * Used by Ajax-Tabs via `data-tab-callback`-attribute
+ */
+window.removeFilter = removeFilter;
 
 /*
  * set the right tab and location for person pages
@@ -824,6 +826,10 @@ $('.fn-ref').on('click', function() {
     $($(this).attr('href')).addClass('animated-highlight');
 })
 
+/*
+ * used by easyResponsiveTabs, i.e. the main navigation tabs at person and work pages
+ * for "Biographien", "Korrespondenz", "Werke" etc.
+ */
 function ajaxCall(container,url,callback) {
     $(container).mask();
     $(container).load(url, function(response, status, xhr) {
@@ -898,9 +904,25 @@ $('#facsimile-tab').on('click', function() {
     // need to set timeout for correct display of referenceStrip
     setTimeout(function() {
        if ($('.mirador-viewer').length === 0){
-           initFacsimile();
+           let mirador = initFacsimile();
+           //document.getElementById("map").viewer = mirador;
        }
    }, 500);
+   
+   /* 
+    * listen for wega-mirador-ready event and jump to initial page
+    * workaround since canvasIndex does not work properly, 
+    * see https://github.com/ProjectMirador/mirador/issues/4071
+    */
+   document.getElementById("map").addEventListener('wega-mirador-ready', (ev) => {
+       let manifestIds = $('#map').attr('data-url').split(/\s+/),
+           canvasIndices = $('#map').attr('data-canvasindex').split(/\s+/);
+       manifestIds.forEach(
+            (manifestId, index) => {
+                goToCanvas(ev.detail.viewer, manifestId, canvasIndices[index])
+            }
+       )
+   })
 });
 
 /* Load portraits via AJAX on index pages */
@@ -933,7 +955,7 @@ $('.preview').setTextWrap();
  * from the IIIF manifest URLs given as @data-url attribute on div[@id=map]
  */
 function initFacsimile() {
-    let manifestUrls = $('#map').attr('data-url').split(/\s+/),
+    let manifestIds = $('#map').attr('data-url').split(/\s+/),
         canvasIndices = $('#map').attr('data-canvasindex').split(/\s+/),
         mirador = renderMirador({
             "id": "map",
@@ -963,20 +985,50 @@ function initFacsimile() {
                 "showZoomControls": true
             },
             "windows": 
-                manifestUrls.map(
-                    (manifest, index) => ({
-                        "manifestId": manifest,
-                        "canvasIndex": canvasIndices[index],
+                manifestIds.map(
+                    (manifestId, index) => ({
+                        "manifestId": manifestId,
+                        "id": manifestId,
+                        // canvasIndex does not work in all cases, 
+                        // see https://github.com/ProjectMirador/mirador/issues/4071
+                        //"canvasIndex": canvasIndices[index],
                         "imageToolsEnabled": true,
                         "imageToolsOpen": true
                     })
                 )
         });
+        
+        // Listen to Mirador state changes
+        mirador.store.subscribe(() => {
+            const state = mirador.store.getState();
+
+            // set our own conditions to check for
+            const allManifestsLoaded = manifestIds.every(id => {
+                // manifests must be present
+                const manifest = state.manifests?.[id];
+                // canvasId must be set
+                let canvasId = Object.keys(state.windows).some(key => {
+                    return state.windows[key].manifestId === id && state.windows[key].canvasId
+                })
+                // … and no errors
+                return canvasId && manifest && !manifest.error && manifest.json;
+            });
+            
+            if (allManifestsLoaded && !mirador._readyDispatched) {
+                mirador._readyDispatched = true;
+
+                // dispatching our custom 'viewer-ready' event
+                document.getElementById("map").dispatchEvent(new CustomEvent('wega-mirador-ready', {
+                    detail: { viewer: mirador, state }
+                }));
+            }
+        });
+        return mirador;
 }
 
 
 function jump2diary(dateText) {
-    const url = $('#datePicker').attr('data-api-base') + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
+    const url = getAPIBase() + "/documents/findByDate?docType=diaries&limit=1&fromDate=" + dateText + "&toDate=" + dateText;
     $.getJSON(url, function(data) {
         self.location=data[0].uri + '.html';
     })
@@ -1045,6 +1097,14 @@ function getLanguage() {
     return $('#navbarCollapse li.active:last a').html().toLowerCase()
 }
 
+/*
+ * Get the API base from the footer nav
+ */
+function getAPIBase() {
+    return document.getElementById("api-base-link")
+        .getAttribute("data-api-base")
+}
+
 /* Get the current diary date from the h1 heading */
 function getDiaryDate() {
     /* Datumsangabe auf Listenseite (h3) oder auf Einzelansicht (h1) */
@@ -1098,7 +1158,7 @@ $('#create-newID').on('click', newID);
 
 function newID() {
     const docType = $('#newID-select :selected').val(),
-        url = $('#create-newID').attr('data-api-base') + "/application/newID?docType=" + docType,
+        url = getAPIBase() + "/application/newID?docType=" + docType,
         newID_result = $('#newID-result'),
         newID_result_span = $('span', newID_result);
     newID_result_span.hide();
@@ -1130,16 +1190,12 @@ $('.copy-to-clipboard').on('click', function() {
 /* 
  * Initialise line wrap toggle for XML previews
  */
-function init_line_wrap_toggle() {
-    let pre = $('.line-wrap-toggle ~ pre'),
-        input = $('.line-wrap-toggle input'),
-        endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences';
-
+function init_line_wrap_toggle(pre, input, endpoint_url) {
     // set listener for toggle
     input.change(
         function() {
             pre.toggleClass('line-wrap');
-            // update session
+            // POST the switch setting to the endpoint and update the backend session
             let data = { [this.getAttribute('id')]: this.checked };
             fetch(endpoint_url, {
                 method: 'POST',
@@ -1151,15 +1207,26 @@ function init_line_wrap_toggle() {
             });
         }
     )
-    prettyPrint();
 }
+
+function init_xml_tab(html, trigger, container) {
+    const pre = $('.line-wrap-toggle ~ pre', html),
+        code = $('code', pre),
+        input = $('.line-wrap-toggle input', html),
+        endpoint_url = getAPIBase() + '/application/preferences';
+    init_line_wrap_toggle(pre, input, endpoint_url);
+    hljs.highlightElement(code[0]);
+}
+
+// Make it available globally for callback references
+window.init_xml_tab = init_xml_tab;
 
 /*
  * Initialise user settings functionality:
  * custom switches and toggle markers within the text  
  */
 $.fn.init_settings = function () {
-    let endpoint_url = $('#settings').attr('data-api-base') + '/application/preferences',
+    let endpoint_url = getAPIBase() + '/application/preferences',
         marker,
         data;
         
@@ -1246,16 +1313,21 @@ function init_fullcalendar(initialDate, lang) {
 };
 
 
-const btn = document.getElementById('backToTop');
+const backToTopBtn = document.getElementById('backToTop');
 
-window.addEventListener('scroll', function () {
-  if (window.scrollY > 1000 && window.scrollY < (document.documentElement.scrollHeight - window.innerHeight - 350)) {
-    btn.classList.add('btn_visible');
-  } else {
-    btn.classList.remove('btn_visible');
-  }
-});
+if (backToTopBtn) {
+  window.addEventListener('scroll', function () {
+    if (window.scrollY > 1000 && window.scrollY < (document.documentElement.scrollHeight - window.innerHeight - 350)) {
+      backToTopBtn.classList.add('btn_visible');
+    } else {
+      backToTopBtn.classList.remove('btn_visible');
+    }
+  });
 
-btn.addEventListener('click', function () {
-  window.scrollTo({ top: 0, behavior: 'smooth' });
-});
+  backToTopBtn.addEventListener('click', function () {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+}
+
+// Initialize code highlighting
+document.querySelectorAll('.prettyprint code').forEach(el => {hljs.highlightElement(el)})

@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"berichtet aus seinem Tagebuch vom 4.-6. Februar: Diner für einige Kollegen der italienischen und deutschen Oper, erste Gage und Reisegeld; betr. Opernprogramm für Dresden; teilt mit, dass Rochlitz ihn eingeladen habe, ein Konzert in Leipzig zu geben; betr. Aufführung der Silvana in Prag","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Caroline Brandt in Prag. Dresden, Mittwoch, 5. bis Freitag, 7. Februar 1817 (Nr. 24)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041025","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041025","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"berichtet aus seinem Tagebuch vom 4.-6. Februar: Diner für einige Kollegen der italienischen und deutschen Oper, erste Gage und Reisegeld; betr. Opernprogramm für Dresden; teilt mit, dass Rochlitz ihn eingeladen habe, ein Konzert in Leipzig zu geben; betr. Aufführung der Silvana in Prag","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Caroline Brandt in Prag. Dresden, Mittwoch, 5. bis Freitag, 7. Februar 1817 (Nr. 24)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041025","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041025","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,10 +296,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041025/backlinks.html">Rückverweise</a>
+                                    <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041025/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041025/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -373,7 +371,7 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041050.html">1817-02-16</a>:  an  <a href="" class="preview A001693 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041031.html">1817-02-07</a>:  an  <a href="" class="preview A001355 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  von  <a href="" class="preview A001355 persons"></a>
@@ -441,8 +439,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002156" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000989" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001590" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -466,6 +462,8 @@
                                     <input type="checkbox" name="options" value="A001320" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002211" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -499,13 +497,15 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130800" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130006" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -544,7 +544,7 @@
 					nähst, oder bist du bei <span class="preview persons A000946 A000947" data-ref=" ">Doktors</span>
 					und ihr papelt von dem Dresdner Musje? Wenn dir gestern die Ohren
 					nicht geklungen haben, so weis ich nicht wann sie klingen sollen. Gestern war
-					nehmlich das große <span class="tei_hi_latintype">Diner</span> da<span class="tei_subst"><span class="tei_add">s</span><a class="noteMarker" id="backref-d10e35" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e35">‡</a></span> ich im Engel gab. denen
+					nehmlich das große <span class="tei_hi_latintype">Diner</span> da<span class="tei_subst"><span class="tei_add">s</span><a class="noteMarker" id="backref-d10e35" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e35">‡</a></span> ich im <a class="preview places A130800" href="">Engel</a> gab. denen
 					Herren <a class="preview persons A001348" href=""><span class="tei_hi_latintype">Morlachi</span></a>, /: KapellMeister :/ 
                     <a class="preview persons A001502" href=""><span class="tei_hi_latintype">Poledro</span></a>, KonzertMeister, 
                     <a class="preview persons A001753" href=""><span class="tei_hi_latintype">Schubert</span></a>, Kirchen<span class="tei_hi_latintype">compositeur</span>, 
@@ -554,7 +554,7 @@
                     <a class="preview persons A002273" href=""><span class="tei_hi_latintype">Tietz</span></a> mein <span class="tei_hi_latintype">Orchester</span> Direktor, 
                     <a class="preview persons A001321" href=""><span class="tei_hi_latintype">Mieksch</span></a> und 
                     <a class="preview persons A001705" href=""><span class="tei_hi_latintype">Schmidl</span></a>, und ich in allem 10 Personen. Ich habe meinen Zwek vollkommen
-					erreicht eine recht freundlich heitre Annäherung <span class="tei_subst"><span class="tei_add">unter</span><a class="noteMarker" id="backref-d10e88" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e88">‡</a></span> allen KunstDirigenten zu
+					erreicht eine recht freundlich heitre Annäherung <span class="tei_subst"><span class="tei_add">unter</span><a class="noteMarker" id="backref-d10e91" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e91">‡</a></span> allen KunstDirigenten zu
 					bewirken, das Eßen war gut. Austern und Gefrorenes fehlten nicht, Burgunder
 					Rheinwein, Madera und <span class="tei_hi_latintype">Champagner</span> floß, und löste alle
 					Zungen und Herzen, ich brachte zuerst die Gesundheit Unsers <a class="preview persons A000537" href="">Königs</a>, dann des Grafen <a class="preview persons A002020" href=""><span class="tei_hi_latintype">Vizthum</span></a>
@@ -562,7 +562,7 @@
 					die deutsche Kunst und die italienische<span class="tei_supplied"><span class="brackets_supplied">[</span>.<span class="brackets_supplied">]</span></span> das dauerte
 					von 2-6 Uhr, und endlich schied alles seelenvergnügt, die meisten mit einem
 					tüchtigen Haarbeutel versehen, ausgenommen einen gewißen Muks – dann giengen wir
-					ins Theater, wo es viel komische Szenen gab, dann beschloß <a class="preview persons A001705" href="">Schmidl</a>
+					ins Theater<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, wo es viel komische Szenen gab, dann beschloß <a class="preview persons A001705" href="">Schmidl</a>
 					den Tag mit einem guten Punsch. Mittag und Abends wurde deine Gesundheit gehörig
 					und aus vollem Herzen getrunken, und deiner <span class="tei_hi_underline1">sehr
 					oft</span> gedacht. Wie ich um 11 Uhr nach Hause kam fand ich diesen lieben 
@@ -596,7 +596,7 @@
                     <span class="tei_hi_latintype"><a class="preview works A020036" href="">Silvana</a></span>, bin doch Neugierig darauf. 
                     Heute Abend bin ich beim Fräulein <a class="preview persons A002156" href="">vom <span class="tei_hi_latintype">Winkel</span></a>, 
                     im <span class="tei_hi_underline1">DichterKreise</span><a class="noteMarker" href="">T</a>. dann auf einen
-					Ball, wo ich es aber nicht lange machen werde. Man überhäuft mich mit Ehren und
+                    Ball, wo ich es aber nicht lange machen werde<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a>. Man überhäuft mich mit Ehren und
 					Einladungen, da hingegen meine <span class="tei_hi_latintype">Collegen</span>
                     <span class="tei_hi_underline1">nirgends</span> hinkommen. </p>
                                         <p>Kurz, hätte ich <span class="tei_hi_underline2andMore">meinen Muks</span>, und ein halbes
@@ -609,7 +609,7 @@
 					Brief nicht braver ist als die lezten, – – – Haue – Haue, Haue. ) ) ) ) </p>
                                         <p class="tei_closer textAlign-right">
                     <span class="tei_segBlock textAlign-right">Gute Nacht! gute Nacht! + + + <br />
-                        von <span class="tei_hi_underline1">deinem</span> <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl</a></span>.</span>
+                        von <span class="tei_hi_underline1">deinem</span> <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl</a></span>.</span>
                 </p>
                                     </div>
                                     <div class="writingSession">
@@ -620,8 +620,8 @@
                 </div>
                                         <p>Tausend Tausend Dank von allen Seiten. das war Gestern ein glüklicher Tag, und
 					kam des Guten so viel zusammen daß es wieder auf Monate lang ausreicht. Früh
-					hatte ich Probe vom <a class="preview works A020497" href="">Waisenhaus</a>, Mittag im Engel mit Herrn <a class="preview persons A000989" href="">Keller</a> einem fremden Flötisten und
-					sehr artigen Mann. da kam ein <a class="preview letters A046823" href="">Brief</a> von <a class="preview persons A001590" href=""><span class="tei_hi_underline1">Rochlitz</span></a> der mich nach <a class="preview places A130005" href="">Leipzig</a> einladet in der
+					hatte ich Probe vom <a class="preview works A020497" href="">Waisenhaus</a>, Mittag im <a class="preview places A130800" href="">Engel</a> mit Herrn <a class="preview persons A000989" href="">Keller</a> einem fremden Flötisten und
+					sehr artigen Mann. da kam ein <a class="preview letters A046823" href="">Brief</a> von <a class="preview persons A001590" href=""><span class="tei_hi_underline1">Rochlitz</span></a> der mich nach <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> einladet in der
 					Ostermeße in einem ihrer Konzerte zu spielen und dafür 100 <span class="tei_hi_latintype">rh:</span> zu bekomen, in 3 Tagen ist die Sache verdient. Ob es aber geht ist
 					noch die große Frage, doch freute mich die Aufmerksamkeit.      Dann bekam ich einen gar herzlich und komischen <a class="preview letters A046910" href="">Brief</a> von <a class="preview persons A000851" href=""><span class="tei_hi_underline1">Hoffmann</span></a>. 
                     Endlich gegen Abend deinen lieben fröhligen
@@ -646,17 +646,17 @@
 					auch die Oper <span class="tei_hi_latintype">componirt</span>, und die Choristen hatten gar
 					nicht Unrecht dir dafür die Hand zu küßen.      Hätte wohl
 					dabei sein mögen und die Sache mit ansehen. So gut soll es mir nun aber nicht
-					werden. Wenn ich ein Vöglein wär, flög<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">‡</a> ich zu dir <span class="tei_hi_latintype">pp</span>                  
+					werden. Wenn ich ein Vöglein wär, flög<a class="noteMarker" id="backref-tC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_01">‡</a> ich zu dir <span class="tei_hi_latintype">pp</span>                  
                          Gelte jezt kann er um Verzeihung bitten er trauriger
-					Hanswurst<span class="tei_subst"><span class="tei_add">!</span><a class="noteMarker" id="backref-d10e369" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e369">‡</a></span> nun stehe nur auf mein lieber Delinquent, weil du dich in der <span class="8310510811897110101110"><span class="tei_hi_latintype"><a class="preview works A020036" href="">Silvanen</a></span></span> Schlacht so ausgezeichnet hast, sollst du Gnade finden, und noch
+					Hanswurst<span class="tei_subst"><span class="tei_add">!</span><a class="noteMarker" id="backref-d10e399" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e399">‡</a></span> nun stehe nur auf mein lieber Delinquent, weil du dich in der <span class="8310510811897110101110"><span class="tei_hi_latintype"><a class="preview works A020036" href="">Silvanen</a></span></span> Schlacht so ausgezeichnet hast, sollst du Gnade finden, und noch
 					obendrein mit dem HausOrden Unseres Staates belohnt werden, mit der scharfen
 					Bedeutung aber, nicht wieder so zu komen sondern immer so brav und fröhlich zu
 					bleiben wie in diesem lezten Briefe zu lesen und zu finden ist, zur Erquikung
 					und Freude des Dresdner Muks. </p>
                                         <p>Ich lief gestern gleich ins Theater und erzählte den Meisten die gute Aufnahme
                     der <a class="preview works A020036" href="">Silvana</a>, dann gieng <span class="tei_supplied"><span class="brackets_supplied">[</span>ich<span class="brackets_supplied">]</span></span> zum Thee bei dem <a class="preview persons A001087" href="">Mahler H: <span class="tei_hi_latintype">v:
-							Kügelchen</span></a>, der auch großen Antheil nahm, auch <span class="preview letters A041026 A046985" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041026.html ">schrieb</span> ich es Gestern noch
-					brühsiedendheiß nach <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>
+                        Kügelchen</span></a>, der auch großen Antheil nahm<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>, auch <span class="preview letters A041026 A046985" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041026.html ">schrieb</span> ich es Gestern noch
+					brühsiedendheiß nach <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span>
 					an <a class="preview persons A001166" href="">Lichtenstein</a> und <a class="preview persons A000851" href="">Hoffmann</a>, 
                     die werden auch eine rechte Freude haben.</p>
                                         <p>Nun nochmals 1000 Dank, und daß du allen recht herzlich in meinem Namen dankst,
@@ -672,14 +672,14 @@
                                         <p>Daß du Zeichnen lernst ist sehr brav und schön, wie sieht es aber mit dem
 					französischen aus? vernachläßige es ja nicht, denn es ist so unumgänglich
 					nothwendig besonders hier, wenn man nicht italienisch spricht. lezteres muß ich
-					jezt fleißig üben, spreche viel, und werde auch wieder <span class="tei_hi_latintype">Lection</span> nehmen<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>.</p>
+					jezt fleißig üben, spreche viel, und werde auch wieder <span class="tei_hi_latintype">Lection</span> nehmen<a class="noteMarker" href="">T</a>.</p>
                                         <p class="tei_closer textAlign-left">Heute kann ich nicht sehr viel mit dir pabsen mein geliebter Muks, denn ich will
-					gleich auch den andern Leuten antworten und in 2 Stunden geht die Post, also
+                    gleich auch den andern Leuten <span class="preview letters A041026 A041028 A041029 A041030" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041026.html   ">antworten</span> und in 2 Stunden geht die Post, also
 					Gott segne dich für die viele Freude die du mir gemacht hast, sei brav und
 					gesund, heiter und froh. Grüße an <span class="tei_hi_underline1">Alle</span>, <span class="tei_hi_underline1"><span class="tei_hi_latintype">Orchester</span></span> 
                     und <span class="tei_hi_underline1">Chöre</span>. Für dich Millionen Billionen
 					Bußen, und gute + + + von deinem dich ewig innigst liebenden
-                    <span class="tei_segBlock textAlign-right">treuen <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl</a></span>.</span>
+                    <span class="tei_segBlock textAlign-right">treuen <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl</a></span>.</span>
                 </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -728,9 +728,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. C. M. v. Weber 79</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_558a9bf6a55fbfe1fbdd617bdd21f8c4"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6c94939b910b7d0a5e1de6206319bae6"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_558a9bf6a55fbfe1fbdd617bdd21f8c4">
+                                        <div class="collapse apparatus-details" id="source_6c94939b910b7d0a5e1de6206319bae6">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. o. Adr.)</li>
@@ -747,7 +747,7 @@
                                                             
                                                             <span>Muks, S. 337–342 (Nr. 62)</span>
                                                               
-                                                            <div class="collapse" id="source_46204914954c882d51585f8d98366093">
+                                                            <div class="collapse" id="source_8e42d4c5ebf096bb6871c988a9786b81">
                                                                 
                                                             </div>
                                                         </div>
@@ -774,6 +774,9 @@
                                         <li>
                                     <a href=""></a>
                                 </li>
+                                        <li>
+                                    <a href=""></a>
+                                </li>
                             </ul>
                         </div>
                         
@@ -788,20 +791,20 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e88" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e88" data-title="Ersetzung" data-counter="2" data-href="#d10e88"><span class="tei_lemma">„<span class="tei_add">unter</span>“</span>„und“ überschrieben mit „<span class="tei_add">unter</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e91" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e91" data-title="Ersetzung" data-counter="2" data-href="#d10e91"><span class="tei_lemma">„<span class="tei_add">unter</span>“</span>„und“ überschrieben mit „<span class="tei_add">unter</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="note03" data-title="Textkonstitution" data-counter="3" data-href="#note03"><span class="tei_lemma">„…  ich ein Vöglein wär, flög“</span>Korrektur auf unleserlichem Wort</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-tC_01" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="tC_01" data-title="Textkonstitution" data-counter="3" data-href="#tC_01"><span class="tei_lemma">„…  ich ein Vöglein wär, flög“</span>Korrektur auf unleserlichem Wort</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e369" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e369" data-title="Ersetzung" data-counter="4" data-href="#d10e369"><span class="tei_lemma">„<span class="tei_add">!</span>“</span>„?“ überschrieben mit „<span class="tei_add">!</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e399" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e399" data-title="Ersetzung" data-counter="4" data-href="#d10e399"><span class="tei_lemma">„<span class="tei_add">!</span>“</span>„?“ überschrieben mit „<span class="tei_add">!</span>“</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -809,14 +812,26 @@
                                     <ul class="apparatus commentary">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note02"><span class="tei_lemma">„…  und mit ihm gleiche PosaunenEngel“</span>Gemeint sind die begeisterten Briefe über den Erfolg der <span class="tei_hi_italic"><a class="preview works A020036" href="">Silvana</a></span>-Premiere am 2. Februar 1817 in <a class="preview places A130006" href="">Prag</a>.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  dann giengen wir ins Theater“</span>Gegeben wurde <span class="tei_hi_italic"><a class="preview works A020832" href="">Clavigo</a></span>, vgl. u. a. den <a class="preview writings A030063" href="">Bericht</a> in der <span class="tei_hi_italic">Abend-Zeitung</span> vom 12. Februar 1817.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note01"><span class="tei_lemma">„…  werde auch wieder Lection nehmen“</span>Weber frischte seine Italienisch-Kenntnisse laut <span class="preview diaries A060048 A060248" data-ref=" ">Tagebuch</span> zwischen 17. Februar und 5. September 1817 durch 6 Serien zu je 12 Lektionen auf.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note05" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="note05" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note05"><span class="tei_lemma">„…  aber nicht lange machen werde“</span>Laut <a class="preview diaries A060036" href="">Tagebuch</a> im Dichterthee bis 23.00 Uhr, nach dem Ball „um 1 Uhr im Bett“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note02"><span class="tei_lemma">„…  und mit ihm gleiche PosaunenEngel“</span>Gemeint sind die begeisterten Briefe über den Erfolg der <span class="tei_hi_italic"><a class="preview works A020036" href="">Silvana</a></span>-Premiere am 2. Februar 1817 in <a class="preview places A130006" href="">Prag</a>.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note03"><span class="tei_lemma">„…  der auch großen Antheil nahm“</span>Zu Webers musikalischer Mitwirkung an Kügelgens Geburtstagsfeier vgl. den <a class="preview letters A040987" href="">Brief</a> von Helene Marie von Kügelgen von Ende Februar 1817 an Johann Wilhelm Volkmann.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -845,7 +860,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041025</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041025</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -905,6 +920,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -963,22 +981,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

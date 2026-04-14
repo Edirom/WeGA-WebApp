@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Friedrich Graff" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"teils gereimter, scherzhafter Brief, u. a. über das dem Briefschreiber gewidmete Grand Potpourri WeV N.6, das heute aufgeführt werde","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Friedrich Graff an Carl Maria von Weber. nach dem 31. Dezember 1808","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040162","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000665/Korrespondenz/A040162","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000665","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000665"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -231,7 +229,7 @@
                             </li>
                             <li>
                                 <span>A040162</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -253,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +298,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000665/Korrespondenz/A040162/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000665/Korrespondenz/A040162/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -358,9 +356,9 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000665" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -386,20 +384,20 @@
                         <div class="teiLetter_body">
                                     <div class="teiLetter_address">
                                         <p>À Monsieur</p>
-                                        <p>Monsieur le <a class="preview persons A002068" href="">Baron</a></p>
-                                        <p><a class="preview persons A002068" href="">de Weber.</a></p>
+                                        <p>Monsieur le <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Baron</a></p>
+                                        <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">de Weber.</a></p>
                                     </div>
                                     <div class="writingSession">
-                                        <p>Bon jour Monsieur le <a class="preview persons A002068" href="">Baron de Weber</a>,<br />
+                                        <p>Bon jour Monsieur le <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Baron de Weber</a>,<br />
             Je veux vous parler friche von der Leber.<br />
             Aujourd’hui votre <a class="preview works A020287" href="">grand Pot-pourri</a> sera entendu à la Cour;<br /> 
-                  Desorte si vous voulez — etc: etc: bien me faire la Cour,<br />
+                  Desarte<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> si vous voulez — etc: etc: bien me faire la Cour,<br />
                   Venez un peu mettre à la raison certains personnages,<br /> 
                   Pour que l’on puisse dire de l’aimable <a class="preview persons A000665" href="">Graff</a>:<br />
                   C’est un petit jeune homme de la plus-belle espérance,<br /> 
-                  Puis qu’il joue ........ avec tant d’assurance.</p>
-                                        <p>Cette lettre n’étant à d’autre fin, je prie Dieu qu’il vous ait, Monsieur le curé, en sa Sainte et digne garde, et en attendant le plaisir de vous revoir dans l’autre monde, agréez s’il vous plait, l’assurance de <span class="tei_add tei_hi_superscript">mon<a class="noteMarker" id="backref-d10e42" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e42">‡</a></span> impitoyable <span class="tei_del">amittié</span><a class="noteMarker" id="backref-d10e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e45">‡</a> amitié, et croyez-moi pour la vie votre
-            <span class="tei_segBlock textAlign-right"><span class="tei_sic">abomminable</span><a class="noteMarker" id="backref-d10e49" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e49">‡</a> et détestable,</span></p>
+                  Puis qu’il joue . . . . . . . . avec tant d’assurance.</p>
+                                        <p>Cette lettre n’étant à d’autre fin, je prie Dieu qu’il vous ait, Monsieur le curé, en sa Sainte et digne garde, et en attendant le plaisir de vous revoir dans l’autre monde, agréez s’il vous plait, l’assurance de <span class="tei_add tei_hi_superscript">mon<a class="noteMarker" id="backref-d10e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e48">‡</a></span> impitoyable <span class="tei_del">amittié</span><a class="noteMarker" id="backref-d10e51" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e51">‡</a> amitié, et croyez-moi pour la vie votre
+            <span class="tei_segBlock textAlign-right"><span class="tei_sic">abomminable</span><a class="noteMarker" id="backref-d10e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e55">‡</a> et détestable,</span></p>
                                         <p><span class="tei_segBlock textAlign-right"><span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0401xx%2FA040162%2FNB.png/full/full/0/native.jpg"><img title="Notenbeispiel mit Textunterlegung: au weh der hans-wourst ist tod." alt="Notenbeispiel mit Textunterlegung: au weh der hans-wourst ist tod." src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0401xx%2FA040162%2FNB.png/full/,75/0/native.jpg" /></a></span><br />
             <span class="tei_hi_underline2andMore">Amen</span>.</span></p>
                                         <p class="clearer"></p>
@@ -445,9 +443,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. V (Mappe IA), Abt. 2, Nr. 10</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_aea07c334111129a67ff22a284a23f5f"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_8533596ace5fc0945cc4fe249d7abb0a"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_aea07c334111129a67ff22a284a23f5f">
+                                        <div class="collapse apparatus-details" id="source_8533596ace5fc0945cc4fe249d7abb0a">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S.)</li>
@@ -478,24 +476,32 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e42" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e42" data-title="Hinzufügung" data-counter="1" data-href="#d10e42"><span class="tei_lemma">„mon“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e48" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e48" data-title="Hinzufügung" data-counter="1" data-href="#d10e48"><span class="tei_lemma">„mon“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e45" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e45" data-title="Löschung" data-counter="2" data-href="#d10e45"><span class="tei_lemma">„amittié“</span>gelöscht</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e51" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e51" data-title="Löschung" data-counter="2" data-href="#d10e51"><span class="tei_lemma">„amittié“</span>gelöscht</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e49" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e49" data-title="sic" data-counter="3" data-href="#d10e49"><span class="tei_lemma">„abomminable“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e55" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e55" data-title="sic" data-counter="3" data-href="#d10e55"><span class="tei_lemma">„abomminable“</span>sic!</div>
                                             </div>
                                         </li>
                                     </ul>
-                                    <ul class="apparatus commentary"></ul>
+                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
+                                    <ul class="apparatus commentary">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  entendu à la Cour; Desarte“</span>Das Wort existiert im Französischen nicht; möglicherweise eine künstliche Wortbildung mit Verwendung des Wortes „arte“, Bedeutung unklar.</div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
                     </div>
@@ -521,7 +527,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040162</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040162</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -581,6 +587,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -639,22 +648,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

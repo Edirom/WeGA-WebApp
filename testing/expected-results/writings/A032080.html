@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Anonymus" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung Köln: „Abu Hassan“ von Carl Maria von Weber am 18. März 1825","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032080","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032080","author":[{"@type":"Person","name":"Anonymus"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032080/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032080/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -359,8 +356,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000838" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A00295E" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009203" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -368,6 +363,8 @@
                                     <input type="checkbox" name="options" value="A001056" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A0006C9" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -412,7 +409,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>D. <span class="tei_date">18. März</span> (zum erstenmal): <a class="preview works A020038" href="">Abu Hassan</a>. Kom. Oper in 1. Akt von <a class="preview persons A000838" href="">Hiemer</a>, Musik von <a class="preview persons A002068" href="">Karl Maria v. Weber</a>. Bei der Wiederkehr werden wir unser Urtheil über Text und Musik abgeben. <a class="preview persons A00295E" href="">Dem. <span class="tei_hi_spaced_out">Nathan</span></a> bot alle Kräfte auf, um als <span class="7097116105109101">Fatime</span> durch den Metallklang ihrer Stimme die Zuhörer zu ergötzen. Ein allgemeiner Beifall war der Lohn ihres künstlerischen Strebens. <a class="preview persons A009203" href="">Hr. Rochow</a> (<span class="659811732729711511597110">Abu Hassan</span>) sang, wie gewöhnlich, mit Ausdruck und Präzision. – Vorher: <a class="preview works A020816" href="">Das getheilte Herz</a>. Lustspiel in 1. Akt von <a class="preview persons A001056" href="">Kotzebue</a>. Die Vorstellung ging rasch. Mad. <a class="preview persons A0006C9" href=""><span class="tei_hi_spaced_out">Lortzing</span> d. j.</a> (<span class="8097117108105110101">Pauline</span>) und Hr. <span class="82101103101114">Reger</span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> (<span class="749710711198">Jakob</span>) erwarben sich durch ihr gehaltvolles Spiel den Beifall des Publikums.</p>
+                                        <p>D. <span class="tei_date">18. März</span> (zum erstenmal): <a class="preview works A020038" href="">Abu Hassan</a>. Kom. Oper in 1. Akt von <a class="preview persons A000838" href="">Hiemer</a>, Musik von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria v. Weber</a>. Bei der Wiederkehr werden wir unser Urtheil über Text und Musik abgeben. <a class="preview persons A00295E" href="">Dem. <span class="tei_hi_spaced_out">Nathan</span></a> bot alle Kräfte auf, um als <span class="7097116105109101">Fatime</span> durch den Metallklang ihrer Stimme die Zuhörer zu ergötzen. Ein allgemeiner Beifall war der Lohn ihres künstlerischen Strebens. <a class="preview persons A009203" href="">Hr. Rochow</a> (<span class="659811732729711511597110">Abu Hassan</span>) sang, wie gewöhnlich, mit Ausdruck und Präzision. – Vorher: <a class="preview works A020816" href="">Das getheilte Herz</a>. Lustspiel in 1. Akt von <a class="preview persons A001056" href="">Kotzebue</a>. Die Vorstellung ging rasch. Mad. <a class="preview persons A0006C9" href=""><span class="tei_hi_spaced_out">Lortzing</span> d. j.</a> (<span class="8097117108105110101">Pauline</span>) und Hr. <span class="82101103101114">Reger</span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> (<span class="749710711198">Jakob</span>) erwarben sich durch ihr gehaltvolles Spiel den Beifall des Publikums.</p>
                                     </div>
                                 </div>
                     </div>
@@ -455,7 +452,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Rheinische Flora, Blätter für Kunst, Leben, Wissen und Verkehr</span>, Bd. 1, Nr. 51 (29. März 1825) Beilage zu No. 51, Bl. 1v</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_5d0dc63c1cb4ee19bb7d06aa8b5c08ae">
+                                        <div class="collapse apparatus-details" id="source_f5d84dd4a88e5e18e9c9104c8b8d7408">
                                             
                                             
                                             <div>
@@ -511,7 +508,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032080</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032080</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -571,6 +568,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -629,22 +629,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

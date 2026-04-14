@@ -5,9 +5,9 @@
         
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="referrer" content="no-referrer, same-origin" />
-        <title>Carl Maria von Weber – Tagebucheintrag vom Montag, 13. Januar 1812 ()</title>
+        <title>Carl Maria von Weber – Tagebucheintrag vom Montag, 13. Januar 1812 (Leipzig)</title>
         
-        <meta property="dc:title" content="Carl Maria von Weber – Tagebucheintrag vom Montag, 13. Januar 1812 ()" />
+        <meta property="dc:title" content="Carl Maria von Weber – Tagebucheintrag vom Montag, 13. Januar 1812 (Leipzig)" />
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 13t früh durch Harder, Dr: August Kuhn's Bekanntschaft gemacht. er bat um Sonaten Lieder pp und versprach das Honorar daß ich forderte zu …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Montag, 13. Januar 1812 ()","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A065543","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065543","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 13t früh durch Harder, Dr: August Kuhn's Bekanntschaft gemacht. er bat um Sonaten Lieder pp und versprach das Honorar daß ich forderte zu …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Montag, 13. Januar 1812 (Leipzig)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A065543","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065543","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -205,7 +203,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="document">Montag, 13. Januar 1812<br /></h1>
+                    <h1 class="document">Montag, 13. Januar 1812<br />Leipzig</h1>
                 </div>
             </div>
         </div>
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065543/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065543/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A065543/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -379,6 +377,8 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130791" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130038" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
@@ -398,21 +398,21 @@
    Lieder <span class="tei_hi_latintype">pp</span> und versprach das <span class="tei_hi_latintype">Honorar</span> daß<br /> 
    ich forderte zu <span class="tei_sic">bezahlt<span class="tei_unclear">en<a class="noteMarker" id="backref-d10e36" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e36">‡</a></span></span><a class="noteMarker" id="backref-d10e34" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e34">‡</a>. auch wünschte er<br />
    mein alleiniger Verleger zu werden.</span><br />
-   <span>Um 1 Uhr Probe vom <span class="tei_hi_latintype">Concert</span>. Es gieng gut.</span><br />
-   <span>nachher <span class="preview persons A001376" data-ref="">H: Advokat <span class="tei_del">Ludwig</span><a class="noteMarker" id="backref-d10e53" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e53">‡</a> <span class="tei_hi_underline1">Müller</span></span>, MitRed:<br />
-   der Eleg: Z: besucht.</span> <span>dann <span class="tei_hi_underline1"><a class="preview persons A004310" href="">Fink</a></span> Ein herrlicher<br />
+   <span>Um 1 Uhr Probe vom <span class="tei_hi_latintype">Concert</span><a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>. Es gieng gut.</span><br />
+   <span>nachher <span class="preview persons A001376" data-ref="">H: Advokat <span class="tei_del">Ludwig</span><a class="noteMarker" id="backref-d10e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e55">‡</a> <span class="tei_hi_underline1">Müller</span></span>, <span class="tei_choice"><span class="tei_abbr">MitRed:</span><a class="noteMarker" id="backref-d10e61" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e61">‡</a></span><br />
+      der <span class="tei_choice"><span class="tei_abbr">Eleg: Z:</span><a class="noteMarker" id="backref-d10e66" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e66">‡</a></span> besucht.</span> <span>dann <span class="tei_hi_underline1"><a class="preview persons A004310" href="">Fink</a></span> Ein herrlicher<br />
    Mensch der einst hoffe ich tauglich sein wird.</span><br />
    <span class="payment_5">Thorgroschen	</span><br />      
    <span class="payment_6">Kastanien	</span><br />          
    <span class="payment_7">Wäsche	    </span><br />      
-   <span>Abends mit <a class="preview persons A008008" href="">Kunstmann</a> zu Hause, worauf<br />
+   <span>Abends mit <a class="preview persons A008008" href="">Kunstmann</a> zu <a class="preview places A130791" href="">Hause</a>, worauf<br />
    er wegreiste nach <a class="preview places A130038" href="">Chemnitz</a> zurük.</span><br />
    <span class="payment_9">Trinkgeld <a class="preview persons A001376" href="">Müllers</a> Magd	     </span><br />
     
 </p>
                                 </div>
                                 <div class="tableRight">
-                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_5 gr">2 ggr:</span><br /><span class="hiddenText">|</span><span class="payment_6 gr">1.<span class="suppliedCurrencySymbol"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_7 rh">1 Th:</span><span class="payment_7 gr">–  .</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_9 gr">5.<span class="suppliedCurrencySymbol"> gr</span></span><span class="payment_9 pf">4 Pf:</span><br /><span class="hiddenText">|</span></p>
+                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_5 gr">2 ggr:</span><br /><span class="hiddenText">|</span><span class="payment_6 gr">1.<span class="suppliedCurrencySymbol"> gr</span></span><br /><span class="hiddenText">|</span><span class="payment_7 rh">1 Th:</span><span class="payment_7 gr">–  .</span><br /><span class="hiddenText">|</span><a class="preview places A130791" href=""></a><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_9 gr">5.<span class="suppliedCurrencySymbol"> gr</span></span><span class="payment_9 pf">4 Pf:</span><br /><span class="hiddenText">|</span></p>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -451,9 +451,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_606c39a196bc5b0f20871fc1b7ef16a6"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a6f4f824888feb5d7ce4c9016b01a0e4"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_606c39a196bc5b0f20871fc1b7ef16a6">
+                                        <div class="collapse apparatus-details" id="source_a6f4f824888feb5d7ce4c9016b01a0e4">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -500,12 +500,32 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e53" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e53" data-title="Löschung" data-counter="4" data-href="#d10e53"><span class="tei_lemma">„Ludwig“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e55" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e55" data-title="Löschung" data-counter="4" data-href="#d10e55"><span class="tei_lemma">„Ludwig“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                     </ul>
-                                    <ul class="apparatus commentary"></ul>
+                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
+                                    <ul class="apparatus commentary">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note02"><span class="tei_lemma">„…  1 Uhr Probe vom Concert“</span>Am folgenden Tag.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e61" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e61" data-title="Abkürzung" data-counter="2" data-href="#d10e61"><span class="tei_lemma">„<span class="tei_abbr">MitRed:</span>“</span>Abk. von   „<span class="tei_expan">Mitredakteur</span>“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e66" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e66" data-title="Abkürzung" data-counter="3" data-href="#d10e66"><span class="tei_lemma">„<span class="tei_abbr">Eleg: Z:</span>“</span>Abk. von   „<span class="tei_expan">Zeitung für die elegante Welt</span>“.</div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
                     </div>
@@ -531,7 +551,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A065543</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A065543</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -591,6 +611,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -649,22 +672,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

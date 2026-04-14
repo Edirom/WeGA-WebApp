@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Brühl, Carl Graf von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047659" />
@@ -42,11 +42,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"dankt für die Zusendung des Textes zur neuen Introduktion der Undine; Weber habe ihm in seinem letzten Brief mitgeteilt, dass er wegen dienstlicher Überlastung nicht einmal seine Euryanthe vollenden könne, insofern ließe sich Fouqués Wunsch, dass Weber die Introduktion vertone, nicht umsetzen; da er Zelter keine Opernmusik zutraue, hält er Kienlen als Komponist in dieser Anglegenheit für geeigneter","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Graf von Brühl an Friedrich de la Motte Fouqué in Nennhausen. Berlin, Freitag, 13. Dezember 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047659","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A047659","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000235","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000235"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -250,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -297,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A047659/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A047659/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -360,7 +358,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674.html">1821-03-22</a>:  an  <a href="" class="preview A002068 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674.html">1821-03-22</a>:  an  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A041663.html">1821-02-09</a>:  von  <span class="noDataFound">unbekannt</span>
@@ -372,7 +370,7 @@
                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A042032.html">1823-01-06</a>:  an  <a href="" class="preview A001002 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042087.html">1823-01-13</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042320.html">1824-06-24</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                    </ul>
                                 
@@ -399,7 +397,7 @@
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
                             <div>
-                                        <p>dankt für die Zusendung des Textes zur neuen Introduktion der <span class="tei_hi_italic"><a class="preview works A020581" href="">Undine</a></span>; <a class="preview persons A002068" href="">Weber</a> habe ihm in seinem letzten <a class="preview letters A041983" href="">Brief</a> mitgeteilt, dass er wegen dienstlicher Überlastung nicht einmal seine <span class="tei_hi_italic">Euryanthe</span> vollenden könne, insofern ließe sich Fouqués Wunsch, dass Weber die Introduktion vertone, nicht umsetzen; da er <a class="preview persons A002191" href="">Zelter</a> keine Opernmusik zutraue, hält er <a class="preview persons A001000" href="">Kienlen</a> als Komponist in dieser Anglegenheit für geeigneter</p>
+                                        <p>dankt für die Zusendung des Textes zur neuen Introduktion der <span class="tei_hi_italic"><a class="preview works A020581" href="">Undine</a></span>; <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> habe ihm in seinem letzten <a class="preview letters A041983" href="">Brief</a> mitgeteilt, dass er wegen dienstlicher Überlastung nicht einmal seine <span class="tei_hi_italic">Euryanthe</span> vollenden könne, insofern ließe sich Fouqués Wunsch, dass Weber die Introduktion vertone, nicht umsetzen; da er <a class="preview persons A002191" href="">Zelter</a> keine Opernmusik zutraue, hält er <a class="preview persons A001000" href="">Kienlen</a> als Komponist in dieser Anglegenheit für geeigneter</p>
                                     </div>
                         </div>
                         
@@ -431,9 +429,9 @@
                                         
                                         <span>ehemals Berlin, Königliche Schauspiele, General-Intendantur<br /><i>Signatur</i>: aus: Acta betreffend den Herrn Baron Friedrich De la Motte Fouqué (seit 1945 verschollen)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a1cf88abdd66eeff912d723a770efb04"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_24614d10e93d73b18318a469ef56bdad"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a1cf88abdd66eeff912d723a770efb04">
+                                        <div class="collapse apparatus-details" id="source_24614d10e93d73b18318a469ef56bdad">
                                             
                                             
                                             <div>
@@ -446,7 +444,7 @@
                                                             
                                                             <span>Friedrich Schnapp, Der Musiker E. T. A. Hoffmann. Ein Dokumentenband, Hildesheim 1981, S. 565 (nach einer vor 1945 angefertigten Abschrift im Besitz von F. Schnapp)</span>
                                                               
-                                                            <div class="collapse" id="source_ed90d88eba87eb3b67e8a5b68f5e0b4b">
+                                                            <div class="collapse" id="source_5a3c097624a69bacfeabd7936f3b1a00">
                                                                 
                                                             </div>
                                                         </div>
@@ -490,7 +488,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047659</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047659</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -550,6 +548,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -608,22 +609,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

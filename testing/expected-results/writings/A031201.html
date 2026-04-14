@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Gottfried Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031201" />
@@ -43,11 +42,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Wichtige Verbesserung des Horns","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031201","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031201","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002078"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031201/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031201/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -390,9 +387,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;Mannheim&#34; im Text zu markieren.">Mannheim</span> 
                                 </label>
                             </div>
                         </div>
@@ -439,15 +436,15 @@
                    <span class="tei_notatedMusic"><img title="Ludwig van Beethoven, Sinfonie Nr. 3 Es-Dur op. 55, IV. Satz, T. 381–396" alt="Ludwig van Beethoven, Sinfonie Nr. 3 Es-Dur op. 55, IV. Satz, T. 381–396" src="https://api.digitale-sammlungen.de/iiif/image/v2/bsb10527962_00435/57,609,647,298/full/0/default.jpg" /></span>
                    welche sonst kaum gehört wird, auf <span class="tei_hi_italic">diesem</span> Instrument aber die frappanteste, durchgreifendste Wirkung that.</p>
                </span><a class="noteMarker" id="backref-d10e338" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e338">Δ</a></span>
-                                        <p>Als nicht unwichtige Nebenvortheile kommen noch in Anschlag: dass die Vorrichtung nicht nur zuweilen das Mutiren, z. B. aus E nach Es, aus F nach E, ganz erspart, indem durch blosses Loslassen des Zugs das Horn auf der Stelle um einen halben Ton tiefer steht, so dass man auf diese Art nöthigen Falls leicht As-Horn, Fis-Horn und H-Horn machen kann, dergleichen nicht allzuselten wirklich vorkommen (z. B. in der <span class="tei_app"><span class="tei_lem"><a class="preview persons A002025" href="">Voglerschen</a></span><a class="noteMarker" id="backref-d10e422" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e422">Δ</a></span> <span class="8097115116111114971084577101115115101">Pastoral-Messe</span>) und wozu die Hornisten selten die erforderlichen Bogen besitzen; sondern auch das wirkliche Transponiren um einige Töne ist ohne Vergleich, gegen zuvor, erleichtert durch den grössern Reichthum an natürlichen Tönen. Man kann, im Fall des Bedürfnisses, um beliebige Schwebungen höher oder tiefer stimmen, ohne das Instrument von den Lippen abzusetzen u. s. w. </p>
+                                        <p>Als nicht unwichtige Nebenvortheile kommen noch in Anschlag: dass die Vorrichtung nicht nur zuweilen das Mutiren, z. B. aus E nach Es, aus F nach E, ganz erspart, indem durch blosses Loslassen des Zugs das Horn auf der Stelle um einen halben Ton tiefer steht, so dass man auf diese Art nöthigen Falls leicht As-Horn, Fis-Horn und H-Horn machen kann, dergleichen nicht allzuselten wirklich vorkommen (z. B. in der <span class="tei_app"><span class="tei_lem"><a class="preview persons A002025" href="">Voglerschen</a></span><a class="noteMarker" id="backref-d10e425" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e425">Δ</a></span> <span class="8097115116111114971084577101115115101">Pastoral-Messe</span>) und wozu die Hornisten selten die erforderlichen Bogen besitzen; sondern auch das wirkliche Transponiren um einige Töne ist ohne Vergleich, gegen zuvor, erleichtert durch den grössern Reichthum an natürlichen Tönen. Man kann, im Fall des Bedürfnisses, um beliebige Schwebungen höher oder tiefer stimmen, ohne das Instrument von den Lippen abzusetzen u. s. w. </p>
                                         <p>Die Manipulation des Zuges ist so einfach, dass jeder geübte Spieler sich in dieselbe, so wie in die etwas veränderte Haltung der rechten Hand, leicht und bald finden wird. Uebrigens bleibt ein so hergerichtetes Instrument nach wie vor auch für den brauchbar, welcher sich des Zugs <span class="tei_hi_italic">nicht</span> zu bedienen versteht. </p><span class="tei_app"><span class="tei_lem">
                 <p>Dass es durch den beweglichen Zug im Ganzen etwas an Tonstärke verlieren werde, schien zwar im voraus zu befürchten: der Erfolg hat aber gezeigt, dass, wenn er so fleissig gearbeitet wird, wie diesen der hiesige Uhrmacher <span class="77111108105110103101114">Molinger</span> gearbeitet hat, der Klang nicht im mindesten leidet.</p>
                 <p>Eine ganz detaillirte und nach Zoll und Linien bestimmte Beschreibung der Mechanik habe ich um deswillen nicht gegeben, weil jeder Musiker, mit Hülfe eines geschickten Arbeiters, die einmal gegebne Idee an seinem Instrumente leicht ausführen kann, und die Details der Ausführung nach dem individuellen Bau des Instruments, der bald so bald anders geführten Windungen, und dem Ort, wo die Einsatzbögen angebracht sind, modificirt werden muss. Uebrigens wäre zu rathen, den Zug eher länger als kürzer machen zu lassen, um ihn so weit herauslassen zu können, als der Daumen zu reichen vermag. </p>
                 <p>Rechnet man nun das Gesagte zusammen – bedenkt man, wie mühsam man oft, um auf andern Blasinstrumenten einen einzigen Ton zu gewinnen oder zu verbessern, eine oder wol mehrere, schwer zu behandelnde Klappen anbringt, indess <a class="preview persons A000383" href="">Hr. Dikhuth</a> durch die einfachste und leichteste Vorrichtung seinem Instrumente ganze Tonreihen auf Einmal neu gewonnen, die Tongleichheit unendlich verbessert, und dabey die Spielart nicht nur nicht erschwert, sondern bedeutend erleichtert hat: so möchte man beynahe bedauern, dass die Erfindung in <span class="tei_country">Deutschland</span> gemacht worden, wo Prämien und Patente für dergleichen nicht – hergebracht sind, wo der bescheidne Erfinder sich durch die, sich selbst gewonnene Erleichterung und grössere Vollkommenheit seines Spiels schon belohnt achten muss, und sich am Ende etwa gar noch wundert, dass seine Erfindung einer öffentlichen Erwähnung gewürdigt ward.</p>
                 <p>
-                    <a class="preview places A130010" href="">Mannheim</a>, im October 1812. <span class="tei_segBlock textAlign-right"><span class="tei_hi_italic"><a class="preview persons A002078" href="">Gottfried Weber</a>.</span></span>
+                    <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a>, im October 1812. <span class="tei_segBlock textAlign-right"><span class="tei_hi_italic"><a class="preview persons A002078" href="">Gottfried Weber</a>.</span></span>
                 </p>
-               </span><a class="noteMarker" id="backref-d10e437" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e437">Δ</a></span></div>
+               </span><a class="noteMarker" id="backref-d10e440" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e440">Δ</a></span></div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -490,7 +487,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Allgemeine Musikalische Zeitung</span>, Jg. 14, Nr. 47 (18. November 1812), Sp. 759–764</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_3e74b70c1d6686225d3e728cfb0ae6f3">
+                                        <div class="collapse apparatus-details" id="source_47d002aebec71664d89e89f1ee324f68">
                                             
                                             
                                             <div>
@@ -512,7 +509,7 @@
                                         <span class="biblio-entry"><span class="author">ohne Verfasserangabe</span>, <span class="journalTitle">Musicalische Zeitung für die österreichischen Staaten</span>, Jg. 2, Nr. 2 (14. Januar 1813), S. 5–6<a class="noteMarker biblioNote" data-toggle="popover" data-ref="#C_22">*</a>
                                                     <div id="C_22" data-title="Bemerkung" style="display:none;">Siehe auch Nr. 3 (21. Januar 1813), S. 9–10.</div></span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_d1d68ed8c22bde1c5c62f293fcd6ae7b">
+                                        <div class="collapse apparatus-details" id="source_6634cc36399d4111343b788cf2a0baef">
                                             
                                             
                                             <div>
@@ -581,7 +578,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_08" class="apparatus-link">8.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_08" data-title="Begriffsdefinition" data-counter="8" data-href="#C_08"><span class="tei_lemma">„Xylosistron“</span>1808 von <span class="85116104101">Uthe</span> erfundenes Friktions-Xylophon, eine Variante des Euphons; vgl. Sachs, a. a. O., S. 425, und den Aufsatz von <a class="preview persons A000040" href="">August Apel</a> in: <span class="tei_hi_italic">AmZ,</span> Jg. 13, Nr. 25 (21. März 1811), Sp. 385–389. Zuerst wurde das Instrument vorgestellt in <span class="tei_hi_italic">AmZ,</span> Jg. 10, Nr. 46 (10. August 1808), Sp. 735–736.</div>
+                                                <div class="apparatusEntry col-11" id="C_08" data-title="Begriffsdefinition" data-counter="8" data-href="#C_08"><span class="tei_lemma">„Xylosistron“</span>1808 von <span class="85116104101">Uthe</span> erfundenes Friktions-Xylophon, eine Variante des Euphons; vgl. Sachs, a. a. O., S. 425, und den Aufsatz von <a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">August Apel</a> in: <span class="tei_hi_italic">AmZ,</span> Jg. 13, Nr. 25 (21. März 1811), Sp. 385–389. Zuerst wurde das Instrument vorgestellt in <span class="tei_hi_italic">AmZ,</span> Jg. 10, Nr. 46 (10. August 1808), Sp. 735–736.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -593,7 +590,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_10" class="apparatus-link">10.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_10" data-title="Begriffsdefinition" data-counter="10" data-href="#C_10"><span class="tei_lemma">„Harmonichord“</span>1809 von <a class="preview persons A000984" href="">Johann Gottfried Kaufmann</a> und seinem <a class="preview persons A000983" href="">Sohn</a> aus dem Triphon entwickeltes Instrument, das eine Synthese von Streichklavier und Euphonprinzip darstellt; vgl. Sachs, a. a. O., S. 180, und <span class="tei_hi_italic">AmZ,</span> Jg. 12, Nr. 57 (31. Oktober 1810), Sp. 918–919, sowie den Aufsatz von <a class="preview persons A000040" href="">August Apel</a> in Nr. 64 (19. Dezember 1810), Sp. 1030–1038. <a class="preview persons A002068" href="">C. M. v. Weber</a> komponierte 1811 sein <a class="preview works A020204" href=""><span class="tei_hi_italic">Adagio und Rondo</span> (JV 115)</a> für dieses Instrument.</div>
+                                                <div class="apparatusEntry col-11" id="C_10" data-title="Begriffsdefinition" data-counter="10" data-href="#C_10"><span class="tei_lemma">„Harmonichord“</span>1809 von <a class="preview persons A000984" href="">Johann Gottfried Kaufmann</a> und seinem <a class="preview persons A000983" href="">Sohn</a> aus dem Triphon entwickeltes Instrument, das eine Synthese von Streichklavier und Euphonprinzip darstellt; vgl. Sachs, a. a. O., S. 180, und <span class="tei_hi_italic">AmZ,</span> Jg. 12, Nr. 57 (31. Oktober 1810), Sp. 918–919, sowie den Aufsatz von <a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">August Apel</a> in Nr. 64 (19. Dezember 1810), Sp. 1030–1038. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a> komponierte 1811 sein <a class="preview works A020204" href=""><span class="tei_hi_italic">Adagio und Rondo</span> (JV 115)</a> für dieses Instrument.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -623,7 +620,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_15" class="apparatus-link">15.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_15" data-title="Einzelstellenerläuterung" data-counter="15" data-href="#C_15"><span class="tei_lemma">„jüngst überrascht war,“</span>Zur Aufführung der <span class="tei_hi_italic"><a class="preview works A020992" href="">Eroica</a></span> im Mannheimer Museum vgl. <a class="preview writings A031392" href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031392.html">1812-V-47</a>, zum Museum vgl. Kom. <a class="preview writings A030867" href="">1810-V-06</a>.</div>
+                                                <div class="apparatusEntry col-11" id="C_15" data-title="Einzelstellenerläuterung" data-counter="15" data-href="#C_15"><span class="tei_lemma">„jüngst überrascht war,“</span>Zur Aufführung der <span class="tei_hi_italic"><a class="preview works A020992" href="">Eroica</a></span> im Mannheimer <a class="preview orgs A080277" href="">Museum</a> vgl. <a class="preview writings A031392" href="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A031392.html">1812-V-47</a>, zum Museum vgl. Kom. <a class="preview writings A030867" href="">1810-V-06</a>.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -715,7 +712,7 @@
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e275" class="apparatus-link">10.</a></div>
                                                 <div id="d10e275" class="apparatusEntry col-11" data-title="Lesarten" data-counter="10" data-href="#d10e275">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">hiesigen Hofmusiker</span>“</span></div>
-                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">königl: Hofmusiker zu <a class="preview places A130010" href="">Mannheim</a></span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">königl: Hofmusiker zu <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a></span>“</span></div>
                                                 </div>
                                             </div>
                                         </li>
@@ -788,8 +785,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e422" class="apparatus-link">17.</a></div>
-                                                <div id="d10e422" class="apparatusEntry col-11" data-title="Lesarten" data-counter="17" data-href="#d10e422">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e425" class="apparatus-link">17.</a></div>
+                                                <div id="d10e425" class="apparatusEntry col-11" data-title="Lesarten" data-counter="17" data-href="#d10e425">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview persons A002025" href="">Voglerschen</a></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Abt Voglers</span>“</span></div>
                                                 </div>
@@ -797,14 +794,14 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e437" class="apparatus-link">18.</a></div>
-                                                <div id="d10e437" class="apparatusEntry col-11" data-title="Lesarten" data-counter="18" data-href="#d10e437">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e440" class="apparatus-link">18.</a></div>
+                                                <div id="d10e440" class="apparatusEntry col-11" data-title="Lesarten" data-counter="18" data-href="#d10e440">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">
                 <span class="tei_p">Dass es durch den beweglichen Zug im Ganzen etwas an Tonstärke verlieren werde, schien zwar im voraus zu befürchten: der Erfolg hat aber gezeigt, dass, wenn er so fleissig gearbeitet wird, wie diesen der hiesige Uhrmacher <span class="77111108105110103101114">Molinger</span> gearbeitet hat, der Klang nicht im mindesten leidet.</span>
                 <span class="tei_p">Eine ganz detaillirte und nach Zoll und Linien bestimmte Beschreibung der Mechanik habe ich um deswillen nicht gegeben, weil jeder Musiker, mit Hülfe eines geschickten Arbeiters, die einmal gegebne Idee an seinem Instrumente leicht ausführen kann, und die Details der Ausführung nach dem individuellen Bau des Instruments, der bald so bald anders geführten Windungen, und dem Ort, wo die Einsatzbögen angebracht sind, modificirt werden muss. Uebrigens wäre zu rathen, den Zug eher länger als kürzer machen zu lassen, um ihn so weit herauslassen zu können, als der Daumen zu reichen vermag. </span>
                 <span class="tei_p">Rechnet man nun das Gesagte zusammen – bedenkt man, wie mühsam man oft, um auf andern Blasinstrumenten einen einzigen Ton zu gewinnen oder zu verbessern, eine oder wol mehrere, schwer zu behandelnde Klappen anbringt, indess <a class="preview persons A000383" href="">Hr. Dikhuth</a> durch die einfachste und leichteste Vorrichtung seinem Instrumente ganze Tonreihen auf Einmal neu gewonnen, die Tongleichheit unendlich verbessert, und dabey die Spielart nicht nur nicht erschwert, sondern bedeutend erleichtert hat: so möchte man beynahe bedauern, dass die Erfindung in <span class="tei_country">Deutschland</span> gemacht worden, wo Prämien und Patente für dergleichen nicht – hergebracht sind, wo der bescheidne Erfinder sich durch die, sich selbst gewonnene Erleichterung und grössere Vollkommenheit seines Spiels schon belohnt achten muss, und sich am Ende etwa gar noch wundert, dass seine Erfindung einer öffentlichen Erwähnung gewürdigt ward.</span>
                 <span class="tei_p">
-                    <a class="preview places A130010" href="">Mannheim</a>, im October 1812. <span class="tei_seg_right"><span class="tei_hi_italic"><a class="preview persons A002078" href="">Gottfried Weber</a>.</span></span>
+                    <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a>, im October 1812. <span class="tei_seg_right"><span class="tei_hi_italic"><a class="preview persons A002078" href="">Gottfried Weber</a>.</span></span>
                 </span>
                </span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
@@ -836,7 +833,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031201</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031201</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -896,6 +893,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -954,22 +954,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

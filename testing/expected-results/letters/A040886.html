@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"plaudert über gesellschaftliche Aktivitäten gemeinsamer Prager Bekannter; teilt mit, dass er von verschiedenen Seiten bestürmt werde, Prag, entgegen seinem Plan, nicht zu verlassen; betr. Caroline; habe aus Berlin (bezüglich seiner Anstellung dort) keine Antwort bekommen; betr. Verlag von Kompositionen Gänsbachers bei Schlesinger; betr. Versendung der Sieges-Kantate an verschiedene hohe Häupter","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Johann Gänsbacher. Prag, Montag, 18. März 1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040886","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040886","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"plaudert über gesellschaftliche Aktivitäten gemeinsamer Prager Bekannter; teilt mit, dass er von verschiedenen Seiten bestürmt werde, Prag, entgegen seinem Plan, nicht zu verlassen; betr. Caroline; habe aus Berlin (bezüglich seiner Anstellung dort) keine Antwort bekommen; betr. Verlag von Kompositionen Gänsbachers bei Schlesinger; betr. Versendung der Sieges-Kantate an verschiedene hohe Häupter","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Johann Gänsbacher. Prag, Montag, 18. März 1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040886","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040886","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040886/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040886/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040886/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,7 +362,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040809.html">1815-08-14</a>:  an  <a href="" class="preview A000213 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040803.html">1815-08-04</a>:  an  <a href="" class="preview A000213 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001497/Korrespondenz/A040855.html">1816-03-05</a>:  von  <a href="" class="preview A001497 persons"></a>
@@ -373,7 +371,7 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A045403.html">1816-04-28</a>:  an  <a href="" class="preview A000899 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040895.html">1816-04-16</a>:  an  <a href="" class="preview A000371 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001355/Korrespondenz/A041387.html">1818-07-18</a>:  von  <a href="" class="preview A001355 persons"></a>
@@ -386,10 +384,10 @@
                                     <h4>Vorausgehend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040806.html">1815-08-11</a>:  an  <a href="" class="preview A000584 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514.html">1812-07-14</a>:  an  <a href="" class="preview A000584 persons"></a>
                                         </li>
                                             <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040291.html">1810-06-18</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040291.html">1810-06-18</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                         </li>
                                     </ul>
                                     <h4>Folgend</h4>
@@ -441,8 +439,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001497" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000946" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001019" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -450,6 +446,8 @@
                                     <input type="checkbox" name="options" value="A001018" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000741" /> <span title="Anwählen, um &#34;Harlas, Helena&#34; im Text zu markieren.">Harlas, Helena</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -485,9 +483,9 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130198" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130006" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -526,14 +524,14 @@
                     Seit einigen Tagen habe ich besonders bey <a class="preview persons A000213" href="">Lina</a> so viel Kummer gehabt, daß ich ganz krank und angegriffen bin. Sie scheint immer noch die geheime Hoffnung genährt zu haben, daß ich bliebe, obwohl ich glaubte daß Sie eben so wie ich von der <span class="tei_hi_underline1">Nothwendigkeit überzeugt</span> wäre daß ich fort müße. 
                nun habe ich zu meinem großen Verdruße gesehen, daß ihre Ansicht von der hohen Kunst, sich auch nicht über die gewöhnliche Erbärmlichkeit erhebt, die die Kunst nur als Mittel sich Suppe und Braten und Hemden zu verschaffen ansieht. 
                     aber das hielft alles nichts, ich glaube wohl daß mich dieses halbe Jahr noch so viel kosten kann daß ich darüber halb zu Grunde gehe, denn so ein täglich nagender Verdruß ist das schreklichste, aber ich bleibe meiner Ueberzeugung getreu. — Was du mir hierüber sagst ist nur allzuwahr, aber nur<span class="tei_pb" title="Seitenumbruch"> | </span>der Gedanke an die Möglichkeit, daß es doch vielleicht anderß sein könnte, und ich dann ein schönes Herz zerstörte, beängstigt mich. ich überlaße der Zeit und der Vorsehung da oben alles. —</p>
-                                        <p>von <a class="preview places A130002" href="">Berlin</a> ist sonderbarer weise keine Antwort mehr auf meinen <a class="preview letters A040870" href="">Brief</a> gekommen<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090001.html">T</a>. – meinetwegen.      frey will ich hinaus in die Welt mich stüzend auf eigene Kraft.</p>
+                                        <p>von <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> ist sonderbarer weise keine Antwort mehr auf meinen <a class="preview letters A040870" href="">Brief</a> gekommen<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090001.html">T</a>. – meinetwegen.      frey will ich hinaus in die Welt mich stüzend auf eigene Kraft.</p>
                                         <p>Wie rührt mich deine Sorgfalt und Liebe, theurer Bruder, mit der du meine Sachen verbreitest. habe innigen Dank dafür, dergleichen Freuden sind die lichten Augenblikke meines Lebens. Könnte ich nur für dich auch wirksamer sein.      <a class="preview persons A001693" href="">Schleßinger</a> hat in seinem lezten <a class="preview letters A046423" href="">Briefe</a> wieder nach deinen Arbeiten gefragt, da er nun mehrere Arbeiten erhalten hat. ich habe ihm sogleich wieder darüber <a class="preview letters A040884" href="">geschrieben</a> und hoffe nun endlich dieses zur Ordnung zu bringen.</p>
-                                        <p>Den <a class="preview works A020019" href="">Klavierauszug</a> meiner <span class="tei_hi_latintype"><a class="preview works A020018" href="">Cantate</a></span> verlegt hier der Buchhändler <span class="tei_hi_latintype"><a class="preview persons A000C08" href="">Cramer</a></span>. Hier lege ich dir abermals einen <a class="preview writings A031194" href="">Aufsaz</a> von mir bey, nebst Text<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a> meine <span class="tei_hi_latintype"><a class="preview works A020018" href="">Cantate</a></span> betreffend, auch ein Zeitungsblatt<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a>. Wenn du kannst so verbreite es ein wenig. 
+                                        <p>Den <a class="preview works A020019" href="">Klavierauszug</a> meiner <span class="tei_hi_latintype"><a class="preview works A020018" href="">Cantate</a></span> verlegt hier der Buchhändler <span class="tei_hi_latintype"><a class="preview persons A000C08" href="">Cramer</a></span>. Hier lege ich dir abermals einen <a class="preview writings A031194" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031194.html">Aufsaz</a> von mir bey, nebst Text<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a> meine <span class="tei_hi_latintype"><a class="preview works A020018" href="">Cantate</a></span> betreffend, auch ein Zeitungsblatt<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a>. Wenn du kannst so verbreite es ein wenig. 
                     Es geht mir übrigens recht unglüklich, stelle dir vor daß ich noch kein einziges <span class="tei_hi_latintype"><a class="preview works A020018" href="">Exemplar</a></span> absenden konnte, aus Mangel an Kopisten.      endlich wurde vor 8 Tagen eines fertig, und nun! <span class="tei_hi_underline1">verdarb es mir der Buchbinder</span> ich soll alles nur auf dem schwierigsten Wege erlangen.</p>
                                         <p>Nun wirst du wohl wieder die Freude haben <span class="tei_del"><span class="tei_unclear">Gäns<a class="noteMarker" id="backref-d10e258" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e258">‡</a></span></span><a class="noteMarker" id="backref-d10e257" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e257">‡</a> <span class="tei_hi_latintype"><a class="preview persons A000077" href="">Bärmann</a></span> und die <span class="tei_hi_latintype"><a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlas</a></span> auf der Durchreise zu sehen<a class="noteMarker" id="backref-note06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note06">*</a>. Küße Si<span class="tei_supplied"><span class="brackets_supplied">[</span>e<span class="brackets_supplied">]</span></span> in meinem Namen aufs innigste.      in Jahr und Tag lieber Bruder hoffe ich dich auch zu umarmen.</p>
                                         <p>Jezt studire ich die <span class="tei_hi_latintype"><a class="preview works A020587" href="">Athalia</a></span> von <span class="tei_hi_latintype"><a class="preview persons A001497" href="">Poisl</a></span> ein.</p>
                                         <p class="tei_closer textAlign-left">
-               Jezt muß ich schließen geliebter <a class="preview persons A000584" href="">Hansel</a>. Laße mich nicht mehr so lange auf Antwort warten, und behalte lieb deinen armen so sehr des Trostes bedürftigen, ewig treuen Bruder <span class="tei_hi_latintype"><a class="preview persons A002068" href="">vWeber</a></span>.
+               Jezt muß ich schließen geliebter <a class="preview persons A000584" href="">Hansel</a>. Laße mich nicht mehr so lange auf Antwort warten, und behalte lieb deinen armen so sehr des Trostes bedürftigen, ewig treuen Bruder <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">vWeber</a></span>.
               <span class="tei_dateline textAlign-left"><a class="preview places A130006" href="">Prag</a> d: 18<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> 1816.</span>
             </p>
                                         <div class="tei_postscript">
@@ -585,9 +583,9 @@
                                         
                                         <span>Wien (A), Gesellschaft der Musikfreunde (A-Wgm)<br /><i>Signatur</i>: Weber an Gänsbacher Nr. 38</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ee51ce128705d3de055c8619a06b9fa5"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_4293c035275bbd6def03b629adb8b7d7"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_ee51ce128705d3de055c8619a06b9fa5">
+                                        <div class="collapse apparatus-details" id="source_4293c035275bbd6def03b629adb8b7d7">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. o. Adr.)</li>
@@ -604,7 +602,7 @@
                                                             
                                                             <span>Nohl 1867, S. 251–253 (Nr. 37)</span>
                                                               
-                                                            <div class="collapse" id="source_d65a32db3ac0f44df50faabd5f7232d2">
+                                                            <div class="collapse" id="source_bb8147ba18a3163d7a509af6193373de">
                                                                 
                                                             </div>
                                                         </div>
@@ -691,7 +689,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note05" class="apparatus-link">7.</a></div>
-                                                <div class="apparatusEntry col-11" id="note05" data-title="Einzelstellenerläuterung" data-counter="7" data-href="#note05"><span class="tei_lemma">„…  Cantate betreffend, auch ein Zeitungsblatt“</span>Möglicherweise die <a class="preview writings A030938" href="">Besprechung</a> der Kantaten-Aufführung am 22. Dezember 1815 aus der <span class="tei_hi_italic">Prager Zeitung</span> vom 4. Februar 1816. Laut <a class="preview diaries A063996" href="">Tagebuch</a> legte Weber außerdem Briefe von <a class="preview persons A001F01" href="">J. Duschek</a> und M. A. A. Gräfin <a class="preview persons A000375" href="">Desfour</a> bei.</div>
+                                                <div class="apparatusEntry col-11" id="note05" data-title="Einzelstellenerläuterung" data-counter="7" data-href="#note05"><span class="tei_lemma">„…  Cantate betreffend, auch ein Zeitungsblatt“</span>Möglicherweise die <a class="preview writings A030938" href="/exist/apps/WeGA-WebApp/de/A000615/Schriften/A030938.html">Besprechung</a> der Kantaten-Aufführung am 22. Dezember 1815 aus der <span class="tei_hi_italic">Prager Zeitung</span> vom 4. Februar 1816. Laut <a class="preview diaries A063996" href="">Tagebuch</a> legte Weber außerdem Briefe von <a class="preview persons A001F01" href="">J. Duschek</a> und M. A. A. Gräfin <a class="preview persons A000375" href="">Desfour</a> bei.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -726,7 +724,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040886</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040886</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -786,6 +784,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -844,22 +845,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

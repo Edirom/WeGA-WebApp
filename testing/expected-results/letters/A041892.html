@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"übersendet Romanze; will vor Wienreise Geschäfte mit Schlesinger ordnen und listet die Werke auf, die er laut Vertrag liefern müsse und die bis auf weniges fertig seien; Liste weiterer abgeschlossener Werke, die er Schlesinger anbietet","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Adolph Martin Schlesinger in Berlin. Dresden, Montag, 21. Januar 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041892","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041892","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"übersendet Romanze; will vor Wienreise Geschäfte mit Schlesinger ordnen und listet die Werke auf, die er laut Vertrag liefern müsse und die bis auf weniges fertig seien; Liste weiterer abgeschlossener Werke, die er Schlesinger anbietet","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Adolph Martin Schlesinger in Berlin. Dresden, Montag, 21. Januar 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041892","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041892","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041892/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041892/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041892/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -367,7 +365,7 @@
                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041890.html">1822-01-18</a>:  an  <a href="" class="preview A080002 orgs"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A080005/Korrespondenz/A041712.html">1821-08-16</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A080005.html" class="preview A080005 orgs">Theaterintendanz Karlsruhe</a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045969.html">1821-06-19</a>:  von  <span class="noDataFound">anonym</span>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
@@ -392,7 +390,7 @@
                                     <h4>Folgend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042771.html">1826-05-02</a>:  an  <a href="" class="preview A001693 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042001.html">1822-12-26</a>:  an  <a href="" class="preview A001693 persons"></a>
                                         </li>
                                     </ul>
                                 
@@ -410,7 +408,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000692" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -447,6 +445,8 @@
                                     <input type="checkbox" name="options" value="A021363" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020232" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A020072" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020083" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -488,8 +488,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020226" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020072" /> <span title="Anwählen, um &#34;Das Turnierbankett Füllet die Humpen, mutige Knappen&#34; im Text zu markieren.">Das Turnierbankett Füllet die Humpen, mutige Knappen</span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020081" /> <span title="Anwählen, um &#34;Gute Nacht Bald heißt es wieder Gute Nacht!&#34; im Text zu markieren.">Gute Nacht Bald heißt es wieder Gute Nacht!</span> 
                                 </label>
                             </div>
@@ -502,11 +500,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -523,7 +521,7 @@
                                         <p>Herrn <span class="tei_hi_latintype"><span class="tei_hi_underline1"><a class="preview persons A001693" href="">Adolph Mart: Schlesinger</a></span></span></p>
                                         <p>Buch und Musik Verleger</p>
                                         <p>zu</p>
-                                        <p><span class="tei_hi_latintype"><span class="tei_hi_underline2andMore"><a class="preview places A130002" href="">Berlin</a></span></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">‡</a></p>
+                                        <p><span class="tei_hi_latintype"><span class="tei_hi_underline2andMore"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">‡</a></p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
@@ -531,7 +529,7 @@
          </div>
                                         <p>Hiebei vorerst eine <a class="preview works A020269" href="">Romanze</a> zur Beilage des Freymüthigen<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, die ich in meinem lezten <a class="preview letters A041883" href="">Schreiben</a> vergeßen hatte.
                  Dann folgenden Vorschlag, da ich vermög gestern erhaltener <span class="preview letters A046686 A046592" data-ref=" ">Briefe</span> d: 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> von hier nach <a class="preview places A130004" href="">Wien</a> auf 4 Wochen zu reisen gedenke, und es der Ordnung gemäß finde meinem ältern Freunde anzuzeigen was ich habe, und seinen Willen zu hören, ehe ich andern Anträgen antworte, oder auf sie eingehe.<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">‡</a></p>
-                                        <p>Vermöge unseres <span class="tei_app"><span class="tei_lem">lezten</span><a class="noteMarker" id="backref-d10e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e74">Δ</a></span> <a class="preview documents A100171" href="">Vertrags</a> haben Sie noch von mir gegen die <span class="tei_app"><span class="tei_lem">Summe von fünfhundert</span><a class="noteMarker" id="backref-d10e83" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e83">Δ</a></span> Thaler <span class="tei_hi_latintype">Conv:</span> Münze zu erhalten: <span class="tei_hi_underline1">= 6–8 <span class="tei_hi_latintype"><a class="preview works A021365" href="">Etuden</a></span></span>, ein <span class="tei_hi_underline1">Heft <span class="preview works A020196 A020092 A020180 A020176 A020182 A020184 A020080 A020185" data-ref="       ">Volkslieder</span></span>. <span class="tei_hi_underline1"><span class="preview works A020023" data-ref="">Kantate des <span class="tei_app"><span class="tei_lem">3<span class="tei_hi_superscript">t</span></span><a class="noteMarker" id="backref-d10e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e107">Δ</a></span> Augusts</span></span>,  <span class="tei_hi_underline1">= <span class="tei_hi_latintype"><a class="preview works A021363" href="">Solfeggien</a></span></span>, <span class="tei_hi_underline1">1 <span class="tei_hi_latintype"><span class="preview works A020232" data-ref=""><span class="tei_app"><span class="tei_lem">Sonata</span><a class="noteMarker" id="backref-d10e126" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e126">Δ</a></span> p: Pf:</span></span></span>.  <span class="tei_hi_underline1"><span class="preview works A020072 A020083 A020082 A020085 A020081 A020084" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020072.html    /exist/apps/WeGA-WebApp/de/A002068/Werke/A020081.html ">= 6 <span class="tei_app"><span class="tei_lem">MännerGesänge</span><a class="noteMarker" id="backref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">Δ</a></span></span></span>.      Dieses kann bis auf die <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A021365" href="">Etuden</a></span> und <span class="tei_hi_latintype"><a class="preview works A021363" href="">Solfeggien</a></span></span> in wenig Tagen an Sie abgehen.     Ziehen Sie <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e157" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e157">Δ</a></span> von der <span class="tei_app"><span class="tei_lem">Summe</span><a class="noteMarker" id="backref-d10e162" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e162">Δ</a></span> von 500 rh: <span class="tei_app"><span class="tei_lem">einstweilen</span><a class="noteMarker" id="backref-d10e168" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e168">Δ</a></span> <span class="tei_hi_underline1">20 <span class="tei_hi_latintype">Fried: dor</span></span> für die <span class="tei_hi_latintype"><a class="preview works A021365" href="">Etuden</a></span>, und  <span class="tei_hi_underline1">12 <span class="tei_hi_latintype">Fried: dor</span></span> für die <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A021363" href="">Solfeggien</a></span></span> ab.      die Ihnen dann später <span class="tei_app"><span class="tei_lem">von mir</span><a class="noteMarker" id="backref-d10e195" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e195">Δ</a></span> natürlich für denselben Preiß nachgeliefert werden<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">‡</a>.</p>
+                                        <p>Vermöge unseres <span class="tei_app"><span class="tei_lem">lezten</span><a class="noteMarker" id="backref-d10e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e74">Δ</a></span> <a class="preview documents A100171" href="">Vertrags</a> haben Sie noch von mir gegen die <span class="tei_app"><span class="tei_lem">Summe von fünfhundert</span><a class="noteMarker" id="backref-d10e83" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e83">Δ</a></span> Thaler <span class="tei_hi_latintype">Conv:</span> Münze zu erhalten: <span class="tei_hi_underline1">= 6–8 <span class="tei_hi_latintype"><a class="preview works A021365" href="">Etuden</a></span></span>, ein <span class="tei_hi_underline1">Heft <span class="preview works A020196 A020092 A020180 A020176 A020182 A020184 A020080 A020185" data-ref="       ">Volkslieder</span></span>. <span class="tei_hi_underline1"><span class="preview works A020023" data-ref="">Kantate des <span class="tei_app"><span class="tei_lem">3<span class="tei_hi_superscript">t</span></span><a class="noteMarker" id="backref-d10e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e107">Δ</a></span> Augusts</span></span>,  <span class="tei_hi_underline1">= <span class="tei_hi_latintype"><a class="preview works A021363" href="">Solfeggien</a></span></span>, <span class="tei_hi_underline1">1 <span class="tei_hi_latintype"><span class="preview works A020232" data-ref=""><span class="tei_app"><span class="tei_lem">Sonata</span><a class="noteMarker" id="backref-d10e126" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e126">Δ</a></span> p: Pf:</span></span></span>.  <span class="tei_hi_underline1"><span class="preview works A020072 A020083 A020082 A020085 A020081 A020084" data-ref="    /exist/apps/WeGA-WebApp/de/A002068/Werke/A020081.html ">= 6 <span class="tei_app"><span class="tei_lem">MännerGesänge</span><a class="noteMarker" id="backref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">Δ</a></span></span></span>.      Dieses kann bis auf die <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A021365" href="">Etuden</a></span> und <span class="tei_hi_latintype"><a class="preview works A021363" href="">Solfeggien</a></span></span> in wenig Tagen an Sie abgehen.     Ziehen Sie <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e157" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e157">Δ</a></span> von der <span class="tei_app"><span class="tei_lem">Summe</span><a class="noteMarker" id="backref-d10e162" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e162">Δ</a></span> von 500 rh: <span class="tei_app"><span class="tei_lem">einstweilen</span><a class="noteMarker" id="backref-d10e168" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e168">Δ</a></span> <span class="tei_hi_underline1">20 <span class="tei_hi_latintype">Fried: dor</span></span> für die <span class="tei_hi_latintype"><a class="preview works A021365" href="">Etuden</a></span>, und  <span class="tei_hi_underline1">12 <span class="tei_hi_latintype">Fried: dor</span></span> für die <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A021363" href="">Solfeggien</a></span></span> ab.      die Ihnen dann später <span class="tei_app"><span class="tei_lem">von mir</span><a class="noteMarker" id="backref-d10e195" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e195">Δ</a></span> natürlich für denselben Preiß nachgeliefert werden<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">‡</a>.</p>
                                         <p>Sodann habe ich noch fertig liegen.</p>
                                         <div class="table-wrapper">
                                             <table id="d10e205" class="table">
@@ -577,7 +575,7 @@
             Mit den freundlichsten Grüßen wie immer
             <span class="tei_segBlock textAlign-right">Ihr<br />
                ergebener Freund<br />
-               <span class="tei_hi_latintype"><a class="preview persons A002068" href="">CMvWeber</a></span><a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">‡</a></span>
+               <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">CMvWeber</a></span><a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">‡</a></span>
             <span class="tei_dateline textAlign-left"><a class="preview places A130003" href=""><span class="tei_hi_latintype">Dresden</span></a> d: 21<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Januar</span> 1822.<a class="noteMarker" id="backref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">‡</a></span>
            </p>
                                         <p class="clearer"></p>
@@ -626,18 +624,19 @@
                                         
                                         <span>In Privatbesitz</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1bc5f72dcb55bdd4832759b02685454f"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_379773245f51b7cc4a182bb621f0f23d"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1bc5f72dcb55bdd4832759b02685454f">
+                                        <div class="collapse apparatus-details" id="source_379773245f51b7cc4a182bb621f0f23d">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
-                                                        <li>1 Bl. (2 b. S. einschl. Adr.); obere rechte Ecke abgeschnitten (ohne Textverlust)</li>
+                                                        <li>1 Bl. (2 b. S. einschl. Adr.)</li>
+                                                        <li>obere rechte Ecke abgeschnitten (ohne Textverlust)</li>
                                                         <li>PSt: DRESDEN | 21. Jan. 22</li>
                                                         <li>Briefregistraturvermerk des Verlags, demnach „<a class="preview letters A046723" href="">beantw</a> d 29 <span class="tei_hi_latintype">Jan</span> 22“</li>
                                                     </ul>
                                                     <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
-                                                        <li><a class="preview orgs A080103" href="">Antiquariat Inlibris Gilhofer Nfg. GmbH</a> (<a href="https://web.archive.org/web/20210719103857/https://inlibris.com/de/item/bn54777_de/">online <i class="fa fa-external-link" aria-hidden="true"></i></a> <span class="tei_date">Juli 2021 bis August 2022</span> inkl. Faksimile)</li>
+                                                        <li><a class="preview orgs A080103" href="">Antiquariat Inlibris Gilhofer Nfg. GmbH</a> (<a href="https://web.archive.org/web/20210719103857/https://inlibris.com/de/item/bn54777_de/">online <i class="fa fa-external-link" aria-hidden="true"></i></a> <span class="tei_date">Juli 2021 bis Januar 2026</span> inkl. Faksimile); ebenfalls bei Kotte Autographs angeboten (<a href="https://web.archive.org/web/20221031100934/https://www.kotte-autographs.com/de/autograph/weber-carl-maria-von/">online inkl. Faksimile <i class="fa fa-external-link" aria-hidden="true"></i></a>)</li>
                                                         <li>Stargardt Kat. 709 (2021), Nr. 740 (<a href="https://web.archive.org/web/20210325120220/https://www.invaluable.com/auction-lot/weber-carl-maria-von-1786-1826-740-c-d844b62a56">online <i class="fa fa-external-link" aria-hidden="true"></i></a> inkl. Faksimile)</li>
                                                     </ul>
                                             
@@ -653,9 +652,9 @@
                                                             
                                                             <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. II B, 1. h.</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" role="button" href="#source_da745cc877e1dbbfab82f541764daf70"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" role="button" href="#source_ecb59a7340b0cb24579a13612222c7ba"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_da745cc877e1dbbfab82f541764daf70">
+                                                            <div class="collapse" id="source_ecb59a7340b0cb24579a13612222c7ba">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>Kopie von <a class="preview persons A008040" href="">Ida Jähns</a></li>
@@ -668,7 +667,7 @@
                                                             
                                                             <span>Hirschberg77, S. 36–37 (Nr. 47)</span>
                                                               
-                                                            <div class="collapse" id="source_60c1dbb12c050b82ddd795d240b726a4">
+                                                            <div class="collapse" id="source_f6149a463dfba2a5dfa8a833132f02f2">
                                                                 
                                                             </div>
                                                         </div>
@@ -691,9 +690,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (XII), Bl. 76b/r u. v.</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_03a27604df1bbc876803f6c59cc6d155"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1ade1a4ad19872b8fc944e1377288cbe"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_03a27604df1bbc876803f6c59cc6d155">
+                                        <div class="collapse apparatus-details" id="source_1ade1a4ad19872b8fc944e1377288cbe">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Überschrift von C. M. von Webers Hand, nachfolgend Entwurfs-Diktat von der Hand Caroline von Webers; Rand vom zweiten Teil des Briefes etwas beschnitten</li>
@@ -885,7 +884,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041892</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041892</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -945,6 +944,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1003,22 +1005,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

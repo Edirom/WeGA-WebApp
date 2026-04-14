@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -43,13 +43,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"legt Lichtenstein eine Abschrift des Brühlschen Angebots und seiner Antwort bei; betont Glauben an Brühls gute Absichten, die Angelegenheit habe ihn aber doch sehr verstimmt","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Hinrich Lichtenstein in Berlin. Dresden, Dienstag, 14. Januar 1823","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042089","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042089","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"legt Lichtenstein eine Abschrift des Brühlschen Angebots und seiner Antwort bei; betont Glauben an Brühls gute Absichten, die Angelegenheit habe ihn aber doch sehr verstimmt","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Hinrich Lichtenstein in Berlin. Dresden, Dienstag, 14. Januar 1823","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042089","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042089","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -224,7 +222,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -253,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -297,10 +295,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042089/backlinks.html">Rückverweise</a>
+                                    <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042089/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042089/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -363,7 +361,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042087.html">1823-01-13</a>:  an  <a href="" class="preview A000235 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042005.html">1822-12-26</a>:  an  <a href="" class="preview A000077 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001936/Korrespondenz/A042078.html">1822-03-25</a>:  von  <a href="" class="preview A001936 persons"></a>
@@ -413,7 +411,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000213" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -437,9 +435,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -458,14 +456,14 @@
                                         <p>Direktor des zoologischen</p>
                                         <p>Museums</p>
                                         <p>zu</p>
-                                        <p><a class="preview places A130002" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Berlin</span></span></a></p>
+                                        <p><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Berlin</span></span></a></p>
                                     </div>
                                     <div class="writingSession">
-                                        <p>Ich beeile mich dir mein lieber <a class="preview persons A001166" href="">Bruder</a> anzuzeigen, wie man in <span class="tei_country">Deutschland</span> seine Komponisten belohnt und aufmuntert. d: 9<span class="tei_hi_superscript">t</span><a class="noteMarker" id="backref-C01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C01">*</a> erhielt ich einen <a class="preview letters A046849" href="">Brief</a> vom <a class="preview persons A000235" href="">Grafen <span class="tei_hi_latintype">Brühl</span></a>, der unter vielem Freundlichen, und der Sendung der Kostüme des <a class="preview works A020040" href="">Freysch:</a><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> auch folgendes enthielt.</p>
-                                        <p>„Um indeß <span class="tei_subst"><span class="tei_add">diese</span><a class="noteMarker" id="backref-d10e65" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e65">‡</a></span> Gelegenheit nicht vorüber gehen zu laßen Ihnen stets meine thätige Freundschaft und Anerkennung an den Tag zu legen, ersuche ich Sie mir sogleich eine <span class="tei_hi_latintype">Quittung</span> über ‚hundert Thaler‘ als nachträgliches Honorar für den <a class="preview works A020040" href="">Freyschütz</a> bei der 50<span class="tei_hi_superscript">t</span> Aufführung deßelben, übersenden zu wollen.“ –</p>
-                                        <p class="inlineEnd">Hiebei folgt nun meine <a class="preview letters A042087" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042087.html">Antwort</a> in Abschrift. Ich glaube fest daß der <a class="preview persons A000235" href="">Graf</a> gewiß viel Gutes für mich im Sinn hatte. Aber nicht durchdringen konnte, und vielleicht jezt nur diesen Brief und dieß Anerbieten mir schreiben ließ, um Anderen zu zeigen, was aus solcher Geringschätzung hervorgehen müße.      Sollte man es nicht verschwören in <span class="tei_country">Deutschland</span> Opern zu schreiben?      ich bin nun begierig was weiter geschieht. ich glaube ich bekomme keine Antwort mehr und die Sache ist abgemacht. das anständigste was geschehen konnte, war, wenn man mir die Einnahme des 50<span class="tei_hi_superscript">t</span> Abends schikte, oder die Erneuerung des ersten <span class="tei_hi_latintype">Honorars</span>.      Jezt ist das freilich alles nicht mehr thunlich. ich bin überzeugt daß du nur den zwekmäßigsten Gebrauch von dieser Mittheilung machen wirst, und <span class="tei_subst"><span class="tei_add">empfehle</span><a class="noteMarker" id="backref-d10e109" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e109">‡</a></span> dir daher eben so wenig Verbreitung als Verschweigung derselben.      Ich kann nicht läugnen sehr verstimmt dadurch zu sein.      Alles ist gesund in meinem Hause.</p>
-                                        <p class="tei_closer textAlign-left inlineStart">     Grüße <a class="preview persons A001165" href="">Viktoire</a> herzlichst <span class="tei_choice"><span class="tei_sic">und</span><a class="noteMarker" id="backref-d10e126" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e126">‡</a></span> mir und <a class="preview persons A000213" href="">Lina</a>.
-         <span class="tei_segBlock textAlign-right">Dein treuer <span class="tei_hi_latintype"><a class="preview persons A002068" href="">W:</a></span></span>
+                                        <p>Ich beeile mich dir mein lieber <a class="preview persons A001166" href="">Bruder</a> anzuzeigen, wie man in <span class="tei_country">Deutschland</span> seine Komponisten belohnt und aufmuntert. d: <span class="tei_subst"><span class="tei_add">9</span><a class="noteMarker" id="backref-d10e33" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e33">‡</a></span> erhielt ich einen <a class="preview letters A046849" href="">Brief</a> vom <a class="preview persons A000235" href="">Grafen <span class="tei_hi_latintype">Brühl</span></a>, der unter vielem Freundlichen, und der Sendung der Kostüme des <a class="preview works A020040" href="">Freysch:</a><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> auch folgendes enthielt.</p>
+                                        <p>„Um indeß <span class="tei_subst"><span class="tei_add">diese</span><a class="noteMarker" id="backref-d10e69" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e69">‡</a></span> Gelegenheit nicht vorüber gehen zu laßen Ihnen stets meine thätige Freundschaft und Anerkennung an den Tag zu legen, ersuche ich Sie mir sogleich eine <span class="tei_hi_latintype">Quittung</span> über ‚hundert Thaler‘ als nachträgliches Honorar für den <a class="preview works A020040" href="">Freyschütz</a> bei der 50<span class="tei_hi_superscript">t</span> Aufführung deßelben<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, übersenden zu wollen.“ –</p>
+                                        <p class="inlineEnd">Hiebei folgt nun meine <a class="preview letters A042087" href="">Antwort</a> in Abschrift. Ich glaube fest daß der <a class="preview persons A000235" href="">Graf</a> gewiß viel Gutes für mich im Sinn hatte. Aber nicht durchdringen konnte, und vielleicht jezt nur diesen Brief und dieß Anerbieten mir schreiben ließ, um Anderen zu zeigen, was aus solcher Geringschätzung hervorgehen müße.      Sollte man es nicht verschwören in <span class="tei_country">Deutschland</span> Opern zu schreiben?      ich bin nun begierig was weiter geschieht. ich glaube ich bekomme keine Antwort mehr und die Sache ist abgemacht. das anständigste was geschehen konnte, war, wenn man mir die Einnahme des 50<span class="tei_hi_superscript">t</span> Abends schikte, oder die Erneuerung des ersten <span class="tei_hi_latintype">Honorars</span>.      Jezt ist das freilich alles nicht mehr thunlich. ich bin überzeugt daß du nur den zwekmäßigsten Gebrauch von dieser Mittheilung machen wirst, und <span class="tei_subst"><span class="tei_add">empfehle</span><a class="noteMarker" id="backref-d10e117" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e117">‡</a></span> dir daher eben so wenig Verbreitung als Verschweigung derselben.      Ich kann nicht läugnen sehr verstimmt dadurch zu sein.      Alles ist gesund in meinem Hause.</p>
+                                        <p class="tei_closer textAlign-left inlineStart">     Grüße <a class="preview persons A001165" href="">Viktoire</a> herzlichst <span class="tei_choice"><span class="tei_sic">und</span><a class="noteMarker" id="backref-d10e134" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e134">‡</a></span> mir und <a class="preview persons A000213" href="">Lina</a>.
+         <span class="tei_segBlock textAlign-right">Dein treuer <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">W:</a></span></span>
     <span class="tei_dateline textAlign-textAlign-left"><a class="preview places A130003" href=""><span class="tei_hi_latintype">Dresden</span></a> d: 14<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Jän:</span> 1823<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>.</span></p>
                                         <p class="clearer"></p>
                                     </div>
@@ -513,13 +511,13 @@
                                         
                                         <span>Leipzig (D), Leipziger Stadtbibliothek – Musikbibliothek (D-LEm)<br /><i>Signatur</i>: PB 37, (Nr. 42)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c18f0927c163a7d8c2232524bbc31f03"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_416e73f9c98b428d5394af17d8e43765"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_c18f0927c163a7d8c2232524bbc31f03">
+                                        <div class="collapse apparatus-details" id="source_416e73f9c98b428d5394af17d8e43765">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.)</li>
-                                                        <li>mit Beilage: e. Abschrift des <a class="preview letters A042087" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042087.html">Briefes</a> an Brühl vom 13. Jan., s.d.</li>
+                                                        <li>mit Beilage: e. Abschrift des <a class="preview letters A042087" href="">Briefes</a> an Brühl vom 13. Jan., s.d.</li>
                                                         <li>PSt: DRESDEN | 15. Jan. 23. </li>
                                                     </ul>
                                             
@@ -533,7 +531,7 @@
                                                             
                                                             <span>Rudorff: Westermanns illustrierte deutsche Monats-Hefte, 44. Jg. (1899), 87. Bd., S. S. 181 (mit Beilage: Abschr. Weber an Brühl v. 13.1., s.d., S. 181–182)</span>
                                                               
-                                                            <div class="collapse" id="source_aa6cffc0e9ae97cd2bff7cf35b14c958">
+                                                            <div class="collapse" id="source_b6a6f980a9ba0db9298c217893e251b1">
                                                                 
                                                             </div>
                                                         </div>
@@ -543,7 +541,7 @@
                                                             
                                                             <span>Rudorff 1900, S. 123–124 u. Abschrift an Brühl, S. 124–127</span>
                                                               
-                                                            <div class="collapse" id="source_7d15fd448da15ff2f6b99b3286606ff0">
+                                                            <div class="collapse" id="source_065c75c3cdd723ae15d5a4dc80f0963e">
                                                                 
                                                             </div>
                                                         </div>
@@ -568,14 +566,20 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e65" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e65" data-title="Ersetzung" data-counter="1" data-href="#d10e65"><span class="tei_lemma">„<span class="tei_add">diese</span>“</span>„eine“ überschrieben mit „<span class="tei_add">diese</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e33" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e33" data-title="Ersetzung" data-counter="1" data-href="#d10e33"><span class="tei_lemma">„<span class="tei_add">9</span>“</span>„11<span class="tei_hi_superscript">t</span>“ überschrieben mit „<span class="tei_add">9</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e109" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e109" data-title="Ersetzung" data-counter="2" data-href="#d10e109"><span class="tei_lemma">„<span class="tei_add">empfehle</span>“</span>gelöschter Text nicht lesbar</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e69" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e69" data-title="Ersetzung" data-counter="2" data-href="#d10e69"><span class="tei_lemma">„<span class="tei_add">diese</span>“</span>„eine“ überschrieben mit „<span class="tei_add">diese</span>“</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e117" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e117" data-title="Ersetzung" data-counter="3" data-href="#d10e117"><span class="tei_lemma">„<span class="tei_add">empfehle</span>“</span>gelöschter Text nicht lesbar</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -583,20 +587,20 @@
                                     <ul class="apparatus commentary">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C01"><span class="tei_lemma">„…  und aufmuntert. d: 9 t“</span>Korrigiert aus: 11<span class="tei_hi_superscript">t</span>.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  Sendung der Kostüme des Freysch:“</span>Heft 13 der bei <a class="preview persons A00104E" href="">L. W. Wittich</a> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> erscheinenden Reihe <span class="tei_hi_italic">Neue Kostüme auf den beiden Königlichen Theatern in Berlin, unter der General-Intendantur des Herrn Gr. v. Brühl</span> mit den Freischütz-Figurinen von <a class="preview persons A006617" href="">Johann Heinrich Stürmer</a>.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note01"><span class="tei_lemma">„…  Sendung der Kostüme des Freysch:“</span>Heft 13 der bei Ludwig Wilhelm Wittich in <a class="preview places A130002" href="">Berlin</a> erscheinenden Reihe <span class="tei_hi_italic">Neue Kostüme auf den beiden Königlichen Theatern in Berlin, unter der General-Intendantur des Herrn Gr. v. Brühl</span> mit den Freischütz-Figurinen von <a class="preview persons A006617" href="">Johann Heinrich Stürmer</a>.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  der 50 t Aufführung deßelben“</span>Am 28. Dezember 1822.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e126" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e126" data-title="sic" data-counter="3" data-href="#d10e126"><span class="tei_lemma">„<span class="tei_sic">und</span>“</span>recte  „<span class="tei_corr">von</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e134" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e134" data-title="sic" data-counter="3" data-href="#d10e134"><span class="tei_lemma">„<span class="tei_sic">und</span>“</span>recte  „<span class="tei_corr">von</span>“.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -631,7 +635,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042089</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042089</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -691,6 +695,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -749,22 +756,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

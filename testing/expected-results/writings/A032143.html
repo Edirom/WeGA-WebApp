@@ -12,8 +12,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Chézy, Helmina von" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032143" />
@@ -43,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Chezy verteidigt ihr Textbuch gegenüber der Kritik des Rezensenten (Nr. 131, 1. November 1823, S. 523f. ) und betont, dass die Arbeit am Text im Einvernehmen mit Weber erfolgt sei","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Reaktion der Chézy auf Euryanthe-Rezension (Entwurf)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032143","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000288/Schriften/A032143","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000288","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000288"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -251,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -292,13 +290,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A032143/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A032143/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000288/Schriften/A032143/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -356,13 +354,13 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A007876" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000288" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -374,9 +372,9 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020040" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label>
                             </div>
                         </div>
@@ -401,14 +399,15 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">Ein Wort der Dichterin der <a class="preview works A020043" href="">Euryanthe</a><br /> 
-                über die <a class="preview writings A030964" href="">Beurtheilung</a> ihres Textes<br />
+                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_underline1">Ein Wort der Dichterin der <a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a><br /> 
+                über die <a class="preview writings A030964" href="">Beurtheilung</a> ihres Textes</span><br />
                 in dieser Zeitschrift</h2>
                                         <p><span class="tei_segBlock textAlign-right">(Abgedruckt in der <a class="preview writings A030705" href="">Theat. Zeit:<br />
                 Nov: 1823</a></span>
-                    Unkunde mit dem Verhältniß des Dichters zum Compositeur überhaupt, u Unbekanntschaft mit der Geschichte der Entstehung der <a class="preview works A020043" href="">Euryanthe</a> konnte den <span class="tei_hi_latintype">Th</span>. unterschriebenen Verfasser obbenannter <a class="preview writings A030964" href="">Beurtheilung</a> zu der irrigen Meinung verleiten, die wenigen Schönheiten, die er an meiner Dichtung zu entdecken glaubt, haben den Compositeur bestimmt <span class="tei_hi_underline1">dies</span> Buch vor Andern  <span class="tei_hi_underline1">auszuwählen</span>. <span class="tei_del">Wir norddeutsche Dichter haben</span><a class="noteMarker" id="backref-d10e38" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e38">‡</a> Seit den 25 Jahren meines litterarischen Wirkens habe ich noch keine Muße gehabt irgend etwas auf gut Glück hin zu arbeiten, und <span class="tei_del">am wenigsten</span><a class="noteMarker" id="backref-d10e41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e41">‡</a> hätte ich sie gehabt ich hätte sie nicht zu einer <span class="tei_hi_underline1">Oper</span> verwendet. <span class="tei_del">Diese in jeder ersinnlichen Rücksicht undankbarste aller Mühen. – Lang, eh H. <a class="preview persons A002068" href="">v. Weber</a><a class="preview persons A001002" href="">Kinds</a><a class="preview works A020040" href="">Freyschütz</a> in Musik gesetzt, hatte ich gewünscht etwas für ihn zu arbeiten.</span><a class="noteMarker" id="backref-d10e47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e47">‡</a> Im Oct: 1821 bat <span class="tei_del">er</span><a class="noteMarker" id="backref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">‡</a> mich <span class="tei_del">selbst</span><a class="noteMarker" id="backref-d10e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e60">‡</a> H. <a class="preview persons A002068" href="">v. Weber</a> darum an ihn zu denken wenn ich 1 treffl. Opernstoff fände, ich legte ihm den Plan zur <a class="preview works A020043" href="">Euryanthe</a> vor, welche ich 1804 für <a class="preview persons A007876" href="">Fr: v. Schlegel’s</a> Romantische Dichtungen des Mittelalters aus dem Altfranzösischen übersetzt hatte, <a class="preview persons A002068" href="">Weber</a> war entzückt und hingerissen von dem Stoff der das Unglück hat dem H. <span class="tei_hi_latintype">Th</span>. so sehr zu mißfallen; ich arbeitete die Oper für den Compositeur achtmal um, und diese Achte Bearbeitung war es, die März 1822 in <a class="preview places A130004" href="">Wien</a> recipirt war, u nur zwey Akte hatte. Die jetzt erschienene <a class="preview works A020043" href=""><span class="tei_hi_underline1">Euryanthe</span></a> ist die <span class="tei_hi_underline1">Eilfte</span> Umarbeitung, in drey Akten, mit einer neuen Catastrophe, u nach dem eigensten Wunsch u Bedürfniß des Compositeurs gleichsam nur als <span class="tei_hi_underline1">Unterlage</span> zu den musikalischen Effecten, die <a class="preview persons A002068" href="">Weber</a> nach reiflichem Nachsinnen u vielfacher Umwechslung der Ideen beabsichtigte u festhielt, u mit Hintansetzung mancher Rücksicht auf mich, meine Zeit und auf den poetischen Gehalt der Oper, vollendet; so daß <span class="tei_hi_underline1">Alles</span> was H. <span class="tei_hi_latintype">Th</span>. am Text, oft mit großem Rechte tadelt, der Musik zu Gefallen geschen ist.</p>
-                                        <p>Ein verständiger Tadel ist mir lieber als ein Partheilichkeit verrathendes, unbedingtes Lob, und gern gebe ich der Rüge des Herrn: <span class="tei_hi_latintype">Th</span>. alle F?? eines Werkes Preis, von welchem die <span class="tei_hi_underline1">Mängel</span> <span class="tei_hi_underline1">mir</span> zur Last fallen, die Schönheiten aber Alle blos als welche der Composition gepriesen werden, wie das bei Opern immer geschieht; nur bitte ich ihn zu bedenken daß ein Vers, den <a class="preview persons A002068" href="">Weber</a> so herrlich u wirkungsvoll in Musik gesetzt, wie den:<br />
-                "so nimm mein Gold, mein Gut u Land – unmöglich unmusikalisch seyn könne! Uebrigens kann es mich nicht reuen ein so unvollkommnes Opernbuch geliefert zu haben, da es die, obgleich unschuldige, Veranlassung zu einem so vollkommenen Meisterwerk der Musik wurde, wie <span class="tei_del"><span>[…]</span></span><a class="noteMarker" id="backref-d10e119" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e119">‡</a> wie Herr <span class="tei_hi_latintype">Th</span>. <a class="preview persons A002068" href="">Webers</a> neue Schöpfung preist; unter Allen, die für vaterländische Musik glühen, mitzuwirken gestrebt haben, kann Niemand so eifrig als ich wünschen daß gewichtige Stimmen dies Urtheil bestätigen mögen.
+                    Unkunde mit dem Verhältniß des Dichters zum Compositeur überhaupt, u Unbekanntschaft mit der Geschichte der Entstehung der <a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a> konnte den <span class="tei_hi_latintype">Th</span>. unterschriebenen Verfasser obbenannter <a class="preview writings A030964" href="">Beurtheilung</a> zu der irrigen Meinung verleiten, die wenigen Schönheiten, die er an meiner Dichtung zu entdecken glaubt, haben den Compositeur bestimmt <span class="tei_hi_underline1">dies</span> Buch vor Andern  <span class="tei_hi_underline1">auszuwählen</span>. <span class="tei_subst"><span class="tei_add">Seit den 25 Jahren meines litterarischen Wirkens habe ich noch</span><a class="noteMarker" id="backref-d10e39" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e39">‡</a></span> keine Muße <span class="tei_add tei_hi_superscript">gehabt<a class="noteMarker" id="backref-d10e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e45">‡</a></span> irgend etwas auf gut Glück hin zu arbeiten, und <span class="tei_subst"><span class="tei_add">hätte ich sie gehabt ich hätte sie nicht zu</span><a class="noteMarker" id="backref-d10e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e48">‡</a></span> einer <span class="tei_hi_underline1">Oper</span> <span class="tei_add tei_hi_subscript">verwendet<a class="noteMarker" id="backref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">‡</a></span>. <span class="tei_del">Diese in jeder ersinnlichen Rücksicht undankbarste aller Mühen. – Lang, eh H. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a><a class="preview persons A001002" href="">Kinds</a><a class="preview works A020040" href="">Freyschütz</a> in Musik gesetzt, hatte ich gewünscht etwas für ihn zu arbeiten.</span><a class="noteMarker" id="backref-d10e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e60">‡</a> Im Oct: 1821 bat <span class="tei_del">er</span><a class="noteMarker" id="backref-d10e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e71">‡</a> mich <span class="tei_subst"><span class="tei_add">H. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a></span><a class="noteMarker" id="backref-d10e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e74">‡</a></span> darum <span class="tei_add tei_hi_superscript">an ihn zu denken wenn ich 1 treffl. Opernstoff fände<a class="noteMarker" id="backref-d10e82" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e82">‡</a></span>, ich legte ihm den Plan zur <a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a> vor, welche ich 180<span class="tei_subst"><span class="tei_add">4</span><a class="noteMarker" id="backref-d10e88" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e88">‡</a></span> für <a class="preview persons A007876" href="">Fr: v. Schlegel’s</a> Romantische Dichtungen des Mittelalters aus dem Altfranzösischen übersetzt hatte, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> war <span class="tei_pb" title="Seitenumbruch"> | </span> entzückt und hingerissen von dem Stoff der das Unglück hat dem H. <span class="tei_hi_latintype">Th</span>. so sehr zu mißfallen; ich arbeitete die Oper für den Compositeur achtmal um, und diese Achte Bearbeitung war es, die März 1822 in <a class="preview places A130004" href="">Wien</a> <span class="tei_hi_latintype">recipirt</span> war, u nur zwey Akte hatte. Die jetzt erschienene <a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html"><span class="tei_hi_underline1">Euryanthe</span></a> ist die <span class="tei_hi_underline1">Eilfte</span> Umarbeitung, in drey Akten, mit einer neuen Catastrophe, u nach dem eigensten Wunsch u Bedürfniß des Compositeurs gleichsam nur als <span class="tei_hi_underline1">Unterlage</span> zu den musikalischen Effecten, die <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nach reiflichem Nachsinnen u vielfacher Umwechselung der Ideen beabsichtigte u festhielt, u mit Hintansetzung mancher Rücksicht auf mich, meine Zeit und auf den poetischen Gehalt der Oper, vollendet; so daß <span class="tei_hi_underline1">Alles</span> was H. <span class="tei_hi_latintype">Th</span>. am Text, oft mit großem Rechte tadelt, der Musik zu Gefallen geschehn ist.</p>
+                                        <p>Ein verständiger Tadel ist mir lieber als ein Partheilichkeit verrathendes, unbedingtes Lob, und gern <span class="tei_pb" title="Seitenumbruch"> | </span> gebe ich der Rüge des Herrn: <span class="tei_hi_latintype">Th</span>. alle <span class="tei_subst"><span class="tei_add"><span class="tei_unclear">Flecken</span></span><a class="noteMarker" id="backref-d10e139" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e139">‡</a></span> eines Werkes Preis, von welchem die <span class="tei_hi_underline1">Mängel</span> <span class="tei_hi_underline1">mir</span> zur Last fallen, die Schönheiten aber Alle blos als welche der Composition gepriesen werden, wie das bei Opern immer geschieht; nur bitte ich ihn zu bedenken daß ein Vers, den <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> so herrlich u wirkungsvoll in Musik gesetzt, wie den:<br />
+                    „<span class="tei_hi_underline1">so nimm mein Gold, mein Gut u Land</span> –<span class="tei_supplied"><span class="brackets_supplied">[</span>“<span class="brackets_supplied">]</span></span><br /> 
+                    unmöglich <span class="tei_hi_underline1">unmusikalisch</span> seyn könne! Uebrigens kann es mich nicht reuen ein so unvollkommnes Opernbuch geliefert zu haben, da es die, obgleich unschuldige Veranlassung zu einem so vollkommenen Meisterwerk der Musik wurde, wie <span class="tei_del">der ein <span>[…]</span></span><a class="noteMarker" id="backref-d10e169" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e169">‡</a> <span class="tei_sic">wie</span><a class="noteMarker" id="backref-d10e173" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e173">‡</a> Herr <span class="tei_hi_latintype">Th</span>. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> neue Schöpfung preist; unter Allen, die für vaterländische Musik glühen, mitzuwirken gestrebt haben, kann Niemand so eifrig als ich wünschen daß gewichtige Stimmen dies Urtheil bestätigen mögen.
                     <span class="tei_segBlock textAlign-right"><a class="preview persons A000288" href="">Helmine von Chezy<br />
                         geb: Fr: Klencke</a></span>
                 <span class="tei_segBlock textAlign-left"><a class="preview places A130004" href="">Wien</a> d: 2 Nov: 1823.</span></p>
@@ -468,12 +467,12 @@
                                         
                                         <span>Berlin (D), Archiv der Berlin-Brandenburgischen Akademie der Wissenschaften (D-Bbbaw)<br /><i>Signatur</i>: NL H. von Chézy 100</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_bfd5399a6d066120c58ea791b8b461a9"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_423c5efeb694f62501eca1c29aac5c4a"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_bfd5399a6d066120c58ea791b8b461a9">
+                                        <div class="collapse apparatus-details" id="source_423c5efeb694f62501eca1c29aac5c4a">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
-                                                        <li>1 DBl. (3 b. S. o. Adr.)</li>
+                                                        <li>1 DBl. (3 b. S.)</li>
                                                     </ul>
                                             
                                             <div>
@@ -491,45 +490,94 @@
                             </ul>
                         </div>                   
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Themenkommentare</h3>
+                            <ul class="tei_list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090115.html"><span class="tei_title">Zur Entstehung des <span class="tei_hi_italic">Euryanthe</span>-Librettos</span></a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e38" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e38" data-title="Löschung" data-counter="1" data-href="#d10e38"><span class="tei_lemma">„Wir norddeutsche Dichter haben“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e39" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e39" data-title="Ersetzung" data-counter="1" data-href="#d10e39"><span class="tei_lemma">„<span class="tei_add">Seit den 25 Jahren meines litterarischen Wirkens habe ich noch</span>“</span>„Wir norddeutsche Dichter haben“ durchgestrichen und ersetzt mit „<span class="tei_add">Seit den 25 Jahren meines litterarischen Wirkens habe ich noch</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e41" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e41" data-title="Löschung" data-counter="2" data-href="#d10e41"><span class="tei_lemma">„am wenigsten“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e45" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e45" data-title="Hinzufügung" data-counter="2" data-href="#d10e45"><span class="tei_lemma">„gehabt“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e47" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e47" data-title="Löschung" data-counter="3" data-href="#d10e47"><span class="tei_lemma">„Diese in jeder ersinnlichen Rücksicht undankbarste aller Mühen. – Lang, eh H. <a class="preview persons A002068" href="">v. Weber</a><a class="preview persons A001002" href="">Kinds</a><a class="preview works A020040" href="">Freyschütz</a> in Musik gesetzt, hatte ich gewünscht etwas für ihn zu arbeiten.“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e48" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e48" data-title="Ersetzung" data-counter="3" data-href="#d10e48"><span class="tei_lemma">„<span class="tei_add">hätte ich sie gehabt ich hätte sie nicht zu</span>“</span>„am wenigsten“ durchgestrichen und ersetzt mit „<span class="tei_add">hätte ich sie gehabt ich hätte sie nicht zu</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e57" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e57" data-title="Löschung" data-counter="4" data-href="#d10e57"><span class="tei_lemma">„er“</span>durchgestrichen</div>
+                                                <div class="apparatusEntry col-11" id="d10e57" data-title="Hinzufügung" data-counter="4" data-href="#d10e57"><span class="tei_lemma">„verwendet“</span>unter der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e60" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e60" data-title="Löschung" data-counter="5" data-href="#d10e60"><span class="tei_lemma">„selbst“</span>durchgestrichen</div>
+                                                <div class="apparatusEntry col-11" id="d10e60" data-title="Löschung" data-counter="5" data-href="#d10e60"><span class="tei_lemma">„Diese in jeder ersinnlichen Rücksicht undankbarste aller Mühen. – Lang, eh H. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a><a class="preview persons A001002" href="">Kinds</a><a class="preview works A020040" href="">Freyschütz</a> in Musik gesetzt, hatte ich gewünscht etwas für ihn zu arbeiten.“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e119" class="apparatus-link">6.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e119" data-title="Löschung" data-counter="6" data-href="#d10e119"><span class="tei_lemma">„[…]“</span>gelöschter Text nicht lesbar</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e71" class="apparatus-link">6.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e71" data-title="Löschung" data-counter="6" data-href="#d10e71"><span class="tei_lemma">„er“</span>durchgestrichen</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e74" class="apparatus-link">7.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e74" data-title="Ersetzung" data-counter="7" data-href="#d10e74"><span class="tei_lemma">„<span class="tei_add">H. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a></span>“</span>„selbst“ durchgestrichen und ersetzt mit „<span class="tei_add">H. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a></span>“</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e82" class="apparatus-link">8.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e82" data-title="Hinzufügung" data-counter="8" data-href="#d10e82"><span class="tei_lemma">„an ihn zu … treffl. Opernstoff fände“</span>über der Zeile hinzugefügt</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e88" class="apparatus-link">9.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e88" data-title="Ersetzung" data-counter="9" data-href="#d10e88"><span class="tei_lemma">„<span class="tei_add">4</span>“</span>„5“ überschrieben mit „<span class="tei_add">4</span>“</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e139" class="apparatus-link">10.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e139" data-title="Ersetzung" data-counter="10" data-href="#d10e139"><span class="tei_lemma">„<span class="tei_add"><span class="tei_unclear">Flecken</span></span>“</span>„Mängeln“ überschrieben mit „<span class="tei_add"><span class="tei_unclear">Flecken</span></span>“</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e143" class="apparatus-link">11.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e143" data-title="unsichere Lesung" data-counter="11" data-href="#d10e143"><span class="tei_lemma">„Flecken“</span>unsichere Lesung</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e169" class="apparatus-link">12.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e169" data-title="Löschung" data-counter="12" data-href="#d10e169"><span class="tei_lemma">„der ein […]“</span>durchgestrichen</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e173" class="apparatus-link">13.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e173" data-title="sic" data-counter="13" data-href="#d10e173"><span class="tei_lemma">„wie“</span>sic!</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -538,7 +586,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A032143/manifest.json" data-canvasindex="0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -559,7 +607,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032143</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032143</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -619,6 +667,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -677,22 +728,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

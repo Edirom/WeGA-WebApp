@@ -61,7 +61,7 @@
                         <h2>
                             <a href="#datePicker" data-template="lang:translate" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">calendar</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-template="app:inject-api-base"/>
+                        <div class="panel-collapse collapse show" id="datePicker"/>
                     </div>
                     <div>
                         <h2>
@@ -85,7 +85,10 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-template="app:ajax-tab" data-tab-callback="removeFilter">backlinks</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-template="app:ajax-tab">XML-Preview</a>
+                                    <a class="nav-link" href="#XMLPreview"
+                                       data-toggle="tab"
+                                       data-template="app:ajax-tab"
+                                       data-tab-callback="init_xml_tab">XML-Preview</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -317,7 +320,7 @@
                         <div data-template="app-shared:output" data-template-key="apparatus"/>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" data-template="app:init-facsimile" data-url="" data-originalMaxSize="" style="width:100%;height:100%;position:relative;"/>
+                        <div id="map" data-template="app:init-facsimile" data-url="" style="width:100%;height:100%;position:relative;"/>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2 data-template="lang:translate">backlinks</h2>

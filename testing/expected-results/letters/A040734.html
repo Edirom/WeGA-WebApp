@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Wolfssohn, Aaron" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"nach dem Tode Himmels u. Reichardts bemühe sich der z. Zt. anwesende C.M.v.Weber um die 2. Kpm.-Stelle, er habe mit B.A. Weber gesprochen u. ersucht Meyerbeer, sich zu bewerben; er hat ein Gespräch Webers mit MB's Mutter belauscht; legt ihm Rezension von Webers Konzert bei; dieser suche sich mit allen Mitteln emporheben zu lassen; falls seine Oper (Das Brandenburger Tor) nicht aufgeführt werde, wolle er ihm die Partitur gleich zurücksenden","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aaron Wolfssohn an Giacomo Meyerbeer in Wien. Berlin, Sonntag, 28. August 1814","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040734","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002177/Korrespondenz/A040734","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002177","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002177"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002177/Korrespondenz/A040734/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002177/Korrespondenz/A040734/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -369,13 +367,13 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001864" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000111" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000114" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002177" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -389,7 +387,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -407,17 +405,17 @@
                                         <p><span class="tei_hi_latintype"><a class="preview places A130004" href="">Wien</a></span></p>
                                         <p>Gefälligst abzugeben an</p>
                                         <p>Sr Wohlgeboh. Herrn</p>
-                                        <p><span class="tei_hi_latintype"><a class="preview persons A001313" href="">J. Meyerbeer</a></span> aus <a class="preview places A130002" href="">Berlin</a></p>
+                                        <p><span class="tei_hi_latintype"><a class="preview persons A001313" href="">J. Meyerbeer</a></span> aus <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
                <span class="tei_name">Herrn <a class="preview persons A001313" href=""><span class="tei_hi_latintype">J. Meyerbeer</span></a> in <a class="preview places A130004" href="">Wien</a></span>
-               <span class="tei_dateline textAlign-right"><a class="preview places A130002" href="">Berlin</a> 28 August <span class="tei_supplied"><span class="brackets_supplied">[</span>18<span class="brackets_supplied">]</span></span>14.</span>
+               <span class="tei_dateline textAlign-right"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> 28 August <span class="tei_supplied"><span class="brackets_supplied">[</span>18<span class="brackets_supplied">]</span></span>14.</span>
             </div>
                                         <p>Geliebter <a class="preview persons A001313" href="">Freund</a>! Sie verlangen in Ihrem jüngsten ohne Datum geschriebenen Brief, daß ich Ihnen auch von meinen Verhaltnissen einiges mittheilen solle. Für dieses Verlangen danke ich Ihnen herzlich, und ich werde, so bald ich erst nichts neues mehr über Ihre Verhaltnisse zu <span class="tei_supplied"><span class="brackets_supplied">[</span>sagen<span class="brackets_supplied">]</span></span> haben würde, Ihnen manches über mich mittheilen; für heute aber habe ich noch zu viel mit anderen Dingen zu thun. Nemlich erstens Ihren lieben Brief zu beantworten und zweytens Ihnen eine Idee mitzutheilen, wovon ich jetzt ganz durchdrungen bin. Ich will mit dieser letztern anfangen, da doch ohne dieß die Beantwortung Ihres Briefes heute sehr mager ausfallen muß, weil ich bis jetzt noch nicht die Partitur<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a> erhalten habe. Also zur Sache.</p>
-                                        <p>Wie Sie wissen hat das hiesige Theater gegenwärtig nur einen einzigen Kapellmeister, den <a class="preview persons A002066" href="">H. <span class="tei_hi_latintype">Weber</span></a>, indem sowohl <a class="preview persons A000845" href=""><span class="tei_hi_latintype">Himmel</span></a> als <a class="preview persons A001545" href=""><span class="tei_hi_latintype">Reichardt</span></a> nach jener Welt abmarschirt sind.<span class="tei_pb" title="Seitenumbruch"> | </span>Es hieß anfangs u heißt noch, der <a class="preview persons A007860" href="">König</a> wird <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontini</span></a> engagiren; allein Sachverständige behaupten, daß dieß nicht gut ausginge weil <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Sp</span></a>. gar kein Deutsch verstünde &amp;c Und so viel ich höre, ist man in der That um einen zweyten Kapelmeister verlegen. – Der alles riechende u sich in alle Launen so fügende <a class="preview persons A002068" href=""><span class="tei_hi_latintype">C. M. v. W.</span></a> ist allem Anschein nach auch darum jetzt hergekommen, u bietet alles auf zu diesem Ziel zu gelangen; freylich geschieht dieses im Dunkeln – denn der Mann läßt nur für sich durch HelfersHelfer arbeiten, aber es wird doch gearbeitet; und aus einem Gespräch, das er Vorgestern mit der <a class="preview persons A000111" href="">Mutter</a> hielt, welches ich ohne daß er es weiß, gehört habe, leuchtet hervor, daß er mit vollem Ernst an dieser Sache arbeitet. – Nun aber hat schon vor mehreren Monathen, der <a class="preview persons A002066" href=""><span class="tei_hi_latintype">K. M. Weber</span></a> mir zu verstehen gegeben, daß er nicht nur sehnlichst wünscht, sondern auch fest glaubt es durch zu setzen, daß Sie mein geliebter Freund, die Stelle eines Königl Kapelmeister hier erhalten sollen. Er hält Sie unter allen jungen Künstlern für den einzigen dazu tauglichen<span class="tei_pb" title="Seitenumbruch"> | </span>u verspricht sich von Ihren Talenten, Kenntnissen und Fleiß goldene Berge.</p>
+                                        <p>Wie Sie wissen hat das hiesige Theater gegenwärtig nur einen einzigen Kapellmeister, den <a class="preview persons A002066" href="">H. <span class="tei_hi_latintype">Weber</span></a>, indem sowohl <a class="preview persons A000845" href=""><span class="tei_hi_latintype">Himmel</span></a> als <a class="preview persons A001545" href=""><span class="tei_hi_latintype">Reichardt</span></a> nach jener Welt abmarschirt sind.<span class="tei_pb" title="Seitenumbruch"> | </span>Es hieß anfangs u heißt noch, der <a class="preview persons A007860" href="">König</a> wird <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontini</span></a> engagiren; allein Sachverständige behaupten, daß dieß nicht gut ausginge weil <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Sp</span></a>. gar kein Deutsch verstünde &amp;c Und so viel ich höre, ist man in der That um einen zweyten Kapelmeister verlegen. – Der alles riechende u sich in alle Launen so fügende <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">C. M. v. W.</span></a> ist allem Anschein nach auch darum jetzt hergekommen, u bietet alles auf zu diesem Ziel zu gelangen; freylich geschieht dieses im Dunkeln – denn der Mann läßt nur für sich durch HelfersHelfer arbeiten, aber es wird doch gearbeitet; und aus einem Gespräch, das er Vorgestern mit der <a class="preview persons A000111" href="">Mutter</a> hielt, welches ich ohne daß er es weiß, gehört habe, leuchtet hervor, daß er mit vollem Ernst an dieser Sache arbeitet. – Nun aber hat schon vor mehreren Monathen, der <a class="preview persons A002066" href=""><span class="tei_hi_latintype">K. M. Weber</span></a> mir zu verstehen gegeben, daß er nicht nur sehnlichst wünscht, sondern auch fest glaubt es durch zu setzen, daß Sie mein geliebter Freund, die Stelle eines Königl Kapelmeister hier erhalten sollen. Er hält Sie unter allen jungen Künstlern für den einzigen dazu tauglichen<span class="tei_pb" title="Seitenumbruch"> | </span>u verspricht sich von Ihren Talenten, Kenntnissen und Fleiß goldene Berge.</p>
                                         <p>Ich frage Sie daher, <span class="tei_hi_underline1">ganz unter uns</span>, was denken Sie zu diesen Vorschlage? convenirt er Ihnen? möchten Sie ihn <span class="tei_hi_underline1">gleich</span> oder erst nach Ihrer vollendeten Reise nach <span class="tei_country">Italien</span> annehmen? Kurz, sagen Sie mir hierüber offen und treuherzig Ihre Meinung. Da weder <a class="preview persons A000114" href="">Vater</a> noch <a class="preview persons A000111" href="">Mutter</a> von dieser meiner Anfrage etwas wissen; so können Sie heilig versichert seyn, daß auch Ihre Antwort vor ihnen geheim bleiben soll, so wie überhaupt alles was Sie wollen geheim gehalten haben, ich gewiß nicht durch wiedersagen mißbrauchen werde. Diese Idee ist mir in Betreff Ihrer zu wichtig, als daß ich Sie nicht recht sehr bitten sollte, sie genau in Ueberlegung zu nehmen. Es war ja von je das Ziel Ihrer Wünsche, u wo könnten Sie dieses besser haben, als hier? bey einem der ersten Theater in <span class="tei_country">Europa</span>!</p>
-                                        <p>Ich schließe Ihnen anbey eine Rezension über <a class="preview persons A002068" href=""><span class="tei_hi_latintype">v. W.</span></a> <span class="tei_hi_latintype">Concert</span><a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>. Sie können sehen, daß dieser <a class="preview persons A002068" href="">Mann</a> alle Federn aufbietet, um sich empor heben zu lassen! Es kränket mich wenn ich so etwas lese!<span class="tei_pb" title="Seitenumbruch"> | </span></p>
+                                        <p>Ich schließe Ihnen anbey eine Rezension über <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">v. W.</span></a> <span class="tei_hi_latintype">Concert</span><a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>. Sie können sehen, daß dieser <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Mann</a> alle Federn aufbietet, um sich empor heben zu lassen! Es kränket mich wenn ich so etwas lese!<span class="tei_pb" title="Seitenumbruch"> | </span></p>
                                         <p>Ihre Partitur soll bestimmt nicht aus meinen Händen kommen, u sobald ich weiß daß Ihre Oper nicht mehr kann aufgeführt werden erhalten Sie die Part. unverzüglich zurük<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>. Indessen glaub ich für meine Person noch immer daß, da noch <span class="tei_del">noch</span><a class="noteMarker" id="backref-d10e168" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e168">‡</a> <span class="tei_add tei_hi_superscript">jetzt<a class="noteMarker" id="backref-d10e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e171">‡</a></span> manche Gelegenheits Stükchen gegeben werden, auch Ihre Oper einen Platz finden wird. Möchte doch sie nebst dem Brief an <a class="preview persons A002066" href=""><span class="tei_hi_latintype">W.</span></a> bald hier seyn!</p>
                                         <p class="tei_closer textAlign-left">Daß Sie noch immer nicht an Ihre lieben <span class="preview persons A000114 A000111" data-ref=" ">Eltern</span> schreiben ist mir unbegreiflich, u unerklärlich. <span class="tei_hi_underline1">Wo hin soll das führen</span>? – Ich bitte Sie mein lieber <a class="preview persons A001313" href="">Theurer</a>, denken Sie einmal kalt darüber nach.<span class="tei_segBlock textAlign-right">Ewig der Ihrige <span class="tei_hi_latintype"><a class="preview persons A002177" href="">Wolfssohn</a></span></span></p>
                                         <div class="tei_postscript">
@@ -469,12 +467,13 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: N. Mus. Nachl. 97, A/67</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1d1a541e958f681e4103bd1162cfa97d"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_d776e290a4320b9206818086027cc1fc"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1d1a541e958f681e4103bd1162cfa97d">
+                                        <div class="collapse apparatus-details" id="source_d776e290a4320b9206818086027cc1fc">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
-                                                        <li>1 Dbl. (4 b. S.) und Briefumschlag mit Adresse, auf der Rückseite Siegel</li>
+                                                        <li>1 DBl. (4 b. S. einschl. Adr. u. Umschlag)</li>
+                                                        <li>auf der Rückseite Siegel</li>
                                                     </ul>
                                             
                                             <div>
@@ -487,7 +486,7 @@
                                                             
                                                             <span>Becker (Meyerbeer), Bd. 1, S. 242–243</span>
                                                               
-                                                            <div class="collapse" id="source_712a05a7f30222198368a7f508a64c1e">
+                                                            <div class="collapse" id="source_831809ffedccade2a4a59f4cc87a9d49">
                                                                 
                                                             </div>
                                                         </div>
@@ -546,7 +545,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  Sie die Part. unverzüglich zurük“</span>Das Singspiel <span class="tei_hi_italic">Das Brandenburger Tor</span> kam nicht zur Aufführung in <a class="preview places A130002" href="">Berlin</a>.</div>
+                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  Sie die Part. unverzüglich zurük“</span>Das Singspiel <span class="tei_hi_italic">Das Brandenburger Tor</span> kam nicht zur Aufführung in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -575,7 +574,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040734</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040734</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -635,6 +634,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -693,22 +695,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

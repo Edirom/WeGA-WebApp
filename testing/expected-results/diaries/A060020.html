@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"[d]: 20t um 9 Uhr Probe von Egmont mit ganzem Orchester. um 10 Uhr mit Chor von Joseph. bis 1 Uhr. an Lina geschrieben [un]d abgeschikt No: 19. …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Montag, 20. Januar 1817 ()","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060020","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060020","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -298,10 +296,10 @@
                                     <a class="deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060020/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060020/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060020/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -424,15 +422,15 @@
     <span><span class="tei_hi_underline1">um 9 Uhr Probe von <a class="preview works A020236" href="">Egmont</a></span> mit ganzem <span class="tei_hi_latintype">Orchester</span>.</span> <br />
     <span><span class="tei_hi_underline1">um 10 Uhr mit <span class="tei_hi_latintype">Chor</span> von <a class="preview works A020386" href="">Joseph</a>. bis 1 Uhr</span>.</span> 
     <span>an <a class="preview persons A000213" href="">Lina</a> <a class="preview letters A041007" href="">geschrieben</a> <br />
-        <span class="tei_hi_underline1"><span class="tei_supplied"><span class="brackets_supplied">[</span>un<span class="brackets_supplied">]</span></span>d abgeschikt <span class="tei_hi_latintype">No</span>: 19</span>.</span>
+        <span class="tei_hi_underline1"><span class="tei_supplied"><span class="brackets_supplied">[</span>un<span class="brackets_supplied">]</span></span>d abgeschikt <span class="tei_hi_latintype">No:</span> 19</span>.</span>
     <span>Verdruß abermaliger wegen meiner <br />
         <span class="tei_supplied"><span class="brackets_supplied">[</span>A<span class="brackets_supplied">]</span></span>nstellung. Entschluß keine Zurüksezung zu dulden.</span> <br />
     <span id="meeting01"><span class="tei_supplied"><span class="brackets_supplied">[</span>M<span class="brackets_supplied">]</span></span>ittag 4 Uhr beim <a class="preview persons A000201" href="">Östereichischen Gesandten Graf <span class="tei_hi_latintype">Bombell</span></a>. gespielt, <br />
-        <span class="tei_supplied"><span class="brackets_supplied">[</span>un<span class="brackets_supplied">]</span></span>d die <a class="preview persons A000200" href="">Gräfin</a> sang, sehr hübsch. angenehmes Haus, und un<span class="break_inWord">-</span><br />gemein freundlich aufgenommen.</span> 
+        <span class="tei_supplied"><span class="brackets_supplied">[</span>un<span class="brackets_supplied">]</span></span>d die <a class="preview persons A000200" href="">Gräfin</a> sang, sehr hübsch. angenehmes Haus, und un<span class="break_inWord">-</span><br />gemein freundlich aufgenommen<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>.</span> 
     <span>mit ihnen ins Theater <br />
         <span class="tei_supplied"><span class="brackets_supplied">[</span>g<span class="brackets_supplied">]</span></span>efahren, <span class="tei_hi_underline1"><a class="preview works A021074" href="">Schachmaschine</a></span>, <a class="preview persons A002148" href="">H: Wilhelmi</a> aus 
         <span class="tei_hi_latintype"><a class="preview places A130019" href="">Cassel</a></span> den <br />
-        <span class="75971141083282117102"><span class="tei_supplied"><span class="brackets_supplied">[</span>K<span class="brackets_supplied">]</span></span>arl Ruf</span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>.</span>
+        <span class="75971141083282117102"><span class="tei_supplied"><span class="brackets_supplied">[</span>K<span class="brackets_supplied">]</span></span>arl Ruf</span><a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>.</span>
     <span>dann zu <a class="preview persons A001705" href="">Schmidl</a>.</span> 
     <span><span class="tei_hi_underline1"><a class="preview letters A046764" href="">Brief</a> von <a class="preview persons A000213" href="">Lina</a> <span class="tei_hi_latintype">No</span>. 21.</span> erhalten</span> 
 </p>
@@ -477,9 +475,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1984df64962f81d26eaed568aa4ce1ed"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a5c3a342576e0d1da21d05f6c4804948"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1984df64962f81d26eaed568aa4ce1ed">
+                                        <div class="collapse apparatus-details" id="source_a5c3a342576e0d1da21d05f6c4804948">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -510,7 +508,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  Cassel den K arl Ruf“</span>Vgl. den <a class="preview writings A030053" href="">Bericht</a> in der <span class="tei_hi_italic">Abend-Zeitung</span> vom 30. Januar 1817.</div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  und un gemein freundlich aufgenommen“</span>Vgl. dazu auch Webers <a class="preview letters A041009" href="">Brief</a> an C. Brandt vom 21. [bis 24.] Januar 1817.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  Cassel den K arl Ruf“</span>Vgl. den <a class="preview writings A030053" href="">Bericht</a> in der <span class="tei_hi_italic">Abend-Zeitung</span> vom 30. Januar 1817.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -539,7 +543,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060020</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060020</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -599,6 +603,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -657,22 +664,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

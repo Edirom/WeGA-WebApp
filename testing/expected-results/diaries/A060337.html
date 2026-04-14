@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 3t geschrieben an Graf Vizthum, Schmiedl, Löhle. Mittag zu Hause. der Magd 5 ƒ 30 xr der Köchin 4 – Schmirgeld 18. um 4 Uhr abgereißt von den …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Mittwoch, 3. Dezember 1817 (, , )","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060337","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060337","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060337/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060337/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -383,6 +381,8 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130020" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131181" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130399" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
@@ -415,8 +415,8 @@
         <span class="payment_13">am Thore </span> <br />  
         <span class="payment_14">Trinkgeld  </span> <br />  
     <span class="payment_15"><a class="preview letters A041370" href="">Billet</a> an <a class="preview persons A008689" href="">Gebhardt</a> geschikt </span> <br /><span class="tei_pb">Seitenumbruch</span>
-        <span class="payment_16">Abendeßen im Weidenhof  </span> <br />
-        <span>um 11 Uhr abgef:</span>
+        <span class="payment_16">Abendeßen im <a class="preview places A131181" href="">Weidenhof</a>  </span> <br />
+        <span>um 11 Uhr <span class="tei_choice"><span class="tei_abbr">abgef:</span><a class="noteMarker" id="backref-d10e174" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e174">‡</a></span></span>
     <span class="payment_18">Post bis <span class="tei_hi_underline1"><a class="preview places A130399" href="">Friedberg</a></span>.  
             </span> <br />
         <span class="payment_19">Schmirgeld </span> <br />
@@ -426,7 +426,7 @@
     </p>
                                 </div>
                                 <div class="tableRight">
-                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_3 f">5 ƒ</span><span class="payment_3 xr">30 xr</span><br /><span class="hiddenText">|</span><span class="payment_4 f">4<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_4 xr">–</span><br /><span class="hiddenText">|</span><span class="payment_5 xr">18.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_7 f">3.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_7 xr">4.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_8 xr">39.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_9 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_9 xr">12.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_10 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_11 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_12 f">2.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_12 xr">38.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_13 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_14 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_14 xr">12.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_15 xr">1<span class="tei_supplied"><span class="brackets_supplied">[</span>2<span class="brackets_supplied">]</span></span><span class="suppliedCurrencySymbol"> xr</span></span><span class="tei_pb"><br /></span><span class="hiddenText">|</span><span class="payment_16 f">6 ƒ</span><span class="payment_16 xr">–</span><br /><span class="hiddenText">|</span><span class="payment_18 f">6.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_18 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_19 xr">18.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_20 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_21 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_21 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_22 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_22 xr">34.<span class="suppliedCurrencySymbol"> xr</span></span></p>
+                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_3 f">5 ƒ</span><span class="payment_3 xr">30 xr</span><br /><span class="hiddenText">|</span><span class="payment_4 f">4<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_4 xr">–</span><br /><span class="hiddenText">|</span><span class="payment_5 xr">18.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_7 f">3.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_7 xr">4.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_8 xr">39.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_9 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_9 xr">12.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_10 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_11 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_12 f">2.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_12 xr">38.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_13 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_14 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_14 xr">12.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_15 xr">1<span class="tei_supplied"><span class="brackets_supplied">[</span>2<span class="brackets_supplied">]</span></span><span class="suppliedCurrencySymbol"> xr</span></span><span class="tei_pb"><br /></span><span class="hiddenText">|</span><a class="preview places A131181" href=""></a><span class="payment_16 f">6 ƒ</span><span class="payment_16 xr">–</span><br /><span class="hiddenText">|</span><span class="payment_18 f">6.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_18 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_19 xr">18.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_20 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_21 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_21 xr">24.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_22 f">1.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_22 xr">34.<span class="suppliedCurrencySymbol"> xr</span></span></p>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -465,9 +465,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ebf09e7502a6d6b4b329143155a34eb2"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_547ea7bb56b1e3b0b19a67c676348b58"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_ebf09e7502a6d6b4b329143155a34eb2">
+                                        <div class="collapse apparatus-details" id="source_547ea7bb56b1e3b0b19a67c676348b58">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -493,7 +493,15 @@
                         
                         <div class="apparatus">
                                     <ul class="apparatus textConstitution"></ul>
-                                    <ul class="apparatus commentary"></ul>
+                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
+                                    <ul class="apparatus commentary">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e174" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e174" data-title="Abkürzung" data-counter="1" data-href="#d10e174"><span class="tei_lemma">„<span class="tei_abbr">abgef:</span>“</span>Abk. von   „<span class="tei_expan">abgefahren</span>“.</div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
                     </div>
@@ -519,7 +527,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060337</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060337</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -579,6 +587,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -637,22 +648,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

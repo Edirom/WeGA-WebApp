@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Am 20. August 2003 veröffentlichten Regine Lotzmann und Johannes Killyen in der Mitteldeutschen Zeitung unter der Überschrift „Freischütz aus fremder …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Agthe – aber welcher? Zu einem angeblichen Freischütz-Plagiat","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050164","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050164","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Am 20. August 2003 veröffentlichten Regine Lotzmann und Johannes Killyen in der Mitteldeutschen Zeitung unter der Überschrift „Freischütz aus fremder …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Agthe – aber welcher? Zu einem angeblichen Freischütz-Plagiat","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050164","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050164","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -287,10 +285,10 @@
                                     <a class="deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050164/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050164/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050164/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -350,8 +348,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008865" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000084" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000213" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -372,7 +368,11 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000191" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A080239" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080075" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002085" /> <span title="Anwählen, um &#34;Weber, Max Maria von&#34; im Text zu markieren.">Weber, Max Maria von</span> 
                                 </label>
@@ -406,10 +406,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130147" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130119" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130034" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -425,6 +421,10 @@
                                     <input type="checkbox" name="options" value="A130014" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130071" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -466,7 +466,7 @@
                   Ballenstedter Komponisten Carl Christian Agthe stammen“ einen Artikel, in dem der Ballenstedter 
                Lehrer, Chorleiter und Musikforscher <span class="831051011031021141051011003272252110101114109117110100">Siegfried Hünermund</span>, 
                der sich im Rahmen seiner Arbeiten zur <a class="preview places A130094" href="">Ballenstedter</a> Musikgeschichte seit
-               längerer Zeit mit dem Komponisten <a class="preview persons A008865" href="">Agthe</a> beschäftigt, die These vertrat, <a class="preview persons A002068" href="">Weber</a> habe
+               längerer Zeit mit dem Komponisten <a class="preview persons A008865" href="">Agthe</a> beschäftigt, die These vertrat, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> habe
                einige der bekannten Melodien seines 
                <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> nicht selbst erfunden, sondern vermutlich von dem 1797 verstorbenen Ballenstedter
                Hofkapellmeister <a class="preview persons A008865" href="">Carl Christian Agthe</a> übernommen.
@@ -496,10 +496,10 @@
                                     </ul>
                                     <p>Nach Kenntnis der 14 Tänze läßt sich inzwischen hinzufügen: Auch das Trinklied des
                <span class="759711511297114">Kaspar</span> Nr. 4 kommt vor (in Nr. 12 mit dem Ausschnitt „darum bis zum letzten Hauch“).
-               Bei dieser Häufung ist ein purer Zufall auszuschließen. Eine Verbindung zwischen <a class="preview persons A002068" href="">Weber</a>
-               und <a class="preview persons A008865" href="">Agthe</a> fand <span class="72252110101114109117110100">Hünermund</span> ebenfalls heraus: <a class="preview persons A002068" href="">Weber</a> habe die Musik möglicherweise im
+               Bei dieser Häufung ist ein purer Zufall auszuschließen. Eine Verbindung zwischen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>
+               und <a class="preview persons A008865" href="">Agthe</a> fand <span class="72252110101114109117110100">Hünermund</span> ebenfalls heraus: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> habe die Musik möglicherweise im
                Haus einer Schülerin <a class="preview persons A008865" href="">Agthes</a>, der Ballenstedter Malerin <a class="preview persons A000084" href="">Caroline von Bardua</a>, gehört,
-               wo er mehrmals zu Gast gewesen sei. Eine mögliche Verbindung bestehe auch durch <a class="preview persons A002068" href="">Webers</a>
+               wo er mehrmals zu Gast gewesen sei. Eine mögliche Verbindung bestehe auch durch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>
                Gattin <a class="preview persons A000213" href="">Caroline Brandt</a>, die mehrfach in <a class="preview places A130094" href="">Ballenstedt</a> war 
                und auch die Barduas kannte.
                Vielleicht, so <span class="72252110101114109117110100">Hünermund</span>, sei der Name „Agathe“ sogar eine heimliche Anspielung auf
@@ -507,17 +507,17 @@
             </p>
                                     <p>Was die Vermittlung durch <a class="preview persons A000084" href="">Caroline von Bardua</a> betrifft, 
                hat sich <span class="72252110101114109117110100">Hünermund</span> allerdings zu einem Kurzschluß verleiten lassen: Als
-               <a class="preview persons A002068" href="">Weber</a> die Malerin kennenlernte und ihr für sein Portrait „saß“, war der 1817 begonnene
-               <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> längst vollendet: <a class="preview persons A002068" href="">Weber</a> wollte im Spätherbst 1821 
+               <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> die Malerin kennenlernte und ihr für sein Portrait „saß“, war der 1817 begonnene
+               <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> längst vollendet: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> wollte im Spätherbst 1821 
                seine Frau zum Hochzeitstag mit einem Portrait überraschen. Dazu traf er sich laut <a class="preview diaries A061697" href="">Tagebuch am 27. Juni</a> 
-               in <a class="preview places A130002" href="">Berlin</a> (nicht in <a class="preview places A130094" href="">Ballenstedt</a>)
+               in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> (nicht in <a class="preview places A130094" href="">Ballenstedt</a>)
                mit der <a class="preview persons A000084" href="">Bardua</a> – das Bild wurde erst verspätet fertig und am
-               19. November 1821 von <a class="preview persons A002068" href="">Weber</a> überreicht.<a class="noteMarker arabic" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">1</a> 
+               19. November 1821 von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> überreicht.<a class="noteMarker arabic" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">1</a> 
                <a class="preview persons A000213" href="">Caroline von Webers</a> Aufenthalt in <a class="preview places A130094" href="">Ballenstedt</a> fällt in die Jahre 1804–1806,
                wo sie laut <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a> „während ihres 11. bis 13. Lebensjahres“ in einer
                Erziehungsanstalt ihre Allgemeinbildung „nothdürftig nachgeholt“ habe. Längere spätere
                Aufenthalte in <a class="preview places A130094" href="">Ballenstedt</a> sind nicht belegt.<a class="noteMarker arabic" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">2</a> 
-               Ein Kontakt <a class="preview persons A002068" href="">Webers</a> mit <a class="preview persons A008865" href="">Agthe</a> müßte also auf andere Weise zustande gekommen
+               Ein Kontakt <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> mit <a class="preview persons A008865" href="">Agthe</a> müßte also auf andere Weise zustande gekommen
                sein.
             </p>
                                     <p>Bei der Lösung des Problems hilft zunächst ein genaueres Studium des 
@@ -542,7 +542,7 @@
                dass nur 5 der Tänze den Namenszusatz tragen, spricht im übrigen dafür, dass nur diese
                von ihm stammen!), stößt man auf das 
                <span class="tei_hi_italic">Quellen-Lexikon</span> von <a class="preview persons A004208" href="">Robert Eitner</a>, 
-               in dessen erstem, 1898 in <a class="preview places A130005" href="">Leipzig</a> erschienenem Band unter 
+               in dessen erstem, 1898 in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> erschienenem Band unter 
                „Karl Christian Agthe“ am Ende des Verzeichnisses seiner Werke genannt ist:
                „Tänze für Orchester, Ms. Stb. [Berlin K. H.]“ 
                d. h.: Manuskript, Stimmbücher, [Berlin, Königliche Hausbibliothek]
@@ -569,11 +569,11 @@
                                         <li>
                   <span class="tei_hi_bold">Albrecht Wilhelm Johann Agthe (1790–1873)</span>, Sohn des Vorigen; 
                   Ausbildung u. a. in <a class="preview places A130034" href="">Magdeburg</a> und <a class="preview places A130043" href="">Erfurt</a>; seit 1810 als Violinist
-                  in <a class="preview places A130005" href="">Leipzig</a>; danach in <a class="preview places A130003" href="">Dresden</a>, wo er 1823 ein Musikinstitut nach der Logier’schen
-                  Methode gründete, für dessen Fortbestand sich auch <a class="preview persons A002068" href="">Carl Maria von Weber</a> einsetzte; 1826
+                  in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>; danach in <a class="preview places A130003" href="">Dresden</a>, wo er 1823 ein Musikinstitut nach der Logier’schen
+                  Methode gründete, für dessen Fortbestand sich auch <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> einsetzte; 1826
                   wurde <a class="preview persons A008914" href="">Agthe</a> zur Gründung einer ähnlichen Anstalt nach <a class="preview places A130105" href="">Posen</a> berufen, wo u. a. die
-                  Brüder Kullak seine Schüler wurden. 1830 ging er nach <a class="preview places A130013" href="">Breslau</a>, 1832 nach <a class="preview places A130002" href="">Berlin</a>, um
-                  dort mit königlicher Unterstützung eine Musiklehranstalt zu gründen. In <a class="preview places A130002" href="">Berlin</a> wurde
+                  Brüder Kullak seine Schüler wurden. 1830 ging er nach <a class="preview places A130013" href="">Breslau</a>, 1832 nach <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>, um
+                  dort mit königlicher Unterstützung eine Musiklehranstalt zu gründen. In <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> wurde
                   er zum Musikdirektor ernannt und leitete längere Zeit auch die musikalischen Privatstudien
                   der Prinzessin von Preußen. <a class="preview persons A008914" href="">Agthes</a> vorwiegend dem Klavier gewidmete Kompositionen
                   wurden in der 
@@ -598,7 +598,7 @@
                   (1825) in der Weimarer Hofkapelle erwähnt, entwickelte sich zu einem ausgezeichneten
                   Klarinettisten, zu dessen bevorzugtem Repertoire die <span class="preview works A020201 A020226" data-ref=" ">Weberschen Klarinettenkonzerte</span>
                   gehörten. In einer Besprechung der 
-                  <span class="tei_hi_italic">AmZ</span> heißt es 1835, <a class="preview persons A003495" href="">Agthe</a> behandele <a class="preview persons A002068" href="">Webers</a> Werke 
+                  <span class="tei_hi_italic">AmZ</span> heißt es 1835, <a class="preview persons A003495" href="">Agthe</a> behandele <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Werke 
                   „mit eben so viel Vorliebe, als sinniger
                      Auffassungsweise“ (Sp. 370). <a class="preview persons A003495" href="">Agthe</a> komponierte u. a. für sein eigenes 
                   Instrument<a class="noteMarker arabic" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">6</a> 
@@ -611,7 +611,7 @@
                                     <p>Über die vier hier genannten hinaus sind noch zu erwähnen: ein „Kammer-Musikus“ 
                <span class="tei_hi_bold">Johann August Agthe</span>, der 1855 in <a class="preview places A130014" href="">Weimar</a> unter den Pensionisten auftaucht (vgl. Huschke), ein 
                <span class="tei_hi_bold">Friedrich Wilhelm Agthe</span>, der 1818 in <a class="preview places A130003" href="">Dresden</a> als „6. Braccist“ vorgeschlagen wurde (Akten der Hofkapelle
-               Dresden) und 1824 laut Dresdner Adreß-Kalender an der Kreuzschule tätig war, sowie
+               Dresden) und 1824 laut Dresdner Adreß-Kalender an der <a class="preview orgs A080239" href="">Kreuzschule</a> tätig war, sowie
                ein Dresdner Waldhornist 
                <span class="tei_hi_bold">Agthe</span>, der 1817 mit einem eigenen Potpourri in der 
                <span class="tei_hi_italic">AmZ</span> erwähnt wird. Detailliertere Forschungen würden sicherlich weitere Musiker dieses
@@ -666,9 +666,9 @@
                                         <li>No. 14. Eccoss:[aise], 2/4, D-Dur, 16 Takte, in Vl. 1: „di Agthe“</li>
                                     </ul>
                                     <p>Das „Strickmuster“ der Tänze ist relativ ähnlich: Auch in den nicht Agthe zugewiesenen
-               Tänzen scheinen Tutti-Blöcke mit offensichtlichen Melodie-Zitaten zu wechseln. <a class="preview persons A002068" href="">Weber</a>-Zitate
+               Tänzen scheinen Tutti-Blöcke mit offensichtlichen Melodie-Zitaten zu wechseln. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>-Zitate
                finden sich allerdings nur in den Agthe-Tänzen, die vermutlichen Zitate der übrigen
-               Tänze waren bisher nicht zu identifizieren, zumal nach Kenntnis der <a class="preview persons A002068" href="">Weber</a>-Zitate das
+               Tänze waren bisher nicht zu identifizieren, zumal nach Kenntnis der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>-Zitate das
                Verfahren in diesen Stücken selten auf Anfänge anderer Werke zurückgreift, sondern
                vielfach auf Passagen aus dem weiteren Verlauf – so als habe man dem Publikum damit
                eine Rate-Aufgabe zuweisen wollen.
@@ -704,14 +704,14 @@
                die Takte 147–157 (mit einer Schlußvariante), worauf nochmals 8 eigene Takte folgen.
             </p>
                                     <p>Nach diesen Beispielen, die im übrigen auch in Balkensetzung bzw. Artikulation der
-               melodieführenden Stimmen häufig mit der Gesangstimme in <a class="preview persons A002068" href="">Webers</a> „Original“ übereinstimmen,
+               melodieführenden Stimmen häufig mit der Gesangstimme in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> „Original“ übereinstimmen,
                kann sich der Weber-Fan also wohl wieder beruhigt zurücklehnen und muss nicht das „mittlere
                Erdbeben“ befürchten, von dem <span class="831051011031021141051011003272252110101114109117110100">Siegfried Hünermund</span> sprach, das aber sicherlich eingetreten
                wäre, hätte sich seine These als stichhaltig erwiesen. So aber hat die Agthe-Wolke
-               <a class="preview persons A002068" href="">Weber</a> nur kurzzeitig umhüllt und nun können wieder hell die Sterne strahlen!
+               <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> nur kurzzeitig umhüllt und nun können wieder hell die Sterne strahlen!
             </p>
                                     <p>Die Weber-Forscher verfolgen z. Zt. noch eine weitere vage Spur bei der Identifizierung
-               der Tänze: <span class="8097122100105114101107">Pazdirek</span> nennt eine bei <a class="preview orgs A080075" href="">Klemm</a> in <a class="preview places A130005" href="">Leipzig</a> erschienene Sammlung mit dem Titel
+               der Tänze: <span class="8097122100105114101107">Pazdirek</span> nennt eine bei <a class="preview orgs A080075" href="">Klemm</a> in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> erschienene Sammlung mit dem Titel
                
                <span class="tei_hi_italic">Neueste gesellsch. Tänze</span> aus der Feder von „Agthe, Gärich &amp; Strauch“ – leider hat sich von diesem Druck, der
                u. U. das Rätsel vollständig lösen könnte, bisher kein Exemplar nachweisen lassen.
@@ -736,7 +736,7 @@
                                         <li id="C_07" data-title="Einzelnachweis 7"><a class="endnote_backlink" href="#backref-C_07">7</a><a class="preview news A050252" href="">Vgl. die vollständige Wiedergabe des Trios Nr. 1</a>.</li>
                                     </ol>
                                 </div>
-                                <p class="authorDate"><a href="" class="persons"></a>, Montag, 15. September 2003</p>
+                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Montag, 15. September 2003</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -766,7 +766,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_9af72e7f8c3cfb28c9dd1ba5a75a85fc">
+                                        <div class="collapse apparatus-details" id="source_b0e46162cd18ddaa4d0c457a66b8540b">
                                             
                                             
                                             <div>
@@ -810,7 +810,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050164</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050164</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -870,6 +870,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -928,22 +931,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

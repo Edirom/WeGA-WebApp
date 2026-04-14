@@ -11,8 +11,8 @@
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
-        <meta property="dc:contributor" content="Friedrich August I. , König von Sachsen" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Friedrich August I., König von Sachsen" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Dekret, dass Karl Theodor Winkler als Vormund der beiden Söhne Webers eingesetzt sei; (unterschrieben von Gensiken und Böhn)","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"an. Mittwoch, 12. Juli 1826","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042563","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000537/Korrespondenz/A042563","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000537","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000537"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000537/Korrespondenz/A042563/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000537/Korrespondenz/A042563/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -386,8 +384,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000537" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002062" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000213" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -397,6 +393,8 @@
                                     <input type="checkbox" name="options" value="A009486" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009361" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002085" /> <span title="Anwählen, um &#34;Weber, Max Maria von&#34; im Text zu markieren.">Weber, Max Maria von</span> 
                                 </label>
@@ -424,21 +422,39 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <p>Bl. 16v:</p>
-                                        <p><span class="tei_hi_latintype">Wir, <a class="preview persons A000537" href="">Friedrich August</a>, von GOTTES Gnaden</span>, König von <span class="tei_region">Sachsen</span>, thun kund, daß Wir den von dem verstorbenen Kapellmeister <a class="preview persons A002068" href="">Karl Maria von Weber</a> nachgelassenen beiden minorennen Söhnen, als <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Philipp Christian Max Maria</a> und <a class="preview persons A002062" href="">Alexander Heinrich Viktor Maria</a> beiderseits Gebrüdern von Weber, von welchen dem Anführen nach der <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">erstere</a> dermalen 4. Jahr, der <a class="preview persons A002062" href="">letztere</a> aber 1 ½ Jahre alt ist, auf deren Mutter <a class="preview persons A000213" href="">Karolinen verw. von Weber</a>, demühtigst beschehenes Bitten, den Hofrath <a class="preview persons A002160" href="">Karl Theodor Winkler</a> alhier, zum Vormunde <span class="tei_hi_latintype">in genere</span> verordnet haben......</p>
+                                        <p><span class="tei_hi_latintype">Wir, <a class="preview persons A000537" href="">Friedrich August</a>, von
+                  GOTTES Gnaden</span>, König von <span class="tei_region">Sachsen</span>, thun kund, daß Wir den von
+               dem verstorbenen Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von
+                  Weber</a> nachgelassenen beiden minorennen Söhnen, als <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Philipp Christian Max Maria</a> und <a class="preview persons A002062" href="">Alexander Heinrich Viktor Maria</a> beiderseits Gebrüdern von Weber, von
+               welchen dem Anführen nach der <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">erstere</a> dermalen
+               4. Jahr, der <a class="preview persons A002062" href="">letztere</a> aber 1 ½ Jahre alt ist,
+               auf deren Mutter <a class="preview persons A000213" href="">Karolinen verw. von Weber</a>,
+               demühtigst beschehenes Bitten, den Hofrath <a class="preview persons A002160" href="">Karl Theodor
+                  Winkler</a> alhier, zum Vormunde <span class="tei_hi_latintype">in
+               genere</span> verordnet haben......</p>
                                         <p><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span></span></p>
                                         <p class="tei_closer textAlign-left">
-               <br /><a class="preview places A130003" href="">Dresden</a> am <span class="tei_date">12ten Juli 1826</span>.
-               <br />     <span class="tei_choice"><span class="tei_abbr"><span class="tei_hi_latintype">L</span>. <span class="tei_hi_latintype">S</span>.</span><a class="noteMarker" id="backref-d10e56" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e56">‡</a></span>. <span class="tei_unclear">RS<a class="noteMarker" id="backref-d10e68" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e68">‡</a></span> <a class="preview persons A009486" href="">Gensiken</a>
-               <span class="tei_segBlock textAlign-right"><a class="preview persons A009361" href="">Johann Heinrich Böhn</a> S.</span>
+               <br /><a class="preview places A130003" href="">Dresden</a> am <span class="tei_date">12ten
+                  Juli 1826</span>. <br />     <span class="tei_choice"><span class="tei_abbr"><span class="tei_hi_latintype">L</span>. <span class="tei_hi_latintype">S</span>.</span><a class="noteMarker" id="backref-d10e56" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e56">‡</a></span>. <span class="tei_unclear">RS<a class="noteMarker" id="backref-d10e68" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e68">‡</a></span>
+               <a class="preview persons A009486" href="">Gensiken</a>
+               <span class="tei_segBlock textAlign-right"><a class="preview persons A009361" href="">Johann Heinrich Böhn</a>
+                  S.</span>
             </p>
                                     </div>
                                     <div class="writingSession">
                                         <p>Bl. 18:</p>
-                                        <p><span class="tei_hi_latintype">Von GOTTES Gnaden, <a class="preview persons A000537" href="">Friedrich August</a>, König von <span class="tei_region">Sachsen</span> ec. ec. ec.</span></p>
-                                        <p>Rath, lieber getreuer. Nachdem Wir auf das bei Uns von der hinterbliebenen <a class="preview persons A000213" href="">Wittwe</a> des verstorbenen Kapellmeisters <a class="preview persons A002068" href="">Karl Maria von Weber</a>, Inhalts der abschriftlichen Anfuge, demüthigst beschehene Bitten, den von ihr mit dem <span class="tei_hi_latintype">Defuncto</span> erzeugten beiden unmündigen Söhnen, <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Philipp Christian Max Maria</a> und <a class="preview persons A002062" href="">Alexander Heinrich Viktor Maria</a> Gebrüdern von Weber, den Hofrath <a class="preview persons A002160" href="">Karl Gottfried Theodor Winkler</a> alhier zum Vormunde <span class="tei_hi_latintype">in genere</span>  verordnet, darüber auch die mitfolgende Urkunde haben ausfertigen lassen; als begehren Wir, ihr wollet Kraft dieses <span>[…]<a class="noteMarker" id="backref-d10e117" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e117">‡</a></span> Urkunde dem ernannten Vormunde gebührend aushändigen<span>[…]<a class="noteMarker" id="backref-d10e119" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e119">‡</a></span></p>
+                                        <p><span class="tei_hi_latintype">Von GOTTES Gnaden, <a class="preview persons A000537" href="">Friedrich
+                     August</a>, König von <span class="tei_region">Sachsen</span> ec. ec. ec.</span></p>
+                                        <p>Rath, lieber getreuer. Nachdem Wir auf das bei Uns von der hinterbliebenen <a class="preview persons A000213" href="">Wittwe</a> des verstorbenen Kapellmeisters <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a>, Inhalts der abschriftlichen Anfuge,
+               demüthigst beschehene Bitten, den von ihr mit dem <span class="tei_hi_latintype">Defuncto</span> erzeugten beiden unmündigen Söhnen, <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Philipp
+                  Christian Max Maria</a> und <a class="preview persons A002062" href="">Alexander Heinrich
+                  Viktor Maria</a> Gebrüdern von Weber, den Hofrath <a class="preview persons A002160" href="">Karl Gottfried Theodor Winkler</a> alhier zum Vormunde <span class="tei_hi_latintype">in genere</span> verordnet, darüber auch die mitfolgende Urkunde
+               haben ausfertigen lassen; als begehren Wir, ihr wollet Kraft dieses <span>[…]<a class="noteMarker" id="backref-d10e117" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e117">‡</a></span> Urkunde
+               dem ernannten Vormunde gebührend aushändigen<span>[…]<a class="noteMarker" id="backref-d10e119" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e119">‡</a></span></p>
                                         <p class="tei_closer textAlign-left">
-               <br /><a class="preview places A130003" href="">Dresden</a>, am <span class="tei_date">12ten Juli 1826</span>.
-               <span class="tei_segBlock textAlign-right"><span>[…]<a class="noteMarker" id="backref-d10e131" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e131">‡</a></span> <a class="preview persons A009486" href="">Gensiken</a></span>
+               <br /><a class="preview places A130003" href="">Dresden</a>, am <span class="tei_date">12ten
+                  Juli 1826</span>. <span class="tei_segBlock textAlign-right"><span>[…]<a class="noteMarker" id="backref-d10e131" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e131">‡</a></span>
+                  <a class="preview persons A009486" href="">Gensiken</a></span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -484,9 +500,10 @@
                                     <div>
                                         <strong><span>Textzeuge</span>:</strong>
                                         
-                                        <span>Dresden (D), Sächsisches Hauptstaatsarchiv (D-Dla)<br /><i>Signatur</i>: 10047, Amt Dresden, Nr. 3287 (Amtsgericht Dresden, Lit. W. Nr. 124), Bl. 16v?</span>
+                                        <span>Dresden (D), Sächsisches Hauptstaatsarchiv (D-Dla)<br /><i>Signatur</i>: 10047, Amt Dresden, Nr. 3287 (Amtsgericht Dresden, Lit. W. Nr. 124), Bl.
+                     16v?</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_a459c48922dc587a815e801da6b3fcb5">
+                                        <div class="collapse apparatus-details" id="source_df1c3b7f1f06d14007001954f763c74f">
                                             
                                             
                                             <div>
@@ -568,7 +585,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042563</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042563</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -628,6 +645,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -686,22 +706,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

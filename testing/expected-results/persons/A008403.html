@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Philipp Teimer. Lebensdaten: 30. April 1761–1. Dezember 1817. Tätigkeiten: Sänger (Bass), Oboist. Wirkorte: Wien","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008403","name":"Teimer, Philipp","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008403","sameAs":"https://d-nb.info/gnd/1045710539"}</script>
 
@@ -400,7 +398,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A008403/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A008403/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008403/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -422,7 +420,7 @@
          <li>ab 1783 bei der fürstlich schwarzenbergischen Harmoniemusik (dort auch der Vater und der Bruder <span class="7411110497110110">Johann</span>, später auch der jüngere Bruder <span class="7011497110122">Franz</span> tätig)</li>
          <li>1793 bis 1807 Mitglied der Tonkünstler-Sozietät</li>
          <li>ab ca. 1795 als Sänger tätig (1797 am Freihaustheater auf der Wieden, nachfolgend am Theater an der Wien), sang außerdem von Juli 1814 bis Oktober 1815 am Kärntnertortheater den <span class="65110116111110105111">Antonio</span> im <span class="tei_hi_italic"><a class="preview works A020567" href="">Figaro</a></span></li>
-         <li>verheiratet mit der Schauspielerin <span class="669711498971149744321031019846327211110812210997110110">Barbara, geb. Holzmann</span> (geb. 1773); Töchter <a class="preview persons A0016D2" href="">Caroline</a> und <a class="preview persons A000512" href="">Henriette</a></li>
+         <li>verheiratet mit der Schauspielerin <span class="669711498971149744321031019846327211110812210997110110">Barbara, geb. Holzmann</span> (geb. 1773); Töchter <a class="preview persons A0016D2" href="">Caroline</a>, <a class="preview persons A000512" href="">Henriette</a> und <span class="669711498971149732100463210646">Barbara d. j.</span></li>
          </ul>
    </div>
                                                 
@@ -501,7 +499,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008403</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008403</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -561,6 +559,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -619,22 +620,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

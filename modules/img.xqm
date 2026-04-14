@@ -529,7 +529,7 @@ declare %private function img:get-generic-portrait($model as map(*), $lang as xs
 
 (:~
  : Create an IIIF collection for a WeGA document type collection
- : WARNING: This is considered experimental beacuse it spits out too many manifests and the services choke on it 
+ : WARNING: This is considered experimental because it spits out too many manifests and the services choke on it
  :
  : @param $docType the WeGA docType, e.g. 'letters' or 'writings'
  : @return a collection object

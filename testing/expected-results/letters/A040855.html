@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Poißl, Johann Nepomuk" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"über Erfolge und Misserfolge der Harlas in Venedig; bittet sich bei Liebich für die Auszahlung einer rückständigen Summe einzusetzen und seine Opern Gubitz zu empfehlen; mit eigenhändigem Vermerk Webers: erhalten 10. 3., beantw. 1. May nebst Übersendung eines Wechsels von Liebich auf 8 Carolin","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Johann Nepomuk Poißl an Carl Maria von Weber in Prag. München, Dienstag, 5. März 1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040855","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001497/Korrespondenz/A040855","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001497","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001497"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001497/Korrespondenz/A040855/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001497/Korrespondenz/A040855/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -357,8 +355,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001172" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000150" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -372,6 +368,8 @@
                                     <input type="checkbox" name="options" value="A001497" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000741" /> <span title="Anwählen, um &#34;Harlas, Helena&#34; im Text zu markieren.">Harlas, Helena</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -416,7 +414,7 @@
                                     <div class="teiLetter_address">
                                         <p><span class="tei_hi_underline1"><span class="tei_hi_latintype">Fr:</span> Gr: <span class="tei_hi_underline2andMore">5</span></span></p>
                                         <p>An Sr: Wohlgebohren</p>
-                                        <p>Herrn <a class="preview persons A002068" href="">Karl Marie von Weber</a></p>
+                                        <p>Herrn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Marie von Weber</a></p>
                                         <p>Kapellmeister und Direktor der</p>
                                         <p>Oper am Ständischen Theater</p>
                                         <p>in</p>
@@ -429,7 +427,7 @@
                <span class="tei_segBlock textAlign-right">[Vermerke Webers unter dem Datum:]<br />
                   erhalten – 10 –---- in <a class="preview places A130006" href="">Prag</a>.<br />
                   <a class="preview letters A047017" href="">beantw.</a> 1<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span>  – nebst Ueber<span class="break_inWord">-</span><br />sendung eines Wechsels von <span class="tei_hi_latintype"><a class="preview persons A001172" href="">Liebich</a></span>  auf 8 <span class="tei_hi_latintype">Carolin</span>.</span>            
-               <p class="teiLetter_salute">Theurer <a class="preview persons A002068" href="">Freund</a>!</p>
+               <p class="teiLetter_salute">Theurer <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Freund</a>!</p>
             </div>
                                         <p>Wie es der <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlaß</a> früher in <a class="preview places A130057" href="">Venedig</a> gegangen<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, weißt du bereits; aber das weißt du nicht und lassest dir’s kaum träumen, daß sie, nachdem sie 26 Vorstellungen mit Beyfall gesungen<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, den 14<span class="tei_hi_superscript">ten</span> <span class="tei_choice"><span class="tei_sic">Febr:</span><a class="noteMarker" id="backref-d10e116" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e116">‡</a></span> in der ersten Vorstellung der 2<span class="tei_hi_superscript">t</span> Oper<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a> total ausgezischt worden ist. Daß dieß nicht Folge Ihres Talentes war kann man denken, und man weiß sogar daß es Folge einer durch die <span class="tei_hi_latintype"><a class="preview persons A000150" href="">Bertinotti</a></span> und mehrern andren eingeleiteten Kabale war.      Die arme <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Harlaß</a> hatte gerade noch die erforderliche Kraft mitten in der Arie abzugehen, und ward hinter der <span class="tei_hi_latintype">Coulisse</span>  ohnmächtig.      Drey Tage blieb sie krank und das Theater geschlossen, den 18<span class="tei_hi_superscript">t</span> sang sie wieder, und wurde mit dem lebhaftesten Beyfalle aufgenohmen, und erhielt sich fernerhin im Beyfalle.      Meine Nachrichten gehen bis zum 21<span class="tei_hi_superscript">ten</span>; was weiter geschah weiß ich nicht. Die Musik der 2<span class="tei_hi_superscript">ten</span> Oper welche <span class="tei_hi_latintype"><a class="preview persons A000607" href="">Generali</a> componirte</span> soll treflich seyn. —</p>
                                         <p class="inlineEnd">Nun eine Bitte: Herr Direktor <a class="preview persons A001172" href="">Liebich</a> hat mir noch immer nichts geschikt und ich könnte es doch so nöthig brauchen; verwende dich doch ernstlich für die Sache, denn es ist wahrlich gar zu lange daß diese Geschichte schon dauert.      Wie lebst du, und wie geht’s mit deinem <span class="65108102114101100">Alfred</span>?<a class="noteMarker" href="">T</a> Wenn du an <a class="preview persons A000695" href="">Gubitz</a> schreibst, so sey doch so gut ihn ein wenig auf <a class="preview works A020587" href="">Athalia</a> und den <a class="preview works A020686" href="">Wettkampf zu Olimpia</a> aufmerksam zu machen, welche beyde bald dort gegeben werden dürften.</p>
@@ -482,9 +480,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. Poissl, J. N.</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1ecd3e6228058129d2b067e7f1cea324"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_dbcc863681e4431815ccd7ae4fa52614"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1ecd3e6228058129d2b067e7f1cea324">
+                                        <div class="collapse apparatus-details" id="source_dbcc863681e4431815ccd7ae4fa52614">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.)</li>
@@ -571,7 +569,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040855</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040855</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -631,6 +629,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -689,22 +690,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

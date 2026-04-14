@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Weber übermittelt durch Heinrich Beer, der mit seinem Vater zur Aufführung der Euryanthe nach Dresden gekommen war, Abschriften der Dokumente, die ihm Spontini geschickt hatte; Einschätzung des Verhaltens von Spontini (zunächst Dummheit, dann erst Bosheit); Hoffnung, Lichtenstein werde nach Dresden kommen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber Hinrich Lichtenstein in Berlin. Hosterwitz, Mittwoch, 15. September 1824","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042351","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042351","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Weber übermittelt durch Heinrich Beer, der mit seinem Vater zur Aufführung der Euryanthe nach Dresden gekommen war, Abschriften der Dokumente, die ihm Spontini geschickt hatte; Einschätzung des Verhaltens von Spontini (zunächst Dummheit, dann erst Bosheit); Hoffnung, Lichtenstein werde nach Dresden kommen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber Hinrich Lichtenstein in Berlin. Hosterwitz, Mittwoch, 15. September 1824","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042351","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042351","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,10 +296,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042351/backlinks.html">Rückverweise</a>
+                                    <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042351/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042351/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,16 +362,16 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042338.html">1824-07-31</a>:  an  <a href="" class="preview A000213 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042343.html">1824-08-21</a>:  an  <a href="" class="preview A000992 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">1824-03-27</a>:  von  <a href="" class="preview A001864 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A080005/Korrespondenz/A042080.html">1823-12-04</a>:  von  <a href="" class="preview A080005 orgs"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042364.html">1824-11-09</a>:  an  <a href="" class="preview A001388 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042370.html">1824-12-07</a>:  an  <a href="" class="preview A001287 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042699.html">1826-02-21</a>:  von  <a href="" class="preview A000213 persons"></a>
@@ -422,7 +420,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000213" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -434,9 +432,9 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020608" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label>
                             </div>
                         </div>
@@ -448,9 +446,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130042" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -466,17 +464,17 @@
                                         <p>S Wohlgebohren</p>
                                         <p>dem Herrn Profeßor <span class="tei_hi_latintype">pp</span></p>
                                         <p><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001166" href="">Dr: Lichtenstein</a></span></span></p>
-                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span></span>.</p>
+                                        <p><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span></span>.</p>
                                         <p><span class="tei_hi_underline1">durch Güte</span>.</p>
                                     </div>
                                     <div class="writingSession">
-                                        <p>Ich benuzze die Gelegenheit mein geliebter <a class="preview persons A001166" href="">Bruder</a>, dir durch den guten <a class="preview persons A000113" href="">Heinrich <span class="tei_hi_latintype">Beer</span></a> die <span class="preview mixed A100340 A100352 A100464 A042382 A042381" data-ref="  /exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100464.html  ">Abschriften</span> der lezten <span class="tei_hi_latintype">Corresp:</span> zuzuschikken. <a class="preview persons A000114" href="">Vater</a> und <a class="preview persons A000113" href="">Sohn</a> <span class="tei_hi_latintype">Beer</span>, kamen Gestern eine Stunde vor Aufführung der <span class="tei_hi_latintype"><a class="preview works A020043" href="">Euryanthe</a></span> an, du kannst denken wie Sie sich freuten, und sie können dir erzählen von dem stets gleichen Enthusiasmus und vollem Hause.</p>
+                                        <p>Ich benuzze die Gelegenheit mein geliebter <a class="preview persons A001166" href="">Bruder</a>, dir durch den guten <a class="preview persons A000113" href="">Heinrich <span class="tei_hi_latintype">Beer</span></a> die <span class="preview letters A042249 A042329" data-ref=" ">Abschriften</span> der lezten <span class="tei_hi_latintype">Corresp:</span> zuzuschikken. <a class="preview persons A000114" href="">Vater</a> und <a class="preview persons A000113" href="">Sohn</a> <span class="tei_hi_latintype">Beer</span>, kamen Gestern eine Stunde vor Aufführung der <span class="tei_hi_latintype"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a></span> an, du kannst denken wie Sie sich freuten, und sie können dir erzählen von dem stets gleichen Enthusiasmus und vollem Hause.</p>
                                         <p>Neues ist seit meinem <a class="preview letters A042348" href="">Schreiben</a> vom <span class="tei_date">6<span class="tei_hi_superscript">t</span></span> nichts paßirt.</p>
-                                        <p><a class="preview persons A000235" href="">Brühl</a> <a class="preview letters A042203" href="">schrieb</a> mir bei Rüksendung der <span class="preview mixed A100340 A100352 A100464 A042382 A042381" data-ref="  /exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100464.html  ">Beilage</span>. „Wenn ich die Lust zu lügen und zugleich die Unverschämtheit des Mannes nicht schon hinlänglich kennte, so würde sie mir durch diese Briefe vollends klar geworden sein.“</p>
+                                        <p><a class="preview persons A000235" href="">Brühl</a> <a class="preview letters A042203" href="">schrieb</a> mir bei Rüksendung der <span class="preview documents A100340 A100352 A100464" data-ref="  ">Beilage</span>. „Wenn ich die Lust zu lügen und zugleich die Unverschämtheit des Mannes nicht schon hinlänglich kennte, so würde sie mir durch diese Briefe vollends klar geworden sein.“</p>
                                         <p><a class="preview persons A001586" href="">Robert</a> ist hier; wir haben einen Mittag zusamen zugebracht<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>. ich fragte ihn um seinen Uebertritt zu <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Sp:</a></span> dagegen protestirte er feyerlich: Er sagt daß ihm <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Sp:</a></span> auf die Stube gerükt, und ihn um seine Hülfe beim <span class="tei_hi_latintype"><a class="preview works A020608" href="">Alcidor</a></span> gebeten habe. nun halte er es eben so für Pflicht zum Gedeihen jedes Kunstwerkes so viel als möglich mitzuwirken<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, dieß bedinge aber gar nicht daß er <span class="tei_add tei_hi_superscript">nicht<a class="noteMarker" id="backref-d10e120" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e120">‡</a></span> stets mit gleicher Kraft gegen alle Tollheiten des <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Sp:</a></span> zu Felde ziehen werde. Uebrigens hält er <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Sp:</a></span> ganzes Verfahren mehr für unsägliche Dumheit, als planmäßige Boßheit. Etwas ähnliches glaube ich auch. Nehmlich die Dumheit so lange, als bis sie Aufsehen erregte, dann kam die Bosheit.</p>
-                                        <p>Ich weiß nicht warum ich gestern immer eine kleine Hoffnung hegte <span class="tei_hi_underline1">du</span> könntest kommen. <span class="tei_date">Dienstag d: 21<span class="tei_hi_superscript">t</span></span> ist <span class="tei_hi_latintype"><a class="preview works A020043" href="">Euryanthe</a></span> wieder auf dem <span class="tei_hi_latintype">Repertoir</span><a class="noteMarker" id="backref-C_081" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_081">*</a>.</p>
+                                        <p>Ich weiß nicht warum ich gestern immer eine kleine Hoffnung hegte <span class="tei_hi_underline1">du</span> könntest kommen. <span class="tei_date">Dienstag d: 21<span class="tei_hi_superscript">t</span></span> ist <span class="tei_hi_latintype"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a></span> wieder auf dem <span class="tei_hi_latintype">Repertoir</span><a class="noteMarker" id="backref-C_081" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_081">*</a>.</p>
                                         <p class="tei_closer textAlign-left">So viel für heute. Sind <a class="preview persons A001165" href="">Weib</a> und <a class="preview persons A000855" href="">Kind</a> wieder da, so grüße herzlichst von mir und <a class="preview persons A000213" href="">der Meinigen</a>.
-         <span class="tei_segBlock textAlign-right">Ewig dein <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Weber</a></span></span>
+         <span class="tei_segBlock textAlign-right">Ewig dein <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span></span>
          
          
             <span class="tei_dateline textAlign-left"><span class="tei_hi_latintype"><a class="preview places A130042" href="">Hosterwitz</a></span> d: <span class="tei_date">15<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Sept:</span> 1824</span>.</span>
@@ -497,7 +495,7 @@
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
                             <div>
-                                        <p><a class="preview persons A002068" href="">Weber</a> übermittelt durch <a class="preview persons A000113" href="">Heinrich Beer</a>, der mit seinem <a class="preview persons A000114" href="">Vater</a> zur Aufführung der <span class="tei_hi_italic"><a class="preview works A020043" href="">Euryanthe</a></span> nach <a class="preview places A130003" href="">Dresden</a> gekommen war, Abschriften der Dokumente, die ihm <a class="preview persons A001864" href="">Spontini</a> geschickt hatte; 
+                                        <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> übermittelt durch <a class="preview persons A000113" href="">Heinrich Beer</a>, der mit seinem <a class="preview persons A000114" href="">Vater</a> zur Aufführung der <span class="tei_hi_italic"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a></span> nach <a class="preview places A130003" href="">Dresden</a> gekommen war, Abschriften der Dokumente, die ihm <a class="preview persons A001864" href="">Spontini</a> geschickt hatte; 
                Einschätzung des Verhaltens von <a class="preview persons A001864" href="">Spontini</a> (zunächst Dummheit, dann erst Bosheit); 
                Hoffnung, <a class="preview persons A001166" href="">Lichtenstein</a> werde nach <a class="preview places A130003" href="">Dresden</a> kommen</p>
                                     </div>
@@ -532,18 +530,18 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. II A f 1, 14 mit Beilagen: Weberiana Cl. II A f 1, 13</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_0bfb5d48c62e87b2596fbd948427a74f"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a347187e6d63c5fe713f608960969b2a"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_0bfb5d48c62e87b2596fbd948427a74f">
+                                        <div class="collapse apparatus-details" id="source_a347187e6d63c5fe713f608960969b2a">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.) und 1 DBl. (4 b. S.)</li>
                                                         <li>im unteren Drittel der Rectoseite Schenkungs- u. Echtheitsbestätigung von Lichtenstein: „Indem ich Fräulein <span class="tei_hi_latintype">von Gagern</span> diesen von <span class="tei_hi_latintype">Carl Maria von Weber</span> an mich gerichteten Brief zu ihrer Autographen-Sammlung übergebe, beglaubige ich damit zugleich die Aechtheit der Handschrift.<br />
-                     <span class="tei_hi_latintype"><a class="preview places A130002" href="">B</a></span>. 7 <span class="tei_hi_latintype">Jul</span>. 1847            <span class="tei_hi_latintype">HC</span>. <span class="tei_hi_latintype">Lichtenstein</span>“</li>
+                     <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">B</a></span>. 7 <span class="tei_hi_latintype">Jul</span>. 1847            <span class="tei_hi_latintype">HC</span>. <span class="tei_hi_latintype">Lichtenstein</span>“</li>
                                                     </ul>
                                                     <h4 class="media-heading">Beilagen</h4>
                                                     <ul>
-                                                        <li><span class="preview mixed A100340 A100352 A100464 A042382 A042381" data-ref="  /exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100464.html  ">Abschriften</span> von Dokumenten <a class="preview persons A001864" href="">Spontinis</a>, sowie ein <a class="preview writings A030839" href="">Zeitungsausschnitt</a> aus der <span class="tei_hi_italic">Königl. privil. Berlinischen Zeitung von Staats- und gelehrten Sachen</span>, Nr. 174 (15. Mai 1824)</li>
+                                                        <li><span class="preview mixed A100340 A100352 A100464 A042382 A042381" data-ref="    ">Abschriften</span> von Dokumenten <a class="preview persons A001864" href="">Spontinis</a>, sowie ein <a class="preview writings A030839" href="">Zeitungsausschnitt</a> aus der <span class="tei_hi_italic">Königl. privil. Berlinischen Zeitung von Staats- und gelehrten Sachen</span>, Nr. 174 (15. Mai 1824)</li>
                                                     </ul>
                                             
                                             <div>
@@ -558,7 +556,7 @@
                                                             
                                                             <span>Leipzig (Deutschland), Leipziger Stadtbibliothek – Musikbibliothek (D-LEm)<br /><i>Signatur</i>: PB 37 (Nr. 64)</span>
                                                               
-                                                            <div class="collapse" id="source_96f9c76d152789465230d81ad075d155">
+                                                            <div class="collapse" id="source_c62aac032e58528d0087025e2185c357">
                                                                 
                                                             </div>
                                                         </div>
@@ -568,7 +566,7 @@
                                                             
                                                             <span>Rudorff: Westermanns illustrierte deutsche Monats-Hefte, 44. Jg. (1899), 87. Bd., S. 385</span>
                                                               
-                                                            <div class="collapse" id="source_eec0bb95a9881e70130379cfb9e805b3">
+                                                            <div class="collapse" id="source_a5d51e8aed5a7be3d683aa4527d5f06d">
                                                                 
                                                             </div>
                                                         </div>
@@ -578,7 +576,7 @@
                                                             
                                                             <span>Rudorff 1900, S. 212–214</span>
                                                               
-                                                            <div class="collapse" id="source_df83f986888d392b9680e3ed0093527d">
+                                                            <div class="collapse" id="source_26b9c8e62316ceaf721077b2ae60d0ea">
                                                                 
                                                             </div>
                                                         </div>
@@ -619,13 +617,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  so viel als möglich mitzuwirken“</span>Die 1825 in <a class="preview places A130002" href="">Berlin</a> aufgeführte deutsche Textfassung von <span class="tei_hi_italic">Alcidor</span> stammt allerdings von <a class="preview persons A000C58" href="">Herklots</a>.</div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  so viel als möglich mitzuwirken“</span>Die 1825 in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> aufgeführte deutsche Textfassung von <span class="tei_hi_italic">Alcidor</span> stammt allerdings von <a class="preview persons A000C58" href="">Herklots</a>.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_081" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_081" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_081"><span class="tei_lemma">„…  Euryanthe wieder auf dem Repertoir“</span>Am <span class="tei_date">21. September 1824</span> wurde in <a class="preview places A130003" href="">Dresden</a> der <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> gegeben (siehe <a class="preview diaries A065064" href="">Tagebuch</a>); die nächste Aufführung der <span class="tei_hi_italic"><a class="preview works A020043" href="">Euryanthe</a></span> fand erst am <span class="tei_date">11. Oktober 1824</span> statt.</div>
+                                                <div class="apparatusEntry col-11" id="C_081" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_081"><span class="tei_lemma">„…  Euryanthe wieder auf dem Repertoir“</span>Am <span class="tei_date">21. September 1824</span> wurde in <a class="preview places A130003" href="">Dresden</a> der <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> gegeben (siehe <a class="preview diaries A065064" href="">Tagebuch</a>); die nächste Aufführung der <span class="tei_hi_italic"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a></span> fand erst am <span class="tei_date">11. Oktober 1824</span> statt.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -654,7 +652,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042351</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042351</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -714,6 +712,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -772,22 +773,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Methfessel, Albert G." />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Prof. Dr. Götz Methfessel" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -43,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"erkundigt sich nach der Dresdener Oper und nach dem Freischütz","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"an. Dienstag, 26. Oktober 1819","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041483","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001308/Korrespondenz/A041483","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001308","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001308"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -251,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001308/Korrespondenz/A041483/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001308/Korrespondenz/A041483/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -358,11 +356,11 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A004666" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001308" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -410,7 +408,7 @@
                Ihnen meine neueste Liedersammlung, worin Sie auch 2 Ihrer lieben Geisteskinder
                finden werden<a class="noteMarker" id="backref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>. Mögten Sie Ihnen einen heitern Augenblick geben u. mein Andenken bei
                Ihnen erfrischen. – Was macht die Kunst, und, speciell, die <span class="tei_hi_underline1">Oper</span> 
-               in <a class="preview places A130003" href="">Dresden</a>? Hat <a class="preview persons A002068" href="">Weber</a> 
+               in <a class="preview places A130003" href="">Dresden</a>? Hat <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> 
                die Ihrige noch vollendet?<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> 
                Geben Sie mir doch einige Nachricht darüber, so wie auch überhaupt von 
                <a class="preview places A130003" href="">Dresden</a>. <span class="tei_pb" title="Seitenumbruch"> | </span></p>
@@ -421,7 +419,7 @@
                die Liebe aller Guten in hohem Grade erworben hatte. – Haben Sie Gelegenheit, den
                Hinterlaßnen meine Theilnahme zu versichern, so thun Sie es doch ja recht innig und
                herzlich. – </p>
-                                        <p class="inlineEnd">An <a class="preview persons A002068" href=""><span class="tei_hi_latintype">Weber</span></a> bitte ich meinen freundschaftlichen Gruß
+                                        <p class="inlineEnd">An <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">Weber</span></a> bitte ich meinen freundschaftlichen Gruß
                zu bringen. Auch ihn bat ich, wenn er etwas für mein Liederbuch Paßendes vorräthig
                hätte, mir es mitzutheilen. Er versprach es halb u. halb. Wollen Sie ihn wohl gelegentlich
                dran erinnern? – Immer komme ich nun meinem Wunsche, <a class="preview places A130003" href="">Dresden</a> zu sehen, (das liebe, unvergeßliche <a class="preview places A130003" href="">Dresden</a>) um einige <span class="tei_pb" title="Seitenumbruch"> | </span> Schritte näher. Wie schlägt mein
@@ -479,9 +477,9 @@
                                         
                                         <span>Wolfenbüttel (D), Niedersächsisches Staatsarchiv (D-Wa)<br /><i>Signatur</i>: NLA WO, 298 N, Nr. 375</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_e26bf8245ae8a7502a4ecffe60120b5b"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_d6f0cede72432cf63b187157f80566d4"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e26bf8245ae8a7502a4ecffe60120b5b">
+                                        <div class="collapse apparatus-details" id="source_d6f0cede72432cf63b187157f80566d4">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S.)</li>
@@ -543,7 +541,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_03"><span class="tei_lemma">„…  den wichtigen Empfang des Taschenbuchs“</span><span class="tei_hi_italic"><a href="http://opacplus.bsb-muenchen.de/title/10655544/ft/bsb11045051?page=5">W. B. Beckers Taschenbuch für das gesellige Vergnügen auf das Jahr 1820 <i class="fa fa-external-link" aria-hidden="true"></i></a></span>, hg. von Friedrich Kind, Leipzig: Göschen.</div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_03"><span class="tei_lemma">„…  den wichtigen Empfang des Taschenbuchs“</span><span class="tei_hi_italic"><a href="https://mdz-nbn-resolving.de/details:bsb11045051">W. B. Beckers Taschenbuch für das gesellige Vergnügen auf das Jahr 1820 <i class="fa fa-external-link" aria-hidden="true"></i></a></span>, hg. von Friedrich Kind, Leipzig: Göschen.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -578,7 +576,7 @@
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_07" class="apparatus-link">6.</a></div>
                                                 <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="6" data-href="#C_07"><span class="tei_lemma">„…  Ihrer lieben Geisteskinder finden werden“</span><span class="tei_hi_italic">Sechs deutsche Gesänge mit Begleitung des Piano-Forte: in Musik gesetzt und dem Herrn 
                   Capellmeister Louis Spohr zugeeignet von Albert Methfessel</span>. Mainz: B. Schott’s Söhne o. J. 
-                  [1819]  Op. 46 (s. <a href="https://opacplus.bsb-muenchen.de/Vta2/bsb00113604/bsb:BV044792224?page=2">Ex. BSB <i class="fa fa-external-link" aria-hidden="true"></i></a>), darin enthalten:  Nr. 1  „Pilgerlied“ und Nr. 5  „Lenchens Lied“ auf Texte von <a class="preview persons A001002" href="">Friedrich Kind</a>; vgl. auch Brief vom 30. August 1818 von <a class="preview persons A001308" href="">Methfessel</a> an <a class="preview orgs A080002" href="">Schott</a>, <span class="tei_hi_italic"><a href="http://resolver.staatsbibliothek-berlin.de/SBB0002CC8700000000">D-B, Digitalisierte Sammlungen <i class="fa fa-external-link" aria-hidden="true"></i></a></span>,  (Übersendung einer Liedersammlung).</div>
+                  [1819]  Op. 46 (s. <a href="https://mdz-nbn-resolving.de/details:bsb00113604">Ex. BSB <i class="fa fa-external-link" aria-hidden="true"></i></a>), darin enthalten:  Nr. 1  „Pilgerlied“ und Nr. 5  „Lenchens Lied“ auf Texte von <a class="preview persons A001002" href="">Friedrich Kind</a>; vgl. auch Brief vom 30. August 1818 von <a class="preview persons A001308" href="">Methfessel</a> an <a class="preview orgs A080002" href="">Schott</a>, <span class="tei_hi_italic"><a href="http://resolver.staatsbibliothek-berlin.de/SBB0002CC8700000000">D-B, Digitalisierte Sammlungen <i class="fa fa-external-link" aria-hidden="true"></i></a></span>,  (Übersendung einer Liedersammlung).</div>
                                             </div>
                                         </li>
                                         <li>
@@ -615,7 +613,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041483</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041483</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -675,6 +673,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -733,22 +734,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

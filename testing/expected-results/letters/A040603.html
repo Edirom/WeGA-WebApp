@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Verleger und Rezension der Vereinsbrüder betr.; ausführlich zu Gottfried Webers Kritik an der Hymne; über Unstimmigkeiten mit Meyerbeer; Nachlass des Vaters betr.; Bericht ab 2. Februar; mit einem Verzeichnis von Webers Werken und Anmerkung, welche noch nicht im Druck erschienen sind","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Gottfried Weber in Mannheim. Prag, Dienstag, 9. März 1813","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Verleger und Rezension der Vereinsbrüder betr.; ausführlich zu Gottfried Webers Kritik an der Hymne; über Unstimmigkeiten mit Meyerbeer; Nachlass des Vaters betr.; Bericht ab 2. Februar; mit einem Verzeichnis von Webers Werken und Anmerkung, welche noch nicht im Druck erschienen sind","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Gottfried Weber in Mannheim. Prag, Dienstag, 9. März 1813","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040603/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -389,7 +387,7 @@
                                             <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040402.html">1811-06-06</a>:  an  <a href="" class="preview A002078 persons"></a>
                                         </li>
                                             <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html">1811-02-27</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html">1811-02-27</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                         </li>
                                     </ul>
                                     <h4>Folgend</h4>
@@ -442,8 +440,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002075" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002071" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002128" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000838" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -470,8 +466,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000487" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001831" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001693" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -481,6 +475,10 @@
                                     <input type="checkbox" name="options" value="A080093" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080119" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002071" /> <span title="Anwählen, um &#34;Weber, Edmund von&#34; im Text zu markieren.">Weber, Edmund von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002074" /> <span title="Anwählen, um &#34;Weber, Franz Anton von&#34; im Text zu markieren.">Weber, Franz Anton von</span> 
                                 </label>
@@ -638,8 +636,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130077" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130242" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130012" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -647,8 +643,6 @@
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130007" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130016" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -661,6 +655,10 @@
                                     <input type="checkbox" name="options" value="A130017" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130080" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -744,7 +742,7 @@
                <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> nicht unrecht.
                Wenn du ja ein übriges thun willst so schikke
 			mir die <span class="tei_hi_latintype">Recension</span> vorher,
-               und ich spedire sie dann nach <a class="preview places A130005" href="">Leipzig</a>.        
+               und ich spedire sie dann nach <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>.        
 			Deinen <span class="tei_hi_latintype">Quartal</span>Bericht<span class="tei_pb" title="Seitenumbruch"> | </span>in der M: Z:
                wo der Gesang von <span class="tei_hi_latintype"><a class="preview works A020135" href="">MB</a></span>
                als Beylage ist<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a> habe ich gelesen. bin aber gar nicht mit dem
@@ -787,7 +785,7 @@
 			das <span class="tei_hi_underline1">Gelobt sey Gott</span>,  werde ich nach deinem Vorschlag schreiben, weil
 			es richtiger und beßer ist. Warum ist aber dem <span class="72101114114110327111425298108101114">Herrn Grübler</span>, ein wahrhafter
 			DeklamationsFehler im <span class="tei_hi_latintype"><span class="821019910511697116105118">Recitativ</span>:</span> entwischt? den ich erst in
-			<a class="preview places A130005" href="">Leipzig</a> bemerkte und verbeßerte.
+			<a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> bemerkte und verbeßerte.
                es <span class="tei_add tei_hi_superscript">heißt<a class="noteMarker" id="backref-d10e389" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e389">‡</a></span> nehmlich 
                <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn.png/full/full/0/native.jpg"><img title="Notenbeispiel: „mit Bösem soll in Kampf es gehn“" alt="Notenbeispiel: „mit Bösem soll in Kampf es gehn“" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0406xx%2FA040603%2Fmit_Boesem_soll_in_Kampf_es_gehn.png/full/,75/0/native.jpg" /></a></span>
                und muß heißen 
@@ -890,7 +888,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td style="width:84.88%">den Schulden Rest meines seeligen <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Vaters</a> von 142 ƒ 16 <span class="tei_hi_latintype">xr</span> beträgt das Drittheil, das mich
-                  trifft, da ich darauf rechne das <a class="preview persons A002075" href="">Bruder Friz</a> und <a class="preview persons A002071" href="">Edmund</a> daßelbe thun, da die <a class="preview persons A002128" href="">Schwester</a> außer<br />
+                  trifft, da ich darauf rechne das <a class="preview persons A002075" href="">Bruder Friz</a> und <a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a> daßelbe thun, da die <a class="preview persons A002128" href="">Schwester</a> außer<br />
                   Stand ist</td>
                                                         <td style="width:15.12%">47. 26.</td>
                                                     </tr>
@@ -905,7 +903,7 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p class="inlineEnd">Von meinen <span class="preview persons A002075 A002071" data-ref=" ">Brüdern</span> 
+                                        <p class="inlineEnd">Von meinen <span class="preview persons A002075 A002071" data-ref=" /exist/apps/WeGA-WebApp/de/A002071.html">Brüdern</span> 
                höre und sehe ich nichts. Auch würde es mich sehr drükken
                der <a class="preview persons A000005" href="">Christiane</a> die 5 ƒ Monatlich immer fortzuzahlen, da ich die
 			Kosten des Leichensteins <span class="tei_hi_latintype">pp</span> allein bestritten habe, und andre
@@ -978,7 +976,7 @@
 			ist es eine neue Oper von <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span>?
                Ich bin begierig von dir zu erfahren was jezt sein Plan ist.
                von seinem Bruder <a class="preview persons A000113" href="">Hans</a> bekomme ich regelmäßig Briefe von
-               <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>
+               <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span>
 			und Bruder <span class="tei_hi_latintype"><a class="preview persons A000116" href="">Wolf</a></span> erwarte ich täglich hier von
                <a class="preview places A130004" href="">Wien</a> durchreisend.
 			du hast mir ja so lange nichts von meinen lieben <span class="tei_hi_latintype"><span class="preview persons A000888 A000884" data-ref=" ">Houts</span></span>
@@ -988,9 +986,9 @@
                Ich fühle mich hier bis jezt nichts weniger als froh.
 			habe zwar überall Zutritt, und bin mehr in großen Gesellschaften als mir lieb ist, aber
 			so ein ächt Musikalisches Haus, wo so die Kunst mit Liebe gepflegt wird, wie wir es
-			gewohnt sind, und wie ich in <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>
+			gewohnt sind, und wie ich in <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span>
                <a class="preview places A130016" href="">Gotha</a>, <a class="preview places A130014" href="">Weimar</a>,
-               <a class="preview places A130005" href="">Leipzig</a>,
+               <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>,
 			gefunden habe, ist hier nicht aufzutreiben. Vielleicht kömt es mit der Zeit, ich
 			vergrabe mich in Arbeit und betäube mich damit aber manchmal will der Mensch doch auch
 			wahre Erholung und Freude.</p>
@@ -1000,7 +998,7 @@
                <a class="preview places A130023" href="">Salzburg</a> dann stehe ich wieder ganz verwaißt. Nun Gute Nacht. ich
 			drükke euch alle in Gedanken mit Liebe an meine Brust, und Wenn es Euch wohl geht so
 			gedenkt Eures ewig treuen fernen
-			   <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">Webers</a></span>.</span>
+			   <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a></span>.</span>
             <span class="tei_dateline textAlign-textAlign-left">
                <a class="preview places A130006" href="">Prag</a> d: 9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">März</span> 1813.
                <span class="tei_segBlock textAlign-right">Auf dem RoßMarkt im weißen<br />
@@ -1029,7 +1027,7 @@
                                             <li><a class="preview works A020206" href=""><span class="tei_hi_underline1">6 <span class="tei_hi_latintype">Sonaten</span></span> mit <span class="tei_hi_latintype">Violin</span></a>. <span class="tei_hi_latintype"><a class="preview persons A001831" href="">Simrok</a></span>.</li>
                                             <li><a class="preview works A020212" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Pianoforte Concert</span></span></a>. <a class="preview places A130080" href="">Offenbach</a>.</li>
                                             <li>⩨ <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020279" href="">Simphonie</a></span></span>. <a class="preview places A130080" href="">Offenbach</a>.</li>
-                                            <li>⩨ <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020287" href="">Pottpourri pour Violoncelle</a></span></span> <span class="tei_ptr"></span><a class="preview persons A001831" href="">Simmrok</a> noch nicht gesehen.<a class="noteMarker" id="backref-C_22" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_22">*</a></li>
+                                            <li>⩨ <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020287" href="">Pottpourri pour Violoncelle</a></span></span> <a class="preview persons A001831" href="">Simmrok</a> noch nicht gesehen.<a class="noteMarker" id="backref-tC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_01">‡</a></li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020331" href="">Gr: Polonaise Pianoforte</a></span></span></li>
                                             <li>⩨ <a class="preview works A020312" href=""><span class="tei_hi_latintype"><span class="tei_hi_underline1">Variat:</span> Violon, Pianoforte. D moll</span></a></li>
                                             <li><span class="tei_hi_underline1"><span class="preview works A020113 A020119 A020135 A020136 A020144 A020014 A020276" data-ref="      ">6 Lieder</span></span> bey <a class="preview persons A001693" href="">Schleßinger</a>.</li>
@@ -1086,9 +1084,9 @@
                                         
                                         <span>New Haven (US), Yale University, Beinecke Rare Book and Manuscript Library (US-NHub), Frederick R. Koch Foundation</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_82a4b660d0f76acc5fb0116784500abc"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c25881e8405b3b73545470ea8f3bb498"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_82a4b660d0f76acc5fb0116784500abc">
+                                        <div class="collapse apparatus-details" id="source_c25881e8405b3b73545470ea8f3bb498">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S.) u. 1 Bl. (6 b. S. o. Adr.)</li>
@@ -1108,7 +1106,7 @@
                                                             
                                                             <span>Bollert/Lemke 1972, S. 51–56</span>
                                                               
-                                                            <div class="collapse" id="source_f8cd231029ffcd15c555b5bb40ec7f6b">
+                                                            <div class="collapse" id="source_87a39382a9608bf87c9b4b50d6d8d316">
                                                                 
                                                             </div>
                                                         </div>
@@ -1219,6 +1217,12 @@
                                                 <div class="apparatusEntry col-11" id="d10e692" data-title="unsichere Lesung" data-counter="11" data-href="#d10e692"><span class="tei_lemma">„für sie“</span>unsichere Lesung</div>
                                             </div>
                                         </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-tC_01" class="apparatus-link">12.</a></div>
+                                                <div class="apparatusEntry col-11" id="tC_01" data-title="Textkonstitution" data-counter="12" data-href="#tC_01"><span class="tei_lemma">„…  Violoncelle Simmrok noch nicht gesehen.“</span>Das „Simmrok noch nicht gesehen“ bezieht sich ebenfalls auf die nächste Zeile. Die beiden Zeilen sind im Original durch eine geschweifte Klammer entsprechend verbunden.</div>
+                                            </div>
+                                        </li>
                                     </ul>
                                     <h3 class="media-heading">Einzelstellenerläuterung</h3>
                                     <ul class="apparatus commentary">
@@ -1243,7 +1247,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note03"><span class="tei_lemma">„…  von MB als Beylage ist“</span><a class="preview persons A002078" href="">Gottfried Webers</a> Bericht aus <a class="preview places A130010" href="">Mannheim</a> vom Dezember 1812 in: <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 15, Nr. 4 (27. Januar 1813), Sp. 57–60; in derselben Nummer ist in Sp. 65f. die Rezension von <a class="preview persons A002068" href="">C. M. v. Webers</a> Liedern op. 23 mit vollständiger Wiedergabe des Liedes Maienblümlein abgedruckt.</div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note03"><span class="tei_lemma">„…  von MB als Beylage ist“</span><a class="preview persons A002078" href="">Gottfried Webers</a> Bericht aus <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> vom Dezember 1812 in: <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 15, Nr. 4 (27. Januar 1813), Sp. 57–60; in derselben Nummer ist in Sp. 65f. die Rezension von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Webers</a> Liedern op. 23 mit vollständiger Wiedergabe des Liedes Maienblümlein abgedruckt.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -1280,7 +1284,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note06" class="apparatus-link">10.</a></div>
-                                                <div class="apparatusEntry col-11" id="note06" data-title="Einzelstellenerläuterung" data-counter="10" data-href="#note06"><span class="tei_lemma">„…  Beytrags Ducaten von mir, Berner“</span>Weber hatte F. W. Berner 1812 in <a class="preview places A130002" href="">Berlin</a> als Mitglied des Harmonischen Vereins angeworben.</div>
+                                                <div class="apparatusEntry col-11" id="note06" data-title="Einzelstellenerläuterung" data-counter="10" data-href="#note06"><span class="tei_lemma">„…  Beytrags Ducaten von mir, Berner“</span>Weber hatte F. W. Berner 1812 in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> als Mitglied des Harmonischen Vereins angeworben.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -1293,12 +1297,6 @@
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_07" class="apparatus-link">12.</a></div>
                                                 <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="12" data-href="#C_07"><span class="tei_lemma">„…  und gab die Hymne .“</span>Vgl. <a class="preview letters A040595" href="">Brief Webers an die Berliner Freunde. Zweites Bulletin vom 20. Januar 1813</a>.</div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_22" class="apparatus-link">13.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_22" data-title="Einzelstellenerläuterung" data-counter="13" data-href="#C_22"><span class="tei_lemma">„Simmrok noch nicht gesehen.“</span>Das „Simmrock noch nicht gesehen“ bezieht sich ebenfalls auf die nächste Zeile. Die beiden Zeilen sind im Original durch eine geschweifte Klammer entsprechend verbunden.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -1327,7 +1325,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040603</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -1387,6 +1385,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1445,22 +1446,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

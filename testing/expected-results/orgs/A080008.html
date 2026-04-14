@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Organization","description":"Lienau: Verlag","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A080008","name":"Lienau","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A080008","sameAs":"https://d-nb.info/gnd/1073015793"}</script>
 
@@ -348,7 +346,7 @@
                             <li><a class="deactivated"></a></li>
                             <li><a class="deactivated"></a></li>
                             <li><a class="deactivated"></a></li>
-                            <li><a href="#backlinks" data-target="A080008/backlinks.html">Rückverweise<small> (2)</small></a></li>
+                            <li><a href="#backlinks" data-target="A080008/backlinks.html">Rückverweise<small> (5)</small></a></li>
                         </ul>
                         <button>Mehr</button>
                         <ul class="hidden-links hidden"></ul>
@@ -388,7 +386,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A080008/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A080008/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A080008/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -406,9 +404,9 @@
                                                 
                                                 <div>
       <ul class="tei_list">
-         <li>am 15. Juni 1864 Erwerb des <a class="preview orgs A080007" href="">Schlesinger-Verlages</a> durch <a class="preview persons A005374" href="">Robert Lienau</a></li>
-         <li>die von <a class="preview persons A000076" href="">Carl Baermann</a> revidierte Ausgabe der Klarinetten-Werke <a class="preview persons A002068" href="">Webers</a> erschien als Bd. IX der sogenannten Weber-Gesammtausgabe (S. 5587) bei Lienau im Frühjahr 1870 und enthält op. 26, 33, 34, 48, 73 und 74</li>
-         <li>1871 publizierte <a class="preview persons A000914" href="">Fr. W. Jähns</a> bei Lienau sein großes <span class="preview biblio A112215" data-ref="">Weber-Werkverzeichnis</span></li>
+         <li>am 15. Juni 1864 Erwerb des <a class="preview orgs A080007" href="">Schlesinger-Verlages</a> durch <a class="preview persons A005374" href="/exist/apps/WeGA-WebApp/de/A005374.html">Robert Lienau</a></li>
+         <li>die von <a class="preview persons A000076" href="">Carl Baermann</a> revidierte Ausgabe der Klarinetten-Werke <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> erschien als Bd. IX der sogenannten Weber-Gesammtausgabe (S. 5587) bei Lienau im Frühjahr 1870 und enthält op. 26, 33, 34, 48, 73 und 74</li>
+         <li>1871 publizierte <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Fr. W. Jähns</a> bei Lienau sein großes <span class="preview biblio A112215" data-ref="">Weber-Werkverzeichnis</span></li>
          <li>Herausgabe der Musikzeitung <span class="tei_hi_italic">Echo</span> </li>
          <li>1875 Erwerb der traditionsreichen Wiener Firma <span class="tei_hi_italic"><a class="preview orgs A080060" href="">Carl Haslinger quondam Tobias</a></span> mit vielen Werken von <a class="preview persons A000117" href="">Beethoven</a>, <a class="preview persons A003356" href="">Liszt</a>, <a class="preview persons A001862" href="">Spohr</a>, <a class="preview persons A000899" href="">Hummel</a> etc.</li>
          <li>1898 übernahm Sohn <span class="8211198101114116327210110511011410599104327610510111097117">Robert Heinrich Lienau</span> (1866–1949) die Geschäftsleitung; Verleger von <span class="7410197110328310598101108105117115">Jean Sibelius</span> und Neutönern wie <a class="preview persons A009840" href="">Alban Berg</a></li>
@@ -494,7 +492,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A080008</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A080008</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -554,6 +552,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -612,22 +613,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

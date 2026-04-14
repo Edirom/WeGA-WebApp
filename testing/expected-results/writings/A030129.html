@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,13 +43,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Werkbesprechung philosophiert zuerst über den Grund des Erfolgs von Weigls Oper im Verbund mit seiner Schweizerfamilie; nennt charakteristische Merkmale der Komposition und geht abschließend auf biographische Fakten ein","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Dramatisch-musikalische Notizen (Dresden): „Das Waisenhaus“ von Weigl","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030129","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030129","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Werkbesprechung philosophiert zuerst über den Grund des Erfolgs von Weigls Oper im Verbund mit seiner Schweizerfamilie; nennt charakteristische Merkmale der Komposition und geht abschließend auf biographische Fakten ein","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Dramatisch-musikalische Notizen (Dresden): „Das Waisenhaus“ von Weigl","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030129","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030129","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -223,14 +220,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
                             </li>
                             <li>
                                 <span>A030129</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -293,13 +290,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030129/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030129/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -418,11 +415,9 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">
-               Dramatisch-musikalische Notizen.<br />
-               Als Versuche, durch Kunst-Geschichtliche Nachrichten und Andeutungen die Beurtheilung, neu auf dem Königl. Theater zu Dresden erscheinender Opern zu erleichtern.<br />
-               Von Carl Maria von Weber
-            </h2>
+                                        <h2 class="docHeader textAlign-center">Dramatisch-musikalische Notizen.</h2>
+                                        <h3 class="docHeader textAlign-center">Als Versuche, durch Kunst-Geschichtliche Nachrichten und Andeutungen die Beurtheilung, neu auf dem Königl. Theater zu Dresden erscheinender Opern zu erleichtern.<br />
+               Von Carl Maria von Weber</h3>
                                         <p><span class="tei_app"><span class="tei_lem">Mittwoch, <span class="tei_date">den 4. Juni</span></span><a class="noteMarker" id="backref-d10e10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e10">Δ</a></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> wird zum erstenmale auf unserer Bühne gegeben: <a class="preview works A020497" href=""><span class="tei_hi_spaced_out">Das Waisenhaus</span></a>, Oper in 2 Akten von <a class="preview persons A001980" href="">Treitschke</a>, Musik von <a class="preview persons A002094" href="">Joseph Weigl</a>.</p>
                                         <p>Ein deutsches Original-Werk <span class="tei_date">1808</span> für und in <a class="preview places A130004" href="">Wien</a> geschrieben. Das Glück, das diese Oper und ihre nächste Schwester, <a class="preview works A020495" href=""><span class="tei_hi_spaced_out">die Schweizer-Familie</span></a>, in <a class="preview places A130004" href="">Wien</a> und dem größten Theile <span class="tei_country">Deutschlands</span> machte, brachte für kurze Zeit eine Anzahl Rührungs-, Leidens- und Schmerzens-Opern in Schwung, deren Sentimentalitäts-Leben aber außer jenen beiden genannten dem baldigen Tode nahte, und mit dem <a class="preview works A020962" href="">Bergsturze</a> (Oper in 2 Akt. von <a class="preview persons A002094" href="">Weigl</a> <span class="tei_date">1812</span>) diese Epoche beschloß.</p>
                                         <p>Es ist immer anziehend, zu sehen, wie Künstler und Publikum sich gegenseitig bestimmen, bilden und leiten. Wie <span class="tei_hi_spaced_out">ein</span> gelungenes Werk, das die Aufmerksamkeit der Welt auf sich zog, nicht nur Nachahmer und Nachäffer von allen Seiten entstehen macht, sondern wie es auch den Schöpfer desselben bestimmt, auf dem einmal mit Erfolg betretenen Wege fortzuwandeln, und sich lieber denen sicher den Effect bewirkenden Mitteln zu vertrauen, und sie beizubehalten, als durch neue Versuche, den schön lockenden Beifall des Augenblicks und der Zeitgenossen aufs Spiel zu setzen. Daher kommt es wohl, daß selbst bei bedeutenden Meistern, z. B. <a class="preview persons A002162" href="">Winter</a> etc. immer nur eines ihrer Werke den Culminationspunkt macht.</p>
@@ -481,9 +476,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 1, Nr. 133 (4. Juni 1817), Bl. 2v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_96dd8a202d64da42e7cf5d4d847fcfd9"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_e465c00903ae5ec4625032d6350de0e5"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_96dd8a202d64da42e7cf5d4d847fcfd9">
+                                        <div class="collapse apparatus-details" id="source_e465c00903ae5ec4625032d6350de0e5">
                                             
                                             
                                             <div>
@@ -496,7 +491,7 @@
                                                             
                                                             <span>HellS III, S. 108–111</span>
                                                               
-                                                            <div class="collapse" id="source_62634d715c78f75c90d1ce1607d654e4">
+                                                            <div class="collapse" id="source_d05afe10045ce7c6a3f9ad45f558e950">
                                                                 
                                                             </div>
                                                         </div>
@@ -506,7 +501,7 @@
                                                             
                                                             <span>MMW III, S. 149–151</span>
                                                               
-                                                            <div class="collapse" id="source_89b2ddd3cd2943013bf7e7e2f2911d06">
+                                                            <div class="collapse" id="source_234e8068896744f96bf673324de0d41e">
                                                                 
                                                             </div>
                                                         </div>
@@ -516,7 +511,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 294–296 (Nr. 119)</span>
                                                               
-                                                            <div class="collapse" id="source_cc0e6f84a58b53dde088d277783434ad">
+                                                            <div class="collapse" id="source_09eb73d8fd4e6a9f24bf522226e1d024">
                                                                 
                                                             </div>
                                                         </div>
@@ -539,9 +534,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (VII), Bl. 53v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_876a6bb1a9f041cca93da48fbdeec737"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_901ff5be8101359791d870ae1248edf1"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_876a6bb1a9f041cca93da48fbdeec737">
+                                        <div class="collapse apparatus-details" id="source_901ff5be8101359791d870ae1248edf1">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Ms Titel: „Dr: m: Notizen pp“; Incipit: „Donnerstag d: 5t. Juni 1817 wird zum erstenmale auf unsrer Bühne gegeben. Das Waisenhaus,“; datiert:  „d: 31t. May und 1t. Juni 1817. Dresden.“</li>
@@ -580,7 +575,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  Mittwoch, den 4. Juni“</span>Die Erstaufführung in Dresden fand am 4. Juni statt, vgl. auch Webers <a class="preview diaries A060155" href="">TB vom selben Tag</a>.</div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  Mittwoch, den 4. Juni“</span>Im Entwurf notierte Weber als Erstaufführungsdatum 5. Juni. Die Erstaufführung in Dresden fand am 4. Juni statt, vgl. auch Webers <a class="preview diaries A060155" href="">TB vom selben Tag</a>.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -653,7 +648,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A030129NGKW/manifest.json" data-canvasindex="0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -674,7 +669,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030129</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030129</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -734,6 +729,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -792,22 +790,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

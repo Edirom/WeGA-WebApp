@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Küstner, Karl Theodor" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:contributor" content="Dagmar Beck" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
@@ -46,11 +45,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"berichtet über den Erfolg der Oberon-Erstaufführung in Leipzig und nennt Details zur Besetzung; freut sich auf das Festspiel zu Webers Gedächtnis, dessen Text von Heinrich Stieglitz stammt und das im Januar aufgeführt werden wird – in diesem Falle gut, dass es nach dem Oberon folgt, da somit Webers gesamtes Bühnenwerk gewürdigt wird; Überlegungen zur künftigen Organisation des Dresdner und Leipziger Theaterwesens","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Karl Theodor Küstner an Karl Theodor Winkler in Dresden. Leipzig, Mittwoch, 27. Dezember 1826","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045164","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001105/Korrespondenz/A045164","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001105","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001105"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -256,7 +253,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,10 +297,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001105/Korrespondenz/A045164/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001105/Korrespondenz/A045164/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001105/Korrespondenz/A045164/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -369,8 +366,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002271" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008832" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000537" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -380,6 +375,8 @@
                                     <input type="checkbox" name="options" value="A002161" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001105" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -407,11 +404,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130011" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -446,16 +443,16 @@
                                         <p>Was den <a class="preview works A020045" href="">Oberon</a> anlangt, sage ich <a class="preview persons A002160" href="">Ihnen</a> zu vörderst, daß derselbe mit dem größten Beifalle aufgenommen worden. Man war so begeistert von der Musik als zufrieden mit der Ausführung, die Alles leistete, was unsere Mittel erlauben. 
 Bei der Menge der Verwandlungen u Maschinerien muß ich es auch wirklich als ein Glück anerkennen, daß kein Fehler, keine Störung von Anfang bis zu Ende eintrat. — Mehrere kleine Veränderungen habe ich vorgenommen und nehme noch einige vor, die wohl von andern Direkzionen nachgeahmt werden dürften. 
 Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="8011799107">Puck</span> habe ich noch einen andern dienenden Geist, <span class="68114111108108">Droll</span>, beigefügt, weil die Sängerin des <span class="8011799107">Puck</span> <span class="tei_add tei_hi_superscript">(Dlle <a class="preview persons A004242" href="">Erhart</a>)<a class="noteMarker" id="backref-d10e23" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e23">‡</a></span> mir nicht den bedeutenden Erzählungen in Versen gewachsen schien. So spricht der Droll hier die bedeutendsten Reden, die zum Erfolg des 1<span class="tei_hi_superscript">t</span> Akts<span class="tei_pb" title="Seitenumbruch"> | </span>beitragen. Alle Sprechparthien als <span class="tei_del">Almansor</span><a class="noteMarker" id="backref-d10e34" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e34">‡</a> <span class="tei_add tei_hi_superscript"><span class="82111115991049711097">Roschana</span><a class="noteMarker" id="backref-d10e37" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e37">‡</a></span>, <span class="6510810997110115111114">Almansor</span> waren in Händen vorzüglicher Schauspieler, als <span class="tei_add tei_hi_superscript">der<a class="noteMarker" id="backref-d10e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e45">‡</a></span> Mad. <a class="preview persons A009018" href="">Miedke</a>  H <a class="preview persons A002271" href="">Stein</a> u. s. w. Fremde kommen von allen Seiten dazu herbei, die Herzöge v. Braunschweig, von Altenburg u Dessau<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>. — 
-               Ihre <span class="tei_hi_underline1"><a class="preview works A021191" href="">Erste Liebe</a></span> hat sehr gefallen<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, so daß manchmahl mitten in den Reden applaudirt wurde. — Von <a class="preview persons A002068" href="">Webers</a> <span class="tei_hi_underline1"><span class="preview biblio A112566" data-ref="">Festspiel</span></span> verspreche ich mir recht viel. Ich bin schon damit beschäftigt und  im 2<span class="tei_hi_superscript">t</span> Theil des Januars dürfte es die Breter betreten.<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> <a class="preview persons A008832" href="">D. Stieglitz</a> hat das Gedicht gemacht, das auch recht befriedigt. Recht gut ist es, daß der <a class="preview works A020045" href="">Oberon</a> vor demselben aufgeführt worden, da nun des Oberon darinn gedacht werden <span class="tei_del">kann</span><a class="noteMarker" id="backref-d10e113" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e113">‡</a>, und der Ziklus seiner Leistungen abgeschlossen werden kann. — </p>
+               Ihre <span class="tei_hi_underline1"><a class="preview works A021191" href="">Erste Liebe</a></span> hat sehr gefallen<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, so daß manchmahl mitten in den Reden applaudirt wurde. — Von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="tei_hi_underline1"><span class="preview biblio A112566" data-ref="">Festspiel</span></span> verspreche ich mir recht viel. Ich bin schon damit beschäftigt und  im 2<span class="tei_hi_superscript">t</span> Theil des Januars dürfte es die Breter betreten.<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> <a class="preview persons A008832" href="">D. Stieglitz</a> hat das Gedicht gemacht, das auch recht befriedigt. Recht gut ist es, daß der <a class="preview works A020045" href="">Oberon</a> vor demselben aufgeführt worden, da nun des Oberon darinn gedacht werden <span class="tei_del">kann</span><a class="noteMarker" id="backref-d10e118" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e118">‡</a>, und der Ziklus seiner Leistungen abgeschlossen werden kann. — </p>
                                         <p>Ihr Neuestes mit dem Manuscript habe ich richtig erhalten<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>.</p>
                                         <p>Nun zu der Theaterangelegenheit! Dieß theile ich, wie schon <a class="preview letters A045202" href="">gesagt</a>, <span class="tei_hi_underline1">Ihnen allein</span> mit und rechne dabey auf die pünktlichste, strengste Diskrezion.</p>
-                                        <p>Stellt man mich in mehreren bedeutenden Punkten nicht besser als jetzt, gebe ich die Unterneh<span class="tei_pb" title="Seitenumbruch">|</span>mung bestimmt auf. Ob dann der Magistrat <a class="noteMarker" id="backref-tC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_01">‡</a> vorziehen wird, ein stehendes Theater zu erhalten u einen Unternehmer zu suchen, oder ob er <a class="preview places A130005" href="">Leipzig</a> von <a class="preview places A130003" href="">Dresden</a> aus mit Theater versehen wünscht, das kann ich in der That nicht sagen und glaube auch kaum, daß er sich hierüber schon berathschlagt hat. — In jedem der beyden Fälle hoffe ich meine Inventarien von Garderobe, Requisiten, Bibliothek u. s. w. verkaufen zu können<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>. Sollte nun der letztere Fall eintreten, so dürfte es wohl auf folgende Weise zu bewerkstelligen seyn. Der <a class="preview persons A000537" href="">König</a> hielt neben der Italienischen Oper, die wohl, jetzt wenigstens beibehalten würde, und sich immer in <a class="preview places A130003" href="">Dresden</a> aufhalten müßte, eine deutsche <span class="tei_hi_underline1">Opern-</span> und eine deutsche <span class="tei_hi_underline1">Schauspieler</span>-Gesellschaft, welche<a class="noteMarker" id="backref-tC_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_02">‡</a> <span class="tei_add tei_hi_superscript">beyde<a class="noteMarker" id="backref-d10e171" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e171">‡</a></span> in <a class="preview places A130005" href="">Leipzig</a> u <a class="preview places A130003" href="">Dresden</a> sich abwechsellen, (aber so daß sie an einem Orte von Johannis bis Weihnachten blieben) <span class="tei_add tei_hi_superscript">oder<a class="noteMarker" id="backref-d10e181" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e181">‡</a></span><a class="noteMarker" id="backref-tC_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_03">‡</a>die Schauspielergesellschaft wäre im Winter in <a class="preview places A130003" href="">Dresden</a> u den Sommer in <a class="preview places A130005" href="">Leipzig</a> u so umgekehrt die Operngesellschaft. In den Messen, d. h. den Hauptmessen, könnten auch beyde Gesellschaften zusammen in <a class="preview places A130005" href="">Leipzig</a> seyn. Jede hätte einen Direktor, der <span class="tei_add tei_hi_superscript">wahrscheinlich<a class="noteMarker" id="backref-d10e199" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e199">‡</a></span> unter dem Generaldirektor stünde. Wem dieß <span class="tei_add tei_hi_superscript">zu<a class="noteMarker" id="backref-d10e202" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e202">‡</a></span> übertragen wäre, darüber kann ich mir keine Muthmaßung erlauben.<span class="tei_pb" title="Seitenumbruch"> | </span></p>
+                                        <p>Stellt man mich in mehreren bedeutenden Punkten nicht besser als jetzt, gebe ich die Unterneh<span class="tei_pb" title="Seitenumbruch">|</span>mung bestimmt auf. Ob dann der Magistrat <a class="noteMarker" id="backref-tC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_01">‡</a> vorziehen wird, ein stehendes Theater zu erhalten u einen Unternehmer zu suchen, oder ob er <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> von <a class="preview places A130003" href="">Dresden</a> aus mit Theater versehen wünscht, das kann ich in der That nicht sagen und glaube auch kaum, daß er sich hierüber schon berathschlagt hat. — In jedem der beyden Fälle hoffe ich meine Inventarien von Garderobe, Requisiten, Bibliothek u. s. w. verkaufen zu können<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>. Sollte nun der letztere Fall eintreten, so dürfte es wohl auf folgende Weise zu bewerkstelligen seyn. Der <a class="preview persons A000537" href="">König</a> hielt neben der Italienischen Oper, die wohl, jetzt wenigstens beibehalten würde, und sich immer in <a class="preview places A130003" href="">Dresden</a> aufhalten müßte, eine deutsche <span class="tei_hi_underline1">Opern-</span> und eine deutsche <span class="tei_hi_underline1">Schauspieler</span>-Gesellschaft, welche<a class="noteMarker" id="backref-tC_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_02">‡</a> <span class="tei_add tei_hi_superscript">beyde<a class="noteMarker" id="backref-d10e179" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e179">‡</a></span> in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> u <a class="preview places A130003" href="">Dresden</a> sich abwechsellen, (aber so daß sie an einem Orte von Johannis bis Weihnachten blieben) <span class="tei_add tei_hi_superscript">oder<a class="noteMarker" id="backref-d10e189" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e189">‡</a></span><a class="noteMarker" id="backref-tC_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_03">‡</a>die Schauspielergesellschaft wäre im Winter in <a class="preview places A130003" href="">Dresden</a> u den Sommer in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> u so umgekehrt die Operngesellschaft. In den Messen, d. h. den Hauptmessen, könnten auch beyde Gesellschaften zusammen in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> seyn. Jede hätte einen Direktor, der <span class="tei_add tei_hi_superscript">wahrscheinlich<a class="noteMarker" id="backref-d10e207" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e207">‡</a></span> unter dem Generaldirektor stünde. Wem dieß <span class="tei_add tei_hi_superscript">zu<a class="noteMarker" id="backref-d10e210" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e210">‡</a></span> übertragen wäre, darüber kann ich mir keine Muthmaßung erlauben.<span class="tei_pb" title="Seitenumbruch"> | </span></p>
                                         <p>Zwey Gesellschaften zu halten, die Oper u Schauspiel zugleich gäben, dürfte kaum rathsam seyn, denn was auch der Wechsel und der Reiz der Neuheit einbrächte, ginge wieder auf die Kosten der Reise und Verändrung des Ortes. — Theilen <span class="tei_hi_underline1">Sie</span> mir nun auch Ihrerseits Ihre Ideen mit, u welche Pläne wohl in <a class="preview places A130003" href="">Dresden</a> Eingang finden dürften. — Auch Sie können wie sich versteht, auf meine ganze Diskrezion rechnen. — Schwierigkeiten sind freilich in allen Fällen. Was würde z. B. aus <a class="preview persons A001960" href="">Tiek</a>, der zur Führung selbst sich nicht eignete und sonach auf diese Weise wohl leer ausginge!</p>
                                         <p><span class="tei_hi_latintype">A propos</span>! Haben Sie doch auch die Güte, mir die Arie aus <a class="preview works A020045" href="">Oberon</a> zu schicken, die er für <a class="preview places A130011" href="">London</a> componirt hat<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a>. Später ist dieß eine angenehme Abwechslung.</p>
                                         <p class="tei_closer textAlign-left">Ich hoffe, Ihre liebe <a class="preview persons A002161" href="">Frau</a> wieder hergestellt, und bringe Ihnen zum neuen Jahre meine besten Wünsche. Mit aufrichtiger Freundschaft
            <span class="tei_segBlock textAlign-right"><br />der Ihrige
                   <br /><a class="preview persons A001105" href="">K Th Küstner</a></span>
-               <span class="tei_dateline textAlign-left"><a class="preview places A130005" href="">Leipzig</a>, d. 27<span class="tei_hi_superscript">t</span> Dez. 1826</span><span class="tei_segBlock textAlign-left"><a class="preview works A021025" href="">Julius Cesar</a> nicht zu vergessen!</span></p>
+               <span class="tei_dateline textAlign-left"><a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>, d. 27<span class="tei_hi_superscript">t</span> Dez. 1826</span><span class="tei_segBlock textAlign-left"><a class="preview works A021025" href="">Julius Cesar</a> nicht zu vergessen!</span></p>
                                         <p class="clearer"></p>
                                     </div>
                                 </div>
@@ -504,12 +501,12 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                                         
                                         <span>Leipzig (D), Stadtgeschichtliches Museum, Bibliothek (D-LEsm)<br /><i>Signatur</i>: A/2012/809</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6a9589f14f80f499ba65409a5c816564"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a1a312e444848d6095cc3a14ab053a43"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_6a9589f14f80f499ba65409a5c816564">
+                                        <div class="collapse apparatus-details" id="source_a1a312e444848d6095cc3a14ab053a43">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
-                                                        <li>1 DBl. (4 beschr. S. o. Adr.)</li>
+                                                        <li>1 DBl. (4 b. S. o. Adr.)</li>
                                                     </ul>
                                             
                                             <div>
@@ -527,7 +524,14 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                             </ul>
                         </div>                   
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Themenkommentare</h3>
+                            <ul class="tei_list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090234.html"><span class="tei_title">Die deutschsprachige Version von Webers <span class="tei_workName"><span class="tei_hi_italic">Oberon</span></span> und ihre Erstaufführung in <span class="tei_settlement">Leipzig</span></span></a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
@@ -558,8 +562,8 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e113" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e113" data-title="Löschung" data-counter="5" data-href="#d10e113"><span class="tei_lemma">„kann“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e118" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e118" data-title="Löschung" data-counter="5" data-href="#d10e118"><span class="tei_lemma">„kann“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                         <li>
@@ -576,14 +580,14 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e171" class="apparatus-link">8.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e171" data-title="Hinzufügung" data-counter="8" data-href="#d10e171"><span class="tei_lemma">„beyde“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e179" class="apparatus-link">8.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e179" data-title="Hinzufügung" data-counter="8" data-href="#d10e179"><span class="tei_lemma">„beyde“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e181" class="apparatus-link">9.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e181" data-title="Hinzufügung" data-counter="9" data-href="#d10e181"><span class="tei_lemma">„oder“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e189" class="apparatus-link">9.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e189" data-title="Hinzufügung" data-counter="9" data-href="#d10e189"><span class="tei_lemma">„oder“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
@@ -594,14 +598,14 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e199" class="apparatus-link">11.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e199" data-title="Hinzufügung" data-counter="11" data-href="#d10e199"><span class="tei_lemma">„wahrscheinlich“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e207" class="apparatus-link">11.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e207" data-title="Hinzufügung" data-counter="11" data-href="#d10e207"><span class="tei_lemma">„wahrscheinlich“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e202" class="apparatus-link">12.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e202" data-title="Hinzufügung" data-counter="12" data-href="#d10e202"><span class="tei_lemma">„zu“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e210" class="apparatus-link">12.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e210" data-title="Hinzufügung" data-counter="12" data-href="#d10e210"><span class="tei_lemma">„zu“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -610,7 +614,7 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  Braunschweig, von Altenburg u Dessau“</span>Karl II., Herzog von Braunschweig, <a class="preview persons A000531" href="">Friedrich</a>, Herzog von Altenburg und Leopold IV. Friedrich, Fürst von Anhalt-Dessau.</div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  Braunschweig, von Altenburg u Dessau“</span><a class="preview persons A00166E" href="">Karl II., Herzog von Braunschweig</a>, <a class="preview persons A000531" href="">Friedrich, Herzog von Altenburg</a> und <span class="761011111121111081003273864632701141051011001141059910444327025211411511632118111110326511010497108116456810111511597117">Leopold IV. Friedrich, Fürst von Anhalt-Dessau</span>.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -622,13 +626,13 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_03"><span class="tei_lemma">„…  dürfte es die Breter betreten.“</span>Das Festspiel <span class="tei_hi_italic">Webers Gedächtnisfeier</span> wurde im Anschluss an eine <span class="tei_hi_italic">Freischütz</span>-Aufführung als Benefiz für die Hinterbliebenen am <span class="tei_date">19. März 1827</span> erstmals in <a class="preview places A130005" href="">Leipzig</a> aufgeführt; es fanden insgesamt 5 Aufführungen statt, weitere am <span class="tei_date">27. März</span>, <span class="tei_date">3.</span> und <span class="tei_date">24. April</span> und am <span class="tei_date">3. Mai 1827</span>. (Fambach, Leipzig).</div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_03"><span class="tei_lemma">„…  dürfte es die Breter betreten.“</span>Das Festspiel <span class="tei_hi_italic">Webers Gedächtnisfeier</span> wurde im Anschluss an eine <span class="tei_hi_italic">Freischütz</span>-Aufführung als Benefiz für die Hinterbliebenen am <span class="tei_date">19. März 1827</span> erstmals in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> aufgeführt; es fanden insgesamt 5 Aufführungen statt, weitere am <span class="tei_date">27. März</span>, <span class="tei_date">3.</span> und <span class="tei_date">24. April</span> und am <span class="tei_date">3. Mai 1827</span>. (Fambach, Leipzig).</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note03"><span class="tei_lemma">„…  Manuscript habe ich richtig erhalten“</span>Vermutlich Winklers Lustspiel <span class="tei_hi_italic"><span class="68105101328610111411011711010211610410110511497116">Die Vernunftheirat</span></span> (nach Scribe), das in <a class="preview places A130005" href="">Leipzig</a> am 2. März 1827 Premiere hatte.</div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note03"><span class="tei_lemma">„…  Manuscript habe ich richtig erhalten“</span>Vermutlich Winklers Lustspiel <span class="tei_hi_italic"><span class="68105101328610111411011711010211610410110511497116">Die Vernunftheirat</span></span> (nach <a class="preview persons A009334" href="">Scribe</a>), das in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> am 2. März 1827 Premiere hatte.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -669,7 +673,7 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045164</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045164</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -729,6 +733,9 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -787,22 +794,17 @@ Davon später, wenn Sie es wünschen, einmahl ausführlich. Dem <span class="801
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

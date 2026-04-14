@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100000" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"von Weber geführtes Buchmanuskript über die stattgefundenen Aufführungen am Ständetheater in Prag während seiner Amtszeit von 1813 bis 1816","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber: Notizen-Buch zum Prager Ständetheater 1813–1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100000","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"von Weber geführtes Buchmanuskript über die stattgefundenen Aufführungen am Ständetheater in Prag während seiner Amtszeit von 1813 bis 1816","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber: Notizen-Buch zum Prager Ständetheater 1813–1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100000","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente">Dokumente</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -356,8 +353,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001864" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000691" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -656,6 +651,8 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008509" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A001809" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008220" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008985" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -720,7 +717,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008331" /> <span title="Anwählen, um &#34;Schröder, Friedrich&#34; im Text zu markieren.">Schröder, Friedrich</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A001809" /> <span title="Anwählen, um &#34;Sellner, Joseph&#34; im Text zu markieren.">Sellner, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -912,9 +909,9 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130014" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130006" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -2056,7 +2053,7 @@
                Vom September</span> 1813 <span class="tei_hi_latintype">an, entworfen, fortgeführt, und<br />
                Den</span> 4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">October</span> 1816 <span class="tei_hi_latintype">abgeliefert,<br />
                   von<br />
-                  <a class="preview persons A002068" href="">Carl Maria von Weber</a></span>.</span></h3><br /><br /><br /><br /><br /></div>
+                  <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.</span></h3><br /><br /><br /><br /><br /></div>
                                     <div class="docPart"><span class="tei_pb_block" title="Seitenumbruch zu Nr. 1" data-facs="Nr.1"> | </span>
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview works A020390" href="">Ferdinand Cortez</a></span></span></h2>
                                         <h3 class="docHeader textAlign-left">v. <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Spontini</a></span><br />in 3 Akten.<br />d: <a class="preview diaries A062506" href="">9<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">September</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1813<span class="brackets_supplied">]</span></span></a>. zum 1<span class="tei_hi_superscript">t</span> male<a class="noteMarker" id="backref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>.</h3>
@@ -4876,9 +4873,9 @@
                                     </div>
                                     <div class="docPart"><span class="tei_pb_block" title="Seitenumbruch zu Nr. 51" data-facs="Nr.51"> | </span>
                                         <h2 class="docHeader textAlign-left"><a class="preview works A020460" href=""><span class="tei_hi_latintype"><span class="tei_hi_underline1">Alimelek</span></span>. oder <span class="tei_hi_underline1"><span class="tei_hi_latintype">Wirth</span> und <span class="tei_hi_latintype">Gast</span></span></a>.</h2>
-                                        <h3 class="docHeader textAlign-left">Oper in 3 Akten von <span class="tei_hi_latintype"><a class="preview persons A002170" href="">Wohlbrük</a></span>. Musik von <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001313" href="">Meyerbeer</a></span></span>.<br />d: <a class="preview diaries A063057" href="">22<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">October</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1815<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male.</h3>
+                                        <h3 class="docHeader textAlign-left">Oper in <span class="tei_choice"><span class="tei_sic">3</span><a class="noteMarker" id="backref-d10e8650" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e8650">‡</a></span> Akten von <span class="tei_hi_latintype"><a class="preview persons A002170" href="">Wohlbrük</a></span>. Musik von <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001313" href="">Meyerbeer</a></span></span>.<br />d: <a class="preview diaries A063057" href="">22<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">October</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1815<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e8675" class="table">
+                                            <table id="d10e8682" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="68101114327597108105102">Der Kalif</span></span></span>.</td>
@@ -4974,7 +4971,7 @@
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020592" href="">Die Jugend Peter des Grossen</a></span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">in 3 A: von <span class="tei_hi_latintype"><a class="preview persons A002094" href="">Weigl</a></span>.<br />d: <a class="preview diaries A063122" href="">26<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">December</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1815<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e8986" class="table">
+                                            <table id="d10e8993" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="80101116101114321001011143271114111115115101">Peter der Grosse</span></span></span>.</td>
@@ -5025,7 +5022,7 @@
                                         <h2 class="docHeader textAlign-left"><a class="preview works A020384" href=""><span class="tei_hi_latintype"><span class="tei_hi_underline1">Joconde</span></span>. oder <span class="tei_hi_underline1">Die <span class="tei_hi_latintype">Abentheurer</span></span></a>.</h2>
                                         <h3 class="docHeader textAlign-left">kom: Op. 3 A. von <span class="tei_hi_latintype"><a class="preview persons A001820" href="">Seyfried:</a></span> mit Musik von <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000909" href="">Nicolo Isouard:</a></span></span><br />d: <a class="preview diaries A063929" href="">11<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Januar</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male.<br /><span class="tei_hi_latintype">Benefice</span> der Mad: <span class="tei_hi_latintype"><a class="preview persons A000692" href="">Grünbaum</a></span>.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e9146" class="table">
+                                            <table id="d10e9153" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="8211198101114116">Robert</span></span></span></td>
@@ -5081,7 +5078,7 @@
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020519" href="">Richard Löwenherz</a></span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">Oper in 3 Akten von <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000673" href="">Gretry</a></span></span>.<br />d: <a class="preview diaries A063954" href="">5<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum <span class="tei_hi_latintype"><span class="tei_hi_underline1">Erstenmale</span></span>.<br /><span class="tei_hi_latintype">Benefi:</span></h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e9292" class="table">
+                                            <table id="d10e9299" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="821059910497114100">Richard</span></span></span>.</td>
@@ -5130,14 +5127,14 @@
                                     </div>
                                     <div class="docPart"><span class="tei_pb_block" title="Seitenumbruch zu Nr. 56" data-facs="Nr.56"> | </span>
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview works A020389" href="">Die Strikleiter</a></span></span>.</h2>
-                                        <h3 class="docHeader textAlign-left">Oper in 1 Akt. von <span class="tei_choice"><span class="tei_sic"><span class="tei_hi_latintype">Isouard. et Comp:</span></span><a class="noteMarker" id="backref-d10e9418" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9418">‡</a></span><br /><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="tei_sic">Der</span><a class="noteMarker" id="backref-d10e9428" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9428">‡</a></span> <a class="preview diaries A063960" href="">11<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male</span>.</h3>
+                                        <h3 class="docHeader textAlign-left">Oper in 1 Akt. von <span class="tei_choice"><span class="tei_sic"><span class="tei_hi_latintype">Isouard. et Comp:</span></span><a class="noteMarker" id="backref-d10e9425" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9425">‡</a></span><br /><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="tei_sic">Der</span><a class="noteMarker" id="backref-d10e9435" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9435">‡</a></span> <a class="preview diaries A063960" href="">11<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male</span>.</h3>
                                         <p><span class="tei_supplied"><span class="brackets_supplied">[</span>ohne Besetzungsangaben<span class="brackets_supplied">]</span></span></p>
                                     </div>
                                     <div class="docPart"><span class="tei_pb_block" title="Seitenumbruch zu Nr. 57" data-facs="Nr.57"> | </span>
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline2andMore"><a class="preview works A020518" href=""><span class="tei_hi_latintype">Doctor</span> und <span class="tei_hi_latintype">Apotheker</span></a></span>.</h2>
                                         <h3 class="docHeader textAlign-left">Oper in 2 Akten von <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A000390" href="">Dittersdorf</a></span></span><br />d: <a class="preview diaries A063970" href="">21<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Februar</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e9482" class="table">
+                                            <table id="d10e9489" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="681119911611111432751149711711610997110110">Doctor Krautmann</span></span></span>.</td>
@@ -5193,7 +5190,7 @@
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview works A020587" href="">Athalia</a></span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">Oper in 3 Akten von <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">Bar: <a class="preview persons A001497" href="">v: Poisl</a></span></span>.<br /><a class="preview diaries A064060" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Den</span> 21<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span></span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum <span class="tei_hi_underline1">1<span class="tei_hi_superscript">t</span> male</span>.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e9678" class="table">
+                                            <table id="d10e9685" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="651161049710810597">Athalia</span></span></span>.</td>
@@ -5204,7 +5201,7 @@
                                                         <td>Mlle <a class="preview persons A008890" href="">Böhler die jüng.</a></td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="7411197987411197100"><span class="tei_choice"><span class="tei_sic">Joab</span><a class="noteMarker" id="backref-d10e9706" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9706">‡</a></span></span></span></span>.</td>
+                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="7411197987411197100"><span class="tei_choice"><span class="tei_sic">Joab</span><a class="noteMarker" id="backref-d10e9713" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9713">‡</a></span></span></span></span>.</td>
                                                         <td><a class="preview persons A001825" href="">Siebert</a>.</td>
                                                     </tr>
                                                     <tr>
@@ -5236,7 +5233,7 @@
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020536" href="">Das Haus ist zu verkaufen</a></span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">Oper in 1 Akt von <span class="tei_hi_latintype"><span class="tei_hi_underline2andMore"><a class="preview persons A001280" href="">Maurer</a></span></span>.<br />d: <a class="preview diaries A064073" href="">3<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Juny</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum 1<span class="tei_hi_superscript">t</span> male.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e9808" class="table">
+                                            <table id="d10e9815" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="77971005832821011059910410111097117">Mad: Reichenau</span></span></span>.</td>
@@ -5261,13 +5258,13 @@
                                                 </tbody>
                                             </table>
                                         </div>
-                                        <p>d: 5<span class="tei_hi_superscript">t</span> reiste ich ab nach <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>. und kam d: 18<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> zurük.</p>
+                                        <p>d: 5<span class="tei_hi_superscript">t</span> reiste ich ab nach <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span>. und kam d: 18<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> zurük.</p>
                                     </div>
                                     <div class="docPart"><span class="tei_pb_block" title="Seitenumbruch zu Nr. 61" data-facs="Nr.61"> | </span>
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020417" href="">Das SternenMädchen im Maidlinger Walde</a></span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">R<span class="tei_supplied"><span class="brackets_supplied">[</span>omantisches<span class="brackets_supplied">]</span></span> S<span class="tei_supplied"><span class="brackets_supplied">[</span>chauspiel<span class="brackets_supplied">]</span></span> mit Gesang von <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A000980" href="">Kauer</a></span></span>.<br />d: <a class="preview diaries A064135" href="">4<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">August</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> <span class="tei_hi_latintype">zum Erstenmale</span>.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e9915" class="table">
+                                            <table id="d10e9922" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="7611799105110100101">Lucinde</span></span></span></td>
@@ -5363,7 +5360,7 @@
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview works A020469" href="">Faust</a></span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">Rom: Oper in 2 Akten von <span class="tei_hi_latintype"><a class="preview persons A002659" href="">Bernard</a></span>. Musik von <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A001862" href="">Spohr</a></span></span>.<br />d: <a class="preview diaries A064163" href="">1<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">September</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum <span class="tei_hi_underline2andMore">1<span class="tei_hi_superscript">t</span> male</span>.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e10163" class="table">
+                                            <table id="d10e10170" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="7097117115116">Faust</span></span></span>.</td>
@@ -5430,7 +5427,7 @@
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020511" href="">Der Dorfbarbier</a></span></span>.</h2>
                                         <h3 class="docHeader textAlign-left">Poße in 2 A: von <span class="tei_hi_latintype"><span class="879710510010997110110">Waidmann</span></span>. Musik von <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001668" href="">Schenk</a></span></span>.<br />d: <a class="preview diaries A064184" href="">22<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">September</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>1816<span class="brackets_supplied">]</span></span></a> zum <span class="tei_hi_latintype">Erstenmale</span>.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e10393" class="table">
+                                            <table id="d10e10400" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="76117120">Lux</span></span></span>.</td>
@@ -5472,7 +5469,7 @@
                                     </div>
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Notizen</span> und <span class="tei_hi_latintype">Bemerkungen die Oper betreffend</span></span> <br />für meinen Nachfolger.</span></h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl Maria von Weber</a></span>.</span>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.</span>
             </h3>
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1"><span class="tei_hi_latintype">GeschäftsGang überhaupt</span></span>.</span></h3>
                                         <p>Der KapellMeister schlägt dem Herrn <span class="tei_hi_latintype">Director</span> die Opern und deren Besezzung vor. So bald dieses genehmigt ist, vertheilt er die Rollen, und sezt die Proben nach geschehener Rücksprache mit dem Herrn <span class="tei_hi_latintype">Regisseur</span> an; da sich wegen doppelt verwendet werdendem Personale, die Proben oft durchkreuzen.</p>
@@ -5482,14 +5479,14 @@
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Opern Personale</span></span>.</span></h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e10565" class="table">
+                                            <table id="d10e10572" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_latintype">Mad: <span class="tei_hi_underline1"><a class="preview persons A000692" href="">Grünbaum</a></span></span> gebohrne <a class="preview persons A000692" href="">Müller</a>.</td>
                                                         <td> Erste Sängerinn.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_supplied"><span class="brackets_supplied">[</span>Mad:<span class="brackets_supplied">]</span></span> <a class="preview persons A000339" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Czeka</span></span></a> <span class="tei_supplied"><span class="brackets_supplied">[</span>geb.<span class="brackets_supplied">]</span></span> <span class="tei_sic">v: Aurnhammer</span><a class="noteMarker" id="backref-d10e10592" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e10592">‡</a>.</td>
+                                                        <td><span class="tei_supplied"><span class="brackets_supplied">[</span>Mad:<span class="brackets_supplied">]</span></span> <a class="preview persons A000339" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Czeka</span></span></a> <span class="tei_supplied"><span class="brackets_supplied">[</span>geb.<span class="brackets_supplied">]</span></span> <span class="tei_sic">v: Aurnhammer</span><a class="noteMarker" id="backref-d10e10599" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e10599">‡</a>.</td>
                                                         <td> desgl: Karakter Rollen. Gräfin im <span class="tei_hi_latintype"><a class="preview works A020567" href="">Figaro</a>. <span class="83101120116117115">Sextus</span>. <span class="8397114103105110101115">Sargines</span></span> <span class="tei_hi_latintype">pp</span>.</td>
                                                     </tr>
                                                     <tr>
@@ -5504,7 +5501,7 @@
                                             </table>
                                         </div><span class="tei_cb_block" title="Spaltenumbruch"> ¦ </span>
                                         <div class="table-wrapper">
-                                            <table id="d10e10650" class="table">
+                                            <table id="d10e10657" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype">Mad. <a class="preview persons A000019" href="">Allram</a></span></span>.</td>
@@ -5525,7 +5522,7 @@
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Tenoristen</span></span>.</span></h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e10728" class="table">
+                                            <table id="d10e10735" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype">Herr <a class="preview persons A000691" href="">Grünbaum</a></span></span>.</td>
@@ -5550,7 +5547,7 @@
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Bassisten</span></span>.</span></h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e10820" class="table">
+                                            <table id="d10e10827" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype">Herr <a class="preview persons A000954" href="">Kainz</a></span></span></td>
@@ -5581,7 +5578,7 @@
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Chöre</span></span>.</span></h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e10938" class="table">
+                                            <table id="d10e10945" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype">Discant</span></span>.</td>
@@ -5610,7 +5607,7 @@
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline1"><span class="tei_hi_latintype">Orchester</span></span>.</span></h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e11126" class="table">
+                                            <table id="d10e11133" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">Erste Violine</span></span></td>
@@ -5651,11 +5648,11 @@
                                             </table>
                                         </div><span class="tei_cb_block" title="Spaltenumbruch"> ¦ </span>
                                         <div class="table-wrapper">
-                                            <table id="d10e11338" class="table">
+                                            <table id="d10e11345" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">Hoboen</span></span>.</td>
-                                                        <td><span class="tei_hi_underline1">1 <span class="tei_hi_latintype">Hr. <a class="preview persons A001809" href="/exist/apps/WeGA-WebApp/de/A001809.html">Sellner</a></span></span>. Spielt auch <span class="tei_hi_latintype">Guitarre</span>.<br />
+                                                        <td><span class="tei_hi_underline1">1 <span class="tei_hi_latintype">Hr. <a class="preview persons A001809" href="">Sellner</a></span></span>. Spielt auch <span class="tei_hi_latintype">Guitarre</span>.<br />
                      <span class="tei_hi_underline1">2 <span class="tei_hi_latintype">Hr. <a class="preview persons A008220" href="">Kauer</a></span></span>.</td>
                                                     </tr>
                                                     <tr>
@@ -5709,7 +5706,7 @@
                                                     <tr>
                                                         <td><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">Gesezze</span></span>.</td>
                                                         <td><a class="preview documents A100138" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100138.html">Gesezzen</a> zu ersehen ist, die ich bey Uebernahme der Opern Direktion entwarf, und wodurch alle Mitglieder des <span class="tei_hi_latintype">Orchesters</span> und <span class="tei_hi_latintype">Chores</span>, Kontraktmäßige Verbindlichkeiten eingingen, da vorher nur Einige <span class="tei_hi_latintype">engagiert</span> waren, und durch den willkührlichen Wechsel der <span class="tei_hi_latintype">extra</span> bezahlten einige Unordnung und Mangel an <span class="tei_hi_latintype">Ensemble</span> herrschte. <br />
-                  Diese Gesezze haben gedruckt, <span class="tei_del">werden</span><a class="noteMarker" id="backref-d10e11645" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e11645">‡</a> und jedem Mitgliede eingehändigt werden sollen, es ist aber leider bisher unterblieben.
+                  Diese Gesezze haben gedruckt, <span class="tei_del">werden</span><a class="noteMarker" id="backref-d10e11652" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e11652">‡</a> und jedem Mitgliede eingehändigt werden sollen, es ist aber leider bisher unterblieben.
                   </td>
                                                     </tr>
                                                     <tr>
@@ -5760,7 +5757,7 @@
                                     <div class="docPart">
                                         <h3 class="docHeader textAlign-left"><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">Noch nicht aufgeführte Opern</span></span>, nebst Bemerkungen und Vorschlägen zu ihrer Besezzung.</h3>
                                         <div class="table-wrapper">
-                                            <table id="d10e11953" class="table">
+                                            <table id="d10e11960" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020497" href="">Das Waisenhaus</a></span></span>,</td>
@@ -5786,7 +5783,7 @@
                      <span class="tei_hi_underline1">I<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Soldat</span></span> <a class="preview persons A006748" href="">Schwarz</a>.      <span class="tei_hi_underline1"><span class="tei_hi_latintype">Chori</span></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="preview works A020224" data-ref=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Almazinde</span></span> oder die Höle <span class="tei_hi_latintype"><span class="tei_sic">Selam</span><a class="noteMarker" id="backref-d10e12157" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12157">‡</a></span></span>. romant: Oper von <a class="preview persons A000165" href=""><span class="tei_hi_latintype">Bierey</span></a>: 3 Akt:</td>
+                                                        <td><span class="preview works A020224" data-ref=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Almazinde</span></span> oder die Höle <span class="tei_hi_latintype"><span class="tei_sic">Selam</span><a class="noteMarker" id="backref-d10e12164" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12164">‡</a></span></span>. romant: Oper von <a class="preview persons A000165" href=""><span class="tei_hi_latintype">Bierey</span></a>: 3 Akt:</td>
                                                         <td>Ist ganz herausgeschrieben bis auf die <span class="tei_hi_latintype">Chöre</span>.<br />
                      <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="6797115115105109">Cassim</span></span></span>. <a class="preview persons A000647" href="">Gned</a>.<br />
                      <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="809711410512297100101">Parizade</span></span></span>. <a class="preview persons A008046" href="">Ritzenfeldt</a>.<br />
@@ -5822,7 +5819,7 @@
                                             </table>
                                         </div><span class="tei_pb_block" title="Seitenumbruch zu Nr. 66" data-facs="Nr.66"> | </span>
                                         <div class="table-wrapper">
-                                            <table id="d10e12412" class="table">
+                                            <table id="d10e12419" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020611" href="">Iphigenia auf Tauris</a></span></span> Op. 4 Akt von <span class="tei_hi_latintype"><a class="preview persons A000646" href="">Gluk</a></span>.</td>
@@ -5833,11 +5830,11 @@
                                                         <td>Partitur und Buch.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020990" data-ref=""><span class="tei_sic">Hariadan</span><a class="noteMarker" id="backref-d10e12447" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12447">‡</a> Barbarossa</span></span></span>. romant. Op. in 3 A: von <a class="preview persons A002170" href="">Wohlbrük</a> und <a class="preview persons A000520" href="">Fränzl</a>.</td>
+                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="preview works A020990" data-ref=""><span class="tei_sic">Hariadan</span><a class="noteMarker" id="backref-d10e12454" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12454">‡</a> Barbarossa</span></span></span>. romant. Op. in 3 A: von <a class="preview persons A002170" href="">Wohlbrük</a> und <a class="preview persons A000520" href="">Fränzl</a>.</td>
                                                         <td>H. Fränzel hat noch einen Theil der Partitur nachzuliefern. </td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020038" href="">Abu Hassan</a></span></span>. Op. 1 A. <span class="tei_hi_latintype"><a class="preview persons A002068" href="">C. M. von Weber</a></span>.</td>
+                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020038" href="">Abu Hassan</a></span></span>. Op. 1 A. <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></span>.</td>
                                                         <td>Kann die Rolle des <span class="tei_hi_latintype"><span class="659811732729711511597110">Abu Hassan</span></span> nicht besezt werden.</td>
                                                     </tr>
                                                     <tr>
@@ -5867,7 +5864,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A021038" href="">Merope</a></span></span> Op: 2 <span class="tei_hi_latintype">A</span>.</td>
-                                                        <td>von <span class="tei_choice"><span class="tei_sic"><span class="tei_hi_latintype"><a class="preview persons A003084" href="">Nicolini</a></span></span><a class="noteMarker" id="backref-d10e12651" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12651">‡</a></span> und <span class="tei_hi_latintype"><a class="preview persons A001497" href="">Poisl</a></span>.</td>
+                                                        <td>von <span class="tei_choice"><span class="tei_sic"><span class="tei_hi_latintype"><a class="preview persons A003084" href="">Nicolini</a></span></span><a class="noteMarker" id="backref-d10e12658" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12658">‡</a></span> und <span class="tei_hi_latintype"><a class="preview persons A001497" href="">Poisl</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020557" href="/exist/apps/WeGA-WebApp/de/A000287/Werke/A020557.html">Medea</a></span></span> Op. 3 <span class="tei_hi_latintype">A</span>., von <span class="tei_hi_latintype"><a class="preview persons A000287" href="">Cherubini</a></span></td>
@@ -5885,14 +5882,14 @@
                                             </table>
                                         </div><span class="tei_cb_block" title="Spaltenumbruch"> ¦ </span>
                                         <div class="table-wrapper">
-                                            <table id="d10e12734" class="table">
+                                            <table id="d10e12741" class="table">
                                                 <tbody>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="68101114327110111010111497108">Der General</span></span></span>. komische Oper von <span class="tei_hi_latintype"><a class="preview persons A002541" href="">Bochsa</a></span>.</td>
                                                         <td>Kann allenfalls besezt werden.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020036" href="">Silvana</a></span></span>. romant. Oper 3 <span class="tei_hi_latintype">At</span>. <a class="preview persons A002068" href="">C. M. v. Weber</a>.</td>
+                                                        <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020036" href="">Silvana</a></span></span>. romant. Oper 3 <span class="tei_hi_latintype">At</span>. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>.</td>
                                                         <td>Größtentheils herausgeschrieben. <span class="tei_hi_underline1">1<span class="tei_hi_superscript">t</span> 2<span class="tei_hi_superscript">t</span> Akt bey <a class="preview persons A0023BD" href=""><span class="tei_hi_latintype">Bojar</span></a></span>.<br />
                      <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="6510010110810497114116">Adelhart</span></span></span> <a class="preview persons A000954" href="">Kainz</a>.<br />
                      <span class="tei_hi_underline1"><span class="tei_hi_latintype"><span class="82117100111108112104">Rudolph</span></span></span> <a class="preview persons A001901" href="">Stöger</a>.<br />
@@ -5922,7 +5919,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020524" href="">Dichter und Tonküns<span class="tei_supplied"><span class="brackets_supplied">[</span>t<span class="brackets_supplied">]</span></span>ler</a></span></span>. komische Oper. 3 <span class="tei_hi_latintype">Act</span>. <a class="preview persons A000348" href=""><span class="tei_hi_latintype">Dalleyrack</span></a>.</td>
-                                                        <td>der 3<span class="tei_hi_superscript">t</span> Akt ist ganz herausgeschrieben. vom 2<span class="tei_hi_superscript">t</span> die Singstimmen. der 1<span class="tei_hi_superscript">t</span> Akt ist <span class="tei_del">bey <a class="preview persons A008179" href="">H: Schneider</a></span><a class="noteMarker" id="backref-d10e13034" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e13034">‡</a></td>
+                                                        <td>der 3<span class="tei_hi_superscript">t</span> Akt ist ganz herausgeschrieben. vom 2<span class="tei_hi_superscript">t</span> die Singstimmen. der 1<span class="tei_hi_superscript">t</span> Akt ist <span class="tei_del">bey <a class="preview persons A008179" href="">H: Schneider</a></span><a class="noteMarker" id="backref-d10e13041" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e13041">‡</a></td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -5932,7 +5929,7 @@
             2<span class="tei_hi_superscript">t</span>) die mancherley Verhandlungen und <span class="tei_hi_latintype">Correspond</span>: mit dem <span class="tei_hi_latintype">Orchester</span>.<br />
                3<span class="tei_hi_superscript">t</span>) desgleichen mit Sänger Personale, Ballett, <span class="tei_hi_underline1">Reversen</span> <span class="tei_hi_latintype">pp</span> worunter der an <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000393" href="">Dölle</a></span></span> zu bemerken.<br />
             Alles abgeliefert d: 4<span class="tei_hi_superscript">t</span> 8<span class="tei_hi_superscript">ber</span> 1816 in <a class="preview places A130006" href="">Prag</a>.
-            <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl Maria von <span class="tei_hi_underline2andMore">Weber</span></a></span></span></p>
+            <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von <span class="tei_hi_underline2andMore">Weber</span></a></span></span></p>
                                     </div>
                                 </div>
                     </div>
@@ -5977,16 +5974,18 @@
                                         
                                         <span>Prag (Tschechien), Bibliothek des Prager Konservatoriums (Knihovna Pražské konzervatoře) (CZ-Pk)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_01e99cd69db56985d99702612748e9eb"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1f07d8e3db2f8d139a1bf5d8dab1edaf"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_01e99cd69db56985d99702612748e9eb">
+                                        <div class="collapse apparatus-details" id="source_1f07d8e3db2f8d139a1bf5d8dab1edaf">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Hochformat; brauner Einband; auf dem Rücken beschriftet mit "C. M. v. Weber Notizen-Buch"; ohne Paginierung; Foliierung jeweils auf der verso-Seite(!); letzte Zählung 103 (Register ohne Foliierung)</li>
                                                     </ul>
                                                     <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
-                                                        <li><a class="preview orgs A080089" href="">Stargardt</a> Kat. 226 (6. bis 8. April <span class="tei_date">1908</span>), Sammlung Fritz Donebauer, Nr. 1015</li>
+                                                        <li>XII. Auktion des Kunstvereins für Böhmen, Prag 1915, Nr. 224</li>
+                                                        <li><a class="preview orgs A080089" href="">Stargardt</a> Kat. 226 (6. bis 8. April <span class="tei_date">1908</span>), Sammlung Fritz Donebauer, Nr. 1015 (nicht verkauft)</li>
+                                                        <li>Sammlung <a class="preview persons A004141" href="">Fritz Donebauer</a> in Prag</li>
                                                     </ul>
                                             
                                             <div>
@@ -6090,38 +6089,38 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e9428" class="apparatus-link">13.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e9428" data-title="sic" data-counter="13" data-href="#d10e9428"><span class="tei_lemma">„Der“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e9435" class="apparatus-link">13.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e9435" data-title="sic" data-counter="13" data-href="#d10e9435"><span class="tei_lemma">„Der“</span>sic!</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e10592" class="apparatus-link">14.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e10592" data-title="sic" data-counter="14" data-href="#d10e10592"><span class="tei_lemma">„v: Aurnhammer“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e10599" class="apparatus-link">14.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e10599" data-title="sic" data-counter="14" data-href="#d10e10599"><span class="tei_lemma">„v: Aurnhammer“</span>sic!</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e11645" class="apparatus-link">15.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e11645" data-title="Löschung" data-counter="15" data-href="#d10e11645"><span class="tei_lemma">„werden“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e11652" class="apparatus-link">15.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e11652" data-title="Löschung" data-counter="15" data-href="#d10e11652"><span class="tei_lemma">„werden“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e12157" class="apparatus-link">16.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e12157" data-title="sic" data-counter="16" data-href="#d10e12157"><span class="tei_lemma">„Selam“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e12164" class="apparatus-link">16.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e12164" data-title="sic" data-counter="16" data-href="#d10e12164"><span class="tei_lemma">„Selam“</span>sic!</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e12447" class="apparatus-link">17.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e12447" data-title="sic" data-counter="17" data-href="#d10e12447"><span class="tei_lemma">„Hariadan“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e12454" class="apparatus-link">17.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e12454" data-title="sic" data-counter="17" data-href="#d10e12454"><span class="tei_lemma">„Hariadan“</span>sic!</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e13034" class="apparatus-link">18.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e13034" data-title="Löschung" data-counter="18" data-href="#d10e13034"><span class="tei_lemma">„bey <a class="preview persons A008179" href="">H: Schneider</a>“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e13041" class="apparatus-link">18.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e13041" data-title="Löschung" data-counter="18" data-href="#d10e13041"><span class="tei_lemma">„bey <a class="preview persons A008179" href="">H: Schneider</a>“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -6165,38 +6164,44 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e9418" class="apparatus-link">7.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e9418" data-title="sic" data-counter="7" data-href="#d10e9418"><span class="tei_lemma">„<span class="tei_sic"><span class="tei_hi_latintype">Isouard. et Comp:</span></span>“</span>recte  „<span class="tei_corr"><a class="preview persons A008175" href="">Gaveaux</a></span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e8650" class="apparatus-link">7.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e8650" data-title="sic" data-counter="7" data-href="#d10e8650"><span class="tei_lemma">„<span class="tei_sic">3</span>“</span>recte  „<span class="tei_corr">2</span>“.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e9706" class="apparatus-link">8.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e9706" data-title="sic" data-counter="8" data-href="#d10e9706"><span class="tei_lemma">„<span class="tei_sic">Joab</span>“</span>recte  „<span class="tei_corr">Joad</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e9425" class="apparatus-link">8.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e9425" data-title="sic" data-counter="8" data-href="#d10e9425"><span class="tei_lemma">„<span class="tei_sic"><span class="tei_hi_latintype">Isouard. et Comp:</span></span>“</span>recte  „<span class="tei_corr"><a class="preview persons A008175" href="">Gaveaux</a></span>“.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_09" class="apparatus-link">9.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_09" data-title="Einzelstellenerläuterung" data-counter="9" data-href="#C_09"><span class="tei_lemma">„…  Anton“</span>Nachname fehlt.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e9713" class="apparatus-link">9.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e9713" data-title="sic" data-counter="9" data-href="#d10e9713"><span class="tei_lemma">„<span class="tei_sic">Joab</span>“</span>recte  „<span class="tei_corr">Joad</span>“.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_10" class="apparatus-link">10.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_10" data-title="Einzelstellenerläuterung" data-counter="10" data-href="#C_10"><span class="tei_lemma">„…  Lieb und Frieden“</span>Zu dem Schauspiel: Lieb’ und Versöhnen oder Die Schlacht bei Leipzig, Berlin 1816, komponierte Weber zwei Lieder (<a class="preview works A020264" href="">WeV F.5/1</a> und <a class="preview works A020265" href="">2</a>).</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_09" class="apparatus-link">10.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_09" data-title="Einzelstellenerläuterung" data-counter="10" data-href="#C_09"><span class="tei_lemma">„…  Anton“</span>Nachname fehlt.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e12651" class="apparatus-link">11.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e12651" data-title="sic" data-counter="11" data-href="#d10e12651"><span class="tei_lemma">„<span class="tei_sic"><span class="tei_hi_latintype"><a class="preview persons A003084" href="">Nicolini</a></span></span>“</span>recte  „<span class="tei_corr"><a class="preview persons A008794" href="">Nasolini</a></span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_10" class="apparatus-link">11.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_10" data-title="Einzelstellenerläuterung" data-counter="11" data-href="#C_10"><span class="tei_lemma">„…  Lieb und Frieden“</span>Zu dem Schauspiel: Lieb’ und Versöhnen oder Die Schlacht bei Leipzig, Berlin 1816, komponierte Weber zwei Lieder (<a class="preview works A020264" href="">WeV F.5/1</a> und <a class="preview works A020265" href="">2</a>).</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_001" class="apparatus-link">12.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_001" data-title="Einzelstellenerläuterung" data-counter="12" data-href="#C_001"><span class="tei_lemma">„…  ist a quadro“</span>Damit sind die Streicherstimmen gemeint.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e12658" class="apparatus-link">12.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e12658" data-title="sic" data-counter="12" data-href="#d10e12658"><span class="tei_lemma">„<span class="tei_sic"><span class="tei_hi_latintype"><a class="preview persons A003084" href="">Nicolini</a></span></span>“</span>recte  „<span class="tei_corr"><a class="preview persons A008794" href="">Nasolini</a></span>“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_001" class="apparatus-link">13.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_001" data-title="Einzelstellenerläuterung" data-counter="13" data-href="#C_001"><span class="tei_lemma">„…  ist a quadro“</span>Damit sind die Streicherstimmen gemeint.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -6225,7 +6230,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100000</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100000</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -6285,6 +6290,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -6343,22 +6351,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -13,7 +13,7 @@
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
         <meta property="dc:contributor" content="Schlesinger, Adolph Martin" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100110" />
@@ -43,13 +43,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Verkauf folgender Kompostionen: a) Trio op. 63, b) Konzertarie op. 51 in Partitur und Klavierauszug, c) Konzertarie op. 50 in Partitur und Klavierauszug, d) Huit Pièces op. 60, e) Klavierauszug der Turandot-Ouvertüre op. 37; Verkaufssumme: 50 Frd.d’or; Ablieferungstermin der Werke: 1. März 1817","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Vertrag mit Adolph Martin Schlesinger. Berlin, Freitag, 10. Januar 1817","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100110","license":"http://creativecommons.org/licenses/by/4.0/","url":["https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100110","https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001693/Dokumente/A100110"],"author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001693","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001693"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Verkauf folgender Kompostionen: a) Trio op. 63, b) Konzertarie op. 51 in Partitur und Klavierauszug, c) Konzertarie op. 50 in Partitur und Klavierauszug, d) Huit Pièces op. 60, e) Klavierauszug der Turandot-Ouvertüre op. 37; Verkaufssumme: 50 Frd.d’or; Ablieferungstermin der Werke: 1. März 1817","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Vertrag mit Adolph Martin Schlesinger. Berlin, Freitag, 10. Januar 1817","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100110","license":"http://creativecommons.org/licenses/by/4.0/","url":["https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100110","https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001693/Dokumente/A100110"],"author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001693","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001693"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +220,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente">Dokumente</a>
@@ -251,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +296,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100110/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100110/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100110/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -362,7 +360,17 @@
                         <h2>Apparat</h2>
                         
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Verfasst von</h3>
+                            <ul class="inline-list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="persons">Carl Maria von Weber</a>
+                                </li>
+                                        <li>
+                                    <a href="" class="persons"></a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
@@ -376,7 +384,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-               <p>Hinweise zum Inhalt notierte <a class="preview persons A000914" href="">Friedrich Wilhelm Jähns</a> (D-B, Weberiana Cl. V [Mappe XIX], Abt. 5D, Nr. 193); vgl. <span class="preview biblio A110546" data-ref="">Weberiana, Heft 23</span>, S. 83</p>
+               <p>Hinweise zum Inhalt notierte <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm Jähns</a> (D-B, Weberiana Cl. V [Mappe XIX], Abt. 5D, Nr. 193); vgl. <span class="preview biblio A110546" data-ref="">Weberiana, Heft 23</span>, S. 83</p>
                <p>Vertrag (aus dem Besitz Webers) erwähnt im <a class="preview letters A045673" href="">Schreiben</a> von <a class="preview persons A005971" href="">Heinrich Schlesinger</a> vom 2. Juli 1843</p>
             </div>
                         </div>
@@ -402,7 +410,7 @@
                                         
                                         <span>Verbleib unbekannt</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_dd36357db2d65fa0af0141e2fa007706">
+                                        <div class="collapse apparatus-details" id="source_054411285a83b1796bbcc7223c04a0fb">
                                             
                                             
                                             <div>
@@ -446,7 +454,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100110</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100110</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -506,6 +514,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -564,22 +575,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

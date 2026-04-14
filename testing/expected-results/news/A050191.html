@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"9th of February 2018: Today we celebrate the 90th birthday of Prof. Dr John Warrack, member of the advisory board of the Carl-Maria-von-Weber …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"90th Birthday of John Warrack","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050191","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050191","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"9th of February 2018: Today we celebrate the 90th birthday of Prof. Dr John Warrack, member of the advisory board of the Carl-Maria-von-Weber …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"90th Birthday of John Warrack","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050191","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050191","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -290,7 +288,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050191/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050191/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -350,13 +348,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008631" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008831" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009637" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009436" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -365,6 +357,12 @@
                                     <input type="checkbox" name="options" value="A009609" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009590" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009637" /> <span title="Anwählen, um &#34;Allroggen, Gerhard&#34; im Text zu markieren.">Allroggen, Gerhard</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;Bartlitz, Eveline&#34; im Text zu markieren.">Bartlitz, Eveline</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -380,7 +378,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020212" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020002" /> <span title="Anwählen, um &#34;Missa sancta (Nr.1) Es-Dur&#34; im Text zu markieren.">Missa sancta (Nr.1) Es-Dur</span> 
+                                    <input type="checkbox" name="options" value="A020002" /> <span title="Anwählen, um &#34;Missa sancta (Nr. 1) Es-Dur&#34; im Text zu markieren.">Missa sancta (Nr. 1) Es-Dur</span> 
                                 </label>
                             </div>
                         </div>
@@ -392,12 +390,12 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d12e2">
-                                    <p><span class="tei_hi_bold">9th of February 2018:</span> Today we celebrate the <span class="tei_hi_bold">90th birthday</span> of <span class="tei_hi_bold">Prof. Dr <a class="preview persons A008631" href="">John Warrack</a></span>, member of the advisory board of the Carl-Maria-von-Weber-Gesellschaft and one of the fathers of our historico-critical edition of <a class="preview persons A002068" href="">Weber’s</a> works and writings. And this month it is exactly <span class="tei_hi_bold">30</span> years ago that the „Internationales Carl-Maria-von-Weber-Kuratorium“ had been founded in the Staatsbibliothek zu Berlin. This Kuratorium was established in order to prepare the ground for the new Weber-edition and John Warrack was its English representative. Among his colleagues in this Kuratorium were <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a>, <a class="preview persons A009637" href="">Gerhard Allroggen</a>, <a class="preview persons A003672" href="">Eveline Bartlitz</a>, <a class="preview persons A009436" href="">Jaroslav Bužga</a>, <a class="preview persons A009757" href="">Ludwig Finscher</a>, <a class="preview persons A009609" href="">Wolfgang Goldhan</a> and <a class="preview persons A009590" href="">Hans John</a>. Together they discussed the possibilities and perspectives of a complete edition in a time when the German wall still existed and proved to be a barrier for scholarly cooperation as well. But in 1998 (i. e. <span class="tei_hi_bold">20</span> years ago) the first volume with <span class="preview works A020002 A020005" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020002.html ">Weber’s Dresden masses</span> was published – and in 2006 John Warrack published the <a class="preview works A020212" href="">1st piano concerto in C major</a> within our edition.</p>
+                                    <p><span class="tei_hi_bold">9th of February 2018:</span> Today we celebrate the <span class="tei_hi_bold">90th birthday</span> of <span class="tei_hi_bold">Prof. Dr <a class="preview persons A008631" href="">John Warrack</a></span>, member of the advisory board of the Carl-Maria-von-Weber-Gesellschaft and one of the fathers of our historico-critical edition of <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> works and writings. And this month it is exactly <span class="tei_hi_bold">30</span> years ago that the „Internationales Carl-Maria-von-Weber-Kuratorium“ had been founded in the Staatsbibliothek zu Berlin. This Kuratorium was established in order to prepare the ground for the new Weber-edition and John Warrack was its English representative. Among his colleagues in this Kuratorium were <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a>, <a class="preview persons A009637" href="/exist/apps/WeGA-WebApp/de/A009637.html">Gerhard Allroggen</a>, <a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a>, <a class="preview persons A009436" href="">Jaroslav Bužga</a>, <a class="preview persons A009757" href="">Ludwig Finscher</a>, <a class="preview persons A009609" href="">Wolfgang Goldhan</a> and <a class="preview persons A009590" href="">Hans John</a>. Together they discussed the possibilities and perspectives of a complete edition in a time when the German wall still existed and proved to be a barrier for scholarly cooperation as well. But in 1998 (i. e. <span class="tei_hi_bold">20</span> years ago) the first volume with <span class="preview works A020002 A020005" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020002.html ">Weber’s Dresden masses</span> was published – and in 2006 John Warrack published the <a class="preview works A020212" href="">1st piano concerto in C major</a> within our edition.</p>
                                     <p><a class="preview persons A008631" href="">John Warrack</a> had always a helping hand (or better: two) when we asked him concerning problems within the edition or the translations of the volumes. And his Weber-biography, published in 1968 (now <span class="tei_hi_bold">50</span> years ago!) was always an important work for consultation. During the London Weber Conference in the Royal College of Music last year the author of these lines started his talk with the following words „It is now nearly half a century ago that John Warrack published his comprehensive monograph on Carl Maria von Weber with the publishing house Hamish Hamilton here in London. Warrack’s biography from 1968, which <span class="71111114100111110328397110100102111114100">Gordon Sandford</span> praised as ‚the best treatment of its subject available in English‘ soon became not only the ‚standard study of Weber in English‘ – but, despite a rather deplorable German translation, it also became the ‚standard biography‘ in Germany, because the 377/489-pages-volume was based on thoroughgoing studies of Weber’s biographical documents as well as of his music and on a broad knowledge of the music of Weber’s time.“</p>
                                     <p>But still more than this book we highly estimated and estimate its author and his loyality and warm and generous friendship to the crew of the Weber-Complete-Edition. We sincerely congratulate to his 90th birthday and wish him all the best. And may we have the opportunity to congratulate to his <span class="tei_hi_bold">100th</span> birthday with a complete (or nearly complete) complete edition!</p>
                                     <p>Yours sincerely, The complete team of the Weber Complete Edition</p>
                                 </div>
-                                <p class="authorDate"><a href="" class="persons"></a>, Freitag, 9. Februar 2018</p>
+                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Freitag, 9. Februar 2018</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -427,7 +425,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_7dcf54de40d67cec2e20205351c56411">
+                                        <div class="collapse apparatus-details" id="source_dbbcd8715997bef77e787e476a27a4f1">
                                             
                                             
                                             <div>
@@ -471,7 +469,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050191</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050191</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -531,6 +529,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -589,22 +590,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

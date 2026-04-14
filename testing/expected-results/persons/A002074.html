@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Franz Anton von Weber. Lebensdaten: 26. September 1734–16. April 1812. Tätigkeiten: Beamter, Musiker, Kapellmeister, Theaterdirektor. Wirkorte: Freiburg/Breisgau, Hildesheim, Eutin, Kassel, Hamburg, Meiningen, Franken, Salzburg, Hildburghausen, München, Freiberg, Augsburg, Breslau, Breslau, Carlsruhe in Oberschlesien (Pokój), Stuttgart, Mannheim","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002074","name":"Weber, Franz Anton von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002074","sameAs":"https://d-nb.info/gnd/117158542"}</script>
 
@@ -350,7 +348,7 @@
                         <ul class="resp-tabs-list links easyResponsiveTabs">
                             <li><a href="#biographies">Biographien</a></li>
                             
-                            <li><a href="#correspondence" data-target="A002074/correspondence.html">Korrespondenz<small> (2)</small></a></li>
+                            <li><a href="#correspondence" data-target="A002074/correspondence.html">Korrespondenz<small> (1)</small></a></li>
                             <li><a href="#writings" data-target="A002074/writings.html">Schriften<small> (2)</small></a></li>
                             <li><a class="deactivated"></a></li>
                             <li><a class="deactivated"></a></li>
@@ -359,7 +357,7 @@
                             <li><a href="#documents" data-target="A002074/documents.html">Dokumente<small> (1)</small></a></li>
                             <li><a class="deactivated"></a></li>
                             <li><a class="deactivated"></a></li>
-                            <li><a href="#backlinks" data-target="A002074/backlinks.html">Rückverweise<small> (39)</small></a></li>
+                            <li><a href="#backlinks" data-target="A002074/backlinks.html">Rückverweise<small> (56)</small></a></li>
                         </ul>
                         <button>Mehr</button>
                         <ul class="hidden-links hidden"></ul>
@@ -399,7 +397,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -419,16 +417,21 @@
       <ul class="tei_list">
          <li>Sohn von <a class="preview persons A000E52" href="">Fridolin Weber</a> und seiner Frau <a class="preview persons A009425" href="">Maria Eva, geb. Schlar</a></li>
          <li>verheiratet 1) 1758 mit <a class="preview persons A008829" href="">Maria Anna Catharina Antonetta, geb. von Fumetti</a>, 2) 1785 mit <a class="preview persons A002077" href="">Genovefa, geb. Brenner</a></li>
-         <li>Vater von <a class="preview persons A002068" href="">Carl Maria von Weber</a></li>
+         <li>Vater von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></li>
+      </ul> </div>
+                                                        <div>
+         <h3 class="media-heading">Ausbilung und frühe Jahre</h3>
+         <ul class="tei_list">
          <li>Besuch der Jesuitenschule in <a class="preview places A130242" href="">Freiburg/Breisgau</a> (mit musischer Ausbildung)</li>
          <li>Geigenunterricht beim Vater <a class="preview persons A000E52" href="">Fridolin Weber</a> bis zu dessen Tod 1754</li>
-         <li>angeblich um 1756 Militärdienst und Kontakte zur <a class="preview places A130010" href="">Mannheimer</a> Hofkapelle</li>
-      </ul>
-   </div>
+         <li>ab Januar 1753 Jurastudium in <a class="preview places A130242" href="">Freiburg</a></li>
+         <li>angeblich um 1756 Militärdienst und Kontakte zur <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheimer</a> Hofkapelle</li>
+       </ul>
+      </div>
                                                         <div>
       <h3 class="media-heading">Hildesheim 1758–1776</h3>
       <ul class="tei_list">
-            <li>fürstbischöflicher Hofkammerrat in <a class="preview places A130090" href="">Hildesheim</a> und <span class="8311610111710111411997108100">Steuerwald</span> 1758–1768</li>
+            <li>fürstbischöflicher Hofkammerrat in <a class="preview places A130090" href="">Hildesheim</a> und <a class="preview places A130884" href="">Steuerwald</a> 1758–1768</li>
             <li>Privatier in <a class="preview places A130090" href="">Hildesheim</a> 1768–1776 (mit Konzertreisen als Violinist/Bratschist)</li>
          </ul>
    </div>
@@ -459,20 +462,20 @@
    </div>
                                                         <div>
       <h3 class="media-heading">Reisejahre zur Ausbildung des Sohnes Carl Maria 1796–1804</h3>
-      <p>ab 1796 vorrangig für die Ausbildung seines Sohnes <a class="preview persons A002068" href="">Carl Maria</a> tätig in <a class="preview places A130061" href="">Hildburghausen</a> (1796/97), <a class="preview places A130023" href="">Salzburg</a> (1797/98), <a class="preview places A130007" href="">München</a> (1798–1800), <a class="preview places A130051" href="">Freiberg</a> (1800/01), <a class="preview places A130023" href="">Salzburg</a> (1801/02), Kunstreise nach <span class="tei_region">Norddeutschland</span> (1802), <a class="preview places A130017" href="">Augsburg</a> (1802/03), <a class="preview places A130004" href="">Wien</a> (1803/04)</p>
+      <p>ab 1796 vorrangig für die Ausbildung seines Sohnes <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a> tätig in <a class="preview places A130061" href="">Hildburghausen</a> (1796/97), <a class="preview places A130023" href="">Salzburg</a> (1797/98), <a class="preview places A130007" href="">München</a> (1798–1800), <a class="preview places A130051" href="">Freiberg</a> (1800/01), <a class="preview places A130023" href="">Salzburg</a> (1801/02), Kunstreise nach <span class="tei_region">Norddeutschland</span> (1802), <a class="preview places A130017" href="">Augsburg</a> (1802/03), <a class="preview places A130004" href="">Wien</a> (1803/04)</p>
    </div>
                                                         <div>
       <h3 class="media-heading">Schlesien 1804/05–1807</h3>
       <ul class="tei_list">
-            <li>lebte ab 1804 oder 1805 bis 1806 in <a class="preview places A130013" href="">Breslau</a>, wo Sohn <a class="preview persons A002068" href="">Carl Maria</a> als Musikdirektor tätig war</li>
+            <li>lebte ab 1804 oder 1805 bis 1806 in <a class="preview places A130013" href="">Breslau</a>, wo Sohn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a> als Musikdirektor tätig war</li>
             <li>1806/07 Aufenthalt im schlesischen <a class="preview places A130060" href="">Carlsruhe</a></li>
          </ul>
    </div>
                                                         <div> 
       <h3 class="media-heading">Letzte Jahre 1807–1812</h3>
       <ul class="tei_list">
-            <li>1807–1810 mit seinem Sohn <a class="preview persons A002068" href="">Carl Maria</a> in <a class="preview places A130012" href="">Stuttgart</a> und <a class="preview places A130109" href="">Ludwigsburg</a></li>
-            <li>1810–1812 <a class="preview places A130010" href="">Mannheim</a></li>
+            <li>1807–1810 mit seinem Sohn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a> in <a class="preview places A130012" href="">Stuttgart</a> und <a class="preview places A130109" href="">Ludwigsburg</a></li>
+            <li>1810–1812 <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a></li>
          </ul> 
    </div>
                                                 
@@ -551,7 +554,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002074</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002074</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -611,6 +614,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -669,22 +675,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

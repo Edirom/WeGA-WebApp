@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"trotz der Hochschätzung für Castil-Blaze auf Grund seines Buchs sei er über sein praktisches Verhalten enttäuscht; klagt, dass CB seinen Freischütz ohne jede Rücksprache bearbeitet und sich die Partitur widerrechtlich besorgt habe und nun auch selbst noch herausgebe; appelliert an sein Rechtsgefühl und bittet endlich um persönliche Nachricht","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an François Henri Joseph Castil-Blaze in Paris. Dresden, Samstag, 15. Oktober 1825","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042513","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042513","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"trotz der Hochschätzung für Castil-Blaze auf Grund seines Buchs sei er über sein praktisches Verhalten enttäuscht; klagt, dass CB seinen Freischütz ohne jede Rücksprache bearbeitet und sich die Partitur widerrechtlich besorgt habe und nun auch selbst noch herausgebe; appelliert an sein Rechtsgefühl und bittet endlich um persönliche Nachricht","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an François Henri Joseph Castil-Blaze in Paris. Dresden, Samstag, 15. Oktober 1825","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042513","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042513","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042513/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042513/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042513/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,10 +362,10 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042507.html">1825-09-18</a>:  an  <a href="" class="preview A001187 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042511.html">1825-10-15</a>:  an  <a href="" class="preview A001483 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">1824-03-27</a>:  von  <a href="" class="preview A001864 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A080005/Korrespondenz/A042080.html">1823-12-04</a>:  von  <a href="" class="preview A080005 orgs"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
@@ -394,7 +392,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000278" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -418,9 +416,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;Paris&#34; im Text zu markieren.">Paris</span> 
                                 </label>
                             </div>
                         </div>
@@ -433,23 +431,23 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiLetter_body">
                                     <div class="teiLetter_address">
-                                        <p><span class="tei_hi_underline1">A Monsieur <a class="preview persons A000278" href="">Castilblaze</a> a <a class="preview places A130008" href="">Paris</a></span>.</p>
+                                        <p><span class="tei_hi_underline1">A Monsieur <a class="preview persons A000278" href="">Castilblaze</a> a <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a></span>.</p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
                <span class="tei_segBlock textAlign-right"><span class="tei_hi_underline1">Copie</span>. <span class="tei_hi_underline1">No: 1</span>.</span>
                <p class="teiLetter_salute"><a class="preview persons A000278" href="">Monsieur</a>!</p>
             </div>
-                                        <p>Il y eut un temps ou je le regardais comme une des principales jouissances de mon Sejour future a <a class="preview places A130008" href="">Paris</a>, de faire la connaissance personnelle de <a class="preview persons A000278" href="">l’auteur</a> = <span class="100101321083911111210111422532101110321021149711099101">de l’operá en france</span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>. un ouvrage auquel je temoignerait toujours tout l’estime qu’il merite á si juste titre. j’ai etes persuadée que je ne pourroit que gagner par la conversation d’un <a class="preview persons A000278" href="">ecrivain</a> si plain des plus purs et justes Point de Vue, et je m’en felicitois deja d’avance.      jugez Monsieur apres tout cela, de ma — je puis bien le dire — de ma profonde douleur, de voir detruites ces belles esperances par la maniere dont vous en avez agi vis a vis de moi.</p>
-                                        <p>Vous vous proposez d’abord, d’arranger mon opéra <span class="tei_hi_underline1">le <a class="preview works A020040" href="">Freyschütz</a></span>, pour la Scene francoise. Rien au monde ne pourrait etre plus flatteur pour moi, et exiger ma plus sincere gratidude. mais Vous ne trouvez pas neccessaire d’en parler au <a class="preview persons A002068" href="">compositeur</a>, ni de lui communiquer Vos Idées sur les Changements <span class="tei_hi_underline1">peut etre</span> inevitables pour Votre public.      <span class="tei_del">L’opéra est mis en Scene, et Vous m’ignorez encore jusqu’aux point de prendre aussi le droit de compositeur pour</span><a class="noteMarker" id="backref-d10e65" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e65">‡</a></p>
+                                        <p>Il y eut un temps ou je le regardais comme une des principales jouissances de mon Sejour future a <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a>, de faire la connaissance personnelle de <a class="preview persons A000278" href="">l’auteur</a> = <span class="100101321083911111210111422532101110321021149711099101">de l’operá en france</span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>. un ouvrage auquel je temoignerait toujours tout l’estime qu’il merite á si juste titre. j’ai etes persuadée que je ne pourroit que gagner par la conversation d’un <a class="preview persons A000278" href="">ecrivain</a> si plain des plus purs et justes Point de Vue, et je m’en felicitois deja d’avance.      jugez Monsieur apres tout cela, de ma — je puis bien le dire — de ma profonde douleur, de voir detruites ces belles esperances par la maniere dont vous en avez agi vis a vis de moi.</p>
+                                        <p>Vous vous proposez d’abord, d’arranger mon opéra <span class="tei_hi_underline1">le <a class="preview works A020040" href="">Freyschütz</a></span>, pour la Scene francoise. Rien au monde ne pourrait etre plus flatteur pour moi, et exiger ma plus sincere gratidude. mais Vous ne trouvez pas neccessaire d’en parler au <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">compositeur</a>, ni de lui communiquer Vos Idées sur les Changements <span class="tei_hi_underline1">peut etre</span> inevitables pour Votre public.      <span class="tei_del">L’opéra est mis en Scene, et Vous m’ignorez encore jusqu’aux point de prendre aussi le droit de compositeur pour</span><a class="noteMarker" id="backref-d10e65" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e65">‡</a></p>
                                         <p>Vous Vous procurer la Partition sur un chemin tout a fait illegitime<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a> /: pour legitime peut être qu’il vous a parû — :/ car mon opera n’etant ni gravé ni publié aucun Theatre ni Marchand de musique avait le droit de la vendre. Enfin, l’opera est mis en Scene<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>, et Vous m’ingnorez encore jusqu’au point de prendre aussi le Droit de Compositeur pour Vous.</p>
                                         <p>Je vois tous celá, et j’attends d’un jour à l’autre d’etre honoré d’une Lettre de Vous Monsieur. ils m’a paru impossible q’un homme de Votre merite, de Vos points de Vue sur l’art, pourroit oublier entierement tout ce q’un artiste et galante homme doit a l’autre.      au contraire, j’entend dans ce moment que Vous venez de <span class="tei_hi_underline1">publier</span> la Partition du <span class="7011410112111599104252116122">Freyschütz</span><a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>. — ah! Monsieur! que deviendra tout ce qui nous est sacré, s’il est permis de faire graver les Manuscripts des autres sans leur permission, et sans les avoir meme accquis sur un chemin legitime. —</p>
                                         <p class="tei_closer textAlign-left">Monsieur! je ne m’adress a personne qu’a Vous meme. a Votre loyauté a tous les sentiments nobles que Vous avez exprimé tant de fois en parlant sur l’art, et sur ce qu’on lui doit. laissez moi esperes que rien q’une negligance assez naturelle aux artistes, ait pu Vous faire oubliér tout a faits l’existance du Compositeur du <span class="tei_hi_underline1"><a class="preview works A020040" href="">Freyschütz</a></span>, et soyez persuadé que je conserverai autant que possible les sentiments d’une veritable estime, due a vos talents, avec laquelle j’ai l’honneur d’être,
                <span class="tei_segBlock textAlign-center">Monsieur</span>
                <span class="tei_segBlock textAlign-right">votre tres humble Servit.
-                  <br /><a class="preview persons A002068" href="">Ch: M: de Weber</a>.
+                  <br /><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Ch: M: de Weber</a>.
                </span>
-               <span class="tei_dateline textAlign-left"><a class="preview places A130003" href="">Dresde</a>, le 15<span class="tei_hi_superscript">t</span> 8<span class="tei_hi_superscript">bre</span> 1825.</span>
+               <span class="tei_dateline textAlign-left"><a class="preview places A130003" href="">Dresde</a>, le 15<span class="tei_hi_superscript">t</span> 8<span class="tei_hi_superscript">bre</span> 1825<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a>.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -506,9 +504,9 @@
                                         
                                         <span>Verbleib unbekannt</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_58c09c13ad9cb7f0362c30d18b50aee0"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c700b08460de091da97848f67e48549e"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_58c09c13ad9cb7f0362c30d18b50aee0">
+                                        <div class="collapse apparatus-details" id="source_c700b08460de091da97848f67e48549e">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Laverdet (Paris): Auktion (<span class="tei_date">7.-13.12. 1854</span>), Nr. 945 (unter <span class="tei_date">15. Oct. 1724</span>!) </li>
@@ -534,9 +532,9 @@
                                         
                                         <span>Cambridge (GB), Fitzwilliam Museum (GB-Cfm)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_92b3d18ae6c9a8587ae7b77069f758da"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_5f437dbefc242a92fe5ff4e975f25218"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_92b3d18ae6c9a8587ae7b77069f758da">
+                                        <div class="collapse apparatus-details" id="source_5f437dbefc242a92fe5ff4e975f25218">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (1 b. S.)</li>
@@ -561,7 +559,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="tei_hi_italic">Le Corsaire, Journal des spectacles, de la littérature, des arts, moeurs et modes</span>, Jg. 3, Nr. 925 (22. Januar 1826), S. 3 (dort unter falschem Datum 4. Januar 1826)</span>
                                                               
-                                                            <div class="collapse" id="source_33255ce04f9ba5a8ef8b38ed4b06aaa4">
+                                                            <div class="collapse" id="source_11055444febd4ce5b2f57f1b4cd5eabf">
                                                                 
                                                             </div>
                                                         </div>
@@ -571,7 +569,7 @@
                                                             
                                                             <span id="letoile" class="tei_bibl"><span class="tei_hi_italic">L’Etoile</span>, Nr. 2099/3000 [sic] (22./23. Januar 1826), S. 4 (dort unter falschem Datum 4. Januar 1826)</span>
                                                               
-                                                            <div class="collapse" id="source_b897de5ff6f60a6c977c2dfba1dc9f9f">
+                                                            <div class="collapse" id="source_4664069b48abdb3ad5b3177e513e6ba1">
                                                                 
                                                             </div>
                                                         </div>
@@ -581,7 +579,7 @@
                                                             
                                                             <span id="kasselsche" class="tei_bibl">(Anonym) in: <span class="tei_hi_italic">Kasselsche Allgemeine Zeitung</span> Nr. 29 (29. Januar 1826), S. 125–126, dt. (unter 15. Dez.)</span>
                                                               
-                                                            <div class="collapse" id="source_94bb9b26fffd570f0fec4acc34bee497">
+                                                            <div class="collapse" id="source_2f4e9e312cadfb22f76e18a82577c6a9">
                                                                 
                                                             </div>
                                                         </div>
@@ -591,7 +589,7 @@
                                                             
                                                             <span id="allgemeineZeitung" class="tei_bibl"><span class="tei_hi_italic">Allgemeine Zeitung</span>, Stuttgart/Tübingen, Jg. 1826, Beilage zu Nr. 37 (6. Februar), S. 145 (deutsche Übersetzung innerhalb des anonym publizierten Beitrags „Carl Maria von Weber und Castil-Blaze.“; dort unter falschem Datum 15. Dezember 1825)</span>
                                                               
-                                                            <div class="collapse" id="source_67331128da163b536919929e6fc247a6">
+                                                            <div class="collapse" id="source_feecc5db16670df4d0eb220437c880ea">
                                                                 
                                                             </div>
                                                         </div>
@@ -601,7 +599,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="tei_hi_italic">The Harmonicon</span>, vol. IV/1, Nr. 38 (Februar 1826), S. 41 (unter 15. Dez.; in englischer Übersetzung mit faksimilierter Unterschrift)</span>
                                                               
-                                                            <div class="collapse" id="source_04d153f1bf990b980d6490f5909f5e0e">
+                                                            <div class="collapse" id="source_fe7bfe8867d4c96490b731f0e5fbf321">
                                                                 
                                                             </div>
                                                         </div>
@@ -611,7 +609,7 @@
                                                             
                                                             <span id="jullien" class="tei_bibl">Adolphe Jullien: <span class="tei_hi_italic">Weber à Paris en 1826</span>, Paris 1877, S. 19–20 (unter 15. Dez. – nach Zeitung??)</span>
                                                               
-                                                            <div class="collapse" id="source_368aa68fc55f7603725907834ac6103f">
+                                                            <div class="collapse" id="source_9c26a22b3090187729022d01cb26e1de">
                                                                 
                                                             </div>
                                                         </div>
@@ -621,7 +619,7 @@
                                                             
                                                             <span class="tei_bibl">La Mara, <span class="tei_hi_italic">Musikerbriefe</span>, in: <span class="tei_hi_italic">Die neue Rundschau</span>, Jg. 24, Bd. 2, Heft 6 (Juni 1913), S. 809f. (in deutscher Übersetzung); dazu abschriftliche Vorlage von <a class="preview persons A005288" href="">Marie Lipsius</a> (auf Bl. 26f.) sowie korrigierte Druckfahne in <span class="tei_hi_italic">D-B</span>, Mus. ep. La Mara-Konvolut 6</span>
                                                               
-                                                            <div class="collapse" id="source_684061fecf7fde6bc9c6aea6707c7798">
+                                                            <div class="collapse" id="source_55cb43162f38cbce0f814b47e3d2cb88">
                                                                 
                                                             </div>
                                                         </div>
@@ -631,7 +629,7 @@
                                                             
                                                             <span class="tei_bibl">Heidlberger, <span class="preview biblio A110336" data-ref="">Weber und Berlioz</span>, S. 480f.</span>
                                                               
-                                                            <div class="collapse" id="source_ab042ebfda750a5a2d58a7ddde2e7bb7">
+                                                            <div class="collapse" id="source_f90bce9f33468f3bcf68d44213bc9bf6">
                                                                 
                                                             </div>
                                                         </div>
@@ -654,7 +652,7 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (XVI), Bl. 89a/r</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_591faa4bce252130995c478741fdd246">
+                                        <div class="collapse apparatus-details" id="source_d25864cd448748131c6861b0197ad521">
                                             
                                             
                                             <div>
@@ -695,19 +693,25 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  chemin tout a fait illegitime“</span>Castil-Blaze hatte die <span class="tei_hi_italic">Freischütz</span>-Partitur vermutlich von <a class="preview persons A002212" href="">Zulehner</a> erworben.</div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  chemin tout a fait illegitime“</span>Castil-Blaze hatte die <a class="preview works A020040" href=""><span class="tei_hi_italic">Freischütz</span></a>-Partitur vermutlich von <a class="preview persons A002212" href="">Zulehner</a> erworben.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note03"><span class="tei_lemma">„…  l'opera est mis en Scene“</span>Castil-Blazes französische <span class="tei_hi_italic">Freischütz</span>-Bearbeitung <span class="tei_hi_italic">Robin des bois</span> hatte am 7. Dezember 1824 im <a class="preview places A130008" href="">Pariser</a> Théâtre Royal de l’Odéon Premiere.</div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note03"><span class="tei_lemma">„…  l'opera est mis en Scene“</span>Castil-Blazes französische <span class="tei_hi_italic">Freischütz</span>-Bearbeitung <span class="tei_hi_italic">Robin des bois</span> hatte am 7. Dezember 1824 im <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Pariser</a> <a class="preview places A131305" href="">Théâtre Royal de l’Odéon</a> Premiere.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">4.</a></div>
                                                 <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  publier la Partition du Freyschütz“</span>Castil-Blaze verlegte 1824 den Klavierauszug und 1825 die Partitur seiner <span class="tei_hi_italic">Freischütz</span>-Bearbeitung <span class="tei_hi_italic">Robin des bois</span> 1825 im eigenen Verlag (VN: C. B. 20.).</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note05" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="note05" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#note05"><span class="tei_lemma">„…  15 t 8 bre 1825“</span>Entwurf laut <a class="preview diaries A066181" href="">Tagebuch</a> bereits am 12. Oktober 1825.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -736,7 +740,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042513</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042513</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -796,6 +800,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -854,22 +861,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Stadtpfarrei" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Kirchenbuchauszug der Sterberegister der Stadtpfarrei Mannheim, Todeseintrag Franz Anton von Webers (gest. am 16. April 1812)","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Todeseintrag Franz Anton von Webers im Kirchenbuch. Mannheim, Mittwoch, 20. Mai 1812","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100125","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100125","author":[{"@type":"Person","name":"Stadtpfarrei"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100125/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100125/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -371,7 +369,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;Mannheim&#34; im Text zu markieren.">Mannheim</span> 
                                 </label>
                             </div>
                         </div>
@@ -384,10 +382,10 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Kirchenbuchs-Auszug der Verstorbenen in der katolischen Stadtpfarrei <a class="preview places A130010" href="">Mannheim</a>.</p>
+                                        <p>Kirchenbuchs-Auszug der Verstorbenen in der katolischen Stadtpfarrei <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a>.</p>
                                         <p>Im Jahre Tausend acht Hundert zwölf den 16<span class="tei_hi_superscript">ten</span> April fr<span class="tei_supplied"><span class="brackets_supplied">[</span><span class="tei_unclear">üh<a class="noteMarker" id="backref-d10e14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e14">‡</a></span><span class="brackets_supplied">]</span></span> 11 Uhr starb und d 18<span class="tei_hi_superscript">ten</span> abends 5 Uhr wurde begraben He<span class="tei_supplied"><span class="brackets_supplied">[</span>rr<span class="brackets_supplied">]</span></span> <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Anton von Weber</a> gebohren in den <span class="tei_placeName"><span class="tei_country">Niederlanden</span></span>, a<span class="tei_supplied"><span class="brackets_supplied">[</span>lt<span class="brackets_supplied">]</span></span> 78 Jahr u Wittiber.</p>
-                                        <p>Zeugen waren <a class="preview persons A0020F5" href=""><span class="tei_hi_latintype">Georg</span> Regenscheid</a> Bürger und Kirchenm<span class="tei_supplied"><span class="brackets_supplied">[</span>eister<span class="brackets_supplied">]</span></span> alt 73 Jahre und <span class="tei_hi_latintype">Johann Georg</span> Regenscheid Bürger und Kirchenmeister alt 34 Jahre<span class="tei_supplied"><span class="brackets_supplied">[</span>.<span class="brackets_supplied">]</span></span> Beide zu <a class="preview places A130010" href="">Mannheim</a> verheurathet.</p>
-                                        <p>Gegenwärtigen KirchenbuchsAuszug bescheinet mit beygedrucktem Pfarrsiegel und seiner Handunterschrift  <a class="preview places A130010" href="">Mannheim</a> d. 20<span class="tei_hi_superscript">ten</span> May 1812
+                                        <p>Zeugen waren <a class="preview persons A0020F5" href=""><span class="tei_hi_latintype">Georg</span> Regenscheid</a> Bürger und Kirchenm<span class="tei_supplied"><span class="brackets_supplied">[</span>eister<span class="brackets_supplied">]</span></span> alt 73 Jahre und <span class="tei_hi_latintype">Johann Georg</span> Regenscheid Bürger und Kirchenmeister alt 34 Jahre<span class="tei_supplied"><span class="brackets_supplied">[</span>.<span class="brackets_supplied">]</span></span> Beide zu <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> verheurathet.</p>
+                                        <p>Gegenwärtigen KirchenbuchsAuszug bescheinet mit beygedrucktem Pfarrsiegel und seiner Handunterschrift  <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> d. 20<span class="tei_hi_superscript">ten</span> May 1812
             <span class="tei_segBlock textAlign-right"><span class="tei_supplied"><span class="brackets_supplied">[</span>Paraphe<span class="brackets_supplied">]</span></span>   Kirchdechant und
             Stadtpfarrer</span></p>
                                     </div>
@@ -437,9 +435,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. theor. C. M. v. Weber WFN 7 (40)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_13ed0e49b24040da9dfe6b0128c86d3c"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_61b9b576da5cf1fc0622d50a044761cc"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_13ed0e49b24040da9dfe6b0128c86d3c">
+                                        <div class="collapse apparatus-details" id="source_61b9b576da5cf1fc0622d50a044761cc">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (1 b. S.)</li>
@@ -499,7 +497,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100125</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100125</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -559,6 +557,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -617,22 +618,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

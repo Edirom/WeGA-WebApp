@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","description":"Addenda","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Weber-Studien Band 10","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120210","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120210","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","description":"Addenda","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Weber-Studien Band 10","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120210","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120210","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -286,7 +284,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120210/backlinks.html">Rückverweise</a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120210/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120210/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -298,13 +296,9 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000288" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002AFD" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A0014B6" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -315,6 +309,10 @@
                                     <input type="checkbox" name="options" value="A00073A" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009846" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;Ziegler, Frank&#34; im Text zu markieren.">Ziegler, Frank</span> 
                                 </label>
                             </div>
                         </div>
@@ -324,11 +322,11 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020040" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A021502" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label>
                             </div>
                         </div>
@@ -356,15 +354,15 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130019" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130027" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130015" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130007" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -378,18 +376,18 @@
                         <div id="d12e1">
                                     <h2 id="d12e2"><span class="tei_hi_italic">Euryanthe</span>-Interpretationen</h2>
                                     <h3>Studien und Dokumente zur „Großen romantischen Oper“ von Helmina von Chézy und Carl Maria von Weber</h3>
-                                    <p>Euryanthe<span class="tei_hi_italic">-Interpretationen. Studien und Dokumente zur „Großen romantischen Oper“ von <a class="preview persons A000288" href="">Helmina von Chézy</a> und <a class="preview persons A002068" href="">Carl Maria von Weber</a></span>,
-          hg. von <a class="preview persons A009003" href="">Markus Bandur</a>, <a class="preview persons A002AFD" href="">Thomas Betzwieser</a> und <a class="preview persons A009005" href="">Frank Ziegler</a>, Mainz 2018, ix, 504 S.<br /> Bestellnummer: ED 22965;
+                                    <p>Euryanthe<span class="tei_hi_italic">-Interpretationen. Studien und Dokumente zur „Großen romantischen Oper“ von <a class="preview persons A000288" href="">Helmina von Chézy</a> und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>,
+          hg. von <a class="preview persons A009003" href="">Markus Bandur</a>, <a class="preview persons A002AFD" href="">Thomas Betzwieser</a> und <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>, Mainz 2018, ix, 504 S.<br /> Bestellnummer: ED 22965;
           ISBN 3-7957-0387-6</p>
                                     <div id="d12e35">
                                         <h3 id="d12e36">Vorwort</h3>
-                                        <p><a class="preview persons A002068" href="">Webers</a> <a class="preview works A020043" href=""><span class="tei_hi_italic">Euryanthe</span></a> gilt als eine ‚schwierige‘ Oper, als ein ‚schwieriger Fall‘ innerhalb der Geschichte der deutschen Oper und im Besonderen innerhalb der deutschen Librettistik. Die problematische Rezeptionsgeschichte des Werks ließ auch die wissenschaftliche Betrachtung nicht gänzlich untangiert – allein ein Blick auf die Publikationszahlen zum <a class="preview works A020040" href=""><span class="tei_hi_italic">Freischütz</span></a> und zur <span class="tei_hi_italic">Euryanthe</span> macht dies deutlich. Vor diesem Hintergrund war ein Symposium, das sich exklusiv Webers „dramatischem Versuch“ von 1823 widmete, eine besondere Herausforderung. Der äußere Anlass für die Ausrichtung einer solchen Tagung war die Neuinszenierung der <span class="tei_hi_italic">Euryanthe</span> an der Oper <a class="preview places A130020" href="">Frankfurt</a> in der Spielzeit 2014/15. Die Tagung, veranstaltet von der Oper Frankfurt und dem Institut für Musikwissenschaft der Goethe-Universität, fand – zeitnah zur Premiere – am <span class="tei_date">12. April 2015</span> statt; die Leitung oblag <a class="preview persons A002AFD" href="">Thomas Betzwieser</a> und <span class="8210111023332771059910497101108115101110">René Michaelsen</span>. Dem Letztgenannten sowie der Dramaturgie der Oper Frankfurt, namentlich Herrn <span class="90115111108116327211111411222599115121">Zsolt Horpácsy</span>, sei an dieser Stelle für diese gemeinsame Initiative gedankt.</p>
+                                        <p><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html"><span class="tei_hi_italic">Euryanthe</span></a> gilt als eine ‚schwierige‘ Oper, als ein ‚schwieriger Fall‘ innerhalb der Geschichte der deutschen Oper und im Besonderen innerhalb der deutschen Librettistik. Die problematische Rezeptionsgeschichte des Werks ließ auch die wissenschaftliche Betrachtung nicht gänzlich untangiert – allein ein Blick auf die Publikationszahlen zum <a class="preview works A020040" href=""><span class="tei_hi_italic">Freischütz</span></a> und zur <span class="tei_hi_italic">Euryanthe</span> macht dies deutlich. Vor diesem Hintergrund war ein Symposium, das sich exklusiv Webers „dramatischem Versuch“ von 1823 widmete, eine besondere Herausforderung. Der äußere Anlass für die Ausrichtung einer solchen Tagung war die Neuinszenierung der <span class="tei_hi_italic">Euryanthe</span> an der Oper <a class="preview places A130020" href="">Frankfurt</a> in der Spielzeit 2014/15. Die Tagung, veranstaltet von der Oper Frankfurt und dem Institut für Musikwissenschaft der Goethe-Universität, fand – zeitnah zur Premiere – am <span class="tei_date">12. April 2015</span> statt; die Leitung oblag <a class="preview persons A002AFD" href="">Thomas Betzwieser</a> und <span class="8210111023332771059910497101108115101110">René Michaelsen</span>. Dem Letztgenannten sowie der Dramaturgie der Oper Frankfurt, namentlich Herrn <span class="90115111108116327211111411222599115121">Zsolt Horpácsy</span>, sei an dieser Stelle für diese gemeinsame Initiative gedankt.</p>
                                         <p>Die thematische Ausrichtung auf ‚Interpretation‘ ist doppelgesichtig: Sie geht zum einen zurück auf die ursprüngliche Idee, die Tagung auf das Thema Musikalische Interpretation auszurichten, mit Webers Oper gleichsam als ‚Aufhänger‘, was nicht zuletzt durch die gängigen Vorbehalte gegenüber dem Werk induziert war. Im Laufe der Vorbereitungen griff jedoch die Idee einer werkzentrierten Betrachtung mehr und mehr Raum, so dass der Titel Euryanthe-<span class="tei_hi_italic">Interpretationen</span> sich schließlich als ein gangbarer Weg erwies.</p>
-                                        <p>Der vorliegende Sammelband vereint die Referate des eintägigen Frankfurter Symposiums von 2015. Er wurde um einen germanistischen und einen theaterhistorischen Beitrag – von <span class="8310110810997327497104110107101">Selma Jahnke</span> bzw. <span class="65114110101327697110103101114">Arne Langer</span> – bereichert, womit das Themen­spektrum noch einmal erweitert werden konnte.</p>
-                                        <p>Rehabilitationsversuche der <span class="tei_hi_italic">Euryanthe</span> gab es nicht wenige. Der prominenteste stammt zweifellos von <span class="82101110233327610110598111119105116122">René Leibowitz</span>. Der Komponist, Dirigent und Theoretiker hat sich in den frühen 1970er Jahren eingehend mit Webers Oper auseinandergesetzt. Der Titel des entsprechenden Kapitels in seiner Studie <span class="tei_hi_italic">Les fantômes de l’opéra. Essais sur le théâtre lyrique</span> (Paris 1972) ist Programm: „<span class="preview biblio A112828" data-ref=""><span class="tei_hi_italic">Euryanthe</span> – un opéra maudit</span>“, was mit verfluchte, fluchbeladene, oder auch verachtete Oper übersetzt werden kann. Prima vista könnte man Leibowitz’ Essay in die Kategorie ‚Rettungsversuche‘ einreihen, d. h. als einen weiteren Versuch ansehen, die (großen) Qualitäten der Musik zu preisen und das Libretto mangelnder dramaturgischer Kohärenz und mediokrer poetischer Züge zu zeihen. Zweifellos unternahm Leibowitz einen Rettungsversuch, zumal die <span class="tei_hi_italic">Euryanthe</span> in seinen Augen einen bedeutsamen Markstein innerhalb der Entwicklung der Oper darstellt. Aber dieser Rettungsversuch ist (überraschenderweise) kein primär historiographischer und auch nicht rein werkimmanent-analytisch konturiert. Der Zielpunkt bzw. das eigentliche Medium, auf das Leibowitz abzielt, ist die Inszenierung. Eine (ideale) Inszenierung soll die wahren Qualitäten des Werkes offenlegen – und damit ist weit mehr gemeint als nur der Gemeinplatz, dass ein musikalisches Werk erst in der Aufführung Gestalt annimmt. Die musikalische Analyse, die Leibowitz unternimmt, ist denn auch nur als eine Vorstufe für einen größeren szenisch und performativ zu denkenden Ansatz zu betrachten. Die Analyse selbst offenbart im Grunde nur wenig Neues: Es geht dort um nummernübergreifende Kohärenzen, um erinnerungs­motivische Verklammerungen, sowie um Orchestration. ‚Strukturale Einheitlichkeit‘ wäre die zentrale Kategorie, die aus der Analyse destilliert werden könnte.</p>
+                                        <p>Der vorliegende Sammelband vereint die Referate des eintägigen Frankfurter Symposiums von 2015. Er wurde um einen germanistischen und einen theaterhistorischen Beitrag – von <span class="8310110810997327497104110107101">Selma Jahnke</span> bzw. <span class="65114110101327697110103101114">Arne Langer</span> – bereichert, womit das Themenspektrum noch einmal erweitert werden konnte.</p>
+                                        <p>Rehabilitationsversuche der <span class="tei_hi_italic">Euryanthe</span> gab es nicht wenige. Der prominenteste stammt zweifellos von <span class="82101110233327610110598111119105116122">René Leibowitz</span>. Der Komponist, Dirigent und Theoretiker hat sich in den frühen 1970er Jahren eingehend mit Webers Oper auseinandergesetzt. Der Titel des entsprechenden Kapitels in seiner Studie <span class="tei_hi_italic">Les fantômes de l’opéra. Essais sur le théâtre lyrique</span> (Paris 1972) ist Programm: „<span class="preview biblio A112828" data-ref=""><span class="tei_hi_italic">Euryanthe</span> – un opéra maudit</span>“, was mit verfluchte, fluchbeladene, oder auch verachtete Oper übersetzt werden kann. Prima vista könnte man Leibowitz’ Essay in die Kategorie ‚Rettungsversuche‘ einreihen, d. h. als einen weiteren Versuch ansehen, die (großen) Qualitäten der Musik zu preisen und das Libretto mangelnder dramaturgischer Kohärenz und mediokrer poetischer Züge zu zeihen. Zweifellos unternahm Leibowitz einen Rettungsversuch, zumal die <span class="tei_hi_italic">Euryanthe</span> in seinen Augen einen bedeutsamen Markstein innerhalb der Entwicklung der Oper darstellt. Aber dieser Rettungsversuch ist (überraschenderweise) kein primär historiographischer und auch nicht rein werkimmanent-analytisch konturiert. Der Zielpunkt bzw. das eigentliche Medium, auf das Leibowitz abzielt, ist die Inszenierung. Eine (ideale) Inszenierung soll die wahren Qualitäten des Werkes offenlegen – und damit ist weit mehr gemeint als nur der Gemeinplatz, dass ein musikalisches Werk erst in der Aufführung Gestalt annimmt. Die musikalische Analyse, die Leibowitz unternimmt, ist denn auch nur als eine Vorstufe für einen größeren szenisch und performativ zu denkenden Ansatz zu betrachten. Die Analyse selbst offenbart im Grunde nur wenig Neues: Es geht dort um nummernübergreifende Kohärenzen, um erinnerungs-motivische Verklammerungen, sowie um Orchestration. ‚Strukturale Einheitlichkeit‘ wäre die zentrale Kategorie, die aus der Analyse destilliert werden könnte.</p>
                                         <p>Allerdings macht Leibowitz hernach gleichsam einen zweiten analytischen ‚Durchlauf‘, in welchem er nunmehr auf die Inszenierung abzielt. Und hier präpariert er nun auch die disparaten Elemente des Stückes heraus. Seine Argumentation ist dabei höchst bemerkenswert: Angesichts der nicht zu übersehenden Schwäche des Librettos muss eine Inszenierung – so Leibowitz – ihre ganze interpretative Kraft aus der Partitur heraus ziehen. Denn die Partitur tendiert eben zu einer Ausdrucksform, die das Narrativ des Librettos weit hinter sich lässt. Vor dieser Folie überrascht Leibowitz’ Resümee dann nicht mehr: Ein Wiederbelebungsversuch der <span class="tei_hi_italic">Euryanthe</span> kann nur – mehr als bei jeder anderen Oper – aus dem Geist der Musik heraus erfolgen. Durch die Stärke und Dichte der Musik erhalte das Stück erst seine „komplexe theatralische Bedeutung“. Eben diese Bedeutung müsse ein Regisseur erfassen und in Szene setzen, was im Endeffekt dann auch die Mängel des Librettos kompensieren hilft.</p>
                                         <p>Diese Denkfigur von Leibowitz zielt ins Zentrum der Symposiumsidee: Neben den Kontinuitäten und Diskontinuitäten der Rezeptionsgeschichte waren – noch einmal – die Grundaxiome dieser „verdammten Oper“ zu befragen: die Dramaturgie, das originäre dramatische Idiom, sei es struktureller oder klanglicher Natur, und – nicht zuletzt – die szenische Vergegenwärtigung am Beispiel der Frankfurter Inszenierung.</p>
-                                        <p>Ergänzt werden die neun Studien dieses Bandes, die sich dem Werk von einem jeweils eigenen (germanistischen, musik- oder theaterwissenschaftlichen) Standpunkt her nähern und es versuchen zu „interpretieren“, durch eine umfangreiche Dokumentation zur Werkrezeption zu Lebzeiten des Komponisten. Die hier erstmals in einer möglichst breiten Auswahl zusammengefassten und in ihren gegenseitigen Ver­netzungen und Bezugnahmen dargestellten Berichte zur Uraufführung 1823 in <a class="preview places A130004" href="">Wien</a>, den nachfolgenden Einstudierungen bis 1826, die kontroversen Beurteilungen des Librettos sowie die Stellungnahmen der beiden Werk-Autoren – <a class="preview persons A000288" href="">Helmina von Chézy</a> und <a class="preview persons A002068" href="">Carl Maria von Weber</a> – beleuchten eine grundlegende opernästhetische Debatte, die sich an der <span class="tei_hi_italic">Euryanthe</span> entzündete (und deren Bewertung bis heute prägt), aber tatsächlich weit über das einzelne Werk und dessen Darbietungen an ausgewählten Bühnen hinausweist.</p>
+                                        <p>Ergänzt werden die neun Studien dieses Bandes, die sich dem Werk von einem jeweils eigenen (germanistischen, musik- oder theaterwissenschaftlichen) Standpunkt her nähern und es versuchen zu „interpretieren“, durch eine umfangreiche Dokumentation zur Werkrezeption zu Lebzeiten des Komponisten. Die hier erstmals in einer möglichst breiten Auswahl zusammengefassten und in ihren gegenseitigen Vernetzungen und Bezugnahmen dargestellten Berichte zur Uraufführung 1823 in <a class="preview places A130004" href="">Wien</a>, den nachfolgenden Einstudierungen bis 1826, die kontroversen Beurteilungen des Librettos sowie die Stellungnahmen der beiden Werk-Autoren – <a class="preview persons A000288" href="">Helmina von Chézy</a> und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> – beleuchten eine grundlegende opernästhetische Debatte, die sich an der <span class="tei_hi_italic">Euryanthe</span> entzündete (und deren Bewertung bis heute prägt), aber tatsächlich weit über das einzelne Werk und dessen Darbietungen an ausgewählten Bühnen hinausweist.</p>
                                         <p>Berlin und Frankfurt am Main, im Dezember 2017</p><span class="tei_signed textAlign-right">Markus Bandur, Thomas Betzwieser, Frank Ziegler</span><br />     </div>
                                     <div id="d12e145">
                                         <h3 id="d12e146">Inhaltsverzeichnis</h3>
@@ -399,7 +397,7 @@
                                             <li><a class="preview persons A0014B6" href="">Sabine Henze-Döhring</a><br />
             „Reihe der treffendsten Gemälde“: Überlegungen zu Musik und Dramaturgie 
             der <span class="tei_hi_italic">Euryanthe</span>,	  S. 1–16</li>
-                                            <li><a class="preview persons A009005" href="">Frank Ziegler</a><br />
+                                            <li><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a><br />
             „Die Weise tadl’ ich nicht, doch wohl die Worte vom Gedicht“?
             Bemerkungen zu <span class="7210110810910511097321181111103267104233122121115">Helmina von Chézys</span> <span class="tei_hi_italic">Euryanthe</span>-Libretto,	 S. 17–38</li>
                                             <li><span class="8310110810997327497104110107101">Selma Jahnke</span><br />
@@ -425,7 +423,7 @@
                                         </ul>
                                         <p>
             <span class="tei_hi_bold">Ausgewählte Dokumente zur frühen Rezeption der Oper <span class="tei_hi_italic">Euryanthe</span>
-            zusammengestellt von <a class="preview persons A009003" href="">Markus Bandur</a> und <a class="preview persons A009005" href="">Frank Ziegler</a></span>
+            zusammengestellt von <a class="preview persons A009003" href="">Markus Bandur</a> und <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a></span>
           </p>
                                         <ul class="tei_list">
                                             <li>Vorbemerkung, S. 239–240</li>
@@ -443,15 +441,15 @@
                                             <li>– in <a class="preview places A130018" href="">Hannover</a> am 22. Juni 1824,	 S. 374–377</li>
                                             <li>– in <a class="preview places A130014" href="">Weimar</a> am 23. Juni 1824,	 S. 377–380</li>
                                             <li>– in <a class="preview places A130019" href="">Kassel</a> am 28. Juli 1824,	 S. 380–382</li>
-                                            <li>– in <a class="preview places A130005" href="">Leipzig</a> am 20. Mai 1825,	 S. 382–388</li>
+                                            <li>– in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> am 20. Mai 1825,	 S. 382–388</li>
                                             <li>– in <a class="preview places A130027" href="">Königsberg</a> am 23. Juni 1825 (szenisch),	  S. 389</li>
                                             <li>– in <a class="preview places A130015" href="">Darmstadt</a> am 27. November 1825,	  S. 389–395</li>
                                             <li>– in <a class="preview places A130007" href="">München</a> am 21. Dezember 1825,	  S. 395–399</li>
-                                            <li>– in <a class="preview places A130002" href="">Berlin</a> am 23. Dezember 1825,	 S. 399–344</li>
+                                            <li>– in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> am 23. Dezember 1825,	 S. 399–344</li>
                                             <li>– Zu einer regional nicht zuzuordnenden Aufführung 1826, S. 444</li>
                                             <li>III. Rezensionen zum Libretto und Reaktionen <a class="preview persons A000288" href="">Helmina von Chézys</a>
               auf Kritik an ihrem Text,	 S. 445–490</li>
-                                            <li>IV. Aufführungspraktische Hinweise von <a class="preview persons A002068" href="">Carl Maria von Weber</a>,	  S. 491–496</li>
+                                            <li>IV. Aufführungspraktische Hinweise von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>,	  S. 491–496</li>
                                             <li>Register der erwähnten Personen und Werke,	  S. 497–504</li>
                                         </ul>
                                     </div>
@@ -478,7 +476,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120210</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120210</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -536,6 +534,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -595,22 +596,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

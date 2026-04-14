@@ -533,7 +533,7 @@ declare function api:ant-deleteResources($model as map(*)) {
             if($fullPathResource) then xmldb:remove(functx:substring-before-last($fullPathResource, '/'), functx:substring-after-last($fullPathResource, '/'))
             else xmldb:remove($fullPathCollection)
         else if(count(($fullPathCollection, $fullPathResource)) eq 0) then wega-util:log-to-file('info', 'Resource ' || $path || ' not available')
-        else error(QName('wega','error'), 'ambigious delete target: ' || $path)
+        else error(QName('wega','error'), 'ambiguous delete target: ' || $path)
     :\)
 };
 :)

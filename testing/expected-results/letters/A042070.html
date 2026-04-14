@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Kreutzer, Conradin" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"wundert sich, dass Kassel trotz seines Angebots die Libussa noch nicht erworben hat, die er ggf. billiger geben wolle; erkundigt sich nach Spohrs neuer Oper; man erwarte bis Ende des Monats Webers Euryanthe, die der ital. Oper hoffentlich einen Gnadenstoß gebe; über die Situation der dt. u. it. Oper in Wien","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Conradin Kreutzer aus Wien an Louis Spohr in Kassel. Freitag, 5. und Samstag, 6. September 1823","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042070","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001077/Korrespondenz/A042070","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001077","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001077"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001077/Korrespondenz/A042070/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001077/Korrespondenz/A042070/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -386,8 +384,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001862" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000729" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001751" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -403,6 +399,8 @@
                                     <input type="checkbox" name="options" value="A000503" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001077" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -416,9 +414,9 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020516" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020515" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label>
                             </div>
                         </div>
@@ -434,8 +432,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130014" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -446,13 +442,15 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130020" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130056" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130107" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130006" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -482,10 +480,10 @@
                                         <p>Ihr Aufruf an die deutschen <span class="tei_hi_latintype">Componisten</span> in der Leipziger Zeitung erinnerte mich, daß ich Ihnen wohl vor vielen Monathen geschrieben, 
                und meine <span class="tei_hi_latintype"><a class="preview works A020516" href="">Libussa</a></span> für Ihr Hoftheater angetragen, aber seitdem noch keine Antwort von Ihnen erhalten habe, 
                was mich um so mehr befremdet, da ich nicht nur von mehreren <span class="tei_hi_latintype">Directionen</span> und Kapellmeistern mit GegenAntwort beehrt wurde, 
-               sondern auch diese Oper an 15 der vorzüglichsten Theater verkauft habe, wie z. B. in <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>, 
+               sondern auch diese Oper an 15 der vorzüglichsten Theater verkauft habe, wie z. B. in <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span>, 
                <span class="tei_hi_latintype"><a class="preview places A130003" href="">Dresden</a></span>, <span class="tei_hi_latintype"><a class="preview places A130014" href="">Weimar</a></span>, 
                <span class="tei_hi_latintype"><a class="preview places A130015" href="">Darmstatt</a></span>, <span class="tei_hi_latintype"><a class="preview places A130007" href="">München</a></span>, 
-               <span class="tei_hi_latintype"><a class="preview places A130020" href="">Franckfurt</a></span>, <span class="tei_hi_latintype"><a class="preview places A130005" href="">Leipzick</a></span>, 
+               <span class="tei_hi_latintype"><a class="preview places A130020" href="">Franckfurt</a></span>, <span class="tei_hi_latintype"><a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzick</a></span>, 
                <span class="tei_hi_latintype"><a class="preview places A130056" href="">Amsterdam</a></span>, <span class="tei_hi_latintype"><a class="preview places A130107" href="">Pest</a></span>, 
                <span class="tei_hi_latintype"><a class="preview places A130006" href="">Prag</a>pp</span></p>
                                         <p>Sollte allenfalls mein festgeseztes <span class="tei_hi_latintype">Honorar</span> von 40 # ein Hinderniß der Anschaffung seyn, 
@@ -497,10 +495,10 @@
                                         <p>Ich bin sehr begierig Nachrichten über die Aufführung und Aufnahme ih<span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>rer<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e151" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e151">‡</a></span></span> neuesten Oper zu erhalten 
                – sobald solche gegeben ist, so haben Sie d<span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>ie<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e155" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e155">‡</a></span></span> Güte mir es zu berichten, 
                und zugleich das <span class="tei_hi_latintype">Honorar</span> zu bestimmen, we<span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>lches<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e162" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e162">‡</a></span></span> Sie für die <span class="tei_hi_latintype">Partitur</span> haben wollen.</p>
-                                        <p>Von <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl Maria Weber</a></span> erhalten wir bis Ende dieses Monaths seine 
-               <span class="tei_hi_latintype"><a class="preview works A020043" href="">Eureanthe</a></span>, worauf ganz <a class="preview places A130004" href="">Wien</a> sehr gespannt ist 
+                                        <p>Von <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria Weber</a></span> erhalten wir bis Ende dieses Monaths seine 
+               <span class="tei_hi_latintype"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Eureanthe</a></span>, worauf ganz <a class="preview places A130004" href="">Wien</a> sehr gespannt ist 
                – und <span class="tei_hi_latintype">die</span>, hoffe ich, der Italienischen Oper einen ordentlichen Gnadenstoss geben soll 
-               – nach der <span class="tei_hi_latintype"><a class="preview works A020043" href="">Eureanthe</a></span> kommt wieder eine Oper von mir, von der ich mir einen guten Erfolg verspreche 
+               – nach der <span class="tei_hi_latintype"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Eureanthe</a></span> kommt wieder eine Oper von mir, von der ich mir einen guten Erfolg verspreche 
                – wir haben dann noch ein paar neue <span class="tei_hi_latintype">original</span> deutsche Opern – eine von <a class="preview persons A000729" href="">Halm</a><a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> 
                – eine andere von <span class="tei_hi_latintype"><a class="preview persons A001751" href="">Schubert</a></span><a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> 
                – auch schreibt <span class="tei_hi_latintype"><a class="preview persons A000117" href="">Beethoven</a></span> die schöne <span class="tei_hi_latintype"><span class="77101108117115105110101">Melusine</span></span> von <span class="tei_hi_latintype"><a class="preview persons A000680" href="">Grillparzer</a></span><a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> – . 
@@ -545,7 +543,7 @@
                <p>Die Zeilen mit der Datumsangabe und mit der Adresse sind mit dunklerer Tinte nachgetragen; 
                   das Datum liest sich auf den ersten Blick als 16. September (so auch im Erstdruck von Rychnovsky übertragen). 
                   Allerdings spricht der Brieftext dagegen: Erwähnt wird die Wiener Erstaufführung von Rossinis Semiramide am Vortag; 
-                  die fand am 4. September 1823 im Kärntnertortheater statt (vgl. die Besprechung in der Wiener Theaterzeitung, Jg. 16 , Nr. 109 vom 11. September 1823,S. 435f.)</p>
+                  die fand am 4. September 1823 im <a class="preview places A131250" href="">Kärntnertortheater</a> statt (vgl. die Besprechung in der Wiener Theaterzeitung, Jg. 16 , Nr. 109 vom 11. September 1823,S. 435f.)</p>
                <p>Vermutlich ist die vermeintliche Ziffer 1 in der Tagesangabe lediglich eine Durchstreichung (ein darunter befindliches Zeichen ist erkennbar, allerdings nicht lesbar), 
                   so dass Kreutzers Datumsangabe als 6. September zu lesen ist;
                   d. h. er hatte den Brief wohl am Tag nach der Semiramis-Premiere (5. September) begonnen und am 6. September beendet.</p>
@@ -575,9 +573,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. Spohr-Correspondenz 1, 88</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_5a5185df8925805da6a4dd9d47314942"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_7f70a462a55db4a9e1b441f55b63e084"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_5a5185df8925805da6a4dd9d47314942">
+                                        <div class="collapse apparatus-details" id="source_7f70a462a55db4a9e1b441f55b63e084">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Siegelloch</li>
@@ -598,7 +596,7 @@
                                                             
                                                             <span class="tei_bibl">Rychnovsky, Ernst: „Konradin Kreutzer und Ludwig Spohr“ in: Neue Musik-Zeitung (Stuttgart: Grüninger) 35.Jg. (1914), Heft 4, S. 70</span>
                                                               
-                                                            <div class="collapse" id="source_5953acb05d306f0675d2e36e46ea6e6d">
+                                                            <div class="collapse" id="source_850acde1d643cb71bcd46cf29e3a3770">
                                                                 
                                                             </div>
                                                         </div>
@@ -675,13 +673,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_04" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_04"><span class="tei_lemma">„…  die schöne Melusine von Grillparzer“</span><a class="preview persons A000680" href="">Franz Grillparzer</a> hatte das für <a class="preview persons A000117" href="">Beethoven</a> geschriebene Libretto dem Komponisten im Frühjahr 1823 zugeschickt. <a class="preview persons A000117" href="">Beethoven</a> beschäftigte sich mit dem Text, führte die Arbeit jedoch nicht zu Ende. Erst 1832/33 vertonte <a class="preview persons A001077" href="">Conradin Kreutzer</a> die <span class="tei_hi_latintype"><span class="7710110811711510511097">Melusina</span></span> (UA 27. Februar 1833 am Königsstädtischen Theater in <a class="preview places A130002" href="">Berlin</a>).</div>
+                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_04"><span class="tei_lemma">„…  die schöne Melusine von Grillparzer“</span><a class="preview persons A000680" href="">Franz Grillparzer</a> hatte das für <a class="preview persons A000117" href="">Beethoven</a> geschriebene Libretto dem Komponisten im Frühjahr 1823 zugeschickt. <a class="preview persons A000117" href="">Beethoven</a> beschäftigte sich mit dem Text, führte die Arbeit jedoch nicht zu Ende. Erst 1832/33 vertonte <a class="preview persons A001077" href="">Conradin Kreutzer</a> die <span class="tei_hi_latintype"><span class="7710110811711510511097">Melusina</span></span> (UA 27. Februar 1833 am <a class="preview places A131280" href="">Königsstädtischen Theater</a> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>).</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_05" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_05" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_05"><span class="tei_lemma">„…  Sturz in der eisernen Pforte“</span><a class="preview persons A002094" href="">Joseph Weigls</a> letzte Oper <span class="tei_hi_italic"><span class="68105101321011051151011141101013280102111114116101">Die eiserne Pforte</span></span> erlebte im <a class="preview places A130004" href="">Wiener</a> Kärntnertortheater nur zwei Aufführungen: am 27. Februar und 1. März 1823.</div>
+                                                <div class="apparatusEntry col-11" id="C_05" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_05"><span class="tei_lemma">„…  Sturz in der eisernen Pforte“</span><a class="preview persons A002094" href="">Joseph Weigls</a> letzte Oper <span class="tei_hi_italic"><span class="68105101321011051151011141101013280102111114116101">Die eiserne Pforte</span></span> erlebte im <a class="preview places A130004" href="">Wiener</a> <a class="preview places A131250" href="">Kärntnertortheater</a> nur zwei Aufführungen: am 27. Februar und 1. März 1823.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -710,7 +708,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042070</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042070</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -770,6 +768,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -828,22 +829,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

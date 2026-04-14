@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031208" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Konzert zur Fastenzeit u.a. mit Beethovens Schlacht von Vittoria; Weber erwähnt die Anwesenheit von Hummel aus Wien, der das Werk unter Leitung von Beethoven gehört habe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Konzertübersicht der Fastenzeit 1816 in Prag (Teil 6 von 7)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031208","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031208","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Konzert zur Fastenzeit u.a. mit Beethovens Schlacht von Vittoria; Weber erwähnt die Anwesenheit von Hummel aus Wien, der das Werk unter Leitung von Beethoven gehört habe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Konzertübersicht der Fastenzeit 1816 in Prag (Teil 6 von 7)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031208","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031208","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031208/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031208/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031208/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -419,7 +416,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000899" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -462,7 +459,7 @@
                                         <p>Den 14. April im ständ. Theater zum Vortheil des Tonkünstler-Witwen- und Waisen-Instituts eine <span class="tei_hi_spaced_out"><span class="tei_app"><span class="tei_lem">große</span><a class="noteMarker" id="backref-d10e13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e13">Δ</a></span> musikalische Akademie</span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>.</p><br />
                                         <p>1) Große Symphonie von <span class="tei_hi_spaced_out"><a class="preview persons A001362" href="">Mozart</a></span>, die sogenannte englische aus <span class="tei_hi_antiqua">d ’dur</span>. Ein groß gedachtes, klar und mächtig einherschreitendes Werk, sehr brav ausgeführt unter Leitung des Hrn. Kapellmeister <span class="tei_hi_spaced_out"><a class="preview persons A002164" href="">Wittasek</a></span>.</p>
                                         <p>2) <span class="tei_hi_spaced_out">Oratorium</span>: <a class="preview works A020764" href="">Der große Tag des Vaterlandes</a>, komponirt bloß für Singstimmen und Blas-Instrumente von <span class="tei_hi_spaced_out"><span class="preview persons A006169" data-ref=""><span class="tei_sic">T</span><a class="noteMarker" id="backref-d10e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e52">‡</a>. Sauer</span></span>. Es verdient die ernstlichste Rüge, daß man bey der Wahl der <span class="tei_app"><span class="tei_lem">ausführenden</span><a class="noteMarker" id="backref-d10e56" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e56">Δ</a></span> Werke so ganz achtungslos gegen das Publikum verfahren kann, ihm ein in jeder Hinsicht so höchst elendes Machwerk vorzubringen. Man kann keine gemeinere Melodien, schalere Harmonie und sinnwidrige Behandlung des Textes finden, als hier aufgestellt ist, und die Geduld der Zuhörer war wirklich zu bewundern, daß sie ohne größere Zeichen des Mißfallens, es so hingehen ließen.</p><br />
-                                        <p>Desto wohlthuender war die gelungene Aufführung des kriegerischen Tongemäldes von <span class="tei_hi_spaced_out"><a class="preview persons A000117" href="">Beethoven</a></span>: <span class="tei_hi_spaced_out"><span class="preview works A020893" data-ref="">Die Schlacht <span class="tei_app"><span class="tei_lem">von</span><a class="noteMarker" id="backref-d10e72" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e72">Δ</a></span> Vittoria</span></span>. Die Vortheile, die das Locale bot, waren weislich angewendet worden, das Annähern der Truppen im Sinn des Komponisten zu verdeutlichen. Die Kanonen, Ratschen und Trommeln wirkten in der Folge wohl, aber sie waren so in den Hintergrund des Gemäldes gestellt, daß man im Stande war, dem musikalischen Gange zu folgen, und nicht ein alles verschlingender Lärm die Ohren der Zuhörer betäubte. Die Anwesenheit des Herrn Kapellmeister <span class="tei_hi_spaced_out"><a class="preview persons A000899" href="">Hummel</a></span> aus <span class="tei_hi_spaced_out"><a class="preview places A130004" href="">Wien</a></span>, der dieses Werk unter des Komponisten eigener Leitung gehört hatte, verschaffte dem dirigirenden Kapellmeister, Herrn <a class="preview persons A002068" href="">Karl Maria von <span class="tei_hi_spaced_out">Weber</span></a> Gelegenheit, mit Gewißheit alle <span class="tei_app"><span class="tei_lem"><span class="tei_sic">beabsichteten</span><a class="noteMarker" id="backref-d10e95" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e95">‡</a></span><a class="noteMarker" id="backref-d10e93" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e93">Δ</a></span> Effekte heraustreten zu machen, welches er mit der Liebe und dem Eifer that, welche er <span class="tei_app"><span class="tei_lem">für alles Schöne und</span><a class="noteMarker" id="backref-d10e100" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e100">Δ</a></span> Gute hegt. Das Ganze ging wirklich trefflich, und doch war die Wirkung auf das Publikum nicht groß, <span class="tei_app"><span class="tei_lem">wessen</span><a class="noteMarker" id="backref-d10e106" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e106">Δ</a></span> Ursache Ref. in dem sucht, <span class="tei_app"><span class="tei_lem">was er schon in der frühern Erwähnung</span><a class="noteMarker" id="backref-d10e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e112">Δ</a></span> ausgesprochen hat. Der Wirkung der Schlacht selbst scheint ihr zu schnelles Hereinbrechen zu schaden, weil keine Steigerung der Kraft mehr möglich ist, und ohne diese endlich Kälte zurückbleibt, trotz der trefflich kräftigen Figur des Sturmmarsches, der immer tonstufenweise fortrückt. Ob dieses Fortrücken sich nicht auch mit andern, in den Gränzen der Regeln liegenden Mitteln hätte bewerkstelligen lassen, läßt Ref. dahin gestellt seyn<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>.</p>
+                                        <p>Desto wohlthuender war die gelungene Aufführung des kriegerischen Tongemäldes von <span class="tei_hi_spaced_out"><a class="preview persons A000117" href="">Beethoven</a></span>: <span class="tei_hi_spaced_out"><span class="preview works A020893" data-ref="">Die Schlacht <span class="tei_app"><span class="tei_lem">von</span><a class="noteMarker" id="backref-d10e72" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e72">Δ</a></span> Vittoria</span></span>. Die Vortheile, die das Locale bot, waren weislich angewendet worden, das Annähern der Truppen im Sinn des Komponisten zu verdeutlichen. Die Kanonen, Ratschen und Trommeln wirkten in der Folge wohl, aber sie waren so in den Hintergrund des Gemäldes gestellt, daß man im Stande war, dem musikalischen Gange zu folgen, und nicht ein alles verschlingender Lärm die Ohren der Zuhörer betäubte. Die Anwesenheit des Herrn Kapellmeister <span class="tei_hi_spaced_out"><a class="preview persons A000899" href="">Hummel</a></span> aus <span class="tei_hi_spaced_out"><a class="preview places A130004" href="">Wien</a></span>, der dieses Werk unter des Komponisten eigener Leitung gehört hatte, verschaffte dem dirigirenden Kapellmeister, Herrn <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von <span class="tei_hi_spaced_out">Weber</span></a> Gelegenheit, mit Gewißheit alle <span class="tei_app"><span class="tei_lem"><span class="tei_sic">beabsichteten</span><a class="noteMarker" id="backref-d10e95" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e95">‡</a></span><a class="noteMarker" id="backref-d10e93" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e93">Δ</a></span> Effekte heraustreten zu machen, welches er mit der Liebe und dem Eifer that, welche er <span class="tei_app"><span class="tei_lem">für alles Schöne und</span><a class="noteMarker" id="backref-d10e100" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e100">Δ</a></span> Gute hegt. Das Ganze ging wirklich trefflich, und doch war die Wirkung auf das Publikum nicht groß, <span class="tei_app"><span class="tei_lem">wessen</span><a class="noteMarker" id="backref-d10e106" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e106">Δ</a></span> Ursache Ref. in dem sucht, <span class="tei_app"><span class="tei_lem">was er schon in der frühern Erwähnung</span><a class="noteMarker" id="backref-d10e112" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e112">Δ</a></span> ausgesprochen hat. Der Wirkung der Schlacht selbst scheint ihr zu schnelles Hereinbrechen zu schaden, weil keine Steigerung der Kraft mehr möglich ist, und ohne diese endlich Kälte zurückbleibt, trotz der trefflich kräftigen Figur des Sturmmarsches, der immer tonstufenweise fortrückt. Ob dieses Fortrücken sich nicht auch mit andern, in den Gränzen der Regeln liegenden Mitteln hätte bewerkstelligen lassen, läßt Ref. dahin gestellt seyn<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>.</p>
                                         <p>Das Haus war voll, und daher doch die Schlacht von Wirkung gewesen.
             </p>
                                     </div>
@@ -510,9 +507,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Kaiserlich Königlich privilegirte Prager Zeitung</span>, Jg. 3, Nr. 145 (24. Mai 1816), S. 579</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_66b82d43ef895049f82bf33c679cc3ec"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c7e12a625c78454386539847aaa35b54"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_66b82d43ef895049f82bf33c679cc3ec">
+                                        <div class="collapse apparatus-details" id="source_c7e12a625c78454386539847aaa35b54">
                                             
                                             
                                             <div>
@@ -525,7 +522,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 85–87 (Nr. 89)</span>
                                                               
-                                                            <div class="collapse" id="source_4f4ba8979cde5090d12e35bf320d389e">
+                                                            <div class="collapse" id="source_3c84113bcdbdd8b48ccb11dac13e6e08">
                                                                 
                                                             </div>
                                                         </div>
@@ -548,9 +545,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (VI), Bl. 44a/v–44b/r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a6ae1518e41ed91886927fb4c293683f"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_758b0b7705bf263d6550d8f88bd1ac66"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a6ae1518e41ed91886927fb4c293683f">
+                                        <div class="collapse apparatus-details" id="source_758b0b7705bf263d6550d8f88bd1ac66">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Incipit: „D: 14t. Aprill im St. Theater zum Vorth. des Tonkünstler Witwen und Waisen Institutes“; keine Datierung in A</li>
@@ -568,7 +565,7 @@
                                                             
                                                             <span>HellS II, S. 188–190</span>
                                                               
-                                                            <div class="collapse" id="source_dd82df020bb84674a70008d44440a9d1">
+                                                            <div class="collapse" id="source_d0f343691a673ad25c04be5f676dda15">
                                                                 
                                                             </div>
                                                         </div>
@@ -578,7 +575,7 @@
                                                             
                                                             <span>MMW III, S. 115–116</span>
                                                               
-                                                            <div class="collapse" id="source_b8cfe2f7bb8b834d978b8c181847fb74">
+                                                            <div class="collapse" id="source_16f4a1cd8a093a1db77d152dea175fec">
                                                                 
                                                             </div>
                                                         </div>
@@ -632,7 +629,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„…  läßt Ref. dahin gestellt seyn“</span><a class="preview persons A006565" href="">Johann Nepomuk von Chotek</a> äußerte sich in seinen Tagebüchern ebenso kritisch: „<span>[…]</span> auch <span class="tei_hi_latintype"><a class="preview persons A000117" href="">Beethovens</a></span> <a class="preview works A020893" href="">Schlacht von Vittoria</a> war nach dem vielen, das zu ihrem Lobe gesprochen war, zwar hübsch aber unter meinen Erwartungen.“ in <span class="preview biblio A110038" data-ref=""><span class="tei_hi_italic">Weberiana</span> 19 (2009)</span>, S. 59.</div>
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„…  läßt Ref. dahin gestellt seyn“</span><a class="preview persons A006565" href="">Johann Nepomuk von Chotek</a> äußerte sich in seinen Tagebüchern ebenso kritisch: „[…] auch <span class="tei_hi_latintype"><a class="preview persons A000117" href="">Beethovens</a></span> <a class="preview works A020893" href="">Schlacht von Vittoria</a> war nach dem vielen, das zu ihrem Lobe gesprochen war, zwar hübsch aber unter meinen Erwartungen.“ in <span class="preview biblio A110038" data-ref=""><span class="tei_hi_italic">Weberiana</span> 19 (2009)</span>, S. 59.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -726,7 +723,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031208</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031208</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -786,6 +783,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -844,22 +844,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

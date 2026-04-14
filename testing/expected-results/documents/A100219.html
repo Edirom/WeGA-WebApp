@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Weber erläutert die Schwierigkeiten, die sich bei der Personalzusammenstellung bei der deutschen Oper aufgrund der Vielfalt des Repertoires (Übersetzungen von ital. u. franz. Oper, Schauspiel) ergeben; es folgt Liste über die erforderlichen Sänger/Sängerinnen bzw. deren Fächer, ergänzt durch konkrete Personalvorschläge und ungefähre Gehaltsvorstellungen; des weiteren wäre ein eigener Chor samt Leiter sowie Korrepetitor vonnöten; wenn möglich ist auch ein Tanzmeister einzustellen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Zur Etablierung einer deutschen Opern-Gesellschaft in Dresden (Entwurf)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100219","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100219","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Weber erläutert die Schwierigkeiten, die sich bei der Personalzusammenstellung bei der deutschen Oper aufgrund der Vielfalt des Repertoires (Übersetzungen von ital. u. franz. Oper, Schauspiel) ergeben; es folgt Liste über die erforderlichen Sänger/Sängerinnen bzw. deren Fächer, ergänzt durch konkrete Personalvorschläge und ungefähre Gehaltsvorstellungen; des weiteren wäre ein eigener Chor samt Leiter sowie Korrepetitor vonnöten; wenn möglich ist auch ein Tanzmeister einzustellen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Zur Etablierung einer deutschen Opern-Gesellschaft in Dresden (Entwurf)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100219","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100219","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -223,7 +221,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente">Dokumente</a>
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100219/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100219/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100219/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -382,8 +380,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001754" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A000141" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001320" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000692" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -424,9 +420,11 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A004148" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002020" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000141" /> <span title="Anwählen, um &#34;Bergmann, Gottfried&#34; im Text zu markieren.">Bergmann, Gottfried</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -516,7 +514,7 @@
                                         <p>Von einer deutschen Opern Gesellschaft aber verlangt man nebst dem ihr Eigenthümlichen, auch die Vereinigung alles obigen, da die Werke der beiden genannten Nazionen in Uebersezzungen auf die deutsche Bühne gebracht werden.</p>
                                         <p>Hieraus folgt ein <span class="tei_del">vielfältigeres</span><a class="noteMarker" id="backref-d10e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e21">‡</a><span class="tei_add tei_hi_superscript">mehrzähligeres<a class="noteMarker" id="backref-d10e23" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e23">‡</a></span>, vielseitigeres, und daher schwer bis zu einem gewissen vollkommenen Grade zusammen zu bringendes Personale.</p>
                                         <p>Bei der Wahl deßelben ist besonders darauf <span class="tei_add tei_hi_superscript">zu sehen, daß<a class="noteMarker" id="backref-d10e28" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e28">‡</a></span> die Individualität der Mitglieder <span class="tei_del">zu sehen, als</span><a class="noteMarker" id="backref-d10e31" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e31">‡</a> sich zu vielseitiger Benuzzung <span class="tei_del">sich</span><a class="noteMarker" id="backref-d10e34" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e34">‡</a> darbiete. <span class="tei_del">da</span><a class="noteMarker" id="backref-d10e37" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e37">‡</a> Man <span class="tei_add tei_hi_superscript">kann<a class="noteMarker" id="backref-d10e40" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e40">‡</a></span> ein schönes Talent besizzen, und doch wenig brauchbar sein <span class="tei_del">kann</span><a class="noteMarker" id="backref-d10e44" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e44">‡</a>, welches sich bei <span class="tei_del">denen</span><a class="noteMarker" id="backref-d10e47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e47">‡</a> <span class="tei_add tei_hi_superscript">einigen<a class="noteMarker" id="backref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">‡</a></span> schon vorhandenen Künstlern bewährt.</p>
-                                        <p>man wird sich<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">‡</a> bey Fr. <a class="preview persons A001754" href=""><span class="tei_hi_latintype">v. Bidenfeld</span></a> nicht wohl eine <span class="tei_hi_latintype"><span class="809710910511097">Pamina</span></span> denken können, und H. <a class="preview persons A000141" href="">Bergmann</a> wird so wenig jemals einen <span class="tei_hi_latintype"><span class="6599104105108108">Achill</span></span> geben <span class="tei_del">können</span><a class="noteMarker" id="backref-d10e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e74">‡</a>, als Mad: <a class="preview persons A001320" href="">Miksch</a> eine <span class="tei_hi_latintype"><span class="7710110010197">Medea</span></span>.
+                                        <p>man wird sich<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">‡</a> bey Fr. <a class="preview persons A001754" href=""><span class="tei_hi_latintype">v. Bidenfeld</span></a> nicht wohl eine <span class="tei_hi_latintype"><span class="809710910511097">Pamina</span></span> denken können, und H. <a class="preview persons A000141" href="/exist/apps/WeGA-WebApp/de/A000141.html">Bergmann</a> wird so wenig jemals einen <span class="tei_hi_latintype"><span class="6599104105108108">Achill</span></span> geben <span class="tei_del">können</span><a class="noteMarker" id="backref-d10e74" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e74">‡</a>, als Mad: <a class="preview persons A001320" href="">Miksch</a> eine <span class="tei_hi_latintype"><span class="7710110010197">Medea</span></span>.
             </p>
                                         <p>Diese Bemerkung benimmt übrigens den Verdiensten und der Brauchbarkeit, ja Nothwendigkeit dieser Mitglieder nichts von ihrem Werthe, sondern soll blos die Nothwendigkeit darthun, das OpernPersonale auf einen gerechten Forderungen gemäßen Stand zu bringen. <span class="tei_pb" title="Seitenumbruch"> | </span></p>
                                         <div class="table-wrapper">
@@ -567,7 +565,7 @@
                                                     <tr>
                                                         <td><span class="tei_hi_underline1">7. Ein Zweiter <span class="tei_supplied"><span class="brackets_supplied">[</span>Tenorist<span class="brackets_supplied">]</span></span></span>.</td>
                                                         <td>Zu dergl: in geringem Grade.</td>
-                                                        <td>+ H. <a class="preview persons A000141" href="">Bergmann</a></td>
+                                                        <td>+ H. <a class="preview persons A000141" href="/exist/apps/WeGA-WebApp/de/A000141.html">Bergmann</a></td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
@@ -628,7 +626,7 @@
                                         <p>Zur <span class="tei_add tei_hi_superscript">vollständigen<a class="noteMarker" id="backref-d10e658" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e658">‡</a></span> Erreichung dieses Zwekes wäre nächst dem Sing Meister ein Tanz Meister <span class="tei_add tei_hi_superscript">nothwendig<a class="noteMarker" id="backref-d10e661" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e661">‡</a></span>, der ohne Ausnahme Alle in den ersten Elementen des theatralischen und mimischen Tanzes zu Ausschmückung einzelner Szenen, und <span class="tei_add tei_hi_superscript">zu<a class="noteMarker" id="backref-d10e664" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e664">‡</a></span> wirkungsvollen Gruppirungen, unterrichtete. <span class="tei_del">Zum</span><a class="noteMarker" id="backref-d10e667" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e667">‡</a> Diesem könnten <span class="tei_add">auch<a class="noteMarker" id="backref-d10e670" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e670">‡</a></span> <span class="tei_del">müßte eine Anzahl</span><a class="noteMarker" id="backref-d10e674" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e674">‡</a> Kinder zum Tanz Unterrichte gegeben werden, deren Anzahl sich alle 3 Jahre erneute und zwar in dem Maaße, daß die Eltern sich verpflichteten ihre Kinder für den <span class="tei_add">zu<a class="noteMarker" id="backref-d10e677" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e677">‡</a></span> genießenden Unterricht die ersten 3 Jahre unentgeltlich beim Theater figuriren zu laßen, die nächsten 3 Jahre aber gegen ein bestimmtes geringes <span class="tei_hi_latintype">Quantum</span>. Die im nächsten <span class="tei_del">Jahre</span><a class="noteMarker" id="backref-d10e683" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e683">‡</a> <span class="tei_add tei_hi_superscript">Termine<a class="noteMarker" id="backref-d10e686" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e686">‡</a></span> eintretenden würden dann die <span class="tei_add tei_hi_superscript">später<a class="noteMarker" id="backref-d10e689" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e689">‡</a></span> Abgehenden wieder <span class="tei_add tei_hi_superscript">in gleichem Maaße<a class="noteMarker" id="backref-d10e693" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e693">‡</a></span> ersezzen, und somit immer die Hälfte unentgeltlich benuzet werden können.</p>
                                         <p class="tei_closer textAlign-left">
                <span class="tei_dateline textAlign-left"><a class="preview places A130003" href="">Dresden</a> d: 24<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">May</span> 1817.
-                  <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">CMvW</a></span></span>
+                  <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">CMvW</a></span></span>
                   <span class="tei_segBlock textAlign-left"><span class="tei_hi_underline1">an den H. HofMarschall <a class="preview persons A002020" href="">Graf <span class="tei_hi_latintype">Vizthum</span></a> abgegeben</span>.</span></span></p>
                                     </div>
                                 </div>
@@ -686,9 +684,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (VII), Bl. 52a/v–52b/v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c188fd6d24c20dfa7c33336c91a8c0ba"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ac09e2746df81ba12707e26e1729f566"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_c188fd6d24c20dfa7c33336c91a8c0ba">
+                                        <div class="collapse apparatus-details" id="source_ac09e2746df81ba12707e26e1729f566">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>auf Bl. 1v bis Bl. 2v von DBl., Format 33,4x20,6 cm, WZ: bekröntes Wappen?, Mitte nicht erkennbar, Gegenmarke: KIRCHBERG, Kettlinien ca. 2,5–2,7 cm 
@@ -706,7 +704,7 @@
                                                             
                                                             <span>HellS III, S. 18–24 (gegenüber Entwurf gekürzt und teilweise modifiziert)</span>
                                                               
-                                                            <div class="collapse" id="source_23bab685d491cf2cf02d24bfca60d949">
+                                                            <div class="collapse" id="source_89bbf97a25481a43dd30eb62e8b8262d">
                                                                 
                                                             </div>
                                                         </div>
@@ -716,7 +714,7 @@
                                                             
                                                             <span>MMW II, S. 84–88</span>
                                                               
-                                                            <div class="collapse" id="source_5593dc00cd945eb577b76d2ba8bcea88">
+                                                            <div class="collapse" id="source_d501048886c9579bbdb2e3837d1c1e8b">
                                                                 
                                                             </div>
                                                         </div>
@@ -726,7 +724,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 39–43 (Nr. 116)</span>
                                                               
-                                                            <div class="collapse" id="source_a3760135621715e094315212f4dae51f">
+                                                            <div class="collapse" id="source_5cecd98919627b199e845b7986518fb0">
                                                                 
                                                             </div>
                                                         </div>
@@ -1322,7 +1320,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100219</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100219</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -1382,6 +1380,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1440,22 +1441,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

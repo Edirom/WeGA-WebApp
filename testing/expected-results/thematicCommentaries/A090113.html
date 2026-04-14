@@ -12,6 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090113" />
@@ -41,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Während seiner Dresdner Jahre absolvierte Weber nur noch wenige Konzertreisen, und nicht bei allen dieser Reisen stand das Konzertieren im …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Webers Konzertreisen von Dresden aus in den Jahren 1817 bis 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090113","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090113","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Während seiner Dresdner Jahre absolvierte Weber nur noch wenige Konzertreisen, und nicht bei allen dieser Reisen stand das Konzertieren im …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Webers Konzertreisen von Dresden aus in den Jahren 1817 bis 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090113","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090113","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"Ziegler, Frank","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005","sameAs":"https://d-nb.info/gnd/132426455"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -218,7 +217,7 @@
                         
                         <ol class="breadcrumb">
                             <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                            <li><span></span></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare">Themenkommentare</a></li>
                             <li><span>A090113</span></li>
                         </ol>
@@ -286,7 +285,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090113/backlinks.html">Rückverweise</a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090113/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090113/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -305,8 +304,6 @@
                                     <input type="checkbox" name="options" value="A000809" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000777" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001816" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -351,8 +348,6 @@
                                     <input type="checkbox" name="options" value="A009478" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002155" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001495" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -422,9 +417,13 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009265" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A001809" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000176" /> <span title="Anwählen, um &#34;Blum, Carl&#34; im Text zu markieren.">Blum, Carl</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A001809" /> <span title="Anwählen, um &#34;Sellner, Joseph&#34; im Text zu markieren.">Sellner, Joseph</span> 
+                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;Jähns, Friedrich Wilhelm&#34; im Text zu markieren.">Jähns, Friedrich Wilhelm</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002085" /> <span title="Anwählen, um &#34;Weber, Max Maria von&#34; im Text zu markieren.">Weber, Max Maria von</span> 
                                 </label>
@@ -437,8 +436,6 @@
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020040" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020062" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -453,6 +450,8 @@
                                     <input type="checkbox" name="options" value="A020423" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020210" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A020467" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020075" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -536,9 +535,9 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020085" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020081" /> <span title="Anwählen, um &#34;Gute Nacht Bald heißt es wieder Gute Nacht!&#34; im Text zu markieren.">Gute Nacht Bald heißt es wieder Gute Nacht!</span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A020467" /> <span title="Anwählen, um &#34;Tancredi&#34; im Text zu markieren.">Tancredi</span> 
+                                    <input type="checkbox" name="options" value="A020081" /> <span title="Anwählen, um &#34;Gute Nacht Bald heißt es wieder Gute Nacht!&#34; im Text zu markieren.">Gute Nacht Bald heißt es wieder Gute Nacht!</span> 
                                 </label>
                             </div>
                         </div>
@@ -548,19 +547,13 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130015" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130103" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130016" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130199" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -576,7 +569,13 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130011" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131379" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131376" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130112" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131072" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130049" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -594,9 +593,29 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130270" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130989" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130046" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130009" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131065" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131194" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131046" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131127" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131143" /> <span title="Anwählen, um &#34;Casino&#34; im Text zu markieren.">Casino</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;Mannheim&#34; im Text zu markieren.">Mannheim</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A131060" /> <span title="Anwählen, um &#34;Schauspielhaus (neues)&#34; im Text zu markieren.">Schauspielhaus (neues)</span> 
                                 </label>
                             </div>
                         </div>
@@ -620,28 +639,28 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d12e2">
-                                    <p>Während seiner Dresdner Jahre absolvierte Weber nur noch wenige Konzertreisen, und nicht bei allen dieser Reisen stand das Konzertieren im Mittelpunkt: Die Fahrten nach <a class="preview places A130002" href="">Berlin</a> (1821) und <a class="preview places A130004" href="">Wien</a> (1822) galten in erster Linie der Uraufführung des <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> bzw. der Vorbereitung der <span class="tei_hi_italic"><a class="preview works A020043" href="">Euryanthe</a></span>-Einstudierung. Grund der Reise Ende 1817 war nach der Eheschließung mit <a class="preview persons A000213" href="">Caroline, geb. Brandt</a>, die Begleitung der Schwiegermutter <a class="preview persons A000214" href="">C. S. H. Brandt</a> nach <a class="preview places A130010" href="">Mannheim</a>, wo sie nachfolgend bei ihrem Sohn <a class="preview persons A000217" href="">Louis</a> lebte. Zur Entlastung der Reisekasse<a class="noteMarker arabic" id="backref-footnote_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_01">1</a> trugen auf der Rückfahrt die Auftritte im Dezember 1817 (in <a class="preview places A130015" href="">Darmstadt</a>, <a class="preview places A130103" href="">Gießen</a> und <a class="preview places A130016" href="">Gotha</a><a class="noteMarker arabic" id="backref-footnote_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_02">2</a>) bei.</p>
-                                    <p>Konzertreisen im engeren Sinne waren lediglich der Abstecher nach <a class="preview places A130005" href="">Leipzig</a> im April 1817 und vor allem die große Fahrt im Sommer und Herbst 1820 durch Mittel- und Norddeutschland nach <a class="preview places A130199" href="">Kopenhagen</a> mit zwölf öffentlichen und zwei Hof-Konzerten. Ursprünglich war für den August 1820 die Uraufführung des <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> in <a class="preview places A130002" href="">Berlin</a> geplant, von dort wollte Weber nach <a class="preview places A130199" href="">Kopenhagen</a> weiterreisen. Die mehrfache Verschiebung des Premierentermins der Oper eröffnete größeren Spielraum für eine reine „Kunstreise“; sie kann – gerade im Vergleich zu Webers weit weniger erfolgreicher Konzertreise von 1807<a class="noteMarker arabic" id="backref-footnote_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_03">3</a> – als Musterbeispiel einer sorgfältig vorbereiteten Konzerttournee gelten und wurde von einem Zeitzeugen mit dem „Triumphzuge eines römischen Imperators“ verglichen<a class="noteMarker arabic" id="backref-footnote_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_04">4</a>. Webers lange Erfahrungen auf diesem Gebiet, die bereits 1810 bis 1812 in das (unvollendete) Projekt eines Handbuchs für reisende Musiker<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090009.html">T</a> gemündet waren, machten sich bezahlt: Schon im Vorfeld hatte er zahlreiche Empfehlungsschreiben gesammelt<a class="noteMarker arabic" id="backref-footnote_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_05">5</a>, die ihm an für ihn unbekannten Orten wichtige Türen bei einflussreichen Familien öffnen konnten. Mittels Korrespondenz mit Partnern vor Ort konnte die Reiseplanung bezüglich Terminierung, Mitwirkenden und Repertoire optimiert werden. Die aufzuführenden Kompositionen waren entsprechend der Möglichkeiten vor Ort auszuwählen; an kleineren Orten ohne Orchester waren nur kammermusikalische Darbietungen möglich. Die ursprünglich geplante Reiseroute musste geändert werden, da die Abwesenheit <a class="preview persons A000809" href="">J. S. Hermstedts</a> ein Konzert in <a class="preview places A130116" href="">Sondershausen</a> unmöglich machte; statt dessen wurde der Kurort <a class="preview places A130173" href="">Alexisbad</a> im Harz als Ausweichstation gewählt<a class="noteMarker arabic" id="backref-footnote_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_06">6</a>. Trotz gewissenhafter Vorbereitung war das Ergebnis der Planungen freilich nicht in jedem Fall erfolgreich: Die Messe in <a class="preview places A130021" href="">Braunschweig</a> bewirkte, dass der dortige Konzertauftritt statt auf der Hin- auf der Rückreise stattfand<a class="noteMarker arabic" id="backref-footnote_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_07">7</a>, während ein beabsichtigtes Konzert in <a class="preview places A130018" href="">Hannover</a> nicht zustande kam, da sich die Rückreise verzögerte, nachdem der Aufenthalt in <a class="preview places A130199" href="">Kopenhagen</a> länger dauerte als zunächst erwartet.</p>
-                                    <p>Wie üblich präsentierte sich Weber in seinen Konzerten sowohl als Komponist als auch als Interpret (Pianist / Dirigent), allerdings ließen ihm die überhand nehmenden dienstlichen Verpflichtungen in Dresden und seine Kompositionsarbeiten immer weniger Zeit für ein regelmäßiges Üben am Klavier. Das dürfte wohl, neben zunehmenden gesundheitlichen Problemen, der wesentliche Grund dafür sein, dass Weber nach dem Konzert am 19. März 1822 in <a class="preview places A130004" href="">Wien</a> kaum noch öffentlich als Pianist in Erscheinung trat. Abgesehen von zwei Hofkonzerten am 20. und 23. April 1823 in <a class="preview places A130003" href="">Dresden</a><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090148.html">T</a> und einem Kurzauftritt als Klavierbegleiter in <a class="preview places A130011" href="">London</a> am 26. Mai 1826 war er in der Regel nur noch im privaten Umfeld oder in geschlossenen Zirkeln am Klavier zu erleben. Ob die eher kritischen Stimmen zu besagtem <a class="preview places A130004" href="">Wiener</a> Auftritt auf ein Nachlassen der pianistischen Fähigkeiten oder vielmehr auf unterschiedliche ästhetische Sichtweisen hindeuten, ist mit Sicherheit nicht zu klären, allerdings deuten die übereinstimmend begeisterten Stimmen aus <a class="preview places A130002" href="">Berlin</a> 1821 eher auf Letzteres hin<a class="noteMarker arabic" id="backref-footnote_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_08">8</a>.</p>
+                                    <p>Während seiner Dresdner Jahre absolvierte Weber nur noch wenige Konzertreisen, und nicht bei allen dieser Reisen stand das Konzertieren im Mittelpunkt: Die Fahrten nach <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> (1821) und <a class="preview places A130004" href="">Wien</a> (1822) galten in erster Linie der Uraufführung des <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> bzw. der Vorbereitung der <span class="tei_hi_italic"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a></span>-Einstudierung. Grund der Reise Ende 1817 war nach der Eheschließung mit <a class="preview persons A000213" href="">Caroline, geb. Brandt</a>, die Begleitung der Schwiegermutter <a class="preview persons A000214" href="">C. S. H. Brandt</a> nach <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a>, wo sie nachfolgend bei ihrem Sohn <a class="preview persons A000217" href="">Louis</a> lebte. Zur Entlastung der Reisekasse<a class="noteMarker arabic" id="backref-footnote_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_01">1</a> trugen auf der Rückfahrt die Auftritte im Dezember 1817 (in <a class="preview places A130015" href="">Darmstadt</a>, <a class="preview places A130103" href="">Gießen</a> und <a class="preview places A130016" href="">Gotha</a><a class="noteMarker arabic" id="backref-footnote_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_02">2</a>) bei.</p>
+                                    <p>Konzertreisen im engeren Sinne waren lediglich der Abstecher nach <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> im April 1817 und vor allem die große Fahrt im Sommer und Herbst 1820 durch Mittel- und Norddeutschland nach <a class="preview places A130199" href="">Kopenhagen</a> mit zwölf öffentlichen und zwei Hof-Konzerten. Ursprünglich war für den August 1820 die Uraufführung des <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> geplant, von dort wollte Weber nach <a class="preview places A130199" href="">Kopenhagen</a> weiterreisen. Die mehrfache Verschiebung des Premierentermins der Oper eröffnete größeren Spielraum für eine reine „Kunstreise“; sie kann – gerade im Vergleich zu Webers weit weniger erfolgreicher Konzertreise von 1807<a class="noteMarker arabic" id="backref-footnote_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_03">3</a> – als Musterbeispiel einer sorgfältig vorbereiteten Konzerttournee gelten und wurde von einem Zeitzeugen mit dem „Triumphzuge eines römischen Imperators“ verglichen<a class="noteMarker arabic" id="backref-footnote_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_04">4</a>. Webers lange Erfahrungen auf diesem Gebiet, die bereits 1810 bis 1812 in das (unvollendete) Projekt eines Handbuchs für reisende Musiker<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090009.html">T</a> gemündet waren, machten sich bezahlt: Schon im Vorfeld hatte er zahlreiche Empfehlungsschreiben gesammelt<a class="noteMarker arabic" id="backref-footnote_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_05">5</a>, die ihm an für ihn unbekannten Orten wichtige Türen bei einflussreichen Familien öffnen konnten. Mittels Korrespondenz mit Partnern vor Ort konnte die Reiseplanung bezüglich Terminierung, Mitwirkenden und Repertoire optimiert werden. Die aufzuführenden Kompositionen waren entsprechend der Möglichkeiten vor Ort auszuwählen; an kleineren Orten ohne Orchester waren nur kammermusikalische Darbietungen möglich. Die ursprünglich geplante Reiseroute musste geändert werden, da die Abwesenheit <a class="preview persons A000809" href="">J. S. Hermstedts</a> ein Konzert in <a class="preview places A130116" href="">Sondershausen</a> unmöglich machte; statt dessen wurde der Kurort <a class="preview places A130173" href="">Alexisbad</a> im Harz als Ausweichstation gewählt<a class="noteMarker arabic" id="backref-footnote_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_06">6</a>. Trotz gewissenhafter Vorbereitung war das Ergebnis der Planungen freilich nicht in jedem Fall erfolgreich: Die Messe in <a class="preview places A130021" href="">Braunschweig</a> bewirkte, dass der dortige Konzertauftritt statt auf der Hin- auf der Rückreise stattfand<a class="noteMarker arabic" id="backref-footnote_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_07">7</a>, während ein beabsichtigtes Konzert in <a class="preview places A130018" href="">Hannover</a> nicht zustande kam, da sich die Rückreise verzögerte, nachdem der Aufenthalt in <a class="preview places A130199" href="">Kopenhagen</a> länger dauerte als zunächst erwartet.</p>
+                                    <p>Wie üblich präsentierte sich Weber in seinen Konzerten sowohl als Komponist als auch als Interpret (Pianist / Dirigent), allerdings ließen ihm die überhand nehmenden dienstlichen Verpflichtungen in Dresden und seine Kompositionsarbeiten immer weniger Zeit für ein regelmäßiges Üben am Klavier. Das dürfte wohl, neben zunehmenden gesundheitlichen Problemen, der wesentliche Grund dafür sein, dass Weber nach dem Konzert am 19. März 1822 in <a class="preview places A130004" href="">Wien</a> kaum noch öffentlich als Pianist in Erscheinung trat. Abgesehen von zwei Hofkonzerten am 20. und 23. April 1823 in <a class="preview places A130003" href="">Dresden</a><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090148.html">T</a> und einem Kurzauftritt als Klavierbegleiter in <a class="preview places A130011" href="">London</a> am 26. Mai 1826 war er in der Regel nur noch im privaten Umfeld oder in geschlossenen Zirkeln am Klavier zu erleben. Ob die eher kritischen Stimmen zu besagtem <a class="preview places A130004" href="">Wiener</a> Auftritt auf ein Nachlassen der pianistischen Fähigkeiten oder vielmehr auf unterschiedliche ästhetische Sichtweisen hindeuten, ist mit Sicherheit nicht zu klären, allerdings deuten die übereinstimmend begeisterten Stimmen aus <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> 1821 eher auf Letzteres hin<a class="noteMarker arabic" id="backref-footnote_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote_08">8</a>.</p>
                                 </div>
                                 <div id="d12e188">
                                     <h2 id="d12e189">Konzertnachweise</h2>
                                     <div id="d12e191">
                                         <h3 id="d12e192">8. April 1817</h3>
-                                        <p><a class="preview places A130005" href="">Leipzig</a> (Gewandhaus) <br />Konzertgeber: Extrakonzert mit aufgehobenem Abonnement, veranstaltet von der Konzertdirektion</p>
+                                        <p><a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> (<a class="preview places A131379" href="">Gewandhaus</a>) <br />Konzertgeber: Extrakonzert mit aufgehobenem Abonnement, veranstaltet von der Konzertdirektion</p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li><a class="preview persons A000777" href="">Joseph Haydn</a>: Londoner Sinfonie D-Dur / G-Dur</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020062" href="">Szene und Arie</a>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020062" href="">Szene und Arie</a>
                        <br />Solistin: <a class="preview persons A001816" href="">A. M. Sessi-Neumann</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020208" href="">Klavierkonzert Nr. 2 Es-Dur</a> 
-                       <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020018" href=""><span class="tei_hi_italic">Kampf und Sieg</span></a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020208" href="">Klavierkonzert Nr. 2 Es-Dur</a> 
+                       <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020018" href=""><span class="tei_hi_italic">Kampf und Sieg</span></a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeigen:</li>
                                             <li><a class="preview writings A032493" href=""><span class="tei_hi_italic">Leipziger Zeitung</span>, 1817, Nr. 64 (31. März 1817), S. 696</a></li>
-                                            <li><a class="preview writings A032309" href=""><span class="tei_hi_italic">Allgnädigst privilegirtes Leipziger Tagblatt</span>, Nr. 97 (7. April 1817), S. 392</a></li>
+                                            <li><a class="preview writings A032309" href=""><span class="tei_hi_italic">Allergnädigst privilegirtes Leipziger Tagblatt</span>, Nr. 97 (7. April 1817), S. 392</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Zettel:</li>
@@ -651,7 +670,7 @@
                                             <li class="listTitle">Besprechungen:</li>
                                             <li><a class="preview writings A030117" href=""><span class="tei_hi_italic">Abend-Zeitung</span>, Jg. 1, Nr. 99 (25. April 1817)</a></li>
                                             <li><a class="preview writings A032338" href=""><span class="tei_hi_italic">Morgenblatt für gebildete Stände</span>,  Jg. 11, Nr. 117 (16. Mai 1817), S. 468</a></li>
-                                            <li><a class="preview writings A030015" href="">AmZ, Jg. 19, Nr. 21 (21. Mai 1817), Sp. 353-365</a></li>
+                                            <li><a class="preview writings A030015" href="">AmZ, Jg. 19, Nr. 21 (21. Mai 1817), Sp. 353–365</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -659,31 +678,35 @@
                                             <li><a class="preview diaries A060097" href="">Weber-Tagebuch</a> (Probe am <span class="tei_date">7. April 1817</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e283">
-                                        <h3 id="d12e284">1. Dezember 1817</h3>
-                                        <p><a class="preview places A130015" href="">Darmstadt</a> <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e286">
+                                        <h3 id="d12e287">1. Dezember 1817</h3>
+                                        <p><a class="preview places A130015" href="">Darmstadt</a> (Saal des <span class="preview places A131143" data-ref="/exist/apps/WeGA-WebApp/de/A131143.html">Gesellschaftshauses</span>)<br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_simpleList">
                                             <li class="listTitle">Programm:</li>
                                             <li>
                         <ul class="tei_list">
                                                     <li class="listTitle">I. Teil</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020203" href="">Klavierquartett</a>
-                                <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020203" href="">Klavierquartett</a>
+                                <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                     <li>lt. Konzertzettel eine Arie von (Christian oder Carl?) Cannabich, allerdings notierte Weber im <a class="preview diaries A060335" href="">Tagebuch</a> statt dessen Arien aus <span class="tei_hi_italic"><a class="preview works A020879" href="">Griselda</a></span> und <span class="tei_hi_italic"><a class="preview works A020423" href="">Sargino</a></span> (möglicherweise nachträgliche Programmänderung)</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020210" href="">Sonate Nr. 1 C-Dur</a>
-                                <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020210" href="">Sonate Nr. 1 C-Dur</a>
+                                <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                             <li>
                          <ul class="tei_list">
                                                     <li class="listTitle">II. Teil</li>
                                                     <li>lt. Konzertzettel Variationen für Flöte, allerdings notierte Weber im <a class="preview diaries A060335" href="">Tagebuch</a> statt dessen einen deklamatorischen Beitrag von <a class="preview persons A000213" href="">Caroline von Weber</a> (möglicherweise nachträgliche Programmänderung)</li>
-                                                    <li>Freie Fantasie (über <span class="tei_hi_italic"><a class="preview works A020467" href="/exist/apps/WeGA-WebApp/de/A001616/Werke/A020467.html">Tancredi</a></span>?)
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020075" href=""><span class="tei_hi_italic">Schwertlied</span></a>, <a class="preview works A020079" href=""><span class="tei_hi_italic">Gebet</span></a>, <a class="preview works A020074" href=""><span class="tei_hi_italic">Lützows wilde Jagd</span></a> 
+                                                    <li>Freie Fantasie (über <span class="tei_hi_italic"><a class="preview works A020467" href="">Tancredi</a></span>?)
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020075" href=""><span class="tei_hi_italic">Schwertlied</span></a>, <a class="preview works A020079" href=""><span class="tei_hi_italic">Gebet</span></a>, <a class="preview works A020074" href=""><span class="tei_hi_italic">Lützows wilde Jagd</span></a> 
                                  <br />Mitwirkende: 16 Männerstimmen</li>
                                                 </ul>
                      </li>
+                                        </ul>
+                                        <ul class="tei_list">
+                                            <li class="listTitle">Anzeige:</li>
+                                            <li><a class="preview writings A033437" href=""><span class="tei_hi_italic">Großherzoglich Hessische Zeitung auf das Jahr 1817</span>, Nr. 143 (29. November 1817), S. 1376</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Zettel:</li>
@@ -695,45 +718,45 @@
                                             <li><a class="preview diaries A060334" href="">Weber-Tagebuch</a> (<span class="tei_date">Probe am 30. November 1817</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e407">
-                                        <h3 id="d12e408">5. Dezember 1817</h3>
-                                        <p><a class="preview places A130103" href="">Gießen</a> <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e421">
+                                        <h3 id="d12e422">5. Dezember 1817</h3>
+                                        <p><a class="preview places A130103" href="">Gießen</a> <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li>(Andreas oder Bernhard?) <span class="8211110998101114103">Romberg</span>: Symphonie (ohne Rondo)</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020210" href="">Sonate Nr. 1 C-Dur</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020210" href="">Sonate Nr. 1 C-Dur</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Rondo (gemeint wohl Romanze des Cherubin) aus <a class="preview works A020567" href=""><span class="tei_hi_italic">Die Hochzeit des Figaro</span></a>
                          <br />Solistin: <a class="preview persons A000213" href="">C. v. Weber</a></li>
                                             <li>(Andreas oder Bernhard?) <span class="8211110998101114103">Romberg</span>: Symphonie (Rondo)</li>
-                                            <li>Freie Phantasie und <a class="preview persons A002068" href="">C. M. v. Weber</a>: <span class="tei_hi_italic"><a class="preview works A020331" href="">Grande Polonaise</a></span>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li>Freie Phantasie und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <span class="tei_hi_italic"><a class="preview works A020331" href="">Grande Polonaise</a></span>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li>Unbekannt: Deklamation 
                          <br />Solist: <a class="preview persons A000213" href="">C. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a> (?): Lieder zur Gitarre
-                         <br />Solisten: vermutlich <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="">C. M. von Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a> (?): Lieder zur Gitarre
+                         <br />Solisten: vermutlich <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quelle:</li>
                                             <li><a class="preview diaries A060339" href="">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">5. Dezember 1817</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e495">
-                                        <h3 id="d12e496">11. Dezember 1817</h3>
-                                        <p><a class="preview places A130016" href="">Gotha</a> (Schloß Friedenstein) <br />Hofkonzert</p>
+                                    <div id="d12e509">
+                                        <h3 id="d12e510">11. Dezember 1817</h3>
+                                        <p><a class="preview places A130016" href="">Gotha</a> (Schloss <a class="preview places A131376" href="">Friedenstein</a>) <br />Hofkonzert</p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li><a class="preview persons A001599" href="">A. Romberg</a>: Ouvertüre</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1 C-Dur</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1 C-Dur</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Romanze des Cherubin aus <a class="preview works A020567" href=""><span class="tei_hi_italic">Die Hochzeit des Figaro</span></a> 
                          <br />Solistin: <a class="preview persons A000213" href="">C. v. Weber</a></li>
                                             <li>Unbekannt: Deklamation 
                          <br />Solistin: <a class="preview persons A000213" href="">C. v. Weber</a></li>
                                             <li>Freie Phantasie                         
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>(?): Lieder                         
-                         <br />Solisten: vermutlich <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="">C. M. von Weber</a></li>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>(?): Lieder                         
+                         <br />Solisten: vermutlich <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -741,23 +764,23 @@
                                             <li>Eintrag im Gothaer Fourierbuch: „ist im Spiegelsaal nach gehaltenen [sic] <span class="tei_hi_latintype">Concert</span>, an Spieltischen gespeißet worden.“</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e575">
-                                        <h3 id="d12e576">31. Juli 1820</h3>
-                                        <p><a class="preview places A130112" href="">Halle</a> (Ratskeller) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e592">
+                                        <h3 id="d12e593">31. Juli 1820</h3>
+                                        <p><a class="preview places A130112" href="">Halle</a> (<a class="preview places A131072" href="">Ratskeller</a>) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: zwei Ouvertüren (wohl zum <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> und <span class="tei_hi_italic"><a class="preview works A020227" href="">Preciosa</a></span>, möglicherweise auch die <span class="tei_hi_italic"><a class="preview works A020251" href="">Jubel-Ouvertüre</a></span>)</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert (wohl Nr. 1)</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: zwei Ouvertüren (wohl zum <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> und <span class="tei_hi_italic"><a class="preview works A020227" href="">Preciosa</a></span>, möglicherweise auch die <span class="tei_hi_italic"><a class="preview works A020251" href="">Jubel-Ouvertüre</a></span>)</li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert (wohl Nr. 1)</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li>Klaviersoli (wohl Freie Phantasie und <a class="preview works A020335" href=""><span class="tei_hi_italic">Polacca brillante</span></a>)
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Männerchöre (u. a. <a class="preview works A020082" href=""><span class="tei_hi_italic">Freiheitslied</span></a>, wohl auch <a class="preview works A020081" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020081.html"><span class="tei_hi_italic">Gute Nacht</span></a> und <a class="preview works A020083" href=""><span class="tei_hi_italic">Ermunterung</span></a>)
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Männerchöre (u. a. <a class="preview works A020082" href=""><span class="tei_hi_italic">Freiheitslied</span></a>, wohl auch <a class="preview works A020081" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020081.html"><span class="tei_hi_italic">Gute Nacht</span></a> und <a class="preview works A020083" href=""><span class="tei_hi_italic">Ermunterung</span></a>)
                          <br />Mitwirkende: Studenten (u. a. <a class="preview persons A001191" href="">C. Loewe</a>, <a class="preview persons A000FEA" href="">F. Oelschläger</a>)</li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeigen:</li>
                                             <li><a class="preview writings A031893" href=""><span class="tei_hi_italic">Hallisches patriotisches Wochenblatt zur Beförderung gemeinnütziger Kenntnisse und wohlthätiger Zwecke</span>, Jg. 21, Nr. 29 (22. Juli 1820), S. 644</a></li>
-                                            <li><a class="preview writings A032003" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032003.html"><span class="tei_hi_italic">Hallisches patriotisches Wochenblatt zur Beförderung gemeinnütziger Kenntnisse und wohlthätiger Zwecke</span>, Jg. 1820, 3. Quartal, 30. Stück (29. Juli 1820), S. 664</a></li>
+                                            <li><a class="preview writings A032003" href=""><span class="tei_hi_italic">Hallisches patriotisches Wochenblatt zur Beförderung gemeinnütziger Kenntnisse und wohlthätiger Zwecke</span>, Jg. 1820, 3. Quartal, 30. Stück (29. Juli 1820), S. 664</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -766,47 +789,47 @@
                                             <li><a class="preview letters A041636" href="">Brief</a> Webers an <a class="preview persons A000213" href="">Caroline von Weber</a> vom 14. September 1820</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e686">
-                                        <h3 id="d12e687">6. August 1820</h3>
-                                        <p><a class="preview places A130173" href="">Alexisbad</a> <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e706">
+                                        <h3 id="d12e707">6. August 1820</h3>
+                                        <p><a class="preview places A130173" href="">Alexisbad</a> <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020203" href="">Klavierquartett</a>
-                         <br />Solisten: <a class="preview persons A002068" href="">C. M. v. Weber</a>, Musiker des Stadtmusikanten <a class="preview persons A009051" href="">J. H. Rose</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020203" href="">Klavierquartett</a>
+                         <br />Solisten: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>, Musiker des Stadtmusikanten <a class="preview persons A009051" href="">J. H. Rose</a></li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Romanze des <span class="6710410111411798105110">Cherubin</span> aus <a class="preview works A020567" href=""><span class="tei_hi_italic">Die Hochzeit des Figaro</span></a>
                          <br />Solistin: <a class="preview persons A000213" href="">C. v. Weber</a></li>
                                             <li><a class="preview persons A00168E" href="">G. Piantanida</a>: <a class="preview works A021432" href="">Arietta „Son Gelsomino son piccol fiore“</a>
-                         <br />Solisten: <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020235" href="">Silvana-Variationen</a>
-                         <br />Solisten: vermutlich <a class="preview persons A001607" href="">J. D. Rose</a>, <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                         <br />Solisten: <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020235" href="">Silvana-Variationen</a>
+                         <br />Solisten: vermutlich <a class="preview persons A001607" href="">J. D. Rose</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A002025" href="">G. J. Vogler</a>: <a class="preview works A021586" href="">Psalm 132 „Ecce quam bonum“</a>
-                         <br />Mitwirkende: 4 Männerstimmen, vermutlich u. a. <a class="preview persons A008096" href="">C. Happich</a>, Klavier: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020016" href=""><span class="tei_hi_italic">Lebenslied</span></a>
-                         <br />Mitwirkende: 4 Männerstimmen, vermutlich u. a. <a class="preview persons A008096" href="">C. Happich</a>, Klavier: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020022" href="">„Schöne Ahnung ist erglommen“</a>                         
-                         <br />Mitwirkende: 4 Männerstimmen, vermutlich u. a. <a class="preview persons A008096" href="">C. Happich</a>, Klavier: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li>Freie Phantasie und <a class="preview persons A002068" href="">C. M. v. Weber</a>: Rondo aus der <a class="preview works A020210" href="">Sonate Nr. 1</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                         <br />Mitwirkende: 4 Männerstimmen, vermutlich u. a. <a class="preview persons A008096" href="">C. Happich</a>, Klavier: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020016" href=""><span class="tei_hi_italic">Lebenslied</span></a>
+                         <br />Mitwirkende: 4 Männerstimmen, vermutlich u. a. <a class="preview persons A008096" href="">C. Happich</a>, Klavier: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020022" href="">„Schöne Ahnung ist erglommen“</a>                         
+                         <br />Mitwirkende: 4 Männerstimmen, vermutlich u. a. <a class="preview persons A008096" href="">C. Happich</a>, Klavier: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li>Freie Phantasie und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Rondo aus der <a class="preview works A020210" href="">Sonate Nr. 1</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
                                             <li><a class="preview diaries A061363" href="">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">6. August 1820</span>)</li>
-                                            <li><a class="preview diaries A061362" href="">Weber-Tagebuch</a> (Probe am 5. August 1820) in <a class="preview places A130049" href="">Quedlinburg</a></li>
+                                            <li><a class="preview diaries A061362" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061362.html">Weber-Tagebuch</a> (Probe am 5. August 1820) in <a class="preview places A130049" href="">Quedlinburg</a></li>
                                         </ul>
                                     </div>
-                                    <div id="d12e840">
-                                        <h3 id="d12e841">17. August 1820</h3>
-                                        <p><a class="preview places A130047" href="">Göttingen</a> <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e860">
+                                        <h3 id="d12e861">17. August 1820</h3>
+                                        <p><a class="preview places A130047" href="">Göttingen</a> (eventuell im „Piederitschen Saal“ in der Weenderstraße)<br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1 C-Dur</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1 C-Dur</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechung:</li>
-                                            <li><a class="preview writings A032462" href="">AmZ, Jg. 23, Nr. 6 (7. Februar 1821), Sp. 92-93</a></li>
+                                            <li><a class="preview writings A032462" href="">AmZ, Jg. 23, Nr. 6 (7. Februar 1821), Sp. 92–93</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -815,9 +838,9 @@
                                             <li><a class="preview letters A041636" href="">Brief</a> Webers an <a class="preview persons A000213" href="">Caroline von Weber</a> vom 14. September 1820</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e891">
-                                        <h3 id="d12e892">29. August 1820</h3>
-                                        <p><a class="preview places A130055" href="">Oldenburg</a> <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e911">
+                                        <h3 id="d12e912">29. August 1820</h3>
+                                        <p><a class="preview places A130055" href="">Oldenburg</a> <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li>öffentliches Konzert mit Orchesterbegleitung, als Sänger <a class="preview persons A000921" href="">F. Jansen</a> beteiligt</li>
@@ -828,21 +851,21 @@
                                             <li><a class="preview letters A041629" href="">Brief</a> Webers an <a class="preview persons A000568" href="">A. B. Fürstenau</a> vom 4. September 1820</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e927">
-                                        <h3 id="d12e928">30. August 1820</h3>
+                                    <div id="d12e947">
+                                        <h3 id="d12e948">30. August 1820</h3>
                                         <p><a class="preview places A130055" href="">Oldenburg</a> <br />Hofkonzert</p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020129" href=""><span class="tei_hi_italic">Wiegenlied</span></a>
-                         <br />Solisten: <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020129" href=""><span class="tei_hi_italic">Wiegenlied</span></a>
+                         <br />Solisten: <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A00168E" href="">G. Piantanida</a>: <a class="preview works A021432" href="">Arietta „Son Gelsomino son piccol fiore“</a>
-                         <br />Solisten: <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020235" href="">Silvana-Variationen</a>
-                         <br />Solisten: <a class="preview persons A0019B1" href="">J. C. G. Fischer</a>, <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                         <br />Solisten: <a class="preview persons A000213" href="">C. v. Weber</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020235" href="">Silvana-Variationen</a>
+                         <br />Solisten: <a class="preview persons A0019B1" href="">J. C. G. Fischer</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li>Freie Phantasie über <a class="preview works A021064" href="">„Nel cor più non mi sento“ aus <span class="tei_hi_italic">La molinara</span></a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -850,13 +873,13 @@
                                             <li><a class="preview letters A041629" href="">Brief</a> Webers an <a class="preview persons A000568" href="">A. B. Fürstenau</a> vom 4. September 1820</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1021">
-                                        <h3 id="d12e1022">2. September 1820</h3>
-                                        <p><a class="preview places A130032" href="">Bremen</a> (Saal des Kramer-Amthauses) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1041">
+                                        <h3 id="d12e1042">2. September 1820</h3>
+                                        <p><a class="preview places A130032" href="">Bremen</a> (Saal des Kramer-Amthauses) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li>Konzert mit Orchesterbegleitung, Dirigent: <a class="preview persons A001415" href="">C. F. Ochernal</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>
                      </li>
                                         </ul>
                                         <ul class="tei_list">
@@ -865,7 +888,7 @@
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechungen:</li>
-                                            <li><a class="preview writings A032500" href="">AmZ, Jg. 23, Nr. 28 (11. Juli 1821), Sp. 489-490</a></li>
+                                            <li><a class="preview writings A032500" href="">AmZ, Jg. 23, Nr. 28 (11. Juli 1821), Sp. 489–490</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -873,12 +896,12 @@
                                             <li><a class="preview letters A041629" href="">Brief</a> Webers an <a class="preview persons A000568" href="">A. B. Fürstenau</a> vom 4. September 1820</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1074">
-                                        <h3 id="d12e1075">13. September 1820</h3>
-                                        <p><a class="preview places A130030" href="">Eutin</a> (<span class="tei_placeName">Rathaus</span>) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1094">
+                                        <h3 id="d12e1095">13. September 1820</h3>
+                                        <p><a class="preview places A130030" href="">Eutin</a> (<span class="tei_placeName">Rathaus</span>) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li>u.a. <a class="preview persons A002068" href="">C. M. v. Weber</a>: Schlusschor aus <a class="preview works A020018" href=""><span class="tei_hi_italic">Kampf und Sieg</span></a></li>
+                                            <li>u.a. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Schlusschor aus <a class="preview works A020018" href=""><span class="tei_hi_italic">Kampf und Sieg</span></a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeige:</li>
@@ -894,12 +917,12 @@
                                             <li><a class="preview diaries A061401" href="">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">13. September 1820</span>)</li>
                                             <li><a class="preview letters A041636" href="">Brief</a> Webers an <a class="preview persons A000213" href="">Caroline von Weber</a> vom 14. September 1820</li>
                                             <li><a class="preview letters A041641" href="">Brief</a> Webers an <a class="preview persons A001002" href="">Friedrich Kind</a> vom 22. September 1820</li>
-                                            <li><a class="preview persons A008950" href="">Hellwag</a> <a class="preview letters A046006" href="/exist/apps/WeGA-WebApp/de/A008950/Korrespondenz/A046006.html">berichtete</a> an <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a>, in <a class="preview places A130030" href="">Eutin</a> sei eine Hymne von <a class="preview persons A002068" href="">Weber</a> gegeben worden, damit meint er aber sicher auch den Schlusschor aus <a class="preview works A020018" href=""><span class="tei_hi_italic">Kampf und Sieg</span></a> (Te Deum „Herr Gott dich loben wir“)</li>
+                                            <li><a class="preview persons A008950" href="">Hellwag</a> <a class="preview letters A046006" href="/exist/apps/WeGA-WebApp/de/A008950/Korrespondenz/A046006.html">berichtete</a> an <a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max Maria von Weber</a>, in <a class="preview places A130030" href="">Eutin</a> sei eine Hymne von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> gegeben worden, damit meint er aber sicher auch den Schlusschor aus <a class="preview works A020018" href=""><span class="tei_hi_italic">Kampf und Sieg</span></a> (Te Deum „Herr Gott dich loben wir“)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1170">
-                                        <h3 id="d12e1171">15. September 1820</h3>
-                                        <p><a class="preview places A130137" href="">Plön</a> <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1190">
+                                        <h3 id="d12e1191">15. September 1820</h3>
+                                        <p><a class="preview places A130137" href="">Plön</a> <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_simpleList">
                                             <li class="listTitle">Programm:</li>
                                             <li>
@@ -907,8 +930,8 @@
                                                     <li class="listTitle">I. Teil</li>
                                                     <li><a class="preview persons A001599" href="">A. Romberg</a>: Sinfonie Es-Dur (vermutlich op. 16), arr. für Quintett (möglicherweise die Version für Flöte und Streichquartett), ohne Rondo                                 
                                 <br />Mitwirkende: Hr. Labrom, Hr. Köhler (Vc.)</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020210" href="">Sonate Nr. 1 C-Dur</a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020210" href="">Sonate Nr. 1 C-Dur</a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                             <li>
@@ -916,31 +939,31 @@
                                                     <li class="listTitle">II. Teil</li>
                                                     <li><a class="preview persons A001599" href="">A. Romberg</a>: Sinfonie Es-Dur (vermutlich op. 16), arr. für Quintett (möglicherweise die Version für Flöte und Streichquartett), Rondo
                                  <br />Mitwirkende: Hr. Labrom, Hr. Köhler (Vc.)</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020203" href="">Quartett</a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                                    <li>Freie Phantasie und <a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020203" href="">Quartett</a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                                    <li>Freie Phantasie und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
                                             <li><a class="preview diaries A061403" href="">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">15. September 1820</span>)</li>
-                                            <li><a class="preview letters A041637" href="">Brief</a> Webers an <a class="preview persons A000213" href="">Caroline von Weber</a> vom 15./17. September 1820</li>
+                                            <li><a class="preview letters A041637" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041637.html">Brief</a> Webers an <a class="preview persons A000213" href="">Caroline von Weber</a> vom 15./17. September 1820</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1259">
-                                        <h3 id="d12e1260">20. September 1820</h3>
-                                        <p><a class="preview places A130066" href="">Kiel</a> <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1279">
+                                        <h3 id="d12e1280">20. September 1820</h3>
+                                        <p><a class="preview places A130066" href="">Kiel</a> <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Ouvertüre</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Arie</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert (wohl Nr. 1)</a>                     
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Arie</li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert (wohl Nr. 1)</a>                     
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A002162" href="">Peter Winter</a>: Arie</li>
-                                            <li>Freie Phantasie und <a class="preview persons A002068" href="">C. M. v. Weber</a>: <span class="tei_hi_italic"><a class="preview works A020335" href="">Polacca brillante</a></span>  
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li>Freie Phantasie und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <span class="tei_hi_italic"><a class="preview works A020334" href="">Rondo brillante</a></span>  
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeige:</li>
@@ -952,22 +975,22 @@
                                             <li><a class="preview letters A041639" href="">Brief</a> Webers an <a class="preview persons A000213" href="">Caroline von Weber</a> vom 21./22. September 1820</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1333">
-                                        <h3 id="d12e1334">4. Oktober 1820</h3>
+                                    <div id="d12e1353">
+                                        <h3 id="d12e1354">4. Oktober 1820</h3>
                                         <p><a class="preview places A130270" href="">Frederiksberg</a> bei <a class="preview places A130199" href="">Kopenhagen</a> <br />Hofkonzert</p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Ouvertüre aus <a class="preview works A020522" href=""><span class="tei_hi_italic">Cosi fan tutte</span></a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1 C-Dur</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1 C-Dur</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li>Unbekannt: Arietta 
                          <br />Solist: <a class="preview persons A001823" href="">G. Siboni</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <span class="tei_hi_italic"><a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a></span>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <span class="tei_hi_italic"><a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a></span>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Duett aus <a class="preview works A020584" href=""><span class="tei_hi_italic">Die Zauberflöte</span></a> („Bei Männern, welche Liebe fühlen“?) 
                          <br />Solisten: <a class="preview persons A001823" href="">G. Siboni</a>, <a class="preview persons A009482" href="">E. C. Zrza</a></li>
-                                            <li>Freie Phantasie und <a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li>Freie Phantasie und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -975,9 +998,9 @@
                                             <li><a class="preview diaries A061421" href="">Weber-Tagebuch</a> (Probe am <span class="tei_date">3. Oktober 1820</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1429">
-                                        <h3 id="d12e1430">8. Oktober 1820</h3>
-                                        <p><a class="preview places A130199" href="">Kopenhagen</a> (Hoftheater) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1449">
+                                        <h3 id="d12e1450">8. Oktober 1820</h3>
+                                        <p><a class="preview places A130199" href="">Kopenhagen</a> (<a class="preview places A130989" href="">Königliches Theater</a>) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_simpleList">
                                             <li class="listTitle">Programm:</li>
                                             <li>
@@ -986,20 +1009,20 @@
                                                     <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Ouvertüre zu <a class="preview works A020545" href=""><span class="tei_hi_italic">Titus</span></a></li>
                                                     <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Arie „Parto! Parto!“ aus <a class="preview works A020545" href=""><span class="tei_hi_italic">Titus</span></a> 
                                  <br />Solistin: <a class="preview persons A009482" href="">E. C. Zrza</a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert</a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert</a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                             <li>
                          <ul class="tei_list">
                                                     <li class="listTitle">II. Teil</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Ouvertüre zu <a class="preview works A020040" href=""><span class="tei_hi_italic">Der Freischütz</span></a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Ouvertüre zu <a class="preview works A020040" href=""><span class="tei_hi_italic">Der Freischütz</span></a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                     <li><a class="preview persons A001436" href="">F. Paer</a>: Arie aus <a class="preview works A021437" href=""><span class="tei_hi_italic">Agnese</span></a> 
                                  <br />Solist: <a class="preview persons A009478" href="">J. G. C. Zinck</a></li>
-                                                    <li>Freie Phantasie und <a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li>Freie Phantasie und <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020213" href="">Variationen über Dorina bella</a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                         </ul>
@@ -1013,31 +1036,31 @@
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechungen:</li>
                                             <li><a class="preview writings A032372" href=""><span class="tei_hi_italic">Dagen</span>, Jg. 1820, Nr. 242 (10. Oktober)</a></li>
-                                            <li><a class="preview writings A032451" href="">AmZ, Jg. 23, Nr. 25 (20. Juni 1821), Sp. 430-433</a></li>
+                                            <li><a class="preview writings A032451" href="">AmZ, Jg. 23, Nr. 25 (20. Juni 1821), Sp. 430–433</a></li>
                                             <li><a class="preview writings A031400" href=""><span class="tei_hi_italic">Originalien aus dem Gebiete der Wahrheit, Kunst, Laune und Phantasie</span>, Jg. 4, Nr. 127 (21. Oktober 1820), Sp. 1031 (deutsche Übertragung der dänischen Besprechung im <span class="tei_hi_italic">Dagen</span>)</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
                                             <li><a class="preview diaries A061426" href="">Weber-Tagebuch</a></li>
                                             <li><a class="preview diaries A061425" href="">Weber-Tagebuch</a> (Probe am <span class="tei_date">7. Oktober 1820</span>)</li>
-                                            <li><a class="preview letters A043859" href="/exist/apps/WeGA-WebApp/de/A002155/Korrespondenz/A043859.html">Brief</a> von <a class="preview persons A002155" href="">C. Klein</a> an <a class="preview persons A000914" href="">F. W. Jähns</a> vom 22. Juni 1876</li>
-                                            <li>Anm.: zu dem von <a class="preview persons A002068" href="">Weber</a> benutzten Flügel (Kopenhagen: Richter &amp; Bechmann, 1818) vgl. Angul Hammerich,  <span class="tei_hi_italic">Das Musikhistorische Museum zu Kopenhagen. Beschreibernder Katalog</span>, Übers. Erna Bobé, Kopenhagen 1911, S. 123 (Nr. 484) [u. a. <span class="tei_hi_italic">D-B</span>, Mus. Fa 73a] bzw. die vorhergehende dän. Ausgabe: Angul Hammerich,  <span class="tei_hi_italic">Musikhistorisk Museum. Beskrivende illustreret Katalog</span>, Kobenhavn 1909, S. 105f. (Nr. 484) [u. a. <span class="tei_hi_italic">D-B</span>, Mus. Fa 73]</li>
+                                            <li><a class="preview letters A043859" href="">Brief</a> von <a class="preview persons A002155" href="">C. Klein</a> an <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a> vom 22. Juni 1876</li>
+                                            <li>Anm.: zu dem von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> benutzten Flügel (Kopenhagen: Richter &amp; Bechmann, 1818) vgl. Angul Hammerich,  <span class="tei_hi_italic">Das Musikhistorische Museum zu Kopenhagen. Beschreibernder Katalog</span>, Übers. Erna Bobé, Kopenhagen 1911, S. 123 (Nr. 484) [u. a. <span class="tei_hi_italic">D-B</span>, Mus. Fa 73a] bzw. die vorhergehende dän. Ausgabe: Angul Hammerich,  <span class="tei_hi_italic">Musikhistorisk Museum. Beskrivende illustreret Katalog</span>, Kobenhavn 1909, S. 105f. (Nr. 484) [u. a. <span class="tei_hi_italic">D-B</span>, Mus. Fa 73]</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1620">
-                                        <h3 id="d12e1621">14. Oktober 1820</h3>
-                                        <p><a class="preview places A130046" href="">Lübeck</a> (Ebbescher Saal) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1643">
+                                        <h3 id="d12e1644">14. Oktober 1820</h3>
+                                        <p><a class="preview places A130046" href="">Lübeck</a> (Ebbescher Saal) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Ouvertüre (zum <a class="preview works A020040" href=""><span class="tei_hi_italic">Freischütz</span></a>?)</li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Ouvertüre (zum <a class="preview works A020040" href=""><span class="tei_hi_italic">Freischütz</span></a>?)</li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Tenor-Arie aus <a class="preview works A020525" href=""><span class="tei_hi_italic">Idomeneo</span></a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Klavierkonzert (wohl <a class="preview works A020212" href="">Nr. 1</a>)
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <span class="preview works A020074 A020075 A020076 A020077 A020078 A020079" data-ref="     ">Chöre aus <span class="tei_hi_italic">Leyer und Schwert</span></span></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Klavierkonzert (wohl <a class="preview works A020212" href="">Nr. 1</a>)
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <span class="preview works A020074 A020075 A020076 A020077 A020078 A020079" data-ref="     ">Chöre aus <span class="tei_hi_italic">Leyer und Schwert</span></span></li>
                                             <li>Freie Phantasie am Klavier
-                         <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                         <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeigen:</li>
@@ -1049,38 +1072,38 @@
                                             <li><a class="preview diaries A061432" href="">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">14. Oktober 1820</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1712">
-                                        <h3 id="d12e1713">21. Oktober 1820</h3>
-                                        <p><a class="preview places A130009" href="">Hamburg</a> (Apollosaal) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1735">
+                                        <h3 id="d12e1736">21. Oktober 1820</h3>
+                                        <p><a class="preview places A130009" href="">Hamburg</a> (<a class="preview places A131065" href="">Apollosaal</a>) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_simpleList">
                                             <li class="listTitle">Programm:</li>
                                             <li>
                          <ul class="tei_list">
                                                     <li class="listTitle">I. Teil</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020251" href=""><span class="tei_hi_italic">Jubel-Ouvertüre</span></a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020251" href=""><span class="tei_hi_italic">Jubel-Ouvertüre</span></a></li>
                                                     <li><a class="preview persons A001436" href="">F. Paer</a>: Arie aus <a class="preview works A020879" href=""><span class="tei_hi_italic">Griselda</span></a> 
                                  <br />Solistin: <a class="preview persons A001495" href="">E. Pohlmann</a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1</a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020212" href="">Klavierkonzert Nr. 1</a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                             <li>
                          <ul class="tei_list">
                                                     <li class="listTitle">II. Teil</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Ouvertüre zu <a class="preview works A020040" href=""><span class="tei_hi_italic">Der Freischütz</span></a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a> 
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Ouvertüre zu <a class="preview works A020040" href=""><span class="tei_hi_italic">Der Freischütz</span></a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a> 
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                     <li><span class="7797117114101114">Maurer</span>: Große Arie 
                                  <br />Solist: <a class="preview persons A007020" href="">F. Woltereck</a></li>
-                                                    <li>Freie Phantasie und Variationen (vermutlich <a class="preview persons A002068" href="">Webers</a> <a class="preview works A020213" href="">Variationen über Dorina bella</a>)
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li>Freie Phantasie und Variationen (vermutlich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview works A020213" href="">Variationen über Dorina bella</a>)
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeigen:</li>
                                             <li><a class="preview writings A032539" href=""><span class="tei_hi_italic">Staats- und Gelehrte Zeitung des Hamburgischen unpartheyischen Correspondenten</span>, Nr. 167 (18. Oktober 1820)</a></li>
-                                            <li><a class="preview writings A032393" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A032393.html"><span class="tei_hi_italic">Staats- und Gelehrte Zeitung des Hamburgischen unpartheyischen Correspondenten</span>, Nr. 168 (20. Oktober 1820) und Nr. 169 (21. Oktober 1820) </a></li>
+                                            <li><a class="preview writings A032393" href=""><span class="tei_hi_italic">Staats- und Gelehrte Zeitung des Hamburgischen unpartheyischen Correspondenten</span>, Nr. 168 (20. Oktober 1820) und Nr. 169 (21. Oktober 1820) </a></li>
                                             <li><a class="preview writings A032027" href=""><span class="tei_hi_italic">Privilegirte wöchentliche gemeinnützige Nachrichten von und für Hamburg</span>, Nr. 246 (16. Oktober 1820), S. 8</a></li>
                                             <li><a class="preview writings A031755" href=""><span class="tei_hi_italic">Privilegirte wöchentliche gemeinnützige Nachrichten von und für Hamburg</span>, Nr. 249 (19. Oktober 1820), S. 8</a></li>
                                             <li><a class="preview writings A032106" href=""><span class="tei_hi_italic">Privilegirte wöchentliche gemeinnützige Nachrichten von und für Hamburg</span>, Nr. 250 (20. Oktober 1820), S. 8</a></li>
@@ -1088,19 +1111,19 @@
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechung:</li>
-                                            <li><span class="preview writings A032532 A032566" data-ref=" /exist/apps/WeGA-WebApp/de/A007979/Schriften/A032566.html"><span class="tei_hi_italic">Abend-Zeitung</span>, Jg. 4, Nr. 295 (11. Dezember 1820) sowie Nr. 296 (12. Dezember 1820)</span></li>
+                                            <li><span class="preview writings A032532 A032566" data-ref=" "><span class="tei_hi_italic">Abend-Zeitung</span>, Jg. 4, Nr. 295 (11. Dezember 1820) sowie Nr. 296 (12. Dezember 1820)</span></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quelle:</li>
                                             <li><a class="preview diaries A061438" href="">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">21. Oktober 1820</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1861">
-                                        <h3 id="d12e1862">31. Oktober 1820</h3>
-                                        <p><a class="preview places A130021" href="">Braunschweig</a> (Saal des Medizinischen Gartens) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e1887">
+                                        <h3 id="d12e1888">31. Oktober 1820</h3>
+                                        <p><a class="preview places A130021" href="">Braunschweig</a> (<a class="preview places A131194" href="">Saal des Medizinischen Gartens</a>) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm: <br />Großes Vokal- und Instrumentalkonzert</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Ouvertüre zu <a class="preview works A020040" href=""><span class="tei_hi_italic">Der Freischütz</span></a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Ouvertüre zu <a class="preview works A020040" href=""><span class="tei_hi_italic">Der Freischütz</span></a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeigen:</li>
@@ -1109,16 +1132,16 @@
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechung:</li>
-                                            <li><a class="preview writings A032533" href="">AmZ, Jg. 23, Nr. 8 (21. Februar 1821), Sp. 123-124</a></li>
+                                            <li><a class="preview writings A032533" href="">AmZ, Jg. 23, Nr. 8 (21. Februar 1821), Sp. 123–124</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quelle:</li>
                                             <li><a class="preview diaries A061448" href="">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">31. Oktober 1820</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e1913">
-                                        <h3 id="d12e1914">13. Mai 1821</h3>
-                                        <p><a class="preview places A130002" href="">Berlin</a> (Schauspielhaus) <br />Konzertgeber: <a class="preview persons A000179" href="">H. Blume</a> und <a class="preview persons A001D26" href="">F. W. Tausch</a></p>
+                                    <div id="d12e1942">
+                                        <h3 id="d12e1943">13. Mai 1821</h3>
+                                        <p><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> (<a class="preview places A131060" href="/exist/apps/WeGA-WebApp/de/A131060.html">Schauspielhaus</a>) <br />Konzertgeber: <a class="preview persons A000179" href="">H. Blume</a> und <a class="preview persons A001D26" href="">F. W. Tausch</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
                                             <li><a class="preview persons A001864" href="">G. Spontini</a>: Ouvertüre aus <a class="preview works A020531" href=""><span class="tei_hi_italic">La Vestale</span></a></li>
@@ -1132,8 +1155,8 @@
                          <br />Solist: <a class="preview persons A000803" href="">C. W. Henning</a></li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Duett „Là ci darem la mano“ aus <a class="preview works A020484" href=""><span class="tei_hi_italic">Don Giovanni</span></a> 
                          <br />Solisten: <a class="preview persons A001400" href="">A. Neumann</a>, <a class="preview persons A000179" href="">H. Blume</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020235" href="">Silvana-Variationen</a> 
-                         <br />Solisten: <a class="preview persons A001D26" href="">F. W. Tausch</a>, <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020235" href="">Silvana-Variationen</a> 
+                         <br />Solisten: <a class="preview persons A001D26" href="">F. W. Tausch</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A002162" href="">P. Winter</a>: Arie
                          <br />Solist: <a class="preview persons A000179" href="">H. Blume</a></li>
                                             <li><a class="preview persons A000176" href="/exist/apps/WeGA-WebApp/de/A000176.html">C. Blum</a>: <span class="78111116116117114110111"><span class="tei_hi_italic">Notturno</span></span> 
@@ -1146,16 +1169,16 @@
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechung:</li>
-                                            <li><a class="preview writings A032464" href="">AmZ, Jg. 23, Nr. 25 (20. Juni 1821), Sp. 438-443</a></li>
+                                            <li><a class="preview writings A032464" href="">AmZ, Jg. 23, Nr. 25 (20. Juni 1821), Sp. 438–443</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quelle:</li>
                                             <li><a class="preview diaries A061652" href="">Weber-Tagebuch</a></li>
                                         </ul>
                                     </div>
-                                    <div id="d12e2076">
-                                        <h3 id="d12e2077">25. Juni 1821</h3>
-                                        <p><a class="preview places A130002" href="">Berlin</a> (Schauspielhaus) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e2108">
+                                        <h3 id="d12e2109">25. Juni 1821</h3>
+                                        <p><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> (<a class="preview places A131060" href="/exist/apps/WeGA-WebApp/de/A131060.html">Schauspielhaus</a>) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_simpleList">
                                             <li class="listTitle">Programm:</li>
                                             <li>
@@ -1164,10 +1187,10 @@
                                                     <li><a class="preview persons A000117" href="">L. v. Beethoven</a>: <a class="preview works A020236" href="">Ouvertüre zu <span class="tei_hi_italic">Egmont</span></a></li>
                                                     <li><a class="preview persons A000989" href="">C. Keller</a>: <a class="preview works A021398" href="">Variationen über „Schöne Minka“</a>
                                  <br />Solist: <a class="preview persons A009015" href="">J. Sedlaczek</a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020062" href="">Szene und Arie op. 50</a> 
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020062" href="">Szene und Arie op. 50</a> 
                                  <br />Solistin: <a class="preview persons A001757" href="">J. Schulz</a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020231" href="">Konzertstück</a> 
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020231" href="">Konzertstück</a> 
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                             <li>
@@ -1175,12 +1198,12 @@
                                                     <li class="listTitle">II. Teil</li>
                                                     <li><a class="preview persons A008613" href="">H. Lenß</a>: Adagio und Rondo für 2 Waldhörner 
                                  <br />Solisten: <a class="preview persons A008613" href="">H. Lenß</a>, <a class="preview persons A008657" href="">J. A. Schuncke</a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020312" href="">Variationen über ein norwegisches Lied</a> 
-                                 <br />Solisten: <a class="preview persons A000209" href="">A. Boucher</a>, <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020312" href="">Variationen über ein norwegisches Lied</a> 
+                                 <br />Solisten: <a class="preview persons A000209" href="">A. Boucher</a>, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                     <li><a class="preview persons A001616" href="">G. Rossini</a>: Arie aus <a class="preview works A020457" href=""><span class="tei_hi_italic">Othello</span></a> 
                                  <br />Solist: <a class="preview persons A009306" href="">T. Adam</a></li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                 </ul>
                      </li>
                                         </ul>
@@ -1192,9 +1215,9 @@
                                             <li class="listTitle">Besprechungen:</li>
                                             <li><a class="preview writings A031949" href=""><span class="tei_hi_italic">Königlich privilegirte Berlinische Zeitung von Staats- und gelehrten Sachen</span>, Nr. 77 (28. Juni 1821)</a></li>
                                             <li><a class="preview writings A031967" href=""><span class="tei_hi_italic">Zeitung für Theater und Musik zur Unterhaltung gebildeter, unbefangener Leser. Eine Begleiterinn des Freimüthigen</span>, Jg. 1, Nr. 26 (30. Juni 1821), S. 102</a></li>
-                                            <li><a class="preview writings A032382" href=""><span class="tei_hi_italic">Der Gesellschafter</span>, Jg. 5, Nr. 110 (11. Juli 1821), S. 511-512</a></li>
+                                            <li><a class="preview writings A032382" href=""><span class="tei_hi_italic">Der Gesellschafter</span>, Jg. 5, Nr. 110 (11. Juli 1821), S. 511–512</a></li>
                                             <li><a class="preview writings A030037" href="">AmZ, Jg. 23, Nr. 29 (18. Juli 1821), Sp. 511</a></li>
-                                            <li><a class="preview writings A030436" href=""><span class="tei_hi_italic">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Jg. 6, Nr. 89 (26. Juli 1821), S. 758-759</a></li>
+                                            <li><a class="preview writings A030436" href=""><span class="tei_hi_italic">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span>, Jg. 6, Nr. 89 (26. Juli 1821), S. 758–759</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Sonstige Quellen:</li>
@@ -1202,9 +1225,9 @@
                                             <li>vgl. auch Tagebuchnotizen von <a class="preview persons A000074" href="">C. A. Bader</a> in: Ernst Jacobi, <span class="tei_hi_italic">Begegnungen eines deutschen Tenors 1820–1866. Aus den Tagebüchern des Hofopernsängers Carl Adam Bader</span>, Bd, 1, Frankfurt am Main 1991, S. 114</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e2251">
-                                        <h3 id="d12e2252">29. Juni 1821</h3>
-                                        <p><a class="preview places A130002" href="">Berlin</a> (Jagorscher Saal) <br />Konzertgeber: <a class="preview persons A009015" href="">J. Sedlaczek</a></p>
+                                    <div id="d12e2286">
+                                        <h3 id="d12e2287">29. Juni 1821</h3>
+                                        <p><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> (Jagorscher Saal) <br />Konzertgeber: <a class="preview persons A009015" href="">J. Sedlaczek</a></p>
                                         <ul class="tei_simpleList">
                                             <li class="listTitle">Programm:</li>
                                             <li>
@@ -1222,8 +1245,8 @@
                                             <li>
                          <ul class="tei_list">
                                                     <li class="listTitle">II. Teil</li>
-                                                    <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020231" href="">Konzertstück</a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                                    <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020231" href="">Konzertstück</a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                                     <li><a class="preview persons A001864" href="">G. Spontini</a>: Romanze der Nurmahal „In die Wüste flieh mit mir“ aus <a class="preview works A021579" href=""><span class="tei_hi_italic">Lalla Rûkh</span></a> 
                                  <br />Solistin: <a class="preview persons A001805" href="">C. Seidler</a></li>
                                                     <li>Unbekannt: Variationen auf ein ungarisches Thema 
@@ -1239,7 +1262,7 @@
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechungen:</li>
-                                            <li><a class="preview writings A032382" href=""><span class="tei_hi_italic">Der Gesellschafter</span>, Jg. 5, Nr. 110 (11. Juli 1821), S. 511-512</a></li>
+                                            <li><a class="preview writings A032382" href=""><span class="tei_hi_italic">Der Gesellschafter</span>, Jg. 5, Nr. 110 (11. Juli 1821), S. 511–512</a></li>
                                             <li><a class="preview writings A032523" href=""><span class="tei_hi_italic">Zeitung für Theater und Musik zur Unterhaltung gebildeter, unbefangener Leser. Eine Begleiterinn des Freimüthigen</span>, Jg. 1, Nr. 27 (7. Juli 1821), S. 105</a></li>
                                         </ul>
                                         <ul class="tei_list">
@@ -1247,19 +1270,19 @@
                                             <li><a class="preview diaries A061699" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061699.html">Weber-Tagebuch</a> (Probe/Aufführung am <span class="tei_date">29. Juni 1821</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e2393">
-                                        <h3 id="d12e2394">10. März 1822</h3>
-                                        <p><a class="preview places A130004" href="">Wien</a> (Landständischer Saal) <br />Konzertgeber: <a class="preview persons A002692" href="">J. Böhm</a></p>
+                                    <div id="d12e2428">
+                                        <h3 id="d12e2429">10. März 1822</h3>
+                                        <p><a class="preview places A130004" href="">Wien</a> (<a class="preview places A131046" href="">Landständischer Saal</a>) <br />Konzertgeber: <a class="preview persons A002692" href="">J. Böhm</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020251" href=""><span class="tei_hi_italic">Jubel-Ouvertüre</span></a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020251" href=""><span class="tei_hi_italic">Jubel-Ouvertüre</span></a></li>
                                             <li><a class="preview persons A002692" href="">J. Böhm</a>: Violinkonzert 
                          <br />Solist: <a class="preview persons A002692" href="">J. Böhm</a></li>
                                             <li><a class="preview persons A001616" href="">G. Rossini</a>: Arie  
                          <br />Solist: <a class="preview persons A000692" href="">T. Grünbaum</a></li>
                                             <li><a class="preview persons A000CF1" href="">J. V. Voříšek</a>: <span class="8211111010011132102252114327510897118105101114">Rondo für Klavier</span> 
                          <br />Solist: <a class="preview persons A000CF1" href="">J. V. Voříšek</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020075" href=""><span class="tei_hi_italic">Schwertlied</span></a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020075" href=""><span class="tei_hi_italic">Schwertlied</span></a></li>
                                             <li><a class="preview persons A001862" href="">L. Spohr</a>: <a class="preview works A021478" href="">Konzert für 2 Violinen</a> 
                          <br />Solisten: <a class="preview persons A002692" href="">J. Böhm</a>, <a class="preview persons A008495" href="">G. Hellmesberger</a></li>
                                         </ul>
@@ -1272,7 +1295,7 @@
                                             <li class="listTitle">Besprechungen:</li>
                                             <li><a class="preview writings A032009" href=""><span class="tei_hi_italic">Allgemeine Theaterzeitung und Unterhaltungsblatt für Freunde der Kunst, Literatur und des geselligen Lebens</span>, Jg. 15,  Nr. 32 (14. März 1822), S. 128</a></li>
                                             <li><a class="preview writings A030503" href=""><span class="tei_hi_italic">Allgemeine Musikalische Zeitung mit besonderer Rücksicht auf den österreichischen Kaiserstaat</span>, Jg. 6, Nr. 23 (20. März 1822), Sp. 180</a></li>
-                                            <li><a class="preview writings A030504" href=""><span class="tei_hi_italic">Wiener Zeitschrift für Kunst, Theater, Literatur und Mode</span>, Jg. 7, Nr. 36 (23. März 1822), S. 293-294</a></li>
+                                            <li><a class="preview writings A030504" href=""><span class="tei_hi_italic">Wiener Zeitschrift für Kunst, Theater, Literatur und Mode</span>, Jg. 7, Nr. 36 (23. März 1822), S. 293–294</a></li>
                                             <li><a class="preview writings A030527" href=""><span class="tei_hi_italic">Morgenblatt für gebildete Stände</span>, Jg. 16, Nr. 105 (2. Mai 1822), S. 420</a></li>
                                             <li><a class="preview writings A030530" href="">AmZ, Jg. 24, Nr. 19 (8. Mai 1822), Sp. 305f.</a></li>
                                         </ul>
@@ -1282,22 +1305,22 @@
                                             <li><a class="preview diaries A061956" href="">Weber-Tagebuch</a> (Probe am <span class="tei_date">8. März 1822</span>)</li>
                                         </ul>
                                     </div>
-                                    <div id="d12e2520">
-                                        <h3 id="d12e2521">19. März 1822</h3>
-                                        <p><a class="preview places A130004" href="">Wien</a> (Redoutensaal) <br />Konzertgeber: <a class="preview persons A002068" href="">C. M. v. Weber</a></p>
+                                    <div id="d12e2558">
+                                        <h3 id="d12e2559">19. März 1822</h3>
+                                        <p><a class="preview places A130004" href="">Wien</a> (<a class="preview places A131127" href="">Redoutensaal</a>) <br />Konzertgeber: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></p>
                                         <ul class="tei_list">
                                             <li class="listTitle">Programm:</li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020251" href="">Jubel-Ouvertüre</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020231" href="">Konzertstück</a> 
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020251" href="">Jubel-Ouvertüre</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020231" href="">Konzertstück</a> 
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                             <li><a class="preview persons A001362" href="">W. A. Mozart</a>: Arie der <span class="6811111011097326511011097">Donna Anna</span> F-Dur Nr. 23 „Crudele! Ah no, mio bene“ / „Non mi dir, bell’idol mio“ aus <a class="preview works A020484" href=""><span class="tei_hi_italic">Don Giovanni</span></a><a class="noteMarker arabic" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">9</a> 
                                  <br />Solistin: <a class="preview persons A000692" href="">T. Grünbaum</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: <a class="preview works A020085" href=""><span class="tei_hi_italic">Schlummerlied</span></a> 
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: <a class="preview works A020085" href=""><span class="tei_hi_italic">Schlummerlied</span></a> 
                                  <br />Solisten: <a class="preview persons A000912" href="">F. Jäger</a>, <a class="preview persons A001614" href="">F. Rosner</a>, <a class="preview persons A000511" href="">F. A. Forti</a>, <a class="preview persons A009265" href="">J. Seipelt</a></li>
-                                            <li><a class="preview persons A001809" href="/exist/apps/WeGA-WebApp/de/A001809.html">J. Sellner</a>: <span class="801111081111109710511510132102252114327998111101">Polonaise für Oboe</span> 
-                                 <br />Solist: <a class="preview persons A001809" href="/exist/apps/WeGA-WebApp/de/A001809.html">J. Sellner</a></li>
-                                            <li><a class="preview persons A002068" href="">C. M. v. Weber</a>: Freie Phantasie und <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
-                                 <br />Solist: <a class="preview persons A002068" href="">C. M. v. Weber</a></li>
+                                            <li><a class="preview persons A001809" href="">J. Sellner</a>: <span class="801111081111109710511510132102252114327998111101">Polonaise für Oboe</span> 
+                                 <br />Solist: <a class="preview persons A001809" href="">J. Sellner</a></li>
+                                            <li><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>: Freie Phantasie und <a class="preview works A020334" href=""><span class="tei_hi_italic">Rondo brillante</span></a>
+                                 <br />Solist: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></li>
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Anzeigen:</li>
@@ -1313,8 +1336,8 @@
                                         </ul>
                                         <ul class="tei_list">
                                             <li class="listTitle">Besprechungen:</li>
-                                            <li><a class="preview writings A032331" href=""><span class="tei_hi_italic">Allgemeine Theaterzeitung und Unterhaltungsblatt für Freunde der Kunst, Literatur und des geselligen Lebens</span>, Jg. 15,  Nr. 36 (23. März 1822), S. 142f.</a></li>
-                                            <li><a class="preview writings A030517" href=""><span class="tei_hi_italic">Allgemeine Musikalische Zeitung mit besonderer Rücksicht auf den österreichischen Kaiserstaat</span>, Jg. 6, Nr. 26 (30. März 1822), Sp. 201-205</a></li>
+                                            <li><a class="preview writings A032331" href=""><span class="tei_hi_italic">Allgemeine Theaterzeitung und Unterhaltungsblatt für Freunde der Kunst, Literatur und des geselligen Lebens</span>, Jg. 15,  Nr. 36 (23. März 1822), S. 143</a></li>
+                                            <li><a class="preview writings A030517" href=""><span class="tei_hi_italic">Allgemeine Musikalische Zeitung mit besonderer Rücksicht auf den österreichischen Kaiserstaat</span>, Jg. 6, Nr. 26 (30. März 1822), Sp. 201–205</a></li>
                                             <li><a class="preview writings A030516" href=""><span class="tei_hi_italic">Der Sammler</span>, Jg. 14, Nr. 38 (30.[recte 28.] März 1822), S. 152</a></li>
                                             <li><a class="preview writings A030526" href=""><span class="tei_hi_italic">Der Gesellschafter</span>, Jg. 6, Nr. 59 (13. April 1822), S. 284</a></li>
                                             <li><a class="preview writings A030528" href=""><span class="tei_hi_italic">Morgenblatt für gebildete Stände</span>, Jg. 16, Nr. 106 (3. Mai 1822), S. 424</a></li>
@@ -1329,8 +1352,8 @@
                                         </ul>
                                     </div>
                                 </div>
-                                <div id="d12e2724" class="bibliography">
-                                    <h2 id="d12e2725">Weiterführende Literatur:</h2>
+                                <div id="d12e2765" class="bibliography">
+                                    <h2 id="d12e2766">Weiterführende Literatur:</h2>
                                     <ul>
                                         <li><span class="preview biblio A110066" data-ref="">Dagmar Beck, <span class="tei_hi_italic">Carl Maria von Weber in Eutin, Plön und Oldenburg</span></span></li>
                                         <li><span class="preview biblio A110545" data-ref="">Dagmar Beck, <span class="tei_hi_italic">Hamburg als Station auf Webers Konzertreise 1820</span></span></li>
@@ -1348,12 +1371,12 @@
                                         <li id="footnote_01" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#backref-footnote_01">1</a>Vgl. Webers <a class="preview letters A041263" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041263.html">Brief</a> an <a class="preview persons A002078" href="">Gottfried Weber</a> vom 21. Juli 1817.</li>
                                         <li id="footnote_02" data-title="Einzelnachweis 2"><a class="endnote_backlink" href="#backref-footnote_02">2</a>Ein erhofftes Konzert in <a class="preview places A130028" href="">Mainz</a> kam nicht zustande; vgl. Webers <a class="preview letters A041345" href="">Brief</a> an <a class="preview persons A002078" href="">Gottfried Weber</a> vom 23. Oktober 1817 und den <a class="preview diaries A060323" href="">Tagebucheintrag</a> vom 19. November 1817.</li>
                                         <li id="footnote_03" data-title="Einzelnachweis 3"><a class="endnote_backlink" href="#backref-footnote_03">3</a>Vgl. <span class="preview biblio A110481" data-ref=""><span class="tei_hi_italic">Weberiana</span> 22</span>, S. 5–43.</li>
-                                        <li id="footnote_04" data-title="Einzelnachweis 4"><a class="endnote_backlink" href="#backref-footnote_04">4</a>Vgl. den <a class="preview writings A032566" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032566.html">Bericht</a> in der <span class="tei_hi_italic">Abend-Zeitung</span> vom 12. Dezember 1820.</li>
+                                        <li id="footnote_04" data-title="Einzelnachweis 4"><a class="endnote_backlink" href="#backref-footnote_04">4</a>Vgl. den <a class="preview writings A032566" href="">Bericht</a> in der <span class="tei_hi_italic">Abend-Zeitung</span> vom 12. Dezember 1820.</li>
                                         <li id="footnote_05" data-title="Einzelnachweis 5"><a class="endnote_backlink" href="#backref-footnote_05">5</a>Eine ganze Sammlung solcher Briefe blieb erhalten, da sie Weber nicht wie erhofft in <a class="preview places A130018" href="">Hannover</a> einsetzen konnte, wo er sie zurückgelassen hatte; vgl. den <a class="preview letters A041626" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041626.html">Brief</a> an <a class="preview persons A000770" href="">Bernhard Hausmann</a> vom 19. August 1820 inkl. Kommentar.</li>
                                         <li id="footnote_06" data-title="Einzelnachweis 6"><a class="endnote_backlink" href="#backref-footnote_06">6</a>Vgl. den <a class="preview letters A041623" href="">Brief</a> an <a class="preview persons A000809" href="">Hermstedt</a> vom 22. Juli 1820 inkl. Kommentar.</li>
                                         <li id="footnote_07" data-title="Einzelnachweis 7"><a class="endnote_backlink" href="#backref-footnote_07">7</a>Vgl. dazu u. a. Webers <span class="preview letters A041624 A041627" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041624.html ">Briefe</span> an <a class="preview persons A001619" href="">Gottlob Roth</a> vom 15./19. August 1820 und an <a class="preview persons A001002" href="">Friedrich Kind</a> vom 25. August 1820. Allerdings schreibt Weber im <a class="preview letters A041613" href="">Brief</a> vom 21. Juni 1820 noch, dass er <a class="preview places A130021" href="">Braunschweig</a>  nur aus privaten Gründen besuchen und vermutlich kein Konzert geben wolle.</li>
                                         <li id="footnote_08" data-title="Einzelnachweis 8"><a class="endnote_backlink" href="#backref-footnote_08">8</a>Vgl. Ziegler in <span class="preview biblio A110583" data-ref=""><span class="tei_hi_italic">Weber-Studien</span>, Bd. 9</span>, S. 31–34.</li>
-                                        <li id="C_01" data-title="Einzelnachweis 9"><a class="endnote_backlink" href="#backref-C_01">9</a>Zunächst war anstelle dieser Arie von <a class="preview persons A001362" href="">Mozart</a> <a class="preview persons A002068" href="">Webers</a> <a class="preview works A020067" href="">Konzert-Arie</a> op. 51 angekündigt.</li>
+                                        <li id="C_01" data-title="Einzelnachweis 9"><a class="endnote_backlink" href="#backref-C_01">9</a>Zunächst war anstelle dieser Arie von <a class="preview persons A001362" href="">Mozart</a> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview works A020067" href="">Konzert-Arie</a> op. 51 angekündigt.</li>
                                     </ol>
                                 </div>
                     </div>
@@ -1378,7 +1401,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090113</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090113</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -1436,6 +1459,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -1495,22 +1521,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

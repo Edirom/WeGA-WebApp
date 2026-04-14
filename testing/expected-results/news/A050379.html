@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Planmäßig, mitten im (zweiten) Hochsommer des Jahres, erscheint das Release 3.5 der digitalen Edition der Carl-Maria-von-Weber-Gesamtausgabe. Dieses …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Digitale Edition Version 3.5 veröffentlicht","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050379","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050379","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","name":"Stadler, Peter","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001","sameAs":"https://d-nb.info/gnd/143058045"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -290,7 +288,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050379/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050379/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -350,19 +348,19 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002078" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A00198D" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080089" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;Bartlitz, Eveline&#34; im Text zu markieren.">Bartlitz, Eveline</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009002" /> <span title="Anwählen, um &#34;Beck, Dagmar&#34; im Text zu markieren.">Beck, Dagmar</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;Ziegler, Frank&#34; im Text zu markieren.">Ziegler, Frank</span> 
                                 </label>
                             </div>
                         </div>
@@ -374,9 +372,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -391,8 +389,8 @@
                                     <p>Planmäßig, mitten im (zweiten) Hochsommer des Jahres, erscheint das Release 3.5 der digitalen Edition der Carl-Maria-von-Weber-Gesamtausgabe.
                Dieses enthält die Änderungen und Ergänzungen des letzten halben Jahres, wobei sich einige dieser Ergänzungen überraschend und außerplanmäßig einstellten.
                So tauchten unverhofft <span class="preview news A050143" data-ref=" ">12 Vereinsbriefe aus dem Nachlass <a class="preview persons A002078" href="">Gottfried Webers</a></span> auf und 
-               bei der <span class="preview news A050286" data-ref=" "><a class="preview orgs A080089" href="">Stargardt</a>-Auktion am 12./13. März</span> konnten einige Autographen <a class="preview persons A002068" href="">Webers</a> 
-               von der Staatsbibliothek zu <a class="preview places A130002" href="">Berlin</a> und der Sächsischen Landes- und Universitätsbibliothek (SLUB) 
+               bei der <span class="preview news A050286" data-ref=" "><a class="preview orgs A080089" href="">Stargardt</a>-Auktion am 12./13. März</span> konnten einige Autographen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> 
+               von der Staatsbibliothek zu <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> und der Sächsischen Landes- und Universitätsbibliothek (SLUB) 
                <a class="preview places A130003" href="">Dresden</a> erstanden werden. Desweiteren konnte die Berliner Staatsbibliothek – vermittelt durch die 
                Internationale Carl-Maria-von-Webergesellschaft – auch noch eine <a class="preview news A050276" href="/exist/apps/WeGA-WebApp/de/A009004/Aktuelles/A050276.html">Schenkung von 14 Briefen und Dokumenten Webers</a> in Empfang nehmen,
                die hiermit auch in digitaler Form öffentlich zugänglich gemacht werden.
@@ -407,9 +405,9 @@
                                     <p>Ein kleines Jubiläum konnten wir bei der Ausgabe noch am 12. Mai feiern: Das interne WeGA-Subversion-Repository wurde 10 Jahre alt und verzeichnete zu diesem Zeitpunkt 21140 Revisionen! Dieses Repository enthält alle TEI- und MEI-Dateien der digitalen Edition, so dass damit auch die Geschichte der Ausgabe dokumentiert und gesichert ist. Vielleicht ein zukünftiger eigener Untersuchungsgegenstand?               
             </p>
                                     <p>Einen großen Dank möchten wir an dieser Stelle auch wieder den zahlreichen externen Beiträger*innen aussprechen, die mit ihren Fehlermeldungen und Hinweisen bereitwillig an uns herangetreten sind und in diesem Release ihre Spuren hinterlassen haben. Namentlich sei Klaus Rettinghaus erwähnt, von dem wir eine Konkordanz der Bach-Digital Personen-Identifier erhalten haben. Damit sind nun entsprechende automatische Verlinkungen zwischen der WeGA und Bach Digital möglich. </p>
-                                    <p>Bei der Arbeit an den Texten stand im genannten Zeitraum u.a. <a class="preview news A050304" href="">Franz Anton von Weber im Fokus</a>. <a class="preview persons A009005" href="">Frank Ziegler</a> und <a class="preview persons A003672" href="">Eveline Bartlitz</a> haben hier über 70 Texte übertragen und kommentiert. 
-               <a class="preview persons A003672" href="">Eveline Bartlitz</a> hat darüber hinaus weitere Weber-Briefe durchgesehen und zusammen mit <a class="preview persons A00198D" href="">Charlene Jakob</a> und <a class="preview persons A009005" href="">Frank Ziegler</a> zahlreiche neu erschlossen und angelegt. 
-               <a class="preview persons A009004" href="">Solveig Schreiter</a> hat bei den Weber-Schriften alle verfügbaren Entwürfe eingearbeitet, zahlreiche Werkansetzungen kontrolliert bzw. ergänzt und auch beim Tagebuch – gemeinsam mit <a class="preview persons A009002" href="">Dagmar Beck</a> – diverse Auszeichnungsprobleme gelöst.</p>
+                                    <p>Bei der Arbeit an den Texten stand im genannten Zeitraum u.a. <a class="preview news A050304" href="">Franz Anton von Weber im Fokus</a>. <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a> und <a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a> haben hier über 70 Texte übertragen und kommentiert. 
+               <a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a> hat darüber hinaus weitere Weber-Briefe durchgesehen und zusammen mit <a class="preview persons A00198D" href="">Charlene Jakob</a> und <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a> zahlreiche neu erschlossen und angelegt. 
+               <a class="preview persons A009004" href="">Solveig Schreiter</a> hat bei den Weber-Schriften alle verfügbaren Entwürfe eingearbeitet, zahlreiche Werkansetzungen kontrolliert bzw. ergänzt und auch beim Tagebuch – gemeinsam mit <a class="preview persons A009002" href="/exist/apps/WeGA-WebApp/de/A009002.html">Dagmar Beck</a> – diverse Auszeichnungsprobleme gelöst.</p>
                                     <p>Insgesamt versammeln sich in diesem Release 131 neue Personenbeschreibungen (sowie über 600 Korrekturen/Überarbeitungen) und 502 neue Briefansetzungen (bei knapp 2000 Korrekturen/Überarbeitungen). (Die neuen Briefe sind zum Großteil – wie auch schon im <a class="preview news A050211" href="">vorherigen Release</a> – erschlossene Briefe.)
                Bei den Schriften sind ebenfalls 25 Texte neu eingearbeitet worden (bei 661 Korrekturen/Überarbeitungen) und bei den Dokumenten sind ebenso 19 Neulinge zu verzeichnen (bei 55 Korrekturen/Überarbeitungen) – beim Tagebuch schließlich wurden über 750 Einträge verbessert. </p>
                                     <p>Der aktuelle <a href="https://github.com/Edirom/WeGA-WebApp">Quelltext der WeGA-WebApp <i class="fa fa-external-link" aria-hidden="true"></i></a> sowie ein <a href="https://github.com/Edirom/WeGA-WebApp/wiki/Changelog">detailliertes Changelog <i class="fa fa-external-link" aria-hidden="true"></i></a> finden sich wie gewohnt bei GitHub –
@@ -447,7 +445,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_db06c95186719a816f35eaba83544b08">
+                                        <div class="collapse apparatus-details" id="source_8ee4bf76c6e7b81b68a1db0bbbb391a4">
                                             
                                             
                                             <div>
@@ -491,7 +489,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050379</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050379</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -551,6 +549,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -609,22 +610,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

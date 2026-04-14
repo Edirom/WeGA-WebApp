@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031109" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"über Stuttgart im Allgemeinen, Museum, Zeitung: Morgenblatt und deren Redakteure, einzelne Künstler und bedeutende Persönlichkeiten der Stadt, z.B. Abeille, Danzi, Hiemer, Schubart","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufsatz über Stuttgart","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031109","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031109","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"über Stuttgart im Allgemeinen, Museum, Zeitung: Morgenblatt und deren Redakteure, einzelne Künstler und bedeutende Persönlichkeiten der Stadt, z.B. Abeille, Danzi, Hiemer, Schubart","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufsatz über Stuttgart","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031109","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031109","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,14 +219,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
                             </li>
                             <li>
                                 <span>A031109</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031109/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031109/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031109/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -387,6 +384,8 @@
                                     <input type="checkbox" name="options" value="A008538" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000D16" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009055" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -491,24 +490,24 @@
                                         <p><a class="preview persons A000354" href=""><span class="tei_hi_spaced_out">F. Danzi</span></a>, Kapellmeister. <span class="tei_app"><span class="tei_lem">Sein Ruf als einer unserer jetzt lebenden bedeutendsten Komponisten, ist schon zu allgemein</span><a class="noteMarker" id="backref-d10e432" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e432">Δ</a></span>, als daß man mehr als seinen Namen zu nennen brauchte. Der einzige Wunsch bleibt Ref. übrig, daß er seine größern Werke, als seine <span class="tei_hi_spaced_out"><span class="7311210410510310111010597">Iphigenia</span></span><a class="noteMarker" id="backref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a> etc. der Welt schenken <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e454" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e454">Δ</a></span>, und überhaupt durch seine vortrefflichen Kompositionen dem Mangel an deutschen Originalopern abzuhelfen suchen möge.</p>
                                         <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A007846" href="">Madame Duttenhofen</a></span>, geborne <span class="72117109109101108">Hummel</span>. Hat äußerst interessante neue Versuche mit Vasenformen gemacht, indem Sie nach Blumen und Blättern Vasen ausschneidet, die in ihrer Gestalt so viele Aehnlichkeit mit den Hetrurischen und Griechischen haben, daß <a class="preview persons A007846" href="">Mad. Duttenhofen</a>, die in <a class="preview places A130037" href="">Rom</a> Gelegenheit hatte Erfahrungen darüber zu sammeln, behaupten zu können glaubt, die Alten hätten ebenfalls ihre Vasen- und Urnen-Formen, von Blumen und Blättern entlehnt. Nächstens erscheint ein Heft solcher Vasenformen radirt, als Probe<a class="noteMarker" id="backref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a>.</span><a class="noteMarker" id="backref-d10e460" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e460">Δ</a></span></p>
                                         <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A0005F0" href="">Lieutnant Faber</a></span>. Karikaturzeichner voll Kunstkenntnis und Witz.</span><a class="noteMarker" id="backref-d10e483" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e483">Δ</a></span></p>
-                                        <p><span class="tei_supplied"><span class="brackets_supplied">[</span>Ergänzung aus dem Entwurf:<span class="brackets_supplied">]</span></span><a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> <span class="tei_hi_underline1">H: <a class="preview persons A000665" href="">Graf</a></span> als vorzüglicher fertiger Künstler auf dem <span class="tei_hi_latintype">Violoncell</span>, Mad: <a class="preview persons A000664" href="">Graf</a> seine Gattin, als eine liebliche Sängerin aus der vortrefflichen Schule <span class="preview persons A001577" data-ref=""><span class="tei_sic">Rhiginis</span><a class="noteMarker" id="backref-d10e508" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e508">‡</a></span>, deren sie ganz entspricht, dann <span class="7258328399104119101103108101114">H: Schwegler</span> als Oboist und Hornist, <span class="72583282105101223">H: Rieß</span> als Violinspieler, und vorzüglich im <span class="tei_hi_latintype">Quartett</span>, unser allgemein geliebter als Deutscher gewiß auf der ersten Stufe stehende Tenorist <a class="preview persons A008538" href="">Krebs</a>, kurz so viele Namen drängen sich noch, die der Erwähnung verdienten, daß Ref: mit innigem Bedauern, nicht bey Allem ausführlicher verweilen zu können, nur noch die herrliche Gemähldesammlung des Regierungsrathes <span class="70114111109109"><span class="tei_hi_underline1">Fromm</span></span>, welche unter andern das unbeschreiblich schöne Gemählde von <a class="preview persons A008043" href="">Domenichino</a> Joh: <span class="tei_hi_latintype">Ev:</span> enthält, – die bedeutende Kupferstichsammlung d: H: <span class="681051141011071161111143283116117109112102">Direktor Stumpf</span>, um welche sich oft Künstler zum Austausch ihrer Ideen vereinigen, die interessanten Versuche des Tabaksregie Direktor <span class="8297112112">Rapp</span> mit dem Steindruk <span class="tei_hi_latintype">pp</span>:<a class="noteMarker" id="backref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> flüchtig bemerken kann, und sich nur vorbehält als Fortsezung dieses, eine Aufstellung der blos Wißenschaftlichen Schriftsteller, eines <span class="80101116101114115101110">Petersen</span><a class="noteMarker" id="backref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>, <span class="83991041199798">Schwab</span><a class="noteMarker" id="backref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a>, <a class="preview persons A009055" href="">Spittler</a>. <span class="tei_hi_latintype">pp</span>: folgen zu lassen.</p>
-                                        <p><span class="tei_app"><span class="tei_lem"><a class="preview persons A001CAD" href=""><span class="tei_hi_spaced_out">Grüneisen</span></a>, Generalsekretär. Ein Mann von vielem Verstand, Witz und Gelehrsamkeit. Diejenigen Geistesprodukte, welche er in dem engeren Zirkel seiner Freunde denselben mittheilte, lassen bedauern, daß er der Welt nichts davon schenkt.</span><a class="noteMarker" id="backref-d10e580" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e580">Δ</a></span></p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A000762" href="">F. C. Haug</a></span>. Der bekannte geachtete Epigrammatist. <span class="tei_app"><span class="tei_lem">Hat zwei Theile Gedichte und Epigramme, – <span class="72101114122321171101003271101105115116">Herz und Geist</span>, ein Taschenbuch<a class="noteMarker" id="backref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a>, – <span class="691089811111010011110797110105">Elbondokani</span>, eine Operette<a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>, – Skizze von <a class="preview persons A006855" href="">Zumsteeg</a>s Leben, – mit <span class="tei_hi_spaced_out"><a class="preview persons A008696" href="">Weißer</a></span>, eine Epigrammatische Anthologie – und viele andere zerstreute Gedichte herausgegeben. Ein Bändchen Erzählungen, ein neuer Band Gedichte, – Glossen, Gnomen und Paradoxen etc. haben wir von ihm zu erwarten</span><a class="noteMarker" id="backref-d10e592" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e592">Δ</a></span>. Eine außerordentliche Gewandtheit der Sprache, welche es ihm zur größten Leichtigkeit macht, dem unbedeutendst scheinenden Sache ein schönes poetisches Gewand zu ver<span class="tei_pb" title="Seitenumbruch">|</span>leihen, und ein wirklich <span class="tei_hi_spaced_out">seltner</span> Wortwitz – bezeichnen seine Geisteskinder.</p>
-                                        <p><a class="preview persons A008178" href=""><span class="tei_hi_spaced_out">Prof. Hetsch</span></a>, <span class="tei_app"><span class="tei_lem">Galeriedirektor.</span><a class="noteMarker" id="backref-d10e644" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e644">Δ</a></span> Historienmaler, dessen neuestes großes Gemälde <span class="tei_hi_spaced_out"><span class="66114117116117115">Brutus</span></span> viele Sensation erregt hat, und sich ausgezeichneten Beifalls erfreutet. Steht auch als Portraitmaler auf einer hohen Stufe.</p>
-                                        <p><a class="preview persons A000838" href=""><span class="tei_hi_spaced_out">F. K. Hiemer</span></a>. Als Uebersetzer mehrerer französischen Opern als <span class="tei_hi_spaced_out"><a class="preview works A020513" href="">Adolph und Klara</a></span>, <span class="tei_hi_spaced_out"><a class="preview works A020505" href="">Uthal</a></span>, <span class="tei_hi_spaced_out"><span class="8610111611610111432749710711198">Vetter Jakob</span></span><a class="noteMarker" id="backref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a> etc. hat <a class="preview persons A000838" href="">Herr Hiemer</a> sich verdient um das deutsche Theater gemacht. Der Mangel an guten Operndichtern, die Kenntniß des Theaters und der Musik haben, ist so bedeutend, daß es herzlich zu wünschen wäre, <a class="preview persons A000838" href="">Herr H.</a> <span class="tei_app"><span class="tei_lem">beschäftigte</span><a class="noteMarker" id="backref-d10e684" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e684">Δ</a></span> sich mehr mit Originalwerken dieser Art <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e689" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e689">Δ</a></span>. Sein Dialog ist fließend und natürlich, seine Verse sehr musikalisch, und doch nicht (wie manche <span class="tei_app"><span class="tei_lem">wähnen</span><a class="noteMarker" id="backref-d10e694" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e694">Δ</a></span>, es müsse seyn) ohne poetischen Werth. Er bearbeitet jetzt die Oper <span class="tei_hi_spaced_out"><a class="preview works A020036" href="">Silvana</a></span>, welche das hier Gesagte vollkommen beweisen wird.</p>
-                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008918" href="">Fr. Gräfin v. Jennison</a></span>. Einige Karten-Almanachs<a class="noteMarker" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a> sind von Ihrer Hand, und sind so geistreich und mit so viel Kunstkenntniß behandelt, daß sie rühmlichst erwähnt zu werden verdienen.</span><a class="noteMarker" id="backref-d10e705" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e705">Δ</a></span></p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A001147" href="">Dr. Lehr</a></span>, <span class="tei_app"><span class="tei_lem">Vorleser und Privatbiblioth. <a class="preview persons A000534" href="">Sr. M. des Königs</a></span><a class="noteMarker" id="backref-d10e721" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e721">Δ</a></span>. Lange hielt <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e732" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e732">Δ</a></span> Bescheidenheit ihn zurück, die Welt mit sich bekannt zu machen, und erst in dem <a class="preview persons A002993" href="">Baggesen</a>schen Almanach für Liebende<a class="noteMarker" id="backref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a> sehen wir einige Gedichte <span class="tei_app"><span class="tei_lem">von ihm</span><a class="noteMarker" id="backref-d10e758" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e758">Δ</a></span>, deren gemüthliches, inneres <span class="tei_app"><span class="tei_lem">Gefühls-Leben</span><a class="noteMarker" id="backref-d10e764" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e764">Δ</a></span> einen eigenen Weg wandelt, und gewiß jeden lieblich <span class="tei_app"><span class="tei_lem">anspricht</span><a class="noteMarker" id="backref-d10e770" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e770">Δ</a></span>. Wir haben ein Taschenbuch von ihm zu erwarten, wo sich gewiß sein Talent für das Sinnige, Zarte – beurkunden wird.</p>
-                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008340" href="">Joh. Gotth. Müller</a></span></span><a class="noteMarker" id="backref-d10e778" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e778">Δ</a></span>, anerkannt als vorzüglicher Kupferstecher.</p>
-                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008570" href="">Fr. Müller</a></span>, sein Sohn</span><a class="noteMarker" id="backref-d10e789" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e789">Δ</a></span> – ist erst kürzlich aus <span class="tei_country">Italien</span> zurückgekehrt, und hat sich durch Bearbeitung des <span class="tei_hi_spaced_out">Johann Evangel.</span> von <a class="preview persons A008043" href="">Domenichino</a>, als großer Künstler gezeigt.</p>
+                                        <p><span class="tei_supplied"><span class="brackets_supplied">[</span>Ergänzung aus dem Entwurf:<span class="brackets_supplied">]</span></span><a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> <span class="tei_hi_underline1">H: <a class="preview persons A000665" href="">Graf</a></span> als vorzüglicher fertiger Künstler auf dem <span class="tei_hi_latintype">Violoncell</span>, Mad: <a class="preview persons A000664" href="">Graf</a> seine Gattin, als eine liebliche Sängerin aus der vortrefflichen Schule <span class="preview persons A001577" data-ref=""><span class="tei_sic">Rhiginis</span><a class="noteMarker" id="backref-d10e508" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e508">‡</a></span>, deren sie ganz entspricht, dann <span class="7258328399104119101103108101114">H: Schwegler</span> als Oboist und Hornist, <span class="72583282105101223">H: Rieß</span> als Violinspieler, und vorzüglich im <span class="tei_hi_latintype">Quartett</span>, unser allgemein geliebter als Deutscher gewiß auf der ersten Stufe stehende Tenorist <a class="preview persons A008538" href="">Krebs</a>, kurz so viele Namen drängen sich noch, die der Erwähnung verdienten, daß Ref: mit innigem Bedauern, nicht bey Allem ausführlicher verweilen zu können, nur noch die herrliche Gemähldesammlung des Regierungsrathes <span class="70114111109109"><span class="tei_hi_underline1">Fromm</span></span>, welche unter andern das unbeschreiblich schöne Gemählde von <a class="preview persons A008043" href="">Domenichino</a> Joh: <span class="tei_hi_latintype">Ev:</span> enthält, – die bedeutende Kupferstichsammlung d: H: <span class="681051141011071161111143283116117109112102">Direktor Stumpf</span>, um welche sich oft Künstler zum Austausch ihrer Ideen vereinigen, die interessanten Versuche des Tabaksregie Direktor <a class="preview persons A000D16" href="">Rapp</a> mit dem Steindruk <span class="tei_hi_latintype">pp</span>:<a class="noteMarker" id="backref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> flüchtig bemerken kann, und sich nur vorbehält als Fortsezung dieses, eine Aufstellung der blos Wißenschaftlichen Schriftsteller, eines <span class="80101116101114115101110">Petersen</span><a class="noteMarker" id="backref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a>, <span class="83991041199798">Schwab</span><a class="noteMarker" id="backref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a>, <a class="preview persons A009055" href="">Spittler</a>. <span class="tei_hi_latintype">pp</span>: folgen zu lassen.</p>
+                                        <p><span class="tei_app"><span class="tei_lem"><a class="preview persons A001CAD" href=""><span class="tei_hi_spaced_out">Grüneisen</span></a>, Generalsekretär. Ein Mann von vielem Verstand, Witz und Gelehrsamkeit. Diejenigen Geistesprodukte, welche er in dem engeren Zirkel seiner Freunde denselben mittheilte, lassen bedauern, daß er der Welt nichts davon schenkt.</span><a class="noteMarker" id="backref-d10e577" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e577">Δ</a></span></p>
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A000762" href="">F. C. Haug</a></span>. Der bekannte geachtete Epigrammatist. <span class="tei_app"><span class="tei_lem">Hat zwei Theile Gedichte und Epigramme, – <span class="72101114122321171101003271101105115116">Herz und Geist</span>, ein Taschenbuch<a class="noteMarker" id="backref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a>, – <span class="691089811111010011110797110105">Elbondokani</span>, eine Operette<a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>, – Skizze von <a class="preview persons A006855" href="">Zumsteeg</a>s Leben, – mit <span class="tei_hi_spaced_out"><a class="preview persons A008696" href="">Weißer</a></span>, eine Epigrammatische Anthologie – und viele andere zerstreute Gedichte herausgegeben. Ein Bändchen Erzählungen, ein neuer Band Gedichte, – Glossen, Gnomen und Paradoxen etc. haben wir von ihm zu erwarten</span><a class="noteMarker" id="backref-d10e589" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e589">Δ</a></span>. Eine außerordentliche Gewandtheit der Sprache, welche es ihm zur größten Leichtigkeit macht, dem unbedeutendst scheinenden Sache ein schönes poetisches Gewand zu ver<span class="tei_pb" title="Seitenumbruch">|</span>leihen, und ein wirklich <span class="tei_hi_spaced_out">seltner</span> Wortwitz – bezeichnen seine Geisteskinder.</p>
+                                        <p><a class="preview persons A008178" href=""><span class="tei_hi_spaced_out">Prof. Hetsch</span></a>, <span class="tei_app"><span class="tei_lem">Galeriedirektor.</span><a class="noteMarker" id="backref-d10e641" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e641">Δ</a></span> Historienmaler, dessen neuestes großes Gemälde <span class="tei_hi_spaced_out"><span class="66114117116117115">Brutus</span></span> viele Sensation erregt hat, und sich ausgezeichneten Beifalls erfreutet. Steht auch als Portraitmaler auf einer hohen Stufe.</p>
+                                        <p><a class="preview persons A000838" href=""><span class="tei_hi_spaced_out">F. K. Hiemer</span></a>. Als Uebersetzer mehrerer französischen Opern als <span class="tei_hi_spaced_out"><a class="preview works A020513" href="">Adolph und Klara</a></span>, <span class="tei_hi_spaced_out"><a class="preview works A020505" href="">Uthal</a></span>, <span class="tei_hi_spaced_out"><span class="8610111611610111432749710711198">Vetter Jakob</span></span><a class="noteMarker" id="backref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a> etc. hat <a class="preview persons A000838" href="">Herr Hiemer</a> sich verdient um das deutsche Theater gemacht. Der Mangel an guten Operndichtern, die Kenntniß des Theaters und der Musik haben, ist so bedeutend, daß es herzlich zu wünschen wäre, <a class="preview persons A000838" href="">Herr H.</a> <span class="tei_app"><span class="tei_lem">beschäftigte</span><a class="noteMarker" id="backref-d10e681" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e681">Δ</a></span> sich mehr mit Originalwerken dieser Art <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e686" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e686">Δ</a></span>. Sein Dialog ist fließend und natürlich, seine Verse sehr musikalisch, und doch nicht (wie manche <span class="tei_app"><span class="tei_lem">wähnen</span><a class="noteMarker" id="backref-d10e691" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e691">Δ</a></span>, es müsse seyn) ohne poetischen Werth. Er bearbeitet jetzt die Oper <span class="tei_hi_spaced_out"><a class="preview works A020036" href="">Silvana</a></span>, welche das hier Gesagte vollkommen beweisen wird.</p>
+                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008918" href="">Fr. Gräfin v. Jennison</a></span>. Einige Karten-Almanachs<a class="noteMarker" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a> sind von Ihrer Hand, und sind so geistreich und mit so viel Kunstkenntniß behandelt, daß sie rühmlichst erwähnt zu werden verdienen.</span><a class="noteMarker" id="backref-d10e702" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e702">Δ</a></span></p>
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A001147" href="">Dr. Lehr</a></span>, <span class="tei_app"><span class="tei_lem">Vorleser und Privatbiblioth. <a class="preview persons A000534" href="">Sr. M. des Königs</a></span><a class="noteMarker" id="backref-d10e718" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e718">Δ</a></span>. Lange hielt <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e729" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e729">Δ</a></span> Bescheidenheit ihn zurück, die Welt mit sich bekannt zu machen, und erst in dem <a class="preview persons A002993" href="">Baggesen</a>schen Almanach für Liebende<a class="noteMarker" id="backref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a> sehen wir einige Gedichte <span class="tei_app"><span class="tei_lem">von ihm</span><a class="noteMarker" id="backref-d10e755" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e755">Δ</a></span>, deren gemüthliches, inneres <span class="tei_app"><span class="tei_lem">Gefühls-Leben</span><a class="noteMarker" id="backref-d10e761" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e761">Δ</a></span> einen eigenen Weg wandelt, und gewiß jeden lieblich <span class="tei_app"><span class="tei_lem">anspricht</span><a class="noteMarker" id="backref-d10e767" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e767">Δ</a></span>. Wir haben ein Taschenbuch von ihm zu erwarten, wo sich gewiß sein Talent für das Sinnige, Zarte – beurkunden wird.</p>
+                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008340" href="">Joh. Gotth. Müller</a></span></span><a class="noteMarker" id="backref-d10e775" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e775">Δ</a></span>, anerkannt als vorzüglicher Kupferstecher.</p>
+                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008570" href="">Fr. Müller</a></span>, sein Sohn</span><a class="noteMarker" id="backref-d10e786" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e786">Δ</a></span> – ist erst kürzlich aus <span class="tei_country">Italien</span> zurückgekehrt, und hat sich durch Bearbeitung des <span class="tei_hi_spaced_out">Johann Evangel.</span> von <a class="preview persons A008043" href="">Domenichino</a>, als großer Künstler gezeigt.</p>
                                         <p><a class="preview persons A00222F" href=""><span class="tei_hi_spaced_out">Müller</span></a>. Lieblicher Landschaftsmaler.</p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A001551" href="">Prof. Reinbeck</a></span>. <span class="tei_app"><span class="tei_lem">Bekannt</span><a class="noteMarker" id="backref-d10e819" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e819">Δ</a></span> durch seine flüchtigen Bemerkungen auf einer Reise von <a class="preview places A130024" href="">St. Petersburg</a> nach <span class="tei_country">Deutschland</span><a class="noteMarker" id="backref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>, durch <span class="tei_app"><span class="tei_lem">seine Briefe über <a class="preview places A130035" href="">Heidelberg</a></span><a class="noteMarker" id="backref-d10e835" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e835">Δ</a></span><a class="noteMarker" id="backref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>, mehrere dramatische <span class="tei_app"><span class="tei_lem">Werke</span><a class="noteMarker" id="backref-d10e845" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e845">Δ</a></span> und durch seine Erzählungen, von welchen <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e850" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e850">Δ</a></span> nächstens wieder ein Bändchen, zur Freude des gebildeten Publikums erscheinen wird. <span class="tei_app"><span class="tei_lem">Er</span><a class="noteMarker" id="backref-d10e855" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e855">Δ</a></span> zeichnet sich besonders durch seine äußerst fließende Diktion <span class="tei_app"><span class="tei_lem">aus, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> die</span><a class="noteMarker" id="backref-d10e860" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e860">Δ</a></span> natürlich und rein anspricht, <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e868" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e868">Δ</a></span> welches unstreitig das höhere Talent des Erzählers beurkundet. Seine deutsche Sprachlehre verdient klassisch genannt zu werden, und ist gewiß einzig in ihrer Art, <span class="tei_app"><span class="tei_lem">sowie</span><a class="noteMarker" id="backref-d10e873" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e873">Δ</a></span> als Geistesspiel <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e880" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e880">Δ</a></span> die Erklärungen zu dem <span class="tei_app"><span class="tei_lem">neusten</span><a class="noteMarker" id="backref-d10e885" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e885">Δ</a></span> Karten-Almanach, welche unabhängig von der Idee des Zeichners <span class="tei_app"><span class="tei_lem">erfunden</span><a class="noteMarker" id="backref-d10e891" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e891">Δ</a></span> sind, gewiß <span class="tei_app"><span class="tei_lem">jeden</span><a class="noteMarker" id="backref-d10e897" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e897">Δ</a></span> Würdiger der schöpfenden Phantasie <span class="tei_app"><span class="tei_lem">erfreuen werden</span><a class="noteMarker" id="backref-d10e903" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e903">Δ</a></span>.</p>
-                                        <p><span class="tei_hi_spaced_out"><span class="preview persons A008297" data-ref="">Ludwig <span class="tei_sic">Schubert</span><a class="noteMarker" id="backref-d10e913" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e913">‡</a></span></span>. Uebersetzer des Ossians, mehrerer <span class="831049710710111511210197114101">Shakespeare</span>schen Stücke etc. und gegenwärtig Herausgeber einer Reihe Charakterzeichnungen, die Interesse und Unterhaltung versprechen. <span class="tei_app"><span class="tei_lem">Besitzt ausgedehnte gründliche Kenntniß der neuern Sprachen, und verbindet mit einer natürlichen Schreibart treffende Bemerkungen.</span><a class="noteMarker" id="backref-d10e919" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e919">Δ</a></span></p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A008500" href="">Seele</a></span>, <span class="tei_app"><span class="tei_lem">Privat-Galerie-Direktor.</span><a class="noteMarker" id="backref-d10e928" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e928">Δ</a></span> Historienmaler und besonders vorzüglich in Bataillenstücken.</p>
-                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A001937" href="">Sutor</a></span>, Konzertmeister. Komponierte die Oper: <a class="preview works A020845" href="">Apollos Wettgesang</a>, welche hier mit vielem Beifall aufgenommen worden ist.</span><a class="noteMarker" id="backref-d10e934" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e934">Δ</a></span></p>
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A001551" href="">Prof. Reinbeck</a></span>. <span class="tei_app"><span class="tei_lem">Bekannt</span><a class="noteMarker" id="backref-d10e816" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e816">Δ</a></span> durch seine flüchtigen Bemerkungen auf einer Reise von <a class="preview places A130024" href="">St. Petersburg</a> nach <span class="tei_country">Deutschland</span><a class="noteMarker" id="backref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>, durch <span class="tei_app"><span class="tei_lem">seine Briefe über <a class="preview places A130035" href="">Heidelberg</a></span><a class="noteMarker" id="backref-d10e832" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e832">Δ</a></span><a class="noteMarker" id="backref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">*</a>, mehrere dramatische <span class="tei_app"><span class="tei_lem">Werke</span><a class="noteMarker" id="backref-d10e842" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e842">Δ</a></span> und durch seine Erzählungen, von welchen <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e847" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e847">Δ</a></span> nächstens wieder ein Bändchen, zur Freude des gebildeten Publikums erscheinen wird. <span class="tei_app"><span class="tei_lem">Er</span><a class="noteMarker" id="backref-d10e852" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e852">Δ</a></span> zeichnet sich besonders durch seine äußerst fließende Diktion <span class="tei_app"><span class="tei_lem">aus, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> die</span><a class="noteMarker" id="backref-d10e857" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e857">Δ</a></span> natürlich und rein anspricht, <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e865" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e865">Δ</a></span> welches unstreitig das höhere Talent des Erzählers beurkundet. Seine deutsche Sprachlehre verdient klassisch genannt zu werden, und ist gewiß einzig in ihrer Art, <span class="tei_app"><span class="tei_lem">sowie</span><a class="noteMarker" id="backref-d10e870" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e870">Δ</a></span> als Geistesspiel <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e877" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e877">Δ</a></span> die Erklärungen zu dem <span class="tei_app"><span class="tei_lem">neusten</span><a class="noteMarker" id="backref-d10e882" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e882">Δ</a></span> Karten-Almanach, welche unabhängig von der Idee des Zeichners <span class="tei_app"><span class="tei_lem">erfunden</span><a class="noteMarker" id="backref-d10e888" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e888">Δ</a></span> sind, gewiß <span class="tei_app"><span class="tei_lem">jeden</span><a class="noteMarker" id="backref-d10e894" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e894">Δ</a></span> Würdiger der schöpfenden Phantasie <span class="tei_app"><span class="tei_lem">erfreuen werden</span><a class="noteMarker" id="backref-d10e900" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e900">Δ</a></span>.</p>
+                                        <p><span class="tei_hi_spaced_out"><span class="preview persons A008297" data-ref="">Ludwig <span class="tei_sic">Schubert</span><a class="noteMarker" id="backref-d10e910" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e910">‡</a></span></span>. Uebersetzer des Ossians, mehrerer <span class="831049710710111511210197114101">Shakespeare</span>schen Stücke etc. und gegenwärtig Herausgeber einer Reihe Charakterzeichnungen, die Interesse und Unterhaltung versprechen. <span class="tei_app"><span class="tei_lem">Besitzt ausgedehnte gründliche Kenntniß der neuern Sprachen, und verbindet mit einer natürlichen Schreibart treffende Bemerkungen.</span><a class="noteMarker" id="backref-d10e916" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e916">Δ</a></span></p>
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A008500" href="">Seele</a></span>, <span class="tei_app"><span class="tei_lem">Privat-Galerie-Direktor.</span><a class="noteMarker" id="backref-d10e925" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e925">Δ</a></span> Historienmaler und besonders vorzüglich in Bataillenstücken.</p>
+                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A001937" href="">Sutor</a></span>, Konzertmeister. Komponierte die Oper: <a class="preview works A020845" href="">Apollos Wettgesang</a>, welche hier mit vielem Beifall aufgenommen worden ist.</span><a class="noteMarker" id="backref-d10e931" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e931">Δ</a></span></p>
                                         <p><span class="tei_hi_spaced_out"><a class="preview persons A008930" href="">H. Thouret</a></span><a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>, Hofbaumeister. Besonders als sehr geschmack- und einsichtsvoller Dekorateur verdient.</p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A003130" href="">Freiherr von Thumb</a></span>. Ein junger Mann von <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e959" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e959">Δ</a></span> Talent und dem eifrigsten Streben nach Vollendung. Seine Neigung zieht ihn vorzüglich zu dem Dramatischen, und einige Scenen aus einem bald erscheinenden Schauspiele <span class="tei_hi_spaced_out"><span class="65108111110122111">Alonzo</span></span><a class="noteMarker" id="backref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a>, <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e972" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e972">Δ</a></span> verdienen die Aufmerksamkeit des Publikums auf das Ganze, <span class="tei_app"><span class="tei_lem">und ihn</span><a class="noteMarker" id="backref-d10e977" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e977">Δ</a></span>.</p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A008633" href="">Eberhard Wächter</a></span>. <span class="tei_app"><span class="tei_lem">Unbezweifelt</span><a class="noteMarker" id="backref-d10e987" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e987">Δ</a></span> einer der ersten Dichter als Maler. Sein <span class="tei_hi_spaced_out">Hiob</span> und sein <span class="tei_hi_spaced_out">sterbender Sokrates</span>, der schlafende <span class="tei_hi_spaced_out">Pindar</span> und der schlafende <span class="tei_hi_spaced_out">Horaz</span> – wie schön gedacht!</p>
-                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A002051" href="">Präs. von Wangenheim</a></span>, <span class="tei_app"><span class="tei_lem">wirkl. adliger Geheimrath.</span><a class="noteMarker" id="backref-d10e1010" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1010">Δ</a></span> Gleich verdient als Geschäftsmann, <span class="tei_app"><span class="tei_lem">Kunstfreund und Schriftsteller</span><a class="noteMarker" id="backref-d10e1015" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1015">Δ</a></span>; was er ergreift ist <span class="tei_hi_spaced_out">sein</span>. Keine Schwierigkeiten achtend umfaßt er das Abstrakteste wie das Gefälligste mit gleicher Wärme, gleicher Kraft, <span class="tei_app"><span class="tei_lem">so wie er eben jetzt sich</span><a class="noteMarker" id="backref-d10e1024" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1024">Δ</a></span> als ein eifriger Beförderer der <span class="8010111511697108111122122105">Pestalozzi</span>schen Erziehungsmethode beweiset. In dieses Fach, so wie in jedes, dessen er sich bemächtigt, ist er so tief gründlich eingedrungen, daß wir nächstens eine <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e1034" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1034">Δ</a></span> Abhandlung darüber <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e1039" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1039">Δ</a></span> erhalten. Als eifrigster Beförderer alles Guten und Schönen, als Freund und Vertrauter der Kunst, <span class="tei_app"><span class="tei_lem">wünschen wir</span><a class="noteMarker" id="backref-d10e1044" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1044">Δ</a></span> ihm langes Leben und Ausdauer.
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A003130" href="">Freiherr von Thumb</a></span>. Ein junger Mann von <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e956" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e956">Δ</a></span> Talent und dem eifrigsten Streben nach Vollendung. Seine Neigung zieht ihn vorzüglich zu dem Dramatischen, und einige Scenen aus einem bald erscheinenden Schauspiele <span class="tei_hi_spaced_out"><span class="65108111110122111">Alonzo</span></span><a class="noteMarker" id="backref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a>, <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e969" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e969">Δ</a></span> verdienen die Aufmerksamkeit des Publikums auf das Ganze, <span class="tei_app"><span class="tei_lem">und ihn</span><a class="noteMarker" id="backref-d10e974" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e974">Δ</a></span>.</p>
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A008633" href="">Eberhard Wächter</a></span>. <span class="tei_app"><span class="tei_lem">Unbezweifelt</span><a class="noteMarker" id="backref-d10e984" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e984">Δ</a></span> einer der ersten Dichter als Maler. Sein <span class="tei_hi_spaced_out">Hiob</span> und sein <span class="tei_hi_spaced_out">sterbender Sokrates</span>, der schlafende <span class="tei_hi_spaced_out">Pindar</span> und der schlafende <span class="tei_hi_spaced_out">Horaz</span> – wie schön gedacht!</p>
+                                        <p><span class="tei_hi_spaced_out"><a class="preview persons A002051" href="">Präs. von Wangenheim</a></span>, <span class="tei_app"><span class="tei_lem">wirkl. adliger Geheimrath.</span><a class="noteMarker" id="backref-d10e1007" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1007">Δ</a></span> Gleich verdient als Geschäftsmann, <span class="tei_app"><span class="tei_lem">Kunstfreund und Schriftsteller</span><a class="noteMarker" id="backref-d10e1012" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1012">Δ</a></span>; was er ergreift ist <span class="tei_hi_spaced_out">sein</span>. Keine Schwierigkeiten achtend umfaßt er das Abstrakteste wie das Gefälligste mit gleicher Wärme, gleicher Kraft, <span class="tei_app"><span class="tei_lem">so wie er eben jetzt sich</span><a class="noteMarker" id="backref-d10e1021" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1021">Δ</a></span> als ein eifriger Beförderer der <span class="8010111511697108111122122105">Pestalozzi</span>schen Erziehungsmethode beweiset. In dieses Fach, so wie in jedes, dessen er sich bemächtigt, ist er so tief gründlich eingedrungen, daß wir nächstens eine <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e1031" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1031">Δ</a></span> Abhandlung darüber <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e1036" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1036">Δ</a></span> erhalten. Als eifrigster Beförderer alles Guten und Schönen, als Freund und Vertrauter der Kunst, <span class="tei_app"><span class="tei_lem">wünschen wir</span><a class="noteMarker" id="backref-d10e1041" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1041">Δ</a></span> ihm langes Leben und Ausdauer.
             </p>
                                         <p><span class="tei_supplied"><span class="brackets_supplied">[</span>Ergänzung aus dem Entwurf:<span class="brackets_supplied">]</span></span><a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> <span class="tei_hi_underline1"><a class="preview persons A008696" href="">Weiser</a></span>. gewiß einer der kritisch wahrsten Köpfe Deutschlands, und seine Sprache ist als ein ächtes Muster reiner Deutschheit aufzustellen, alles ist darin gediegen, kurz, und ganz der kraftvollen, festen Natur der deutschen Sprache angeeignet. Die Mährchen der Schehezerade von ihm bearbeitet dienen allein zum hinreichenden Beleg dieses, und mit Freuden sehen wir den folgenden Theilen entgegen<a class="noteMarker" id="backref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_17">*</a>. </p>
                                     </div>
@@ -532,7 +531,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung), vgl. <span class="preview biblio A110700" data-ref="">Bartlitz</span>, S. 64
+                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung), vgl. <span class="preview biblio A110700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110700.html">Bartlitz</span>, S. 64
             </p>
                                     </div>
                         </div>
@@ -558,9 +557,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 10, Nr. 53 (15. März 1810), Sp. 417–422</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_0d72e660997973ecc95e7798dce76ec2"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_540f80bd62912dcc2183891633ed042d"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_0d72e660997973ecc95e7798dce76ec2">
+                                        <div class="collapse apparatus-details" id="source_540f80bd62912dcc2183891633ed042d">
                                             
                                             
                                             <div>
@@ -573,7 +572,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 139–145 (Nr. 06)</span>
                                                               
-                                                            <div class="collapse" id="source_3dc82049a1ab0640c51f4cd2ad2a1a53">
+                                                            <div class="collapse" id="source_017d1c04f8b490c7b85990ad101cb162">
                                                                 
                                                             </div>
                                                         </div>
@@ -596,9 +595,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (II), Bl. 17a/r bis 18b/v oben</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_9e99882d72869e4c915d5e7129d6ee6d"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_e7c7cf6815149080bfb4bdb8cf625507"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_9e99882d72869e4c915d5e7129d6ee6d">
+                                        <div class="collapse apparatus-details" id="source_e7c7cf6815149080bfb4bdb8cf625507">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>2 DBl. 8 b. S., auf S. 8 befindet sich <a class="preview writings A031113" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031113.html">1810-WeS-02</a></li>
@@ -618,7 +617,7 @@
                                                             
                                                             <span>HellS II, S. 1–13</span>
                                                               
-                                                            <div class="collapse" id="source_467f6a55285efa50f17acec33e53bfa1">
+                                                            <div class="collapse" id="source_deb900016dca015ecbff43fc3e0b20fb">
                                                                 
                                                             </div>
                                                         </div>
@@ -685,14 +684,14 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e728" class="apparatus-link">8.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e728" data-title="unsichere Lesung" data-counter="8" data-href="#d10e728"><span class="tei_lemma">„Armen Collegs“</span>unsichere Lesung</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e725" class="apparatus-link">8.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e725" data-title="unsichere Lesung" data-counter="8" data-href="#d10e725"><span class="tei_lemma">„Armen Collegs“</span>unsichere Lesung</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e913" class="apparatus-link">9.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e913" data-title="sic" data-counter="9" data-href="#d10e913"><span class="tei_lemma">„Schubert“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e910" class="apparatus-link">9.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e910" data-title="sic" data-counter="9" data-href="#d10e910"><span class="tei_lemma">„Schubert“</span>sic!</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -743,7 +742,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_11" class="apparatus-link">8.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_11" data-title="Einzelstellenerläuterung" data-counter="8" data-href="#C_11"><span class="tei_lemma">„…  mit dem Steindruk pp :“</span>Gottlob Heinrich von Rapp (1761–1832), Kaufmann, pflegte er regen Kontakt mit Stuttgarter Künstlern; ab 1792 Wechselgerichtsassessor, unter <a class="preview persons A000534" href="">Friedrich I.</a> führte er von 1808 bis 1816 die kaufmännische Direktion der königlichen Tabaksregie. Er richtete von 1807 ein lithographisches Institut und eine Kupferdruckerei ein, mit wenig Erfolg; vgl. seine Schrift <span class="tei_hi_italic">Das Geheimniß des Steindruckes in seinem ganzen Umfange, praktisch und ohne Rückhalt nach eigenen Erfahrungen beschrieben von einem Liebhaber</span> (Tübingen 1810).</div>
+                                                <div class="apparatusEntry col-11" id="C_11" data-title="Einzelstellenerläuterung" data-counter="8" data-href="#C_11"><span class="tei_lemma">„…  mit dem Steindruk pp :“</span>Gottlob Heinrich Rapp richtete 1807 ein lithographisches Institut und eine Kupferdruckerei ein mit wenig Erfolg; vgl. seine Schrift <span class="tei_hi_italic">Das Geheimniß des Steindruckes in seinem ganzen Umfange, praktisch und ohne Rückhalt nach eigenen Erfahrungen beschrieben von einem Liebhaber</span> (Tübingen 1810).</div>
                                             </div>
                                         </li>
                                         <li>
@@ -1234,8 +1233,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e580" class="apparatus-link">46.</a></div>
-                                                <div id="d10e580" class="apparatusEntry col-11" data-title="Lesarten" data-counter="46" data-href="#d10e580">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e577" class="apparatus-link">46.</a></div>
+                                                <div id="d10e577" class="apparatusEntry col-11" data-title="Lesarten" data-counter="46" data-href="#d10e577">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview persons A001CAD" href=""><span class="tei_hi_spaced_out">Grüneisen</span></a>, Generalsekretär. Ein Mann von vielem Verstand, Witz und Gelehrsamkeit. Diejenigen Geistesprodukte, welche er in dem engeren Zirkel seiner Freunde denselben mittheilte, lassen bedauern, daß er der Welt nichts davon schenkt.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1243,8 +1242,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e592" class="apparatus-link">47.</a></div>
-                                                <div id="d10e592" class="apparatusEntry col-11" data-title="Lesarten" data-counter="47" data-href="#d10e592">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e589" class="apparatus-link">47.</a></div>
+                                                <div id="d10e589" class="apparatusEntry col-11" data-title="Lesarten" data-counter="47" data-href="#d10e589">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Hat zwei Theile Gedichte und Epigramme, – <span class="72101114122321171101003271101105115116">Herz und Geist</span>, ein Taschenbuch, – <span class="691089811111010011110797110105">Elbondokani</span>, eine Operette, – Skizze von <a class="preview persons A006855" href="">Zumsteeg</a>s Leben, – mit <span class="tei_hi_spaced_out"><a class="preview persons A008696" href="">Weißer</a></span>, eine Epigrammatische Anthologie – und viele andere zerstreute Gedichte herausgegeben. Ein Bändchen Erzählungen, ein neuer Band Gedichte, – Glossen, Gnomen und Paradoxen etc. haben wir von ihm zu erwarten</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">bekannt durch 2 Bände Gedichte, eine Epigrammatische Anthologie mit <a class="preview persons A008696" href="">Weißer</a> herausgegeben, und ein Bändchen Erzählungen  <span class="tei_hi_latintype">pp</span>. <span class="tei_space"></span>haben wir von ihm zu erwarten.</span>“</span></div>
                                                 </div>
@@ -1252,8 +1251,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e644" class="apparatus-link">48.</a></div>
-                                                <div id="d10e644" class="apparatusEntry col-11" data-title="Lesarten" data-counter="48" data-href="#d10e644">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e641" class="apparatus-link">48.</a></div>
+                                                <div id="d10e641" class="apparatusEntry col-11" data-title="Lesarten" data-counter="48" data-href="#d10e641">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Galeriedirektor.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1261,8 +1260,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e684" class="apparatus-link">49.</a></div>
-                                                <div id="d10e684" class="apparatusEntry col-11" data-title="Lesarten" data-counter="49" data-href="#d10e684">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e681" class="apparatus-link">49.</a></div>
+                                                <div id="d10e681" class="apparatusEntry col-11" data-title="Lesarten" data-counter="49" data-href="#d10e681">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">beschäftigte</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1270,8 +1269,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e689" class="apparatus-link">50.</a></div>
-                                                <div id="d10e689" class="apparatusEntry col-11" data-title="Lesarten" data-counter="50" data-href="#d10e689">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e686" class="apparatus-link">50.</a></div>
+                                                <div id="d10e686" class="apparatusEntry col-11" data-title="Lesarten" data-counter="50" data-href="#d10e686">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">beschäftigte</span>“</span></div>
                                                 </div>
@@ -1279,8 +1278,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e694" class="apparatus-link">51.</a></div>
-                                                <div id="d10e694" class="apparatusEntry col-11" data-title="Lesarten" data-counter="51" data-href="#d10e694">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e691" class="apparatus-link">51.</a></div>
+                                                <div id="d10e691" class="apparatusEntry col-11" data-title="Lesarten" data-counter="51" data-href="#d10e691">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">wähnen</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">glauben</span>“</span></div>
                                                 </div>
@@ -1288,8 +1287,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e705" class="apparatus-link">52.</a></div>
-                                                <div id="d10e705" class="apparatusEntry col-11" data-title="Lesarten" data-counter="52" data-href="#d10e705">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e702" class="apparatus-link">52.</a></div>
+                                                <div id="d10e702" class="apparatusEntry col-11" data-title="Lesarten" data-counter="52" data-href="#d10e702">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008918" href="">Fr. Gräfin v. Jennison</a></span>. Einige Karten-Almanachs sind von Ihrer Hand, und sind so geistreich und mit so viel Kunstkenntniß behandelt, daß sie rühmlichst erwähnt zu werden verdienen.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">als Wieder-Schöpferin der Karten Almanache wovon sie 3 Jahrgänge mit vieler Geist und KunstKenntniß behandelt, das ganze Recht der Erfindung ihr wahrscheinlich nicht zu, da Ref: sich erinnert schon früher einen Engländer als den Erfinder derselben gekannt zu haben.</span>“</span></div>
                                                 </div>
@@ -1297,8 +1296,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e721" class="apparatus-link">53.</a></div>
-                                                <div id="d10e721" class="apparatusEntry col-11" data-title="Lesarten" data-counter="53" data-href="#d10e721">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e718" class="apparatus-link">53.</a></div>
+                                                <div id="d10e718" class="apparatusEntry col-11" data-title="Lesarten" data-counter="53" data-href="#d10e718">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Vorleser und Privatbiblioth. <a class="preview persons A000534" href="">Sr. M. des Königs</a></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Bibliothekar und Mitglied des <span class="tei_unclear">Armen Collegs</span>:</span>“</span></div>
                                                 </div>
@@ -1306,8 +1305,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e732" class="apparatus-link">54.</a></div>
-                                                <div id="d10e732" class="apparatusEntry col-11" data-title="Lesarten" data-counter="54" data-href="#d10e732">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e729" class="apparatus-link">54.</a></div>
+                                                <div id="d10e729" class="apparatusEntry col-11" data-title="Lesarten" data-counter="54" data-href="#d10e729">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">die</span>“</span></div>
                                                 </div>
@@ -1315,8 +1314,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e758" class="apparatus-link">55.</a></div>
-                                                <div id="d10e758" class="apparatusEntry col-11" data-title="Lesarten" data-counter="55" data-href="#d10e758">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e755" class="apparatus-link">55.</a></div>
+                                                <div id="d10e755" class="apparatusEntry col-11" data-title="Lesarten" data-counter="55" data-href="#d10e755">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">von ihm</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1324,8 +1323,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e764" class="apparatus-link">56.</a></div>
-                                                <div id="d10e764" class="apparatusEntry col-11" data-title="Lesarten" data-counter="56" data-href="#d10e764">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e761" class="apparatus-link">56.</a></div>
+                                                <div id="d10e761" class="apparatusEntry col-11" data-title="Lesarten" data-counter="56" data-href="#d10e761">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Gefühls-Leben</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Leben</span>“</span></div>
                                                 </div>
@@ -1333,8 +1332,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e770" class="apparatus-link">57.</a></div>
-                                                <div id="d10e770" class="apparatusEntry col-11" data-title="Lesarten" data-counter="57" data-href="#d10e770">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e767" class="apparatus-link">57.</a></div>
+                                                <div id="d10e767" class="apparatusEntry col-11" data-title="Lesarten" data-counter="57" data-href="#d10e767">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">anspricht</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">ansprechen wird</span>“</span></div>
                                                 </div>
@@ -1342,8 +1341,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e778" class="apparatus-link">58.</a></div>
-                                                <div id="d10e778" class="apparatusEntry col-11" data-title="Lesarten" data-counter="58" data-href="#d10e778">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e775" class="apparatus-link">58.</a></div>
+                                                <div id="d10e775" class="apparatusEntry col-11" data-title="Lesarten" data-counter="58" data-href="#d10e775">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008340" href="">Joh. Gotth. Müller</a></span></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg"><span class="tei_hi_underline1">Müller</span> der Vater</span>“</span></div>
                                                 </div>
@@ -1351,8 +1350,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e789" class="apparatus-link">59.</a></div>
-                                                <div id="d10e789" class="apparatusEntry col-11" data-title="Lesarten" data-counter="59" data-href="#d10e789">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e786" class="apparatus-link">59.</a></div>
+                                                <div id="d10e786" class="apparatusEntry col-11" data-title="Lesarten" data-counter="59" data-href="#d10e786">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A008570" href="">Fr. Müller</a></span>, sein Sohn</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg"><span class="tei_hi_underline1">Müller</span>, der Sohn</span>“</span></div>
                                                 </div>
@@ -1360,8 +1359,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e819" class="apparatus-link">60.</a></div>
-                                                <div id="d10e819" class="apparatusEntry col-11" data-title="Lesarten" data-counter="60" data-href="#d10e819">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e816" class="apparatus-link">60.</a></div>
+                                                <div id="d10e816" class="apparatusEntry col-11" data-title="Lesarten" data-counter="60" data-href="#d10e816">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Bekannt</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Allbekannt</span>“</span></div>
                                                 </div>
@@ -1369,8 +1368,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e835" class="apparatus-link">61.</a></div>
-                                                <div id="d10e835" class="apparatusEntry col-11" data-title="Lesarten" data-counter="61" data-href="#d10e835">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e832" class="apparatus-link">61.</a></div>
+                                                <div id="d10e832" class="apparatusEntry col-11" data-title="Lesarten" data-counter="61" data-href="#d10e832">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">seine Briefe über <a class="preview places A130035" href="">Heidelberg</a></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1378,8 +1377,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e845" class="apparatus-link">62.</a></div>
-                                                <div id="d10e845" class="apparatusEntry col-11" data-title="Lesarten" data-counter="62" data-href="#d10e845">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e842" class="apparatus-link">62.</a></div>
+                                                <div id="d10e842" class="apparatusEntry col-11" data-title="Lesarten" data-counter="62" data-href="#d10e842">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Werke</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1387,8 +1386,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e850" class="apparatus-link">63.</a></div>
-                                                <div id="d10e850" class="apparatusEntry col-11" data-title="Lesarten" data-counter="63" data-href="#d10e850">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e847" class="apparatus-link">63.</a></div>
+                                                <div id="d10e847" class="apparatusEntry col-11" data-title="Lesarten" data-counter="63" data-href="#d10e847">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">letztern</span>“</span></div>
                                                 </div>
@@ -1396,8 +1395,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e855" class="apparatus-link">64.</a></div>
-                                                <div id="d10e855" class="apparatusEntry col-11" data-title="Lesarten" data-counter="64" data-href="#d10e855">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e852" class="apparatus-link">64.</a></div>
+                                                <div id="d10e852" class="apparatusEntry col-11" data-title="Lesarten" data-counter="64" data-href="#d10e852">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Er</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1405,8 +1404,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e860" class="apparatus-link">65.</a></div>
-                                                <div id="d10e860" class="apparatusEntry col-11" data-title="Lesarten" data-counter="65" data-href="#d10e860">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e857" class="apparatus-link">65.</a></div>
+                                                <div id="d10e857" class="apparatusEntry col-11" data-title="Lesarten" data-counter="65" data-href="#d10e857">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">aus, <span class="tei_cb"></span> die</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">die so</span>“</span></div>
                                                 </div>
@@ -1414,8 +1413,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e868" class="apparatus-link">66.</a></div>
-                                                <div id="d10e868" class="apparatusEntry col-11" data-title="Lesarten" data-counter="66" data-href="#d10e868">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e865" class="apparatus-link">66.</a></div>
+                                                <div id="d10e865" class="apparatusEntry col-11" data-title="Lesarten" data-counter="66" data-href="#d10e865">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">das jeder im Lesen glaubt es selbst so gemacht haben zu müssen</span>“</span></div>
                                                 </div>
@@ -1423,8 +1422,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e873" class="apparatus-link">67.</a></div>
-                                                <div id="d10e873" class="apparatusEntry col-11" data-title="Lesarten" data-counter="67" data-href="#d10e873">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e870" class="apparatus-link">67.</a></div>
+                                                <div id="d10e870" class="apparatusEntry col-11" data-title="Lesarten" data-counter="67" data-href="#d10e870">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">sowie</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">und</span>“</span></div>
                                                 </div>
@@ -1432,8 +1431,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e880" class="apparatus-link">68.</a></div>
-                                                <div id="d10e880" class="apparatusEntry col-11" data-title="Lesarten" data-counter="68" data-href="#d10e880">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e877" class="apparatus-link">68.</a></div>
+                                                <div id="d10e877" class="apparatusEntry col-11" data-title="Lesarten" data-counter="68" data-href="#d10e877">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">sind</span>“</span></div>
                                                 </div>
@@ -1441,8 +1440,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e885" class="apparatus-link">69.</a></div>
-                                                <div id="d10e885" class="apparatusEntry col-11" data-title="Lesarten" data-counter="69" data-href="#d10e885">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e882" class="apparatus-link">69.</a></div>
+                                                <div id="d10e882" class="apparatusEntry col-11" data-title="Lesarten" data-counter="69" data-href="#d10e882">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">neusten</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">dießjährigen</span>“</span></div>
                                                 </div>
@@ -1450,8 +1449,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e891" class="apparatus-link">70.</a></div>
-                                                <div id="d10e891" class="apparatusEntry col-11" data-title="Lesarten" data-counter="70" data-href="#d10e891">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e888" class="apparatus-link">70.</a></div>
+                                                <div id="d10e888" class="apparatusEntry col-11" data-title="Lesarten" data-counter="70" data-href="#d10e888">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">erfunden</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">empfunden</span>“</span></div>
                                                 </div>
@@ -1459,8 +1458,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e897" class="apparatus-link">71.</a></div>
-                                                <div id="d10e897" class="apparatusEntry col-11" data-title="Lesarten" data-counter="71" data-href="#d10e897">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e894" class="apparatus-link">71.</a></div>
+                                                <div id="d10e894" class="apparatusEntry col-11" data-title="Lesarten" data-counter="71" data-href="#d10e894">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">jeden</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">jedem</span>“</span></div>
                                                 </div>
@@ -1468,8 +1467,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e903" class="apparatus-link">72.</a></div>
-                                                <div id="d10e903" class="apparatusEntry col-11" data-title="Lesarten" data-counter="72" data-href="#d10e903">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e900" class="apparatus-link">72.</a></div>
+                                                <div id="d10e900" class="apparatusEntry col-11" data-title="Lesarten" data-counter="72" data-href="#d10e900">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">erfreuen werden</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">erfreulich</span>“</span></div>
                                                 </div>
@@ -1477,8 +1476,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e919" class="apparatus-link">73.</a></div>
-                                                <div id="d10e919" class="apparatusEntry col-11" data-title="Lesarten" data-counter="73" data-href="#d10e919">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e916" class="apparatus-link">73.</a></div>
+                                                <div id="d10e916" class="apparatusEntry col-11" data-title="Lesarten" data-counter="73" data-href="#d10e916">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Besitzt ausgedehnte gründliche Kenntniß der neuern Sprachen, und verbindet mit einer natürlichen Schreibart treffende Bemerkungen.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1486,8 +1485,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e928" class="apparatus-link">74.</a></div>
-                                                <div id="d10e928" class="apparatusEntry col-11" data-title="Lesarten" data-counter="74" data-href="#d10e928">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e925" class="apparatus-link">74.</a></div>
+                                                <div id="d10e925" class="apparatusEntry col-11" data-title="Lesarten" data-counter="74" data-href="#d10e925">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Privat-Galerie-Direktor.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1495,8 +1494,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e934" class="apparatus-link">75.</a></div>
-                                                <div id="d10e934" class="apparatusEntry col-11" data-title="Lesarten" data-counter="75" data-href="#d10e934">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e931" class="apparatus-link">75.</a></div>
+                                                <div id="d10e931" class="apparatusEntry col-11" data-title="Lesarten" data-counter="75" data-href="#d10e931">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_hi_spaced_out"><a class="preview persons A001937" href="">Sutor</a></span>, Konzertmeister. Komponierte die Oper: <a class="preview works A020845" href="">Apollos Wettgesang</a>, welche hier mit vielem Beifall aufgenommen worden ist.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1504,8 +1503,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e959" class="apparatus-link">76.</a></div>
-                                                <div id="d10e959" class="apparatusEntry col-11" data-title="Lesarten" data-counter="76" data-href="#d10e959">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e956" class="apparatus-link">76.</a></div>
+                                                <div id="d10e956" class="apparatusEntry col-11" data-title="Lesarten" data-counter="76" data-href="#d10e956">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">vielem</span>“</span></div>
                                                 </div>
@@ -1513,8 +1512,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e972" class="apparatus-link">77.</a></div>
-                                                <div id="d10e972" class="apparatusEntry col-11" data-title="Lesarten" data-counter="77" data-href="#d10e972">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e969" class="apparatus-link">77.</a></div>
+                                                <div id="d10e969" class="apparatusEntry col-11" data-title="Lesarten" data-counter="77" data-href="#d10e969">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">die Ref: gelesen,</span>“</span></div>
                                                 </div>
@@ -1522,8 +1521,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e977" class="apparatus-link">78.</a></div>
-                                                <div id="d10e977" class="apparatusEntry col-11" data-title="Lesarten" data-counter="78" data-href="#d10e977">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e974" class="apparatus-link">78.</a></div>
+                                                <div id="d10e974" class="apparatusEntry col-11" data-title="Lesarten" data-counter="78" data-href="#d10e974">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">und ihn</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1531,8 +1530,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e987" class="apparatus-link">79.</a></div>
-                                                <div id="d10e987" class="apparatusEntry col-11" data-title="Lesarten" data-counter="79" data-href="#d10e987">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e984" class="apparatus-link">79.</a></div>
+                                                <div id="d10e984" class="apparatusEntry col-11" data-title="Lesarten" data-counter="79" data-href="#d10e984">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Unbezweifelt</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Ohnstreitig</span>“</span></div>
                                                 </div>
@@ -1540,8 +1539,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1010" class="apparatus-link">80.</a></div>
-                                                <div id="d10e1010" class="apparatusEntry col-11" data-title="Lesarten" data-counter="80" data-href="#d10e1010">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1007" class="apparatus-link">80.</a></div>
+                                                <div id="d10e1007" class="apparatusEntry col-11" data-title="Lesarten" data-counter="80" data-href="#d10e1007">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">wirkl. adliger Geheimrath.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1549,8 +1548,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1015" class="apparatus-link">81.</a></div>
-                                                <div id="d10e1015" class="apparatusEntry col-11" data-title="Lesarten" data-counter="81" data-href="#d10e1015">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1012" class="apparatus-link">81.</a></div>
+                                                <div id="d10e1012" class="apparatusEntry col-11" data-title="Lesarten" data-counter="81" data-href="#d10e1012">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Kunstfreund und Schriftsteller</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Schriftsteller, Kunstfreund</span>“</span></div>
                                                 </div>
@@ -1558,8 +1557,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1024" class="apparatus-link">82.</a></div>
-                                                <div id="d10e1024" class="apparatusEntry col-11" data-title="Lesarten" data-counter="82" data-href="#d10e1024">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1021" class="apparatus-link">82.</a></div>
+                                                <div id="d10e1021" class="apparatusEntry col-11" data-title="Lesarten" data-counter="82" data-href="#d10e1021">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">so wie er eben jetzt sich</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">wie eben jezt er sich</span>“</span></div>
                                                 </div>
@@ -1567,8 +1566,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1034" class="apparatus-link">83.</a></div>
-                                                <div id="d10e1034" class="apparatusEntry col-11" data-title="Lesarten" data-counter="83" data-href="#d10e1034">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1031" class="apparatus-link">83.</a></div>
+                                                <div id="d10e1031" class="apparatusEntry col-11" data-title="Lesarten" data-counter="83" data-href="#d10e1031">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">vortreffliche</span>“</span></div>
                                                 </div>
@@ -1576,8 +1575,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1039" class="apparatus-link">84.</a></div>
-                                                <div id="d10e1039" class="apparatusEntry col-11" data-title="Lesarten" data-counter="84" data-href="#d10e1039">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1036" class="apparatus-link">84.</a></div>
+                                                <div id="d10e1036" class="apparatusEntry col-11" data-title="Lesarten" data-counter="84" data-href="#d10e1036">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">die manche schiefe Ansichten berichtigt und einen klaren Ansichtspunkt der ganzen Methode aufstellt </span>“</span></div>
                                                 </div>
@@ -1585,8 +1584,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1044" class="apparatus-link">85.</a></div>
-                                                <div id="d10e1044" class="apparatusEntry col-11" data-title="Lesarten" data-counter="85" data-href="#d10e1044">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1041" class="apparatus-link">85.</a></div>
+                                                <div id="d10e1041" class="apparatusEntry col-11" data-title="Lesarten" data-counter="85" data-href="#d10e1041">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">wünschen wir</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -1617,7 +1616,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031109</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031109</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -1677,6 +1676,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1735,22 +1737,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

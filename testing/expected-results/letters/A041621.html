@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"dankt für Freischütz-Honorar; erwähnt dringende Geschäfte und Tätigkeiten vor seiner Abreise; würde Brühl dennoch gerne in Dresden vorher begrüßen; ob er über Berlin zurückreise, wisse er noch nicht; die Preciosa gehe in einigen Tagen ab; bedankt sich für Reise-Empfehlungsbriefe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Carl Graf von Brühl in Seifersdorf. Dresden, Freitag, 21. Juli 1820","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041621","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"dankt für Freischütz-Honorar; erwähnt dringende Geschäfte und Tätigkeiten vor seiner Abreise; würde Brühl dennoch gerne in Dresden vorher begrüßen; ob er über Berlin zurückreise, wisse er noch nicht; die Preciosa gehe in einigen Tagen ab; bedankt sich für Reise-Empfehlungsbriefe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Carl Graf von Brühl in Seifersdorf. Dresden, Freitag, 21. Juli 1820","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041621","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041621/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -386,7 +384,7 @@
                                     <h4>Vorausgehend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041615.html">1820-06-21</a>:  an  <a href="" class="preview A000235 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041428.html">1818-07-02</a>:  an  <a href="" class="preview A000235 persons"></a>
                                         </li>
                                             <li>
                                             <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  von  <a href="" class="preview A000235 persons"></a>
@@ -395,7 +393,7 @@
                                     <h4>Folgend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042087.html">1823-01-13</a>:  an  <a href="" class="preview A000235 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042320.html">1824-06-24</a>:  an  <a href="" class="preview A000235 persons"></a>
                                         </li>
                                             <li>
                                             <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674.html">1821-03-22</a>:  von  <a href="" class="preview A000235 persons"></a>
@@ -428,7 +426,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000236" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -456,11 +454,13 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130528" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131290" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -480,30 +480,30 @@
                Weise mit welcher Sie mir gütigst das <span class="tei_hi_latintype">Honorar</span> für den <a class="preview works A020040" href="">Freyschützen</a> <a class="preview letters A046700" href="">bestimmen und anweisen</a>.</p>
                                         <p>Ich lege daher die <a class="preview documents A100039" href=""><span class="tei_hi_latintype">Quittung</span></a> E: Hochgebohren Bestimmung gemäß bei; mit der
                Bitte mir solche <span class="tei_hi_underline1">hieher</span> zurük zu senden, da die Zeit zu kurz
-               wäre, den Betrag noch vor meiner Abreise von <a class="preview places A130002" href="">Berlin</a> erhalten zu können und ich daher
-               durch H: <a class="preview persons A000095" href=""><span class="tei_hi_latintype">Bassenge</span></a> denselben in <a class="preview places A130002" href="">Berlin</a> einkaßieren lassen kann.</p>
+               wäre, den Betrag noch vor meiner Abreise von <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> erhalten zu können und ich daher
+               durch H: <a class="preview persons A000095" href=""><span class="tei_hi_latintype">Bassenge</span></a> denselben in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> einkaßieren lassen kann.</p>
                                         <p>Wie gerne wäre ich nach <a class="preview places A130528" href="">Seyffersdorf</a> gekomen, um Ihnen persönlich meinen Dank wiederholen und noch so manches besprechen zu können, aber die Vorbereitungen zu meiner Reise lassen mich wirklich keinen Tag mehr dazu
                anwenden. zumal da mir das gestrige Hof <span class="tei_hi_latintype">Conzert</span> der <span class="preview persons A0027CE A0019C9" data-ref=" ">Gebrüder <span class="tei_hi_underline1"><span class="tei_hi_latintype">Bender</span></span></span> nebst <a class="preview persons A000127" href=""><span class="tei_hi_underline1">Frau</span></a><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090148.html">T</a> und die
                neue Oper <span class="tei_hi_underline1"><a class="preview works A020722" href="">Heinrich der IV</a></span> von <a class="preview persons A001268" href="">Marschner</a>, die Sonntag noch wiederholt wird<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, so viele Zeit
                raubten.      /: E: Hochgebohren würden sich wundern, <span class="tei_hi_underline1">jezt</span> Mad. <a class="preview persons A000127" href=""><span class="tei_hi_underline1">Bender</span></a> zu hören.      Man kann sie ohne alle Übertreibung die deutsche <a class="preview persons A000279" href=""><span class="tei_hi_latintype">Catalani</span></a> nennen. :/ Wenn es Ihre Verhältniße für mich so glüklich fügen wollten und Ew:
-               Hochgebohren nach <a class="preview places A130003" href="">Dresden</a> kämen, das wäre sehr schön.      Aber freilich müste es vor dem <span class="tei_hi_underline2andMore">25</span><span class="tei_hi_superscript">t</span> /: künftigen Dienstag :/ sein, wo ich ganz bestimt abzureisen gedenke.      daß die Eröffnung<span class="tei_pb" title="Seitenumbruch"> | </span><a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a> des neuen Hauses sich abermals verschoben hat, ist freilich traurig für mich, aber es wäre unbillig, gegen Sie
+               Hochgebohren nach <a class="preview places A130003" href="">Dresden</a> kämen, das wäre sehr schön.      Aber freilich müste es vor dem <span class="tei_hi_underline2andMore">25</span><span class="tei_hi_superscript">t</span> /: künftigen Dienstag :/ sein, wo ich ganz bestimt abzureisen gedenke.      daß die Eröffnung<span class="tei_pb" title="Seitenumbruch"> | </span> des neuen Hauses sich abermals verschoben hat, ist freilich traurig für mich, aber es wäre unbillig, gegen Sie
                darüber eine Klage laut werden zu lassen, der Sie gewiß am allerersten unangenehm
                dadurch berührt werden.</p>
                                         <p>Ob ich nun doch im 8<span class="tei_hi_superscript">br</span> auf der Rückreise
-               über <a class="preview places A130002" href="">Berlin</a> kommen soll, bin ich fast zweifelhaft. Wie wäre es wohl mit einem Conzert in
+               über <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> kommen soll, bin ich fast zweifelhaft. Wie wäre es wohl mit einem Conzert in
                dem neuen Saale? </p>
                                         <p>
                <a class="preview works A020227" href="">Preziosa</a> geht in
-               diesen Tagen nach <a class="preview places A130002" href="">Berlin</a> ab. Mit Dank erwarte ich die gütigst versprochenen <a class="preview letters A041556" href="">Briefe</a> zu
+               diesen Tagen nach <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> ab<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>. Mit Dank erwarte ich die gütigst versprochenen <a class="preview letters A041556" href="">Briefe</a> zu
                meiner Reise. Kann ich auf dieser in Nichts Ew. Hochgeboren nützlich sein?</p>
                                         <p class="tei_closer textAlign-left">Indem ich bitte mich der gnädigen <a class="preview persons A000236" href="">Gräfin</a>
                ehrfurchtsvollst zu empfehlen, wiederhole ich die Versicherung meiner herzlichsten
                Ergebenheit u. Hochachtung, mit welcher ich unveränderlich sein u. bleiben werde Ew.
                Hochgeboren ganz ergebener 
-               <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="">C. M. von Weber</a></span>.</span>
+               <span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></span>.</span>
             </p>
                                         <div class="tei_postscript">
-                                            <p>Ich wohne in der Allee, die nach dem <span class="tei_add tei_hi_superscript">(Linkeschen)<a class="noteMarker" id="backref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">‡</a></span> Bade führt, nächst den 3 Linden, <span class="tei_hi_latintype">No</span>
+                                            <p>Ich wohne in der Allee, die nach dem <span class="preview places A131290" data-ref=""><span class="tei_add tei_hi_superscript">(Linkeschen)<a class="noteMarker" id="backref-d10e142" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e142">‡</a></span> Bade</span> führt, nächst den 3 Linden, <span class="tei_hi_latintype">No</span>
                148<a class="noteMarker" href="">T</a>.</p>
                                         </div>
                                         <p class="clearer"></p>
@@ -554,9 +554,9 @@
                                         
                                         <span>In Privatbesitz</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_e03bb6917b16335e8069068db5139c50"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6b2f117971fd4a5662cf5a3ffeaa9408"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e03bb6917b16335e8069068db5139c50">
+                                        <div class="collapse apparatus-details" id="source_6b2f117971fd4a5662cf5a3ffeaa9408">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>2 S.</li>
@@ -587,7 +587,7 @@
                                                             
                                                             <span>Kaiser (Brühl), S. 26–27 (Nr. 24)</span>
                                                               
-                                                            <div class="collapse" id="source_bedb25e87109061b579df594a58b9133">
+                                                            <div class="collapse" id="source_017d29744bb53bed7b3c10cfd794b8d0">
                                                                 
                                                             </div>
                                                         </div>
@@ -610,9 +610,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. II B, 1. a., Nr. 22, S. 22–23</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_574f457421419c568b9a5df94e823382"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_8078c2245a0f8c2004a7e592c1338779"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_574f457421419c568b9a5df94e823382">
+                                        <div class="collapse apparatus-details" id="source_8078c2245a0f8c2004a7e592c1338779">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Abschrift von Ida Jähns mit partiellen Korrekturen von Friedrich Wilhelm Jähns</li>
@@ -651,8 +651,8 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e137" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e137" data-title="Hinzufügung" data-counter="1" data-href="#d10e137"><span class="tei_lemma">„(Linkeschen)“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e142" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e142" data-title="Hinzufügung" data-counter="1" data-href="#d10e142"><span class="tei_lemma">„(Linkeschen)“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -667,7 +667,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  abzureisen gedenke. daß die Eröffnung“</span>Bis hierher nach Autograph übertragen.</div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  diesen Tagen nach Berlin ab“</span>Vor Webers Abreise aus <a class="preview places A130003" href="">Dresden</a> (25. Juli) sind keine entsprechenden Hinweis in seinem Tagebuch zu finden. Möglicherweise hatte er mit seinen Kopisten entsprechende Vereinbarungen getroffen.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -696,7 +696,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041621</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041621</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -756,6 +756,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -814,22 +817,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

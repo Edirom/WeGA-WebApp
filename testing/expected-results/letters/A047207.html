@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Kind, Johann Friedrich" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -43,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"diverse Mitteilungen an die Chézy; u.a. über seinen Hauskauf und Aufführungen seiner Stücke; kann leider ihre Gloriande nicht im Taschenbuch veröffentlichen, da sie zu lang ist und er schon zu viele Beiträge hat; berichtet am Ende kurz von Webers Ärger über den Oberon am Drury Lane Theater","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"an. Donnerstag, 6. April 1826","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047207","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A047207","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001002","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001002"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -251,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A047207/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A047207/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -361,13 +359,13 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A042032.html">1823-01-06</a>:  von  <a href="" class="preview A000235 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042520.html">1825-11-19</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A044532.html">1833-02-25</a>:  an  <a href="" class="preview A001181 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001002/Korrespondenz/A042586.html">1826-07-30</a>:  an  <a href="" class="preview A002160 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001077/Korrespondenz/A042588.html">1826-08-27</a>:  von  <a href="" class="preview A001077 persons"></a>
@@ -394,6 +392,8 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000047" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A0029A5" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000290" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000289" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -406,8 +406,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008456" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001231" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000316" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -415,6 +413,8 @@
                                     <input type="checkbox" name="options" value="A005194" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -450,6 +450,8 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131100" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130020" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130011" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -481,14 +483,18 @@
                                         <p>Frau <a class="preview persons A000288" href=""><span class="tei_hi_latintype">Helmine</span> von <span class="tei_hi_latintype">Chezy</span></a>,</p>
                                         <p>in</p>
                                         <p><span class="tei_hi_latintype"><a class="preview places A130004" href="">Wien</a></span>.</p>
-                                        <p>Waßerburgbastei <span class="tei_hi_latintype">N</span>.<br /> 1191. oder bei Fr. <a class="preview persons A001479" href=""><span class="tei_hi_latintype">Caroline</span><br />von <span class="tei_hi_latintype">Pichler</span>, geb. v. <span class="tei_hi_latintype">Grei<span class="break_inWord">-</span><br />ner</span></a>, oder bei H. <span class="tei_hi_latintype"><a class="preview persons A001675" href="">Schickh</a></span>, Redakteur der Wiener Zeit<span class="break_inWord">-</span><br />schrift für Lit. Kunst u. Mode.</p>
+                                        <p>Waßerburgbastei <span class="tei_hi_latintype">N</span>.</p>
+                                        <p>1191. oder bei Fr. <span class="tei_hi_latintype">Caroline</span></p>
+                                        <p><a class="preview persons A001479" href="">von <span class="tei_hi_latintype">Pichler</span></a>, geb. v. <span class="tei_hi_latintype">Grei</span>-</p>
+                                        <p><span class="tei_hi_latintype">ner</span>, oder bei H. <span class="tei_hi_latintype"><a class="preview persons A001675" href="">Schickh</a></span>, Redakteur der Wiener Zeit-</p>
+                                        <p>schrift für Lit. Kunst u. Mode.</p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
                <span class="tei_dateline textAlign-right"><a class="preview places A130003" href="">Dresden</a>, 6. April 1826.</span>
                <p class="teiLetter_salute">Verehrte <a class="preview persons A000288" href="">Freundin</a>!</p>              
             </div>
-                                        <p>Ich muß wohl durch die Post an Sie schreiben, da mir die <a class="preview persons A000047" href="">Arnold</a>ische Buchhandlung (wegen des Eingang-Verbots der Ab.<span class="tei_supplied"><span class="brackets_supplied">[</span>end<span class="brackets_supplied">]</span></span> Zeit.<span class="tei_supplied"><span class="brackets_supplied">[</span>ung<span class="brackets_supplied">]</span></span>) keinen Brief befödern will und eine andere Gelegenheit sich nicht findet. Daß Sie nicht früher Antwort von mir erhalten haben, werden Sie mir gewiß verzeihen, wenn Sie die vielfache irdische Sorge und Unruhe sich vorstellen könnten, welche mir der Hauskauf gemacht hat. Ich bin der bürgerlichen Geschäfte seit einer Mandel Jahre ganz entwöhnt; nun mußte ich wieder Gelder umsetzen, Capitale suchen, Urkunden aufsetzen p kurz mich um mancherlei bekümmern, was mir Verdruß macht und alle poetische Stimmung raubt. Nunmehr ist, Gott sey Dank, das Meiste überstanden – nur der Aus- und Einzug steht uns nach Johannis bevor – und ich benutze eins der ersten freien Stündchen, um Sie meines steten, freundschaftlichsten Andenkens zu versichern. Meine kleine, doch sehr nette Hütte ist übrigens in <a class="preview places A130003" href="">Dresden</a> selbst, zwischen der Johanniskirche und den neuen sehr reizenden Promenaden gelegen, auch mit einem Gärtchen versehen – in Taschenformat, mithin zum Vergnügen eines Taschenbuch-Herausgebers heinreichend und geeignet. – Daß mir der durch Herrn <span class="tei_hi_latintype"><span class="6811798111105115">Dubois</span></span> zugedachte Brief entgangen ist, bedaure ich sehr; es freut mich immer innigst wenn ich etwas von Ihnen erfahre, und noch dazu wenn Sie ihn in rosenrother Laune geschrieben! Der letztere ist es nicht, <span class="tei_sic">sie</span><a class="noteMarker" id="backref-d10e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e81">‡</a> waren kränklich und abgespannt. Doch das ist nun hoffentlich vorüber und der Frühling, der trotz des ungezogenen Aprils doch manchmal hervorgukt, wird gewiß auch seiner Sängerin die schönsten Gaben aus der Fremde mitbringen. M–s und E–s Tod haben auch mich sehr gebeugt; noch mehr aber der meines dreißigjährigen Freundes <span class="tei_hi_underline1"><span class="83101109108101114">Semler</span></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>, der ein Theil meiner Seele war. Der Kummer über diesen Verlust machte mich sogar körperlich krank, was dann die in Obigem erwähnten Sorgen und Geschäfte mir noch drückender erscheinen ließ. Er hat mir die meisten seiner Manuscripte logirt und ich werde wahrscheinlich in einiger Zeit eine Sammlung seiner kleinen, theils zerstreuten, theils noch ungedruckten Schriften herausgeben, weil es sein letztwilliger Wunsch war und in der That viel Treffliches darunter sich befindet<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>. – <span class="tei_pb" title="Seitenumbruch"> | </span> Was Sie mir von Ihren <span class="preview persons A000290 A000289" data-ref=" ">Söhnen</span> schreiben, habe ich mit der freundschaftlichsten Theilnahme gelesen. Möge Gott Ihnen recht viele Freude durch sie schenken! Meine <a class="preview persons A001004" href="">Frau</a> und <span class="preview persons A002360 A001005" data-ref=" ">Töchter</span> sind gesund und empfehlen sich Ihrem Andenken aufs angelegentlichste. <a class="preview persons A001005" href="">Roswitha</a> ist sehr herangewachsen und nähert sich ihrer Blütezeit; sie ist in vergangener Osterwoche confimirt worden. – Was die <span class="tei_hi_underline1"><span class="7110811111410597110100101">Gloriande</span></span> anlangt, so müßen Sie – was mich schmerzt – was ich Ihnen darüber geschrieben, noch nicht aufmerksam gelesen haben. Ich schrieb Ihnen der Hauptsache nach, daß sie mir im allgemeinen für ein Taschenbuch zu lang scheine, und daß ich – nur in <span class="tei_hi_underline1">einem</span> möglichen Falle – es war der, daß andre zugesagte und bereits angenommene Beiträge nicht eingiengen, sie vielleicht benützen könnte. Dieser Fall ist aber nicht eingetreten, vielmehr sind jene Beiträge zum Theil länger ausgefallen, als zu erwarten stand, und es ist mir daher weder vergönnt, die <span class="7110811111410597110100101">Gloriande</span> aufzunehmen, noch, was aus Obigem folgt, ein Honorar dafür zu bieten<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. Ich bin dieß um so weniger im Stande, da meine Zahlungen fürs Haus mein kleines, fast in dreißig Jahren erübrigtes Vermögen ziemlich ganz hinweggenommen haben, und ich daher, um den Meinigen dieß ihr einziges Erbtheil ohne allzu ängstliche Sorge zu erhalten, wenigstens für eine Weile meine Ausgaben möglichst beschränken muß. Es thut mir unendlich leid, Ihnen diess schreiben zu müßen, aber es steht bei dem besten Willen nicht in meiner Macht es zu ändern. Das Ms. ist indeß sorgfältig aufbewahrt und ich erwarte Ihre weitere Verfü<span class="tei_pb" title="Seitenumbruch">|</span>gung. – Da ich jetzt anfange, meine Papiere zu ordnen, habe ich 2. Gedichte von Ihnen gefunden – ein Frühlingslied u. ein Morgenlichtlied (lezteres im Großen Garten zu <a class="preview places A130003" href="">Dr.</a> 28. Sept. 1818.) Sind diese schon gedruckt? Sonst könnt’ ich sie einmal mit aufnehmen<a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a>. – Meiner Musenstunden sind jetzt wenige; ich habe nur mit Noth das vollendet, was mein Taschenbuch und noch ein andres, die Orphea<a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>, zu erhalten hatte. Merkur und Apoll sind feindliche Wesen u. ich habe mit einem echten <span class="tei_add tei_hi_superscript">Sohne<a class="noteMarker" id="backref-d10e156" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e156">‡</a></span> des erstern zu thun gehabt. Ich hoffe, es soll nun bald anders werden. – Was Sie von dem <a class="preview works A021262" href="">Nachtlager z. Gr.</a> schreiben, hat mich sehr gefreut. Sagen Sie Allen, die meiner freundlich denken meinen Dank u. die wärmsten Grüße. – Hier scheine ich von der Bühne exilirt, u. <a class="preview works A021353" href="">Ella</a> wird wohl ein Unglückskind bleiben, so sehr ich sie liebe. <a class="preview works A020918" href="">Vandyk</a> ist kürzlich in <a class="preview places A130020" href="">Frankfurth am Main</a> mit Beifall gegeben worden<a class="noteMarker" id="backref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>. Die <a class="preview persons A008456" href="">Lindner</a> hat das <span class="7610111099104101110">Lenchen</span> gegeben. – <a class="preview persons A002068" href="">Weber</a> soll in <span class="preview places A130011" data-ref=""><span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>Lon<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e187" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e187">‡</a></span></span>don</span> ein großes Aergerniß gehabt haben; ein spe<span class="tei_damage"><span>[…]<a class="noteMarker" id="backref-d10e192" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e192">‡</a></span></span>tirer <a class="preview persons A001231" href="">Dichter</a> hat schnell einen <a class="preview works A021187" href="">Oberon</a> gedichtet u. <span class="tei_damage"><span>[…]<a class="noteMarker" id="backref-d10e202" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e202">‡</a></span></span> ein dito <a class="preview persons A000316" href="">Componist</a> ihn componirt. So ist ein <a class="preview works A021187" href="">Oberon</a> vor <a class="preview persons A002068" href="">Webers</a> <a class="preview works A020045" href="">Oberon</a> auf der Bühne erschienen. Genau weiß ich die Sache nicht; sie ist mir flüchtig erzählt worden. – <a class="preview persons A005194" href="">Krauklings</a> leben noch ganz, wie sonst – er in alten Büchern, sie in ihrer Häuslichkeit u. einigen freundschaft. Kreisen. Sie haben mir aufgetragen, Sie ihres liebevollsten Andenkens zu versichern.  – Meinen Gegengruß an Ihren <a class="preview persons A000290" href="">Wilhelm</a>! Ich muß schließen, um nicht abermals die Post zu versäumen. 
+                                        <p>Ich muß wohl durch die Post an Sie schreiben, da mir die <a class="preview persons A000047" href="">Arnold</a>ische Buchhandlung (wegen des Eingang-Verbots der Ab.<span class="tei_supplied"><span class="brackets_supplied">[</span>end<span class="brackets_supplied">]</span></span> Zeit.<span class="tei_supplied"><span class="brackets_supplied">[</span>ung<span class="brackets_supplied">]</span></span>) keinen Brief befödern will und eine andere Gelegenheit sich nicht findet. Daß Sie nicht früher Antwort von mir erhalten haben, werden Sie mir gewiß verzeihen, wenn Sie die vielfache irdische Sorge und Unruhe sich vorstellen könnten, welche mir der Hauskauf gemacht hat. Ich bin der bürgerlichen Geschäfte seit einer Mandel Jahre ganz entwöhnt; nun mußte ich wieder Gelder umsetzen, Capitale suchen, Urkunden aufsetzen p kurz mich um mancherlei bekümmern, was mir Verdruß macht und alle poetische Stimmung raubt. Nunmehr ist, Gott sey Dank, das Meiste überstanden – nur der Aus- und Einzug steht uns nach Johannis bevor – und ich benutze eins der ersten freien Stündchen, um Sie meines steten, freundschaftlichsten Andenkens zu versichern. Meine kleine, doch sehr nette Hütte ist übrigens in <a class="preview places A130003" href="">Dresden</a> selbst, zwischen der Johanniskirche und den neuen sehr reizenden Promenaden gelegen, auch mit einem Gärtchen versehen – in Taschenformat, mithin zum Vergnügen eines Taschenbuch-Herausgebers heinreichend und geeignet. – Daß mir der durch Herrn <span class="tei_hi_latintype"><span class="6811798111105115">Dubois</span></span> zugedachte Brief entgangen ist, bedaure ich sehr; es freut mich immer innigst wenn ich etwas von Ihnen erfahre, und noch dazu wenn Sie ihn in rosenrother Laune geschrieben! Der letztere ist es nicht, <span class="tei_sic">sie</span><a class="noteMarker" id="backref-d10e83" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e83">‡</a> waren kränklich und abgespannt. Doch das ist nun hoffentlich vorüber und der Frühling, der trotz des ungezogenen Aprils doch manchmal hervorgukt, wird gewiß auch seiner Sängerin die schönsten Gaben aus der Fremde mitbringen. M–s und E–s Tod haben auch mich sehr gebeugt; noch mehr aber der meines dreißigjährigen Freundes <span class="tei_hi_underline1"><a class="preview persons A0029A5" href="">Semler</a></span>, der ein Theil meiner Seele war. Der Kummer über diesen Verlust machte mich sogar körperlich krank, was dann die in Obigem erwähnten Sorgen und Geschäfte mir noch drückender erscheinen ließ. Er hat mir die meisten seiner Manuscripte logirt und ich werde wahrscheinlich in einiger Zeit eine Sammlung seiner kleinen, theils zerstreuten, theils noch ungedruckten Schriften herausgeben, weil es sein letztwilliger Wunsch war und in der That viel Treffliches darunter sich befindet<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>. – <span class="tei_pb" title="Seitenumbruch"> | </span> Was Sie mir von Ihren <span class="preview persons A000290 A000289" data-ref=" ">Söhnen</span> schreiben, habe ich mit der freundschaftlichsten Theilnahme gelesen. Möge Gott Ihnen recht viele Freude durch sie schenken! Meine <a class="preview persons A001004" href="">Frau</a> und <span class="preview persons A002360 A001005" data-ref=" ">Töchter</span> sind gesund und empfehlen sich Ihrem Andenken aufs angelegentlichste. <a class="preview persons A001005" href="">Roswitha</a> ist sehr herangewachsen und nähert sich ihrer Blütezeit; sie ist in vergangener Osterwoche confimirt worden. – Was die <span class="tei_hi_underline1"><span class="7110811111410597110100101">Gloriande</span></span> anlangt, so müßen Sie – was mich schmerzt – was ich Ihnen darüber geschrieben, noch nicht aufmerksam gelesen haben. Ich schrieb Ihnen der Hauptsache nach, daß sie mir im allgemeinen für ein Taschenbuch zu lang scheine, und daß ich – nur in <span class="tei_hi_underline1">einem</span> möglichen Falle – es war der, daß andre zugesagte und bereits angenommene Beiträge nicht eingiengen, sie vielleicht benützen könnte. Dieser Fall ist aber nicht eingetreten, vielmehr sind jene Beiträge zum Theil länger ausgefallen, als zu erwarten stand, und es ist mir daher weder vergönnt, die <span class="7110811111410597110100101">Gloriande</span> aufzunehmen, noch, was aus Obigem folgt, ein Honorar dafür zu bieten<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. Ich bin dieß um so weniger im Stande, da meine Zahlungen fürs Haus mein kleines, fast in dreißig Jahren erübrigtes Vermögen ziemlich ganz hinweggenommen haben, und ich daher, um den Meinigen dieß ihr einziges Erbtheil ohne allzu ängstliche Sorge zu erhalten, wenigstens für eine Weile meine Ausgaben möglichst beschränken muß. Es thut mir unendlich leid, Ihnen diess schreiben zu müßen, aber es steht bei dem besten Willen nicht in meiner Macht es zu ändern. Das Ms. ist indeß sorgfältig aufbewahrt und ich erwarte Ihre weitere Verfü<span class="tei_pb" title="Seitenumbruch">|</span>gung. – Da ich jetzt anfange, meine Papiere zu ordnen, habe ich 2. Gedichte von Ihnen gefunden – ein Frühlingslied u. ein Morgenlichtlied (lezteres im <a class="preview places A131100" href="">Großen Garten</a> zu <a class="preview places A130003" href="">Dr.</a> 28. Sept. 1818.) Sind diese schon gedruckt? Sonst könnt’ ich sie einmal mit aufnehmen<a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a>. – Meiner Musenstunden sind jetzt wenige; ich habe nur mit Noth das vollendet, was mein Taschenbuch und noch ein andres, die Orphea<a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>, zu erhalten hatte. Merkur und Apoll sind feindliche Wesen u. ich habe mit einem echten <span class="tei_add tei_hi_superscript">Sohne<a class="noteMarker" id="backref-d10e162" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e162">‡</a></span> des erstern zu thun gehabt. Ich hoffe, es soll nun bald anders werden. – Was Sie von dem <a class="preview works A021262" href="">Nachtlager z. Gr.</a> schreiben, hat mich sehr gefreut. Sagen Sie Allen, die meiner freundlich denken meinen Dank u. die wärmsten Grüße. – Hier scheine ich von der Bühne exilirt, u. <a class="preview works A021353" href="">Ella</a> wird wohl ein Unglückskind bleiben, so sehr ich sie liebe. <a class="preview works A020918" href="">Vandyk</a> ist kürzlich in <a class="preview places A130020" href="">Frankfurth am Main</a> mit Beifall gegeben worden<a class="noteMarker" id="backref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a>. Die <a class="preview persons A008456" href="">Lindner</a> hat das <span class="7610111099104101110">Lenchen</span> gegeben. – <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> soll in <span class="preview places A130011" data-ref=""><span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>Lon<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e193" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e193">‡</a></span></span>don</span> ein großes Aergerniß gehabt haben; ein spe<span class="tei_damage"><span>[…]<a class="noteMarker" id="backref-d10e198" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e198">‡</a></span></span>tirer <a class="preview persons A001231" href="">Dichter</a> hat schnell einen <a class="preview works A021187" href="">Oberon</a> gedichtet u. <span class="tei_damage"><span>[…]<a class="noteMarker" id="backref-d10e208" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e208">‡</a></span></span> ein dito <a class="preview persons A000316" href="">Componist</a> ihn componirt. So ist ein <a class="preview works A021187" href="">Oberon</a> vor <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview works A020045" href="">Oberon</a> auf der Bühne erschienen. Genau weiß ich die Sache nicht; sie ist mir flüchtig erzählt worden. – <a class="preview persons A005194" href="">Krauklings</a> leben noch ganz, wie sonst – er in alten Büchern, sie in ihrer Häuslichkeit u. einigen freundschaft. Kreisen. Sie haben mir aufgetragen, Sie ihres liebevollsten Andenkens zu versichern.  – Meinen Gegengruß an Ihren <a class="preview persons A000290" href="">Wilhelm</a>! Ich muß schließen, um nicht abermals die Post zu versäumen. 
                <span class="tei_segBlock textAlign-center">der Ihrige<br /><a class="preview persons A001002" href="">Kind</a>.</span>
             </p>
                                         <p class="clearer"></p>
@@ -504,7 +510,7 @@
                         <div>
                             <h3 class="media-heading">Zusammenfassung</h3>
                             <div>
-                                        <p>diverse Mitteilungen an die Chézy; u.a. über seinen Hauskauf und Aufführungen seiner Stücke; kann leider ihre „Gloriande“ nicht im Taschenbuch veröffentlichen, da sie zu lang ist und er schon zu viele Beiträge hat; berichtet am Ende kurz von Webers Ärger über den „Oberon“ am Drury Lane Theater  </p>
+                                        <p>diverse Mitteilungen an die Chézy; u.a. über seinen Hauskauf und Aufführungen seiner Stücke; kann leider ihre „Gloriande“ nicht im Taschenbuch veröffentlichen, da sie zu lang ist und er schon zu viele Beiträge hat; berichtet am Ende kurz von Webers Ärger über den „Oberon“ am <a class="preview places A131361" href="">Drury Lane Theater</a>  </p>
                                     </div>
                         </div>
                         
@@ -537,9 +543,9 @@
                                         
                                         <span>Krakau (PL), Uniwersytet Jagielloński. Biblioteka Jagiellońska (PL-Kj)<br /><i>Signatur</i>: ML 100</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_e28762828a3d976642d51a40c4153f51"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_30b96a29e658adcde22cd241bd5171fc"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e28762828a3d976642d51a40c4153f51">
+                                        <div class="collapse apparatus-details" id="source_30b96a29e658adcde22cd241bd5171fc">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>4 b. S. einschl. Adr.</li>
@@ -567,32 +573,32 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e81" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e81" data-title="sic" data-counter="1" data-href="#d10e81"><span class="tei_lemma">„sie“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e83" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e83" data-title="sic" data-counter="1" data-href="#d10e83"><span class="tei_lemma">„sie“</span>sic!</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e156" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e156" data-title="Hinzufügung" data-counter="2" data-href="#d10e156"><span class="tei_lemma">„Sohne“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e162" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e162" data-title="Hinzufügung" data-counter="2" data-href="#d10e162"><span class="tei_lemma">„Sohne“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e187" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e187" data-title="Papierverlust" data-counter="3" data-href="#d10e187"><span class="tei_lemma">„Lon“</span>ergänzt von den Hg.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e193" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e193" data-title="Papierverlust" data-counter="3" data-href="#d10e193"><span class="tei_lemma">„Lon“</span>ergänzt von den Hg.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e192" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e192" data-title="Papierverlust" data-counter="4" data-href="#d10e192">unleserliche Stelle</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e198" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e198" data-title="Papierverlust" data-counter="4" data-href="#d10e198">unleserliche Stelle</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e202" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e202" data-title="Papierverlust" data-counter="5" data-href="#d10e202">unleserliche Stelle</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e208" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e208" data-title="Papierverlust" data-counter="5" data-href="#d10e208">unleserliche Stelle</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -600,38 +606,32 @@
                                     <ul class="apparatus commentary">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  der meines dreißigjährigen Freundes Semler“</span>Christian August Semler (1767–1825), Schriftsteller, ab 1800 als Sekretär an der Königlichen Öffentlichen Bibliothek in Dresden angestellt, betrieb Studien zur Kulturgeschichte und sächsischen Landesgeschichte.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_03"><span class="tei_lemma">„…  viel Treffliches darunter sich befindet“</span>Z.B. C. A. Semler und Friedrich Rochlitz, „Ueber die Entstehung der Oper“ mit einem Vorwort von Kind in der <span class="tei_hi_italic">Dresdner Morgen-Zeitung</span>, Nr. 125 (6. August 1827), Sp. 993–998; Nr. 126 (7. August 1827), Sp. 1002–1007 und Nr. 127 (9. August 1827), Sp. 1009–1012.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_03"><span class="tei_lemma">„…  viel Treffliches darunter sich befindet“</span>Z.B. C. A. Semler und Friedrich Rochlitz, „Ueber die Entstehung der Oper“ mit einem Vorwort von Kind in der <span class="tei_hi_italic">Dresdner Morgen-Zeitung</span>, Nr. 125 (6. August 1827), Sp. 993–998; Nr. 126 (7. August 1827), Sp. 1002–1007 und Nr. 127 (9. August 1827), Sp. 1009–1012.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„…  ein Honorar dafür zu bieten“</span>Helmina von Chézy veröffentlichte „Gloriande. Eine Geschichte in zwölf Abenteuern.“ schließlich in Bd. 4 ihrer <span class="tei_hi_italic">Stundenblumen. Eine Sammlung von Erzählungen und Novellen</span>, Wien: Tendler und von Manstein 1827, S. 47–142.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_02"><span class="tei_lemma">„…  ein Honorar dafür zu bieten“</span>Helmina von Chézy veröffentlichte „Gloriande. Eine Geschichte in zwölf Abenteuern.“ schließlich in Bd. 4 ihrer <span class="tei_hi_italic">Stundenblumen. Eine Sammlung von Erzählungen und Novellen</span>, Wien: Tendler und von Manstein 1827, S. 47–142.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_04" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_04"><span class="tei_lemma">„…  ich sie einmal mit aufnehmen“</span>Kind veröffentlichte die beiden Gedichte „Frühlingslied“ und „Morgenlied. (In einem Garten in Dresden. 28. Sept. 1818.)“ in dem von ihm herausgegebenen <span class="tei_hi_italic">W. G. Beckers Taschenbuch zum geselligen Vergnügen auf das Jahr 1827</span>, Leipzig: Göschen, S. 316f. und 319f.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_04" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_04"><span class="tei_lemma">„…  ich sie einmal mit aufnehmen“</span>Kind veröffentlichte die beiden Gedichte „Frühlingslied“ und „Morgenlied. (In einem Garten in Dresden. 28. Sept. 1818.)“ in dem von ihm herausgegebenen <span class="tei_hi_italic">W. G. Beckers Taschenbuch zum geselligen Vergnügen auf das Jahr 1827</span>, Leipzig: Göschen, S. 316f. und 319f.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_06" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_06" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_06"><span class="tei_lemma">„…  noch ein andres, die Orphea“</span><span class="tei_hi_italic">Orphea. Taschenbuch für das Jahr...</span>, von <a class="preview persons A001CF6" href="">Ernst Fleischer</a> in Leipzig herausgegeben.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_06" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_06" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_06"><span class="tei_lemma">„…  noch ein andres, die Orphea“</span><span class="tei_hi_italic">Orphea. Taschenbuch für das Jahr...</span>, von Ernst Fleischer in Leipzig herausgegeben.</div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_07" class="apparatus-link">6.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="6" data-href="#C_07"><span class="tei_lemma">„…  Main mit Beifall gegeben worden“</span>EA in Frankfurt/M. am 6. März 1826; vgl. Aufführungsbericht in der Dresdner Abendzeitung, Nr. 83 (7. April 1826), S. 332.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_07" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_07"><span class="tei_lemma">„…  Main mit Beifall gegeben worden“</span>EA in Frankfurt/M. am 6. März 1826; vgl. Aufführungsbericht in der Dresdner Abendzeitung, Nr. 83 (7. April 1826), S. 332.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -660,7 +660,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047207</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047207</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -720,6 +720,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -778,22 +781,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

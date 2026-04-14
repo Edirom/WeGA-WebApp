@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040404" />
@@ -42,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"fragt in Reimform an, wo Danzi, den er am Vortag mit Baermann suchte, heute speise","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Franz Danzi in München. München, Ende(?) Juni 1811","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040404","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040404","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"fragt in Reimform an, wo Danzi, den er am Vortag mit Baermann suchte, heute speise","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Franz Danzi in München. München, Ende(?) Juni 1811","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040404","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040404","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -223,7 +221,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040404/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040404/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -371,7 +369,7 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040508.html">1812-05-16</a>:  an  <a href="" class="preview A000584 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514.html">1812-07-14</a>:  an  <a href="" class="preview A000584 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A080093/Korrespondenz/A040748.html">1815-03-21</a>:  von  <a href="" class="preview A080093 orgs"></a>
@@ -389,9 +387,7 @@
                                     </ul>
                                     <h4>Folgend</h4>
                                     <ul>
-                                        <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042301.html">1824-05-26</a>:  an  <a href="" class="preview A000354 persons"></a>
-                                        </li>
+                                        
                                     </ul>
                                 
                             </div>
@@ -408,7 +404,21 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000077" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                            <div class="filtersection">
+                        <h2>
+                            <a class="collapseSingle collapsed" data-toggle="collapse" aria-expanded="false" role="button" href="#places">Orte</a>
+                        </h2>
+                        <div class="panel-collapse collapse" id="places">
+                            <div data-toggle="buttons" class="btn-group">
+                                <label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131135" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131070" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
                         </div>
@@ -420,7 +430,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiLetter_body">
-                                    <div class="writingSession"><span class="verseLine"><a class="preview persons A000354" href="">Allerliebster Herr Kapellmeister,</a></span><span class="verseLine">Der Unterschriebene (Weber heißt er)</span><span class="verseLine">Und ein Herr <a class="preview persons A000077" href="">Bärmann</a>, wohlbekonnen, (wohlbekannt)</span><span class="verseLine">Haben gestern die ganze Welt durchronnen,</span><span class="verseLine">Um sie zu sehen, zu sprechen, zu hören,</span><span class="verseLine">Und ein gescheidtes Wort von’m zu begehren;</span><span class="verseLine">Doch mocht man auch rennen nach vorn und nach hinten,</span><span class="verseLine">Der <span class="tei_ptr"></span><a class="preview persons A000354" href="">Musje Rapunzel</a><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> war nirgends zu finden.</span><span class="verseLine">Deswegen war ich heut schnell resolvoren</span><span class="verseLine">Und nehm meinen Federkiel bei den Ohren</span><span class="verseLine">Um schriftlich <span class="tei_hi_spaced_out">mir</span> anzufragen bei <span class="tei_hi_spaced_out">Sie</span></span><span class="verseLine">Wo ’S speisen thun heut in der früh.</span><span class="verseLine">(Das heißt heut <span class="tei_hi_spaced_out">Mittag</span>, Sie verstehen mich ja,</span><span class="verseLine">Das früh ist nur wegen des verdammten <span class="tei_hi_spaced_out">Reimes da</span>)</span><span class="verseLine">Ob beim Scheidel,</span><span class="verseLine">Oder beim Speidel,</span><span class="verseLine">Im schwarzen Adler,</span><span class="verseLine">oder beim Stadler,</span><span class="verseLine">im goldenen Hahn<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>,</span><span class="verseLine">oder faulen Zahn,</span><span class="verseLine">in einem Privathaus</span><span class="verseLine">oder gar in der Filzlaus – </span><span class="verseLine">Das ist, was wir gerne wissen thäten,</span><span class="verseLine">Damit wir auch die Plessur hätten</span><span class="verseLine">Mit ihnen zu speisen an einem Tisch,</span><span class="verseLine">ist übrigens egal ob Fleisch oder Fisch.</span><span class="verseLine">Haben also die Güte mir das sagen zu lassen,</span><span class="verseLine">Den <a class="preview persons A000077" href="">Bärmann</a> werde ich bei den Haaren faßen.</span><span class="verseLine">Und so hoff ich, sollen wir heut auf Erden</span><span class="verseLine">Noch vor Freuden etwas Weniges des Teufels werden.</span><span class="verseLine">Sollten Sie aber gar schon engagiret sein,</span><span class="verseLine">Würd’ ich etwas fluchen, wie ’n wildes Schwein</span><span class="verseLine">Würde mir vor Kummer die Haare ausraufen,</span><span class="verseLine">Und vielleicht noch gar in Bock ersaufen.</span><span class="verseLine">Drum bestimmen Sie unsern Lebenswandel</span><span class="verseLine">Durch ein Wort an Ihren Freund</span><span class="verseLine"><span class="tei_segBlock textAlign-center"><a class="preview persons A002068" href="">Mariandel</a></span>.</span>
+                                    <div class="writingSession"><span class="verseLine"><a class="preview persons A000354" href="">Allerliebster Herr Kapellmeister,</a></span><span class="verseLine">Der Unterschriebene (Weber heißt er)</span><span class="verseLine">Und ein Herr <a class="preview persons A000077" href="">Bärmann</a>, wohlbekonnen, (wohlbekannt)</span><span class="verseLine">Haben gestern die ganze Welt durchronnen,</span><span class="verseLine">Um sie zu sehen, zu sprechen, zu hören,</span><span class="verseLine">Und ein gescheidtes Wort von’m zu begehren;</span><span class="verseLine">Doch mocht man auch rennen nach vorn und nach hinten,</span><span class="verseLine">Der <span class="tei_ptr"></span><a class="preview persons A000354" href="">Musje Rapunzel</a><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> war nirgends zu finden.</span><span class="verseLine">Deswegen war ich heut schnell resolvoren</span><span class="verseLine">Und nehm meinen Federkiel bei den Ohren</span><span class="verseLine">Um schriftlich <span class="tei_hi_spaced_out">mir</span> anzufragen bei <span class="tei_hi_spaced_out">Sie</span></span><span class="verseLine">Wo ’S speisen thun heut in der früh.</span><span class="verseLine">(Das heißt heut <span class="tei_hi_spaced_out">Mittag</span>, Sie verstehen mich ja,</span><span class="verseLine">Das früh ist nur wegen des verdammten <span class="tei_hi_spaced_out">Reimes da</span>)</span><span class="verseLine">Ob beim Scheidel,</span><span class="verseLine">Oder beim Speidel,</span><span class="verseLine">Im <a class="preview places A131135" href="">schwarzen Adler</a>,</span><span class="verseLine">oder beim Stadler,</span><span class="verseLine">im <a class="preview places A131070" href="">goldenen Hahn</a>,</span><span class="verseLine">oder faulen Zahn,</span><span class="verseLine">in einem Privathaus</span><span class="verseLine">oder gar in der Filzlaus – </span><span class="verseLine">Das ist, was wir gerne wissen thäten,</span><span class="verseLine">Damit wir auch die Plessur hätten</span><span class="verseLine">Mit ihnen zu speisen an einem Tisch,</span><span class="verseLine">ist übrigens egal ob Fleisch oder Fisch.</span><span class="verseLine">Haben also die Güte mir das sagen zu lassen,</span><span class="verseLine">Den <a class="preview persons A000077" href="">Bärmann</a> werde ich bei den Haaren faßen.</span><span class="verseLine">Und so hoff ich, sollen wir heut auf Erden</span><span class="verseLine">Noch vor Freuden etwas Weniges des Teufels werden.</span><span class="verseLine">Sollten Sie aber gar schon engagiret sein,</span><span class="verseLine">Würd’ ich etwas fluchen, wie ’n wildes Schwein</span><span class="verseLine">Würde mir vor Kummer die Haare ausraufen,</span><span class="verseLine">Und vielleicht noch gar in Bock ersaufen.</span><span class="verseLine">Drum bestimmen Sie unsern Lebenswandel</span><span class="verseLine">Durch ein Wort an Ihren Freund</span><span class="verseLine"><span class="tei_segBlock textAlign-center"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Mariandel</a></span>.</span>
                                         <p class="clearer"></p>
                                     </div>
                                 </div>
@@ -461,7 +471,7 @@
                                         
                                         <span class="biblio-entry book"><span class="author">Max Maria von Weber</span>, <span class="title">Carl Maria von Weber. Ein Lebensbild</span>,  Bd. 1, <span class="placeNYear">Leipzig 1864</span>, S. 275f.</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_9cfd75a1b05b5c0a59124487163488bd">
+                                        <div class="collapse apparatus-details" id="source_3a397a5117b5dc70aadee6f1a425770b">
                                             
                                             
                                             <div>
@@ -492,12 +502,6 @@
                Freundeskreis; vgl. auch den musikalischen Brief an Danzi, <a class="preview letters A040190" href="">Brief an Franz Danzi vom 15. Juni 1808</a>.</div>
                                             </div>
                                         </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note01"><span class="tei_lemma">„…  im goldenen Hahn“</span>Die Gasthäuser <span class="tei_placeName">Zum schwarzen Adler</span> und <span class="tei_placeName">Zum goldenen Hahn</span> besuchte Weber laut Tagebuch mehrfach.</div>
-                                            </div>
-                                        </li>
                                     </ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
@@ -524,7 +528,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040404</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040404</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -584,6 +588,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -642,22 +649,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

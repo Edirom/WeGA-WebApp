@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031140" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"lobende Besprechung des Werkes, welches voller Melodienreichtum und wahrer Vollendung sei; erwähnt einige Veränderungen in der Besetzung, die ihn erstaunt hätten; misslungen sei allerdings die Verballhornung des Finale","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung: „Der Wasserträger“ von Luigi Cherubini am 30. Juni 1811 in München","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031140","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031140","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"lobende Besprechung des Werkes, welches voller Melodienreichtum und wahrer Vollendung sei; erwähnt einige Veränderungen in der Besetzung, die ihn erstaunt hätten; misslungen sei allerdings die Verballhornung des Finale","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung: „Der Wasserträger“ von Luigi Cherubini am 30. Juni 1811 in München","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031140","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031140","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031140/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031140/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -362,7 +359,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001363" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -422,14 +419,14 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Bruchstücke<br /> <span class="tei_app"><span class="tei_lem">aus dem Briefe</span><a class="noteMarker" id="backref-d10e7" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e7">Δ</a></span> eines Reisenden.</h2>
-                                        <p>Stelle Dir meine Freude vor, als ich auf meinem Durchfluge durch <a class="preview places A130007" href="">München</a><a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e35" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e35">Δ</a></span> auf der Wirthstafel den Komödienzettel mit dem Zauberworte <span class="tei_hi_spaced_out"><a class="preview works A020580" href="">Armand</a></span> liegen sah – und wären meine Geschäfte noch zehnmal dringender gewesen, als sie es wirklich waren, so hätte mich der Gedanke <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> an die Aufführung<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> dieser göttlichen Musik von dem <a class="preview places A130007" href="">Münchener</a> Orchester fest gehalten, und im Vorgefühl der zu <span class="tei_app"><span class="tei_lem">schöpfenden</span><a class="noteMarker" id="backref-d10e64" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e64">Δ</a></span> Wonne, rief ich dem Postillon zu – heute ist <a class="preview works A020580" href="">der Wasserträger</a>! ich kann noch nicht reisen; er sah mich verwundert an und begriff endlich die Unmöglichkeit weiter zu reisen, durch die überzeugenden Gründe von ein paar ihm in die Hand gedrückten <span class="tei_app"><span class="tei_lem">24ger</span><a class="noteMarker" id="backref-d10e73" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e73">Δ</a></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> besser, als durch meine Exclamation. – Ich war der erste im Theater, pflanzte mich voll Erwartung in die Mitte des Parterrs und harrte so, begierig der Töne, von denen ich im Voraus wußte daß sie mich <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e81">Δ</a></span> erheben und begeistern <span class="tei_app"><span class="tei_lem">würde<span class="tei_supplied"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span></span><a class="noteMarker" id="backref-d10e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e87">Δ</a></span>. Dreist glaube ich behaupten zu können, daß <a class="preview works A020580" href=""><span class="tei_hi_spaced_out">Armand</span></a> ein ächt dramatisches klassisches Werk ist. Alles ist aufs effektvollste berechnet, alle Musikstücke sind an ihrer Stelle, <span class="tei_app"><span class="tei_lem">so</span><a class="noteMarker" id="backref-d10e99" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e99">Δ</a></span> daß man keines weglassen und keins dazu thun kann. Lieblicher Reichthum von Melodien, kräftige Deklamation und eine alles ergreifende Wahrheit in Auffassung der Situationen wird diese Oper ewig neu, ewig gerne gesehen erhalten. <span class="tei_hi_spaced_out">Ich</span> habe sie oft auf <span class="tei_app"><span class="tei_lem">beynahe</span><a class="noteMarker" id="backref-d10e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e107">Δ</a></span> allen <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e113" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e113">Δ</a></span> deutschen und französischen Bühnen gesehen<a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a>, daß ich sehr begierig und sogar überzeugt war, hier werde man eine solche Oper mit großer Vollendung geben<a class="noteMarker" id="backref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>. Die Ouverture begann und ließ mich das Schönste hoffen, denn wahrlich sie wurde mit einem Feuer, einer Nettigkeit und <span class="tei_app"><span class="tei_lem">einer</span><a class="noteMarker" id="backref-d10e253" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e253">Δ</a></span> Kraft vorgetragen, wie sie nur das <a class="preview places A130007" href="">Münchner</a> Orchester zu leisten im Stande ist, und jubelnd stimmte ich in den rauschenden Beyfall des Publikums mit ein. (Man hat hier Trompeten zu der Ouverture gesetzt und ich glaube auch, daß sie im Allegro Effekt machen können, aber im Einleitungs-Adagio sind ohnstreitig in dem letzten allgewaltigen Crescendo die einzelnen Stöße bloß von dem Horn vorgetragen von besserer Wirkung und mehr der Steigerung des Ganzen angemessen, besonders wenn dann mit dem Schlage <span class="tei_hi_antiqua">E Dur</span> erst die <span class="tei_app"><span class="tei_lem">Trompete einträte</span><a class="noteMarker" id="backref-d10e264" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e264">Δ</a></span>.) Das erste Terzett sah ich zu meinem Erstaunen in ein Duett verwandelt. Ich traute meinen Ohren nicht<span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e273" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e273">Δ</a></span>, sondern nahm mein Perspektiv zu Hülfe und <span class="tei_hi_spaced_out">sah</span> denn <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e281" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e281">Δ</a></span> auch, daß der Vater des Wasserträgers nicht sang<a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>. Ich kann nicht läugnen, daß mich eine gewisse Unbehaglichkeit befiel, wenn ich <span class="tei_app"><span class="tei_lem">mir</span><a class="noteMarker" id="backref-d10e308" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e308">Δ</a></span> das Finale des ersten Aktes dachte – ohne Baß! sollte denn das Personale nicht noch einen Baß-Sänger zu dieser Rolle haben liefern können? – –
+                                        <p>Stelle Dir meine Freude vor, als ich auf meinem Durchfluge durch <a class="preview places A130007" href="">München</a><a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e35" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e35">Δ</a></span> auf der Wirthstafel den Komödienzettel mit dem Zauberworte <span class="tei_hi_spaced_out"><a class="preview works A020580" href="">Armand</a></span> liegen sah – und wären meine Geschäfte noch zehnmal dringender gewesen, als sie es wirklich waren, so hätte mich der Gedanke <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> an die Aufführung<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a> dieser göttlichen Musik von dem <a class="preview places A130007" href="">Münchener</a> Orchester fest gehalten, und im Vorgefühl der zu <span class="tei_app"><span class="tei_lem">schöpfenden</span><a class="noteMarker" id="backref-d10e64" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e64">Δ</a></span> Wonne, rief ich dem Postillon zu – heute ist <a class="preview works A020580" href="">der Wasserträger</a>! ich kann noch nicht reisen; er sah mich verwundert an und begriff endlich die Unmöglichkeit weiter zu reisen, durch die überzeugenden Gründe von ein paar ihm in die Hand gedrückten <span class="tei_app"><span class="tei_lem">24ger</span><a class="noteMarker" id="backref-d10e73" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e73">Δ</a></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> besser, als durch meine Exclamation. – Ich war der erste im Theater, pflanzte mich voll Erwartung in die Mitte des Parterrs und harrte so, begierig der Töne, von denen ich im Voraus wußte daß sie mich <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e81">Δ</a></span> erheben und begeistern <span class="tei_app"><span class="tei_lem">würde<span class="tei_supplied"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span></span><a class="noteMarker" id="backref-d10e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e87">Δ</a></span>. Dreist glaube ich behaupten zu können, daß <a class="preview works A020580" href=""><span class="tei_hi_spaced_out">Armand</span></a> ein ächt dramatisches klassisches Werk ist. Alles ist aufs effektvollste berechnet, alle Musikstücke sind an ihrer Stelle, <span class="tei_app"><span class="tei_lem">so</span><a class="noteMarker" id="backref-d10e99" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e99">Δ</a></span> daß man keines weglassen und keins dazu thun kann. Lieblicher Reichthum von Melodien, kräftige Deklamation und eine alles ergreifende Wahrheit in Auffassung der Situationen wird diese Oper ewig neu, ewig gerne gesehen erhalten. <span class="tei_hi_spaced_out">Ich</span> habe sie oft auf <span class="tei_app"><span class="tei_lem">beynahe</span><a class="noteMarker" id="backref-d10e107" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e107">Δ</a></span> allen <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e113" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e113">Δ</a></span> deutschen und französischen Bühnen gesehen<a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a>, daß ich sehr begierig und sogar überzeugt war, hier werde man eine solche Oper mit großer Vollendung geben<a class="noteMarker" id="backref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>. Die Ouverture begann und ließ mich das Schönste hoffen, denn wahrlich sie wurde mit einem Feuer, einer Nettigkeit und <span class="tei_app"><span class="tei_lem">einer</span><a class="noteMarker" id="backref-d10e250" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e250">Δ</a></span> Kraft vorgetragen, wie sie nur das <a class="preview places A130007" href="">Münchner</a> Orchester zu leisten im Stande ist, und jubelnd stimmte ich in den rauschenden Beyfall des Publikums mit ein. (Man hat hier Trompeten zu der Ouverture gesetzt und ich glaube auch, daß sie im Allegro Effekt machen können, aber im Einleitungs-Adagio sind ohnstreitig in dem letzten allgewaltigen Crescendo die einzelnen Stöße bloß von dem Horn vorgetragen von besserer Wirkung und mehr der Steigerung des Ganzen angemessen, besonders wenn dann mit dem Schlage <span class="tei_hi_antiqua">E Dur</span> erst die <span class="tei_app"><span class="tei_lem">Trompete einträte</span><a class="noteMarker" id="backref-d10e261" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e261">Δ</a></span>.) Das erste Terzett sah ich zu meinem Erstaunen in ein Duett verwandelt. Ich traute meinen Ohren nicht<span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e270" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e270">Δ</a></span>, sondern nahm mein Perspektiv zu Hülfe und <span class="tei_hi_spaced_out">sah</span> denn <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e278" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e278">Δ</a></span> auch, daß der Vater des Wasserträgers nicht sang<a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>. Ich kann nicht läugnen, daß mich eine gewisse Unbehaglichkeit befiel, wenn ich <span class="tei_app"><span class="tei_lem">mir</span><a class="noteMarker" id="backref-d10e305" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e305">Δ</a></span> das Finale des ersten Aktes dachte – ohne Baß! sollte denn das Personale nicht noch einen Baß-Sänger zu dieser Rolle haben liefern können? – –
                Das Terzett zwischen <span class="6511410997110100">Armand</span>, seiner Gattin<a class="noteMarker" id="backref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a> und <span class="7710510797108121">Mikaly</span> <a class="noteMarker" id="backref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> ist stark gestrichen, doch entschädigt der gute Vortrag.
-               Das Duett zwischen <span class="6511410997110100">Armand</span> und <span class="6711111011511697110122101">Constanze</span> wurde stellenweise vortrefflich gegeben. Die Momente sind <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e341" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e341">Δ</a></span> aber ganz vergriffen, denn in dem Augenblick wo der <span class="tei_pb" title="Seitenumbruch"> | </span> <span class="8797115115101114116114228103101114">Wasserträger</span> von einem kurzen Scheiden der beyden Gatten spricht, fällt die Musik ungestüm ein, und <span class="6711111011511697110122101">Constanze</span> ruft ergriffen von dem ihr unerträglichen Gefühle der <span class="tei_choice"><span class="tei_sic">Trenges</span><a class="noteMarker" id="backref-d10e355" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e355">‡</a></span>, aus: "Ich sollte von dir mich trennen! -etc. Bey dem Finale des ersten Aktes war <span class="7710510797108121">Mikaly</span>s Vater nicht sichtbar. Sollte der keinen Antheil nehmen? – Und wo hält sich der alte schwache Mann auf während dieser Scene? – Höchst unangenehm ward ich aber durch eine Verballhornung der Composition im Finale überrascht. Eine der himmlischsten Stellen wird aus mir völlig unbegreiflichen Ursachen ganz ihrer Würkung beraubt. Nachdem der <span class="8797115115101114116114228103101114">Wasserträger</span> mit <span class="7797114122101108105110110101110">Marzelinnen</span> zankt, unwillig über ihr Widerstreben ist, und sie in Thränen ausbricht, soll nach diesem Fortissimo ein Klarinet ganz allein eintreten und die Melodie: <span class="tei_supplied"><span class="brackets_supplied">[</span>Achtelpause<span class="brackets_supplied">]</span></span><span class="tei_hi_antiqua">, c, c, Es, d, c</span>, vortragen, worauf erst das Fagott und dann das Violoncell dazutritt, und der Bruder, seine Schwester tröstend, und bittend zu singen anfängt. Diese Stelle ist überall von der <span class="tei_hi_spaced_out">höchsten</span> Wirkung. <span class="tei_hi_spaced_out">Hier</span> bläßt nicht nur die Oboe diese Stelle (durch welchen ganz andern Ton schon der Zweck des Componisten verfehlt ist,) sondern man hat auch noch <span class="tei_hi_spaced_out">ein Accompagnement dazu gesetzt</span>. so wie auch zu den paar Noten <span class="tei_hi_antiqua">D</span>. die <span class="65110116111110105111">Antonio</span> und später <span class="7710510797108121">Mikaly</span> allein zu singen haben, noch einige Achtel in die Violinen dazu gemacht wurden. An Orten, wo es an guten Klarinettisten fehlt, ließ ich mir es noch höchstens gefallen, daß diese Stelle von der Flöte vorgetragen wird; aber daß man eine Begleitung dazu setzt, ist unerhört, und <span class="tei_app"><span class="tei_lem">ich hoffe</span><a class="noteMarker" id="backref-d10e395" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e395">Δ</a></span> es von den anerkannten Einsichten des Herrn Direktors <span class="tei_app"><span class="tei_lem"><a class="preview persons A000520" href="">Fränzl</a></span><a class="noteMarker" id="backref-d10e401" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e401">Δ</a></span>, daß er diesen großen Mißgriff, für dessen Existenz er nichts kann, verbessern wird; und, mit mir vereint bitten gewiß alle Verehrer der <a class="preview persons A000287" href="">Cherubinischen</a> Musik darum. Die sehr schwierigen Chöre im 2. Akte gingen vortrefflich. Mit Präzision und Feuer wurden sie gesungen und gespielt; überhaupt war der 2. Akt gerundeter und lebendiger. 
+               Das Duett zwischen <span class="6511410997110100">Armand</span> und <span class="6711111011511697110122101">Constanze</span> wurde stellenweise vortrefflich gegeben. Die Momente sind <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e338" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e338">Δ</a></span> aber ganz vergriffen, denn in dem Augenblick wo der <span class="tei_pb" title="Seitenumbruch"> | </span> <span class="8797115115101114116114228103101114">Wasserträger</span> von einem kurzen Scheiden der beyden Gatten spricht, fällt die Musik ungestüm ein, und <span class="6711111011511697110122101">Constanze</span> ruft ergriffen von dem ihr unerträglichen Gefühle der <span class="tei_choice"><span class="tei_sic">Trenges</span><a class="noteMarker" id="backref-d10e352" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e352">‡</a></span>, aus: "Ich sollte von dir mich trennen! -etc. Bey dem Finale des ersten Aktes war <span class="7710510797108121">Mikaly</span>s Vater nicht sichtbar. Sollte der keinen Antheil nehmen? – Und wo hält sich der alte schwache Mann auf während dieser Scene? – Höchst unangenehm ward ich aber durch eine Verballhornung der Composition im Finale überrascht. Eine der himmlischsten Stellen wird aus mir völlig unbegreiflichen Ursachen ganz ihrer Würkung beraubt. Nachdem der <span class="8797115115101114116114228103101114">Wasserträger</span> mit <span class="7797114122101108105110110101110">Marzelinnen</span> zankt, unwillig über ihr Widerstreben ist, und sie in Thränen ausbricht, soll nach diesem Fortissimo ein Klarinet ganz allein eintreten und die Melodie: <span class="tei_supplied"><span class="brackets_supplied">[</span>Achtelpause<span class="brackets_supplied">]</span></span><span class="tei_hi_antiqua">, c, c, Es, d, c</span>, vortragen, worauf erst das Fagott und dann das Violoncell dazutritt, und der Bruder, seine Schwester tröstend, und bittend zu singen anfängt. Diese Stelle ist überall von der <span class="tei_hi_spaced_out">höchsten</span> Wirkung. <span class="tei_hi_spaced_out">Hier</span> bläßt nicht nur die Oboe diese Stelle (durch welchen ganz andern Ton schon der Zweck des Componisten verfehlt ist,) sondern man hat auch noch <span class="tei_hi_spaced_out">ein Accompagnement dazu gesetzt</span>. so wie auch zu den paar Noten <span class="tei_hi_antiqua">D</span>. die <span class="65110116111110105111">Antonio</span> und später <span class="7710510797108121">Mikaly</span> allein zu singen haben, noch einige Achtel in die Violinen dazu gemacht wurden. An Orten, wo es an guten Klarinettisten fehlt, ließ ich mir es noch höchstens gefallen, daß diese Stelle von der Flöte vorgetragen wird; aber daß man eine Begleitung dazu setzt, ist unerhört, und <span class="tei_app"><span class="tei_lem">ich hoffe</span><a class="noteMarker" id="backref-d10e392" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e392">Δ</a></span> es von den anerkannten Einsichten des Herrn Direktors <span class="tei_app"><span class="tei_lem"><a class="preview persons A000520" href="">Fränzl</a></span><a class="noteMarker" id="backref-d10e398" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e398">Δ</a></span>, daß er diesen großen Mißgriff, für dessen Existenz er nichts kann, verbessern wird; und, mit mir vereint bitten gewiß alle Verehrer der <a class="preview persons A000287" href="">Cherubinischen</a> Musik darum. Die sehr schwierigen Chöre im 2. Akte gingen vortrefflich. Mit Präzision und Feuer wurden sie gesungen und gespielt; überhaupt war der 2. Akt gerundeter und lebendiger. 
                Im dritten Akte hatte ich wieder Gelegenheit, einige schöne Stellen, die weggelassen wurden zu bedauern, nämlich die paar Worte der Pachterstochter: „Ach, <span class="65110116111110105111">Antonio</span> kommt noch nicht!“, durch deren Wegbleiben die Musikstellen so planlos aufeinanderstoßen. Die Schauspielerin, die diese Rolle gab, hätte, da sie doch einiges sang, wohl diese Kleinigkeit, die es auf der Szene nicht ist, auch noch singen können.
                Am auszeichnungswertesten war Herr <a class="preview persons A001363" href="">Muck</a> als <span class="8797115115101114116114228103101114">Wasserträger</span>; er gab den biedern, fröhlichen, offenen Kopf, der durch das Bewußtsein einer guten Tat sich zu allen Wagnissen ruhig befähigt fühlt, sehr brav, und der laute Beifall des Publikums zeigte ihm das Anerkennen seiner Bemühung.
-               Wenn ich Dir viel von dieser Oper vorgeplaudert habe, so bedenke, daß man von solchem Meisterwerke nie genug sagen kann, und daß ein so eifriger Kunstfreund wie ich auf Deine Nachsicht rechnen <span class="tei_app"><span class="tei_lem">kann</span><a class="noteMarker" id="backref-d10e427" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e427">Δ</a></span>.
+               Wenn ich Dir viel von dieser Oper vorgeplaudert habe, so bedenke, daß man von solchem Meisterwerke nie genug sagen kann, und daß ein so eifriger Kunstfreund wie ich auf Deine Nachsicht rechnen <span class="tei_app"><span class="tei_lem">kann</span><a class="noteMarker" id="backref-d10e424" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e424">Δ</a></span>.
                <span class="tei_segBlock textAlign-center">Dein Freund. </span>
-            </p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="">M – s</a>.</span></div>
+            </p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M – s</a>.</span></div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -450,7 +447,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung); vgl. <span class="preview biblio A110700" data-ref="">Bartlitz</span>, S. 65; Sigle (<span class="tei_hi_italic">M-s</span>.) sowie die TB-Einträge, <span class="preview diaries A065348 A065377" data-ref=" ">2. Juli und Übersicht Juli 1811</span></p>
+                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung); vgl. <span class="preview biblio A110700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110700.html">Bartlitz</span>, S. 65; Sigle (<span class="tei_hi_italic">M-s</span>.) sowie die TB-Einträge, <span class="preview diaries A065348 A065377" data-ref=" ">2. Juli und Übersicht Juli 1811</span></p>
                                     </div>
                         </div>
                         
@@ -476,9 +473,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Gesellschaftsblatt für gebildete Stände</span>, Jg. 1, Nr. 52 (3. Juli 1811), Sp. 421–424</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ca76eac692cd5b50a4bb018e2daa2a81"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_f00e7d1dfdf21c3dc89211bd6875302a"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_ca76eac692cd5b50a4bb018e2daa2a81">
+                                        <div class="collapse apparatus-details" id="source_f00e7d1dfdf21c3dc89211bd6875302a">
                                             
                                             
                                             <div>
@@ -491,7 +488,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 106–109 (Nr. 28)</span>
                                                               
-                                                            <div class="collapse" id="source_9b798673dfdefee76db50c4ed9f35d72">
+                                                            <div class="collapse" id="source_5b77ab088ea3fb14e2c09c3cd005be18">
                                                                 
                                                             </div>
                                                         </div>
@@ -514,9 +511,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (IV), Bl. 33a/v–33b/r</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_060b45cca9292074b4ff62e8166d3184"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_980b4f350feaff98c6a7dba1ad7e1ed8"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_060b45cca9292074b4ff62e8166d3184">
+                                        <div class="collapse apparatus-details" id="source_980b4f350feaff98c6a7dba1ad7e1ed8">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript „Bruchstükk des Briefes eines Reisenden.“; Incipit: „Stelle dir meine Freude vor als ich auf meinem Durchfluge“;  Manuskript undatiert ; unterzeichnet mit: „dein Freund: M=s“</li>
@@ -533,7 +530,7 @@
                                                             
                                                             <span>HellS II, S. 88–93</span>
                                                               
-                                                            <div class="collapse" id="source_4e77c33ea0a322835af3fef88fc4d016">
+                                                            <div class="collapse" id="source_8c0355384394c45afb59bf4582b2ce8e">
                                                                 
                                                             </div>
                                                         </div>
@@ -543,7 +540,7 @@
                                                             
                                                             <span>MMW III, S. 36–38</span>
                                                               
-                                                            <div class="collapse" id="source_c08bb414edea998f8bcf7ee5f6f96189">
+                                                            <div class="collapse" id="source_1b91b6f6959c1d95331c2a66af1310ac">
                                                                 
                                                             </div>
                                                         </div>
@@ -578,7 +575,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  auf meinem Durchfluge durch München“</span>Von einem Durchflug kann kaum die Rede sein. Weber hielt sich 1811 zweimal länger in <a class="preview places A130007" href="">München</a> auf (14. März bis 9. August und 23. Oktober bis 1. Dezember); vgl. <span class="preview diaries A065238 A065386 A065461 A065500" data-ref="   ">TB-Einträge der An- und Abreisetage</span>, mit Tagesausflügen nach <a class="preview places A130541" href="">Starnberg</a>, <a class="preview places A130488" href="">Nymphenburg</a> u. a. Außerdem verfasste er in dieser Zeit mehrere Aufführungsbesprechungen, vgl. <span class="preview writings A031135 A031141 A031144 A031145 A031146" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031135.html    /exist/apps/WeGA-WebApp/de/A002068/Schriften/A031146.html">1811-V-25, 1811-V-39, 1811-V-49, 1811-V-51 und 1811-V-58</span> .</div>
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  auf meinem Durchfluge durch München“</span>Von einem Durchflug kann kaum die Rede sein. Weber hielt sich 1811 zweimal länger in <a class="preview places A130007" href="">München</a> auf (14. März bis 9. August und 23. Oktober bis 1. Dezember); vgl. <span class="preview diaries A065238 A065386 A065461 A065500" data-ref="   ">TB-Einträge der An- und Abreisetage</span>, mit Tagesausflügen nach <a class="preview places A130541" href="">Starnberg</a>, <a class="preview places A130488" href="">Nymphenburg</a> u. a. Außerdem verfasste er in dieser Zeit mehrere Aufführungsbesprechungen, vgl. <span class="preview writings A031135 A031141 A031144 A031145 A031146" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031135.html    ">1811-V-25, 1811-V-39, 1811-V-49, 1811-V-51 und 1811-V-58</span> .</div>
                                             </div>
                                         </li>
                                         <li>
@@ -596,13 +593,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_04" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_04"><span class="tei_lemma">„…  deutschen und französischen Bühnen gesehen“</span>Das Singspiel wurde in der deutschen Übersetzung von <a class="preview persons A008248" href="">H. G. Schmieder</a> in <a class="preview places A130020" href="">Frankfurt/Main</a> am 5. Juli 1801 und in <a class="preview places A130002" href="">Berlin</a> am 15. März 1802 aufgeführt, unter dem Titel <span class="tei_hi_italic">Graf Armand</span> bzw. <span class="tei_hi_italic">Die Tage der Gefahr</span> (Übersetzung von <a class="preview persons A001980" href="">G. F. Treitschke</a>) lief es am 13. August 1802 im Theater an der Wien und am darauffolgenden Tag im Kärtnertortheater <a class="preview places A130004" href="">Wien</a>, außerdem am 20. April 1804 in <a class="preview places A130306" href="">Budapest</a> und am 18. August 1804 in <a class="preview places A130871" href="">Agram</a>. Weber inszenierte das Werk später während seiner Ära als Kapellmeister am Ständetheater in <a class="preview places A130006" href="">Prag</a>; EA war am 17. Oktober 1813 (vgl. <a class="preview diaries A062544" href="">TB</a> und <a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Notizenbuch</a>). In <a class="preview places A130003" href="">Dresden</a> lief das Stück bereits vor seiner Amtszeit in der frz. Fassung, unter seiner Leitung am Hoftheater dann erstmals am 6. Januar 1820.</div>
+                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_04"><span class="tei_lemma">„…  deutschen und französischen Bühnen gesehen“</span>Das Singspiel wurde in der deutschen Übersetzung von <a class="preview persons A008248" href="">H. G. Schmieder</a> in <a class="preview places A130020" href="">Frankfurt/Main</a> am 5. Juli 1801 und in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> am 15. März 1802 aufgeführt, unter dem Titel <span class="tei_hi_italic">Graf Armand</span> bzw. <span class="tei_hi_italic">Die Tage der Gefahr</span> (Übersetzung von <a class="preview persons A001980" href="">G. F. Treitschke</a>) lief es am 13. August 1802 im Theater an der Wien und am darauffolgenden Tag im Kärtnertortheater <a class="preview places A130004" href="">Wien</a>, außerdem am 20. April 1804 in <a class="preview places A130306" href="">Budapest</a> und am 18. August 1804 in <a class="preview places A130871" href="">Agram</a>. Weber inszenierte das Werk später während seiner Ära als Kapellmeister am Ständetheater in <a class="preview places A130006" href="">Prag</a>; EA war am 17. Oktober 1813 (vgl. <a class="preview diaries A062544" href="">TB</a> und <a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Notizenbuch</a>). In <a class="preview places A130003" href="">Dresden</a> lief das Stück bereits vor seiner Amtszeit in der frz. Fassung, unter seiner Leitung am Hoftheater dann erstmals am 6. Januar 1820.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_05" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_05" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_05"><span class="tei_lemma">„…  Oper mit großer Vollendung geben“</span>Besetzung lt. Theaterzettel im Theatermuseum <a class="preview places A130007" href="">München</a>: <a class="preview persons A001966" href="">Tochtermann</a> (<span class="7111497102326511410997110100">Graf Armand</span>) / <a class="preview persons A000489" href="">v. Fischer</a> (<span class="6711111011511697110122101">Constanze</span>) / <a class="preview persons A001363" href="">Muck</a> (<span class="77105107101108108105">Mikelli</span>) / <a class="preview persons A002AD2" href="">Freuen</a> (<span class="6897110105101108">Daniel</span>) / <span class="tei_sic"><a class="preview persons A002CC0" href="">Unhoch</a></span><a class="noteMarker" id="backref-d10e194" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e194">‡</a> (<span class="65110116111110105111">Antonio</span>)  / <a class="preview persons A000501" href="">Flerx</a> (<span class="7797114122101108105110101">Marzeline</span>) / <span class="6797114111">Caro</span> <span class="tei_supplied"><span class="brackets_supplied">[</span>Caro, Joseph (1754–nach 1804), Sänger<span class="brackets_supplied">]</span></span> (<span class="83101109111110115">Semons</span>) / <a class="preview persons A000021" href="">Altmutter</a> (<span class="6511010310110810511097">Angelina</span>) / <a class="preview persons A008637" href="">Lanius</a> (<span class="6911411511610111432751111091099711010097110116">Erster Kommandant</span>) / <a class="preview persons A001331" href="">Mittermayr</a> (<span class="9011910112111610111432751111091099711010097110116">Zweyter Kommandant</span>)  / <a class="preview persons A0015DE" href="">Langlois</a> / <a class="preview persons A0009F2" href="">Schack</a>  (<span class="901191011213211511211410199104101110100101328311110810097116101110">Zwey sprechende Soldaten</span>) / <a class="preview persons A0017B2" href="">Urban</a> (Eine <span class="83991041051081001199799104101">Schildwache</span>).</div>
+                                                <div class="apparatusEntry col-11" id="C_05" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_05"><span class="tei_lemma">„…  Oper mit großer Vollendung geben“</span>Besetzung lt. Theaterzettel im Theatermuseum <a class="preview places A130007" href="">München</a>: <a class="preview persons A001966" href="">Tochtermann</a> (<span class="7111497102326511410997110100">Graf Armand</span>) / <a class="preview persons A000489" href="">v. Fischer</a> (<span class="6711111011511697110122101">Constanze</span>) / <a class="preview persons A001363" href="">Muck</a> (<span class="77105107101108108105">Mikelli</span>) / <a class="preview persons A002AD2" href="">Freuen</a> (<span class="6897110105101108">Daniel</span>) / <span class="tei_sic"><a class="preview persons A002CC0" href="">Unhoch</a></span><a class="noteMarker" id="backref-d10e194" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e194">‡</a> (<span class="65110116111110105111">Antonio</span>)  / <a class="preview persons A000501" href="">Flerx</a> (<span class="7797114122101108105110101">Marzeline</span>) / <a class="preview persons A002A44" href="">Caro</a> (<span class="83101109111110115">Semons</span>) / <a class="preview persons A000021" href="">Altmutter</a> (<span class="6511010310110810511097">Angelina</span>) / <a class="preview persons A008637" href="">Lanius</a> (<span class="6911411511610111432751111091099711010097110116">Erster Kommandant</span>) / <a class="preview persons A001331" href="">Mittermayr</a> (<span class="9011910112111610111432751111091099711010097110116">Zweyter Kommandant</span>)  / <a class="preview persons A0015DE" href="">Langlois</a> / <a class="preview persons A0009F2" href="">Schack</a>  (<span class="901191011213211511211410199104101110100101328311110810097116101110">Zwey sprechende Soldaten</span>) / <a class="preview persons A0017B2" href="">Urban</a> (Eine <span class="83991041051081001199799104101">Schildwache</span>).</div>
                                             </div>
                                         </li>
                                         <li>
@@ -625,8 +622,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e355" class="apparatus-link">9.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e355" data-title="sic" data-counter="9" data-href="#d10e355"><span class="tei_lemma">„<span class="tei_sic">Trenges</span>“</span>recte  „<span class="tei_corr">Trennung</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e352" class="apparatus-link">9.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e352" data-title="sic" data-counter="9" data-href="#d10e352"><span class="tei_lemma">„<span class="tei_sic">Trenges</span>“</span>recte  „<span class="tei_corr">Trennung</span>“.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -715,8 +712,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e253" class="apparatus-link">10.</a></div>
-                                                <div id="d10e253" class="apparatusEntry col-11" data-title="Lesarten" data-counter="10" data-href="#d10e253">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e250" class="apparatus-link">10.</a></div>
+                                                <div id="d10e250" class="apparatusEntry col-11" data-title="Lesarten" data-counter="10" data-href="#d10e250">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">einer</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -724,8 +721,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e264" class="apparatus-link">11.</a></div>
-                                                <div id="d10e264" class="apparatusEntry col-11" data-title="Lesarten" data-counter="11" data-href="#d10e264">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e261" class="apparatus-link">11.</a></div>
+                                                <div id="d10e261" class="apparatusEntry col-11" data-title="Lesarten" data-counter="11" data-href="#d10e261">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Trompete einträte</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg"><span class="tei_hi_latintype">Trompeten</span> einträten</span>“</span></div>
                                                 </div>
@@ -733,8 +730,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e273" class="apparatus-link">12.</a></div>
-                                                <div id="d10e273" class="apparatusEntry col-11" data-title="Lesarten" data-counter="12" data-href="#d10e273">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e270" class="apparatus-link">12.</a></div>
+                                                <div id="d10e270" class="apparatusEntry col-11" data-title="Lesarten" data-counter="12" data-href="#d10e270">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">allein</span>“</span></div>
                                                 </div>
@@ -742,8 +739,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e281" class="apparatus-link">13.</a></div>
-                                                <div id="d10e281" class="apparatusEntry col-11" data-title="Lesarten" data-counter="13" data-href="#d10e281">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e278" class="apparatus-link">13.</a></div>
+                                                <div id="d10e278" class="apparatusEntry col-11" data-title="Lesarten" data-counter="13" data-href="#d10e278">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">da dann</span>“</span></div>
                                                 </div>
@@ -751,8 +748,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e308" class="apparatus-link">14.</a></div>
-                                                <div id="d10e308" class="apparatusEntry col-11" data-title="Lesarten" data-counter="14" data-href="#d10e308">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e305" class="apparatus-link">14.</a></div>
+                                                <div id="d10e305" class="apparatusEntry col-11" data-title="Lesarten" data-counter="14" data-href="#d10e305">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">mir</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">an</span>“</span></div>
                                                 </div>
@@ -760,8 +757,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e341" class="apparatus-link">15.</a></div>
-                                                <div id="d10e341" class="apparatusEntry col-11" data-title="Lesarten" data-counter="15" data-href="#d10e341">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e338" class="apparatus-link">15.</a></div>
+                                                <div id="d10e338" class="apparatusEntry col-11" data-title="Lesarten" data-counter="15" data-href="#d10e338">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">anfangs</span>“</span></div>
                                                 </div>
@@ -769,8 +766,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e395" class="apparatus-link">16.</a></div>
-                                                <div id="d10e395" class="apparatusEntry col-11" data-title="Lesarten" data-counter="16" data-href="#d10e395">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e392" class="apparatus-link">16.</a></div>
+                                                <div id="d10e392" class="apparatusEntry col-11" data-title="Lesarten" data-counter="16" data-href="#d10e392">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">ich hoffe</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">hoffe ich</span>“</span></div>
                                                 </div>
@@ -778,8 +775,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e401" class="apparatus-link">17.</a></div>
-                                                <div id="d10e401" class="apparatusEntry col-11" data-title="Lesarten" data-counter="17" data-href="#d10e401">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e398" class="apparatus-link">17.</a></div>
+                                                <div id="d10e398" class="apparatusEntry col-11" data-title="Lesarten" data-counter="17" data-href="#d10e398">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview persons A000520" href="">Fränzl</a></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Fränzels</span>“</span></div>
                                                 </div>
@@ -787,8 +784,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e427" class="apparatus-link">18.</a></div>
-                                                <div id="d10e427" class="apparatusEntry col-11" data-title="Lesarten" data-counter="18" data-href="#d10e427">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e424" class="apparatus-link">18.</a></div>
+                                                <div id="d10e424" class="apparatusEntry col-11" data-title="Lesarten" data-counter="18" data-href="#d10e424">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">kann</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">darf</span>“</span></div>
                                                 </div>
@@ -819,7 +816,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031140</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031140</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -879,6 +876,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -937,22 +937,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

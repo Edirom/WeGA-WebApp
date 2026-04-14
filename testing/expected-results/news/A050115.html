@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Nach der Veröffentlichung der Version 2.0 und dem gelungenen optischen Redesign der Digitalen Edition im Mai diesen Jahres, gehen mit dem …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Digitale Edition Version 3.0 veröffentlicht","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050115","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050115","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","name":"Stadler, Peter","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001","sameAs":"https://d-nb.info/gnd/143058045"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -287,10 +285,10 @@
                                     <a class="deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050115/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050115/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009001/Aktuelles/A050115/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -348,9 +346,9 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;Bartlitz, Eveline&#34; im Text zu markieren.">Bartlitz, Eveline</span> 
                                 </label>
                             </div>
                         </div>
@@ -364,13 +362,13 @@
                         <div id="d12e2">
                                     <p>Nach der <a class="preview news A050328" href="">Veröffentlichung der Version 2.0</a> und dem gelungenen optischen Redesign der Digitalen Edition im Mai diesen Jahres, gehen mit dem vorliegenden Release erneut so viele Veränderungen einher, dass schon wieder ein Sprung in der „major version number“ – auf 3.0 – angemessen scheint. Zum einen werden gleich drei neue Dokumenttypen eingeführt (Körperschaften, Themenkommentare und „sonstige Dokumente“), außerdem gibt es nun die Anzeige der Rückverweise für alle Dokumenttypen
                und drittens wurde eine komplett neue API nach der Swagger OpenAPI Spezifikation  beschrieben und implementiert. 
-               Das Release ist <a class="preview persons A003672" href="">Eveline Bartlitz</a> zum 90. Geburtstag gewidmet, deren Tatendrang noch immer ungebremst ist und allen Weberknechten in Detmold und Berlin ein Ansporn ist.</p>
+               Das Release ist <a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a> zum 90. Geburtstag gewidmet, deren Tatendrang noch immer ungebremst ist und allen Weberknechten in Detmold und Berlin ein Ansporn ist.</p>
                                     <ul class="tei_list">
                                         <li><span class="tei_hi_bold">Körperschaften</span> – <a class="preview persons A009004" href="">Solveig Schreiter</a> kommt das Verdienst zu, die Körperschaften (auf Dateiebene) aus den Personen „umgetopft“ zu haben und in diesem Zug über 100 Körperschaften neu angelegt und – soweit möglich – mit GND Identifikator angereichert zu haben. 
                   Die Körperschaften werden in der Anzeige allerdings nicht einzeln aufgeführt, sondern wieder unter „Personen“ subsumiert – sowohl bei der Suche als auch im Register. Es lässt sich im Register aber nach Körperschaften filtern.</li>
                                         <li><span class="tei_hi_bold">Themenkommentare</span> – hiermit wird bei der WeGA ein neues Kapitel der Kommentierung aufgeschlagen, ermöglichen diese „Überblickskommentare“ doch eine ausführlichere Auseinandersetzung mit Themen bei gleichzeitiger Rückbindung und Verknüpfung mit den Einzelstellen in Briefen, Tagebüchern etc. </li>
                                         <li><span class="tei_hi_bold">Dokumente</span> – Der Dokumenttyp heißt in der WeGA lediglich „documents“ und versammelt als Begriff diverse Dokumente von Reisepässen, Anstellungsdekreten, Taufscheinen über Gerichtsakten und <a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Webers Notizenbuch</a></li>
-                                        <li><span class="tei_hi_bold">Rückverweise</span> – Für Personen ist dies bereits im letzten Release eingeführt worden, jetzt ist es an allen Dokumenttypen verfügbar. Mit  „Rückverweisen“ lassen sich Erwähnungen eines gegebenen Textes im Tagebuch oder Briefen etc. sofort finden, siehe z.B. den Reiter <span class="tei_hi_italic">Rückverweise</span> bei Webers Schrift „<a class="preview writings A030013" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030013.html">Ueber die Oper Undine …</a>“.</li>
+                                        <li><span class="tei_hi_bold">Rückverweise</span> – Für Personen ist dies bereits im letzten Release eingeführt worden, jetzt ist es an allen Dokumenttypen verfügbar. Mit  „Rückverweisen“ lassen sich Erwähnungen eines gegebenen Textes im Tagebuch oder Briefen etc. sofort finden, siehe z.B. den Reiter <span class="tei_hi_italic">Rückverweise</span> bei Webers Schrift „<a class="preview writings A030013" href="">Ueber die Oper Undine …</a>“.</li>
                                         <li><span class="tei_hi_bold">Swagger API</span> – Mit der Einführung dieser neuen Schnittstelle soll es Entwicklern noch weiter erleichtert werden, mit standardisierten Methoden Dokumente aus der digitalen Edition abzufragen. Der zentrale Einstiegspunkt ist <a href="https://weber-gesamtausgabe.de/api/v1/">https://weber-gesamtausgabe.de/api/v1/</a> und es wird keine Registrierung oder API-key benötigt.</li>
                                     </ul>
                                     <p>Mit der einhergehenden Veröffentlichung der <a href="https://weber-gesamtausgabe.de/de/Sonderband.html">Sonderpublikation „Carl Maria von Weber als Operndirektor des Prager Ständetheaters von 1813 bis 1816“</a> wird auch inhaltlich ein Schwerpunkt gesetzt, der sich neben den Themenkommentaren auch in über 200 neu angelegten Personenbeschreibungen (und über 1100 Überarbeitungen), 145 neuen Pressetexten (680 Überarbeitungen) und über 360 neuen Werkbeschreibungen  (100 Überarbeitungen)  manifestiert. Nähere Informationen finden sich in der <a class="preview news A050340" href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050340.html">News vom 17. Dezember 2016</a>.</p>
@@ -409,7 +407,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_1a0555edcd86961a87f70ae5a6b3a36b">
+                                        <div class="collapse apparatus-details" id="source_773adaeb5d31806ad56010af7ce6d897">
                                             
                                             
                                             <div>
@@ -453,7 +451,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050115</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050115</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -513,6 +511,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -571,22 +572,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

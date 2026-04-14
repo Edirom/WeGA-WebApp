@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="anonym" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Schuldverweisungspublikation für die Stuttgarter Gläubiger; angemeldete Forderungen 2092 fl 22 xr; dazu auswärtige: 573 fl 20xr; abzüglich zurückgenommenem Flügel 279 fl 56 xr = 2385 fl 42 xr;","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Schuldverweisungspublikation für die Stuttgarter Gläubiger. Stuttgart, Donnerstag, 24. Oktober 1811","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100298","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100298","author":[{"@type":"Person","name":"anonym"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100298/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100298/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100298/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -365,7 +363,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009311" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -395,7 +393,7 @@
                                         <p><span class="tei_supplied"><span class="brackets_supplied">[</span>Zitate bei Krauß (S. 300b):<span class="brackets_supplied">]</span></span></p>
                                         <p>„Das Liquidationsgeschäft wurde jedoch erst am 24. Oktober 1811 beendigt; an diesem Termin erfolgte die ‚Schuldenverweisungspublikation‘ in Anwesenheit der Gläubiger.“</p>
                                         <p>„Die angemeldeten Forderungen betrugen insgesamt 2092 Gulden 22 Kreuzer. Darunter befanden sich eine Anzahl Darlehen: 744 Gulden 24 Kr. noch vom Löwenwirt <a class="preview persons A000876" href="">Hönes</a> in <a class="preview places A130310" href="">Schwieberdingen</a> (der Rest mit 255 G. 36 Kr. war schon vorher beglichen), 300 von <a class="preview persons A001827" href="">Karl Siegelin</a> in <a class="preview places A130012" href="">Stuttgart</a>, ehemaligem Haushofmeister beim Herzog <a class="preview persons A001210" href="">Louis</a>, 179 ½ Saldo bei der Hofbank. Dazu kamen die auswärtigen Gläubiger, die den Aufruf nicht gelesen und sich darum nicht gemeldet hatten, nach Webers eigenen Angaben im Gesamtbetrag von 573 G. 20 Kr., so daß sich die Schuldenlast auf 2665 G. 42 Kr. erhöhte. Davon gingen jedoch für einen Flügel, den Hofinstrumentenmacher <a class="preview persons A009311" href="">Haug</a> zurücknahm, 279 G. 56 Kr. ab. Demnach verblieb ein Defizit von 2385 G. 46 Kr.“</p>
-                                        <p>„Die Aktiva bestanden fast ausschließlich aus dem Erlös der in Beschlag genommenen Effekten <a class="preview persons A002068" href="">Webers</a>. Von seiner eigenen Hand sind zwei Listen vorhanden. Auf der einen stehen die Gegenstände, die er sich vorbehielt, auf <span class="preview documents A100001" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100001.html">der andern</span> das, was er seinen Gläubigern zedieren wollte [...]“</p>
+                                        <p>„Die Aktiva bestanden fast ausschließlich aus dem Erlös der in Beschlag genommenen Effekten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>. Von seiner eigenen Hand sind zwei Listen vorhanden. Auf der einen stehen die Gegenstände, die er sich vorbehielt, auf <span class="preview documents A100001" data-ref="">der andern</span> das, was er seinen Gläubigern zedieren wollte [...]“</p>
                                     </div>
                                 </div>
                     </div>
@@ -443,9 +441,9 @@
                                         
                                         <span>verschollen</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_7c1a9241ca3f3bc559c83ee99b024bd8"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_85ba9873eb8002e97da158edd005e4cf"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_7c1a9241ca3f3bc559c83ee99b024bd8">
+                                        <div class="collapse apparatus-details" id="source_85ba9873eb8002e97da158edd005e4cf">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Stuttgart, Stadtarchiv</li>
@@ -461,7 +459,7 @@
                                                             
                                                             <span>Rudolf Krauß: "Aus Carl Maria von Webers schwäbischen Flegeljahren" in: Voss. Zeitung Nr. 445, Sonntagsbeilage 1907, S. 300 (nur Auszüge wiedergegeben);</span>
                                                               
-                                                            <div class="collapse" id="source_257da70c76b31e5ac99ecc9a23ca50b6">
+                                                            <div class="collapse" id="source_aa4cb00081c249f833f6cf7d47daa1cc">
                                                                 
                                                             </div>
                                                         </div>
@@ -509,7 +507,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100298</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100298</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -569,6 +567,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -627,22 +628,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

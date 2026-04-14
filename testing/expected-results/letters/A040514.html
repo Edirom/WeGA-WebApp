@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"berichtet über Aufführung der Silvana in Berlin; teilt mit, dass er ein Verzeichnis von Gänsbachers Kompositionen an Schnabel weitergegeben habe; betrifft Aufnahme Berners in den Harmonischen Verein; Reisepläne: Gotha, Prag","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Johann Gänsbacher in Hagensdorf. Berlin, Dienstag, 14. Juli 1812","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040514","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"berichtet über Aufführung der Silvana in Berlin; teilt mit, dass er ein Verzeichnis von Gänsbachers Kompositionen an Schnabel weitergegeben habe; betrifft Aufnahme Berners in den Harmonischen Verein; Reisepläne: Gotha, Prag","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Johann Gänsbacher in Hagensdorf. Berlin, Dienstag, 14. Juli 1812","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040514","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,7 +362,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040508.html">1812-05-16</a>:  an  <a href="" class="preview A000584 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040404.html">1811-06-30</a>:  an  <a href="" class="preview A000354 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001209/Korrespondenz/A044840.html">1810-04-07</a>:  von  <a href="" class="preview A001209 persons"></a>
@@ -386,16 +384,16 @@
                                     <h4>Vorausgehend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040508.html">1812-05-16</a>:  an  <a href="" class="preview A000584 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html">1811-02-27</a>:  an  <a href="" class="preview A000584 persons"></a>
                                         </li>
                                             <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040291.html">1810-06-18</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040291.html">1810-06-18</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                         </li>
                                     </ul>
                                     <h4>Folgend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040806.html">1815-08-11</a>:  an  <a href="" class="preview A000584 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040886.html">1816-03-18</a>:  an  <a href="" class="preview A000584 persons"></a>
                                         </li>
                                     </ul>
                                 
@@ -412,8 +410,6 @@
                                     <input type="checkbox" name="options" value="A000584" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000487" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001718" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -436,6 +432,8 @@
                                     <input type="checkbox" name="options" value="A001590" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000488" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -467,8 +465,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130723" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130013" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -483,7 +479,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130823" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -514,14 +512,14 @@
                                         <p class="inlineEnd">Sey nicht böse daß ich dir so lange nicht geantwortet habe, aber das
                Einstudiren meiner <a class="preview works A020036" href="">Oper</a> fraß mir jeden Augenblik Zeit, und ich wollte <span class="tei_del">ihn</span><a class="noteMarker" id="backref-d10e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e60">‡</a> doch
                auch gerne dir gleich den Erfolg melden, der so glänzend war, als man es nur verlangen
-               kann<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, und wo ich einen Triumph<a class="noteMarker" id="backref-tC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_01">‡</a> über Kabale <span class="tei_hi_latintype">pp</span> feierte wie <span class="tei_add tei_hi_superscript">es<a class="noteMarker" id="backref-d10e88" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e88">‡</a></span> nur immer möglich ist. d: 10<span class="tei_hi_superscript">t</span> war sie zum erstenmale, und heute wird
+               kann<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, und wo ich einen Triumph<a class="noteMarker" id="backref-tC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC_01">‡</a> über Kabale<a class="noteMarker" href="">T</a> <span class="tei_hi_latintype">pp</span> feierte wie <span class="tei_add tei_hi_superscript">es<a class="noteMarker" id="backref-d10e90" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e90">‡</a></span> nur immer möglich ist. d: 10<span class="tei_hi_superscript">t</span> war sie zum erstenmale, und heute wird
                sie wiederhohlt. ich <span class="tei_hi_latintype">dirigirte</span> selbst, und außer dem Aplaudiren
-               der Musik, erscholl nach jedem Akte ein lautes <span class="tei_hi_latintype">Bravo <a class="preview persons A002068" href="">Weber</a></span>. Sie
+               der Musik, erscholl nach jedem Akte ein lautes <span class="tei_hi_latintype">Bravo <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>. Sie
                gieng aber auch vortrefflich und Sänger und <span class="tei_hi_latintype">Orchester</span>
                wetteiferten mit einander. Nun zu Beantwortung deiner <span class="preview letters A046794 A046705" data-ref=" ">Briefe</span>, den vom 12<span class="tei_hi_superscript">t</span>
                <span class="tei_hi_latintype">Juny</span> erhielt ich d: 18<span class="tei_hi_superscript">t</span> und den vom 2<span class="tei_hi_superscript">t</span>               
                <span class="tei_hi_latintype">July</span> d: 9<span class="tei_hi_superscript">t</span>. <span class="tei_hi_underline1"><span class="tei_hi_latintype">ad</span>          
-                  <span class="tei_hi_underline2andMore">1</span></span>. das Verzeichniß deiner <span class="tei_hi_latintype">Comp:</span> habe ich <a class="preview persons A001718" href="">Schnabel</a> gegeben<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, er ist über <a class="preview places A130005" href="">Leipzig</a> <a class="preview places A130003" href="">Dresden</a> <span class="tei_hi_latintype">pp</span> nach <span class="tei_hi_underline1"><a class="preview places A130013" href="">Breslau</a></span> zurük gereißt und wird
+                  <span class="tei_hi_underline2andMore">1</span></span>. das Verzeichniß deiner <span class="tei_hi_latintype">Comp:</span> habe ich <a class="preview persons A001718" href="">Schnabel</a> gegeben<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, er ist über <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> <a class="preview places A130003" href="">Dresden</a> <span class="tei_hi_latintype">pp</span> nach <span class="tei_hi_underline1"><a class="preview places A130013" href="">Breslau</a></span> zurük gereißt und wird
                sich da mit seinen Vorgesezten über den Ankauf besprechen und mir dann schreiben was er
                wünscht. aber lieber Br: wie ist es möglich daß du den wichtigsten Punkt meines <a class="preview letters A040509" href="">Briefes</a>
                wegen <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000146" href="">Berner</a></span></span>                 
@@ -536,9 +534,9 @@
                ich mich auf das Glük dich zu umarmen, und ein paar Monate mit dir verleben zu können.
                Wie wäre es wenn du mich von <a class="preview places A130007" href="">München</a> aus in <a class="preview places A130016" href="">Gotha</a> abholtest? was wird sich <span class="tei_hi_latintype"><a class="preview persons A000077" href="">Bärmann</a></span> freuen wenn er dich in <a class="preview places A130007" href="">München</a> sieht. <a class="preview persons A002025" href="">Vogler</a> und <a class="preview persons A001313" href="">Beer</a>
                werden wohl noch 3–4 Monate da bleiben. <span class="tei_hi_underline1"><a class="preview persons A001313" href="">Beer</a></span> hat schon ein
-               paar mal vor der <a class="preview persons A000977" href="">Königin</a> gespielt und seine <a class="preview works A020762" href="">Oper</a> kömmt gewiß zur Aufführung. Gott sey
+               paar mal vor der <a class="preview persons A000977" href="">Königin</a> gespielt und seine <a class="preview works A020762" href="">Oper</a> kömmt gewiß zur Aufführung<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a>. Gott sey
                Dank, alles Vereinte blüht kräftig und herrlich und läßt reiche Früchte hoffen. — Deine
-               <a class="preview writings A031328" href="/exist/apps/WeGA-WebApp/de/A000584/Schriften/A031328.html">Anzeige</a> vom <span class="tei_hi_latintype"><a class="preview works A020751" href="">Requiem</a></span> werde ich besorgen. 1<span class="tei_hi_superscript">mo</span> in die hiesige Zeitung, <span class="tei_hi_latintype">Elegante:</span> <span class="tei_hi_latintype">pp</span> wie werde ich dir denn nun Nachricht geben können, wenn du auf der Reise
+               <a class="preview writings A031328" href="">Anzeige</a> vom <span class="tei_hi_latintype"><a class="preview works A020751" href="">Requiem</a></span> werde ich besorgen. 1<span class="tei_hi_superscript">mo</span> in die hiesige Zeitung, <span class="tei_hi_latintype">Elegante:</span> <span class="tei_hi_latintype">pp</span> wie werde ich dir denn nun Nachricht geben können, wenn du auf der Reise
                bist? du kannst deine Briefe immer hieher <span class="tei_hi_latintype">adressiren</span>, denn
                sollte ich auch schon abgereißt sein, so bekomme ich sie doch richtig. Schreibe mir ja
                umgehend wieder, wie lange du in <a class="preview places A130023" href="">Salzburg</a> bleibst, und überhaupt so genau als möglich
@@ -547,14 +545,14 @@
                <span class="tei_hi_underline1"><a class="preview persons A001936" href="">Susann</a></span>, <span class="tei_hi_underline1">Aktuar in <a class="preview places A130823" href="">Teisendorf</a></span> zu
                sprechen, so thue es ja und schreibe mir dann wie du ihn gefunden. vielleicht ist er
                tauglich<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>, du wirst dich erinnern daß ich dir von seinen Briefen zu lesen gab. spätestens
-               Anfangs August verlaße ich <span class="tei_hi_latintype"><a class="preview places A130002" href="">Berlin</a></span>, um in <a class="preview places A130016" href="">Gotha</a> recht ruhig
+               Anfangs August verlaße ich <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span>, um in <a class="preview places A130016" href="">Gotha</a> recht ruhig
                arbeiten zu können. ich habe von <span class="tei_hi_latintype"><a class="preview persons A001590" href="">Rochliz</a></span> Text zu einer schönen
                <span class="tei_hi_latintype"><a class="preview works A020015" href="">Cantate</a></span> <a class="preview letters A045366" href="">erhalten</a> die ich <span class="tei_hi_latintype">comp:</span>
-               werde, und die in <a class="preview places A130005" href="">Leipzig</a> zu Neujahr zum erstenmale gegeben werden soll.</p>
+               werde, und die in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> zu Neujahr zum erstenmale gegeben werden soll.</p>
                                         <p class="tei_closer textAlign-left inlineStart">nun muß ich schließen, empfiehl mich deinem lieben <span class="preview persons A000487 A000488" data-ref=" ">Hause</span> aufs Beste, und vergiß nicht deinen dir
-                  <span class="tei_hi_underline1">ewig</span> treusten <a class="preview persons A002068" href="">Bruder</a>
+                  <span class="tei_hi_underline1">ewig</span> treusten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Bruder</a>
                   <span class="tei_segBlock textAlign-right"><span class="tei_supplied"><span class="brackets_supplied">[</span>Unterschrift abgeschnitten<span class="brackets_supplied">]</span></span></span>
-                   <a class="preview places A130002" href="">Berlin</a> d: 14<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1812.
+                   <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> d: 14<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">July</span> 1812.
                </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -602,9 +600,9 @@
                                         
                                         <span>Wien (A), Gesellschaft der Musikfreunde in Wien, Bibliothek (A-Wgm)<br /><i>Signatur</i>: Weber an Gänsbacher 20</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_20a27e9386afaf76232ed14baa20cb06"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_cb8806de6cd8191f5d3941358bf9a06b"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_20a27e9386afaf76232ed14baa20cb06">
+                                        <div class="collapse apparatus-details" id="source_cb8806de6cd8191f5d3941358bf9a06b">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.)</li>
@@ -622,7 +620,7 @@
                                                             
                                                             <span>Nohl 1867, S. 217–219 (Nr. 20)</span>
                                                               
-                                                            <div class="collapse" id="source_9888953041da9890775f8609bd6535dd">
+                                                            <div class="collapse" id="source_c3115654ee73c704770d83a086c0a3c0">
                                                                 
                                                             </div>
                                                         </div>
@@ -644,6 +642,9 @@
                             <h3 class="media-heading">Themenkommentare</h3>
                             <ul class="tei_list">
                                 <li>
+                                    <a href=""></a>
+                                </li>
+                                        <li>
                                     <a href="/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090109.html">Der Harmonische Verein</a>
                                 </li>
                             </ul>
@@ -666,8 +667,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e88" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e88" data-title="Hinzufügung" data-counter="3" data-href="#d10e88"><span class="tei_lemma">„es“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e90" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e90" data-title="Hinzufügung" data-counter="3" data-href="#d10e90"><span class="tei_lemma">„es“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -676,7 +677,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  man es nur verlangen kann“</span>Zur <a class="preview places A130002" href="">Berliner</a> Erstaufführung der <span class="tei_hi_italic">Silvana</span> am 10. Juli 1812 vgl. die <span class="preview writings A030888 A030562 A031085 A031133 A030542 A030624 A030887 A030825 A030904 A031078 A030673" data-ref="          ">Aufführungsberichte</span>.</div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  man es nur verlangen kann“</span>Zur <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berliner</a> Erstaufführung der <span class="tei_hi_italic">Silvana</span> am 10. Juli 1812 vgl. die <span class="preview writings A030888 A030562 A031085 A031133 A030542 A030624 A030887 A030825 A030904 A031078 A030673" data-ref="          ">Aufführungsberichte</span>.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -693,8 +694,14 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  gefunden. vielleicht ist er tauglich“</span>Susan wurde kein Mitglied des Harmonischen Vereins.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note05" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="note05" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note05"><span class="tei_lemma">„…  Oper kömmt gewiß zur Aufführung“</span>Vgl. auch G. Meyerbeers <a class="preview writings A031112" href="/exist/apps/WeGA-WebApp/de/A001313/Schriften/A031112.html">Bericht</a> im <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span> vom 13. Juli 1812 inklusive Kommentar.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#note04"><span class="tei_lemma">„…  gefunden. vielleicht ist er tauglich“</span>Susan wurde kein Mitglied des Harmonischen Vereins.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -723,7 +730,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040514</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040514</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -783,6 +790,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -841,22 +851,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Pohl, Richard" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"teilt ihm mit, dass er über das vermisste (grüne) Liederheft nichts aussagen kann, es fehlte schon als er im Januar 1852 nach Dresden kam, er fügt dem Brief eine Abschrift der Liste derjenigen Handschriften Webers bei, die 1853 von Peters angekauft worden sind. Die Arie der Palmide aus Aladin ist eine Fehlzuschreibung, sie ist von Meyerbeer komponiert und ist aus Il Crocciato","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Richard Pohl an Max Maria von Weber in Dresden. Weimar, Freitag, 10. Juli 1857","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042943","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003412/Korrespondenz/A042943","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003412","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A003412"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -253,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +298,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A003412/Korrespondenz/A042943/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A003412/Korrespondenz/A042943/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A003412/Korrespondenz/A042943/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -385,8 +383,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A003248" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000243" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A003412" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -411,9 +407,13 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080012" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A080282" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080009" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080007" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002085" /> <span title="Anwählen, um &#34;Weber, Max Maria von&#34; im Text zu markieren.">Weber, Max Maria von</span> 
                                 </label>
@@ -453,7 +453,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020027" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A021447" /> <span title="Anwählen, um &#34;Sicchè t'inganni o Clori&#34; im Text zu markieren.">Sicchè t'inganni o Clori</span> 
                                 </label>
@@ -473,15 +473,15 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130014" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130011" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130029" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130012" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -500,12 +500,12 @@
                                         <p>Eben im Begriff, zum Besuche von <span class="tei_hi_latintype"><a class="preview persons A003248" href="">R. Wagner</a></span> nach <a class="preview places A130082" href="">Zürich</a> zu
                reisen, trifft mich Ihr Schreiben vom 7. <span class="tei_hi_latintype">July</span> heute
                glücklicherweise noch hier, sodaß ich, soweit es in meinen Kräften steht, Ihre Fragen
-               betreffend den Nachlaß <a class="preview persons A002068" href="">Ihres Herrn Vaters</a>, noch schnell beantworten kann.</p>
+               betreffend den Nachlaß <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Ihres Herrn Vaters</a>, noch schnell beantworten kann.</p>
                                         <p>Ich war seiner Zeit mit dem fraglichen Nachlaß zwar ziemlich vertraut und bin auch
                noch im Besitz eines Verzeichnisses desselben, soweit er mir damals zur Durchsicht
                anvertraut wurde.</p>
                                         <p>Allein jenes <span class="tei_hi_underline1">Liederheft</span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> mit der completten Sammlung der
-               Lieder <a class="preview persons A002068" href="">Ihres Herrn Vaters</a> <span class="tei_hi_underline1">ist mir nie zur Gesicht gekommen</span>.
+               Lieder <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Ihres Herrn Vaters</a> <span class="tei_hi_underline1">ist mir nie zur Gesicht gekommen</span>.
                Es fehlte bereits, als ich (<span class="tei_hi_latintype">Januar</span> 1852) nach <a class="preview places A130003" href="">Dresden</a> kam;
                es war viel Nachfrage darnach, da es Frl. <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A000243" href="">Büry</a></span></span>  sehen wollte, die es aber, meines Wissens, <span class="tei_hi_underline1">nie</span>
                erhalten hat. Ich war so vollkommen in Unkenntniß über den Inhalt dieses Bandes, daß
@@ -537,13 +537,13 @@
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-               <span class="tei_hi_latintype">An</span> <br /><a class="preview orgs A080012" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">C. F. Peters</span></span> <br /><span class="tei_hi_latintype">(Bureau de Musique)</span></a> <br />in <a class="preview places A130005" href="">Leipzig</a> wurden verkauft 
-               <br />(im <span class="tei_hi_latintype">Januar</span> 1853) folgende <br /><span class="tei_hi_underline1"><span class="tei_hi_latintype">Manuscripte <a class="preview persons A002068" href="">C. M. v. Webers</a></span></span> <br />aus dessen Nachlaß:
+               <span class="tei_hi_latintype">An</span> <br /><a class="preview orgs A080012" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">C. F. Peters</span></span> <br /><span class="tei_hi_latintype">(Bureau de Musique)</span></a> <br />in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> wurden verkauft 
+               <br />(im <span class="tei_hi_latintype">Januar</span> 1853) folgende <br /><span class="tei_hi_underline1"><span class="tei_hi_latintype">Manuscripte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Webers</a></span></span> <br />aus dessen Nachlaß:
             </div>
                                         <ol class="tei_orderedList">
                                             <li><span class="tei_hi_underline1"><a class="preview works A020231" href="">Concert Stück</a></span>
                <span class="tei_add tei_hi_superscript">für Pianoforte mit <span class="tei_hi_latintype">Orchester</span><a class="noteMarker" id="backref-d10e176" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e176">‡</a></span>
-               in <span class="tei_hi_latintype">F-moll</span>. <span class="tei_hi_latintype">op</span>. 79. Partitur. (Vollendet: <span class="tei_hi_latintype"><a class="preview places A130002" href=""><span class="tei_hi_latintype">Berlin</span></a>,</span> 18. <span class="tei_hi_latintype">Juny</span> 1821.) Schön
+               in <span class="tei_hi_latintype">F-moll</span>. <span class="tei_hi_latintype">op</span>. 79. Partitur. (Vollendet: <span class="tei_hi_latintype"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html"><span class="tei_hi_latintype">Berlin</span></a>,</span> 18. <span class="tei_hi_latintype">Juny</span> 1821.) Schön
                geschriebenes <span class="tei_hi_underline1">Autograph</span> in klein Quer-Format. (Das <span class="tei_hi_underline1">Verlags</span>recht war längst in <span class="tei_hi_latintype"><a class="preview orgs A080012" href="">Peters</a></span>
                   Besitz, doch hat er im vorigen Jahre, gestützt auf jenen <span class="tei_add tei_hi_superscript">neuen<a class="noteMarker" id="backref-d10e209" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e209">‡</a></span>, zum ersten Mal eine <span class="tei_hi_underline1">Partitur-Ausgabe</span> des Concert-Stückes veranstaltet<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a>.)</li>
                                             <li><span class="tei_hi_underline1">Partitur</span> der <span class="tei_hi_underline1">Ouvertüre</span> zu <span class="tei_hi_latintype">„Rübezahl“</span> (<a class="preview works A020207" href="">Beherrscher der Geister</a>) in <span class="tei_hi_latintype">F-dur</span>
@@ -553,22 +553,22 @@
                <span class="tei_hi_underline1">bereits</span>
                <span class="tei_hi_underline1">gedruckt</span> waren, obgleich sie jetzt als Nachlaß <span class="tei_add tei_hi_superscript">trotzdem<a class="noteMarker" id="backref-d10e271" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e271">‡</a></span> noch einmal
                erschienen sind. Diese letztern 3 sind:</li>
-                                            <li><span class="tei_hi_latintype">A <a class="preview works A020308" href="">march</a>, composed for the Royal Society of Musicians of <span class="tei_placeName"><span class="tei_country">Great
-                  Britain</span></span> by <a class="preview persons A002068" href="">C. M. v. Weber</a>, and performed at the Anniversary Dinner in Saturday
+                                            <li><span class="tei_hi_latintype">A <a class="preview works A020308" href="">march</a>, composed for the <a class="preview orgs A080282" href="">Royal Society of Musicians</a> of <span class="tei_country">Great
+                  Britain</span> by <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a>, and performed at the Anniversary Dinner in Saturday
                   May</span> 13. 1826. <span class="tei_hi_latintype">(C-Dur)</span> – Dieser Marsch
-                  steht schon in den <span class="preview works A020337" data-ref="">6 <span class="tei_hi_latintype">pièces <span class="tei_add tei_hi_superscript">faciles<a class="noteMarker" id="backref-d10e296" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e296">‡</a></span> à 4 mains</span></span>, und wurde von <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Weber</a></span>
+                  steht schon in den <span class="preview works A020337" data-ref="">6 <span class="tei_hi_latintype">pièces <span class="tei_add tei_hi_superscript">faciles<a class="noteMarker" id="backref-d10e298" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e298">‡</a></span> à 4 mains</span></span>, und wurde von <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span>
                für <a class="preview places A130011" href="">London</a> <span class="tei_hi_underline1">nur instrumentirt</span>. Sowohl in dieser
                Instrumentation (für 1 Flöte, 2 Oboen, 2 Clarinetten, 2 Fagotte, 2 Hörner, 2
                Trompeten, 1 Baßposaune) als auch im nachmaligen 4händigen Klavier Auszug erschien
                dieser <span class="tei_hi_underline1"><span class="tei_hi_latintype">„Marche“</span></span>  bei <span class="tei_hi_latintype"><a class="preview orgs A080012" href="">Peters</a></span> als <span class="tei_hi_underline1"><span class="tei_hi_latintype">Oeuv. posth. No.</span></span>  <span class="tei_hi_underline1">8.</span></li>
-                                            <li><span class="tei_hi_underline1"><a class="preview works A020143" href="">Romanze</a></span> für eine Singstimme mit Pianoforte. <span class="tei_del">Die</span><a class="noteMarker" id="backref-d10e331" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e331">‡</a> (<span class="tei_hi_latintype">B-moll)</span>.
+                                            <li><span class="tei_hi_underline1"><a class="preview works A020143" href="">Romanze</a></span> für eine Singstimme mit Pianoforte. <span class="tei_del">Die</span><a class="noteMarker" id="backref-d10e333" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e333">‡</a> (<span class="tei_hi_latintype">B-moll)</span>.
                   Die Dichtung, zu einem Roman, vom verstorbenen <a class="preview persons A000060" href="">Herzog August von Gotha</a>, wurde auf
                dessen Veranlassung in Musik gesetzt. – (Dieses Lied erschien zuerst als Beitrag zur
                   „Polyhymnia“ auf das Jahr 1826, herausgegeben von <span class="tei_hi_latintype">Fr.
                      <a class="preview persons A001002" href="">Kind</a></span> u. <span class="tei_hi_latintype">H. <a class="preview persons A001268" href="">Marschner</a></span>. Neue Ausgabe bei <a class="preview orgs A080012" href="">Peters</a>, als
                   <span class="tei_hi_underline1"><span class="tei_hi_latintype">No.</span></span> <span class="tei_hi_underline1">10</span>
                der<span class="tei_hi_underline1">Nachgelassenen Werke</span>.) –
-               <span class="tei_del">Die übrigen, unzweifelhaft noch unedirten Originalwerke waren</span><a class="noteMarker" id="backref-d10e369" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e369">‡</a></li>
+               <span class="tei_del">Die übrigen, unzweifelhaft noch unedirten Originalwerke waren</span><a class="noteMarker" id="backref-d10e371" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e371">‡</a></li>
                                             <li><a class="preview works A020290" href=""><span class="tei_hi_underline1"><span class="tei_hi_latintype">Variationen</span></span>  für das <span class="tei_hi_underline1">Violoncell</span></a>, mit kl. Orchester, für seinen
                  Freund <a class="preview persons A000409" href="">Alexander von Dusch</a>. (In 8 Stunden vollendet. Mannheim, 28. <span class="tei_hi_latintype">May</span> 1810.) – <span class="tei_hi_latintype">D-moll</span> und <span class="tei_hi_latintype">F-dur</span>
                . – (Hiervon findet sich <span class="tei_hi_latintype">Thema</span> u. 3
@@ -595,9 +595,9 @@
                u. 12. Sept.1818) 2. <span class="tei_hi_latintype">Chöre</span>, ländlicher Marsch, Melodram,
                Recitativ u. Schlußchor. Partitur. Unedirt. (Der Anfang fehlt.)</li>
                                             <li><span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A020027" href="">Cantate</a></span></span>  zur Feier des Geburtstages der Herzogin <a class="preview persons A003086" href="">Amalie von Zweibrücken</a>, am 3. August
-                  <span class="tei_add tei_hi_superscript">1818<a class="noteMarker" id="backref-d10e603" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e603">‡</a></span><a class="noteMarker" id="backref-ftn3" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn3">*</a> 
+                  <span class="tei_add tei_hi_superscript">1818<a class="noteMarker" id="backref-d10e605" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e605">‡</a></span><a class="noteMarker" id="backref-ftn3" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#ftn3">*</a> 
                   Gedicht von <span class="tei_hi_underline1"><span class="tei_hi_latintype">Fr. <a class="preview persons A001002" href="">Kind</a></span></span>. Für 6 Stimmen und Pianoforte. 9 Stück. <span class="tei_hi_latintype">D-Dur</span>.
-               (Componirt im <span class="tei_hi_latintype">July</span> 1818. Das <span class="tei_hi_latintype">Finale</span> fehlt, da es zur „<a class="preview works A020043" href="">Euryanthe</a>“ benutzt wurde.) Unedirt.</li>
+               (Componirt im <span class="tei_hi_latintype">July</span> 1818. Das <span class="tei_hi_latintype">Finale</span> fehlt, da es zur „<a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a>“ benutzt wurde.) Unedirt.</li>
                                         </ol>
                                         <p class="tei_closer textAlign-left">
                Für die Richtigkeit obiger Angaben bürgt, als beauftragter Bevollmächtigter des, im
@@ -620,7 +620,7 @@
                             <div>
                                         <p>teilt ihm mit, dass er über das vermisste (grüne) Liederheft nichts
                aussagen kann, es fehlte schon als er im Januar 1852 nach Dresden kam, er fügt dem
-               Brief eine Abschrift der Liste derjenigen Handschriften <a class="preview persons A002068" href="">Webers</a> bei, die 1853 von Peters angekauft worden sind. Die Arie der
+               Brief eine Abschrift der Liste derjenigen Handschriften <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> bei, die 1853 von Peters angekauft worden sind. Die Arie der
                Palmide aus <span class="tei_hi_italic">Aladin</span> ist eine Fehlzuschreibung, sie ist von <a class="preview persons A001313" href="">Meyerbeer</a> komponiert und ist aus <span class="tei_hi_italic"><span class="731083267114111999910597116111">Il Crocciato</span></span>
             </p>
                                     </div>
@@ -655,9 +655,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. X, Nr. 513</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ecc5de856db480745f47e32a8bd452cc"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a020a4c0c9a09cb9fcb3b7c47a4401dc"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_ecc5de856db480745f47e32a8bd452cc">
+                                        <div class="collapse apparatus-details" id="source_a020a4c0c9a09cb9fcb3b7c47a4401dc">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>2 DBl., 1 Bl. (10 b. S. o. Adr.)</li>
@@ -677,7 +677,7 @@
                         Leipzig,</span> in: Weberiana, Heft 10 (2000), S. 13–16
                      </span>
                                                               
-                                                            <div class="collapse" id="source_178c2f28f8dd7297e05db0344e2c336a">
+                                                            <div class="collapse" id="source_941704538bd0bc83611b195370bc01c8">
                                                                 
                                                             </div>
                                                         </div>
@@ -720,26 +720,26 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e296" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e296" data-title="Hinzufügung" data-counter="4" data-href="#d10e296"><span class="tei_lemma">„faciles“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e298" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e298" data-title="Hinzufügung" data-counter="4" data-href="#d10e298"><span class="tei_lemma">„faciles“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e331" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e331" data-title="Löschung" data-counter="5" data-href="#d10e331"><span class="tei_lemma">„Die“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e333" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e333" data-title="Löschung" data-counter="5" data-href="#d10e333"><span class="tei_lemma">„Die“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e369" class="apparatus-link">6.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e369" data-title="Löschung" data-counter="6" data-href="#d10e369"><span class="tei_lemma">„Die übrigen, unzweifelhaft noch unedirten Originalwerke waren“</span>durchgestrichen</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e371" class="apparatus-link">6.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e371" data-title="Löschung" data-counter="6" data-href="#d10e371"><span class="tei_lemma">„Die übrigen, unzweifelhaft noch unedirten Originalwerke waren“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e603" class="apparatus-link">7.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e603" data-title="Hinzufügung" data-counter="7" data-href="#d10e603"><span class="tei_lemma">„1818“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e605" class="apparatus-link">7.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e605" data-title="Hinzufügung" data-counter="7" data-href="#d10e605"><span class="tei_lemma">„1818“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -772,7 +772,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-ftn2" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="ftn2" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#ftn2"><span class="tei_lemma">„Erscheint demnächst, als … 13. des Nachlasses.“</span>Bemerkung darunter von <a class="preview persons A000914" href="">Jähns</a>: Erwiesen gedruckte<span class="tei_hi_latintype">Composition</span> von <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Meyerbeer</a></span> (<span class="tei_hi_latintype"><a class="preview works A021241" href="">Crocciato</a></span> desselben) <span class="tei_hi_latintype"><a class="preview persons A000914" href="">F. W. Jähns</a></span>.
+                                                <div class="apparatusEntry col-11" id="ftn2" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#ftn2"><span class="tei_lemma">„Erscheint demnächst, als … 13. des Nachlasses.“</span>Bemerkung darunter von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a>: Erwiesen gedruckte<span class="tei_hi_latintype">Composition</span> von <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Meyerbeer</a></span> (<span class="tei_hi_latintype"><a class="preview works A021241" href="">Crocciato</a></span> desselben) <span class="tei_hi_latintype"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a></span>.
                   </div>
                                             </div>
                                         </li>
@@ -811,7 +811,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042943</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042943</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -871,6 +871,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -929,22 +932,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

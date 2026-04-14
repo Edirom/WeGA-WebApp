@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="" />
@@ -45,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"zuerst erläutert Weber Mozarts Bedeutung und die seiner bedeutendsten Opern; Aufführung dient der Vorstellung neuen Sängerpersonals: Friedrich Gerstäcker als Gast und Mad. Hähnel; außerdem geht Weber auf den Singe-Chor, eine Bildungsanstalt für den Sängernachwuchs, ein","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Dramatisch-musikalische Notizen (Dresden): „Die Entführung aus dem Serail“ von Mozart","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030264","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030264","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"zuerst erläutert Weber Mozarts Bedeutung und die seiner bedeutendsten Opern; Aufführung dient der Vorstellung neuen Sängerpersonals: Friedrich Gerstäcker als Gast und Mad. Hähnel; außerdem geht Weber auf den Singe-Chor, eine Bildungsanstalt für den Sängernachwuchs, ein","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Dramatisch-musikalische Notizen (Dresden): „Die Entführung aus dem Serail“ von Mozart","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030264","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030264","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -224,14 +221,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
                             </li>
                             <li>
                                 <span>A030264</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -253,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -294,13 +291,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030264/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030264/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -358,8 +355,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001362" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000612" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -367,6 +362,8 @@
                                     <input type="checkbox" name="options" value="A000622" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A004626" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -421,6 +418,8 @@
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130007" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
                         </div>
@@ -447,22 +446,23 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">Dramatisch-musikalische Notizen.<br />Als Versuche, durch kunst-geschichtliche Nachrichten und Andeutungen, die Beurtheilung, neu auf dem <span class="tei_placeName">Königl. Theater zu <a class="preview places A130003" href="">Dresden</a></span> erscheinender Opern zu erleichtern.<br />Von <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="">Carl Maria von Weber</a></span>.</h2>
+                                        <h2 class="docHeader textAlign-center">Dramatisch-musikalische Notizen.</h2>
+                                        <h3 class="docHeader textAlign-center">Als Versuche, durch kunst-geschichtliche Nachrichten und Andeutungen, die Beurtheilung, neu auf dem <span class="tei_placeName">Königl. Theater zu <a class="preview places A130003" href="">Dresden</a></span> erscheinender Opern zu erleichtern.<br />Von <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.</h3>
                                         <p><span class="tei_date">Mittwoch, den 17ten <span class="tei_app"><span class="tei_lem">Mai</span><a class="noteMarker" id="backref-d10e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e21">Δ</a></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> 1818</span>, erscheint zum erstenmal auf dem <span class="tei_placeName">Königl. Hoftheater</span> <a class="preview persons A001362" href="">Mozarts</a> herrliche Oper <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Die Entführung aus dem Serail</span></a>.</p>
                                         <p>Es giebt wohl nicht leicht eine wichtigere Angelegenheit für den Kunstfreund, als den Entwickelungsproceß der großen, ihre Zeit gestaltenden und beherrschenden Geister zu beobachten, der sich doch am lebendigsten und sprechendsten in der Zeitfolge ihrer bedeutenden Werke entfaltet.</p>
-                                        <p>Von <span class="tei_app"><span class="tei_lem">früher</span><a class="noteMarker" id="backref-d10e47" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e47">Δ</a></span> Jugend in die Geheimnisse der Kunst mit Ernst eingeweiht, ihrem anhaltenden Studium ergeben und mit dem schöpferischsten Geiste begabt, mußte doch auch bei <a class="preview persons A001362" href="">Mozart</a> das gesammelte, wie das gottgeschenkte Material erst die Zeit verarbeiten und abgähren, ehe die Klarheit tagen konnte, die in dieser Oper herrscht.</p>
-                                        <p>Durch eine Art von wunderbarem Kunst-Volks-Glauben wird sie fast allgemein für <a class="preview persons A001362" href="">Mozarts</a> erste Oper gehalten, und ist doch seine <span class="tei_hi_spaced_out">Vierzehnte</span> <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>. Aber hier, wie immer, liegt einer so durchgehends festgeglaubten Meinung ein inneres, tiefgefühltes Wahrheitsprincip, – die unbekannten Obern göttlichen Ursprungs im richtenden Menschen – zum Grunde; denn, so wie im frühern <a class="preview works A020525" href=""><span class="tei_hi_spaced_out">Idomeneo</span></a> (1780 zu München) fast aller Farbenstoff der späteren <a class="preview persons A001362" href="">Mozartschen</a> Werke, wie auf der Palette <span class="tei_app"><span class="tei_lem">dargelegt mir erscheint</span><a class="noteMarker" id="backref-d10e147" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e147">Δ</a></span>, und das Gewicht des Wissens mit des Genius Freiheitslust zu kämpfen beginnt, – so trägt in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a> (1782 zu Wien) die heitere Jugendfrische den Sieg davon: Obwohl mit Lust auch die Meisterschaft der Harmonie hin und wieder gerne streng beweisend, oder über die Gebühr ausspinnend in jugendlicher Ueberschwenglichkeit und gefälligem Wiegen in dem Selbsterzeugten; – (z. B. die große Arie der <span class="6711111011511697110122101">Constanze</span>, die aber hier nach <a class="preview persons A001362" href="">Mozarts</a> eigenem spätern Beispiel abgekürzt erscheint) – und ist <span class="tei_hi_spaced_out">so</span> das erste Werk, oder die erste Stufe <span class="tei_hi_spaced_out">der</span> künstlerischen Vollendung <a class="preview persons A001362" href="">Mozarts</a> geworden, die die Welt in ihm ehrt, anstaunt, und nach ihm nennt.</p>
-                                        <p>Merkwürdig zeigt sich in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a>, die vollkommenste Auffassung dramatischer Wahrheit und charakterisirender Deklamation, vermischt mit <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>dem hin und wieder noch nicht ganz gelungenem Lossagen, von dem damals in Form und Schnitt Herkömmlichen, was später in ganz abgeschlossener Ueberzeugung, mit männlicher Kraft und Besonnenheit, bloß der <span class="tei_hi_spaced_out">Wahrheit</span> huldigte. (<a class="preview works A020567" href="">Figaro</a> 1786 Wien), <a class="preview works A020484" href="">Don Juan</a>, <a class="preview works A020584" href="">Zauberflöte</a>, <a class="preview works A020545" href="">Titus</a> etc. Meinem persönlichen Künstlergefühl ist diese heitere, in vollster, üppiger Jugendkraft lodernde, jungfräulich zart empfindende Schöpfung, besonders lieb. Ich glaube in ihr das zu erblicken, was jedem Menschen seine frohen Jünglingsjahre sind, deren Blüthenzeit er nie wieder <span class="tei_hi_spaced_out">so</span> erringen kann, und wo beim Vertilgen der Mängel auch unwiederbringliche Reize fliehen. Ja, ich getraue mich den Glauben auszusprechen, daß in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a>, <a class="preview persons A001362" href="">Mozarts</a> <span class="tei_hi_spaced_out">Kunsterfahrung</span> ihre Reife erlangt hatte, und dann nur die <span class="tei_hi_spaced_out">Welterfahrung</span> weiter schuf. Opern, wie <a class="preview works A020567" href="">Figaro</a> und <a class="preview works A020484" href="">Don Juan</a>, war die Welt berechtiget, mehrere von ihm zu erwarten. Eine <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a> konnte er mit dem besten Willen nicht wieder schreiben.</p>
-                                        <p>Der Wunsch des, uns freundlich willkommenen Gastes und Landsmannes, Herrn Tenorsänger <a class="preview persons A000622" href=""><span class="tei_hi_spaced_out">Gerstäcker</span></a>, die Rolle des <span class="66101108109111110116101">Belmonte</span> zu geben, bringt zunächst diese Oper auf unsre Bühne, und veranlaßt zugleich dadurch den ersten Versuch eines bei uns erblühenden Talentes.</p>
+                                        <p>Von <span class="tei_app"><span class="tei_lem">früher</span><a class="noteMarker" id="backref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">Δ</a></span> Jugend in die Geheimnisse der Kunst mit Ernst eingeweiht, ihrem anhaltenden Studium ergeben und mit dem schöpferischsten Geiste begabt, mußte doch auch bei <a class="preview persons A001362" href="">Mozart</a> das gesammelte, wie das gottgeschenkte Material erst die Zeit verarbeiten und abgähren, ehe die Klarheit tagen konnte, die in dieser Oper herrscht.</p>
+                                        <p>Durch eine Art von wunderbarem Kunst-Volks-Glauben wird sie fast allgemein für <a class="preview persons A001362" href="">Mozarts</a> erste Oper gehalten, und ist doch seine <span class="tei_hi_spaced_out">Vierzehnte</span> <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>. Aber hier, wie immer, liegt einer so durchgehends festgeglaubten Meinung ein inneres, tiefgefühltes Wahrheitsprincip, – die unbekannten Obern göttlichen Ursprungs im richtenden Menschen – zum Grunde; denn, so wie im frühern <a class="preview works A020525" href=""><span class="tei_hi_spaced_out">Idomeneo</span></a> (1780 zu <a class="preview places A130007" href="">München</a>) fast aller Farbenstoff der späteren <a class="preview persons A001362" href="">Mozartschen</a> Werke, wie auf der Palette <span class="tei_app"><span class="tei_lem">dargelegt mir erscheint</span><a class="noteMarker" id="backref-d10e178" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e178">Δ</a></span>, und das Gewicht des Wissens mit des Genius Freiheitslust zu kämpfen beginnt, – so trägt in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a> (1782 zu <a class="preview places A130004" href="">Wien</a>) die heitere Jugendfrische den Sieg davon: Obwohl mit Lust auch die Meisterschaft der Harmonie hin und wieder gerne streng beweisend, oder über die Gebühr ausspinnend in jugendlicher Ueberschwenglichkeit und gefälligem Wiegen in dem Selbsterzeugten; – (z. B. die große Arie der <span class="6711111011511697110122101">Constanze</span><a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>, die aber hier nach <a class="preview persons A001362" href="">Mozarts</a> eigenem spätern Beispiel abgekürzt erscheint) – und ist <span class="tei_hi_spaced_out">so</span> das erste Werk, oder die erste Stufe <span class="tei_hi_spaced_out">der</span> künstlerischen Vollendung <a class="preview persons A001362" href="">Mozarts</a> geworden, die die Welt in ihm ehrt, anstaunt, und nach ihm nennt.</p>
+                                        <p>Merkwürdig zeigt sich in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a>, die vollkommenste Auffassung dramatischer Wahrheit und charakterisirender Deklamation, vermischt mit <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>dem hin und wieder noch nicht ganz gelungenem Lossagen, von dem damals in Form und Schnitt Herkömmlichen, was später in ganz abgeschlossener Ueberzeugung, mit männlicher Kraft und Besonnenheit, bloß der <span class="tei_hi_spaced_out">Wahrheit</span> huldigte. (<a class="preview works A020567" href="">Figaro</a> 1786 <a class="preview places A130004" href="">Wien</a>), <a class="preview works A020484" href="">Don Juan</a>, <a class="preview works A020584" href="">Zauberflöte</a>, <a class="preview works A020545" href="">Titus</a> etc. Meinem persönlichen Künstlergefühl ist diese heitere, in vollster, üppiger Jugendkraft lodernde, jungfräulich zart empfindende Schöpfung, besonders lieb. Ich glaube in ihr das zu erblicken, was jedem Menschen seine frohen Jünglingsjahre sind, deren Blüthenzeit er nie wieder <span class="tei_hi_spaced_out">so</span> erringen kann, und wo beim Vertilgen der Mängel auch unwiederbringliche Reize fliehen. Ja, ich getraue mich den Glauben auszusprechen, daß in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a>, <a class="preview persons A001362" href="">Mozarts</a> <span class="tei_hi_spaced_out">Kunsterfahrung</span> ihre Reife erlangt hatte, und dann nur die <span class="tei_hi_spaced_out">Welterfahrung</span> weiter schuf. Opern, wie <a class="preview works A020567" href="">Figaro</a> und <a class="preview works A020484" href="">Don Juan</a>, war die Welt berechtiget, mehrere von ihm zu erwarten. Eine <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung</span></a> konnte er mit dem besten Willen nicht wieder schreiben.</p>
+                                        <p>Der Wunsch des, uns freundlich willkommenen Gastes und Landsmannes, Herrn Tenorsänger <a class="preview persons A000622" href=""><span class="tei_hi_spaced_out">Gerstäcker</span></a>, die Rolle des <span class="66101108109111110116101">Belmonte</span> zu geben, bringt zunächst diese Oper auf unsre Bühne, und veranlaßt zugleich dadurch den ersten Versuch eines bei uns erblühenden Talentes<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>.</p>
                                         <p> <a class="preview persons A004626" href="">Mlle. <span class="tei_hi_spaced_out">Hähnel</span></a>, Mitglied des Singe-Chors, wird die Rolle der <span class="6711111011511697110122101">Constanze</span> singen, und ich darf mit fröhlichem Vertrauen auf den freundlich theilnehmenden Sinn des gebildeten <a class="preview places A130003" href="">Dresdner</a> Publikums rechnen, wenn ich seiner Nachsicht ihre Schüchternheit, und seiner Aufmerksamkeit ihre vorzüglichen Naturanlagen zu gütig wohlwollender Theilnahme zu empfehlen wage.</p>
-                                        <p>Es gereicht mir <span class="tei_app"><span class="tei_lem">dabei</span><a class="noteMarker" id="backref-d10e249" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e249">Δ</a></span> zum besonderen Vergnügen, die kaum neun Monate bestehende Anstalt des Singe-Chors, ihrer wahren innern Bestimmung gemäß, als Pflanzschule für die Oper, durch die Mitwirkung Kenntniß- und Willen-voller Männer schon solche Blüthen treiben zu sehen, die die schöne Hoffnung nähren lassen, aus eigenen vaterländischen Kräften das nach und nach zu schaffen, was andere Kunstanstalten nur vom Zufall und dem vielfarbigen Rufe abhängig, mit Golde aufwiegen müssen.</p>
-                                        <p>In Bezug auf die hier besprochene Oper finde ich noch nöthig zu bemerken, daß die hohe Tonlage der Rolle der <span class="6711111011511697110122101">Constanze</span> außer dem Stimmumfang <span class="tei_app"><span class="tei_lem">liegt, den man gewöhnlich billigerweise von einer Sängerin zu fordern berechtigt ist</span><a class="noteMarker" id="backref-d10e259" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e259">Δ</a></span>. Dies für die Wenigen, die nur <span class="tei_hi_spaced_out">das</span> gut finden können, was auch <span class="tei_hi_spaced_out">unumgänglich nöthig</span> ist, und <span class="tei_app"><span class="tei_lem">die</span><a class="noteMarker" id="backref-d10e271" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e271">Δ</a></span> doch auch am Ende zugeben müssen, daß es sehr unrecht wäre, wenn z. B. <span class="tei_app"><span class="tei_lem">der</span><a class="noteMarker" id="backref-d10e277" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e277">Δ</a></span> Bassist X. es dem Tenorist Y. übel nehmen wolle, daß Er, X. nicht auch <span class="tei_hi_spaced_out">Tenor</span> sänge.</p>
-                                        <p>Gott, durch sein Naturgeschenk, und dann der Componist durch seine Compositionen, weisen jedem seinen Wirkungskreis an. Und auch dieses sey ein wiederholter Entschuldigungs- und Empfehlungsgrund, – wem dessen von Nöthen, – <span class="tei_app"><span class="tei_lem">daß</span><a class="noteMarker" id="backref-d10e288" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e288">Δ</a></span> <a class="preview persons A004626" href="">Mlle. <span class="tei_hi_spaced_out">Hähnel</span></a> es wagt, die ihr <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e299" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e299">Δ</a></span> zugetheilte Rolle auszuführen.</p>
+                                        <p>Es gereicht mir <span class="tei_app"><span class="tei_lem">dabei</span><a class="noteMarker" id="backref-d10e302" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e302">Δ</a></span> zum besonderen Vergnügen, die kaum neun Monate bestehende Anstalt des Singe-Chors, ihrer wahren innern Bestimmung gemäß, als Pflanzschule für die Oper, durch die Mitwirkung Kenntniß- und Willen-voller Männer schon solche Blüthen treiben zu sehen, die die schöne Hoffnung nähren lassen, aus eigenen vaterländischen Kräften das nach und nach zu schaffen, was andere Kunstanstalten nur vom Zufall und dem vielfarbigen Rufe abhängig, mit Golde aufwiegen müssen.</p>
+                                        <p>In Bezug auf die hier besprochene Oper finde ich noch nöthig zu bemerken, daß die hohe Tonlage der Rolle der <span class="6711111011511697110122101">Constanze</span> außer dem Stimmumfang <span class="tei_app"><span class="tei_lem">liegt, den man gewöhnlich billigerweise von einer Sängerin zu fordern berechtigt ist</span><a class="noteMarker" id="backref-d10e312" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e312">Δ</a></span>. Dies für die Wenigen, die nur <span class="tei_hi_spaced_out">das</span> gut finden können, was auch <span class="tei_hi_spaced_out">unumgänglich nöthig</span> ist, und <span class="tei_app"><span class="tei_lem">die</span><a class="noteMarker" id="backref-d10e324" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e324">Δ</a></span> doch auch am Ende zugeben müssen, daß es sehr unrecht wäre, wenn z. B. <span class="tei_app"><span class="tei_lem">der</span><a class="noteMarker" id="backref-d10e330" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e330">Δ</a></span> Bassist X. es dem Tenorist Y. übel nehmen wolle, daß Er, X. nicht auch <span class="tei_hi_spaced_out">Tenor</span> sänge.</p>
+                                        <p>Gott, durch sein Naturgeschenk, und dann der Componist durch seine Compositionen, weisen jedem seinen Wirkungskreis an. Und auch dieses sey ein wiederholter Entschuldigungs- und Empfehlungsgrund, – wem dessen von Nöthen, – <span class="tei_app"><span class="tei_lem">daß</span><a class="noteMarker" id="backref-d10e342" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e342">Δ</a></span> <a class="preview persons A004626" href="">Mlle. <span class="tei_hi_spaced_out">Hähnel</span></a> es wagt, die ihr <span class="tei_app"><span class="tei_lem"></span><a class="noteMarker" id="backref-d10e353" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e353">Δ</a></span> zugetheilte Rolle auszuführen.</p>
                                     </div>
                                     <div id="endNotes">
                                         <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) <a class="preview persons A001362" href=""><span class="tei_hi_spaced_out">Mozart</span></a>, geboren 1756, schrieb 1767 das lateinische Drama 1) <a class="preview works A020744" href=""><span class="tei_hi_spaced_out">Appollo und Hyazinth</span></a>, 2) 1768 <a class="preview works A020598" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Bastienne Bastienne</span></span></a>, 3) <a class="preview works A020817" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">la finta semplice</span></span></a>, 4) und 6) zwei unvollendete Opern 1770, 6) <a class="preview works A020724" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Mitridate</span></span>,</a> zu Mailand 1771, 7) <a class="preview works A020430" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Ascanio in Alba</span></span></a>. 1772, 8) <a class="preview works A020550" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">il Sogno di Scipione</span></span></a>, und 9) <a class="preview works A020644" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Lucio silla</span></span></a>, 1774, 10) <a class="preview works A020489" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">la Finta giardiniera</span></span></a>, <a class="preview places A130007" href="">München</a> 1775, 11) <a class="preview works A020482" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">il Re Pastore</span></span></a>, 12) Entre-Akts und Chöre zum Trauerspiel <span class="8410497109111115"><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Thamos</span></span></span>, und 1780 für <a class="preview places A130007" href="">München</a> 13) <a class="preview works A020525" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Idomeneo</span></span></a>. (Siehe <a class="preview persons A000612" href="">Gerbers</a> Tonkünstl. Lex.) </li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) <a class="preview persons A001362" href=""><span class="tei_hi_spaced_out">Mozart</span></a>, geboren 1756, schrieb 1767 das lateinische Drama 1) <a class="preview works A020744" href=""><span class="tei_hi_spaced_out">Appollo und Hyazinth</span></a>, 2) 1768 <a class="preview works A020598" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Bastienne Bastienne</span></span></a>, 3) <a class="preview works A020817" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">la finta semplice</span></span></a>, 4) und <span class="tei_choice"><span class="tei_sic">6)</span><a class="noteMarker" id="backref-d10e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e89">‡</a></span> zwei unvollendete Opern 1770, 6) <a class="preview works A020724" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Mitridate</span></span>,</a> zu Mailand <span class="tei_choice"><span class="tei_sic">1771</span><a class="noteMarker" id="backref-d10e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e102">‡</a></span>, 7) <a class="preview works A020430" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Ascanio in Alba</span></span></a>. <span class="tei_choice"><span class="tei_sic">1772</span><a class="noteMarker" id="backref-d10e113" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e113">‡</a></span>, 8) <a class="preview works A020550" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">il Sogno di Scipione</span></span></a>, und 9) <a class="preview works A020644" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Lucio silla</span></span></a>, <span class="tei_choice"><span class="tei_sic">1774</span><a class="noteMarker" id="backref-d10e130" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e130">‡</a></span>, 10) <a class="preview works A020489" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">la Finta giardiniera</span></span></a>, <a class="preview places A130007" href="">München</a> 1775, 11) <a class="preview works A020482" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">il Re Pastore</span></span></a>, 12) Entre-Akts und Chöre zum Trauerspiel <span class="8410497109111115"><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Thamos</span></span></span>, und 1780 für <a class="preview places A130007" href="">München</a> 13) <a class="preview works A020525" href=""><span class="tei_hi_spaced_out"><span class="tei_hi_antiqua">Idomeneo</span></span></a>. (Siehe <a class="preview persons A000612" href="">Gerbers</a> Tonkünstl. Lex.) </li>
                                         </ul>
                                     </div>
                                 </div>
@@ -512,9 +512,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 2, Nr. 142 (16. Juni 1818), Bl. 2v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_d58958396e8cf301f1a2058fdebb65ed"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_31690eac4db356560a0bdcdf82cea06d"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_d58958396e8cf301f1a2058fdebb65ed">
+                                        <div class="collapse apparatus-details" id="source_31690eac4db356560a0bdcdf82cea06d">
                                             
                                             
                                             <div>
@@ -527,7 +527,7 @@
                                                             
                                                             <span>HellS III, S. 124–128</span>
                                                               
-                                                            <div class="collapse" id="source_10cc2de8b252fb5ffad18b34d66e5e62">
+                                                            <div class="collapse" id="source_37470f30b92fc76a993bb0ff4ea63666">
                                                                 
                                                             </div>
                                                         </div>
@@ -537,7 +537,7 @@
                                                             
                                                             <span>MMW III, S. 189–192</span>
                                                               
-                                                            <div class="collapse" id="source_4e32542f71cee72a94072e41875dc9a8">
+                                                            <div class="collapse" id="source_99b1066b91257f8a65c70e9898d94a88">
                                                                 
                                                             </div>
                                                         </div>
@@ -547,7 +547,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 302–304 (Nr. 131)</span>
                                                               
-                                                            <div class="collapse" id="source_04384ad82e41563f108a5afb0b533dbf">
+                                                            <div class="collapse" id="source_6cd0cff6a195296f848cc001afcc5dcf">
                                                                 
                                                             </div>
                                                         </div>
@@ -570,9 +570,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (VIII), Bl. 60r–60v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6cce62466748faca3ba8a21f2cd2239b"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c5607c4e9f93640fe31c62b000502d23"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_6cce62466748faca3ba8a21f2cd2239b">
+                                        <div class="collapse apparatus-details" id="source_c5607c4e9f93640fe31c62b000502d23">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript Titel: „Dramatisch musikalische Notizen pp.“; Incipit: „Mittwoch d: 17t. Juny 1818 erscheint zum erstenmal auf dem Königl. Hoftheater Mozarts herrliche Schöpfg. Oper. Die Entführung aus dem Serail.“; keine Dat. in A</li>
@@ -611,7 +611,43 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  Mittwoch, den 17ten Mai“</span>Wie in Webers Entwurf richtig angegeben, fand die Erstaufführung der Oper am 17. Juni statt; bei Hell III, S. 124 noch falsch, bei MMW, S. 189 und Kaiser, S. 302 in „Juni“ korrigiert.</div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  Mittwoch, den 17ten Mai“</span>Wie in Webers Entwurf richtig angegeben, fand die Erstaufführung der Oper am 17. Juni statt, vgl. auch den <a class="preview diaries A060533" href="">TB-Eintrag</a>; bei Hell III, S. 124 noch falsch, bei MMW, S. 189 und Kaiser, S. 302 in „Juni“ korrigiert.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e89" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e89" data-title="sic" data-counter="2" data-href="#d10e89"><span class="tei_lemma">„<span class="tei_sic">6)</span>“</span>recte  „<span class="tei_corr">5)</span>“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e102" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e102" data-title="sic" data-counter="3" data-href="#d10e102"><span class="tei_lemma">„<span class="tei_sic">1771</span>“</span>recte  „<span class="tei_corr">1770</span>“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e113" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e113" data-title="sic" data-counter="4" data-href="#d10e113"><span class="tei_lemma">„<span class="tei_sic">1772</span>“</span>recte  „<span class="tei_corr">1771</span>“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e130" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e130" data-title="sic" data-counter="5" data-href="#d10e130"><span class="tei_lemma">„<span class="tei_sic">1774</span>“</span>recte  „<span class="tei_corr">1772</span>“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">6.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="6" data-href="#C_03"><span class="tei_lemma">„…  die große Arie der Constanze“</span>Arie: „Martern aller Arten“ aus dem II. Akt.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">7.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="7" data-href="#C_02"><span class="tei_lemma">„…  eines bei uns erblühenden Talentes“</span>Am 20. Juni wurde <a class="preview works A020461" href=""><span class="tei_hi_italic">Die Entführung aus dem Serail</span></a> wiederholt, als Benefiz für <a class="preview persons A000622" href="">Gerstäcker</a>, vgl. <a class="preview writings A030268" href="">Bericht</a> in der <span class="tei_hi_italic">Abend-Zeitung</span>.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -628,8 +664,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e47" class="apparatus-link">2.</a></div>
-                                                <div id="d10e47" class="apparatusEntry col-11" data-title="Lesarten" data-counter="2" data-href="#d10e47">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e50" class="apparatus-link">2.</a></div>
+                                                <div id="d10e50" class="apparatusEntry col-11" data-title="Lesarten" data-counter="2" data-href="#d10e50">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">früher</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">frühester</span>“</span></div>
                                                 </div>
@@ -637,8 +673,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e147" class="apparatus-link">3.</a></div>
-                                                <div id="d10e147" class="apparatusEntry col-11" data-title="Lesarten" data-counter="3" data-href="#d10e147">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e178" class="apparatus-link">3.</a></div>
+                                                <div id="d10e178" class="apparatusEntry col-11" data-title="Lesarten" data-counter="3" data-href="#d10e178">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">dargelegt mir erscheint</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">mir einzeln dargelegt scheint</span>“</span></div>
                                                 </div>
@@ -646,8 +682,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e249" class="apparatus-link">4.</a></div>
-                                                <div id="d10e249" class="apparatusEntry col-11" data-title="Lesarten" data-counter="4" data-href="#d10e249">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e302" class="apparatus-link">4.</a></div>
+                                                <div id="d10e302" class="apparatusEntry col-11" data-title="Lesarten" data-counter="4" data-href="#d10e302">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">dabei</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -655,8 +691,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e259" class="apparatus-link">5.</a></div>
-                                                <div id="d10e259" class="apparatusEntry col-11" data-title="Lesarten" data-counter="5" data-href="#d10e259">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e312" class="apparatus-link">5.</a></div>
+                                                <div id="d10e312" class="apparatusEntry col-11" data-title="Lesarten" data-counter="5" data-href="#d10e312">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">liegt, den man gewöhnlich billigerweise von einer Sängerin zu fordern berechtigt ist</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">unserer großen Künstlerinnen lag</span>“</span></div>
                                                 </div>
@@ -664,8 +700,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e271" class="apparatus-link">6.</a></div>
-                                                <div id="d10e271" class="apparatusEntry col-11" data-title="Lesarten" data-counter="6" data-href="#d10e271">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e324" class="apparatus-link">6.</a></div>
+                                                <div id="d10e324" class="apparatusEntry col-11" data-title="Lesarten" data-counter="6" data-href="#d10e324">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">die</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
@@ -673,8 +709,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e277" class="apparatus-link">7.</a></div>
-                                                <div id="d10e277" class="apparatusEntry col-11" data-title="Lesarten" data-counter="7" data-href="#d10e277">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e330" class="apparatus-link">7.</a></div>
+                                                <div id="d10e330" class="apparatusEntry col-11" data-title="Lesarten" data-counter="7" data-href="#d10e330">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">der</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">ein</span>“</span></div>
                                                 </div>
@@ -682,8 +718,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e288" class="apparatus-link">8.</a></div>
-                                                <div id="d10e288" class="apparatusEntry col-11" data-title="Lesarten" data-counter="8" data-href="#d10e288">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e342" class="apparatus-link">8.</a></div>
+                                                <div id="d10e342" class="apparatusEntry col-11" data-title="Lesarten" data-counter="8" data-href="#d10e342">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">daß</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">wenn</span>“</span></div>
                                                 </div>
@@ -691,8 +727,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e299" class="apparatus-link">9.</a></div>
-                                                <div id="d10e299" class="apparatusEntry col-11" data-title="Lesarten" data-counter="9" data-href="#d10e299">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e353" class="apparatus-link">9.</a></div>
+                                                <div id="d10e353" class="apparatusEntry col-11" data-title="Lesarten" data-counter="9" data-href="#d10e353">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">von mir</span>“</span></div>
                                                 </div>
@@ -702,7 +738,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://iiif.slub-dresden.de/iiif/2/399196951-18180616/manifest.json" data-canvasindex="3"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -723,7 +759,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030264</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030264</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -783,6 +819,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -841,22 +880,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

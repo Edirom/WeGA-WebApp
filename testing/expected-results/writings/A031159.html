@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031159" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"lobt B. A. Webers Komposition hinsichtlich seines Gefühlsausdrucks; analysiert dann im Folgenden die Vertonung von Schillers Ballade anhand einzelner Abschnitte speziell hinsichtlich Tonarten und Instumentierung; hebt die effektvolle Verwendung der Pauken hervor","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung: „Der Gang nach dem Eisenhammer“ von Bernhard Anselm Weber am 5. April 1812 in Berlin","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031159","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031159","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"lobt B. A. Webers Komposition hinsichtlich seines Gefühlsausdrucks; analysiert dann im Folgenden die Vertonung von Schillers Ballade anhand einzelner Abschnitte speziell hinsichtlich Tonarten und Instumentierung; hebt die effektvolle Verwendung der Pauken hervor","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung: „Der Gang nach dem Eisenhammer“ von Bernhard Anselm Weber am 5. April 1812 in Berlin","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031159","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031159","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031159/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031159/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -394,6 +391,8 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A021105" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A021624" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020579" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020423" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -408,7 +407,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -441,8 +440,8 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left">Conzert zum Besten des Pensionsfonds für die Witwen der Mitglieder des Königl. Orchesters, d. 5. April 1812 zu <a class="preview places A130002" href="">Berlin</a>.</h2>
-                                        <p>Unter dem unabsehbaren Strome von Conzerten, die <a class="preview places A130002" href="">Berlin</a> in diesem Winter überschwemmte, gehört das oben benannte in vieler Rücksicht zu den interessantesten, und Ref. besonders sah ihm mit lebhafter Erwartung entgegen, weil es ein Tonstück enthielt, über dessen Werth er so manches widersprechende Urtheil gehört und gelesen hatte.</p>
+                                        <h2 class="docHeader textAlign-left">Conzert zum Besten des Pensionsfonds für die Witwen der Mitglieder des Königl. Orchesters, d. 5. April 1812 zu <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>.</h2>
+                                        <p>Unter dem unabsehbaren Strome von Conzerten, die <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> in diesem Winter überschwemmte, gehört das oben benannte in vieler Rücksicht zu den interessantesten, und Ref. besonders sah ihm mit lebhafter Erwartung entgegen, weil es ein Tonstück enthielt, über dessen Werth er so manches widersprechende Urtheil gehört und gelesen hatte.</p>
                                         <p><a class="preview works A021105" href=""><span class="tei_hi_spaced_out">Der Eisenhammer</span></a>, Ballade von <a class="preview persons A001685" href="">Schiller</a>, mit Musikbegleitung von dem Königl. Preuß. Kapellmeister Herrn <a class="preview persons A002066" href="">B. A. Weber</a>, war es, der gegeben wurde<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. Die Frage, ob und wie ein solches Gedicht in Musik gesetzt werden dürfe, hat schon viele Federn in Bewegung gesetzt. Ref. geht hier, indem er versuchen wird, eine Auseinandersetzung und Darstellung der musikalischen Behandlung zu liefern, von der Ansicht des Komponisten aus, der seine Töne als den Grund eines sich auf denselben erhebenden Gemäldes betrachtet, als den <span class="tei_hi_spaced_out">verstärkten</span> dem <span class="tei_hi_spaced_out">Gefühle</span> des Menschen näher <span class="tei_pb" title="Seitenumbruch"> | </span> gebrachten <span class="tei_hi_spaced_out">Ausdruck</span>, den die Worte <span class="tei_hi_spaced_out">aussprechen</span>, indem er in den Tönen <span class="tei_hi_spaced_out">lebt</span>.</p>
                                         <p>Daß von diesem Gesichtspunkte aus die Behandlung<a class="noteMarker" id="backref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a> des Herrn Kapellmeisters <a class="preview persons A002066" href="">Weber</a> höchst gelungen zu nennen sey, ist keinem Zweifel unterworfen. Mit der weisen Sparsamkeit des vielerfahrnen, effektkundigen Meisters hat er in dieser Musik, wo die Empfindungen des Kräftigen und Starken stets die vorherrschenden sind, doch höchst vortrefflich immer noch etwas zu Steigerung seiner Kräfte zurückbehalten, und gewisse Tonarten vermieden. Wahl, mächtig einherschreitender Rhythmus und vorzüglich schön berechnete Eintritte der Musik zur Deklamation, bezeichnen, wieviel Herr Kapellmeister <a class="preview persons A002066" href="">Weber</a> durch sein Talent und Erfahrung zu leisten im Stande ist.</p>
                                         <p>Die Einleitung (<span class="tei_hi_antiqua">C moll</span>) ist unruhig, leidenschaftlich und aufbrausend; man hört in ihr gleichsam das schadenfrohe Zuflüstern des <span class="74228103101114">Jäger</span>s und das kräftige Auflodern des <span class="7111497102">Graf</span>en.</p>
@@ -458,10 +457,10 @@
                                         <p>Die außerordentliche Wirkung dieses Schlusses liegt darin vorzüglich, daß erstens vorher, trotz mancher lieblichen Melodie, doch immer in denselben etwas Leidenschaftliches, Unruhiges lag, und nun jetzt vollendete Klarheit auch in der Tonart erscheint, da der Komponist sich wohl hütete, das <span class="tei_hi_antiqua">C dur</span> mehr zu berühren; und zweitens erscheinen hier zum ersten Male Trompeten und Pauken in ihrer eigentlichen Pracht, da vorher die Trompeten nur mit vier Hörnern vereint sich mit diesen so mischten und so behandelt waren, daß der Zuhörer nicht an die gewöhnlichen Trompeten-Effekte erinnert wurde, bis der vollendete Jubel es erlaubte.</p>
                                         <p>Diese Arbeit wird ein bleibendes Denkmal des Genius des Hrn. K. <a class="preview persons A002066" href="">Weber</a> seyn. Gediegen und gedacht wird es überall seine Wirkung thun, und sich über kleinliche Ansichten erheben.</p>
                                         <p>Vergönnt sey es mir nun auch, ein Wort über die vollendete Deklamation des Herrn General-Direktors <a class="preview persons A000904" href="">Iffland</a> zu sagen. Wie wohlthuend ist es, einen Deklamator zu hören, der ein so hohes Leben in seine Deklamation zu bringen weiß, und dabei so höchst richtig die feine Grenz-Linie, die <span class="tei_pb" title="Seitenumbruch"> | </span> zwischen dieser und dem Theatralischen liegt, zu beobachten weiß. Möchten sich so viele Deklamationssüchtige an diesem herrlichen Vorbilde belehren, das mächtig und <span class="tei_hi_spaced_out">besonnen</span> auf das Publikum wirkt.</p>
-                                        <p>Nächst diesem wurde vorher gegeben die Ouvertüre aus <span class="8410510311497110101115"><span class="tei_hi_antiqua">Tigranes</span></span><a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a> von <a class="preview persons A001577" href="">Righini</a> und die <span class="preview works A020579" data-ref=" ">Trauerkantate auf <a class="preview persons A000777" href="">Haydn</a>s Tod</span> von <a class="preview persons A000287" href="">Cherubini</a>. Mad. <a class="preview persons A008572" href="">Müller</a> und Mad. <a class="preview persons A008691" href="">Schmidt</a> sangen ein Duett aus <a class="preview works A020423" href="">Sargino</a> mit gewohnter Vollkommenheit. Herr <a class="preview persons A008716" href="">Schwarz</a> blies ein Fagott-Adagio und Rondo von <a class="preview persons A002162" href="">Winter</a> mit schönem vollen Tone, und der Liebling des Berliner Publikums, Herr <a class="preview persons A001333" href="">Möser</a>, entzückte heute, wie immer, in einem Violinkonzerte von <a class="preview persons A001078" href="">Kreutzer</a> alle Freunde eines genialen, freien Spiels, welches ihm rein eigenthümlich ist.</p>
+                                        <p>Nächst diesem wurde vorher gegeben die Ouvertüre aus <a class="preview works A021624" href=""><span class="tei_hi_antiqua">Tigranes</span></a> von <a class="preview persons A001577" href="">Righini</a> und die <span class="preview works A020579" data-ref=" ">Trauerkantate auf <a class="preview persons A000777" href="">Haydn</a>s Tod</span> von <a class="preview persons A000287" href="">Cherubini</a>. Mad. <a class="preview persons A008572" href="">Müller</a> und Mad. <a class="preview persons A008691" href="">Schmidt</a> sangen ein Duett aus <a class="preview works A020423" href="">Sargino</a> mit gewohnter Vollkommenheit. Herr <a class="preview persons A008716" href="">Schwarz</a> blies ein Fagott-Adagio und Rondo von <a class="preview persons A002162" href="">Winter</a> mit schönem vollen Tone, und der Liebling des Berliner Publikums, Herr <a class="preview persons A001333" href="">Möser</a>, entzückte heute, wie immer, in einem Violinkonzerte von <a class="preview persons A001078" href="">Kreutzer</a> alle Freunde eines genialen, freien Spiels, welches ihm rein eigenthümlich ist.</p>
                                         <p>Das Königl. Orchester exekutierte alles mit Kraft und Präzision, und mit Freuden ergreift Ref. die Gelegenheit, sämtlichen Mitgliedern desselben für ihre große Bereitwilligkeit und Liebe, mit der sie ihn und Hrn. <a class="preview persons A000077" href="">Heinrich Bärmann</a> in zwei Konzerten unterstützten<a class="noteMarker" id="backref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>, öffentlich seinen besten Dank darzubringen.
                </p>
-                                        <p class="tei_closer textAlign-left"><span class="tei_dateline textAlign-left"><a class="preview places A130002" href="">Berlin</a> d. 10 April 1812.</span></p>
+                                        <p class="tei_closer textAlign-left"><span class="tei_dateline textAlign-left"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> d. 10 April 1812.</span></p>
                                     </div>
                                 </div>
                     </div>
@@ -483,7 +482,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: lt. <a class="preview diaries A065631" href="">TB, 10. April 1812</a> entstanden und <a class="preview diaries A065635" href="">am 14. April</a> an <a class="preview persons A001590" href="">Rochlitz</a> geschickt; vgl. Brief von Weber an <a class="preview persons A001590" href="">Rochlitz</a> vom <a class="preview letters A040504" href="">14. April 1812</a>. <a class="preview persons A001590" href="">Rochlitz</a> hatte <a class="preview persons A002068" href="">Weber</a> daraufhin mitgeteilt, dass die Rezension in der eingesandten Fassung nicht gedruckt würde, <a class="preview persons A002068" href="">Weber</a> kündigte Umarbeitung an, vgl. <a class="preview letters A040506" href="">Brief von Weber an Rochlitz vom 25. April 1812</a>; evtl. lehnte <a class="preview persons A001590" href="">Rochlitz</a> die Rezension schließlich ab, weil das Werk bereits zu einem früheren Zeitpunkt ausführlich besprochen worden war; vgl. AmZ Jg. 10, Nr. 4 (26. Oktober 1808), Sp. 62ff.</p>
+                                        <p>Zuschreibung: lt. <a class="preview diaries A065631" href="">TB, 10. April 1812</a> entstanden und <a class="preview diaries A065635" href="">am 14. April</a> an <a class="preview persons A001590" href="">Rochlitz</a> geschickt; vgl. Brief von Weber an <a class="preview persons A001590" href="">Rochlitz</a> vom <a class="preview letters A040504" href="">14. April 1812</a>. <a class="preview persons A001590" href="">Rochlitz</a> hatte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> daraufhin mitgeteilt, dass die Rezension in der eingesandten Fassung nicht gedruckt würde, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> kündigte Umarbeitung an, vgl. <a class="preview letters A040506" href="">Brief von Weber an Rochlitz vom 25. April 1812</a>; evtl. lehnte <a class="preview persons A001590" href="">Rochlitz</a> die Rezension schließlich ab, weil das Werk bereits zu einem früheren Zeitpunkt ausführlich besprochen worden war; vgl. AmZ Jg. 10, Nr. 4 (26. Oktober 1808), Sp. 62ff.</p>
                                     </div>
                         </div>
                         
@@ -511,9 +510,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">HellS II</span> (1828), S. 105</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_4d913b90749d307b5469f4987e948ec2"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ba7ca00967c20ab7983d7ccaa52fe465"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_4d913b90749d307b5469f4987e948ec2">
+                                        <div class="collapse apparatus-details" id="source_ba7ca00967c20ab7983d7ccaa52fe465">
                                             
                                             
                                             <div>
@@ -526,7 +525,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 245–250 (Nr. 41)</span>
                                                               
-                                                            <div class="collapse" id="source_78945f0b0d353e5d14095be2a04da9c6">
+                                                            <div class="collapse" id="source_0317a3e2d3e4e5d9ef563e9f92284a33">
                                                                 
                                                             </div>
                                                         </div>
@@ -553,7 +552,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  war es, der gegeben wurde“</span>Weber vermerkte die Aufführung im <a class="preview diaries A065626" href="">TB</a> mit einem „sehr gut“. <a class="preview persons A002078" href="">Gottfried Weber</a> hatte in seinen Korrespondenz-Nachrichten aus <a class="preview places A130010" href="">Mannheim</a> bereits ausführlich die dortige Aufführung am 28. September 1811 besprochen; vgl. <a class="preview writings A030782" href="">1811-V-74</a>.</div>
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  war es, der gegeben wurde“</span>Weber vermerkte die Aufführung im <a class="preview diaries A065626" href="">TB</a> mit einem „sehr gut“. <a class="preview persons A002078" href="">Gottfried Weber</a> hatte in seinen Korrespondenz-Nachrichten aus <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> bereits ausführlich die dortige Aufführung am 28. September 1811 besprochen; vgl. <a class="preview writings A030782" href="">1811-V-74</a>.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -565,7 +564,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_03"><span class="tei_lemma">„…  hing an den wohlgestalten Zügen“</span>Vgl. <a href="https://books.google.de/books?id=yMvyR7WQZT8C&amp;printsec=frontcover">Klavierauszug <i class="fa fa-external-link" aria-hidden="true"></i></a>, <a class="preview places A130005" href="">Leipzig</a> bei <a class="preview orgs A080012" href="">Peters</a>, S. 8.</div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_03"><span class="tei_lemma">„…  hing an den wohlgestalten Zügen“</span>Vgl. <a href="https://books.google.de/books?id=yMvyR7WQZT8C&amp;printsec=frontcover">Klavierauszug <i class="fa fa-external-link" aria-hidden="true"></i></a>, <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> bei <a class="preview orgs A080012" href="">Peters</a>, S. 8.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -624,14 +623,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_04" class="apparatus-link">13.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="13" data-href="#C_04"><span class="tei_lemma">„…  gegeben die Ouvertüre aus Tigranes“</span><span class="tei_hi_italic">Tigranes: ein heroisch-tragisches Singspiel mit Chören und dazu passenden heroisch-pantomimischen Tänzen</span>; aufgeführt auf dem Königl. Opern-Theater in Berlin im Carneval 1800.</div>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_001" class="apparatus-link">14.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_001" data-title="Einzelstellenerläuterung" data-counter="14" data-href="#C_001"><span class="tei_lemma">„…  Bärmann in zwei Konzerten unterstützten“</span><a class="preview persons A002068" href="">Weber</a> und <a class="preview persons A000077" href="">Baermann</a> gaben am 15. und 25. März 1812 im Berliner Schauspielhaus zusammen Konzerte; vgl. die <span class="preview writings A030404 A030363 A030381" data-ref="  ">Aufführungsbesprechungen</span>, ferner die Besprechung im <span class="tei_hi_italic">Journal des Luxus und der Moden</span>, Bd. 27, Nr. 6 (Juni 1812), S. <a href="https://zs.thulb.uni-jena.de/rsc/viewer/jportal_derivate_00252572/JLM_1812_H006_0024_b.tif?logicalDiv=jportal_jparticle_00094843">399 <i class="fa fa-external-link" aria-hidden="true"></i></a>–400 und die <a class="preview writings A032189" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032189.html">Programm-Anzeige</a> zum zweiten Konzert.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_001" class="apparatus-link">13.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_001" data-title="Einzelstellenerläuterung" data-counter="13" data-href="#C_001"><span class="tei_lemma">„…  Bärmann in zwei Konzerten unterstützten“</span><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> und <a class="preview persons A000077" href="">Baermann</a> gaben am 15. und 25. März 1812 im Berliner Schauspielhaus zusammen Konzerte; vgl. die <span class="preview writings A030404 A030363 A030381" data-ref="  ">Aufführungsbesprechungen</span>, ferner die Besprechung im <span class="tei_hi_italic">Journal des Luxus und der Moden</span>, Bd. 27, Nr. 6 (Juni 1812), S. <a href="https://zs.thulb.uni-jena.de/rsc/viewer/jportal_derivate_00252572/JLM_1812_H006_0024_b.tif?logicalDiv=jportal_jparticle_00094843">399 <i class="fa fa-external-link" aria-hidden="true"></i></a>–400 und die <a class="preview writings A032189" href="">Programm-Anzeige</a> zum zweiten Konzert.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -660,7 +653,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031159</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031159</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -720,6 +713,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -778,22 +774,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

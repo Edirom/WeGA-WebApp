@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Gottfried Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030598" />
@@ -43,11 +42,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Rezension von: Zwölf Choräle von Johann Sebastian Bach, umgearbeitet von Georg Joseph Vogler (I)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030598","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030598","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002078"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030598/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Schriften/A030598/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -360,9 +357,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002618" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080011" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -374,7 +371,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -388,12 +385,12 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <p>Der Abt und geistliche geheime Rath 
-                   <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="preview persons A002025" href="">Vogler</a></span> hat vor kurzem der musikalischen Welt, besonders der gelehrt-musikalischen, ein höchst interessantes Geschenk gemacht, durch Herausgabe seiner Umarbeitungen von 12 Chorälen <a class="preview persons A002618" href="">Sebastian Bachs</a>.<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a><a href="#f01" id="backref-f01" class="fn-ref">*)</a> Was kann interessanter seyn, als hier, wo auf einer und derselben Blatt-Seite <a class="preview persons A002025" href="">Voglers</a> und <a class="preview persons A002618" href="">Bachs</a> Bearbeitungen einander gegenüber abgedruckt sind, die beyden gelehrtesten Harmoniker verschiedener Zeitalter so im Wettstreite zu sehen, und die Fortschritte zu beobachten, welche die Kunst seit jener Epoche gemacht hat, wo man <a class="preview persons A002618" href="">Bach</a> als höchstes Ideal der Harmonie anbetete, und sich nicht träumen ließ, daß er jemals erreicht werden könne. <a class="preview persons A002025" href="">Vogler</a>, welcher durch den Fluß seiner Stimmenführung und die Unerforschlichkeit seiner Harmonienwendungen einzig ist, zeigt sich hier so recht in der Fülle seiner Gelehrsamkeit und Lieblichkeit, im Gegensatze von den unverkennbaren nicht seltnen Härten der <a class="preview persons A002618" href="">Bach’schen</a> Durchgänge. Dem Werke ist ein erläuternder und vergleichender Commentar beygefügt, deren Verfasser der jetzt so berühmt werdende <a class="preview persons A002068" href="">Carl Maria v. Weber</a> ist.</p>
+                   <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="preview persons A002025" href="">Vogler</a></span> hat vor kurzem der musikalischen Welt, besonders der gelehrt-musikalischen, ein höchst interessantes Geschenk gemacht, durch Herausgabe seiner Umarbeitungen von 12 Chorälen <a class="preview persons A002618" href="">Sebastian Bachs</a>.<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a><a href="#f01" id="backref-f01" class="fn-ref">*)</a> Was kann interessanter seyn, als hier, wo auf einer und derselben Blatt-Seite <a class="preview persons A002025" href="">Voglers</a> und <a class="preview persons A002618" href="">Bachs</a> Bearbeitungen einander gegenüber abgedruckt sind, die beyden gelehrtesten Harmoniker verschiedener Zeitalter so im Wettstreite zu sehen, und die Fortschritte zu beobachten, welche die Kunst seit jener Epoche gemacht hat, wo man <a class="preview persons A002618" href="">Bach</a> als höchstes Ideal der Harmonie anbetete, und sich nicht träumen ließ, daß er jemals erreicht werden könne. <a class="preview persons A002025" href="">Vogler</a>, welcher durch den Fluß seiner Stimmenführung und die Unerforschlichkeit seiner Harmonienwendungen einzig ist, zeigt sich hier so recht in der Fülle seiner Gelehrsamkeit und Lieblichkeit, im Gegensatze von den unverkennbaren nicht seltnen Härten der <a class="preview persons A002618" href="">Bach’schen</a> Durchgänge. Dem Werke ist ein erläuternder und vergleichender Commentar beygefügt, deren Verfasser der jetzt so berühmt werdende <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v. Weber</a> ist.</p>
                                     </div>
                                     <div id="endNotes">
                                         <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="f01"><a href="#backref-f01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Bey <a class="preview orgs A080011" href="">Kühnel</a> in <a class="preview places A130005" href="">Leipzig</a>.</li>
+                                            <li id="f01"><a href="#backref-f01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Bey <a class="preview orgs A080011" href="">Kühnel</a> in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -411,9 +408,9 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: laut Brief von <a class="preview persons A002078" href="">G. Weber</a> an <a class="preview persons A001313" href="">Meyerbeer</a> vom <a class="preview letters A040401" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A040401.html">28. Mai 1811</a>; vgl. dazu <span class="preview biblio A111152" data-ref="">Becker (Meyerbeer), Bd. 1</span>, S. 605, Anm. 111,5</p>
-                                        <p>Kommentar: Die Aufforderung an <a class="preview persons A002078" href="">G. Weber</a>, eine Rezension über die Choräle zu verfassen, hatte <a class="preview persons A002068" href="">C. M. v. Weber</a> in seinem <a class="preview letters A040313" href="">Brief vom 1. November 1810</a> ausgesprochen: <span class="tei_hi_italic"><span class="tei_hi_underline1">im Reichsanzeiger</span> sollen ja die Choräle von <a class="preview persons A001088" href="">Kühnel</a> angezeigt sein, sieh doch einmal nach, und wezze deine Feder, denn ich glaube die Bachianer werden mir ganz verflucht zu Felle steigen.</span> Die erwähnte Anzeige des Werkes war im <span class="tei_hi_italic">Allgemeinen Anzeiger der Deutschen,</span> Nr. 288 (24. Oktober 1810), Sp. 2137, erschienen. Eine erste wohlwollende, aber sehr knappe und ungezeichnete Rezension erschien in der <span class="tei_hi_italic">Zeitung für die elegante Welt,</span> Jg. 11, Nr. 38 (22. Februar 1811), Sp. 302–303. Wer der Autor dieses kurzen Textes ist, ließ sich bislang nicht ermitteln. <a class="preview persons A002078" href="">G. Webers</a> spätere Anzeigen innerhalb dieser Rubrik sind meist gezeichnet, so daß eine Zuweisung an ihn zweifelhaft bleibt. 
-               Die Zuweisung des vorliegenden Textes an <a class="preview persons A002078" href="">G. Weber</a> ergibt sich jedoch zweifelsfrei aus der Bemerkung in seinem Brief an <a class="preview persons A001313" href="">Meyerbeer</a> vom <a class="preview letters A040401" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A040401.html">28. Mai 1811</a>, wo er in Zusammenhang mit der geplanten Antikritik für den <span class="tei_hi_italic">Allgemeinen Anzeiger der Deutschen</span> (vgl. Kom. <a class="preview writings A030568" href="">1811-V-41</a>) schreibt: <span class="tei_hi_italic">Da die Critik über di Chorale in den gemeinnüzigen Unterhaltungs Blättern (Archiv f L.[iteratur] u K.[unst]) ohne Zweifel schon steht, so muß ich eine neue für den R.[eichs] Anzeiger machen;</span> <span class="preview biblio A111152" data-ref="">Becker (Meyerbeer), Bd. 1</span>, S. 111.</p>
+                                        <p>Zuschreibung: laut Brief von <a class="preview persons A002078" href="">G. Weber</a> an <a class="preview persons A001313" href="">Meyerbeer</a> vom <a class="preview letters A040401" href="">28. Mai 1811</a>; vgl. dazu <span class="preview biblio A111152" data-ref="">Becker (Meyerbeer), Bd. 1</span>, S. 605, Anm. 111,5</p>
+                                        <p>Kommentar: Die Aufforderung an <a class="preview persons A002078" href="">G. Weber</a>, eine Rezension über die Choräle zu verfassen, hatte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a> in seinem <a class="preview letters A040313" href="">Brief vom 1. November 1810</a> ausgesprochen: <span class="tei_hi_italic"><span class="tei_hi_underline1">im Reichsanzeiger</span> sollen ja die Choräle von <a class="preview persons A001088" href="">Kühnel</a> angezeigt sein, sieh doch einmal nach, und wezze deine Feder, denn ich glaube die Bachianer werden mir ganz verflucht zu Felle steigen.</span> Die erwähnte Anzeige des Werkes war im <span class="tei_hi_italic">Allgemeinen Anzeiger der Deutschen,</span> Nr. 288 (24. Oktober 1810), Sp. 2137, erschienen. Eine erste wohlwollende, aber sehr knappe und ungezeichnete Rezension erschien in der <span class="tei_hi_italic">Zeitung für die elegante Welt,</span> Jg. 11, Nr. 38 (22. Februar 1811), Sp. 302–303. Wer der Autor dieses kurzen Textes ist, ließ sich bislang nicht ermitteln. <a class="preview persons A002078" href="">G. Webers</a> spätere Anzeigen innerhalb dieser Rubrik sind meist gezeichnet, so daß eine Zuweisung an ihn zweifelhaft bleibt. 
+               Die Zuweisung des vorliegenden Textes an <a class="preview persons A002078" href="">G. Weber</a> ergibt sich jedoch zweifelsfrei aus der Bemerkung in seinem Brief an <a class="preview persons A001313" href="">Meyerbeer</a> vom <a class="preview letters A040401" href="">28. Mai 1811</a>, wo er in Zusammenhang mit der geplanten Antikritik für den <span class="tei_hi_italic">Allgemeinen Anzeiger der Deutschen</span> (vgl. Kom. <a class="preview writings A030568" href="">1811-V-41</a>) schreibt: <span class="tei_hi_italic">Da die Critik über di Chorale in den gemeinnüzigen Unterhaltungs Blättern (Archiv f L.[iteratur] u K.[unst]) ohne Zweifel schon steht, so muß ich eine neue für den R.[eichs] Anzeiger machen;</span> <span class="preview biblio A111152" data-ref="">Becker (Meyerbeer), Bd. 1</span>, S. 111.</p>
             </div>
                         </div>
                         
@@ -438,7 +435,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Privilegirte gemeinnützige Unterhaltungs-Blätter</span>, Bd. 6, Heft 17 (17. April 1811), Sp. 136</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_0060c553e8571d2ae802bd5dbe89d945">
+                                        <div class="collapse apparatus-details" id="source_d0c8d571abe682c54ce8e15e5e3b315f">
                                             
                                             
                                             <div>
@@ -465,7 +462,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„Vogler hat vor … Sebastian Bachs .“</span><span class="tei_hi_italic">Zwölf <br /> Choräle <br /> von <br /> <a class="preview persons A002618" href="">SEBASTIAN BACH</a>, <br /> umgearbeitet <br /> von <br /> Vogler, <br /> zergliedert von <a class="preview persons A002068" href="">Carl Maria von Weber</a>. <br /> Nebst 1 Bogen Text. <br /> Recensere errores minimum – <br /> maximum est emendare opus, <br /> perficere inceptum. <br /> <a class="preview persons A002025" href="">Vogler</a>.</span> <br /> <a class="preview places A130005" href="">Leipzig</a>, <br /> bei <a class="preview orgs A080011" href="">A. Kühnel, <br /> (Bureau de Musique.)</a> <br /> Pr. 20 Gr. [PN 843] [RISM V 2516].</div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„Vogler hat vor … Sebastian Bachs .“</span><span class="tei_hi_italic">Zwölf <br /> Choräle <br /> von <br /> <a class="preview persons A002618" href="">SEBASTIAN BACH</a>, <br /> umgearbeitet <br /> von <br /> Vogler, <br /> zergliedert von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>. <br /> Nebst 1 Bogen Text. <br /> Recensere errores minimum – <br /> maximum est emendare opus, <br /> perficere inceptum. <br /> <a class="preview persons A002025" href="">Vogler</a>.</span> <br /> <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>, <br /> bei <a class="preview orgs A080011" href="">A. Kühnel, <br /> (Bureau de Musique.)</a> <br /> Pr. 20 Gr. [PN 843] [RISM V 2516].</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -494,7 +491,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030598</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030598</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -554,6 +551,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -612,22 +612,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

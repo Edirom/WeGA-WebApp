@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Ludwig, König von Bayern" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Bayerisches Privileg bezüglich der Oberon-Verlagsrechte","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032172","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001211/Schriften/A032172","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001211","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001211"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -253,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +297,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001211/Schriften/A032172/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001211/Schriften/A032172/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001211/Schriften/A032172/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -358,8 +355,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001211" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A0007DC" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -367,6 +362,8 @@
                                     <input type="checkbox" name="options" value="A0024D9" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080007" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -392,9 +389,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130007" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -408,13 +405,13 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left">Privilegium
-               für den K. Sächsischen Kapellmeister <a class="preview persons A002068" href=""><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a> auf die Partitur, dann den von ihm selbst bearbeiteten <a class="preview works A020046" href="">Klavier-Auszug</a> und alle übrigen einzeln von ihm arrangirten Stücke seiner Oper <a class="preview works A020045" href=""><span class="tei_hi_spaced_out">Oberon</span></a>, so wie der <span class="tei_hi_italic">Ouverture à grand Orchestre</span> <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> im Verlage der Musikhandlung <a class="preview orgs A080007" href="">Adolph Martin Schlesinger</a> zu <a class="preview places A130002" href="">Berlin</a>.</h2>
+               für den K. Sächsischen Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a> auf die Partitur, dann den von ihm selbst bearbeiteten <a class="preview works A020046" href="">Klavier-Auszug</a> und alle übrigen einzeln von ihm arrangirten Stücke seiner Oper <a class="preview works A020045" href=""><span class="tei_hi_spaced_out">Oberon</span></a>, so wie der <span class="tei_hi_italic">Ouverture à grand Orchestre</span> <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> im Verlage der Musikhandlung <a class="preview orgs A080007" href="">Adolph Martin Schlesinger</a> zu <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>.</h2>
                                         <p>Wir <a class="preview persons A001211" href="">Ludwig</a>,<br />
             von Gottes Gnaden König von Bayern,<br />
             &amp;c. &amp;c.</p>
-                                        <p>Nachdem <span class="tei_hi_spaced_out">Uns</span> der Königlich-Sächsische Kapellmeister <a class="preview persons A002068" href=""><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a> <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> um Ertheilung eines förmlichen Privilegiums gegen den Nachdruck und Nachstich der Partitur, dann des von ihm selbst hergestellten <a class="preview works A020046" href="">Klavier-Auszuges</a> und aller übrigen von ihm bearbeiteten Stücke, so auch der <span class="tei_hi_italic">Ouverture à grand Orchestre</span> seiner Oper „<a class="preview works A020045" href=""><span class="tei_hi_spaced_out">Oberon</span></a>,“ deren Verlag der <a class="preview orgs A080007" href="">Adolph Martin Schlesinger’schen Musikhandlung</a> zu <a class="preview places A130002" href="">Berlin</a> übergeben ist, sowie gegen den Verkauf fremder Nachdrucke und Nachstiche dieser Oper in <span class="tei_hi_spaced_out">Unserm</span> Königreiche allerunterthänigst gebeten hat, so wollen <span class="tei_hi_spaced_out">Wir</span> in Anerkenntniß der Verdienste des Bittstellers um die Tonkunst demselben das nachgesuchte Privilegium auf den Zeitraum von <span class="tei_hi_spaced_out">acht</span> Jahren vom Tage gegenwärtiger Ausfertigung anfangend hiemit ertheilen, und gebieten demnach sämmtlichen Unterthanen <span class="tei_hi_spaced_out">Unseres</span> Königsreiches, insbesondere allen darin angesessenen Buchdruckern, Kupferstechern und Lythographen, dann Kunst- und Musikalien-Händlern, bei Vermeidung <span class="tei_hi_spaced_out">Unserer</span> allerhöchsten Ungnade und einer Strafe von <span class="tei_hi_spaced_out">hundert</span> Dukaten, wovon die eine Hälfte <span class="tei_hi_spaced_out">Unserm</span> Aerar, die andere Hälfte dem Verleger zufallen soll, wider Wissen und Willen des rechtmäßigen Verlegers die obenerwähnten Werke des <a class="preview persons A002068" href=""><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a> unter keinerley Form weder selbst nachzudrucken oder nachzustechen, noch den Verkauf fremder Nachdrucke oder Nachstiche derselben zu übernehmen, oder auf irgend eine Art zu begünstigen. <span class="tei_cb" title="Spaltenumbruch"> ¦ </span></p>
-                                        <p>Hiernach weisen <span class="tei_hi_spaced_out">Wir</span> sämmtliche Obrigkeiten <span class="tei_hi_spaced_out">Unseres</span> Königreiches an, den privilegirten Verleger besagter Werke des <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="">Carl Maria von Weber</a></span> gegen alle Beeinträchtigung kräftigst zu schützen, die ihnen angezeigten Nachdrücke oder Nachstiche aber sogleich wegnehmen, und jenem zu seiner freyen Disposition zustellen zu lassen.</p>
-                                        <p>Wir gestatten, daß dieses Privilegium zu Jedermanns Nachricht und Warnung der mehrerwähnten Auflage der von <a class="preview persons A002068" href="">Weber’schen</a> Werke vorgedruckt werde, auch soll dasselbe in gleicher Absicht durch das Regierungsblatt bekannt gemacht werden.</p>
+                                        <p>Nachdem <span class="tei_hi_spaced_out">Uns</span> der Königlich-Sächsische Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a> <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> um Ertheilung eines förmlichen Privilegiums gegen den Nachdruck und Nachstich der Partitur, dann des von ihm selbst hergestellten <a class="preview works A020046" href="">Klavier-Auszuges</a> und aller übrigen von ihm bearbeiteten Stücke, so auch der <span class="tei_hi_italic">Ouverture à grand Orchestre</span> seiner Oper „<a class="preview works A020045" href=""><span class="tei_hi_spaced_out">Oberon</span></a>,“ deren Verlag der <a class="preview orgs A080007" href="">Adolph Martin Schlesinger’schen Musikhandlung</a> zu <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> übergeben ist, sowie gegen den Verkauf fremder Nachdrucke und Nachstiche dieser Oper in <span class="tei_hi_spaced_out">Unserm</span> Königreiche allerunterthänigst gebeten hat, so wollen <span class="tei_hi_spaced_out">Wir</span> in Anerkenntniß der Verdienste des Bittstellers um die Tonkunst demselben das nachgesuchte Privilegium auf den Zeitraum von <span class="tei_hi_spaced_out">acht</span> Jahren vom Tage gegenwärtiger Ausfertigung anfangend hiemit ertheilen, und gebieten demnach sämmtlichen Unterthanen <span class="tei_hi_spaced_out">Unseres</span> Königsreiches, insbesondere allen darin angesessenen Buchdruckern, Kupferstechern und Lythographen, dann Kunst- und Musikalien-Händlern, bei Vermeidung <span class="tei_hi_spaced_out">Unserer</span> allerhöchsten Ungnade und einer Strafe von <span class="tei_hi_spaced_out">hundert</span> Dukaten, wovon die eine Hälfte <span class="tei_hi_spaced_out">Unserm</span> Aerar, die andere Hälfte dem Verleger zufallen soll, wider Wissen und Willen des rechtmäßigen Verlegers die obenerwähnten Werke des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a> unter keinerley Form weder selbst nachzudrucken oder nachzustechen, noch den Verkauf fremder Nachdrucke oder Nachstiche derselben zu übernehmen, oder auf irgend eine Art zu begünstigen. <span class="tei_cb" title="Spaltenumbruch"> ¦ </span></p>
+                                        <p>Hiernach weisen <span class="tei_hi_spaced_out">Wir</span> sämmtliche Obrigkeiten <span class="tei_hi_spaced_out">Unseres</span> Königreiches an, den privilegirten Verleger besagter Werke des <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span> gegen alle Beeinträchtigung kräftigst zu schützen, die ihnen angezeigten Nachdrücke oder Nachstiche aber sogleich wegnehmen, und jenem zu seiner freyen Disposition zustellen zu lassen.</p>
+                                        <p>Wir gestatten, daß dieses Privilegium zu Jedermanns Nachricht und Warnung der mehrerwähnten Auflage der von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’schen</a> Werke vorgedruckt werde, auch soll dasselbe in gleicher Absicht durch das Regierungsblatt bekannt gemacht werden.</p>
                                         <p>Zu dessen Urkunde haben <span class="tei_hi_spaced_out">Wir</span> diesen Brief eigenhändig unterzeichnet, und mit <span class="tei_hi_spaced_out">Unserem</span> geheimen Kanzley-Insiegel bedrucken zu lassen.</p>
                                         <p>Gegeben in <span class="tei_hi_spaced_out">Unserer</span> Haupt- und Residenz-Stadt <a class="preview places A130007" href="">München</a> am zwanzigsten Juny im Jahre eintausend achthundert sechs und zwanzig.<br />
                <a class="preview persons A001211" href="">Ludwig</a>.</p>
@@ -467,7 +464,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Regierungs-Blatt für das Königreich Bayern</span>, Jg. 1826, Nr. 27 (1. Juli 1826), Sp. 521–524</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_fd6bc36331117ea5fa6dbbc6c49dd9e9">
+                                        <div class="collapse apparatus-details" id="source_4f79318c01743952a464a9feef9be8e4">
                                             
                                             
                                             <div>
@@ -515,7 +512,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032172</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032172</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -575,6 +572,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -633,22 +633,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

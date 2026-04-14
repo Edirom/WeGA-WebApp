@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Franz Anton von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"überliefert einen von Franz Anton von Weber entworfenen Familienstammbaum, der einige wenige verbürgte Fakten mit zahllosen Unwahrheiten vermengt (z. B. sind alle unter 1–3 genannten Damen reine Erfindung)","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Entwurf eines Familienstammbaums durch Franz Anton von Weber. Carlsruhe, 30. August 1806","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100317","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002074/Dokumente/A100317","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002074","name":"Weber, Franz Anton von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002074","sameAs":"https://d-nb.info/gnd/117158542"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -296,10 +294,10 @@
                                     <a class="deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/Dokumente/A100317/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/Dokumente/A100317/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002074/Dokumente/A100317/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -363,9 +361,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008829" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002077" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002074" /> <span title="Anwählen, um &#34;Weber, Franz Anton von&#34; im Text zu markieren.">Weber, Franz Anton von</span> 
                                 </label>
@@ -379,6 +377,8 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131485" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130060" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
@@ -394,10 +394,10 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-center"><span class="tei_hi_latintype">Stamtafel der <span class="tei_del">W.</span><a class="noteMarker" id="backref-d10e6" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e6">‡</a> <span class="tei_add">Carl Maria von Weberschen<a class="noteMarker" id="backref-d10e9" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e9">‡</a></span> Familie</span>.</h2>
                                         <ul class="tei_list">
-                                            <li>N. 1. <span class="tei_hi_underline1">UrälterVater</span>: <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A009172" href=""><span class="tei_hi_latintype">Johann Baptist</span></a></span></span> <span class="tei_add tei_hi_superscript">N. 1. StammVater der Reichsfreyherrlichen Familie von Weber aus Schwaben aus Krumbach.<a class="noteMarker" id="backref-d10e25" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e25">‡</a></span>, dessen <span class="tei_hi_underline1">Gemahlin</span> eine Gräfin <span class="tei_hi_latintype"><span class="6510010110810410110510032118111110326610111410111010710897117">Adelheid von Berenklau</span></span><a class="noteMarker" id="backref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> aus den Rheingegenden. Ihre <span class="tei_hi_underline1">Mutter</span> eine Gräfin <span class="tei_hi_latintype"><span class="721011001191051033211811111032839910410110810810111098101114103">Hedwig von Schellenberg</span></span><a class="noteMarker" id="backref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a> aus Schwaben.</li>
+                                            <li>N. 1. <span class="tei_hi_underline1">UrälterVater</span>: <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A009172" href=""><span class="tei_hi_latintype">Johann Baptist</span></a></span></span> <span class="tei_add tei_hi_superscript">N. 1. StammVater der Reichsfreyherrlichen Familie von Weber aus Schwaben aus <a class="preview places A131485" href="">Krumbach</a>.<a class="noteMarker" id="backref-d10e25" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e25">‡</a></span>, dessen <span class="tei_hi_underline1">Gemahlin</span> eine Gräfin <span class="tei_hi_latintype"><span class="6510010110810410110510032118111110326610111410111010710897117">Adelheid von Berenklau</span></span><a class="noteMarker" id="backref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> aus den Rheingegenden. Ihre <span class="tei_hi_underline1">Mutter</span> eine Gräfin <span class="tei_hi_latintype"><span class="721011001191051033211811111032839910410110810810111098101114103">Hedwig von Schellenberg</span></span><a class="noteMarker" id="backref-C_12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_12">*</a> aus Schwaben.</li>
                                             <li>N. 2. <span class="tei_hi_underline1">ÄlterVater</span>: <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><span class="74111115101112104">Joseph</span></span></span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. Dessen <span class="tei_hi_underline1">Gemahlin</span> eine Freyin <span class="tei_hi_latintype"><span class="84104101991089732118111110327297108108119101105108">Thecla von Hallweil</span></span><a class="noteMarker" id="backref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a> aus der <span class="tei_placeName"><span class="tei_country">Schweiz</span></span>; deren <span class="tei_hi_underline1">Mutter</span> eine <span class="tei_hi_latintype"><span class="76971001213269118973211811111032831071089711410111098101114103">Lady Eva von Sklarenberg</span></span><a class="noteMarker" id="backref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a> aus <span class="tei_placeName"><span class="tei_country">Irland</span></span>.</li>
                                             <li>N. 3. <span class="tei_hi_underline1">GroßVater</span>: <span class="tei_hi_latintype"><span class="tei_hi_underline2andMore"><a class="preview persons A000E52" href="">Fridolin von Weber</a></span></span><a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> dessen <span class="tei_hi_underline1">Gemahlin</span> eine Gräfin <span class="tei_hi_latintype"><span class="76111117105115101321181111103283116583274117108105101110">Louise von St: Julien</span></span><a class="noteMarker" id="backref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a> aus den <span class="tei_placeName"><span class="tei_country">Niederlanden</span></span>. Ihre <span class="tei_hi_underline1">Mutter</span> eine Gräfin <span class="tei_hi_latintype"><span class="6797114111108105110101321181111103278101115115101108114111100101">Caroline von Nesselrode</span></span><a class="noteMarker" id="backref-C_16" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_16">*</a> aus dem Jülichschen in den <span class="tei_placeName"><span class="tei_country">Niederlanden</span></span><a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>.</li>
-                                            <li>N. 4. <span class="tei_hi_underline1">Vater</span>: <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton</a></span></span>. Dessen <span class="tei_hi_underline2andMore">erste</span> <span class="tei_hi_underline1">Gemahlin</span> eine Freyin <span class="tei_hi_latintype"><a class="preview persons A008829" href="">Anna von Fumetti</a></span> aus <span class="tei_placeName"><span class="tei_region">Niedersachsen</span></span><a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a>. Ihre Mutter eine Freiin <span class="tei_hi_latintype"><span class="651101109732118111110328399104105108108101114">Anna von Schiller</span></span>. Die <span class="tei_hi_underline2andMore">2<span class="tei_hi_superscript">te</span></span> <span class="tei_hi_underline1">Gemahlin</span> (<span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl Maria von Webers</a></span> Mutter also) eine Freiin <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A002077" href="">Genovefa von Brenner</a></span></span> aus <span class="tei_placeName"><span class="tei_region">Schwaben</span></span>; ihre Mutter eine Freiin <span class="tei_hi_latintype"><span class="76111117105115101321181111103272111114110115116101105110">Louise von Hornstein</span></span><a class="noteMarker" id="backref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_17">*</a> aus <span class="tei_placeName"><span class="tei_region">Schwaben</span></span><a class="noteMarker" id="backref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>.</li>
+                                            <li>N. 4. <span class="tei_hi_underline1">Vater</span>: <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton</a></span></span>. Dessen <span class="tei_hi_underline2andMore">erste</span> <span class="tei_hi_underline1">Gemahlin</span> eine Freyin <span class="tei_hi_latintype"><a class="preview persons A008829" href="">Anna von Fumetti</a></span> aus <span class="tei_placeName"><span class="tei_region">Niedersachsen</span></span><a class="noteMarker" id="backref-C_04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_04">*</a>. Ihre Mutter eine Freiin <span class="tei_hi_latintype"><span class="651101109732118111110328399104105108108101114">Anna von Schiller</span></span>. Die <span class="tei_hi_underline2andMore">2<span class="tei_hi_superscript">te</span></span> <span class="tei_hi_underline1">Gemahlin</span> (<span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a></span> Mutter also) eine Freiin <span class="tei_hi_underline2andMore"><span class="tei_hi_latintype"><a class="preview persons A002077" href="">Genovefa von Brenner</a></span></span> aus <span class="tei_placeName"><span class="tei_region">Schwaben</span></span>; ihre Mutter eine Freiin <span class="tei_hi_latintype"><span class="76111117105115101321181111103272111114110115116101105110">Louise von Hornstein</span></span><a class="noteMarker" id="backref-C_17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_17">*</a> aus <span class="tei_placeName"><span class="tei_region">Schwaben</span></span><a class="noteMarker" id="backref-C_05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_05">*</a>.</li>
                                         </ul>
                                     </div>
                                     <div class="docPart">
@@ -411,8 +411,8 @@
                                         <ul class="tei_list">
                                             <li>N. 1. Wirklicher K. K. Geheimer Rath und Präsident bei der lutherischen reformation<a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a>.</li>
                                             <li>N. 2. K. K. Landrath in den <span class="tei_placeName"><span class="tei_country">Niederlanden</span></span>.</li>
-                                            <li>N. 3. K. K. Gesandter an verschiedenen Höfen. Ritter des <span class="tei_hi_latintype">St. Stephans</span> Ordens. Anno 1735 als Geisel nach Hüningen<a class="noteMarker" id="backref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> von den Franzosen genommen worden, bis er als K. K. <span class="tei_hi_latintype">Commissaire</span> <span class="tei_choice"><span class="tei_sic">in</span><a class="noteMarker" id="backref-d10e300" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e300">‡</a></span> Vorderösterreichischen in Militaerdienst bis zum <span class="tei_supplied"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> gestanden hat<a class="noteMarker" id="backref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a>.</li>
-                                            <li>N. 4. Kammer Director des Churfürsten von Cöln, hernach <span class="tei_hi_latintype">Mayor</span> von der Suite des Königs von <span class="tei_hi_latintype">Bayer<span class="tei_supplied"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span></span>. Ritter des <span class="tei_choice"><span class="tei_abbr">K.</span><a class="noteMarker" id="backref-d10e323" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e323">‡</a></span> Russischen <span class="tei_hi_latintype">St. Annen</span> Ordens<a class="noteMarker" id="backref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a>.</li>
+                                            <li>N. 3. K. K. Gesandter an verschiedenen Höfen. Ritter des <span class="tei_hi_latintype">St. Stephans</span> Ordens. Anno 1735 als Geisel nach Hüningen<a class="noteMarker" id="backref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> von den Franzosen genommen worden, bis er als K. K. <span class="tei_hi_latintype">Commissaire</span> <span class="tei_choice"><span class="tei_sic">in</span><a class="noteMarker" id="backref-d10e303" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e303">‡</a></span> Vorderösterreichischen in Militaerdienst bis zum <span class="tei_supplied"><span class="brackets_supplied">[</span>Lücke<span class="brackets_supplied">]</span></span> gestanden hat<a class="noteMarker" id="backref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a>.</li>
+                                            <li>N. 4. Kammer Director des Churfürsten von Cöln, hernach <span class="tei_hi_latintype">Mayor</span> von der Suite des Königs von <span class="tei_hi_latintype">Bayer<span class="tei_supplied"><span class="brackets_supplied">[</span>n<span class="brackets_supplied">]</span></span></span>. Ritter des <span class="tei_choice"><span class="tei_abbr">K.</span><a class="noteMarker" id="backref-d10e326" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e326">‡</a></span> Russischen <span class="tei_hi_latintype">St. Annen</span> Ordens<a class="noteMarker" id="backref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a>.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -461,9 +461,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. V [Mappe XVIII], Abt. 4A, Nr. 4b</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1992665f6a61eee34be79ae429c92f29"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_d80b7ec81fee93c80cf2a2f72aa5ac73"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1992665f6a61eee34be79ae429c92f29">
+                                        <div class="collapse apparatus-details" id="source_d80b7ec81fee93c80cf2a2f72aa5ac73">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>von Jähns’ Hand erhaltene, interessante (hinsichtlich der Textübertragung leider nicht gänzlich verlässliche) Kopie</li>
@@ -482,7 +482,7 @@
                         Entstehung einer Legende, in: <span class="tei_hi_italic">Jahrbuch für Heimatkunde Eutin</span>, 2012, S.
                         67–69</span>
                                                               
-                                                            <div class="collapse" id="source_f3476c2bd9bff6809e55af102b14ff5d">
+                                                            <div class="collapse" id="source_8a89974e843592ef138ea666d418ce0a">
                                                                 
                                                             </div>
                                                         </div>
@@ -504,7 +504,7 @@
                             <h3 class="media-heading">Themenkommentare</h3>
                             <ul class="tei_list">
                                 <li>
-                                    <a href=""></a>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090047.html">Der Adelstitel der Familie von Weber</a>
                                 </li>
                             </ul>
                         </div>
@@ -532,8 +532,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e289" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e289" data-title="sic" data-counter="4" data-href="#d10e289"><span class="tei_lemma">„Joseph“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e292" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e292" data-title="sic" data-counter="4" data-href="#d10e292"><span class="tei_lemma">„Joseph“</span>sic!</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -635,13 +635,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_08" class="apparatus-link">15.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_08" data-title="Einzelstellenerläuterung" data-counter="15" data-href="#C_08"><span class="tei_lemma">„…  1735 als Geisel nach Hüningen“</span>Die Lesung der beiden der Anmerkung vorangehenden Worte ist fraglich; offenbar konnte Jähns selbst die Vorlage nicht entziffern und „malte“ die Schrift lediglich nach. Allerdings findet sich bei Max Maria von Weber (<span class="tei_hi_italic">Lebensbild</span>, Bd. 1, S. 5) eine Passage, die die obenstehende Deutung nahelegt: „So finden wir während des österreichischen Erbfolgekrieges im Jahre 1735 einen kaiserlichen Rath, <span class="tei_sic">Joseph</span><a class="noteMarker" id="backref-d10e289" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e289">‡</a> von Weber, von den Franzosen als Geisel nach der Festung Hüningen geschleppt […].“ Vgl. dazu ausführlicher Theodor Humpert, <span class="tei_hi_italic">Geschichte der Stadt Zell im Wiesental</span>, Zell 1922, S. 43.</div>
+                                                <div class="apparatusEntry col-11" id="C_08" data-title="Einzelstellenerläuterung" data-counter="15" data-href="#C_08"><span class="tei_lemma">„…  1735 als Geisel nach Hüningen“</span>Die Lesung der beiden der Anmerkung vorangehenden Worte ist fraglich; offenbar konnte Jähns selbst die Vorlage nicht entziffern und „malte“ die Schrift lediglich nach. Allerdings findet sich bei Max Maria von Weber (<span class="tei_hi_italic">Lebensbild</span>, Bd. 1, S. 5) eine Passage, die die obenstehende Deutung nahelegt: „So finden wir während des österreichischen Erbfolgekrieges im Jahre 1735 einen kaiserlichen Rath, <span class="tei_sic">Joseph</span><a class="noteMarker" id="backref-d10e292" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e292">‡</a> von Weber, von den Franzosen als Geisel nach der Festung Hüningen geschleppt […].“ Vgl. dazu ausführlicher Theodor Humpert, <span class="tei_hi_italic">Geschichte der Stadt Zell im Wiesental</span>, Zell 1922, S. 43.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e300" class="apparatus-link">16.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e300" data-title="sic" data-counter="16" data-href="#d10e300"><span class="tei_lemma">„<span class="tei_sic">in</span>“</span>recte  „<span class="tei_corr">im</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e303" class="apparatus-link">16.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e303" data-title="sic" data-counter="16" data-href="#d10e303"><span class="tei_lemma">„<span class="tei_sic">in</span>“</span>recte  „<span class="tei_corr">im</span>“.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -652,14 +652,14 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e323" class="apparatus-link">18.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e323" data-title="Abkürzung" data-counter="18" data-href="#d10e323"><span class="tei_lemma">„<span class="tei_abbr">K.</span>“</span>Abk. von   „<span class="tei_expan">Kaiserlich</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e326" class="apparatus-link">18.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e326" data-title="Abkürzung" data-counter="18" data-href="#d10e326"><span class="tei_lemma">„<span class="tei_abbr">K.</span>“</span>Abk. von   „<span class="tei_expan">Kaiserlich</span>“.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_10" class="apparatus-link">19.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_10" data-title="Einzelstellenerläuterung" data-counter="19" data-href="#C_10"><span class="tei_lemma">„…  Kaiserlich Russischen St. Annen Ordens“</span><a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Webers</a> Schicksal zwischen seiner Ausbildung an der Jesuitenschule in Freiburg/Breisgau und seiner Tätigkeit als fürstbischöflicher Hofkammerrat und Amtmann von Steuerwald bei Hildesheim (1758–1768) liegt weitgehend im Dunkel. Zwischen 1776 und 1796 arbeitete er als Musikdirektor reisender Schauspielgesellschaften, Hofkapellmeister, Stadtmusikus bzw. Direktor von Theatertruppen, danach widmete er sich ganz der Ausbildung seines Sohnes Carl Maria. Die hier genannten Anstellungen lassen sich bislang dokumentarisch nicht belegen.</div>
+                                                <div class="apparatusEntry col-11" id="C_10" data-title="Einzelstellenerläuterung" data-counter="19" data-href="#C_10"><span class="tei_lemma">„…  Kaiserlich Russischen St. Annen Ordens“</span><a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton von Webers</a> Schicksal zwischen seiner Ausbildung an der Jesuitenschule in Freiburg/Breisgau und seiner Tätigkeit als fürstbischöflicher Hofkammerrat und Amtmann von <a class="preview places A130884" href="">Steuerwald</a> bei Hildesheim (1758–1768) liegt weitgehend im Dunkel. Zwischen 1776 und 1796 arbeitete er als Musikdirektor reisender Schauspielgesellschaften, Hofkapellmeister, Stadtmusikus bzw. Direktor von Theatertruppen, danach widmete er sich ganz der Ausbildung seines Sohnes Carl Maria. Die hier genannten Anstellungen lassen sich bislang dokumentarisch nicht belegen.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -688,7 +688,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100317</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100317</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -748,6 +748,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -806,22 +809,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

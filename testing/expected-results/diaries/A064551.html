@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 27t früh mit H: von Lamezan und Wamb: nach Rastadt gefahren. wo ich sogleich H: Haug aufsuchte, und erfuhr daß er nach Baaden aufs Jäger Hauß sey. …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Freitag, 27. Juli 1810 (, , )","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A064551","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064551","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064551/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064551/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064551/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -409,8 +407,8 @@
         <br />in <a class="preview places A130106" href="">Baaden</a> an,</span> <span class="payment_5">und ich gieng noch eine
             <br />Stunde weit zu Fuß auf das <span class="tei_placeName">Jäger Hauß</span>
             <br />um H: <a class="preview persons A009788" href="">Haug</a> zu sprechen, und auch da 
-            <br />war er nicht<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>. - Wein	</span>
-    <br /><span><span class="tei_add tei_hi_subscript">dann bracht ich noch <span class="tei_hi_latintype"><span class="7611712010110998117114103">Luxemburg</span></span><a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a> und <span class="tei_hi_latintype"><a class="preview persons A000373" href="">Deroi</a></span>, Ständchen.<a class="noteMarker" id="backref-d10e140" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e140">‡</a></span></span>
+            <br />war er nicht<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>. — Wein	</span>
+    <br /><span><span class="tei_add tei_hi_subscript">dann bracht ich noch <span class="tei_hi_latintype"><span class="7611712010110998117114103">Luxemburg</span></span><a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a> und <span class="tei_hi_latintype"><a class="preview persons A000373" href="">Deroi</a></span>, Ständchen.<a class="noteMarker" id="backref-d10e145" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e145">‡</a></span></span>
     <br /><span>lustiges Zusammentreffen mit <span class="tei_hi_latintype"><a class="preview persons A009764" href="">Menzing</a>, pp.</span></span>
 </p>
                                 </div>
@@ -454,9 +452,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_f8981a8e1e21b4caf7182adac28c981f"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_71628a397488da1d44d5b5cdf639191d"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_f8981a8e1e21b4caf7182adac28c981f">
+                                        <div class="collapse apparatus-details" id="source_71628a397488da1d44d5b5cdf639191d">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -485,8 +483,8 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e140" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e140" data-title="Hinzufügung" data-counter="1" data-href="#d10e140"><span class="tei_lemma">„dann bracht ich … und Deroi, Ständchen.“</span>unter der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e145" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e145" data-title="Hinzufügung" data-counter="1" data-href="#d10e145"><span class="tei_lemma">„dann bracht ich … und Deroi, Ständchen.“</span>unter der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -507,13 +505,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note03"><span class="tei_lemma">„…  auch da war er nicht“</span>Möglicherweise wurde Weber Opfer eines Missverständnisses: Er könnte das genannte Jägerhaus, das er aufsuchte, mit dem Jagdhaus auf dem Fremersberg verwechelt haben; vgl. <span class="tei_hi_italic"><span class="preview biblio A112983" data-ref="">Weberiana</span></span> 30, S. 39f.</div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note03"><span class="tei_lemma">„…  auch da war er nicht“</span>Möglicherweise wurde Weber Opfer eines Missverständnisses: Er könnte das genannte Jägerhaus, das er aufsuchte, mit dem Jagdhaus auf dem Fremersberg verwechselt haben; vgl. <span class="tei_hi_italic"><span class="preview biblio A112983" data-ref="">Weberiana</span></span> 30, S. 39f. Zur vergeblichen Fahrt nach <span class="829711511697116116">Rastatt</span> vgl. auch Webers <a class="preview letters A040304" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040304.html">Brief</a> an J. Gänsbacher vom 24. September 1810.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  dann bracht ich noch Luxemburg“</span>Im <span class="tei_hi_antiqua">Großherzoglich Badischen Anzeige-Blatt für den Kinzig-, Murg-, Pfinz- und Enz-Kreis</span> (1810) ist für den Zeitraum zwischen 1. und 14. Juni 1810 die Anreise von „Herr Graf von Luxburg nebst Familie von <a class="preview places A130020" href="">Frankfurt am Main</a>“ in <a class="preview places A130106" href="">Baden-Baden</a> angezeigt (vgl. Nr. 50 vom 27. Juni, S. 222; logierten im Gasthaus Großherzog), in derselben Zeitung (im sogenannten „Karlsruher Intelligenzblatt“) für den Zeitraum zwischen 17. und 21. August 1810 die Anreise von „Herr Graf von Luxenburg nebst Frau Gemahlin aus Frankfurt“ in <a class="preview places A130022" href="">Karlsruhe</a> (vgl. Nr. 66 vom 22. August, S. 324, logieren im Gasthaus Zum Ritter). Es kann sich nur um <a class="preview persons A00169F" href="">Johann Friedrich von Luxburg</a> handeln, da dessen Söhne <a class="preview persons A001226" href="">Karl August</a> und <a class="preview persons A001225" href="">Friedrich</a> noch unverheiratet waren. Der Hinweis „nebst Familie“ dürfte allerdings die Söhne einschließen, so dass <a class="preview persons A002068" href="">Webers</a> Kontaktperson (wohl eher einer der annähernd gleichaltrigen Söhne) nicht eindeutig zu bestimmen ist.</div>
+                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  dann bracht ich noch Luxemburg“</span>Im <span class="tei_hi_antiqua">Großherzoglich Badischen Anzeige-Blatt für den Kinzig-, Murg-, Pfinz- und Enz-Kreis</span> (1810) ist für den Zeitraum zwischen 1. und 14. Juni 1810 die Anreise von „Herr Graf von Luxburg nebst Familie von <a class="preview places A130020" href="">Frankfurt am Main</a>“ in <a class="preview places A130106" href="">Baden-Baden</a> angezeigt (vgl. Nr. 50 vom 27. Juni, S. 222; logierten im Gasthaus Großherzog), in derselben Zeitung (im sogenannten „Karlsruher Intelligenzblatt“) für den Zeitraum zwischen 17. und 21. August 1810 die Anreise von „Herr Graf von Luxenburg nebst Frau Gemahlin aus Frankfurt“ in <a class="preview places A130022" href="">Karlsruhe</a> (vgl. Nr. 66 vom 22. August, S. 324, logieren im Gasthaus Zum Ritter). Es kann sich nur um <a class="preview persons A00169F" href="">Johann Friedrich von Luxburg</a> handeln, da dessen Söhne <a class="preview persons A001226" href="">Karl August</a> und <a class="preview persons A001225" href="">Friedrich</a> noch unverheiratet waren. Der Hinweis „nebst Familie“ dürfte allerdings die Söhne einschließen, so dass <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Kontaktperson (wohl eher einer der annähernd gleichaltrigen Söhne) nicht eindeutig zu bestimmen ist.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -542,7 +540,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A064551</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A064551</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -602,6 +600,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -660,22 +661,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

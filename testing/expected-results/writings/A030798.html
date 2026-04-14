@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Kind, Friedrich" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Betrachtungen über die Szenerie im „Freischütz“ (Teil 2 von 2) (Dresden, Mai 1822)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001002","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001002"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -293,13 +290,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798/backlinks.html">Rückverweise</a>
+                                    <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001002/Schriften/A030798/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -361,7 +358,7 @@
                                     <li>
                                         <h4>Weiterer Teil</h4> 
                                         <p>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002248/Schriften/A031048.html">Betrachtungen über die Szenerie im „Freischütz“ (Teil 1 von 2) (Dresden, Mai 1822)</a>
+                                            
                                         </p>
                                     </li>
                                 </ul>
@@ -381,8 +378,6 @@
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000648" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A000040" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009050" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -406,8 +401,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000565" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A000141" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002211" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002248" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -417,6 +410,10 @@
                                     <input type="checkbox" name="options" value="A002148" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000040" /> <span title="Anwählen, um &#34;Apel, August&#34; im Text zu markieren.">Apel, August</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000141" /> <span title="Anwählen, um &#34;Bergmann, Gottfried&#34; im Text zu markieren.">Bergmann, Gottfried</span> 
                                 </label>
                             </div>
                         </div>
@@ -458,11 +455,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130085" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -527,18 +524,18 @@
                                         <h3 class="docHeader textAlign-left"><span class="tei_app"><span class="tei_lem"><span class="tei_segBlock textAlign-center">2.<br /> <span class="tei_hi_spaced_out">Auch eine Stimme</span><br /> <span class="tei_hi_spaced_out">über
             die</span><br /> erste Aufführung des <a class="preview works A020040" href="">Freischütz</a>en auf dem königl. sächs. Hoftheater, am
                <span class="tei_date">26. Jan. 1822</span>.</span></span><a class="noteMarker" id="backref-d10e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e48">Δ</a></span></h3>
-                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_segBlock textAlign-center"><span class="tei_supplied"><span class="brackets_supplied">[</span><a class="preview writings A031048" href="/exist/apps/WeGA-WebApp/de/A002248/Schriften/A031048.html">Fortsetzung</a><span class="brackets_supplied">]</span></span></span></span><a class="noteMarker" id="backref-d10e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e71">Δ</a></span></p>
+                                        <p><span class="tei_app"><span class="tei_lem"><span class="tei_segBlock textAlign-center"><span class="tei_supplied"><span class="brackets_supplied">[</span><a class="preview writings A031048" href="">Fortsetzung</a><span class="brackets_supplied">]</span></span></span></span><a class="noteMarker" id="backref-d10e71" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e71">Δ</a></span></p>
                                         <p>Man gestattet jedem Beschauer eines theatralischen Kunstwerks eine Stimme darüber,
                falls er sie <span class="tei_app"><span class="tei_lem">blos</span><a class="noteMarker" id="backref-d10e80" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e80">Δ</a></span> für <span class="tei_hi_spaced_out">die seinige</span> angesehen wissen will;
                es ist daher wohl keine Anmaßung, wenn auch der Dichter, der mit dem, was er aus- und
                nachgebildet hat, sattsam vertraut seyn muß, sich hiezu für berechtigt hält. Ueber
                die Dichtung dieser Oper mögen Kenner musikalischer Poesie und <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">der allgemeinen Stellung der Poesie zur Composition</span></span><a class="noteMarker" id="backref-d10e89" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e89">Δ</a></span> <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>
                urthei<span class="tei_pb" title="Seitenumbruch zu S. 106">|</span>len, welche das Buch, wie es bei <span class="tei_hi_spaced_out"><span class="tei_hi_spaced_out"><a class="preview persons A000648" href="">Göschen</a></span></span> in Druck
-               erschienen ist, <span class="tei_app"><span class="tei_lem"><a href="#footnote02" id="backref-footnote02" class="fn-ref">*)</a></span><a class="noteMarker" id="backref-d10e125" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e125">Δ</a></span> mit <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="">Apel</a></span>’s Erzählung zusammen gehalten
+               erschienen ist, <span class="tei_app"><span class="tei_lem"><a href="#footnote02" id="backref-footnote02" class="fn-ref">*)</a></span><a class="noteMarker" id="backref-d10e125" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e125">Δ</a></span> mit <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">Apel</a></span>’s Erzählung zusammen gehalten
                <span class="tei_app"><span class="tei_lem">haben.</span><a class="noteMarker" id="backref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">Δ</a></span>  <span class="tei_app"><span class="tei_lem">Nach einer, vielleicht unrichtigen Abschrift, nach einer mehr oder minder gelungenen Aufführung, nach einer das Ganze wohl gar bis zum – Nichtsinn entstellenden Verstümmelung, irgend ein Dichterwerk beurtheilen, ist eine Voreiligkeit, die sich kein wahrhaft Berufener, sondern nur ein, nach den neuesten Neuigkeiten heißhungriger Theater-Correspondent gestatten wird.</span><a class="noteMarker" id="backref-d10e146" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e146">Δ</a></span>  
                Ueber die
                Composition ist bereits durch fast beispiellos vielfältige Aufführungen in
-               <span class="tei_app"><span class="tei_lem"><a class="preview places A130002" href="">Berlin</a>, <a class="preview places A130004" href="">Wien</a> und anderwärts,</span><a class="noteMarker" id="backref-d10e151" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e151">Δ</a></span> so wie durch die hiesige
+               <span class="tei_app"><span class="tei_lem"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>, <a class="preview places A130004" href="">Wien</a> und anderwärts,</span><a class="noteMarker" id="backref-d10e151" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e151">Δ</a></span> so wie durch die hiesige
                glänzende Aufnahme entschieden <span class="tei_app"><span class="tei_lem">worden; ich</span><a class="noteMarker" id="backref-d10e168" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e168">Δ</a></span> enthalte mich dießfalls jedes
                Urtheils, da ich, wenn auch vielleicht etwas innere Musik, doch durchaus keine
                regelrechte Kenntniß der äußern besitze. Ich beschränke mich hier auf <span class="tei_app"><span class="tei_lem">Costum, 
@@ -683,7 +680,7 @@
                bedeutende Maler und Zeichner sie bildeten. <span class="tei_app"><span class="tei_lem">Auch von <span class="tei_hi_spaced_out"><a class="preview persons A001087" href="">Gerhard v. Kügelchen</a></span> ist mir ein Bild erinnerlich, (<span class="tei_hi_spaced_out">der böse Geist</span> genannt) welches das, was ich hiebei im Sinne gehabt, völlig ausdrückt.</span><a class="noteMarker" id="backref-d10e761" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e761">Δ</a></span></p>
                                         <p>Ungefähr von diesen Ansichten, die <span class="tei_app"><span class="tei_lem">ich schon</span><a class="noteMarker" id="backref-d10e774" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e774">Δ</a></span> anderswo beiläufig
                erwähnt habe, <a href="#footnote08" id="backref-footnote08" class="fn-ref">*)</a> ausgehend, hielt ich es nicht für zu
-               gewagt, den, von <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="">Apel</a></span>
+               gewagt, den, von <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">Apel</a></span>
                nur einmal genannten Waldfürsten <span class="8397109105101108">Samiel</span>, der unter
                diesem Namen in mancherlei alten Jagd-Kunst-Büchlein und Beschwörungsformeln
                vorkommt, in dieser Oper auftreten zu lassen. Je befriedigender aber seine erste
@@ -750,7 +747,7 @@
                geweiheten Rosen, welche <span class="6510397116104101">Agathe</span> von dem frommen, wohl
                zu Zeiten prophetisch begeisterten <span class="69105110115105101100108101114">Einsiedler</span> erhält,
                ein solches Schutzmittel; das zufällig scheinende Verwechseln des bestellten
-               Brautkranzes mit einer Todtenkrone <span class="tei_app"><span class="tei_lem">aber ist (keineswegs, wie in <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="">Apel</a>s</span> Erzählung, eine böse Vorbedeutung, sondern)</span><a class="noteMarker" id="backref-d10e1066" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1066">Δ</a></span> die Veranlassung, daß dieß Schutzmittel angewandt
+               Brautkranzes mit einer Todtenkrone <span class="tei_app"><span class="tei_lem">aber ist (keineswegs, wie in <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">Apel</a>s</span> Erzählung, eine böse Vorbedeutung, sondern)</span><a class="noteMarker" id="backref-d10e1066" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1066">Δ</a></span> die Veranlassung, daß dieß Schutzmittel angewandt
                wird. Dieß wird im Druck <span class="tei_app"><span class="tei_lem">durch die</span><a class="noteMarker" id="backref-d10e1076" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1076">Δ</a></span> beiden ersten Scenen hinlänglich, bei der Aufführung
                aber nur mit wenig, leicht überhörten Worten angedeutet. <a href="#footnote12" id="backref-footnote12" class="fn-ref">*)</a> Aus diesem<span class="tei_pb" title="Seitenumbruch zu S. 125"> | </span> Grunde nun muß <span class="tei_app"><span class="tei_lem">erstens</span><a class="noteMarker" id="backref-d10e1095" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e1095">Δ</a></span>, wie schon gedacht,
                der Rosenstrauß möglichst in die Augen fallen, was nur dadurch bewirkt werden kann,
@@ -906,7 +903,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Die Muse. Monatsschrift für Freunde der Poesie und der mit ihr verschwisterten Künste</span>, Bd. 2, Heft 5 (Mai 1822) Grundlage der vorliegenden Edition, S. 105–129</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_a2d63defe4debf244ed6073c96927200">
+                                        <div class="collapse apparatus-details" id="source_048e14dde4e30384a293196dffb15f08">
                                             
                                             
                                             <div>
@@ -918,16 +915,23 @@
                                     
                                     <div>
                                         
+                                            <h5 class="media-heading">Faksimile</h5>
                                         
+                                        <ul class="tei_list">
+                                            <li>
+                                                <a href="https://books.google.de/books?id=ay5OAAAAMAAJ&amp;hl=de&amp;pg=PP5#v=onepage&amp;q&amp;f=false"><span>https://books.google.de/books?id=ay5OAAAAMAAJ&amp;hl=de&amp;pg=PP5#v=onepage&amp;q&amp;f=false</span>
+                                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
+                                            </li>
+                                        </ul>
                                     </div>                                                                    
                                 </li>
                                         <li>
                                     <div>
                                         <strong><span>2. Textzeuge</span>:</strong>
                                         
-                                        <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Nr. 46 (22. Februar 1822), S. 184</span>
+                                        <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 6, Nr. 46 (22. Februar 1822), S. 184</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_42e9a45a0e9f34ed12e7c706167169ea">
+                                        <div class="collapse apparatus-details" id="source_b1ab9395b0b2f4e6f2b8755f6ab8dc02">
                                             
                                             
                                             <div>
@@ -939,23 +943,16 @@
                                     
                                     <div>
                                         
-                                            <h5 class="media-heading">Faksimile</h5>
                                         
-                                        <ul class="tei_list">
-                                            <li>
-                                                <a href="http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220222&amp;seite=4&amp;zoom=33"><span>http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220222&amp;seite=4&amp;zoom=33</span>
-                                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                                            </li>
-                                        </ul>
                                     </div>                                                                    
                                 </li>
                                         <li>
                                     <div>
                                         <strong><span>3. Textzeuge</span>:</strong>
                                         
-                                        <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Nr. 47 (23. Februar 1822) Fortsetzung, S. 188</span>
+                                        <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 6, Nr. 47 (23. Februar 1822) Fortsetzung, S. 188</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_b1332c4a8f053e1a2818fe69243c7915">
+                                        <div class="collapse apparatus-details" id="source_ea52607d60a8b044219aefc657fa9154">
                                             
                                             
                                             <div>
@@ -967,23 +964,16 @@
                                     
                                     <div>
                                         
-                                            <h5 class="media-heading">Faksimile</h5>
                                         
-                                        <ul class="tei_list">
-                                            <li>
-                                                <a href="http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=4&amp;zoom=33"><span>http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=4&amp;zoom=33</span>
-                                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                                            </li>
-                                        </ul>
                                     </div>                                                                    
                                 </li>
                                         <li>
                                     <div>
                                         <strong><span>4. Textzeuge</span>:</strong>
                                         
-                                        <span class="biblio-entry"><span class="journalTitle">Wegweiser im Gebiete der Künste und Wissenschaften. (Beilage zur Abend-Zeitung)</span>, Nr. 47 (23. Februar 1822) Beschluss, S. 61–63</span>
+                                        <span class="biblio-entry"><span class="journalTitle">Wegweiser im Gebiete der Künste und Wissenschaften (Beilage zur Abend-Zeitung)</span>, Jg. 6, Nr. 47 (23. Februar 1822) Beschluss, S. 61–63</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_aebf3b012260f6b46172c4d9639d65f1">
+                                        <div class="collapse apparatus-details" id="source_fc74163164a4d3e41f45d9011712d578">
                                             
                                             
                                             <div>
@@ -995,22 +985,7 @@
                                     
                                     <div>
                                         
-                                            <h5 class="media-heading">Faksimile</h5>
                                         
-                                        <ul class="tei_list">
-                                            <li>
-                                                <a href="http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=5&amp;zoom=33"><span>http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=5&amp;zoom=33</span>
-                                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                                            </li>
-                                                    <li>
-                                                <a href="http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=6&amp;zoom=33"><span>http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=6&amp;zoom=33</span>
-                                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                                            </li>
-                                                    <li>
-                                                <a href="http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=7&amp;zoom=33"><span>http://anno.onb.ac.at/cgi-content/anno?aid=abe&amp;datum=18220223&amp;seite=7&amp;zoom=33</span>
-                                                    <i class="fa fa-external-link" aria-hidden="true"></i></a>
-                                            </li>
-                                        </ul>
                                     </div>                                                                    
                                 </li>
                             </ul>
@@ -1099,7 +1074,7 @@
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e71" class="apparatus-link">3.</a></div>
                                                 <div id="d10e71" class="apparatusEntry col-11" data-title="Lesarten" data-counter="3" data-href="#d10e71">
-                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_seg_center"><span class="tei_supplied"><a class="preview writings A031048" href="/exist/apps/WeGA-WebApp/de/A002248/Schriften/A031048.html">Fortsetzung</a></span></span></span>“</span></div>
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_seg_center"><span class="tei_supplied"><a class="preview writings A031048" href="">Fortsetzung</a></span></span></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
                                             </div>
@@ -1162,8 +1137,8 @@
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e151" class="apparatus-link">10.</a></div>
                                                 <div id="d10e151" class="apparatusEntry col-11" data-title="Lesarten" data-counter="10" data-href="#d10e151">
-                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview places A130002" href="">Berlin</a>, <a class="preview places A130004" href="">Wien</a> und anderwärts,</span>“</span></div>
-                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg"><a class="preview places A130002" href="">Berlin</a> und <a class="preview places A130004" href="">Wien</a>,</span>“</span></div>
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>, <a class="preview places A130004" href="">Wien</a> und anderwärts,</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> und <a class="preview places A130004" href="">Wien</a>,</span>“</span></div>
                                                 </div>
                                             </div>
                                         </li>
@@ -1937,7 +1912,7 @@
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e1066" class="apparatus-link">94.</a></div>
                                                 <div id="d10e1066" class="apparatusEntry col-11" data-title="Lesarten" data-counter="94" data-href="#d10e1066">
-                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">aber ist (keineswegs, wie in <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="">Apel</a>s</span> Erzählung, eine böse Vorbedeutung, sondern)</span>“</span></div>
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">aber ist (keineswegs, wie in <span class="tei_hi_spaced_out"><a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">Apel</a>s</span> Erzählung, eine böse Vorbedeutung, sondern)</span>“</span></div>
                                                     <div><strong>Textzeuge 4: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                 </div>
                                             </div>
@@ -2101,7 +2076,7 @@
                                                 <div id="d10e1255" class="apparatusEntry col-11" data-title="Lesarten" data-counter="112" data-href="#d10e1255">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
                                                     <div><strong>Textzeuge 4: </strong><span>„<span class="tei_rdg">
-               <span class="tei_p">Was endlich das Spiel anlangt - daß ich über den Gesang nur als Laie sprechen könnte, habe ich schon im Eingange unumwunden gestanden - so erwähne ich zuerst <span class="72101114114110327797121101114115">Herrn <span class="tei_hi_spaced_out">Mayers</span></span>, der die, auch körperlich äußerst anstrengende Rolle des <span class="679711511297114115">Caspars</span> mit großer Vollkommenheit gab. Seine Gesichtsmaske war höchst charakteristisch, ohne in’s Häßliche fallende Uebertreibung; sein Mienenspiel, sein ganzes Wesen schilderte durchgängig den verwilderten Zögling des Lagers, den oft heimathlosen Herumtreiber, - ich möchte sagen, die idealisirte Gesammtheit jener Classe Menschen, welche, unter dem Namen Freibursche, auch wohl jetzt noch mit Büchse und Dachsranzen von Forsthaus zu Forsthaus streifen. Nur die abgebrochenen Worte: „Es giebt allerdings gewisse geheime Kräfte der Natur u. s. w.“ könnte er wohl noch etwas bedeutsamer, etwas lauernder sagen; denn <span class="679711511297114">Caspar</span> will, daß ihm <span class="7797120">Max</span> die Sache abfrage, er will ihn reizen, er stellt sich, als traue er sich damit noch nicht recht heraus, er beobachtet, wie seine Worte auf <span class="7797120">Max</span> wirken. - <a class="preview persons A000565" href="">Dem. <span class="tei_hi_spaced_out">Funk</span></a> stellte die zärtlich bangende Braut, und <a class="preview persons A000141" href="">Herr <span class="tei_hi_spaced_out">Bergmann</span></a> den redlichen, unverdorbenen Sohn des Waldes im Ganzen recht treffend dar; nur wäre bei <a class="preview persons A000565" href="">ersterer</a> hier und da etwas mehr Wärme, bei <a class="preview persons A000141" href="">letzterm</a> hie und da etwas mehr Kraft zu wünschen gewesen. <span class="7797120">Max</span> ist ein guter, warm fühlender Mensch, aber dabei ein Jäger; er ist „vertraut mit jenem Grausen, das Mitternacht im Walde webt, u. s. w.“ Die Worte: „Es hat mich viel gekostet -“ muß er viel bedeutender und dumpfer sagen, und das <span class="tei_hi_spaced_out">viel</span> stark betonen; es ergreift ihn hier aufs neue der geheime Schauer, den er fühlte, als ihm <span class="679711511297114">Caspar</span> die Adlerfedern auf den Hut steckte; es überfällt ihn die grauenvolle Ahnung, als habe er wohl schon einen Theil seines Seelenheils verkauft.</span>
+               <span class="tei_p">Was endlich das Spiel anlangt - daß ich über den Gesang nur als Laie sprechen könnte, habe ich schon im Eingange unumwunden gestanden - so erwähne ich zuerst <span class="72101114114110327797121101114115">Herrn <span class="tei_hi_spaced_out">Mayers</span></span>, der die, auch körperlich äußerst anstrengende Rolle des <span class="679711511297114115">Caspars</span> mit großer Vollkommenheit gab. Seine Gesichtsmaske war höchst charakteristisch, ohne in’s Häßliche fallende Uebertreibung; sein Mienenspiel, sein ganzes Wesen schilderte durchgängig den verwilderten Zögling des Lagers, den oft heimathlosen Herumtreiber, - ich möchte sagen, die idealisirte Gesammtheit jener Classe Menschen, welche, unter dem Namen Freibursche, auch wohl jetzt noch mit Büchse und Dachsranzen von Forsthaus zu Forsthaus streifen. Nur die abgebrochenen Worte: „Es giebt allerdings gewisse geheime Kräfte der Natur u. s. w.“ könnte er wohl noch etwas bedeutsamer, etwas lauernder sagen; denn <span class="679711511297114">Caspar</span> will, daß ihm <span class="7797120">Max</span> die Sache abfrage, er will ihn reizen, er stellt sich, als traue er sich damit noch nicht recht heraus, er beobachtet, wie seine Worte auf <span class="7797120">Max</span> wirken. - <a class="preview persons A000565" href="">Dem. <span class="tei_hi_spaced_out">Funk</span></a> stellte die zärtlich bangende Braut, und <a class="preview persons A000141" href="/exist/apps/WeGA-WebApp/de/A000141.html">Herr <span class="tei_hi_spaced_out">Bergmann</span></a> den redlichen, unverdorbenen Sohn des Waldes im Ganzen recht treffend dar; nur wäre bei <a class="preview persons A000565" href="">ersterer</a> hier und da etwas mehr Wärme, bei <a class="preview persons A000141" href="/exist/apps/WeGA-WebApp/de/A000141.html">letzterm</a> hie und da etwas mehr Kraft zu wünschen gewesen. <span class="7797120">Max</span> ist ein guter, warm fühlender Mensch, aber dabei ein Jäger; er ist „vertraut mit jenem Grausen, das Mitternacht im Walde webt, u. s. w.“ Die Worte: „Es hat mich viel gekostet -“ muß er viel bedeutender und dumpfer sagen, und das <span class="tei_hi_spaced_out">viel</span> stark betonen; es ergreift ihn hier aufs neue der geheime Schauer, den er fühlte, als ihm <span class="679711511297114">Caspar</span> die Adlerfedern auf den Hut steckte; es überfällt ihn die grauenvolle Ahnung, als habe er wohl schon einen Theil seines Seelenheils verkauft.</span>
                <span class="tei_p"><span class="6511011099104101110">Annchen</span> (<a class="preview persons A002211" href="">Mad. Haase</a>) war sehr lieblich und erfreulich. Fügte es bloß der Zufall, daß der Todtenkranz an ihrem Kleide hängen blieb, so war dieser Zufall sehr glücklich; doch hätte sie, wie mir dünkt, ihn noch etwas mehr benutzen können, wenn sie den Kranz nicht bloß losgerissen, sondern auch einen Moment in die Höhe gehalten und im höchsten Schreck angestarrt hätte. Vollkommen sichtbar muß der Todtenkranz den Zuschauern für einen Augenblick werden, geschehe dieß nun durch <span class="6510397116104101110">Agathen</span> oder durch <span class="6511011099104101110">Annchen</span>. Die Beseitigung des Kranzes sowohl, als die des vergessenen Schachteldeckels, war höchst sprechend, und sie sollte auch das letztere, als sehr ausmalend, immer mit kleinen Variationen beibehalten.</span>
                <span class="tei_p">Die Herren <span class="tei_hi_spaced_out"><a class="preview persons A002248" href="">Kanow</a></span>, (von dem schon Einiges in Obigem erwähnt worden) <span class="tei_hi_spaced_out"><span class="8511012210110810997110110">Unzelmann</span></span> (dessen königliche Freude man fast mit ihm theilen mußte) und <span class="tei_hi_spaced_out"><a class="preview persons A002249" href="">Keller</a></span> (an dem ich mit Vergnügen einige Portrait-Aehnlichkeit mit dem Ahnenbilde des Stammvaters zu entdecken glaubte) ließen - jeder in Verhältniß der ihm zugetheilten Rolle - durchaus keine gerechte Erwartung unerfüllt. <span class="72101114114327710510711599104">Herr <span class="tei_hi_spaced_out">Miksch</span></span> erweckte durch äußere Würde und allenthalben sich aussprechende Religiosität in der That hohe Ehrfurcht, und zeigte gänzlich den <span class="69114101109105116101110">Eremiten</span>, den rings umher die Gegend ehrt und dem, als einem Gesegneten des Herrn, selbst der Fürst - <a class="preview persons A002148" href="">Herr <span class="tei_hi_spaced_out">Wilhelmi</span></a>, der seine Rolle mit schönem Aeußern, edlem Anstande, gewinnender Humanität und erheiternder Fröhlichkeit darstellte - gern Gehorsam leistet. Die Vorsängerin endlich, <span class="68101109463277105108108101114">Dem. <span class="tei_hi_spaced_out">Miller</span></span>, war ganz an ihrer Stelle und eine sehr angenehme Erscheinung. -</span>
             </span>“</span></div>
@@ -2175,7 +2150,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://iiif.slub-dresden.de/iiif/2/399196951-18220222/manifest.json https://iiif.slub-dresden.de/iiif/2/399196951-18220223/manifest.json https://weber-gesamtausgabe.de/IIIF/A030798wit-az-wegw/manifest.json" data-canvasindex="3 3 0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -2196,7 +2171,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030798</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -2256,6 +2231,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -2314,22 +2292,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

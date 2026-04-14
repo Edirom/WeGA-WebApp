@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Antwortbrief Webers an einen jungen Künstler, in dem er Ratschläge für die Komponisten- bzw. Musikerlaufbahn erteilt und auf Schwierigkeiten hinweist; empfiehlt Gänsbacher und Seyfried zu konsultieren","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Aloys Fuchs in Wien. Hosterwitz, Donnerstag, 27. Mai 1824","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042302","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042302","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Antwortbrief Webers an einen jungen Künstler, in dem er Ratschläge für die Komponisten- bzw. Musikerlaufbahn erteilt und auf Schwierigkeiten hinweist; empfiehlt Gänsbacher und Seyfried zu konsultieren","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Aloys Fuchs in Wien. Hosterwitz, Donnerstag, 27. Mai 1824","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042302","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042302","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042302/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042302/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,10 +362,10 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042301.html">1824-05-26</a>:  an  <a href="" class="preview A000354 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A044991.html">1824-03-03</a>:  an  <a href="" class="preview A001473 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001864/Korrespondenz/A042246.html">1824-03-27</a>:  von  <a href="" class="preview A001864 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A080005/Korrespondenz/A042080.html">1823-12-04</a>:  von  <a href="" class="preview A080005 orgs"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
@@ -409,6 +407,8 @@
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131019" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
                         </div>
@@ -476,7 +476,7 @@
                                         
                                         <span class="biblio-entry"><span class="author">Aloys Fuchs</span>, <span class="title">Karl Maria von Weber an die, welche sich der Kunst widmen möchten</span>, in: <span class="journalTitle">BamZ</span>, Jg. 3, Nr. 38 (26. Sept. 1826), S. 301–302</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_1621feba446f0d42f8c30dca1cdecf5c">
+                                        <div class="collapse apparatus-details" id="source_4a2f4a348cac372dfdf1502102b97c97">
                                             
                                             
                                             <div>
@@ -497,9 +497,9 @@
                                         
                                         <span class="biblio-entry book"><span class="author">Theodor Hell</span>, <span class="title">Hinterlassene Schriften von Carl Maria von Weber</span>,  Bd. 1, <span class="placeNYear">Dresden &amp; Leipzig 1828</span>, S. XXXII–XXXV</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1791deafe21ad60e61516f6aa40fad59"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_78166b14052deef98d426d1624a65f84"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1791deafe21ad60e61516f6aa40fad59">
+                                        <div class="collapse apparatus-details" id="source_78166b14052deef98d426d1624a65f84">
                                             
                                             
                                             <div>
@@ -512,7 +512,7 @@
                                                             
                                                             <span>Laux, Karl: Kunstansichten. 1977, S. 241–242</span>
                                                               
-                                                            <div class="collapse" id="source_4d52483bd7bbf7fa05ebae6b0fed7de7">
+                                                            <div class="collapse" id="source_2d79ab68cb92e18c786ea06f4d3b0a02">
                                                                 
                                                             </div>
                                                         </div>
@@ -522,7 +522,7 @@
                                                             
                                                             <span>Kaiser (Schriften) Nr. 152 und S. 52–54</span>
                                                               
-                                                            <div class="collapse" id="source_0aa519d1532545f0d7664a717ee55de9">
+                                                            <div class="collapse" id="source_6f3babd64a201b63e539a58ac1c7ac78">
                                                                 
                                                             </div>
                                                         </div>
@@ -725,7 +725,7 @@
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e145" class="apparatus-link">20.</a></div>
                                                 <div id="d10e145" class="apparatusEntry col-11" data-title="Lesarten" data-counter="20" data-href="#d10e145">
                                                     <div><strong>Textzeuge 1: </strong><span class="noRdg">Text nicht vorhanden.</span></div>
-                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Beharren Sie bei Ihrem Entschlusse, so rufe ich Ihnen aus Grund des Herzens die besten Wünsche zum Gedeihen Ihres Strebens zu. Der jezt eben in <a class="preview places A130004" href="">Wien</a> zum Dom-Kapellmeister ernannte <a class="preview persons A000584" href="">Joh. Gänsbacher</a>, oder der Kapellmeister und Opern-Direktor des Theaters an der <a class="preview places A130004" href="">Wien</a>, <a class="preview persons A001819" href="">Ritter von Seyfried</a> in <a class="preview places A130004" href="">Wien</a>, scheinen mir die Männer zu seyn, die Sie mit kundiger Meisterhand auf den wahren Weg führen können.
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Beharren Sie bei Ihrem Entschlusse, so rufe ich Ihnen aus Grund des Herzens die besten Wünsche zum Gedeihen Ihres Strebens zu. Der jezt eben in <a class="preview places A130004" href="">Wien</a> zum Dom-Kapellmeister ernannte <a class="preview persons A000584" href="">Joh. Gänsbacher</a>, oder der Kapellmeister und Opern-Direktor des <a class="preview places A131019" href="">Theaters an der Wien</a>, <a class="preview persons A001819" href="">Ritter von Seyfried</a> in <a class="preview places A130004" href="">Wien</a>, scheinen mir die Männer zu seyn, die Sie mit kundiger Meisterhand auf den wahren Weg führen können.
             Mit wahrer Theilnahme und freundlicher Achtung u.s.w. am 27. May 1824. 
             
                <span class="tei_seg_right">[ohne Unterschrift]</span></span>“</span></div>
@@ -757,7 +757,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042302</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042302</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -817,6 +817,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -875,22 +878,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

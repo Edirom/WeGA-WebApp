@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Winkler, Karl Theodor" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A046474" />
@@ -42,11 +42,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"hat Brühls Brief mit Bitte um Zusendung der Oberon-Partitur sowie um Rücksendung der Kopien der Korrespondenz mit den Bevollmächtigten (Lichtenstein und Heinrich Beer) erhalten; fürchtet noch immer Einspruch des Königsstädtischen Theaters und kann daher die Partitur nur schicken, wenn die Königlichen Schauspiele die Weberschen Erben gegen alle Ansprüche des Königsst. Theaters vertreten würden","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Karl Theodor Winkler an Carl Graf von Brühl in Berlin. Dresden, Samstag, 29. Dezember 1827","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A046474","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A046474","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002160","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002160"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -250,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -297,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A046474/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A046474/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -366,6 +364,9 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002160/Korrespondenz/A045668.html">1842-10-03</a>:  an  <a href="" class="preview A002936 persons"></a>
+                                       </li>
+                                            <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A001709/Korrespondenz/A045291.html">1832-09-21</a>:  von  <a href="" class="preview A001709 persons"></a>
                                        </li>
                                    </ul>
@@ -391,6 +392,8 @@
                                     <input type="checkbox" name="options" value="A000113" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002160" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A080296" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
                                 </label>
                             </div>
                         </div>
@@ -414,7 +417,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -430,9 +433,9 @@
                                         <div class="teiLetter_opener">
                <p class="teiLetter_salute">Innig verehrter <a class="preview persons A000235" href="">Herr Graf</a>!</p>
             </div>
-                                        <p>So eben sendet mir unsere <span class="tei_hi_latintype"><a class="preview persons A000213" href="">Weber</a></span> den <a class="preview letters A045071" href="">Brief</a> wieder, den Sie an selbige in Bezug auf eine zu sendende Partitur des <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span> mit Hinzufügung der abschriftlichen Correspondenz mit unseren dortigen <span class="preview persons A001166 A000113" data-ref=" ">Bevollmächtigten</span> gesendet haben. Beide bestätigen dieses Letztere nur, das was mein letzter <a class="preview letters A046148" href="">Brief</a> schon besagt, und setzt uns hier in wahre Verlegenheit. Mit Vergnügen würden wir Ihnen sogleich eine fertig liegende Abschrift senden, wenn wir nicht die Ansprüche der Königsstadt, so ungegründet sie auch nach der Königlichen <a class="preview letters A045239" href="">Entscheidung</a> sind, dennoch fürchten müßten.</p>
-                                        <p class="inlineEnd">Alles dieses können Sie selbst an Ort und Stelle besser beurtheilen, und wo möglich die unangenehme Sache im Wege der Vorstellung ausgleichen. Jedenfalls müssen die <span class="tei_hi_latintype">Weber</span>schen Erben sich aber, wenn die Königsstadt die Herausgabe der Partitur fortdauernd weigerte, durch eine jenseitige Schrift zu sichern suchen, in welcher das Königliche Theater verspräche, die Erben gegen alle Ansprüche der Königsstadt zu vertreten. Sobald eine solche Urkunde in unsern Händen ist, würden wir uns authorisirt sehen, eine anderweite Abschrift<span class="tei_pb" title="Seitenumbruch"> | </span>Ihnen sogleich zu übersenden. –</p>
-                                        <p class="tei_closer textAlign-left inlineStart">Genehmigen Sie die Versicherung womit ich verharre<span class="tei_segBlock textAlign-center">Ew: Hochwohlgeboren</span><span class="tei_segBlock textAlign-right">gehorsamster Diener<br />(gezeichnet) <a class="preview persons A002160" href="">Winkler</a></span><span class="tei_date"><span class="tei_sic"><a class="preview places A130002" href="">Berlin</a></span><a class="noteMarker" id="backref-d10e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e52">‡</a><br />den 29<span class="tei_hi_superscript">sten</span> December<br />1827.</span></p>
+                                        <p>So eben sendet mir unsere <span class="tei_hi_latintype"><a class="preview persons A000213" href="">Weber</a></span> den <a class="preview letters A045071" href="">Brief</a> wieder, den Sie an selbige in Bezug auf eine zu sendende Partitur des <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span> mit Hinzufügung der abschriftlichen Correspondenz mit unseren dortigen <span class="preview persons A001166 A000113" data-ref=" ">Bevollmächtigten</span> gesendet haben. Beide bestätigen dieses Letztere nur, das was mein letzter <a class="preview letters A046148" href="">Brief</a> schon besagt, und setzt uns hier in wahre Verlegenheit. Mit Vergnügen würden wir Ihnen sogleich eine fertig liegende Abschrift senden, wenn wir nicht die Ansprüche der <a class="preview orgs A080296" href="">Königsstadt</a>, so ungegründet sie auch nach der Königlichen <a class="preview letters A045239" href="">Entscheidung</a> sind, dennoch fürchten müßten.</p>
+                                        <p class="inlineEnd">Alles dieses können Sie selbst an Ort und Stelle besser beurtheilen, und wo möglich die unangenehme Sache im Wege der Vorstellung ausgleichen. Jedenfalls müssen die <span class="tei_hi_latintype">Weber</span>schen Erben sich aber, wenn die <a class="preview orgs A080296" href="">Königsstadt</a> die Herausgabe der Partitur fortdauernd weigerte, durch eine jenseitige Schrift zu sichern suchen, in welcher das Königliche Theater verspräche, die Erben gegen alle Ansprüche der <a class="preview orgs A080296" href="">Königsstadt</a> zu vertreten. Sobald eine solche Urkunde in unsern Händen ist, würden wir uns authorisirt sehen, eine anderweite Abschrift<span class="tei_pb" title="Seitenumbruch"> | </span>Ihnen sogleich zu übersenden. –</p>
+                                        <p class="tei_closer textAlign-left inlineStart">Genehmigen Sie die Versicherung womit ich verharre<span class="tei_segBlock textAlign-center">Ew: Hochwohlgeboren</span><span class="tei_segBlock textAlign-right">gehorsamster Diener<br />(gezeichnet) <a class="preview persons A002160" href="">Winkler</a></span><span class="tei_date"><span class="tei_sic"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></span><a class="noteMarker" id="backref-d10e61" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e61">‡</a><br />den 29<span class="tei_hi_superscript">sten</span> December<br />1827.</span></p>
                                         <p class="clearer"></p>
                                     </div>
                                 </div>
@@ -473,9 +476,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. theor. 1018, Bl. 62</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_488018bfcaad641ad30e7e03febfec69"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_042070e1876cbe1572afd7e5683c4154"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_488018bfcaad641ad30e7e03febfec69">
+                                        <div class="collapse apparatus-details" id="source_042070e1876cbe1572afd7e5683c4154">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Kopisten-Abschrift für Brühls <span class="tei_hi_italic">Acta Privata</span> zum <span class="tei_hi_italic">Oberon</span></li>
@@ -510,8 +513,8 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e52" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e52" data-title="sic" data-counter="1" data-href="#d10e52"><span class="tei_lemma">„<a class="preview places A130002" href="">Berlin</a>“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e61" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e61" data-title="sic" data-counter="1" data-href="#d10e61"><span class="tei_lemma">„<a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>“</span>sic!</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -541,7 +544,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A046474</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A046474</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -601,6 +604,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -659,22 +665,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

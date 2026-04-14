@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Anonymus" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Anzeige zum Konzert von Johann Sedlaczek unter Beteiligung von Carl Maria von Weber am 29. Juni 1821 in Berlin (Saal des Hof-Traiteurs Johann Jagor)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032361","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032361","author":[{"@type":"Person","name":"Anonymus"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032361/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032361/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032361/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -375,8 +372,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001805" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001864" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002C7E" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -386,6 +381,8 @@
                                     <input type="checkbox" name="options" value="A001693" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080007" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -416,6 +413,10 @@
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130999" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131060" /> <span title="Anwählen, um &#34;Schauspielhaus (neues)&#34; im Text zu markieren.">Schauspielhaus (neues)</span> 
                                 </label>
                             </div>
                         </div>
@@ -429,9 +430,9 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Concert-Anzeige</span>.</h2>
-                                        <p>Freitag den <span class="tei_date">29. Juni</span>, im Saale des Hof-Traiteur Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000916" href="">Jagor</a></span>, unter den Linden Nr. 23: Großes Vocal- und Instrumental-Concert, unter Leitung des Königl. Concertmeisters Herrn <span class="tei_hi_spaced_out"><a class="preview persons A001804" href="">Seidler</a></span>, gegeben von <span class="tei_hi_spaced_out"><a class="preview persons A009015" href="">J. Sedlatzek</a></span>, Tonkünstler auf der Flöte, aus <a class="preview places A130004" href="">Wien</a>. <span class="tei_hi_spaced_out">Erster Theil</span>: <span class="79117118101114116252114101">Ouvertüre</span> von <a class="preview persons A001362" href="">Mozart</a>. <span class="65114105101">Arie</span> von <a class="preview persons A002162" href="">Winter</a>, gesungen von Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000074" href="">Bader</a></span>. <a class="preview works A021508" href="">Concert für die Flöte</a> von <a class="preview persons A001600" href="">B. Romberg</a>, geblasen von <span class="tei_hi_spaced_out"><a class="preview persons A009015" href="">J. Sedlatzek</a></span>. Auf Begehren. Cavatine aus: <a class="preview works A020471" href="">Der Barbier von Sevilla</a>, von <a class="preview persons A001616" href="">Rossini</a>, gesungen von Mad. <span class="tei_hi_spaced_out"><a class="preview persons A001805" href="">Seidler</a></span>. <span class="tei_hi_spaced_out">Zweiter Theil</span>: <a class="preview works A020231" href="">Concert-Stück für Fortepiano</a>, gesetzt und ausgeführt vom Königl. Sächs. Hofkapellmeister <a class="preview persons A002068" href="">C. M. v. <span class="tei_hi_spaced_out">Weber</span></a>. (Auf vieles Verlangen wird Hr. Kapellmei<span class="tei_cb" title="Spaltenumbruch">¦</span>ster <a class="preview persons A002068" href="">v. <span class="tei_hi_spaced_out">Weber</span></a> dieses in seinem Concert mit vielem Beifall gegebene <a class="preview works A020231" href="">Concertstück</a> zu wiederholen die Güte haben.) Romanze aus dem Festspiel: <span class="tei_hi_antiqua"><a class="preview works A021579" href="">Lalla Rûkh</a></span>, von <a class="preview persons A001864" href="">Spontini</a>, gesungen von Mad. <span class="tei_hi_spaced_out"><a class="preview persons A001805" href="">Seidler</a></span>. Solofantasie, verbunden mit Variationen auf der neu erfundenen Flöte, welche den Umfang der Violine bis zum <span class="tei_hi_antiqua">g</span> hat, vorgetragen von <span class="tei_hi_spaced_out"><a class="preview persons A009015" href="">Sedlatzek</a></span>.</p>
+                                        <p>Freitag den <span class="tei_date">29. Juni</span>, im Saale des Hof-Traiteur Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000916" href="">Jagor</a></span>, unter den Linden Nr. 23: Großes Vocal- und Instrumental-Concert, unter Leitung des Königl. Concertmeisters Herrn <span class="tei_hi_spaced_out"><a class="preview persons A001804" href="">Seidler</a></span>, gegeben von <span class="tei_hi_spaced_out"><a class="preview persons A009015" href="">J. Sedlatzek</a></span>, Tonkünstler auf der Flöte, aus <a class="preview places A130004" href="">Wien</a>. <span class="tei_hi_spaced_out">Erster Theil</span>: <span class="79117118101114116252114101">Ouvertüre</span> von <a class="preview persons A001362" href="">Mozart</a>. <span class="65114105101">Arie</span> von <a class="preview persons A002162" href="">Winter</a>, gesungen von Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000074" href="">Bader</a></span>. <a class="preview works A021508" href="">Concert für die Flöte</a> von <a class="preview persons A001600" href="">B. Romberg</a>, geblasen von <span class="tei_hi_spaced_out"><a class="preview persons A009015" href="">J. Sedlatzek</a></span>. Auf Begehren. Cavatine aus: <a class="preview works A020471" href="">Der Barbier von Sevilla</a>, von <a class="preview persons A001616" href="">Rossini</a>, gesungen von Mad. <span class="tei_hi_spaced_out"><a class="preview persons A001805" href="">Seidler</a></span>. <span class="tei_hi_spaced_out">Zweiter Theil</span>: <a class="preview works A020231" href="">Concert-Stück für Fortepiano</a>, gesetzt und ausgeführt vom Königl. Sächs. Hofkapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. <span class="tei_hi_spaced_out">Weber</span></a>. (Auf vieles Verlangen wird Hr. Kapellmei<span class="tei_cb" title="Spaltenumbruch">¦</span>ster <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. <span class="tei_hi_spaced_out">Weber</span></a> dieses in seinem Concert mit vielem Beifall gegebene <a class="preview works A020231" href="">Concertstück</a> zu wiederholen die Güte haben.) Romanze aus dem Festspiel: <span class="tei_hi_antiqua"><a class="preview works A021579" href="">Lalla Rûkh</a></span>, von <a class="preview persons A001864" href="">Spontini</a>, gesungen von Mad. <span class="tei_hi_spaced_out"><a class="preview persons A001805" href="">Seidler</a></span>. Solofantasie, verbunden mit Variationen auf der neu erfundenen Flöte, welche den Umfang der Violine bis zum <span class="tei_hi_antiqua">g</span> hat, vorgetragen von <span class="tei_hi_spaced_out"><a class="preview persons A009015" href="">Sedlatzek</a></span>.</p>
                                         <p class="tei_closer textAlign-left">
-               Billets <span class="tei_hi_antiqua">à</span> 1 Thlr. Cour., sind beim Kastellan Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A002C7E" href="">Sattler</a></span> im Opernhause, beim Kastellan Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A00048C" href="">Adler</a></span> im Schauspielhause, in den Musikhandlungen der Herren <span class="tei_hi_spaced_out"><span class="preview persons A001693" data-ref=" "><a class="preview orgs A080007" href="">Schlesinger</a></span></span> und <span class="tei_hi_spaced_out"><span class="6710411410511511610597110105">Christiani</span></span>, bei Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000916" href="">Jagor</a></span> und Abends an der Kasse zu haben.
+               Billets <span class="tei_hi_antiqua">à</span> 1 Thlr. Cour., sind beim Kastellan Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A002C7E" href="">Sattler</a></span> im <a class="preview places A130999" href="">Opernhause</a>, beim Kastellan Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A00048C" href="">Adler</a></span> im <a class="preview places A131060" href="/exist/apps/WeGA-WebApp/de/A131060.html">Schauspielhause</a>, in den Musikhandlungen der Herren <span class="tei_hi_spaced_out"><span class="preview persons A001693" data-ref=" "><a class="preview orgs A080007" href="">Schlesinger</a></span></span> und <span class="tei_hi_spaced_out"><span class="6710411410511511610597110105">Christiani</span></span>, bei Hrn. <span class="tei_hi_spaced_out"><a class="preview persons A000916" href="">Jagor</a></span> und Abends an der Kasse zu haben.
                <br />Anfang 7 Uhr.
                <br />Die Eröffnung des Saales ist um 6 Uhr.
             </p>
@@ -477,7 +478,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Berlinische Nachrichten von Staats- und gelehrten Sachen</span>, Nr. 77 (28. Juni 1821)</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_74e44cc9ec466f4093e00e18d7712585">
+                                        <div class="collapse apparatus-details" id="source_3255de25bad6b8dfcbb54dbeb07a1213">
                                             
                                             
                                             <div>
@@ -525,7 +526,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032361</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032361</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -585,6 +586,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -643,22 +647,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

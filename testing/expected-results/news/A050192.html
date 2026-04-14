@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Am 14. Juli 2020, wenige Monate vor ihrem bevorstehenden Eintritt in den Ruhestand, verstarb Dr. Gabriele Buschmeier, die in der Mainzer Akademie der …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Trauer und dankbare Erinnerung –. Zum Tod von Dr. Gabriele Buschmeier","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050192","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050192","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Am 14. Juli 2020, wenige Monate vor ihrem bevorstehenden Eintritt in den Ruhestand, verstarb Dr. Gabriele Buschmeier, die in der Mainzer Akademie der …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Trauer und dankbare Erinnerung –. Zum Tod von Dr. Gabriele Buschmeier","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050192","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050192","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -205,7 +203,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="document">Trauer und dankbare Erinnerung – <br />Zum Tod von Dr. Gabriele Buschmeier</h1>
+                    <h1 class="document">Trauer und dankbare Erinnerung – <br />Zum Tod von Dr. Gabriele
+               Buschmeier</h1>
                 </div>
             </div>
         </div>
@@ -220,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
@@ -247,7 +246,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -290,7 +289,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050192/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050192/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -354,13 +353,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A003722" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009637" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009757" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009609" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009736" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -374,17 +369,21 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009507" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A0016FD" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009637" /> <span title="Anwählen, um &#34;Allroggen, Gerhard&#34; im Text zu markieren.">Allroggen, Gerhard</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A003672" /> <span title="Anwählen, um &#34;Bartlitz, Eveline&#34; im Text zu markieren.">Bartlitz, Eveline</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009002" /> <span title="Anwählen, um &#34;Beck, Dagmar&#34; im Text zu markieren.">Beck, Dagmar</span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009001" /> <span title="Anwählen, um &#34;Stadler, Peter&#34; im Text zu markieren.">Stadler, Peter</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;Veit, Joachim&#34; im Text zu markieren.">Veit, Joachim</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;Ziegler, Frank&#34; im Text zu markieren.">Ziegler, Frank</span> 
                                 </label>
                             </div>
                         </div>
@@ -398,11 +397,11 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130001" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130144" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130028" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -414,147 +413,170 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d12e2">
-                                    <p>Am <span class="tei_date">14. Juli 2020</span>, wenige Monate vor ihrem bevorstehenden Eintritt in den Ruhestand, verstarb <a class="preview persons A003932" href="">Dr. Gabriele Buschmeier</a>, die in der <a href="https://www.adwmainz.de">Mainzer Akademie der Wissenschaften und der Literatur <i class="fa fa-external-link" aria-hidden="true"></i></a> über ein Viertel Jahrhundert als Koordinatorin der musikwissenschaftlichen Editionsvorhaben segensreich gewirkt und sich in ihrer Amtszeit große Verdienste um die Musikwissenschaft und das Editionswesen erworben hat. Auch die Weber-Gesamtausgabe hat ihr viel zu verdanken, war sie doch eine unermüdliche Förderin unserer für manche Kolleg*innen ungewohnten, weil nicht werk- sondern quellenbetonten Editionsgrundsätze und unseres oft mühsamen Wegs in die digitale Zukunft des Editionswesens.</p>
+                                    <p>Am <span class="tei_date">14. Juli 2020</span>, wenige Monate vor ihrem
+               bevorstehenden Eintritt in den Ruhestand, verstarb <a class="preview persons A003932" href="">Dr.
+                  Gabriele Buschmeier</a>, die in der <a href="https://www.adwmainz.de">Mainzer Akademie der Wissenschaften und der Literatur <i class="fa fa-external-link" aria-hidden="true"></i></a> über
+               ein Viertel Jahrhundert als Koordinatorin der musikwissenschaftlichen
+               Editionsvorhaben segensreich gewirkt und sich in ihrer Amtszeit große Verdienste um
+               die Musikwissenschaft und das Editionswesen erworben hat. Auch die
+               Weber-Gesamtausgabe hat ihr viel zu verdanken, war sie doch eine unermüdliche
+               Förderin unserer für manche Kolleg*innen ungewohnten, weil nicht werk- sondern
+               quellenbetonten Editionsgrundsätze und unseres oft mühsamen Wegs in die digitale
+               Zukunft des Editionswesens.</p>
                                     <figure class="tei_figure float-right"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/news%252FA0501xx%252FA050192%252Fbuschmeier_gfm2019.jpg/full/full/0/native.jpg"><img title="Gabriele Buschmeier mit Irmlind Capelle bei der Besichtigung der Projektstrasse während der Tagung der Gesellschaft für Musikforschung am 25. September 2019 in Detmold." alt="Gabriele Buschmeier mit Irmlind Capelle bei der Besichtigung der Projektstrasse während der Tagung der Gesellschaft für Musikforschung am 25. September 2019 in Detmold." src="https://weber-gesamtausgabe.de/Scaler/IIIF/news%252FA0501xx%252FA050192%252Fbuschmeier_gfm2019.jpg/full/,240/0/native.jpg" /></a></figure>
-                                    <p>In der Mainzer Akademie hatte <a class="preview persons A003932" href="">Gabriele Buschmeier</a> zunächst in der <a href="http://www.gluck-gesamtausgabe.de">Christoph Willibald Gluck
-                  Gesamtausgabe <i class="fa fa-external-link" aria-hidden="true"></i></a> gearbeitet, die sie bis zuletzt auch neben ihrer im Sommer
-               1994 angetretenen Koordinatorenstelle für die musikwissenschaftlichen
-               Editionsvorhaben leitete. Als Nachfolgerin von <a class="preview persons A003722" href="">Dr. Hanspeter
-                  Bennwitz</a>, dem es gemeinsam mit dem Generalsekretär <span class="681144632712521101161011143266114101110110101114">Dr. Günter
-                  Brenner</span> nach langen Bemühungen gelungen war, in Abstimmung mit
-                  <a class="preview persons A009637" href="">Prof. Dr. Gerhard Allroggen</a> (Detmold),
-                  <a class="preview persons A009757" href="">Prof. Dr. Ludwig Finscher</a> (Heidelberg) und
-               <a class="preview persons A009609" href="">Dr. Wolfgang Goldhan</a> (<a href="https://staatsbibliothek-berlin.de">Staatsbibliothek zu
-               Berlin <i class="fa fa-external-link" aria-hidden="true"></i></a>) die geplante Weber-Gesamtausgabe Anfang 1993 zunächst mit der Berliner
-               Arbeitsstelle in die Finanzierung durch das Akademienprogramm zu überführen, gehörte
-               es zu den ersten Aufgaben von Gabriele Buschmeier, auch die Detmolder
-               Arbeitsstelle – die bis dahin im Rahmen einer DFG-Förderung nur mit der Vorbereitung
-               einer Briefausgabe beauftragt war – ins Akademienprogramm aufzunehmen. Das gelang 1996, zum Bedauern von <a class="preview persons A003932" href="">Gabriele Buschmeier</a> allerdings nur mit einer statt der auch für <a class="preview places A130001" href="">Detmold</a> vorgesehenen zweiten Mitarbeiter*innen-Stelle. Über lange Jahre
-               hat sie sich bemüht, diese zweite Stelle für die Ausgabe zu schaffen – was ihr
-               schließlich 2009 gelang und zur Anstellung <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadlers</a> führte, mit dem die
-               digitalen Bestrebungen der Ausgabe dann in professionelle Bahnen gelenkt wurden.</p>
+                                    <p>In der Mainzer Akademie hatte <a class="preview persons A003932" href="">Gabriele Buschmeier</a>
+               zunächst in der <a href="http://www.gluck-gesamtausgabe.de">Christoph Willibald Gluck Gesamtausgabe <i class="fa fa-external-link" aria-hidden="true"></i></a> gearbeitet, die sie bis zuletzt
+               auch neben ihrer im Sommer 1994 angetretenen Koordinatorenstelle für die
+               musikwissenschaftlichen Editionsvorhaben leitete. Als Nachfolgerin von <a class="preview persons A003722" href="">Dr. Hanspeter Bennwitz</a>, dem es gemeinsam mit dem
+               Generalsekretär <span class="681144632712521101161011143266114101110110101114">Dr. Günter Brenner</span> nach langen Bemühungen
+               gelungen war, in Abstimmung mit <a class="preview persons A009637" href="/exist/apps/WeGA-WebApp/de/A009637.html">Prof. Dr. Gerhard
+                  Allroggen</a> (Detmold), <a class="preview persons A009757" href="">Prof. Dr. Ludwig
+                  Finscher</a> (Heidelberg) und <a class="preview persons A009609" href="">Dr. Wolfgang
+                  Goldhan</a> (<a href="https://staatsbibliothek-berlin.de">Staatsbibliothek zu Berlin <i class="fa fa-external-link" aria-hidden="true"></i></a>) die geplante
+               Weber-Gesamtausgabe Anfang 1993 zunächst mit der Berliner Arbeitsstelle in die
+               Finanzierung durch das Akademienprogramm zu überführen, gehörte es zu den ersten
+               Aufgaben von Gabriele Buschmeier, auch die Detmolder Arbeitsstelle – die bis dahin im
+               Rahmen einer DFG-Förderung nur mit der Vorbereitung einer Briefausgabe beauftragt war
+               – ins Akademienprogramm aufzunehmen. Das gelang 1996, zum Bedauern von <a class="preview persons A003932" href="">Gabriele Buschmeier</a> allerdings nur mit einer statt der
+               auch für <a class="preview places A130001" href="">Detmold</a> vorgesehenen zweiten
+               Mitarbeiter*innen-Stelle. Über lange Jahre hat sie sich bemüht, diese zweite Stelle
+               für die Ausgabe zu schaffen – was ihr schließlich 2009 gelang und zur Anstellung
+                  <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadlers</a> führte, mit dem die digitalen
+               Bestrebungen der Ausgabe dann in professionelle Bahnen gelenkt wurden.</p>
                                     <p>Aber nicht nur durch die – auch finanziell teils schwierigen – Geburtswehen der
                Ausgabe entstand rasch ein intensiver Austausch mit der WeGA, sondern ebenso durch
-               eine Aktivität, die noch <a class="preview persons A003932" href="">Buschmeiers</a> Vorgänger <a class="preview persons A003722" href="">Bennwitz</a> angeregt hatte: Im Sommer
-               1994 fand in der Akademie das folgenreiche Kolloquium <span class="tei_hi_italic"><a href="http://www.steiner-verlag.de/titel/50623.html">Komponistenbriefe des 19. Jahrhunderts <i class="fa fa-external-link" aria-hidden="true"></i></a></span> statt, bei dem <a class="preview persons A009637" href="">Gerhard
-                     Allroggen</a> und <a class="preview persons A009000" href="">Joachim Veit</a> die schon von der
-               neuartigen Arbeit mit dem „Rechner“ geprägten Pläne der Weber-Briefausgabe (die
-               integraler Bestandteil der Werkausgabe sein sollte) ausführlich vorstellen durften.
-               Erstmals war auf diesem Kolloquium von „Daten“ und „Datenaustausch“ die
-               Rede. Zugleich führte das große Bedürfnis nach einer Abstimmung zwischen den verschiedenen
-               Editionsvorhaben zur Gründung der <span class="tei_hi_bold">AG Musikerbriefe</span>, die als erstes in einem kleineren Kreise <span class="tei_hi_italic"><a href="http://www.adwmainz.de/projekte/musikwissenschaftliche-editionen/publikationen.html">Richtlinien-Empfehlungen zur Edition von Musikerbriefen <i class="fa fa-external-link" aria-hidden="true"></i></a></span> erarbeitete, die
-               1997 erschienen und erfreulich viel genutzt wurden. Unter Leitung von <a class="preview persons A003932" href="">Gabriele
-               Buschmeier</a> tagte diese AG dann regelmäßig in erweiterter Form bei den jährlichen
-               Treffen der Gesellschaft für Musikforschung im Rahmen der Aktivitäten der <a href="http://www.fffi-musik.de/">Fachgruppe
-               Freie Forschungsinstitute <i class="fa fa-external-link" aria-hidden="true"></i></a> und vermittelte dabei nicht nur vielfältige Impulse für
+               eine Aktivität, die noch <a class="preview persons A003932" href="">Buschmeiers</a> Vorgänger
+                  <a class="preview persons A003722" href="">Bennwitz</a> angeregt hatte: Im Sommer 1994 fand in
+               der Akademie das folgenreiche Kolloquium <span class="tei_hi_italic"><a href="http://www.steiner-verlag.de/titel/50623.html">Komponistenbriefe des 19. Jahrhunderts <i class="fa fa-external-link" aria-hidden="true"></i></a></span> statt, bei dem <a class="preview persons A009637" href="/exist/apps/WeGA-WebApp/de/A009637.html">Gerhard Allroggen</a> und <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim
+                  Veit</a> die schon von der neuartigen Arbeit mit dem „Rechner“
+               geprägten Pläne der Weber-Briefausgabe (die integraler Bestandteil der Werkausgabe
+               sein sollte) ausführlich vorstellen durften. Erstmals war auf diesem Kolloquium von
+                  „Daten“ und „Datenaustausch“ die Rede. Zugleich führte das große
+               Bedürfnis nach einer Abstimmung zwischen den verschiedenen Editionsvorhaben zur
+               Gründung der <span class="tei_hi_bold">AG Musikerbriefe</span>, die als erstes in einem kleineren
+               Kreise <span class="tei_hi_italic"><a href="https://www.adwmainz.de/fileadmin/adwmainz/MuKo_Publikationen/richtlinien-musikerbriefe.pdf">Richtlinien-Empfehlungen zur Edition von
+                  Musikerbriefen <i class="fa fa-external-link" aria-hidden="true"></i></a></span> erarbeitete, die 1997 erschienen und erfreulich viel
+               genutzt wurden. Unter Leitung von <a class="preview persons A003932" href="">Gabriele
+                  Buschmeier</a> tagte diese AG dann regelmäßig in erweiterter Form bei den
+               jährlichen Treffen der Gesellschaft für Musikforschung im Rahmen der Aktivitäten der
+                  <a href="http://www.fffi-musik.de/">Fachgruppe Freie
+                  Forschungsinstitute <i class="fa fa-external-link" aria-hidden="true"></i></a> und vermittelte dabei nicht nur vielfältige Impulse für
                neue Briefprojekte, sondern förderte auch die Zusammenarbeit der Ausgaben.</p>
                                     <p>Diese Zusammenarbeit und der Austausch zwischen den Ausgaben, aber vor allem auch
                über die engen Fachgrenzen hinaus gehörten stets zu den besonderen Anliegen von
-               <a class="preview persons A003932" href="">Gabriele Buschmeier</a>. So unterstützte sie nicht nur die von <a class="preview persons A009736" href="">Helga
-                  Lühning</a> und später <a class="preview persons A004220" href="">Reinmar Emans</a>, <span class="75108971171153268246103101">Klaus Döge</span> und
+                  <a class="preview persons A003932" href="">Gabriele Buschmeier</a>. So unterstützte sie nicht
+               nur die von <a class="preview persons A009736" href="">Helga Lühning</a> und später <a class="preview persons A004220" href="">Reinmar Emans</a>, <span class="75108971171153268246103101">Klaus Döge</span> und
                   <span class="651141091051103282979798">Armin Raab</span> als Fachgruppensprecher*innen gepflegte fruchtbare
                Zusammenarbeit mit der AG für germanistische Edition oder die Veranstaltung
                spezieller Editorentagungen, sondern ebenso entsprechende Initiativen der WeGA, wie
-               etwa das Berliner <a class="preview news A050009" href="">Kolloquium zur Schauspielmusik in Webers Zeit</a> Ende 1998 und
-               inbesondere die zunehmenden digitalen Aktivitäten der Ausgabe, die 2003 eine
-               bescheidene eigene Website aufsetzte. 2004 veranstaltete die WeGA beim Internationalen Kongreß der GfM in
-               Weimar ein eigenes halbtägiges Symposion <span class="tei_hi_italic">Musikalisches Erbe im
-                  digitalen Zeitalter – Chancen und Probleme neuer Techniken</span> und
-               2005 legte sie im Rahmen der Edition der konzertanten Klarinettenwerke Webers (Serie VI, Bd. 3)
-               erstmals im Rahmen einer wissenschaftlichen Gesamtausgabe eine digitale Musikedition vor
-               (als bandbegleitende CD mit Hilfe der Edirom-Technik, erstellt von <a class="preview persons A008059" href="">Ralf
+               etwa das Berliner <a class="preview news A050009" href="">Kolloquium zur Schauspielmusik in
+                  Webers Zeit</a> Ende 1998 und inbesondere die zunehmenden digitalen Aktivitäten
+               der Ausgabe, die 2003 eine bescheidene eigene Website aufsetzte. 2004 veranstaltete
+               die WeGA beim Internationalen Kongreß der GfM in Weimar ein eigenes halbtägiges
+               Symposion <span class="tei_hi_italic">Musikalisches Erbe im digitalen Zeitalter – Chancen und
+                  Probleme neuer Techniken</span> und 2005 legte sie im Rahmen der Edition der
+               konzertanten Klarinettenwerke Webers (Serie VI, Bd. 3) erstmals im Rahmen einer
+               wissenschaftlichen Gesamtausgabe eine digitale Musikedition vor (als bandbegleitende
+               CD mit Hilfe der Edirom-Technik, erstellt von <a class="preview persons A008059" href="">Ralf
                   Schnieders</a> und <a class="preview persons A001F41" href="">Johannes Kepper</a>).
-               Zugleich setzte <a class="preview persons A003932" href="">Gabriele Buschmeier</a> eigene Impulse: So veranstaltete sie im November 2006 gemeinsam mit dem Germanisten
-               <span class="801141111024632681144632751171141163271228114116110101114">Prof. Dr. Kurt Gärtner</span> vom Trierer <a href="https://kompetenzzentrum.uni-trier.de">Kompetenzzentrum für elektronische Erschließungs-
-               und Publikationsverfahren in den Geisteswissenschaften <i class="fa fa-external-link" aria-hidden="true"></i></a> erstmalig eine Tagung zum
-               Thema <span class="tei_hi_italic"><a href="http://www.adwmainz.de/projekte/musikwissenschaftliche-editionen/veranstaltungsarchiv/workshops-und-kolloquien/digitale-medien-und-musikedition-2006.html">Digitale Medien und Musikedition <i class="fa fa-external-link" aria-hidden="true"></i></a></span> in der Mainzer
+               Zugleich setzte <a class="preview persons A003932" href="">Gabriele Buschmeier</a> eigene
+               Impulse: So veranstaltete sie im November 2006 gemeinsam mit dem Germanisten
+                  <span class="801141111024632681144632751171141163271228114116110101114">Prof. Dr. Kurt Gärtner</span> vom Trierer <a href="https://kompetenzzentrum.uni-trier.de">Kompetenzzentrum
+                  für elektronische Erschließungs- und Publikationsverfahren in den
+                  Geisteswissenschaften <i class="fa fa-external-link" aria-hidden="true"></i></a> erstmalig eine Tagung zum Thema <span class="tei_hi_italic"><a href="https://web.archive.org/web/20250219083536/https://www.adwmainz.de/forschung/projekte/musikwissenschaftliche-editionen/startseite/veranstaltungsarchiv/workshops-und-kolloquien/digitale-medien-und-musikedition-2006.html">Digitale Medien und Musikedition <i class="fa fa-external-link" aria-hidden="true"></i></a></span> in der Mainzer
                Akademie. Davon angeregt folgte gut ein Jahr später die internationale und
-               interdisziplinäre Paderborner Tagung <span class="tei_hi_italic"><a class="preview news A050075" href="">Digitale Edition zwischen
-                  Experiment und Standardisierung</a></span>, die zwei langfristig wichtige Ergebnisse
-               hatte: Zum einen führte sie zur Gründung einer <span class="tei_hi_italic"><a href="https://tei-c.org/Activities/SIG/Correspondence/">TEI Special Interest
-                  Group Correspondence <i class="fa fa-external-link" aria-hidden="true"></i></a></span>, die jüngst mit dem an der BBAW realisierten Projekt <span class="tei_hi_italic"><a href="https://correspsearch.net">CorrespSearch <i class="fa fa-external-link" aria-hidden="true"></i></a></span> das Tor zu einer fach- und länderübergreifenden
-               Verknüpfung von Briefeditionen weit geöffnet hat. (Gerne erinnere ich mich in dieser
-               Zeit auch noch an das einzige gemeinsame Referat mit Gabriele Buschmeier unter dem
-               Titel <span class="tei_hi_italic">XML- Briefcodierung mit TEI P 5 im Kontext der
-                  Weber-Gesamtausgabe</span> bei dem Workshop der Berlin-Brandenburgischen Akademie der Wissenschaften <span class="tei_hi_italic"><a href="https://www.bbaw.de/veranstaltungen/veranstaltung-workshop-digitale-editionen-der-ag-elektronisches-publizieren-der-union-der-deutschen-akademien">Digitale
-                  Editionen <i class="fa fa-external-link" aria-hidden="true"></i></a></span> im Oktober 2007.) Zum anderen startete unter dem Dach der
-               Mainzer Akademie eine <span class="tei_hi_italic">Arbeitsgruppe Musikcodierung</span>, die sich
-               um eine Sondierung von Musiknotations-Standards bemühte, die sich für
-               wissenschaftliche Editionen eignen. <a class="preview persons A003932" href="">Gabriele Buschmeier</a> gehörte dann auch zu dem
-               kleinen Häuflein von Enthusiasten, das sich im Sommer 2009 mit einer Sammlung
-               möglichst diverser und komplexer Notationsprobleme nach Charlottesville/Virginia
-               aufmachte, um im kühlen Keller der Bibliothek der University of Virginia mit dem
-               Entwickler von <a href="https://music-encoding.org">MEI <i class="fa fa-external-link" aria-hidden="true"></i></a>, <span class="80101114114121328211110897110100">Perry Roland</span>, und dem TEI-Spezialisten
-               <span class="80114111102463268114463268971101051011083280105116116105">Prof. Dr. Daniel Pitti</span>, mit <a class="preview persons A006438" href="">Prof. Dr. Eleanor
-                  Selfridge-Field</a> vom <a href="https://www.ccarh.org">Center for Computer Assisted Research in the
-               Humanities <i class="fa fa-external-link" aria-hidden="true"></i></a> (CCARH) der Stanford University sowie weiteren amerikanischen Kolleginnen
-               und Kollegen mehrere Tage lang die Leistungsfähigkeit von MEI gründlich auf den
-               Prüfstand zu stellen. Damit waren die Weichen für die Etablierung von MEI als
+               interdisziplinäre Paderborner Tagung <span class="tei_hi_italic"><a class="preview news A050075" href="">Digitale Edition zwischen Experiment und Standardisierung</a></span>, die zwei
+               langfristig wichtige Ergebnisse hatte: Zum einen führte sie zur Gründung einer <span class="tei_hi_italic"><a href="https://tei-c.org/Activities/SIG/Correspondence/">TEI Special Interest Group Correspondence <i class="fa fa-external-link" aria-hidden="true"></i></a></span>, die
+               jüngst mit dem an der BBAW realisierten Projekt <span class="tei_hi_italic"><a href="https://correspsearch.net">CorrespSearch <i class="fa fa-external-link" aria-hidden="true"></i></a></span>
+               das Tor zu einer fach- und länderübergreifenden Verknüpfung von Briefeditionen weit
+               geöffnet hat. (Gerne erinnere ich mich in dieser Zeit auch noch an das einzige
+               gemeinsame Referat mit Gabriele Buschmeier unter dem Titel <span class="tei_hi_italic">XML-
+                  Briefcodierung mit TEI P 5 im Kontext der Weber-Gesamtausgabe</span> bei dem
+               Workshop der Berlin-Brandenburgischen Akademie der Wissenschaften <span class="tei_hi_italic"><a href="https://www.bbaw.de/veranstaltungen/veranstaltung-workshop-digitale-editionen-der-ag-elektronisches-publizieren-der-union-der-deutschen-akademien">Digitale Editionen <i class="fa fa-external-link" aria-hidden="true"></i></a></span> im Oktober 2007.) Zum anderen
+               startete unter dem Dach der Mainzer Akademie eine <span class="tei_hi_italic">Arbeitsgruppe
+                  Musikcodierung</span>, die sich um eine Sondierung von Musiknotations-Standards
+               bemühte, die sich für wissenschaftliche Editionen eignen. <a class="preview persons A003932" href="">Gabriele Buschmeier</a> gehörte dann auch zu dem kleinen Häuflein von
+               Enthusiasten, das sich im Sommer 2009 mit einer Sammlung möglichst diverser und
+               komplexer Notationsprobleme nach Charlottesville/Virginia aufmachte, um im kühlen
+               Keller der Bibliothek der University of Virginia mit dem Entwickler von <a href="https://music-encoding.org">MEI <i class="fa fa-external-link" aria-hidden="true"></i></a>, <span class="80101114114121328211110897110100">Perry
+                  Roland</span>, und dem TEI-Spezialisten <span class="80114111102463268114463268971101051011083280105116116105">Prof. Dr. Daniel
+                  Pitti</span>, mit <a class="preview persons A006438" href="">Prof. Dr. Eleanor
+                  Selfridge-Field</a> vom <a href="https://www.ccarh.org">Center for Computer Assisted Research in the Humanities <i class="fa fa-external-link" aria-hidden="true"></i></a>
+               (CCARH) der Stanford University sowie weiteren amerikanischen Kolleginnen und
+               Kollegen mehrere Tage lang die Leistungsfähigkeit von MEI gründlich auf den Prüfstand
+               zu stellen. Damit waren die Weichen für die Etablierung von MEI als
                Codierungsstandard für die wissenschaftliche Community gestellt. Und um den hier
                freigesetzen Elan der Beteiligten zu nutzen, folgten nicht nur weitere internationale
-               Workshops, sondern <a class="preview persons A003932" href="">Gabriele Buschmeier</a> organisierte im Mai 2013 an der Mainzer Akademie auch die erste der
-               nun jährlich im Wechsel in Europa und Übersee stattfindenden <span class="tei_hi_italic"><a href="http://www.adwmainz.de/nachrichten/artikel/the-music-encoding-conference-2013.html">Music
-                  Encoding Conferences <i class="fa fa-external-link" aria-hidden="true"></i></a></span> (MEC). Schließlich fand die <span class="tei_hi_italic"><a href="https://music-encoding.org">Music Encoding Initiative <i class="fa fa-external-link" aria-hidden="true"></i></a></span> durch ihre Bemühungen noch im selben
-               Jahr eine „Heimstatt“ an der AdW Mainz, wo sie seitdem organisatorisch betreut
+               Workshops, sondern <a class="preview persons A003932" href="">Gabriele Buschmeier</a>
+               organisierte im Mai 2013 an der Mainzer Akademie auch die erste der nun jährlich im
+               Wechsel in Europa und Übersee stattfindenden <span class="tei_hi_italic"><a href="https://web.archive.org/web/20250219084019/https://www.adwmainz.de/akademie/nachrichten/artikel/the-music-encoding-conference-2013.html">Music Encoding Conferences <i class="fa fa-external-link" aria-hidden="true"></i></a></span> (MEC). Schließlich fand
+               die <span class="tei_hi_italic"><a href="https://music-encoding.org">Music
+                     Encoding Initiative <i class="fa fa-external-link" aria-hidden="true"></i></a></span> durch ihre Bemühungen noch im selben Jahr eine
+                  „Heimstatt“ an der AdW Mainz, wo sie seitdem organisatorisch betreut
                wird.</p>
                                     <p>Über diese strukturellen und fachpolitischen Entwicklungen hinaus geschah die
-               Förderung aber auch ganz konkret im Rahmen der WeGA: So hatte <a class="preview persons A003932" href="">Gabriele Buschmeier</a> im
-               Mai 2011 in der Landesvertretung Rheinland-Pfalz in
-               <a class="preview places A130002" href="">Berlin</a> in Kooperation mit der <a href="https://staatsbibliothek-berlin.de">Staatsbibliothek zu Berlin <i class="fa fa-external-link" aria-hidden="true"></i></a> eine Veranstaltung unter dem
-               Motto <span class="tei_hi_italic"><a class="preview news A050093" href="">Weber Digital</a></span> organisiert, bei der ein erstes größeres
-               Textkorpus der Edition der Briefe, Tagebücher, Schriften und Dokumente Webers
-               offiziell „freigeschaltet“ wurde. Musik, Lesungen und Kurzvorträge vermittelten
-               ein anschauliches Bild der Weber-Ausgabe, deren Arbeit damals von
-               <a class="preview persons A009507" href="">Prof. Dr. Norbert Miller</a> eindrucksvoll gewürdigt wurde. Mit
-               großem Wohlwollen begleitete <a class="preview persons A003932" href="">Gabriele Buschmeier</a> auch weitere öffentlichkeitswirksame
-               Aktivitäten der Mitarbeiter*innen der WeGA, so die Publikation der fast 25 Jahre von <a class="preview persons A009005" href="">Frank
-                  Ziegler</a> ehrenamtlich betreuten <span class="tei_hi_italic"><a href="https://www.webergesellschaft.de/publikationen/weberiana/">Weberiana <i class="fa fa-external-link" aria-hidden="true"></i></a></span>, dem Mitteilungsblatt der
-               <a href="https://www.webergesellschaft.de/">Internationalen Carl-Maria-von-Weber-Gesellschaft <i class="fa fa-external-link" aria-hidden="true"></i></a>, das sich über die Jahre hinweg zu
-               einem den <span class="tei_hi_italic"><a href="/exist/apps/WeGA-WebApp/de/A070011.html#weber-studien">Weber-Studien</a></span> adäquaten Periodikum entwickelte, für
-               das sie immer wieder lobende Worte fand, oder die Publikation der <span class="tei_hi_italic"><a href="https://www.allitera-verlag.de/buch/der-freischuetz/">Freischütz <i class="fa fa-external-link" aria-hidden="true"></i></a></span>- und <a href="https://www.allitera-verlag.de/buch/oberon/"><span class="tei_hi_italic">Oberon</span>-Libretti <i class="fa fa-external-link" aria-hidden="true"></i></a> durch <a class="preview persons A009004" href="">Solveig
-                     Schreiter</a> im Allitera-Verlag und die erstmals mit Farbfaksimiles arbeitende print-on-demand-Publikation der <a href="https://www.allitera-verlag.de/buch/die-hoffnung-muss-das-beste-thun/">Briefe Webers aus der Emser Kur <i class="fa fa-external-link" aria-hidden="true"></i></a> durch <a class="preview persons A003672" href="">Eveline Bartlitz</a>, <a class="preview persons A009002" href="">Dagmar Beck</a> und <a class="preview persons A009000" href="">Joachim Veit</a> in demselben Verlag. Ebenso war es ihr ein Anliegen, die erstmals im Rahmen
-               der WeGA entwickelten und am <a href="https://www.muwi-detmold-paderborn.de">Musikwissenschaftlichen Seminar Detmold/Paderborn <i class="fa fa-external-link" aria-hidden="true"></i></a> weiterbetreuten <a href="https://www.edirom.de/werkzeuge.html">Edirom-Werkzeuge <i class="fa fa-external-link" aria-hidden="true"></i></a> breiter nutzbar zu machen – so haben weitere
-               Akademieprojekte wie <a href="https://www.opera.adwmainz.de">OPERA <i class="fa fa-external-link" aria-hidden="true"></i></a> oder die <a href="https://www.reger-werkausgabe.de/">Reger-Werkausgabe <i class="fa fa-external-link" aria-hidden="true"></i></a> diese Technik übernommen,
-               während in Detmold mit BMBF-Förderung 2013 das Projekt <span class="tei_hi_italic"><a href="https://freischuetz-digital.de">Freischütz
-                  Digital <i class="fa fa-external-link" aria-hidden="true"></i></a></span> verwirklicht werden konnte. Aber es ging nicht nur um die Werkzeuge,
-               sondern immer auch um die Personen, die sich um diese neuen Wege verdient gemacht hatten
-               – <a class="preview persons A003932" href="">Gabriele Buschmeier</a> war ihre Erleichterung deutlich anzumerken, als Ende 2014 mit dem neuen
-               Akademie-Projekt <span class="tei_hi_italic"><a href="https://beethovens-werkstatt.de">Beethovens Werkstatt <i class="fa fa-external-link" aria-hidden="true"></i></a></span> nicht nur ein inhaltlich
-               außerordentlich spannendes Projekt genehmigt wurde, sondern für schon bewährte Mitarbeiter*innen gute
-               Ausgangsbedingungen für eine Weiterentwicklung der neuen digitalen Techniken entstanden.</p>
+               Förderung aber auch ganz konkret im Rahmen der WeGA: So hatte <a class="preview persons A003932" href="">Gabriele Buschmeier</a> im Mai 2011 in der Landesvertretung
+               Rheinland-Pfalz in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> in Kooperation mit
+               der <a href="https://staatsbibliothek-berlin.de">Staatsbibliothek zu Berlin <i class="fa fa-external-link" aria-hidden="true"></i></a> eine Veranstaltung unter dem Motto <span class="tei_hi_italic"><a class="preview news A050093" href="">Weber Digital</a></span> organisiert,
+               bei der ein erstes größeres Textkorpus der Edition der Briefe, Tagebücher, Schriften
+               und Dokumente Webers offiziell „freigeschaltet“ wurde. Musik, Lesungen und
+               Kurzvorträge vermittelten ein anschauliches Bild der Weber-Ausgabe, deren Arbeit
+               damals von <a class="preview persons A009507" href="">Prof. Dr. Norbert Miller</a> eindrucksvoll
+               gewürdigt wurde. Mit großem Wohlwollen begleitete <a class="preview persons A003932" href="">Gabriele
+                  Buschmeier</a> auch weitere öffentlichkeitswirksame Aktivitäten der
+               Mitarbeiter*innen der WeGA, so die Publikation der fast 25 Jahre von <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a> ehrenamtlich betreuten <span class="tei_hi_italic"><a href="https://www.webergesellschaft.de/publikationen/weberiana/">Weberiana <i class="fa fa-external-link" aria-hidden="true"></i></a></span>, dem Mitteilungsblatt der <a href="https://www.webergesellschaft.de/">Internationalen
+                  Carl-Maria-von-Weber-Gesellschaft <i class="fa fa-external-link" aria-hidden="true"></i></a>, das sich über die Jahre hinweg zu einem
+               den <span class="tei_hi_italic"><a href="/exist/apps/WeGA-WebApp/de/A070011.html#weber-studien">Weber-Studien</a></span> adäquaten Periodikum entwickelte, für das sie immer
+               wieder lobende Worte fand, oder die Publikation der <span class="tei_hi_italic"><a href="https://allitera-verlag.de/buch/der-freischuetz/">Freischütz <i class="fa fa-external-link" aria-hidden="true"></i></a></span>- und <a href="https://allitera-verlag.de/buch/oberon/"><span class="tei_hi_italic">Oberon</span>-Libretti <i class="fa fa-external-link" aria-hidden="true"></i></a> durch <a class="preview persons A009004" href="">Solveig
+                  Schreiter</a> im Allitera-Verlag und die erstmals mit Farbfaksimiles
+               arbeitende print-on-demand-Publikation der <a href="https://allitera-verlag.de/buch/die-hoffnung-muss-das-beste-thun/">Briefe Webers aus der Emser Kur <i class="fa fa-external-link" aria-hidden="true"></i></a> durch <a class="preview persons A003672" href="/exist/apps/WeGA-WebApp/de/A003672.html">Eveline Bartlitz</a>, <a class="preview persons A009002" href="/exist/apps/WeGA-WebApp/de/A009002.html">Dagmar
+                  Beck</a> und <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a> in demselben
+               Verlag. Ebenso war es ihr ein Anliegen, die erstmals im Rahmen der WeGA entwickelten
+               und am <a href="https://www.muwi-detmold-paderborn.de">Musikwissenschaftlichen Seminar Detmold/Paderborn <i class="fa fa-external-link" aria-hidden="true"></i></a> weiterbetreuten <a href="https://www.edirom.de/werkzeuge.html">Edirom-Werkzeuge <i class="fa fa-external-link" aria-hidden="true"></i></a> breiter nutzbar zu machen – so haben weitere
+               Akademieprojekte wie <a href="https://web.archive.org/web/20250219084331/https://www.opera.adwmainz.de/informationen.html">OPERA <i class="fa fa-external-link" aria-hidden="true"></i></a> oder die <a href="https://www.reger-werkausgabe.de/">Reger-Werkausgabe <i class="fa fa-external-link" aria-hidden="true"></i></a> diese Technik übernommen, während in
+               Detmold mit BMBF-Förderung 2013 das Projekt <span class="tei_hi_italic"><a href="https://freischuetz-digital.de">Freischütz
+                     Digital <i class="fa fa-external-link" aria-hidden="true"></i></a></span> verwirklicht werden konnte. Aber es ging nicht nur um die
+               Werkzeuge, sondern immer auch um die Personen, die sich um diese neuen Wege verdient
+               gemacht hatten – <a class="preview persons A003932" href="">Gabriele Buschmeier</a> war ihre
+               Erleichterung deutlich anzumerken, als Ende 2014 mit dem neuen Akademie-Projekt <span class="tei_hi_italic"><a href="https://beethovens-werkstatt.de">Beethovens Werkstatt <i class="fa fa-external-link" aria-hidden="true"></i></a></span> nicht nur ein inhaltlich außerordentlich
+               spannendes Projekt genehmigt wurde, sondern für schon bewährte Mitarbeiter*innen gute
+               Ausgangsbedingungen für eine Weiterentwicklung der neuen digitalen Techniken
+               entstanden.</p>
                                     <p>Ohnehin gehörte das lebhafte und von der Sorge um die Arbeitsbedingungen und die
                persönliche Zufriedenheit geprägte Interesse an den von ihr betreuten
                Mitarbeiter*innen der Editionsprojekte zu den Charakterzügen, die den Umgang mit
-               <a class="preview persons A003932" href="">Gabriele Buschmeier</a> zutiefst sympathisch machten. Stets hatte man bei ihr den
-               Eindruck, nicht als Bände-produzierender Beschäftigter, sondern als Mensch im
-               Mittelpunkt zu stehen. Vielleicht hat auch ihre eigene Arbeit in der Gluck-Edition
-               dazu beigetragen, dass sie allzeit Empathie angesichts der Nöte und Probleme von
-               Editor*innen zeigte und mehr Verständnis für mancherlei Unwägbarkeiten beim Fortschritt
-               der Editionsprojekte aufbrachte als jene Gremien, die ihre Aufmerksamkeit nur auf die
-               korrekte Umsetzung erstellter Pläne richten. Warmherzig hat sie das große Engagement
-               vieler Kolleg*innen anerkannt und hatte immer ein offenes Ohr für
-               Schwierigkeiten, die sich im Personellen oder Inhaltlichen stellten. Dabei bemühte
-               sie sich stets um einen gerechten Ausgleich der Interessen – was die WeGA gerade auch
-               in den jahrelangen Verhandlungen mit Institutionen oder dem Verlag als sehr
-               sympathischen Charakterzug erfahren durfte.</p>
-                                    <p>Nach der in <a class="preview places A130001" href="">Detmold</a> und <a class="preview places A130144" href="">Paderborn</a> veranstalteten Jahrestagung der Gesellschaft für
-               Musikforschung im vergangenen Herbst – bei der passend zum Standort wiederum ein
-               eigenes digitales Symposium unter dem Motto <span class="tei_hi_italic"><a href="https://web.archive.org/web/20200810110054/https://www.muwi-detmold-paderborn.de/gfm-2019/hauptsymposien/symposium-brueckenschlaege-informatik-und-musikwissenschaft-im-dialog">Brückenschläge
-                  – Informatik und Musikwissenschaft im Dialog <i class="fa fa-external-link" aria-hidden="true"></i></a></span> stattfand – kam es zu einer
-               letzten persönlichen Begegnung mit <a class="preview persons A003932" href="">Gabriele Buschmeier</a> am <span class="tei_date">10./11. Oktober 2019</span> in <a class="preview places A130028" href="">Mainz</a> anlässlich
-               der Themenkonferenz <span class="tei_hi_italic"><a href="http://www.adwmainz.de/nachrichten/artikel/musikwissenschaftliche-vorhaben-im-21-jahrhundert-eine-themenkonferenz.html">Musikwissenschaftliche Vorhaben im 20. Jahrhundert <i class="fa fa-external-link" aria-hidden="true"></i></a></span>. Für deren
-               Sektion <span class="tei_hi_italic">Zukunftsperspektiven</span> hatte <a class="preview persons A003932" href="">Gabriele Buschmeier</a> u.a.
-               die „altgedienten digitalen Detmolder“, <a class="preview persons A001F41" href="">Johannes Kepper</a>, <a class="preview persons A0016FD" href="">Daniel Röwenstrunk</a>,
-               <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter Stadler</a> und <span class="7411197991041051093286101105116">Joachim Veit</span> eingeladen. Die „Investition in die Köpfe“, die
-               der Autor dieser Zeilen damals im Hinblick auf ein Gelingen des digitalen Wandels
-               nachdrücklich forderte, war eine Sache, die <a class="preview persons A003932" href="">Gabriele Buschmeier</a> in der Zeit ihres
-               Wirkens an der Akademie nachhaltig betrieben hat – in der ihr eigenen, höchst sympathischen und stets persönlich wohlwollend fördernden Art. Sie hat mit
-               ihrer Art den Editionen in einer Zeit des Übergangs etwas mitgegeben, das wir mit
-               Dankbarkeit bewahren, aber wo immer uns möglich, auch in ihrem Sinne weitergeben
-               sollten. Wir sind über ihren viel zu frühen Tod sehr traurig. Die Weber-Gesamtausgabe hat ihr unendlich viel zu verdanken und sie wird uns allen
-               sehr fehlen.</p>
+                  <a class="preview persons A003932" href="">Gabriele Buschmeier</a> zutiefst sympathisch
+               machten. Stets hatte man bei ihr den Eindruck, nicht als Bände-produzierender
+               Beschäftigter, sondern als Mensch im Mittelpunkt zu stehen. Vielleicht hat auch ihre
+               eigene Arbeit in der Gluck-Edition dazu beigetragen, dass sie allzeit Empathie
+               angesichts der Nöte und Probleme von Editor*innen zeigte und mehr Verständnis für
+               mancherlei Unwägbarkeiten beim Fortschritt der Editionsprojekte aufbrachte als jene
+               Gremien, die ihre Aufmerksamkeit nur auf die korrekte Umsetzung erstellter Pläne
+               richten. Warmherzig hat sie das große Engagement vieler Kolleg*innen anerkannt und
+               hatte immer ein offenes Ohr für Schwierigkeiten, die sich im Personellen oder
+               Inhaltlichen stellten. Dabei bemühte sie sich stets um einen gerechten Ausgleich der
+               Interessen – was die WeGA gerade auch in den jahrelangen Verhandlungen mit
+               Institutionen oder dem Verlag als sehr sympathischen Charakterzug erfahren
+               durfte.</p>
+                                    <p>Nach der in <a class="preview places A130001" href="">Detmold</a> und <a class="preview places A130144" href="">Paderborn</a> veranstalteten Jahrestagung der Gesellschaft
+               für Musikforschung im vergangenen Herbst – bei der passend zum Standort wiederum ein
+               eigenes digitales Symposium unter dem Motto <span class="tei_hi_italic"><a href="https://web.archive.org/web/20200810110054/https://www.muwi-detmold-paderborn.de/gfm-2019/hauptsymposien/symposium-brueckenschlaege-informatik-und-musikwissenschaft-im-dialog">Brückenschläge – Informatik und Musikwissenschaft im
+                     Dialog <i class="fa fa-external-link" aria-hidden="true"></i></a></span> stattfand – kam es zu einer letzten persönlichen Begegnung
+               mit <a class="preview persons A003932" href="">Gabriele Buschmeier</a> am <span class="tei_date">10./11. Oktober 2019</span> in <a class="preview places A130028" href="">Mainz</a> anlässlich der Themenkonferenz <span class="tei_hi_italic"><a href="https://web.archive.org/web/20250219084416/https://www.adwmainz.de/akademie/nachrichten/artikel/musikwissenschaftliche-vorhaben-im-21-jahrhundert-eine-themenkonferenz.html">Musikwissenschaftliche Vorhaben im 20. Jahrhundert <i class="fa fa-external-link" aria-hidden="true"></i></a></span>.
+               Für deren Sektion <span class="tei_hi_italic">Zukunftsperspektiven</span> hatte <a class="preview persons A003932" href="">Gabriele Buschmeier</a> u.a. die „altgedienten digitalen
+                  Detmolder“, <a class="preview persons A001F41" href="">Johannes Kepper</a>, <a class="preview persons A0016FD" href="">Daniel Röwenstrunk</a>, <a class="preview persons A009001" href="/exist/apps/WeGA-WebApp/de/A009001.html">Peter
+                  Stadler</a> und <span class="7411197991041051093286101105116">Joachim Veit</span> eingeladen. Die
+                  „Investition in die Köpfe“, die der Autor dieser Zeilen damals im Hinblick
+               auf ein Gelingen des digitalen Wandels nachdrücklich forderte, war eine Sache, die
+                  <a class="preview persons A003932" href="">Gabriele Buschmeier</a> in der Zeit ihres Wirkens
+               an der Akademie nachhaltig betrieben hat – in der ihr eigenen, höchst sympathischen
+               und stets persönlich wohlwollend fördernden Art. Sie hat mit ihrer Art den Editionen
+               in einer Zeit des Übergangs etwas mitgegeben, das wir mit Dankbarkeit bewahren, aber
+               wo immer uns möglich, auch in ihrem Sinne weitergeben sollten. Wir sind über ihren
+               viel zu frühen Tod sehr traurig. Die Weber-Gesamtausgabe hat ihr unendlich viel zu
+               verdanken und sie wird uns allen sehr fehlen.</p>
                                 </div>
-                                <p class="authorDate"><a href="" class="persons"></a>, Sonntag, 9. August 2020</p>
+                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Sonntag, 9. August 2020</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -584,7 +606,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_a56bf1b595585146be6824f89867974d">
+                                        <div class="collapse apparatus-details" id="source_ef8616536d07482db04874d71b951a94">
                                             
                                             
                                             <div>
@@ -628,7 +650,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050192</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050192</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -688,6 +710,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -746,22 +771,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

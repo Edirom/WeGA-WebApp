@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Bei der diesjährigen Frankfurter Musikmesse wurden die Deutschen Musikeditionspreise „Best Edition 2018“ vom Deutschen Musikverlegerverband verliehen …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Musikeditionspreis für den Freischütz","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050314","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050314","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Bei der diesjährigen Frankfurter Musikmesse wurden die Deutschen Musikeditionspreise „Best Edition 2018“ vom Deutschen Musikverlegerverband verliehen …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Musikeditionspreis für den Freischütz","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050314","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050314","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles">Aktuelles</a>
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -290,7 +288,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050314/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Aktuelles/A050314/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -348,13 +346,13 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009637" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A009637" /> <span title="Anwählen, um &#34;Allroggen, Gerhard&#34; im Text zu markieren.">Allroggen, Gerhard</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;Veit, Joachim&#34; im Text zu markieren.">Veit, Joachim</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;Ziegler, Frank&#34; im Text zu markieren.">Ziegler, Frank</span> 
                                 </label>
                             </div>
                         </div>
@@ -378,7 +376,7 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d12e2">
-                                    <p>Bei der diesjährigen Frankfurter Musikmesse wurden die Deutschen Musikeditionspreise „<span class="tei_hi_bold">Best Edition 2018</span>“ vom Deutschen Musikverlegerverband verliehen. In der Kategorie der Gesamtausgaben errang den diesjährigen Preis die zweibändige Edition von Webers <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> im Rahmen der Weber-Gesamtausgabe (Serie III, Bd. 5a/b). Damit fand die Arbeit von <a class="preview persons A009637" href="">Gerhard Allroggen</a>, <a class="preview persons A009004" href="">Solveig Schreiter</a> und <span class="829710210297101108101328610510310810597110116105">Raffaele Viglianti</span> als Herausgeber und <a class="preview persons A009000" href="">Joachim Veit</a> und <a class="preview persons A009005" href="">Frank Ziegler</a> als Redakteure eine erfreuliche Anerkennung. Der Preis wurde am 12. April 2018 auf der Musikmesse durch den Präsidenten des Musikverlegerverbandes, Dr. <span class="651201011083283105107111114115107105">Axel Sikorski</span>, überreicht.</p>
+                                    <p>Bei der diesjährigen Frankfurter Musikmesse wurden die Deutschen Musikeditionspreise „<span class="tei_hi_bold">Best Edition 2018</span>“ vom Deutschen Musikverlegerverband verliehen. In der Kategorie der Gesamtausgaben errang den diesjährigen Preis die zweibändige Edition von Webers <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> im Rahmen der Weber-Gesamtausgabe (Serie III, Bd. 5a/b). Damit fand die Arbeit von <a class="preview persons A009637" href="/exist/apps/WeGA-WebApp/de/A009637.html">Gerhard Allroggen</a>, <a class="preview persons A009004" href="">Solveig Schreiter</a> und <span class="829710210297101108101328610510310810597110116105">Raffaele Viglianti</span> als Herausgeber und <a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a> und <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a> als Redakteure eine erfreuliche Anerkennung. Der Preis wurde am 12. April 2018 auf der Musikmesse durch den Präsidenten des Musikverlegerverbandes, Dr. <span class="651201011083283105107111114115107105">Axel Sikorski</span>, überreicht.</p>
                                     <p>In der Begründung der sechsköpfigen Jury heißt es u.a.:<br />
                „Der 2017 vorgelegte Band der Carl Maria von Weber-Werkausgabe (WeGA) präsentiert mit dem ‚<a class="preview works A020040" href="">Freischütz</a>‘ nicht nur eines der bekanntesten Werke des Komponisten, sondern zeigt auch die gelungene Verbindung von traditionellem editorischem und musikverlegerischem Handwerk mit den aktuellen Innovationen auf dem Feld der Musikphilologie. In dem gedruckten Band präsentieren Verlag und Herausgeber einen sowohl den wissenschaftlichen wie den praktischen Bedürfnissen Rechnung tragenden Notentext, der – ergänzt durch einen Kritischen Bericht mit Bemerkungen zur Entstehungsgeschichte – die Referenz für alle weitere Befassung mit dem Werk liefern wird. Die sorgfältigen Quellenbeschreibungen und -bewertungen sowie der Apparat der textkritischen Anmerkungen machten alle Herausgeber-Entscheidungen transparent und ermächtigen damit nicht nur Forscher, sondern auch Praktiker in ihren aufführungsrelevanten Entscheidungen. Schon dies wäre nachhaltige und wissenschaftlich fundierte Notenedition im allerbesten Sinne, wie sie die in Deutschland seit langem öffentlich geförderte Zusammenarbeit von philologischer Forschung und Musikverlagen in vorbildlicher und weltweit einmaliger Weise gemeinsam betreibt.
                   <br />Innovativ ist der vorliegende Band […] auch, weil der Band mit dem Projekt <a href="https://www.freischuetz-digital.de">Freischütz digital <i class="fa fa-external-link" aria-hidden="true"></i></a> flankiert wird durch die Möglichkeiten der digitalen Welt. Dort werden alle wichtigen Quellen zu Text und Musik leicht zugänglich und nutzbar im Netz unter einer Creative Commons Lizenz zu Verfügung gestellt. Dies wurde durch die tatkräftige Unterstützung der Musikabteilung der Berliner Staatsbibliothek möglich, die die Digitalisierung und Veröffentlichung ihrer Schätze in diesem Rahmen erlaubte. Darüber hinaus erprobt die WeGA daran exemplarisch die Möglichkeiten der digitalen Kodierung von Notentexten zur Darstellung und Lösung komplexer editorischer Probleme. Die digitale Präsentationsform ermöglicht durch die Implementierung von Sound Files die innovative Verknüpfung philologischer Lösungsvorschläge mit ihrer praktischen Erprobung in Aufführungen. Die WeGA präsentiert mit diesem Paket aus traditionellem Notenband und digitalem Anteil einen zukunftsträchtigen Vorschlag für die Zusammenarbeit von Verlag, wissenschaftlichen Editionsprojekten und Bibliotheken, der nicht nur zeigt, dass sondern auch mit welchem Gewinn philologische Forschung heute im Verbund von Wissenschaft und Kulturleben stattfindet, und wie sie den digitalen Raum gewinnbringend für alle erobern kann.
@@ -387,7 +385,7 @@
                                     <p>Damit hat die Jury nicht nur in erfreulicher Weise die Sorgfalt in der Erstellung und Präsentation der Edition hervorgehoben, sondern auch die Art der Verbindung von „analoger“ und „digitaler“ Edition (die hier nicht als „Konkurrenz“, sondern als sich gegenseitig ergänzend gedacht sind) als ein richtungsweisendes Modell bezeichnet. Aus der Sicht der WeGA ist insbesondere das gute Zusammenwirken mit den Bibliotheken nochmals deutlich hervorzuheben, allen voran sei die unermüdliche Förderung durch die Staatsbibliothek zu Berlin genannt, in diesem Falle (mit der Überlieferung von acht autorisierten Partiturabschriften und etlichen wichtigen Libretto-Handschriften) daneben aber auch freundliche Unterstützung durch die Lippische Landesbibliothek Detmold, die Sächsische Landes- und Universitätsbibliothek Dresden, die Universitätsbibliothek Frankfurt/Main, die Forschungsbibliothek Gotha, die Staats- und Universitätsbibliothek Hamburg, die Königliche Bibliothek Kopenhagen, die Bayerische Staatsbibliothek München, die Württembergische Landesbibliothek Stuttgart, das Thüringische Landesmusikarchiv Weimar, die Österreichische Nationalbibliothek Wien und die Herzog August Bibliothek Wolfenbüttel. Sie alle haben zu einer neuartigen, transparenten Editionsform beigetragen, die gerade im Digitalen sicher noch der Optimierung bedarf, die aber aufzeigen kann, welche neuen Zugänge die digitale Seite eröffnet (die auf Dauer auch Einfluss auf die Art und Form der Präsentation des Edierten Textes haben dürfte).</p>
                                     <p>Der preisgekrönte Band wartet nun auch auf eine kritische Auseinandersetzung der musikalischen Praxis mit dem Edierten Notentext, wozu jedoch zunächst Aufführungsmaterialien vorzubereiten sind, die die editorische Arbeit wiederum in eine Interpretation für die Praxis umsetzen. Im Vorfeld der Edition sind hierzu viele Diskussionen geführt worden, die hoffentlich bei der Vorbereitung dieser Materialien berücksichtigt werden.</p>
                                 </div>
-                                <p class="authorDate"><a href="" class="persons"></a>, Montag, 16. April 2018</p>
+                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009000.html" class="persons">Joachim Veit</a>, Montag, 16. April 2018</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -417,7 +415,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_a8a007a072956138f7f74891b75ff214">
+                                        <div class="collapse apparatus-details" id="source_b69bbb8d323f097184912a9f5ddad3b5">
                                             
                                             
                                             <div>
@@ -461,7 +459,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050314</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050314</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -521,6 +519,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -579,22 +580,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

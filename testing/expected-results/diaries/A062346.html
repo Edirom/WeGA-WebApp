@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 2t Früh geschrieben an Liebich und Gänsbacher, Nachtische Briefe erhalten von Weixelbaum. Liebich. Emilie Visiten gefahren. Wagen 4. 15. Mittag …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Freitag, 2. April 1813 ()","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062346","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062346","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -220,14 +218,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
                             </li>
                             <li>
                                 <span>A062346</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062346/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062346/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -398,8 +396,8 @@
                                     <p>
   
   
-  <span class="tei_date">d: 2<span class="tei_hi_superscript">t</span></span> <span class="tei_add tei_hi_superscript"><span>Früh <span class="preview letters A040613" data-ref="">geschrieben</span> an <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001172" href="">Liebich</a></span></span> und <span class="tei_hi_underline1"><a class="preview persons A000584" href="">Gänsbacher</a></span>,</span> <span>Nachtische<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a></span><a class="noteMarker" id="backref-d10e8" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e8">‡</a></span><br />
-  <span>Briefe erhalten von <span class="tei_hi_latintype"><span class="tei_hi_underline1"><a class="preview persons A002109" href="">Weixelbaum</a></span></span>. <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001172" href="">Liebich</a></span></span>. <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A009130" href="">Emilie</a></span></span></span><br />
+  <span class="tei_date">d: 2<span class="tei_hi_superscript">t</span></span> <span class="tei_add tei_hi_superscript"><span>Früh <span class="preview letters A049836 A040613" data-ref=" ">geschrieben</span> an <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001172" href="">Liebich</a></span></span> und <span class="tei_hi_underline1"><a class="preview persons A000584" href="">Gänsbacher</a></span>,</span> <span>Nachtische<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a></span><a class="noteMarker" id="backref-d10e8" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e8">‡</a></span><br />
+  <span><span class="preview letters A04513A A04513B" data-ref=" ">Briefe</span> erhalten von <span class="tei_hi_latintype"><span class="tei_hi_underline1"><a class="preview persons A002109" href="">Weixelbaum</a></span></span>. <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001172" href="">Liebich</a></span></span>. <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A009130" href="">Emilie</a></span></span></span><br />
   <span class="payment_4"><span class="tei_hi_latintype">Visiten</span> gefahren. Wagen	  </span><br />
   <span>Mittag bey der <span class="tei_hi_latintype"><span class="669711446">Bar.</span> <a class="preview persons A004951" href="">Eskeles</a></span>.</span> <span><span class="tei_hi_underline1">Erklärung mit <a class="preview persons A001313" href="">Meyer</a></span>,</span> <span>dann in den<br />
     <a class="preview works A020422" href="">Johann von <span class="tei_hi_latintype">Paris</span></a><a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>.</span> 
@@ -411,7 +409,7 @@
 </p>
                                 </div>
                                 <div class="tableRight">
-                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_4 f">4.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_4 xr">15.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_8 f">1 ƒ</span><span class="payment_8 xr">45.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_9 f">1 ƒ</span><span class="payment_9 xr">28.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span></p>
+                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_4 f">4.<span class="suppliedCurrencySymbol"> ƒ</span></span><span class="payment_4 xr">15.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><a class="preview places A131250" href=""></a><span class="payment_8 f">1 ƒ</span><span class="payment_8 xr">45.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span><span class="payment_9 f">1 ƒ</span><span class="payment_9 xr">28.<span class="suppliedCurrencySymbol"> xr</span></span><br /><span class="hiddenText">|</span></p>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -450,9 +448,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_03e3375625a005e00df60edfafc1e11c"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_0813946c56144d7c29903504088a422f"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_03e3375625a005e00df60edfafc1e11c">
+                                        <div class="collapse apparatus-details" id="source_0813946c56144d7c29903504088a422f">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -497,7 +495,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  in den Johann von Paris“</span>Aufführung im Kärntnertortheater; es sangen u. a. <a class="preview persons A00090F" href="">A. Laucher</a> (Prinzessin von Navarra), <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html">O. Mohrhardt</a> (Johann), Christian Demmer (Großseneschal) und <a class="preview persons A000205" href="">A. Bondra</a> (Lorezza).</div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  in den Johann von Paris“</span>Aufführung im <a class="preview places A131250" href="">Kärntnertortheater</a>; es sangen u. a. <a class="preview persons A00090F" href="">A. Laucher</a> (Prinzessin von Navarra), <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html">O. Mohrhardt</a> (Johann), Christian Demmer (Großseneschal) und <a class="preview persons A000205" href="">A. Bondra</a> (Lorezza).</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -526,7 +524,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062346</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062346</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -586,6 +584,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -644,22 +645,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

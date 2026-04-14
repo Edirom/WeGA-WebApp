@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Anonymus" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Bandur, Markus" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung Frankfurt am Main: „Euryanthe“ von Carl Maria von Weber am 17. Juni 1824 (Teil 2/2)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032058","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032058","author":[{"@type":"Person","name":"Anonymus"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -293,13 +290,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032058/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032058/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032058/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -382,11 +379,11 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000288" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001747" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008438" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -398,7 +395,7 @@
                         <div class="panel-collapse collapse" id="works">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label>
                             </div>
                         </div>
@@ -410,6 +407,8 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131081" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
@@ -439,15 +438,15 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Frankfurter Volksbühne</span>.</span></h2>
-                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Am <span class="tei_date">17. Juni.</span> <span class="tei_hi_spaced_out"><a class="preview works A020043" href="">Euryanthe</a></span>, große romantische Oper in drei Abtheilungen, von <a class="preview persons A000288" href="">Helmielmne von Chezy</a>; Musik von <a class="preview persons A002068" href="">Carl Maria von Weber</a>.
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center"><span class="tei_hi_spaced_out">Frankfurter <a class="preview places A131081" href="">Volksbühne</a></span>.</span></h2>
+                                        <h3 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Am <span class="tei_date">17. Juni.</span> <span class="tei_hi_spaced_out"><a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a></span>, große romantische Oper in drei Abtheilungen, von <a class="preview persons A000288" href="">Helmine von Chezy</a>; Musik von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>.
                     <br />(<a class="preview writings A031955" href="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031955.html">Fortsetzung</a>.)</span></h3><span class="tei_opener">
                     <span class="tei_segBlock textAlign-right">Aus der Kräfte schön vereintem Streben,
                     <br />Erhebt sich wirkend erst das wahre Leben.<a class="noteMarker" id="backref-footnote-295-5-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-295-5-backlink">*</a></span>
                 </span>
                                         <p>Eine höchst gelungene, innige Darstellung fesselte heute die Aufmerksamkeit vom ersten bis zum letzten Augenblicke: alles bewegte sich in erfreulicher Harmonie, alles vereinigte sich zu einem gefälligen Gesammteindruck.</p>
                                         <p><a class="preview persons A001747" href="">Madame <span class="tei_hi_spaced_out">Devrient</span>, geb. <span class="tei_hi_spaced_out">Schröder</span></a>, vom Hoftheater in <a class="preview places A130003" href="">Dresden</a>, <span class="tei_hi_spaced_out">ein Schooßkind der Natur und Kunst</span>, trat heute als <span class="6911711412197110116104101">Euryanthe</span> auf: –</p><span class="lg"><span class="verseLine"> Der Mund ein blühend Paradies –</span><span class="verseLine"> Wo gäb’ es da noch Mängel!</span><span class="verseLine"> Und wenn sie sang, so klang’s so süß</span><span class="verseLine"> Als säng’ ein heil’ger Engel.<a class="noteMarker" id="backref-footnote-295-6-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-295-6-backlink">*</a></span></span>
-                                        <p>Wer sah sie, und stimmet nicht mit diesem poeti<span class="tei_supplied"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>chen Urtheil eines Kritikers<a class="noteMarker" id="backref-footnote-295-7-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-295-7-backlink">*</a>, nachdem die liebenswürdige Künstlerin zum erstenmal in <a class="preview places A130003" href="">Dresden</a> als <span class="6911711412197110116104101">Euryanthe</span> aufgetreten war, von Herzen ein? – Mit allen Reizen der Weiblichkeit, diesen mächtigen Talismanen, ausgestattet, besitzt sie eigentliches Künstlergenie, Künstlerinspiration, Schöpfungsgeist und wahrhaft klassischen Schönheitssinn; eine dramatische Sängerin in ganzem Sinne, verbindet sie mit einer starken, vollen, metallreichen Stimme von bedeutendem Umfange, von seltenem Wohllaut, und dem seelenvollsten Vortrage, das ausdrucksvollste, lebendigste, und durch diesen Ausdruck und diese Lebendigkeit hinreißendste Spiel, eine unnachahmliche Anmuth in Ton, Geberde und Bewegung, und die größte Mannigfaltigkeit und Natürlichkeit in den Stellungen. Und alle diese reizenden Eigenschaften stehen in der Kraft des schönsten Einklangs! – Wie trefflich und mit welchem feinen Gefühl, mit welcher richtigen Urtheilskraft versteht sie das abgestufte Ausbilden und Übergehn der wechselnden Gemüthszustände zur gehörigen Anschauung zu bringen! Mancher wünschte eine weniger verschwenderische Fülle des Spiels: wir aber glauben, daß eben diese Fülle <span class="6911711412197110116104101110115">Euryanthens</span> Charakterentwicklung und der Tondichtung des <a class="preview persons A002068" href="">Componisten</a> völlig entspricht. <span class="tei_pb" title="Seitenumbruch"> | </span>
+                                        <p>Wer sah sie, und stimmet nicht mit diesem poeti<span class="tei_supplied"><span class="brackets_supplied">[</span>s<span class="brackets_supplied">]</span></span>chen Urtheil eines Kritikers<a class="noteMarker" id="backref-footnote-295-7-backlink" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#footnote-295-7-backlink">*</a>, nachdem die liebenswürdige Künstlerin zum erstenmal in <a class="preview places A130003" href="">Dresden</a> als <span class="6911711412197110116104101">Euryanthe</span> aufgetreten war, von Herzen ein? – Mit allen Reizen der Weiblichkeit, diesen mächtigen Talismanen, ausgestattet, besitzt sie eigentliches Künstlergenie, Künstlerinspiration, Schöpfungsgeist und wahrhaft klassischen Schönheitssinn; eine dramatische Sängerin in ganzem Sinne, verbindet sie mit einer starken, vollen, metallreichen Stimme von bedeutendem Umfange, von seltenem Wohllaut, und dem seelenvollsten Vortrage, das ausdrucksvollste, lebendigste, und durch diesen Ausdruck und diese Lebendigkeit hinreißendste Spiel, eine unnachahmliche Anmuth in Ton, Geberde und Bewegung, und die größte Mannigfaltigkeit und Natürlichkeit in den Stellungen. Und alle diese reizenden Eigenschaften stehen in der Kraft des schönsten Einklangs! – Wie trefflich und mit welchem feinen Gefühl, mit welcher richtigen Urtheilskraft versteht sie das abgestufte Ausbilden und Übergehn der wechselnden Gemüthszustände zur gehörigen Anschauung zu bringen! Mancher wünschte eine weniger verschwenderische Fülle des Spiels: wir aber glauben, daß eben diese Fülle <span class="6911711412197110116104101110115">Euryanthens</span> Charakterentwicklung und der Tondichtung des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Componisten</a> völlig entspricht. <span class="tei_pb" title="Seitenumbruch"> | </span>
                 </p>
                                         <p>Der Wunsch, nicht unwürdig neben einer Künstlerin wie <a class="preview persons A001747" href="">Madame Devrient</a> zu stehen, hatte <a class="preview persons A008438" href="">Dem.<span class="tei_hi_spaced_out"> Rotthammer</span></a> (<span class="6910310897110116105110101">Eglantine</span>) außerordentliche Anstrengung anwenden lassen, und ihre heutige Leistung verdient viel Lob.</p>
                                         <p>
@@ -496,7 +495,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Didaskalia oder Blätter für Geist, Gemüth und Publizität</span>, Jg. 2, Nr. 179 (27. Juni 1824), S. 3f.</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_c2228c21d3245e522f5e57ed112b81ac">
+                                        <div class="collapse apparatus-details" id="source_215ac77678971e8c30235227165e1f10">
                                             
                                             
                                             <div>
@@ -549,7 +548,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://api.digitale-sammlungen.de/iiif/presentation/v2/bsb10531025_00717_u001/manifest" data-canvasindex="2"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -570,7 +569,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032058</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032058</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -630,6 +629,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -688,22 +690,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -11,8 +11,7 @@
         <meta property="dc:publisher" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Schreiber reflektiert über Spontinis Anstellung in Berlin und dessen vorheriges Wirken in Paris; Schreiber kritisiert Spontinis Fähigkeiten und Intrigenwesen; berichtet ferner über die erstaunte Reaktion der Pariser musikalischen Welt über Spontinis Anstellung in Deutschland","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Unbekannt an Carl Graf von Brühl in Berlin. Paris, Freitag, 9. Februar 1821","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041663","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A041663","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -254,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +298,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A041663/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A041663/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -397,9 +394,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;Paris&#34; im Text zu markieren.">Paris</span> 
                                 </label>
                             </div>
                         </div>
@@ -415,19 +412,19 @@
                                         <div class="teiLetter_opener">
          
                               <span class="tei_supplied"><span class="brackets_supplied">[</span>Überschrift von der Hand <a class="preview persons A000235" href="">Brühls</a><span class="brackets_supplied">]</span></span><br />
-               Auszug eines Schreibens<br /> welches der <a class="preview persons A000235" href="">General Intendant</a> von einem deutschen<br /> Künstler aus <a class="preview places A130008" href="">Paris</a> erhalten.</div>
+               Auszug eines Schreibens<br /> welches der <a class="preview persons A000235" href="">General Intendant</a> von einem deutschen<br /> Künstler aus <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a> erhalten.</div>
                                         <p><span class="tei_supplied"><span class="brackets_supplied">[</span>Abschrift von der Hand eines Schreibers aus <a class="preview persons A000235" href="">Brühls</a> Diensten<a class="noteMarker" id="backref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a><span class="brackets_supplied">]</span></span><br />
-               Durch <a class="preview persons A001862" href="">Herrn <span class="tei_hi_latintype">Spohr</span></a> erfuhr ich vor einigen Wochen hier in <a class="preview places A130008" href="">Paris</a> daß Ew. Hochgeboren sich zu ihm geäußert wie die Anstellung <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontinis</span></a> nicht mit Ihrer Bewilligung, sondern auf Königlichen Befehl geschehen. Ueber diese Anstellung mich frei aussprechen zu dürfen, diesen Wunsch trag’ ich längst auf dem Herzen, und ich finde vielleicht keine beßere Gelegenheit als jezt. <a class="preview persons A001864" href="">Herr <span class="tei_hi_latintype">Spontini</span></a> besizt ein ausgezeichnetes <span class="tei_hi_latintype">Genie</span>, und er hat <span class="tei_hi_underline1">ohne gründliche Kenntnisse</span> zum Bedauern viel damit ausgerichtet, ich will indessen nicht wünschen daß der musikalischen Welt zum <span class="tei_hi_latintype">Scandal</span> seine Macht sich bis zu einem Vorsitze, ja nicht einmal bis zu einer Stimme im <span class="tei_hi_latintype">Conservatorium</span> ausdehnen dürfte. Ueber seinen Ruf den er als Mensch hier zurückgelassen, kömmt es mir nicht zu zu sprechen, nur heimliche Kabalen sind immer der Beweis einer Schwäche entweder des <span class="tei_hi_latintype">Genius</span> oder der Kenntnisse. Wahre Künstler wie <span class="tei_hi_latintype"><a class="preview persons A000280" href="">Catel</a></span>, <span class="tei_hi_latintype"><a class="preview persons A000287" href="">Cherubini</a></span> und alle andern verschmähen kriechende heimliche Ränke, und wenn ich <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001862" href="">Spohr</a>’s</span> Reden</span>, so wie <span class="tei_hi_underline1">die Zeitungsnachrichten</span> überdenke, worin es jezt heißt, daß <a class="preview persons A001864" href="">Herr <span class="tei_hi_latintype">Spontini</span></a> <span class="tei_hi_underline1">uneins mit der Kapelle, den Sängern</span> wäre, sich sogar <span class="tei_hi_underline1">um die Kassengeschäfte</span> bekümmere, – so geht daraus <span class="tei_pb" title="Seitenumbruch"> | </span> hervor, daß dort vielleicht die Intrigue sich bilden wird, welche hier in <a class="preview places A130008" href="">Paris</a> mit seiner Abreise, welche man segnet, verschwunden ist. Das hiesige Orchester besteht meistentheils aus <span class="tei_hi_latintype">Compositoren</span> und die können als gründliche Musiker keine Achtung für <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontinis</span></a> Satz haben. Seine <span class="tei_hi_latintype"><a class="preview works A020556" href="">Olimpie</a></span> ist hier ganz durchgefallen, und das Orchester nennt diese Musik einen Wald von Noten dessen Wurzeln und Gipfel aus der <a class="preview works A020531" href=""><span class="tei_hi_latintype">Vestalin</span></a> und dem <span class="tei_hi_latintype"><a class="preview works A020390" href="">Cortez</a></span> ausgerissen und abgeflückt sind. – Ist sein <span class="tei_hi_latintype">Genie</span> aus- und durch ihn also abgeschrieben worden, kann er nichts <span class="tei_hi_underline1">neues</span> mehr liefern, so wird er bald andere Wege suchen müssen um sich zu erhalten, und leider fürcht’ ich wird die Zuneigung des Hofes ihn bestärken, dem Verlust seines <span class="tei_hi_latintype">Genies</span> welchen er nicht durch Kenntniße ersetzen kann, durch Kabale zu ersetzen. Die Sänger hier haben beinah ihre Stimmen durch die <span class="tei_hi_latintype"><a class="preview works A020556" href="">Olimpie</a></span> verloren, und gefällt diese Oper in <a class="preview places A130002" href="">Berlin</a>, so ist es ein Beweis wie wenig der Sinn für Musik dort zur Sprache kömmt, und wie leicht er durch ein halbes Regiment Garde-Officiere welche den ersten Rang zieren erdrückt werden und Beifall erlangt werden kann. Ich achte sein <span class="tei_hi_latintype">Genie</span>, aber ein <span class="tei_hi_latintype">Genie</span> darf nicht leiten und es wäre traurig, wenn durch ihn zurückgehalten würde, was durch die schöne Pflege von Ew. Hochgeboren so herrlich begonnen hatte. Nehmen Sie meine Offenheit gütig auf, ich war sie Ihnen schuldig.</p>
+               Durch <a class="preview persons A001862" href="">Herrn <span class="tei_hi_latintype">Spohr</span></a> erfuhr ich vor einigen Wochen hier in <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a> daß Ew. Hochgeboren sich zu ihm geäußert wie die Anstellung <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontinis</span></a> nicht mit Ihrer Bewilligung, sondern auf Königlichen Befehl geschehen. Ueber diese Anstellung mich frei aussprechen zu dürfen, diesen Wunsch trag’ ich längst auf dem Herzen, und ich finde vielleicht keine beßere Gelegenheit als jezt. <a class="preview persons A001864" href="">Herr <span class="tei_hi_latintype">Spontini</span></a> besizt ein ausgezeichnetes <span class="tei_hi_latintype">Genie</span>, und er hat <span class="tei_hi_underline1">ohne gründliche Kenntnisse</span> zum Bedauern viel damit ausgerichtet, ich will indessen nicht wünschen daß der musikalischen Welt zum <span class="tei_hi_latintype">Scandal</span> seine Macht sich bis zu einem Vorsitze, ja nicht einmal bis zu einer Stimme im <span class="tei_hi_latintype">Conservatorium</span> ausdehnen dürfte. Ueber seinen Ruf den er als Mensch hier zurückgelassen, kömmt es mir nicht zu zu sprechen, nur heimliche Kabalen sind immer der Beweis einer Schwäche entweder des <span class="tei_hi_latintype">Genius</span> oder der Kenntnisse. Wahre Künstler wie <span class="tei_hi_latintype"><a class="preview persons A000280" href="">Catel</a></span>, <span class="tei_hi_latintype"><a class="preview persons A000287" href="">Cherubini</a></span> und alle andern verschmähen kriechende heimliche Ränke, und wenn ich <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview persons A001862" href="">Spohr</a>’s</span> Reden</span>, so wie <span class="tei_hi_underline1">die Zeitungsnachrichten</span> überdenke, worin es jezt heißt, daß <a class="preview persons A001864" href="">Herr <span class="tei_hi_latintype">Spontini</span></a> <span class="tei_hi_underline1">uneins mit der Kapelle, den Sängern</span> wäre, sich sogar <span class="tei_hi_underline1">um die Kassengeschäfte</span> bekümmere, – so geht daraus <span class="tei_pb" title="Seitenumbruch"> | </span> hervor, daß dort vielleicht die Intrigue sich bilden wird, welche hier in <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a> mit seiner Abreise, welche man segnet, verschwunden ist. Das hiesige Orchester besteht meistentheils aus <span class="tei_hi_latintype">Compositoren</span> und die können als gründliche Musiker keine Achtung für <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontinis</span></a> Satz haben. Seine <span class="tei_hi_latintype"><a class="preview works A020556" href="">Olimpie</a></span> ist hier ganz durchgefallen, und das Orchester nennt diese Musik einen Wald von Noten dessen Wurzeln und Gipfel aus der <a class="preview works A020531" href=""><span class="tei_hi_latintype">Vestalin</span></a> und dem <span class="tei_hi_latintype"><a class="preview works A020390" href="">Cortez</a></span> ausgerissen und abgeflückt sind. – Ist sein <span class="tei_hi_latintype">Genie</span> aus- und durch ihn also abgeschrieben worden, kann er nichts <span class="tei_hi_underline1">neues</span> mehr liefern, so wird er bald andere Wege suchen müssen um sich zu erhalten, und leider fürcht’ ich wird die Zuneigung des Hofes ihn bestärken, dem Verlust seines <span class="tei_hi_latintype">Genies</span> welchen er nicht durch Kenntniße ersetzen kann, durch Kabale zu ersetzen. Die Sänger hier haben beinah ihre Stimmen durch die <span class="tei_hi_latintype"><a class="preview works A020556" href="">Olimpie</a></span> verloren, und gefällt diese Oper in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>, so ist es ein Beweis wie wenig der Sinn für Musik dort zur Sprache kömmt, und wie leicht er durch ein halbes Regiment Garde-Officiere welche den ersten Rang zieren erdrückt werden und Beifall erlangt werden kann. Ich achte sein <span class="tei_hi_latintype">Genie</span>, aber ein <span class="tei_hi_latintype">Genie</span> darf nicht leiten und es wäre traurig, wenn durch ihn zurückgehalten würde, was durch die schöne Pflege von Ew. Hochgeboren so herrlich begonnen hatte. Nehmen Sie meine Offenheit gütig auf, ich war sie Ihnen schuldig.</p>
                                         <p class="tei_closer textAlign-left">
                <span class="tei_supplied"><span class="brackets_supplied">[</span>ohne Unterschrift<span class="brackets_supplied">]</span></span>
-               <span class="tei_dateline textAlign-left"><a class="preview places A130008" href="">Paris</a>,
+               <span class="tei_dateline textAlign-left"><a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a>,
                   <br />d <span class="tei_date">9<span class="tei_hi_underline1"><span class="tei_hi_superscript">ten</span></span> <span class="tei_hi_latintype">Februar</span> 1821</span>.
                </span>
                <span class="tei_pb" title="Seitenumbruch"> | </span>
             </p>
                                         <div class="tei_postscript">
                                             <p>Nachschrift.</p>
-                                            <p>Ueber die Anstellung <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Spontinis</a></span> in <span class="tei_country">Deutschland</span> (<span class="tei_region">Preußen</span>) macht man <span class="tei_hi_underline2andMore">sich hier gewaltig lustig</span>, indem die deutschen Musiker ihrer Kenntniße wegen hier in gewißen Ansehen stehen. <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontini</span></a> hat hier weder eine Stelle im <span class="tei_hi_latintype">Conservatorium</span>, noch die Direction der Oper erhalten können, und die Stelle eines <span class="tei_hi_latintype">Vice</span> Intendanten der Königl. Musik ist sogar, <span class="tei_hi_underline1">es ist kaum glaublich</span>, an <a class="preview persons A002535" href=""><span class="tei_hi_latintype">Blangini</span></a> ertheilt worden. Welches Aufsehen mußte es also machen, ihn an die Spitze der Direction in <a class="preview places A130002" href="">Berlin</a> zu sehen, <span class="tei_hi_underline1">wie die hiesigen Blätter</span> zu verstehen geben. Unser <span class="tei_hi_underline1">Kredit in <span class="tei_country">Deutschland</span> selbst</span>, ist durch das lächerliche Ausposaunen und das gewiße Lob in Ausrufungszeichen! welches Berliner Blätter <span class="tei_hi_underline2andMore">der Freimüthige</span> etc. etc. toll genug zu bewerkstelligen wissen – gewaltig gesunken. – Was soll man von uns denken? Nur Kenntniße berechtigen zu einer ausgedehnten Macht, nie <span class="tei_hi_latintype">Genie</span>, denn das <span class="tei_hi_underline1">Leztere</span> stumpft mit den Jahren ab, während die <span class="tei_hi_underline1">ersteren</span> zunehmen. In <a class="preview places A130002" href="">Berlin</a> verwechselt man hingegen <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Spontinis</a></span> durch die <span class="tei_hi_latintype"><a class="preview works A020531" href="">Vestalin</a></span> ausgesprochenes herrliches <span class="tei_hi_latintype">Genie</span> – mit Kenntnißen die man ihm vielleicht <span class="tei_hi_latintype">nolens volens</span> aufdringt.</p>
+                                            <p>Ueber die Anstellung <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Spontinis</a></span> in <span class="tei_country">Deutschland</span> (<span class="tei_region">Preußen</span>) macht man <span class="tei_hi_underline2andMore">sich hier gewaltig lustig</span>, indem die deutschen Musiker ihrer Kenntniße wegen hier in gewißen Ansehen stehen. <a class="preview persons A001864" href=""><span class="tei_hi_latintype">Spontini</span></a> hat hier weder eine Stelle im <span class="tei_hi_latintype">Conservatorium</span>, noch die Direction der Oper erhalten können, und die Stelle eines <span class="tei_hi_latintype">Vice</span> Intendanten der Königl. Musik ist sogar, <span class="tei_hi_underline1">es ist kaum glaublich</span>, an <a class="preview persons A002535" href=""><span class="tei_hi_latintype">Blangini</span></a> ertheilt worden. Welches Aufsehen mußte es also machen, ihn an die Spitze der Direction in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> zu sehen, <span class="tei_hi_underline1">wie die hiesigen Blätter</span> zu verstehen geben. Unser <span class="tei_hi_underline1">Kredit in <span class="tei_country">Deutschland</span> selbst</span>, ist durch das lächerliche Ausposaunen und das gewiße Lob in Ausrufungszeichen! welches Berliner Blätter <span class="tei_hi_underline2andMore">der Freimüthige</span> etc. etc. toll genug zu bewerkstelligen wissen – gewaltig gesunken. – Was soll man von uns denken? Nur Kenntniße berechtigen zu einer ausgedehnten Macht, nie <span class="tei_hi_latintype">Genie</span>, denn das <span class="tei_hi_underline1">Leztere</span> stumpft mit den Jahren ab, während die <span class="tei_hi_underline1">ersteren</span> zunehmen. In <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> verwechselt man hingegen <span class="tei_hi_latintype"><a class="preview persons A001864" href="">Spontinis</a></span> durch die <span class="tei_hi_latintype"><a class="preview works A020531" href="">Vestalin</a></span> ausgesprochenes herrliches <span class="tei_hi_latintype">Genie</span> – mit Kenntnißen die man ihm vielleicht <span class="tei_hi_latintype">nolens volens</span> aufdringt.</p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -477,9 +474,9 @@
                                         
                                         <span>Dresden (D), Sächsische Landesbibliothek – Staats- und Universitätsbibliothek Dresden (D-Dl)<br /><i>Signatur</i>: Mscr.Dresd.App. 514 A, 2346 (Beilage zu ?)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1ed518a7560583318a74f538dd2e7073"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_264842b6010de1560b96b24dcc8676d0"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1ed518a7560583318a74f538dd2e7073">
+                                        <div class="collapse apparatus-details" id="source_264842b6010de1560b96b24dcc8676d0">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>2 Bl. ? (3 b. S.)</li>
@@ -538,7 +535,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041663</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041663</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -598,6 +595,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -656,22 +656,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

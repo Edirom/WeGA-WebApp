@@ -1,4 +1,4 @@
-xquery version "3.0" encoding "UTF-8";
+xquery version "3.1" encoding "UTF-8";
 
 (:~
  : XQuery functions for the main controller
@@ -28,6 +28,7 @@ import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" a
 
 
 declare variable $controller:projectNav :=
+(
     map {
         'docID': 'A070001',
         'title': 'editorialGuidelines-text'
@@ -83,7 +84,8 @@ declare variable $controller:projectNav :=
     map {
         'docID': 'A070014',
         'title': 'team'
-    };
+    }
+);
 
 (:~
  : HTML output. Forwards to a given template and takes care of ETag caching

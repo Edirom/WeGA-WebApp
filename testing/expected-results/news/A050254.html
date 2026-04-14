@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Friedrich Wilhelm Jähns ordnete Webers Schlummerlied „Sohn der Ruhe, sinke nieder“ nach einem Text von Ignaz Franz Castelli als JV 285 in das Weber …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Wann entstand Webers Schlummerlied?","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050254","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050254","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Friedrich Wilhelm Jähns ordnete Webers Schlummerlied „Sohn der Ruhe, sinke nieder“ nach einem Text von Ignaz Franz Castelli als JV 285 in das Weber …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Wann entstand Webers Schlummerlied?","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050254","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050254","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"Ziegler, Frank","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005","sameAs":"https://d-nb.info/gnd/132426455"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles">Aktuelles</a>
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -290,7 +288,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050254/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050254/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -348,8 +346,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000277" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000912" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -371,6 +367,8 @@
                                     <input type="checkbox" name="options" value="A000966" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080007" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;Jähns, Friedrich Wilhelm&#34; im Text zu markieren.">Jähns, Friedrich Wilhelm</span> 
                                 </label>
                             </div>
                         </div>
@@ -388,7 +386,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A021219" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A020043" /> <span title="Anwählen, um &#34;Euryanthe, große romantische Oper in drei Aufzügen&#34; im Text zu markieren.">Euryanthe, große romantische Oper in drei Aufzügen</span> 
                                 </label>
                             </div>
                         </div>
@@ -402,11 +400,11 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130013" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -430,8 +428,8 @@
                 <div class="tab-content">
                     <div class="tab-pane active fade in" id="transcription">
                         <div id="d12e2">
-                                    <p><a class="preview persons A000914" href="">Friedrich Wilhelm Jähns</a> ordnete Webers <a class="preview works A020085" href="">Schlummerlied</a> „Sohn der Ruhe, sinke nieder“ nach einem Text von <a class="preview persons A000277" href="">Ignaz Franz Castelli</a> als JV 285 in das <span class="preview biblio A112215" data-ref="">Weber-Werkverzeichnis</span> ein und vermutete, die Komposition sei Mitte März 1822 entstanden, ohne dass er dies anhand von Primärquellen Webers eindeutig belegen konnte (das Autograph der Komposition ist verschollen). Verbürgt ist laut Tagebuch nur die erste Aufführung am <a class="preview diaries A061967" href="">19. März 1822</a> in Webers Konzert im kleinen Redoutensaal in <a class="preview places A130004" href="">Wien</a>, bei der vier namhafte Solisten der dortigen Hofoper (<a class="preview persons A000912" href="">Jäger</a>, <a class="preview persons A001614" href="">Rosner</a>, <a class="preview persons A000511" href="">Forti</a> und <a class="preview persons A009265" href="">Seipelt</a>) die laut <a class="preview writings A030515" href="">Rezension</a> vollendete Ausführung des Werks übernahmen. Am darauffolgenden Tag ist im <a class="preview diaries A061968" href="">Tagebuch</a> der Verkauf des Liedes an <a class="preview persons A001675" href="">Johann Schickh</a> dokumentiert, der es zweieinhalb Wochen später als Notenbeilage in der von ihm redigierten <span class="tei_hi_italic">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span> (Jg. 7, Nr. 42 vom 6. April 1822) publizierte (eine zweite, ebenfalls auf Weber zurückgehende Ausgabe des Werks erfolgte 1823 bei <a class="preview orgs A080007" href="">Schlesinger</a> in <a class="preview places A130002" href="">Berlin</a> als Nr. 4 innerhalb der Sammlung <span class="tei_hi_italic">Gesänge für Männerstimmen</span> op. 68).</p>
-                                    <p>Zweifel an der Datierung hatte allerdings bereits <a class="preview persons A001846" href="">Leopold von Sonnleithner</a> geweckt, der <a class="preview persons A000914" href="">Jähns</a> im <a class="preview letters A043104" href="">Brief vom 15. August 1864</a> auf die Ausgabe der <span class="tei_hi_italic">Sämmtlichen Werke</span> <a class="preview persons A000277" href="">Castellis</a> (<span class="tei_hi_italic">Vollständige Ausgabe letzter Hand, in strenger Auswahl</span>) aufmerksam machte, in deren Bd. 3 (<a class="preview places A130004" href="">Wien</a>: Pichler, 1844, S. 151) der dem Lied unterlegte Text mit dem Zusatz abgedruckt war: „(Zu C. M. von Weber’s Musik gedichtet.)“ – so, als habe zuerst die Musik vorgelegen und erst später sei der Text dazu entstanden, ein für Weber, dem die genaue Beachtung des Wort-Ton-Verhältnisses stets ein zentrales Anliegen war, zunächst unwahrscheinlich anmutender Fall. Derselbe Eintrag findet sich bereits in der sechsbändigen <a class="preview persons A000277" href="">Castelli</a>-Gedichtausgabe von 1835 (<a class="preview places A130002" href="">Berlin</a>: Duncker und Humblot, Bd. 5, S. 83). Erhalten hat sich zudem ein Oktavbändchen mit Gedichtautographen des <a class="preview persons A000277" href="">Schriftstellers</a> in <a class="preview places A130004" href="">Wien</a> (<span class="tei_hi_italic">A-Wn</span>, S. n. 3288), darin auf S. 210 das <span class="tei_hi_italic">Schlummerlied</span> (zunächst <span class="tei_hi_italic">Nachtlied</span>), dort freilich ohne einen diesbezüglichen Hinweis.</p>
+                                    <p><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm Jähns</a> ordnete Webers <a class="preview works A020085" href="">Schlummerlied</a> „Sohn der Ruhe, sinke nieder“ nach einem Text von <a class="preview persons A000277" href="">Ignaz Franz Castelli</a> als JV 285 in das <span class="preview biblio A112215" data-ref="">Weber-Werkverzeichnis</span> ein und vermutete, die Komposition sei Mitte März 1822 entstanden, ohne dass er dies anhand von Primärquellen Webers eindeutig belegen konnte (das Autograph der Komposition ist verschollen). Verbürgt ist laut Tagebuch nur die erste Aufführung am <a class="preview diaries A061967" href="">19. März 1822</a> in Webers Konzert im kleinen Redoutensaal in <a class="preview places A130004" href="">Wien</a>, bei der vier namhafte Solisten der dortigen Hofoper (<a class="preview persons A000912" href="">Jäger</a>, <a class="preview persons A001614" href="">Rosner</a>, <a class="preview persons A000511" href="">Forti</a> und <a class="preview persons A009265" href="">Seipelt</a>) die laut <a class="preview writings A030515" href="">Rezension</a> vollendete Ausführung des Werks übernahmen. Am darauffolgenden Tag ist im <a class="preview diaries A061968" href="">Tagebuch</a> der Verkauf des Liedes an <a class="preview persons A001675" href="">Johann Schickh</a> dokumentiert, der es zweieinhalb Wochen später als Notenbeilage in der von ihm redigierten <span class="tei_hi_italic">Wiener Zeitschrift für Kunst, Literatur, Theater und Mode</span> (Jg. 7, Nr. 42 vom 6. April 1822) publizierte (eine zweite, ebenfalls auf Weber zurückgehende Ausgabe des Werks erfolgte 1823 bei <a class="preview orgs A080007" href="">Schlesinger</a> in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> als Nr. 4 innerhalb der Sammlung <span class="tei_hi_italic">Gesänge für Männerstimmen</span> op. 68).</p>
+                                    <p>Zweifel an der Datierung hatte allerdings bereits <a class="preview persons A001846" href="">Leopold von Sonnleithner</a> geweckt, der <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a> im <a class="preview letters A043104" href="">Brief vom 15. August 1864</a> auf die Ausgabe der <span class="tei_hi_italic">Sämmtlichen Werke</span> <a class="preview persons A000277" href="">Castellis</a> (<span class="tei_hi_italic">Vollständige Ausgabe letzter Hand, in strenger Auswahl</span>) aufmerksam machte, in deren Bd. 3 (<a class="preview places A130004" href="">Wien</a>: Pichler, 1844, S. 151) der dem Lied unterlegte Text mit dem Zusatz abgedruckt war: „(Zu C. M. von Weber’s Musik gedichtet.)“ – so, als habe zuerst die Musik vorgelegen und erst später sei der Text dazu entstanden, ein für Weber, dem die genaue Beachtung des Wort-Ton-Verhältnisses stets ein zentrales Anliegen war, zunächst unwahrscheinlich anmutender Fall. Derselbe Eintrag findet sich bereits in der sechsbändigen <a class="preview persons A000277" href="">Castelli</a>-Gedichtausgabe von 1835 (<a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>: Duncker und Humblot, Bd. 5, S. 83). Erhalten hat sich zudem ein Oktavbändchen mit Gedichtautographen des <a class="preview persons A000277" href="">Schriftstellers</a> in <a class="preview places A130004" href="">Wien</a> (<span class="tei_hi_italic">A-Wn</span>, S. n. 3288), darin auf S. 210 das <span class="tei_hi_italic">Schlummerlied</span> (zunächst <span class="tei_hi_italic">Nachtlied</span>), dort freilich ohne einen diesbezüglichen Hinweis.</p>
                                     <p>Eine erste Hypothese zur Klärung des Sachverhalts veröffentlichte 1999 <a class="preview persons A009160" href="">Oliver Huck</a> in seiner <span class="preview biblio A110218" data-ref="">Dissertation</span> (gedruckt in <span class="tei_hi_italic">Weber-Studien</span>, Bd. 5, S. 84f.), der auf den Text zu Webers verschollenem <a class="preview works A020243" href="">Begräbnischor</a> zum <a class="preview persons A000680" href="">Grillparzer</a>-Drama <a class="preview works A021219" href="">Die Ahnfrau</a> aufmerksam machte, der sich Webers <a class="preview works A020085" href="">Schlummerlied</a> ohne weiteres unterlegen ließe:<br /><br />
                
                   Auf, ihr Brüder!<br />
@@ -443,7 +441,7 @@
                
             </p>
                                     <p>Hatte Weber also 1822 in <a class="preview places A130004" href="">Wien</a> lediglich seine 1817 in <a class="preview places A130003" href="">Dresden</a> entstandene Schauspielmusik „recycelt“? Die Klavierbegleitung (samt Zwischenspielen) zum Chor, die Weber bei der Wiener Erstaufführung selbst spielte (oder improvisierte?), die in den Druckausgaben hingegen fehlt, brachte <a class="preview persons A009160" href="">Huck</a> mit einer melodramatischen Begleitmusik in Zusammenhang, die im Schauspiel dem Chor möglicherweise voranging, freilich gab bereits er zu bedenken, dass „Weber in aller Regel erst dann eine Zweitverwertung seiner Kompositionen vornahm, wenn ihr ursprünglicher Verwendungszweck nicht mehr bestand“, die <a class="preview works A020243" href="">Schauspielmusik</a> zur <a class="preview works A021219" href="">Ahnfrau</a> aber in <a class="preview places A130003" href="">Dresden</a> auch über das Jahr 1822 hinaus Verwendung fand.</p>
-                                    <p>Tatsächlich ist der <a class="preview persons A000680" href="">Grillparzer</a>-Text kompatibel zur Musik, allerdings hätte Weber bei der Komposition dieser Zeilen nicht stärker auf die Reimstruktur mit den sich jeweils reimenden Kurzzeilen Bezug genommen, wie er es etwa in ähnlicher Weise in <span class="6510011110897114">Adolar</span>s Romanze Nr. 12 in der <a class="preview works A020043" href="">Euryanthe</a> („Wehen mir Lüfte Ruh“) tat?</p>
+                                    <p>Tatsächlich ist der <a class="preview persons A000680" href="">Grillparzer</a>-Text kompatibel zur Musik, allerdings hätte Weber bei der Komposition dieser Zeilen nicht stärker auf die Reimstruktur mit den sich jeweils reimenden Kurzzeilen Bezug genommen, wie er es etwa in ähnlicher Weise in <span class="6510011110897114">Adolar</span>s Romanze Nr. 12 in der <a class="preview works A020043" href="/exist/apps/WeGA-WebApp/de/A002068/Werke/A020043.html">Euryanthe</a> („Wehen mir Lüfte Ruh“) tat?</p>
                                     <p>Eine andere Erklärungsmöglichkeit offeriert ein <a class="preview letters A041521" href="">Brief</a> Webers an den Dichter <a class="preview persons A000966" href="">Kannegießer</a> vom 2. August 1819: <a class="preview persons A000966" href="">Kannegießer</a> hatte Weber einige seiner Gedichte zur Vertonung zugesandt; sie dürften in jenem Brief enthalten gewesen sein, dessen Empfang Weber am 21. Juli 1819 im <a class="preview diaries A060981" href="">Tagebuch</a> festhielt. Unter den Gedichten befand sich auch ein <span class="tei_hi_italic">Schlummerlied</span>, bei dessen Vertonung Weber, wie er im Brief mitteilte, „ein Unglük paßirt“ war, indem ihm beim Lesen der Zeilen sofort eine vierstimmige Vertonung vorschwebte, die allerdings nach seinem Dafürhalten nicht zum Text passe:<br /> 
                „da ich es nun für Unsinn halte, wenn viere zugleich <span class="tei_hi_latintype">per</span> <span class="tei_hi_underline1">ich</span> an eine Geliebte, oder zu sonst Lieben, sprechen, so muß ich es wohl un<span class="tei_hi_latintype">componirt</span> laßen, da ich eine einmal so empfangene Melodie nicht wieder loswerden, und überhaupt nur einmal <span class="tei_hi_underline1">wahr</span> sein kann. und zur Lüge bringt mich auch nicht einmal der herrschende MusikGeschmak. schweren Herzens laß ich das liebliche Ding fahren.“</p>
                                     <p>Das Wort „un<span class="tei_hi_italic">componirt</span>“ suggeriert, dass Weber die musikalische Idee nicht schriftlich fixierte – oder doch? Sollte sie die Vorlage für das <span class="tei_hi_italic">Schlummerlied</span> von 1822 sein? Auffallend ist, dass sowohl der Text <a class="preview persons A000966" href="">Kannegießers</a> als auch jener <a class="preview persons A000277" href="">Castellis</a> sich zum einen problemlos Webers Komposition unterlegen lässt, zum anderen auch strukturell besser mit ihr harmoniert als die oben zitierten Verse <a class="preview persons A000680" href="">Grillparzers</a>:</p>
@@ -504,11 +502,11 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <p>Es scheint also tatsächlich denkbar, dass Weber die 1819 erdachte Weise für zu wertvoll hielt, um sie unausgeführt zu lassen; vielleicht hatte er sich die Melodie doch notiert oder sie hatte sich ihm fest eingeprägt. Vielleicht stellte er sie <a class="preview persons A000277" href="">Castelli</a> 1822 vor und dieser erbot sich, ein zu einer vierstimmigen Komposition passenderen, neutraleren Text zu verfassen. Eine solche Hypothese würde zu dem Zusatz bezüglich des nachträglich unterlegten Textes in den <a class="preview persons A000277" href="">Castelli</a>-Werkausgaben jedenfalls passen. Selbst Jähns hielt es im <span class="preview biblio A112215" data-ref="">Werkverzeichnis</span> (S. 343) für möglich, dass <a class="preview persons A000277" href="">Castelli</a> „zu einer ihm von W.[eber] mitgetheilten musikalischen Scizze diese Dichtung nachträglich verfasste“. Mit der Datierung „März 1822“ dürfte <a class="preview persons A000914" href="">Jähns</a> freilich recht behalten, denn die schriftliche Ausführung des Werks, möglicherweise als Überarbeitung des musikalischen Einfalls von 1819, wird vermutlich kurz vor dem Konzert, jedenfalls nach Webers Eintreffen in <a class="preview places A130004" href="">Wien</a> (17. Februar 1822) erfolgt sein. Kontakte mit <a class="preview persons A000277" href="">Castelli</a> sind in dieser Zeit im Tagebuch bezeugt: am <a class="preview diaries A061945" href="">25. Februar</a> und <a class="preview diaries A061953" href="">5. März</a>. Ohne dass man den Zusammenhang zwischen dem <span class="tei_hi_italic">Schlummerlied</span> nach <a class="preview persons A000966" href="">Kannegießer</a> und jenem nach <a class="preview persons A000277" href="">Castelli</a> eindeutig beweisen könnte, scheint diese Erklärung der Annotation in den Gedicht-Ausgaben von 1835 und 1844 doch bislang die naheliegendste.
+                                    <p>Es scheint also tatsächlich denkbar, dass Weber die 1819 erdachte Weise für zu wertvoll hielt, um sie unausgeführt zu lassen; vielleicht hatte er sich die Melodie doch notiert oder sie hatte sich ihm fest eingeprägt. Vielleicht stellte er sie <a class="preview persons A000277" href="">Castelli</a> 1822 vor und dieser erbot sich, ein zu einer vierstimmigen Komposition passenderen, neutraleren Text zu verfassen. Eine solche Hypothese würde zu dem Zusatz bezüglich des nachträglich unterlegten Textes in den <a class="preview persons A000277" href="">Castelli</a>-Werkausgaben jedenfalls passen. Selbst Jähns hielt es im <span class="preview biblio A112215" data-ref="">Werkverzeichnis</span> (S. 343) für möglich, dass <a class="preview persons A000277" href="">Castelli</a> „zu einer ihm von W.[eber] mitgetheilten musikalischen Scizze diese Dichtung nachträglich verfasste“. Mit der Datierung „März 1822“ dürfte <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a> freilich recht behalten, denn die schriftliche Ausführung des Werks, möglicherweise als Überarbeitung des musikalischen Einfalls von 1819, wird vermutlich kurz vor dem Konzert, jedenfalls nach Webers Eintreffen in <a class="preview places A130004" href="">Wien</a> (17. Februar 1822) erfolgt sein. Kontakte mit <a class="preview persons A000277" href="">Castelli</a> sind in dieser Zeit im Tagebuch bezeugt: am <a class="preview diaries A061945" href="">25. Februar</a> und <a class="preview diaries A061953" href="">5. März</a>. Ohne dass man den Zusammenhang zwischen dem <span class="tei_hi_italic">Schlummerlied</span> nach <a class="preview persons A000966" href="">Kannegießer</a> und jenem nach <a class="preview persons A000277" href="">Castelli</a> eindeutig beweisen könnte, scheint diese Erklärung der Annotation in den Gedicht-Ausgaben von 1835 und 1844 doch bislang die naheliegendste.
                
             </p>
                                 </div>
-                                <p class="authorDate"><a href="" class="persons"></a>, Freitag, 14. September 2018</p>
+                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009005.html" class="persons">Frank Ziegler</a>, Freitag, 14. September 2018</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -538,7 +536,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_f451ffea5d92c80f3748856e4d5dde94">
+                                        <div class="collapse apparatus-details" id="source_689957e7279147bdd9d5868ee09ccbfa">
                                             
                                             
                                             <div>
@@ -582,7 +580,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050254</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050254</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -642,6 +640,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -700,22 +701,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

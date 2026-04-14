@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"bedauert ihn nicht mehr in Hannover angetroffen zu haben, hofft ihn aber auf der Rückreise dort zu treffen; Sutor habe er ebenfalls nicht sprechen können; bittet ihn um Aufbewahrung beigelegter Empfehlungsbriefe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Bernhard Hausmann. Hannover, Samstag, 19. August 1820","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041626","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041626","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"bedauert ihn nicht mehr in Hannover angetroffen zu haben, hofft ihn aber auf der Rückreise dort zu treffen; Sutor habe er ebenfalls nicht sprechen können; bittet ihn um Aufbewahrung beigelegter Empfehlungsbriefe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Bernhard Hausmann. Hannover, Samstag, 19. August 1820","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041626","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041626","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041626/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041626/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041626/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -410,7 +408,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000E46" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -445,11 +443,12 @@
                                         <p><span class="tei_hi_latintype"><a class="preview places A130018" href="">Hanover</a></span> will sich mir
                auch gar nicht ein bischen angenehm machen, da ich in musikalischer Hinsicht weder etwas
                höre, noch <a class="preview persons A001001" href="">Kiesewetter</a>, <a class="preview persons A001937" href="">Sutor</a> <span class="tei_hi_latintype">pp</span> sehe.      auch <a class="preview persons A007877" href="">Ramberg</a> ist mir
-               entwischt.      Herr Legationsrath <a class="preview persons A001630" href=""><span class="tei_hi_latintype">Rudloff</span></a>, der mich ungemein freundlich aufgenommen, glaubt daß ich im Rükwege wieder hieher kommen möge.      Sie sind so
+               entwischt.      Herr Legationsrath <a class="preview persons A001630" href=""><span class="tei_hi_latintype">Rudloff</span></a>, der mich ungemein freundlich aufgenommen<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>, glaubt daß ich im Rükwege wieder hieher kommen möge.      Sie sind so
                gütig daßelbe zu wünschen, und ich werde daher wenn meine Urlaubszeit nicht zu sehr von
                <a class="preview places A130199" href="">Kopenhagen</a> und <a class="preview places A130009" href="">Hamburg</a> gekürzt worden ist über <a class="preview places A130018" href="">Hanover</a> nach Hause gehen, und Ihnen
                einige Zeit vorher meine Ankunft anzeigen.</p>
-                                        <p><a class="preview persons A001937" href="">Herr Sutor</a> wußte daß ich den 18<span class="tei_hi_superscript">t</span> Abends hier
+                                        <p><a class="preview persons A001937" href="">Herr Sutor</a> wußte daß ich den 1
+               8<span class="tei_hi_superscript">t</span> Abends hier
                eintreffen würde<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>, ohne Ihre freundschaftliche <a class="preview letters A046063" href="">Aufmerksamkeit</a> aber wäre ich ganz ohne
                Nachricht hier geseßen und hätte Zeit verlohren.</p>
                                         <p>Ich nehme mir nun noch die Freyheit Sie um
@@ -459,7 +458,7 @@
                                         <p class="tei_closer textAlign-left inlineStart">empfangen Sie meinen besten Dank für Ihre
                thätige Theilnahme, und glauben Sie stets voll der freundschaftlichsten Achtung
                <span class="tei_segBlock textAlign-right">Ihren ganz ergebenen<br />
-                  <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl Maria von Weber</a></span></span>
+                  <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span></span>
             <span class="tei_dateline textAlign-textAlign-left"><a class="preview places A130018" href="">Hanover</a> d: 19<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">August</span> 1820.</span>
             </p>
                                         <p class="clearer"></p>
@@ -506,11 +505,11 @@
                                     <div>
                                         <strong><span>Textzeuge</span>:</strong>
                                         
-                                        <span>Dresden Stadtmuseum<br /><i>Signatur</i>: SMD_SD_2021_00159</span>
+                                        <span>Dresden Stadtmuseum Dresden<br /><i>Signatur</i>: SMD_SD_2021_00159</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_501f8547c6bb643456825e8f39c33b1b"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_4f7dd622eabaaf4037815f2a6d0f7058"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_501f8547c6bb643456825e8f39c33b1b">
+                                        <div class="collapse apparatus-details" id="source_4f7dd622eabaaf4037815f2a6d0f7058">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (1 b. S. o. Adr.)</li>
@@ -530,7 +529,7 @@
                                                             
                                                             <span class="tei_bibl">Konrad, Ulrich: <span class="tei_hi_italic">Carl Maria von Webers Aufenthalt in Göttingen und Hannover. Studien und Dokumente zur Konzertreise 1820</span>, in: <span class="tei_hi_italic">Göttinger Jahrbuch</span> 1989, S. 131–142 (Brief S. 141f., mit Faks. S. 143)</span>
                                                               
-                                                            <div class="collapse" id="source_785d9e7009e4de1ace6d7958ebc6734d">
+                                                            <div class="collapse" id="source_9c7b2cd32deaaf667e7ef9993819ba99">
                                                                 
                                                             </div>
                                                         </div>
@@ -576,14 +575,20 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  t Abends hier eintreffen würde“</span>Weber hatte sich lt. <a class="preview diaries A061371" href="">Tagebuch</a> am 14. August bei Sutor <a class="preview letters A046645" href="">angekündigt</a>.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note04"><span class="tei_lemma">„…  der mich ungemein freundlich aufgenommen“</span>Im Tagebuch ist die Begegnung nicht eindeutig dokumentiert. W. A. Rudloff galt einer der „Besuche“ am <a class="preview diaries A061376" href="">19. August 1820</a>; vgl. Webers <a class="preview letters A041627" href="">Brief</a> an F. Kind vom 25. August 1820.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note03"><span class="tei_lemma">„…  Aufbewahrung beiliegender Briefe zu bitten“</span>Dem Brief liegt ein Umschlag mit den erwähnten Empfehlungsschreiben des Bankhauses <a class="preview orgs A080006" href="">Ballabene</a>, von <a class="preview persons A000201" href="">Louis Philippe de Bombelles</a>, <a class="preview persons A000235" href="">Carl Graf Brühl</a>, <a class="preview persons A001548" href="">Wilhelm Reichenbach</a>, <a class="preview persons A008557" href="">Carl Weisse</a>, <span class="7011497110122327297115115101">Franz Hasse</span>, <a class="preview persons A008592" href="">Johann Samuel Ersch</a>, <a class="preview persons A006757" href="">Friedrich Vieweg</a> sowie von der Firma <a class="preview orgs A080219" href="/exist/apps/WeGA-WebApp/de/A080219.html">Gebr. Löbbecke</a> an verschiedene Hannoveraner Adressaten bei. Diese Briefe hatte <a class="preview persons A002068" href="">Weber</a> für seine Reise durch <span class="tei_region">Norddeutschland</span> erbeten und gedachte, sie beim erneuten <a class="preview places A130018" href="">Hannover</a>-Besuch auf der Rückreise von <a class="preview places A130199" href="">Kopenhagen</a> wieder abzuholen. Da die Rückfahrt allerdings nicht wie ursprünglich geplant über <a class="preview places A130018" href="">Hannover</a> führte, blieben die Empfehlungsbriefe dort zurück.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note02"><span class="tei_lemma">„…  t Abends hier eintreffen würde“</span>Weber hatte sich lt. <a class="preview diaries A061371" href="">Tagebuch</a> am 14. August bei Sutor <a class="preview letters A046645" href="">angekündigt</a>.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note03"><span class="tei_lemma">„…  Aufbewahrung beiliegender Briefe zu bitten“</span>Dem Brief liegt ein Umschlag mit den erwähnten Empfehlungsschreiben des Bankhauses <a class="preview orgs A080006" href="">Ballabene</a>, von <a class="preview persons A000201" href="">Louis Philippe de Bombelles</a>, <a class="preview persons A000235" href="">Carl Graf Brühl</a>, <a class="preview persons A001548" href="">Wilhelm Reichenbach</a>, <a class="preview persons A008557" href="">Carl Weisse</a>, <span class="7011497110122327297115115101">Franz Hasse</span>, <a class="preview persons A008592" href="">Johann Samuel Ersch</a>, <a class="preview persons A006757" href="">Friedrich Vieweg</a> sowie von der Firma <a class="preview orgs A080219" href="/exist/apps/WeGA-WebApp/de/A080219.html">Gebr. Löbbecke</a> an verschiedene Hannoveraner Adressaten bei. Diese Briefe hatte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> für seine Reise durch <span class="tei_region">Norddeutschland</span> erbeten und gedachte, sie beim erneuten <a class="preview places A130018" href="">Hannover</a>-Besuch auf der Rückreise von <a class="preview places A130199" href="">Kopenhagen</a> wieder abzuholen. Da die Rückfahrt allerdings nicht wie ursprünglich geplant über <a class="preview places A130018" href="">Hannover</a> führte, blieben die Empfehlungsbriefe dort zurück.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -612,7 +617,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041626</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041626</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -672,6 +677,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -730,22 +738,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,8 +12,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030169" />
@@ -43,13 +43,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"liefert kurze Beschreibung des neuen Tasteninstruments mit Namen Terpodion von Johann D. Buschmann, lobt dessen bequeme Form und Unverstimmbarkeit, gibt ihm den Vorzug vor anderen Instrumenten inkl. Kaufmanns Harmonichord","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Über das Instrument Terpodion. (Labesang.)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030169","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030169","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"liefert kurze Beschreibung des neuen Tasteninstruments mit Namen Terpodion von Johann D. Buschmann, lobt dessen bequeme Form und Unverstimmbarkeit, gibt ihm den Vorzug vor anderen Instrumenten inkl. Kaufmanns Harmonichord","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Über das Instrument Terpodion. (Labesang.)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030169","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030169","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,14 +220,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
                             </li>
                             <li>
                                 <span>A030169</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -251,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030169/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A030169/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,7 +362,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000983" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -391,7 +389,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_antiqua"><span class="tei_hi_spaced_out">Terpodion</span></span>. (Labesang.)</h2>
+                                        <h2 class="docHeader textAlign-center"><span class="tei_hi_antiqua"><span class="tei_hi_spaced_out">Terpodion</span></span>. (Labesang.)</h2>
                                         <p>So benannte der Kunst-liebende und schützende <a class="preview persons A000060" href="">Herzog von Gotha</a>, wohlverdienterweise und sinnvoll ein neu erfundenes musikalisches Instrument, dessen Entstehung die Welt hauptsächlich auch Seiner huldvoll <span class="tei_hi_spaced_out">thätigen</span> Unterstützung verdankt, und welches die kunstliebenden Bewohner <a class="preview places A130003" href="">Dresdens</a> baldigst in einem von dem Erfinder und Verfertiger desselben, Herrn Mechanikus <a class="preview persons A002228" href=""><span class="tei_hi_spaced_out">Joh. Dav. Buschmann</span></a> aus <span class="701141051011001141059910411511411110097">Friedrichsroda</span> bei <a class="preview places A130016" href="">Gotha</a>, zu gebenden öffentlichen Concerte zu hören das Vergnügen haben werden, nachdem es schon die Zufriedenheit und den Beifall <a class="preview persons A000537" href="">Unseres Allergnädigsten und Kunstkennenden Monarchen</a> und dessen erhabener Familie zu erringen so glücklich war<a class="noteMarker" id="backref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">*</a>. – 
                <a class="preview persons A002228" href="">Herr Buschmann</a> hat einen 12jährigen Fleiß darauf verwendet, ein Tastatur-Instrument von 5 ½ Octave im Umfange zu Stande zu bringen, das <span class="tei_hi_spaced_out">den Ton aus – durch Reibung in Erzitterung gebrachten</span> und also klingend- oder tönenden <span class="tei_hi_spaced_out">Holzstäben</span> erzeugt. 
                Dieß ist ihm auf höchst ausgezeichnete Weise gelungen. Das <span class="tei_hi_spaced_out">Wie</span> – vor der Hand noch sein Geheimniß. 
@@ -401,7 +399,7 @@
                Einzelne Regionen des Instrumentes ahmen bis zur lebendigsten Täuschung manche Blas-Instrumente, – in diesen naturgemäßen Tongängen gespielt – nach. 
                Dem gebundenen ernstern Style gehört zwar seine Natur zunächst an, aber die wirklich außerordentliche Leichtigkeit des Ansprechens der Töne, bietet zu schnellrollenden Figuren alle Mittel dar, und es hat <span class="tei_hi_spaced_out">darin</span>, in seiner <span class="tei_hi_spaced_out">bequemen Form</span>, und der <span class="tei_hi_spaced_out">fast vollkommenen Unverstimmbarkeit</span> einem bedeutenden Vorzug vor allen bis jetzt mir bekannten Erfindungen dieser Art, selbst das so schöne <span class="tei_hi_spaced_out">Harmonichord</span>, unsers wahrlich hochzuschätzenden Mitbürgers, Herrn <a class="preview persons A000983" href="">Kauffmann’s</a>, nicht ausgenommen<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. <a class="preview places A130003" href="">Dresden</a>, den <span class="tei_date">28. August 1817</span>.</p>
                                         <p class="tei_closer textAlign-left">
-               <span class="tei_signed textAlign-right"><a class="preview persons A002068" href=""><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a></span>
+               <span class="tei_signed textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Carl Maria von Weber</span></a></span>
             </p>
                                     </div>
                                 </div>
@@ -457,9 +455,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 1, Nr. 210 (2. September 1817), Bl. 2v</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_06b77f7d6d1594bcd876e1caada99153"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_d4a3abe8c4ef607091a212d4458fb3a6"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_06b77f7d6d1594bcd876e1caada99153">
+                                        <div class="collapse apparatus-details" id="source_d4a3abe8c4ef607091a212d4458fb3a6">
                                             
                                             
                                             <div>
@@ -474,9 +472,9 @@
                                                             
                                                             <span>in Privatbesitz</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" role="button" href="#source_e9d93d2f688c64fce06de480a800c255"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" role="button" href="#source_7e9bb65bb534ba87239402126a007325"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_e9d93d2f688c64fce06de480a800c255">
+                                                            <div class="collapse" id="source_7e9bb65bb534ba87239402126a007325">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>im Wesentlichen mit ED übereinstimmend</li>
@@ -485,7 +483,7 @@
                                                                         <ul>
                                                                             <li>
                            Sotheby’s, Katalog vom 4. Dezember 2007 (Nr. 172), S. 152; Titel: „Weber, Carl Maria von. Autograph manuscript of an essay on the ’Terpodion’“; Incipit: „So benannte der kunstliebende und schätzende Herzog von Gotha“; datiert: „Dresden, 28 August 1817“; 1 Seite, ca. 20x14 cm, mit verschiedenen Streichungen und Korrekturen von Webers Hand, in die Ecke einer Karte montiert, lichtgebräunt (= Katalogbeschreibung)</li>
-                                                                            <li>Katalog der Sammlung von Autographen und historischen Dokumenten des im J. 1861 verstorbenen Herrn J. H. W. Wagener, Bankier und K. Schwed. u. Norweg. Konsul in Berlin. Versteigerung: Dienstag, den 26. Februar 1878 u. folgende Tage von 10–2 Uhr im Kunst-Auctions-Hause zu Berlin S. W., Kochstrasse 29 Saal III. [...] <a class="preview orgs A080076" href="">Rudolph Lepke</a>, Auctionator für Kunstsachen, Bücher etc. Berlin S. W., Kochstrasse 29., S. 134, Katalog-Nr. 1093: „Weber (Carl Maria v.) Manuscr. aut. sig. Carl Maria von Weber. Dresden, 28. Aug. 1817. 1 p. pl. 4°. – Ungedruckt?“
+                                                                            <li>Katalog der Sammlung von Autographen und historischen Dokumenten des im J. 1861 verstorbenen Herrn <a class="preview persons A002E82" href="">J. H. W. Wagener</a>, Bankier und K. Schwed. u. Norweg. Konsul in Berlin. Versteigerung: Dienstag, den 26. Februar 1878 u. folgende Tage von 10–2 Uhr im Kunst-Auctions-Hause zu Berlin S. W., Kochstrasse 29 Saal III. [...] <a class="preview orgs A080076" href="">Rudolph Lepke</a>, Auctionator für Kunstsachen, Bücher etc. Berlin S. W., Kochstrasse 29., S. 134, Katalog-Nr. 1093: „Weber (Carl Maria v.) Manuscr. aut. sig. Carl Maria von Weber. Dresden, 28. Aug. 1817. 1 p. pl. 4°. – Ungedruckt?“
                         </li>
                                                                         </ul>
                                                             </div>
@@ -496,7 +494,7 @@
                                                             
                                                             <span>MMW III, S. 157f.</span>
                                                               
-                                                            <div class="collapse" id="source_e006935341c4f03a130bf84ef454c864">
+                                                            <div class="collapse" id="source_74cad0ec69c6a23e9b84c93b7b60b5c1">
                                                                 
                                                             </div>
                                                         </div>
@@ -506,7 +504,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 355f. (Nr. 121)</span>
                                                               
-                                                            <div class="collapse" id="source_1f784d3c11d9c286912df00cea9483ba">
+                                                            <div class="collapse" id="source_038f9a15238ab2037120de3ebe0bc110">
                                                                 
                                                             </div>
                                                         </div>
@@ -539,7 +537,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_01"><span class="tei_lemma">„…  Herrn Kauffmann's , nicht ausgenommen“</span>Zum Harmonichord vgl. <a class="preview persons A000040" href="">August Apels</a> in der AmZ veröffentlichten Beitrag, Nr. 64 (19. Dezember 1810), Sp. <a href="https://digipress.digitale-sammlungen.de/view/bsb10527960_00575_u001/1">1030–1038 <i class="fa fa-external-link" aria-hidden="true"></i></a>, Weber komponierte 1811 sein <a class="preview works A020204" href=""><span class="tei_hi_italic">Adagio und Rondo</span> (JV 115)</a> für dieses Instrument. Vgl. außderdem Webers <a class="preview writings A031803" href="">Bericht über Kaufmanns Instrumenten-Erfindungen</a> von 1812.</div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_01"><span class="tei_lemma">„…  Herrn Kauffmann's , nicht ausgenommen“</span>Zum Harmonichord vgl. <a class="preview persons A000040" href="/exist/apps/WeGA-WebApp/de/A000040.html">August Apels</a> in der AmZ veröffentlichten Beitrag, Nr. 64 (19. Dezember 1810), Sp. <a href="https://digipress.digitale-sammlungen.de/view/bsb10527960_00575_u001/1">1030–1038 <i class="fa fa-external-link" aria-hidden="true"></i></a>, Weber komponierte 1811 sein <a class="preview works A020204" href=""><span class="tei_hi_italic">Adagio und Rondo</span> (JV 115)</a> für dieses Instrument. Vgl. außderdem Webers <a class="preview writings A031803" href="">Bericht über Kaufmanns Instrumenten-Erfindungen</a> von 1812.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -547,7 +545,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A030169draft/manifest.json" data-canvasindex="0"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A030169NGKW/manifest.json https://weber-gesamtausgabe.de/IIIF/A030169draft/manifest.json" data-canvasindex="0 0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -568,7 +566,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030169</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030169</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -628,6 +626,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -686,22 +687,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

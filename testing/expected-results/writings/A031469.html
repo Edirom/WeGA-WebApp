@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Müller, Methusalem" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Frank Ziegler" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:creator" content="" />
@@ -45,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Methusalem Müller: Prolog zur deutschen Erstaufführung des Oberon in Leipzig am 24. Dezember 1826","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031469","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001376/Schriften/A031469","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001376","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001376"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -232,7 +229,7 @@
                             </li>
                             <li>
                                 <span>A031469</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -254,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,10 +295,10 @@
                                     <a class="deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001376/Schriften/A031469/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001376/Schriften/A031469/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001376/Schriften/A031469/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -359,11 +356,11 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000537" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001376" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -387,7 +384,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -400,8 +397,8 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out">Prolog</span></h2>
-                                        <div class="poem"><span class="lg"><span class="verseLine">bei der ersten Vorstellung von <a class="preview persons A002068" href="">Webers</a><a class="preview works A020045" href="">Oberon</a> in</span><span class="verseLine"><a class="preview places A130005" href="">Leipzig</a>, zur Feier des Geburtsfestes <span class="831144632779710646">Sr. Maj.</span></span><span class="verseLine">des <a class="preview persons A000537" href="">Königs</a>, den <span class="tei_date">23. December 1826</span><a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>.</span></span><span class="lg"><span class="verseLine">Kehrt der Frühling unsrer Erde wieder,</span><span class="verseLine">Schmückend die erwachende Natur,</span><span class="verseLine">Dann begrüßen rings ihn Jubellieder</span><span class="verseLine">Und zum Tempel Gottes wird die Flur;</span><span class="verseLine">Doch bald sinkt im Frost Erstarrung nieder</span><span class="verseLine">Und verweht ist seine Rosenspur,</span><span class="verseLine">Sehnend schweift der Blick nach fernen Zonen,</span><span class="verseLine">Wo nur Lenzeslust und Blumen wohnen.</span></span><span class="lg"><span class="verseLine">Doch dann nahn oft segensvolle Stunden,</span><span class="verseLine">Neu den Frühling weckend in der Brust,</span><span class="verseLine">Wo von holder Zaubermacht umwunden</span><span class="verseLine">Sich das Leben regt zu höh’rer Lust;</span><span class="verseLine">Selbst das Herz, das düstrer Gram gebunden,</span><span class="verseLine">wird der schönern Freiheit sich bewußt;</span><span class="verseLine">Nun ist, was der Wechsel uns genommen,</span><span class="verseLine">Neu im mildern Sonnenstrahl entglommen.</span></span><span class="lg"><span class="verseLine">Solch ein Tag, Verehrte, ist’s, der heute</span><span class="verseLine">Mild beglänzt des Vaterlandes Au’n,</span><span class="verseLine">Solch ein Tag, dem, wo er sich erneute,</span><span class="verseLine">Jedes Volk Altäre würde bau’n, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span></span><span class="verseLine">Wo entgegenglänzt uns Lieb’ und Freude,</span><span class="verseLine">Wem wir nur in’s trunkne Auge schau’n;</span><span class="verseLine">Ward uns doch in <a class="preview persons A000537" href=""><span class="tei_hi_spaced_out">Friedrich Augusts</span></a> Leben</span><span class="verseLine">Jedes Glückes Unterpfand gegeben! –</span></span><span class="lg"><span class="verseLine">Sagt! wer spricht es aus, was dieser Worte</span><span class="verseLine">Schwacher Klang für unser Herz verschließt?</span><span class="verseLine">Wir empfinden’s, wenn aus seiner Pforte</span><span class="verseLine">Sich des reinsten Dankes Strom ergießt;</span><span class="verseLine">Ja, empfunden wird’s an jedem Orte,</span><span class="verseLine">Den je seine Vaterhuld begrüßt;</span><span class="verseLine">Tief empfunden in des Armen Hütte,</span><span class="verseLine">Wie in des geschmückten Festsaals Mitte.</span></span><span class="lg"><span class="verseLine">Fürsten wähnten Völker hoch beglücket,</span><span class="verseLine">Wenn sie sie gekrönt mit Ruhm und Macht;</span><span class="verseLine">Die Bewund’rung hat ihr Bild geschmücket,</span><span class="verseLine">Es verherrlichet mit stolzer Pracht,</span><span class="verseLine">Deren Abglanz noch das Aug’ entzücket,</span><span class="verseLine">Wenn sie still entsteigt der Erde Schacht,</span><span class="verseLine">Aber selten nur sah man auf Thronen,</span><span class="verseLine">Unsers Vaters reine Tugend wohnen!</span></span><span class="lg"><span class="verseLine">Darum knüpft auch felsenfeste Treue</span><span class="verseLine">Stets Sein dankbar frohes Volk an Ihn,</span><span class="verseLine">Daß es würdig Seiner Huld sich freue,</span><span class="verseLine">Bleibt sein nie ermüdendes Bemühn, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span></span><span class="verseLine">Ja! in diesem Streben sehn auf’s Neue</span><span class="verseLine">Jeden Tag wir jedes Herz erglühn –</span><span class="verseLine">Wie die <span class="839799104115101110">Sachsen</span> solchen Herrscher ehren</span><span class="verseLine">Soll ihr Sinn und Geist die Völker lehren!</span></span><span class="lg"><span class="verseLine">Wenn wir heut, dies Fest uns zu erhöhen,</span><span class="verseLine"><a class="preview persons A002068" href=""><span class="tei_hi_spaced_out">Webers</span></a> Zaubertönen leihn das Ohr,</span><span class="verseLine">Fühlen seines mächt’gen Odens Wehen,</span><span class="verseLine">Der die Seel’ oft freudig trug empor,</span><span class="verseLine">Wird der Meister lächelnd niedersehen</span><span class="verseLine">Aus verwandter sel’ger Geister Chor,</span><span class="verseLine">Pflegte seines höhern Lebens Blüthe</span><span class="verseLine">Doch auch unsers <a class="preview persons A000537" href="">Königs</a> Huld und Güte.</span></span><span class="lg"><span class="verseLine">Und wenn in das Wunderreich des Schönen</span><span class="verseLine">Seines <a class="preview works A020045" href="">Ob’ron</a> Reiz das Herz entrückt,</span><span class="verseLine">Wenn, was Anmuthreiches die Kamönen</span><span class="verseLine">Je ersannen, Aug’ und Ohr entzückt,</span><span class="verseLine">Und dem strengen Loos uns zu versöhnen,</span><span class="verseLine">Sein Vermächtniß tröstend uns beglückt,</span><span class="verseLine">Wann wir dankend aufwärts zu ihm schauen,</span><span class="verseLine">Der nun wallt auf Paradieses Auen;</span></span><span class="lg"><span class="lg"><span class="verseLine">Dann scheint der Verklärte uns zu sagen:</span><span class="verseLine">Brüder, nie verehrt ihr Ihn genug!</span><span class="verseLine">Zwar ich weiß, wie Eure Herzen schlagen,</span><span class="verseLine">Kenne der Begeistrung Himmelsflug,</span><span class="verseLine">Der Euch oft so stolz emporgetragen,</span><span class="verseLine">Wenn des heut’gen Festes Stunde schlug,</span><span class="verseLine">Doch was Engel selbst mit Lieb’ umfangen</span><span class="verseLine">Mag wohl jedes Kranzes Lohn erlangen.</span></span><span class="verseLine">Nun! so laßt uns denn in heißem Flehen</span><span class="verseLine">Treu vereint dem Thron der Vorsicht nahn!</span><span class="verseLine">Mögen wir noch oft ihn wiedersehen</span><span class="verseLine">Diesen Tag, so froh wir heut’ ihn sahn!</span><span class="verseLine">Mög’ auf späte Enkel übergehen,</span><span class="verseLine">Was von dem Geliebten wir empfahn!</span><span class="verseLine">Jedes Volk – wir fühlens – wird dem Seinen</span><span class="verseLine">Jetzt sich zu dem Jubelruf vereinen:</span><span class="verseLine"><span class="tei_hi_spaced_out">Es lebe der <a class="preview persons A000537" href="">König</a></span>!</span></span></div>
+                                        <h2 class="docHeader textAlign-center"><span class="tei_hi_spaced_out">Prolog</span></h2>
+                                        <div class="poem"><span class="lg"><span class="verseLine">bei der ersten Vorstellung von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <a class="preview works A020045" href="">Oberon</a> in</span><span class="verseLine"><a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>, zur Feier des Geburtsfestes <span class="831144632779710646">Sr. Maj.</span></span><span class="verseLine">des <a class="preview persons A000537" href="">Königs</a>, den <span class="tei_date">23. December 1826</span><a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a>.</span></span><span class="lg"><span class="verseLine">Kehrt der Frühling unsrer Erde wieder,</span><span class="verseLine">Schmückend die erwachende Natur,</span><span class="verseLine">Dann begrüßen rings ihn Jubellieder</span><span class="verseLine">Und zum Tempel Gottes wird die Flur;</span><span class="verseLine">Doch bald sinkt im Frost Erstarrung nieder</span><span class="verseLine">Und verweht ist seine Rosenspur,</span><span class="verseLine">Sehnend schweift der Blick nach fernen Zonen,</span><span class="verseLine">Wo nun Lenzeslust und Blumen wohnen.</span></span><span class="lg"><span class="verseLine">Doch dann nahn oft segensvolle Stunden,</span><span class="verseLine">Neu den Frühling weckend in der Brust,</span><span class="verseLine">Wo von holder Zaubermacht umwunden</span><span class="verseLine">Sich das Leben regt zu höh’rer Lust;</span><span class="verseLine">Selbst das Herz, das düstrer Gram gebunden,</span><span class="verseLine">Wird der schönern Freiheit sich bewußt;</span><span class="verseLine">Nun ist, was der Wechsel uns genommen,</span><span class="verseLine">Neu im mildern Sonnenstrahl entglommen.</span></span><span class="lg"><span class="verseLine">Solch ein Tag, Verehrte, ist’s, der heute</span><span class="verseLine">Mild beglänzt des Vaterlandes Au’n,</span><span class="verseLine">Solch ein Tag, dem, wo er sich erneute,</span><span class="verseLine">Jedes Volk Altäre würde bau’n, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span></span><span class="verseLine">Wo entgegenglänzt uns Lieb’ und Freude,</span><span class="verseLine">Wem wir nur in’s trunkne Auge schau’n;</span><span class="verseLine">Ward uns doch in <a class="preview persons A000537" href=""><span class="tei_hi_spaced_out">Friedrich Augusts</span></a> Leben</span><span class="verseLine">Jedes Glückes Unterpfand gegeben! –</span></span><span class="lg"><span class="verseLine">Sagt! wer spricht es aus, was dieser Worte</span><span class="verseLine">Schwacher Klang für unser Herz verschließt?</span><span class="verseLine">Wir empfinden’s, wenn aus seiner Pforte</span><span class="verseLine">Sich des reinsten Dankes Strom ergießt;</span><span class="verseLine">Ja, empfunden wird’s an jedem Orte,</span><span class="verseLine">Den je Seine Vaterhuld begrüßt;</span><span class="verseLine">Tief empfunden in des Armen Hütte,</span><span class="verseLine">Wie in des geschmückten Festsaals Mitte.</span></span><span class="lg"><span class="verseLine">Fürsten wähnten Völker hoch beglücket,</span><span class="verseLine">Wenn sie sie gekrönt mit Ruhm und Macht;</span><span class="verseLine">Die Bewund’rung hat ihr Bild geschmücket,</span><span class="verseLine">Es verherrlichet mit stolzer Pracht,</span><span class="verseLine">Deren Abglanz noch das Aug’ entzücket,</span><span class="verseLine">Wenn sie still entsteigt der Erde Schacht,</span><span class="verseLine">Aber selten nur sah man auf Thronen,</span><span class="verseLine">Unsers Vaters reine Tugend wohnen!</span></span><span class="lg"><span class="verseLine">Darum knüpft auch felsenfeste Treue</span><span class="verseLine">Stets Sein dankbar frohes Volk an Ihn,</span><span class="verseLine">Daß es würdig Seiner Huld sich freue,</span><span class="verseLine">Bleibt sein nie ermüdendes Bemühn, <span class="tei_cb" title="Spaltenumbruch"> ¦ </span></span><span class="verseLine">Ja! in diesem Streben sehn auf’s Neue</span><span class="verseLine">Jeden Tag wir jedes Herz erglühn –</span><span class="verseLine">Wie die Sachsen solchen Herrscher ehren</span><span class="verseLine">Soll ihr Sinn und Geist die Völker lehren!</span></span><span class="lg"><span class="verseLine">Wenn wir heut, dies Fest uns zu erhöhen,</span><span class="verseLine"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_spaced_out">Webers</span></a> Zaubertönen leihn das Ohr,</span><span class="verseLine">Fühlen seines mächt’gen Odens Wehen,</span><span class="verseLine">Der die Seel’ oft freudig trug empor,</span><span class="verseLine">Wird der Meister lächelnd niedersehen</span><span class="verseLine">Aus verwandter sel’ger Geister Chor,</span><span class="verseLine">Pflegte seines höhern Lebens Blüthe</span><span class="verseLine">Doch auch unsers <a class="preview persons A000537" href="">Königs</a> Huld und Güte.</span></span><span class="lg"><span class="verseLine">Und wenn in das Wunderreich des Schönen</span><span class="verseLine">Seines <a class="preview works A020045" href="">Ob’ron</a> Reiz das Herz entrückt,</span><span class="verseLine">Wenn, was Anmuthreiches die Kamönen</span><span class="verseLine">Je ersannen, Aug’ und Ohr entzückt,</span><span class="verseLine">Und dem strengen Loos uns zu versöhnen,</span><span class="verseLine">Sein Vermächtniß tröstend uns beglückt,</span><span class="verseLine">Wann wir dankend aufwärts zu ihm schauen,</span><span class="verseLine">Der nun wallt auf Paradieses Auen;</span></span><span class="lg"><span class="lg"><span class="verseLine">Dann scheint der Verklärte uns zu sagen:</span><span class="verseLine">Brüder, nie verehrt ihr Ihn genug!</span><span class="verseLine">Zwar ich weiß, wie Eure Herzen schlagen,</span><span class="verseLine">Kenne der Begeistrung Himmelsflug,</span><span class="verseLine">Der Euch oft so stolz emporgetragen,</span><span class="verseLine">Wenn des heut’gen Festes Stunde schlug,</span><span class="verseLine">Doch was Engel selbst mit Lieb’ umfangen</span><span class="verseLine">Mag wohl jedes Kranzes Lohn erlangen.</span></span><span class="verseLine">Nun! so laßt uns denn in heißem Flehen</span><span class="verseLine">Treu vereint dem Thron der Vorsicht nahn!</span><span class="verseLine">Mögen wir noch oft ihn wiedersehen</span><span class="verseLine">Diesen Tag, so froh wir heut’ ihn sahn!</span><span class="verseLine">Mög’ auf späte Enkel übergehen,</span><span class="verseLine">Was von dem Geliebten wir empfahn!</span><span class="verseLine">Jedes Volk – wir fühlens – wird dem Seinen</span><span class="verseLine">Jetzt sich zu dem Jubelruf vereinen:</span><span class="verseLine"><span class="tei_hi_spaced_out">Es lebe der <a class="preview persons A000537" href="">König</a></span>!</span></span></div>
                                         <p class="tei_closer textAlign-left"><span class="tei_signed textAlign-right"><a class="preview persons A001376" href="">Methus. Müller</a></span>.</p>
                                     </div>
                                     <div id="endNotes">
@@ -453,7 +450,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 27, Nr. 15 (20. Januar 1827), Sp. 113–115</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_709db471a2cb84a096246f8cadb4abe3">
+                                        <div class="collapse apparatus-details" id="source_f763861e1ef8825d8c9c2fff65d47eaa">
                                             
                                             
                                             <div>
@@ -471,7 +468,14 @@
                             </ul>
                         </div>                   
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Themenkommentare</h3>
+                            <ul class="tei_list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090234.html"><span class="tei_title">Die deutschsprachige Version von Webers <span class="tei_workName"><span class="tei_hi_italic">Oberon</span></span> und ihre Erstaufführung in <span class="tei_settlement">Leipzig</span></span></a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div class="apparatus">
                                     <ul class="apparatus textConstitution"></ul>
@@ -501,7 +505,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031469</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031469</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -561,6 +565,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -619,22 +626,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,6 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Joachim Veit" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090109" />
@@ -41,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Nach seiner Ausweisung aus Württemberg Ende Februar 1810 hatte Carl Maria von Weber in Mannheim rasch Freundschaft mit dem für die dortigen …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Der Harmonische Verein","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090109","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090109","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Nach seiner Ausweisung aus Württemberg Ende Februar 1810 hatte Carl Maria von Weber in Mannheim rasch Freundschaft mit dem für die dortigen …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Der Harmonische Verein","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090109","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090109","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -218,7 +217,7 @@
                         
                         <ol class="breadcrumb">
                             <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                            <li><span></span></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare">Themenkommentare</a></li>
                             <li><span>A090109</span></li>
                         </ol>
@@ -286,7 +285,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090109/backlinks.html">Rückverweise</a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090109/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009000/Themenkommentare/A090109/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -305,8 +304,6 @@
                                     <input type="checkbox" name="options" value="A001313" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000584" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000146" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -383,6 +380,8 @@
                                     <input type="checkbox" name="options" value="A080146" /> <span title="Anwählen, um &#34;Harmonischer Verein (Verein)&#34; im Text zu markieren.">Harmonischer Verein (Verein)</span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001594" /> <span title="Anwählen, um &#34;Roeck, Carl Ludwig&#34; im Text zu markieren.">Roeck, Carl Ludwig</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -392,13 +391,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130015" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130013" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130012" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
@@ -418,8 +413,6 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130009" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130022" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130328" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -431,6 +424,12 @@
                                     <input type="checkbox" name="options" value="A130014" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A130075" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130010" /> <span title="Anwählen, um &#34;Mannheim&#34; im Text zu markieren.">Mannheim</span> 
                                 </label>
                             </div>
                         </div>
@@ -444,7 +443,7 @@
                         <div id="d12e2">
                                     <h2 id="d12e3">Entstehung und Ziele des <a class="preview orgs A080146" href="/exist/apps/WeGA-WebApp/de/A080146.html">Harmonischen Vereins</a><a class="noteMarker arabic" id="backref-C_001" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_001">1</a></h2>
                                     <p>Nach seiner Ausweisung aus Württemberg Ende Februar 1810 hatte Carl Maria von
-                  Weber in <a class="preview places A130010" href="">Mannheim</a> rasch Freundschaft mit dem für die dortigen Liebhaberkonzerte des
+                  Weber in <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> rasch Freundschaft mit dem für die dortigen Liebhaberkonzerte des
                Museumsvereins zuständigen Juristen <a class="preview persons A002078" href="">Gottfried Weber</a>, dessen
                   Schwager <a class="preview persons A000409" href="">Alexander von Dusch</a> und dem Heidelberger Jura-Studenten
                   <a class="preview persons A001594" href="/exist/apps/WeGA-WebApp/de/A001594.html">Ludwig Roeck</a> geschlossen; im April lernte Weber dann im Hause
@@ -467,7 +466,7 @@
                Ausformulierung von Vereinsstatuten geht, dürfte die Idee zu diesem Bund spätestens
                während Webers vorherigem Aufenthalt in Mannheim und Heidelberg im Juli und August
                1810 entstanden sein, bei dem aber Gänsbacher (der Darmstadt am 19. Juli verließ)
-               schon nicht mehr mit anwesend war.<a class="noteMarker arabic" id="backref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">2</a> Weber
+               schon nicht mehr mit anwesend war<a class="noteMarker arabic" id="backref-C_002" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_002">2</a>. Weber
                vollendete die angekündigten Statuten erst Ende Oktober und <a class="preview letters A040313" href="">schrieb
                   am 1. November 1810</a> an Gottfried Weber: „die Statuten sind fertig
                      ich bin aber zu faul sie heute abzuschreiben, daher bekomst du sie in ein paar
@@ -480,13 +479,13 @@
                      zu dem Sie auch gehören, und von dem ich Ihnen in meinem <a class="preview letters A040309" href="">nächsten Briefe</a>, Geseze, und ausführlicher schreiben
                      werde. er ist für die Kunst und für uns von der grösten Wichtigkeit. die beyden
                      andern haben <span class="tei_hi_underline1">mich</span> vor der Hand zum <span class="tei_hi_latintype">Dirigens</span> erwählt wenn <span class="tei_hi_underline1">Sie</span> es zufrieden sind.“</p>
-                                    <p>An Gänsbacher übersandte Weber die Statuten schließlich mit seinem <a class="preview letters A040318" href="">Brief vom 7. Dezember 1810</a>. Aus diesem bislang einzigen erhaltenen, mit 30. November 1810 datierten und von Carl Maria und Gottfried Weber gemeinsam verfassten <a class="preview letters A040318" href="">Exemplar der Statuten</a><a class="noteMarker arabic" id="backref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">3</a> lassen sich Zielsetzung und Methoden im Detail entnehmen. Seine
+                                    <p>An Gänsbacher übersandte Weber die Statuten schließlich mit seinem <a class="preview letters A040318" href="">Brief vom 7. Dezember 1810</a>. Aus diesem bislang einzigen erhaltenen, mit 30. November 1810 datierten und von Carl Maria und Gottfried Weber gemeinsam verfassten <a class="preview documents A100263" href="">Exemplar der Statuten</a><a class="noteMarker arabic" id="backref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">3</a> lassen sich Zielsetzung und Methoden im Detail entnehmen. Seine
                subjektive Sicht der Beweggründe zur Gründung und zu den Aufgaben des Vereins hat Gänsbacher in seinen
-                     <span class="tei_bibl"><span class="tei_hi_italic">Denkwürdigkeiten aus meinem Leben</span></span><a class="noteMarker arabic" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">4</a> wie folgt zusammengefasst (wobei er sich
+<span class="tei_hi_italic"><span class="preview biblio A110722" data-ref="">Denkwürdigkeiten aus meinem Leben</span></span><a class="noteMarker arabic" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">4</a> wie folgt zusammengefasst (wobei er sich
                eindeutig als Gründungsmitglied bezeichnet): <br />„Die so häufigen einseitigen,
                      partheiischen Beurtheilungen von Kunstwerken, von Verlegern, Lobpreisern ihres
                      Verlags und die Schwierigkeit, dem wahrhaft Guten auch ohne großen Namen in der
-                     Welt Platz und Würdigung zu verschaffen, bewogen <a class="preview persons A002068" href="">C. M.
+                     Welt Platz und Würdigung zu verschaffen, bewogen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M.
                         von Weber</a>, <a class="preview persons A001313" href="">Meyerbeer</a>,
                   <a class="preview persons A002078" href="">Gottfried Weber</a>, <a class="preview persons A000409" href="">Alexander
                         Dusch</a> und mich, einen Verein zu knüpfen, der, zum Besten der
@@ -495,30 +494,30 @@
                      den ästhetischen Theil derselben mehr zu pflegen, waren die Hauptgründe des
                      Vereins. Da das Schicksal nicht erlaubte, daß alle Theilnehmer an einem Ort
                      vereint wirken konnten, hielt man es für nothwendig, eine Norm für den
-                     zweckmäßigen Gang des Ganzen zu entwerfen und festzusetzen. <a class="preview persons A002068" href="">C. M. von
+                     zweckmäßigen Gang des Ganzen zu entwerfen und festzusetzen. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von
                         Weber</a> war Dirigens des Ganzen, <a class="preview persons A002078" href="">Gottfried
                         Weber</a> Secretair. Infolgedessen lieferte ich viele musikalische
                      Notitzen, Recensionen etc. für verschiedene öffentliche Blätter unter dem
                      angenohmenen Namen Triole, auch Trias, bis zum Jahr 1813, wo ich zur Befreiung
                      meines Vaterlandes die Feder mit dem Stutzen und Säbl vertauschte. Bey
-                     dergleichen Aufsätzen nahm <a class="preview persons A002068" href="">C. M. von Weber</a>
-                     den Namen <a class="preview persons A002068" href="">Melos</a> und <a class="preview persons A001313" href="">Meyerbeer</a>
+                     dergleichen Aufsätzen nahm <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a>
+                     den Namen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Melos</a> und <a class="preview persons A001313" href="">Meyerbeer</a>
                      <a class="preview persons A001313" href="">Philodikaios</a> an.“
             </p>
                                     <p>Die meisten der angeführten Punkte beziehen sich direkt auf die von Weber formulierte Satzung des Vereins, auf deren
-                  <a class="preview letters A040318" href="">vollständigen Text</a> hier verwiesen sei. Hervorzuheben sind dabei die „strengste Verschwiegenheit über die Existenz des Vereins“ (§ 1); die Notwendigkeit einer gemeinsamen Wahl von mit großer Vorsicht einzuwerbenden neuen Mitgliedern (§ 8–10), die entweder Komponist und Schriftsteller zugleich sein (§ 6) oder doch zumindest Musikkenntnis mit schriftstellerischem Talent verbinden sollten (§ 7). Wichtig waren ferner die Wahl und Bekanntgabe eines Pseudonyms zum Zeichnen von Texten (§ 11f.) und die Meldung solcher Texte an den <a class="preview persons A002068" href="">Dirigens</a> (§ 17). Hauptzweck der Tätigkeit eines Vereinsbruders sei es „das Gute zu erheben und hervorzuziehen, <span class="tei_hi_underline1">wo er es immer finden mag</span>, und besonders [...] auf junge angehende Talente Rüksicht zu nehmen“ (§ 14), auch solle vor schlechten Produkten gewarnt werden (§ 15), aber auch die „Verbreitung und Würdigung der Arbeiten der Brüder“ sei eine „angenehme Pflicht“ (§ 16). Alle Beiträge sollten in Abschrift an das Archiv bei <a class="preview persons A002078" href="">Gottfried Weber</a> eingesandt werden – wäre dieses erhalten geblieben, verfügten wir also über eine einzigartige und verlässliche Übersicht über die Tätigkeit des Vereins.</p>
+                  <a class="preview documents A100263" href="">vollständigen Text</a> hier verwiesen sei. Hervorzuheben sind dabei die „strengste Verschwiegenheit über die Existenz des Vereins“ (§ 1) und die Notwendigkeit einer gemeinsamen Wahl von mit großer Vorsicht einzuwerbenden neuen Mitgliedern (§ 8–10), die entweder Komponist und Schriftsteller zugleich sein (§ 6) oder doch zumindest Musikkenntnis mit schriftstellerischem Talent verbinden sollten (§ 7). Wichtig waren ferner die Wahl und Bekanntgabe eines Pseudonyms zum Zeichnen von Texten (§ 11f.) und die Meldung solcher Texte an den <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Dirigens</a> (§ 17). Hauptzweck der Tätigkeit eines Vereinsbruders sei es, „das Gute zu erheben und hervorzuziehen, <span class="tei_hi_underline1">wo er es immer finden mag</span>, und besonders [...] auf junge angehende Talente Rüksicht zu nehmen“ (§ 14), auch solle vor schlechten Produkten gewarnt werden (§ 15), aber auch die „Verbreitung und Würdigung der Arbeiten der Brüder“ sei eine „angenehme Pflicht“ (§ 16). Alle Beiträge sollten in Abschrift an das Archiv bei <a class="preview persons A002078" href="">Gottfried Weber</a> eingesandt werden – wäre dieses erhalten geblieben, verfügten wir also über eine einzigartige und verlässliche Übersicht über die Tätigkeit des Vereins.</p>
                                 </div>
-                                <div id="d12e186">
-                                    <h2 id="d12e187">Mitglieder des Vereins und „Surveillisten“</h2>
-                                    <p>Das „Centrum“ des Vereins, d.h. das Archiv, an dem alle Schriftstücke gesammelt wurden, war im Hause Gottfried Webers in Mannheim und wurde in den Briefen meist durch einem Kreissymbol ◯ bezeichnet. Carl Maria von Weber hatte – wie das Zitat aus Gänsbachers <span class="tei_hi_italic">Denkwürdigkeiten</span> bestätigt, die Funktion des „Dirigens“, Gottfried Weber die des Sekretärs inne. (Unklar bleibt bislang die Auflösung des Kürzels „G. G. O.“ das sich auf das Archiv zu beziehen scheint.)</p>
-                                    <p>Während Weber in dem zitierten Brief an Gänsbacher nur vier Gründungsmitglieder nennt, schließt Gänsbacher in seinen Erinnerungen Gottfried Webers Schwager <a class="preview persons A000409" href="">Alexander von Dusch</a> mit ein, was damit zusammenhängen dürfte, dass Dusch in den Anfang Dezember übersandten Statuten bereits als fünftes Mitglied genannt ist. Belegt ist in Webers TB vom 14. November 1810 eine gemeinsame „<span class="tei_hi_latintype">Session</span>“ mit Dusch und Gottfried Weber – spätestens hier dürfte er mit den Zielen des Vereins vertraut worden sein.<a class="noteMarker arabic" id="backref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">5</a></p>
+                                <div id="d12e193">
+                                    <h2 id="d12e194">Mitglieder des Vereins und „Surveillisten“</h2>
+                                    <p>Das „Centrum“ des Vereins, d.h. das Archiv, an dem alle Schriftstücke gesammelt wurden, war im Hause Gottfried Webers in Mannheim und wurde in den Briefen meist durch einem Kreissymbol ◯ bezeichnet. Carl Maria von Weber hatte – wie das Zitat aus Gänsbachers <span class="tei_hi_italic">Denkwürdigkeiten</span> bestätigt, die Funktion des „Dirigens“, Gottfried Weber die des Sekretärs inne. (Unklar bleibt bislang die Auflösung des Kürzels „G: G: ◯“, das sich auf das Archiv zu beziehen scheint<a class="noteMarker arabic" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">5</a>.)</p>
+                                    <p>Während Weber in dem zitierten <a class="preview letters A040304" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040304.html">Brief</a> an Gänsbacher nur drei Gründungsmitglieder nennt (und den Briefempfänger quasi als viertes, nicht anwesendes), schließt Gänsbacher in seinen Erinnerungen nicht nur sich selbst, sondern auch Gottfried Webers Schwager <a class="preview persons A000409" href="">Alexander von Dusch</a> mit ein, was damit zusammenhängen dürfte, dass Dusch in den Anfang Dezember übersandten Statuten bereits als fünftes Mitglied genannt ist. Belegt ist in Webers <a class="preview diaries A064661" href="">Tagebuch</a> am 14. November 1810 eine gemeinsame „<span class="tei_hi_latintype">Session</span>“ mit Dusch und Gottfried Weber – spätestens hier dürfte er mit den Zielen des Vereins vertraut worden sein<a class="noteMarker arabic" id="backref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">6</a>.</p>
                                     <p>Aus dem Mannheim/Heidelberger Freundeskreis wurde dann Anfang 1811 auch der Jura-Student <a class="preview persons A001594" href="/exist/apps/WeGA-WebApp/de/A001594.html">Carl Ludwig Roeck</a> formell in den Verein aufgenommen, wie Weber in einem <a class="preview letters A040393" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040393.html">Brief an Gottfried Weber vom 30. April 1811</a> bestätigt und ein kürzlich aufgetauchter <a class="preview letters A047435" href="/exist/apps/WeGA-WebApp/de/A001594/Korrespondenz/A047435.html">Brief Roecks an Gottfried Weber vom 19. Juni 1811</a> zusätzlich belegt. Zugleich illustriert dieser Brief, dass mit der für die Mitgliedschaft laut § 7 geforderten Musikkenntnis nicht notwendig ein tiefergehendes Wissen um musikalische Gegenstände gemeint war.</p>
-                                    <p>Als späteres formelles Mitglied nachweisbar ist auch der <a class="preview places A130013" href="">Breslauer</a> Organist und Komponist <a class="preview persons A000146" href="">Friedrich Wilhelm Berner</a>, den Carl Maria von Weber noch aus seiner Breslauer Zeit kannte, am 18. Mai 1812 in <a class="preview places A130002" href="">Berlin</a> traf und am 23. Mai für eine Mitgliedschaft vorschlug (vgl. <a class="preview letters A040509" href="">Brief</a> und <a class="preview diaries A065674" href="">TB</a>). Nachdem sich die Brüder einverstanden erklärten (vgl. dazu <a class="preview letters A040514" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514.html">Brief an Gänsbacher vom 14. Juli 1812</a>), vermerkte Weber im <a class="preview diaries A065706" href="">TB vom 24. Juni</a>, dass Berner ihm den „Beytrag zum V:“ übergeben habe und übersandte ihm laut <a class="preview diaries A065797" href="">TB am 23. September 1812</a> auch die Statuten.</p>
-                                    <p>Nachweise für weitere formelle Mitglieder gibt es nach gegenwärtigem Kenntnisstand nicht. In einigen wenigen Fällen verwundert dies durchaus: Der Tenor <a class="preview persons A000139" href="">Ludwig Berger</a>, den Weber von <a class="preview places A130012" href="">Stuttgart</a> her kannte und der sein erster Ansprechpartner in <a class="preview places A130010" href="">Mannheim</a> nach seiner Ausweisung aus Württemberg im Februar 1810 war, gehörte ebenfalls zum engeren Mannheimer Freundeskreis und ist bei <span class="651141101113276101109107101">Arno Lemke</span> als Mitglied genannt.<a class="noteMarker arabic" id="backref-C_007" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_007">6</a> Vermutlich war die Rückkehr Bergers nach <a class="preview places A130012" href="">Stuttgart</a> (er verließ das Mannheimer Theater im August 1810 und gab sein Debüt in Stuttgart am 9. September 1810) ein Grund, warum er nicht mehr in den engeren Kreis der Vereinsbrüder aufgenommen wurde. Im Falle <a class="preview persons A000077" href="">Heinrich Joseph Baermanns</a>, mit dem Weber während seiner aktivsten Zeit als Vereinsmitglied eng befreundet war, ist schwer vorstellbar, dass er nicht zumindest in die Tätigkeiten des Vereins eingeweiht war. Allerdings fehlen auch hier jegliche Belege. Dies gilt ebenso für den Schauspieler und Theaterdichter <a class="preview persons A002170" href="">Johann Gottfried Wohlbrück</a>, dem Weber Anfang 1811 zumindest einige Aufsätze des Vereins weitergab und von dem Weber auch die Adresse <a class="preview persons A000277" href="">Ignaz Franz Castellis</a> in <a class="preview places A130004" href="">Wien</a> erhielt, damit der Verein mit diesem in Kontakt treten wollte.<a class="noteMarker arabic" id="backref-C_008" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_008">7</a></p>
+                                    <p>Als späteres formelles Mitglied nachweisbar ist auch der <a class="preview places A130013" href="">Breslauer</a> Organist und Komponist <a class="preview persons A000146" href="">Friedrich Wilhelm Berner</a>, den Carl Maria von Weber noch aus seiner Breslauer Zeit kannte, am 18. Mai 1812 in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> traf und am 23. Mai für eine Mitgliedschaft vorschlug (vgl. <a class="preview letters A040509" href="">Brief</a> und <a class="preview diaries A065674" href="">TB</a>). Nachdem sich die Brüder einverstanden erklärten (vgl. dazu <a class="preview letters A040514" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040514.html">Brief an Gänsbacher vom 14. Juli 1812</a>), vermerkte Weber im <a class="preview diaries A065706" href="">TB vom 24. Juni</a>, dass Berner ihm den „Beytrag zum V:“ übergeben habe und übersandte ihm laut <a class="preview diaries A065797" href="">TB am 23. September 1812</a> auch die Statuten.</p>
+                                    <p>Nachweise für weitere formelle Mitglieder gibt es nach gegenwärtigem Kenntnisstand nicht. In einigen wenigen Fällen verwundert dies durchaus: Der Tenor <a class="preview persons A000139" href="">Ludwig Berger</a>, den Weber von <a class="preview places A130012" href="">Stuttgart</a> her kannte und der sein erster Ansprechpartner in <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> nach seiner Ausweisung aus Württemberg im Februar 1810 war, gehörte ebenfalls zum engeren Mannheimer Freundeskreis und ist bei <span class="651141101113276101109107101">Arno Lemke</span> als Mitglied genannt<a class="noteMarker arabic" id="backref-C_007" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_007">7</a>. Vermutlich war die Rückkehr Bergers nach <a class="preview places A130012" href="">Stuttgart</a> (er verließ das Mannheimer Theater im August 1810 und gab sein Debüt in Stuttgart am 9. September 1810) ein Grund, warum er nicht mehr in den engeren Kreis der Vereinsbrüder aufgenommen wurde. Im Falle <a class="preview persons A000077" href="">Heinrich Joseph Baermanns</a>, mit dem Weber während seiner aktivsten Zeit als Vereinsmitglied eng befreundet war, ist schwer vorstellbar, dass er nicht zumindest in die Tätigkeiten des Vereins eingeweiht war. Allerdings fehlen auch hier jegliche Belege. Dies gilt ebenso für den Schauspieler und Theaterdichter <a class="preview persons A002170" href="">Johann Gottfried Wohlbrück</a>, dem Weber Anfang 1811 zumindest einige Aufsätze des Vereins weitergab und von dem Weber auch die Adresse <a class="preview persons A000277" href="">Ignaz Franz Castellis</a> in <a class="preview places A130004" href="">Wien</a> erhielt, da der Verein mit diesem in Kontakt treten wollte<a class="noteMarker arabic" id="backref-C_008" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_008">8</a>.</p>
                                     <p>Nachfolgend sind die nachweisbaren, formell aufgenommenen Mitglieder mit ihren gemäß § 11f. verwendeten Bundesnamen und den jeweils wichtigsten Nachweisen für deren Verwendung aufgelistet:</p>
                                     <div class="table-wrapper">
-                                        <table id="d12e316" class="table">
-                                            <caption>Übersicht über die nachweisbaren, formell aufgenommene Mitglieder und ihre Pseudonyme</caption>
+                                        <table id="d12e340" class="table">
+                                            <caption>Übersicht über die nachweisbaren, formell aufgenommenen Mitglieder und ihre Pseudonyme</caption>
                                             <tbody>
                                                 <tr>
                                                     <td>Name</td>
@@ -526,34 +525,34 @@
                                                     <td>Nachweise</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><a class="preview persons A002068" href="">Carl Maria von Weber</a></td>
-                                                    <td>Simon Knaster, Melos<a class="noteMarker arabic" id="backref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">8</a>, Niemand</td>
-                                                    <td>Knaster vgl. <a class="preview letters A047436" href="">Circular 3</a> und diverse <span class="preview letters A047438 A040400 A040387" data-ref="  ">Briefe</span>; die volle Namensform ist vor allem im Münchner <span class="tei_bibl"><span class="preview writings A031141 A031146 A031145 A031152 A031144 A031138" data-ref=" /exist/apps/WeGA-WebApp/de/A002068/Schriften/A031146.html    ">Gesellschaftsblatt</span></span> verwendet; Melos und Niemand vgl. <a class="preview letters A040400" href="">A040400</a></td>
+                                                    <td><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></td>
+                                                    <td>Simon Knaster, Melos<a class="noteMarker arabic" id="backref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">9</a>. Niemand</td>
+                                                    <td>Knaster vgl. <a class="preview letters A047436" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A047436.html">Circular 3</a> und diverse <span class="preview letters A047438 A040400 A040387" data-ref="  ">Briefe</span>; die volle Namensform ist vor allem im Münchner <span class="tei_bibl"><span class="preview writings A031141 A031146 A031145 A031152 A031144 A031138" data-ref="     ">Gesellschaftsblatt</span></span> verwendet; Melos und Niemand vgl. <a class="preview letters A040400" href="">A040400</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A002078" href="">Gottfried Weber</a></td>
                                                     <td>Giusto, G. Giusto, Dian, Seraphine von Bloksberg</td>
-                                                    <td>G. Giusto vgl. <a class="preview letters A040309" href="">A040309</a>; Dian vgl. <a class="preview letters A047436" href="">A047436</a>; Seraphine von Bloksberg vgl. <a class="preview letters A040370" href="">A040370</a> (die alternative Benennung in der Nachschrift zum Brief <a class="preview letters A040380" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html">A040380</a> ist ein einmaliger Scherz)</td>
+                                                    <td>G. Giusto vgl. <a class="preview letters A040309" href="">A040309</a>; Dian vgl. <a class="preview letters A047436" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A047436.html">A047436</a>; Seraphine von Bloksberg vgl. <a class="preview letters A040370" href="">A040370</a> (die alternative Benennung in der Nachschrift zum Brief <a class="preview letters A040380" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html">A040380</a> ist ein einmaliger Scherz)</td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A000409" href="">Alexander von Dusch</a></td>
                                                     <td>The unknown man, The Unknown, Philokalos</td>
-                                                    <td>The unknown man vgl. <span class="preview letters A047433 A040370 A040398" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A047433.html  /exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040398.html">A047433, A040370, A040398</span>; Unknown vgl. <a class="preview letters A047437" href="">A047437</a>; Philokalos vgl. u.a. <a class="preview letters A047438" href="">A047438</a><a class="noteMarker arabic" id="backref-C_009" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_009">9</a>; </td>
+                                                    <td>The unknown man vgl. <span class="preview letters A047433 A040370 A040398" data-ref="  /exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040398.html">A047433, A040370, A040398</span>; Unknown vgl. <a class="preview letters A047437" href="">A047437</a>; Philokalos vgl. u.a. <a class="preview letters A047438" href="">A047438</a><a class="noteMarker arabic" id="backref-C_009" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_009">10</a> </td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A001313" href="">Giacomo Meyerbeer</a></td>
                                                     <td>Billig, Philodikaios</td>
-                                                    <td>Billig vgl. <a class="preview letters A047437" href="">A047437</a>; Philodikaios vgl. <a class="preview letters A047436" href="">Circular Nr. 3</a>; beide Namen ausdrücklich in <a class="preview letters A040333" href="">A040333</a></td>
+                                                    <td>Billig vgl. <a class="preview letters A047437" href="">A047437</a>; Philodikaios vgl. <a class="preview letters A047436" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A047436.html">Circular Nr. 3</a>; beide Namen ausdrücklich in <a class="preview letters A040333" href="">A040333</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A001594" href="/exist/apps/WeGA-WebApp/de/A001594.html">Ludwig Roeck</a></td>
                                                     <td>Philokoinos</td>
-                                                    <td>Vgl. Roecks <a class="preview letters A047438" href="">Brief an MB, Ende Juli 1811</a>; </td>
+                                                    <td>Vgl. Roecks <a class="preview letters A047438" href="">Brief an MB, Ende Juli 1811</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A000584" href="">Johann Gänsbacher</a></td>
                                                     <td>Triole, Trias</td>
-                                                    <td>Triole vgl. u.a. die <span class="preview letters A040380 A040382" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html ">Briefe CMvWebers vom 27. Febr. 1811</span>; Trias vgl. u.a.<a class="preview letters A047436" href="">Beilage zum Circular Nr. 3</a> u. <span class="preview letters A040370 A040380" data-ref=" /exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html">A040370 bzw. A040380</span></td>
+                                                    <td>Triole vgl. u.a. die <span class="preview letters A040380 A040382" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html ">Briefe CMvWebers vom 27. Febr. 1811</span>; Trias vgl. u.a. <a class="preview letters A047436" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A047436.html">Beilage zum Circular Nr. 3</a> u. <span class="preview letters A040370 A040380" data-ref=" /exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040380.html">A040370 bzw. A040380</span></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A000146" href="">Friedrich Wilhelm Berner</a></td>
@@ -563,9 +562,9 @@
                                             </tbody>
                                         </table>
                                     </div>
-                                    <p>Über die Suche nach neuen Mitgliedern hinaus bemühte sich die Kerngruppe des Vereins auch um Kontakte zu Personen, die sie für eine Verwirklichung der Ziele des Vereins interessant fanden. Bei diesen, nachfolgend aufgelisteten, sogenannten „Surveillisten“ ist davon auszugehen, dass nur in wenigen Fällen eine wirkliche formelle Mitgliedschaft vorgesehen war (speziell die Vergabe eines Bundesnamens spricht dafür), in der überwiegenden Zahl der Fälle aber eine eher indirekte Mitwirkung an den Zielen des Vereins, vor allem in Form des Verfassens von Artikeln für die vom Harmonischen Verein <a class="preview writings A031756" href="">geplante gemeinsame <span class="tei_hi_italic">Zeitung für die musikalische Welt</span></a><a class="noteMarker arabic" id="backref-C_010" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_010">10</a> oder auch für andere Periodika, die sich die Vereinsbrüder nach und nach als Tätigkeitsfeld erschließen wollten (vgl. dazu den Abschnitt: <a href="#Periodika">Die belieferten oder für Artikel ins Auge gefassten Periodika</a>). Die Namen der formell als Mitglied vorgesehenen Personen sind in der nachfolgenden Liste <span class="tei_hi_bold">fett</span> hervorgehoben; viele der übrigen Personen sind in den Briefen nur als mögliche Ansprechpartner genannt (ausgenommen wurden dabei die Redakteure oder Herausgeber von Periodika, die im folgenden Abschnitt genannt sind). Inwieweit von diesen ggf. verfasste Artikel tatsächlich mit einem Auftrag aus dem Verein in Verbindung zu bringen sind, wäre im Einzelfall zu klären.</p>
+                                    <p>Über die Suche nach neuen Mitgliedern hinaus bemühte sich die Kerngruppe des Vereins auch um Kontakte zu Personen, die sie für eine Verwirklichung der Ziele des Vereins interessant fanden. Bei diesen, nachfolgend aufgelisteten, sogenannten „Surveillisten“ ist davon auszugehen, dass nur in wenigen Fällen eine wirkliche formelle Mitgliedschaft vorgesehen war (speziell die Vergabe eines Bundesnamens spricht dafür), in der überwiegenden Zahl der Fälle aber eine eher indirekte Mitwirkung an den Zielen des Vereins, vor allem in Form des Verfassens von Artikeln für die vom Harmonischen Verein <a class="preview writings A031756" href="">geplante gemeinsame <span class="tei_hi_italic">Zeitung für die musikalische Welt</span></a><a class="noteMarker arabic" id="backref-C_010" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_010">11</a> oder auch für andere Periodika, die sich die Vereinsbrüder nach und nach als Tätigkeitsfeld erschließen wollten (vgl. dazu den Abschnitt: <a href="#Periodika">Die belieferten oder für Artikel ins Auge gefassten Periodika</a>). Die Namen der formell als Mitglied vorgesehenen Personen sind in der nachfolgenden Liste <span class="tei_hi_bold">fett</span> hervorgehoben; viele der übrigen Personen sind in den Briefen nur als mögliche Ansprechpartner genannt (ausgenommen wurden dabei die Redakteure oder Herausgeber von Periodika, die im folgenden Abschnitt genannt sind). Inwieweit von diesen ggf. verfasste Artikel tatsächlich mit einem Auftrag aus dem Verein in Verbindung zu bringen sind, wäre im Einzelfall zu klären.</p>
                                     <div class="table-wrapper">
-                                        <table id="d12e517" class="table">
+                                        <table id="d12e544" class="table">
                                             <caption>Überblick über die sogenannten Surveillisten</caption>
                                             <tbody>
                                                 <tr>
@@ -590,13 +589,13 @@
                                                     <td>?</td>
                                                     <td></td>
                                                     <td>Hesperus</td>
-                                                    <td>unklar, ob hiermit ein Pseudonym gemeint; vgl. Nachschrift zum <a class="preview letters A047437" href="">Circular Nr. 3</a><a class="noteMarker arabic" id="backref-C_020" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_020">11</a></td>
+                                                    <td>unklar, ob hiermit ein Pseudonym gemeint; vgl. Nachschrift zum <a class="preview letters A047437" href="">Circular Nr. 3</a><a class="noteMarker arabic" id="backref-C_020" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_020">12</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A000559" href=""><span class="tei_hi_bold">Joseph Fröhlich</span></a></td>
                                                     <td><a class="preview places A130025" href="">Würzburg</a></td>
                                                     <td></td>
-                                                    <td>Vorgeschlagen zur formalen Aufnahme von CMvW im <a class="preview letters A040388" href="">Circular vom 10. März 1811</a>, Vgl. <a class="preview letters A040402" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040402.html">CMvW an GS vom 6. Juni 1811</a>, <a class="preview letters A040578" href="">Meyerbeer an GW vom 23. Februar 1813</a> </td>
+                                                    <td>Vorgeschlagen zur formalen Aufnahme von CMvW im <a class="preview letters A040388" href="">Circular vom 10. März 1811</a>, Vgl. <a class="preview letters A040402" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040402.html">CMvW an GW vom 6. Juni 1811</a>, <a class="preview letters A040578" href="">Meyerbeer an GW vom 23. Februar 1813</a> </td>
                                                 </tr>
                                                 <tr>
                                                     <td><a class="preview persons A001714" href="">Aloys Schmitt</a></td>
@@ -650,32 +649,32 @@
                                         </table>
                                     </div>
                                 </div>
-                                <div id="d12e705">
-                                    <h2 id="d12e706">Zur Tätigkeit des Vereins</h2>
+                                <div id="d12e732">
+                                    <h2 id="d12e733">Zur Tätigkeit des Vereins</h2>
                                     <p>Von den entweder ausdrücklich als Circular des Vereins bezeichneten Schreiben oder den mit Ortsangabe „C.“, „Centrum“ oder „CentralP[unkt]“ versehenen Vereinsschreiben sind nur wenige erhalten geblieben bzw. bislang wieder aufgetaucht. Hinzu kommen jene Schreiben, die sich durch die ausschließliche Verwendung der Bundesnamen (auch beim Unterzeichnen) bzw. ihren Inhalt als (geheime) Vereinsdokumente zu erkennen geben:
               </p>
                                     <ul class="tei_list">
-                                        <li><a class="preview letters A047433" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A047433.html">Anweisung vom 3. Januar 1811</a> (Schreiber: Carl Maria von Weber)</li>
+                                        <li><a class="preview letters A047433" href="">Anweisung vom 3. Januar 1811</a> (Schreiber: Carl Maria von Weber)</li>
                                         <li><a class="preview letters A040370" href="">Vereinsschreiben vom 8. Januar 1811</a> (Schreiber: Carl Maria von Weber, an: Gottfried Weber)</li>
                                         <li><a class="preview letters A040388" href="">Circular [o. Nr.] vom 10. März 1811</a> (Hauptschreiber: Carl Maria von Weber, erster Empfänger: Gottfried Weber)</li>
                                         <li><a class="preview letters A047434" href="">Circular [ohne Überschrift u. Nr.] zwischen 8. März und 24. Mai 1811</a> (Schreiber: Gänsbacher)</li>
                                         <li><a class="preview letters A047435" href="/exist/apps/WeGA-WebApp/de/A001594/Korrespondenz/A047435.html">Vereinsschreiben vom 19. Juni 1811</a> (Schreiber: Roeck, an: Gottfried Weber)</li>
-                                        <li><span class="preview letters A040409 A047437 A047436" data-ref="  ">Circular Nr. 3 vom 26. Juni bzw. 19. Juli 1811</span> (zwei Ausfertigungen, Hauptschreiber: Carl Maria von Weber)</li>
+                                        <li><span class="preview letters A040409 A047437 A047436" data-ref="  /exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A047436.html">Circular Nr. 3 vom 26. Juni bzw. 19. Juli 1811</span> (zwei Ausfertigungen, Hauptschreiber: Carl Maria von Weber)</li>
                                         <li><a class="preview letters A047438" href="">Circular als Beilage zu Nr. 3, zwischen 25. Juli und 31. Juli 1811</a> (Hauptschreiber: Ludwig Roeck, erster Empfänger: Meyerbeer)</li>
                                         <li><a class="preview letters A040497" href="">Vereinsschreiben vom 24. Februar 1812</a> (Schreiber: Gottfried Weber, an: Meyerbeer)</li>
                                         <li><a class="preview letters A040503" href="">Vereinsschreiben vom 23. März 1812</a> (Schreiber: Gottfried Weber, an: Meyerbeer)</li>
                                     </ul>
                                     <p>
                  Dadurch dass nach und nach Gänsbacher, Carl Maria von Weber, Ludwig Roeck und schließlich auch Giacomo Meyerbeer den mittelrheinischen Raum verließen, wurde das Versenden von wirklichen Rundbriefen immer schwieriger, so dass sich die Schreiben oft auf zwei Korrespondenzpartner beschränkten, die ihrerseits dann Informationen weitergaben. Dennoch hat Weber in seinem Tagebuch den Begriff Circular bzw. das dafür geltende Symbol ◯ noch häufiger verwendet.</p>
-                                    <p>Insbesondere durch das Wiederauftauchen der von Wolfgang Meister <span class="preview biblio A112934" data-ref="">2019 in der <span class="tei_hi_latintype">Weberiana</span></span> veröffentlichten Circulare ist das Bild von der praktischen Tätigkeit des Vereins weiter vervollständigt worden. Großen Raum nahm die Verteilung von zu rezensierenden Werken (darunter zahlreiche eigene oder solche von vertrauten Personen) ein. Jene Mitglieder, die auf Reisen gingen, berichteten über die musikalische Situation an den bereisten Orten, über Aufführungen und die dort jeweils wichtigen Personen – dies geschah einerseits unter dem Aspekt der Anwerbung für die Ziele des Vereins, dazu aber im Sinne von § 14 auch, um auf junge Talente aufmerksam zu machen. Diese Berichte konnten dann ggf. auch für Publikationen ausgewertet werden, gelegentlich wurden solche Berichte oder auch die eigens verfassten Texte auch mehrfach bearbeitet.<a class="noteMarker arabic" id="backref-C_011" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_011">12</a> Letztlich entstand in diesem Kontext auch Carl Maria von Webers Idee eines „Noth- und Hülfsbüchleins für reisende Tonkünstler“<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090009.html">T</a>, zu dem erste Beiträge zwar schon vor der Gründung des Harmonischen Vereins entstanden, während die Vorstellung, solche Beiträge zu einer „musikalischen Topographie Deutschlands“ zusammenzufassen, erst im September 1811 während Webers Reise in die Schweiz entstand (vgl. <span class="preview diaries A065410 A065411 A065412 A065413" data-ref="   ">TB 2.–5. September 1811</span>). Auch diese, mit den Vereinsbrüdern erörterte Idee blieb allerdings – wie die eigene Zeitschrift – letztlich unrealisiert (zu den erhaltenen Beiträgen vgl. den <a class="preview thematicCommentaries A090009" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090009.html">Themenkommentar</a>).</p>
+                                    <p>Insbesondere durch das Wiederauftauchen der von Wolfgang Meister <span class="preview biblio A112934" data-ref="">2019 in der <span class="tei_hi_latintype">Weberiana</span></span> veröffentlichten Circulare ist das Bild von der praktischen Tätigkeit des Vereins weiter vervollständigt worden. Großen Raum nahm die Verteilung von zu rezensierenden Werken (darunter zahlreiche eigene oder solche von vertrauten Personen) ein. Jene Mitglieder, die auf Reisen gingen, berichteten über die musikalische Situation an den bereisten Orten, über Aufführungen und die dort jeweils wichtigen Personen – dies geschah einerseits unter dem Aspekt der Anwerbung für die Ziele des Vereins, dazu aber im Sinne von § 14 auch, um auf junge Talente aufmerksam zu machen. Diese Berichte konnten dann ggf. auch für Publikationen ausgewertet werden, gelegentlich wurden solche Berichte oder auch die eigens verfassten Texte auch mehrfach bearbeitet<a class="noteMarker arabic" id="backref-C_011" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_011">13</a>. Letztlich entstand in diesem Kontext auch Carl Maria von Webers Idee eines „Noth- und Hülfsbüchleins für reisende Tonkünstler“<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090009.html">T</a>, zu dem erste Beiträge zwar schon vor der Gründung des Harmonischen Vereins entstanden, während die Vorstellung, solche Beiträge zu einer „musikalischen Topographie Deutschlands“ zusammenzufassen, erst im September 1811 während Webers Reise in die Schweiz entstand (vgl. <span class="preview diaries A065410 A065411 A065412 A065413" data-ref="   ">TB 2.–5. September 1811</span>). Auch diese, mit den Vereinsbrüdern erörterte Idee blieb allerdings – wie die eigene Zeitschrift – letztlich unrealisiert (zu den erhaltenen Beiträgen vgl. den <a class="preview thematicCommentaries A090009" href="/exist/apps/WeGA-WebApp/de/A009004/Themenkommentare/A090009.html">Themenkommentar</a>).</p>
                                     <p>Besonderen Raum nahmen die Kontakte mit Verlegern ein. So empfahl Weber z. B. im März 1811 seine Mitbrüder dem Augsburger Verleger <a class="preview persons A000656" href="">Johann Carl Gombart</a> (vgl. <a class="preview letters A040388" href="">A040388</a>). Wo möglich setzten sich die Brüder selbstverständlich auch direkt gegenseitig für Aufführungen ihrer Werke ein (vgl. etwa <span class="preview letters A047434" data-ref="">A047434</span>). Da es ihnen aber nicht nur um Kompositionen, sondern auch um den „Ästhetischen Theil“ der Musik ging, achteten sie ebenso auf das Erscheinen neuer Literatur, die die Vereinsmitglieder kritisch begutachten sollten (vgl. etwa die erwähnten Schriften von <a class="preview persons A000559" href="">Fröhlich</a>, <a class="preview persons A003111" href="">Hering</a>, <a class="preview persons A005143" href="">H. Chr. Koch</a>, <a class="preview persons A001317" href="">Michaelis</a>, <a class="preview persons A001183" href="">Lipowsky</a>, <a class="preview persons A001671" href="">Schicht</a>) und nahmen in einem erstaunlichen Umfang Kontakte zu Zeitungen und Zeitschriften auf, die sie mit ihren Texten versorgen wollten (vgl. den <a href="#Periodika">folgenden Abschnitt</a>).</p>
                                     <p>Um Schreibarbeit zu sparen, wurden die Mitteilungen offensichtlich in der Regel in Form von Circularen (im TB und den Briefen oft lediglich durch das Symbol ◯ bezeichnet) verfasst, die vom ersten Empfänger an die übrigen weitergeleitet werden sollten, so dass sich im Falle von Abstimmungen – etwa zur Aufnahme neuer Mitglieder – am Ende alle Urteile in einem Schreiben zusammengefasst fanden, das Eingang in Gottfried Webers Archiv am „Centralpunkt“ fand. Von diesem Prinzip wurde insbesondere dann abgewichen, wenn rasche Entscheidungen erwünscht waren (wodurch z. B. das Circular Nr. 3 in <span class="preview letters A040409 A047437" data-ref=" ">zwei Versionen</span> existiert), zudem nutzten die Brüder oft reguläre Post, um ein gesondertes Schreiben in Vereinsdingen beizulegen.</p>
                                 </div>
                                 <div id="Periodika">
-                                    <h2 id="d12e841">Die belieferten oder für Artikel ins Auge gefassten Periodika</h2>
-                                    <p>Im Laufe der Tätigkeit der Vereinsbrüder wurden Kontakte zu einer erstaunlich großen Zahl von Zeitungen und Zeitschriften aufgebaut. Meist geschah dies ganz konkret über die Ansprache von Redakteuren oder anderen verantwortlichen Personen. (Im folgenden sind die in der Korrespondenz der Vereinsbrüder genannten Periodika, in denen bislang keine Texte nachweisbar sind, mit eine Anmerkung versehen.)</p>
+                                    <h2 id="d12e868">Die belieferten oder für Artikel ins Auge gefassten Periodika</h2>
+                                    <p>Im Laufe der Tätigkeit der Vereinsbrüder wurden Kontakte zu einer erstaunlich großen Zahl von Zeitungen und Zeitschriften aufgebaut. Meist geschah dies ganz konkret über die Ansprache von Redakteuren oder anderen verantwortlichen Personen. (Im folgenden sind die in der Korrespondenz der Vereinsbrüder genannten Periodika, in denen bislang keine Texte nachweisbar sind, mit einer Anmerkung versehen.)</p>
                                     <div class="table-wrapper">
-                                        <table id="d12e847" class="table">
+                                        <table id="d12e874" class="table">
                                             <tbody>
                                                 <tr>
                                                     <td>Titel des Periodikums</td>
@@ -685,7 +684,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td><span class="tei_hi_italic">Rheinische Correspondenz</span> (mit <span class="tei_hi_italic">Schreibtafel von Mannheim</span>)</td>
-                                                    <td><a class="preview places A130010" href="">Mannheim</a></td>
+                                                    <td><a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a></td>
                                                     <td></td>
                                                     <td><a class="preview persons A000982" href="">Ferdinand Kaufmann</a></td>
                                                 </tr>
@@ -697,7 +696,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td><span class="tei_hi_italic">Nouvelles Littéraires et Politiques</span></td>
-                                                    <td><a class="preview places A130010" href="">Mannheim</a></td>
+                                                    <td><a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a></td>
                                                     <td></td>
                                                     <td></td>
                                                 </tr>
@@ -720,7 +719,7 @@
                                                     <td><a class="preview persons A001811" href="">Ignaz Jacob Sendtner</a>, vgl. <span class="preview letters A040409 A047437" data-ref=" ">Circular Nr. 3</span> u. <a class="preview letters A040410" href="">A040410</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="tei_hi_italic">Neue Oberdeutsche Allgemeine Literatur-Zeitung</span><a class="noteMarker arabic" id="backref-C_012" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_012">13</a></td>
+                                                    <td><span class="tei_hi_italic">Neue Oberdeutsche Allgemeine Literatur-Zeitung</span><a class="noteMarker arabic" id="backref-C_012" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_012">14</a></td>
                                                     <td><a class="preview places A130007" href="">München</a></td>
                                                     <td>1811</td>
                                                     <td><a class="preview persons A001811" href="">Ignaz Jacob Sendtner</a>; vgl. <span class="preview letters A040409 A047437" data-ref=" ">Circular Nr. 3</span></td>
@@ -739,7 +738,7 @@
                                                 </tr>
                                                 <tr>
                                                     <td><span class="tei_hi_italic">Allgemeine musikalische Zeitung</span></td>
-                                                    <td><a class="preview places A130005" href="">Leipzig</a></td>
+                                                    <td><a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a></td>
                                                     <td></td>
                                                     <td><a class="preview persons A001590" href="">Friedrich Rochlitz</a></td>
                                                 </tr>
@@ -750,32 +749,32 @@
                                                     <td>Hg. von <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Johann Friedrich Cotta</a>; vgl. Webers Kontakte zu ihm sowie zu den Redakteuren <a class="preview persons A000762" href="">Friedrich Haug</a> und <a class="preview persons A001551" href="">Georg Reinbeck</a> seit der Stuttgarter Zeit, in der Weber bereits in diesem Blatt veröffentlichte</td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="tei_hi_italic">Thalia, ein Abendblatt</span><a class="noteMarker arabic" id="backref-C_016" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_016">14</a></td>
+                                                    <td><span class="tei_hi_italic">Thalia, ein Abendblatt</span><a class="noteMarker arabic" id="backref-C_016" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_016">15</a></td>
                                                     <td><a class="preview places A130004" href="">Wien</a></td>
                                                     <td></td>
                                                     <td>vgl. <a class="preview letters A040338" href="">A040338</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="tei_hi_italic">Allgemeiner Deutscher Theater-Anzeiger</span><a class="noteMarker arabic" id="backref-C_015" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_015">15</a></td>
-                                                    <td><a class="preview places A130005" href="">Leipzig</a></td>
+                                                    <td><span class="tei_hi_italic">Allgemeiner Deutscher Theater-Anzeiger</span><a class="noteMarker arabic" id="backref-C_015" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_015">16</a></td>
+                                                    <td><a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a></td>
                                                     <td></td>
                                                     <td>[Hg. von <a class="preview persons A008803" href="">Daniel Gottlieb Quandt</a>], vgl. <a class="preview letters A040388" href="">A040388</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="tei_hi_italic">Süddeutsche Miszellen für Leben, Litteratur und Kunst</span><a class="noteMarker arabic" id="backref-C_013" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_013">16</a></td>
+                                                    <td><span class="tei_hi_italic">Süddeutsche Miszellen für Leben, Litteratur und Kunst</span><a class="noteMarker arabic" id="backref-C_013" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_013">17</a></td>
                                                     <td><a class="preview places A130022" href="">Karlsruhe</a></td>
                                                     <td>1811–1812</td>
-                                                    <td>vgl. dazu <a class="preview letters A040338" href="">A040338</a><a class="noteMarker arabic" id="backref-C_014" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_014">17</a></td>
+                                                    <td>vgl. dazu <a class="preview letters A040338" href="">A040338</a><a class="noteMarker arabic" id="backref-C_014" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_014">18</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="tei_hi_italic">Miszellen der neuesten Weltkunde</span><a class="noteMarker arabic" id="backref-C_017" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_017">18</a></td>
+                                                    <td><span class="tei_hi_italic">Miszellen der neuesten Weltkunde</span><a class="noteMarker arabic" id="backref-C_017" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_017">19</a></td>
                                                     <td><a class="preview places A130328" href="">Aarau</a></td>
                                                     <td></td>
                                                     <td><span class="7210110511011410599104329011599104111107107101">Heinrich Zschokke</span>; vgl. dazu <a class="preview letters A040410" href="">A040410</a>, <a class="preview letters A040430" href="">A040430</a> und <a class="preview letters A040432" href="">A040432</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><span class="tei_hi_italic">Der Freimüthige</span></td>
-                                                    <td><a class="preview places A130002" href="">Berlin</a></td>
+                                                    <td><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></td>
                                                     <td></td>
                                                     <td>vgl. <a class="preview letters A040370" href="">A040370</a> u. <a class="preview letters A040382" href="">A040382 (Zusatz Meyerbeers)</a> (die erwähnten Texte sind bislang nicht nachgewiesen)</td>
                                                 </tr>
@@ -783,11 +782,11 @@
                                                     <td><span class="tei_hi_italic">Heidelbergische Jahrbücher der Literatur</span></td>
                                                     <td><a class="preview places A130035" href="">Heidelberg</a></td>
                                                     <td></td>
-                                                    <td>vgl. <a class="preview letters A047436" href="">A047436</a></td>
+                                                    <td>vgl. <a class="preview letters A047436" href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A047436.html">A047436</a></td>
                                                 </tr>
                                                 <tr>
                                                     <td><span class="tei_hi_italic">Zeitung für die elegante Welt</span></td>
-                                                    <td><a class="preview places A130005" href="">Leipzig</a></td>
+                                                    <td><a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a></td>
                                                     <td></td>
                                                     <td>(vgl. etwa <a class="preview writings A030672" href="">A030672</a>)</td>
                                                 </tr>
@@ -804,13 +803,13 @@
                                                     <td><a class="preview persons A000152" href="">Carl Bertuch</a>; vgl. u.a. <a class="preview letters A040532" href="">A040532</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="tei_hi_italic">Musicalische Notizen</span><a class="noteMarker arabic" id="backref-C_018" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_018">19</a></td>
+                                                    <td><span class="tei_hi_italic">Musicalische Notizen</span><a class="noteMarker arabic" id="backref-C_018" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_018">20</a></td>
                                                     <td><a class="preview places A130075" href="">Linz</a></td>
                                                     <td>1/1812–3/1812</td>
                                                     <td>Hg. von <a class="preview persons A000645" href="">Franz Xaver Glöggl</a>; vgl. <a class="preview letters A040496" href="">A040496</a></td>
                                                 </tr>
                                                 <tr>
-                                                    <td><span class="tei_hi_italic">Musicalische Zeitung für die österreichischen Staaten</span><a class="noteMarker arabic" id="backref-C_019" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_019">20</a></td>
+                                                    <td><span class="tei_hi_italic">Musicalische Zeitung für die österreichischen Staaten</span><a class="noteMarker arabic" id="backref-C_019" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_019">21</a></td>
                                                     <td><a class="preview places A130075" href="">Linz</a></td>
                                                     <td>4/1812–3/1813</td>
                                                     <td>Hg. von <a class="preview persons A000645" href="">Franz Xaver Glöggl</a>; vgl. <a class="preview letters A040496" href="">A040496</a></td>
@@ -825,28 +824,29 @@
                                 <div id="endNotes">
                                     <h2>Einzelnachweise</h2>
                                     <ol class="endNotes">
-                                        <li id="C_001" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#backref-C_001">1</a>Vgl. hierzu ausführlicher die Einleitung von Oliver Huck in: <span class="tei_bibl"><span class="tei_hi_italic">Die Schriften des Harmonischen Vereins, Teil 1: 1810–1812. Texte von Alexander von Dusch, Johann Gänsbacher, Giacomo Meyerbeer und Gottfried Weber</span>, hg. von Oliver Huck und Joachim Veit (Weber-Studien, Bd. 4/1), Mainz 1998</span>, S. 9–67.</li>
+                                        <li id="C_001" data-title="Einzelnachweis 1"><a class="endnote_backlink" href="#backref-C_001">1</a>Vgl. hierzu ausführlicher die Einleitung von Oliver Huck in: <span class="tei_bibl"><span class="tei_hi_italic">Die Schriften des Harmonischen Vereins, Teil 1: 1810–1812. Texte von Alexander von Dusch, Johann Gänsbacher, Giacomo Meyerbeer und Gottfried Weber</span>, hg. von Oliver Huck und Joachim Veit (<span class="tei_hi_italic">Weber-Studien</span>, Bd. 4/1), Mainz 1998</span>, S. 9–67.</li>
                                         <li id="C_002" data-title="Einzelnachweis 2"><a class="endnote_backlink" href="#backref-C_002">2</a>Die Tatsache, dass Weber den Verein im Brief „unsern Harmonischen Bund“
-                  nennt, setzt eine Vertrautheit Gänsbachers mit dieser Idee voraus.</li>
-                                        <li id="C_003" data-title="Einzelnachweis 3"><a class="endnote_backlink" href="#backref-C_003">3</a>Die § 1–17 sind dabei von Carl Maria niedergeschrieben, mitten im ersten Satz von § 17 übernahm dann Gottfried Weber die weitere Abschrift; vgl. D-Wgm, Briefsammlung (Weber an Gänsbacher 4), Faksimile der 2. Seite in: <span class="tei_bibl">Weber-Studien</span> 4/1, S. 7.</li>
+                  nennt, setzt möglicherweise eine Vertrautheit Gänsbachers mit dieser Idee voraus.</li>
+                                        <li id="C_003" data-title="Einzelnachweis 3"><a class="endnote_backlink" href="#backref-C_003">3</a>Die § 1–17 sind dabei von Carl Maria von Weber niedergeschrieben, mitten im ersten Satz von § 17 übernahm dann Gottfried Weber die weitere Abschrift; vgl. <span class="tei_hi_italic">A-Wgm</span>, Briefsammlung (Weber an Gänsbacher 4), Faksimile der 2. Seite in: <span class="tei_hi_italic">Weber-Studien</span> 4/1, S. 7.</li>
                                         <li id="C_004" data-title="Einzelnachweis 4"><a class="endnote_backlink" href="#backref-C_004">4</a>Herausgegeben und kommentiert von
                   Walter Senn, Thaur 1986, S. 40.</li>
-                                        <li id="C_006" data-title="Einzelnachweis 5"><a class="endnote_backlink" href="#backref-C_006">5</a>Der Terminus <span class="tei_hi_latintype">Session</span> wurde offensichtlich für Sitzungen des Vereins verwendet, denn Weber spricht im <a class="preview letters A040445" href="">Brief vom 31. Dezember 1811 an Gottfried Weber</a> nach einem Zusammentreffen mit Gänsbacher in Prag davon, dass er mit diesem eine „förmliche Sizzung“ in Vereinssachen vorgenommen habe.</li>
-                                        <li id="C_007" data-title="Einzelnachweis 6"><a class="endnote_backlink" href="#backref-C_007">6</a>Arno Lemke, <span class="tei_bibl"><span class="tei_hi_italic">Jacob Gottfried Weber. Leben und Werk. Ein Beitrag zur Musikgeschichte des mittelrheinischen Raumes</span>, Mainz 1968</span>, S. 36, Fn. 104. Lemke nennt dort allerdings irrtümlich auch Danzi als Mitglied.</li>
-                                        <li id="C_008" data-title="Einzelnachweis 7"><a class="endnote_backlink" href="#backref-C_008">7</a>Vgl. dazu Huck, Weber-Studien 4/1, S. 20, Fn. 46 bzw. Brief Webers <a class="preview letters A040381" href="">an Gottfried Weber vom 27. Februar 1811</a> bzw. <a class="preview letters A040379" href="">2. Februar 1811</a>. Aus den erhaltenen Unterlagen des Vereins geht aber ohnehin hervor, dass neben den beiden Webers vor allem Alexander von Dusch, Meyerbeer und Gänsbacher – also die Gründungsmitglieder – die für die Sache des Vereins Aktiven waren.</li>
-                                        <li id="C_005" data-title="Einzelnachweis 8"><a class="endnote_backlink" href="#backref-C_005">8</a>Dieses Pseudonym verwendete Weber bereits vor der Gründung des Vereins, vgl. dazu Weber-Studien 4/1, S. 11.</li>
-                                        <li id="C_009" data-title="Einzelnachweis 9"><a class="endnote_backlink" href="#backref-C_009">9</a>Zur Diskussion der Zuweisung dieses Pseudonyms vgl. Oliver Huck in: <span class="tei_bibl">Weber-Studien</span> Bd. 4/1, S. 24.</li>
-                                        <li id="C_010" data-title="Einzelnachweis 10"><a class="endnote_backlink" href="#backref-C_010">10</a>Vgl. dazu den <span class="preview letters A040318" data-ref=" ">Brief von beiden Webers an <a class="preview persons A000584" href="">Gänsbacher</a> vom 7. Dezember 1810</span>. Der <a class="preview writings A031756" href="">Plan</a> kam jedoch nicht zustande; anlässlich der Gründung seiner Zeitschrift <span class="tei_bibl"><span class="tei_hi_italic">Caecilia</span></span> schrieb <a class="preview persons A002078" href="">Gottfried Weber</a> dazu rückblickend am 10. Oktober 1824: „Weißt Du noch, wie wir mit <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> und <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Weberl</a></span> und <a class="preview persons A000409" href="">Dusch</a> einmal eine <span class="tei_hi_latintype">Zeitung für die musikalische Welt</span> herausgeben wollten und ihr mich zum <span class="tei_hi_latintype">Redacteur</span> machen wolltet, u ich Euch nein stiß, u die Sache nicht zu stand kam, weils auch kein anderer wollte: jetzt bin ich doch dran gekommen, u weiß nicht wie.“</li>
-                                        <li id="C_020" data-title="Einzelnachweis 11"><a class="endnote_backlink" href="#backref-C_020">11</a>Die Formulierung im Brief: „nach Bestimmung des <span class="tei_hi_latintype">Hesperus</span>“ bleibt vage und könnte sich in diesem Kontext auch auf eine Stadt als Publikationsort des nachzudruckenden Artikels beziehen.</li>
-                                        <li id="C_011" data-title="Einzelnachweis 12"><a class="endnote_backlink" href="#backref-C_011">12</a>So schreibt Carl Maria von Weber z. B. im <a class="preview letters A040415" href="">Brief vom 19. Juli 1811 an Gottfried</a>: „deine Notiz vom Bad: Magazin, habe in einer neuen <span class="tei_hi_latintype">Sauçe</span> ins GesellschaftsBlatt <span class="tei_hi_latintype">pp</span> gegeben, und verbreite es nach Kräften“.</li>
-                                        <li id="C_012" data-title="Einzelnachweis 13"><a class="endnote_backlink" href="#backref-C_012">13</a>Die ursprünglich in Salzburg erscheinende, mit dem Zusatz „Neue“ dann 1809 von Sendtner übernommene Zeitung erschien nur bis Ende 1811. In diesem Jahrgang sind nur eine Besprechung des <span class="tei_hi_italic">Baierischen Musik-Lexikons</span> von <a class="preview persons A001183" href="">F. J. Lipowsky</a> (in Nr. <a href="https://opacplus.bsb-muenchen.de/Vta2/bsb10628788/bsb:11862476?page=7">72 vom 11. April, Sp. 577-581</a>) und eine kurze Anzeige der <span class="tei_hi_italic">Fragmente zur höhern Musik</span> von <a class="preview persons A000186" href="">Böcklin von Böcklinsau</a> (im <a href="https://opacplus.bsb-muenchen.de/Vta2/bsb10628788/bsb:11862476?page=3">Intelligenzblatt Nr. 33 vom 8. Juni 1811, Sp. 184</a>; davor ist noch eine <span class="tei_hi_italic">Elementarische Gesangslehre für Volksschulen</span> besprochen) als (ungezeichnete) Beiträge zu musikalischen Gegenständen vorhanden. Beide kommen als Vereinstexte nicht in Frage.</li>
-                                        <li id="C_016" data-title="Einzelnachweis 14"><a class="endnote_backlink" href="#backref-C_016">14</a>Bislang keine zuweisbaren Texte ermittelt, trotz der engen Kontakte Webers zum Herausgeber <a class="preview persons A000277" href="">Ignaz Franz Castelli</a>. Ob einige kurze Erwähnungen Webers in den Jgg. 1811 bis 1813 mit dem Einfluss des Vereins zusammenhängen, bleibt fraglich. Castelli war allerdings auch nur bis September 1811 Redakteur dieses dann im Juni 1813 eingestellten Blattes.</li>
-                                        <li id="C_015" data-title="Einzelnachweis 15"><a class="endnote_backlink" href="#backref-C_015">15</a>Bislang konnten keine dezidiert auf den Verein zurückgehende Texte nachgewiesen werden. Die Berichterstattung über Webers Prager Wirken im Jg. 1814 stammt meist vom Herausgeber <a class="preview persons A008803" href="">Daniel Gottlieb Quandt</a> selbst.</li>
-                                        <li id="C_013" data-title="Einzelnachweis 16"><a class="endnote_backlink" href="#backref-C_013">16</a>Bislang konnten keine Texte nachgewiesen werden.</li>
-                                        <li id="C_014" data-title="Einzelnachweis 17"><a class="endnote_backlink" href="#backref-C_014">17</a>Da die <span class="tei_hi_italic">Schweizer Notizen</span> in <a class="preview writings A031322" href="">A031322</a>, in denen Webers Ernennung zum Ehrenmitglied der Schweizerischen Musikgesellschaft erwähnt wird, im Rahmen einer Fortsetzungsfolge steht, kann nicht angenommen werden, dass der Text auf die Vereinsbrüder zurückgeht.</li>
-                                        <li id="C_017" data-title="Einzelnachweis 18"><a class="endnote_backlink" href="#backref-C_017">18</a>Vermutlich aufgrund des verpassten persönlichen Kontakts zu Zschokkke (vgl. <a class="preview letters A040432" href="">A040432</a>) kam eine nähere Verbindung zu diesem Periodikum nicht zustande.</li>
-                                        <li id="C_018" data-title="Einzelnachweis 19"><a class="endnote_backlink" href="#backref-C_018">19</a>In den ersten drei Monaten dieses Periodikums, das dann durch die <span class="tei_hi_italic">Musicalische Zeitung für die österreichischen Staaten</span> abgelöst wurde, erschienen keine Artikel der Vereinsbrüder.</li>
-                                        <li id="C_019" data-title="Einzelnachweis 20"><a class="endnote_backlink" href="#backref-C_019">20</a>Oliver Huck listet in den <span class="tei_hi_italic">Weber-Studien</span> 4/1, S. 39, Fußnote 137–139, die Texte Carl Maria von und Gottfried Webers sowie Gänsbachers auf, die zuvor in der AmZ erschienen waren und die Glöggl nachdruckte. Da hierbei teils wichtige Passagen gestrichen wurden, geht Huck davon aus, dass die Brüder diese Texte nicht direkt an Glöggl sandten, sondern dieser eher durch Vogler auf die drei aufmerksam gemacht wurde. Zumindest die Fülle der Notizen ist bemerkenswert und die modifizierte Mehrfachpublikation gehörte zu den typischen Gepflogenheiten der Vereinsbrüder.</li>
+                                        <li id="note01" data-title="Einzelnachweis 5"><a class="endnote_backlink" href="#backref-note01">5</a>Vgl. das <a class="preview letters A047437" href="">Anschreiben</a> samt Circular Nr. 3 vom 19. Juli 1811.</li>
+                                        <li id="C_006" data-title="Einzelnachweis 6"><a class="endnote_backlink" href="#backref-C_006">6</a>Der Terminus <span class="tei_hi_latintype">Session</span> wurde offensichtlich für Sitzungen des Vereins verwendet, denn Weber spricht im <a class="preview letters A040445" href="">Brief vom 31. Dezember 1811 an Gottfried Weber</a> nach einem Zusammentreffen mit Gänsbacher in Prag davon, dass er mit diesem eine „förmliche Sizzung“ in Vereinssachen abgehalten habe.</li>
+                                        <li id="C_007" data-title="Einzelnachweis 7"><a class="endnote_backlink" href="#backref-C_007">7</a>Arno Lemke, <span class="tei_bibl"><span class="tei_hi_italic">Jacob Gottfried Weber. Leben und Werk. Ein Beitrag zur Musikgeschichte des mittelrheinischen Raumes</span>, Mainz 1968</span>, S. 36, Anm. 104. Lemke nennt dort allerdings irrtümlich auch Danzi als Mitglied.</li>
+                                        <li id="C_008" data-title="Einzelnachweis 8"><a class="endnote_backlink" href="#backref-C_008">8</a>Vgl. dazu Huck, <span class="tei_hi_italic">Weber-Studien</span> 4/1, S. 20, Anm. 46 bzw. Brief Webers <a class="preview letters A040381" href="">an Gottfried Weber vom 27. Februar 1811</a> bzw. <a class="preview letters A040379" href="">2. Februar 1811</a>. Aus den erhaltenen Unterlagen des Vereins geht aber ohnehin hervor, dass neben den beiden Webers vor allem Alexander von Dusch, Meyerbeer und Gänsbacher – also die Gründungsmitglieder – die für die Sache des Vereins Aktiven waren.</li>
+                                        <li id="C_005" data-title="Einzelnachweis 9"><a class="endnote_backlink" href="#backref-C_005">9</a>Dieses Pseudonym verwendete Weber bereits vor der Gründung des Vereins, vgl. dazu <span class="tei_hi_italic">Weber-Studien</span> 4/1, S. 11.</li>
+                                        <li id="C_009" data-title="Einzelnachweis 10"><a class="endnote_backlink" href="#backref-C_009">10</a>Zur Diskussion der Zuweisung dieses Pseudonyms vgl. Oliver Huck in: <span class="tei_bibl"><span class="tei_hi_italic">Weber-Studien</span></span> Bd. 4/1, S. 24.</li>
+                                        <li id="C_010" data-title="Einzelnachweis 11"><a class="endnote_backlink" href="#backref-C_010">11</a>Vgl. dazu den <span class="preview letters A040318" data-ref=" ">Brief von beiden Webers an <a class="preview persons A000584" href="">Gänsbacher</a> vom 7. Dezember 1810</span>. Der <a class="preview writings A031756" href="">Plan</a> kam jedoch nicht zustande; anlässlich der Gründung seiner Zeitschrift <span class="tei_bibl"><span class="tei_hi_italic">Caecilia</span></span> schrieb <a class="preview persons A002078" href="">Gottfried Weber</a> dazu rückblickend am 10. Oktober 1824: „Weißt Du noch, wie wir mit <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> und <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weberl</a></span> und <a class="preview persons A000409" href="">Dusch</a> einmal eine <span class="tei_hi_latintype">Zeitung für die musikalische Welt</span> herausgeben wollten und ihr mich zum <span class="tei_hi_latintype">Redacteur</span> machen wolltet, u ich Euch nein stiß, u die Sache nicht zu stand kam, weils auch kein anderer wollte: jetzt bin ich doch dran gekommen, u weiß nicht wie.“</li>
+                                        <li id="C_020" data-title="Einzelnachweis 12"><a class="endnote_backlink" href="#backref-C_020">12</a>Die Formulierung im Brief: „nach Bestimmung des <span class="tei_hi_latintype">Hesperus</span>“ bleibt vage und könnte sich in diesem Kontext auch auf eine Stadt als Publikationsort des nachzudruckenden Artikels beziehen.</li>
+                                        <li id="C_011" data-title="Einzelnachweis 13"><a class="endnote_backlink" href="#backref-C_011">13</a>So schreibt Carl Maria von Weber z. B. im <a class="preview letters A040415" href="">Brief vom 19. Juli 1811 an Gottfried</a>: „deine Notiz vom Bad: Magazin, habe in einer neuen <span class="tei_hi_latintype">Sauçe</span> ins GesellschaftsBlatt <span class="tei_hi_latintype">pp</span> gegeben, und verbreite es nach Kräften“.</li>
+                                        <li id="C_012" data-title="Einzelnachweis 14"><a class="endnote_backlink" href="#backref-C_012">14</a>Die ursprünglich in Salzburg erscheinende, mit dem Zusatz „Neue“ dann 1809 von Sendtner übernommene Zeitung erschien nur bis Ende 1811. In diesem Jahrgang sind nur eine Besprechung des <span class="tei_hi_italic">Baierischen Musik-Lexikons</span> von <a class="preview persons A001183" href="">F. J. Lipowsky</a> (in Nr. <a href="https://www.digitale-sammlungen.de/view/bsb10628788?page=357">72 vom 11. April, Sp. 577–581 <i class="fa fa-external-link" aria-hidden="true"></i></a>) und eine kurze Anzeige der <span class="tei_hi_italic">Fragmente zur höhern Musik</span> von <a class="preview persons A000186" href="">Böcklin von Böcklinsau</a> (im <a href="https://www.digitale-sammlungen.de/view/bsb10628788?page=629">Intelligenzblatt Nr. 23 vom 8. Juni 1811, Sp. 184 <i class="fa fa-external-link" aria-hidden="true"></i></a>; davor ist noch eine <span class="tei_hi_italic">Elementarische Gesangslehre für Volksschulen</span> besprochen) als (ungezeichnete) Beiträge zu musikalischen Gegenständen vorhanden. Beide kommen als Vereinstexte nicht in Frage.</li>
+                                        <li id="C_016" data-title="Einzelnachweis 15"><a class="endnote_backlink" href="#backref-C_016">15</a>Bislang keine zuweisbaren Texte ermittelt, trotz der engen Kontakte Webers zum Herausgeber <a class="preview persons A000277" href="">Ignaz Franz Castelli</a>. Ob einige kurze Erwähnungen Webers in den Jgg. 1811 bis 1813 mit dem Einfluss des Vereins zusammenhängen, bleibt fraglich. Castelli war allerdings auch nur bis September 1811 Redakteur dieses dann im Juni 1813 eingestellten Blattes.</li>
+                                        <li id="C_015" data-title="Einzelnachweis 16"><a class="endnote_backlink" href="#backref-C_015">16</a>Bislang konnten keine dezidiert auf den Verein zurückgehende Texte nachgewiesen werden. Die Berichterstattung über Webers Prager Wirken im Jg. 1814 stammt meist vom Herausgeber <a class="preview persons A008803" href="">Daniel Gottlieb Quandt</a> selbst.</li>
+                                        <li id="C_013" data-title="Einzelnachweis 17"><a class="endnote_backlink" href="#backref-C_013">17</a>Bislang konnten keine Texte nachgewiesen werden.</li>
+                                        <li id="C_014" data-title="Einzelnachweis 18"><a class="endnote_backlink" href="#backref-C_014">18</a>Da die <span class="tei_hi_italic">Schweizer Notizen</span> in <a class="preview writings A031322" href="">A031322</a>, in denen Webers Ernennung zum Ehrenmitglied der <a class="preview orgs A080117" href="">Schweizerischen Musikgesellschaft</a> erwähnt wird, im Rahmen einer Fortsetzungsfolge stehen, kann nicht angenommen werden, dass der Text auf die Vereinsbrüder zurückgeht.</li>
+                                        <li id="C_017" data-title="Einzelnachweis 19"><a class="endnote_backlink" href="#backref-C_017">19</a>Vermutlich aufgrund des verpassten persönlichen Kontakts zu Zschokkke (vgl. <a class="preview letters A040432" href="">A040432</a>) kam eine nähere Verbindung zu diesem Periodikum nicht zustande.</li>
+                                        <li id="C_018" data-title="Einzelnachweis 20"><a class="endnote_backlink" href="#backref-C_018">20</a>In den ersten drei Monaten dieses Periodikums, das dann durch die <span class="tei_hi_italic">Musicalische Zeitung für die österreichischen Staaten</span> abgelöst wurde, erschienen keine Artikel der Vereinsbrüder.</li>
+                                        <li id="C_019" data-title="Einzelnachweis 21"><a class="endnote_backlink" href="#backref-C_019">21</a>Oliver Huck listet in den <span class="tei_hi_italic">Weber-Studien</span> 4/1, S. 39, Anm. 137–139, die Texte Carl Maria von und Gottfried Webers sowie Gänsbachers auf, die zuvor in der AmZ erschienen waren und die Glöggl nachdruckte. Da hierbei teils wichtige Passagen gestrichen wurden, geht Huck davon aus, dass die Brüder diese Texte nicht direkt an Glöggl sandten, sondern dieser eher durch Vogler auf die drei aufmerksam gemacht wurde. Zumindest die Fülle der Notizen ist bemerkenswert und die modifizierte Mehrfachpublikation gehörte zu den typischen Gepflogenheiten der Vereinsbrüder.</li>
                                     </ol>
                                 </div>
                     </div>
@@ -871,7 +871,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090109</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090109</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -929,6 +929,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -988,22 +991,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

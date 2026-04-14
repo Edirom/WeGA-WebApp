@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Dorothea Schieck. Lebensdaten: –zwischen 1. April 1869 und 1. April 1870. Tätigkeiten: Autographensammlerin. Wirkorte: Weimar","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A0023B1","name":"Schieck, Dorothea","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A0023B1","sameAs":"https://d-nb.info/gnd/117227900"}</script>
 
@@ -397,7 +395,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A0023B1/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A0023B1/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A0023B1/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -420,7 +418,7 @@
          <li>machte sich verdient um die Sicherung des Brief-Nachlasses von <a class="preview persons A001A2C" href="">C. G. von Voigt</a>; vgl. <span class="tei_hi_italic">Allgemeine Zeitung</span>, außerordentliche Beilage zu Nr. 241 vom 28. August 1844, S. 154f</li>
          <li>Geschädigte im Prozess gegen <span class="711011111141033272101105110114105991043275971141083274971071119832861059911611111432118111110327110111411511610111098101114103107">Georg Heinrich Karl Jakob Victor von Gerstenbergk</span> wegen dessen Fälschungen von <a class="preview persons A001685" href="">Schiller</a>-Handschriften; vgl. die entsprechende Beilage zu den <span class="tei_hi_italic">Blättern für Rechtspflege in Thüringen und Anhalt</span> 1856 von Anton Vollert</li>
           <li>lt. Weimarer <span class="tei_hi_italic">Adreß-Buch</span> 1865 (S. 33) wohnhaft Brauhausstr. G 101; im Weimarer <span class="tei_hi_italic">Adreß-Buch</span> 1869 unter derselben Adresse angegeben (S. 40); im Nachtrag mit den Veränderungen zwischen 1. April 1869 und 1. April 1870 zusätzlicher Vermerk (S. 13): „Schieck, […] Hofschumacherw<span class="tei_supplied"><span class="brackets_supplied">[</span>itw<span class="brackets_supplied">]</span></span>e, ist zu streichen“ (vermutlich verstorben)</li>
-         <li>in ihrer Autographensammlung befanden sich zwei Briefe <a class="preview persons A002068" href="">C. M. von Webers</a>, die sie durch Fürsprache <a class="preview persons A000380" href="">Eduard Devrients</a> von <a class="preview persons A000213" href="">Caroline von Weber</a> erhalten hatte</li>
+         <li>in ihrer Autographensammlung befanden sich zwei Briefe <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Webers</a>, die sie von <a class="preview persons A000213" href="">Caroline von Weber</a> erhalten hatte</li>
       </ul>
    </div>
                                                 
@@ -499,7 +497,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A0023B1</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A0023B1</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -559,6 +557,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -617,22 +618,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

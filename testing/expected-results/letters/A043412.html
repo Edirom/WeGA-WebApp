@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Gubitz, Rudolph" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"schickt J. Abschrift von Notizen, die F. W. Gubitz zu Sappho und Lieb und Versöhnen gemacht hat","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Rudolph Gubitz an Friedrich Wilhelm Jähns in Berlin. Berlin, Samstag, 27. Februar 1869","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043412","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008198/Korrespondenz/A043412","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008198","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008198"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008198/Korrespondenz/A043412/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008198/Korrespondenz/A043412/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -357,15 +355,15 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000695" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008198" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002066" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;Jähns, Friedrich Wilhelm&#34; im Text zu markieren.">Jähns, Friedrich Wilhelm</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -395,9 +393,11 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130999" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130006" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -411,8 +411,8 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-                <span class="tei_dateline textAlign-right"><a class="preview places A130002" href="">Berlin</a>, 27. 2. 69.</span>
-                <p class="teiLetter_salute">Hochgeehrter Herr <a class="preview persons A000914" href="">Direktor</a>!</p>
+                <span class="tei_dateline textAlign-right"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>, 27. 2. 69.</span>
+                <p class="teiLetter_salute">Hochgeehrter Herr <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Direktor</a>!</p>
              </div>
                                         <p>Anliegend sende ich Ihnen eine Abschrift der Notizen, die mir mein lieber <a class="preview persons A000695" href="">Vater</a> in
                Folge Ihres Schreibens vom 20 dM. über die darin angeregten Fragen gegeben hat, mit
@@ -427,22 +427,22 @@
                                     <div class="writingSession">
                                         <p><span class="tei_supplied"><span class="brackets_supplied">[</span>Anlage:<span class="brackets_supplied">]</span></span> <span class="tei_segBlock textAlign-center">„<a class="preview works A020532" href="">Sappho</a>“</span></p>
                                         <p>ist ein „Melodrama“, Gedicht von mir, mit Musik <span class="tei_hi_underline1">nicht</span>
-               von <a class="preview persons A002068" href="">Carl Maria v. Weber</a>, sondern von <span class="tei_hi_underline1"><a class="preview persons A002066" href="">Bernhard Anselm Weber</a></span>.
-               — Im <span class="preview places A130002" data-ref="">hiesigen</span> Opernhause ließ ich es zwei Mal darstellen<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> im Jahr 1816 bei dem
+               von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v. Weber</a>, sondern von <span class="tei_hi_underline1"><a class="preview persons A002066" href="">Bernhard Anselm Weber</a></span>.
+               — Im <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A130002.html">hiesigen</span> <a class="preview places A130999" href="">Opernhause</a> ließ ich es zwei Mal darstellen<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> im Jahr 1816 bei dem
                Mancherlei, was ich zur Unterstützung des „Vaterländischen Vereins für
-               hülfsbedürftige Krieger“ auf die Bühne brachte. <a class="preview persons A002068" href="">Carl Maria v. Weber</a> hatte das
+               hülfsbedürftige Krieger“ auf die Bühne brachte. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v. Weber</a> hatte das
                Werkchen <span class="tei_hi_underline1">componiren wollen</span>, ich bekam aber nichts und mußte
                mir helfen<a class="noteMarker" href="">T</a>.</p>
                                         <p><span class="tei_segBlock textAlign-center">„<a class="preview works A020989" href="">Bei Leipzig.</a>“<a href="#footNote_01" id="backref-footNote_01" class="fn-ref">x)</a></span></p>
                                         <p>ist ein einaktiges Schauspiel von mir, gedruckt im vierzigsten Jahrgang meines
-                  „Jahrbuch deutscher Bühnenspiele.“<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a> <a class="preview persons A002068" href="">Carl Maria v. Weber</a> componirte dazu Ouvertüre und <span class="preview works A020264 A020265" data-ref=" ">Gesänge</span>, ließ es zuerst am <span class="tei_sic">19ten</span><a class="noteMarker" id="backref-d10e102" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e102">‡</a> October 1815 in <a class="preview places A130006" href="">Prag</a> (dort war er damals Musik-Director) aufführen<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>. Auch dies Schauspiel kam hier im Opernhause für den wohlthätigen Zweck zur Darstellung<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>. Die Partitur der Musik ist Eigenthum der Vereins-Buchhandlung<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a><span class="tei_pb" title="Seitenumbruch"> | </span></p>
-                                        <p>Im Jahre 1815 <span class="tei_subst"><span class="tei_add">regte</span><a class="noteMarker" id="backref-d10e120" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e120">‡</a></span> mich <a class="preview persons A002068" href="">Carl Maria v. Weber</a> an, ihm einen Opern-Text<a class="noteMarker" href="">T</a> zu schreiben, ich weigerte mich lange, er beredete mich aber ausdauernd, bis ich eine
+                  „Jahrbuch deutscher Bühnenspiele.“<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v. Weber</a> componirte dazu Ouvertüre und <span class="preview works A020264 A020265" data-ref=" ">Gesänge</span>, ließ es zuerst am <span class="tei_sic">19ten</span><a class="noteMarker" id="backref-d10e105" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e105">‡</a> October 1815 in <a class="preview places A130006" href="">Prag</a> (dort war er damals Musik-Director) aufführen<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>. Auch dies Schauspiel kam <span class="preview places A130002" data-ref="/exist/apps/WeGA-WebApp/de/A130002.html">hier</span> im <a class="preview places A130999" href="">Opernhause</a> für den wohlthätigen Zweck zur Darstellung<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>. Die Partitur der Musik ist Eigenthum der Vereins-Buchhandlung<a class="noteMarker" id="backref-note05" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note05">*</a><span class="tei_pb" title="Seitenumbruch"> | </span></p>
+                                        <p>Im Jahre 1815 <span class="tei_subst"><span class="tei_add">regte</span><a class="noteMarker" id="backref-d10e129" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e129">‡</a></span> mich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v. Weber</a> an, ihm einen Opern-Text<a class="noteMarker" href="">T</a> zu schreiben, ich weigerte mich lange, er beredete mich aber ausdauernd, bis ich eine
                „Mährchen-Oper“ schrieb, betitelt „<span class="752461101051033265108102114101100">König Alfred</span>“, diesen Stoff wählend,
-               weil dabei Geschichte und Sage ineinander <span class="tei_subst"><span class="tei_add">f</span><a class="noteMarker" id="backref-d10e139" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e139">‡</a></span>ließen. Die Vollendung dieses Versuchs
+               weil dabei Geschichte und Sage ineinander <span class="tei_subst"><span class="tei_add">f</span><a class="noteMarker" id="backref-d10e148" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e148">‡</a></span>ließen. Die Vollendung dieses Versuchs
                hatte sich hingezogen bis zum Anfang des Jahres 1825, und ich besitze davon nur zwei
-               Akte; der dritte Akt ging verloren, da ich <a class="preview persons A002068" href="">Weber</a> meine Handschrift schickte, um sein
+               Akte; der dritte Akt ging verloren, da ich <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> meine Handschrift schickte, um sein
                Urtheil zu erfahren, und nicht weiß, wo sie nach seinem Tode (1826) geblieben ist.
-               <a class="preview persons A002068" href="">Weber</a> fand in meinem Gedicht viel Schwierigkeiten für den Tondichter, vor herrschend
+               <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> fand in meinem Gedicht viel Schwierigkeiten für den Tondichter, vor herrschend
                eiferte sein hartnäckiger Widerspruch gegen eine Ouvertüre mit Gesang, mir nothwendig
                für den Zweck meines Grundgedankens durch Chöre der Engländer und Normannen.Endlich
                trat<span class="tei_pb" title="Seitenumbruch"> | </span>er einmal erhitzt und hastig in mein Arbeitsstübchen mit dem Zuruf: „Nichts geändert! wie sie ist hab’ ich nun die Ouvertüre im
@@ -500,12 +500,13 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. X, Nr. 254</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_4749b7080d6e10efd28f58947d510c8c"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_2070d1d13dd76dc57ca85958e27906b3"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_4749b7080d6e10efd28f58947d510c8c">
+                                        <div class="collapse apparatus-details" id="source_2070d1d13dd76dc57ca85958e27906b3">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl., 1 DBl. (4 b. S. o. Adr.)</li>
+                                                        <li>am Briefkopf gestempelt: „an Jähns“</li>
                                                         <li>Die Anlage ist eine Abschrift; am oberen Blattrand Bl. 1r von F.W. Jähns: „Dictat des Professors | <span class="tei_hi_latintype">F. W. Gubitz</span>“; in der Mitte Bl. 3r: „empfangen d. 28. <span class="tei_hi_latintype">Febr.</span> 69“</li>
                                                     </ul>
                                             
@@ -538,20 +539,20 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e102" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e102" data-title="sic" data-counter="1" data-href="#d10e102"><span class="tei_lemma">„19ten“</span>sic!</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e105" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e105" data-title="sic" data-counter="1" data-href="#d10e105"><span class="tei_lemma">„19ten“</span>sic!</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e120" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e120" data-title="Ersetzung" data-counter="2" data-href="#d10e120"><span class="tei_lemma">„<span class="tei_add">regte</span>“</span>„zeigte“ überschrieben mit „<span class="tei_add">regte</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e129" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e129" data-title="Ersetzung" data-counter="2" data-href="#d10e129"><span class="tei_lemma">„<span class="tei_add">regte</span>“</span>„zeigte“ überschrieben mit „<span class="tei_add">regte</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e139" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e139" data-title="Ersetzung" data-counter="3" data-href="#d10e139"><span class="tei_lemma">„<span class="tei_add">f</span>“</span>„sch“ überschrieben mit „<span class="tei_add">f</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e148" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e148" data-title="Ersetzung" data-counter="3" data-href="#d10e148"><span class="tei_lemma">„<span class="tei_add">f</span>“</span>„sch“ überschrieben mit „<span class="tei_add">f</span>“</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -592,7 +593,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A043412/manifest.json" data-canvasindex="0"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://content.staatsbibliothek-berlin.de/dc/1806966956/manifest" data-canvasindex="0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -613,7 +614,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043412</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043412</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -673,6 +674,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -731,22 +735,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

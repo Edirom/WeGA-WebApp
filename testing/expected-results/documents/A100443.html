@@ -12,8 +12,8 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Anonym" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100443" />
@@ -43,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Konzertzettel zu Webers Konzert in Mannheim am 9. März 1810","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Konzertzettel zu Webers Konzert am 9. März 1810 in Mannheim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100443","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100443","author":[{"@type":"Person","name":"Anonym"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -251,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -292,13 +290,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100443/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Dokumente/A100443/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -356,8 +354,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000383" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000049" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -371,6 +367,8 @@
                                     <input type="checkbox" name="options" value="A000413" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000982" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -415,7 +413,7 @@
                                     <div class="docPart">
                                         <p><span class="tei_segBlock textAlign-center"><span class="tei_hi_bold">Freitags, den 9ten März 1810
                 wird
-               <a class="preview persons A002068" href="">Carl Maria von Weber</a><br />
+               <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a><br />
                 die Ehre haben<br />
                 ein großes<br />
                 Vokal- und Instrumental-Konzert<br />
@@ -428,16 +426,16 @@
                                                         <td><span class="tei_segBlock textAlign-center">2.</span></td>
                                                     </tr>
                                                     <tr>
-                                                        <td> 1) <span class="tei_hi_bold"><a class="preview works A020278" href="">Große Symphonie</a></span> von <span class="tei_hi_bold"><a class="preview persons A002068" href="">Carl Maria von Weber</a></span>.</td>
+                                                        <td> 1) <span class="tei_hi_bold"><a class="preview works A020278" href="">Große Symphonie</a></span> von <span class="tei_hi_bold"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.</td>
                                                         <td>1) <span class="tei_hi_bold">Concertino</span> für Horn und Fagott, geblasen von den Herrn <span class="tei_hi_bold"><a class="preview persons A000383" href="">Dickhut</a></span> und <span class="tei_hi_bold"><a class="preview persons A000049" href="">Arnold</a></span>.</td>
                                                     </tr>
                                                     <tr>
                                                         <td>2) <span class="tei_hi_bold">Duett</span> aus der Oper <a class="preview works A020873" href=""><span class="tei_hi_bold">Ginevra</span></a>, von <span class="tei_hi_bold"><a class="preview persons A001294" href="">Simon Mayer</a></span>, gesungen von den Herrn <span class="tei_hi_bold"><a class="preview persons A000139" href="">Berger</a></span> und <span class="tei_hi_bold"><a class="preview persons A000360" href="">Decker</a></span>.</td>
-                                                        <td>2) <span class="tei_hi_bold">Variationen</span> fürs Klavier, vorgetragen von <span class="tei_hi_bold"><a class="preview persons A002068" href="">C. M. von Weber</a></span>.</td>
+                                                        <td>2) <span class="tei_hi_bold">Variationen</span> fürs Klavier, vorgetragen von <span class="tei_hi_bold"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. von Weber</a></span>.</td>
                                                     </tr>
                                                     <tr>
-                                                        <td> 3) <span class="tei_hi_bold">Klavier-Konzert</span> von <span class="tei_hi_bold"><a class="preview persons A000413" href="">Eberl</a></span>, vorgetragen von <span class="tei_hi_bold"><a class="preview persons A002068" href="">C. M. v. Weber</a></span>.</td>
-                                                        <td>3) <span class="tei_hi_bold">Finale</span> des ersten Akts aus der Oper <a class="preview works A020036" href=""><span class="tei_hi_bold">Silvana</span></a> von <span class="tei_hi_bold"><a class="preview persons A002068" href="">C. M. v. Weber</a></span>; gesungen von Herrn <a class="preview persons A000139" href=""><span class="tei_hi_bold">Berger</span></a> und dem Chor des Theaterpersonals.</td>
+                                                        <td> 3) <span class="tei_hi_bold">Klavier-Konzert</span> von <span class="tei_hi_bold"><a class="preview persons A000413" href="">Eberl</a></span>, vorgetragen von <span class="tei_hi_bold"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></span>.</td>
+                                                        <td>3) <span class="tei_hi_bold">Finale</span> des ersten Akts aus der Oper <a class="preview works A020036" href=""><span class="tei_hi_bold">Silvana</span></a> von <span class="tei_hi_bold"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">C. M. v. Weber</a></span>; gesungen von Herrn <a class="preview persons A000139" href=""><span class="tei_hi_bold">Berger</span></a> und dem Chor des Theaterpersonals.</td>
                                                     </tr>
                                                 </tbody>
                                             </table>
@@ -496,14 +494,29 @@
                                     <div>
                                         <strong><span>Textzeuge</span>:</strong>
                                         
-                                        <span class="biblio-entry"><span class="author">Friedrich Walter</span>, <span class="title">Karl Maria von Weber in Mannheim und Heidelberg 1810 und sein Freundeskreis</span>, in: <span class="journalTitle">Mannheimer Geschichtsblätter</span>, Jg. 25 (Januar/Februar 1924), Sp. 37</span>
-                                                                              
-                                        <div class="collapse apparatus-details" id="source_f874ff17fd11cbe45f298fbc56572271">
+                                        <span>Mannheim (D), Städtisches Reiß-Museum (D-MHrm)<br /><i>Signatur</i>: 18/2016_00030, Bl. 163</span>
+                                        <span>
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_5aa85f3750894999ebf2f607287f12b8"></a>                                                                                                                                                                               
+                                        </span>                                      
+                                        <div class="collapse apparatus-details" id="source_5aa85f3750894999ebf2f607287f12b8">
                                             
                                             
                                             <div>
                                                 
+                                                    <h4 class="media-heading">Dazugehörige Textwiedergaben</h4>
                                                 
+                                                <ul class="tei_list">
+                                                    <li>
+                                                        <div>
+                                                            
+                                                            <span class="tei_bibl"><span class="7011410510110011410599104328797108116101114">Friedrich Walter</span><span class="tei_title">Karl Maria von Weber in Mannheim und Heidelberg 1810 und sein Freundeskreis</span><span class="tei_title">Mannheimer Geschichtsblätter</span><span class="tei_biblScope">25</span><span class="tei_date">Januar/Februar 1924</span><span class="tei_biblScope">37</span></span>
+                                                              
+                                                            <div class="collapse" id="source_303e11dbb8f97a3d75d7730fa3b9d245">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -525,7 +538,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A100443/manifest.json" data-canvasindex="0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -546,7 +559,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100443</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100443</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -606,6 +619,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -664,22 +680,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

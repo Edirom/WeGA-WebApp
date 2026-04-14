@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Antonio Peregrino Benelli. Lebensdaten: 5. September 1771–16. August 1830. Tätigkeiten: Sänger (Tenor), Komponist, Gesangspädagoge. Wirkorte: Neapel, Dresden, Wien, Berlin","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000131","name":"Benelli, Antonio Peregrino","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000131","sameAs":"https://d-nb.info/gnd/116120355"}</script>
 
@@ -395,7 +393,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A000131/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000131/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000131/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -418,9 +416,9 @@
          <li>verheiratet mit <span class="8610511099101110116105974432103101984632719711497118105110105">Vincentia, geb. Garavini</span>, aus <a class="preview places A130054" href="">Neapel</a></li>
          <li>ab September 1800 an der italienischen Hofoper in <a class="preview places A130003" href="">Dresden</a>, im Februar 1802 lebenslange Anstellung, ab Juli 1820 beurlaubt (Pensionierung im August 1823), im Herbst 1820 Abreise nach <a class="preview places A130004" href="">Wien</a> mit Ehefrau und Tochter <a class="preview persons A008022" href="">Emilie</a></li>
              <li>gab 1821 bis 1823 in <a class="preview places A130004" href="">Wien</a> Gesangsunterricht am Kärntnertortheater (Singemeister)</li>
-      <li>ab 1823 durch <a class="preview persons A001864" href="">Spontinis</a> Vermittlung Gesangsprofessor an der Kgl. Hofoper in <a class="preview places A130002" href="">Berlin</a></li> 
+      <li>ab 1823 durch <a class="preview persons A001864" href="">Spontinis</a> Vermittlung Gesangsprofessor an der Kgl. Hofoper in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></li> 
       <li>war auch Korrespondent der <span class="tei_hi_italic">Allgemeinen musikalischen Zeitung</span></li> 
-      <li>1829 erregte er Aufsehen durch seine Kritik an <a class="preview persons A001864" href="">Spontinis</a> <span class="tei_hi_italic"><a class="preview works A020556" href="">Olympia</a></span>, die schließlich zur Aufgabe der <a class="preview places A130002" href="">Berliner</a> Professur führte</li> 
+      <li>1829 erregte er Aufsehen durch seine Kritik an <a class="preview persons A001864" href="">Spontinis</a> <span class="tei_hi_italic"><a class="preview works A020556" href="">Olympia</a></span>, die schließlich zur Aufgabe der <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berliner</a> Professur führte</li> 
          <li>zog sich nach <a class="preview places A130003" href="">Dresden</a> bzw. <span class="6624611411010599104101110">Börnichen</span> zurück, wo er verarmt starb</li>
                                                             </ul>
    </div>
@@ -533,7 +531,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000131</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000131</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -593,6 +591,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -651,22 +652,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

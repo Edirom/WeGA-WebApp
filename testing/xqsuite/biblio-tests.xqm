@@ -41,8 +41,9 @@ declare
 
 declare 
     %test:args('A111038')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='collectionTitle'>„Ei, dem alten Herrn zoll’ ich Achtung gern’“. Festschrift für Joachim Veit zum 60. Geburtstag</xhtml:span>")
-    %test:args('A110745')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='collectionTitle'>Genie, Irrsinn und Ruhm.  Die Komponisten<xhtml:span class='edition'>, 7. völlig neu bearb. Auflage</xhtml:span></xhtml:span>")
-    function bt:test-collectionTitle($a as xs:string) as element() {
+    %test:args('A113126')         %test:assertEquals("<xhtml:span xmlns:xhtml='http://www.w3.org/1999/xhtml' class='collectionTitle'>Carl Maria von Weber als Wegbereiter Richard Wagners?</xhtml:span>")
+    %test:args('A110745')         %test:assertEmpty
+    function bt:test-collectionTitle($a as xs:string) as element()? {
         let $doc := crud:doc($a)
         return
             bibl:printCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='collectionTitle']
@@ -91,18 +92,11 @@ declare
 };
 
 declare 
-    %test:args('A110876')         %test:assertEquals(
-        "<xhtml:span class='author' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Karl Robert Brachtel</xhtml:span>", 
-        ",  [Rezension] ", 
-        "<xhtml:span class='title' xmlns:xhtml='http://www.w3.org/1999/xhtml'><a xmlns='http://www.w3.org/1999/xhtml' class='preview biblio A110900' href='/exist/apps/eXide/de/A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>", 
-        ", in: ", 
-        "<xhtml:span class='journalTitle' xmlns:xhtml='http://www.w3.org/1999/xhtml'>Das Orchester</xhtml:span>", 
-        ", Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774"
-    )
+    %test:args('A110876')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Karl Robert Brachtel</xhtml:span>,  [Rezension] <xhtml:span class='title'><a class='preview biblio A110900' href='A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>, in: <xhtml:span class='journalTitle'>Das Orchester</xhtml:span>, Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774</xhtml:div>")
     function bt:test-printReview($a as xs:string) as node()* {
         let $doc := crud:doc($a)
         return
-            bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')/node()
+            bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de') => bt:normalize-hrefs()
 };
 
 declare 
@@ -111,7 +105,7 @@ declare
     %test:args('A112665')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Romy Donath</xhtml:span>, <xhtml:span class='title'>Deutsche Nationaloper oder romantische Gruselstory?</xhtml:span>, in: <xhtml:span class='collectionTitle'>200 Jahre Freischütz.  Festschrift des Carl-Maria-von-Weber-Museums</xhtml:span>, hg. von <xhtml:span class='editor'>ders.</xhtml:span>, <xhtml:span class='placeNYear'>Niederjahna 2021</xhtml:span>, S.&#160;7–29</xhtml:div>")
     %test:args('A111266')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Günter Haußwald</xhtml:span>, <xhtml:span class='title'>Zur Dramaturgie des „Freischütz“</xhtml:span>, in: <xhtml:span class='collectionTitle'>Carl Maria von Weber.  Eine Gedenkschrift</xhtml:span>, hg. von <xhtml:span class='editor'>dems.</xhtml:span>, <xhtml:span class='placeNYear'>Dresden 1951</xhtml:span>, S.&#160;139–151</xhtml:div>")
     %test:args('A110013')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Frank Ziegler</xhtml:span>, <xhtml:span class='title'>Felix Mendelssohn Bartholdy und Carl Maria von Weber</xhtml:span>, in: <xhtml:span class='collectionTitle'>Mendelssohn Studien.  Beiträge zur neueren deutschen Kulturgeschichte. Zum 200. Geburtstag von Felix Mendelssohn Bartholdy</xhtml:span><xhtml:span class='vol'>, Bd.&#160;16</xhtml:span>, hg. von <xhtml:span class='editor'>Hans-Günter Klein</xhtml:span> und <xhtml:span class='editor'>Christoph Schulte</xhtml:span>, <xhtml:span class='placeNYear'>Hannover 2009</xhtml:span>, S.&#160;51–100</xhtml:div>")
-    %test:args('A110181')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Michael Charles Tusa</xhtml:span>, <xhtml:span class='title'>Carl Maria (Friedrich Ernst) von Weber</xhtml:span>, in: <xhtml:span class='collectionTitle'>The New Grove. Dictionary of Music and Musician. Second Edition</xhtml:span>, hg. von <xhtml:span class='editor'>Stanley Sadie</xhtml:span>, <xhtml:span class='placeNYear'>London 2001</xhtml:span>, S.&#160;135–172</xhtml:div>")
+    %test:args('A110181')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Michael Charles Tusa</xhtml:span>, <xhtml:span class='title'>Carl Maria (Friedrich Ernst) von Weber</xhtml:span>, in: <xhtml:span class='collectionTitle'>The New Grove. Dictionary of Music and Musician. Second Edition</xhtml:span><xhtml:span class='vol'>, Bd.&#160;27</xhtml:span>, hg. von <xhtml:span class='editor'>Stanley Sadie</xhtml:span>, <xhtml:span class='placeNYear'>London 2001</xhtml:span>, S.&#160;135–172</xhtml:div>")
     function bt:test-printIncollectionCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
@@ -144,4 +138,22 @@ declare
         let $doc := crud:doc($a)
         return
             bibl:printIncollectionCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')//xhtml:span[@class='series']
+};
+
+declare
+    %test:args('A031324')       %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Carl Maria von Weber</xhtml:span>, <xhtml:span class='title'>Bruchstücke aus: Tonkünstlers Leben. Eine Arabeske von Carl Maria von Weber. (Fortsetzung)</xhtml:span>, in: <xhtml:span class='collectionTitle'>Die Muse</xhtml:span><xhtml:span class='vol'>, Bd. 1</xhtml:span><xhtml:span class='issue'>, Heft 3</xhtml:span>, <xhtml:span class='placeNYear'>1821</xhtml:span>, S. 81–98</xhtml:div>")
+    function bt:test-document-imprint($a as xs:string) as element()* {
+        let $doc := crud:doc($a)
+        return
+            bibl:printCitation($doc//tei:biblStruct, <xhtml:div/>, 'de')
+};
+
+declare %private function bt:normalize-hrefs($nodes as node()*) as node()* {
+    for $node in $nodes
+    return
+        typeswitch($node)
+        case attribute(href) return attribute {'href'} { substring-after($node, '/de/') }
+        case document-node() return document { $node/node() ! bt:normalize-hrefs(.) }
+        case element() return element {$node/name()} { ($node/@* | $node/node()) => bt:normalize-hrefs() }
+        default return $node
 };

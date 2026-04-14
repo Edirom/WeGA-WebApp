@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Schlesinger, Adolph Martin" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Streit über Rechnungen betreffend, die üblicherweise bei der Frankfurter Ostermesse beglichen werden; wegen des Nachdrucks der Oberon‑Ouvertüre wird er eine Beschwerde beim Großherzog einreichen; bietet 40 Gulden für das Eigentumsrecht an der Partitur der Beethovenschen Quartette und droht sonst ähnlich zu verfahren, wie Schott bei dem Nachdruck der Oberon‑Ouvertüre","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Adolph Martin Schlesinger an den Verlag B. Schott’s Söhne in Mainz. Berlin, Mittwoch, 3. Oktober 1827","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045540","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A045540","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001693","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001693"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -254,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +298,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A045540/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A045540/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,10 +361,10 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A042621.html">1826-05-25</a>:  an  <a href="" class="preview A004108 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A001693/Korrespondenz/A042638.html">1826-10-20</a>:  an  <a href="" class="preview A000189 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042771.html">1826-05-02</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042771.html">1826-05-02</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
@@ -391,9 +388,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002649" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080002" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -443,7 +440,7 @@
                                         <p>	Nur um endlich einmal die Rechnung abgeschlossen und saldirt zu sehen, nahm ich Ihre angebliche Forderungen, und weil Sie versprachen sodann zahlen zu wollen das geschah in mehreren Ihrer Schreiben zuletzt in dem welches Sie mir in letzter Ostermesse schrieben.</p>
                                         <p>	Auch Ihr Herr Bruder sagte mir <span class="tei_date">1824</span> in <span class="tei_hi_latintype"><a class="preview places A130020" href="">Frankfurth a/m</a></span>  daß in jeder Ostermesse abgeschlossen und die sich ergebende <span class="tei_hi_latintype">Saldo</span> 
                <span class="tei_del">mit rh. 174. 13 ggr an</span><a class="noteMarker" id="backref-d10e76" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e76">‡</a>  baar bezahlt werden solle. Den erwähnten Rechnungsabschluß fand ich in Ihrem Schreiben nicht vor Sie gaben mir davon den mit bis <span class="tei_date"><span class="tei_hi_latintype">ult Decbr</span> 1826</span> kommenden Saldo mit 174 rh. 13 ggr: an während ich noch den Ihnen gesandten Abschluß rh 186. 8 ggr. zu fordern habe. Wollen Sie nun daß unsere Geschäftsverbindung unterhalten <span class="tei_del">werden</span><a class="noteMarker" id="backref-d10e85" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e85">‡</a>  soll und nicht für immer abgebrochen werde, so acceptiren Sie entweder, bis nach erfolgter Rech<span>[…]<a class="noteMarker" id="backref-d10e88" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e88">‡</a></span> irung den <span class="tei_supplied"><span class="brackets_supplied">[</span>Forts. S. 226:<span class="brackets_supplied">]</span></span> der <span class="tei_hi_latintype">Differenz</span>  von 11 rh. 19 ggr: zu welchem Behuf ich Anzeige <span class="tei_hi_latintype">franco</span>  erbitte, welche Post in meinem Abschluß nicht stimmt die nach Ihrem Buche schuldige Summe von 174 rh. 13 ggr. 3/m <span class="tei_hi_latintype">dto</span>. andernfalls remittire ich Ihnen in kommender Messe den Betrag der alten Forderung in alten mir in Comission gesendeten Artikeln, auf Verlangen kann dies gleich geschehen, mache sodann meinen Abschluß und das Handlungsgericht wird entscheiden. Sollten Sie diese rh. 174 13 ggr s/m nicht acceptiren, so expedire ich Ihnen nicht ein Blatt mehr für Sie. Daß Sie mir genug Schaden durch Beeinträchtigung meines Eigenthums zugefügt haben wogegen ich mich niemals <span class="tei_unclear">revangirt<a class="noteMarker" id="backref-d10e104" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e104">‡</a></span> habe, will ich hier nur beiläufig erwähnen, daß Sie aber fortfahren die mir nachgestochene <span class="tei_hi_latintype">Ouv</span>  aus <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span>  zu debitiren, kann ich nicht mehr ruhig mit ansehen, und werde deshalb eine Beschwerde bei <a class="preview persons A001209" href="">Sr. Königl. Hoheit Ihrem Großherzog</a> einreichen. Ich ertrage dergleichen Beeinträchtigungen nicht mehr von Ihnen. Hinsichtlich Ihres Verlages habe ich noch zu bemerken daß ich von keinem so wenig verkaufe als von dem Ihrigen weil Sie solchen überall mit 50 % in Komission geben und gegen Baar mit 70 % verkaufen. Jeder der Artikel Ihres Verlages kaufen will verlangt daher einen bedeutenden <span class="tei_hi_latintype">Rabatt</span>  den ich meinen Grundsätzen zufolge nicht zugestehen kann. Sie können daher leicht begreiffen, daß ich von dem was ich jetzt von Ihrem Verlag erhielt mehr als 7/8 desselben unverkauft zu liegen habe. – Ich habe indeß auch manches verschrieben um nur Ihnen die Zahlung des <span class="tei_hi_latintype">Saldos</span> zu erleichtern. Mein Verlag kostet viel Geld und ich muß daher auch Geld dafür einnehmen. Was die <a class="preview persons A002649" href=""><span class="tei_hi_latintype">Beethoven</span>schen</a> <span class="tei_hi_latintype">Quat.</span>  Ihres Verlags anbetrift werde ich leider wenig verkaufen können weil Sie jedermann durch Sie besitzt und Sie niemand doppelt kauft, ich auch keinen der Verpflichtung auflegen kann die complette Sammlung von mir zu nehmen. Wenn die Meinigen fertig sein werden werde ich sehen was zu thun ist, mir indessen keine Anrechtlichkeit zu Schulden kommen lassen. Wollen Sie das noch nicht <span class="tei_hi_latintype">Partitur</span>  gestochene <span class="tei_hi_latintype">Quartett</span> nicht selbst stechen so biete ich Ihnen hiermit vierzig Gulden für das Eigenthumsrecht der <span class="tei_hi_latintype">Partitur</span>.</p>
-                                        <p>	Sie entschuldigen sich bei der <span class="tei_hi_latintype"><a class="preview works A020045" href="">Ouv Oberon</a></span>  daß sie solche früher herausgegeben haben als die Meinige erschienen sei, hat nicht H. <span class="tei_hi_latintype"><a class="preview persons A002068" href="">v. Weber</a></span>  schon wärend seiner Anwesenheit in <span class="tei_hi_latintype"><a class="preview places A130011" href="">London</a></span>  durch alle öffentliche Zeitungen bekannt gemacht daß ich der alleinige Eigenthümer für alle Arrangements bin. 2t Was werden Sie sagen wenn ich Ihre <span class="tei_hi_latintype"><a class="preview persons A002649" href="">Beethoven</a></span>schen Symfonien &amp; <span class="tei_hi_latintype">Quat</span>. u. Andere von Ihnen nicht gestochene <span class="tei_hi_latintype">Arrangements</span>  so wie die noch nicht gelif. <span class="tei_hi_latintype">Partitur</span> herausgeben würde</p>
+                                        <p>	Sie entschuldigen sich bei der <span class="tei_hi_latintype"><a class="preview works A020045" href="">Ouv Oberon</a></span>  daß sie solche früher herausgegeben haben als die Meinige erschienen sei, hat nicht H. <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">v. Weber</a></span>  schon wärend seiner Anwesenheit in <span class="tei_hi_latintype"><a class="preview places A130011" href="">London</a></span>  durch alle öffentliche Zeitungen bekannt gemacht daß ich der alleinige Eigenthümer für alle Arrangements bin. 2t Was werden Sie sagen wenn ich Ihre <span class="tei_hi_latintype"><a class="preview persons A002649" href="">Beethoven</a></span>schen Symfonien &amp; <span class="tei_hi_latintype">Quat</span>. u. Andere von Ihnen nicht gestochene <span class="tei_hi_latintype">Arrangements</span>  so wie die noch nicht gelif. <span class="tei_hi_latintype">Partitur</span> herausgeben würde</p>
                                         <p class="tei_closer textAlign-left"><span class="tei_supplied"><span class="brackets_supplied">[</span>ohne Unterschrift<span class="brackets_supplied">]</span></span></p>
                                         <p class="clearer"></p>
                                     </div>
@@ -493,7 +490,7 @@
                                         
                                         <span>Erzhausen (D), Archiv des Verlags Robert Lienau (D-ERZrl)<br /><i>Signatur</i>: Kopierbuch Schlesinger 1826–1833, S. 226–228</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_c53b767086d39d6233c051bfc8bbe983">
+                                        <div class="collapse apparatus-details" id="source_2e9cf225d69327b8995dff95c60dfa19">
                                             
                                             
                                             <div>
@@ -591,7 +588,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045540</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045540</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -651,6 +648,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -709,22 +709,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

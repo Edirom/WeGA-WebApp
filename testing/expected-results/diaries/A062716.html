@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 23t Briefe an Lichtenst. und die Koch und an Türks geschrieben abgeschikt. 48 Schneider Macherlohn für Rock und Hosen 12 ƒ – dem Schneider …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Samstag, 23. April 1814 ()","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062716","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062716","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -220,14 +218,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
                             </li>
                             <li>
                                 <span>A062716</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062716/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A062716/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -391,7 +389,7 @@
                         <div id="A062716" class="tableLeft">
                                     <p>
 
-  <span class="tei_date">d: 23<span class="tei_hi_superscript">t</span></span> <span class="payment_1"><span class="preview letters A040676 A040677" data-ref=" ">Briefe</span> <span class="tei_hi_underline1">an <a class="preview persons A001166" href="">Lichtenst</a></span>. und die <span class="tei_hi_underline1"><a class="preview persons A001036" href="">Koch</a></span> <span class="tei_add tei_hi_superscript">und an <span class="tei_hi_underline1"><span class="preview persons A001987 A001988 A001989" data-ref="  ">Türks</span></span> <a class="preview letters A040678" href="">geschrieben</a><a class="noteMarker" id="backref-d10e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e21">‡</a></span> abgeschikt.	</span><br /> 
+  <span class="tei_date">d: 23<span class="tei_hi_superscript">t</span></span> <span class="payment_1"><span class="preview letters A040677 A040676" data-ref=" ">Briefe</span> <span class="tei_hi_underline1">an <a class="preview persons A001166" href="">Lichtenst</a></span>. und die <span class="tei_hi_underline1"><a class="preview persons A001036" href="">Koch</a></span> <span class="tei_add tei_hi_superscript">und an <span class="tei_hi_underline1"><span class="preview persons A001987 A001988 A001989" data-ref="  ">Türks</span></span> <a class="preview letters A040678" href="">geschrieben</a><a class="noteMarker" id="backref-d10e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e21">‡</a></span> abgeschikt.	</span><br /> 
   <span class="payment_2"><span class="tei_hi_underline1">Schneider Macherlohn für Rock und Hosen</span>	 </span> <br /> 
   <span class="payment_3">dem Schneider Gesellen Trinkgeld	   </span>  <br />
   <span class="payment_4">Oblaten	</span> <br />
@@ -402,7 +400,7 @@
   zu laßen.</span> <span>wieder zu <a class="preview persons A000946" href="">Jung</a>, Thee mit <a class="preview persons A001019" href="">Kleinwächter</a>.</span><br />
   <span>dann ins Theater,</span> <span>um 8 Uhr nach Hause. gespielt</span><br />
   <span class="payment_12">ein Hörnel	</span> <br />
-  <span class="payment_13">1  Westen gekauft	 </span>  <br />
+  <span class="payment_13"><span class="tei_subst"><span class="tei_add">1</span><a class="noteMarker" id="backref-d10e138" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e138">‡</a></span> Westen gekauft	 </span>  <br />
   <span class="payment_14">1 ¼ ℔ Kaffee 1 ℔ Zukker	   </span> <br /> 
 
 </p>
@@ -447,9 +445,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_2985f9669599076cf1384975b8885f34"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_f3ad9af05d4acad0343c62b0a01bc044"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_2985f9669599076cf1384975b8885f34">
+                                        <div class="collapse apparatus-details" id="source_f3ad9af05d4acad0343c62b0a01bc044">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -480,6 +478,12 @@
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e21" class="apparatus-link">1.</a></div>
                                                 <div class="apparatusEntry col-11" id="d10e21" data-title="Hinzufügung" data-counter="1" data-href="#d10e21"><span class="tei_lemma">„und an <span class="tei_hi_underline1"><span class="preview persons A001987 A001988 A001989" data-ref="  ">Türks</span></span> <a class="preview letters A040678" href="">geschrieben</a>“</span>über der Zeile hinzugefügt</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e138" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e138" data-title="Ersetzung" data-counter="2" data-href="#d10e138"><span class="tei_lemma">„<span class="tei_add">1</span>“</span>„2“ überschrieben mit „<span class="tei_add">1</span>“</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -517,7 +521,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062716</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A062716</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -577,6 +581,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -635,22 +642,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,6 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Ludwig, Herzog von Württemberg" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Veit, Joachim" />
         <meta property="dc:contributor" content="Jakob, Charlene" />
         <meta property="dc:creator" content="" />
@@ -43,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Herzog Ludwig von Württemberg an Christian Ludwig August von Vellnagel. Stuttgart, Freitag, 9. Februar 1810","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040249","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001210/Korrespondenz/A040249","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001210","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001210"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -253,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001210/Korrespondenz/A040249/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001210/Korrespondenz/A040249/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001210/Korrespondenz/A040249/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -360,13 +359,13 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008094" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001504" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001260" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001210" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002074" /> <span title="Anwählen, um &#34;Weber, Franz Anton von&#34; im Text zu markieren.">Weber, Franz Anton von</span> 
                                 </label>
@@ -398,8 +397,8 @@
                                         <p><a class="preview persons A008094" href="">de Fellnaguel</a></p>
                                     </div>
                                     <div class="writingSession">
-                                        <p>Dero sehr geehrte Zuschrift erhielt Ich in dem Augen<span class="tei_supplied"><span class="brackets_supplied">[</span>blick<span class="brackets_supplied">]</span></span> als Ich mich im Wagen setzen woltte um nach dem Schauspielhause zu fahren; Ich komme davon eben wieder und eyle <span class="tei_hi_latintype">denenselben</span> darauf schuldige Antwortt zu ertheilen. Mir ist von der <a class="preview persons A002068" href=""><span class="tei_hi_latintype">Waeber</span>schen</a> Sache nichts anders als folgendes bewußt; Ich hatte Geld nach dem Auslande zu senden, gab meinem Secretair <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Waeber</a></span> auf solches zu besorgen – Ich  erfuhr, daß dieß Geldt angekommen seye biß auf circa 400 <span class="tei_hi_latintype">flr thal.</span></p>
-                                        <p>Ich stellte den <a class="preview persons A002068" href=""><span class="tei_hi_latintype">v.
+                                        <p>Dero sehr geehrte Zuschrift erhielt Ich in dem Augen<span class="tei_supplied"><span class="brackets_supplied">[</span>blick<span class="brackets_supplied">]</span></span> als Ich mich im Wagen setzen woltte um nach dem Schauspielhause zu fahren; Ich komme davon eben wieder und eyle <span class="tei_hi_latintype">denenselben</span> darauf schuldige Antwortt zu ertheilen. Mir ist von der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">Waeber</span>schen</a> Sache nichts anders als folgendes bewußt; Ich hatte Geld nach dem Auslande zu senden, gab meinem Secretair <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Waeber</a></span> auf solches zu besorgen – Ich  erfuhr, daß dieß Geldt angekommen seye biß auf circa 400 <span class="tei_hi_latintype">flr thal.</span></p>
+                                        <p>Ich stellte den <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">v.
                Waeber</span></a> dafür zu Rede, der mich vertröstete im Anfange, Ich
                würde bald den <span class="tei_hi_latintype">aviso</span> des richtigen Empfangs dieses <span class="tei_hi_latintype">restes</span> erhaltten. da nun aber dieser immer ausblieb und
                Ich mehrfach mein Verwundern hierüber äußerte, gestandt er mir<span class="tei_pb" title="Seitenumbruch" data-facs="p3"> | </span>
@@ -407,10 +406,10 @@
                fehlende Geldt genommen, es durchgebracht, und dagegen einen Wechsel von einem
                <a class="preview persons A001504" href="">Hr. v. <span class="tei_hi_latintype">Poelnitz</span></a> an den er zu
                fordern hätte abgesandt hätte. <span class="tei_supplied"><span class="brackets_supplied">[</span>Eine<span class="brackets_supplied">]</span></span>
-               <span class="tei_unclear">Außage<a class="noteMarker" id="backref-d10e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e60">‡</a></span> die mein gewesener <a class="preview persons A002068" href="">Secretair</a> auch nachhehr meiner innigst geliebten <a class="preview persons A001260" href="">Gattin</a> wiederholte. Ein mehreres weiß Ich in dieser Sache auf Ehre
+               <span class="tei_unclear">Außage<a class="noteMarker" id="backref-d10e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e60">‡</a></span> die mein gewesener <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Secretair</a> auch nachhehr meiner innigst geliebten <a class="preview persons A001260" href="">Gattin</a> wiederholte. Ein mehreres weiß Ich in dieser Sache auf Ehre
                nicht außer daß das Geldt was da gefehlt richtig zu seiner Bestimmung obwohl
                sehr spätt, jedoch angekommen ist.</p>
-                                        <p>Ob die Angabe des <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Waebers</a></span> falsch oder wahr ist, kann ich als Ehrlicher Mann
+                                        <p>Ob die Angabe des <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Waebers</a></span> falsch oder wahr ist, kann ich als Ehrlicher Mann
                nicht behaupten, daß Er mir und meiner Gattin obig
                erwehnte Endschuldigung aber gemacht, kann Ich beeiden.</p>
                                         <p class="tei_closer textAlign-left"><span class="tei_hi_latintype">Dero</span> ferneren Freundschaft mich bestens empfehlendt habe Ich die Ehre mit denen ächtesten Gesinnungen zu seyn
@@ -460,9 +459,9 @@
                                         
                                         <span>Stuttgart (D), Hauptstaatsarchiv Stuttgart (D-Shsa)<br /><i>Signatur</i>: Prozeßakte Weber, G 246, Bü 5, Fasz. 5</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_b06881c0ebd6bfd8469630984fbf9dfe"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_cec16a74452425c3f9cb8c9c988896f1"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_b06881c0ebd6bfd8469630984fbf9dfe">
+                                        <div class="collapse apparatus-details" id="source_cec16a74452425c3f9cb8c9c988896f1">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. einschl. Adr.)</li>
@@ -528,7 +527,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040249</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040249</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -588,6 +587,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -646,22 +648,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

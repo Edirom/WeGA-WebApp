@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Anonymus" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Fabian Schmidt" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Rezension des engl. Klavierauszugs des Oberon","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Rezension des englischen Klavierauszugs des Oberon, Juni 1826","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032163","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032163","author":[{"@type":"Person","name":"Anonymus"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -296,10 +293,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032163/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032163/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A032163/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -357,17 +354,23 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001487" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000732" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000777" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000211" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A001448" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A005909" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A0017B8" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080116" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -380,6 +383,8 @@
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020046" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A021712" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020606" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -440,11 +445,11 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Review of <a class="preview persons A002068" href="">Weber’s</a> <a class="preview works A020046" href="">Oberon</a>.</span></h2>
+                                        <h2 class="docHeader textAlign-left"><span class="tei_segBlock textAlign-center">Review of <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a> <a class="preview works A020046" href="">Oberon</a>.</span></h2>
                                         <p><a class="preview works A020046" href=""><span class="tei_hi_small-caps">Oberon</span>, <span class="tei_hi_italic">or the</span> <span class="tei_hi_small-caps">Elf King’s Oath</span></a>, <span class="tei_hi_italic">a Romantic and Fairy</span>
                     <span class="tei_hi_small-caps">Opera</span>, <span class="tei_hi_italic">as performed at the <span class="tei_placeName">Theatre Royal</span>, <a class="preview places A130898" href="">Covent Garden</a>;
                         the poetry by</span> <a class="preview persons A001487" href=""><span class="tei_hi_small-caps">J. R. Planche</span></a>, Esq.; <span class="tei_hi_italic">composed and arranged 
-                       for the</span> <span class="tei_hi_small-caps">Piano-Forte</span>, <span class="tei_hi_italic">by</span> <a class="preview persons A002068" href=""><span class="tei_hi_small-caps">Carl Maria</span> von
+                       for the</span> <span class="tei_hi_small-caps">Piano-Forte</span>, <span class="tei_hi_italic">by</span> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_small-caps">Carl Maria</span> von
                            <span class="tei_hi_small-caps">Weber</span></a>. (<a class="preview orgs A080116" href="">Welsh and Hawes</a>, 246, <span class="tei_hi_italic">Regent-street</span>.)</p>
                                         <p><span class="tei_hi_small-caps">The</span> recent and premature death of the composer of this
                     opera, attended by circumstances that tinged with a
@@ -463,7 +468,7 @@
                     a husband’s and a parent’s eyes, by exposing the errors
                     
                     of a last production, or the feebleness of a dying effort. It
-                    will however mitigrate the grief of <a class="preview persons A002068" href="">M. von Weber’s</a> relatives,
+                    will however mitigrate the grief of <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber’s</a> relatives,
                     and soften the regret of his friends, to reflect, that
                     the latest of his works will not dim the lustre of his well-earned
                     reputation — that it has already added a laurel to
@@ -506,7 +511,7 @@
                     some notion to our readers of the whole: —
                     <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-142.png/full/full/0/native.jpg"><img title="Allegretto. “Light as fairy foot can fall.”" alt="Allegretto. “Light as fairy foot can fall.”" src="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-142.png/122,193,1025,237/full/0/native.jpg" /></a></span>
                 </p>
-                                        <p>A few notes that immediately succeed the foregoing, are peculiarly <a class="preview persons A002068" href="">Weber’s</a>: —
+                                        <p>A few notes that immediately succeed the foregoing, are peculiarly <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a>: —
                     <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-142.png/full/full/0/native.jpg"><img title="“All too loud the fountains play.”" alt="“All too loud the fountains play.”" src="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-142.png/304,469,545,226/full/0/native.jpg" /></a></span></p>
                                         <p>The harmony of the above is well worthy of the
                     student’s attention; its effect is quite original and beautiful.
@@ -532,7 +537,7 @@
                     <span class="7998101114111110"><span class="tei_hi_italic">Oberon</span></span>, during which the scene changes suddenly from
                     the fairy-king’s bower to the city of <a class="preview places A130774" href="">Bagdad</a>. The
                     composer has here produced an effect similar to that by
-                    which <a class="preview persons A000732" href="">Handel</a>, in the oratorio of <span class="8397109115111110"><span class="tei_hi_italic">Samson</span></span>, and <a class="preview persons A000777" href="">Haydn</a>, in
+                    which <a class="preview persons A000732" href="">Handel</a>, in the oratorio of <a class="preview works A021712" href=""><span class="tei_hi_italic">Samson</span></a>, and <a class="preview persons A000777" href="">Haydn</a>, in
                     his <a class="preview works A020606" href=""><span class="tei_hi_italic">Creation</span></a>, describe the birth of light. The words are,
                     “But lo! I wave my lily wand,
                     <br />And Bagdad is before thee.”
@@ -553,13 +558,13 @@
                     at the words “Fill to the brim,” and “Twine the 
                     wreath” (page 43). This brilliant but most difficult
                     <span class="tei_hi_italic">scena</span> requires a singer possessing the various powers of
-                    the performer to whom it was allotted by the composer;
+                    the <a class="preview persons A000211" href="">performer</a> to whom it was allotted by the composer;
                     in less able hands it would be lost.
                 </p>
                                         <p><span class="tei_hi_italic">Air</span> (preceded by a short recitative), “Yes — my lord!”
                     in the same grand style as the preceding, is not less difficult
-                    to execute, and displays as much talent in the performer
-                    for whom <a class="preview persons A002068" href="">M. von Weber</a> composed it. The four
+                    to execute, and displays as much <a class="preview persons A001448" href="">talent</a> in the performer
+                    for whom <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber</a> composed it. The four
                     bars of introductory symphony, for the violoncellos, are
                     marked by novelty, and the air itself opens in a most
                     magnificent manner. At the repetition of the first words
@@ -571,7 +576,7 @@
                     part of the present opera. This air is the commencement
                     of the finale to the first act, and passes into a duet, in
                     the beginning of which are too many arpeggio passages,
-                    fit only for the violin; a fault of which <a class="preview persons A002068" href="">M. von Weber</a>
+                    fit only for the violin; a fault of which <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber</a>
                     is seldom guilty. The symphony leading to the chorus
                     that succeeds the duet, is one of the many specimens of
                     originality to be found in this work, and shews the
@@ -587,7 +592,7 @@
                     assumption, that it was more advanced in Arabia than in
                     Europe at the same period; though we cannot help
                     thinking that many of the Spanish national airs are of
-                    Moorish origin. That <a class="preview persons A002068" href="">M. von Weber</a>, when composing
+                    Moorish origin. That <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber</a>, when composing
                     this, was influenced by some notion of what might have
                     been the nature of the music cultivated by that elegant
                     and learned people, — to whom mankind are so largely
@@ -596,7 +601,7 @@
                     of the spirit in which this great musician imagined
                     his works. But we must not indulge in the regions of
                     speculation, therefore we lay before our readers a reality,
-                    in the shape <span class="tei_choice"><span class="tei_sic">ofa</span><a class="noteMarker" id="backref-d10e294" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e294">‡</a></span> few bars from page 66 of the present piece.
+                    in the shape <span class="tei_choice"><span class="tei_sic">ofa</span><a class="noteMarker" id="backref-d10e300" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e300">‡</a></span> few bars from page 66 of the present piece.
                     <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-143.png/full/full/0/native.jpg"><img title="Allo. feroce, S. 66." alt="Allo. feroce, S. 66." src="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-143.png/99,990,1001,484/full/0/native.jpg" /></a></span>
                 </p><span class="tei_pb_block" title="Seitenumbruch"> | </span>
                                         <p><span class="tei_hi_italic">Song</span>, “A lonely Arab maid,” beginning in <span class="tei_hi_small-caps">e</span> minor,
@@ -622,7 +627,7 @@
                     exactly suited to such creatures of supernatural birth, who
                     are generally pourtrayed with a strong tinge of the mischievous 
                     in their composition. The following passages
-                    will be immediately recognised as <a class="preview persons A002068" href="">Weber’s</a>: —
+                    will be immediately recognised as <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a>: —
                     <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-144.png/full/full/0/native.jpg"><img title="Presto. im 6/8 Takt. “Ho! ho! ho! ho! ho! ho! ho! ho! ho! ho!!”" alt="Presto. im 6/8 Takt. “Ho! ho! ho! ho! ho! ho! ho! ho! ho! ho!!”" src="https://weber-gesamtausgabe.de/Scaler/IIIF/writings%252FA0321xx%252FA032163%252FA032163-144.png/122,817,497,466/full/0/native.jpg" /></a></span></p>
                                         <p>The second of these is the laughing of the spirits at the
                     ease of the task imposed on them by <span class="8011799107"><span class="tei_hi_italic">Puck</span></span>; and a very
@@ -644,7 +649,7 @@
                 sight of a vessel, is one of the boldest and most 
                 successful attempts at expressing passion that the musical
                 art can boast. But who is to sing this? — The accomplished 
-                performer for whom it was composed has nearly 
+                    <a class="preview persons A001448" href="">performer</a> for whom it was composed has nearly 
                 sacrificed her health in supporting the arduous character
                 to which the <span class="tei_hi_italic">scena</span> is assigned, and we know of none on
                     the <a class="preview places A130898" href="">Covent-Garden</a> stage that ought to be trusted with
@@ -679,7 +684,7 @@
                                         <p>The modulation into the minor, at the words “From
                 the drear Anderun,” is unexpected, and eminently beautiful;
                     indeed the whole song shews the creative genious
-                    and elegant taste of <a class="preview persons A002068" href="">Weber</a>.</p>
+                    and elegant taste of <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>.</p>
                                         <p><span class="tei_hi_italic">Duet</span>, “On the banks of sweet Garonne.” The commencement
                     of this is all vivacity, being written for
                     <span class="8310410111497115109105110"><span class="tei_hi_italic">Sherasmin</span></span>, the comic character. But when the female,
@@ -732,13 +737,13 @@
                     appear new to those who are acquainted with <a class="preview persons A000777" href="">Haydn’s</a>
                     conzonet <span class="84104101328797110100101114101114"><span class="tei_hi_italic">The Wanderer</span></span>, and <a class="preview persons A005909" href="">Purcell’s</a> “<span class="70114111109321161041213211510810110111210511010332109971101151051111101153211410511510159">From thy sleeping
                     mansions rise;</span>” though no plagiarism must be imputed
-                    to <a class="preview persons A002068" href="">M. von Weber</a>, for perhaps he was unaequainted with
+                    to <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber</a>, for perhaps he was unaequainted with
                     the one, and of the very existence of the other he was,
                     most likely, thoroughly ignorant.</p>
                                         <p><span class="tei_hi_italic">Finale.</span> We now approach the end of this extensive
                     work. The scene opens with a chorus of slaves, in 
                     which (page 183) is one of those singular passages that
-                    are purely the offspring of <a class="preview persons A002068" href="">M. von Weber’s</a> fertile
+                    are purely the offspring of <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber’s</a> fertile
                     imagination. <span class="7998101114111110"><span class="tei_hi_italic">Oberon</span></span> takes his leave of the couple who
                     have by their matchless constancy released him from the
                     intolerable consequences of his inconsiderate oath, and
@@ -750,7 +755,7 @@
                                         <p>
                     The music of <a class="preview works A020046" href=""><span class="tei_hi_italic">Oberon</span></a>, like that of the <a class="preview works A020040" href=""><span class="tei_hi_italic">Freischutz</span></a>, shews
                     that the composer of it was well acquainted with what
-                    <span class="11610410132671111171101163210010132769799233112232100101">the Count de Lacépède</span> calls the <span class="tei_hi_italic">metaphysique de l’art:</span>
+                    <a class="preview persons A0017B8" href="">the Count de Lacépède</a> calls the <span class="tei_hi_italic">metaphysique de l’art:</span>
                     he not merely created melodies and discovered new forms
                     of accompaniment, but he studied the passions, their
                     shades and effects, and expressed them with a distinctness
@@ -765,7 +770,7 @@
                     his bodily strength was less impaired.</p>
                                         <p>This opera will be more popular in <span class="tei_country">Germany</span> than in
                    <span class="tei_country">England</span>, and more generally valued here a year or two
-                   hence than at the present moment. — <a class="preview persons A002068" href="">M. von Weber</a>
+                   hence than at the present moment. — <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber</a>
                    outstripped the period in which he lived; he will be
                    
                    better understood hereafter. The power of his genius
@@ -779,7 +784,7 @@
                    — fear, that he might end his days in a foreign
                    land, without the presence of a relation, or even a near
                    friend, to soften the pangs of the dying hour.</p>
-                                        <p>Though <a class="preview persons A002068" href="">M. von Weber</a> had acquired a proficiency
+                                        <p>Though <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M. von Weber</a> had acquired a proficiency
                     in the English language which was quite surprising, the
                     short time that he had devoted to its study being allowed
                     for, yet he had not made himself master of its accents:
@@ -868,7 +873,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">The Harmonicon</span>, Bd. 4/1, Nr. 42 (Juni 1826), S. 141–146</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_12ca232d6d2d46652ec7b9ac37103904">
+                                        <div class="collapse apparatus-details" id="source_8aafcd2d5baa4c5f1cd9c3221283f31f">
                                             
                                             
                                             <div>
@@ -894,8 +899,8 @@
                                     <ul class="apparatus commentary">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e294" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e294" data-title="sic" data-counter="1" data-href="#d10e294"><span class="tei_lemma">„<span class="tei_sic">ofa</span>“</span>recte  „<span class="tei_corr">of a</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e300" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e300" data-title="sic" data-counter="1" data-href="#d10e300"><span class="tei_lemma">„<span class="tei_sic">ofa</span>“</span>recte  „<span class="tei_corr">of a</span>“.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -924,7 +929,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032163</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032163</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -984,6 +989,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1042,22 +1050,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

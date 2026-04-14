@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031127" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Anflehen der Geliebten um einen Kuss; in baierischer Mundart und ironischem Ton abgefasst","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Übertragung des Liedes „Non far la smorfiosa“ aus dem Italienischen (1810)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031127","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031127","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Anflehen der Geliebten um einen Kuss; in baierischer Mundart und ironischem Ton abgefasst","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Übertragung des Liedes „Non far la smorfiosa“ aus dem Italienischen (1810)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031127","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031127","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,14 +219,14 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
                             </li>
                             <li>
                                 <span>A031127</span> 
-                                    <span class="docStatus">Kommentar in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031127/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031127/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031127/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -434,7 +431,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Laut Webers <a class="preview diaries A064709" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.html">TB Jahresende 1810</a> „8 Canzonetten aus dem Italienischen übersezt“, sieben davon sind noch nachweisbar: die <a class="preview writings A031114" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031114.html">sechs Lieder für Gänsbachers op. 9</a> und „Non far la smorfiosa“. Letzteres wurde von Hell, MMW und Kaiser fälschlich den <a class="preview persons A000584" href="">Gänsbacher</a>-Liedern zugeordnet, von Jähns zwar nicht mehr mit op. 9, aber immer noch mit <a class="preview persons A000584" href="">Gänsbacher</a> in Verbindung gebracht. Jähns war von <a class="preview persons A008662" href="">Friedrich Culemann</a> auf eine Niederschrift des Liedes von Webers Hand mit deutschem Text aufmerksam gemacht worden (vgl. <span class="preview letters A043309 A043340 A043310" data-ref=" /exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A043340.html ">Korrespondenz zwischen Jähns und Culemann</span>), die sich heute im Stadtarchiv Hannover befindet. <a class="preview persons A009005" href="">Frank Ziegler</a> fand im <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span>, Jg. 4, Beilage zu Nr. 85 (9. April 1810), <a href="https://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10531660_00387.html">S. 340 <i class="fa fa-external-link" aria-hidden="true"></i></a> ein „Italienisches Lied Nro. VIII. Liebesbitte“ mit originaler italienischer Textunterlegung, aber ohne Nennung eines Komponisten. Dies dürfte die Vorlage für Webers Niederschrift des Liedchens bzw. dessen deutsche Übersetzung gewesen sein, wobei die Notation etliche Unterschiede zur Vorlage aufweist und eine zusätzliche Cembalo-Stimme beinhaltet; vgl. <span class="preview biblio A110007" data-ref=""><span class="tei_hi_italic">Weberiana</span> 20 (2010)</span>, S. 125.
+                                        <p>Laut Webers <a class="preview diaries A064709" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A064709.html">TB Jahresende 1810</a> „8 Canzonetten aus dem Italienischen übersezt“, sieben davon sind noch nachweisbar: die <a class="preview writings A031114" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031114.html">sechs Lieder für Gänsbachers op. 9</a> und „Non far la smorfiosa“. Letzteres wurde von Hell, MMW und Kaiser fälschlich den <a class="preview persons A000584" href="">Gänsbacher</a>-Liedern zugeordnet, von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a> zwar nicht mehr mit op. 9, aber immer noch mit <a class="preview persons A000584" href="">Gänsbacher</a> in Verbindung gebracht. <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a> war von <a class="preview persons A008662" href="">Friedrich Culemann</a> auf eine Niederschrift des Liedes von Webers Hand mit deutschem Text aufmerksam gemacht worden (vgl. <span class="preview letters A043309 A043340 A043310" data-ref=" /exist/apps/WeGA-WebApp/de/A000914/Korrespondenz/A043340.html ">Korrespondenz zwischen Jähns und Culemann</span>), die sich heute im Stadtarchiv <a class="preview places A130018" href="">Hannover</a> befindet. <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a> fand im <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span>, Jg. 4, Beilage zu Nr. 85 (9. April 1810), <a href="https://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10531660_00387.html">S. 340 <i class="fa fa-external-link" aria-hidden="true"></i></a> ein „Italienisches Lied Nro. VIII. Liebesbitte“ mit originaler italienischer Textunterlegung, aber ohne Nennung eines Komponisten. Dies dürfte die Vorlage für Webers Niederschrift des Liedchens bzw. dessen deutsche Übersetzung gewesen sein, wobei die Notation etliche Unterschiede zur Vorlage aufweist und eine zusätzliche Cembalo-Stimme beinhaltet; vgl. <span class="preview biblio A110007" data-ref=""><span class="tei_hi_italic">Weberiana</span> 20 (2010)</span>, S. 125.
             </p>
                                     </div>
                         </div>
@@ -460,9 +457,9 @@
                                         
                                         <span>Stadtarchiv Hannover, Autographensammlung (ehemals Kestner-Museum)<br /><i>Signatur</i>: Nr. 2301</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a599a86983fbc328c58ba94a4979e447"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_8bd75c9b630bdf74d33022bfb221e5c2"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_a599a86983fbc328c58ba94a4979e447">
+                                        <div class="collapse apparatus-details" id="source_8bd75c9b630bdf74d33022bfb221e5c2">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>Noten mit Text (Autograph Weber), 1 Bl.</li>
@@ -479,7 +476,7 @@
                                                             
                                                             <span>Hell I 1828 (Vorwort), S. LXXII-LXXIII</span>
                                                               
-                                                            <div class="collapse" id="source_34584df90cd39c1687c5bfd0eda2501e">
+                                                            <div class="collapse" id="source_6c68eca47ea23e04255527d65804a850">
                                                                 
                                                             </div>
                                                         </div>
@@ -489,7 +486,7 @@
                                                             
                                                             <span>MMW I, S. 235</span>
                                                               
-                                                            <div class="collapse" id="source_ded4e134d7ca0e55e3fcb6692f940ec3">
+                                                            <div class="collapse" id="source_6b34d4beb05c756e4724b8a4c40b7709">
                                                                 
                                                             </div>
                                                         </div>
@@ -499,7 +496,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 536f. (Nr. 19)</span>
                                                               
-                                                            <div class="collapse" id="source_884b6264cd735e1aa45bc33045399a4c">
+                                                            <div class="collapse" id="source_ec9bcf672acf7ce46eb590b040f3d89c">
                                                                 
                                                             </div>
                                                         </div>
@@ -509,7 +506,7 @@
                                                             
                                                             <span class="tei_bibl">Faksimile in: <span class="tei_hi_italic">Musik in Heidelberg 1777–1885</span>, Ausstellungskatalog, Redaktion bzw. wiss. Betreuung: Susanne Himmelheber, Barbara Böckmann und Ludwig Finscher, Heidelberg 1985, S. 302 (Kat.-Nr. 159) </span>
                                                               
-                                                            <div class="collapse" id="source_5f7bd5249be39912ac5b479b47d9a8e6">
+                                                            <div class="collapse" id="source_9baadc5ad717fd5f3d563a586d187ecc">
                                                                 
                                                             </div>
                                                         </div>
@@ -565,7 +562,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031127</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031127</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -625,6 +622,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -683,22 +683,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

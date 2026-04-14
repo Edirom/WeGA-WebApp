@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Die Internationale Carl-Maria-von-Weber-Gesellschaft e. V. hat gemäß ihrem Satzungsziel, der „Förderung der Auseinandersetzung mit dem Werk Carl …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Weber-Studien 9 erschienen","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050295","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"NewsArticle","description":"Die Internationale Carl-Maria-von-Weber-Gesellschaft e. V. hat gemäß ihrem Satzungsziel, der „Förderung der Auseinandersetzung mit dem Werk Carl …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Weber-Studien 9 erschienen","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050295","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"Ziegler, Frank","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005","sameAs":"https://d-nb.info/gnd/132426455"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles">Aktuelles</a>
@@ -247,7 +245,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -290,7 +288,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Aktuelles/A050295/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -348,15 +346,15 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A009002" /> <span title="Anwählen, um &#34;Beck, Dagmar&#34; im Text zu markieren.">Beck, Dagmar</span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A009002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A009000" /> <span title="Anwählen, um &#34;Veit, Joachim&#34; im Text zu markieren.">Veit, Joachim</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;Ziegler, Frank&#34; im Text zu markieren.">Ziegler, Frank</span> 
                                 </label>
                             </div>
                         </div>
@@ -373,6 +371,8 @@
                                     <input type="checkbox" name="options" value="A130016" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131204" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
                         </div>
@@ -393,7 +393,7 @@
                Komplexen, die in diesem Rahmen behandelt wurden: 2003 in <a class="preview places A130012" href="">Stuttgart</a>, 2009 in <a class="preview places A130016" href="">Gotha</a>
                sowie 2011 in <a class="preview places A130003" href="">Dresden</a>. Während die Vorträge
                von 2003 und 2006, gehalten ausschließlich von Mitarbeitern der Weber-Gesamtausgabe,
-               eher dem regionalgeschichtlichen Kontext, besonders <a class="preview persons A002068" href="">Webers</a> Aufenthalten in Württemberg bzw. Thüringen, verpflichtet waren,
+               eher dem regionalgeschichtlichen Kontext, besonders <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Aufenthalten in Württemberg bzw. Thüringen, verpflichtet waren,
                widmete sich das Dresdner Symposium der Thematik „Carl Maria von Weber und das
                   Virtuosentum seiner Zeit“ und weitete damit den Blick über die engere
                Beschäftigung mit dem Komponisten hinaus.</p>
@@ -408,7 +408,7 @@
                      19. Jahrhundert</span> (S. 3–9)</li>
                                         <li>Heinz von Loesch, <span class="tei_hi_italic">Carl Maria von Weber und der brillante
                      Stil</span> (S. 11–22)</li>
-                                        <li><a class="preview persons A009005" href="">Frank Ziegler</a>, <span class="tei_hi_italic">Carl Maria
+                                        <li><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>, <span class="tei_hi_italic">Carl Maria
                      von Weber als Klaviervirtuose</span> (S. 23–44)</li>
                                         <li><a class="preview persons A009004" href="">Solveig Schreiter</a>, <span class="tei_hi_italic">Carl
                      Maria von Webers Plan eines „musikalischen Baedeker“ als Dokument des
@@ -424,12 +424,12 @@
                                     </ul>
                                     <ul class="tei_list">
                                         <li class="listTitle">Beiträge zu Weber in Stuttgart und Gotha</li>
-                                        <li><a class="preview persons A009000" href="">Joachim Veit</a>, <span class="tei_hi_italic">„Ich entsagte also eine Zeitlang der Kunst als ihr
+                                        <li><a class="preview persons A009000" href="/exist/apps/WeGA-WebApp/de/A009000.html">Joachim Veit</a>, <span class="tei_hi_italic">„Ich entsagte also eine Zeitlang der Kunst als ihr
                         unmittelbarer Diener“. Zu Carl Maria von Webers Aufenthalt in
                      Württemberg</span> (S. 117–154)</li>
-                                        <li><a class="preview persons A009002" href="">Dagmar Beck</a>, <span class="tei_hi_italic">Carl Maria
+                                        <li><a class="preview persons A009002" href="/exist/apps/WeGA-WebApp/de/A009002.html">Dagmar Beck</a>, <span class="tei_hi_italic">Carl Maria
                      von Weber in Gotha</span> (S. 155–168)</li>
-                                        <li><a class="preview persons A009005" href="">Frank Ziegler</a>, <span class="tei_hi_italic">„Ein äußerst wizziger trefflicher Kopf von einem
+                                        <li><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>, <span class="tei_hi_italic">„Ein äußerst wizziger trefflicher Kopf von einem
                         seltenen Phantasie Reichthum“. Herzog August von Gotha als ‚Musenfürst‘ und seine Beziehungen zu Friedrich
                      Heinrich Himmel und Carl Maria von Weber</span> (S. 169–220)</li>
                                         <li><a class="preview persons A009004" href="">Solveig Schreiter</a>, <span class="tei_hi_italic">„Passionirt für Musik“. Prinz Friedrich von
@@ -437,15 +437,15 @@
                      Konzertarie „Signor se padre sei“ (WeV E.5) sowie ausgewählter
                      Kompositionen von Capece Scondito, Himmel, Spohr und Winter</span>
                   (S. 221–245)</li>
-                                        <li><a class="preview persons A009005" href="">Frank Ziegler</a>, <span class="tei_hi_italic">„Das Theaterchen ist allerliebst“.
-                     Theateraufführungen in der Gothaer Steinmühle (1812–1826) und Carl Maria von
+                                        <li><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>, <span class="tei_hi_italic">„Das Theaterchen ist allerliebst“.
+                     Theateraufführungen in der Gothaer <a class="preview places A131204" href="">Steinmühle</a> (1812–1826) und Carl Maria von
                      Weber</span> (S. 247–321)</li>
-                                        <li><a class="preview persons A009005" href="">Frank Ziegler</a>, <span class="tei_hi_italic">Johann
+                                        <li><a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>, <span class="tei_hi_italic">Johann
                      David Buschmanns Terpodion im Spiegel früher zeitgenössischer
                      Presseberichte</span> (S. 323–335)</li>
                                     </ul>
                                 </div>
-                                <p class="authorDate"><a href="" class="persons"></a>, Mittwoch, 18. Februar 2015</p>
+                                <p class="authorDate"><a href="/exist/apps/WeGA-WebApp/de/A009005.html" class="persons">Frank Ziegler</a>, Mittwoch, 18. Februar 2015</p>
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
@@ -475,7 +475,7 @@
                                         
                                         <span class="noDataFound">Keine Angaben gefunden</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_f3432d9d26404163c50b626bed5c5adb">
+                                        <div class="collapse apparatus-details" id="source_1a0555edcd86961a87f70ae5a6b3a36b">
                                             
                                             
                                             <div>
@@ -519,7 +519,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050295</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A050295</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -579,6 +579,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -637,22 +640,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

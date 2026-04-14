@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="anonym" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Brief eines Unbekannten, der Weber (zurzeit in Berlin zur Uraufführung vom Freischütz) in Dresden nicht antrifft um ihm einen Brief zu überbringen; befindet sich auf Weiterreise in die sächs. Schweiz und wird voraussichtlich am 27. Juni in Leipzig eintreffen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Unbekannt an Carl Maria von Weber in Dresden (Fragment). Dresden, Dienstag, 19. Juni 1821","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045969","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045969","author":[{"@type":"Person","name":"anonym"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045969/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045969/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -357,7 +355,7 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -369,9 +367,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -385,7 +383,7 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-                                            <p class="teiLetter_salute"><a class="preview persons A002068" href="">Ew. Wohlgeboren</a></p>
+                                            <p class="teiLetter_salute"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Ew. Wohlgeboren</a></p>
                                         </div>
                                         <p>
                habe ich zu besuchen mir die E<span class="tei_supplied"><span class="brackets_supplied">[</span>hre<span class="brackets_supplied">]</span></span> <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e13">‡</a></span></span>
@@ -393,7 +391,7 @@
                aber in Erfahrung gebracht, <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e24" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e24">‡</a></span></span>
                Ende dieses Monats abwesend <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e29" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e29">‡</a></span></span>
                ich aber nun in die <span class="tei_region">sächsische S<span class="tei_supplied"><span class="brackets_supplied">[</span>chweiz<span class="brackets_supplied">]</span></span></span> <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e38" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e38">‡</a></span></span>
-               und am 27 d. M. nach <a class="preview places A130005" href="">Leipzig</a> <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e45">‡</a></span></span>
+               und am 27 d. M. nach <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e45">‡</a></span></span>
                bleibt mir kein anderes Mit<span class="tei_supplied"><span class="brackets_supplied">[</span>tel<span class="brackets_supplied">]</span></span> <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e53" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e53">‡</a></span></span>
                Ew. hiedurch den gedachten <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">‡</a></span></span>
                übersenden, wobey ich <span class="tei_unclear">denn<a class="noteMarker" id="backref-d10e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e60">‡</a></span> gar <span class="tei_damage"><span class="tei_supplied"><span class="brackets_supplied">[</span>...<span class="brackets_supplied">]</span><a class="noteMarker" id="backref-d10e64" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e64">‡</a></span></span>
@@ -450,9 +448,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (XXII), Nr. 2</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_94f30774acebf5c88f7079f28861e48b"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_531afcbf158b9cbe96ba9eea838ea136"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_94f30774acebf5c88f7079f28861e48b">
+                                        <div class="collapse apparatus-details" id="source_531afcbf158b9cbe96ba9eea838ea136">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (1 b. S. o. Adr.)</li>
@@ -597,7 +595,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045969</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045969</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -657,6 +655,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -715,22 +716,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

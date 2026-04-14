@@ -15,7 +15,7 @@
         <meta property="dc:contributor" content="Seidel, Friedrich Ludwig" />
         <meta property="dc:contributor" content="Möser, Karl" />
         <meta property="dc:contributor" content="Schick, Ernst Johann Christian" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -46,11 +46,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Gutachten der Musikdirektoren Gürrlich und Seidel sowie der Konzertmeister Möser und Schick im Auftrag von B. A. Weber; der ihr unparteiisches Urteil über die Musik der Oper Silvana von Carl Maria von Weber erbat, um dies der Generaldirektion (August Wilhelm Iffland) vorlegen zu können","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Gutachten über Silvana von Josef Augustin Gürrlich, Friedrich Ludwig Seidel, Karl Möser und Ernst Johann Christian Schick. Berlin, zwischen 11. Mai und 1. Juni 1812","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100408","license":"http://creativecommons.org/licenses/by/4.0/","url":["https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000705/Dokumente/A100408","https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001802/Dokumente/A100408","https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001333/Dokumente/A100408","https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001674/Dokumente/A100408"],"author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000705","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000705"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001802","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001802"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001333","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001333"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001674","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001674"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -210,7 +208,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="document">Gutachten über <span class="tei_hi_italic">Silvana</span> von Josef Augustin Gürrlich, Friedrich Ludwig Seidel, Karl Möser und Ernst Johann Christian Schick
+                    <h1 class="document">Gutachten über <span class="tei_hi_italic">Silvana</span> von Josef Augustin
+               Gürrlich, Friedrich Ludwig Seidel, Karl Möser und Ernst Johann Christian Schick
                <br />Berlin, zwischen 11. Mai und 1. Juni 1812</h1>
                 </div>
             </div>
@@ -255,7 +254,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -302,7 +301,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000705/Dokumente/A100408/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000705/Dokumente/A100408/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -362,13 +361,13 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001802" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000705" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001333" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001674" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -381,7 +380,22 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart">
-                                        <p>Die beiden Musikdirektoren sprechen sich günstig aus. <a class="preview persons A001802" href="">Seidel</a> findet die Komposition „im Ganzen gut“ und fügt herablassend hinzu: „Uebrigens ist <a class="preview persons A002068" href="">Herr v. Weber</a> ein Komponist von Geist und Phantasie.“ <a class="preview persons A000705" href="">Gürrlich</a> achtet <a class="preview persons A002068" href="">Carl Maria</a> als einen „genialischen Komponisten“, in dessen Werk nur die Gesangspartien nicht günstig behandelt seien. Beide schlagen Veränderungen vor. Von den Konzertmeistern hebt <a class="preview persons A001333" href="">Möser</a> die Theaterwirksamkeit des Werkes hervor, die einer Aufführung zu einem grossen Erfolg verhelfen würde. „Was das ausführbare der Orchesterpartien betrift, so hat die Erfahrung von <span class="tei_hi_underline1">einer einzigen Probe</span> es hinlänglich bewährt, dass es nichts weniger als unmöglich sei, diese Oper mit einem Berliner Orchester zu executiren.“ <a class="preview persons A001674" href="">Schick</a> findet sogar, dass die Musik „zu <span class="tei_hi_underline1">sehr</span> auf Effekt“ zugeschnitten sei und daher „eine Piesse durch die andere verlieren muss.“ Der Ausführbarkeit stände von Seiten der Streichinstrumente nichts entgegen, es sei denn, dass die Blasinstrumente besondere Schwierigkeiten gefunden hätten<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>.</p>
+                                        <p>Die beiden Musikdirektoren sprechen sich günstig aus. <a class="preview persons A001802" href="">Seidel</a> findet die Komposition „im Ganzen gut“ und fügt herablassend
+               hinzu: „Uebrigens ist <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herr v.
+                     Weber</a> ein Komponist von Geist und Phantasie.“
+               <a class="preview persons A000705" href="">Gürrlich</a> achtet <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl
+                  Maria</a> als einen „genialischen
+                  Komponisten“, in dessen Werk nur die Gesangspartien nicht günstig behandelt
+               seien. Beide schlagen Veränderungen vor. Von den Konzertmeistern hebt <a class="preview persons A001333" href="">Möser</a> die Theaterwirksamkeit des Werkes hervor, die einer
+               Aufführung zu einem grossen Erfolg verhelfen würde. „Was
+                  das ausführbare der Orchesterpartien betrift, so hat die Erfahrung von <span class="tei_hi_underline1">einer einzigen Probe</span> es hinlänglich bewährt, dass
+                  es nichts weniger als unmöglich sei, diese Oper mit einem Berliner Orchester zu
+                  executiren.“
+               <a class="preview persons A001674" href="">Schick</a> findet sogar, dass die Musik „zu <span class="tei_hi_underline1">sehr</span> auf Effekt“
+               zugeschnitten sei und daher „eine Piesse durch die andere
+                  verlieren muss.“ Der Ausführbarkeit stände von Seiten der
+               Streichinstrumente nichts entgegen, es sei denn, dass die Blasinstrumente besondere
+               Schwierigkeiten gefunden hätten.</p>
                                     </div>
                                 </div>
                     </div>
@@ -405,7 +419,8 @@
                         <div>
                             <h3 class="media-heading">Entstehung</h3>
                             <div>
-                                <p><span class="tei_date">zwischen 11. Mai und 1. Juni 1812</span></p>
+                                <p><span class="tei_date">zwischen 11. Mai und 1. Juni
+               1812</span></p>
                             </div>
                         </div>
                         
@@ -429,12 +444,14 @@
                                         
                                         <span>verschollen</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_9f21c80c83b6b16000c151c3a5055868"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_96a24b8086cf673f2dc1303800f7dcaf"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_9f21c80c83b6b16000c151c3a5055868">
+                                        <div class="collapse apparatus-details" id="source_96a24b8086cf673f2dc1303800f7dcaf">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
-                                                        <li>ehemals Akten der Generalintendantur der Königlichen Schauspiele Berlin als Depositum im Brandenburg-Preußischen Hausarchiv zu Berlin-Charlottenburg</li>
+                                                        <li>ehemals Akten der Generalintendantur der Königlichen Schauspiele
+                           Berlin als Depositum im Brandenburg-Preußischen Hausarchiv zu
+                           Berlin-Charlottenburg</li>
                                                     </ul>
                                             
                                             <div>
@@ -455,7 +472,7 @@
                                         
                                         <span class="biblio-entry book"><span class="author">Hans Fischer</span>, <span class="title">Bernhard Anselm Weber</span>, <span class="placeNYear">mschr. Diss. Berlin 1923</span>, S. 74–75</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_d3da89e40e868261eb700e7a378545ce">
+                                        <div class="collapse apparatus-details" id="source_0482f2fddc426f1fe29a04e16dfdcdea">
                                             
                                             
                                             <div>
@@ -483,16 +500,14 @@
                         </div>
                         
                         <div class="apparatus">
+                                    <h3 class="media-heading">Textkonstitution</h3>
+                                    <p>Die vier separaten Gutachten von Gürrlich, Seidel,
+               Möser und Schick sind nicht überliefert, sondern werden von Fischer, S. 75 inhaltlich
+               zusammenfassend mit einigen Zitaten wiedergegeben; vgl. dazu den Auftragsbrief von
+                  <a class="preview letters A044728" href="">B. A. Weber vom 11. Mai</a> sowie sein <a class="preview letters A044803" href="">Schreiben an Iffland vom 1. Juni 1812</a> mit der
+               Weiterleitung der Gutachten.</p>
                                     <ul class="apparatus textConstitution"></ul>
-                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
-                                    <ul class="apparatus commentary">
-                                        <li>
-                                            <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  Blasinstrumente besondere Schwierigkeiten gefunden hätten“</span>Die vier separaten Gutachten von Gürrlich, Seidel, Möser und Schick sind nicht überliefert, sondern werden von Fischer, S. 75 inhaltlich zusammenfassend mit einigen Zitaten wiedergegeben; vgl. dazu den Auftragsbrief von <a class="preview letters A044728" href="">B. A. Weber vom 11. Mai</a> sowie sein <a class="preview letters A044803" href="">Schreiben an Iffland vom 1. Juni 1812</a> mit der Weiterleitung der Gutachten.</div>
-                                            </div>
-                                        </li>
-                                    </ul>
+                                    <ul class="apparatus commentary"></ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
                     </div>
@@ -518,7 +533,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100408</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A100408</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -578,6 +593,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -636,22 +654,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

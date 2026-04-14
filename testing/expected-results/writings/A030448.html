@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Anonymus" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="" />
@@ -45,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Aufführungsbesprechung Berlin: Der Freischütz von Carl Maria von Weber","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung Berlin, Schauspielhaus: „Der Freischütz“ von Carl Maria von Weber","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030448","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030448","author":[{"@type":"Person","name":"Anonymus"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -209,7 +206,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-                    <h1 class="document">Aufführungsbesprechung Berlin, Schauspielhaus: „Der Freischütz“ von Carl Maria von Weber</h1>
+                    <h1 class="document">Aufführungsbesprechung Berlin, <span class="tei_placeName">Schauspielhaus</span>: „Der Freischütz“ von Carl Maria von Weber</h1>
                 </div>
             </div>
         </div>
@@ -253,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030448/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A030448/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -358,9 +355,9 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001864" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -387,7 +384,7 @@
                                     <div class="docPart">
                                         <p><span>[…]</span></p>
                                         <p>Im Gebiete der <span class="tei_hi_spaced_out">Oper</span> hatten wir den <a class="preview works A020040" href=""><span class="tei_hi_spaced_out">Freischütz</span></a> als einzige neue und wichtige Erscheinung. Die Melodien der Chöre sind Eigenthum des Volks geworden; und das beweist am schlagendsten für die Trefflichkeit solcher Musik, die nicht zum großen historischen Styl, sondern zu den Genrestücken gehört. Die lustige Baßarie, die das ABC des Lüderlichen aufweiset, steht an echter Jovialität der musikalischen Erfindung jenen Chören nicht nach. Von den übrigen Arien sage<span class="tei_cb" title="Spaltenumbruch"> ¦ </span> ich nur, daß sie bei weitem den Vergleich mit dem bereits bezeichneten nicht aushalten. – Die Instrumentirung ist durchgehends vortrefflich; sie enthält einen Reichthum von Imitationen in den Mittelstimmen – eine Fülle feiner psychologischer Beziehungen zu der Situation der Singenden – und endlich in der Nachahmung von Naturstimmen ein so tiefes Ergründen des Mysteriums jedes Blasinstrumentes, daß dieser Theil der Arbeit allein schon die Krone verdient, wenn auch für die <span class="tei_hi_spaced_out">Bässe</span> mehr Charakteristisches gethan seyn könnte.</p>
-                                        <p>Wir hofften, <a class="preview persons A002068" href="">Weber</a> würde hieher für immer engagirt werden, und ein herrlich reiches musikalische Leben wäre uns aufgegangen durch den Besitz <a class="preview persons A001864" href="">Spontini</a>’s für die große historische Oper und Balletmusik, und dann <a class="preview persons A002068" href="">Weber</a>’s für Genrestücke und Instrumentalscenen. Aber unbesonnene, unberufene täppische Freunde <a class="preview persons A002068" href="">Maria</a>’s thaten ihr Möglichstes, um durch Seitenhiebe auf Andere Unwillen und Zwietracht zu erregen. Und deshalb geschah natürlich von Seiten dieser Andern kein Schritt, um die hier im Publikum bekannt gewordenen Schwierigkeiten vermittelnd zu heben, welche jenem Engagement im Wege standen. Gott schütze jeden ausgezeichneten Mann gegen seine Freunde!</p>
+                                        <p>Wir hofften, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> würde hieher für immer engagirt werden, und ein herrlich reiches musikalische Leben wäre uns aufgegangen durch den Besitz <a class="preview persons A001864" href="">Spontini</a>’s für die große historische Oper und Balletmusik, und dann <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>’s für Genrestücke und Instrumentalscenen. Aber unbesonnene, unberufene täppische Freunde <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria</a>’s thaten ihr Möglichstes, um durch Seitenhiebe auf Andere Unwillen und Zwietracht zu erregen. Und deshalb geschah natürlich von Seiten dieser Andern kein Schritt, um die hier im Publikum bekannt gewordenen Schwierigkeiten vermittelnd zu heben, welche jenem Engagement im Wege standen. Gott schütze jeden ausgezeichneten Mann gegen seine Freunde!</p>
                                         <p><span>[…]</span></p>
                                     </div>
                                 </div>
@@ -436,7 +433,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 22, Nr. 34 (16. Februar 1822), Sp. 270–272</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_094ed6e55f31fc90abfac3b374ccf067">
+                                        <div class="collapse apparatus-details" id="source_84b602e1fe8f888186d53c7c2482e056">
                                             
                                             
                                             <div>
@@ -484,7 +481,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030448</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030448</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -544,6 +541,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -602,22 +602,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

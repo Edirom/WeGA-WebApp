@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031120" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Korrespondenz-Nachrichten aus Mainz, 7. Juli 1810","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031120","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031120","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Korrespondenz-Nachrichten aus Mainz, 7. Juli 1810","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031120","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031120","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031120/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031120/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -360,6 +357,8 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008670" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A00069A" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A004186" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002025" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -376,7 +375,9 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130028" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A131288" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;Paris&#34; im Text zu markieren.">Paris</span> 
                                 </label>
                             </div>
                         </div>
@@ -389,7 +390,7 @@
                     <div class="tab-pane active fade in" id="transcription">
                         <div class="teiDoc_body">
                                     <div class="docPart"><span class="tei_dateline textAlign-right"><a class="preview places A130028" href=""><span class="tei_hi_spaced_out">Mainz</span></a>, den <span class="tei_choice"><span class="tei_sic">1</span><a class="noteMarker" id="backref-d10e8" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e8">‡</a></span> July<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>.</span>
-                                        <p>Auf allerhöchsten Befehl <a class="preview persons A008671" href="">Sr. Maj. des Kaisers und Königes</a> wurde gestern in dem hiesigen <span class="tei_hi_spaced_out">Dome</span> die Gedächtnißfeyer des <a class="preview persons A008670" href="">Herzogs von <span class="tei_hi_spaced_out">Montebello</span></a> (Marschall <span class="tei_hi_spaced_out">Lannes</span>), mit aller Pracht vollzogen<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. Das Hochamt wurde von dem Herrn Bischof<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a> selbst gehalten. Die Kirche war feyerlichst decorirt, und das Katafalk prangte mit den umgebenden trauernden Fahnen <span class="tei_country">Frankreich</span>s. Alle Civil- und Militär-Behörten erschienen in vollem Pomp, und Se. Excellenz der <a class="preview persons A004186" href="">Marschall <span class="tei_hi_spaced_out">Kellermann</span></a> wohnte dem Ganzen bey. Das Choral-Amt wurde von dem berühmten Geh. Rath, <a class="preview persons A002025" href="">Abt Vogler</a>, der sich eben zufällig hier befand, auf Ansuchen des Hrn. Bischofs und der französischen Generalität begleitet, und so auch von dieser Seite das Fest aufs möglichste verherrlicht. Hr. <span class="6598982333277101114105110111">Abbé <span class="tei_hi_spaced_out">Merino</span></span> hielt eine von <a class="preview places A130008" href="">Paris</a> eigens dazu überschickte Rede, die das Verdienst des Verewigten würdigte, und das Ganze gewährte einen imposanten Anblick. </p>
+                                        <p>Auf allerhöchsten Befehl <span class="preview persons A008671" data-ref="">Sr. <span class="tei_app"><span class="tei_lem">Maj.</span><a class="noteMarker" id="backref-d10e27" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e27">Δ</a></span> des Kaisers und <span class="tei_app"><span class="tei_lem">Königes</span><a class="noteMarker" id="backref-d10e33" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e33">Δ</a></span></span> wurde gestern in dem hiesigen <span class="tei_hi_spaced_out"><a class="preview places A131288" href="">Dome</a></span> die Gedächtnißfeyer des <span class="preview persons A008670" data-ref="">Herzogs von <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">Montebello</span></span><a class="noteMarker" id="backref-d10e45" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e45">Δ</a></span></span> (Marschall <span class="tei_app"><span class="tei_lem"><span class="tei_hi_spaced_out">Lannes</span></span><a class="noteMarker" id="backref-d10e52" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e52">Δ</a></span>), mit aller Pracht vollzogen<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>. Das Hochamt wurde von dem Herrn <a class="preview persons A00069A" href="">Bischof</a> selbst gehalten. Die Kirche war feyerlichst dekorirt, und das Katafalk prangte mit den umgebenden <span class="tei_app"><span class="tei_lem">trauernden</span><a class="noteMarker" id="backref-d10e68" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e68">Δ</a></span> Fahnen <span class="tei_country">Frankreich</span>s. Alle Civil- und Militär-Behörden erschienen in vollem Pomp, und Se. Excellenz der <a class="preview persons A004186" href="">Marschall <span class="tei_hi_spaced_out">Kellermann</span></a> <span class="tei_app"><span class="tei_lem">wohnte</span><a class="noteMarker" id="backref-d10e82" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e82">Δ</a></span> dem Ganzen bey. Das Choral-Amt wurde von dem berühmten Geh. Rath, <a class="preview persons A002025" href="">Abt <span class="tei_hi_spaced_out">Vogler</span></a>, der sich eben zufällig hier befand, auf Ansuchen des Hrn. Bischofs und der französischen Generalität begleitet, und so auch von dieser Seite das Fest aufs möglichste verherrlicht. Hr. <span class="6598982333270101114105110111">Abbé <span class="tei_hi_spaced_out">Ferino</span></span> hielt eine von <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a> <span class="tei_app"><span class="tei_lem">eigens</span><a class="noteMarker" id="backref-d10e106" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e106">Δ</a></span> dazu überschickte Rede, die das Verdienst des Verewigten würdigte, und das Ganze gewährte einen imposanten Anblick. </p>
                                     </div>
                                 </div>
                     </div>
@@ -406,7 +407,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: Vermerk im Redaktionsexemplar im DLA Marbach: v. <span class="tei_hi_italic">Weber</span>
+                                        <p>Zuschreibung: Vermerk im Redaktionsexemplar des <span class="tei_hi_italic">Morgenblatts</span> im <span class="tei_hi_italic">DLA</span> <a class="preview places A130301" href="">Marbach</a>: v. <span class="tei_hi_italic">Weber</span>
             </p>
                                     </div>
                         </div>
@@ -424,16 +425,37 @@
                         <div>
                             <h3 class="media-heading">
                                 <span>Überlieferung</span>
-                                <em class="small"></em>
+                                <em class="small">in 2 Textzeugen</em>
                             </h3>
                             <ul>
                                 <li>
                                     <div>
-                                        <strong><span>Textzeuge</span>:</strong>
+                                        <strong><span>1. Textzeuge</span>:</strong>
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 4, Nr. 167 (13. Juli 1810), S. 668</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_cc9819398ed7409aea3d14136cae4c7f">
+                                        <div class="collapse apparatus-details" id="source_d226b9e81ce88fd91397343b1e31136b">
+                                            
+                                            
+                                            <div>
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div>
+                                        
+                                        
+                                    </div>                                                                    
+                                </li>
+                                        <li>
+                                    <div>
+                                        <strong><span>2. Textzeuge</span>:</strong>
+                                        
+                                        <span class="biblio-entry"><span class="journalTitle">Archiv für Literatur, Kunst und Politik</span>, Jg. 1, Nr. 57 (18. Juli 1810), S. 457f.</span>
+                                                                              
+                                        <div class="collapse apparatus-details" id="source_df2675a9d01461886919180b543768a0">
                                             
                                             
                                             <div>
@@ -466,7 +488,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_03"><span class="tei_lemma">„…  Mainz , den 1 July“</span>Datierung der Zeitung ist eine Verlesung von 7. Juli, da die Feierlichkeit am 6. Juli stattfand.</div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_03"><span class="tei_lemma">„…  Mainz , den 1 July“</span>Die Datierung im <span class="tei_hi_italic">Morgenblatt für gebildete Stände</span> ist eine Verlesung von 7. Juli, da die Feierlichkeit am 6. Juli stattfand. Im <span class="tei_hi_italic">Archiv für Literatur, Kunst und Politik</span> ist die Datierung korrekt.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -475,14 +497,73 @@
                                                 <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_01"><span class="tei_lemma">„…  ), mit aller Pracht vollzogen“</span>Vgl. <a class="preview diaries A064530" href="">TB-Eintrag 6. Juli 1810</a>.</div>
                                             </div>
                                         </li>
+                                    </ul>
+                                    <h3 class="media-heading">Lesarten</h3>
+                                    <ul class="apparatus rdg">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#C_02"><span class="tei_lemma">„…  wurde von dem Herrn Bischof“</span>Joseph Ludwig Colmar (1760–1818) war von 1802 bis zu seinem Tode Bischof von <a class="preview places A130028" href="">Mainz</a>.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e27" class="apparatus-link">1.</a></div>
+                                                <div id="d10e27" class="apparatusEntry col-11" data-title="Lesarten" data-counter="1" data-href="#d10e27">
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Maj.</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Majestät</span>“</span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e33" class="apparatus-link">2.</a></div>
+                                                <div id="d10e33" class="apparatusEntry col-11" data-title="Lesarten" data-counter="2" data-href="#d10e33">
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Königes</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Königs</span>“</span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e45" class="apparatus-link">3.</a></div>
+                                                <div id="d10e45" class="apparatusEntry col-11" data-title="Lesarten" data-counter="3" data-href="#d10e45">
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_hi_spaced_out">Montebello</span></span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Montebello</span>“</span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e52" class="apparatus-link">4.</a></div>
+                                                <div id="d10e52" class="apparatusEntry col-11" data-title="Lesarten" data-counter="4" data-href="#d10e52">
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><span class="tei_hi_spaced_out">Lannes</span></span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Lannes</span>“</span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e68" class="apparatus-link">5.</a></div>
+                                                <div id="d10e68" class="apparatusEntry col-11" data-title="Lesarten" data-counter="5" data-href="#d10e68">
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">trauernden</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">traurenden</span>“</span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e82" class="apparatus-link">6.</a></div>
+                                                <div id="d10e82" class="apparatusEntry col-11" data-title="Lesarten" data-counter="6" data-href="#d10e82">
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">wohnte</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">wohnten</span>“</span></div>
+                                                </div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e106" class="apparatus-link">7.</a></div>
+                                                <div id="d10e106" class="apparatusEntry col-11" data-title="Lesarten" data-counter="7" data-href="#d10e106">
+                                                    <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">eigens</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">eigends</span>“</span></div>
+                                                </div>
                                             </div>
                                         </li>
                                     </ul>
-                                    <ul class="apparatus rdg"></ul>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
@@ -507,7 +588,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031120</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031120</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -567,6 +648,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -625,22 +709,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

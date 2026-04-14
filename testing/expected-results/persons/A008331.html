@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Friedrich Schröder. Lebensdaten: 1759–18. Juli 1818. Tätigkeiten: Sänger (Bariton), Schauspieler. Wirkorte: Mainz, Frankfurt am Main, Hamburg, Wien","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008331","name":"Schröder, Friedrich","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008331","sameAs":"https://d-nb.info/gnd/133659852"}</script>
 
@@ -360,7 +358,7 @@
                             <li><a class="deactivated"></a></li>
                             <li><a class="deactivated"></a></li>
                             <li><a class="deactivated"></a></li>
-                            <li><a href="#backlinks" data-target="A008331/backlinks.html">Rückverweise<small> (3)</small></a></li>
+                            <li><a href="#backlinks" data-target="A008331/backlinks.html">Rückverweise<small> (2)</small></a></li>
                         </ul>
                         <button>Mehr</button>
                         <ul class="hidden-links hidden"></ul>
@@ -400,7 +398,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A008331/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A008331/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008331/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -421,9 +419,9 @@
          <li>sang 1789 in <a class="preview places A130028" href="">Mainz</a> die Titelrolle in der ersten deutschsprachigen Aufführung von <a class="preview persons A001362" href="">Mozarts</a> <a class="preview works A020484" href="">Don Giovanni</a></li>
          <li><a class="preview persons A000651" href="">Goethe</a> schilderte ihn 1797 in <a class="preview places A130020" href="">Frankfurt am Main</a>: „Mittelgröße, wohlgestaltet, gute jugendliche Gesichtsbildung, lebhafte Bewegung; singt baritono, im Dialog tiefe, etwas schnarrende, heftige, rauhe Stimme“</li>
          <li>1800/01 am deutschsprachigen Theater <a class="preview places A130009" href="">Hamburg</a>, danach auf Reisen, ab Mai 1803 bis 1813 wieder am <a class="preview places A130009" href="">Hamburger</a> Theater, lernte dort die Schauspielerin <a class="preview persons A001745" href="">Sophie Stollmers, geb. Bürger</a>, kennen, die er am 1.03.1804 heiratete</li>
-         <li>Gastspiele im September 1813 in <a class="preview places A130020" href="">Frankfurt/Main</a>, im Oktober 1813 am Theater <a class="preview places A130010" href="">Mannheim</a></li>
-         <li>gastierte am 15.01.1814 in <a class="preview places A130006" href="">Prag</a> mit der Titelpartie des <a class="preview works A020484" href="">Don Giovanni</a> (unter Leitung von <a class="preview persons A002068" href="">Carl Maria von Weber</a>), im Frühjahr 1814 am dortigen Ständetheater engagiert, vgl. <span class="tei_hi_italic">Allgemeiner Deutscher Theater-Anzeiger</span>, hg. von Daniel Gottlieb Quandt, Prag, Jg. 4 (1814), Nr. 27, S. 108</li>
-         <li>gab laut <a class="preview persons A002068" href="">Carl Maria von Webers</a> <span class="tei_hi_italic"><a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Notizen-Buch</a></span> von 1816 in <a class="preview places A130006" href="">Prag</a> u. a. auch <span class="731109997">Inca</span> im <a class="preview works A020500" href="">Unterbrochenen Opferfest</a>, <span class="7010111411097110100111">Fernando</span> in <a class="preview works A020491" href="">Fidelio</a>, <span class="6510811697109111114101">Altamore</span> in <a class="preview works A020510" href="">Axur</a></li>
+         <li>Gastspiele im September 1813 in <a class="preview places A130020" href="">Frankfurt/Main</a>, im Oktober 1813 am Theater <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a></li>
+         <li>gastierte am 15.01.1814 in <a class="preview places A130006" href="">Prag</a> mit der Titelpartie des <a class="preview works A020484" href="">Don Giovanni</a> (unter Leitung von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>), im Frühjahr 1814 am dortigen Ständetheater engagiert, vgl. <span class="tei_hi_italic">Allgemeiner Deutscher Theater-Anzeiger</span>, hg. von Daniel Gottlieb Quandt, Prag, Jg. 4 (1814), Nr. 27, S. 108</li>
+         <li>gab laut <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Webers</a> <span class="tei_hi_italic"><a class="preview documents A100000" href="/exist/apps/WeGA-WebApp/de/A002068/Dokumente/A100000.html">Notizen-Buch</a></span> von 1816 in <a class="preview places A130006" href="">Prag</a> u. a. auch <span class="731109997">Inca</span> im <a class="preview works A020500" href="">Unterbrochenen Opferfest</a>, <span class="7010111411097110100111">Fernando</span> in <a class="preview works A020491" href="">Fidelio</a>, <span class="6510811697109111114101">Altamore</span> in <a class="preview works A020510" href="">Axur</a></li>
          <li>ging 1815 mit seiner Frau <a class="preview persons A001745" href="">Sophie Schröder</a> nach <a class="preview places A130004" href="">Wien</a>, konnte dort krankheitsbedingt kaum noch auftreten</li>
       </ul>
    </div>
@@ -503,7 +501,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008331</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008331</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -563,6 +561,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -621,22 +622,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

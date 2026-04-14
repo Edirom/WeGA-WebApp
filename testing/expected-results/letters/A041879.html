@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"(Auszug) W. habe den Artikel in der Eleganten Zeitung gelesen, der Mendelssohns Eltern betrüben müsse; dankt Chézy, dass sie keine Entgegnung eingeschickt habe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Helmina von Chézy in Berlin. Dresden, nach 22. Oktober 1822 (Auszug)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041879","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041879","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"(Auszug) W. habe den Artikel in der Eleganten Zeitung gelesen, der Mendelssohns Eltern betrüben müsse; dankt Chézy, dass sie keine Entgegnung eingeschickt habe","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Helmina von Chézy in Berlin. Dresden, nach 22. Oktober 1822 (Auszug)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041879","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041879","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -223,7 +221,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041879/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041879/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -415,7 +413,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A003371" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -446,7 +444,7 @@
                                         <p>Das Gequatsche in der <span class="tei_hi_spaced_out">Eleganten</span><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> habe ich gelesen, und mich in die Seele der <span class="preview persons A005534 A004949" data-ref=" ">Eltern</span> <a class="preview persons A003371" href="">M’s</a> hinein betrübt, da ich fühlte, wie unangenehm es ihnen sein mußte. Uebrigens habe ich wirklich theils über das Zeug gelacht, theils gewünscht, daß es wahr sein möge, <a class="preview persons A003371" href="">F.</a> schriebe etwas besseres, als den <a class="preview works A020040" href="">Freischütz</a>, was ich für so gar schwer nicht halte<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. Hat meinen redlichen Willen die Welt über Gebühr als That hinausgepriesen, so mag dies Andern wenigstens ein Trost sein, daß die Welt weder so blind, noch so undankbar ist, als sie Viele gern schildern möchten; und daß ein ruhiges Fortschreiten auf der Bahn, die man für die rechte hält, sich gewiß belohnt.</p>
                                         <p><span class="tei_hi_spaced_out">Sehr</span> danke ich Ihnen, verehrte <a class="preview persons A000288" href="">Freundin</a>, daß Sie nichts dagegen einschickten, denn lasse jedem seinen Glauben, und bewahre auch den eigenen. Sehen Sie das geachtete <span class="preview persons A005534 A004949" data-ref=" ">Haus M—</span>, so sprechen Sie ihnen aus, wie ich über die Sache denke, obwohl ich voraussetze, daß sie mir nicht zutrauen, solche Aeußerungen könnten mich beunruhigen, oder gar in meiner Achtung für sie irre machen. Das ist ja eben das <span class="tei_sic">größste</span><a class="noteMarker" id="backref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a> Unglück, daß man sich oft so schmählich muß loben lassen, und ich weiß auch fremdes Unglück zu würdigen, wie eigenes u. s. w.</p>
                                         <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-right">Ihr<br />
-            <a class="preview persons A002068" href="">Weber</a>.</span>
+            <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>.</span>
          </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -473,7 +471,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Der Brief ist nur mit Jahresangabe 1822 datiert. Lt. Tagebuch erhielt Weber am 8. und 9. November Briefe von der Chézy, die er am 11. <a class="preview diaries A062204" href="">beantwortete</a>, möglicherweise war der vorliegende Auszug aus diesem Brief entnommen. und wurde auch von Chézy in der NZfM nicht näher datiert. Dort findet sich noch folgende Bemerkung: „Nur diese Zeilen, ohne Datum von 1822 habe ich mir aus dem Original dieses Briefes von C. M. v. Weber ausgeschrieben, ich überließ es auf ihre Bitte der verehrten Familie M., die, wenn es ihr so gefallen sollte, den ganzen Brief veröffentlichen möge. Sie hatte mich ersucht, Weber’n in ihrem Namen über jenen Artikel zu schreiben, worauf diese Antwort erfolgte, die ich der Oeffentlichkeit nicht entziehen wollte, weil sie Weber’s Eigenthümlichkeit schön bezeichnet.“ Helmina von Chézy stand mit der Familie Mendelssohn in näherer Verbindung; vgl. dazu auch Waidelich, „Wer zog gleich aus der Manteltasche ein Opernsujet?“ Helmina von Chézys gescheiterte Libretto-Projekte für Felix Mendelssohn Bartholdy, in: Mendelssohn-Studien, Bd. 12 (2001), S. 149–177.</p>
+                                        <p>Der Brief ist nur mit Jahresangabe 1822 datiert; in der NZfM findet sich diesbezüglich folgende Bemerkung der Chézy: „Nur diese Zeilen, ohne Datum von 1822 habe ich mir aus dem Original dieses Briefes von C. M. v. Weber ausgeschrieben, ich überließ es auf ihre Bitte der verehrten Familie M., die, wenn es ihr so gefallen sollte, den ganzen Brief veröffentlichen möge. Sie hatte mich ersucht, Weber̓n in ihrem Namen über jenen Artikel zu schreiben, worauf diese Antwort erfolgte, die ich der Oeffentlichkeit nicht entziehen wollte, weil sie Weber̓s Eigenthümlichkeit schön bezeichnet.“ Den Auftrag der Familie Mendelssohn bestätigt der <a class="preview letters A04726A" href="">Brief</a> Lea Mendelssohn Bartholdys vom 27. Mai 1823. Die Bezugnahme auf den am 22. Oktober 1822 erschienenen Artikel aus der <span class="tei_hi_italic">Zeitung für die elegante Welt</span> liefert den frühestmöglichen Schreibtermin für Webers Schreiben. Lt. Tagebuch erhielt Weber am 8. und 9. November <span class="preview letters A047058 A047190" data-ref=" ">Briefe</span> von der Chézy, allerdings enthält die <a class="preview letters A041972" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041972.html">Antort</a> vom 11. November die hier wiedergegebene Passage nicht. Ähnliches gilt für die am 15., 21. und 27. November sowie 12., 14. und 21. Dezember erhaltenen <span class="preview letters A048130 A048006 A047498 A046753 A046721 A049567" data-ref="     ">Briefe</span>, die Weber am 28. November bzw. 22. Dezember <span class="preview letters A041978 A041996" data-ref=" ">beantwortete</span>. Verschollen ist hingegen Webers <a class="preview letters A049570" href="">Antwort</a> vom 2. Dezember auf den am 29. November erhaltenen Chézy-<a class="preview letters A049566" href="">Brief</a>; der hier wiedergegebene Brief könnte somit mit <a class="preview letters A049570" href="">jenem</a> vom 2. Dezember identisch sein.</p>
                                     </div>
                         </div>
                         
@@ -499,9 +497,9 @@
                                         
                                         <span class="biblio-entry"><span class="author"></span>, <span class="title">Carl Maria von Weber's Euryanthe</span>, in: <span class="journalTitle"><a class="preview writings A031880" href="">Neue Zeitschrift für Musik</a></span>, Jg. 13, Heft 10 (1. August 1840), S. 39</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_5da234e9f9f365712b0179ef9e193e2c"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a4ccb12fc1a7ea85a3179242da10310a"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_5da234e9f9f365712b0179ef9e193e2c">
+                                        <div class="collapse apparatus-details" id="source_a4ccb12fc1a7ea85a3179242da10310a">
                                             
                                             
                                             <div>
@@ -514,7 +512,7 @@
                                                             
                                                             <span class="tei_bibl">Kopie von F. W. Jähns nach ED mit geringfügig abweichender Orthographie: <span class="tei_hi_italic">D-B</span>, Weberiana Cl. II B, 4. Nachtrag, Nr. 18, S. 957f.</span>
                                                               
-                                                            <div class="collapse" id="source_089ccecb9228a36b5b4ae6b30300b462">
+                                                            <div class="collapse" id="source_aa2153ffb59022573198461b91a629c6">
                                                                 
                                                             </div>
                                                         </div>
@@ -549,13 +547,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  Das Gequatsche in der Eleganten“</span>Vgl. <span class="tei_hi_italic">Zeitung für die elegante Welt</span>, Nr. 207, 22. Oktober 1822, Sp. 1655f.</div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  Das Gequatsche in der Eleganten“</span>Vgl. <span class="tei_hi_italic">Zeitung für die elegante Welt</span>, Jg. 22, Nr. 207 (22. Oktober 1822), Sp. 1655f.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„…  so gar schwer nicht halte“</span>Die Besprechung der <span class="tei_hi_italic">Eleganten</span> (s. o.) äußerte sich angesichts einer Aufführung des <a class="preview persons A000732" href="">Händelschen</a> <a class="preview works A020454" href="">Messias</a> vom Frankfurter <a class="preview orgs A080118" href="">Cäcilienverein</a>, bei welcher der 15-jährige Mendelssohn mitwirkte (er fantasierte während einer Pause auf dem Klavier), mit folgenden Worten: „Alte und kenntnißreiche Tonsetzer verstummten vor dieser Kunst und genialischen Schöpferkraft; allein dieses Verstummen ist eine Prophezeihung von des Knaben künftiger Größe. Kenner haben den ersten Akt einer Oper [d. i. <span class="tei_hi_italic">Die beiden Neffen oder der Onkel aus Boston</span>] vor sich gehabt, welche der junge <a class="preview persons A003371" href="">Mendelsohn</a> jetzt komponirt, und versichern, daß diese Alles hinter sich lasse, was die neuere Zeit in dieser Art erzeugt habe, in Hinsicht auf Charakteristik, Anlage, Ideenreichthum, wahre Empfindung und künstlerische Behandlung des Ganzen. Selbst der gepriesene <a class="preview works A020040" href="">Freischütz</a> soll mit seinen Samielskugeln nicht zu dieser Sonne hinreichen.“</div>
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„…  so gar schwer nicht halte“</span>Die Besprechung der <span class="tei_hi_italic">Eleganten</span> (s. o.) äußerte sich angesichts einer Aufführung des <a class="preview persons A000732" href="">Händelschen</a> <a class="preview works A020454" href="">Messias</a> vom Frankfurter <a class="preview orgs A080118" href="">Cäcilienverein</a>, bei welcher der 15-jährige Mendelssohn mitwirkte (er fantasierte während einer Pause auf dem Klavier), mit folgenden Worten: „Alte und kenntnißreiche Tonsetzer verstummten vor dieser Kunst und genialischen Schöpferkraft; allein dieses Verstummen ist eine Prophezeihung von des Knaben künftiger Größe. Kenner haben den ersten Akt einer Oper [d. i. <span class="tei_hi_italic">Die beiden Neffen oder Der Onkel aus Boston</span>] vor sich gehabt, welche der junge <a class="preview persons A003371" href="">Mendelsohn</a> jetzt komponirt, und versichern, daß diese Alles hinter sich lasse, was die neuere Zeit in dieser Art erzeugt habe, in Hinsicht auf Charakteristik, Anlage, Ideenreichthum, wahre Empfindung und künstlerische Behandlung des Ganzen. Selbst der gepriesene <a class="preview works A020040" href="">Freischütz</a> soll mit seinen Samielskugeln nicht zu dieser Sonne hinreichen.“</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -584,7 +582,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041879</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041879</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -644,6 +642,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -702,22 +703,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

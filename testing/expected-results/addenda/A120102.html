@@ -41,13 +41,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","description":"Addenda","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Weber-Studien Band 8","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120102","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120102","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"Article","description":"Addenda","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Weber-Studien Band 8","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120102","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120102","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -286,7 +284,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120102/backlinks.html">Rückverweise</a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120102/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/Bandübersicht/A120102/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -298,8 +296,6 @@
                                 <label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009642" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A009046" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A002078" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -307,6 +303,8 @@
                                     <input type="checkbox" name="options" value="A000FCF" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000741" /> <span title="Anwählen, um &#34;Harlas, Helena&#34; im Text zu markieren.">Harlas, Helena</span> 
+                                </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A009005" /> <span title="Anwählen, um &#34;Ziegler, Frank&#34; im Text zu markieren.">Ziegler, Frank</span> 
                                 </label>
                             </div>
                         </div>
@@ -327,8 +325,8 @@
                                 </div>
                                 <div id="d12e14">
                                     <h2 id="d12e15">Zur Einleitung</h2>
-                                    <p>Ein neuer Band der <span class="tei_hi_italic">Weber-Studien</span> war bereits in Planung, als die Veranstalter des Dresdner Weber-Symposion und die Reihen-Herausgeber die Möglichkeit erörterten, den Tagungsbericht als Teilprojekt in diese <span class="tei_hi_italic">Weber-Studien</span> mit aufzunehmen. Angesichts des jeweils überschaubaren Umfangs sowohl der Tagungsbeiträge als auch der damals bereits geplanten freien Aufsätze einigte man sich rasch auf eine Vereinigung der Pläne, und so erscheint der vorliegende Band quasi als Doppel-Publikation: im ersten Teil (redaktionelle Bearbeitung: <a class="preview persons A009642" href="">Manuel Gervink</a>) eine Veröffentlichung von Referaten mit einem weitgehend einheitlichen thematischen Fokus, im zweiten Teil (redaktionelle Bearbeitung: <a class="preview persons A009005" href="">Frank Ziegler</a>) eine Sammlung inhaltlich heterogener Aufsätze zu Weber und seinem Umfeld. In diesen zweiten Teil konnten auch einige Beiträge aufgenommen werden, die den gewöhnlichen Umfang von Aufsätzen überschreiten, so dass durch die Vereinigung der Band nun zu einem recht opulenten Endprodukt angewachsen ist, in das dank der tatkräftigen Unterstützung seitens der Autoren, Bibliotheken und Archive auch etliche Illustrationen mit aufgenommen werden konnten.</p>
-                                    <p>Das Thema des von der Dresdner Hochschule für Musik „Carl Maria von Weber“ unter der Leitung von <a class="preview persons A009642" href="">Prof. Dr. Manuel Gervink</a> in Zusammenarbeit mit der Inter­nationalen Carl-Maria-von-Weber-Gesellschaft e. V. (Konzeption: <a class="preview persons A009046" href="">Prof. Dr. Frank Heidlberger</a>) im Oktober 2006 veranstalteten, von der Deutschen Forschungsgemeinschaft geförderten Symposions „Carl Maria von Weber – der Dresdner Kapellmeister und der Orchesterstil seiner Zeit“ lenkt den Blick auf zwei Schwerpunkte: einerseits Webers Dienst als Orchesterleiter und Organisator des deutschen Opern-Departements in Dresden sowie seine Stellung im Dresdner Kulturleben, andererseits Webers Orchesterstil im Kontext der Zeit. Es wäre vermessen anzunehmen, dass ein zweitägiges Symposion zu diesen beiden Themenbereichen abschließende Antworten gefunden habe, doch zweifellos warten die hier vorgelegten Spezialstudien, insbesondere durch die Auswertung umfangreicher Quellen, mit neuen Fakten oder aber neuen Sichtweisen auf Altvertrautes auf. Die Abfolge der Referate in diesem Band entspricht ihrer Reihenfolge während des Symposions.</p>
+                                    <p>Ein neuer Band der <span class="tei_hi_italic">Weber-Studien</span> war bereits in Planung, als die Veranstalter des Dresdner Weber-Symposion und die Reihen-Herausgeber die Möglichkeit erörterten, den Tagungsbericht als Teilprojekt in diese <span class="tei_hi_italic">Weber-Studien</span> mit aufzunehmen. Angesichts des jeweils überschaubaren Umfangs sowohl der Tagungsbeiträge als auch der damals bereits geplanten freien Aufsätze einigte man sich rasch auf eine Vereinigung der Pläne, und so erscheint der vorliegende Band quasi als Doppel-Publikation: im ersten Teil (redaktionelle Bearbeitung: <a class="preview persons A009642" href="">Manuel Gervink</a>) eine Veröffentlichung von Referaten mit einem weitgehend einheitlichen thematischen Fokus, im zweiten Teil (redaktionelle Bearbeitung: <a class="preview persons A009005" href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a>) eine Sammlung inhaltlich heterogener Aufsätze zu Weber und seinem Umfeld. In diesen zweiten Teil konnten auch einige Beiträge aufgenommen werden, die den gewöhnlichen Umfang von Aufsätzen überschreiten, so dass durch die Vereinigung der Band nun zu einem recht opulenten Endprodukt angewachsen ist, in das dank der tatkräftigen Unterstützung seitens der Autoren, Bibliotheken und Archive auch etliche Illustrationen mit aufgenommen werden konnten.</p>
+                                    <p>Das Thema des von der Dresdner Hochschule für Musik „Carl Maria von Weber“ unter der Leitung von <a class="preview persons A009642" href="">Prof. Dr. Manuel Gervink</a> in Zusammenarbeit mit der Internationalen Carl-Maria-von-Weber-Gesellschaft e. V. (Konzeption: <a class="preview persons A009046" href="">Prof. Dr. Frank Heidlberger</a>) im Oktober 2006 veranstalteten, von der Deutschen Forschungsgemeinschaft geförderten Symposions „Carl Maria von Weber – der Dresdner Kapellmeister und der Orchesterstil seiner Zeit“ lenkt den Blick auf zwei Schwerpunkte: einerseits Webers Dienst als Orchesterleiter und Organisator des deutschen Opern-Departements in Dresden sowie seine Stellung im Dresdner Kulturleben, andererseits Webers Orchesterstil im Kontext der Zeit. Es wäre vermessen anzunehmen, dass ein zweitägiges Symposion zu diesen beiden Themenbereichen abschließende Antworten gefunden habe, doch zweifellos warten die hier vorgelegten Spezialstudien, insbesondere durch die Auswertung umfangreicher Quellen, mit neuen Fakten oder aber neuen Sichtweisen auf Altvertrautes auf. Die Abfolge der Referate in diesem Band entspricht ihrer Reihenfolge während des Symposions.</p>
                                     <p>Eine Gemeinsamkeit der freien Beiträge mit jenen des Tagungs-Teils ist die enge Anbindung an bzw. Abstimmung mit Weber-Gesellschaft und/oder Weber-Gesamtausgabe. So entstanden mehrere Aufsätze des zweiten Teils als Vorträge im Rahmen von Mitgliederversammlungen der Weber-Gesellschaft (die drei Referate zu Webers Reise 1820) oder wurden aus der Gesellschaft heraus angeregt (Studie über <a class="preview persons A000741" href="/exist/apps/WeGA-WebApp/de/A000741.html">Helena Harlas</a>). <span class="71101114104971141003280111112112101115">Gerhard Poppes</span> Beiträge zur Dresdner Kirchenmusikpraxis ergänzen das Dresdner Tagungs-Thema um einen wesentlichen, damals ausgeklammerten Bereich und verknüpfen zahlreiche, teils bereits aus Spezialstudien bekannte aber weit verstreut publizierte Fakten zu einem schlüssigen Bild, das zeitlich wesentlich über Webers Dienstzeit in der sächsischen Haupt- und Residenzstadt hinausgreift. Erst vor dem Hintergrund der hier umrissenen gewachsenen Tradition – ihrer allmählichen Herausbildung, Kanonisierung und Wandlung – lässt sich dieser Teilbereich von Webers Tätigkeit angemessen beurteilen.</p>
                                     <p>Um die Gesamtausgabe zu entlasten, sollen innerhalb der <span class="tei_hi_italic">Weber-Studien</span> nach und nach auch Dokumente aus dem Umfeld des Komponisten bzw. zur Rezeption seiner Werke zugänglich gemacht werden. So erschienen bereits 1998 Schriften der Mitglieder des von Weber mitbegründeten <span class="tei_hi_italic">Harmonischen Vereins</span> (Bd. 4/1). Neben Weber selbst war sein Namensvetter <a class="preview persons A002078" href="">Gottfried Weber</a> das aktivste und produktivste Mitglied der Künstlervereinigung. Er war nicht nur musik-publizistisch tätig wie Carl Maria von Weber, sondern hinterließ vor allem auf dem Gebiet der Musiktheorie ein in seiner Bedeutung noch nicht ausreichend gewürdigtes Œuvre, das dringend einer kritisch erschließenden Wiederveröffentlichung bedarf. Ein entsprechendes, von der Weber-Gesamtausgabe mit initiiertes Vorhaben wird hier von <a class="preview persons A000FCF" href="">Knut Holtsträter</a> inhaltlich begründet, wobei der Blick vorrangig auf Gottfried Webers zentrales Werk, den <span class="tei_hi_italic">Versuch einer geordneten Theorie der Tonsetzkunst</span>, gerichtet wird, um Desiderate der Forschung (bezüglich der Beurteilung von Webers Bedeutung und der Kenntnis seiner Schriften) aufzuzeigen.</p>
                                     <p>Der Aufarbeitung von Quellen dient schließlich auch die Vorstellung von bislang teilweise nicht oder wenig ausgewerteten Wiener autobiographischen Zeugnissen und Tagebuch-Manuskripten mit Weber-Bezug.</p>
@@ -408,7 +406,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120102</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A120102</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -466,6 +464,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -525,22 +526,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -15,6 +15,7 @@
         <meta property="dc:contributor" content="Dagmar Beck" />
         <meta property="dc:contributor" content="Peter Stadler" />
         <meta property="dc:contributor" content="Joachim Veit" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001" />
@@ -44,13 +45,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Als im Anschluss an die Jubiläumsveranstaltungen zu Webers 200. Geburtstag Ende der 1980er Jahre die Pläne zu einer Weber-Gesamtausgabe in den …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Editionsrichtlinien zur Ausgabe der Briefe, Tagebücher und Dokumente Webers","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070001","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003672","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A003672"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009002","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009002"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","name":"Stadler, Peter","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001","sameAs":"https://d-nb.info/gnd/143058045"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Als im Anschluss an die Jubiläumsveranstaltungen zu Webers 200. Geburtstag Ende der 1980er Jahre die Pläne zu einer Weber-Gesamtausgabe in den …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Editionsrichtlinien zur Ausgabe der Briefe, Tagebücher und Dokumente Webers","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/Projekt/A070001","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003672","name":"Bartlitz, Eveline","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A003672","sameAs":"https://d-nb.info/gnd/117767611"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009002","name":"Beck, Dagmar","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009002","sameAs":"https://d-nb.info/gnd/131831402"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009001","name":"Stadler, Peter","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009001","sameAs":"https://d-nb.info/gnd/143058045"},{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009000","name":"Veit, Joachim","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009000","sameAs":"https://d-nb.info/gnd/103988327"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -289,7 +288,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link deactivated"></a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070001/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/Projekt/A070001/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -299,7 +298,7 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group primary">
                                 <label class="btn gradient-light">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -807,7 +806,7 @@
                                             </div>
                                             <p>Soweit in solchen Dokumenten <span class="tei_mentioned">Tabellen</span> oder andere strukturiert wiederzugebende Textteile (z. B. <span class="tei_mentioned">Verstexte</span>) vorkommen, sei hier für die Wiedergabe auf die Anleitungen der TEI-Guidelines P5 verwiesen.</p>
                                             <p><span class="tei_mentioned">Seiten- und Spaltenumbrüche</span> werden in gedruckten Texten durch die leeren Elemente <code>&lt;pb/&gt;</code> (page-break, Seitenumbruch) bzw. <code>&lt;cb/&gt;</code> (column-break, Spaltenumbruch) bezeichnet (ab der jeweils 2. Seite bzw. Spalte). Da in den Metadaten die genauen Seiten- bzw. Spaltenangaben des Textes verzeichnet sind, genügt für eine Berechnung die Kennzeichnung durch dieses leere Element. Empfohlen wird aber eine Angabe der jeweils neuen Seite mit dem Attribut <code>@n="254"</code> (ebenso bei gezählten Spalten). Bei <span class="tei_mentioned">Umbrüchen innerhalb eines Worts</span> wird das jeweilige Element <code>&lt;pb/&gt;</code> oder <code>&lt;cb/&gt;</code> ohne Leerzeichen in das Wort gesetzt und mit dem Attribut <code>@type="inWord"</code> versehen, das Trennzeichen entfällt! (Beispiel. <code>ver&lt;cb type="inWord"/&gt;binden</code>.</p>
-                                            <p>Bei <span class="tei_mentioned">zusammengesetzten Texten</span> (Wechsel der Autoren, z. B. bei längeren Aufführungsberichten) gilt dieselbe Kennzeichnung wie bei den aus mehreren Quellen zusammengesetzten Edierten Texten der Briefe: Die Autoren werden in den Metadaten genannt (s. u.) und im Text wird darauf Bezug genommen (z. B. durch die entsprechende Markierung einer Texteinheit als <code>&lt;div decl="#author1"&gt;</code>; vgl. dazu w. u.), auf die äußere Struktur der Texte hat dies jedoch in der Regel keine Auswirkung.</p>
+                                            <p>Bei <span class="tei_mentioned">zusammengesetzten Texten</span> (Wechsel der Autoren, z. B. bei längeren Aufführungsberichten) gilt dieselbe Kennzeichnung wie bei den aus mehreren Quellen zusammengesetzten Edierten Texten der Briefe: Die Autoren werden in den Metadaten genannt (s. u.) und im Text wird darauf Bezug genommen (z. B. durch die entsprechende Markierung einer Texteinheit als <code>&lt;div decls="#author1"&gt;</code>; vgl. dazu w. u.), auf die äußere Struktur der Texte hat dies jedoch in der Regel keine Auswirkung.</p>
                                         </div>
                                         <div id="d12e1716">
                                             <h4 id="d12e1717">3. 6. 5 Die Integration von Bildelementen (Zeichnungen, Notenbeispiele) in Texten</h4>
@@ -1061,7 +1060,7 @@
                                             <p>Sofern keine handschriftliche Überlieferung vorliegt und Drucke als Ersatz für verlorene Originale eintreten müssen, werden diese innerhalb der <code>&lt;sourceDesc/&gt;</code> in einem Container-Element <code>&lt;biblStruct/&gt;</code> (structured bibliographic citation) beschrieben. Die strukturierte bibliographische Angabe ist dabei für die WeGA auf die notwendigsten Angaben reduziert und enthält folgende Elemente: <code>&lt;monogr/&gt;</code> (Monographie), <code>&lt;author/&gt;</code> (Autor), <code>&lt;title/&gt;</code> (Titel, ggf. durch <code>@type</code> um einen Untertitel erweitert) sowie Angaben zum Druck (<code>&lt;imprint/&gt;</code>), bestehend aus den Elementen <code>&lt;pubPlace/&gt;</code> (Publikationsort), <code>&lt;publisher/&gt;</code> (Verlag) und <code>&lt;date/&gt;</code> (Datum). Zusätzlich wird jeweils die als Grundschrift verwendete Type (Fraktur, Antiqua) innerhalb einer <code>&lt;note type="fontUsage"/&gt;</code> angegeben. Beispiel:</p>
                                             <div class="tei_egXML">
                                                 <pre class="prettyprint"><code class="language-xml">&lt;sourceDesc&gt;
-   &lt;biblStruct xml:lang='de'&gt;
+   &lt;biblStruct&gt;
       &lt;monogr&gt;
          &lt;author&gt;Dagmar Stadlitz&lt;/author&gt;
          &lt;title level='m'&gt;Editionsrichtlinien leicht gemacht&lt;/title&gt;
@@ -1251,7 +1250,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A070001</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -1309,6 +1308,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -1368,22 +1370,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

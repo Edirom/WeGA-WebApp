@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031119" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Marianne Schönbergers Gastspiel in Darmstadt Ende Juni 1810","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031119","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031119","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Marianne Schönbergers Gastspiel in Darmstadt Ende Juni 1810","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031119","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031119","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -292,13 +289,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031119/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031119/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031119/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -358,7 +355,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001731" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -387,6 +384,8 @@
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130015" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131333" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130020" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
@@ -421,8 +420,9 @@
                <span>[…]</span>
                <span class="tei_dateline textAlign-center"><span class="tei_hi_spaced_out"><a class="preview places A130015" href="">Darmstadt</a></span>, den 28. Juni.</span>
             </span>
-                                        <p>Auch uns in vor kurzem das Vergnügen zu Theil geworden, das große Talent der <a class="preview persons A001731" href="">Mad. <span class="tei_hi_spaced_out">Schönberger</span></a> gebornen <span class="779711499111110105"><span class="tei_hi_spaced_out">Marconi</span></span> kennen zu lernen, indem dieselbe auf dem hiesigen großherzogl. Theater in 3 Gastrollen, nemlich: als <span class="tei_hi_spaced_out"><span class="66101108109111110116">Belmont</span></span> in der <span class="tei_hi_spaced_out"><a class="preview works A020461" href="">Entführung aus dem Serail</a></span>, <span class="7611111410510097110"><span class="tei_hi_spaced_out">Loridan</span></span> in der <span class="tei_hi_spaced_out"><a class="preview works A020604" href="">Camilla</a></span>, und <span class="tei_hi_spaced_out"><span class="77117114110101121">Murney</span></span> im <span class="tei_hi_spaced_out"><a class="preview works A020500" href="">unterbrochenen Opferfeste</a></span> auftrat<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. Sie hatte sich bei jeder ihrer Darstellungen ei<span class="tei_pb" title="Seitenumbruch">|</span>nes überfüllten Hauses und des rauschendsten Beifalls zu erfreuen, der sogar nach Endigung der ersten und dritten Vorstellung in ein lebhaftes Hervorrufen der Künstlerin ausbrach.</p>
-                                        <p>Eine weitläufige Beschreibung ihrer seltenen Stimme<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> und ihres Gesanges überhaupt würde nach den ausführlichen Beurtheilungen, die schon von <a class="preview places A130020" href="">Frankfurt</a> aus herüber in mehrern öffentlichen Blättern eingerückt worden sind, (und denen wir völlig beistimmen) nur überflüssig seyn<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>. Wir begnügen uns daher nur noch ein Paar Worte über ihr einfaches und doch sehr edles Spiel hinzuzusetzen, welches, durch eine ausdrucksvolle Mimik und passende Gestikulationen unterstützt, vereinigt mit ihrer hehren junonischen Gestalt, und den mahlerisch-schönen Formen ihres Körpers (deren Entwickelung die männliche Kleidung vorzüglich begünstigte) unsere Künstlerin zu einer der interessantesten Erscheinungen auf der Bühne macht. Orchester und Schauspieler bemühten sich durch prompte und sorgfältige Exekution ihrer Parthien ein Ensemble zu bewirken, welches der trefflichen Leistungen ihres Gastes würdig wäre. Beachtung und dankbare Anerkennung gebührt ihrem Bestreben, wenn es gleich nicht immer gelang.</p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="">M – s</a>.</span></div>
+                                        <p>Auch uns ist vor kurzem das Vergnügen zu Theil geworden, das große Talent der <a class="preview persons A001731" href="">Mad. <span class="tei_hi_spaced_out">Schönberger</span></a> gebornen <span class="779711499111110105"><span class="tei_hi_spaced_out">Marconi</span></span> kennen zu lernen, indem dieselbe auf dem hiesigen <a class="preview places A131333" href="">großherzogl. Theater</a>
+in 3 Gastrollen, nemlich: als <span class="tei_hi_spaced_out"><span class="66101108109111110116">Belmont</span></span> in der <span class="tei_hi_spaced_out"><a class="preview works A020461" href="">Entführung aus dem Serail</a></span>, <span class="7611111410510097110"><span class="tei_hi_spaced_out">Loridan</span></span> in der <span class="tei_hi_spaced_out"><a class="preview works A020604" href="">Camilla</a></span>, und <span class="tei_hi_spaced_out"><span class="77117114110101121">Murney</span></span> im <span class="tei_hi_spaced_out"><a class="preview works A020500" href="">unterbrochenen Opferfeste</a></span> auftrat<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>. Sie hatte sich bei jeder ihrer Darstellungen ei<span class="tei_pb" title="Seitenumbruch">|</span>nes überfüllten Hauses und des rauschendsten Beifalls zu erfreuen, der sogar nach Endigung der ersten und dritten Vorstellung in ein lebhaftes Hervorrufen der Künstlerin ausbrach.</p>
+                                        <p>Eine weitläuftige Beschreibung ihrer seltenen Stimme<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> und ihres Gesanges überhaupt würde nach den ausführlichen Beurtheilungen, die schon von <a class="preview places A130020" href="">Frankfurt</a> aus hierüber in mehrern öffentlichen Blättern eingerückt worden sind, (und denen wir völlig beistimmen) nur überflüßig seyn<a class="noteMarker" id="backref-C_03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_03">*</a>. Wir begnügen uns daher nur noch ein Paar Worte über ihr einfaches und doch sehr edles Spiel hinzuzusetzen, welches, durch eine ausdruckvolle Mimik und passende Gestikulationen unterstützt, vereinigt mit ihrer hehren junonischen Gestalt, und den mahlerisch-schönen Formen ihres Körpers (deren Entwickelung die männliche Kleidung vorzüglich begünstigte) unsere Künstlerin zu einer der interessantesten Erscheinungen auf der Bühne macht. Orchester und Schauspieler bemühten sich durch promte und sorgfältige Exekution ihrer Parthien ein Ensemble zu bewirken, welches der trefflichen Leistungen ihres Gastes würdig wäre. Beachtung und dankbare Anerkennung gebührt ihrem Bestreben, wenn es gleich nicht immer gelang.</p><span class="tei_signed textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M – s</a>.</span></div>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -438,8 +438,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: Sigle (<span class="tei_hi_italic">M-s.</span>) 
-            </p>
+                                        <p>Zuschreibung: Sigle (<span class="tei_hi_italic">M-s.</span>)</p>
                                     </div>
                         </div>
                         
@@ -464,9 +463,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Rheinische Correspondenz</span>, Bd. 2, Heft 179 (30. Juni 1810), S. 713–714</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_60338e4e9c75f9c63847d9f7fba92eae"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_a7385e4ab1bfa36c48a286fae8c88427"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_60338e4e9c75f9c63847d9f7fba92eae">
+                                        <div class="collapse apparatus-details" id="source_a7385e4ab1bfa36c48a286fae8c88427">
                                             
                                             
                                             <div>
@@ -477,9 +476,9 @@
                                                     <li>
                                                         <div>
                                                             
-                                                            <span class="tei_bibl">Carl Maria von Weber, <span class="tei_hi_italic">Writings on music,</span> übersetzt von Martin Cooper, hg. von John Warrack, Cambridge u. a. 1981, S. 54</span>
+                                                            <span class="tei_bibl">Carl Maria von Weber, <span class="tei_hi_italic">Writings on music</span>, übersetzt von Martin Cooper, hg. von John Warrack, Cambridge u. a. 1981, S. 54</span>
                                                               
-                                                            <div class="collapse" id="source_945e920e9d9383bd0e4d5254b22c8aa1">
+                                                            <div class="collapse" id="source_3ac30b3b235f07a34b65a4d5b0d910c4">
                                                                 
                                                             </div>
                                                         </div>
@@ -512,13 +511,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_01"><span class="tei_lemma">„…  weitläufige Beschreibung ihrer seltenen Stimme“</span>Zum späteren Disput über die Stimme der <a class="preview persons A001731" href="">Schönberger</a> vgl. Schriften von <a class="preview persons A002078" href="">Gottfried Weber</a>: <a class="preview writings A030930" href="">1811-V-10</a>, <a class="preview writings A030762" href="">1811-V-34</a> und <a class="preview writings A030960" href="">1811-V-76</a>.</div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_01"><span class="tei_lemma">„…  weitläuftige Beschreibung ihrer seltenen Stimme“</span>Zum späteren Disput über die Stimme der <a class="preview persons A001731" href="">Schönberger</a> vgl. Schriften von <a class="preview persons A002078" href="">Gottfried Weber</a>: <a class="preview writings A030930" href="">1811-V-10</a>, <a class="preview writings A030762" href="">1811-V-34</a> und <a class="preview writings A030960" href="">1811-V-76</a>.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_03" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_03"><span class="tei_lemma">„…  völlig beistimmen) nur überflüssig seyn“</span>Vgl. die Berichte aus <a class="preview places A130020" href="">Frankfurt/Main</a> in der AmZ, Bd. 12, Nr. 34 (23. Mai 1810), Sp. 540: „<a class="preview persons A001731" href="">Mad. Schönberger</a> hat diesen Winter bereits vierzehn Gastrollen gegeben, und wird noch einigemal auftreten. Als <span class="84105116117115">Titus</span>, von <a class="preview persons A001362" href="">Mozart</a>, hat sie ganz besonders gefallen.“ sowie in der <span class="tei_hi_italic">Zeitung für die elegante Welt</span>, Jg. 10, Nr. 51 (12. März 1810), Sp. 407f.: „Als Frau spielt <a class="preview persons A001731" href="">Mad. <span class="tei_hi_spaced_out">Schönberger</span></a> die Männerrollen, wozu sie durch ihre volle, dem Tenor ganz gleiche Altstimme geeignet ist, mit einer Zartheit, die sich nicht beschreiben lässt, ohne deswegen die dem Mann ziemende Kraft, Würde und Gewandtheit außer acht zu lassen. Dieß ist um so mehr zu bewundern und zu preisen, als <a class="preview persons A001731" href="">Mad. <span class="tei_hi_spaced_out">Schönberg</span><span class="tei_supplied"><span class="brackets_supplied">[</span>er<span class="brackets_supplied">]</span></span></a> auf Zureden <a class="preview persons A001730" href="">ihres Mannes</a> nur erst seit kurzem sich dieses Fach auserkohren. Im <a class="preview works A020545" href="">Titus</a> glänzte ihr mimisches Talent neben der Fülle, Tiefe und Kraft ihrer schönen Stimme im hellsten Licht, ob sie gleich hier zum erstenmal in dieser Rolle auftrat. Sie sang wie eine geborne Italienerin, und sprach wie ein Kaiser – und das alles deutlich und bestimmt, wie es nicht jeder Sängerin eigen ist. Vollendet ist sie im deklamirenden Recitativ, in der Bindung und Haltung ihrer Töne – Rein im Votrag und frei aus der Brust strömt ihr Gesang aus dem Herzen und geht zum Herzen. Sie ist aller Kunstfreunde höchste Freude.“</div>
+                                                <div class="apparatusEntry col-11" id="C_03" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_03"><span class="tei_lemma">„…  völlig beistimmen) nur überflüßig seyn“</span>Vgl. die Berichte aus <a class="preview places A130020" href="">Frankfurt/Main</a> in der AmZ, Bd. 12, Nr. 34 (23. Mai 1810), Sp. 540: „<a class="preview persons A001731" href="">Mad. Schönberger</a> hat diesen Winter bereits vierzehn Gastrollen gegeben, und wird noch einigemal auftreten. Als <span class="84105116117115">Titus</span>, von <a class="preview persons A001362" href="">Mozart</a>, hat sie ganz besonders gefallen.“ sowie in der <span class="tei_hi_italic">Zeitung für die elegante Welt</span>, Jg. 10, Nr. 51 (12. März 1810), Sp. 407f.: „Als Frau spielt <a class="preview persons A001731" href="">Mad. <span class="tei_hi_spaced_out">Schönberger</span></a> die Männerrollen, wozu sie durch ihre volle, dem Tenor ganz gleiche Altstimme geeignet ist, mit einer Zartheit, die sich nicht beschreiben lässt, ohne deswegen die dem Mann ziemende Kraft, Würde und Gewandtheit außer acht zu lassen. Dieß ist um so mehr zu bewundern und zu preisen, als <a class="preview persons A001731" href="">Mad. <span class="tei_hi_spaced_out">Schönberg</span><span class="tei_supplied"><span class="brackets_supplied">[</span>er<span class="brackets_supplied">]</span></span></a> auf Zureden <a class="preview persons A001730" href="">ihres Mannes</a> nur erst seit kurzem sich dieses Fach auserkohren. Im <a class="preview works A020545" href="">Titus</a> glänzte ihr mimisches Talent neben der Fülle, Tiefe und Kraft ihrer schönen Stimme im hellsten Licht, ob sie gleich hier zum erstenmal in dieser Rolle auftrat. Sie sang wie eine geborne Italienerin, und sprach wie ein Kaiser – und das alles deutlich und bestimmt, wie es nicht jeder Sängerin eigen ist. Vollendet ist sie im deklamirenden Recitativ, in der Bindung und Haltung ihrer Töne – Rein im Votrag und frei aus der Brust strömt ihr Gesang aus dem Herzen und geht zum Herzen. Sie ist aller Kunstfreunde höchste Freude.“</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -526,7 +525,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://weber-gesamtausgabe.de/IIIF/A031119/manifest.json" data-canvasindex="0"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -547,7 +546,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031119</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031119</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -607,6 +606,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -665,22 +667,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

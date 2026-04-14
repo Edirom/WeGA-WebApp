@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Rellstab, Heinrich Friedrich Ludwig" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Mo, Ran" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Rezension Klaviersonaten Nr. 3 und Nr. 4 von Carl Maria von Weber (Teil 2 von 2) von Rellstab","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Rezension der Klaviersonaten Nr. 3 d-Moll (WeV Q.4) und Nr. 4 e-Moll (WeV Q.5) von Carl Maria von Weber (Teil 2 von 2)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030908","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001564/Schriften/A030908","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001564","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001564"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A030908/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001564/Schriften/A030908/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -380,8 +377,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001590" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001862" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -391,6 +386,8 @@
                                     <input type="checkbox" name="options" value="A001564" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A080007" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -416,7 +413,7 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -431,12 +428,12 @@
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"> II. <span class="tei_hi_spaced_out">Recensionen</span>.</h2>
                                         <h3 class="docHeader textAlign-left">1) <a class="preview works A020319" href="">Grande Sonate pour le Pianoforte</a>,
-               composée par <a class="preview persons A002068" href="">Charles Marie de Weber</a>. <a class="preview works A020319" href="">Op. 49. No. 3 des Sonates</a>.
-                     <a class="preview places A130002" href="">Berlin</a>, chez <a class="preview orgs A080007" href="">A. M. Schlesinger</a>.
+               composée par <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Charles Marie de Weber</a>. <a class="preview works A020319" href="">Op. 49. No. 3 des Sonates</a>.
+                     <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a>, chez <a class="preview orgs A080007" href="">A. M. Schlesinger</a>.
                Prix 1 Thlr. 12 Gr.</h3>
                                         <h3 class="docHeader textAlign-left">2) <a class="preview works A020232" href="">Sonate für das Pianoforte</a>
                komponirt und dem <a class="preview persons A001590" href="">Herrn Hofrath Friedrich Rochlitz</a>
-               gewidmet von <a class="preview persons A002068" href="">Karl Maria von Weber</a>
+               gewidmet von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Karl Maria von Weber</a>
                <a class="preview works A020232" href="">Op. 70. 4. Sonate</a>.</h3>
                                         <p>(Schluß aus <a class="preview writings A030942" href="">Nr. 41</a>.)</p>
                                         <p>Die <span class="preview works A020232" data-ref="">Sonate <span class="tei_choice"><span class="tei_sic">No. 2</span><a class="noteMarker" id="backref-d10e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e48">‡</a></span></span> gehört gewiß mit zu den besten und überlegtesten Hervorbringungen
@@ -490,7 +487,7 @@
                sondern sich mir vielmehr als etwas dastellen, wobei der Komponist nach dem Neuen und
                Abweichenden gestrebt, ohne das, was er innerlich ahnte, zu einer so deutlichen
                Kunstform zu befördern, daß auch der Hörer von demselben Geiste gefaßt werden müßte,
-               der den Schaffenden antrieb. Worin ich diese Irrung, <a class="preview persons A002068" href="">Herr v.
+               der den Schaffenden antrieb. Worin ich diese Irrung, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herr v.
                   Weber</a> verzeihe das dreist ausgesprochene Wort, suche, werde ich später
                noch anführen.</p>
                                         <p>Der Hauptsatz des Andante hat eine so reizende und süße Melodie,
@@ -521,15 +518,15 @@
                tiefen musikalischen Ausbildung, wie die des berühmten Komponisten, müßen
                Abweichungen dieser Art einen Grund haben, der tiefer liegt, als sich bei andern
                Tonsetzern von minderm Talente vermuthen ließe, denen man entweder Unbehülflichkeit,
-               oder Mangel an Ausbildung des Geschmacks vorwerfen könnte. Bei <a class="preview persons A002068" href="">Herrn v. Weber</a> scheinen mir dies indeß rühmliche Wunden
+               oder Mangel an Ausbildung des Geschmacks vorwerfen könnte. Bei <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herrn v. Weber</a> scheinen mir dies indeß rühmliche Wunden
                zu sein, die er in einem großen Kampfe gegen einen gefährlichen Feind empfangen hat.
-               Dieser Feind ist der ausartende Zeitgeist der Musik. Wir sehn nicht <a class="preview persons A002068" href="">Herrn v. Weber</a> allein, sondern auch manchen andern
+               Dieser Feind ist der ausartende Zeitgeist der Musik. Wir sehn nicht <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herrn v. Weber</a> allein, sondern auch manchen andern
                bedeutenden Mann gegen ein Verderben ankämpfen, das aus verschiedenen Gegenden über
                die Musik hereinströmt. Jede Opposition muß eine gewisse Parteilichkeit erzeugen; ein
                im Kampfe gezogenes Schwerdt kann, selbst für die gerechteste Sache geführt, nicht
                das Schwerdt der Gerechtigkeit sein. So sehn wir z. B. <a class="preview persons A001862" href="">L.
                   Spohr</a>, im Bestreben ausartender Formlosigkeit entgegen zu arbeiten,
-               nach einer vielleicht zu strengen Gebundenheit sich hinneigen; in <a class="preview persons A002068" href="">Herrn v. Weber</a>, der den Kampf gegen <a class="preview persons A001616" href="">Rossini</a> vorzugsweise geführt hat, scheint sich dagegen
+               nach einer vielleicht zu strengen Gebundenheit sich hinneigen; in <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herrn v. Weber</a>, der den Kampf gegen <a class="preview persons A001616" href="">Rossini</a> vorzugsweise geführt hat, scheint sich dagegen
                die sybaritische Weichlichkeit des Italieners fast in eine zu rauhe spartanische
                Strenge zu verwandeln. Diese Erscheinung ist nützlich und hat sich zu allen Zeiten
                erzeugt, wo ein Element des Verderbens Uebergewicht bekam. Denn wer sich einem
@@ -597,7 +594,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Berliner allgemeine musikalische Zeitung</span>, Jg. 2, Nr. 42 (19. Oktober 1825), S. 336–338</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_3d6997ec137246cba3453360654788f7">
+                                        <div class="collapse apparatus-details" id="source_07dfc9a1dcfe8dfad119c45a912bf1d9">
                                             
                                             
                                             <div>
@@ -653,7 +650,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030908</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030908</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -713,6 +710,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -771,22 +771,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Anna Maria Hillebrand. Lebensdaten: –1841. Tätigkeiten: Sängerin. Wirkorte: Mannheim, Hannover, Breslau, Wien","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000FA0","name":"Hillebrand, Anna Maria","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000FA0"}</script>
 
@@ -398,7 +396,7 @@
                                                     <a class="nav-link deactivated"></a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A000FA0/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000FA0/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -416,8 +414,8 @@
                                                 
                                                 <div>
       <ul class="tei_list">
-          <li>erster theatralischer Versuch in <a class="preview places A130010" href="">Mannheim</a> am 23. Februar 1823, danach dort engagiert bis September 1823, nochmals Gastauftritte am 26. November 1824 und 23. Januar 1825</li>
-          <li>erneutes Engagement in <a class="preview places A130010" href="">Mannheim</a> von März bis Oktober 1825</li>
+          <li>erster theatralischer Versuch in <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> am 23. Februar 1823, danach dort engagiert bis September 1823, nochmals Gastauftritte am 26. November 1824 und 23. Januar 1825</li>
+          <li>erneutes Engagement in <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> von März bis Oktober 1825</li>
           <li>am 19. Oktober Heirat mit <a class="preview persons A000842" href="">Joseph Hillebrand</a></li>
          <li>Oktober 1825 bis Juli 1826 am Theater <a class="preview places A130018" href="">Hannover</a>, wo ihr <a class="preview persons A000842" href="">Ehemann</a> bereits seit 1824 engagiert war (Antrittsrollen 28. Oktober 1825 <span class="69109109101108105110101">Emmeline</span> in der <a class="preview works A020495" href=""><span class="tei_hi_italic">Schweizerfamilie</span></a> und 6. November 1825 <span class="6510397116104101">Agathe</span> im <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span>)</li>
          <li>Gastauftritte im Juli 1826 mit <a class="preview persons A000842" href="">Ehemann</a> bei <a class="preview persons A008492" href="">Ringelhardt</a> in <a class="preview places A130067" href="">Aachen</a>, im Dezember 1826 und Januar 1827 bei <a class="preview persons A009204" href="">Anton Neukäufler</a> in <a class="preview places A130028" href="">Mainz</a></li>
@@ -425,7 +423,7 @@
          <li>Januar bis Juli 1829 Auftritte am Kärntnertortheater in <a class="preview places A130004" href="">Wien</a> (u. a. als <span class="6510397116104101">Agathe</span> im <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> und <span class="8210112210597">Rezia</span> im <span class="tei_hi_italic"><a class="preview works A020045" href="">Oberon</a></span>)</li>
          <li>November 1829 Gastauftritt in <a class="preview places A130028" href="">Mainz</a></li>
           <li>Gastspielreisen mit dem <a class="preview persons A000842" href="">Ehemann</a> u. a. nach <a class="preview places A130032" href="">Bremen</a> (um den Jahreswechsel 1830/31) und <a class="preview places A130009" href="">Hamburg</a> (Februar/März 1831)</li>
-         <li>Ehepaar ließ sich zuletzt in <a class="preview places A130010" href="">Mannheim</a> nieder und betrieb dort das <span class="tei_placeName">Gasthaus „Zum Badener Hof“</span></li>
+         <li>Ehepaar ließ sich zuletzt in <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> nieder und betrieb dort das Gasthaus Badener Hof (G 6, 3); Versteigerung des Gasthofs im September 1841 wegen Erbteilung zwischen der Witwe und den Kindern</li>
          
       </ul>
    </div>
@@ -505,7 +503,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000FA0</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000FA0</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -565,6 +563,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -623,22 +624,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

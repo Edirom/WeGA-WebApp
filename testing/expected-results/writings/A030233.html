@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Winkel, Therese Emilie Henriette aus dem" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Albrecht, Christoph" />
         <meta property="dc:contributor" content="Fukerider, Andreas" />
         <meta property="dc:creator" content="" />
@@ -45,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Antwort von Therese Emilie Henriette aus dem Winkel auf Weber's Artikel in der Abendzeitung Nr. 22, 1818","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Antwort von Therese aus dem Winkel auf Weber's Artikel in der Abendzeitung Nr. 22, 1818","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030233","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002156/Schriften/A030233","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002156","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002156"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -253,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -294,13 +291,13 @@
                                     </li>
                                 
                                 <li class="nav-item gradient-light">
-                                    <a class="deactivated"></a>
+                                    <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002156/Schriften/A030233/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002156/Schriften/A030233/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -360,13 +357,13 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002156" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001362" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002162" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002094" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -392,9 +389,9 @@
                         <div class="teiDoc_body">
                                     <div class="docPart">
                                         <h2 class="docHeader textAlign-left"><span class="tei_hi_spaced_out"><a class="preview persons A002156" href="">C.</a>’s Antwort auf die in der Abendzeitung <span class="tei_bibl"><a class="preview writings A030231" href="">No. 22</a></span> an ihn gerichteten Zeilen, und Abschiedsgruß an die Leser</span>.</h2>
-                                        <p>Mit Befremden sehe ich, mit welcher Bitterkeit und Empfindlichkeit die bescheidnen Worte aufgenommen wurden, die ich über die erste Aufführung der <a class="preview works A020531" href="">Vestalin</a> schrieb. Hämische und beleidigende Anfälle in fremden Blättern, ja selbst die fast sublimen Grobheiten eines sogenannten Giusto ertrug ich ganz ruhig, meiner edeln Absicht mir stillbewußt; doch den Anfeindungen <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a> eines so geachteten Künstlers, wie dieser ist, der hier gegen mich auftritt, weiche ich willig und gern, denn nichts ist mehr gegen mein Streben und meinen Sinn, als Gehässigkeit und Bitterkeit zu erwecken. Ich trete daher von der Obliegenheit, welche die geehrte Redaction mich ersucht hatte zu übernehmen, stets einige Worte über die italienische Oper zu sagen, hiermit öffentlich, völlig und für immer zurück. Doch, Scheidende gleichen Sterbenden, und denen vergönnt man ja wohl noch ein Paar offenherzige Worte über sich selbst. – Gelehrte Urtheile zu schreiben, war nie meine Absicht, diese gehören in die musikalische Zeitung, das Kunstblatt &amp;c. Ueberhaupt scheint es mir eine der traurigen Eigenheiten unserer Zeit, daß ein Jeder immer <span class="tei_hi_spaced_out">nur urtheilen</span> will; durch dieses stete Zerlegen in die <span class="tei_hi_spaced_out">Ur-Theile</span>, (welches nicht immer sanft gescheigt, sondern wo das anatomische Messer oft schonunglos verwundet!) wird jeder reine, wahrhaft erhebende und erheiternde Kunstgenuß gestört, und die Meisten gewöhnen sich, Kunstleistungen nur als Aufgaben für ihren Schafsinn zu betrachten, und üben diesen leider nur daran, Mängel aufzuspüren. Diese Urtheilsucht ist weit entfernt, ächte Kritik zu seyn, für letztere habe ich die höchste Achtung. Um jener modernen, tadelnden Urtheilsucht aber eingermaßen entgegen zu arbeiten, schien es mir nicht unnütz, bei den Bemerkungen, die mir aufgetragen wurden, mit wahrer Bienennatur, alles Schöne und Gute zuerst auszusuchen und die Aufmerksamkeit unbefangner Zuhörer darauf hin zu leiten; das Eigenthümliche desselben in jedem Werk <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>anzudeuten, und die Mittel, durch welche überraschende Wirkungen hervorgebracht wurden, so weit zu erklären, als es für Zuhörer, die nicht selbst Künstler sind, interessant seyn kann; nachher wohl aber auch Mängel sanftschonend zu erwähnen. Dies war mein einziger Zweck, harmlos und bescheiden strebte ich, ihn zu erreichen. Ob mir dies bisweilen gelang? darüber mögen die Leser entscheiden. Diese Bahn war die, einzige, die nicht schon in andern Blättern betreten war, wer hätte geglaubt, daß sie die angefeindetste werden würde! – </p>
+                                        <p>Mit Befremden sehe ich, mit welcher Bitterkeit und Empfindlichkeit die bescheidnen <a class="preview writings A030230" href="">Worte</a> aufgenommen wurden, die ich über die erste Aufführung der <a class="preview works A020531" href="">Vestalin</a> schrieb. Hämische und beleidigende Anfälle in fremden Blättern, ja selbst die fast sublimen Grobheiten eines sogenannten Giusto ertrug ich ganz ruhig, meiner edeln Absicht mir stillbewußt; doch den Anfeindungen <a href="#footnote01" id="backref-footnote01" class="fn-ref">*)</a> eines so geachteten Künstlers, wie dieser ist, der hier gegen mich auftritt, weiche ich willig und gern, denn nichts ist mehr gegen mein Streben und meinen Sinn, als Gehässigkeit und Bitterkeit zu erwecken. Ich trete daher von der Obliegenheit, welche die geehrte Redaction mich ersucht hatte zu übernehmen, stets einige Worte über die italienische Oper zu sagen, hiermit öffentlich, völlig und für immer zurück. Doch, Scheidende gleichen Sterbenden, und denen vergönnt man ja wohl noch ein Paar offenherzige Worte über sich selbst. – Gelehrte Urtheile zu schreiben, war nie meine Absicht, diese gehören in die musikalische Zeitung, das Kunstblatt &amp;c. Ueberhaupt scheint es mir eine der traurigen Eigenheiten unserer Zeit, daß ein Jeder immer <span class="tei_hi_spaced_out">nur urtheilen</span> will; durch dieses stete Zerlegen in die <span class="tei_hi_spaced_out">Ur-Theile</span>, (welches nicht immer sanft gescheigt, sondern wo das anatomische Messer oft schonunglos verwundet!) wird jeder reine, wahrhaft erhebende und erheiternde Kunstgenuß gestört, und die Meisten gewöhnen sich, Kunstleistungen nur als Aufgaben für ihren Schafsinn zu betrachten, und üben diesen leider nur daran, Mängel aufzuspüren. Diese Urtheilsucht ist weit entfernt, ächte Kritik zu seyn, für letztere habe ich die höchste Achtung. Um jener modernen, tadelnden Urtheilsucht aber eingermaßen entgegen zu arbeiten, schien es mir nicht unnütz, bei den Bemerkungen, die mir aufgetragen wurden, mit wahrer Bienennatur, alles Schöne und Gute zuerst auszusuchen und die Aufmerksamkeit unbefangner Zuhörer darauf hin zu leiten; das Eigenthümliche desselben in jedem Werk <span class="tei_cb" title="Spaltenumbruch"> ¦ </span>anzudeuten, und die Mittel, durch welche überraschende Wirkungen hervorgebracht wurden, so weit zu erklären, als es für Zuhörer, die nicht selbst Künstler sind, interessant seyn kann; nachher wohl aber auch Mängel sanftschonend zu erwähnen. Dies war mein einziger Zweck, harmlos und bescheiden strebte ich, ihn zu erreichen. Ob mir dies bisweilen gelang? darüber mögen die Leser entscheiden. Diese Bahn war die, einzige, die nicht schon in andern Blättern betreten war, wer hätte geglaubt, daß sie die angefeindetste werden würde! – </p>
                                         <p>Ob ich deutsche Musik ehre und liebe, darüber mögen meine Worte über <a class="preview persons A001362" href="">Mozarts</a>, <a class="preview persons A002162" href="">Winters</a> und <a class="preview persons A002094" href="">Weigls</a> Opern entscheiden.</p>
-                                        <p>Höchst überraschend ist es aber, wie der <a class="preview persons A002068" href="">Herr Kapellmeister von Weber</a>, nachdem er mir Einsicht der Sache und Klarheit des Styls, also Wesen und Form, abgesprochen hat, sich nicht wenigstens daran freut, daß ich mich auf die italienische Oper beschränkte, sondern es mir fast zum Vorwurf macht, daß ich nicht auch über die deutsche schrieb!! Bei seinem Mißbilligen aller meiner Aeußerungen, hätte ihm dies nur Aergerniß geben können. Ich war überdem nur zu Bemerkungen über die italienische Oper aufgefordert, und pflege überhaupt lieber eines eifrig und ganz zu thun, als mich in vieles zu mischen.</p>
+                                        <p>Höchst überraschend ist es aber, wie der <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herr Kapellmeister von Weber</a>, nachdem er mir Einsicht der Sache und Klarheit des Styls, also Wesen und Form, abgesprochen hat, sich nicht wenigstens daran freut, daß ich mich auf die italienische Oper beschränkte, sondern es mir fast zum Vorwurf macht, daß ich nicht auch über die deutsche schrieb!! Bei seinem Mißbilligen aller meiner Aeußerungen, hätte ihm dies nur Aergerniß geben können. Ich war überdem nur zu Bemerkungen über die italienische Oper aufgefordert, und pflege überhaupt lieber eines eifrig und ganz zu thun, als mich in vieles zu mischen.</p>
                                         <p>Bei diesem, meinem ganzen Streben, thut der Name gar nichts zur Sache. Wären Journale Turnierplätze, dann wäre es nöthig, ihn zu nennen, dann müßten aber auch unpartheiische Kampfrichter stets untersuchen, ob alle Gegner ebenbürtig und ob alle gebrauchte Waffen völlig frei von geheimen Gift wären -. Bei meinen friedlichen Absichten bedurfte ich weder eines offnen noch eines geschlossenen Helmes, und der Buchstabe <a class="preview persons A002156" href="">C.</a> war eben so hinlänglich, mich zu bezeichnen, als der längste Titel.</p>
                                         <p>Die mir vorgeworfene Bildersprache ist die natürliche Folge der nahen Verwandtschaft des ästhetischen Theiles der Musik mit der Dichtung; <span class="tei_hi_italic">diese</span> sind eben so unzertrennlich, wie der technische Theil derselben und die Zahlenlehre. Viele der trefflichsten Aufsätze in der musikalischen Zeitung selbst, beweisen dies.</p>
                                         <p> Scheidend rufe ich nun allen meinen freundlichen und unfreundlichen Lesern noch ein herzliches: Lebt wohl! zu, und was die italienische Oper betrifft, und die künftigen Beurtheilungen derselben, so habe ich dafür nur die, in manchem Herzen wohl noch wiedertönende Bitte Griselden’s:</p>
@@ -402,7 +399,7 @@
                                     <div id="endNotes">
                                         <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Diese liegen gewiß in den Aeußerungen des <a class="preview persons A002068" href="">Herrn Kapellmeisters von Weber</a> nicht, der, entfernt von aller Persönlichkeit, achtend jeden Enthusiasmus für das Gute und Schöne, nur es der Sache und sich selbst schuldig zu seyn glaubte, in <span class="tei_bibl"><a class="preview writings A030231" href="">No. 22.</a></span> dieser Blätter auszusprechen, was er in einem Herzen trug, von dessem Wärme für die Kunst er schon so viele Beweise gegeben hat, und welches wahre Achtung für die Person des Urtheilers mit freiem Ausspruch über das Urtheil selbst zu vereinen weiß.
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Diese liegen gewiß in den Aeußerungen des <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herrn Kapellmeisters von Weber</a> nicht, der, entfernt von aller Persönlichkeit, achtend jeden Enthusiasmus für das Gute und Schöne, nur es der Sache und sich selbst schuldig zu seyn glaubte, in <span class="tei_bibl"><a class="preview writings A030231" href="">No. 22.</a></span> dieser Blätter auszusprechen, was er in einem Herzen trug, von dessem Wärme für die Kunst er schon so viele Beweise gegeben hat, und welches wahre Achtung für die Person des Urtheilers mit freiem Ausspruch über das Urtheil selbst zu vereinen weiß.
                <br /><span class="tei_hi_spaced_out">Die Redaction</span>.</li>
                                         </ul>
                                     </div>
@@ -452,7 +449,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Abend-Zeitung</span>, Jg. 2, Nr. 28 (3. Februar 1818), Bl. 2r</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_46ef7af7976d8b0bd8a8692fcf617503">
+                                        <div class="collapse apparatus-details" id="source_61a29c06e9a01e245e672586064d51b4">
                                             
                                             
                                             <div>
@@ -479,7 +476,7 @@
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="facsimile" style="width:100%;height:1000px;">
-                        <div id="map" style="width:100%;height:100%;position:relative;"></div>
+                        <div id="map" style="width:100%;height:100%;position:relative;" data-url="https://iiif.slub-dresden.de/iiif/2/399196951-18180203/manifest.json" data-canvasindex="3"></div>
                     </div>
                     <div class="tab-pane fade" id="backlinks">
                         <h2>Rückverweise</h2>
@@ -500,7 +497,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030233</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A030233</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -560,6 +557,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -618,22 +618,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

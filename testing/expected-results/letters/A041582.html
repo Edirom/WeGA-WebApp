@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Seidel, Friedrich Ludwig" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Bewerbung von Seidel um die dritte Kapellmeister-Stelle nach dem Tode von Gürrlich","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Friedrich Ludwig Seidel an Johann Ludwig Jordan. Berlin, Dienstag, 15. Juli 1817","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041582","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001802/Korrespondenz/A041582","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A001802","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A001802"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A001802/Korrespondenz/A041582/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001802/Korrespondenz/A041582/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A001802/Korrespondenz/A041582/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -404,13 +402,13 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A007860" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002066" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001600" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001802" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -424,7 +422,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -441,17 +439,17 @@
                                             <p class="teiLetter_salute">Hochwohlgebohrner Herr!<br />
             Hochverehrter <a class="preview persons A000940" href="">Herr Geheimer Legationsrath</a>!</p>
                                         </div>
-                                        <p>Verzeihen Sie, wenn ich mir die Freiheit nehme, an Sie zu schreiben. Durch den Todesfall des H: Kap. <a class="preview persons A000705" href="">Gürrlich</a> ist die Stelle des dritten Kapellmeisters erledigt. Ich habe bereits dem H: Generalintendanten <a class="preview persons A000235" href="">Grafen von Brühl</a> meine Bitte vorgetragen, mich, der ich über 20 Jahre mit allem Fleiße, ja selbst mit Aufopferung dem Königl Theater gedient, an des Verstorbenen Stelle <a class="preview persons A007860" href="">Sr. Maj. dem Könige</a> als dritten Kapellmeister vorzuschlagen. So viel ich höre, hat der <a class="preview persons A000235" href="">Herr Graf</a> am Sterbetage an den H: <a class="preview persons A002068" href="">Maria von Weber</a> nach <a class="preview places A130003" href="">Dresden</a> geschrieben, warscheinlich der erledigten Stelle wegen.</p>
-                                        <p>Ich wende mich nun mit meiner gehorsamsten Bitte an Sie, sich meiner anzunehmen, daß ich nicht abermals zurükgesezt werde, wie dies der Fall beim H. Kap. <a class="preview persons A000705" href="">Gürrlich</a> war. Lezterer hatte den Vorzug, länger in der Kapelle, wenn gleich nicht am Theater, gedient zu haben, und ich konnte hierinn den Grund seiner frühern Beförderung nicht finden. Allein H: Kapell. <a class="preview persons A002068" href="">Maria von Weber</a> hat für das hiesige Theater und den Königl Dienst nichts gewinnen können, da er nicht hier war und jezt in <a class="preview places A130003" href="">Dresden</a> versorgt ist. Die Herren Kap. <a class="preview persons A002066" href="">Weber</a> und <a class="preview persons A001600" href="">Romberg</a> haben an den <a class="preview persons A000235" href="">Herrn Grafe</a>n meinetwegen geschrieben und das Orchester wünscht insgesammt meine so gerechte Beförderung<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>.<span class="tei_pb" title="Seitenumbruch"> | </span></p>
+                                        <p>Verzeihen Sie, wenn ich mir die Freiheit nehme, an Sie zu schreiben. Durch den Todesfall des H: Kap. <a class="preview persons A000705" href="">Gürrlich</a> ist die Stelle des dritten Kapellmeisters erledigt. Ich habe bereits dem H: Generalintendanten <a class="preview persons A000235" href="">Grafen von Brühl</a> meine Bitte vorgetragen, mich, der ich über 20 Jahre mit allem Fleiße, ja selbst mit Aufopferung dem Königl Theater gedient, an des Verstorbenen Stelle <a class="preview persons A007860" href="">Sr. Maj. dem Könige</a> als dritten Kapellmeister vorzuschlagen. So viel ich höre, hat der <a class="preview persons A000235" href="">Herr Graf</a> am Sterbetage an den H: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria von Weber</a> nach <a class="preview places A130003" href="">Dresden</a> geschrieben, warscheinlich der erledigten Stelle wegen.</p>
+                                        <p>Ich wende mich nun mit meiner gehorsamsten Bitte an Sie, sich meiner anzunehmen, daß ich nicht abermals zurükgesezt werde, wie dies der Fall beim H. Kap. <a class="preview persons A000705" href="">Gürrlich</a> war. Lezterer hatte den Vorzug, länger in der Kapelle, wenn gleich nicht am Theater, gedient zu haben, und ich konnte hierinn den Grund seiner frühern Beförderung nicht finden. Allein H: Kapell. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria von Weber</a> hat für das hiesige Theater und den Königl Dienst nichts gewinnen können, da er nicht hier war und jezt in <a class="preview places A130003" href="">Dresden</a> versorgt ist. Die Herren Kap. <a class="preview persons A002066" href="">Weber</a> und <a class="preview persons A001600" href="">Romberg</a> haben an den <a class="preview persons A000235" href="">Herrn Grafe</a>n meinetwegen geschrieben und das Orchester wünscht insgesammt meine so gerechte Beförderung<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>.<span class="tei_pb" title="Seitenumbruch"> | </span></p>
                                         <p> Ich diene jezt über 20 Jahre am Theater mit Fleiß und Achtung, besonders mit Anstrengung in den Jahren, wo die französischen Truppen hier waren, wo ich oft während der Krankheit des H: Kap. <a class="preview persons A002066" href="">Weber</a> die Direktion der Musik allein vorstand. Lezterer ist bereit es zu bezeugen. Ich habe es ferner an Ausbildung meines kleinen Talents sowohl für Kirchen- Theater als Concertmusik nicht fehlen lassen und vielen Beifall erhalten. Der <a class="preview persons A000235" href="">Herr Graf</a> hat jezt die Oper, welche ich vor 4 Jahren präsentirte, austheilen lassen und hoffe gegen den Herbst die Aufführung derselben. Dies geschah alles bei einem, für ein solches Geschäft gehörigen Mann, viel zu kleinem Gehalte, wobei ich mir nur sehr wenig mit Unterricht erwerben konnte; folglich in Schulden kam. Ich ertrug dies alles in Aussicht einer immer steigenden Beförderung.</p>
                                         <p>Wenn ich dies sämtlich bedenke und die Gerechtigkeit des Preußischen Staates erwäge, namentlich der unter Ihrer Leitung dienenden Mittglieder des <span class="tei_hi_latintype">Bureaus</span>, so hege ich durchaus keinen Zweifel, daß Ew: Hochwohlgebohren auch von der Gerechtigkeit meiner Bitte durchdrungen sind und meine Beförderung bethätigen werden. Mit welchem Muthe dient alsdann der <span class="tei_hi_latintype">Officiant</span>, wenn er sich einer Belohnung zu erfreuen hat und dankbar erinnert sich derselbe der Wohlthäter seines Glücks.</p>
-                                        <p>Sollte indessen das Obenangeführte noch nicht g<span class="tei_supplied"><span class="brackets_supplied">[</span>e<span class="brackets_supplied">]</span></span>nügen, so wird man mir wohl diese Gerechtigkeit nicht versagen, mich mit dem H: <a class="preview persons A002068" href="">Maria von Weber</a> im gelehrten Fache der Musik zu zeigen. Kenner mögen uns ein Thema aufgeben, welches wir zusammen bei verschloßenen Thüren zur Fuge ausarbeiten wollen, um<span class="tei_pb" title="Seitenumbruch"> | </span>diesen wesentlichen Theil der Wissenschaft eines Kapellmeisters darzuthun. Dieselben Kenner mögen dann über unsre Ausarbeitungen ein Urtheil fällen.</p>
+                                        <p>Sollte indessen das Obenangeführte noch nicht g<span class="tei_supplied"><span class="brackets_supplied">[</span>e<span class="brackets_supplied">]</span></span>nügen, so wird man mir wohl diese Gerechtigkeit nicht versagen, mich mit dem H: <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria von Weber</a> im gelehrten Fache der Musik zu zeigen. Kenner mögen uns ein Thema aufgeben, welches wir zusammen bei verschloßenen Thüren zur Fuge ausarbeiten wollen, um<span class="tei_pb" title="Seitenumbruch"> | </span>diesen wesentlichen Theil der Wissenschaft eines Kapellmeisters darzuthun. Dieselben Kenner mögen dann über unsre Ausarbeitungen ein Urtheil fällen.</p>
                                         <p class="tei_closer textAlign-left">Ihrem menschenfreundlichen Charakter darf ich nichts mehr hinzufügen, was in meiner gerechten Bitte liegt und habe mich nur noch Ihrem fernern Wohlwollen empfehlen wollen als 
                <span class="tei_segBlock textAlign-center">Euer Hochwohlgebohren</span>
                <span class="tei_segBlock textAlign-right">gehorsamster Diener
                   <br /><a class="preview persons A001802" href="">Seidl</a>.
                </span>
-               <span class="tei_dateline textAlign-left"><a class="preview places A130002" href="">Berlin</a> d. 15<span class="tei_hi_superscript">ten</span> Juli. 1817.</span>
+               <span class="tei_dateline textAlign-left"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> d. 15<span class="tei_hi_superscript">ten</span> Juli. 1817.</span>
                <span class="tei_segBlock textAlign-right"><span class="tei_address"><span class="tei_addrLine">Charlottenstraße <span class="tei_hi_latintype">No</span>. 48.</span></span></span>
             </p>
                                         <p class="clearer"></p>
@@ -500,9 +498,9 @@
                                         
                                         <span>Berlin (D), Geheimes Staatsarchiv – Preußischer Kulturbesitz (D-Bga)<br /><i>Signatur</i>: I HA Rep. 100, Nr. 1043, fol. 9–10</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6d100e962ec6c076167889e9005e6c54"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_3c07fff9aec6cf61d8ab3e29d69d71f1"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_6d100e962ec6c076167889e9005e6c54">
+                                        <div class="collapse apparatus-details" id="source_3c07fff9aec6cf61d8ab3e29d69d71f1">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (3 b. S.)</li>
@@ -561,7 +559,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041582</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041582</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -621,6 +619,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -679,22 +680,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

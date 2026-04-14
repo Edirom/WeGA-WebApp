@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="?, Edmond" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"teilt seine Meinung über die ersten 5–6 Aufführungen des Oberon mit, den er kalt und farblos findet; er reiche nicht an den Freischütz heran und sei kaum für Paris zu empfehlen; schickt Textbücher mit","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Edmond ? an Etienne de Sauvage in Paris. London, 20. Mai 1826","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042556","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A042556","author":[{"@type":"Person","name":"?, Edmond"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +250,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +297,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A042556/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A042556/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -359,7 +357,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001651" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -385,9 +383,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130011" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130008" /> <span title="Anwählen, um &#34;Paris&#34; im Text zu markieren.">Paris</span> 
                                 </label>
                             </div>
                         </div>
@@ -403,15 +401,15 @@
                                         <p>Monsieur</p>
                                         <p>Mons<span class="tei_hi_superscript">r</span> <span class="preview persons A001651" data-ref=""><span class="tei_unclear">E<a class="noteMarker" id="backref-d10e14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e14">‡</a></span>. Sauvage</span></p>
                                         <p>rue grange Bateliere 6 ou 8.</p>
-                                        <p><span class="tei_hi_underline1"><a class="preview places A130008" href="">Paris</a></span></p>
+                                        <p><span class="tei_hi_underline1"><a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a></span></p>
                                         <p>cette Lettre &amp; <span class="tei_hi_underline1">2 Exemp. d’<a class="preview works A020045" href="">oberon</a></span></p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
                <p class="teiLetter_salute">Mon cher ami</p>
             </div>
-                                        <p>J’ai reçu dans son temps votre aimable Lettre, &amp; si j’ai tardé à y repondre, attribuez-en la cause, au desir que j’avais de remplir fidelement vos instructions, j’ai voulu avant de vous donner mon opinion sur <span class="tei_hi_underline1"><a class="preview works A020045" href="">Oberon</a></span>, voir cet opera 5 à 6 fois, c’est ce que j’ai fait, &amp; maintenant je puis vous dire, avec conscience, que j’en suis fort peu satisfait, la pièce est <span class="tei_unclear">plus<a class="noteMarker" id="backref-d10e41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e41">‡</a></span> que mauvaise, c’est un galimatias qu’il est impossible de comprendre, &amp; que nous ne pouvons reproduire sur notre Scène, surtout Si nous voulons nous renfermer dans les règles adoptés chez nous pour l’art dramatique, la Musique est froide, Sans couleur, il n’y a pas de ces airs qu l’on fredonne en Sortant du Théatre, <a class="preview persons A002068" href="">Weber</a> a voulu se rapprocher du Caractère angloise, je trouve qui’l s’en est eloigné, au restant, cet ouvrage n’est pas digne du Compositeur <span class="tei_hi_underline1">de <a class="preview works A020040" href="">Robin</a></span>, c’est l’opinion générale, et la pièce ne s’est soutenue ici qu’à cause du du nom<span class="tei_pb" title="Seitenumbruch"> | </span> du Compositeur &amp; du Luxe avec lequel elle est montée, je ne vous engage pas à vous donner la peine de travailler cet ouvrage car j’ai la conviction intime qu’il ne plairoit pas à <a class="preview places A130008" href="">Paris</a>, ce pendant pour me conformer à vos desirs vous recevez avec cette Lettre deux Exemplairs du Fame, quand vous l’aurez fait traduire, je crois que vous partagerez mon Sentiment.</p>
-                                        <p>J’ai fait remettre en temps la Lettre à <a class="preview persons A002068" href="">M<span class="tei_hi_superscript">r</span> de Weber</a>, que je n’ai pu rencontrer chez lui, j’aurois été fort <span class="tei_unclear">aise<a class="noteMarker" id="backref-d10e66" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e66">‡</a></span> de le voir.</p>
+                                        <p>J’ai reçu dans son temps votre aimable Lettre, &amp; si j’ai tardé à y repondre, attribuez-en la cause, au desir que j’avais de remplir fidelement vos instructions, j’ai voulu avant de vous donner mon opinion sur <span class="tei_hi_underline1"><a class="preview works A020045" href="">Oberon</a></span>, voir cet opera 5 à 6 fois, c’est ce que j’ai fait, &amp; maintenant je puis vous dire, avec conscience, que j’en suis fort peu satisfait, la pièce est <span class="tei_unclear">plus<a class="noteMarker" id="backref-d10e41" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e41">‡</a></span> que mauvaise, c’est un galimatias qu’il est impossible de comprendre, &amp; que nous ne pouvons reproduire sur notre Scène, surtout Si nous voulons nous renfermer dans les règles adoptés chez nous pour l’art dramatique, la Musique est froide, Sans couleur, il n’y a pas de ces airs qu l’on fredonne en Sortant du Théatre, <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> a voulu se rapprocher du Caractère angloise, je trouve qui’l s’en est eloigné, au restant, cet ouvrage n’est pas digne du Compositeur <span class="tei_hi_underline1">de <a class="preview works A020040" href="">Robin</a></span>, c’est l’opinion générale, et la pièce ne s’est soutenue ici qu’à cause du du nom<span class="tei_pb" title="Seitenumbruch"> | </span> du Compositeur &amp; du Luxe avec lequel elle est montée, je ne vous engage pas à vous donner la peine de travailler cet ouvrage car j’ai la conviction intime qu’il ne plairoit pas à <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a>, ce pendant pour me conformer à vos desirs vous recevez avec cette Lettre deux Exemplairs du Fame, quand vous l’aurez fait traduire, je crois que vous partagerez mon Sentiment.</p>
+                                        <p>J’ai fait remettre en temps la Lettre à <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">M<span class="tei_hi_superscript">r</span> de Weber</a>, que je n’ai pu rencontrer chez lui, j’aurois été fort <span class="tei_unclear">aise<a class="noteMarker" id="backref-d10e66" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e66">‡</a></span> de le voir.</p>
                                         <p>Romain qui part aujourd’hui pourra vous dire cequ’il pense <span class="tei_hi_underline1">d’Oberon</span>.</p>
                                         <p class="tei_closer textAlign-left">En attendant le plaisir de vous voir, je vous Salue de coeur et d’amitie.
             <span class="tei_segBlock textAlign-right"><br />Votre ami,
@@ -419,7 +417,7 @@
             </p>
                                     </div>
                                     <div class="writingSession">
-                                        <p>Si vous avez besoin de moi à Londre, ou même à <a class="preview places A130008" href="">Paris</a> je Suis à vos ordres en tout temps.</p>
+                                        <p>Si vous avez besoin de moi à Londre, ou même à <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a> je Suis à vos ordres en tout temps.</p>
                                         <p>Bonjour à l’ami <span class="tei_unclear">Dupui<a class="noteMarker" id="backref-d10e91" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e91">‡</a></span><span>[…]<a class="noteMarker" id="backref-d10e93" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e93">‡</a></span></p>
                                         <p><span class="tei_segBlock textAlign-right"><span class="71101111114103101">George</span> &amp; V <span>[…]<a class="noteMarker" id="backref-d10e99" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e99">‡</a></span> Cornhill<span>[…]<a class="noteMarker" id="backref-d10e101" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e101">‡</a></span>
                <br /><a class="preview places A130011" href="">London</a>.</span></p>
@@ -473,9 +471,9 @@
                                         
                                         <span>Paris (F), Bibliothèque nationale de France (F-Pn)<br /><i>Signatur</i>: Lettres autographes, Vol. XX, Bl. 289</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_f4acbcfe53daa21c5a0516d77b8f6580"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c7166857fe9fe30cf33dd199ec03b312"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_f4acbcfe53daa21c5a0516d77b8f6580">
+                                        <div class="collapse apparatus-details" id="source_c7166857fe9fe30cf33dd199ec03b312">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (3 b. S. einschl. Adr.)</li>
@@ -576,7 +574,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042556</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042556</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -636,6 +634,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -694,22 +695,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Hellwag, Ernst Ludwig" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Ernst Ludwig Hellwag an Max Maria von Weber in Dresden. Eutin, zwischen 1858 und 1874","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A046006","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008950/Korrespondenz/A046006","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008950","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008950"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -254,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +298,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A008950/Korrespondenz/A046006/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008950/Korrespondenz/A046006/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008950/Korrespondenz/A046006/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -359,11 +356,7 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A008950" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001462" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
@@ -383,8 +376,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001762" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002071" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002075" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000573" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -394,6 +385,12 @@
                                     <input type="checkbox" name="options" value="A000213" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A005451" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;Jähns, Friedrich Wilhelm&#34; im Text zu markieren.">Jähns, Friedrich Wilhelm</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002071" /> <span title="Anwählen, um &#34;Weber, Edmund von&#34; im Text zu markieren.">Weber, Edmund von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002074" /> <span title="Anwählen, um &#34;Weber, Franz Anton von&#34; im Text zu markieren.">Weber, Franz Anton von</span> 
                                 </label><label class="btn btn-checkbox">
@@ -449,11 +446,11 @@
                         <div class="teiLetter_body"><span class="tei_addSpan"></span>
                                     <div class="writingSession">
                                         <p>
-                    <span class="tei_supplied"><span class="brackets_supplied">[</span>Überschrift von <a class="preview persons A000914" href="">F. W. Jähns</a>:<span class="brackets_supplied">]</span></span>
-                    <br />Mittheilungen v. (Name undeutlich) (<a class="preview persons A000914" href="">F. W. J.</a>)
+                    <span class="tei_supplied"><span class="brackets_supplied">[</span>Überschrift von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a>:<span class="brackets_supplied">]</span></span>
+                    <br />Mittheilungen v. (Name undeutlich) (<a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. J.</a>)
                     <br /><span class="tei_del">des Regier-Rathes, <a class="preview persons A008950" href="">Senators <span class="tei_hi_italic">Hellwag</span></a></span><a class="noteMarker" id="backref-d10e18" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e18">‡</a> in <a class="preview places A130030" href="">Eutin</a>
-                    <br /><span class="tei_hi_underline1">An <span class="tei_hi_italic"><a class="preview persons A002068" href="">Weber’s</a></span> Sohn <span class="tei_hi_italic"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max</a></span> gerichtet.</span>
-                    <br />Über <span class="tei_hi_italic"><a class="preview persons A002068" href="">Carl Maria v. Weber’s</a></span> Eltern, dessen Taufe
+                    <br /><span class="tei_hi_underline1">An <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a></span> Sohn <span class="tei_hi_italic"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max</a></span> gerichtet.</span>
+                    <br />Über <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria v. Weber’s</a></span> Eltern, dessen Taufe
                     <br />und einige in <span class="tei_hi_italic"><a class="preview places A130030" href="">Eutin</a></span> aufbewahrte Autographe
                     <br />desselben <span class="tei_hi_italic">ppp</span>.
                     <br />Der hier nur fragmentarisch (ohne Schluß, welcher fehlte)
@@ -497,13 +494,13 @@
                     <span class="tei_add">(Der Vater <span class="tei_hi_italic"><a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Franz Anton</a></span> hatte eigenhändig den 
                         <span class="tei_hi_underline1">18.</span> <span class="tei_hi_underline1"><span class="tei_hi_italic">Dez</span></span>. auf ein bei den
                     Papieren der Familie <span class="tei_hi_italic">Carl Marias</span> befindliches Papier
-                        bezeichnet, welches ich oftmals gesehen habe. <span class="tei_hi_italic"><a class="preview persons A000914" href="">F. W. Jähns</a></span>.)<a class="noteMarker" id="backref-d10e219" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e219">‡</a></span></p>
+                        bezeichnet, welches ich oftmals gesehen habe. <span class="tei_hi_italic"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a></span>.)<a class="noteMarker" id="backref-d10e219" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e219">‡</a></span></p>
                                         <p>Von zwei bejahrten, schon im Jahre 1786 hieselbst verheiratheten Damen, der
                     <a class="preview persons A008845" href="">Kanzleiräthin <span class="tei_hi_italic">Lewon</span></a> und der 
                     <a class="preview persons A008472" href="">Kanzleiräthin <span class="tei_hi_italic">Stricker</span></a>, welche während der letzten 15
                     Jahre hieselbst beide, über 90 Jahre alt, gestorben sind, erhielt ich auf Nachfrage
                     folgende wenigen Notizen über die <span class="tei_hi_italic">Weber</span>’sche Familie: – Die
-                    <span class="tei_hi_underline1"><a class="preview persons A002077" href="">Mutter</a></span> <span class="tei_hi_italic"><a class="preview persons A002068" href="">Carl Maria’s</a></span> hatten beide wohl gekannt;
+                    <span class="tei_hi_underline1"><a class="preview persons A002077" href="">Mutter</a></span> <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria’s</a></span> hatten beide wohl gekannt;
                     sie war, nach ihrer Erzählung 
                     <span class="tei_pb" title="Seitenumbruch"> | </span>eine gute, sanfte <a class="preview persons A002077" href="">Frau</a>, aus <span class="tei_sic"><span class="tei_country">Böhmen</span></span><a class="noteMarker" id="backref-d10e269" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e269">‡</a> gebürtig, litt am Heimweh, war oft
                     trübe gestimmt und weinte viel, wohl mit aus der Ursache, weil es mit den Finanzen
@@ -516,7 +513,7 @@
                     <a class="preview persons A008472" href="">Kanzleiräthin <span class="tei_hi_italic">Stricker</span></a> wußte mir noch das
                     Zimmer zu bezeichnen, in welchem sie der <a class="preview persons A002077" href="">Frau <span class="tei_hi_italic">von Weber</span></a> einen
                     Wochenbesuch gemacht. <span class="tei_add">1872 habe ich das Zimmer selbst gesehen.
-                    Vor dem Hause stehend befinden sich dessen Fenster als die letzten beiden <span class="tei_hi_underline1">rechts</span> eine Treppe hoch liegenden an dem Hause. <span class="tei_hi_italic"><a class="preview persons A000914" href="">F. W. J</a></span>.<a class="noteMarker" id="backref-d10e302" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e302">‡</a></span> 
+                    Vor dem Hause stehend befinden sich dessen Fenster als die letzten beiden <span class="tei_hi_underline1">rechts</span> eine Treppe hoch liegenden an dem Hause. <span class="tei_hi_italic"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. J</a></span>.<a class="noteMarker" id="backref-d10e302" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e302">‡</a></span> 
                     – „Im Jahre 1802“, so erzählte dieselbe, „kam der
                         <a class="preview persons A002074" href="/exist/apps/WeGA-WebApp/de/A002074.html">Kapellmeister <span class="tei_hi_italic">von Weber</span></a> mit seinem damals 16jährigen Sohne auf
                     einer Kunstreise nach <span class="tei_hi_italic">Eutin</span>, da sie den einen Abend in dem
@@ -529,14 +526,14 @@
                     <span class="tei_hi_italic"><a class="preview persons A002030" href=""><span class="tei_hi_underline1">Joh</span>. <span class="tei_hi_underline1">Heinr</span>. <span class="tei_hi_underline1">Voss</span></a> <a class="preview places A130030" href="">Eutin</a></span> 
                     und zog nach <span class="tei_hi_italic"><a class="preview places A130071" href="">Jena</a></span>,
                     später nach <span class="tei_hi_italic"><a class="preview places A130035" href="">Heidelberg</a></span>. In <span class="tei_hi_italic"><a class="preview places A130035" href="">Heidelberg</a></span> <span class="tei_date">Michaelis 1810–11</span> studirend, machte ich im
-                    <a class="preview persons A002030" href=""><span class="tei_hi_underline1">Voß</span>’ischen</a> Hause unseres <span class="tei_hi_italic"><a class="preview persons A002068" href="">Weber</a></span> persönliche Bekanntschaft. Er trug auf dem Claviere einiges von seinen
+                    <a class="preview persons A002030" href=""><span class="tei_hi_underline1">Voß</span>’ischen</a> Hause unseres <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> persönliche Bekanntschaft. Er trug auf dem Claviere einiges von seinen
                     Compositionen vor, u. Anderem auch das von ihm componirte <a class="preview persons A002030" href="">Voß’ische</a> Lied: 
                     „Sagt mir an, was schmunzelt ihr“, wobei Vergleichungen mit einer älteren Compostion von 
                     <span class="tei_hi_italic"><a class="preview persons A001762" href="">J. P. Schulz</a></span> angestellt wurden. 
-                    – Gegen Mitte des <span class="tei_date">September 1820</span> war <span class="tei_hi_italic"><a class="preview persons A002068" href="">Weber</a></span> 
+                    – Gegen Mitte des <span class="tei_date">September 1820</span> war <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> 
                     wieder zum Besuch in <span class="tei_hi_italic"><a class="preview places A130030" href="">Eutin</a></span>, und zwar in
                     Begleitung seiner beiden Brüder. 
-                    <span class="tei_add"><span class="tei_hi_italic"><a class="preview persons A002071" href="">Edmund</a></span> und <span class="tei_hi_italic"><a class="preview persons A002075" href="">Fritz</a></span>.<a class="noteMarker" id="backref-d10e409" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e409">‡</a></span> 
+                    <span class="tei_add"><span class="tei_hi_italic"><a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a></span> und <span class="tei_hi_italic"><a class="preview persons A002075" href="">Fritz</a></span>.<a class="noteMarker" id="backref-d10e409" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e409">‡</a></span> 
                     
                     Er gab hier, wo damals ein <a class="preview persons A000573" href=""><span class="tei_hi_underline1">Onkel</span></a> seines Freundes 
                     <a class="preview persons A000568" href=""><span class="tei_hi_underline1"><span class="tei_hi_italic">Anton</span></span> (<span class="tei_hi_italic">Bernhard</span>) 
@@ -544,8 +541,8 @@
                     <span class="tei_pb" title="Seitenumbruch"> | </span>ein Concert. Letzterer, von <span class="tei_hi_italic">Weber’s</span>Kommen, unterrichtet, hatte eine Hymne von dessen
                     Composition <span class="tei_add">
                         <a class="preview works A020015" href="">„In seiner Ordnung schafft der Herr“ op. 36</a><a class="noteMarker" id="backref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a><a class="noteMarker" id="backref-d10e442" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e442">‡</a></span>
-                    mit einem hiesigen Musikverein eingeübt, die sodann in gedachtem Concerte unter <span class="tei_hi_italic"><a class="preview persons A002068" href="">Weber’s</a></span> eigner Direction aufgeführt
-                    wurde. Alles war bezaubert von <span class="tei_hi_italic"><a class="preview persons A002068" href="">Weber’s</a></span>Liebenswürdigkeit. 
+                    mit einem hiesigen Musikverein eingeübt, die sodann in gedachtem Concerte unter <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a></span> eigner Direction aufgeführt
+                    wurde. Alles war bezaubert von <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber’s</a></span>Liebenswürdigkeit. 
                     Leider war ich damals verreist u. kann ich über seinen
                     derzeitigen Aufenthalt in <a class="preview places A130030" href="">Eutin</a> nichts weiter mittheilen.</p>
                                         <p>Übrigens sind mir aus der Zeit beider Besuche folgende schriftliche Denkmale zu
@@ -558,7 +555,7 @@
                     Heftes, <span class="tei_add">Der übrige Theil des Heftes mit 31 Liedern ist
                     verschollen; die darin enthaltenen, damals noch ungedruckten Lieder (theilweis
                     noch jetzt ungedruckten) sind durch Abschrift von mir rechtzeitig erhalten worden.
-                        <span class="tei_hi_italic"><a class="preview persons A000914" href="">F. W. J</a></span>.<a class="noteMarker" id="backref-d10e509" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e509">‡</a></span> überschrieben:
+                        <span class="tei_hi_italic"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. J</a></span>.<a class="noteMarker" id="backref-d10e509" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e509">‡</a></span> überschrieben:
                     <br />„32 <span class="tei_hi_italic">Lieder und Gesänge, Canons pp</span>.
                         <br />mit Begleitung des Claviers oder der Guitarre,
                         <br />componirt von <span class="tei_hi_italic">Carl Maria von Weber</span>. Vom
@@ -572,7 +569,7 @@
                         buchstäblich lautend wie folgt:</p>
                                         <p><a class="preview letters A041633" href=""><span class="tei_hi_underline1"><span class="tei_hi_italic">No</span> 1</span></a>: „Beharrlichkeit führt zum Ziel.“
                     <br /><span class="tei_hi_italic"><a class="preview places A130030" href="">Eutin</a></span> d. 13. <span class="tei_hi_italic">Sept</span>. 1820
-                    <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="">Carl Maria von Weber</a></span>.</p>
+                    <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a></span>.</p>
                                         <p><a class="preview letters A041634" href=""><span class="tei_hi_underline1"><span class="tei_hi_italic">No</span> 2</span></a>: 
                     „Der Mensch bleibt Mensch in Süd,
                         <br />Ost, West(en)<a class="noteMarker" id="backref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> oder Norden,
@@ -582,7 +579,7 @@
                     “
                     <span class="tei_pb" title="Seitenumbruch"> | </span>Bei Lesung dieser Zeilen erinnern Sie
                     <br />sich stets an die vergnügt und ange<span class="break_inWord">-</span><br />nehmen Stunden, wo die drei Brüder
-                    <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="">Carl Maria</a></span> und Bruder <span class="tei_hi_italic"><a class="preview persons A002071" href="">Edmund</a></span> zu kurze
+                    <br /><span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria</a></span> und Bruder <span class="tei_hi_italic"><a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a></span> zu kurze
                     <br />Zeit bei Ihnen in <a class="preview places A130030" href="">Eutin</a> waren und
                     <br />vorzüglich d. <span class="tei_date">13<span class="tei_hi_superscript">ten</span> Sept. 1820</span>.
                     <br />Eutin d. 13. <span class="tei_hi_italic">Sept</span>. 1820
@@ -603,13 +600,13 @@
                                         <p>Als die hiesige Liedertafel auf meinen Betrieb im Jahre 1853 zur Bezeichnung von <span class="tei_hi_italic">Weber’s</span> Geburtshaus eine gußeiserne
                     Gedächtnißtafel stiftete und am 12<span class="tei_hi_superscript">ten</span> Septemb. desselben
                     Jahres zu deren Einweihung ein Gesangfest feierte, hielt der Rector des hies.
-                    Gymnasiums <span class="tei_hi_italic"><a class="preview persons A005451" href="">Dr. Pansch</a></span> die <span class="tei_hi_underline1"><span class="preview biblio A112410" data-ref="">Festrede</span></span>, worin ein Abriß von <span class="tei_hi_italic"><a class="preview persons A002068" href="">Webers</a></span></p>
+                    Gymnasiums <span class="tei_hi_italic"><a class="preview persons A005451" href="">Dr. Pansch</a></span> die <span class="tei_hi_underline1"><span class="preview biblio A112410" data-ref="">Festrede</span></span>, worin ein Abriß von <span class="tei_hi_italic"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a></span></p>
                                         <p class="tei_closer textAlign-left">
                     <span class="tei_addSpan"></span>
                     Bis hieher geht das Manuscript. Die Fortsetzung liegt mir
                     nicht vor; vielleicht daß sie sich in <span class="tei_hi_italic"><a class="preview persons A002085" href="/exist/apps/WeGA-WebApp/de/A002085.html">Max von Weber’s</a></span> für die Biographie seines Vaters gesammelten Materialien
                     vorfindet, was ich glaube.
-                    <span class="tei_signed textAlign-right"><span class="tei_hi_italic"><a class="preview persons A000914" href="">F. W. Jähns</a></span></span>
+                    <span class="tei_signed textAlign-right"><span class="tei_hi_italic"><a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">F. W. Jähns</a></span></span>
                     <span class="tei_dateline textAlign-left"><span class="tei_hi_italic">Sept. 1874.</span></span>
                     <span id="closerEnd" class="tei_anchor"></span>
                 </p>
@@ -651,12 +648,12 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Weberiana Cl. V (Mappe XVIII), Abt. 4 B, Nr. 14 B</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_25841d22f182a705faf9daa9f4984544"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_79e13083854c6f4774e7d76b79eda816"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_25841d22f182a705faf9daa9f4984544">
+                                        <div class="collapse apparatus-details" id="source_79e13083854c6f4774e7d76b79eda816">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
-                                                        <li>Abschrift von <a class="preview persons A000914" href="">Friedrich Wilhelm Jähns</a> mit dessen Annotationen</li>
+                                                        <li>Abschrift von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Friedrich Wilhelm Jähns</a> mit dessen Annotationen</li>
                                                     </ul>
                                             
                                             <div>
@@ -725,7 +722,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e409" class="apparatus-link">7.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e409" data-title="Hinzufügung" data-counter="7" data-href="#d10e409"><span class="tei_lemma">„<span class="tei_hi_italic"><a class="preview persons A002071" href="">Edmund</a></span> und <span class="tei_hi_italic"><a class="preview persons A002075" href="">Fritz</a></span>.“</span>am Rand hinzugefügt</div>
+                                                <div class="apparatusEntry col-11" id="d10e409" data-title="Hinzufügung" data-counter="7" data-href="#d10e409"><span class="tei_lemma">„<span class="tei_hi_italic"><a class="preview persons A002071" href="/exist/apps/WeGA-WebApp/de/A002071.html">Edmund</a></span> und <span class="tei_hi_italic"><a class="preview persons A002075" href="">Fritz</a></span>.“</span>am Rand hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
@@ -758,19 +755,19 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_07" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_07"><span class="tei_lemma">„…  schafft der Herr op. 36“</span>Die Ergänzung von <a class="preview persons A000914" href="">Jähns</a> beruht auf einem Irrtum; im Konzert am <span class="tei_date">13. September 1820</span> in <a class="preview places A130030" href="">Eutin</a> erklang vielmehr der Schlusschor aus der <a class="preview works A020018" href="">Kantate Kampf und Sieg</a>.</div>
+                                                <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_07"><span class="tei_lemma">„…  schafft der Herr op. 36“</span>Die Ergänzung von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a> beruht auf einem Irrtum; im Konzert am <span class="tei_date">13. September 1820</span> in <a class="preview places A130030" href="">Eutin</a> erklang vielmehr der Schlusschor aus der <a class="preview works A020018" href="">Kantate Kampf und Sieg</a>.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_08" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_08" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_08"><span class="tei_lemma">„…  Mensch in Süd, Ost, West(en)“</span>Bei den rund geklammerten Ergänzungen dürfte es sich um Interpretationen von <a class="preview persons A000914" href="">Jähns</a> handeln.</div>
+                                                <div class="apparatusEntry col-11" id="C_08" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_08"><span class="tei_lemma">„…  Mensch in Süd, Ost, West(en)“</span>Bei den rund geklammerten Ergänzungen dürfte es sich um Interpretationen von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a> handeln.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_09" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_09" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_09"><span class="tei_lemma">„…  Weber gegenwärtig in Hamburg ansessig.“</span>Beim Namen, da das „F“ in ein „A“ verschlungen ist, Notiz von <a class="preview persons A000914" href="">Jähns</a>: (Fritz) (eigentlich Fridolin).</div>
+                                                <div class="apparatusEntry col-11" id="C_09" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#C_09"><span class="tei_lemma">„…  Weber gegenwärtig in Hamburg ansessig.“</span>Beim Namen, da das „F“ in ein „A“ verschlungen ist, Notiz von <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Jähns</a>: (Fritz) (eigentlich Fridolin).</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -799,7 +796,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A046006</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A046006</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -859,6 +856,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -917,22 +917,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

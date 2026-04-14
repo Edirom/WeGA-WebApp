@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Gottfried" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Bartlitz, Eveline" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"bittet im Auftrag der Freunde Webers: Mangold habe in London Webers vernachlässigtes Grab besucht u. mit dortigen Freunden angeregt, die Gebeine nach Dresden zu überführen; fragt, wie darüber wohl die Familie denke","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"an. Donnerstag, 14. August 1834","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045605","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A045605","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002078","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002078"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A045605/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A045605/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -362,10 +359,10 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A042809.html">1826-05-31</a>:  an  <a href="" class="preview A002068 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002078/Korrespondenz/A042809.html">1826-05-31</a>:  an  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522.html">1825-11-29</a>:  von  <a href="" class="preview A002068 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042522.html">1825-11-29</a>:  von  <a href="/exist/apps/WeGA-WebApp/de/A002068.html" class="preview A002068 persons">Weber</a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
@@ -387,8 +384,6 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002160" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A006039" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000213" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -396,6 +391,8 @@
                                     <input type="checkbox" name="options" value="A002062" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002078" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002085" /> <span title="Anwählen, um &#34;Weber, Max Maria von&#34; im Text zu markieren.">Weber, Max Maria von</span> 
                                 </label>
@@ -430,10 +427,10 @@
                <p class="teiLetter_salute">Wolgeborner
                   <br />Insonders hochzuverehrender <a class="preview persons A002160" href="">Herr Hofrath</a></p>
             </div>
-                                        <p>In Auftrag mehrer Freunde und Verehrer unseres verstorbenen <span class="tei_hi_underline1"><a class="preview persons A002068" href="">Weber</a></span> und aus besonderer Veranlaßung unseres hiesigen <a class="preview persons A006039" href="">Hofcapellmeisters Wilh. Mangold</a>, welcher bei seiner jüngsthinigen Anwesenheit in <a class="preview places A130011" href="">London</a> unseres verklärten <a class="preview persons A002068" href="">Freundes</a> Grab – oder vielmehr seinen, zwischen und unter anderen Särgen des gemeinen Kirchspiel-Gewolbes stehenden Sarg besuchte, – nehme ich mir die Freiheit <a class="preview persons A002160" href="">Sie, Verehrtester Herr</a>, durch folgende Mittheilung und Bitte in Anspruch zu nehmen.</p>
+                                        <p>In Auftrag mehrer Freunde und Verehrer unseres verstorbenen <span class="tei_hi_underline1"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a></span> und aus besonderer Veranlaßung unseres hiesigen <a class="preview persons A006039" href="">Hofcapellmeisters Wilh. Mangold</a>, welcher bei seiner jüngsthinigen Anwesenheit in <a class="preview places A130011" href="">London</a> unseres verklärten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Freundes</a> Grab – oder vielmehr seinen, zwischen und unter anderen Särgen des gemeinen Kirchspiel-Gewolbes stehenden Sarg besuchte, – nehme ich mir die Freiheit <a class="preview persons A002160" href="">Sie, Verehrtester Herr</a>, durch folgende Mittheilung und Bitte in Anspruch zu nehmen.</p>
                                         <p>	Wie mein Freund <a class="preview persons A006039" href="">Mangold</a> versichert, ist, bei der bereits vorstehend berührten Art u Weise, wie der uns theure Sarg aufgeschichtet und viele andere bereits über denselben geschichtet sind <a href="#fn1" id="backref-fn1" class="fn-ref">*)</a>  nicht zu zweifeln, daß der ganze Haufe binnen einiger Jahre morsch in sich zusammensinken, und dann keine Spur mehr von der Reliquie kenntlich auf zufinden sein wird.</p>
-                                        <p>	Mehre Verehrer <a class="preview persons A002068" href="">Webers</a>, namentlich in <a class="preview places A130011" href="">London</a> sich aufhaltende Teutsche haben nun dem <a class="preview persons A006039" href="">H. Mangold</a> die Idee geäußert <a class="preview persons A002068" href="">Webers</a> Gebeine von <a class="preview places A130011" href="">London</a> auf teutschen Boden heimführen <span class="tei_del">und</span><a class="noteMarker" id="backref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a>, in <a class="preview places A130003" href="">Dresden</a> beisetzen und ihm ein einfaches Denkmal setzen zu laßen. <a class="preview persons A006039" href="">Mangold</a> <span class="tei_del">ist</span><a class="noteMarker" id="backref-d10e79" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e79">‡</a>  hat die Idee mit Wärme aufgefaßt und schildert es als nicht unwahrscheinlich, dieselbe durch Subscription, blos unter Teutschen, zu Stande zu bringen.</p>
-                                        <p>	Eine Hauptrücksicht und Vorfrage scheint aber bei dieser Angelegenheit <span class="tei_hi_underline1">die</span>  sein zu müßen, aus welchem Gesichtspuncte die hinterlaßenen <a class="preview persons A002068" href="">Webers</a> die Sache betrachten, ob sie sie gerne sehen würden; – andere, dann erst weitere, würden sein: in wiefern die Idee in <a class="preview places A130003" href="">Dresden</a> überhaupt Anklang finden werde u. s. w.</p>
+                                        <p>	Mehre Verehrer <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a>, namentlich in <a class="preview places A130011" href="">London</a> sich aufhaltende Teutsche haben nun dem <a class="preview persons A006039" href="">H. Mangold</a> die Idee geäußert <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> Gebeine von <a class="preview places A130011" href="">London</a> auf teutschen Boden heimführen <span class="tei_del">und</span><a class="noteMarker" id="backref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a>, in <a class="preview places A130003" href="">Dresden</a> beisetzen und ihm ein einfaches Denkmal setzen zu laßen. <a class="preview persons A006039" href="">Mangold</a> <span class="tei_del">ist</span><a class="noteMarker" id="backref-d10e79" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e79">‡</a>  hat die Idee mit Wärme aufgefaßt und schildert es als nicht unwahrscheinlich, dieselbe durch Subscription, blos unter Teutschen, zu Stande zu bringen.</p>
+                                        <p>	Eine Hauptrücksicht und Vorfrage scheint aber bei dieser Angelegenheit <span class="tei_hi_underline1">die</span>  sein zu müßen, aus welchem Gesichtspuncte die hinterlaßenen <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> die Sache betrachten, ob sie sie gerne sehen würden; – andere, dann erst weitere, würden sein: in wiefern die Idee in <a class="preview places A130003" href="">Dresden</a> überhaupt Anklang finden werde u. s. w.</p>
                                         <p>	Darum erlaube ich mir an <a class="preview persons A002160" href="">Sie</a>, Verehrtester, die Bitte, mir über diese Angelegenheit Ihre und der <span class="preview persons A000213 A002085 A002062" data-ref=" /exist/apps/WeGA-WebApp/de/A002085.html ">Familie</span> Meinung und Ansichten gütigst mitzutheilen.</p>
                                         <p class="tei_closer textAlign-left">Mit ausgezeichneter Hochachtung zeichnend Ihr
                <span class="tei_segBlock textAlign-right"><span class="tei_supplied"><span class="brackets_supplied">[</span>erge<span class="brackets_supplied">]</span></span>benster D<span class="tei_supplied"><span class="brackets_supplied">[</span>iene<span class="brackets_supplied">]</span></span>r
@@ -493,9 +490,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. G. Weber 13</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_ef8d2d71947ba8c8b13788f3941f7034"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_3fa6fde3f0b7d9fb753ba9abecf6e160"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_ef8d2d71947ba8c8b13788f3941f7034">
+                                        <div class="collapse apparatus-details" id="source_3fa6fde3f0b7d9fb753ba9abecf6e160">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S. o. Adr.)</li>
@@ -572,7 +569,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045605</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045605</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -632,6 +629,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -690,22 +690,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Henselt, Adolf von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"bittet um Klärung von 2 Stellen in der d-Moll-Sonate, die in der Lisztschen Ausgabe bei Cotta anders als in den bekannten Ausgaben sind","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Adolf von Henselt an Friedrich Wilhelm Jähns in Berlin. Warmbrunn, Donnerstag, 5. September 1872","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043705","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003295/Korrespondenz/A043705","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A003295","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A003295"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -232,7 +230,7 @@
                             </li>
                             <li>
                                 <span>A043705</span> 
-                                    <span class="docStatus">in Bearbeitung</span>
+                                    <span class="docStatus">bearbeitet</span>
                                 
                             </li>
                         </ol>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A003295/Korrespondenz/A043705/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A003295/Korrespondenz/A043705/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -359,8 +357,6 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A003356" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000117" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -369,7 +365,13 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A006423" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A003295" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000326" /> <span title="Anwählen, um &#34;Cotta, Johann Friedrich&#34; im Text zu markieren.">Cotta, Johann Friedrich</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A000914" /> <span title="Anwählen, um &#34;Jähns, Friedrich Wilhelm&#34; im Text zu markieren.">Jähns, Friedrich Wilhelm</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -394,6 +396,8 @@
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130620" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
                         </div>
@@ -407,24 +411,24 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-            <p class="teiLetter_salute">Hochgeehrtester Herr!</p>
+            <p class="teiLetter_salute">Hochgeehrtester <a class="preview persons A000914" href="/exist/apps/WeGA-WebApp/de/A000914.html">Herr</a>!</p>
          </div>
                                         <p>erlauben Sie gütigst mir Ihre Meinung zu erbitten, in einer Sache in welcher nur Sie mir maßgebend seyn könnten.</p>
-                                        <p>In <span class="tei_hi_latintype"><span class="tei_del">op</span><a class="noteMarker" id="backref-d10e13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e13">‡</a></span> <a class="preview persons A002068" href="">Webers</a> <a class="preview works A020319" href=""><span class="tei_hi_latintype">D mol</span> Sonate</a> im langsamen Stück bei der ersten <span class="tei_hi_latintype">Recitando</span>  eine <span class="tei_hi_latintype">Lentando</span> Stelle im Bass hab ich bisher in allen Ausgaben so gefunden: 
+                                        <p>In <span class="tei_del">Weber</span><a class="noteMarker" id="backref-d10e15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e15">‡</a> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webers</a> <span class="tei_del"><span class="tei_hi_latintype">op</span></span><a class="noteMarker" id="backref-d10e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e21">‡</a> <a class="preview works A020319" href=""><span class="tei_hi_latintype">D mol</span> Sonate</a> im langsamen Stück bei der ersten <span class="tei_hi_latintype">Recitando</span>  ein<span class="tei_supplied"><span class="brackets_supplied">[</span>e<span class="brackets_supplied">]</span></span> <span class="tei_hi_latintype">Lentando</span> Stelle im Bass hab ich bisher in allen Ausgaben so gefunden: 
                <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2FersteRecitando.jpg/full/full/0/native.jpg"><img title="eine Lentando Stelle im Bass in allen Ausgaben" alt="eine Lentando Stelle im Bass in allen Ausgaben" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2FersteRecitando.jpg/full/,75/0/native.jpg" /></a></span>
-               <span class="tei_hi_latintype">ect</span>; u nun <span class="tei_pb" title="Seitenumbruch"> | </span> fand ich in <a class="preview persons A003356" href="">Lißts</a> <span class="tei_hi_latintype"><a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Cotta</a></span>’scher Ausgabe wohl so 
+               <span class="tei_hi_latintype">ect</span>; u nun <span class="tei_pb" title="Seitenumbruch"> | </span> fand ich in <span class="tei_del">L.</span><a class="noteMarker" id="backref-d10e50" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e50">‡</a> <a class="preview persons A003356" href="">Liszts</a> <span class="tei_hi_latintype"><a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Cotta</a></span>’scher Ausgabe wohl so 
                <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2FersteRecitando_Lissts.jpg/full/full/0/native.jpg"><img title="Lentando Stelle in Lißts Cotta’scher Ausgabe" alt="Lentando Stelle in Lißts Cotta’scher Ausgabe" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2FersteRecitando_Lissts.jpg/full/,75/0/native.jpg" /></a></span>
-               aber da ich von meiner Kindheit an mich in das erstere eingelebt u eingeliebt habe so <span class="tei_hi_latintype">genirt</span> mich das zweite /: ich versichre Sie daß diese Sachen mich heute in meinem, Alter von 58 Jahren manchmal noch ebenso glücklich als damals machen; wen schon sie, wen man sie mit <a class="preview persons A000117" href="">Beethoven</a>’ u <a class="preview persons A001362" href="">Mozart’schen</a> Sonaten zusammenhält nicht klassisch zu nennen sind, so sind sie aber gewiß auch <span class="tei_hi_underline1">Etwas</span> was die Andern nicht sind, <span class="tei_pb" title="Seitenumbruch"> | </span> u. so freue man sich <span class="tei_add tei_hi_superscript">doch<a class="noteMarker" id="backref-d10e68" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e68">‡</a></span> an dem was der liebe Gott einem Gutes u Schönes gegeben!:/</p>
-                                        <p>Um wieder auf die Sache zurückzukommen so mag wohl die <a class="preview persons A003356" href="">Lißtsche</a> Ausgabe auch berechtigt seyn, mir ist aber das 
+               aber da ich von meiner Kindheit an mich in das erstere eingelebt u eingeliebt habe so <span class="tei_hi_latintype">genirt</span> mich das zweite /: ich versichre Sie daß diese Sachen mich heute in meinem, Alter von 58 Jahren manchmal noch ebenso glücklich als damals machen; wen schon sie, wen man sie mit <a class="preview persons A000117" href="">Beethoven</a>’ u <a class="preview persons A001362" href="">Mozart’schen</a> Sonaten zusammenhält <span class="tei_del">hin</span><a class="noteMarker" id="backref-d10e76" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e76">‡</a> nicht klassisch zu nennen sind, so sind sie aber gewiß auch <span class="tei_hi_underline1">Etwas</span> was die Andern nicht sind, <span class="tei_pb" title="Seitenumbruch"> | </span> u. so freue man sich <span class="tei_add tei_hi_superscript">doch<a class="noteMarker" id="backref-d10e84" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e84">‡</a></span> an dem was der liebe Gott einem Gutes u Schönes gegeben! :/</p>
+                                        <p>Um wieder auf die Sache zurückzukommen so mag wohl die <a class="preview persons A003356" href="">Lisztsche</a> Ausgabe auch berechtigt seyn, mir <span class="tei_del">thu</span><a class="noteMarker" id="backref-d10e92" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e92">‡</a> ist aber das 
                <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2FLisstscheAusgabe.jpg/full/full/0/native.jpg"><img title="Lißtsche Ausgabe" alt="Lißtsche Ausgabe" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2FLisstscheAusgabe.jpg/full/,75/0/native.jpg" /></a></span>
-               gradezu wehthuend! gebe aber zu daß das meiste bei der Sache meine lange Bekanntschaft u namentlich meine Kindesliebe <span class="tei_del">dabei</span><a class="noteMarker" id="backref-d10e81" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e81">‡</a> thut; obwohl mein <span class="tei_pb" title="Seitenumbruch"> | </span> alter <a class="preview persons A006423" href="">Sechter</a> in <a class="preview places A130004" href="">Wien</a> gesagt hätte: „hier könn Sie mit <span class="tei_hi_latintype">G unisono</span> nur dann anfangen, wenn Sie so 
+               gradezu wehthuend! gebe aber zu daß das meiste bei der Sache meine lange Bekanntschaft u namentlich meine Kindesliebe <span class="tei_del">dabei</span><a class="noteMarker" id="backref-d10e100" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e100">‡</a> thut; obwohl mein <span class="tei_pb" title="Seitenumbruch"> | </span> alter <a class="preview persons A006423" href="">Sechter</a> in <a class="preview places A130004" href="">Wien</a> gesagt hätte: „hier könn Sie mit <span class="tei_hi_latintype">G unisono</span> nur dann anfangen, wenn Sie so 
                <span class="tei_notatedMusic"><a href="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2Fsechter.jpg/full/full/0/native.jpg"><img title="Vorschlag von Sechter in Wien" alt="Vorschlag von Sechter in Wien" src="https://weber-gesamtausgabe.de/Scaler/IIIF/%2Fletters%2FA0437xx%2FA043705%2Fsechter.jpg/full/,75/0/native.jpg" /></a></span>
-               geendet hätten, d. h. wenn vorher die Quinte nicht hörbar war, welche durch das <span class="tei_hi_latintype">G</span> zur 7<span class="tei_hi_superscript"><span class="tei_hi_latintype">me</span></span> wird.<span class="tei_supplied"><span class="brackets_supplied">[</span>“<span class="brackets_supplied">]</span></span> Ich glaube daß unser unsterblicher lieber <a class="preview persons A002068" href="">Wohlklang Weber</a>, vielleicht nicht so gedacht aber so gefühlt hat.</p>
-                                        <p class="tei_closer textAlign-left">Verzeihen Sie hochgeehrter Herr meine Zudringlichkeit im Interesse der Sache, u genehmigen Sie den Ausdruck höchster Werthschätzung Ihres gehorsamen Dieners <span class="tei_segBlock textAlign-right">
-               <span class="tei_hi_latintype">Ad Henselt</span></span> <span class="tei_dateline textAlign-left">Warmbrunn 5 Sept 72.</span>
+               geendet hätten, d. h. wenn vorher die Quinte nicht hörbar war, welche durch das <span class="tei_hi_latintype">G</span> zur 7<span class="tei_hi_superscript"><span class="tei_hi_latintype">me</span></span> wird.<span class="tei_supplied"><span class="brackets_supplied">[</span>“<span class="brackets_supplied">]</span></span> Ich glaube daß unser unsterblicher lieber <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Wohlklang Weber</a>, vielleicht nicht so gedacht aber so gefühlt hat.</p>
+                                        <p class="tei_closer textAlign-left">Verzeihen Sie hochgeehrter Herr m<a class="noteMarker" id="backref-tC01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC01">‡</a>eine Zudringlichkeit im Interesse der Sache, u genehmigen Sie den Ausdruck höchster Werthschätzung Ihres gehorsamen Dieners <span class="tei_segBlock textAlign-right">
+               <span class="tei_hi_latintype"><a class="preview persons A003295" href="">Ad Henselt</a></span></span> <span class="tei_dateline textAlign-left"><a class="preview places A130620" href="">Warmbrunn</a> 5 Sept 72.</span>
             </p>
                                         <div class="tei_postscript">
-                                            <p>Wenn Sie die Güte haben Sich der Mühe einer Antwort zu unterziehen so wäre meine Adresse Warmbrunn in Schlesien.</p>
+                                            <p><a class="noteMarker" id="backref-tC02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#tC02">‡</a>Wenn Sie die Güte haben Sich der Mühe einer Antwort zu <span class="tei_pb" title="Seitenumbruch"> | </span> unterziehen so wäre meine Adresse <a class="preview places A130620" href="">Warmbrunn</a> in Schlesien.</p>
                                         </div>
                                         <p class="clearer"></p>
                                     </div>
@@ -472,9 +476,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. A. Henselt 20</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_01dc3a61172cb88a1995898dfd67bdad"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_16af85e4705cbb71337e3bb5f790a1b0"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_01dc3a61172cb88a1995898dfd67bdad">
+                                        <div class="collapse apparatus-details" id="source_16af85e4705cbb71337e3bb5f790a1b0">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S. o. Adr.)</li>
@@ -491,7 +495,7 @@
                                                             
                                                             <span class="biblio-entry book"><span class="author">Gebhard Kindl</span>, <span class="title">Adolph von Henselts Briefe.  Erstausgabe des im Henselt-Archiv des Stadtmuseums Schwabach gesammelten Briefwechsels von Adolph und Rosalie Henselt. Transliteriert von Gebhard und Ursula Kindl</span> (<span><span class="seriesTitle">Schriftenreihe des Stadtmuseums Schwabach</span>, Bd. 8</span>), <span class="placeNYear">Schwabach 2010</span>, S. 374–375</span>
                                                               
-                                                            <div class="collapse" id="source_7463b3e0f3d551b2003084fb7d05b89d">
+                                                            <div class="collapse" id="source_8e0056ad2839a0fb74d41cadfc24d625">
                                                                 
                                                             </div>
                                                         </div>
@@ -516,20 +520,56 @@
                                     <ul class="apparatus textConstitution">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e13" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e13" data-title="Löschung" data-counter="1" data-href="#d10e13"><span class="tei_lemma">„op“</span>überschrieben</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e15" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e15" data-title="Löschung" data-counter="1" data-href="#d10e15"><span class="tei_lemma">„Weber“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e68" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e68" data-title="Hinzufügung" data-counter="2" data-href="#d10e68"><span class="tei_lemma">„doch“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e21" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e21" data-title="Löschung" data-counter="2" data-href="#d10e21"><span class="tei_lemma">„<span class="tei_hi_latintype">op</span>“</span>durchgestrichen</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e81" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e81" data-title="Löschung" data-counter="3" data-href="#d10e81"><span class="tei_lemma">„dabei“</span>überschrieben</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e50" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e50" data-title="Löschung" data-counter="3" data-href="#d10e50"><span class="tei_lemma">„L.“</span>durchgestrichen</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e76" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e76" data-title="Löschung" data-counter="4" data-href="#d10e76"><span class="tei_lemma">„hin“</span>durchgestrichen</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e84" class="apparatus-link">5.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e84" data-title="Hinzufügung" data-counter="5" data-href="#d10e84"><span class="tei_lemma">„doch“</span>über der Zeile hinzugefügt</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e92" class="apparatus-link">6.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e92" data-title="Löschung" data-counter="6" data-href="#d10e92"><span class="tei_lemma">„thu“</span>durchgestrichen</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e100" class="apparatus-link">7.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e100" data-title="Löschung" data-counter="7" data-href="#d10e100"><span class="tei_lemma">„dabei“</span>überschrieben</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-tC01" class="apparatus-link">8.</a></div>
+                                                <div class="apparatusEntry col-11" id="tC01" data-title="Textkonstitution" data-counter="8" data-href="#tC01"><span class="tei_lemma">„…  Verzeihen Sie hochgeehrter Herr m“</span>d überschrieben mit m</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-tC02" class="apparatus-link">9.</a></div>
+                                                <div class="apparatusEntry col-11" id="tC02" data-title="Textkonstitution" data-counter="9" data-href="#tC02"><span class="tei_lemma">„… “</span>quer zur Schreibrichtung am Rand von Bl. 2v und 2r notiert:</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -559,7 +599,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043705</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A043705</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -619,6 +659,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -677,22 +720,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

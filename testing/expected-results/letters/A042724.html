@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Privates; über gemeinsame Bekannte in Dresden; bedauert Einstellung der dortigen Oratorienaufführungen; Tagebuch 24.-26. März: Arbeit am Oberon (Rondo Braham, Cavatine Reiza); Besuche, Hustenanfall und Rat von Dr. Savory; Theaterbesuche; über den falschen Oberon am Drury Lane; weitere Freischütz-Konzerte sind geplant","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Caroline von Weber in Dresden. London, Montag, 27. und Dienstag, 28. März 1826 (Nr. 14)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042724","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042724","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Privates; über gemeinsame Bekannte in Dresden; bedauert Einstellung der dortigen Oratorienaufführungen; Tagebuch 24.-26. März: Arbeit am Oberon (Rondo Braham, Cavatine Reiza); Besuche, Hustenanfall und Rat von Dr. Savory; Theaterbesuche; über den falschen Oberon am Drury Lane; weitere Freischütz-Konzerte sind geplant","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Caroline von Weber in Dresden. London, Montag, 27. und Dienstag, 28. März 1826 (Nr. 14)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042724","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042724","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -224,7 +222,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -253,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +298,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042724/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042724/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042724/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -363,7 +361,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042687.html">1826-02-09</a>:  an  <span class="noDataFound">Liederkreis</span>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042657.html">1826-02-13</a>:  an  <a href="" class="preview A001896 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042706.html">1826-03-04</a>:  von  <a href="" class="preview A000213 persons"></a>
@@ -372,7 +370,7 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042771.html">1826-05-02</a>:  an  <a href="" class="preview A001693 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042768.html">1826-05-02</a>:  an  <a href="" class="preview A000213 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042739.html">1826-04-14</a>:  von  <a href="" class="preview A000213 persons"></a>
@@ -394,6 +392,9 @@
                                     <h4>Folgend</h4>
                                     <ul>
                                         <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042768.html">1826-05-02</a>:  an  <a href="" class="preview A000213 persons"></a>
+                                        </li>
+                                            <li>
                                             <a href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042739.html">1826-04-14</a>:  von  <a href="" class="preview A000213 persons"></a>
                                         </li>
                                     </ul>
@@ -462,7 +463,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A009368" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002085" /> <span title="Anwählen, um &#34;Weber, Max Maria von&#34; im Text zu markieren.">Weber, Max Maria von</span> 
                                 </label>
@@ -484,8 +485,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020500" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A020715" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A020040" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
@@ -501,6 +500,12 @@
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130011" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131039" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A131361" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130898" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
                         </div>
@@ -547,10 +552,10 @@
                   <span class="tei_hi_latintype">März</span> 1826. Abends ½ 7 Uhr.</span>
             </div>
                                         <p>Wie ich von der Probe
-               <span class="tei_subst"><span class="tei_add">um</span><a class="noteMarker" id="backref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">‡</a></span> 3 Uhr nach Hause kam fand ich deinen lieben <span class="preview letters A042713" data-ref=""><span class="tei_hi_latintype">No:</span>
-                  <span class="tei_choice"><span class="tei_sic">6</span><a class="noteMarker" id="backref-d10e70" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e70">‡</a></span> vom 15<span class="tei_hi_superscript">t</span> und 16<span class="tei_hi_superscript">t</span></span> wie durchflog ich ihn Sehnsuchtvoll um zu sehen ob es schon Antwort
+               <span class="tei_subst"><span class="tei_add">um</span><a class="noteMarker" id="backref-d10e57" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e57">‡</a></span> 3 Uhr nach <a class="preview places A131039" href="">Hause</a> kam fand ich deinen lieben <span class="preview letters A042713" data-ref=""><span class="tei_hi_latintype">No:</span>
+                  <span class="tei_choice"><span class="tei_sic">6</span><a class="noteMarker" id="backref-d10e73" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e73">‡</a></span> vom 15<span class="tei_hi_superscript">t</span> und 16<span class="tei_hi_superscript">t</span></span> wie durchflog ich ihn Sehnsuchtvoll um zu sehen ob es schon Antwort
                auf <a class="preview letters A042707" href="">meinen vom 7<span class="tei_hi_superscript">t</span></a>
-               wäre, ach, leider nein! Doch hoffe ich du <span class="tei_add tei_hi_superscript">hast<a class="noteMarker" id="backref-d10e87" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e87">‡</a></span> 1 oder 2 Tage
+               wäre, ach, leider nein! Doch hoffe ich du <span class="tei_add tei_hi_superscript">hast<a class="noteMarker" id="backref-d10e91" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e91">‡</a></span> 1 oder 2 Tage
                nach Abgang deines Briefes, meinen erhalten, und schreibst mir wohl in der ersten
                Freude gleich wieder, so daß ich in ein paar Tagen auch wieder auf einen Brief hoffen
                kann. heute ist der gefürchtete Tag, der aber dir auch ruhig vergehen wird, da du aus
@@ -576,7 +581,7 @@
                Kerl hättest zwischen 2 Feuern wahrlich zu viel zu leiden gehabt. die gute JahresZeit
                   wir<span class="tei_supplied"><span class="brackets_supplied">[</span>d<span class="brackets_supplied">]</span></span> der guten <a class="preview persons A000214" href="">Mutter</a> auch bald wieder zu ihrer Gesundheit helfen.       Mit Freuden höre ich daß du fleißig spazierst, und das du es
                kannst, ist mir eine große Beruhigung, und das Wohlbekomen, ist natürlich. Ihr
-               glüklichen Leute habt schönes Wetter; wir noch immer Schnee, <span class="tei_subst"><span class="tei_add">H</span><a class="noteMarker" id="backref-d10e178" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e178">‡</a></span>agel, Sturm, und entsezlich kalt. mein Kamin lodert den ganzen Tag, und ich
+               glüklichen Leute habt schönes Wetter; wir noch immer Schnee, <span class="tei_subst"><span class="tei_add">H</span><a class="noteMarker" id="backref-d10e182" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e182">‡</a></span>agel, Sturm, und entsezlich kalt. mein Kamin lodert den ganzen Tag, und ich
                bin sein intimer Freund geworden.      Auch ich <span class="tei_hi_underline1">lobe dich</span> von Herzen daß du so brav bist und
                verständig. <a class="preview persons A000570" href="">Fürstenaus Frau</a> jammert entsezlich
                so lange keine Nachricht zu haben, aber das ist ja nicht anders <span class="tei_hi_underline1">möglich</span>, wenn ihr nur ein bißel rechnen könnt; aber wir haben Euch
@@ -591,9 +596,9 @@
                sich sehr langsam erholt und sehr schwach ist. Es ist doch mein ganz eigener Stern
                daß ich nichts durch die Großen dieser Erde erhalten soll, sondern alles eigenem
                Fleiße, und harter Anstrengung verdanken soll. — — Nun zu meinen Berichten. d: 24<span class="tei_hi_superscript">t</span> um 5 Uhr mit Mm’e <span class="tei_hi_latintype"><a class="preview persons A000273" href="">Coradori</a></span> gesungen<a class="noteMarker" id="backref-C_003" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_003">*</a>.
-               Mittag zu Hause. Dann wieder gearbeitet, und <a class="preview works A020045" href=""><span class="tei_hi_latintype">Rondo</span></a> im 3<span class="tei_hi_superscript">t</span> Akt für <span class="tei_hi_latintype"><a class="preview persons A000211" href="">Braham</a></span> vollendet<a class="noteMarker" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a>. Den Abend,
+               Mittag zu <a class="preview places A131039" href="">Hause</a>. Dann wieder gearbeitet, und <a class="preview works A020045" href=""><span class="tei_hi_latintype">Rondo</span></a> im 3<span class="tei_hi_superscript">t</span> Akt für <span class="tei_hi_latintype"><a class="preview persons A000211" href="">Braham</a></span> vollendet<a class="noteMarker" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a>. Den Abend,
                und d: 25<span class="tei_hi_superscript">t</span> war mein Husten etwas grob, und quälte mich
-               recht krampfhaft den ganzen Tag. von 1-4 hatte ich <span class="tei_hi_latintype">Orchester</span> Pr: von <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span>. dann Mittag bei Mad <a class="preview persons A000995" href=""><span class="tei_hi_latintype">Kemble</span></a>. um 10 Uhr nach Hause. <span class="tei_hi_latintype"><a class="preview persons A001835" href="">Smart</a></span> wollte durchaus ich
+               recht krampfhaft den ganzen Tag. von 1-4 hatte ich <span class="tei_hi_latintype">Orchester</span> Pr: von <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span>. dann Mittag bei Mad <a class="preview persons A000995" href=""><span class="tei_hi_latintype">Kemble</span></a>. um 10 Uhr nach <a class="preview places A131039" href="">Hause</a>. <span class="tei_hi_latintype"><a class="preview persons A001835" href="">Smart</a></span> wollte durchaus ich
                sollte einen Arzt consultiren, was ich natürlich abschlug, da ich meinen Husten
                kenne. <span class="tei_hi_underline1">d: 26<span class="tei_hi_superscript">t</span></span> kam aber
                der berühmte Chemiker und Arzt <span class="tei_hi_latintype"><a class="preview persons A001652" href="">Severin</a></span> zufällig mir eine <span class="tei_hi_latintype">Visite</span> zu
@@ -606,7 +611,7 @@
                und recht <span class="tei_hi_underline2andMore">gut zu leben</span> und mich ordentlich zu <span class="tei_hi_underline1">nähren</span>. eine Stunde darauf schikte er die Pillen.
                täglich 3 zu nehmen. war es nun Zufall daß der Husten ausgetobt hatte oder die eine
                Pille die ich verzehrte, kurz von 4 Uhr an hatte ich vollkommene Ruhe, <span class="tei_hi_latintype">dinirte</span> recht ordentlich bei <span class="tei_hi_latintype"><a class="preview persons A001131" href="">Latour</a></span>, hustete gar nicht, schlief ganz
-               ungestört, und habe eben so heute den Tag verbracht. Gestern die <span class="tei_hi_latintype"><a class="preview works A020045" href="">Cavatine</a></span> der <span class="tei_hi_latintype"><span class="8210110512297">Reiza</span></span> vollendet<a class="noteMarker" id="backref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">*</a>; heute Probe vom <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span> von 11–3 Uhr gehabt, der schon recht schön
+               ungestört, und habe eben so heute den Tag verbracht. Gestern die <span class="tei_hi_latintype"><a class="preview works A020045" href="">Cavatine</a></span> der <span class="tei_hi_latintype"><span class="8210110512297">Reiza</span></span> vollendet<a class="noteMarker" id="backref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">*</a>; heute Probe vom <span class="tei_hi_latintype"><a class="preview works A020045" href="">Oberon</a></span> von 11–3 Uhr gehabt<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>, der schon recht schön
                geht, und bin munter und frisch wie ein Fisch im Waßer. huste fast gar nicht, und mit
                sehr leichtem reifen Auswurf.      das ist nun wieder
                eine andere Lesart, der Homöopathie sehr entgegen gesezt. — Wer hat nun Recht? Gott
@@ -614,7 +619,7 @@
                für mich. — — Das Selzer Waßer mit Milch billigte übrigens <span class="tei_hi_latintype"><a class="preview persons A001652" href="">Severin</a></span> auch sehr.      Wenn du also die Männe wieder siehst, hast du einen Hasen mehr im
                Hauß, denn seit heute Morgen trage ich so ein Pelzel auf der bloßen Brust. jezt gehe
                ich in den <span class="tei_hi_underline1">falschen</span>
-               <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A021187" href="">Oberon</a></span></span>, in <span class="tei_hi_latintype">Drurylane</span>. werde
+               <span class="tei_hi_underline1"><span class="tei_hi_latintype"><a class="preview works A021187" href="">Oberon</a></span></span>, in <a class="preview places A131361" href=""><span class="tei_hi_latintype">Drurylane</span></a>. werde
                dir Morgen davon erzählen<a class="noteMarker" id="backref-C_009" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_009">*</a>. Die Zeitungen schimpfen
                mörderlich auf dieses Betragen<a class="noteMarker" id="backref-C_008" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_008">*</a>. ich bin der
                Mann der Nation. gute Nacht geliebtes Leben. gute gute Nacht. + + +</p>
@@ -622,28 +627,28 @@
                                     <div class="writingSession">
                                         <p><span class="tei_date"><span class="tei_hi_underline1">d: 28<span class="tei_hi_superscript">t</span> Morgens 8 Uhr</span></span>.
                        Guten Morgen, mein treues <a class="preview persons A000213" href="">Herz</a>! hast du gut geschlafen, ich habe es gethan, und ohne
-               Husten.      das war ein dummes Ding der <span class="tei_hi_latintype"><a class="preview works A021187" href="">Oberon</a></span> in <span class="tei_hi_latintype">Drurylane</span>, einige schöne Dekorationen, und prachtvolle
+               Husten.      das war ein dummes Ding der <span class="tei_hi_latintype"><a class="preview works A021187" href="">Oberon</a></span> in <a class="preview places A131361" href=""><span class="tei_hi_latintype">Drurylane</span></a>, einige schöne Dekorationen, und prachtvolle
                Garderobe ausgenommen<span class="tei_supplied"><span class="brackets_supplied">[</span>.<span class="brackets_supplied">]</span></span> die Szenenfolge ohne alles Intereße wie
                zusammengewürfelt, und herzlich schlecht dargestellt, besonders die Musik elend, <span class="tei_hi_latintype">Ouverture</span> aus der <span class="tei_hi_latintype"><a class="preview works A020551" href="">Lodoiska</a></span> von <span class="tei_hi_latintype"><a class="preview persons A000287" href="">Cherubini</a></span>, einige Chöre aus dem <span class="tei_hi_underline1"><a class="preview works A020500" href="">OpferFest</a></span>. und
                Balletmusik. auffallend war mir blos die Szene wo das ganze Theater ein stürmisches
                Meer vorstellt,<span class="tei_pb" title="Seitenumbruch"> | </span>mitten darauf die Trümmer eines Schiffes wo die Türken endlich
                   <span class="tei_hi_latintype"><span class="72117111110">Huon</span></span> und <span class="tei_hi_latintype"><span class="651099711010097">Amanda</span></span> ins Waßer werfen. das
-               war vortrefflich, und dann am Ende das Heer <span class="6732753297114108321001011153271114111223101110"><span class="tei_subst"><span class="tei_add">K</span><a class="noteMarker" id="backref-d10e424" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e424">‡</a></span>arl des Großen</span>, vorn lauter lebende Ritter, an die sich
-               täuschend<a class="noteMarker" id="backref-thC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#thC_01">‡</a> berechne<span class="tei_subst"><span class="tei_add">t</span><a class="noteMarker" id="backref-d10e437" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e437">‡</a></span> eine gemahlte unabsehbare Reihe anschloß, der Glanz der Waffen transparent
+               war vortrefflich, und dann am Ende das Heer <span class="6732753297114108321001011153271114111223101110"><span class="tei_subst"><span class="tei_add">K</span><a class="noteMarker" id="backref-d10e451" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e451">‡</a></span>arl des Großen</span>, vorn lauter lebende Ritter, an die sich
+               täuschend<a class="noteMarker" id="backref-thC_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#thC_01">‡</a> berechne<span class="tei_subst"><span class="tei_add">t</span><a class="noteMarker" id="backref-d10e464" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e464">‡</a></span> eine gemahlte unabsehbare Reihe anschloß, der Glanz der Waffen transparent
                kaum zu unterscheiden von dem wirklichen. dann einige phantastische Geister Kostüme
                mit mehrerley Folio Arten bekleidet, und in der
                   <span class="841051169711010597">Titania</span> Feen Garten solche große bewegliche Vögel,
                Pfauen, Ungeheuer. Kolibris in den glänzendsten Farben wirklich zauberisch.      Manches wurde aplaudirt, viel gezischt und gepfiffen.
                Kurz das Ganze lief ohne alle Wirkung ab, und kann keinen Schaden thun. nach 8 Uhr
                fuhren wir ins Theater, da aber <span class="tei_hi_latintype"><a class="preview works A021187" href="">Oberon</a></span> in 2 Akten nur ein Nachspiel ist, so sahen wir noch 1 ½
-               Akt von <span class="tei_hi_latintype"><a class="preview works A020715" href="">Benjowsky</a></span>, nach
-                  <a class="preview persons A001056" href="">Kozebue</a>, aber ganz verändert. Das Ganze dauerte
+               Akt von <span class="tei_hi_latintype"><span class="66101110106111119115107121">Benjowsky</span></span>, nach
+               <a class="preview persons A001056" href="">Kozebue</a>, aber ganz verändert<a class="noteMarker" id="backref-note04" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note04">*</a>. Das Ganze dauerte
                hübsch lange, <span class="tei_hi_underline1">bis 1 Uhr</span>. ist das nicht schreklich? so
                von 7 bis 1, sage <span class="tei_hi_underline1">6 volle</span> Stunden im Theater
                sizzen?</p>
                                         <p class="inlineEnd">Nun lebe wohl, geliebtes Leben, muß arbeiten. Morgen dirigire ich zur Abwechslung
                wieder einmal eine Auswahl aus dem <a class="preview works A020040" href="">Freyschützen</a>
-               als <span class="tei_hi_latintype">Concert</span> in <span class="tei_hi_latintype">CoventGarden</span><a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>,
+               als <span class="tei_hi_latintype">Concert</span> in <span class="tei_hi_latintype"><a class="preview places A130898" href="">CoventGarden</a></span><a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>,
                Mittwoch, Donnerstag und Freitag, das sind wieder 75 £. ja so, ich wollte dir nicht
                mehr vom Gelde berichten; da sieht man was die Gewohnheit thut. — sollte Morgen nicht
                ein Briefel von der <a class="preview persons A000213" href="">Mukkin</a> kommen? habe so eine
@@ -654,7 +659,7 @@
                   <span class="tei_hi_underline2andMore">alte Lied</span>. Gott segne Euch alle<br />bleibt gesund
                und heiter und behaltet lieb, Euren nur
                <span class="tei_segBlock textAlign-right">in Euch lebenden treuen<br />
-                  <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl</a></span>.</span></p>
+                  <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl</a></span>.</span></p>
                                         <div class="tei_postscript">
                                             <p><span class="tei_supplied"><span class="brackets_supplied">[</span>im Kußsymbol:<span class="brackets_supplied">]</span></span> Millionen<br />gute Bußen.</p>
                                         </div>
@@ -709,9 +714,9 @@
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz,
                      Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. C. M. v. Weber 221</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_1de0c4f5cbd02b4dd89ed8837e4d2362"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_b958318ed352c2064ce1d60b1999f610"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_1de0c4f5cbd02b4dd89ed8837e4d2362">
+                                        <div class="collapse apparatus-details" id="source_b958318ed352c2064ce1d60b1999f610">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (4 b. S. einschl. Adr.)</li>
@@ -734,7 +739,7 @@
                                                             
                                                             <span>ED: Reise-Briefe 1823/1826, S. l30–135</span>
                                                               
-                                                            <div class="collapse" id="source_218bf6aea8466655d7fda73f32e341a3">
+                                                            <div class="collapse" id="source_158ca3fec9ea9db843297d867bcd7b42">
                                                                 
                                                             </div>
                                                         </div>
@@ -772,20 +777,20 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e87" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e87" data-title="Hinzufügung" data-counter="2" data-href="#d10e87"><span class="tei_lemma">„hast“</span>über der Zeile hinzugefügt</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e91" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e91" data-title="Hinzufügung" data-counter="2" data-href="#d10e91"><span class="tei_lemma">„hast“</span>über der Zeile hinzugefügt</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e178" class="apparatus-link">3.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e178" data-title="Ersetzung" data-counter="3" data-href="#d10e178"><span class="tei_lemma">„<span class="tei_add">H</span>“</span>„S“ überschrieben mit „<span class="tei_add">H</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e182" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e182" data-title="Ersetzung" data-counter="3" data-href="#d10e182"><span class="tei_lemma">„<span class="tei_add">H</span>“</span>„S“ überschrieben mit „<span class="tei_add">H</span>“</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e424" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e424" data-title="Ersetzung" data-counter="4" data-href="#d10e424"><span class="tei_lemma">„<span class="tei_add">K</span>“</span>„C“ überschrieben mit „<span class="tei_add">K</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e451" class="apparatus-link">4.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e451" data-title="Ersetzung" data-counter="4" data-href="#d10e451"><span class="tei_lemma">„<span class="tei_add">K</span>“</span>„C“ überschrieben mit „<span class="tei_add">K</span>“</div>
                                             </div>
                                         </li>
                                         <li>
@@ -796,8 +801,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e437" class="apparatus-link">6.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e437" data-title="Ersetzung" data-counter="6" data-href="#d10e437"><span class="tei_lemma">„<span class="tei_add">t</span>“</span>„d“ überschrieben mit „<span class="tei_add">t</span>“</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e464" class="apparatus-link">6.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e464" data-title="Ersetzung" data-counter="6" data-href="#d10e464"><span class="tei_lemma">„<span class="tei_add">t</span>“</span>„d“ überschrieben mit „<span class="tei_add">t</span>“</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -805,8 +810,8 @@
                                     <ul class="apparatus commentary">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e70" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="d10e70" data-title="sic" data-counter="1" data-href="#d10e70"><span class="tei_lemma">„<span class="tei_sic">6</span>“</span>recte  „<span class="tei_corr">7</span>“.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e73" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e73" data-title="sic" data-counter="1" data-href="#d10e73"><span class="tei_lemma">„<span class="tei_sic">6</span>“</span>recte  „<span class="tei_corr">7</span>“.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -835,7 +840,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_004" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_004" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_004"><span class="tei_lemma">„…  t Akt für Braham vollendet“</span>Vgl. Kommentare in den Briefen von
+                                                <div class="apparatusEntry col-11" id="C_004" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_004"><span class="tei_lemma">„…  t Akt für Braham vollendet“</span><span class="tei_hi_italic">Oberon</span>, Instrumentierung des Rondo Nr. 20; vgl. Kommentare in den Briefen von
                   Weber an seine Frau Caroline vom <a class="preview letters A042716" href="">20./21. März</a>
                   sowie <a class="preview letters A042719" href="">23./24. März 1826</a>.</div>
                                             </div>
@@ -849,24 +854,33 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_009" class="apparatus-link">7.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_009" data-title="Einzelstellenerläuterung" data-counter="7" data-href="#C_009"><span class="tei_lemma">„…  werde dir Morgen davon erzählen“</span>Vgl.
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note03" class="apparatus-link">7.</a></div>
+                                                <div class="apparatusEntry col-11" id="note03" data-title="Einzelstellenerläuterung" data-counter="7" data-href="#note03"><span class="tei_lemma">„…  Oberon von 11–3 Uhr gehabt“</span>Laut <a class="preview diaries A063485" href="">Tagebuch</a> Orchesterprobe.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_009" class="apparatus-link">8.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_009" data-title="Einzelstellenerläuterung" data-counter="8" data-href="#C_009"><span class="tei_lemma">„…  werde dir Morgen davon erzählen“</span>Vgl.
                   Passage in selben Brief unten unter 28. März.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_008" class="apparatus-link">8.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_008" data-title="Einzelstellenerläuterung" data-counter="8" data-href="#C_008"><span class="tei_lemma">„…  schimpfen mörderlich auf dieses Betragen“</span>Vgl.
-                  Rezensionen in <span class="tei_hi_italic">The Times</span> Nr. 12926 (28. März 1826), S. 2,
-                  Sp. F sowie <span class="tei_hi_italic">The Theatrical Observer</span>; <span class="tei_hi_italic">and
-                     Daily Bills of the Play</span> am 28. März 1826 (Nr. 1344).</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_008" class="apparatus-link">9.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_008" data-title="Einzelstellenerläuterung" data-counter="9" data-href="#C_008"><span class="tei_lemma">„…  schimpfen mörderlich auf dieses Betragen“</span>Vgl. dazu u. a. die <a class="preview writings A033394" href="">Stellungnahme</a> in der <span class="tei_hi_italic">London Literary Gazette</span> vom 25. März 1826; später ebenso die Rezensionen in  <span class="tei_hi_italic">The Times</span> Nr. 12926 (28. März 1826), S. 2, Sp. F sowie <span class="tei_hi_italic">The Theatrical Observer</span>; <span class="tei_hi_italic">and Daily Bills of the Play</span> am 28. März 1826 (Nr. 1344).</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">9.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="9" data-href="#note02"><span class="tei_lemma">„…  Freyschützen als Concert in CoventGarden“</span>Die Aufführung fiel wegen Krankheit
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">10.</a></div>
+                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="10" data-href="#note04"><span class="tei_lemma">„…  Kozebue , aber ganz verändert“</span>Kotzebues <span class="tei_hi_italic"><a class="preview works A020715" href="">Graf Benjowsky</a></span> bildete die Vorlage zum dreiaktigen „Operatic Play“ <span class="tei_hi_italic">Benyowsky, or The Exiles of Kamschatka</span> von James Kenney mit Musik von <a class="preview persons A00149A" href="">Ch. E. Horn</a>, <a class="preview persons A000316" href="">Th. Cooke</a>, <a class="preview persons A009937" href="">M. Kelly</a>, <a class="preview persons A001187" href="">B. Livius</a> und <span class="741111041103283116101118101110115111110">John Stevenson</span> (Premiere am Drury Lane Theatre bereits am 16. März 1826). Zur Besetzung an diesem Abend (u. a. mit dem Komponisten <a class="preview persons A00149A" href="">Ch. E. Horn</a> als <span class="7511111497115116111">Korasto</span>) vgl. <span class="tei_hi_italic">The Theatrical Observer; and Daily Bills of the Play</span>, Nr. 1343 (27. März 1826).</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">11.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="11" data-href="#note02"><span class="tei_lemma">„…  Freyschützen als Concert in CoventGarden“</span>Die Aufführung fiel wegen Krankheit
                   von <a class="preview persons A001448" href="">M. A. Paton</a>
                aus.</div>
                                             </div>
@@ -897,7 +911,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042724</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A042724</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -957,6 +971,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1015,22 +1032,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

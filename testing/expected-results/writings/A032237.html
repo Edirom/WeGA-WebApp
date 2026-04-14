@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl August Böttiger" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Ziegler, Frank" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Festproduktionen anlässlich der Hochzeit von Prinz Johann von Sachsen mit Prinzessin Amalie Auguste von Bayern im November 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032237","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000194/Schriften/A032237","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000194","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000194"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A032237/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A032237/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000194/Schriften/A032237/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -369,8 +366,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001339" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001959" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001644" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -398,6 +393,8 @@
                                     <input type="checkbox" name="options" value="A001045" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000889" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -427,6 +424,8 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130187" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130698" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130063" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130003" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -445,14 +444,14 @@
                                         <h2 class="docHeader textAlign-left">Empfang der Kön. Baierischen Prinzessin <a class="preview persons A006425" href="">Amalie</a> in <span class="tei_region">Sachsen</span>.</h2>
                                         <p><span>[…]</span></p>
                                         <p>Sonntags, am 24 Nov., wurden in allen Kirchen besondere Dankgebete dargebracht und der Ambrosianische Lobgesang angestimmt, nirgends feierlicher als in der katholischen Hofkirche bei glänzendem Hochamt, dem ausser dem Bischof <a class="preview persons A000D4A" href="">Mauermann</a> auch der Bischof Loke aus <a class="preview places A130187" href="">Budissin</a> und der Propst Krügling aus Mariastern assistirten. Hier wurde die alte, herzerhebende Messe von <a class="preview persons A000756" href="">Hasse</a><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> mit dem Schall der Kanonen und der dreimaligen <span class="tei_cb" title="Spaltenumbruch"> ¦ </span> Salve des Klein-Gewehres von der auf dem Vorplatz aufgestellten Garnison begleitet. In dem festlich beleuchteten Saale des königl. Schlosses beschloß die in großer Hofgalla dargebrachte Huldigung ein von tausend fröhlichen Zuschauern festlich umgebener Hof-Ball.
-               Den 25 Nov. wo in einer bunten Reihentafel – die Size der Eingeladenen wurden durch selbstgezogenes Loos bestimmt – an mehr als 200 Couverts in den königl. Sälen Mittags gespeist worden war, empfing der dazu aufs festlichste mit 2000 Wachskerzen beleuchtete prachtvolle Concertsaal im großen Opernhaus Abends den Hof und alle diplomatischen und militärischen Umgebungen in schimmerndem Halbkreis. Für die in drei Logenreihen und eigenen Schranken eingelassenen Zuschauer waren an 1800 Billets ausgegeben worden. Dem Hof gegenüber war das Orchester für die königl. Kapelle in mehrern Reihen übereinander zwischen verschiedenen Blumengewinden, aus welchen farbige Lampen schimmerten, malerisch aufgebaut. Von hier vernahm man nun die zu dieser Feier von dem königl. Kapellmeister <a class="preview persons A001348" href="">Morlacchi</a> komponirte <a class="preview works A021167" href="">Fest-Cantate</a> nach <a class="preview persons A002353" href="">Metastasio’s</a> <span class="tei_hi_antiqua">Contessa delle tre Dee</span>, die der hier lebende gelehrte <a class="preview persons A001339" href="">Montucci</a> auf seine Weise für diesen Tag arrangirt hatte. Sie wurde, da der geistreiche und bei seiner Composition die herrlichen Mittel, die ihm bei der bekannten Virtuosität des Orchesters zu Gebot standen, in harmoniereichem Tonsaze anpassende Schöpfer dieser Klänge plözlich erkrankte, von dem Kapellmeister <a class="preview persons A002068" href="">Maria v. Weber</a> mit gewohnter Präcision aufgeführt. Die Sängerinnen <a class="preview persons A001959" href="">Tibaldi</a>, <a class="preview persons A001644" href="">Sandrini</a>, <a class="preview persons A000565" href="">Funk</a> und <a class="preview persons A002152" href="">Wilmanns</a>, der treffliche Bassist <a class="preview persons A000133" href="">Benincasa</a>, als Merkur, alle wetteiferten, die Menschenstimme, wo möglich, den bald rauschenden, bald schmelzenden Tönen einer so vollen Instrumentirung (6 Contrabässe gaben ein überraschendes Pizzicato) aufs schönste einzuflechten. Einige sehr gelungene Chöre athmeten wirklich das Entzücken, welches wegen der reinen Zufriedenheit, die man in den Augen der <span class="preview persons A000936 A006425" data-ref=" ">Neuvermählten</span> erblikte, sich bei allen Anwesenden bemerken ließ. Eine neue frohe Botschaft war indessen angekommen. Mit unglaublicher Schnelle hatte ein Courier von der am 19. d. M. in <a class="preview places A130063" href="">Florenz</a> erfolgten Entbindung der Frau <a class="preview persons A001252" href="">Erbgroßherzogin von Toscana</a>, dritten Tochter des Prinzen <a class="preview persons A001282" href="">Maximilian</a>, Nachricht überbracht, und so band ein guter Genius Vater- und Großvaterfreude in denselben Festkranz. Am 28 Nov. besuchten die <span class="preview persons A000936 A006425" data-ref=" ">Neuvermählten</span> zum erstenmal das Hoftheater, welches zur Begrüßung der Hochgefeierten aufs glänzendste erleuchtet und geschmükt worden war. Zur Nachfeier hatte der seit einiger Zeit in <a class="preview places A130003" href="">Dresden</a> lebende Dichter, <a class="preview persons A001586" href="">Ludewig Robert</a>, der allen Deutschen durch seine im Jahr 1814 gesungenen <span class="tei_hi_spaced_out">Kämpfe der Zeit</span> ehrwürdig ist, ein allegorisches <a class="preview works A020233" href="">Festspiel</a> gedichtet, welches am Eingange gedrukt vertheilt wurde. In Apollos Hain enthüllte Aurora, von dienenden, in malerischen Gruppirungen sie umschwebenden Genien selbst erst enthüllt, beim Anfang die heutige Festfreude; Vergangenheit und Zukunft, als personifizirte Wesen, traten ihr zur Seite, der Musenchor von Melpomene und Thalia geführt, verkündigte das Fest. Melpomene bezeugte, daß andere Zeiten nicht mehr von Schiksal und Orakeln sprechen und begegnete dadurch dem Einwurf, daß eine Vermischung alter und neuer Allegorie vorkomme. Thalia, ihr in die Rede fallend, ruft die Seherin zur Erde herab und schildert in begeisternder Wonne die Seligkeit:
+               Den 25 Nov. wo in einer bunten Reihentafel – die Size der Eingeladenen wurden durch selbstgezogenes Loos bestimmt – an mehr als 200 Couverts in den königl. Sälen Mittags gespeist worden war, empfing der dazu aufs festlichste mit 2000 Wachskerzen beleuchtete prachtvolle Concertsaal im großen <a class="preview places A130698" href="">Opernhaus</a> Abends den Hof und alle diplomatischen und militärischen Umgebungen in schimmerndem Halbkreis. Für die in drei Logenreihen und eigenen Schranken eingelassenen Zuschauer waren an 1800 Billets ausgegeben worden. Dem Hof gegenüber war das Orchester für die königl. Kapelle in mehrern Reihen übereinander zwischen verschiedenen Blumengewinden, aus welchen farbige Lampen schimmerten, malerisch aufgebaut. Von hier vernahm man nun die zu dieser Feier von dem königl. Kapellmeister <a class="preview persons A001348" href="">Morlacchi</a> komponirte <a class="preview works A021167" href="">Fest-Cantate</a> nach <a class="preview persons A002353" href="">Metastasio’s</a> <span class="tei_hi_antiqua">Contessa delle tre Dee</span>, die der hier lebende gelehrte <a class="preview persons A001339" href="">Montucci</a> auf seine Weise für diesen Tag arrangirt hatte. Sie wurde, da der geistreiche und bei seiner Composition die herrlichen Mittel, die ihm bei der bekannten Virtuosität des Orchesters zu Gebot standen, in harmoniereichem Tonsaze anpassende Schöpfer dieser Klänge plözlich erkrankte, von dem Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Weber</a> mit gewohnter Präcision aufgeführt. Die Sängerinnen <a class="preview persons A001959" href="">Tibaldi</a>, <a class="preview persons A001644" href="">Sandrini</a>, <a class="preview persons A000565" href="">Funk</a> und <a class="preview persons A002152" href="">Wilmanns</a>, der treffliche Bassist <a class="preview persons A000133" href="">Benincasa</a>, als Merkur, alle wetteiferten, die Menschenstimme, wo möglich, den bald rauschenden, bald schmelzenden Tönen einer so vollen Instrumentirung (6 Contrabässe gaben ein überraschendes Pizzicato) aufs schönste einzuflechten. Einige sehr gelungene Chöre athmeten wirklich das Entzücken, welches wegen der reinen Zufriedenheit, die man in den Augen der <span class="preview persons A000936 A006425" data-ref=" ">Neuvermählten</span> erblikte, sich bei allen Anwesenden bemerken ließ. Eine neue frohe Botschaft war indessen angekommen. Mit unglaublicher Schnelle hatte ein Courier von der am 19. d. M. in <a class="preview places A130063" href="">Florenz</a> erfolgten Entbindung der Frau <a class="preview persons A001252" href="">Erbgroßherzogin von Toscana</a>, dritten Tochter des Prinzen <a class="preview persons A001282" href="">Maximilian</a>, Nachricht überbracht, und so band ein guter Genius Vater- und Großvaterfreude in denselben Festkranz. Am 28 Nov. besuchten die <span class="preview persons A000936 A006425" data-ref=" ">Neuvermählten</span> zum erstenmal das Hoftheater, welches zur Begrüßung der Hochgefeierten aufs glänzendste erleuchtet und geschmükt worden war. Zur Nachfeier hatte der seit einiger Zeit in <a class="preview places A130003" href="">Dresden</a> lebende Dichter, <a class="preview persons A001586" href="">Ludewig Robert</a>, der allen Deutschen durch seine im Jahr 1814 gesungenen <span class="tei_hi_spaced_out">Kämpfe der Zeit</span> ehrwürdig ist, ein allegorisches <a class="preview works A020233" href="">Festspiel</a> gedichtet, welches am Eingange gedrukt vertheilt wurde. In Apollos Hain enthüllte Aurora, von dienenden, in malerischen Gruppirungen sie umschwebenden Genien selbst erst enthüllt, beim Anfang die heutige Festfreude; Vergangenheit und Zukunft, als personifizirte Wesen, traten ihr zur Seite, der Musenchor von Melpomene und Thalia geführt, verkündigte das Fest. Melpomene bezeugte, daß andere Zeiten nicht mehr von Schiksal und Orakeln sprechen und begegnete dadurch dem Einwurf, daß eine Vermischung alter und neuer Allegorie vorkomme. Thalia, ihr in die Rede fallend, ruft die Seherin zur Erde herab und schildert in begeisternder Wonne die Seligkeit:
                
               </p>
                                         <div class="poem"><span class="lg"><span class="verseLine">Wann, wie hier der Sohn der Sachsen</span><span class="verseLine">Sich vermählt mit Baierns Kind;</span><span class="verseLine">Wann die Väter Landesväter,</span><span class="verseLine">Völker Hochzeitgäste sind.</span></span></div>
                                         <p>Auf Thaliens Wink verwandelt sich die Scene in die Säulenstellung eines ganz offenen Tempels, hinter welchen man im Hintergrund, täuschend abgesezt, einen trefflich beleuchteten Prospekt auf die Elbbrücke und ihre Palläste an beiden Seiten erblikte. Drei Chorführer (die drei <span class="preview persons A000799 A002247 A002119" data-ref="  ">Regisseurs</span> der Bühne) des Lehr- Nähr- und Wehrstandes traten in sich schön geordnet, aus der sich von einander trennenden Volksmasse hervor; jeder spricht Worte der Huldigung, und unter charakteristischen Chorgesängen werden die Hochzeitgaben dargebracht, welche die <span class="tei_pb" title="Seitenumbruch"> | </span> begleitenden Genien bereit hielten. Nach der Vollendung sieht man über dem Altar die drei Fakeln des Lehrstandes bedeutsam lodern, unten stehen die zwei Füllhörner des Nährstandes angelehnt, an vier Säulen des Tempels sind „<span class="tei_hi_spaced_out">Schuzwaffen nur als Weihgeschenke dargebracht</span>“ angeheftet. Die lezte Weihe sprachen die indeß wieder hervortretenden Aurora, Vergangenheit, Zukunft, Melpomene und Thalia. In der Vergangenheit schönem Spruch wurde eine Stelle mit der innigsten Einstimmung aller Anwesenden besonders hervorgehoben. Den Spiegel emporhaltend zeigt sie:
             </p>
                                         <div class="poem"><span class="lg"><span class="verseLine">Wie unsers edlen Fürsten junge Gattin</span><span class="verseLine">Ein zartes Kind noch war im Königshause,</span><span class="verseLine">Und wie dis Königshaus in deutscher Schlichtheit</span><span class="verseLine">Das Muster war von einem Vaterhause.</span><span class="verseLine">Dort wuchs das zarte Kind in Sonnenwärme</span><span class="verseLine">Der Muttersorgfalt; dort entfaltete</span><span class="verseLine">Die holde Jungfrau sich am Licht des Beispiels,</span><span class="verseLine">Da sie der Tugend Majestät gewohnte</span><span class="verseLine">Mit Einfachheit und Königssinn vereint.</span><span class="verseLine">So in dem Grazienkreise der Geschwister</span><span class="verseLine">War sie erblüht die schöne Zwillingsrose,</span><span class="verseLine">Ein Freudenanblick Jedem, der sie sah. –</span></span></div>
-                                        <p>Ein herzerhebender Schlußchor segnete den neuen Bund der Fürsten und Völker. Er war unserm mit Recht gefeierten <a class="preview persons A002068" href="">Maria v. Weber</a>, der auch den Eingang und die übrigen Chöre mit der ihm eignen gemüthvollen <span class="tei_hi_spaced_out">Wahrheit</span> komponirt hatte, vorzüglich gelungen. Das Gedicht selbst liegt bereits, in dem allgelesenen <span class="tei_hi_spaced_out">Morgenblatt</span> abgedrukt<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>, allen deutschen Lesern vor Augen. Aber die sinnvolle scenische Anordnung, die Richtigkeit und Schnelligkeit der Attribute, die ganze Wirkung durch den feierlichen Einklang aller dramatischen Künste, mag in Worten nicht wieder gegeben werden. Die Direktion (Hr. <a class="preview persons A001045" href="">v. Könneritz</a>) hatte alles aufgeboten, und weil <a class="preview persons A000889" href="">Houwalds</a> Name unter uns der geschäzteste ist, und ein neues von ihm ausdrüklich zu dieser Vermählung mit großer Gemüthsfülle gedichtetes, würdiges Schauspiel <span class="tei_hi_spaced_out">uns</span> nicht zur Hand war, zum Nachspiel ein kleines Lustspiel, <span class="tei_hi_spaced_out"><a class="preview works A021002" href="">die alten Spielkameraden</a></span>, gewählt. – <span>[…]</span></p>
+                                        <p>Ein herzerhebender Schlußchor segnete den neuen Bund der Fürsten und Völker. Er war unserm mit Recht gefeierten <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria v. Weber</a>, der auch den Eingang und die übrigen Chöre mit der ihm eignen gemüthvollen <span class="tei_hi_spaced_out">Wahrheit</span> komponirt hatte, vorzüglich gelungen. Das Gedicht selbst liegt bereits, in dem allgelesenen <span class="tei_hi_spaced_out">Morgenblatt</span> abgedrukt<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>, allen deutschen Lesern vor Augen. Aber die sinnvolle scenische Anordnung, die Richtigkeit und Schnelligkeit der Attribute, die ganze Wirkung durch den feierlichen Einklang aller dramatischen Künste, mag in Worten nicht wieder gegeben werden. Die Direktion (Hr. <a class="preview persons A001045" href="">v. Könneritz</a>) hatte alles aufgeboten, und weil <a class="preview persons A000889" href="">Houwalds</a> Name unter uns der geschäzteste ist, und ein neues von ihm ausdrüklich zu dieser Vermählung mit großer Gemüthsfülle gedichtetes, würdiges Schauspiel <span class="tei_hi_spaced_out">uns</span> nicht zur Hand war, zum Nachspiel ein kleines Lustspiel, <span class="tei_hi_spaced_out"><a class="preview works A021002" href="">die alten Spielkameraden</a></span>, gewählt. – <span>[…]</span></p>
                                     </div>
                                 </div>
                     </div>
@@ -501,9 +500,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Beilage zur Allgemeinen Zeitung</span>, Jg. 25, Nr. 204 (6. Dezember 1822), S. 813f.</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_f06095800f4c53ed043114c021f8d758"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6c02098347910fdf36335c6b68a5cd27"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_f06095800f4c53ed043114c021f8d758">
+                                        <div class="collapse apparatus-details" id="source_6c02098347910fdf36335c6b68a5cd27">
                                             
                                             
                                             <div>
@@ -516,7 +515,7 @@
                                                             
                                                             <span class="tei_bibl">Wiederabdruck in: <span class="tei_hi_italic">Münchener Politische Zeitung</span>, Nr. 291 (7. Dezember 1822), S. 1565, Nr. 292 (9. Dezember 1822), S. 1573f., Nr. 293 (10. Dezember 1822), S. 1577</span>
                                                               
-                                                            <div class="collapse" id="source_2758aad3f69193ed3d3810b7c35851df">
+                                                            <div class="collapse" id="source_84a65efb5227febc69c284e4bdf3387a">
                                                                 
                                                             </div>
                                                         </div>
@@ -578,7 +577,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032237</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A032237</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -638,6 +637,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -696,22 +698,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

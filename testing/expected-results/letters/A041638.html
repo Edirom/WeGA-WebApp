@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Briefe aus Dresden berichten nichts Erfreuliches nach dem Wechsel in der Hoftheater-Intendanz; Berichte von Reise von Louisenlund über Eckernförde nach Kiel, wo er beim Ehepaar Apel wohnt","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Caroline von Weber in Hamburg. Fleckeby, Eckernförde, Kiel, Sonntag, 17. bis Montag, 18. September 1820 (Nr. 6)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041638","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041638","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Briefe aus Dresden berichten nichts Erfreuliches nach dem Wechsel in der Hoftheater-Intendanz; Berichte von Reise von Louisenlund über Eckernförde nach Kiel, wo er beim Ehepaar Apel wohnt","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Caroline von Weber in Hamburg. Fleckeby, Eckernförde, Kiel, Sonntag, 17. bis Montag, 18. September 1820 (Nr. 6)","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041638","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041638","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,10 +296,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link deactivated"></a>
+                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041638/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041638/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041638/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -364,7 +362,7 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041631.html">1820-09-11</a>:  an  <a href="" class="preview A000213 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041637.html">1820-09-17</a>:  an  <a href="" class="preview A000213 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041553.html">1820-05-24</a>:  von  <a href="" class="preview A000235 persons"></a>
@@ -373,7 +371,7 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041654.html">1820-10-15</a>:  an  <a href="" class="preview A003850 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041717.html">1821-01-08</a>:  an  <a href="" class="preview A001025 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674.html">1821-03-22</a>:  von  <a href="" class="preview A000235 persons"></a>
@@ -386,13 +384,13 @@
                                     <h4>Vorausgehend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041631.html">1820-09-11</a>:  an  <a href="" class="preview A000213 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041637.html">1820-09-17</a>:  an  <a href="" class="preview A000213 persons"></a>
                                         </li>
                                     </ul>
                                     <h4>Folgend</h4>
                                     <ul>
                                         <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042338.html">1824-07-31</a>:  an  <a href="" class="preview A000213 persons"></a>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041761.html">1821-07-31</a>:  an  <a href="" class="preview A000213 persons"></a>
                                         </li>
                                             <li>
                                             <a href="/exist/apps/WeGA-WebApp/de/A000213/Korrespondenz/A042699.html">1826-02-21</a>:  von  <a href="" class="preview A000213 persons"></a>
@@ -431,7 +429,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000A67" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -477,7 +475,7 @@
                         <div class="teiLetter_body">
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
-               <span class="tei_dateline textAlign-right"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">N<span class="tei_hi_superscript">r</span></span> 6.</span> /: der lezte <a class="preview letters A041637" href="">Brief</a> muß <span class="tei_hi_latintype">No.</span> 5 heißen :/</span><br /> <span class="tei_hi_underline1"><a class="preview places A130234" href="">Flekbye</a>, d: 17<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Sept</span>: 1820 Abends 10 Uhr.</span> 
+               <span class="tei_dateline textAlign-right"><span class="tei_segBlock textAlign-center"><span class="tei_hi_underline2andMore"><span class="tei_hi_latintype">N<span class="tei_hi_superscript">r</span></span> 6.</span> /: der lezte <a class="preview letters A041637" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041637.html">Brief</a> muß <span class="tei_hi_latintype">No.</span> 5 heißen :/</span><br /> <span class="tei_hi_underline1"><a class="preview places A130234" href="">Flekbye</a>, d: 17<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Sept</span>: 1820 Abends 10 Uhr.</span> 
                   </span>
             </div>
                                         <p>Der gute <span class="83116979711611511497116104328399104101102102101114">Staatsrath Scheffer</span><a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a> hat mich bis jezt aufgehalten, dann selbst hieher
@@ -489,7 +487,7 @@
                erst sich ein bischen eingerichtet hat<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>. Mir scheint ich werde ihn wohl von <a class="preview places A130014" href="">Weimar</a> aus
                kennen wenn ich <span class="tei_supplied"><span class="brackets_supplied">[</span>ihn<span class="brackets_supplied">]</span></span> sehe. recht im Herzen wehe thut mir die Trennung von unserem
                braven <span class="tei_hi_latintype"><a class="preview persons A002020" href="">Vizthum</a></span>. Jezt darf mir in <a class="preview places A130003" href="">Dresden</a> nicht viel <span class="tei_supplied"><span class="brackets_supplied">[</span>in<span class="brackets_supplied">]</span></span> die Quere
-               komen.      ich werde in den ersten freyen Augenblikken an <a class="preview persons A002020" href=""><span class="tei_hi_latintype">Vizth</span>:</a>
+               komen.      ich werde in den ersten freyen Augenblikken an <a class="preview persons A002020" href=""><span class="tei_hi_latintype">Vizth:</span></a>
                schreiben, und ihm hoffentlich später beweisen daß ich wahre Freundschaft für ihn hatte<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>.
                     Morgen geht es mit dem frühsten nach <span class="tei_hi_underline1"><a class="preview places A130066" href="">Kiel</a></span>, damit ich diesen
                Brief dort auf die Post bringe.      Wenn ich es so einrichten könnte daß meine <a class="preview persons A000213" href="">Mukkin</a>
@@ -510,7 +508,7 @@
                daß es dir bei <span class="tei_hi_latintype"><a class="preview persons A008548" href="">Silem</a></span> und <a class="preview persons A001546" href="">Reichardt</a> behagt.      Mit dem Zahnweh
                verbitt ich mir das Abnehmen, und habe es deßhalb sogleich wieder zu mir genommen. Nun
                will ich aber in Bett gehn, denn ich bin sehr müde. habe gar zu viel sprechen müßen.
-                    Gottes voller Seegen auf <a class="preview persons A000213" href="">Mutter</a> und Kind.<a class="noteMarker" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a> + + + gute Nacht. 10000000000000 Bußen.</p>
+                    Gottes voller Seegen auf <a class="preview persons A000213" href="">Mutter</a> und Kind<a class="noteMarker" id="backref-C_004" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_004">*</a>. + + + gute Nacht. 10000000000000 Bußen.</p>
                                     </div>
                                     <div class="writingSession">
                                         <div class="teiLetter_opener">
@@ -547,14 +545,14 @@
                Nerven beßer in Ordnung.      In <a class="preview places A130199" href="">Koppenhagen</a> werde ich mir doch einen <span class="tei_hi_underline1">Schirm
                </span> kaufen müßen, da ich zurück wohl auf jeden Fall die Landreise machen werde, und
                es auf dem offenen Wagen doch etwas Schuz vor dem Regen braucht.</p>
-                                        <p>Die Nachricht wegen <a class="preview persons A002020" href=""><span class="tei_hi_latintype">Vizth</span>:</a> will mir noch gar nicht aus dem Kopfe. freue mich aber dabei immer
-               daß ich nicht in <a class="preview places A130003" href="">Dresden</a> bin.      in der Zeitung habe ich gelesen daß Pastor <a class="preview persons A000861" href="">Hoffmeister</a> den GülphenOrden erhalten hat.<a class="noteMarker" id="backref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">*</a> gelt das freut dich auch. das ist ein <span class="tei_hi_underline1">würdiger</span> Ordensträger.      Nun werde ich wohl ein bißel schlafen. bin  müde.
+                                        <p>Die Nachricht wegen <a class="preview persons A002020" href=""><span class="tei_hi_latintype">Vizth:</span></a> will mir noch gar nicht aus dem Kopfe. freue mich aber dabei immer
+               daß ich nicht in <a class="preview places A130003" href="">Dresden</a> bin.      in der Zeitung habe ich gelesen daß Pastor <a class="preview persons A000861" href="">Hoffmeister</a> den GülphenOrden erhalten hat<a class="noteMarker" id="backref-C_005" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_005">*</a>. gelt das freut dich auch. das ist ein <span class="tei_hi_underline1">würdiger</span> Ordensträger.      Nun werde ich wohl ein bißel schlafen. bin  müde.
                     hast du auch so schändliches Wetter?</p>
                                         <p class="tei_closer textAlign-left">auf der <span class="tei_hi_latintype">Pozt</span> ist kein
                Brief. also fort mit diesem Er bringt wie immer Millionen Wünsche für dein Wohl. gute
                Bußen <span class="tei_supplied"><span class="brackets_supplied">[</span>Kußsymbol<span class="brackets_supplied">]</span></span> herzliche Grüße an <a class="preview persons A002075" href="">Fritz</a> und <span class="preview persons A001600 A000A67" data-ref=" ">Rombergs</span> und alle Freunde. und + + + für
                Mutter und Eß<a class="noteMarker" id="backref-C_006" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_006">*</a>
-               <span class="tei_segBlock textAlign-right">Ewig dein <span class="tei_hi_latintype"><a class="preview persons A002068" href="">Carl</a></span>.</span>
+               <span class="tei_segBlock textAlign-right">Ewig dein <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl</a></span>.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -602,9 +600,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ep. C. M. v. Weber 138</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_e6bbb47fcab52d867495b145e4d7683e"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_70f27b1dbb6838c1d476138f5e8be75c"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_e6bbb47fcab52d867495b145e4d7683e">
+                                        <div class="collapse apparatus-details" id="source_70f27b1dbb6838c1d476138f5e8be75c">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S.)</li>
@@ -634,7 +632,7 @@
                                     <a href=""></a>
                                 </li>
                                         <li>
-                                    <a href=""></a>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090103.html">Haus- und Nutztiere der Familie von Weber</a>
                                 </li>
                             </ul>
                         </div>
@@ -678,13 +676,13 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note04" class="apparatus-link">4.</a></div>
-                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  wilder Oz. und H: Ali“</span>Webers Hündin Alica<a class="noteMarker" href="">T</a>.</div>
+                                                <div class="apparatusEntry col-11" id="note04" data-title="Einzelstellenerläuterung" data-counter="4" data-href="#note04"><span class="tei_lemma">„…  wilder Oz. und H: Ali“</span>Webers Hündin Alica<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090103.html">T</a>.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_004" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_004" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_004"><span class="tei_lemma">„…  Seegen auf Mutter und Kind.“</span>Caroline war zu diesem Zeitpunkt schwanger; sie erlitt in <a class="preview places A130009" href="">Hamburg</a> eine Fehlgeburt.</div>
+                                                <div class="apparatusEntry col-11" id="C_004" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_004"><span class="tei_lemma">„…  Seegen auf Mutter und Kind“</span>Caroline war zu diesem Zeitpunkt schwanger; sie erlitt in <a class="preview places A130009" href="">Hamburg</a> eine Fehlgeburt.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -696,7 +694,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_005" class="apparatus-link">7.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_005" data-title="Einzelstellenerläuterung" data-counter="7" data-href="#C_005"><span class="tei_lemma">„…  Hoffmeister den GülphenOrden erhalten hat.“</span>Der Guelphen-Orden war eine Auszeichnung des Königreichs Hannover und wurde am 12. August 1815 von dem Prinzregenten und späteren König Georg IV. gestiftet. Der Orden wurde sowohl im Königreich Großbritannien als auch im Königreich Hannover verliehen. Hoffmeister erhielt den Orden im August 1820 als Anerkennung seiner Verdienste als Lehrer der Prinzen von Braunschweig-Wolfenbüttel Karl (1804–1873) und Wilhelm (1806–1884), die nach dem Tod ihres Vaters unter Vormundschaft des englischen (und hannoveraner) Prinzregenten <a class="preview persons A000609" href="">Georg</a> standen; vgl. u. a. <span class="tei_hi_italic">Allgemeine Kirchen Zeitung</span>, 1832, Nr. 133 (23. August), Sp. 1082.</div>
+                                                <div class="apparatusEntry col-11" id="C_005" data-title="Einzelstellenerläuterung" data-counter="7" data-href="#C_005"><span class="tei_lemma">„…  Hoffmeister den GülphenOrden erhalten hat“</span>Der Guelphen-Orden war eine Auszeichnung des Königreichs Hannover und wurde am 12. August 1815 von dem Prinzregenten und späteren König Georg IV. gestiftet. Der Orden wurde sowohl im Königreich Großbritannien als auch im Königreich Hannover verliehen. Hoffmeister erhielt den Orden im August 1820 als Anerkennung seiner Verdienste als Lehrer der Prinzen von Braunschweig-Wolfenbüttel Karl (1804–1873) und Wilhelm (1806–1884), die nach dem Tod ihres Vaters unter Vormundschaft des englischen (und hannoveraner) Prinzregenten <a class="preview persons A000609" href="">Georg</a> standen; vgl. u. a. <span class="tei_hi_italic">Allgemeine Kirchen Zeitung</span>, 1832, Nr. 133 (23. August), Sp. 1082.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -731,7 +729,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041638</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041638</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -791,6 +789,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -849,22 +850,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

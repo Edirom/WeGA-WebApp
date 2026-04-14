@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"schickt diverse Kompositionen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Johann Anton André in Offenbach. Frankfurt (Main), Donnerstag, 20. September 1810","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040302","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040302","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"schickt diverse Kompositionen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Johann Anton André in Offenbach. Frankfurt (Main), Donnerstag, 20. September 1810","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040302","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040302","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040302/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040302/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A040302/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -398,7 +396,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001313" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -450,11 +448,11 @@
                <span class="tei_hi_underline2andMore">2</span>. die <span class="tei_hi_underline1"><span class="preview works A020614" data-ref=" ">6 Lieder von <a class="preview persons A000584" href="">Gänsbacher</a></span></span> 
                <span class="tei_hi_underline2andMore">3</span>. die beyden <a class="preview works A020037" href="">Liedchen aus <span class="tei_hi_latintype">Silvana</span></a>. 
                4<span class="tei_hi_superscript">t</span> der <a class="preview works A020059" href="">Klavierauszug des <span class="tei_hi_latintype">Rondos</span></a>,
-               von dem ich Ihnen die <span class="tei_hi_latintype">Partitur</span> in wenig Tagen <a class="preview letters A040311" href="">schikken</a> werde.<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>
+               von dem ich Ihnen die <span class="tei_hi_latintype">Partitur</span> in wenig Tagen <a class="preview letters A040311" href="">schikken</a> werde<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a>.
             </p>
                                         <p class="tei_closer textAlign-left inlineStart"><span class="tei_ptr"></span>Herr <span class="tei_hi_latintype"><a class="preview persons A001313" href="">Beer</a></span> bedankt sich herzlichst wie ich für Ihre Freundschaftliche Aufnahme<a class="noteMarker" id="backref-C_02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_02">*</a>, und bald hoffe ich wieder das Vergnügen zu haben Sie zu sehen.
                <span class="tei_segBlock textAlign-right">Ihr treuster Freund<br />
-                  <span class="tei_hi_latintype"><a class="preview persons A002068" href="">vonWeber</a></span>.
+                  <span class="tei_hi_latintype"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">vonWeber</a></span>.
                </span>
                <span class="tei_dateline textAlign-textAlign-left"><a class="preview places A130020" href="">Frankf:</a> d: 20<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">Sept:</span> 1810</span>
                in Eile.
@@ -505,9 +503,9 @@
                                         
                                         <span>Offenbach (D), Verlagsarchiv André (D-OF)</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_4da9190db2f1648b6212ef6206b2b723"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_2aa6e38d7791ecc6302694f99f501778"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_4da9190db2f1648b6212ef6206b2b723">
+                                        <div class="collapse apparatus-details" id="source_2aa6e38d7791ecc6302694f99f501778">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (1 b. S. o. Adr.)</li>
@@ -524,7 +522,7 @@
                                                             
                                                             <span>Hirschberg77, S. 13</span>
                                                               
-                                                            <div class="collapse" id="source_44796ae2b7941855626e2fdfeed1692f">
+                                                            <div class="collapse" id="source_8c7f2cd2156d39df392336663fe3cf58">
                                                                 
                                                             </div>
                                                         </div>
@@ -551,21 +549,21 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„Hiebey folgt 1 … Tagen schikken werde.“</span>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„Hiebey folgt 1 … Tagen schikken werde“</span>
                   <p>Es handelt sich um folgende Werke:</p>
                <ol class="tei_orderedList">
-                                                        <li>„Première | SINFONIE | pour / deux Violons, Alto, Basse, | Flûte, deux Hautbois, deux Bassons, deux Cors, | deux Trompettes &amp; Timbales, |                         composée et dédiée | à son ami <a class="preview persons A002078" href="">G. WEBER</a> de <a class="preview places A130010" href="">Mannheim</a> | par / CH. M. DE                               <a class="preview persons A002068" href="">WEBER</a>..| No. 3162. Prix f. 4,30 xr. | A <a class="preview places A130080" href="">Offenbach</a> s/M, chez <a class="preview persons A000031" href="">J. André</a>.“ 
-Über dieses Werk und das <a class="preview works A020058" href="">Rondo</a> (vgl. Nr. 4) hatte <a class="preview persons A002068" href="">Weber</a> schon am 9. Juli mit <a class="preview persons A000031" href="">André</a> abgeschlossen (vgl. <a class="preview diaries A064533" href="">Tagebuch</a>). Am 16. August vermerkt er im <a class="preview diaries A064571" href="">Tagebuch</a> Kopierkosten für das Werk, am 1. Februar 1811 korrigierte er die Stimmen. Das Erscheinen der <a class="preview works A020278" href="">Sinfonie</a> ist in der AmZ allerdings erst im April 1813 angezeigt.</li>
+                                                        <li>„Première | SINFONIE | pour / deux Violons, Alto, Basse, | Flûte, deux Hautbois, deux Bassons, deux Cors, | deux Trompettes &amp; Timbales, | composée et dédiée | à son ami <a class="preview persons A002078" href="">G. WEBER</a> de <a class="preview places A130010" href="/exist/apps/WeGA-WebApp/de/A130010.html">Mannheim</a> | par / CH. M. DE                               <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">WEBER</a>..| No. 3162. Prix f. 4,30 xr. | A <a class="preview places A130080" href="">Offenbach</a> s/M, chez <a class="preview persons A000031" href="">J. André</a>.“ 
+Über dieses Werk und das <a class="preview works A020058" href="">Rondo</a> (vgl. Nr. 4) hatte <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> schon am 9. Juli mit <a class="preview persons A000031" href="">André</a> abgeschlossen (vgl. <a class="preview diaries A064533" href="">Tagebuch</a>). Am 16. August vermerkt er im <a class="preview diaries A064571" href="">Tagebuch</a> Kopierkosten für das Werk, am 1. Februar 1811 korrigierte er die Stimmen. Das Erscheinen der <a class="preview works A020278" href="">Sinfonie</a> ist in der AmZ allerdings erst im April 1813 angezeigt.</li>
                                                         <li><a class="preview persons A000584" href="">Johann Gänsbacher</a>, <a class="preview works A020614" href="">6 Gesänge op. 9 [VN 3004]</a>.
   <a class="preview persons A000584" href="">Gänsbacher</a> hatte schon am 10. Juli 1810 an <span class="preview persons A000487 A000488" data-ref=" ">Firmians</span> <a class="preview letters A040246" href="">geschrieben</a>: „ich hoffe daß er [<a class="preview persons A000031" href="">André</a>] 6 meiner Canzonetten sticht. 6 behalte ich für <a class="preview places A130004" href="">Wien</a>.“
 In den <span class="preview biblio A110722" data-ref=""><span class="tei_hi_italic">Denkwürdigkeiten</span> (Thaur 1986, S. 38)</span> heißt es dazu:
 „<a class="preview persons A000031" href="">André</a> übernahm 6 von meinen Canzonetten,
-für die <a class="preview persons A002068" href="">Weber</a> deutsche <span class="preview writings A031114" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031114.html">Übersetzungen</span> schuf, zum Stich.“
-Zu diesen Canzonetten, für die Weber deutsche <a class="preview writings A031114" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031114.html">Übersetzungen</a> schuf,  gehört auch das <span class="tei_hi_italic"><span class="7639971091011142423211597114242329911111511697110116101">L’amerò sarò costante</span></span>, das <a class="preview persons A002068" href="">Weber</a> im Juli 1810 in der AmZ veröffentlicht hatte (vgl. <a class="preview writings A031115" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031115.html">Korrespondenz-Nachrichten aus Mannheim</a>).</li>
+für die <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> deutsche <span class="preview writings A031114" data-ref="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031114.html">Übersetzungen</span> schuf, zum Stich.“
+Zu diesen Canzonetten, für die Weber deutsche <a class="preview writings A031114" href="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031114.html">Übersetzungen</a> schuf,  gehört auch das <span class="tei_hi_italic"><span class="7639971091011142423211597114242329911111511697110116101">L’amerò sarò costante</span></span>, das <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> im Juli 1810 in der AmZ veröffentlicht hatte (vgl. <a class="preview writings A031115" href="">Korrespondenz-Nachrichten aus Mannheim</a>).</li>
                                                         <li>[<span class="7811446324952443265114105101321001011153275114105112115">Nr. 14, Arie des <span class="75114105112115">Krips</span></span>:]
-„Favorit | Gesänge | aus der Oper: | <a class="preview works A020037" href="">SILVANA</a> | von | <a class="preview persons A002068" href="">Carl Maria von Weber</a>. Klavierauszug. No 1. | Vielleicht. | No 2986. | Preis 18 Xr. | <a class="preview places A130080" href="">OFFENBACH am Mayn</a>, | bey <a class="preview persons A000031" href="">Joh. André</a>. [PN 2986]“;
+„Favorit | Gesänge | aus der Oper: | <a class="preview works A020037" href="">SILVANA</a> | von | <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>. Klavierauszug. No 1. | Vielleicht. | No 2986. | Preis 18 Xr. | <a class="preview places A130080" href="">OFFENBACH am Mayn</a>, | bey <a class="preview persons A000031" href="">Joh. André</a>. [PN 2986]“;
 [<span class="78111463254443265114105101321001011153275114105112115">No. 6, Arie des <span class="75114105112115">Krips</span></span>:]
-„Favorit | Gesänge | aus der Oper: | <a class="preview works A020037" href="">SILVANA</a> | von | <a class="preview persons A002068" href="">Carl Maria von Weber</a>. Klavierauszug. No 2. | Sah ich sonst ein Mädchen bescheiden und stumm etc. | No 2987 | Preis
+„Favorit | Gesänge | aus der Oper: | <a class="preview works A020037" href="">SILVANA</a> | von | <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>. Klavierauszug. No 2. | Sah ich sonst ein Mädchen bescheiden und stumm etc. | No 2987 | Preis
 18 Xr. | <a class="preview places A130080" href="">OFFENBACH am Mayn</a>, | bey <a class="preview persons A000031" href="">Joh: André</a>. [PN 2987].“
 Vgl. dazu auch die Anzeige in Nr. 43 des <span class="tei_hi_italic">Allgemeinen Anzeigers der Deutschen</span> vom 13. Februar 1811, Sp. 436
 als <span class="tei_hi_italic">Favorit-Gesänge aus der Oper <a class="preview works A020037" href="">Silvana</a>, Nr. 1 und 2, jed. 18 kr.</span>
@@ -573,7 +571,7 @@ Anfang Juni 1811 erschienen die gleichen Gesänge auch bei Falter in <a class="p
 vgl. Hans Schneider, <span class="tei_hi_italic"><a class="preview persons A000474" href="">Makarius Falter</a> (1796–1843) und sein Münchner Musikverlag (1796–1888)</span>, Tutzing 1993, S. 191.
 Die Liedchen erfreuten sich offensichtlich großer Beliebtheit, wie zahlreiche weitere Nachdrucke belegen.</li>
                                                         <li>Die Partitur zu dem für <a class="preview persons A000517" href="">Louise Frank</a> komponierten <a class="preview works A020058" href="">Rondo</a>
-   <a class="preview letters A040311" href="">übersandte</a> <a class="preview persons A002068" href="">Weber</a> am 18. Oktober (vgl. <a class="preview diaries A064634" href="">Tagebuch</a>);
+   <a class="preview letters A040311" href="">übersandte</a> <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> am 18. Oktober (vgl. <a class="preview diaries A064634" href="">Tagebuch</a>);
 angezeigt ist das <span class="preview works A020059 A020058" data-ref=" ">Werk</span> in der AmZ erst im Jg. 14 (1812), im IB 10 vom August.</li>
                                                     </ol>
                </div>
@@ -582,7 +580,7 @@ angezeigt ist das <span class="preview works A020059 A020058" data-ref=" ">Werk<
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„Herr Beer bedankt … Ihre Freundschaftliche Aufnahme“</span><a class="preview persons A002068" href="">Weber</a> und <a class="preview persons A001313" href="">Meyerbeer</a> waren am 19. September in <a class="preview places A130080" href="">Offenbach</a> bei <a class="preview persons A000031" href="">André</a> zu Besuch gewesen.
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#C_02"><span class="tei_lemma">„Herr Beer bedankt … Ihre Freundschaftliche Aufnahme“</span><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> und <a class="preview persons A001313" href="">Meyerbeer</a> waren am 19. September in <a class="preview places A130080" href="">Offenbach</a> bei <a class="preview persons A000031" href="">André</a> zu Besuch gewesen.
 (vgl. <a class="preview diaries A064605" href="">Tagebuch</a>).</div>
                                             </div>
                                         </li>
@@ -612,7 +610,7 @@ angezeigt ist das <span class="preview works A020059 A020058" data-ref=" ">Werk<
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040302</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A040302</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -672,6 +670,9 @@ angezeigt ist das <span class="preview works A020059 A020058" data-ref=" ">Werk<
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -730,22 +731,17 @@ angezeigt ist das <span class="preview works A020059 A020058" data-ref=" ">Werk<
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

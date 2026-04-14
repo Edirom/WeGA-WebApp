@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"würde sich gerne durch Fortunatus Wunschhütlein in den Kreis seiner geliebten Berliner Freunde zaubern, derer er so gern gedenkt; grüßt mit Gedicht von Matthison","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an die Berliner Freunde. Dresden, Mittwoch, 18. Dezember 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041994","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041994","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"würde sich gerne durch Fortunatus Wunschhütlein in den Kreis seiner geliebten Berliner Freunde zaubern, derer er so gern gedenkt; grüßt mit Gedicht von Matthison","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an die Berliner Freunde. Dresden, Mittwoch, 18. Dezember 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041994","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041994","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -225,7 +223,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -254,7 +252,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041994/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041994/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041994/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -383,7 +381,7 @@
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042005.html">1822-12-26</a>:  an  <a href="" class="preview A000077 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042001.html">1822-12-26</a>:  an  <a href="" class="preview A001693 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A000192/Korrespondenz/A042031.html">1823-04-01</a>:  von  <a href="" class="preview A000192 persons"></a>
@@ -404,7 +402,7 @@
                                 <label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A007098" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -438,7 +436,7 @@
                   <div class="poem"><span class="lg"><span class="verseLine">Fühlt Ihr beim seligen Verliehren</span><span class="verseLine">in treuer Freundschaft Zauberland,</span><span class="verseLine">ein lindes geistiges Berühren</span><span class="verseLine">wie Zephirs Kuß an Lipp und Hand,</span><span class="verseLine">und wankt der Kerze flatternd Licht,</span><span class="verseLine">das ist mein Geist, o zweiflet nicht<a class="noteMarker" id="backref-note03" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note03">*</a>.</span></span></div>
                </span>
                <span class="tei_dateline textAlign-left"><a class="preview places A130003" href="">Dresden</a> d: 18<span class="tei_hi_superscript">t</span> <span class="tei_hi_latintype">December</span> 1822.</span>
-               <span class="tei_segBlock textAlign-right"><a class="preview persons A002068" href=""><span class="tei_hi_latintype">Carl Maria von Weber</span></a>.</span>
+               <span class="tei_segBlock textAlign-right"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html"><span class="tei_hi_latintype">Carl Maria von Weber</span></a>.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -492,9 +490,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: 55 Ep 179</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_16ac32da2f225e235271153a46dac841"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_b86837281871b8b36388066f6f41f759"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_16ac32da2f225e235271153a46dac841">
+                                        <div class="collapse apparatus-details" id="source_b86837281871b8b36388066f6f41f759">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 Bl. (2 b. S. o. Adr.)</li>
@@ -521,9 +519,9 @@
                                                             
                                                             <span>Leipzig (Deutschland), Leipziger Stadtbibliothek – Musikbibliothek (D-LEm)<br /><i>Signatur</i>: PB 37 (Nr. 38)</span>
                                                             <span>
-                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" role="button" href="#source_dfedfb9b8183c3dcbc4f170ace62ff9f"></a>
+                                                                <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed apparatus-details" role="button" href="#source_605b998809e6e63a24dd985a227c5cc8"></a>
                                                             </span>  
-                                                            <div class="collapse" id="source_dfedfb9b8183c3dcbc4f170ace62ff9f">
+                                                            <div class="collapse" id="source_605b998809e6e63a24dd985a227c5cc8">
                                                                 <h4 class="media-heading">Quellenbeschreibung</h4>
                                                                         <ul>
                                                                             <li>Abschrift von Lichtenstein</li>
@@ -536,7 +534,7 @@
                                                             
                                                             <span>Rungenhagen, Carl Friedrich, Nachrichten aus dem Leben und über die Musik-Werke Carl Maria von Weber's mit dem sehr ähnlichen Bildnisse desselben, Berlin: T. Trautwein, 1826, S. 6</span>
                                                               
-                                                            <div class="collapse" id="source_1849e9cd9a5c30b541ce98c7bd3d052a">
+                                                            <div class="collapse" id="source_33ef6390b2d647da0dc27d468df26c01">
                                                                 
                                                             </div>
                                                         </div>
@@ -546,7 +544,7 @@
                                                             
                                                             <span>Rudorff: Westermanns illustrierte deutsche Monats-Hefte, 44. Jg. (1899), 87. Bd., S. 180 (als Beilage zum Br. an Lichtenstein v. 18.12.)</span>
                                                               
-                                                            <div class="collapse" id="source_a7b5632495d4e7ecc22d01d315441574">
+                                                            <div class="collapse" id="source_f698e39dce62512e6b9884295ec7568f">
                                                                 
                                                             </div>
                                                         </div>
@@ -556,7 +554,7 @@
                                                             
                                                             <span class="tei_bibl">Nusser, G.: „Bisher unveröffentlichte Briefe hervorragender Musiker“, in: Der Zeitgeist. Beiblatt zum ’Berliner Tageblatt’, Nr. 21 (22. Mai 1899)</span>
                                                               
-                                                            <div class="collapse" id="source_241ee77287dfb6a177e5450ce6a7fd98">
+                                                            <div class="collapse" id="source_3bbe2bb751b11688fcddb0b79ac542d7">
                                                                 
                                                             </div>
                                                         </div>
@@ -566,7 +564,7 @@
                                                             
                                                             <span>Rudorff 1900, S. 117–119 (ebf. als Beil. zum Br. an L. v. 18.12.)</span>
                                                               
-                                                            <div class="collapse" id="source_631565a0efaa786cc51acc096f498a17">
+                                                            <div class="collapse" id="source_53a6382d328a13f08473fa732ac5edba">
                                                                 
                                                             </div>
                                                         </div>
@@ -599,7 +597,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">2.</a></div>
-                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  den Ihr seinem Andenken weiht“</span>Treffen der <a class="preview places A130002" href="">Berliner</a> Weber-Freunde anlässlich der 50. <span class="tei_hi_italic">Freischütz</span>-Aufführung in <a class="preview places A130002" href="">Berlin</a> am 28. Dezember 1822. Zur Terminverschiebung (vom 20. auf den 28. Dezember) vgl. den Kommentar zum <a class="preview letters A041995" href="">Brief</a> an H. Lichtenstein vom selben Tag.</div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note02"><span class="tei_lemma">„…  den Ihr seinem Andenken weiht“</span>Treffen der <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berliner</a> Weber-Freunde anlässlich der 50. <span class="tei_hi_italic">Freischütz</span>-Aufführung in <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> am 28. Dezember 1822. Zur Terminverschiebung (vom 20. auf den 28. Dezember) vgl. den Kommentar zum <a class="preview letters A041995" href="">Brief</a> an H. Lichtenstein vom selben Tag.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -634,7 +632,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041994</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041994</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -694,6 +692,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -752,22 +753,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

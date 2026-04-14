@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Emil von Uechtritz. Lebensdaten: 17. Februar 1783–9. Februar 1841. Tätigkeiten: Diplomat. Wirkorte: Stuttgart, Paris, Dresden, Wien","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002332","name":"Uechtritz, Emil von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002332","sameAs":"https://d-nb.info/gnd/117251046"}</script>
 
@@ -400,7 +398,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A002332/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A002332/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002332/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -418,13 +416,13 @@
                                                 
                                                 <div>
   <ul class="tei_list">
-   <li>Sohn des herzoglich sachsen-weimarischen Landkammerrats <span class="75971141083283105103105115109117110100326910910510832118111110328510199104116114105116122">Karl Sigismund Emil von Uechtritz</span> (geb. 20. Juli 1754 in <a class="preview places A130016" href="">Gotha</a>, gest. 20. Dezember 1849 in <span class="711019810497114100115100111114102">Gebhardsdorf</span>) und seiner Ehefrau <span class="75971141111081051101013265117103117115116101327011497110122105115999744321031019846321181111103279112112101108">Karoline Auguste Franzisca, geb. von Oppel</span> (geb. 6. Januar 1759 in <a class="preview places A130016" href="">Gotha</a>, gest. 13. Juli 1810 in <a class="preview places A130005" href="">Leipzig</a>)</li>
-   <li>heiratete am 28. Juni 1806 in <span class="7810111798114111110110">Neubronn</span> <span class="721011101141051011161161013283101989711511610597110101327011410110510511032118111110328710111411010199107">Henriette Sebastiane Freiin von Werneck</span> (geb. 25. August 1782 in <a class="preview places A130075" href="">Linz</a>, gest. 2. November 1858 in <span class="8425211410910511612232981011053265117115115105103">Türmitz bei Aussig</span>); aus der Ehe gingen vier Kinder hervor: <span class="75971141083270114971101223269109105108">Karl Franz <span class="tei_hi_underline1">Emil</span></span> (geb. 22. September 1808 in <a class="preview places A130012" href="">Stuttgart</a>, gest. 6. April 1886 in <span class="711019810497114100115100111114102">Gebhardsdorf</span>), <span class="83105103105115109117110100327210110511011410599104326510898101114116">Sigismund Heinrich <span class="tei_hi_underline1">Albert</span></span> (geb. 30. November 1809 in <a class="preview places A130012" href="">Stuttgart</a>, gest. 27. Dezember 1891 in <span class="711019810497114100115100111114102">Gebhardsdorf</span>), <span class="65117103117115116327011410510110011410599104"><span class="tei_hi_underline1">August</span> Friedrich</span> (geb. 28. April 1811 in <a class="preview places A130012" href="">Stuttgart</a>, gest. 29. März 1849 in <a class="preview places A130279" href="">Ofen</a>), <span class="7411710810510132761111171051151013275971141111081051101013282111981011141161051101013272101110114105101116116101">Julie Louise Karoline Robertine <span class="tei_hi_underline1">Henriette</span></span> (geb. 20. Dezember 1820 in <a class="preview places A130008" href="">Paris</a>, 1845 verh. mit <span class="83105103105115109117110100327111497102321181111103278111115116105116122458210510111010199107">Sigismund Graf von Nostitz-Rieneck</span>, gest. 4. August 1890 in <a class="preview places A130006" href="">Prag</a>)</li>
+   <li>Sohn des herzoglich sachsen-weimarischen Landkammerrats <span class="75971141083283105103105115109117110100326910910510832118111110328510199104116114105116122">Karl Sigismund Emil von Uechtritz</span> (geb. 20. Juli 1754 in <a class="preview places A130016" href="">Gotha</a>, gest. 20. Dezember 1849 in <span class="711019810497114100115100111114102">Gebhardsdorf</span>) und seiner Ehefrau <span class="75971141111081051101013265117103117115116101327011497110122105115999744321031019846321181111103279112112101108">Karoline Auguste Franzisca, geb. von Oppel</span> (geb. 6. Januar 1759 in <a class="preview places A130016" href="">Gotha</a>, gest. 13. Juli 1810 in <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a>)</li>
+   <li>heiratete am 28. Juni 1806 in <span class="7810111798114111110110">Neubronn</span> <span class="721011101141051011161161013283101989711511610597110101327011410110510511032118111110328710111411010199107">Henriette Sebastiane Freiin von Werneck</span> (geb. 25. August 1782 in <a class="preview places A130075" href="">Linz</a>, gest. 2. November 1858 in <span class="84252114109105116122">Türmitz</span> bei <a class="preview places A131183" href="">Aussig</a>); aus der Ehe gingen vier Kinder hervor: <span class="75971141083270114971101223269109105108">Karl Franz <span class="tei_hi_underline1">Emil</span></span> (geb. 22. September 1808 in <a class="preview places A130012" href="">Stuttgart</a>, gest. 6. April 1886 in <span class="711019810497114100115100111114102">Gebhardsdorf</span>), <span class="83105103105115109117110100327210110511011410599104326510898101114116">Sigismund Heinrich <span class="tei_hi_underline1">Albert</span></span> (geb. 30. November 1809 in <a class="preview places A130012" href="">Stuttgart</a>, gest. 27. Dezember 1891 in <span class="711019810497114100115100111114102">Gebhardsdorf</span>), <span class="65117103117115116327011410510110011410599104"><span class="tei_hi_underline1">August</span> Friedrich</span> (geb. 28. April 1811 in <a class="preview places A130012" href="">Stuttgart</a>, gest. 29. März 1849 in <a class="preview places A130279" href="">Ofen</a>), <span class="7411710810510132761111171051151013275971141111081051101013282111981011141161051101013272101110114105101116116101">Julie Louise Karoline Robertine <span class="tei_hi_underline1">Henriette</span></span> (geb. 20. Dezember 1820 in <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a>, 1845 verh. mit <span class="83105103105115109117110100327111497102321181111103278111115116105116122458210510111010199107">Sigismund Graf von Nostitz-Rieneck</span>, gest. 4. August 1890 in <a class="preview places A130006" href="">Prag</a>)</li>
    <li>1807 bis 1815 sächsischer Gesandter in <a class="preview places A130012" href="">Stuttgart</a></li>
-   <li>1815 bis 1827 sächsischer Gesandter in <a class="preview places A130008" href="">Paris</a>; Begegnung mit <a class="preview persons A002068" href="">Carl Maria von Weber</a> bei dessen <a class="preview places A130008" href="">Paris</a>-Besuch 1826</li>
+   <li>1815 bis 1827 sächsischer Gesandter in <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a>; Begegnung mit <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a> bei dessen <a class="preview places A130008" href="/exist/apps/WeGA-WebApp/de/A130008.html">Paris</a>-Besuch 1826</li>
    <li>1828 bis 1830 königlich sächsischer Oberkammerherr in <a class="preview places A130003" href="">Dresden</a></li>
    <li>1830 bis 1841 sächsischer Gesandter in <a class="preview places A130004" href="">Wien</a> und <a class="preview places A130118" href="">Turin</a></li>
-   <li>erhielt am 3. Juni 1836 laut königlich württembergischen Ministerialreskript ein Wappenattest als Freiherr von Uechtritz</li>
+   <li>erhielt am 3. Juni 1836 laut königlich württembergischem Ministerialreskript ein Wappenattest als Freiherr von Uechtritz</li>
    <li>Herr auf <span class="6610110810310111411510497105110324075246110105103114101105991043283979910411510111041">Belgershain (Königreich Sachsen)</span>, <span class="7524610411497">Köhra</span>, <span class="7610511010010497114100116">Lindhardt</span>, <span class="669797108115100111114102">Baalsdorf</span>, <span class="7210511411599104102101108100">Hirschfeld</span>, <span class="7011410110411097321171101003282111104114989799104">Frehna und Rohrbach</span>, auf <span class="7810111798114111110110321171101003276101105110114111100101110">Neubronn und Leinroden</span> (Königreich Württemberg), Senioratsherr auf <span class="711019810497114100115100111114102">Gebhardsdorf</span></li>
   </ul>
  </div>
@@ -504,7 +502,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002332</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002332</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -564,6 +562,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -622,22 +623,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

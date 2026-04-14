@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Johann Daniel Falk" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Solveig Schreiter" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"vernichtende Kritik des Schriftstellers und Pädagogen Johann Daniel Falk, den Weber von 1812 persönlich kannte, über die Freischütz-Inszenierung in Weimar 1822","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Über die „Freischütz“-Inszenierung in Weimar 1822","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031972","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000472/Schriften/A031972","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A000472","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A000472"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -299,7 +296,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000472/Schriften/A031972/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A000472/Schriften/A031972/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -357,9 +354,9 @@
                         <div class="panel-collapse collapse" id="personsPlus">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000651" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -421,7 +418,7 @@
                                         <h2 class="docHeader textAlign-center">Den <span class="tei_sic">3.</span><a class="noteMarker" id="backref-d10e5" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e5">‡</a><a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> Mai 1822<br /> Urteil über den "<a class="preview works A020040" href="">Freischützen</a>"<br /> Eine Stimme aus <a class="preview places A130014" href="">Weimar</a></h2>
                                         <p>Den 3. Mai 1822 ist hier in <a class="preview places A130014" href="">Weimar</a> der "<a class="preview works A020040" href="">Freischütz</a>" gegeben worden. Seit der "<a class="preview works A020584" href="">Zauberflöte</a>" ist dem Zeitgeist keine größere Huldigung widerfahren als durch dieses Stück. Darum fehlt es auch nicht an Zuschauern. Damals gab es Geheimniskrämerei, unsichtbare Brüder und Obere, wovon es in allen Köpfen und Büchern spukte. Jetzt ist der Teufel förmlich an der Tagesordnung. Es wird nicht lange dauern, so wird er in allen Romanen ein so wesentliches Ingredienz sein als sonst Mondscheingräber, Leichensteine in unseren Musenalmanachen. Dabei ist ein Umstand bemerkenswert. In unseren bisherigen Schicksalsstücken trat der Teufel doch nur verlarvt auf, der Name des Bösen war noch etwas anstößig. So höllisch und so abgeschmackt auch die Künste waren, wozu er die Menschen verführte, so war er doch wenigstens so bescheiden, für deutscher Dichter Gemüt einen griechischen Namen anzunehmen, und ließ sich das böse Schicksal nennen. Jetzt aber tritt er mit der Hahnenfeder auf dem Kopf auf und steht förmlich auf dem Zettel wie die anderen Schauspieler auch. Wir haben „verteufelte“ Fortschritte seitdem in der Kunst gemacht. Dieses Werk ist ein Kunstprodukt, wie man ungefähr auch ein Spinnengewebe ein Kunstprodukt nennen darf, obwohl es nicht aus dem frischen Aufquellen der Natur, aus Licht und Luft, aus Gestirnen und Regen, wie ein Blatt oder wie ein in das Himmlische strebender Baum, sondern aus dem klebrichten Saft einer Spinne gräulich unscheinbar und farblos seinen Ursprung zieht und gewebt ist. Daher kann es auch weder goldene Früchte tragen noch mit Morgen- und Abendröte prangen, die nie sein sind und nie sein werden, da sie nur ganz fein gesponnen sind. Eine Fliegenfalle der Zeit, ein den Mücken ausgespanntes Todesnetz, dafür muß ich diese Komposition ansprechen, die nur leichte und zeitliche Geister befangen kann und wird, die dem gemeinsten Aberglauben des Volkes huldigt, erhabene Töne an gemeine Stoffe verschwendet, der Kirche Gewalt antut und sie mit der Schenke buhlen läßt: das ist der "<a class="preview works A020040" href="">Freischütz</a>". Erkenne dich, geliebtes deutsches Publikum, das zu diesem Porträt gesessen hat.</p>
                                         <p>Wie kann der Mensch die Geheimnisse Gottes ergründen? Leuchtwürmchen, dessen Glanz vor der kleinen Talgkerze verblaßte, wie kann es dies mit dem Glanz der ewigen Gestirne aufnehmen?</p>
-                                        <p>Eine Regel läßt sich für Operndichter und Opernkomponisten aus dem häufigen Zuspruch, den dieses Stück überall erhält, abziehen. Das Publikum, nämlich das große, fragt den Teufel nach den klassischen Sachen eurer <span class="73112104105103101110105101">Iphigenie</span>, <span class="6599104105108108101115">Achilles</span>, <span class="66114101110110117115">Brennus</span>, es will sich an Höllenstoffen erwärmen. Die Bären und Affen des <span class="839711497115116114111">Sarastro</span>, die Wasser- und Feuerproben <span class="tei_sic">Paminos</span><a class="noteMarker" id="backref-d10e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e55">‡</a>, <span class="tei_sic">Taminas</span><a class="noteMarker" id="backref-d10e59" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e59">‡</a> haben die Gewalt des Märchens über das Volk hinlänglich bewährt und durch die glühenden Hexen- und Katzenaugen, durch die wilde Jagd von <a class="preview persons A002068" href="">Weber</a> hat diese Maxime einen neuen Beweis erhalten. Sie ist unleugbar; die Oper wird immer auf diesem Feld ihr entschiedenstes Glück machen. Dagegen wär’ nun auch nichts einzuwenden; desto mehr aber gegen diese geistlose Behandlung des Märchens, wie es im "<a class="preview works A020040" href="">Freischützen</a>" erscheint; ohne alle Natur, Kraft und echten Aufschwung. Wenn ihr von Hexen sprechen wollt, so laßt euch doch zuvor von <a class="preview persons A000651" href="">Goethes</a> <span class="7097117115116">Faust</span> in die Hexenküche schicken; der Blocksberg ist freilich kein Musenberg, da ist nicht schöpferisches Genie, aber er kann selbst dem vertrockneten Besenstiel einer Hexe noch Leben abgewinnen. – Videatur <a class="preview persons A000651" href="">Goethe</a>. – Da aber hat es mit unserm "<a class="preview works A020040" href="">Freischützen</a>" aufgehört oder vielmehr, es hat gar nicht angefangen, kein einziger Charakter im Fundament erfaßt und folglich das Ganze ein musizierendes Spinnengewebe einer falschen Phantasie. </p>
+                                        <p>Eine Regel läßt sich für Operndichter und Opernkomponisten aus dem häufigen Zuspruch, den dieses Stück überall erhält, abziehen. Das Publikum, nämlich das große, fragt den Teufel nach den klassischen Sachen eurer <span class="73112104105103101110105101">Iphigenie</span>, <span class="6599104105108108101115">Achilles</span>, <span class="66114101110110117115">Brennus</span>, es will sich an Höllenstoffen erwärmen. Die Bären und Affen des <span class="839711497115116114111">Sarastro</span>, die Wasser- und Feuerproben <span class="tei_sic">Paminos</span><a class="noteMarker" id="backref-d10e55" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e55">‡</a>, <span class="tei_sic">Taminas</span><a class="noteMarker" id="backref-d10e59" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e59">‡</a> haben die Gewalt des Märchens über das Volk hinlänglich bewährt und durch die glühenden Hexen- und Katzenaugen, durch die wilde Jagd von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a> hat diese Maxime einen neuen Beweis erhalten. Sie ist unleugbar; die Oper wird immer auf diesem Feld ihr entschiedenstes Glück machen. Dagegen wär’ nun auch nichts einzuwenden; desto mehr aber gegen diese geistlose Behandlung des Märchens, wie es im "<a class="preview works A020040" href="">Freischützen</a>" erscheint; ohne alle Natur, Kraft und echten Aufschwung. Wenn ihr von Hexen sprechen wollt, so laßt euch doch zuvor von <a class="preview persons A000651" href="">Goethes</a> <span class="7097117115116">Faust</span> in die Hexenküche schicken; der Blocksberg ist freilich kein Musenberg, da ist nicht schöpferisches Genie, aber er kann selbst dem vertrockneten Besenstiel einer Hexe noch Leben abgewinnen. – Videatur <a class="preview persons A000651" href="">Goethe</a>. – Da aber hat es mit unserm "<a class="preview works A020040" href="">Freischützen</a>" aufgehört oder vielmehr, es hat gar nicht angefangen, kein einziger Charakter im Fundament erfaßt und folglich das Ganze ein musizierendes Spinnengewebe einer falschen Phantasie. </p>
                                     </div>
                                 </div>
                     </div>
@@ -474,7 +471,7 @@
                                         
                                         <span class="biblio-entry"><span class="title">Den 3.<span class="brackets_supplied">[sic!]</span> Mai 1822 | Urteil über den „Freischützen“ | Eine Stimme aus Weimar</span>, in: <span class="journalTitle">Johannes Falk Geheimes Tagebuch 1818–1826.  Aus dem Nachlaß herausgegeben von Ernst Schering unter Mitwirkung von Georg Mlynek</span> (1964)</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_caf12b839af22eee52a5b7ddd861966a">
+                                        <div class="collapse apparatus-details" id="source_4fd9e196338ad6a555f01f5ab916651d">
                                             
                                             
                                             <div>
@@ -550,7 +547,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031972</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031972</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -610,6 +607,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -668,22 +668,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

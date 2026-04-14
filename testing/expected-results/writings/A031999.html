@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Anonymus" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Ina Klare" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
@@ -44,11 +43,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Aufführungsbesprechung Prag, Ständetheater: 26. Dezember 1813 und 1. Januar 1814","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031999","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031999","author":[{"@type":"Person","name":"Anonymus"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -252,7 +249,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -296,10 +293,10 @@
                                     <a class="nav-link" href="#facsimile" data-toggle="tab" id="facsimile-tab">Faksimile</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031999/backlinks.html">Rückverweise</a>
+                                    <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031999/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A007979/Schriften/A031999/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -398,8 +395,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000909" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000691" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001362" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -407,6 +402,8 @@
                                     <input type="checkbox" name="options" value="A001500" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001334" /> <span title="Anwählen, um &#34;Mohrhardt, Otto&#34; im Text zu markieren.">Mohrhardt, Otto</span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -522,7 +519,7 @@
                                     <div id="endNotes">
                                         <h3>[Originale Fußnoten]</h3>
                                         <ul>
-                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Leider können wir dieß nicht immer von der Oper rühmen, und es ist unbegreiflich, wie ein so kenntnisreicher Operndirector, als <a class="preview persons A002068" href="">Herr <span class="tei_hi_spaced_out">C. M. v. Weber</span></a>, die Kräfte seines Personals so wenig abzuwagen und zu benutzen weiß. So muß z.B. <a class="preview persons A000691" href="">Hr. <span class="tei_hi_spaced_out">Grünbaum</span></a>, dem die Natur mehr Milde als Kraft verliehen hat, in jeder Woche drey bis vier Mahl singen, und in Rollen, die gar nicht für ihn taugen, die Gunst des Publicums in dem Grade verscherzen, daß es selbst manchmahl ungerecht gegen ihn wird, während <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html">Herr <span class="tei_hi_spaced_out">Mohrhardt</span></a>, dem eine Riesenstimme zu Theil geworden, oft wochenlang gar nicht erscheint, so daß man schon den Capellmeister beschuldigte, er wolle diesem durch den Reiz der Seltenheit die erhöhte Theilnahme des Publicums sichern. Da es bey einem Kunstunternehmen dieser Art durchaus auf Totalwirkung ankommt, so sollten hier alle <span class="tei_sic">andere</span><a class="noteMarker" id="backref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">‡</a> Rücksichten schweigen, und jeder die Rollen spielen, für die ihn sein Talent vorzüglich eignet. Da nun hier zwey erste Tenoristen sind, wovon der eine mehr in das sanfte und zarte Fach, der zweyte für lebhafte und Heldenrollen paßt, so wäre sehr zu wünschen, daß <a class="preview persons A000691" href="">Herr Grünbaum</a>, dessen solide musikalische Kenntnisse ihn vorzüglich zum Vortrag <a class="preview persons A001362" href="">Mozart</a>‘scher Musik geschickt machen, den <span class="68111110327911611697118105111">Don <span class="tei_hi_spaced_out">Ottavio</span></span>, <span class="66101108109111110116101"><span class="tei_hi_spaced_out">Belmonte</span></span> in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung aus dem Serail</span></a>, <span class="84105116117115"><span class="tei_hi_spaced_out">Titus</span></span>, <span class="8497109105110111"><span class="tei_hi_spaced_out">Tamino</span></span> in der <a class="preview works A020584" href=""><span class="tei_hi_spaced_out">Zauberflöte</span></a>, <span class="7010111411497110100111"><span class="tei_hi_spaced_out">Ferrando</span></span> in <a class="preview works A020522" href="">Cosi fann tutte</a>, ferner <span class="6511697114"><span class="tei_hi_spaced_out">Atar</span></span> im <a class="preview works A020510" href=""><span class="tei_hi_spaced_out">Axur</span></a> und andern ähnlichen Rollen in classischen Opern spielen möge; auch der sanfte <span class="80114105110122328297109105114111">Prinz <span class="tei_hi_spaced_out">Ramiro</span></span>, in <a class="preview works A020527" href=""><span class="tei_hi_spaced_out">Aschenbrödel</span></a>, der <span class="72101114122111103"><span class="tei_hi_spaced_out">Herzog</span></span> in <a class="preview works A020400" href=""><span class="tei_hi_spaced_out">Elisene</span></a>, passen sehr wohl für ihn; nur wäre es dann zum Totaleffect in diesen Opern notwendig, daß <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html">Herr Mohrhardt</a> zweyte Rollen, z.B. <span class="7797115101116116111"><span class="tei_hi_spaced_out">Masetto</span></span>, <span class="7711111011111511697116111115"><span class="tei_hi_spaced_out">Monostatos</span></span> u. s. w. übernähme. Sollte dieß seine Ansprüche als ersten Tenoristen kränken, so trößte es ihn, daß der vortreffliche Tenorist <span class="6697103108105111110105"><span class="tei_hi_spaced_out">Baglioni</span></span> selbst den <span class="7711111011111511697116111115"><span class="tei_hi_spaced_out">Monostatos</span></span> sang; überdieß fallen sodann ihm, als ganz seiner Jugendkraft angemessen, die Helden <span class="7610599105110105117115"><span class="tei_hi_spaced_out">Licinius</span></span>, <span class="67111114116101122"><span class="tei_hi_spaced_out">Cortez</span></span>, und der jovialische <span class="741111049711011032118111110328097114105115"><span class="tei_hi_spaced_out">Johann von Paris</span></span> zu, da zumahl sich sein Vortrag und der größere Umfang seiner Stimme ganz für die neuere französische Oper eignet. Beyde fänden hier ihren Vortheil, beyde würden sich in der Kunst des Publicums erhalten, und das Ganz müßte, indem beyder Kräfte vereint für den Genuß des Publicums wirken, ohne Zweifel gewinnen.</li>
+                                            <li id="footnote01"><a href="#backref-footnote01" class="fn-backref"><i class="fa fa-arrow-up" aria-hidden="true"></i></a>*) Leider können wir dieß nicht immer von der Oper rühmen, und es ist unbegreiflich, wie ein so kenntnisreicher Operndirector, als <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Herr <span class="tei_hi_spaced_out">C. M. v. Weber</span></a>, die Kräfte seines Personals so wenig abzuwagen und zu benutzen weiß. So muß z.B. <a class="preview persons A000691" href="">Hr. <span class="tei_hi_spaced_out">Grünbaum</span></a>, dem die Natur mehr Milde als Kraft verliehen hat, in jeder Woche drey bis vier Mahl singen, und in Rollen, die gar nicht für ihn taugen, die Gunst des Publicums in dem Grade verscherzen, daß es selbst manchmahl ungerecht gegen ihn wird, während <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html">Herr <span class="tei_hi_spaced_out">Mohrhardt</span></a>, dem eine Riesenstimme zu Theil geworden, oft wochenlang gar nicht erscheint, so daß man schon den Capellmeister beschuldigte, er wolle diesem durch den Reiz der Seltenheit die erhöhte Theilnahme des Publicums sichern. Da es bey einem Kunstunternehmen dieser Art durchaus auf Totalwirkung ankommt, so sollten hier alle <span class="tei_sic">andere</span><a class="noteMarker" id="backref-d10e137" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e137">‡</a> Rücksichten schweigen, und jeder die Rollen spielen, für die ihn sein Talent vorzüglich eignet. Da nun hier zwey erste Tenoristen sind, wovon der eine mehr in das sanfte und zarte Fach, der zweyte für lebhafte und Heldenrollen paßt, so wäre sehr zu wünschen, daß <a class="preview persons A000691" href="">Herr Grünbaum</a>, dessen solide musikalische Kenntnisse ihn vorzüglich zum Vortrag <a class="preview persons A001362" href="">Mozart</a>‘scher Musik geschickt machen, den <span class="68111110327911611697118105111">Don <span class="tei_hi_spaced_out">Ottavio</span></span>, <span class="66101108109111110116101"><span class="tei_hi_spaced_out">Belmonte</span></span> in der <a class="preview works A020461" href=""><span class="tei_hi_spaced_out">Entführung aus dem Serail</span></a>, <span class="84105116117115"><span class="tei_hi_spaced_out">Titus</span></span>, <span class="8497109105110111"><span class="tei_hi_spaced_out">Tamino</span></span> in der <a class="preview works A020584" href=""><span class="tei_hi_spaced_out">Zauberflöte</span></a>, <span class="7010111411497110100111"><span class="tei_hi_spaced_out">Ferrando</span></span> in <a class="preview works A020522" href="">Cosi fann tutte</a>, ferner <span class="6511697114"><span class="tei_hi_spaced_out">Atar</span></span> im <a class="preview works A020510" href=""><span class="tei_hi_spaced_out">Axur</span></a> und andern ähnlichen Rollen in classischen Opern spielen möge; auch der sanfte <span class="80114105110122328297109105114111">Prinz <span class="tei_hi_spaced_out">Ramiro</span></span>, in <a class="preview works A020527" href=""><span class="tei_hi_spaced_out">Aschenbrödel</span></a>, der <span class="72101114122111103"><span class="tei_hi_spaced_out">Herzog</span></span> in <a class="preview works A020400" href=""><span class="tei_hi_spaced_out">Elisene</span></a>, passen sehr wohl für ihn; nur wäre es dann zum Totaleffect in diesen Opern notwendig, daß <a class="preview persons A001334" href="/exist/apps/WeGA-WebApp/de/A001334.html">Herr Mohrhardt</a> zweyte Rollen, z.B. <span class="7797115101116116111"><span class="tei_hi_spaced_out">Masetto</span></span>, <span class="7711111011111511697116111115"><span class="tei_hi_spaced_out">Monostatos</span></span> u. s. w. übernähme. Sollte dieß seine Ansprüche als ersten Tenoristen kränken, so trößte es ihn, daß der vortreffliche Tenorist <span class="6697103108105111110105"><span class="tei_hi_spaced_out">Baglioni</span></span> selbst den <span class="7711111011111511697116111115"><span class="tei_hi_spaced_out">Monostatos</span></span> sang; überdieß fallen sodann ihm, als ganz seiner Jugendkraft angemessen, die Helden <span class="7610599105110105117115"><span class="tei_hi_spaced_out">Licinius</span></span>, <span class="67111114116101122"><span class="tei_hi_spaced_out">Cortez</span></span>, und der jovialische <span class="741111049711011032118111110328097114105115"><span class="tei_hi_spaced_out">Johann von Paris</span></span> zu, da zumahl sich sein Vortrag und der größere Umfang seiner Stimme ganz für die neuere französische Oper eignet. Beyde fänden hier ihren Vortheil, beyde würden sich in der Kunst des Publicums erhalten, und das Ganz müßte, indem beyder Kräfte vereint für den Genuß des Publicums wirken, ohne Zweifel gewinnen.</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -566,7 +563,7 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Der Sammler.  Ein Unterhaltungsblatt</span>, Jg. 6, Nr. 29 (19. Februar 1814), S. 116</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_ecce8e45b9dc032b1b85d3961d4e1854">
+                                        <div class="collapse apparatus-details" id="source_0044f16249ba3bfceee97be39ceccf8e">
                                             
                                             
                                             <div>
@@ -622,7 +619,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031999</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031999</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -682,6 +679,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -740,22 +740,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

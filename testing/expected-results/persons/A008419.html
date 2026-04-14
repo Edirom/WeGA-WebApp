@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"Person","description":"Biographische Informationen zu Johann Evangelist Wallishauser. Lebensdaten: 28. April 1735–10. Januar 1816. Tätigkeiten: Sänger, Gesangspädagoge. Wirkorte: Freising, Italien, München","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A008419","name":"Wallishauser, Johann Evangelist","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008419","sameAs":"https://d-nb.info/gnd/119392976"}</script>
 
@@ -400,7 +398,7 @@
                                                     <a class="nav-link" data-toggle="tab" href="#gnd-beacon" data-tab-url="/exist/apps/WeGA-WebApp/de/A008419/beacon.html">GND Beacon Links</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
-                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-url="/exist/apps/WeGA-WebApp/de/A008419/xml.html">XML-Vorschau</a>
+                                                    <a class="nav-link" data-toggle="tab" href="#XMLPreview" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A008419/xml.html">XML-Vorschau</a>
                                                 </li>
                                                 <li class="nav-item gradient-light">
                                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -424,8 +422,8 @@
          <li>1755 Auftritte u. a. in <a class="preview places A130056" href="">Amsterdam</a> und <a class="preview places A130097" href="">Brüssel</a></li>
          <li>1756 kurfürstl. bayerischer Hof- und Kammersänger, 1757 Debüt an der <a class="preview places A130007" href="">Münchner</a> Oper</li>
          <li>nach Gesangsstudien in <a class="preview places A130248" href="">Padua</a> (ab 1757) Engagements an verschiedenen italienischen Bühnen (u. a. <a class="preview places A130063" href="">Florenz</a>, <a class="preview places A130839" href="">Siena</a>. <a class="preview places A130062" href="">Mailand</a>, <a class="preview places A130152" href="">Parma</a>, <a class="preview places A130264" href="">Genua</a>, <a class="preview places A130118" href="">Turin</a>, <a class="preview places A130037" href="">Rom</a>, <a class="preview places A130057" href="">Venedig</a>) </li>
-         <li>ab 1776 wieder Sänger an der <a class="preview places A130007" href="">Münchner</a> Hofoper; von dort aus 1777 Gastauftritte u. a. in <a class="preview places A130006" href="">Prag</a>, <a class="preview places A130003" href="">Dresden</a>, <a class="preview places A130014" href="">Weimar</a>, <a class="preview places A130002" href="">Berlin</a></li>
-         <li>1798 Abschied von der Bühne; danach ausschließlich als Gesangslehrer tätig (u. a. von <a class="preview persons A002068" href="">Weber</a>, <span class="864632651009710998101114103101114">V. Adamberger</span>, <span class="8010446328310110010810997121114">Ph. Sedlmayr</span>, <a class="preview persons A0006B8" href="">A. Schröfel</a>, <a class="preview persons A000955" href="">K. Kainz</a>, <a class="preview persons A001937" href="">J. W. Sutor</a>)</li>
+         <li>ab 1776 wieder Sänger an der <a class="preview places A130007" href="">Münchner</a> Hofoper; von dort aus 1777 Gastauftritte u. a. in <a class="preview places A130006" href="">Prag</a>, <a class="preview places A130003" href="">Dresden</a>, <a class="preview places A130014" href="">Weimar</a>, <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a></li>
+         <li>1798 Abschied von der Bühne; danach ausschließlich als Gesangslehrer tätig (u. a. von <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber</a>, <span class="864632651009710998101114103101114">V. Adamberger</span>, <span class="8010446328310110010810997121114">Ph. Sedlmayr</span>, <a class="preview persons A0006B8" href="">A. Schröfel</a>, <a class="preview persons A000955" href="">K. Kainz</a>, <a class="preview persons A001937" href="">J. W. Sutor</a>)</li>
          <li>bis zur Säkularisation außerdem Hauspfleger des Bernrieder Klosterhauses in der Sendlinger Straße in <a class="preview places A130007" href="">München</a></li>
          <li>Vater u. a. von <a class="preview persons A001039" href="">Magdalena Valesi</a></li>
       </ul>
@@ -506,7 +504,7 @@
             <div class="row permaLink">
                 <div class="col-md-9">
                     <h4>Empfohlene Zitierweise</h4>
-                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008419</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                    <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A008419</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                         <br />
                         <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
                 </div>
@@ -566,6 +564,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -624,22 +625,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

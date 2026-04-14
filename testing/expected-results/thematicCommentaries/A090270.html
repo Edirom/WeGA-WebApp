@@ -12,6 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Frank Ziegler" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270" />
@@ -41,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Um Webers Einfluss auf das Prager Repertoire und seine Arbeitsleistung bei der Reorganisation der deutschen Oper am Ständetheater angemessen …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Deutschsprachiges Musiktheater-Repertoire des Prager Ständetheaters von 1807 bis Ostern 1813","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Um Webers Einfluss auf das Prager Repertoire und seine Arbeitsleistung bei der Reorganisation der deutschen Oper am Ständetheater angemessen …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Deutschsprachiges Musiktheater-Repertoire des Prager Ständetheaters von 1807 bis Ostern 1813","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A009005","name":"Ziegler, Frank","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A009005","sameAs":"https://d-nb.info/gnd/132426455"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -218,7 +217,7 @@
                         
                         <ol class="breadcrumb">
                             <li><a href="/exist/apps/WeGA-WebApp/de/Index">Home</a></li>
-                            <li><span></span></li>
+                            <li><a href="/exist/apps/WeGA-WebApp/de/A009005.html">Frank Ziegler</a></li>
                             <li><a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare">Themenkommentare</a></li>
                             <li><span>A090270</span></li>
                         </ol>
@@ -286,7 +285,7 @@
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light"><a href="#transcription" class="active nav-link" data-toggle="tab">Text</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270/backlinks.html">Rückverweise</a></li>
-                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270/xml.html">XML-Vorschau</a></li>
+                                <li class="nav-item gradient-light"><a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090270/xml.html">XML-Vorschau</a></li>
                                 <li class="nav-item gradient-light"><a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a></li>
                             </ul>
                         </div>
@@ -454,6 +453,8 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A000277" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A0028F8" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A008006" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A001971" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -570,6 +571,8 @@
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020680" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A021684" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020499" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020513" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -603,6 +606,16 @@
                                     <input type="checkbox" name="options" value="A020650" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn gradient-light">
                                     <input type="checkbox" name="options" value="A020766" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                            <div class="filtersection">
+                        <h2><a class="collapseSingle collapsed" data-toggle="collapse" aria-expanded="false" role="button" href="#places">Orte</a></h2>
+                        <div class="panel-collapse collapse" id="places">
+                            <div data-toggle="buttons" class="btn-group primary">
+                                <label class="btn gradient-light">
+                                    <input type="checkbox" name="options" value="A130988" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label>
                             </div>
                         </div>
@@ -2039,7 +2052,7 @@
                                         <li><span class="tei_hi_bold"><span class="tei_hi_small-caps">Samson, Richter in Israel</span></span>, Drama  mit Musik, <a class="preview persons A0001B6" href="">V. Tuczek</a>, 3 Akte, EA
                   <br />sowie
                   <br /><span class="tei_hi_bold"><span class="tei_hi_small-caps"><a class="preview works A020909" href="">Samson, Richter in Israel</a></span></span>, Drama  mit Musik,  <a class="preview persons A001382" href="">W. Müller</a>, 3 Akte, UA
-                  <br />Die Datierung einer angeblichen Prager Aufführung (13. August 1808) der Müllerschen Komposition<a class="noteMarker arabic" id="backref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">13</a> dürfte falsch sein; an diesem Tag wurde im Theater in der Leopoldstadt in Wien die <span class="tei_hi_italic">Samson</span>-Vertonung von <a class="preview persons A0001B6" href="">V. Tuczek</a> gegeben. Im handschriftlichen Bühnentagebuch des Leopoldstädter Theaters merkte Wenzel <a class="preview persons A001382" href="">Müller</a>  zu dieser Wiener Tuczek-Uraufführung allerdings an: „Ich <span class="tei_hi_italic">Wenzel Müller</span>, habe auf dieses Buch auch eine Musick für das Prager Theater geschrieben, welche mit ausserordentlichem Beyfall aufgenommen wurde.“<a class="noteMarker arabic" id="backref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">14</a>  Auffallend ist, dass das Schauspiel <span class="tei_hi_italic">Samson, Richter in Israel</span> von Joseph Anton Schuster in den  Prager Zensur-Protokollen  1809 zweimal eingetragen ist (als Nr. 4 und 16, eingereicht am 29. Januar bzw. 7. März 1809, jeweils mit Komponistenangabe Tuczek); möglicherweise war dabei einmal die Vertonung Müllers gemeint. Die von Müller erwähnte Prager Aufführung dürfte also frühestens 1809 stattgefunden haben (eine Aufführung von Tuczeks Werk ist erstmals 1813 bezeugt; freundlicher Hinweis von Jitka Ludvová).
+                  <br />Die Datierung einer angeblichen Prager Aufführung (13. August 1808) der Müllerschen Komposition<a class="noteMarker arabic" id="backref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">13</a> dürfte falsch sein; an diesem Tag wurde im <a class="preview places A130988" href="">Theater in der Leopoldstadt</a> in Wien die <span class="tei_hi_italic">Samson</span>-Vertonung von <a class="preview persons A0001B6" href="">V. Tuczek</a> gegeben. Im handschriftlichen Bühnentagebuch des Leopoldstädter Theaters merkte Wenzel <a class="preview persons A001382" href="">Müller</a>  zu dieser Wiener Tuczek-Uraufführung allerdings an: „Ich <span class="tei_hi_italic">Wenzel Müller</span>, habe auf dieses Buch auch eine Musick für das Prager Theater geschrieben, welche mit ausserordentlichem Beyfall aufgenommen wurde.“<a class="noteMarker arabic" id="backref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">14</a>  Auffallend ist, dass das Schauspiel <span class="tei_hi_italic">Samson, Richter in Israel</span> von Joseph Anton Schuster in den  Prager Zensur-Protokollen  1809 zweimal eingetragen ist (als Nr. 4 und 16, eingereicht am 29. Januar bzw. 7. März 1809, jeweils mit Komponistenangabe Tuczek); möglicherweise war dabei einmal die Vertonung Müllers gemeint. Die von Müller erwähnte Prager Aufführung dürfte also frühestens 1809 stattgefunden haben (eine Aufführung von Tuczeks Werk ist erstmals 1813 bezeugt; freundlicher Hinweis von Jitka Ludvová).
                </li>
                                         <li><span class="tei_hi_bold"><span class="tei_hi_small-caps"><a class="preview works A020780" href="">Soliman der zweyte oder Die drey Sultaninnen</a></span></span>, <a class="preview persons A004558" href="">F. X. Süßmayr</a>, 2 Akte
                   <br />mit Einlagearie von <a class="preview persons A001786" href="">M. Schreinzer</a>
@@ -2099,7 +2112,7 @@
                   <br />vgl. <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 12, Nr. 45 (8. August 1810), Sp. 724
                   <br />laut Zensur-Protokoll (1810, Nr. 10) Textmanuskript eingereicht am 7. Mai 1810  und Aufführungserlaubnis erteilt am 8. Mai  1810
                </li>
-                                        <li><span class="tei_hi_bold"><span class="tei_hi_small-caps">Nina oder Wahnsinn aus Liebe</span></span>, <a class="preview persons A001438" href="">G. Paisiello</a>, 2 Akte, NE
+                                        <li><span class="tei_hi_bold"><span class="tei_hi_small-caps"><a class="preview works A021684" href="">Nina oder Wahnsinn aus Liebe</a></span></span>, <a class="preview persons A001438" href="">G. Paisiello</a>, 2 Akte, NE
                   <br />Nina: Mad. Bethmann (a. G.)
                   <br />vgl. <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 12, Nr. 45 (8. August 1810), Sp. 722
                </li>
@@ -2140,7 +2153,7 @@
                   <br />vgl. <span class="tei_hi_italic">Allgemeine musikalische Zeitung</span>, Jg. 12, Nr. 63 (12. Dezember 1810), Sp. 1011–1013
                   <br />laut Zensur-Protokoll (1810, Nr. 31) Textdruck (Wien 1806) eingereicht am 17. September  1810  und Aufführungserlaubnis erteilt am selben Tag
                </li>
-                                        <li><span class="tei_hi_bold"><span class="tei_hi_small-caps">Azemia oder Die Wilden</span></span>  (Azémia ou Les Sauvages), <a class="preview persons A000348" href="">N. Dalayrac</a>, 3 Akte, Übersetzung von J. Perinet
+                                        <li><span class="tei_hi_bold"><span class="tei_hi_small-caps">Azemia oder Die Wilden</span></span>  (Azémia ou Les Sauvages), <a class="preview persons A000348" href="">N. Dalayrac</a>, 3 Akte, Übersetzung von <a class="preview persons A0028F8" href="">J. Perinet</a>
                   <br />laut Zensur-Protokoll (1810, Nr. 37) Textmanuskript eingereicht am 24. Oktober  1810  und Aufführungserlaubnis erteilt (mit Streichungen) am 26. Oktober 1810
                </li>
                                         <li><span class="tei_hi_bold"><span class="tei_hi_small-caps"><a class="preview works A020965" href="">Kanzema, Königin von Serandib</a></span></span>, F. D. <a class="preview persons A008006" href="">Weber</a>, 2 Akte (die geplante Aufführung fand offenbar nicht statt)
@@ -2225,7 +2238,7 @@
                </li>
                                     </ul>
                                 </div>
-                                <div id="d12e4394">
+                                <div id="d12e4401">
                                     <p>Eine Übersicht weiterer Themenkommentare zu Webers Wirken am Prager Ständetheater findet sich in der Dokumentation „<a href="/exist/apps/WeGA-WebApp/de/A070090.html#chapter-links">Carl Maria von Weber als Operndirektor des Prager Ständetheaters von 1813 bis 1816</a>“.</p>
                                 </div>
                                 <div id="endNotes">
@@ -2270,7 +2283,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A090270</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                     <span>Letzte Änderung dieses Dokuments am %1 durch %2</span></p>
             </div>
@@ -2328,6 +2341,9 @@
                 <div class="row">
                     <div class="col-12">
                         <ul class="footerNav">
+                            <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
@@ -2387,22 +2403,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

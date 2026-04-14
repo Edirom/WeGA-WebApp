@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Weber, Carl Maria von" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,13 +44,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"dankt für Briefe Kinds vom 26. u. 28. Mai; betr. Rezeption der Olympia; berichtet kurz über die Vorbereitungen zur Freischütz-Aufführung; betr. Möglichkeit, den Freischütz in Wien auf die Bühne zu bringen; hält es für geraten, vorerst nichts dorthin zu schicken, da er bereits vor Jahr und Tag bei Schreyvogel u. Treitschke deswegen angefragt habe, ohne definitive Antwort zu bekommen; äußert seine Bedenken über den Cid; äußert sich anerkennend zu einem ihm von Kind geschickten Artikel aus der Muse","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Friedrich Kind in Dresden. Berlin, Donnerstag, 31. Mai 1821","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041743","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041743","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"dankt für Briefe Kinds vom 26. u. 28. Mai; betr. Rezeption der Olympia; berichtet kurz über die Vorbereitungen zur Freischütz-Aufführung; betr. Möglichkeit, den Freischütz in Wien auf die Bühne zu bringen; hält es für geraten, vorerst nichts dorthin zu schicken, da er bereits vor Jahr und Tag bei Schreyvogel u. Treitschke deswegen angefragt habe, ohne definitive Antwort zu bekommen; äußert seine Bedenken über den Cid; äußert sich anerkennend zu einem ihm von Kind geschickten Artikel aus der Muse","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber an Friedrich Kind in Dresden. Berlin, Donnerstag, 31. Mai 1821","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041743","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041743","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -226,7 +224,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz">Korrespondenz</a>
@@ -255,7 +253,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -302,7 +300,7 @@
                                     <a class="nav-link deactivated"></a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041743/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041743/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -365,16 +363,16 @@
                                    <h4>Vorausgehend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041741.html">1821-05-27</a>:  an  <a href="" class="preview A001002 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041717.html">1821-01-08</a>:  an  <a href="" class="preview A001025 persons"></a>
                                        </li>
                                             <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A001709/Korrespondenz/A041709.html">1821-04-10</a>:  von  <a href="" class="preview A001709 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A000235/Korrespondenz/A041674.html">1821-03-22</a>:  von  <a href="" class="preview A000235 persons"></a>
                                        </li>
                                    </ul>
                                    <h4>Folgend</h4>
                                    <ul>
                                        <li>
-                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041782.html">1821-09-17</a>:  an  <a href="" class="preview A000477 persons"></a>
+                                           <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041761.html">1821-07-31</a>:  an  <a href="" class="preview A000213 persons"></a>
                                        </li>
                                             <li>
                                            <a href="/exist/apps/WeGA-WebApp/de/A007979/Korrespondenz/A045969.html">1821-06-19</a>:  von  <span class="noDataFound">anonym</span>
@@ -386,13 +384,13 @@
                                     <h3>Korrespondenzstelle</h3>
                                     <h4>Vorausgehend</h4>
                                     <ul>
-                                        <li>
-                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041741.html">1821-05-27</a>:  an  <a href="" class="preview A001002 persons"></a>
-                                        </li>
+                                        
                                     </ul>
                                     <h4>Folgend</h4>
                                     <ul>
-                                        
+                                        <li>
+                                            <a href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A042520.html">1825-11-19</a>:  an  <a href="" class="preview A001002 persons"></a>
+                                        </li>
                                     </ul>
                                 
                             </div>
@@ -427,7 +425,7 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001125" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -459,7 +457,9 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A130004" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A131019" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130002" /> <span title="Anwählen, um &#34;Berlin&#34; im Text zu markieren.">Berlin</span> 
                                 </label>
                             </div>
                         </div>
@@ -475,7 +475,7 @@
                                         <div class="teiLetter_opener">
                <p class="teiLetter_salute">Geliebter <a class="preview persons A001002" href="">Freund</a>!</p>
             </div>
-                                        <p><span class="tei_app"><span class="tei_lem">Unsre</span><a class="noteMarker" id="backref-d10e12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12">Δ</a></span> <span class="preview letters A044727 A045456 A041741" data-ref="  /exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041741.html">Briefe</span> haben sich gekreuzt. Ich <span class="tei_app"><span class="tei_lem">eile Ihnen</span><a class="noteMarker" id="backref-d10e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e21">Δ</a></span> für die lieben
+                                        <p><span class="tei_app"><span class="tei_lem">Unsre</span><a class="noteMarker" id="backref-d10e12" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e12">Δ</a></span> <span class="preview letters A044727 A045456 A041741" data-ref="  ">Briefe</span> haben sich gekreuzt. Ich <span class="tei_app"><span class="tei_lem">eile Ihnen</span><a class="noteMarker" id="backref-d10e21" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e21">Δ</a></span> für die lieben
                <span class="preview letters A044727 A045456" data-ref=" ">Ihrigen</span> vom <span class="tei_app"><span class="tei_lem">26. und 28.</span><a class="noteMarker" id="backref-d10e30" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e30">Δ</a></span>
                zu <span class="tei_app"><span class="tei_lem">danken und</span><a class="noteMarker" id="backref-d10e36" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e36">Δ</a></span> sie so gut als möglich zu beantworten. Vor
                allem die <span class="tei_app"><span class="tei_lem">Ausdrükke</span><a class="noteMarker" id="backref-d10e43" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e43">Δ</a></span> meiner herzlichsten Freude über die <span class="tei_app"><span class="tei_lem">Beßerung</span><a class="noteMarker" id="backref-d10e49" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e49">Δ</a></span> Ihrer <span class="tei_app"><span class="tei_lem">Gesundheit,
@@ -495,27 +495,27 @@
                und da <span class="tei_hi_spaced_out">muß <span class="tei_app"><span class="tei_lem">er</span><a class="noteMarker" id="backref-d10e194" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e194">Δ</a></span> vorher</span> in <span class="tei_app"><span class="tei_lem">Szene</span><a class="noteMarker" id="backref-d10e201" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e201">Δ</a></span>. Mit
                <a class="preview places A130004" href="">Wien</a><a class="noteMarker" id="backref-C_06" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_06">*</a> <span class="tei_app"><span class="tei_lem">ist das
                      ja eine kuriose</span><a class="noteMarker" id="backref-d10e222" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e222">Δ</a></span> Geschichte. Das Hoftheater wäre mir freilich das <span class="tei_app"><span class="tei_lem">liebste. aber</span><a class="noteMarker" id="backref-d10e228" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e228">Δ</a></span> kann
-               man ohne eigentliche Ursache nun sich von dem Wiedner Theater
-               <span class="tei_app"><span class="tei_lem">zurükziehen?<a class="noteMarker" id="backref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a> ohne diesen <span class="tei_hi_spaced_out"><span class="8399104114101121101114">Schreyer</span></span></span><a class="noteMarker" id="backref-d10e234" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e234">Δ</a></span><a class="noteMarker" id="backref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> gegen sich zu haben? Uebrigens ist
-               alle das <span class="tei_app"><span class="tei_lem">Einschikken</span><a class="noteMarker" id="backref-d10e282" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e282">Δ</a></span> ein gar wunderbares <span class="tei_app"><span class="tei_lem">Zumuthen</span><a class="noteMarker" id="backref-d10e288" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e288">Δ</a></span> und die <span class="tei_app"><span class="tei_lem">Direktionen</span><a class="noteMarker" id="backref-d10e295" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e295">Δ</a></span> sehen gar zu
-               <span class="tei_app"><span class="tei_lem">gerne</span><a class="noteMarker" id="backref-d10e301" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e301">Δ</a></span> Dichter und <span class="tei_app"><span class="tei_lem">Komponisten als Supplikanten</span><a class="noteMarker" id="backref-d10e307" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e307">Δ</a></span> vor ihrer Hoheit stehen. <span class="tei_app"><span class="tei_lem">ich glaube
-                  daß</span><a class="noteMarker" id="backref-d10e313" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e313">Δ</a></span> wir weder dem einen noch dem andern etwas ohne <span class="tei_app"><span class="tei_lem">bestimt</span><a class="noteMarker" id="backref-d10e319" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e319">Δ</a></span> vorhergegangene Annahme
-               zusenden. <span class="tei_app"><span class="tei_lem">ich</span><a class="noteMarker" id="backref-d10e325" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e325">Δ</a></span> habe vor Jahr und Tag <span class="tei_app"><span class="tei_lem">durch <a class="preview persons A000194" href="">Böttger</a> bey <a class="preview persons A001741" href="">Schreyvogel</a>
-                  anfragen laßen</span><a class="noteMarker" id="backref-d10e332" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e332">Δ</a></span> und <span class="tei_app"><span class="tei_lem">an <a class="preview persons A001980" href="">Treitschke</a></span><a class="noteMarker" id="backref-d10e344" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e344">Δ</a></span> deshalb geschrieben<a class="noteMarker" id="backref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a>. <span class="tei_app"><span class="tei_lem"><a class="preview persons A001741" href="">Hr. Schreyvogel</a> machte Ausflüchte und <a class="preview persons A001980" href="">Hr. Treitschke</a></span><a class="noteMarker" id="backref-d10e383" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e383">Δ</a></span> antwortete nicht. Was denken Sie <span class="tei_app"><span class="tei_lem">zu
-                     der Sache?</span><a class="noteMarker" id="backref-d10e393" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e393">Δ</a></span> schreiben Sie mir doch Ihre <span class="tei_app"><span class="tei_lem">Meinung bitte bitte!</span><a class="noteMarker" id="backref-d10e399" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e399">Δ</a></span> <span class="tei_app"><span class="tei_lem">der Cid!!!<a class="noteMarker" href="">T</a> ach!!! Wohl</span><a class="noteMarker" id="backref-d10e406" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e406">Δ</a></span> ist es reiflich zu überlegen, und wohl auch bald zu
-               <span class="tei_app"><span class="tei_lem">ersehen ob</span><a class="noteMarker" id="backref-d10e418" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e418">Δ</a></span> <span class="tei_ptr"></span>es bei andern Bühnen <span class="tei_app"><span class="tei_lem">auch griffe</span><a class="noteMarker" id="backref-d10e426" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e426">Δ</a></span><a class="noteMarker" id="backref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a> oder nicht. – <span class="tei_hi_spaced_out">Es ist recht traurig</span>. <span class="tei_app"><span class="tei_lem">– –
-                     Wir</span><a class="noteMarker" id="backref-d10e449" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e449">Δ</a></span> freuen uns innig, daß <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="preview works A021186" href="">die Truhe</a></span><a class="noteMarker" id="backref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> zu Ihrer Zufriedenheit gegeben worden
-               ist. Daß sie dann gefallen mußte, wenn sie gut <span class="tei_app"><span class="tei_lem">gieng</span><a class="noteMarker" id="backref-d10e484" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e484">Δ</a></span>, war wohl <span class="tei_app"><span class="tei_lem">kein Zweifel. Glük</span><a class="noteMarker" id="backref-d10e490" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e490">Δ</a></span> zu,
-               nur immer <span class="tei_hi_spaced_out">mehr</span> <span class="tei_app"><span class="tei_lem">gearbeitet!</span><a class="noteMarker" id="backref-d10e500" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e500">Δ</a></span> <a class="preview persons A000851" href="">Hoffmann</a> nimmt sich sehr theilnehmend und warm; überhaupt kann ich <span class="tei_app"><span class="tei_lem">mich nur erfreuen in</span><a class="noteMarker" id="backref-d10e509" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e509">Δ</a></span> welcher Weise ich
-               durchgehends Beweise von Achtung bekomme. <span class="tei_ptr"></span><span class="tei_app"><span class="tei_lem"><a class="preview persons A001910" href="">Strekfuß</a></span><a class="noteMarker" id="backref-d10e516" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e516">Δ</a></span><a class="noteMarker" id="backref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a> werde ich
+               man ohne eigentliche Ursache nun sich von dem <a class="preview places A131019" href="">Wiedner Theater</a>
+               <span class="tei_app"><span class="tei_lem">zurükziehen?<a class="noteMarker" id="backref-C_07" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_07">*</a> ohne diesen <span class="tei_hi_spaced_out"><span class="8399104114101121101114">Schreyer</span></span></span><a class="noteMarker" id="backref-d10e237" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e237">Δ</a></span><a class="noteMarker" id="backref-C_08" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_08">*</a> gegen sich zu haben? Uebrigens ist
+               alle das <span class="tei_app"><span class="tei_lem">Einschikken</span><a class="noteMarker" id="backref-d10e285" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e285">Δ</a></span> ein gar wunderbares <span class="tei_app"><span class="tei_lem">Zumuthen</span><a class="noteMarker" id="backref-d10e292" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e292">Δ</a></span> und die <span class="tei_app"><span class="tei_lem">Direktionen</span><a class="noteMarker" id="backref-d10e298" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e298">Δ</a></span> sehen gar zu
+               <span class="tei_app"><span class="tei_lem">gerne</span><a class="noteMarker" id="backref-d10e304" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e304">Δ</a></span> Dichter und <span class="tei_app"><span class="tei_lem">Komponisten als Supplikanten</span><a class="noteMarker" id="backref-d10e310" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e310">Δ</a></span> vor ihrer Hoheit stehen. <span class="tei_app"><span class="tei_lem">ich glaube
+                  daß</span><a class="noteMarker" id="backref-d10e316" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e316">Δ</a></span> wir weder dem einen noch dem andern etwas ohne <span class="tei_app"><span class="tei_lem">bestimt</span><a class="noteMarker" id="backref-d10e322" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e322">Δ</a></span> vorhergegangene Annahme
+               zusenden. <span class="tei_app"><span class="tei_lem">ich</span><a class="noteMarker" id="backref-d10e329" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e329">Δ</a></span> habe vor Jahr und Tag <span class="tei_app"><span class="tei_lem">durch <a class="preview persons A000194" href="">Böttger</a> bey <a class="preview persons A001741" href="">Schreyvogel</a>
+                  anfragen laßen</span><a class="noteMarker" id="backref-d10e335" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e335">Δ</a></span> und <span class="tei_app"><span class="tei_lem">an <a class="preview persons A001980" href="">Treitschke</a></span><a class="noteMarker" id="backref-d10e347" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e347">Δ</a></span> deshalb geschrieben<a class="noteMarker" id="backref-C_09" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_09">*</a>. <span class="tei_app"><span class="tei_lem"><a class="preview persons A001741" href="">Hr. Schreyvogel</a> machte Ausflüchte und <a class="preview persons A001980" href="">Hr. Treitschke</a></span><a class="noteMarker" id="backref-d10e386" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e386">Δ</a></span> antwortete nicht. Was denken Sie <span class="tei_app"><span class="tei_lem">zu
+                     der Sache?</span><a class="noteMarker" id="backref-d10e396" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e396">Δ</a></span> schreiben Sie mir doch Ihre <span class="tei_app"><span class="tei_lem">Meinung bitte bitte!</span><a class="noteMarker" id="backref-d10e403" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e403">Δ</a></span> <span class="tei_app"><span class="tei_lem">der Cid!!!<a class="noteMarker" href="">T</a> ach!!! Wohl</span><a class="noteMarker" id="backref-d10e409" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e409">Δ</a></span> ist es reiflich zu überlegen, und wohl auch bald zu
+               <span class="tei_app"><span class="tei_lem">ersehen ob</span><a class="noteMarker" id="backref-d10e421" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e421">Δ</a></span> <span class="tei_ptr"></span>es bei andern Bühnen <span class="tei_app"><span class="tei_lem">auch griffe</span><a class="noteMarker" id="backref-d10e429" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e429">Δ</a></span><a class="noteMarker" id="backref-C_10" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_10">*</a> oder nicht. – <span class="tei_hi_spaced_out">Es ist recht traurig</span>. <span class="tei_app"><span class="tei_lem">– –
+                     Wir</span><a class="noteMarker" id="backref-d10e452" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e452">Δ</a></span> freuen uns innig, daß <span class="tei_ptr"></span><span class="tei_hi_spaced_out"><a class="preview works A021186" href="">die Truhe</a></span><a class="noteMarker" id="backref-C_11" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_11">*</a> zu Ihrer Zufriedenheit gegeben worden
+               ist. Daß sie dann gefallen mußte, wenn sie gut <span class="tei_app"><span class="tei_lem">gieng</span><a class="noteMarker" id="backref-d10e487" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e487">Δ</a></span>, war wohl <span class="tei_app"><span class="tei_lem">kein Zweifel. Glük</span><a class="noteMarker" id="backref-d10e493" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e493">Δ</a></span> zu,
+               nur immer <span class="tei_hi_spaced_out">mehr</span> <span class="tei_app"><span class="tei_lem">gearbeitet!</span><a class="noteMarker" id="backref-d10e503" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e503">Δ</a></span> <a class="preview persons A000851" href="">Hoffmann</a> nimmt sich sehr theilnehmend und warm<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>; überhaupt kann ich <span class="tei_app"><span class="tei_lem">mich nur erfreuen in</span><a class="noteMarker" id="backref-d10e518" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e518">Δ</a></span> welcher Weise ich
+               durchgehends Beweise von Achtung bekomme. <span class="tei_ptr"></span><span class="tei_app"><span class="tei_lem"><a class="preview persons A001910" href="">Strekfuß</a></span><a class="noteMarker" id="backref-d10e526" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e526">Δ</a></span><a class="noteMarker" id="backref-C_13" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_13">*</a> werde ich
                <span class="tei_app"><span class="tei_lem">aufsuchen. <span class="tei_ptr"></span><a class="preview persons A001348" href="">Hr. Morlachi</a> reißt?<a class="noteMarker" id="backref-C_14" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_14">*</a> glückliche Reise, ich will gerne mehr Dienst thun, wenn nun Ruhe
-                  ist.</span><a class="noteMarker" id="backref-d10e531" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e531">Δ</a></span>  <span class="tei_app"><span class="tei_lem">Was Sie</span><a class="noteMarker" id="backref-d10e564" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e564">Δ</a></span> mir <span class="tei_ptr"></span>aus der Muse <span class="tei_app"><span class="tei_lem">geschikt</span><a class="noteMarker" id="backref-d10e572" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e572">Δ</a></span>,<a class="noteMarker" id="backref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a> zeigt von
-               einem klugen, ziemlich unbefangenen <span class="tei_app"><span class="tei_lem">Berichterstatter.</span><a class="noteMarker" id="backref-d10e587" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e587">Δ</a></span></p>
-                                        <p><a class="preview persons A001125" href="">Langbein</a> war heute bei <span class="tei_app"><span class="tei_lem">mir,</span><a class="noteMarker" id="backref-d10e596" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e596">Δ</a></span> und grüßt bestens. </p>
-                                        <p class="tei_closer textAlign-left"><span class="tei_app"><span class="tei_lem">Nun Gott</span><a class="noteMarker" id="backref-d10e603" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e603">Δ</a></span> zum <span class="tei_app"><span class="tei_lem">Gruß</span><a class="noteMarker" id="backref-d10e609" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e609">Δ</a></span> geliebter Freund. Alles Erdenkliche an Sie und die Ihrigen von meiner <a class="preview persons A000213" href="">Lina</a> und  
-               <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem">Ihrem</span><a class="noteMarker" id="backref-d10e621" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e621">Δ</a></span><br />
-               <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="">Weber.</a></span></span>
-               <span class="tei_dateline textAlign-left"><a class="preview places A130002" href="">Berlin</a> <span class="tei_app"><span class="tei_lem">d. 31.</span><a class="noteMarker" id="backref-d10e636" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e636">Δ</a></span> May 1821.</span>
+                  ist.</span><a class="noteMarker" id="backref-d10e541" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e541">Δ</a></span>  <span class="tei_app"><span class="tei_lem">Was Sie</span><a class="noteMarker" id="backref-d10e573" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e573">Δ</a></span> mir <span class="tei_ptr"></span>aus der Muse <span class="tei_app"><span class="tei_lem">geschikt</span><a class="noteMarker" id="backref-d10e581" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e581">Δ</a></span><a class="noteMarker" id="backref-C_15" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_15">*</a>, zeigt von
+einem klugen, ziemlich unbefangenen <span class="tei_app"><span class="tei_lem">Berichterstatter.</span><a class="noteMarker" id="backref-d10e596" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e596">Δ</a></span></p>
+                                        <p><a class="preview persons A001125" href="">Langbein</a> war heute bei <span class="tei_app"><span class="tei_lem">mir,</span><a class="noteMarker" id="backref-d10e605" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e605">Δ</a></span> und grüßt bestens. </p>
+                                        <p class="tei_closer textAlign-left"><span class="tei_app"><span class="tei_lem">Nun Gott</span><a class="noteMarker" id="backref-d10e612" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e612">Δ</a></span> zum <span class="tei_app"><span class="tei_lem">Gruß</span><a class="noteMarker" id="backref-d10e618" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e618">Δ</a></span> geliebter Freund. Alles Erdenkliche an Sie und die Ihrigen von meiner <a class="preview persons A000213" href="">Lina</a> und  
+               <span class="tei_segBlock textAlign-right"><span class="tei_app"><span class="tei_lem">Ihrem</span><a class="noteMarker" id="backref-d10e630" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e630">Δ</a></span><br />
+               <span class="tei_hi_spaced_out"><a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Weber.</a></span></span>
+               <span class="tei_dateline textAlign-left"><a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> <span class="tei_app"><span class="tei_lem">d. 31.</span><a class="noteMarker" id="backref-d10e645" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e645">Δ</a></span> May 1821.</span>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -566,10 +566,10 @@
                                     <div>
                                         <strong><span>1. Textzeuge</span>:</strong>
                                         
-                                        <span class="biblio-entry book"><span class="author">Friedrich Kind</span>, <span class="title">Freischütz-Buch</span>, <span class="placeNYear">1843</span>, S. 159–161<a class="noteMarker biblioNote" data-toggle="popover" data-ref="#PD2024N3l5l2l10l2l2l4l5">*</a>
-                                                    <div id="PD2024N3l5l2l10l2l2l4l5" data-title="Bemerkung" style="display:none;">Nr. 27</div></span>
+                                        <span class="biblio-entry book"><span class="author">Friedrich Kind</span>, <span class="title">Freischütz-Buch</span>, <span class="placeNYear">1843</span>, S. 159–161<a class="noteMarker biblioNote" data-toggle="popover" data-ref="#PD1763N3l5l2l10l4l2l4l5">*</a>
+                                                    <div id="PD1763N3l5l2l10l4l2l4l5" data-title="Bemerkung" style="display:none;">Nr. 27</div></span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_e01262808c7ee70637a33aa5db746c7d">
+                                        <div class="collapse apparatus-details" id="source_c2658063f0a21d500d697a21041f605d">
                                             
                                             
                                             <div>
@@ -591,7 +591,7 @@
                                         <span class="biblio-entry"><span class="title">Briefe von Karl Maria v. Weber, an Friedrich Kind</span>, in: <span class="journalTitle">Zeitung für die elegante Welt</span>, Jg. 32, Nr. 121 (23. Juni 1832), Sp. 963–964<a class="noteMarker biblioNote" data-toggle="popover" data-ref="#N_01">*</a>
                                                     <div id="N_01" data-title="Bemerkung" style="display:none;">Mit Namens-Auslassungen</div></span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_7825557b85524f50534bccbefec974bf">
+                                        <div class="collapse apparatus-details" id="source_77e85dc778ed0631481577eae273f991">
                                             
                                             
                                             <div>
@@ -612,9 +612,9 @@
                                         
                                         <span>Verbleib unbekannt</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_17e0a278019dba1b63f256defc3042af"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_0debcc0ab833c6e7072fe52533769db4"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_17e0a278019dba1b63f256defc3042af">
+                                        <div class="collapse apparatus-details" id="source_0debcc0ab833c6e7072fe52533769db4">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li><a class="preview orgs A080017" href="">Henrici</a> Kat. 114 (<span class="tei_date">6./7. Dez. 1926</span>, mit <a class="preview orgs A080018" href="">Liepmannssohn</a> = Slg. Heyer I), Nr. 596</li>
@@ -655,7 +655,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_02" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  Ihnen der Bekannte über Olimpia“</span>Wer <a class="preview persons A001002" href="">Kind</a> über die <a class="preview places A130002" href="">Berliner</a> Aufführung
+                                                <div class="apparatusEntry col-11" id="C_02" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_02"><span class="tei_lemma">„…  Ihnen der Bekannte über Olimpia“</span>Wer <a class="preview persons A001002" href="">Kind</a> über die <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berliner</a> Aufführung
                von <a class="preview persons A001864" href="">Spontinis</a> <span class="tei_hi_italic"><a class="preview works A020556" href="">Olympia</a></span> berichtet hatte, ließ sich nicht
                ermitteln.</div>
                                             </div>
@@ -684,7 +684,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_07" class="apparatus-link">5.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_07"><span class="tei_lemma">„…  zurükziehen?“</span><a class="preview persons A000162" href="">Ferdinand von Biedenfeld</a> hatte im Auftrag des Theaters an der Wien schon vor der Uraufführung des <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> Kontakt zu Weber geknüpft. Laut <a class="preview diaries A061505" href="">Tagebuch</a> erhielt Weber am 26. Dezember 1820 einen <a class="preview letters A047411" href="">Brief</a> von ihm und sandte ihm daraufhin am <a class="preview diaries A061542" href="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A061542.html">23. Januar 1821</a> ein Libretto-Exemplar und machte einen Honorarvorschlag. Zu den Verhandlungen vgl. auch Webers <span class="preview letters A041763 A041767" data-ref=" ">Briefe</span> an <a class="preview persons A000275" href="">Johann Ludwig Casper</a> vom 1. August sowie an <a class="preview persons A001355" href="">Ignaz Franz von Mosel</a> vom 8. August 1821.</div>
+                                                <div class="apparatusEntry col-11" id="C_07" data-title="Einzelstellenerläuterung" data-counter="5" data-href="#C_07"><span class="tei_lemma">„…  zurükziehen?“</span><a class="preview persons A000162" href="">Ferdinand von Biedenfeld</a> hatte im Auftrag des Theaters an der Wien schon vor der Uraufführung des <span class="tei_hi_italic"><a class="preview works A020040" href="">Freischütz</a></span> Kontakt zu Weber geknüpft. Laut <a class="preview diaries A061505" href="">Tagebuch</a> erhielt Weber am 26. Dezember 1820 einen <a class="preview letters A047411" href="">Brief</a> von ihm und sandte ihm daraufhin am <a class="preview diaries A061542" href="">23. Januar 1821</a> ein Libretto-Exemplar und machte einen Honorarvorschlag. Zu den Verhandlungen vgl. auch Webers <span class="preview letters A041763 A041767" data-ref=" ">Briefe</span> an <a class="preview persons A000275" href="">Johann Ludwig Casper</a> vom 1. August sowie an <a class="preview persons A001355" href="">Ignaz Franz von Mosel</a> vom 8. August 1821.</div>
                                             </div>
                                         </li>
                                         <li>
@@ -710,7 +710,7 @@
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_10" class="apparatus-link">8.</a></div>
                                                 <div class="apparatusEntry col-11" id="C_10" data-title="Einzelstellenerläuterung" data-counter="8" data-href="#C_10"><span class="tei_lemma">„es bei andern Bühnen auch griffe“</span>Gemeint ist hier Johann Kaspar Aiblingers <span class="tei_hi_italic">Rodrigo und
                      Chimene</span>, die auf dem Stoff des <span class="tei_hi_italic">Cid</span> basiert, zu der von Weber und <a class="preview persons A001002" href="">Kind</a> geplanten Oper vgl.
-                  <a class="preview letters A041741" href="/exist/apps/WeGA-WebApp/de/A002068/Korrespondenz/A041741.html">Brief von Weber an Kind vom 27. Mai 1821.</a></div>
+                  <a class="preview letters A041741" href="">Brief von Weber an Kind vom 27. Mai 1821.</a></div>
                                             </div>
                                         </li>
                                         <li>
@@ -721,22 +721,27 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_13" class="apparatus-link">10.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_13" data-title="Einzelstellenerläuterung" data-counter="10" data-href="#C_13"><span class="tei_lemma">„Strekfuß“</span>Im Tagebuch ist ein Besuch bei <a class="preview persons A001910" href="">Carl Streckfuß</a> bis zu Webers Abreise aus <a class="preview places A130002" href="">Berlin</a> nicht vermerkt.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">10.</a></div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="10" data-href="#note01"><span class="tei_lemma">„…  sich sehr theilnehmend und warm“</span>Laut <span class="preview diaries A061657 A061668" data-ref=" ">Tagebuch</span> hatte Weber E. T. A. Hoffmann am 18. und 29. Mai 1821 getroffen.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_14" class="apparatus-link">11.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_14" data-title="Einzelstellenerläuterung" data-counter="11" data-href="#C_14"><span class="tei_lemma">„Hr. Morlachi reißt?“</span><a class="preview persons A001348" href="">Morlacchi</a> hielt sich von Sommer 1821 (genaue Abreise nicht ermittelt) bis März 1822 wegen zweier Scritture in <span class="tei_country">Italien</span> auf. In <a class="preview places A130062" href="">Mailand</a> brachte er am 2. Oktober 1821 <span class="tei_hi_italic"><span class="6811111011097326511711411111497">Donna Aurora</span></span> (BruM 9) zur Uraufführung, in <a class="preview places A130057" href="">Venedig</a> am 4. Februar 1822 <span class="tei_hi_italic"><a class="preview works A020568" href="">Tebaldo e Isolina</a></span> (BruM 25).</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_13" class="apparatus-link">11.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_13" data-title="Einzelstellenerläuterung" data-counter="11" data-href="#C_13"><span class="tei_lemma">„Strekfuß“</span>Im Tagebuch ist ein Besuch bei <a class="preview persons A001910" href="">Carl Streckfuß</a> bis zu Webers Abreise aus <a class="preview places A130002" href="/exist/apps/WeGA-WebApp/de/A130002.html">Berlin</a> nicht vermerkt.</div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_15" class="apparatus-link">12.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_15" data-title="Einzelstellenerläuterung" data-counter="12" data-href="#C_15"><span class="tei_lemma">„aus der Muse geschikt ,“</span>Laut Anmerkung in beiden gedruckten Quellen: Karl von Jariges, <span class="tei_hi_italic">Ueber einige der vorzüglichsten Darstellungen auf dem Berliner
-                     Theater</span> (gez.: Grs.), in: <span class="tei_hi_italic">Die Muse</span>, Bd. 2, Heft 1
-                  (April 1821), S. 89–116 und Bd. 2, Heft 2 (Mai 1821), S. 55–82.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_14" class="apparatus-link">12.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_14" data-title="Einzelstellenerläuterung" data-counter="12" data-href="#C_14"><span class="tei_lemma">„Hr. Morlachi reißt?“</span><a class="preview persons A001348" href="">Morlacchi</a> hielt sich von Sommer 1821 (genaue Abreise nicht ermittelt) bis März 1822 wegen zweier Scritture in <span class="tei_country">Italien</span> auf. In <a class="preview places A130062" href="">Mailand</a> brachte er am 2. Oktober 1821 <span class="tei_hi_italic"><span class="6811111011097326511711411111497">Donna Aurora</span></span> (BruM 9) zur Uraufführung, in <a class="preview places A130057" href="">Venedig</a> am 4. Februar 1822 <span class="tei_hi_italic"><a class="preview works A020568" href="">Tebaldo e Isolina</a></span> (BruM 25).</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_15" class="apparatus-link">13.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_15" data-title="Einzelstellenerläuterung" data-counter="13" data-href="#C_15"><span class="tei_lemma">„aus der Muse geschikt“</span>Laut Anmerkung in beiden gedruckten Quellen: Karl von Jariges, <span class="tei_hi_italic">Ueber einige der vorzüglichsten Darstellungen auf dem Berliner Theater</span> (gez.: Grs.), in: <span class="tei_hi_italic">Die Muse</span>, Bd. 2, Heft 1
+(April 1821), S. 89–116 und Bd. 2, Heft 2 (Mai 1821), S. 55–82.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -919,8 +924,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e234" class="apparatus-link">20.</a></div>
-                                                <div id="d10e234" class="apparatusEntry col-11" data-title="Lesarten" data-counter="20" data-href="#d10e234">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e237" class="apparatus-link">20.</a></div>
+                                                <div id="d10e237" class="apparatusEntry col-11" data-title="Lesarten" data-counter="20" data-href="#d10e237">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">zurükziehen? ohne diesen <span class="tei_hi_spaced_out"><span class="8399104114101121101114">Schreyer</span></span></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">zurückziehen, ohne diesen Schreier</span>“</span></div>
                                                 </div>
@@ -928,8 +933,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e282" class="apparatus-link">21.</a></div>
-                                                <div id="d10e282" class="apparatusEntry col-11" data-title="Lesarten" data-counter="21" data-href="#d10e282">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e285" class="apparatus-link">21.</a></div>
+                                                <div id="d10e285" class="apparatusEntry col-11" data-title="Lesarten" data-counter="21" data-href="#d10e285">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Einschikken</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Einschicken</span>“</span></div>
                                                 </div>
@@ -937,8 +942,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e288" class="apparatus-link">22.</a></div>
-                                                <div id="d10e288" class="apparatusEntry col-11" data-title="Lesarten" data-counter="22" data-href="#d10e288">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e292" class="apparatus-link">22.</a></div>
+                                                <div id="d10e292" class="apparatusEntry col-11" data-title="Lesarten" data-counter="22" data-href="#d10e292">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Zumuthen</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Zumuthen,</span>“</span></div>
                                                 </div>
@@ -946,8 +951,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e295" class="apparatus-link">23.</a></div>
-                                                <div id="d10e295" class="apparatusEntry col-11" data-title="Lesarten" data-counter="23" data-href="#d10e295">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e298" class="apparatus-link">23.</a></div>
+                                                <div id="d10e298" class="apparatusEntry col-11" data-title="Lesarten" data-counter="23" data-href="#d10e298">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Direktionen</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Directionen</span>“</span></div>
                                                 </div>
@@ -955,8 +960,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e301" class="apparatus-link">24.</a></div>
-                                                <div id="d10e301" class="apparatusEntry col-11" data-title="Lesarten" data-counter="24" data-href="#d10e301">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e304" class="apparatus-link">24.</a></div>
+                                                <div id="d10e304" class="apparatusEntry col-11" data-title="Lesarten" data-counter="24" data-href="#d10e304">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">gerne</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">gern</span>“</span></div>
                                                 </div>
@@ -964,8 +969,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e307" class="apparatus-link">25.</a></div>
-                                                <div id="d10e307" class="apparatusEntry col-11" data-title="Lesarten" data-counter="25" data-href="#d10e307">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e310" class="apparatus-link">25.</a></div>
+                                                <div id="d10e310" class="apparatusEntry col-11" data-title="Lesarten" data-counter="25" data-href="#d10e310">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Komponisten als Supplikanten</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Componisten als Supplicanten</span>“</span></div>
                                                 </div>
@@ -973,8 +978,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e313" class="apparatus-link">26.</a></div>
-                                                <div id="d10e313" class="apparatusEntry col-11" data-title="Lesarten" data-counter="26" data-href="#d10e313">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e316" class="apparatus-link">26.</a></div>
+                                                <div id="d10e316" class="apparatusEntry col-11" data-title="Lesarten" data-counter="26" data-href="#d10e316">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">ich glaube
                   daß</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Ich glaube, daß</span>“</span></div>
@@ -983,8 +988,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e319" class="apparatus-link">27.</a></div>
-                                                <div id="d10e319" class="apparatusEntry col-11" data-title="Lesarten" data-counter="27" data-href="#d10e319">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e322" class="apparatus-link">27.</a></div>
+                                                <div id="d10e322" class="apparatusEntry col-11" data-title="Lesarten" data-counter="27" data-href="#d10e322">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">bestimt</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">bestimmt</span>“</span></div>
                                                 </div>
@@ -992,8 +997,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e325" class="apparatus-link">28.</a></div>
-                                                <div id="d10e325" class="apparatusEntry col-11" data-title="Lesarten" data-counter="28" data-href="#d10e325">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e329" class="apparatus-link">28.</a></div>
+                                                <div id="d10e329" class="apparatusEntry col-11" data-title="Lesarten" data-counter="28" data-href="#d10e329">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">ich</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Ich</span>“</span></div>
                                                 </div>
@@ -1001,8 +1006,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e332" class="apparatus-link">29.</a></div>
-                                                <div id="d10e332" class="apparatusEntry col-11" data-title="Lesarten" data-counter="29" data-href="#d10e332">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e335" class="apparatus-link">29.</a></div>
+                                                <div id="d10e335" class="apparatusEntry col-11" data-title="Lesarten" data-counter="29" data-href="#d10e335">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">durch <a class="preview persons A000194" href="">Böttger</a> bey <a class="preview persons A001741" href="">Schreyvogel</a>
                   anfragen laßen</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">durch — bei — anfragen lassen</span>“</span></div>
@@ -1011,8 +1016,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e344" class="apparatus-link">30.</a></div>
-                                                <div id="d10e344" class="apparatusEntry col-11" data-title="Lesarten" data-counter="30" data-href="#d10e344">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e347" class="apparatus-link">30.</a></div>
+                                                <div id="d10e347" class="apparatusEntry col-11" data-title="Lesarten" data-counter="30" data-href="#d10e347">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">an <a class="preview persons A001980" href="">Treitschke</a></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">an —</span>“</span></div>
                                                 </div>
@@ -1020,8 +1025,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e383" class="apparatus-link">31.</a></div>
-                                                <div id="d10e383" class="apparatusEntry col-11" data-title="Lesarten" data-counter="31" data-href="#d10e383">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e386" class="apparatus-link">31.</a></div>
+                                                <div id="d10e386" class="apparatusEntry col-11" data-title="Lesarten" data-counter="31" data-href="#d10e386">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview persons A001741" href="">Hr. Schreyvogel</a> machte Ausflüchte und <a class="preview persons A001980" href="">Hr. Treitschke</a></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Ersterer machte Ausflüchte, und der zweite</span>“</span></div>
                                                 </div>
@@ -1029,8 +1034,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e393" class="apparatus-link">32.</a></div>
-                                                <div id="d10e393" class="apparatusEntry col-11" data-title="Lesarten" data-counter="32" data-href="#d10e393">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e396" class="apparatus-link">32.</a></div>
+                                                <div id="d10e396" class="apparatusEntry col-11" data-title="Lesarten" data-counter="32" data-href="#d10e396">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">zu
                      der Sache?</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">von der Sache?</span>“</span></div>
@@ -1039,8 +1044,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e399" class="apparatus-link">33.</a></div>
-                                                <div id="d10e399" class="apparatusEntry col-11" data-title="Lesarten" data-counter="33" data-href="#d10e399">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e403" class="apparatus-link">33.</a></div>
+                                                <div id="d10e403" class="apparatusEntry col-11" data-title="Lesarten" data-counter="33" data-href="#d10e403">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Meinung bitte bitte!</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Meinung, bitte, bitte!</span>“</span></div>
                                                 </div>
@@ -1048,8 +1053,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e406" class="apparatus-link">34.</a></div>
-                                                <div id="d10e406" class="apparatusEntry col-11" data-title="Lesarten" data-counter="34" data-href="#d10e406">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e409" class="apparatus-link">34.</a></div>
+                                                <div id="d10e409" class="apparatusEntry col-11" data-title="Lesarten" data-counter="34" data-href="#d10e409">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">der Cid!!! ach!!! Wohl</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">neuer Absatz: Der Cid!!! ach!!! wohl</span>“</span></div>
                                                 </div>
@@ -1057,8 +1062,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e418" class="apparatus-link">35.</a></div>
-                                                <div id="d10e418" class="apparatusEntry col-11" data-title="Lesarten" data-counter="35" data-href="#d10e418">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e421" class="apparatus-link">35.</a></div>
+                                                <div id="d10e421" class="apparatusEntry col-11" data-title="Lesarten" data-counter="35" data-href="#d10e421">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">ersehen ob</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">ersehen, ob</span>“</span></div>
                                                 </div>
@@ -1066,8 +1071,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e426" class="apparatus-link">36.</a></div>
-                                                <div id="d10e426" class="apparatusEntry col-11" data-title="Lesarten" data-counter="36" data-href="#d10e426">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e429" class="apparatus-link">36.</a></div>
+                                                <div id="d10e429" class="apparatusEntry col-11" data-title="Lesarten" data-counter="36" data-href="#d10e429">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">auch griffe</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">durchgreift</span>“</span></div>
                                                 </div>
@@ -1075,8 +1080,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e449" class="apparatus-link">37.</a></div>
-                                                <div id="d10e449" class="apparatusEntry col-11" data-title="Lesarten" data-counter="37" data-href="#d10e449">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e452" class="apparatus-link">37.</a></div>
+                                                <div id="d10e452" class="apparatusEntry col-11" data-title="Lesarten" data-counter="37" data-href="#d10e452">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">– –
                      Wir</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">– Wir</span>“</span></div>
@@ -1085,8 +1090,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e484" class="apparatus-link">38.</a></div>
-                                                <div id="d10e484" class="apparatusEntry col-11" data-title="Lesarten" data-counter="38" data-href="#d10e484">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e487" class="apparatus-link">38.</a></div>
+                                                <div id="d10e487" class="apparatusEntry col-11" data-title="Lesarten" data-counter="38" data-href="#d10e487">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">gieng</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">ging</span>“</span></div>
                                                 </div>
@@ -1094,8 +1099,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e490" class="apparatus-link">39.</a></div>
-                                                <div id="d10e490" class="apparatusEntry col-11" data-title="Lesarten" data-counter="39" data-href="#d10e490">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e493" class="apparatus-link">39.</a></div>
+                                                <div id="d10e493" class="apparatusEntry col-11" data-title="Lesarten" data-counter="39" data-href="#d10e493">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">kein Zweifel. Glük</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">ohne Zweifel. Glück</span>“</span></div>
                                                 </div>
@@ -1103,8 +1108,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e500" class="apparatus-link">40.</a></div>
-                                                <div id="d10e500" class="apparatusEntry col-11" data-title="Lesarten" data-counter="40" data-href="#d10e500">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e503" class="apparatus-link">40.</a></div>
+                                                <div id="d10e503" class="apparatusEntry col-11" data-title="Lesarten" data-counter="40" data-href="#d10e503">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">gearbeitet!</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">gearbeitet</span>“</span></div>
                                                 </div>
@@ -1112,8 +1117,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e509" class="apparatus-link">41.</a></div>
-                                                <div id="d10e509" class="apparatusEntry col-11" data-title="Lesarten" data-counter="41" data-href="#d10e509">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e518" class="apparatus-link">41.</a></div>
+                                                <div id="d10e518" class="apparatusEntry col-11" data-title="Lesarten" data-counter="41" data-href="#d10e518">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">mich nur erfreuen in</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">mich erfreuen, in</span>“</span></div>
                                                 </div>
@@ -1121,8 +1126,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e516" class="apparatus-link">42.</a></div>
-                                                <div id="d10e516" class="apparatusEntry col-11" data-title="Lesarten" data-counter="42" data-href="#d10e516">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e526" class="apparatus-link">42.</a></div>
+                                                <div id="d10e526" class="apparatusEntry col-11" data-title="Lesarten" data-counter="42" data-href="#d10e526">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem"><a class="preview persons A001910" href="">Strekfuß</a></span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Streckfuß</span>“</span></div>
                                                 </div>
@@ -1130,8 +1135,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e531" class="apparatus-link">43.</a></div>
-                                                <div id="d10e531" class="apparatusEntry col-11" data-title="Lesarten" data-counter="43" data-href="#d10e531">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e541" class="apparatus-link">43.</a></div>
+                                                <div id="d10e541" class="apparatusEntry col-11" data-title="Lesarten" data-counter="43" data-href="#d10e541">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">aufsuchen. <span class="tei_ptr"></span><a class="preview persons A001348" href="">Hr. Morlachi</a> reißt? glückliche Reise, ich will gerne mehr Dienst thun, wenn nun Ruhe
                   ist.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">aufsuchen. – – –</span>“</span></div>
@@ -1140,8 +1145,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e564" class="apparatus-link">44.</a></div>
-                                                <div id="d10e564" class="apparatusEntry col-11" data-title="Lesarten" data-counter="44" data-href="#d10e564">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e573" class="apparatus-link">44.</a></div>
+                                                <div id="d10e573" class="apparatusEntry col-11" data-title="Lesarten" data-counter="44" data-href="#d10e573">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Was Sie</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">im ED neuer Absatz</span>“</span></div>
                                                 </div>
@@ -1149,8 +1154,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e572" class="apparatus-link">45.</a></div>
-                                                <div id="d10e572" class="apparatusEntry col-11" data-title="Lesarten" data-counter="45" data-href="#d10e572">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e581" class="apparatus-link">45.</a></div>
+                                                <div id="d10e581" class="apparatusEntry col-11" data-title="Lesarten" data-counter="45" data-href="#d10e581">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">geschikt</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">geschickt</span>“</span></div>
                                                 </div>
@@ -1158,8 +1163,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e587" class="apparatus-link">46.</a></div>
-                                                <div id="d10e587" class="apparatusEntry col-11" data-title="Lesarten" data-counter="46" data-href="#d10e587">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e596" class="apparatus-link">46.</a></div>
+                                                <div id="d10e596" class="apparatusEntry col-11" data-title="Lesarten" data-counter="46" data-href="#d10e596">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Berichterstatter.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Berichterstatter. –</span>“</span></div>
                                                 </div>
@@ -1167,8 +1172,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e596" class="apparatus-link">47.</a></div>
-                                                <div id="d10e596" class="apparatusEntry col-11" data-title="Lesarten" data-counter="47" data-href="#d10e596">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e605" class="apparatus-link">47.</a></div>
+                                                <div id="d10e605" class="apparatusEntry col-11" data-title="Lesarten" data-counter="47" data-href="#d10e605">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">mir,</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">mir</span>“</span></div>
                                                 </div>
@@ -1176,8 +1181,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e603" class="apparatus-link">48.</a></div>
-                                                <div id="d10e603" class="apparatusEntry col-11" data-title="Lesarten" data-counter="48" data-href="#d10e603">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e612" class="apparatus-link">48.</a></div>
+                                                <div id="d10e612" class="apparatusEntry col-11" data-title="Lesarten" data-counter="48" data-href="#d10e612">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Nun Gott</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">in ED kein neuer Absatz</span>“</span></div>
                                                 </div>
@@ -1185,8 +1190,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e609" class="apparatus-link">49.</a></div>
-                                                <div id="d10e609" class="apparatusEntry col-11" data-title="Lesarten" data-counter="49" data-href="#d10e609">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e618" class="apparatus-link">49.</a></div>
+                                                <div id="d10e618" class="apparatusEntry col-11" data-title="Lesarten" data-counter="49" data-href="#d10e618">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Gruß</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Gruß,</span>“</span></div>
                                                 </div>
@@ -1194,8 +1199,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e621" class="apparatus-link">50.</a></div>
-                                                <div id="d10e621" class="apparatusEntry col-11" data-title="Lesarten" data-counter="50" data-href="#d10e621">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e630" class="apparatus-link">50.</a></div>
+                                                <div id="d10e630" class="apparatusEntry col-11" data-title="Lesarten" data-counter="50" data-href="#d10e630">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Ihrem</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">in ED keine neue Zeile</span>“</span></div>
                                                 </div>
@@ -1203,8 +1208,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e636" class="apparatus-link">51.</a></div>
-                                                <div id="d10e636" class="apparatusEntry col-11" data-title="Lesarten" data-counter="51" data-href="#d10e636">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e645" class="apparatus-link">51.</a></div>
+                                                <div id="d10e645" class="apparatusEntry col-11" data-title="Lesarten" data-counter="51" data-href="#d10e645">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">d. 31.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">den 31.</span>“</span></div>
                                                 </div>
@@ -1235,7 +1240,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041743</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A041743</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -1295,6 +1300,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1353,22 +1361,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

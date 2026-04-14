@@ -12,8 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Carl Maria von Weber" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
-        <meta property="dc:contributor" content="Stadler, Peter" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:creator" content="" />
         <meta property="dc:date" content="" />
         <meta property="dc:identifier" content="https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031131" />
@@ -43,13 +42,11 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
-        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Weber lobt den kunstliebenden Großherzog und das passable Orchester; allerdings mangle es an musikalischer Begeisterung bei der allgemeinen Bevölkerung; benennt noch einzelne bedeutende Künstlerpersönlichkeiten wie Wohlbrück und Schönberger","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Städtecharakteristik: Darmstadt","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031131","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031131","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
+        <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"Weber lobt den kunstliebenden Großherzog und das passable Orchester; allerdings mangle es an musikalischer Begeisterung bei der allgemeinen Bevölkerung; benennt noch einzelne bedeutende Künstlerpersönlichkeiten wie Wohlbrück und Schönberger","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Städtecharakteristik: Darmstadt","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031131","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031131","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068","name":"Weber, Carl Maria von","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002068","sameAs":"https://d-nb.info/gnd/118629662"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
 
     </head>
@@ -222,7 +219,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Schriften">Schriften</a>
@@ -251,7 +248,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -298,7 +295,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031131/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031131/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Schriften/A031131/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -455,7 +452,7 @@
                         <div>
                             <h3 class="media-heading">Generalvermerk</h3>
                             <div>
-                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung) und vgl. <span class="preview biblio A110700" data-ref="">Bartlitz</span>, S. 65;  Vermerk im Redaktionsexemplar im DLA Marbach: <span class="tei_hi_italic">v. Weber</span>; lt. <a class="preview diaries A065275" href="">TB, 20. April 1811</a> an <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Cotta</a> geschickt; vgl. außerdem Briefe Webers <a class="preview letters A040375" href="">an Cotta vom 29. Januar 1811</a> sowie Brief von Weber <a class="preview letters A040381" href="">an Gottfried Weber vom 27. Februar 1811</a></p>
+                                        <p>Zuschreibung: autographer Entwurf (s. Überlieferung) und vgl. <span class="preview biblio A110700" data-ref="/exist/apps/WeGA-WebApp/de/A007979/Bibliographie/A110700.html">Bartlitz</span>, S. 65;  Vermerk im Redaktionsexemplar im DLA Marbach: <span class="tei_hi_italic">v. Weber</span>; lt. <a class="preview diaries A065275" href="">TB, 20. April 1811</a> an <a class="preview persons A000326" href="/exist/apps/WeGA-WebApp/de/A000326.html">Cotta</a> geschickt; vgl. außerdem Briefe Webers <a class="preview letters A040375" href="">an Cotta vom 29. Januar 1811</a> sowie Brief von Weber <a class="preview letters A040381" href="">an Gottfried Weber vom 27. Februar 1811</a></p>
                                     </div>
                         </div>
                         
@@ -483,9 +480,9 @@
                                         
                                         <span class="biblio-entry"><span class="journalTitle">Morgenblatt für gebildete Stände</span>, Jg. 5, Nr. 118 (17. Mai 1811), S. 472</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_27a3503388f98aec41bc02158f2a9873"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c137b766b72dddcf4cbc2276d744cb96"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_27a3503388f98aec41bc02158f2a9873">
+                                        <div class="collapse apparatus-details" id="source_c137b766b72dddcf4cbc2276d744cb96">
                                             
                                             
                                             <div>
@@ -498,7 +495,7 @@
                                                             
                                                             <span class="tei_bibl"><span class="preview biblio A111886" data-ref="">Kaiser (Schriften)</span>, S. 155–157 (nach ED, ergänzt durch ersten Absatz aus Entwurf) (Nr. 21)</span>
                                                               
-                                                            <div class="collapse" id="source_808b48b91b80572909a6c7a07e2259b3">
+                                                            <div class="collapse" id="source_983d1f26d61aef6f9ca50283c5c65cd4">
                                                                 
                                                             </div>
                                                         </div>
@@ -521,9 +518,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 6 (IV), Bl. 34a/r – 34b/r oben</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_54cc9f378c96bcf0c73db8d917c51d0f"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_8dfd61514e8b1764aa261403ebef64de"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_54cc9f378c96bcf0c73db8d917c51d0f">
+                                        <div class="collapse apparatus-details" id="source_8dfd61514e8b1764aa261403ebef64de">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>über dem Manuskript „Kunstzustand in Darmstadt“. Incipit: „Ich möchte hier wohl mit dem <span class="7210111611610997110110">Hettmann</span> in <a class="preview works A020715" href="">Benjowsky</a> sprechen“; keine Datierung </li>
@@ -541,7 +538,7 @@
                                                             
                                                             <span>HellS II, S. 65–68</span>
                                                               
-                                                            <div class="collapse" id="source_6a91e9e0ce3f5863bb715c63b097380b">
+                                                            <div class="collapse" id="source_5267dfda4064347f56d4d90a1af87b0c">
                                                                 
                                                             </div>
                                                         </div>
@@ -551,7 +548,7 @@
                                                             
                                                             <span>MMW I, S. 243–245</span>
                                                               
-                                                            <div class="collapse" id="source_bed0060d9f8baca11eab022daeaa0b52">
+                                                            <div class="collapse" id="source_d6648cae1c16ae461b7d51d0060737f4">
                                                                 
                                                             </div>
                                                         </div>
@@ -585,7 +582,7 @@
                                         <li>
                                             <div class="row">
                                                 <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_04" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_04"><span class="tei_lemma">„… “</span>Vgl. Dismas Fuchs, <span class="tei_hi_italic">Chronologisches Tagebuch des Grossherzoglich Hessischen Hoftheaters, von der Begründung bis zur Auflösung desselben, ein Beitrag zur Geschichte der deutschen Schaubühnen</span>, Darmstadt 1832 sowie Ernst Pasqué, <span class="tei_hi_italic">Musikalische Statistik des Grossherzoglichen Hoftheaters zu Darmstadt von 1810–1868 und der Krebs’schen Epoche von 1807–1810, Darmstadt 1868</span> (s. <a href="https://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10599207_00005.html">BSB digital <i class="fa fa-external-link" aria-hidden="true"></i></a>).</div>
+                                                <div class="apparatusEntry col-11" id="C_04" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_04"><span class="tei_lemma">„… “</span>Zu der Lesart an dieser Stelle (Achtung: in Einstellungen "Lesarten" anzeigen lassen), vgl. Dismas Fuchs, <span class="tei_hi_italic">Chronologisches Tagebuch des Grossherzoglich Hessischen Hoftheaters, von der Begründung bis zur Auflösung desselben, ein Beitrag zur Geschichte der deutschen Schaubühnen</span>, Darmstadt 1832 sowie Ernst Pasqué, <span class="tei_hi_italic">Musikalische Statistik des Grossherzoglichen Hoftheaters zu Darmstadt von 1810–1868 und der Krebs’schen Epoche von 1807–1810, Darmstadt 1868</span> (s. <a href="https://reader.digitale-sammlungen.de/de/fs1/object/display/bsb10599207_00005.html">BSB digital <i class="fa fa-external-link" aria-hidden="true"></i></a>).</div>
                                             </div>
                                         </li>
                                         <li>
@@ -1006,7 +1003,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031131</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A031131</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -1066,6 +1063,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -1124,22 +1124,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

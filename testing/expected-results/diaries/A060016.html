@@ -41,11 +41,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"d: 16t Visiten gelaufen, zu Kind pp Hartmann pp Graf Luxemburg Mittag zu Hause. Brief von Fritz No. 2 erhalten. an ihn ge schrieben und ihn Ihm durch …","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Carl Maria von Weber – Tagebucheintrag vom Donnerstag, 16. Januar 1817 ()","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060016","license":"https://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060016","author":[],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -220,7 +218,7 @@
                                 <a href="/exist/apps/WeGA-WebApp/de/Index">Home</a>
                             </li>
                             <li>
-                                <span></span>
+                                <a href="/exist/apps/WeGA-WebApp/de/A002068.html">Carl Maria von Weber</a>
                             </li>
                             <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/A002068/Tageb%C3%BCcher">Tagebücher</a>
@@ -249,7 +247,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -277,7 +275,7 @@
                         <h2>
                             <a href="#datePicker" class="collapseSingle" aria-expanded="true" data-toggle="collapse" role="button">Kalender</a>
                         </h2>
-                        <div class="panel-collapse collapse show" id="datePicker" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1"></div>
+                        <div class="panel-collapse collapse show" id="datePicker"></div>
                     </div>
                     <div>
                         <h2>
@@ -301,7 +299,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060016/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060016/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002068/Tagebücher/A060016/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -367,8 +365,6 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002075" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A000095" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002370" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001348" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
@@ -380,6 +376,8 @@
                                     <input type="checkbox" name="options" value="A001705" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A000213" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A080107" /> <span title="Anwählen, um &#34; ()&#34; im Text zu markieren."> ()</span> 
                                 </label>
                             </div>
                         </div>
@@ -391,7 +389,9 @@
                         <div class="panel-collapse collapse" id="places">
                             <div data-toggle="buttons" class="btn-group">
                                 <label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                    <input type="checkbox" name="options" value="A130800" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A130005" /> <span title="Anwählen, um &#34;Leipzig&#34; im Text zu markieren.">Leipzig</span> 
                                 </label>
                             </div>
                         </div>
@@ -407,32 +407,32 @@
     <span class="tei_date">d: 16<span class="tei_hi_superscript">t</span></span> 
     <span>Visiten gelaufen, zu <a class="preview persons A001002" href="">Kind</a> <span class="tei_hi_latintype">pp</span> <a class="preview persons A000747" href="">Hartmann</a> <span class="tei_hi_latintype">pp</span> 
         <a class="preview persons A001225" href="">Graf Luxemburg</a></span> <br />
-    <span>Mittag zu Hause.</span> 
-    <span><span class="tei_hi_underline1">Brief von <a class="preview persons A002075" href="">Fritz</a> <span class="tei_hi_latintype">No</span>. 2 erhalten</span>.</span> 
+    <span>Mittag zu <a class="preview places A130800" href="">Hause</a>.</span> 
+    <span><span class="tei_hi_underline1"><a class="preview letters A049098" href="">Brief</a> von <a class="preview persons A002075" href="">Fritz</a> <span class="tei_hi_latintype">No.</span> 2 erhalten</span>.</span> 
     <span class="payment_4">an <a class="preview persons A002075" href="">ihn</a> <a class="preview letters A041006" href="">ge<br /><span class="tei_pb">Seitenumbruch</span>schrieben</a> 
-        und ihn Ihm durch einen <span class="tei_hi_latintype"><a class="preview persons A000095" href="">Basseng</a></span>schen Wechsel geschikt <br />
-        nach <a class="preview places A130005" href="">Leipzig</a> 4 <span class="tei_hi_latintype">Frid: dor</span> oder  
+        und ihn Ihm durch einen <span class="tei_hi_latintype"><a class="preview orgs A080107" href="">Basseng</a></span>schen Wechsel geschikt <br />
+        nach <a class="preview places A130005" href="/exist/apps/WeGA-WebApp/de/A130005.html">Leipzig</a> 4 <span class="tei_hi_latintype">Frid: dor</span> oder  
         </span> <br />  
     <span class="payment_5">Wagen zum <a class="preview persons A002370" href="">Sattler Lange</a> bringen laßen,  
         </span><br />
-    <span>Mittag im Engel.</span>
+    <span>Mittag im <a class="preview places A130800" href="">Engel</a>.</span>
     <span>dann ausgezogen in mein <span class="tei_hi_latintype">Quartier</span><a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090016.html">T</a>.</span> <br />
     <span class="payment_8">Transport Kosten </span> <br />  
-    <span>Karte von <a class="preview persons A001348" href="">Morlachi</a> gefunden,</span> 
+    <span><a class="preview letters A048655" href="">Karte</a> von <a class="preview persons A001348" href="">Morlachi</a> gefunden,</span> 
     <span>zu <span class="tei_hi_latintype"><a class="preview persons A000096" href="">Bassi</a></span>.</span>
     <span>Geschichte mit dem <span class="tei_hi_underline1">nicht</span> <br />
-        Kapel<span class="tei_supplied"><span class="brackets_supplied">[</span>l<span class="brackets_supplied">]</span></span>Mster sein. viel Verdruß<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, auf dem Punkt wieder <br />
+        <span class="tei_choice"><span class="tei_abbr">KapelMster</span><a class="noteMarker" id="backref-d10e135" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e135">‡</a></span> sein. viel Verdruß<a class="noteMarker" id="backref-note01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note01">*</a>, auf dem Punkt wieder <br />
         abzureisen.</span>
-    <span>Ins Theater, dieß dem <a class="preview persons A002020" href="">Grafen</a> gesagt. <br />
+    <span>Ins Theater, dieß dem <a class="preview persons A002020" href="">Grafen</a> gesagt<a class="noteMarker" id="backref-note02" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#note02">*</a>. <br />
         große Bestürzung, <a class="preview persons A001705" href="">Schmidl</a> bestürmte mich mit Bitten, <br /> 
         stellte mir vor daß der <a class="preview persons A002020" href="">Graf</a> auf dem Spiele stünde <span class="tei_hi_latintype">pp</span></span> <br /> 
     <span>um 11 Uhr im Bett. unruhige Nacht.</span> <br />
-    <span class="payment_14"><span class="tei_hi_underline1"><a class="preview letters A046790" href="">Brief</a> von <a class="preview persons A000213" href="">Lina</a> <span class="tei_hi_latintype">No</span>: 20</span> erhalten  
+    <span class="payment_14"><span class="tei_hi_underline1"><a class="preview letters A046790" href="">Brief</a> von <a class="preview persons A000213" href="">Lina</a> <span class="tei_hi_latintype">No:</span> 20</span> erhalten  
         </span>   
 </p>
                                 </div>
                                 <div class="tableRight">
-                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="tei_pb"><br /></span><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_4 rh">22 rh:</span><span class="payment_4 gr">–</span><br /><span class="hiddenText">|</span><span class="payment_5 rh">–.</span><span class="payment_5 gr">7 g.</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_8 gr">10.<span class="suppliedCurrencySymbol"> gr</span></span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_14 rh">–.</span><span class="payment_14 gr">2.<span class="suppliedCurrencySymbol"> gr</span></span></p>
+                                    <p><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><a class="preview places A130800" href=""></a><span class="tei_pb"><br /></span><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_4 rh">22 rh:</span><span class="payment_4 gr">–</span><br /><span class="hiddenText">|</span><span class="payment_5 rh">–.</span><span class="payment_5 gr">7 g.</span><br /><span class="hiddenText">|</span><a class="preview places A130800" href=""></a><br /><span class="hiddenText">|</span><span class="payment_8 gr">10.<span class="suppliedCurrencySymbol"> gr</span></span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><br /><span class="hiddenText">|</span><span class="payment_14 rh">–.</span><span class="payment_14 gr">2.<span class="suppliedCurrencySymbol"> gr</span></span></p>
                                 </div>
                     </div>
                     <div class="tab-pane fade" id="editorial">
@@ -471,9 +471,9 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz (D-B)<br /><i>Signatur</i>: Mus. ms. autogr. theor. C. M. v. Weber WFN 1</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_6bcaed68b474cabd5f2c8af87a27ef12"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_77d28172c0ba1d046828bfa2e5644913"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_6bcaed68b474cabd5f2c8af87a27ef12">
+                                        <div class="collapse apparatus-details" id="source_77d28172c0ba1d046828bfa2e5644913">
                                             <h4 class="media-heading">Provenienz</h4>
                                                     <ul>
                                                         <li>Umwandlung der Dauerleihgabe in eine Schenkung durch <a class="preview persons A008831" href="">Hans-Jürgen Freiherr von Weber</a> am 15. November 1986</li>
@@ -510,8 +510,20 @@
                                     <ul class="apparatus commentary">
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">1.</a></div>
-                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#note01"><span class="tei_lemma">„…  l Mster sein. viel Verdruß“</span>Vgl. dazu Webers <a class="preview letters A041005" href="">Brief</a> an seine Braut vom 14./17. Januar 1817.</div>
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e135" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e135" data-title="Abkürzung" data-counter="1" data-href="#d10e135"><span class="tei_lemma">„<span class="tei_abbr">KapelMster</span>“</span>Abk. von   „<span class="tei_expan">Kapellmeister</span>“.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note01" class="apparatus-link">2.</a></div>
+                                                <div class="apparatusEntry col-11" id="note01" data-title="Einzelstellenerläuterung" data-counter="2" data-href="#note01"><span class="tei_lemma">„…  KapelMster Kapellmeister sein. viel Verdruß“</span>Vgl. dazu Webers <a class="preview letters A041005" href="">Brief</a> an seine Braut vom 14./17. Januar 1817.</div>
+                                            </div>
+                                        </li>
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-note02" class="apparatus-link">3.</a></div>
+                                                <div class="apparatusEntry col-11" id="note02" data-title="Einzelstellenerläuterung" data-counter="3" data-href="#note02"><span class="tei_lemma">„…  Theater, dieß dem Grafen gesagt“</span>Vgl. dazu auch Webers <a class="preview letters A041083" href="">Brief</a> an G. Weber vom 6. März 1817.</div>
                                             </div>
                                         </li>
                                     </ul>
@@ -540,7 +552,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060016</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A060016</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -600,6 +612,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -658,22 +673,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         

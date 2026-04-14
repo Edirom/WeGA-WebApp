@@ -12,7 +12,7 @@
         <meta property="dc:type" content="Text" />
         <meta property="dc:format" content="text/html" />
         <meta property="dc:contributor" content="Vitzthum von Eckstädt, Heinrich Carl Wilhelm Graf" />
-        <meta property="dc:contributor" content="Veit, Joachim" />
+        <meta property="dc:contributor" content="Carl-Maria-von-Weber-Gesamtausgabe" />
         <meta property="dc:contributor" content="Eveline Bartlitz" />
         <meta property="dc:contributor" content="Joachim Veit" />
         <meta property="dc:creator" content="" />
@@ -44,11 +44,9 @@
         
         
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/css/select2.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui-themes/themes/overcast/jquery-ui.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/css/ion.rangeSlider.min.css" />
         <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/css/dataTables.bootstrap4.min.css" />
-        <link rel="stylesheet" type="text/css" href="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/css/buttons.bootstrap4.min.css" />
         
         <script type="application/ld+json">{"@context":"http://schema.org","@type":"CreativeWork","description":"betr. die Anstellung Webers als Leiter der deutschen Oper in Dresden; teilt mit, dass er bereits mit Weber über die Anstellungsbedingungen verhandelt habe und bittet seinen Bruder, in dieser Sache mit dem König zu sprechen","publisher":{"@type":"Organization","url":"https://weber-gesamtausgabe.de","name":"Carl-Maria-von-Weber-Gesamtausgabe"},"name":"Heinrich Graf Vitzthum von Eckstädt an Carl Graf Vitzthum von Eckstädt in Dresden. Karlsbad, Montag, 15. Juli 1816","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047714","license":"http://creativecommons.org/licenses/by/4.0/","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002020/Korrespondenz/A047714","author":[{"@type":"Person","url":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/de/A002020","name":"","@id":"https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A002020"}],"funder":{"@type":"Organization","url":"http://adwmainz.de","name":"Akademie der Wissenschaften und der Literatur, Mainz"}}</script>
 
@@ -253,7 +251,7 @@
     <h2>
         <a href="#settings" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse">Einstellungen</a>
     </h2>
-    <div id="settings" class="panel-collapse collapse" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">
+    <div id="settings" class="panel-collapse collapse">
         <p>Zeige Markierungen im Text</p>
         <div class="custom-control custom-switch">
             <input class="custom-control-input" type="checkbox" id="rdg-marker" data-toggle-class=".noteMarker:contains('Δ')" />
@@ -300,7 +298,7 @@
                                     <a class="nav-link" href="#backlinks" data-toggle="tab" data-tab-callback="removeFilter" data-tab-url="/exist/apps/WeGA-WebApp/de/A002020/Korrespondenz/A047714/backlinks.html">Rückverweise</a>
                                 </li>
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002020/Korrespondenz/A047714/xml.html">XML-Vorschau</a>
+                                    <a class="nav-link" href="#XMLPreview" data-toggle="tab" data-tab-callback="init_xml_tab" data-tab-url="/exist/apps/WeGA-WebApp/de/A002020/Korrespondenz/A047714/xml.html">XML-Vorschau</a>
                                 </li>
                                 <li class="nav-item gradient-light">
                                     <a class="nav-link" href="#" data-toggle="modal" data-target="#downloadModal">Download</a>
@@ -387,13 +385,13 @@
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001901" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
-                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
-                                </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001753" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A001502" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
                                 </label><label class="btn btn-checkbox">
                                     <input type="checkbox" name="options" value="A002020" /> <span title="Anwählen, um &#34;&#34; im Text zu markieren."></span> 
+                                </label><label class="btn btn-checkbox">
+                                    <input type="checkbox" name="options" value="A002068" /> <span title="Anwählen, um &#34;Weber, Carl Maria von&#34; im Text zu markieren.">Weber, Carl Maria von</span> 
                                 </label>
                             </div>
                         </div>
@@ -433,40 +431,40 @@
                      gefunden habe über Herrn <a class="preview persons A001901" href="">Stögers</a> Verdienste
                      durch einen Mann sehr günstige Nachrichten einzuziehen, dessen Urtheil Dir wohl
                      auch nicht zweideutig scheinen wird, wenn ich ihn Dir nenne: – es ist der
-                     Kapellmeister <a class="preview persons A002068" href="">Maria von Weber</a>. Dieser
+                     Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria von Weber</a>. Dieser
                      Mann</span><a class="noteMarker" id="backref-d10e17" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e17">Δ</a></span> scheint beinahe in der Absicht seinen Weg über <a class="preview places A130050" href="">Karlsbad</a> genommen zu haben, <span class="tei_pb" title="Seitenumbruch zu S. 528"> | </span>um meine Bekanntschaft zu
-               machen. Dich rühmt er sich, früher schon gekannt zu haben und eine in den letzten
+               machen. Dich rühmt er sich, früher schon gekannt zu haben<a class="noteMarker" id="backref-C_01" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#C_01">*</a> und eine in den letzten
                Tagen eingetretene Erneuerung dieser Bekanntschaft scheint seinen Wunsch, in
                   <a class="preview places A130003" href="">Dresden</a> angestellt werden zu können, sehr
                bekräftigt zu haben. – Der Werth dieses Mannes als Compositeur und Musicdirector ist
                zu allgemein anerkannt, als daß ich hätte Bedenken tragen sollen, die sich
                darbietende Gelegenheit zu benutzen, um mit ihm vorläufige Unterhandlung anzuknüpfen,
                besonders da die Anstellung eines deutschen Kapellmeisters von der Errichtung einer
-               deutschen Oper beinahe unzertrennlich ist. – Denn, <span class="tei_app"><span class="tei_lem">Freund</span><a class="noteMarker" id="backref-d10e48" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e48">Δ</a></span>
+               deutschen Oper beinahe unzertrennlich ist. – Denn, <span class="tei_app"><span class="tei_lem">Freund</span><a class="noteMarker" id="backref-d10e60" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e60">Δ</a></span>
                <a class="preview persons A001753" href="">Schubert</a> ist ein guter Kirchencompositeur, aber
                bei seinem gänzlichen Mangel an Gefühl und Geschmack und bei der Uebermaße an
                kleinlicher Partheilichkeit durchaus zur fortwährenden Direction einer Oper nicht
-               geeignet. <a class="preview persons A002068" href="">Webern</a> habe ich <span class="tei_app"><span class="tei_lem">vorläufig</span><a class="noteMarker" id="backref-d10e61" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e61">Δ</a></span> Hoffnung zu einem Gehalt von 1500 Thalern gemacht; er verlangte 2000 Thaler
+               geeignet. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Webern</a> habe ich <span class="tei_app"><span class="tei_lem">vorläufig</span><a class="noteMarker" id="backref-d10e73" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e73">Δ</a></span> Hoffnung zu einem Gehalt von 1500 Thalern gemacht; er verlangte 2000 Thaler
                und jährlich, oder doch alle 2 Jahre, 2 Monate Urlaub zu einer künstlerischen Reise.
                Morgen will er mir sein Ultimatum bringen; ich vermuthe, er werde auf 1800 Thaler
                stehen bleiben. Zur Erleichterung und Abkürzung des Geschäfts würde es sehr
-               gereichen, wenn Du sofort mit dem <span class="tei_app"><span class="tei_lem">Minister, oder vielleicht lieber gleich mit dem Könige</span><a class="noteMarker" id="backref-d10e67" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e67">Δ</a></span> sprechen, die Nothwendigkeit einen ausgezeichneten deutschen Künstler dieser
-               Art anzustellen, kräftigst auseinandersetzen, die anerkannten Verdienste des <span class="tei_app"><span class="tei_lem">Individui in’s</span><a class="noteMarker" id="backref-d10e73" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e73">Δ</a></span> gehörige Licht stellen und eine Autorisation für mich auswirken wolltest, mit
+               gereichen, wenn Du sofort mit dem <span class="tei_app"><span class="tei_lem">Minister, oder vielleicht lieber gleich mit dem Könige</span><a class="noteMarker" id="backref-d10e79" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e79">Δ</a></span> sprechen, die Nothwendigkeit einen ausgezeichneten deutschen Künstler dieser
+               Art anzustellen, kräftigst auseinandersetzen, die anerkannten Verdienste des <span class="tei_app"><span class="tei_lem">Individui in’s</span><a class="noteMarker" id="backref-d10e85" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e85">Δ</a></span> gehörige Licht stellen und eine Autorisation für mich auswirken wolltest, mit
                dem Manne, vom Monat <span class="tei_date">September d.
                   J.</span> an, wo sein Contract in <a class="preview places A130006" href="">Prag</a> zu
-               Ende geht, abzuschließen, <span class="tei_app"><span class="tei_lem">ec.</span><a class="noteMarker" id="backref-d10e86" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e86">Δ</a></span></p>
+               Ende geht<a class="noteMarker" href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090022.html">T</a>, abzuschließen, <span class="tei_app"><span class="tei_lem">ec.</span><a class="noteMarker" id="backref-d10e100" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e100">Δ</a></span></p>
                                         <p>Du fühlst selbst, daß man einem solchen Mann, einen solchen Anstand nur auf kurze
-               Frist ansinnen kann; <span class="tei_hi_latintype"><span class="tei_app"><span class="tei_lem">et puis il faut forgé le fer</span><a class="noteMarker" id="backref-d10e121" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e121">Δ</a></span>, pendant qu’il est chaud</span>. – Ich leugne nicht, daß ich die Anstellung
+               Frist ansinnen kann; <span class="tei_hi_latintype"><span class="tei_app"><span class="tei_lem">et puis il faut forgé le fer</span><a class="noteMarker" id="backref-d10e135" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e135">Δ</a></span>, pendant qu’il est chaud</span>. – Ich leugne nicht, daß ich die Anstellung
                desselben sehr wünsche, da seine große Bekanntschaft mit der deutschen Musik, und mit
                fast allen deutschen Bühnen und mit dem eigentlichen Theater-Wesen, mir die
                Organisation der deutschen Oper und die künftige Erhaltung derselben in hohem Ansehen
                und daher auch in großem Nutzen für die Kasse, fast in demselben Maaße erleichtern
                   <span class="tei_pb" title="Seitenumbruch zu S. 529"> | </span>würde, wie mir solches durch <span class="tei_hi_latintype"><a class="preview persons A001502" href="">Polledro’s</a></span> Anstellung für die italien. Oper und
                die Kirchenmusiken gelungen ist. – Ueber letzeres ist unter den vielen hier
-               zusammentreffenden Musikkennern und <span class="tei_app"><span class="tei_lem">Fremden</span><a class="noteMarker" id="backref-d10e134" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e134">Δ</a></span> nur ein Rühmens, und zugleich allgemeine Stimme, daß Sachsen jetzt mehr als je
+               zusammentreffenden Musikkennern und <span class="tei_app"><span class="tei_lem">Fremden</span><a class="noteMarker" id="backref-d10e148" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e148">Δ</a></span> nur ein Rühmens, und zugleich allgemeine Stimme, daß Sachsen jetzt mehr als je
                die vielen ihm zu Gebote stehenden Hülfsmittel benutzen sollte, um sich immer mehr
                durch Ausbildung der Künste und Wissenschaften <span class="tei_app"><span class="tei_lem">auszuzeichnen, da jede andere Art sich Ruhm und Ansehen zu
-                     verschaffen, veloren für uns ist. ec.</span><a class="noteMarker" id="backref-d10e140" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e140">Δ</a></span></p>
+                     verschaffen, verloren für uns ist. ec.</span><a class="noteMarker" id="backref-d10e154" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e154">Δ</a></span></p>
                                         <p class="tei_closer textAlign-left"><span class="tei_signed textAlign-right"><a class="preview persons A002020" href="">Heinrich</a>.</span></p>
                                         <p class="clearer"></p>
                                     </div>
@@ -514,7 +512,7 @@
                                         
                                         <span class="biblio-entry book"><span class="author">Max Maria von Weber</span>, <span class="title">Carl Maria von Weber. Ein Lebensbild</span>,  Bd. 1, <span class="placeNYear">Leipzig 1864</span>, S. 527–529</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_ba619fa9fd5d58b144dd1a10ff59106d">
+                                        <div class="collapse apparatus-details" id="source_8e4ae506a429fe554ac767bc9861398b">
                                             
                                             
                                             <div>
@@ -535,9 +533,9 @@
                                         
                                         <span>Dresden (D), Sächsisches Hauptstaatsarchiv (D-Dla)<br /><i>Signatur</i>: 10026, Geheimes Kabinett Loc. 15146/03 (Bd. 19), Bl. 358–359</span>
                                         <span>
-                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_c8156bd81aacf8693012bcf5b68b0261"></a>                                                                                                                                                                               
+                                            <a data-toggle="collapse" aria-expanded="false" title="Details" class="collapseMarker collapsed" role="button" href="#source_9e1535cf7fd9a2d2c4b0073c4c5172b8"></a>                                                                                                                                                                               
                                         </span>                                      
-                                        <div class="collapse apparatus-details" id="source_c8156bd81aacf8693012bcf5b68b0261">
+                                        <div class="collapse apparatus-details" id="source_9e1535cf7fd9a2d2c4b0073c4c5172b8">
                                             <h4 class="media-heading">Quellenbeschreibung</h4>
                                                     <ul>
                                                         <li>1 DBl. (3 b. S.)</li>
@@ -564,14 +562,29 @@
                             </ul>
                         </div>                   
                         
-                        
+                        <div>
+                            <h3 class="media-heading">Themenkommentare</h3>
+                            <ul class="tei_list">
+                                <li>
+                                    <a href="/exist/apps/WeGA-WebApp/de/A009005/Themenkommentare/A090022.html">Webers Anstellung am Prager Ständetheater</a>
+                                </li>
+                            </ul>
+                        </div>
                         
                         <div class="apparatus">
                                     <h3 class="media-heading">Textkonstitution</h3>
                                     <p>Textwiedergabe nach dem Erstdruck; die inhaltlich abweichenden
                Passagen der Abschrift sind als Lesarten eingearbeitet.</p>
                                     <ul class="apparatus textConstitution"></ul>
-                                    <ul class="apparatus commentary"></ul>
+                                    <h3 class="media-heading">Einzelstellenerläuterung</h3>
+                                    <ul class="apparatus commentary">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-C_01" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="C_01" data-title="Einzelstellenerläuterung" data-counter="1" data-href="#C_01"><span class="tei_lemma">„…  früher schon gekannt zu haben“</span>Weber war dem Grafen laut <span class="preview diaries A065577 A065579" data-ref=" ">Tagebuch</span> am 16. und 18. Februar 1812 in <a class="preview places A130003" href="">Dresden</a> in Zusammenhang mit dem gemeinsamen Auftritt mit <a class="preview persons A000077" href="">H. Baermann</a> vor der königlichen Familie begegnet.</div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     <h3 class="media-heading">Lesarten</h3>
                                     <ul class="apparatus rdg">
                                         <li>
@@ -584,16 +597,16 @@
                      gefunden habe über Herrn <a class="preview persons A001901" href="">Stögers</a> Verdienste
                      durch einen Mann sehr günstige Nachrichten einzuziehen, dessen Urtheil Dir wohl
                      auch nicht zweideutig scheinen wird, wenn ich ihn Dir nenne: – es ist der
-                     Kapellmeister <a class="preview persons A002068" href="">Maria von Weber</a>. Dieser
+                     Kapellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria von Weber</a>. Dieser
                      Mann</span>“</span></div>
-                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Der Capellmeister <a class="preview persons A002068" href="">Maria von <span class="tei_hi_latintype">Weber</span></a>,</span>“</span></div>
+                                                    <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Der Capellmeister <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">Maria von <span class="tei_hi_latintype">Weber</span></a>,</span>“</span></div>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e48" class="apparatus-link">2.</a></div>
-                                                <div id="d10e48" class="apparatusEntry col-11" data-title="Lesarten" data-counter="2" data-href="#d10e48">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e60" class="apparatus-link">2.</a></div>
+                                                <div id="d10e60" class="apparatusEntry col-11" data-title="Lesarten" data-counter="2" data-href="#d10e60">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Freund</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Franz</span>“</span></div>
                                                 </div>
@@ -601,8 +614,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e61" class="apparatus-link">3.</a></div>
-                                                <div id="d10e61" class="apparatusEntry col-11" data-title="Lesarten" data-counter="3" data-href="#d10e61">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e73" class="apparatus-link">3.</a></div>
+                                                <div id="d10e73" class="apparatusEntry col-11" data-title="Lesarten" data-counter="3" data-href="#d10e73">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">vorläufig</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">bis auf allerhöchste Genehmigung vorläufig</span>“</span></div>
                                                 </div>
@@ -610,8 +623,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e67" class="apparatus-link">4.</a></div>
-                                                <div id="d10e67" class="apparatusEntry col-11" data-title="Lesarten" data-counter="4" data-href="#d10e67">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e79" class="apparatus-link">4.</a></div>
+                                                <div id="d10e79" class="apparatusEntry col-11" data-title="Lesarten" data-counter="4" data-href="#d10e79">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Minister, oder vielleicht lieber gleich mit dem Könige</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Herrn Minister</span>“</span></div>
                                                 </div>
@@ -619,8 +632,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e73" class="apparatus-link">5.</a></div>
-                                                <div id="d10e73" class="apparatusEntry col-11" data-title="Lesarten" data-counter="5" data-href="#d10e73">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e85" class="apparatus-link">5.</a></div>
+                                                <div id="d10e85" class="apparatusEntry col-11" data-title="Lesarten" data-counter="5" data-href="#d10e85">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Individui in’s</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Individuums ans</span>“</span></div>
                                                 </div>
@@ -628,8 +641,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e86" class="apparatus-link">6.</a></div>
-                                                <div id="d10e86" class="apparatusEntry col-11" data-title="Lesarten" data-counter="6" data-href="#d10e86">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e100" class="apparatus-link">6.</a></div>
+                                                <div id="d10e100" class="apparatusEntry col-11" data-title="Lesarten" data-counter="6" data-href="#d10e100">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">ec.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Da ich bis zum <span class="tei_date">23<span class="tei_hi_superscript">n</span> dieses Monats</span> ganz gewiß hier bleibe, so
                      kann mich deine Antwort beynahe nicht verfehlen: <span class="tei_hi_latintype">a tout
@@ -637,15 +650,15 @@
                      ohnfehlbaren Nachsendung nach <a class="preview places A130006" href="">Prag</a> oder
                         <a class="preview places A130026" href="">Nürnberg</a>, – denn an einen der
                      benannten beyden Orte, gehe ich von hier aus bestimmt in
-                     Theater-Werbungs-Angelegenheiten, – treffen, und mit H<span class="tei_hi_superscript">n</span>. <a class="preview persons A002068" href="">von Weber</a> dahin <span class="tei_pb"></span>Abrede nehmen, daß derselbe vor erhaltenen ferneren, schriftlichen oder
+                     Theater-Werbungs-Angelegenheiten, – treffen, und mit H<span class="tei_hi_superscript">n</span>. <a class="preview persons A002068" href="/exist/apps/WeGA-WebApp/de/A002068.html">von Weber</a> dahin <span class="tei_pb"></span>Abrede nehmen, daß derselbe vor erhaltenen ferneren, schriftlichen oder
                      mündlichen Eröffnungen von meiner Seite auf kein anderweites <span class="tei_hi_latintype">Engagement</span> sich einlaße.</span>“</span></div>
                                                 </div>
                                             </div>
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e121" class="apparatus-link">7.</a></div>
-                                                <div id="d10e121" class="apparatusEntry col-11" data-title="Lesarten" data-counter="7" data-href="#d10e121">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e135" class="apparatus-link">7.</a></div>
+                                                <div id="d10e135" class="apparatusEntry col-11" data-title="Lesarten" data-counter="7" data-href="#d10e135">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">et puis il faut forgé le fer</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">et pouis il faud battre le fer</span>“</span></div>
                                                 </div>
@@ -653,8 +666,8 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e134" class="apparatus-link">8.</a></div>
-                                                <div id="d10e134" class="apparatusEntry col-11" data-title="Lesarten" data-counter="8" data-href="#d10e134">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e148" class="apparatus-link">8.</a></div>
+                                                <div id="d10e148" class="apparatusEntry col-11" data-title="Lesarten" data-counter="8" data-href="#d10e148">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">Fremden</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">Freunden</span>“</span></div>
                                                 </div>
@@ -662,10 +675,10 @@
                                         </li>
                                         <li>
                                             <div class="row">
-                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e140" class="apparatus-link">9.</a></div>
-                                                <div id="d10e140" class="apparatusEntry col-11" data-title="Lesarten" data-counter="9" data-href="#d10e140">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e154" class="apparatus-link">9.</a></div>
+                                                <div id="d10e154" class="apparatusEntry col-11" data-title="Lesarten" data-counter="9" data-href="#d10e154">
                                                     <div><strong>Textzeuge 1: </strong><span>„<span class="tei_lem">auszuzeichnen, da jede andere Art sich Ruhm und Ansehen zu
-                     verschaffen, veloren für uns ist. ec.</span>“</span></div>
+                     verschaffen, verloren für uns ist. ec.</span>“</span></div>
                                                     <div><strong>Textzeuge 2: </strong><span>„<span class="tei_rdg">auszuzeichnen.</span>“</span></div>
                                                 </div>
                                             </div>
@@ -695,7 +708,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047714</span> (<a href="">Version 4.14.0-alpha vom 17. November 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A047714</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>
@@ -755,6 +768,9 @@
                     <div class="col-12">
                         <ul class="footerNav">
                             <li>
+                                <a id="api-base-link" href="/exist/apps/WeGA-WebApp/api/v1/index.html" data-api-base="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1">API</a>
+                            </li>
+                            <li>
                                 <a href="/exist/apps/WeGA-WebApp/de/Projekt/Kontakt.html">Kontakt</a>
                             </li>
                             <li>
@@ -813,22 +829,17 @@
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/bootstrap-remote-data/js/bootstrap-remote-tabs.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/widgets/datepicker-min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jquery-ui/ui/i18n/datepicker-de.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/google-code-prettify/bin/prettify.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/select2/dist/js/select2.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/moment/min/moment-with-locales.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/ion-rangeslider/js/ion.rangeSlider.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/flip/dist/jquery.flip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.runtime.9eeb8af2.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/index.aaee2d87.js"></script>
+        <script type="module" src="/exist/apps/WeGA-WebApp/resources/lib/wega-mirador/dist/WeGA-WebApp-Mirador.7284d721.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/greedynav.js"></script>
         
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/jszip/dist/jszip.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net/js/dataTables.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/datatables.net-buttons-bs4/js/buttons.bootstrap4.min.js"></script>
         <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/lib/fullcalendar/index.global.min.js"></script>
-        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/init.js"></script>
+        <script type="text/javascript" src="/exist/apps/WeGA-WebApp/resources/js/wega.js"></script>
         
         
         
