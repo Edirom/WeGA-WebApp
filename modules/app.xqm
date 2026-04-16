@@ -1975,6 +1975,24 @@ declare
             default return ()
 };
 
+declare
+    %templates:default("lang", "en")
+    function app:preview-published-in($node as node(), $model as map(*), $lang as xs:string) as element()? {
+        let $biblStruct := $model('doc')//tei:biblStruct[1]
+        let $journalCitations :=
+            if(count($biblStruct/tei:monogr/tei:imprint) gt 1)
+            then bibl:printJournalCitationsByImprint($biblStruct/tei:monogr, <xhtml:li/>, $lang)
+            else ()
+        return
+            if(exists($journalCitations)) then
+                element {node-name($node)} {
+                    $node/@*,
+                    <xhtml:strong>{lang:get-language-string('publishedIn', $lang)}:</xhtml:strong>,
+                    <xhtml:ul class="journal-citations">{$journalCitations}</xhtml:ul>
+                }
+            else ()
+};
+
 declare 
     %templates:wrap
     %templates:default("max", "200")

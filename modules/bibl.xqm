@@ -122,7 +122,8 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
             $wrapperElement/@*,
             if(exists($authors)) then ($authors, ', ') else (), 
             if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
-            if($articleTitle) then (bibl:printTitles($articleTitle, ()), ', in: ') else (),
+            if($articleTitle) then (bibl:printTitles($articleTitle, ())) else (),
+            if($journalCitation) then (', in: ') else (),
             $journalCitation/xhtml:span,
             $journalCitation/text(),
             $note
@@ -173,10 +174,33 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
  : @param $lang the language switch (en, de)
  : @return element
  :)
-declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element() {
+declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()? {
+    if (count($monogr/tei:imprint) = 1) then
+        bibl:print-journal-citation-from-imprint($monogr, $monogr/tei:imprint, $wrapperElement, $lang)
+    else ()
+};
+
+(:~
+ : Create bibliographic citations for all imprints of a journal monogr
+ :
+ : @author Steffen Astheimer
+ : @param $monogr the TEI monogr element with the bibliographic reference of the journal
+ : @param $wrapperElement the HTML element for wrapping each output item (usually li or span)
+ : @param $lang the language switch (en, de)
+ : @return element*
+ :)
+declare function bibl:printJournalCitationsByImprint($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()* {
+    for $imprint in $monogr/tei:imprint
+    return bibl:print-journal-citation-from-imprint($monogr, $imprint, $wrapperElement, $lang)
+};
+
+(:~
+ : Helper function for bibl:printJournalCitation() and bibl:printJournalCitationsByImprint()
+ :)
+declare %private function bibl:print-journal-citation-from-imprint($monogr as element(tei:monogr), $imprint as element(tei:imprint), $wrapperElement as element(), $lang as xs:string) as element() {
     let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
-    let $biblScope := bibl:biblScope($monogr/tei:imprint[1], $lang)
-    return 
+    let $biblScope := bibl:biblScope($imprint, $lang)
+    return
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
             $journalTitle,
@@ -193,23 +217,24 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  : @return xs:string*
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
-    let $isNZfM := some $title in $parent/../tei:title[not(@type='sub')] satisfies matches(string($title), '\(?neue zeitschrift\)? für musik', 'i')
-    return
-    concat(
-        if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
-        if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'jg' and not($isNZfM)) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
-        (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
-        if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
-        (: Alle anderen Datumsausgaben hier :)
-        if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
-        if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
-        if($parent/tei:biblScope/@unit = 'pp') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'pp'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'col') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'col'], $lang) else (),
-        if($parent/tei:biblScope/@unit = 'leaf') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'leaf'], $lang) else ()
-    )
+    if(count($parent) = 1) then
+        let $isNZfM := some $title in $parent/../tei:title[not(@type='sub')] satisfies matches(string($title), '\(?neue zeitschrift\)? für musik', 'i')
+        return concat(
+            if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
+            if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
+            if($parent/tei:biblScope/@unit = 'jg' and not($isNZfM)) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
+            (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
+            if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
+            if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
+            if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
+            (: Alle anderen Datumsausgaben hier :)
+            if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
+            if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
+            if($parent/tei:biblScope/@unit = 'pp') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'pp'], $lang) else (),
+            if($parent/tei:biblScope/@unit = 'col') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'col'], $lang) else (),
+            if($parent/tei:biblScope/@unit = 'leaf') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'leaf'], $lang) else ()
+        )
+    else()
 };
 
 (:~
