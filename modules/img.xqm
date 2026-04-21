@@ -38,11 +38,13 @@ import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/externa
 import module namespace functx="http://www.functx.com";
 
 (:
-Person portraits
-thumb = x52
-small = x60
-large = x340
+    default sizes for thumbnails and portraits
 :)
+declare variable $img:portrait-max-width as map(xs:string, xs:integer) := map {
+    'thumb': 52,
+    'small': 60,
+    'large': 330
+};
 
 
 (:~
@@ -230,7 +232,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
                            return
                               try {
                                  (: need to fix the IIIF image id due to some bug(?) in the zoomviewer.toolforge.org service :)
-                                 if($iiifInfo('height') gt 340) then replace($iiifInfo('@id'), 'cache/', 'fcgi-bin/iipsrv.fcgi/?iiif=cache%2F') || '/full/,340/0/native.jpg'
+                                 if($iiifInfo('height') gt $img:portrait-max-width?large) then replace($iiifInfo('@id'), 'cache/', 'fcgi-bin/iipsrv.fcgi/?iiif=cache%2F') || '/full/,' || $img:portrait-max-width?large || '/0/native.jpg'
                                  else replace($iiifInfo('@id'), 'cache/', 'fcgi-bin/iipsrv.fcgi/?iiif=cache%2F') || '/full/full/0/native.jpg'
                               }
                               catch * { $thumbURI }
@@ -254,7 +256,7 @@ declare %private function img:wikipedia-images($model as map(*), $lang as xs:str
 declare function img:wikimedia-api-imageinfo($images as xs:string*, $lang as xs:string) as map(*)* {
     (: see https://www.mediawiki.org/wiki/API:Imageinfo :)
     let $endpoint := "https://commons.wikimedia.org/w/api.php"
-    let $defaultParams := "?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=52&amp;iiprop=url%7Csize"
+    let $defaultParams := "?action=query&amp;format=xml&amp;prop=imageinfo&amp;iiurlheight=" || $img:portrait-max-width?thumb || "&amp;iiprop=url%7Csize"
     let $titlesParam := "&amp;titles=" || encode-for-uri(string-join(distinct-values($images ! img:prep-wikimedia-image-filenames(.)), '|'))
     let $queryURL := xs:anyURI($endpoint || $defaultParams || $titlesParam)
     
@@ -280,7 +282,7 @@ declare function img:wikimedia-api-imageinfo($images as xs:string*, $lang as xs:
                         case 'thumb' case 'small' return 
                             $page//ii/data(@thumburl)
                         case 'large' return
-                            if($page//ii/@height > 340) then replace($page//ii/data(@thumburl), '/\d+px\-', '/340px-')
+                            if($page//ii/@height > $img:portrait-max-width?large) then replace($page//ii/data(@thumburl), '/\d+px\-', '/' || $img:portrait-max-width?large || 'px-')
                             else $page//ii/data(@url)
                         default return 
                             $page//ii/data(@url)
@@ -450,9 +452,9 @@ declare %private function img:wega-images($model as map(*), $lang as xs:string) 
                 'source' : wega-util:transform($fig//tei:bibl, doc(concat($config:xsl-collection-path, '/persons.xsl')), config:get-xsl-params(())),
                 'url' : function($size) {
                     switch($size)
-                    case 'thumb' return $iiifURI || '/full/,52/0/native.jpg'
-                    case 'small' return $iiifURI || '/full/,60/0/native.jpg'
-                    case 'large' return $iiifURI || '/full/,340/0/native.jpg'
+                    case 'thumb' return $iiifURI || '/full/,' || $img:portrait-max-width?thumb || '/0/native.jpg'
+                    case 'small' return $iiifURI || '/full/,' || $img:portrait-max-width?small || '/0/native.jpg'
+                    case 'large' return $iiifURI || '/full/,' || $img:portrait-max-width?large || '/0/native.jpg'
                     default return $iiifURI || '/full/full/0/native.jpg'
                 }
             }
@@ -464,7 +466,7 @@ http://weber-gesamtausgabe.de/digilib/servlet/Scaler?fn=persons/A0020xx/A002068/
 http://weber-gesamtausgabe.de/digilib/Scaler/IIIF/letters%2FA0412xx%2FA041234%2F1817-07-10_05_AM_Weber_an_Caroline_D-B_1r.tif/1023,1023,1006,1023/,256/0/native.jpg
 http://192.168.3.104:9091/digilib2.3.3/Scaler/IIIF/persons%2FA0020xx%2FA002068%2Fweber_bardua.jpg/0/0/0/native.jpg
 https://tools.wmflabs.org/zoomviewer/iiif.php?f=Adam_of_Wurttemberg_by_D.Bossi.jpg
-http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/63ba02c8870af5888cd78aebf971b3f9.tif/full/,340/0/native.jpg
+http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/63ba02c8870af5888cd78aebf971b3f9.tif/full/,330/0/native.jpg
 http://tools.wmflabs.org/zoomviewer/iipsrv.fcgi/?iiif=cache/63ba02c8870af5888cd78aebf971b3f9.tif
 :)
 
