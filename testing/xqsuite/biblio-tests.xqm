@@ -92,6 +92,14 @@ declare
 };
 
 declare 
+    %test:args('A112067')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Heinrich Dorn</xhtml:span>, <xhtml:span class='title'>Aus meinem Leben. Im Elfenreich</xhtml:span></xhtml:div>")
+    function bt:test-multipleImprints($a as xs:string) as element() {
+        let $doc := crud:doc($a)
+        return
+            bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
+};
+
+declare 
     %test:args('A110876')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Karl Robert Brachtel</xhtml:span>,  [Rezension] <xhtml:span class='title'><a class='preview biblio A110900' href='A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>, in: <xhtml:span class='journalTitle'>Das Orchester</xhtml:span>, Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774</xhtml:div>")
     function bt:test-printReview($a as xs:string) as node()* {
         let $doc := crud:doc($a)
