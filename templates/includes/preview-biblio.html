@@ -13,10 +13,12 @@
             September 1809)
         </p>
 
-        <div data-template="app:preview-published-in">
-            <strong>erschienen in:</strong>
-            <ul class="journal-citations">
-                <li>Zeitung für die elegante Welt, Jg. 32, Nr. 117 (18. Juni 1832), S. 929–932</li>
+        <div data-template="app:process-biblio-publishing" data-template-wrap="no">
+            <ul data-template="app-shared:if-exists" data-template-key="journalCitations" class="publishing-info">
+                <strong><span data-template="app-shared:print" data-template-key="publishedLabel">publishedIn</span>:</strong>
+                <li data-template="app-shared:each" data-template-from="journalCitations" data-template-to="journalCitation">
+                    <span data-template="app-shared:print" data-template-key="journalCitation"  class="journal-citation">Allgemeine Musikalische Zeitung</span>
+                </li>
             </ul>
         </div>
 
