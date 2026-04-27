@@ -85,6 +85,7 @@ declare
 declare 
     %test:args('A112915')         %test:assertXPath("$result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='journalTitle']")
     %test:args('A112660')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Kurt Mey</xhtml:span>, <xhtml:span class='title'>Richard Wagners Webertrauermarsch</xhtml:span>, in: <xhtml:span class='journalTitle'>Die Musik</xhtml:span>, Bd.&#160;22, Jg.&#160;6, Heft&#160;12 (März 1907), S.&#160;331–336</xhtml:div>")
+    %test:args('A111869')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Carl Mennicke</xhtml:span>, <xhtml:span class='title'>Unbekannte Schriften von Carl Maria von Weber</xhtml:span></xhtml:div>")
     function bt:test-printArticleCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
@@ -146,6 +147,14 @@ declare
         let $doc := crud:doc($a)
         return
             bibl:printCitation($doc//tei:biblStruct, <xhtml:div/>, 'de')
+};
+
+declare
+    %test:args('A111869')         %test:assertXPath("count($result) eq 3 and count($result/xhtml:span[@class='journalTitle'][.='Blätter für Haus- und Kirchenmusik']) eq 3")
+    function bt:test-printJournalCitationsByImprint($a as xs:string) as element()+ {
+        let $doc := crud:doc($a)
+        return
+            bibl:printJournalCitationsByImprint($doc//tei:monogr, <xhtml:li/>, 'de')
 };
 
 declare %private function bt:normalize-hrefs($nodes as node()*) as node()* {
