@@ -1931,13 +1931,10 @@ declare
         let $biblStruct := $model('result-page-entry')//tei:biblStruct[1]
         let $journalCitations :=
             if(count($biblStruct/tei:monogr/tei:imprint) gt 1)
-            then 
-                for $journalCitation in bibl:printJournalCitationsByImprint($biblStruct/tei:monogr, <xhtml:li/>, $lang)
-                return normalize-space(string-join($journalCitation//text(), ''))
+            then bibl:printJournalCitationsByImprint($biblStruct/tei:monogr, <xhtml:li class="journal-citation"/>, $lang)
             else ()
         return 
             map {
-                'publishedLabel' : lang:get-language-string('publishedIn', $lang),
                 'journalCitations' : $journalCitations
             }
 };
