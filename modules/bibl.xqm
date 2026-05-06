@@ -217,24 +217,22 @@ declare %private function bibl:print-journal-citation-from-imprint($monogr as el
  : @return xs:string*
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
-    if(count($parent) = 1) then
-        let $isNZfM := some $title in $parent/../tei:title[not(@type='sub')] satisfies matches(string($title), '\(?neue zeitschrift\)? für musik', 'i')
-        return concat(
-            if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
-            if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
-            if($parent/tei:biblScope/@unit = 'jg' and not($isNZfM)) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
-            (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
-            if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
-            if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
-            if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
-            (: Alle anderen Datumsausgaben hier :)
-            if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
-            if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
-            if($parent/tei:biblScope/@unit = 'pp') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'pp'], $lang) else (),
-            if($parent/tei:biblScope/@unit = 'col') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'col'], $lang) else (),
-            if($parent/tei:biblScope/@unit = 'leaf') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'leaf'], $lang) else ()
-        )
-    else()
+    let $isNZfM := some $title in $parent/../tei:title[not(@type='sub')] satisfies matches(string($title), '\(?neue zeitschrift\)? für musik', 'i')
+    return concat(
+        if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
+        if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
+        if($parent/tei:biblScope/@unit = 'jg' and not($isNZfM)) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
+        (: Vierstellige Jahresangaben werden direkt nach vol oder bd ausgegeben :)
+        if(matches(normalize-space($parent/tei:date), '^\d{4}$') and $parent/tei:biblScope/@unit = ('vol', 'jg')) then concat(' (', $parent/tei:date, ')') else (),
+        if($parent/tei:biblScope/@unit = 'issue') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'issue'], $lang) else (),
+        if($parent/tei:biblScope/@unit = 'nr') then concat(', ', 'Nr.', '&#160;', $parent/tei:biblScope[@unit = 'nr']) else (),
+        (: Alle anderen Datumsausgaben hier :)
+        if(string-length(normalize-space($parent/tei:date)) gt 4 or (string-length(normalize-space($parent/tei:date)) gt 0 and not($parent/tei:biblScope/@unit = ('vol', 'jg')))) then concat(' (', $parent/tei:date, ')') else (),
+        if($parent/tei:note/@type = 'additional') then concat(' ', $parent/tei:note[@type = 'additional']) else (),
+        if($parent/tei:biblScope/@unit = 'pp') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'pp'], $lang) else (),
+        if($parent/tei:biblScope/@unit = 'col') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'col'], $lang) else (),
+        if($parent/tei:biblScope/@unit = 'leaf') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'leaf'], $lang) else ()
+    )
 };
 
 (:~
