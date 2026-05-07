@@ -175,9 +175,21 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
  : @return element
  :)
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()? {
-    if (count($monogr/tei:imprint) = 1) then
-        bibl:print-journal-citation-from-imprint($monogr, $monogr/tei:imprint, $wrapperElement, $lang)
-    else ()
+    let $journalTitle := 
+        if (count($monogr/tei:imprint) gt 1)
+        then <xhtml:span class="deleteme_journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
+        else (<xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>)
+    let $biblScope := 
+        if (count($monogr/tei:imprint) gt 1)
+        then for $imprint in $monogr/tei:imprint
+            return <xhtml:span class="deleteme_imprintSection">{bibl:biblScope($imprint, $lang)}</xhtml:span>
+        else <xhtml:span class="imprint">{bibl:biblScope($monogr/tei:imprint, $lang)}</xhtml:span>
+    return
+        element {$wrapperElement/name()} {
+            $wrapperElement/@*,
+            $journalTitle,
+            $biblScope
+        }
 };
 
 (:~
@@ -189,23 +201,17 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  : @param $lang the language switch (en, de)
  : @return element*
  :)
-declare function bibl:printJournalCitationsByImprint($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()* {
+declare function bibl:printJournalCitationPerImprint($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()* {
     for $imprint in $monogr/tei:imprint
-    return bibl:print-journal-citation-from-imprint($monogr, $imprint, $wrapperElement, $lang)
-};
-
-(:~
- : Helper function for bibl:printJournalCitation() and bibl:printJournalCitationsByImprint()
- :)
-declare %private function bibl:print-journal-citation-from-imprint($monogr as element(tei:monogr), $imprint as element(tei:imprint), $wrapperElement as element(), $lang as xs:string) as element() {
-    let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
-    let $biblScope := bibl:biblScope($imprint, $lang)
-    return
-        element {$wrapperElement/name()} {
-            $wrapperElement/@*,
-            $journalTitle,
-            $biblScope
-        }
+    return 
+        let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
+        let $biblScope := <xhtml:span class="imprintSection">{bibl:biblScope($imprint, $lang)}</xhtml:span>
+        return
+            element {$wrapperElement/name()} {
+                $wrapperElement/@*,
+                $journalTitle,
+                $biblScope
+            }
 };
 
 (:~

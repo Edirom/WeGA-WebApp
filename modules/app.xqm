@@ -1931,7 +1931,7 @@ declare
         let $biblStruct := $model('result-page-entry')//tei:biblStruct[1]
         let $journalCitations :=
             if(count($biblStruct/tei:monogr/tei:imprint) gt 1)
-            then bibl:printJournalCitationsByImprint($biblStruct/tei:monogr, <xhtml:li class="journal-citation"/>, $lang)
+            then bibl:printJournalCitationPerImprint($biblStruct/tei:monogr, <xhtml:li class="journal-citation"/>, $lang)
             else ()
         return 
             map {
@@ -1984,7 +1984,7 @@ declare
             case element(tei:biblStruct) return 
                 element {node-name($node)} {
                     $node/@*,
-                    bibl:printCitation($source, <xhtml:p/>, $lang)/node()
+                    bibl:printCitation($source, <xhtml:p/>, $lang)/node()[not(self::xhtml:span[@class=('deleteme_journalTitle', 'deleteme_imprintSection')])]
                 }
             default return ()
 };

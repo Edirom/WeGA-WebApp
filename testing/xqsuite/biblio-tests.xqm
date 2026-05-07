@@ -154,7 +154,7 @@ declare
     function bt:test-printJournalCitationsByImprint($a as xs:string) as element()+ {
         let $doc := crud:doc($a)
         return
-            bibl:printJournalCitationsByImprint($doc//tei:monogr, <xhtml:li/>, 'de')
+            bibl:printJournalCitationPerImprint($doc//tei:monogr, <xhtml:li/>, 'de')
 };
 
 declare %private function bt:normalize-hrefs($nodes as node()*) as node()* {
