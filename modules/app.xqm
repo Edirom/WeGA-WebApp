@@ -1984,7 +1984,7 @@ declare
             case element(tei:biblStruct) return 
                 element {node-name($node)} {
                     $node/@*,
-                    bibl:printCitation($source, <xhtml:p/>, $lang)/node()[not(self::xhtml:span[@class=('deleteme_journalTitle', 'deleteme_imprintSection')])]
+                    bibl:printCitation($source, <xhtml:p/>, $lang)/node()[not(self::xhtml:span[@class=('journalTitleForMultipleImprints', 'imprintSection')])]
                 }
             default return ()
 };

@@ -177,12 +177,12 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
 declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()? {
     let $journalTitle := 
         if (count($monogr/tei:imprint) gt 1)
-        then <xhtml:span class="deleteme_journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
+        then <xhtml:span class="journalTitleForMultipleImprints">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
         else (<xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>)
     let $biblScope := 
         if (count($monogr/tei:imprint) gt 1)
         then for $imprint in $monogr/tei:imprint
-            return <xhtml:span class="deleteme_imprintSection">{bibl:biblScope($imprint, $lang)}</xhtml:span>
+            return <xhtml:span class="imprintSection">{bibl:biblScope($imprint, $lang)}</xhtml:span>
         else <xhtml:span class="imprint">{bibl:biblScope($monogr/tei:imprint, $lang)}</xhtml:span>
     return
         element {$wrapperElement/name()} {
