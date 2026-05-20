@@ -138,5 +138,21 @@
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>
+
+    <xsl:template match="tei:actor[parent::tei:castItem]" priority="1">
+        <xsl:choose>
+            <xsl:when test="contains(@rend, 'leader_dots')">
+                <span class="tei_leader_dots"/>
+                <span class="tei_actor">
+                    <xsl:apply-templates/>
+                </span>
+            </xsl:when>
+            <xsl:otherwise>
+                <span class="tei_actor">
+                    <xsl:apply-templates/>
+                </span>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:template>
     
 </xsl:stylesheet>

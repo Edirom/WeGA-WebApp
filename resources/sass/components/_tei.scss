@@ -329,7 +329,6 @@ li.listSubTitle {
     /* some block level elements */
     .tei_titlePart,
     .tei_castList,
-    .tei_castItem,
     .tei_caption,
     .tei_speaker,
     [class^="lg"],
@@ -354,28 +353,58 @@ li.listSubTitle {
             }
         }
         .tei_castList {
+            position: relative;
             line-height: 2;
             margin-bottom: 1rem;
 
             .tei_castItem {
+                display: grid;
+                grid-template-columns: auto auto 1fr auto;
+                column-gap: .4em;
+                width: 100%;
                 text-align: left;
 
-                .tei_role + .tei_roleDesc::before {
-                    content: " ";
+                .tei_role {
+                    grid-column: 1;
+                }
+                .tei_roleDesc {
+                    grid-column: 2;
+                }
+                .tei_leader_dots {
+                    grid-column: 3;
+                    border-bottom: 2.5px dotted;
+                    transform: translateY(-0.5em);
+                }
+                .tei_actor {
+                    grid-column: 4;
+                    justify-self: end;
                 }
             }
 
             /* styling for cast groups with optional brackets to the right */
             [class^="tei_castGroup"] {
                 display: grid;
-                grid-template-columns: max-content max-content auto;
-                align-items: stretch;
-                column-gap: .5rem;
+                grid-template-columns: auto auto auto 1fr auto;
+                column-gap: .4rem;
+                width: 100%;
 
                 > .tei_castItem {
-                    grid-column: 1;
+                    display: contents;
+
+                    .tei_role {
+                        grid-column: 1
+                    }
+                    .tei_leader_dots {
+                        grid-column: 4;
+                        border-bottom: 2.5px dotted;
+                        transform: translateY(-0.5em);
+                    }
+                    .tei_actor {
+                        grid-column: 5;
+                        justify-self: end;
+                    }
                 }
-                > .tei_roleDesc {
+                .tei_roleDesc {
                     grid-column: 3;
                     grid-row: 1 / 999;
                     display: flex;
