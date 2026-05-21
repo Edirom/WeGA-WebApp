@@ -76,6 +76,16 @@
     </xsl:template>
     
     <xsl:template match="html:div[contains(@class, 'iconographie')]"/>
+
+    <xsl:template match="html:a[matches(@href, '^https?://de\.wikipedia\.org/wiki/Datei:|^https?://commons\.wikimedia\.org/wiki/File:')]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:value-of select="@href"/>
+        </xsl:copy>
+    </xsl:template>
+    
+    <xsl:template match="html:a[matches(concat(' ', normalize-space(@class), ' '), ' nav-link ')][@href = ('#wikipediaText', '#adbText', '#ndbText')]"/>
+    <xsl:template match="html:a[matches(concat(' ', normalize-space(@class), ' '), ' nav-link ')][matches(concat(' ', normalize-space(@class), ' '), ' deactivated ')][not(normalize-space())]"/>
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:a[matches(., '^Version \d+\.\d+(\.\d+)?(\-alpha)? vom \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:h2[matches(., '^\d+ Suchergebnisse$')]"/>
