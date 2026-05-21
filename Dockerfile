@@ -9,9 +9,10 @@ ENV WEGA_BUILD_HOME="/opt/wega"
 ENV WEGALIB_BUILD_HOME="/opt/wega-lib"
 
 
-# installing Saxon and ANT
+# installing Saxon, ANT and yarn
 RUN apt-get update \
-    && apt-get install -y --no-install-recommends apt-transport-https ant libsaxonhe-java 
+    && apt-get install -y --no-install-recommends apt-transport-https ant libsaxonhe-java yarnpkg \
+    && ln -s /usr/bin/yarnpkg /usr/bin/yarn
 
 
 # first building WeGA-WebApp-lib
