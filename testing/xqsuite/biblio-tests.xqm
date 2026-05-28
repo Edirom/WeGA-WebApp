@@ -51,7 +51,7 @@ declare
 
 declare 
     %test:args('A111038')         %test:assertEquals("„Ei, dem alten Herrn zoll’ ich Achtung gern’“. Festschrift für Joachim Veit zum 60. Geburtstag (2016), S. 89–99")
-    %test:args('A113127')         %test:assertEquals("Salzburger Volksblatt, Jg. 28, Nr. 95 (28. April 1898), S. 3, Jg. 28, Nr. 96 (29. April 1898), S. 3")
+    %test:args('A113127')         %test:assertEquals("Salzburger Volksblatt, Jg. 28, Nr. 95, 96 (28. und 29. April 1898), S. 3")
     %test:args('A110998')         %test:assertEquals("Schlesien. Eine Vierteljahresschrift für Kunst, Wissenschaft und Volkstum, Jg. 19 (1974), Nr. 3, S. 158–162")
     function bt:test-printJournalCitation($a as xs:string) as xs:string {
         let $doc := crud:doc($a)
@@ -85,7 +85,7 @@ declare
 declare 
     %test:args('A112915')         %test:assertXPath("$result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='journalTitle']")
     %test:args('A112660')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Kurt Mey</xhtml:span>, <xhtml:span class='title'>Richard Wagners Webertrauermarsch</xhtml:span>, in: <xhtml:span class='journalTitle'>Die Musik</xhtml:span><xhtml:span class='imprint'>, Bd.&#160;22, Jg.&#160;6, Heft&#160;12 (März 1907), S.&#160;331–336</xhtml:span></xhtml:div>")
-    %test:args('A111869')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Carl Mennicke</xhtml:span>, <xhtml:span class='title'>Unbekannte Schriften von Carl Maria von Weber</xhtml:span>, in: <xhtml:span class='journalTitleForMultipleImprints'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg.&#160;14, Nr.&#160;4 (1. Januar 1910), S.&#160;52–54</xhtml:span><xhtml:span class='imprintSection'>, Jg.&#160;14, Nr.&#160;5 (1. Februar 1910), S.&#160;71–73</xhtml:span><xhtml:span class='imprintSection'>, Jg.&#160;14, Nr.&#160;6 (1. März 1910), S.&#160;86–91</xhtml:span></xhtml:div>")
+    %test:args('A111869')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Carl Mennicke</xhtml:span>, <xhtml:span class='title'>Unbekannte Schriften von Carl Maria von Weber</xhtml:span>, in: <xhtml:span class='journalTitleForMultipleImprints'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4 (1. Januar 1910), S. 52–54</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 5 (2. Februar 1910), S. 71–73</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4-6 (3. März 1910), S. 86–91</xhtml:span></xhtml:div>")
     function bt:test-printArticleCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
@@ -151,7 +151,7 @@ declare
 
 declare
     %test:args('A111869')         %test:assertXPath("count($result/xhtml:li) eq 3 and count($result/xhtml:li/xhtml:span[@class='journalTitle'][.='Blätter für Haus- und Kirchenmusik']) eq 3")
-    %test:args('A111869')         %test:assertEquals("<xhtml:ul xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:li><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4 (1. Januar 1910), S. 52–54</xhtml:span></xhtml:li><xhtml:li xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 5 (1. Februar 1910), S. 71–73</xhtml:span></xhtml:li><xhtml:li xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 6 (1. März 1910), S. 86–91</xhtml:span></xhtml:li></xhtml:ul>")
+    %test:args('A111869')         %test:assertEquals("<xhtml:ul xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:li><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4 (1. Januar 1910), S. 52–54</xhtml:span></xhtml:li><xhtml:li><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 5 (2. Februar 1910), S. 71–73</xhtml:span></xhtml:li><xhtml:li><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4-6 (3. März 1910), S. 86–91</xhtml:span></xhtml:li></xhtml:ul>")
     function bt:test-printJournalCitationPerImprint($a as xs:string) as element()+ {
         let $doc := crud:doc($a)
         return
