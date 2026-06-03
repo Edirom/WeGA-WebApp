@@ -75,6 +75,13 @@
         </xsl:copy>
     </xsl:template>
     
+    <xsl:template match="html:a[starts-with(@href, 'https://de.wikipedia.org/wiki/Datei')]">
+        <xsl:copy>
+            <xsl:apply-templates select="@*"/>
+            <xsl:value-of select="iri-to-uri(.)"/>
+        </xsl:copy>
+    </xsl:template>
+    
     <xsl:template match="html:div[contains(@class, 'iconographie')]"/>
     <xsl:template match="html:span[matches(., '^Letzte Änderung dieses Dokuments am \d\d?\. \w+ \d{4}')]"/>
     <xsl:template match="html:a[matches(., '^Version \d+\.\d+(\.\d+)?(\-alpha)? vom \d\d?\. \w+ \d{4}')]"/>
