@@ -2,6 +2,7 @@ xquery version "3.1" encoding "UTF-8";
 
 module namespace app="http://xquery.weber-gesamtausgabe.de/modules/app";
 
+declare namespace err="http://www.w3.org/2005/xqt-errors";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace util="http://exist-db.org/xquery/util";
