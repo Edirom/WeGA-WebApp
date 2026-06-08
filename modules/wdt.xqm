@@ -46,7 +46,7 @@ declare function wdt:orgs($item as item()*) as map(*) {
             crud:data-collection('orgs')[descendant::tei:org][descendant-or-self::tei:orgName]
         },
         'init-sortIndex' : function() as item()* {
-            sort:create-index-callback('orgs', wdt:orgs(())('init-collection')(), function($node) { wdt:orgs($node)('title')('txt') }, ())
+            sort:create-index-callback('orgs', wdt:orgs(())('init-collection')(), function($node) { wdt:orgs($node)('title')('txt') || $node/root()/tei:org/@xml:id }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
@@ -191,7 +191,7 @@ declare function wdt:letters($item as item()*) as map(*) {
                 let $normDate := query:get-normalized-date($node)
                 let $n :=  functx:pad-integer-to-length(($node//tei:correspAction[@type='sent']/tei:date)[1]/data(@n), 4)
                 return
-                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $n || $node/root()/tei:TEI/@xml:id
             }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
@@ -431,7 +431,7 @@ declare function wdt:diaries($item as item()*) as map(*) {
             crud:data-collection('diaries')[tei:ab/@where]
         },
         'init-sortIndex' : function() as item()* {
-            sort:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) }, ())
+            sort:create-index-callback('diaries', wdt:diaries(())('init-collection')(), function($node) { query:get-normalized-date($node) || $node/root()/tei:ab/@xml:id }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
             let $lang := config:guess-language(())
@@ -499,7 +499,7 @@ declare function wdt:news($item as item()*) as map(*) {
             crud:data-collection('news')[descendant::tei:text]
         },
         'init-sortIndex' : function() as item()* {
-            sort:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) }, ())
+            sort:create-index-callback('news', wdt:news(())('init-collection')(), function($node) { $node//tei:date[parent::tei:publicationStmt]/xs:dateTime(@when) || $node/root()/tei:TEI/@xml:id }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
@@ -646,7 +646,8 @@ declare function wdt:biblio($item as item()*) as map(*) {
                 let $date := query:get-normalized-date($node)
                 return
                     (if(exists($date)) then $date else '0000') ||
-                    tokenize(($node//tei:author)[1], '\s+')[last()]
+                    tokenize(($node//tei:author)[1], '\s+')[last()] ||
+                    $node/root()/tei:biblStruct/@xml:id
                 }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
@@ -697,7 +698,7 @@ declare function wdt:places($item as item()*) as map(*) {
             crud:data-collection('places')[descendant::tei:placeName]
         },
         'init-sortIndex' : function() as item()* {
-            sort:create-index-callback('places', wdt:places(())('init-collection')(), function($node) { str:normalize-space($node//tei:placeName[@type='reg']) }, ())
+            sort:create-index-callback('places', wdt:places(())('init-collection')(), function($node) { str:normalize-space($node//tei:placeName[@type='reg']) || $node/root()/tei:place/@xml:id }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
             for $this.item in $item
@@ -759,7 +760,8 @@ declare function wdt:sources($item as item()*) as map(*) {
                 let $date := query:get-normalized-date($node)
                 return
                     (if(exists($date)) then $date else 'xxxx-xx-xx') ||
-                    $node//*:title[1]
+                    $node//*:title[1] ||
+                    $node/root()/mei:manifestation/@xml:id
                 }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
@@ -863,7 +865,7 @@ declare function wdt:documents($item as item()*) as map(*) {
                 let $normDate := query:get-normalized-date($node)
                 let $title := replace(str:normalize-space(($node//tei:fileDesc/tei:titleStmt/tei:title[@level = 'a'])[1] ), '^(Der|Die|Das|Eine?)\s', '')
                 return 
-                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $title
+                    (if(exists($normDate)) then $normDate else 'xxxx-xx-xx') || $title || $node/root()/tei:TEI/@xml:id
             }, ())
         },
         'title' : function($serialization as xs:string) as item()* {
@@ -1113,7 +1115,7 @@ declare %private function wdt:sort-key-person($node as node()) as xs:string? {
         else str:normalize-space($node//tei:persName[@type='reg']/tei:surname[1])
     let $name := str:normalize-space($node//tei:persName[@type='reg'])
     return 
-        lower-case(replace(str:strip-diacritics($sortName || $name), "'", ""))
+        lower-case(replace(str:strip-diacritics($sortName || $name), "'", "")) || $node/root()/tei:persName/@xml:id
 };
 
 (:~
