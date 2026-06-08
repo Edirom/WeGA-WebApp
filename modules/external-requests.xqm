@@ -127,7 +127,7 @@ declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as x
  :      an `@rdf:resource` attribute which indicates the resource to fetch
  :  @return an er:response element if successful, the empty sequence otherwise. For a description of the `er:response` element
  :      see http://expath.org/modules/http-client/
-~:)
+ :)
 declare function er:resolve-rdf-resource($elem as element()) as element(er:response)? {
     let $uri := 
         if(starts-with($elem/@rdf:resource, 'https://d-nb.info/gnd')) then ($elem/@rdf:resource || '/about/lds.rdf')
@@ -141,9 +141,12 @@ declare function er:resolve-rdf-resource($elem as element()) as element(er:respo
 };
 
 (:~
- : Helper function for wega:grabExternalResource()
+ : Fetch an external resource via HTTP GET request and return the response wrapped in a wega:externalResource element.
+ : The function constructs an HTTP GET request for the given URL, sends the request through the EXPath http-client module,
+ : and captures the response.
+ : The response is then wrapped in a wega:externalResource element, which includes the date of retrieval.
+ : If the request fails (e.g., due to a timeout), an appropriate log message is recorded.
  :
- : @author Peter Stadler 
  : @param $url the URL as xs:anyURI
  : @return element wega:externalResource, a wrapper around er:response
  :)
@@ -230,7 +233,7 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
 (:~
  : construct wikidata query URL
  : Helper function for `er:grab-external-resource-wikidata()`
-~:)
+ :)
 declare %private function er:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI {
     (:  
     see https://query.wikidata.org/ 
@@ -306,7 +309,7 @@ declare %private function er:parse-beacon($beaconURI as xs:anyURI) as element(er
  :
  :  @param $gnd a GND identifier
  :  @return the corresponding VIAF identifier(s) as string(s)
-~:)
+ :)
 declare function er:gnd2viaf($gnd as xs:string) as xs:string* {
     er:translate-authority-id(<tei:idno type="gnd">{$gnd}</tei:idno>, 'viaf')
 };
