@@ -820,7 +820,7 @@ declare
                     switch($provider)
                     case 'osm' return 'https://www.openstreetmap.org/?mlat=' || $latLon[1] || '&amp;mlon=' || $latLon[2] || '&amp;zoom=11'
                     case 'google' return 'https://www.google.com/maps/@?api=1&amp;map_action=map&amp;zoom=12&amp;basemap=terrain&amp;center=' || string-join($latLon, ',')
-                    case 'geoNames' return 'http://geonames.org/' || $model?geonames-id
+                    case 'geoNames' return 'https://geonames.org/' || $model?geonames-id
                     default return ''
                 },
                 switch($provider)
@@ -1130,9 +1130,9 @@ declare
                 'Der Text unter der Überschrift „Wikipedia“ entstammt dem Artikel „',
                 <a xmlns="http://www.w3.org/1999/xhtml" href='{$model('wikiUrl')}' title='Wikipedia Artikel zu "{$model('wikiName')}"'>{$model('wikiName')}</a>,
                 '“ aus der freien Enzyklopädie ',
-                <a xmlns="http://www.w3.org/1999/xhtml" href="http://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>, 
+                <a xmlns="http://www.w3.org/1999/xhtml" href="https://de.wikipedia.org" title="Wikipedia Hauptseite">Wikipedia</a>,
                 ' und steht unter der ',
-                <a xmlns="http://www.w3.org/1999/xhtml" href="http://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="https://creativecommons.org/licenses/by-sa/3.0/deed.de">CC-BY-SA-Lizenz</a>,
                 '. In der Wikipedia findet sich auch die ',
                 <a xmlns="http://www.w3.org/1999/xhtml" href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title='Autoren und Versionsgeschichte des Wikipedia Artikels zu "{$model('wikiName')}"'>Versionsgeschichte mitsamt Autorennamen</a>,
                 ' für diesen Artikel.'
@@ -1141,9 +1141,9 @@ declare
                 'The text under the headline “Wikipedia” is taken from the article “',
                 <a xmlns="http://www.w3.org/1999/xhtml" href='{$model('wikiUrl')}' title='Wikipedia article for {$model('wikiName')}'>{$model('wikiName')}</a>,
                 '” from ',
-                <a xmlns="http://www.w3.org/1999/xhtml" href="http://en.wikipedia.org">Wikipedia</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="https://en.wikipedia.org">Wikipedia</a>,
                 ' the free encyclopedia, and is released under a ',
-                <a xmlns="http://www.w3.org/1999/xhtml" href="http://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
+                <a xmlns="http://www.w3.org/1999/xhtml" href="https://creativecommons.org/licenses/by-sa/3.0/deed.en">CC-BY-SA-license</a>,
                 '. You will find the ',
                 <a xmlns="http://www.w3.org/1999/xhtml" href="{concat(replace($model('wikiUrl'), 'wiki/', 'w/index.php?title='), '&amp;action=history')}" title="Authors and revision history of the Wikipedia Article for {$model('wikiName')}">revision history along with the authors</a>,
                 ' of this article in Wikipedia.'

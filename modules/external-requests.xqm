@@ -49,8 +49,8 @@ declare function er:grabExternalResource($resource as xs:string, $id as xs:strin
         case 'wikipedia' return (er:grab-external-resource-wikidata($id, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'dnb' return concat('https://d-nb.info/gnd/', $id, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $id, '.rdf')
-        case 'geonames' return concat('http://sws.geonames.org/', $id, '/about.rdf') (: $id is actually the geonames ID :)
-        case 'dbpedia' return concat('http://www.wikidata.org/entity/', $id, '.rdf') (: $id is actually the dbpedia(wikidata?) ID :)
+        case 'geonames' return concat('https://sws.geonames.org/', $id, '/about.rdf') (: $id is actually the geonames ID :)
+        case 'dbpedia' return concat('https://www.wikidata.org/entity/', $id, '.rdf') (: $id is actually the dbpedia(wikidata?) ID :)
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $id || '.html'
         default return config:get-option($resource) || $id
     let $fileName := string-join(($id, $lang, 'xml'), '.')
@@ -80,7 +80,7 @@ declare function er:grab-external-resource-via-beacon($beaconProvider as xs:stri
  :)
 declare function er:grab-external-resource-wikidata($id as xs:string, $authority-provider as xs:string) as element(er:response)? {
     let $uri := 
-        if($authority-provider eq 'wikidata') then xs:anyURI('http://www.wikidata.org/entity/' || $id || '.rdf')
+        if($authority-provider eq 'wikidata') then xs:anyURI('https://www.wikidata.org/entity/' || $id || '.rdf')
         else er:wikidata-url($id, $authority-provider)
     let $fileName := util:hash($uri, 'md5') || '.xml'
     return

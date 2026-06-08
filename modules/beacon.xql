@@ -40,13 +40,13 @@ declare function beacon:new($type as xs:string) as xs:string {
         default return ()
     let $feed := 
         switch($type)
-        case 'pnd' return '#FEED: http://weber-gesamtausgabe.de/pnd_beacon.txt'
-        case 'gkd' return '#FEED: http://weber-gesamtausgabe.de/gkd_beacon.txt'
-        case 'works' return '#FEED: http://weber-gesamtausgabe.de/works_beacon.txt'
+        case 'pnd' return '#FEED: https://weber-gesamtausgabe.de/pnd_beacon.txt'
+        case 'gkd' return '#FEED: https://weber-gesamtausgabe.de/gkd_beacon.txt'
+        case 'works' return '#FEED: https://weber-gesamtausgabe.de/works_beacon.txt'
         default return ()
     let $header := (
         '#FORMAT: BEACON',
-        '#PREFIX: http://d-nb.info/gnd/',
+        '#PREFIX: https://d-nb.info/gnd/',
         '#VERSION: 0.1',
         '#TARGET: https://weber-gesamtausgabe.de/de/gnd/{ID}',
         $feed,
