@@ -174,12 +174,9 @@ declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
     (: zu IIIF@Wikipedia: siehe https://commons.wikimedia.org/wiki/Commons:International_Image_Interoperability_Framework :)
     let $escapedWikiFilename := replace($wikiFilename, ' ', '_')
     let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $escapedWikiFilename || '/info.json'
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $fileName := util:hash($escapedWikiFilename, 'md5') || '.xml'
-    let $onFailureFunc := function($errCode, $errDesc) {
-        wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
-    }
-    let $response := mycache:doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName))
+    let $response := er:cached-external-request(xs:anyURI($url), $localFilePath)
     return 
         if($response//er:response/@statusCode eq '200') then 
             try { parse-json(util:binary-to-string($response//er:body)) }

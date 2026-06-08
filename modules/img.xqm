@@ -619,9 +619,12 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
         else 'page' || count($graphic/preceding::tei:graphic) + 1
     let $manifest-id := controller:iiif-manifest-id($graphic/parent::tei:facsimile)
     let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
+    let $localFileName := util:hash($manifest-id, 'md5') || '.xml'
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName))
+    let $image-info.raw := er:cached-external-request(xs:anyURI($image-id || '/info.json'), $localFilePath)
     let $image-info :=
         try {
-            er:http-get(xs:anyURI($image-id || '/info.json'))//*:response => util:base64-decode() => parse-json() (: why is this not cached? – the wrapper request to the manifest.json is cached! :)
+            $image-info.raw//er:response => util:base64-decode() => parse-json()
         }
         catch * {
             wega-util:log-to-file('error', 'failed to fetch image info for ' || $image-id)
