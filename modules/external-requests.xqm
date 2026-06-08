@@ -203,17 +203,27 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
 };
 
 (:~
- : Make a (locally) cached request to an external URI
- : This is the full fledged 4-arity version
+ : Make a (locally) cached request to an external URI.
+ : This is the full fledged 4-arity version.
+ : The function makes use of `er:http-get#1` to retrieve the external data
+ : but will only cache responses with status codes 2xx, or 4xx.
  :
  : @param $uri the external URI to fetch
  : @param $localFilepath the filepath to store the cached document
- : @param $lease a function to determine wether the cache should be updated. Must return a boolean value
+ : @param $lease a function to determine whether the cache should be updated. Must return a boolean value
  : @param $onFailureFunc an on-error function that's passed on to the underlying mycache:doc() function 
  : @return a er:response element with the response stored within er:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(er:response)? {
-    mycache:doc($localFilepath, er:http-get#1, $uri, $lease, $onFailureFunc)//er:response[@statusCode = '200']
+    let $http-get := function($url as xs:anyURI) as element(wega:externalResource)? {
+        (: locally modify `er:http-get#1` to not cache failed requests (e.g. timeouts) :)
+        er:http-get($url)//er:response[matches(@statusCode, '^[24]\d+')]/parent::wega:externalResource
+    }
+    return
+        try {
+            mycache:doc($localFilepath, $http-get, $uri, $lease, $onFailureFunc)//er:response[@statusCode = '200']
+        }
+        catch * {()}
 };
 
 
