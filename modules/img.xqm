@@ -621,7 +621,8 @@ declare function img:iiif-canvas($graphic as element(tei:graphic)) as map(*) {
     let $canvas-id := replace($manifest-id, 'manifest.json', 'canvas/') || encode-for-uri($page-label)
     let $image-info :=
         try {
-            er:http-get(xs:anyURI($image-id || '/info.json'))//*:response => util:base64-decode() => parse-json() (: why is this not cached? – the wrapper request to the manifest.json is cached! :)
+            (: this request does not need to be cached since the wrapper request to the manifest.json is already cached at `view-json.xql`! :)
+            er:http-get(xs:anyURI($image-id || '/info.json'))//er:response => util:base64-decode() => parse-json()
         }
         catch * {
             wega-util:log-to-file('error', 'failed to fetch image info for ' || $image-id)

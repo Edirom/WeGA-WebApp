@@ -5,6 +5,7 @@ xquery version "3.1" encoding "UTF-8";
  :)
 module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests";
 
+declare namespace err="http://www.w3.org/2005/xqt-errors";
 declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 declare namespace wega="http://www.weber-gesamtausgabe.de";
@@ -49,8 +50,8 @@ declare function er:grabExternalResource($resource as xs:string, $id as xs:strin
         case 'wikipedia' return (er:grab-external-resource-wikidata($id, 'gnd')//sr:binding[@name=('article' || upper-case($lang))]/sr:uri/data(.))[1]
         case 'dnb' return concat('https://d-nb.info/gnd/', $id, '/about/rdf')
         case 'viaf' return concat('https://viaf.org/viaf/', $id, '.rdf')
-        case 'geonames' return concat('http://sws.geonames.org/', $id, '/about.rdf') (: $id is actually the geonames ID :)
-        case 'dbpedia' return concat('http://www.wikidata.org/entity/', $id, '.rdf') (: $id is actually the dbpedia(wikidata?) ID :)
+        case 'geonames' return concat('https://sws.geonames.org/', $id, '/about.rdf') (: $id is actually the geonames ID :)
+        case 'dbpedia' return concat('https://www.wikidata.org/entity/', $id, '.rdf') (: $id is actually the dbpedia(wikidata?) ID :)
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $id || '.html'
         default return config:get-option($resource) || $id
     let $fileName := string-join(($id, $lang, 'xml'), '.')
@@ -80,7 +81,7 @@ declare function er:grab-external-resource-via-beacon($beaconProvider as xs:stri
  :)
 declare function er:grab-external-resource-wikidata($id as xs:string, $authority-provider as xs:string) as element(er:response)? {
     let $uri := 
-        if($authority-provider eq 'wikidata') then xs:anyURI('http://www.wikidata.org/entity/' || $id || '.rdf')
+        if($authority-provider eq 'wikidata') then xs:anyURI('https://www.wikidata.org/entity/' || $id || '.rdf')
         else er:wikidata-url($id, $authority-provider)
     let $fileName := util:hash($uri, 'md5') || '.xml'
     return
@@ -126,7 +127,7 @@ declare function er:lookup-gnd-from-beaconURI($beaconURI as xs:anyURI, $gnd as x
  :      an `@rdf:resource` attribute which indicates the resource to fetch
  :  @return an er:response element if successful, the empty sequence otherwise. For a description of the `er:response` element
  :      see http://expath.org/modules/http-client/
-~:)
+ :)
 declare function er:resolve-rdf-resource($elem as element()) as element(er:response)? {
     let $uri := 
         if(starts-with($elem/@rdf:resource, 'https://d-nb.info/gnd')) then ($elem/@rdf:resource || '/about/lds.rdf')
@@ -140,9 +141,12 @@ declare function er:resolve-rdf-resource($elem as element()) as element(er:respo
 };
 
 (:~
- : Helper function for wega:grabExternalResource()
+ : Fetch an external resource via HTTP GET request and return the response wrapped in a wega:externalResource element.
+ : The function constructs an HTTP GET request for the given URL, sends the request through the EXPath http-client module,
+ : and captures the response.
+ : The response is then wrapped in a wega:externalResource element, which includes the date of retrieval.
+ : If the request fails (e.g., due to a timeout), an appropriate log message is recorded.
  :
- : @author Peter Stadler 
  : @param $url the URL as xs:anyURI
  : @return element wega:externalResource, a wrapper around er:response
  :)
@@ -173,12 +177,9 @@ declare function er:wikimedia-iiif($wikiFilename as xs:string) as map(*)* {
     (: zu IIIF@Wikipedia: siehe https://commons.wikimedia.org/wiki/Commons:International_Image_Interoperability_Framework :)
     let $escapedWikiFilename := replace($wikiFilename, ' ', '_')
     let $url := 'https://tools.wmflabs.org/zoomviewer/proxy.php?iiif=' || $escapedWikiFilename || '/info.json'
-    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
     let $fileName := util:hash($escapedWikiFilename, 'md5') || '.xml'
-    let $onFailureFunc := function($errCode, $errDesc) {
-        wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
-    }
-    let $response := mycache:doc(str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName)), er:http-get#1, xs:anyURI($url), $lease, $onFailureFunc)
+    let $localFilePath := str:join-path-elements(($config:tmp-collection-path, 'iiif', $fileName))
+    let $response := er:cached-external-request(xs:anyURI($url), $localFilePath)
     return 
         if($response//er:response/@statusCode eq '200') then 
             try { parse-json(util:binary-to-string($response//er:body)) }
@@ -205,24 +206,34 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
 };
 
 (:~
- : Make a (locally) cached request to an external URI
- : This is the full fledged 4-arity version
+ : Make a (locally) cached request to an external URI.
+ : This is the full fledged 4-arity version.
+ : The function makes use of `er:http-get#1` to retrieve the external data
+ : but will only cache responses with status codes 2xx, or 4xx.
  :
  : @param $uri the external URI to fetch
  : @param $localFilepath the filepath to store the cached document
- : @param $lease a function to determine wether the cache should be updated. Must return a boolean value
+ : @param $lease a function to determine whether the cache should be updated. Must return a boolean value
  : @param $onFailureFunc an on-error function that's passed on to the underlying mycache:doc() function 
  : @return a er:response element with the response stored within er:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(er:response)? {
-    mycache:doc($localFilepath, er:http-get#1, $uri, $lease, $onFailureFunc)//er:response[@statusCode = '200']
+    let $http-get := function($url as xs:anyURI) as element(wega:externalResource)? {
+        (: locally modify `er:http-get#1` to not cache failed requests (e.g. timeouts) :)
+        er:http-get($url)//er:response[matches(@statusCode, '^[24]\d+')]/parent::wega:externalResource
+    }
+    return
+        try {
+            mycache:doc($localFilepath, $http-get, $uri, $lease, $onFailureFunc)//er:response[@statusCode = '200']
+        }
+        catch * {()}
 };
 
 
 (:~
  : construct wikidata query URL
  : Helper function for `er:grab-external-resource-wikidata()`
-~:)
+ :)
 declare %private function er:wikidata-url($id as xs:string, $authority-provider as xs:string) as xs:anyURI {
     (:  
     see https://query.wikidata.org/ 
@@ -298,7 +309,7 @@ declare %private function er:parse-beacon($beaconURI as xs:anyURI) as element(er
  :
  :  @param $gnd a GND identifier
  :  @return the corresponding VIAF identifier(s) as string(s)
-~:)
+ :)
 declare function er:gnd2viaf($gnd as xs:string) as xs:string* {
     er:translate-authority-id(<tei:idno type="gnd">{$gnd}</tei:idno>, 'viaf')
 };
