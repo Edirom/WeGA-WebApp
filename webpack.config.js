@@ -11,9 +11,15 @@ const __dirname = path.dirname(__filename);
 
 
 export default {
-    entry: "./resources/js/init.js",
+    entry: {
+        wega: "./resources/js/init.js",
+        swagger: "./resources/js/swagger.js",
+    },
     output: {
-        filename: "wega.js",
+        filename: "[name].js",
+        //filename: "wega.js",
+        //filename: (pathData) =>
+        //    pathData.chunk.name === "init" ? "wega.js" : "[name].js",
         path: path.resolve(__dirname, "dist/resources/js"),
     },
     mode: 'development',

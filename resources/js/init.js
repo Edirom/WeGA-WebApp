@@ -3,6 +3,7 @@
 import moment from "moment";
 import hljs from 'highlight.js/lib/core';
 import xml from 'highlight.js/lib/languages/xml';
+import { obfuscateEmail, initHoveredSrcSwap } from "./wega-common.js";
 hljs.registerLanguage('xml', xml);
 
 /* Adjust font size of h1 headings */
@@ -179,16 +180,6 @@ $.fn.rangeSlider = function ()
         }
     });
 };
-
-$.fn.obfuscateEMail = function () {
-    if($(this).length === 0) {}
-    else {
-        const e = $(this).html().substring(0, $(this).html().indexOf('[')).trim(),
-            t = $(this).html().substring($(this).html().indexOf(']') +1).trim(),
-            r = '' + e + '@' + t ;
-        $(this).attr('href',' mailto:' +r).html(r);
-    }
-}
 
 /* Load portraits via AJAX */
 $.fn.loadPortrait = function () {
@@ -657,7 +648,8 @@ $('.glSchemaIDFilter').on('change', 'input', function(a) {
     self.location = '?schemaID=' + a.target.value;
 })
 
-$('.obfuscate-email').obfuscateEMail();
+/* actually, de-obfuscate the email address bugs@weber… for feedback */
+obfuscateEmail();
 
 $.fn.initFlipCard = function() {
     const supportsHover = window.matchMedia("(hover: hover)").matches;
@@ -884,16 +876,7 @@ $.fn.activatePagination = function(container) {
 };
 
 /* Farbige Support Badges im footer (page.html) */
-$("[data-hovered-src]").hover(
-    function(){
-        $(this).data("original-src",$(this).attr("src"));
-        $(this).attr("src",($(this).data("hovered-src")));
-    },
-    function(){
-        $(this).data("hovered-src",$(this).attr("src"));
-        $(this).attr("src",($(this).data("original-src")));
-    } 
-);
+initHoveredSrcSwap();
 
 $("#datePicker").initDatepicker();
 
