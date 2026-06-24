@@ -84,7 +84,8 @@ declare
 
 declare 
     %test:args('A112915')         %test:assertXPath("$result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='journalTitle']")
-    %test:args('A112660')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Kurt Mey</xhtml:span>, <xhtml:span class='title'>Richard Wagners Webertrauermarsch</xhtml:span>, in: <xhtml:span class='journalTitle'>Die Musik</xhtml:span>, Bd.&#160;22, Jg.&#160;6, Heft&#160;12 (März 1907), S.&#160;331–336</xhtml:div>")
+    %test:args('A112660')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Kurt Mey</xhtml:span>, <xhtml:span class='title'>Richard Wagners Webertrauermarsch</xhtml:span>, in: <xhtml:span class='journalTitle'>Die Musik</xhtml:span><xhtml:span class='imprint'>, Bd.&#160;22, Jg.&#160;6, Heft&#160;12 (März 1907), S.&#160;331–336</xhtml:span></xhtml:div>")
+    %test:args('A111869')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Carl Mennicke</xhtml:span>, <xhtml:span class='title'>Unbekannte Schriften von Carl Maria von Weber</xhtml:span>, in: <xhtml:span class='journalTitleForMultipleImprints'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4 (1. Januar 1910), S. 52–54</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 5 (2. Februar 1910), S. 71–73</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4-6 (3. März 1910), S. 86–91</xhtml:span></xhtml:div>")
     function bt:test-printArticleCitation($a as xs:string) as element() {
         let $doc := crud:doc($a)
         return
@@ -92,7 +93,7 @@ declare
 };
 
 declare 
-    %test:args('A110876')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Karl Robert Brachtel</xhtml:span>,  [Rezension] <xhtml:span class='title'><a class='preview biblio A110900' href='A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>, in: <xhtml:span class='journalTitle'>Das Orchester</xhtml:span>, Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774</xhtml:div>")
+    %test:args('A110876')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Karl Robert Brachtel</xhtml:span>,  [Rezension] <xhtml:span class='title'><a class='preview biblio A110900' href='A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>, in: <xhtml:span class='journalTitle'>Das Orchester</xhtml:span><xhtml:span class='imprint'>, Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774</xhtml:span></xhtml:div>")
     function bt:test-printReview($a as xs:string) as node()* {
         let $doc := crud:doc($a)
         return
@@ -129,7 +130,7 @@ declare
     function bt:test-NZfM-biblScope($a as xs:string) as text()* {
         let $doc := crud:doc($a)
         return
-            bibl:printJournalCitation($doc//tei:monogr, <xhtml:div/>, 'de')/node()[last()]
+            bibl:printJournalCitation($doc//tei:monogr, <xhtml:div/>, 'de')/node()[last()]/text()
 };
 
 declare
@@ -146,6 +147,15 @@ declare
         let $doc := crud:doc($a)
         return
             bibl:printCitation($doc//tei:biblStruct, <xhtml:div/>, 'de')
+};
+
+declare
+    %test:args('A111869')         %test:assertXPath("count($result/xhtml:li) eq 3 and count($result/xhtml:li/xhtml:span[@class='journalTitle'][.='Blätter für Haus- und Kirchenmusik']) eq 3")
+    %test:args('A111869')         %test:assertEquals("<xhtml:ul xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:li><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4 (1. Januar 1910), S. 52–54</xhtml:span></xhtml:li><xhtml:li><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 5 (2. Februar 1910), S. 71–73</xhtml:span></xhtml:li><xhtml:li><xhtml:span class='journalTitle'>Blätter für Haus- und Kirchenmusik</xhtml:span><xhtml:span class='imprintSection'>, Jg. 14, Nr. 4-6 (3. März 1910), S. 86–91</xhtml:span></xhtml:li></xhtml:ul>")
+    function bt:test-printJournalCitationPerImprint($a as xs:string) as element()+ {
+        let $doc := crud:doc($a)
+        return
+            <xhtml:ul>{bibl:printJournalCitationPerImprint($doc//tei:monogr, <xhtml:li/>, 'de')}</xhtml:ul>
 };
 
 declare %private function bt:normalize-hrefs($nodes as node()*) as node()* {

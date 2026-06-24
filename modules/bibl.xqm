@@ -122,7 +122,8 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
             $wrapperElement/@*,
             if(exists($authors)) then ($authors, ', ') else (), 
             if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
-            if($articleTitle) then (bibl:printTitles($articleTitle, ()), ', in: ') else (),
+            if($articleTitle) then (bibl:printTitles($articleTitle, ())) else (),
+            if($journalCitation) then (', in: ') else (),
             $journalCitation/xhtml:span,
             $journalCitation/text(),
             $note
@@ -173,15 +174,44 @@ declare function bibl:printIncollectionCitation($biblStruct as element(tei:biblS
  : @param $lang the language switch (en, de)
  : @return element
  :)
-declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element() {
-    let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
-    let $biblScope := bibl:biblScope($monogr/tei:imprint[1], $lang)
-    return 
+declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()? {
+    let $journalTitle := 
+        if (count($monogr/tei:imprint) gt 1)
+        then <xhtml:span class="journalTitleForMultipleImprints">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
+        else (<xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>)
+    let $biblScope := 
+        if (count($monogr/tei:imprint) gt 1)
+        then for $imprint in $monogr/tei:imprint
+            return <xhtml:span class="imprintSection">{bibl:biblScope($imprint, $lang)}</xhtml:span>
+        else <xhtml:span class="imprint">{bibl:biblScope($monogr/tei:imprint, $lang)}</xhtml:span>
+    return
         element {$wrapperElement/name()} {
             $wrapperElement/@*,
             $journalTitle,
             $biblScope
         }
+};
+
+(:~
+ : Create bibliographic citations for all imprints of a journal monogr
+ :
+ : @author Steffen Astheimer
+ : @param $monogr the TEI monogr element with the bibliographic reference of the journal
+ : @param $wrapperElement the HTML element for wrapping each output item (usually li or span)
+ : @param $lang the language switch (en, de)
+ : @return element*
+ :)
+declare function bibl:printJournalCitationPerImprint($monogr as element(tei:monogr), $wrapperElement as element(), $lang as xs:string) as element()* {
+    for $imprint in $monogr/tei:imprint
+    return 
+        let $journalTitle := <xhtml:span class="journalTitle">{bibl:printTitles($monogr/tei:title, $monogr/tei:edition)/node()}</xhtml:span>
+        let $biblScope := <xhtml:span class="imprintSection">{bibl:biblScope($imprint, $lang)}</xhtml:span>
+        return
+            element {$wrapperElement/name()} {
+                $wrapperElement/@*,
+                $journalTitle,
+                $biblScope
+            }
 };
 
 (:~
@@ -194,8 +224,7 @@ declare function bibl:printJournalCitation($monogr as element(tei:monogr), $wrap
  :)
 declare %private function bibl:biblScope($parent as element(), $lang as xs:string) as xs:string {
     let $isNZfM := some $title in $parent/../tei:title[not(@type='sub')] satisfies matches(string($title), '\(?neue zeitschrift\)? für musik', 'i')
-    return
-    concat(
+    return concat(
         if($parent/tei:biblScope/@unit = 'jg' and $isNZfM) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),
         if($parent/tei:biblScope/@unit = 'vol') then bibl:print-single-biblScope-unit(', ', $parent/tei:biblScope[@unit = 'vol'], $lang) else (),
         if($parent/tei:biblScope/@unit = 'jg' and not($isNZfM)) then concat(', ', 'Jg.', '&#160;', $parent/tei:biblScope[@unit = 'jg']) else (),

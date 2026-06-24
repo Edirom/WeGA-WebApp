@@ -1926,6 +1926,20 @@ declare
 };
 
 declare
+    %templates:default("lang", "en")
+    function app:process-biblio-publishing($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $biblStruct := $model('result-page-entry')//tei:biblStruct[1]
+        let $journalCitations :=
+            if(count($biblStruct/tei:monogr/tei:imprint) gt 1)
+            then bibl:printJournalCitationPerImprint($biblStruct/tei:monogr, <xhtml:li class="journal-citation"/>, $lang)
+            else ()
+        return 
+            map {
+                'journalCitations' : $journalCitations
+            }
+};
+
+declare
     %templates:wrap
     function app:preview-details($node as node(), $model as map(*)) as map(*) {
         map {
@@ -1970,7 +1984,7 @@ declare
             case element(tei:biblStruct) return 
                 element {node-name($node)} {
                     $node/@*,
-                    bibl:printCitation($source, <xhtml:p/>, $lang)/node()
+                    bibl:printCitation($source, <xhtml:p/>, $lang)/node()[not(self::xhtml:span[@class=('journalTitleForMultipleImprints', 'imprintSection')])]
                 }
             default return ()
 };
