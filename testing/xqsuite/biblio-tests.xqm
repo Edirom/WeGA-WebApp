@@ -82,6 +82,15 @@ declare
             bibl:printBookCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
 };
 
+declare
+    %test:args('A110130')         %test:assertXPath("$result/xhtml:span[@class='title']/following-sibling::node()[1][self::text()][. = ', '] and $result/xhtml:span[@class='title']/following-sibling::*[1][self::xhtml:span[@class='placeNYear']]")
+    %test:args('A110162')         %test:assertXPath("$result/xhtml:span[@class='title']/following-sibling::node()[1][self::text()][. = ', '] and $result/xhtml:span[@class='title']/following-sibling::*[1][self::xhtml:span[@class='placeNYear']]")
+    function bt:test-printGenericCitation-title-imprint-separator($a as xs:string) as element() {
+        let $doc := crud:doc($a)
+        return
+            bibl:printGenericCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
+};
+
 declare 
     %test:args('A112915')         %test:assertXPath("$result//xhtml:span[@class='title'] and $result//xhtml:span[@class='author'] and $result//xhtml:span[@class='journalTitle']")
     %test:args('A112660')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Kurt Mey</xhtml:span>, <xhtml:span class='title'>Richard Wagners Webertrauermarsch</xhtml:span>, in: <xhtml:span class='journalTitle'>Die Musik</xhtml:span><xhtml:span class='imprint'>, Bd.&#160;22, Jg.&#160;6, Heft&#160;12 (März 1907), S.&#160;331–336</xhtml:span></xhtml:div>")
