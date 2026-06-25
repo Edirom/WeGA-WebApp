@@ -1,0 +1,40 @@
+# /timeline/docType/docID path
+get:
+  tags:
+    - Facets
+  summary: Returns timeline for a specific document type
+  description: |
+    This endpoint returns a timeline object according to 
+    https://cdn.tei-publisher.com/@2.23.2/dist/api.html#pb-timeline.0 
+    for a specific WeGA document type related to the given document identifier
+    (i.e. the works, letters, or writings associated with the given person or organization).
+  parameters:
+    - name: docType
+      in: path
+      description: The WeGA document type
+      required: true
+      style: form
+      explode: false
+      schema:
+        $ref: '../schemas/docTypes.yaml'
+    - name: docID
+      in: path
+      description: The document identifier to search for
+      required: true
+      schema:
+        type: string
+        default: A002068
+  responses:
+    200:
+      description: A timeline object according to https://cdn.tei-publisher.com/@2.23.2/dist/api.html#pb-timeline.0
+      headers:
+        totalrecordcount:
+          description: The total size of the result set
+          schema:
+            type: integer
+      content:
+        application/json:
+          schema:
+            type: object
+    default:
+      $ref: '../responses/unexpectedError.yaml'

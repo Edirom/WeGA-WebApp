@@ -494,22 +494,6 @@ declare
             }
 };
 
-(:~
- : set the maximum dates for the IonRangeSlider
-~:)
-declare 
-    %templates:default("fromDate", "")
-    %templates:default("toDate", "")
-    function app:set-slider-range($node as node(), $model as map(*), $fromDate as xs:string, $toDate as xs:string) as element(xhtml:input) {
-    element {node-name($node)} {
-         $node/@*,
-         attribute data-min-slider {if($model('oldFromDate') castable as xs:date) then $model('oldFromDate') else $model('earliestDate')},
-         attribute data-max-slider {if($model('oldToDate') castable as xs:date) then $model('oldToDate') else $model('latestDate')},
-         attribute data-from-slider {if($fromDate castable as xs:date) then $fromDate else $model('earliestDate')},
-         attribute data-to-slider {if($toDate castable as xs:date) then $toDate else $model('latestDate')}
-    }
-};
-
 declare function app:set-facet-checkbox($node as node(), $model as map(*), $key as xs:string) as element(xhtml:input) {
     element {node-name($node)} {
          $node/@*,
@@ -2124,4 +2108,34 @@ declare function app:init-custom-switch($node as node(), $model as map(*)) as el
         else (),
         $node/*
     }
+};
+
+(:~
+ :  Construct the pb-timeline custom element,
+ :  i.e. update the `@start-date` and `@end-date` attributes
+ :  as well as the `@url` attribute with the API URL. 
+ :)
+declare function app:pb-timeline($node as node(), $model as map(*)) as element(xhtml:pb-timeline) {
+    let $api-base := config:api-base($model?openapi)
+    let $docType := 
+        if(count($model?docType) eq 1 and $model?docType = $search:wega-docTypes) 
+        then $model?docType 
+        else ()
+    let $docID := 
+        if($model?docID = 'indices')
+        then ()
+        else $model?docID
+    let $url := $api-base || str:join-path-elements(('/timeline', $docType, $docID))
+    return
+        element {node-name($node)} {
+            $node/@* except $node/@start-date except $node/@end-date except $node/@url,
+            attribute url {$url},
+            if($model?filters?fromDate castable as xs:date)
+            then attribute start-date {$model?filters?fromDate}
+            else (),
+            if($model?filters?toDate castable as xs:date)
+            then attribute end-date {$model?filters?toDate}
+            else (),
+            $node/*
+        }
 };

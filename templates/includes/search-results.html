@@ -1,4 +1,13 @@
 <div xmlns="http://www.w3.org/1999/xhtml" class="col main-col searchResults" data-template="search:result-page">
+	<script src="https://unpkg.com/@webcomponents/webcomponentsjs@2.4.3/webcomponents-loader.js"></script>
+	<script type="module" src="https://unpkg.com/@teipublisher/pb-components@2.25.3/dist/pb-components-bundle.js"></script>
+	<pb-timeline data-template="app:pb-timeline"
+	 	scopes="[&quot;D&quot;, &quot;M&quot;, &quot;Y&quot;, &quot;5Y&quot;, &quot;10Y&quot;]"
+		auto="true" resettable="true"
+		id="pb-timeline"
+		url="http://localhost:8080/exist/apps/WeGA-WebApp/api/v1/timeline">
+		<span slot="label">Angezeigter Zeitraum:</span>
+	</pb-timeline>
 	<h2 data-template="search:results-count">124 Suchergebnisse</h2>
 	<div data-template="app:set-entries-per-page">
 		<div data-template="app-shared:if-matches" data-template-key="moreresults" data-template-value="true">
