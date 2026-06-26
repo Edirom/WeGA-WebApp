@@ -65,6 +65,7 @@ declare function bibl:printGenericCitation($biblStruct as element(tei:biblStruct
             $authors,
             if(exists($authors)) then ', ' else (),
             $title,
+            if(exists($title) and exists($imprint)) then ', ' else (),
             $imprint,
             $note
         }
