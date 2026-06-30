@@ -14,7 +14,8 @@
 [![DOI](https://zenodo.org/badge/7872550.svg)](https://zenodo.org/badge/latestdoi/7872550)
 [![Build Status](https://github.com/Edirom/WeGA-WebApp/actions/workflows/docker-testing.yml/badge.svg)](https://github.com/Edirom/WeGA-WebApp/actions/workflows/docker-testing.yml)
 
-This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [weber-gesamtausgabe.de](https://weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `data-samples` from the [release section](https://github.com/Edirom/WeGA-WebApp/releases) and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
+This web application is written in XQuery on top of an [eXist-db](http://exist-db.org) and powers [weber-gesamtausgabe.de](https://weber-gesamtausgabe.de). Needless to say the code is tailor-made to fit our data (see `data-samples` from the [release section](https://github.com/Edirom/WeGA-WebApp/releases) for a small subset, or the full [WeGA data package](https://doi.org/10.5281/zenodo.3520700) on Zenodo, and the corresponding [TEI ODD schemata](https://github.com/Edirom/WeGA-ODD)) but can hopefully serve as a starting point for likewise ventures.
+
 
 
 ## Prerequisites
