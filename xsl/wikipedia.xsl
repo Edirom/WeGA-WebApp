@@ -15,13 +15,13 @@
         <xsl:param name="myLang" as="xs:string"/>
         <xsl:choose>
             <xsl:when test="matches($href, '^/w(iki)?/')">
-                <xsl:value-of select="concat('http://', $myLang, '.wikipedia.org', $href)"/>
+                <xsl:value-of select="concat('https://', $myLang, '.wikipedia.org', $href)"/>
             </xsl:when>
             <!--<xsl:when test="matches($href, '^#')">
                 <xsl:value-of select="substring($href, 2)"/>
             </xsl:when>-->
             <xsl:when test="matches($href, '^//')">
-                <xsl:value-of select="concat('http:', $href)"/>
+                <xsl:value-of select="concat('https:', $href)"/>
             </xsl:when>
             <xsl:otherwise>
                 <xsl:value-of select="$href"/>
