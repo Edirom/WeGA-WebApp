@@ -124,7 +124,7 @@ declare function bibl:printArticleCitation($biblStruct as element(tei:biblStruct
             if(exists($authors)) then ($authors, ', ') else (), 
             if($biblStruct[@type='review']) then '[' || lang:get-language-string('review', $lang) || '] ' else (),
             if($articleTitle) then (bibl:printTitles($articleTitle, ())) else (),
-            if($journalCitation) then (', in: ') else (),
+            if(exists($articleTitle) and exists($journalCitation)) then (', in: ') else (),
             $journalCitation/xhtml:span,
             $journalCitation/text(),
             $note

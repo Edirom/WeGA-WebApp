@@ -101,6 +101,15 @@ declare
             bibl:printArticleCitation($doc/tei:biblStruct, <xhtml:div/>, 'de')
 };
 
+declare
+    %test:args('A031425')         %test:assertXPath("$result/xhtml:span[1][@class='journalTitle'][. = 'Allgemeine Musikalische Zeitung (Intelligenzblatt)'] and not($result/node()[1][self::text()[contains(., ', in:')]])")
+    function bt:test-printCitation-journal-without-article-title($a as xs:string) as element() {
+        let $doc := crud:doc($a)
+        let $biblStruct := $doc//tei:relatedItem/tei:biblStruct[tei:monogr/tei:title = 'Allgemeine Musikalische Zeitung (Intelligenzblatt)'][1]
+        return
+            bibl:printCitation($biblStruct, <xhtml:div/>, 'de')
+};
+
 declare 
     %test:args('A110876')         %test:assertEquals("<xhtml:div xmlns:xhtml='http://www.w3.org/1999/xhtml'><xhtml:span class='author'>Karl Robert Brachtel</xhtml:span>,  [Rezension] <xhtml:span class='title'><a class='preview biblio A110900' href='A007979/Bibliographie/A110900.html'>Hans Hoffmann: „Carl Maria von Weber – Leben und Werk“, Druck- und Verlagsgesellschaft, Husum 1978</a></xhtml:span>, in: <xhtml:span class='journalTitle'>Das Orchester</xhtml:span><xhtml:span class='imprint'>, Jg.&#160;27 (1979), Heft&#160;10, S.&#160;774</xhtml:span></xhtml:div>")
     function bt:test-printReview($a as xs:string) as node()* {
