@@ -485,8 +485,70 @@ $.fn.preview_popover = function() {
  * Create initial popover for notes and previews 
  * with template from page.html#carousel-popover for the content
  */
-$('.preview, .noteMarker').on('click', function() {
-    $(this).popover({
+function getClickedClientRect(element, event) {
+    const originalEvent = event.originalEvent || event,
+        pointer = originalEvent.changedTouches ? originalEvent.changedTouches[0] : originalEvent,
+        clientX = pointer.clientX,
+        clientY = pointer.clientY,
+        rects = Array.from(element.getClientRects());
+    let closestRect,
+        closestDistance = Number.POSITIVE_INFINITY;
+
+    if(undefined === clientX || undefined === clientY || rects.length < 2) { return }
+
+    for(const rect of rects) {
+        if(clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom) {
+            return rect;
+        }
+
+        const distanceX = Math.max(rect.left - clientX, 0, clientX - rect.right),
+            distanceY = Math.max(rect.top - clientY, 0, clientY - rect.bottom),
+            distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+        if(distance < closestDistance) {
+            closestRect = rect;
+            closestDistance = distance;
+        }
+    }
+
+    return closestRect;
+}
+
+function createPopoverAnchor(source, event) {
+    const rect = source.classList.contains('preview') ? getClickedClientRect(source, event) : undefined;
+
+    if(undefined === rect) { return source }
+
+    const anchor = document.createElement('span');
+
+    Array.from(source.attributes).forEach(function(attribute) {
+        if(attribute.name !== 'id') {
+            anchor.setAttribute(attribute.name, attribute.value);
+        }
+    });
+    anchor.classList.add('preview-popover-anchor');
+    anchor.style.position = 'absolute';
+    anchor.style.left = `${rect.left + window.pageXOffset}px`;
+    anchor.style.top = `${rect.top + window.pageYOffset}px`;
+    anchor.style.width = `${Math.max(rect.width, 1)}px`;
+    anchor.style.height = `${Math.max(rect.height, 1)}px`;
+    anchor.style.pointerEvents = 'none';
+    anchor.style.opacity = '0';
+
+    document.body.appendChild(anchor);
+
+    return anchor;
+}
+
+$('.preview, .noteMarker').on('click', function(event) {
+    const popoverTrigger = createPopoverAnchor(this, event);
+
+    $(popoverTrigger).one('hidden.bs.popover', function() {
+        if(popoverTrigger !== event.currentTarget) {
+            popoverTrigger.remove();
+        }
+    });
+
+    $(popoverTrigger).popover({
         "html": true,
         "trigger": "manual",
         "container": 'body',
@@ -494,11 +556,11 @@ $('.preview, .noteMarker').on('click', function() {
         "title": "Loading …", // This is just a dummy title otherwise the content function will be called twice, see  https://github.com/twbs/bootstrap/issues/12563
         "content": popover_template
     });
-    $(this).popover('show');
-    
+    $(popoverTrigger).popover('show');
+
     /* Need to call this after popover('show') to get access to the popover options in a later step (in preview_popover) */
-    popover_callBack.call($(this));
-    
+    popover_callBack.call($(popoverTrigger));
+
     /* Return false to suppress the default link mechanism on html:a */
     return false;
 });
