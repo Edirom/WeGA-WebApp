@@ -44,6 +44,18 @@
                 float:left;
                 margin-bottom: 4px;
             }
+            .hand {
+                display: block;
+                margin-top: 6px;
+                font-style: italic;
+                font-size: .7rem;
+                &::before {
+                    content: "(";
+                }
+                &::after {
+                    content: ")";
+                }
+            }
         }
         .carousel-indicators {
              bottom: -45px!important;

@@ -494,6 +494,28 @@ declare
             }
 };
 
+(:
+ : set the active tab in documents, sources, letters etc.
+ : switch between text and editorial depending on the presence of a transcription
+ :
+ : @author Steffen Astheimer
+ : @return the input node with adapted class attributes ('active' for nav tabs, 'active in' for tab panes)
+ :)
+declare function app:set-tab-state($node as node(), $model as map(*)) as element() {
+    let $target := if(exists($node/@href)) then substring-after($node/@href, '#') else string($node/@id)
+    let $isTabPane := exists($node/@id)
+    let $isActive := ($target = 'transcription' and $model('hasTranscription')) or ($target = 'editorial' and not($model('hasTranscription')))
+    let $newClass :=
+        if($isActive) then string-join((($node/@class, if($isTabPane) then 'in' else ()), 'active'), ' ')
+        else string($node/@class)
+    return
+        element {node-name($node)} {
+            $node/@*[not(name(.) = 'class')],
+            attribute class {$newClass},
+            templates:process($node/node(), $model)
+        }
+};
+
 (:~
  : set the maximum dates for the IonRangeSlider
 ~:)
@@ -1329,10 +1351,22 @@ declare function app:print-external-data-disclaimer($node as node(), $model as m
 declare 
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
+        let $doc := $model('doc')
+        let $lang := $model('lang')
         let $facs := query:facsimile($model?doc)
         let $localFacsimiles := $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]]
         let $externalIIIFManifestFacsimiles := $facs[@sameAs]
         let $IIIFImagesMap := ($localFacsimiles | $externalIIIFManifestFacsimiles) ! app:create-IIIFImagesMap(., $model)
+        let $docType := $model('docType')
+        let $textRoot :=
+            switch($docType)
+            case 'diaries' return $doc/tei:ab ! app:inject-query(.)
+            case 'works' return $doc/mei:mei ! app:inject-query(.)
+            case 'var' case 'addenda' return ($doc//tei:text/tei:body ! app:inject-query(.))/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
+            case 'thematicCommentaries' return $doc//tei:text/tei:body ! app:inject-query(.) | $doc//tei:text/tei:back
+            case 'sources' return $doc//tei:text ! app:inject-query(.)
+            default return $doc//tei:text/tei:body ! app:inject-query(.)
+        let $hasTranscription := not(functx:all-whitespace(<root>{$textRoot}</root>))
         return
             map {
                 'facsimile' : $facs,
@@ -1340,6 +1374,8 @@ declare
                 'externalIIIFManifestFacsimiles' : $externalIIIFManifestFacsimiles,
                 'IIIFImagesMap': $IIIFImagesMap,
                 'hasCreation' : exists($model?doc//tei:creation),
+                'hasTranscription' : $hasTranscription,
+                'textRoot' : $textRoot,
                 'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
                 'thematicCommentaries' : distinct-values($model('doc')//tei:note[@type='thematicCom']/@target/tokenize(., '\s+')),
                 'backlinks' : wdt:backlinks(())('filter-by-person')($model?docID)
@@ -1398,17 +1434,12 @@ declare
             case 'works' return doc(concat($config:xsl-collection-path, '/works.xsl'))
             case 'writings' case 'documents' return doc(concat($config:xsl-collection-path, '/document.xsl'))
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diaries.xsl'))
+            case 'sources' return doc(concat($config:xsl-collection-path, '/sources.xsl'))
             default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
-        let $textRoot :=
-            switch($docType)
-            case 'diaries' return $doc/tei:ab ! app:inject-query(.)
-            case 'works' return $doc/mei:mei ! app:inject-query(.)
-            case 'var' case 'addenda' return ($doc//tei:text/tei:body ! app:inject-query(.))/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
-            case 'thematicCommentaries' return $doc//tei:text/tei:body ! app:inject-query(.) | $doc//tei:text/tei:back
-            default return $doc//tei:text/tei:body ! app:inject-query(.)
+        let $textRoot := $model('textRoot')
         let $body := 
-             if(functx:all-whitespace(<root>{$textRoot}</root>))
-             then 
+            if(not($model('hasTranscription')))
+            then 
                 element xhtml:p {
                         attribute class {'notAvailable'},
                         (: revealed correspondence which has backlinks gets a direct link to the backlinks, see https://github.com/Edirom/WeGA-WebApp/issues/304 :)
@@ -1431,12 +1462,39 @@ declare
          let $foot := 
             if(config:is-news($docID)) then app:get-news-foot($doc, $lang)
             else ()
-         
          return 
             map { 
                 'transcription' : (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
                 'apparatus' : $body/descendant-or-self::*[@class='apparatus']
             }
+};
+
+(:~
+ : Create a table of contents for nested headers of sources
+ : based on the sources.xsl transformation from app:prepare-text()#2
+ :
+ : @author Steffen Astheimer
+ : @return an xhtml:ul with a list of anchors, categorized by header nesting level
+ :)
+declare function app:doc-toc($node as node(), $model as map(*)) as element()* {
+    element xhtml:ul {
+      for $head in $model('transcription')//xhtml:h2[contains-token(@class, 'srcHeader')]
+      let $classTokens := tokenize(normalize-space(string($head/@class)), '\s+')
+      let $levelToken := ($classTokens[starts-with(., 'header-level-')])[1]
+      let $level := if ($levelToken) then substring-after($levelToken, 'header-level-') else '1'
+      let $tocClass := 'toc-level-' || $level
+      let $id := normalize-space(string($head/@id))
+      let $label := normalize-space(string-join($head//text()[not(ancestor::xhtml:a)], ''))
+      where $id != '' and $label != ''
+      return
+        element xhtml:li {
+          attribute class { $tocClass },
+          element xhtml:a {
+            attribute href { '#' || $id },
+            $label
+          }
+        }
+    }
 };
 
 (:~
@@ -1729,7 +1787,8 @@ declare
     %templates:default("lang", "en")
     %templates:wrap
     function app:print-context-relatedItem-type($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
-        lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang)
+        let $type := $model?context-relatedItem?context-relatedItem-type
+        return if(exists($type)) then lang:get-language-string($model?context-relatedItem?context-relatedItem-type, $lang) else ()
 };
 
 (:~
