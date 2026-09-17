@@ -540,13 +540,20 @@ function createPopoverAnchor(source, event) {
 }
 
 $('.preview, .noteMarker').on('click', function(event) {
-    const popoverTrigger = createPopoverAnchor(this, event);
+    const source = this,
+        activePopoverAnchor = $(source).data('preview-popover-anchor');
 
-    $(popoverTrigger).one('hidden.bs.popover', function() {
-        if(popoverTrigger !== event.currentTarget) {
+    if(undefined !== activePopoverAnchor) { return false }
+
+    const popoverTrigger = createPopoverAnchor(source, event);
+
+    if(popoverTrigger !== source) {
+        $(source).data('preview-popover-anchor', popoverTrigger);
+        $(popoverTrigger).one('hidden.bs.popover', function() {
+            $(source).removeData('preview-popover-anchor');
             popoverTrigger.remove();
-        }
-    });
+        });
+    }
 
     $(popoverTrigger).popover({
         "html": true,
