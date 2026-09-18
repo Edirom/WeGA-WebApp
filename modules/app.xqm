@@ -309,6 +309,7 @@ declare
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
+            case 'rism-entry' return if($model('rism')) then 'rism.html' else ()
             case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
@@ -990,6 +991,7 @@ declare
         
         return
         map {
+            'ids' : $model?doc//mei:altId[not(@type=('gnd', 'wikidata', 'dracor.einakter','rism'))],
             'relatorGrps' : hha-util:ordering-relators($relatorsGrouped),
             'sourceType' : lang:get-language-string(concat('sourceType.', lower-case($sourceType)), config:guess-language(())),
             'titles' : $print-titles($model?doc, false()),
@@ -1037,6 +1039,7 @@ declare
                 ), 
             'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
             'gnd' : query:get-gnd($model('doc')),
+            'rism' : query:get-rism($model('doc')),
             'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml')
         }
 };
@@ -1515,6 +1518,105 @@ declare
                 'variantNamesForTheWork' : $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
                 'subjectHeadings' : $subjectHeadings
             }
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:rism($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $rism := query:get-rism($model('doc'))
+        let $response := er:grabExternalResource('rism', $rism, ())
+        let $rismContent :=
+            try { parse-json(util:binary-to-string(xs:base64Binary(normalize-space($response//er:body)))) }
+            catch * {
+                wega-util:log-to-file('warn', 'app:rism(): failed to parse RISM response for ' || $rism || ' ;; ' || string-join(($err:code, $err:description), ' ;; ')),
+                map {}
+            }
+        let $contents := app:rism-json-section($rismContent, 'contents', $lang)
+        let $materialGroups := app:rism-json-section($rismContent, 'materialGroups', $lang)
+        let $exemplars := app:rism-json-exemplars($rismContent?exemplars, $lang)
+        let $sourceItems := app:rism-json-source-items($rismContent?sourceItems, $lang)
+        return
+            map {
+                'docType' : config:get-doctype-by-id($model?docID),
+                'lang' : $lang,
+                'rismName' : app:rism-json-select($rismContent?label, $lang),
+                'rismURL' : config:get-option('rism') || $rism,
+                'titleAndContentSectionLabel' : $contents?sectionLabel,
+                'titleAndContentSummary' : $contents?summary,
+                'materialGroupsSectionLabel' : $materialGroups?sectionLabel,
+                'materialGroupsSummary' : $materialGroups?summary,
+                'exemplarsSectionLabel' : $exemplars?sectionLabel,
+                'exemplarsItems' : $exemplars?items,
+                'sourceItemsSectionLabel' : $sourceItems?sectionLabel,
+                'sourceItemsTotal' : $sourceItems?total,
+                'sourceItems' : $sourceItems?items
+            }
+};
+
+declare %private function app:rism-json-section($rismContent as map(*), $sectionName as xs:string, $lang as xs:string) as map(*) {
+    let $section := map:get($rismContent, $sectionName)
+    let $entries :=
+        if ($sectionName eq 'materialGroups') then $section?items?*?summary?*
+        else $section?summary?*
+    return
+        map {
+            'sectionLabel' : app:rism-json-select($section?sectionLabel, $lang),
+            'summary' : app:rism-json-summary($entries, $lang)
+        }
+};
+
+declare %private function app:rism-json-exemplars($section as map(*)?, $lang as xs:string) as map(*) {
+    map {
+        'sectionLabel' : app:rism-json-select($section?sectionLabel, $lang),
+        'items' :
+            for $item in $section?items?*
+            let $heldBy := app:rism-json-select($item?heldBy?label, $lang)
+            let $summary := app:rism-json-summary($item?summary?*, $lang)
+            return string-join(($heldBy, $summary), ', ')
+    }
+};
+
+declare %private function app:rism-json-source-items($section as map(*)?, $lang as xs:string) as map(*) {
+    map {
+        'sectionLabel' : app:rism-json-select($section?sectionLabel, $lang),
+        'total' : $section?totalItems,
+        'items' :
+            for $item in $section?items?*
+            return string-join((
+                app:rism-json-select($item?label, $lang),
+                app:rism-json-summary($item?summary?*, $lang) => string-join('; ')
+            ), ': ')
+    }
+};
+
+declare %private function app:rism-json-summary($entries as map(*)*, $lang as xs:string) as xs:string* {
+    for $entry in $entries
+    let $label := app:rism-json-select($entry?label, $lang)
+    let $value := app:rism-json-select($entry?value, $lang)
+    where exists($label) or exists($value)
+    return string-join(($label, $value), ': ')
+};
+
+declare %private function app:rism-json-select($value as item()*, $lang as xs:string) as xs:string? {
+    let $items :=
+        if ($value instance of array(*)) then $value?*
+        else ($value)
+    let $selected :=
+        for $item in $items
+        return
+            if ($item instance of map(*)) then
+                let $localized := (map:get($item, $lang), map:get($item, 'none'))[1]
+                return
+                    if ($localized instance of array(*)) then
+                        string-join($localized?* ! string(.), '; ')
+                    else
+                        string-join($localized ! string(.), '; ')
+            else
+                string($item)
+    return
+        if (exists($selected)) then ($selected)[1]
+        else ()
 };
 
 (:~

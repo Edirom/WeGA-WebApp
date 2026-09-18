@@ -1,0 +1,37 @@
+<div xmlns="http://www.w3.org/1999/xhtml" data-template="app:rism">
+    <h2 data-template="lang:translate">infoFromRISM</h2>
+    <dl data-template="app-shared:if-exists" data-template-key="rismName">
+        <dt data-template="lang:translate">rism_name</dt>
+        <dd data-template="app-shared:print" data-template-key="rismName">Ein Name</dd>
+    </dl>
+    <hr/>
+    <dl data-template="app-shared:if-exists" data-template-key="titleAndContentSummary">
+        <dt data-template="app-shared:print" data-template-key="titleAndContentSectionLabel">Title and content description</dt>
+        <dd data-template="templates:each" data-template-from="titleAndContentSummary" data-template-to="titleAndContentLine">
+            <span data-template="app-shared:print" data-template-key="titleAndContentLine">Title and content description</span>
+        </dd>
+    </dl>
+    <hr/>
+    <dl data-template="app-shared:if-exists" data-template-key="materialGroupsSummary">
+        <dt data-template="app-shared:print" data-template-key="materialGroupsSectionLabel">Title and content description</dt>
+        <dd data-template="templates:each" data-template-from="materialGroupsSummary" data-template-to="materialGroupsLine">
+            <span data-template="app-shared:print" data-template-key="materialGroupsLine">Title and content description</span>
+        </dd>
+    </dl>
+    <hr/>
+    <dl data-template="app-shared:if-exists" data-template-key="exemplarsItems">
+        <dt data-template="app-shared:print" data-template-key="exemplarsSectionLabel">Exemplars description</dt>
+        <dd><ul data-template="templates:each" data-template-from="exemplarsItems" data-template-to="exemplar"><li data-template="app-shared:print" data-template-key="exemplar">Exemplar</li></ul></dd>
+    </dl>
+    <hr/>
+    <dl data-template="app-shared:if-exists" data-template-key="sourceItems">
+        <dt><span data-template="app-shared:print" data-template-key="sourceItemsTotal">0</span> <span data-template="app-shared:print" data-template-key="sourceItemsSectionLabel">Source Items description</span></dt>
+        
+        <dd><ol class="rism-list-ordered">
+            <li data-template="templates:each" data-template-from="sourceItems" data-template-to="sourceItem">
+            <span data-template="app-shared:print" data-template-key="sourceItem">Source item</span></li></ol></dd>
+    </dl>
+    <hr/>
+    <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="de">Zu verknüpfter Literatur und weiteren Informationen siehe den <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="rismURL" target="_blank">vollständigen Eintrag</a> in der Datenbank von RISM.</p>
+    <p data-template="app-shared:if-matches" data-template-key="lang" data-template-value="en">For associated publications and further information please visit the <a data-template="app-shared:set-attr" data-template-attr="href" data-template-key="rismURL" target="_blank">complete entry</a> at the RISM database.</p>
+</div>
