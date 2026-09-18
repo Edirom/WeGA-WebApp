@@ -992,7 +992,7 @@ declare
         return
         map {
             'ids' : $model?doc//mei:altId[not(@type=('gnd', 'wikidata', 'dracor.einakter','rism'))],
-            'relatorGrps' : hha-util:ordering-relators($relatorsGrouped),
+            'relatorGrps' : wega-util:ordering-relators($relatorsGrouped),
             'sourceType' : lang:get-language-string(concat('sourceType.', lower-case($sourceType)), config:guess-language(())),
             'titles' : $print-titles($model?doc, false()),
             'authors' : $print-authors($model?doc, false()),
@@ -1113,7 +1113,7 @@ declare
                 let $title := if($key) then(crud:doc($key/string())//*:title[1]/text()) else()
                 let $idnoHWV := $analytic/tei:ref/text()
                 return
-                    <li xmlns="http://www.w3.org/1999/xhtml"><a href="/{$key}.html">{$idnoHWV || (if($title) then(', ') else())}<i>{hha-util:string-shorten-if-longer($title, 25)}</i></a></li>
+                    <li xmlns="http://www.w3.org/1999/xhtml"><a href="/{$key}.html">{$idnoHWV || (if($title) then(', ') else())}<i>{wega-util:string-shorten-if-longer($title, 25)}</i></a></li>
         }
         let $isPartOf := function($doc as document-node(), $linking as xs:boolean) {
             let $key := $model?doc//tei:biblStruct/tei:monogr/@sameAs
@@ -1156,7 +1156,7 @@ declare
         return
         map {
             'ids' : $model?doc//tei:biblStruct,
-            'relatorGrps' : hha-util:ordering-relators($relatorsGrouped),
+            'relatorGrps' : wega-util:ordering-relators($relatorsGrouped),
             'biblioType' : $biblioType,
             'biblioTypeLabel' : $biblioTypeLabel,
             'authors' : $print-authors($model?doc, false()),
