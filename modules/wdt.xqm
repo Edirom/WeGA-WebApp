@@ -776,7 +776,7 @@ declare function wdt:sources($item as item()*) as map(*) {
                     default return wega-util:log-to-file('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
                 else()
         },
-        'memberOf' : ('unary-docTypes'),
+        'memberOf' : ('search', 'indices', 'unary-docTypes'),
         'search' : ()
     }
 };
