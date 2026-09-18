@@ -728,7 +728,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             else false()
         },
         'filter' : function() as document-node()* {
-            $item/root()[mei:manifestation][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])] |
+            $item/root()[descendant::mei:manifestation//mei:title] | $item/root()[mei:manifestation][descendant::mei:titleStmt][not(descendant::mei:annot[@type='no-ordinary-record'])] |
             $item/root()[descendant::tei:titleStmt/tei:title = 'WeGA, Textquellen, Digitale Edition']
         },
         'filter-by-person' : function($personID as xs:string) as document-node()* {
@@ -764,20 +764,27 @@ declare function wdt:sources($item as item()*) as map(*) {
                     $node/root()/mei:manifestation/@xml:id
                 }, ())
         },
-        'title' : function($serialization as xs:string) as item()* {
-            for $this.item in $item
-            let $source := wdt:get-root-element($this.item)
-            let $title-element := ($source/mei:titleStmt/mei:title[not(@type)], $source//tei:titleStmt/tei:title[@level='a'])[1]
+        'title' : function($serialization as xs:string) as item()? {
+            let $source := 
+                typeswitch($item)
+            case xs:string return crud:doc($item)//mei:manifestation
+            case xs:untypedAtomic return crud:doc($item)//mei:manifestation
+                case document-node() return $item//mei:manifestation
+                default return $item/root()//mei:manifestation
+            let $title-element := ($source/mei:titleStmt/mei:title)[1]
             return
-                if($title-element) then
-                    switch($serialization)
+                switch($serialization)
                     case 'txt' return str:normalize-space(replace(string-join(str:txtFromTEI($title-element, config:guess-language(())), ''), '\s*\n+\s*(\S+)', '. $1'))
                     case 'html' return wega-util:transform($title-element, doc(concat($config:xsl-collection-path, '/common_main.xsl')), config:get-xsl-params(())) 
-                    default return wega-util:log-to-file('error', 'wdt:works()("title"): unsupported serialization "' || $serialization || '"')
-                else()
-        },
+                    default return wega-util:log-to-file('error', 'wdt:sources()("title"): unsupported serialization "' || $serialization || '"')
+                },
         'memberOf' : ('search', 'indices', 'unary-docTypes'),
-        'search' : ()
+        'search' : function($query as element(query)) {
+    $item[mei:mei]//mei:manifestation[ft:query(., $query)] |
+            $item[mei:mei]//mei:header[ft:query(., $query)] | 
+            $item[mei:mei]//mei:title[ft:query(., $query)] | 
+            $item[mei:mei]//mei:item[ft:query(., $query)]
+        }
     }
 };
 
