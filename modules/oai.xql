@@ -82,7 +82,7 @@ declare %private function oai:format-datetime($dt as xs:dateTime) as xs:string {
  : @return The date as xs:dateTime
 :)
 declare %private function oai:last-modified($docID as xs:string) as xs:dateTime {
-    let $props := config:get-data-props($docID)
+    let $props := config:get-svn-props($docID)
     return
         if($props?dateTime castable as xs:dateTime)
         then ($props?dateTime => xs:dateTime())
@@ -94,8 +94,8 @@ declare %private function oai:last-modified($docID as xs:string) as xs:dateTime 
  : change-history tracking. Guaranteed to be <= any real record datestamp.
 :)
 declare %private function oai:earliest-datestamp() as xs:dateTime {
-    if($config:data-change-history-file/dictionary/@dateTime castable as xs:dateTime)
-    then xs:dateTime($config:data-change-history-file/dictionary/@dateTime)
+    if($config:svn-change-history-file/dictionary/@dateTime castable as xs:dateTime)
+    then xs:dateTime($config:svn-change-history-file/dictionary/@dateTime)
     else fn:current-dateTime()
 };
 
