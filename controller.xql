@@ -236,6 +236,12 @@ else if (matches($exist:path, '^/cmif_v2.xml$')) then
     	</forward>
     </dispatch>
 
+(: OAI-PMH-Interface: central protocol endpoint, dispatches on the "verb" parameter :)
+else if (matches($exist:path, '^/oai/?$')) then
+    <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
+        <forward url="{concat($exist:controller, '/modules/oai.xql')}"/>
+    </dispatch>
+
 (: Sitemap :)
 else if (matches($exist:path, '^/sitemap(/?|/index.xml)?$') or matches($exist:path, '^/sitemap/sitemap_(en|de).xml.(gz|zip)$')) then
     <dispatch xmlns="http://exist.sourceforge.net/NS/exist">
