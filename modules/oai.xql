@@ -30,7 +30,7 @@ declare variable $oai:granularity as xs:string := 'YYYY-MM-DDThh:mm:ssZ';
 declare variable $oai:base-url as xs:string := config:get-option('permaLinkPrefix') || '/oai';
 declare variable $oai:list-size as xs:integer :=
     let $opt := config:get-option('oaiListSize')
-    return if($opt castable as xs:integer) then xs:integer($opt) else 25;
+    return if($opt castable as xs:integer and xs:integer($opt) gt 0) then xs:integer($opt) else 25;
 
 (:~
  : The OAI "sets" exposed by this repository: one set per HHA document type.
