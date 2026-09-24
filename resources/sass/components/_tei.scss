@@ -429,4 +429,92 @@ li.listSubTitle {
             }
         }
     }
+
+    .teiSrc_front {
+        .tei_titlePage,
+        .tei_titlePart,
+        .tei_castList,
+        .tei_castItem {
+            display: block;
+        }
+
+        .tei_castList {
+            .tei_castItem {
+                display: grid;
+                grid-template-columns: auto auto minmax(1rem, 1fr) auto;
+                column-gap: .4em;
+                width: 100%;
+                text-align: left;
+
+                > .tei_role {
+                    grid-column: 1;
+                }
+
+                > .tei_roleDesc {
+                    grid-column: 2;
+                }
+
+                > .tei_leader_dots {
+                    grid-column: 3;
+                    border-bottom: 2.5px dotted currentColor;
+                    transform: translateY(-.5em);
+                }
+
+                > .tei_actor {
+                    grid-column: 4;
+                    justify-self: end;
+                }
+            }
+
+            .tei_castGroup {
+                display: grid;
+                grid-template-columns: auto 1rem auto minmax(1rem, 1fr) auto;
+                column-gap: .4rem;
+                width: 100%;
+
+                > .tei_castItem {
+                    display: contents;
+
+                    > .tei_role {
+                        grid-column: 1;
+                    }
+
+                    > .tei_leader_dots {
+                        grid-column: 4;
+                    }
+
+                    > .tei_actor {
+                        grid-column: 5;
+                    }
+                }
+
+                > .tei_roleDesc {
+                    grid-column: 3;
+                    grid-row: 1 / 999;
+                    display: flex;
+                    align-items: center;
+                }
+
+                &.braced::before {
+                    content: "";
+                    grid-column: 2;
+                    grid-row: 1 / 999;
+                    align-self: stretch;
+                    width: 1rem;
+                    margin: .8rem 0;
+                    border: 2px solid currentColor;
+                    border-left: 0;
+                    border-radius: 0 1rem 1rem 0;
+                }
+            }
+        }
+    }
+
+    .tei_caption {
+        display: block;
+
+        &.inline {
+            display: inline;
+        }
+    }
 }
