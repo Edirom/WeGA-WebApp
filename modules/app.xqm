@@ -1398,6 +1398,7 @@ declare
             case 'works' return doc(concat($config:xsl-collection-path, '/works.xsl'))
             case 'writings' case 'documents' return doc(concat($config:xsl-collection-path, '/document.xsl'))
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diaries.xsl'))
+            case 'sources' return doc(concat($config:xsl-collection-path, '/sources.xsl'))
             default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
         let $textRoot :=
             switch($docType)
@@ -1405,6 +1406,7 @@ declare
             case 'works' return $doc/mei:mei ! app:inject-query(.)
             case 'var' case 'addenda' return ($doc//tei:text/tei:body ! app:inject-query(.))/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
             case 'thematicCommentaries' return $doc//tei:text/tei:body ! app:inject-query(.) | $doc//tei:text/tei:back
+            case 'sources' return $doc//tei:text ! app:inject-query(.)
             default return $doc//tei:text/tei:body ! app:inject-query(.)
         let $body := 
              if(functx:all-whitespace(<root>{$textRoot}</root>))
