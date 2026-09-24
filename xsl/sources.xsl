@@ -85,4 +85,25 @@
         </hr>
     </xsl:template>
 
+    <xsl:template match="tei:lg" priority="1">
+        <xsl:variable name="indent-class" as="xs:string?"
+            select="if (tokenize(normalize-space(@rend), '\s+') = 'indent' and @n = ('1', '2', '3')) then concat('indent-', @n) else ()"/>
+        <span class="{string-join(('lg', $indent-class), ' ')}">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+
+    <xsl:template match="tei:l" priority="1">
+        <xsl:variable name="indent-class" as="xs:string?"
+            select="if (tokenize(normalize-space(@rend), '\s+') = 'indent' and @n = ('1', '2', '3')) then concat('indent-', @n) else ()"/>
+        <span class="{string-join(('verseLine', $indent-class), ' ')}">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:if test="@part">
+                <xsl:attribute name="data-part" select="@part"/>
+            </xsl:if>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+
 </xsl:stylesheet>
