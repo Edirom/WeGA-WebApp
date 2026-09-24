@@ -13,7 +13,8 @@
         tei:closer tei:opener tei:hi tei:persName tei:rs tei:workName
         tei:characterName tei:placeName tei:seg tei:footNote tei:head tei:date
         tei:orgName tei:note tei:lem tei:rdg tei:add tei:provenance
-        tei:acquisition tei:damage"/>
+        tei:acquisition tei:damage tei:l tei:speaker tei:stage tei:caption
+        tei:role tei:roleDesc tei:subst tei:del"/>
 
     <xsl:include href="common_main.xsl"/>
     <xsl:include href="common_link.xsl"/>
@@ -113,6 +114,24 @@
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates/>
         </span>
+    </xsl:template>
+
+    <xsl:template match="tei:l/text()[not(normalize-space())]
+            | tei:speaker/text()[not(normalize-space())]
+            | tei:stage/text()[not(normalize-space())]
+            | tei:caption/text()[not(normalize-space())]
+            | tei:role/text()[not(normalize-space())]
+            | tei:roleDesc/text()[not(normalize-space())]
+            | tei:del/text()[not(normalize-space())]" mode="#all" priority="1">
+        <xsl:if test="preceding-sibling::* and following-sibling::*">
+            <xsl:text> </xsl:text>
+        </xsl:if>
+    </xsl:template>
+
+    <xsl:template match="tei:subst/text()[not(normalize-space())]" mode="lemma" priority="1">
+        <xsl:if test="preceding-sibling::tei:add and following-sibling::tei:add">
+            <xsl:text> </xsl:text>
+        </xsl:if>
     </xsl:template>
 
     <xsl:template match="tei:actor[parent::tei:castItem]" priority="1">
