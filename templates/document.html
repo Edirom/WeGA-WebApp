@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="app:doc-details">
-        <div class="row">
+        <div class="row" data-template="app:prepare-text">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div data-template="templates:include" data-template-path="templates/includes/settings.html"/>
@@ -71,11 +71,11 @@
                             <!-- Nav tabs -->
                             <ul class="nav nav-tabs">
                                 <li class="nav-item gradient-light">
-                                    <a class="nav-link active" href="#transcription" data-toggle="tab">Text</a>
+                                    <a class="nav-link" href="#transcription" data-toggle="tab" data-template="app:set-tab-state">Text</a>
                                 </li>
                                 <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="news" data-template-wrap="no">
                                     <li class="nav-item gradient-light">
-                                        <a class="nav-link" href="#editorial" data-toggle="tab" data-template="lang:translate">editorial</a>
+                                        <a class="nav-link" href="#editorial" data-toggle="tab" data-template="app:set-tab-state"><span data-template="lang:translate">editorial</span></a>
                                     </li>
                                 </div>
                                 <li class="nav-item gradient-light">
@@ -97,65 +97,67 @@
                         </div>
                     </div>
                     <div data-template="templates:include" data-template-path="templates/includes/download-modal-tei.html"/>
-                    <div data-template="app:context">
-                        <h2>
-                            <a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse" role="button">context</a>
-                        </h2>
-                        <div id="kontext" class="panel-collapse collapse borderBox">
-                                <!--<div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters">            
-                                    <div data-template="app:csLink"/>
-                                    <script type="text/javascript" src="$resources/lib/csLink/dist/csLink.js"/>                                
-                                </div>-->
-                            <div id="relatedItems" data-template="app-shared:if-exists" data-template-key="context-relatedItems">
-                                <h3 data-template="lang:translate">relatedItems</h3>
-                                <ul>
-                                    <li data-template="app-shared:each" data-template-from="context-relatedItems" data-template-to="context-relatedItem">
-                                        <h4 data-template="app:print-context-relatedItem-type">Draft</h4> 
-                                        <p>
-                                            <a href="#" data-template="app:print-context-relatedItem">Brief an Weber</a>
-                                        </p>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div>
-                                <div data-template="app-shared:if-exists" data-template-key="context-letter-absolute-prev context-letter-absolute-next" data-template-wrap="no">
-                                   <h3 data-template="lang:translate">absouluteChronology</h3>
-                                   <h4 data-template="lang:translate">prevLetters</h4>
-                                   <ul>
-                                       <li data-template="app-shared:each" data-template-from="context-letter-absolute-prev" data-template-to="letter-norm-entry">
-                                           <span data-template="app:print-letter-context">
-                                                <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
-                                            </span>
-                                       </li>
-                                   </ul>
-                                   <h4 data-template="lang:translate">nextLetters</h4>
-                                   <ul>
-                                       <li data-template="app-shared:each" data-template-from="context-letter-absolute-next" data-template-to="letter-norm-entry">
-                                           <span data-template="app:print-letter-context">
-                                                <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
-                                            </span>
-                                       </li>
-                                   </ul>
+                    <div data-template="app-shared:if-not-matches" data-template-key="docType" data-template-value="sources" data-template-wrap="no">
+                        <div data-template="app:context">
+                            <h2>
+                                <a href="#kontext" data-template="lang:translate" class="collapseSingle collapsed" aria-expanded="false" data-toggle="collapse" role="button">context</a>
+                            </h2>
+                            <div id="kontext" class="panel-collapse collapse borderBox">
+                                    <!--<div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="letters">            
+                                        <div data-template="app:csLink"/>
+                                        <script type="text/javascript" src="$resources/lib/csLink/dist/csLink.js"/>                                
+                                    </div>-->
+                                <div id="relatedItems" data-template="app-shared:if-exists" data-template-key="context-relatedItems">
+                                    <h3 data-template="lang:translate">relatedItems</h3>
+                                    <ul>
+                                        <li data-template="app-shared:each" data-template-from="context-relatedItems" data-template-to="context-relatedItem">
+                                            <h4 data-template="app:print-context-relatedItem-type">Draft</h4> 
+                                            <p>
+                                                <a href="#" data-template="app:print-context-relatedItem">Brief an Weber</a>
+                                            </p>
+                                        </li>
+                                    </ul>
                                 </div>
-                                <hr/>
-                                <div data-template="app-shared:if-exists" data-template-key="context-letter-korrespondenzstelle-prev context-letter-korrespondenzstelle-next" data-template-wrap="no">
-                                    <h3 data-template="lang:translate">korrespondenzstelle</h3>
+                                <div>
+                                    <div data-template="app-shared:if-exists" data-template-key="context-letter-absolute-prev context-letter-absolute-next" data-template-wrap="no">
+                                    <h3 data-template="lang:translate">absouluteChronology</h3>
                                     <h4 data-template="lang:translate">prevLetters</h4>
                                     <ul>
-                                        <li data-template="app-shared:each" data-template-from="context-letter-korrespondenzstelle-prev" data-template-to="letter-norm-entry">
+                                        <li data-template="app-shared:each" data-template-from="context-letter-absolute-prev" data-template-to="letter-norm-entry">
                                             <span data-template="app:print-letter-context">
-                                                <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
-                                            </span>
+                                                    <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
+                                                </span>
                                         </li>
                                     </ul>
                                     <h4 data-template="lang:translate">nextLetters</h4>
                                     <ul>
-                                        <li data-template="app-shared:each" data-template-from="context-letter-korrespondenzstelle-next" data-template-to="letter-norm-entry">
+                                        <li data-template="app-shared:each" data-template-from="context-letter-absolute-next" data-template-to="letter-norm-entry">
                                             <span data-template="app:print-letter-context">
-                                                <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
-                                            </span>
+                                                    <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
+                                                </span>
                                         </li>
                                     </ul>
+                                    </div>
+                                    <hr/>
+                                    <div data-template="app-shared:if-exists" data-template-key="context-letter-korrespondenzstelle-prev context-letter-korrespondenzstelle-next" data-template-wrap="no">
+                                        <h3 data-template="lang:translate">korrespondenzstelle</h3>
+                                        <h4 data-template="lang:translate">prevLetters</h4>
+                                        <ul>
+                                            <li data-template="app-shared:each" data-template-from="context-letter-korrespondenzstelle-prev" data-template-to="letter-norm-entry">
+                                                <span data-template="app:print-letter-context">
+                                                    <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                        <h4 data-template="lang:translate">nextLetters</h4>
+                                        <ul>
+                                            <li data-template="app-shared:each" data-template-from="context-letter-korrespondenzstelle-next" data-template-to="letter-norm-entry">
+                                                <span data-template="app:print-letter-context">
+                                                    <a href="/de/A002068/Korrespondenz/A040086">1799-01-01</a>: An <span class="noDataFound">unbekannt</span>
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -173,20 +175,45 @@
                         </div>
                     </div>
                 </div>
+                <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="sources" class="doc-toc-side d-none d-md-block">
+                    <h2>
+                        <a data-template="lang:translate">toc-short</a>
+                    </h2>
+                    <div class="doc-toc-side-panel">
+                        <div data-template="app:doc-toc"/>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-9 main-col" data-template="app:prepare-text">
+            <div class="col-md-9 main-col">
                 <!-- Tab panes -->
-                <div class="tab-content">
-                    <div class="tab-pane active fade in" id="transcription">
+                <div class="tab-content" data-template="app:check-apparatus">  
+                    
+                    <div class="tab-pane fade" id="transcription" data-template="app:set-tab-state">
                         <div data-template="app-shared:output" data-template-key="transcription"/>
                     </div>
-                    <div class="tab-pane fade" id="editorial" data-template="app:check-apparatus">
+                    <div class="tab-pane fade" id="editorial" data-template="app:set-tab-state">
                         <h2 data-template="lang:translate">editorial</h2>
                         <!--<div>
                             <h3 data-template="lang:translate">series</h3>
                             <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
                         </div>-->
                         
+                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="sources" data-template-wrap="no">
+                            <div data-template="app:context">
+                                <div id="relatedItems" data-template="app-shared:if-exists" data-template-key="context-relatedItems">
+                                    <h3 data-template="lang:translate">relatedItems</h3>
+                                    <ul>
+                                        <li data-template="app-shared:each" data-template-from="context-relatedItems" data-template-to="context-relatedItem">
+                                            <h4 data-template="app:print-context-relatedItem-type">Draft</h4> 
+                                            <p>
+                                                <a href="#" data-template="app:print-context-relatedItem">Brief an Weber</a>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+
                         <div data-template="app-shared:if-exists" data-template-key="authors">
                             <h3 data-template="lang:translate" class="media-heading">authors</h3>
                             <ul class="inline-list">

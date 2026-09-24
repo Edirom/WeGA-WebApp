@@ -443,6 +443,14 @@
         <xsl:value-of select="concat('#', wega:get-backref-id($id))"/>
     </xsl:function>
 
+    <!--
+        Return the input string in lower case with umlaute replaced by their ASCII equivalents
+    -->
+    <xsl:function name="wega:resolve-umlaute" as="xs:string">
+        <xsl:param name="input" as="xs:string?"/>
+        <xsl:value-of select="replace(replace(replace(replace(lower-case($input), 'ä', 'ae'), 'ö', 'oe'), 'ü', 'ue'), 'ß', 'ss')"/>
+    </xsl:function>
+
     <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->
     <!--  *********************************************  -->
