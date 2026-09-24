@@ -42,4 +42,19 @@
         </div>
     </xsl:template>
 
+    <xsl:template match="tei:div">
+        <div class="srcPart">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </div>
+    </xsl:template>
+
+    <xsl:template match="tei:head[parent::tei:div]" priority="1">
+        <xsl:element name="{if (@type = 'sub') then 'h3' else 'h2'}">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:attribute name="class" select="'srcHeader'"/>
+            <xsl:apply-templates/>
+        </xsl:element>
+    </xsl:template>
+
 </xsl:stylesheet>
