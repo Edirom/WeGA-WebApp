@@ -97,11 +97,20 @@
     <xsl:template match="tei:l" priority="1">
         <xsl:variable name="indent-class" as="xs:string?"
             select="if (tokenize(normalize-space(@rend), '\s+') = 'indent' and @n = ('1', '2', '3')) then concat('indent-', @n) else ()"/>
-        <span class="{string-join(('verseLine', $indent-class), ' ')}">
+        <xsl:variable name="part-class" as="xs:string?"
+            select="if (@part) then concat('part-', @part) else ()"/>
+        <span class="{string-join(('verseLine', $part-class, $indent-class), ' ')}">
             <xsl:apply-templates select="@xml:id"/>
-            <xsl:if test="@part">
-                <xsl:attribute name="data-part" select="@part"/>
-            </xsl:if>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+
+    <xsl:template match="tei:sp | tei:spGrp | tei:speaker | tei:stage" priority="1">
+        <span class="{string-join((
+                concat('tei_', local-name()),
+                @type,
+                @rend), ' ')}">
+            <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates/>
         </span>
     </xsl:template>
