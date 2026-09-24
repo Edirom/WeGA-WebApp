@@ -291,8 +291,12 @@ li.listSubTitle {
 }
 
 .teiSrc_text hr.tei_pb-text {
+    width: var(--page-width);
+    max-width: none;
     margin: 3rem 0;
     position: relative;
+    left: 50%;
+    transform: translateX(-50%);
     border: 0;
     border-top: 2px solid var(--primary);
     border-radius: 5px;
@@ -381,9 +385,19 @@ li.listSubTitle {
             display: block;
         }
 
+        .tei_sp .lg {
+            margin: 0 auto;
+
+            &:has(+ .lg) {
+                margin-bottom: 2rem;
+            }
+        }
+
         .tei_stage {
+            font-size: .9rem;
+
             &.left {
-                text-align: left;
+                text-align: justify;
             }
 
             &.center {
@@ -395,6 +409,29 @@ li.listSubTitle {
             }
 
             &.inline {
+                display: inline;
+            }
+        }
+
+        .srcHeader {
+            margin-top: 1rem;
+        }
+
+        .tei_caption {
+            font-size: 1.5rem;
+            margin: .8rem 0;
+        }
+
+        .tei_speaker {
+            font-size: 1.1rem;
+            margin: .3rem 0;
+        }
+
+        .verseLine:has(> .tei_stage.inline) {
+            display: inline-block;
+            width: 100%;
+
+            > .tei_stage.inline {
                 display: inline;
             }
         }
@@ -447,7 +484,16 @@ li.listSubTitle {
             display: block;
         }
 
+        .tei_titlePage .tei_titlePart {
+            margin: 1.5rem;
+            line-height: 2.5;
+        }
+
         .tei_castList {
+            position: relative;
+            line-height: 2;
+            margin-bottom: 1rem;
+
             .tei_castItem {
                 display: grid;
                 grid-template-columns: auto auto minmax(1rem, 1fr) auto;
@@ -502,6 +548,7 @@ li.listSubTitle {
                     grid-row: 1 / 999;
                     display: flex;
                     align-items: center;
+                    justify-content: flex-start;
                 }
 
                 &.braced::before {
