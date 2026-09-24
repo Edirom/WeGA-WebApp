@@ -105,11 +105,23 @@
         </span>
     </xsl:template>
 
-    <xsl:template match="tei:sp | tei:spGrp | tei:speaker | tei:stage" priority="1">
+    <xsl:template match="tei:sp | tei:spGrp | tei:speaker | tei:stage | tei:caption | tei:castGroup" priority="1">
         <span class="{string-join((
                 concat('tei_', local-name()),
                 @type,
                 @rend), ' ')}">
+            <xsl:apply-templates select="@xml:id"/>
+            <xsl:apply-templates/>
+        </span>
+    </xsl:template>
+
+    <xsl:template match="tei:actor[parent::tei:castItem]" priority="1">
+        <xsl:variable name="rend-tokens" as="xs:string*"
+            select="tokenize(normalize-space(@rend), '\s+')[.]"/>
+        <xsl:if test="$rend-tokens = 'leader_dots'">
+            <span class="tei_leader_dots"/>
+        </xsl:if>
+        <span class="{string-join(('tei_actor', $rend-tokens), ' ')}">
             <xsl:apply-templates select="@xml:id"/>
             <xsl:apply-templates/>
         </span>
