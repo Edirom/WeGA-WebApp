@@ -311,3 +311,56 @@ li.listSubTitle {
         font-style: italic;
     }
 }
+
+.teiSrc_text {
+    --source-group-indent: 0ch;
+    --source-line-indent: 0ch;
+
+    .lg,
+    .verseLine {
+        text-align: left;
+    }
+
+    .lg {
+        --source-group-indent: 0ch;
+    }
+
+    .verseLine {
+        --source-line-indent: 0ch;
+
+        &[data-part="M"],
+        &[data-part="F"] {
+            margin-inline-start: 25%;
+        }
+
+        &[data-part="F"] {
+            text-align: center;
+        }
+    }
+
+    @media (min-width: 530px) {
+        .lg.indent-1 {
+            --source-group-indent: 5ch;
+        }
+        .lg.indent-2 {
+            --source-group-indent: 10ch;
+        }
+        .lg.indent-3 {
+            --source-group-indent: 15ch;
+        }
+
+        .verseLine.indent-1 {
+            --source-line-indent: 5ch;
+        }
+        .verseLine.indent-2 {
+            --source-line-indent: 10ch;
+        }
+        .verseLine.indent-3 {
+            --source-line-indent: 15ch;
+        }
+
+        .verseLine {
+            text-indent: calc(var(--source-group-indent) + var(--source-line-indent));
+        }
+    }
+}
