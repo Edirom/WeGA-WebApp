@@ -313,8 +313,17 @@ li.listSubTitle {
 }
 
 .teiSrc_text {
+    --page-width: min(50ch, 92vw);
     --source-group-indent: 0ch;
     --source-line-indent: 0ch;
+
+    max-width: var(--page-width);
+    margin: 0 auto;
+    text-align: center;
+
+    p {
+        text-align: justify;
+    }
 
     .lg,
     .verseLine {
