@@ -2,6 +2,9 @@
 <xsl:stylesheet xmlns="http://www.w3.org/1999/xhtml"
     xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns:tei="http://www.tei-c.org/ns/1.0"
+    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
+    xmlns:xs="http://www.w3.org/2001/XMLSchema"
+    exclude-result-prefixes="tei wega xs"
     version="2.0">
 
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
@@ -55,6 +58,31 @@
             <xsl:attribute name="class" select="'srcHeader'"/>
             <xsl:apply-templates/>
         </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="tei:pb" priority="1">
+        <xsl:variable name="label" as="xs:string">
+            <xsl:choose>
+                <xsl:when test="@n">
+                    <xsl:choose>
+                        <xsl:when test="matches(@n, '[vr]')">
+                            <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('leaf', $lang), '&#160;', @n)"/>
+                        </xsl:when>
+                        <xsl:otherwise>
+                            <xsl:value-of select="concat(wega:getLanguageString('pageBreakTo', $lang), ' ', wega:getLanguageString('pp', $lang), '&#160;', @n)"/>
+                        </xsl:otherwise>
+                    </xsl:choose>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="wega:getLanguageString('pageBreak', $lang)"/>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:variable>
+        <hr class="tei_pb-text" title="{$label}" data-content="{$label}">
+            <xsl:if test="@facs">
+                <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
+            </xsl:if>
+        </hr>
     </xsl:template>
 
 </xsl:stylesheet>
