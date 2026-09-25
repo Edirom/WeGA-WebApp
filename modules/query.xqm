@@ -158,6 +158,30 @@ declare function query:get-gnd($item as item()?) as xs:string? {
 };
 
 (:~
+ : Return RISM for sources and more
+ :
+ : @author Dennis Ried
+ : @param $item may be xs:string (the ID), document-node() or some root element
+ : @return the RISM-identifier as xs:string, or empty sequence if nothing was found 
+:)
+declare function query:get-rism($item as item()?) as xs:string? {
+    let $doc := 
+        typeswitch($item)
+            case xs:string return crud:doc($item)
+            case xs:untypedAtomic return crud:doc(string($item))
+            case attribute() return crud:doc(string($item))
+            case element() return $item
+            case document-node() return $item
+            default return ()
+    return
+        (: WARNING: there might be several IDs of the same kind :)
+        if($doc//tei:idno[@type = 'rism']) then ($doc//tei:idno[@type = 'rism'])[1]
+        else if($doc//mei:altId[@type = 'rism' or @auth = 'rism' or @auth.uri='https://rism.online/sources']) then ($doc//mei:altId[@type = 'rism'])[1]
+        else if($doc//mei:identifier[@auth = 'rism' or @auth.uri='https://rism.online/sources']) then ($doc//mei:identifier[@auth = 'rism' or @auth.uri='https://rism.online/sources']/@codedval)[1]
+        else ()
+};
+
+(:~
  : Return VIAF ID for persons, organizations, places and works
  :
  : @author Peter Stadler

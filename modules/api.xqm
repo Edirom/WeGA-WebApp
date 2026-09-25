@@ -864,7 +864,17 @@ declare function api:validate-authors($model as map(*)) as map(*)? {
 declare function api:validate-works($model as map(*)) as map(*)? {
     if(every $i in $model?works ! tokenize(., ',') satisfies wdt:works($i)('check')()) then map { 'works': $model?works ! tokenize(., ',') }
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "works". It must be a WeGA work ID.' )
-}; 
+};
+
+(:~
+ : Check parameter sources
+ : multiple values allowed as input, either by providing multiple URL parameters
+ : or by sending a comma separated list as the value of one URL parameter
+~:)
+declare function api:validate-sources($model as map(*)) as map(*)? {
+    if(every $i in $model?sources ! tokenize(., ',') satisfies wdt:sources($i)('check')()) then map { 'sources': $model?sources ! tokenize(., ',') }
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "sources". It must be a HHA sources ID.' )
+};
 
 (:~
  : Check parameter persons

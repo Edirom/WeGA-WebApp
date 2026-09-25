@@ -429,3 +429,35 @@ declare function wega-util:compute-image-url($graphic as element(tei:graphic), $
       return $iiifBase || encode-for-uri($collectionPath) || '/full/,400/0/native.jpg'
     )
 };
+
+declare function wega-util:ordering-relators($relatorGrps as node()*) as node()* {
+
+	for $relatorGrp in $relatorGrps
+		let $relator :=  $relatorGrp/@role
+		let $relatorOrder := switch ($relator)
+								case 'cmp' return '001'
+								case 'aut' return '002'
+								case 'lbt' return '003'
+								case 'trl' return '004'
+								case 'edt' return '005'
+								case 'cnd' return '006'
+								case 'ard' return '007'
+								case 'cst' return '008'
+								case 'std' return '009'
+								default return '999'
+		order by $relatorOrder
+		return
+			$relatorGrp
+};
+
+(:~
+ : Returns a shortened string if it is longer than the expected length
+ : @author  Dennis Ried
+ : @param   $string The stringto be shorten
+ : @param   $length The length of the result
+:)
+declare function wega-util:string-shorten-if-longer($string as xs:string?, $length as xs:integer) as xs:string? {
+    if(string-length($string) gt $length)
+    then(substring($string, 1, ($length - 1)) || '…')
+    else($string)
+};
