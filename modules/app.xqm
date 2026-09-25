@@ -509,15 +509,22 @@ declare function app:set-document-tab-state($node as node(), $model as map(*)) a
             or ($target = 'editorial' and not($model?hasTranscription))
         else $target = 'transcription'
     let $classes := tokenize(normalize-space(string($node/@class)), '\s+')[.]
-    let $newClasses := (
-        $classes[not(. = ('active', 'in'))],
-        if($isActive) then ('active', if($isTabPane) then 'in' else ())
-        else ()
-    )
+    let $baseClasses := $classes[not(. = ('active', 'in'))]
+    let $newClasses :=
+        if($isActive) then (
+            $baseClasses[1],
+            'active',
+            subsequence($baseClasses, 2),
+            if($isTabPane) then 'in' else ()
+        )
+        else $baseClasses
     return
         element {node-name($node)} {
-            $node/@*[not(name(.) = 'class')],
-            attribute class {string-join($newClasses, ' ')},
+            for $attribute in $node/@*
+            return
+                if(name($attribute) = 'class') then
+                    attribute class {string-join($newClasses, ' ')}
+                else $attribute,
             templates:process($node/node(), $model)
         }
 };
