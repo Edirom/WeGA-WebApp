@@ -186,6 +186,22 @@
                             <h3 data-template="lang:translate">series</h3>
                             <p data-template="app:series">WeGA, Briefe, Digitale Edition</p>
                         </div>-->
+
+                        <div data-template="app-shared:if-matches" data-template-key="docType" data-template-value="sources" data-template-wrap="no">
+                            <div data-template="app:context">
+                                <div id="sourceRelatedItems" data-template="app-shared:if-exists" data-template-key="context-relatedItems">
+                                    <h3 data-template="lang:translate">relatedItems</h3>
+                                    <ul>
+                                        <li data-template="app-shared:each" data-template-from="context-relatedItems" data-template-to="context-relatedItem">
+                                            <h4 data-template="app:print-context-relatedItem-type">Draft</h4>
+                                            <p>
+                                                <a href="#" data-template="app:print-context-relatedItem">Brief an Weber</a>
+                                            </p>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
                         
                         <div data-template="app-shared:if-exists" data-template-key="authors">
                             <h3 data-template="lang:translate" class="media-heading">authors</h3>
