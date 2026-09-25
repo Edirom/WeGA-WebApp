@@ -1478,8 +1478,9 @@ declare
          
          return 
             map { 
-                'transcription' : (wega-util:remove-elements-by-class($body, 'apparatus'),$foot), 
-                'apparatus' : $body/descendant-or-self::*[@class='apparatus']
+                'transcription' : (wega-util:remove-elements-by-class($body, 'apparatus source-toc'),$foot),
+                'apparatus' : $body/descendant-or-self::*[@class='apparatus'],
+                'toc' : $body/descendant-or-self::*[@class='source-toc']
             }
 };
 
