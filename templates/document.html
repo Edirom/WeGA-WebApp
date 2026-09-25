@@ -53,7 +53,7 @@
         </div>
     </div>
     <div class="container documentText paddingTopIcon paddingBottomIcon" data-template="app:doc-details">
-        <div class="row">
+        <div class="row" data-template="app:prepare-text">
             <div class="col-md-3 order-2 side-col">
                 <div class="allFilter" data-template="facets:document-allFilter">
                     <div data-template="templates:include" data-template-path="templates/includes/settings.html"/>
@@ -173,8 +173,12 @@
                         </div>
                     </div>
                 </div>
+                <div data-template="app-shared:if-exists" data-template-key="toc">
+                    <h2 data-template="lang:translate">toc</h2>
+                    <div data-template="app-shared:output" data-template-key="toc"/>
+                </div>
             </div>
-            <div class="col-md-9 main-col" data-template="app:prepare-text">
+            <div class="col-md-9 main-col">
                 <!-- Tab panes -->
                 <div class="tab-content" data-template="app:check-apparatus">
                     <div class="tab-pane fade" id="transcription" data-template="app:set-document-tab-state">
