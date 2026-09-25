@@ -309,15 +309,20 @@ li.listSubTitle {
         top: 0;
         transform: translate(-50%, -50%);
         padding: 0 1rem;
+        max-width: calc(100% - 1rem);
         background: #fff;
         color: var(--primary);
         font-size: .8rem;
         font-style: italic;
+        line-height: 1.2;
+        text-align: center;
+        white-space: normal;
+        overflow-wrap: anywhere;
     }
 }
 
 .teiSrc_text {
-    --page-width: min(50ch, 92vw);
+    --page-width: min(50ch, calc(100vw - #{$grid-gutter-width}));
     --source-group-indent: 0ch;
     --source-line-indent: 0ch;
 
@@ -479,7 +484,7 @@ li.listSubTitle {
                 padding-top: 1.5rem;
             }
 
-            @media (min-width: 576px) {
+            @include media-breakpoint-up(sm) {
                 --source-brace-width: 1rem;
                 --source-brace-offset: 1.5rem;
                 --source-brace-top: var(--source-brace-inset);
@@ -507,7 +512,7 @@ li.listSubTitle {
                 border-radius: 1rem 0 0 1rem;
             }
 
-            @media (min-width: 576px) {
+            @include media-breakpoint-up(sm) {
                 > .tei_stage {
                     right: calc(100% + var(--source-label-offset));
                     left: auto;
@@ -526,7 +531,7 @@ li.listSubTitle {
                 border-radius: 0 1rem 1rem 0;
             }
 
-            @media (min-width: 576px) {
+            @include media-breakpoint-up(sm) {
                 > .tei_stage {
                     right: auto;
                     left: calc(100% + var(--source-label-offset));
@@ -553,6 +558,13 @@ li.listSubTitle {
             position: relative;
             line-height: 2;
             margin-bottom: 1rem;
+
+            .tei_role,
+            .tei_roleDesc,
+            .tei_actor {
+                min-width: 0;
+                overflow-wrap: anywhere;
+            }
 
             .tei_castItem {
                 display: grid;
