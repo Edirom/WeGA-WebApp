@@ -10,6 +10,7 @@ declare namespace tei="http://www.tei-c.org/ns/1.0";
 declare namespace mei="http://www.music-encoding.org/ns/mei";
 
 import module namespace functx="http://www.functx.com";
+import module namespace templates="http://exist-db.org/xquery/html-templating";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace str="http://xquery.weber-gesamtausgabe.de/modules/str" at "xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/str.xqm";
@@ -100,14 +101,22 @@ declare function lang:translate-language-string($string as xs:string, $sourceLan
  : Translate function for use with the templating module
  : Translates the element's text content
  : The language information must be given in the $model
+ : Set $wrap to "no" to return only the translated text.
  :
  : @author Peter Stadler
+ : @param $wrap whether to retain the template element around the translated text
 ~:)
-declare function lang:translate($node as node(), $model as map(*)) as element() {
-    element {node-name($node)} {
-        $node/@*,
-        lang:get-language-string(normalize-space($node), $model('lang'))
-    }
+declare
+    %templates:default("wrap", "yes")
+    function lang:translate($node as node(), $model as map(*), $wrap as xs:string) as item()* {
+    let $translation := lang:get-language-string(normalize-space($node), $model('lang'))
+    return
+        if($wrap = 'no') then $translation
+        else
+            element {node-name($node)} {
+                $node/@*,
+                $translation
+            }
 };
 
 (:~
