@@ -495,6 +495,34 @@ declare
 };
 
 (:~
+ : Set the initial Text/Editorial tab state for source documents.
+ : Other document types retain Text as their initial tab.
+ :)
+declare function app:set-document-tab-state($node as node(), $model as map(*)) as element() {
+    let $target :=
+        if($node/@href) then substring-after($node/@href, '#')
+        else string($node/@id)
+    let $isTabPane := exists($node/@id)
+    let $isActive :=
+        if($model?docType = 'sources') then
+            ($target = 'transcription' and $model?hasTranscription)
+            or ($target = 'editorial' and not($model?hasTranscription))
+        else $target = 'transcription'
+    let $classes := tokenize(normalize-space(string($node/@class)), '\s+')[.]
+    let $newClasses := (
+        $classes[not(. = ('active', 'in'))],
+        if($isActive) then ('active', if($isTabPane) then 'in' else ())
+        else ()
+    )
+    return
+        element {node-name($node)} {
+            $node/@*[not(name(.) = 'class')],
+            attribute class {string-join($newClasses, ' ')},
+            templates:process($node/node(), $model)
+        }
+};
+
+(:~
  : set the maximum dates for the IonRangeSlider
 ~:)
 declare 
@@ -1329,10 +1357,22 @@ declare function app:print-external-data-disclaimer($node as node(), $model as m
 declare 
     %templates:wrap
     function app:doc-details($node as node(), $model as map(*)) as map(*) {
+        let $doc := $model('doc')
+        let $docType := $model('docType')
+        let $lang := $model('lang')
         let $facs := query:facsimile($model?doc)
         let $localFacsimiles := $facs[tei:graphic][not(@sameAs)] except $facs[tei:graphic[starts-with(@url, 'http')]]
         let $externalIIIFManifestFacsimiles := $facs[@sameAs]
         let $IIIFImagesMap := ($localFacsimiles | $externalIIIFManifestFacsimiles) ! app:create-IIIFImagesMap(., $model)
+        let $textRoot :=
+            switch($docType)
+            case 'diaries' return $doc/tei:ab ! app:inject-query(.)
+            case 'works' return $doc/mei:mei ! app:inject-query(.)
+            case 'var' case 'addenda' return ($doc//tei:text/tei:body ! app:inject-query(.))/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
+            case 'thematicCommentaries' return $doc//tei:text/tei:body ! app:inject-query(.) | $doc//tei:text/tei:back
+            case 'sources' return $doc//tei:text ! app:inject-query(.)
+            default return $doc//tei:text/tei:body ! app:inject-query(.)
+        let $hasTranscription := not(functx:all-whitespace(<root>{$textRoot}</root>))
         return
             map {
                 'facsimile' : $facs,
@@ -1340,6 +1380,8 @@ declare
                 'externalIIIFManifestFacsimiles' : $externalIIIFManifestFacsimiles,
                 'IIIFImagesMap': $IIIFImagesMap,
                 'hasCreation' : exists($model?doc//tei:creation),
+                'hasTranscription' : $hasTranscription,
+                'textRoot' : $textRoot,
                 'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
                 'thematicCommentaries' : distinct-values($model('doc')//tei:note[@type='thematicCom']/@target/tokenize(., '\s+')),
                 'backlinks' : wdt:backlinks(())('filter-by-person')($model?docID)
@@ -1400,16 +1442,9 @@ declare
             case 'diaries' return doc(concat($config:xsl-collection-path, '/diaries.xsl'))
             case 'sources' return doc(concat($config:xsl-collection-path, '/sources.xsl'))
             default  return doc(concat($config:xsl-collection-path, '/var.xsl'))
-        let $textRoot :=
-            switch($docType)
-            case 'diaries' return $doc/tei:ab ! app:inject-query(.)
-            case 'works' return $doc/mei:mei ! app:inject-query(.)
-            case 'var' case 'addenda' return ($doc//tei:text/tei:body ! app:inject-query(.))/(tei:div[@xml:lang=$lang] | tei:divGen | tei:div[not(@xml:lang)])
-            case 'thematicCommentaries' return $doc//tei:text/tei:body ! app:inject-query(.) | $doc//tei:text/tei:back
-            case 'sources' return $doc//tei:text ! app:inject-query(.)
-            default return $doc//tei:text/tei:body ! app:inject-query(.)
+        let $textRoot := $model('textRoot')
         let $body := 
-             if(functx:all-whitespace(<root>{$textRoot}</root>))
+             if(not($model('hasTranscription')))
              then 
                 element xhtml:p {
                         attribute class {'notAvailable'},
