@@ -128,7 +128,16 @@ declare
 };
 
 declare
-    %test:pending('no test files included yet')
+    %test:args('A226105', 'txt')    %test:assertEquals("Textbuch-Druck für Bremen")
+    %test:args('A225876', 'txt')    %test:assertEquals("Regiebuch zur Wiener Uraufführung mit Eintragungen von Weber und Chézy (2. Zensurexemplar)")
+    %test:args('A221569', 'txt')    %test:assertEquals("Quintett für Klarinette, 2 Violinen, Viola und Violoncello B-Dur")
+    %test:args('A226105 A221569', 'txt')    %test:assertEquals("Textbuch-Druck für Bremen", "Quintett für Klarinette, 2 Violinen, Viola und Violoncello B-Dur")
+    %test:args('A226105', 'html')   %test:assertEquals("Textbuch-Druck für Bremen")
+    %test:args('A221569', 'html')   %test:assertEquals("Quintett für Klarinette, 2 Violinen, Viola und Violoncello B-Dur")
+    %test:args('', 'txt')           %test:assertEmpty
+    %test:args('', 'html')          %test:assertEmpty
+    %test:args('', 'foo')           %test:assertEmpty
+    %test:args('A226105', 'foo')    %test:assertEmpty
     function wdtt:test-sources-title($id as xs:string, $serialization as xs:string) as item()* {
         let $docs := tokenize($id, '\s+') ! crud:doc(.)
         return
