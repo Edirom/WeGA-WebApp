@@ -31,6 +31,37 @@
          <xsl:if test="wega:isNews($docID)">
             <xsl:attribute name="style">display:none</xsl:attribute>
          </xsl:if>
+         <xsl:variable name="handNotes" as="element(tei:handNote)*" select="
+            if(wega:isSource($docID))
+            then $doc//tei:handNotes/tei:handNote[@scope][@xml:id]
+            else ()
+         "/>
+         <xsl:variable name="mainHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = ('sole', 'major')]"/>
+         <xsl:variable name="minorHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = 'minor']"/>
+         <xsl:if test="$handNotes">
+            <xsl:element name="h3">
+               <xsl:attribute name="class">media-heading</xsl:attribute>
+               <xsl:value-of select="wega:getLanguageString('hands', $lang)"/>
+            </xsl:element>
+            <xsl:if test="$mainHandNotes">
+               <xsl:element name="strong">
+                  <xsl:value-of select="wega:getLanguageString('mainHand', $lang)"/>
+               </xsl:element>
+               <xsl:element name="ul">
+                  <xsl:attribute name="class">hands mainHand tei_list</xsl:attribute>
+                  <xsl:apply-templates select="$mainHandNotes" mode="apparatus"/>
+               </xsl:element>
+            </xsl:if>
+            <xsl:if test="$minorHandNotes">
+               <xsl:element name="strong">
+                  <xsl:value-of select="wega:getLanguageString('additionalHands', $lang)"/>
+               </xsl:element>
+               <xsl:element name="ul">
+                  <xsl:attribute name="class">hands additionalHands tei_list</xsl:attribute>
+                  <xsl:apply-templates select="$minorHandNotes" mode="apparatus"/>
+               </xsl:element>
+            </xsl:if>
+         </xsl:if>
          <xsl:if test="$textConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst']">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
@@ -115,6 +146,14 @@
                </xsl:element>
             </xsl:for-each>
          </xsl:element>
+      </xsl:element>
+   </xsl:template>
+
+   <xsl:template match="tei:handNote[@scope][@xml:id]" mode="apparatus">
+      <xsl:element name="li">
+         <xsl:attribute name="id" select="concat('hand-', @xml:id)"/>
+         <xsl:attribute name="class" select="@scope"/>
+         <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
       </xsl:element>
    </xsl:template>
 
