@@ -60,6 +60,7 @@
                         <xsl:attribute name="class">author</xsl:attribute>
                         <xsl:element name="a">
                            <xsl:attribute name="href" select="wega:createLinkToDoc(string(($fallbackAuthor/@key, $fallbackAuthor/@xml:id)[1]), $lang)"/>
+                           <xsl:attribute name="class" select="concat('preview persons ', string(($fallbackAuthor/@key, $fallbackAuthor/@xml:id)[1]))"/>
                            <xsl:value-of select="normalize-space(string-join($fallbackAuthor//text(), ' '))"/>
                         </xsl:element>
                      </xsl:element>
@@ -167,7 +168,18 @@
       <xsl:element name="li">
          <xsl:attribute name="id" select="concat('hand-', @xml:id)"/>
          <xsl:attribute name="class" select="@scope"/>
-         <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
+         <xsl:choose>
+            <xsl:when test="@scribe">
+               <xsl:element name="a">
+                  <xsl:attribute name="href" select="wega:createLinkToDoc(string(@scribe), $lang)"/>
+                  <xsl:attribute name="class" select="concat('preview persons ', @scribe)"/>
+                  <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
+               </xsl:element>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
+            </xsl:otherwise>
+         </xsl:choose>
       </xsl:element>
    </xsl:template>
 
