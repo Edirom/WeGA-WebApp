@@ -257,27 +257,29 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
 
     if (hasTab && apparatusLink) {
         // if clicked link is a link within the apparatus (marked with class .apparatus-link)
-        hasTab.tab('show');
+        e.preventDefault();
+        hasTab.one('shown.bs.tab', function () {
+            if (hash === 'transcription') {
+                //wait for tab to be loaded
+                $(".hi-").removeClass("hi-");
+                //remove previous highlight
+                $('html, body').animate({
+                    scrollTop: $(ref).offset().top - 400 //scroll to position (with offset)
+                },
+                500);
+                $(ref).click();
+                $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-");
+                // attempt to highlight lemma in text, jump to position and open corresponding popover ...
+            } else if (hash === 'editorial') {
+                $('.popover').popover('hide');
+                $('html, body').animate({
+                    scrollTop: $(ref).offset().top - 400
+                },
+                500);
+            }
+        });
         // open tab
-        $(document).on('shown.bs.tab', 'a[href="#transcription"]', function () {
-            //wait for tab to be loaded
-            $(".hi-").removeClass("hi-");
-            //remove previous highlight
-            $('html, body').animate({
-                scrollTop: $(ref).offset().top - 400 //scroll to position (with offset)
-            },
-            500);
-            $(ref).click();
-            $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-");
-            // attempt to highlight lemma in text, jump to position and open corresponding popover ...
-        });
-        $(document).on('shown.bs.tab', 'a[href="#editorial"]', function () {
-            $('.popover').popover('hide');
-            $('html, body').animate({
-                scrollTop: $(ref).offset().top - 400
-            },
-            500);
-        });
+        hasTab.tab('show');
     } else if (hasTab) {
         hasTab.tab('show');
     }
