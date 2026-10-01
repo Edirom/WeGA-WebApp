@@ -8,7 +8,18 @@
    exclude-result-prefixes="xs" version="3.1">
 
    <xsl:variable name="doc" select="wega:doc($docID)"/>
-   <xsl:variable name="textConstitutionNodes" as="node()*" select=".//tei:subst | .//tei:add[not(parent::tei:subst)] | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)] | .//tei:sic[not(parent::tei:choice)] | .//tei:del[not(parent::tei:subst)] | .//tei:unclear[not(parent::tei:choice)] | .//tei:note[@type='textConst'] | .//tei:supplied[parent::tei:damage]"/>
+   <xsl:variable name="textConstitutionNodes" as="node()*" select="
+      .//tei:subst[not(wega:is-split-substitution(.))]
+      | .//tei:subst[wega:is-split-substitution(.)]/tei:add
+      | .//tei:subst[wega:is-split-substitution(.)]/tei:del
+      | .//tei:add[not(parent::tei:subst)]
+      | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)]
+      | .//tei:sic[not(parent::tei:choice)]
+      | .//tei:del[not(parent::tei:subst)]
+      | .//tei:unclear[not(parent::tei:choice)]
+      | .//tei:note[@type='textConst']
+      | .//tei:supplied[parent::tei:damage]
+   "/>
    <xsl:variable name="commentaryNodes" as="node()*" select=".//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
    <xsl:variable name="rdgNodes" as="node()*" select=".//tei:app"/>
 
@@ -36,13 +47,25 @@
             then $doc//tei:handNotes/tei:handNote[@scope][@xml:id]
             else ()
          "/>
-         <xsl:variable name="mainHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = ('sole', 'major')]"/>
-         <xsl:variable name="minorHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = 'minor']"/>
          <xsl:variable name="fallbackAuthor" as="element(tei:author)?" select="
             if(wega:isSource($docID) and empty($handNotes))
             then ($doc//tei:fileDesc/tei:titleStmt/tei:author)[1]
             else ()
          "/>
+         <xsl:variable name="handTextConstitutionNodes" as="element()*" select="
+            if(wega:isSource($docID))
+            then $textConstitutionNodes[exists(wega:responsible-hand-notes(.))]
+            else ()
+         "/>
+         <xsl:variable name="fallbackAuthorTextConstitutionNodes" as="element()*" select="
+            if($fallbackAuthor)
+            then $textConstitutionNodes[wega:responsibility-keys(.) = 'author']
+            else ()
+         "/>
+         <xsl:variable name="generalTextConstitutionNodes" as="node()*"
+            select="$textConstitutionNodes except ($handTextConstitutionNodes | $fallbackAuthorTextConstitutionNodes)"/>
+         <xsl:variable name="mainHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = ('sole', 'major')]"/>
+         <xsl:variable name="minorHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = 'minor']"/>
          <xsl:if test="$handNotes or $fallbackAuthor">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
@@ -55,16 +78,7 @@
                <xsl:element name="ul">
                   <xsl:attribute name="class">hands mainHand tei_list</xsl:attribute>
                   <xsl:apply-templates select="$mainHandNotes" mode="apparatus"/>
-                  <xsl:if test="$fallbackAuthor">
-                     <xsl:element name="li">
-                        <xsl:attribute name="class">author</xsl:attribute>
-                        <xsl:element name="a">
-                           <xsl:attribute name="href" select="wega:createLinkToDoc(string(($fallbackAuthor/@key, $fallbackAuthor/@xml:id)[1]), $lang)"/>
-                           <xsl:attribute name="class" select="concat('preview persons ', string(($fallbackAuthor/@key, $fallbackAuthor/@xml:id)[1]))"/>
-                           <xsl:value-of select="normalize-space(string-join($fallbackAuthor//text(), ' '))"/>
-                        </xsl:element>
-                     </xsl:element>
-                  </xsl:if>
+                  <xsl:apply-templates select="$fallbackAuthor" mode="apparatus-hand"/>
                </xsl:element>
             </xsl:if>
             <xsl:if test="$minorHandNotes">
@@ -77,7 +91,7 @@
                </xsl:element>
             </xsl:if>
          </xsl:if>
-         <xsl:if test="$textConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst']">
+         <xsl:if test="$generalTextConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst']">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
@@ -88,23 +102,8 @@
          </xsl:if>
          <xsl:element name="ul">
             <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
-            <xsl:for-each select="$textConstitutionNodes">
-               <xsl:element name="li">
-                  <xsl:element name="div">
-                     <xsl:attribute name="class">row</xsl:attribute>
-                     <xsl:element name="div">
-                        <xsl:attribute name="class">col-1 text-nowrap</xsl:attribute>
-                        <xsl:element name="a">
-                           <xsl:attribute name="href">#transcription</xsl:attribute>
-                           <xsl:attribute name="data-href" select="wega:get-backref-link(wega:createID(.))"/>
-                           <xsl:attribute name="class">apparatus-link</xsl:attribute>
-                           <xsl:number count="$textConstitutionNodes" level="any"/>
-                           <xsl:text>.</xsl:text>
-                        </xsl:element>
-                     </xsl:element>
-                     <xsl:apply-templates select="." mode="apparatus"/>
-                  </xsl:element>
-               </xsl:element>
+            <xsl:for-each select="$generalTextConstitutionNodes">
+               <xsl:call-template name="textConstitutionEntry"/>
             </xsl:for-each>
          </xsl:element>
          <xsl:if test="$commentaryNodes">
@@ -165,14 +164,64 @@
    </xsl:template>
 
    <xsl:template match="tei:handNote[@scope][@xml:id]" mode="apparatus">
+      <xsl:variable name="handNote" as="element(tei:handNote)" select="."/>
+      <xsl:variable name="handEntries" as="element()*"
+         select="$textConstitutionNodes[wega:responsible-hand-notes(.)[. is $handNote]]"/>
+      <xsl:call-template name="handListItem">
+         <xsl:with-param name="ownerID" select="string(@xml:id)"/>
+         <xsl:with-param name="ownerClass" select="string(@scope)"/>
+         <xsl:with-param name="handEntries" select="$handEntries"/>
+         <xsl:with-param name="expanded" select="@scope = ('sole', 'major')"/>
+      </xsl:call-template>
+   </xsl:template>
+
+   <xsl:template match="tei:author" mode="apparatus-hand" priority="2">
+      <xsl:call-template name="handListItem">
+         <xsl:with-param name="ownerID" select="'author'"/>
+         <xsl:with-param name="ownerClass" select="'author'"/>
+         <xsl:with-param name="handEntries" select="$textConstitutionNodes[wega:responsibility-keys(.) = 'author']"/>
+         <xsl:with-param name="expanded" select="true()"/>
+      </xsl:call-template>
+   </xsl:template>
+
+   <xsl:template name="handListItem">
+      <xsl:param name="ownerID" as="xs:string"/>
+      <xsl:param name="ownerClass" as="xs:string"/>
+      <xsl:param name="handEntries" as="element()*"/>
+      <xsl:param name="expanded" as="xs:boolean"/>
+      <xsl:variable name="entriesID" as="xs:string" select="concat('hand-', $ownerID, '-textConstitution')"/>
       <xsl:element name="li">
-         <xsl:attribute name="id" select="concat('hand-', @xml:id)"/>
-         <xsl:attribute name="class" select="@scope"/>
+         <xsl:attribute name="id" select="concat('hand-', $ownerID)"/>
+         <xsl:attribute name="class" select="string-join(($ownerClass, if($handEntries) then 'collapsible' else ()), ' ')"/>
+         <xsl:if test="$handEntries">
+            <xsl:element name="a">
+               <xsl:attribute name="href" select="concat('#', $entriesID)"/>
+               <xsl:attribute name="class" select="string-join(('collapseMarker', if($expanded) then () else 'collapsed'), ' ')"/>
+               <xsl:attribute name="data-toggle">collapse</xsl:attribute>
+               <xsl:attribute name="role">button</xsl:attribute>
+               <xsl:attribute name="aria-expanded" select="if($expanded) then 'true' else 'false'"/>
+               <xsl:attribute name="aria-controls" select="$entriesID"/>
+               <xsl:element name="span">
+                  <xsl:attribute name="class">sr-only</xsl:attribute>
+                  <xsl:value-of select="wega:getLanguageString('textConstitution', $lang)"/>
+                  <xsl:text>: </xsl:text>
+                  <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
+               </xsl:element>
+            </xsl:element>
+         </xsl:if>
          <xsl:choose>
-            <xsl:when test="@scribe">
+            <xsl:when test="self::tei:handNote[@scribe]">
                <xsl:element name="a">
                   <xsl:attribute name="href" select="wega:createLinkToDoc(string(@scribe), $lang)"/>
                   <xsl:attribute name="class" select="concat('preview persons ', @scribe)"/>
+                  <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
+               </xsl:element>
+            </xsl:when>
+            <xsl:when test="self::tei:author">
+               <xsl:variable name="authorID" as="xs:string" select="string((@key, @xml:id)[1])"/>
+               <xsl:element name="a">
+                  <xsl:attribute name="href" select="wega:createLinkToDoc($authorID, $lang)"/>
+                  <xsl:attribute name="class" select="concat('preview persons ', $authorID)"/>
                   <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
                </xsl:element>
             </xsl:when>
@@ -180,6 +229,34 @@
                <xsl:value-of select="normalize-space(string-join(.//text(), ' '))"/>
             </xsl:otherwise>
          </xsl:choose>
+         <xsl:if test="$handEntries">
+            <xsl:element name="ul">
+               <xsl:attribute name="id" select="$entriesID"/>
+               <xsl:attribute name="class" select="string-join(('apparatus', 'textConstitution', 'collapse', if($expanded) then 'show' else ()), ' ')"/>
+               <xsl:for-each select="$handEntries">
+                  <xsl:call-template name="textConstitutionEntry"/>
+               </xsl:for-each>
+            </xsl:element>
+         </xsl:if>
+      </xsl:element>
+   </xsl:template>
+
+   <xsl:template name="textConstitutionEntry">
+      <xsl:element name="li">
+         <xsl:element name="div">
+            <xsl:attribute name="class">row</xsl:attribute>
+            <xsl:element name="div">
+               <xsl:attribute name="class">col-1 text-nowrap</xsl:attribute>
+               <xsl:element name="a">
+                  <xsl:attribute name="href">#transcription</xsl:attribute>
+                  <xsl:attribute name="data-href" select="wega:get-backref-link(wega:createID(.))"/>
+                  <xsl:attribute name="class">apparatus-link</xsl:attribute>
+                  <xsl:number count="$textConstitutionNodes" level="any"/>
+                  <xsl:text>.</xsl:text>
+               </xsl:element>
+            </xsl:element>
+            <xsl:apply-templates select="." mode="apparatus"/>
+         </xsl:element>
       </xsl:element>
    </xsl:template>
 
@@ -252,16 +329,37 @@
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
-         <!-- Need to take care of whitespace when there are multiple <add> -->
-             <xsl:choose>
-                <xsl:when test="count(tei:add) gt 1">
-                   <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
-                </xsl:when>
-                <xsl:otherwise>
-                   <xsl:apply-templates select="tei:add" mode="lemma"/>
-                </xsl:otherwise>
-             </xsl:choose>
-         <xsl:call-template name="popover"/>
+         <xsl:choose>
+            <xsl:when test="wega:is-split-substitution(.)">
+               <xsl:for-each select="tei:del">
+                  <xsl:element name="span">
+                     <xsl:apply-templates select="@xml:id"/>
+                     <xsl:attribute name="class">tei_del</xsl:attribute>
+                     <xsl:call-template name="popover"/>
+                  </xsl:element>
+               </xsl:for-each>
+               <xsl:choose>
+                  <xsl:when test="count(tei:add) gt 1">
+                     <xsl:apply-templates select="tei:add | text()"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:apply-templates select="tei:add"/>
+                  </xsl:otherwise>
+               </xsl:choose>
+            </xsl:when>
+            <xsl:otherwise>
+               <!-- Need to take care of whitespace when there are multiple <add>. -->
+               <xsl:choose>
+                  <xsl:when test="count(tei:add) gt 1">
+                     <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <xsl:apply-templates select="tei:add" mode="lemma"/>
+                  </xsl:otherwise>
+               </xsl:choose>
+               <xsl:call-template name="popover"/>
+            </xsl:otherwise>
+         </xsl:choose>
       </xsl:element>
    </xsl:template>
 
@@ -422,7 +520,7 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:add[not(parent::tei:subst)]">
+   <xsl:template match="tei:add[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class">
@@ -447,7 +545,7 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:add[not(parent::tei:subst)]" mode="apparatus">
+   <xsl:template match="tei:add[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]" mode="apparatus">
       <xsl:variable name="addedText">
          <xsl:apply-templates mode="lemma"/>
       </xsl:variable>
@@ -651,7 +749,7 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)]">
+   <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
@@ -704,7 +802,7 @@
       </xsl:call-template>
    </xsl:template>
 
-   <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
+   <xsl:template match="tei:del[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]" mode="apparatus">
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.del',$lang)"/>
          <xsl:with-param name="lemma">
@@ -777,7 +875,7 @@
                <xsl:number count="tei:note[@type=('commentary', 'definition')] | tei:choice" level="any"/>
             </xsl:when>
             <xsl:otherwise>
-               <xsl:number count="tei:subst | tei:add[not(parent::tei:subst)] | tei:gap[not(@reason='outOfScope' or parent::tei:del)] | tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)] | tei:unclear[not(parent::tei:choice)] | tei:note[@type='textConst'] | tei:supplied[parent::tei:damage]" level="any"/>
+               <xsl:number count="$textConstitutionNodes" level="any"/>
             </xsl:otherwise>
          </xsl:choose>
       </xsl:variable>
@@ -804,6 +902,80 @@
          </xsl:if>
       </xsl:element>
    </xsl:template>
+
+   <xsl:function name="wega:hand-reference-ids" as="xs:string*">
+      <xsl:param name="node" as="element()"/>
+      <xsl:variable name="handCarrier" as="element()?"
+         select="($node/ancestor-or-self::*[@hand])[last()]"/>
+      <xsl:variable name="handValues" as="xs:string*" select="$handCarrier/@hand/string()"/>
+      <xsl:variable name="handIDs" as="xs:string*" select="
+         for $value in $handValues
+         return
+            for $token in tokenize(normalize-space($value), '\s+')
+            return replace($token, '^#', '')
+      "/>
+      <xsl:sequence select="
+         for $position in 1 to count($handIDs)
+         return
+            if($handIDs[position() lt $position] = $handIDs[$position])
+            then ()
+            else $handIDs[$position]
+      "/>
+   </xsl:function>
+
+   <xsl:function name="wega:inherited-responsibility-keys" as="xs:string*">
+      <xsl:param name="node" as="element()"/>
+      <xsl:variable name="explicitHandIDs" as="xs:string*" select="wega:hand-reference-ids($node)"/>
+      <xsl:variable name="mainHandNotes" as="element(tei:handNote)*"
+         select="$doc//tei:handNotes/tei:handNote[@scope = ('sole', 'major')][@xml:id]"/>
+      <xsl:sequence select="
+         if($explicitHandIDs)
+         then $explicitHandIDs ! concat('hand:', .)
+         else if(count($mainHandNotes) = 1)
+         then concat('hand:', $mainHandNotes/@xml:id)
+         else if(empty($doc//tei:handNotes/tei:handNote) and $doc//tei:fileDesc/tei:titleStmt/tei:author)
+         then 'author'
+         else ()
+      "/>
+   </xsl:function>
+
+   <xsl:function name="wega:is-split-substitution" as="xs:boolean">
+      <xsl:param name="subst" as="element(tei:subst)"/>
+      <xsl:variable name="delHands" as="xs:string*" select="
+         distinct-values($subst/tei:del ! wega:inherited-responsibility-keys(.)) => sort()
+      "/>
+      <xsl:variable name="addHands" as="xs:string*" select="
+         distinct-values($subst/tei:add ! wega:inherited-responsibility-keys(.)) => sort()
+      "/>
+      <xsl:sequence select="
+         wega:isSource($docID)
+         and exists($subst/tei:del)
+         and exists($subst/tei:add)
+         and not(deep-equal($delHands, $addHands))
+      "/>
+   </xsl:function>
+
+   <xsl:function name="wega:responsibility-keys" as="xs:string*">
+      <xsl:param name="node" as="element()"/>
+      <xsl:choose>
+         <xsl:when test="$node/self::tei:subst and not(wega:is-split-substitution($node))">
+            <xsl:sequence select="distinct-values(
+               $node/(tei:del | tei:add) ! wega:inherited-responsibility-keys(.)
+            )"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:sequence select="wega:inherited-responsibility-keys($node)"/>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:function>
+
+   <xsl:function name="wega:responsible-hand-notes" as="element(tei:handNote)*">
+      <xsl:param name="node" as="element()"/>
+      <xsl:variable name="handIDs" as="xs:string*" select="
+         wega:responsibility-keys($node)[starts-with(., 'hand:')] ! substring-after(., 'hand:')
+      "/>
+      <xsl:sequence select="$doc//tei:handNotes/tei:handNote[@scope][@xml:id = $handIDs]"/>
+   </xsl:function>
    
    <xsl:function name="wega:createID">
       <xsl:param name="elem" as="element()"/>
