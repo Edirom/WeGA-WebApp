@@ -38,18 +38,32 @@
          "/>
          <xsl:variable name="mainHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = ('sole', 'major')]"/>
          <xsl:variable name="minorHandNotes" as="element(tei:handNote)*" select="$handNotes[@scope = 'minor']"/>
-         <xsl:if test="$handNotes">
+         <xsl:variable name="fallbackAuthor" as="element(tei:author)?" select="
+            if(wega:isSource($docID) and empty($handNotes))
+            then ($doc//tei:fileDesc/tei:titleStmt/tei:author)[1]
+            else ()
+         "/>
+         <xsl:if test="$handNotes or $fallbackAuthor">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
                <xsl:value-of select="wega:getLanguageString('hands', $lang)"/>
             </xsl:element>
-            <xsl:if test="$mainHandNotes">
+            <xsl:if test="$mainHandNotes or $fallbackAuthor">
                <xsl:element name="strong">
                   <xsl:value-of select="wega:getLanguageString('mainHand', $lang)"/>
                </xsl:element>
                <xsl:element name="ul">
                   <xsl:attribute name="class">hands mainHand tei_list</xsl:attribute>
                   <xsl:apply-templates select="$mainHandNotes" mode="apparatus"/>
+                  <xsl:if test="$fallbackAuthor">
+                     <xsl:element name="li">
+                        <xsl:attribute name="class">author</xsl:attribute>
+                        <xsl:element name="a">
+                           <xsl:attribute name="href" select="wega:createLinkToDoc(string(($fallbackAuthor/@key, $fallbackAuthor/@xml:id)[1]), $lang)"/>
+                           <xsl:value-of select="normalize-space(string-join($fallbackAuthor//text(), ' '))"/>
+                        </xsl:element>
+                     </xsl:element>
+                  </xsl:if>
                </xsl:element>
             </xsl:if>
             <xsl:if test="$minorHandNotes">
