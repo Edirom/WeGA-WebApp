@@ -98,22 +98,52 @@
                <xsl:apply-templates select="$minorHandNotes" mode="apparatus"/>
             </xsl:element>
          </xsl:if>
-         <xsl:if test="$isSource and ($additionalTextConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst'])">
-            <xsl:element name="strong">
-               <xsl:value-of select="wega:getLanguageString('additionalAnnotations', $lang)"/>
-            </xsl:element>
-         </xsl:if>
-         <xsl:if test="$doc//tei:notesStmt/tei:note[@type='textConst']">
-            <xsl:apply-templates select="$doc//tei:notesStmt/tei:note[@type='textConst']"/>
-         </xsl:if>
-         <xsl:if test="not($isSource) or $additionalTextConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst']">
-            <xsl:element name="ul">
-               <xsl:attribute name="class" select="string-join(('apparatus', 'textConstitution', if($isSource) then 'additionalAnnotations' else ()), ' ')"/>
-               <xsl:for-each select="if($isSource) then $additionalTextConstitutionNodes else $textConstitutionNodes">
-                  <xsl:call-template name="textConstitutionEntry"/>
-               </xsl:for-each>
-            </xsl:element>
-         </xsl:if>
+         <xsl:choose>
+            <xsl:when test="$isSource and ($additionalTextConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst'])">
+               <xsl:element name="div">
+                  <xsl:attribute name="class">additionalAnnotationsHeading</xsl:attribute>
+                  <xsl:element name="a">
+                     <xsl:attribute name="href">#additionalAnnotations-textConstitution</xsl:attribute>
+                     <xsl:attribute name="class">collapseMarker collapsed</xsl:attribute>
+                     <xsl:attribute name="data-toggle">collapse</xsl:attribute>
+                     <xsl:attribute name="role">button</xsl:attribute>
+                     <xsl:attribute name="aria-expanded">false</xsl:attribute>
+                     <xsl:attribute name="aria-controls">additionalAnnotations-textConstitution</xsl:attribute>
+                     <xsl:element name="span">
+                        <xsl:attribute name="class">sr-only</xsl:attribute>
+                        <xsl:value-of select="wega:getLanguageString('additionalAnnotations', $lang)"/>
+                     </xsl:element>
+                  </xsl:element>
+                  <xsl:element name="strong">
+                     <xsl:value-of select="wega:getLanguageString('additionalAnnotations', $lang)"/>
+                  </xsl:element>
+               </xsl:element>
+               <xsl:element name="div">
+                  <xsl:attribute name="id">additionalAnnotations-textConstitution</xsl:attribute>
+                  <xsl:attribute name="class">apparatusCollapse collapse</xsl:attribute>
+                  <xsl:if test="$doc//tei:notesStmt/tei:note[@type='textConst']">
+                     <xsl:apply-templates select="$doc//tei:notesStmt/tei:note[@type='textConst']"/>
+                  </xsl:if>
+                  <xsl:element name="ul">
+                     <xsl:attribute name="class">apparatus textConstitution additionalAnnotations</xsl:attribute>
+                     <xsl:for-each select="$additionalTextConstitutionNodes">
+                        <xsl:call-template name="textConstitutionEntry"/>
+                     </xsl:for-each>
+                  </xsl:element>
+               </xsl:element>
+            </xsl:when>
+            <xsl:when test="not($isSource)">
+               <xsl:if test="$doc//tei:notesStmt/tei:note[@type='textConst']">
+                  <xsl:apply-templates select="$doc//tei:notesStmt/tei:note[@type='textConst']"/>
+               </xsl:if>
+               <xsl:element name="ul">
+                  <xsl:attribute name="class">apparatus textConstitution</xsl:attribute>
+                  <xsl:for-each select="$textConstitutionNodes">
+                     <xsl:call-template name="textConstitutionEntry"/>
+                  </xsl:for-each>
+               </xsl:element>
+            </xsl:when>
+         </xsl:choose>
          <xsl:if test="$commentaryNodes">
             <xsl:element name="h3">
                <xsl:attribute name="class">media-heading</xsl:attribute>
@@ -179,7 +209,6 @@
          <xsl:with-param name="ownerID" select="string(@xml:id)"/>
          <xsl:with-param name="ownerClass" select="string(@scope)"/>
          <xsl:with-param name="handEntries" select="$handEntries"/>
-         <xsl:with-param name="expanded" select="@scope = ('sole', 'major')"/>
       </xsl:call-template>
    </xsl:template>
 
@@ -188,7 +217,6 @@
          <xsl:with-param name="ownerID" select="'author'"/>
          <xsl:with-param name="ownerClass" select="'author'"/>
          <xsl:with-param name="handEntries" select="$documentaryTextConstitutionNodes[wega:responsibility-keys(.) = 'author']"/>
-         <xsl:with-param name="expanded" select="true()"/>
       </xsl:call-template>
    </xsl:template>
 
@@ -196,7 +224,6 @@
       <xsl:param name="ownerID" as="xs:string"/>
       <xsl:param name="ownerClass" as="xs:string"/>
       <xsl:param name="handEntries" as="element()*"/>
-      <xsl:param name="expanded" as="xs:boolean"/>
       <xsl:variable name="entriesID" as="xs:string" select="concat('hand-', $ownerID, '-textConstitution')"/>
       <xsl:element name="li">
          <xsl:attribute name="id" select="concat('hand-', $ownerID)"/>
@@ -204,10 +231,10 @@
          <xsl:if test="$handEntries">
             <xsl:element name="a">
                <xsl:attribute name="href" select="concat('#', $entriesID)"/>
-               <xsl:attribute name="class" select="string-join(('collapseMarker', if($expanded) then () else 'collapsed'), ' ')"/>
+               <xsl:attribute name="class">collapseMarker collapsed</xsl:attribute>
                <xsl:attribute name="data-toggle">collapse</xsl:attribute>
                <xsl:attribute name="role">button</xsl:attribute>
-               <xsl:attribute name="aria-expanded" select="if($expanded) then 'true' else 'false'"/>
+               <xsl:attribute name="aria-expanded">false</xsl:attribute>
                <xsl:attribute name="aria-controls" select="$entriesID"/>
                <xsl:element name="span">
                   <xsl:attribute name="class">sr-only</xsl:attribute>
@@ -240,7 +267,7 @@
          <xsl:if test="$handEntries">
             <xsl:element name="ul">
                <xsl:attribute name="id" select="$entriesID"/>
-               <xsl:attribute name="class" select="string-join(('apparatus', 'textConstitution', 'collapse', if($expanded) then 'show' else ()), ' ')"/>
+               <xsl:attribute name="class">apparatus apparatusCollapse textConstitution collapse</xsl:attribute>
                <xsl:for-each select="$handEntries">
                   <xsl:call-template name="textConstitutionEntry"/>
                </xsl:for-each>
