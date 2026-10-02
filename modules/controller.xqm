@@ -472,7 +472,7 @@ declare function controller:path-to-resource($doc as document-node()?, $lang as 
  : Indices can be under "Register (Indices)" or "Projekt (Project)" 
 ~:)
 declare function controller:path-to-register($docType as xs:string, $lang as xs:string) as xs:string? {
-    if($docType = ('letters', 'diaries', 'personsPlus', 'writings', 'works', 'thematicCommentaries', 'documents', 'places')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
+    if($docType = ('letters', 'diaries', 'personsPlus', 'writings', 'works', 'thematicCommentaries', 'documents', 'places', 'sources')) then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = ('biblio', 'news')) then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang), lang:get-language-string($docType, $lang)))
     else if($docType = 'indices') then str:join-path-elements(('/', $lang, lang:get-language-string('indices', $lang)))
     else if($docType = 'project') then str:join-path-elements(('/', $lang, lang:get-language-string('project', $lang)))
@@ -684,6 +684,7 @@ declare %private function controller:forward-document($exist-vars as map(*)) as 
         case 'persons' case 'orgs' return controller:forward-html('/templates/person.html', $exist-vars)
         case 'places' return controller:forward-html('/templates/place.html', $exist-vars)
         case 'works' return controller:forward-html('/templates/work.html', $exist-vars)
+        case 'sources' return controller:forward-html('/templates/source.html', $exist-vars)
         case 'var' case 'thematicCommentaries' case 'addenda' return controller:forward-html('/templates/var.html', $exist-vars)
         default return controller:forward-html('/templates/document.html', $exist-vars)
     case 'xml' return controller:forward-xml($exist-vars)

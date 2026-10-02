@@ -129,6 +129,10 @@ else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' |
 else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('works', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('works', $lang), '.html#works'))
 
+(: Quellen :)
+else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('sources', $lang) || '/?$')) then
+    controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('sources', $lang), '.html#sources'))
+
 (: Bibliographie :)
 else if (matches($exist:path, config:get-option('personsPlusIdPattern') || '/' || lang:get-language-string('biblio', $lang) || '/?$')) then
     controller:redirect-absolute('/' || replace($exist:path, '/' || lang:get-language-string('biblio', $lang), '.html#biblio'))

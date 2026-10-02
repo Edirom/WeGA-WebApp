@@ -309,6 +309,7 @@ declare
             case 'adb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('adbBeacon', $model?gnd)) then 'adb.html' else ()
             case 'ndb-article' return if($model?gnd and er:lookup-gnd-from-beaconProvider('ndbBeacon', $model?gnd)) then 'ndb.html' else ()
             case 'gnd-entry' return if($model('gnd')) then 'dnb.html' else ()
+            case 'rism-entry' return if($model('rism')) then 'rism.html' else ()
             case 'backlinks' return if($model('backlinks')) then 'backlinks.html' else ()
             case 'gnd-beacon' return if($model('gnd')) then 'beacon.html' else ()
             default return ()
@@ -901,6 +902,287 @@ declare
 
 (:
  : ****************************
+ : Source pages
+ : ****************************
+:)
+
+declare 
+    %templates:wrap
+    function app:source-basic-data($node as node(), $model as map(*)) as map(*) {
+        let $print-titles := function($doc as document-node(), $alt as xs:boolean) {
+            for $title in ($doc//mei:meiHead//mei:manifestation[1]//mei:title | $doc//tei:teiHeader/tei:fileDesc/tei:titleStmt/tei:title[not(@level='s')][exists(@type='alt') = $alt])
+            let $titleLang := $title/@xml:lang => string() 
+            let $subTitle := if($titleLang)
+                             then(($title/following-sibling::mei:titlePart[@type='sub'][string(@xml:lang) = $titleLang])[1])
+                             else(($title/following-sibling::mei:titlePart[@type='sub'])[1])
+            return <span xmlns="http://www.w3.org/1999/xhtml">{
+                string-join((
+                    wega-util:transform($title, doc(concat($config:xsl-collection-path, '/sources.xsl')), config:get-xsl-params(())),
+                    wega-util:transform($subTitle, doc(concat($config:xsl-collection-path, '/sources.xsl')), config:get-xsl-params(()))
+                    ),
+                    '. '
+                ),
+                if($titleLang) then ' (' || $titleLang || ')'
+                else ()
+            }</span>
+        }
+        let $print-authors := function($doc as document-node(), $alt as xs:boolean) {
+            for $author in ($doc//tei:sourceDesc/tei:biblStruct//tei:author)
+            return <span xmlns="http://www.w3.org/1999/xhtml">{
+                    wega-util:transform($author, doc(concat($config:xsl-collection-path, '/sources.xsl')), config:get-xsl-params(()))
+            }</span>
+        }
+        let $annotations := function($doc as document-node()) {
+            for $note in ($doc//tei:notesStmt/tei:note|$doc//mei:notesStmt/mei:annot)
+            return <span xmlns="http://www.w3.org/1999/xhtml">{wega-util:transform($note, doc(concat($config:xsl-collection-path, '/sources.xsl')), config:get-xsl-params(()))}</span>
+        }
+        let $physLoc := function($doc as document-node()) {
+            for $repository in ($doc//mei:physLoc[not(ancestor::mei:componentList)]/mei:repository)
+            return <span xmlns="http://www.w3.org/1999/xhtml">{wega-util:transform($repository, doc(concat($config:xsl-collection-path, '/sources.xsl')), config:get-xsl-params(()))}</span>
+        }
+        let $shelfmark := function($doc as document-node()) {
+            let $ident := $doc//mei:physLoc[not(ancestor::mei:componentList)]/mei:repository/mei:identifier
+            return <span xmlns="http://www.w3.org/1999/xhtml">{wega-util:transform($ident, doc(concat($config:xsl-collection-path, '/sources.xsl')), config:get-xsl-params(()))}</span>
+        }
+        let $sourceType := if($model?doc//mei:manifestation[not(parent::mei:componentList)][not(.//mei:physMedium)][not(.//mei:classification)])
+                           then('unknown')
+                           else(($model?doc//(mei:physDesc[not(ancestor::mei:componentList)]//mei:physMedium[1]/mei:term | mei:classification//mei:term[@type='source_type'] | tei:biblStruct)[1])[1])
+        let $relators := query:relators($model?doc)[(self::mei:*|self::tei:*)/@role[not(. = ('edt'))] or self::tei:author or (self::mei:persName|self::mei:corpName)[@role][parent::mei:contributor]]
+        let $relatorsGrouped := for $each in functx:distinct-deep($relators)
+                                    let $role := $each/@role/string()
+                                    group by $role
+                                    return
+                                        <relators role="{$role}">
+                                            {$each}
+                                        </relators>
+        let $relatedWorks := function($doc as document-node(), $linking as xs:boolean) {
+            for $work in $doc//mei:workList/mei:work
+                for $identifier in $work/mei:identifier
+                    let $ident := if($identifier[@auth='hwv' and @codedval]) then('HWV ' || $identifier/@codedval/string()) else($identifier/text())
+                    let $title := $work/mei:title/text()
+                    return
+                        <span xmlns="http://www.w3.org/1999/xhtml">{$ident || (if(exists($title)) then(' (' || $title || ')') else())}</span>
+        }
+        let $isPartOf := function($doc as document-node(), $linking as xs:boolean) {
+            let $key := $model?doc//mei:relation[@rel="isPartOf"]/@codedval
+            let $title := if($key) then(crud:doc($key/string())//(mei:workList|mei:manifestationList)/(mei:work|mei:manifestation)/mei:title/mei:titlePart[@type="main"]/text()) else()
+            return
+                <a href="/{$key}.html" xmlns="http://www.w3.org/1999/xhtml">{$title}</a>
+        }
+        let $hasParts := function($doc as document-node(), $linking as xs:boolean) {
+            let $files := crud:data-collection('works')[.//mei:relation[@rel="isPartOf"][@codedval = $doc/mei:mei/@xml:id]]
+            let $titles := for $file in $files/mei:mei
+                            let $id := $file/@xml:id
+                            let $title := $file//(mei:workList|mei:manifestationList)/(mei:work|mei:manifestation)[1]/mei:title//text() => string-join('') => normalize-space()
+                            return
+                                <a href="/{$id}.html" xmlns="http://www.w3.org/1999/xhtml">{$title}</a>
+            return
+                $titles
+        }
+        let $hasComponents := function($doc as document-node(), $linking as xs:boolean) {
+            for $component in $model?doc//mei:manifestation/mei:componentList/mei:manifestation
+            let $title := $component/mei:title//text() => string-join(' ') => normalize-space()
+            let $repository := $component//mei:physLoc/mei:repository[@auth='rism']
+            let $siglum := $repository/@codedval/string()
+            let $shelfmark := $repository/mei:identifier[@type='shelfmark']/text() => normalize-space()
+            return
+                <li xmlns="http://www.w3.org/1999/xhtml">{string-join(($siglum,$shelfmark),' ') || (if($title) then(', ' || $title) else())}</li>
+        }
+        
+        return
+        map {
+            'ids' : $model?doc//mei:altId[not(@type=('gnd', 'wikidata', 'dracor.einakter','rism'))],
+            'relatorGrps' : wega-util:ordering-relators($relatorsGrouped),
+            'sourceType' : lang:get-language-string(concat('sourceType.', lower-case($sourceType)), config:guess-language(())),
+            'titles' : $print-titles($model?doc, false()),
+            'authors' : $print-authors($model?doc, false()),
+            'annotations' : $annotations($model?doc),
+            'physLoc' : $physLoc($model?doc),
+            'shelfmark' : $shelfmark($model?doc),
+            'relatedWorks' : $relatedWorks($model?doc, true()),
+            'isPartOf' : $isPartOf($model?doc, true()),
+            'hasParts' : $hasParts($model?doc, true()),
+            'hasComponents' : $hasComponents($model?doc, true())
+        }
+};
+
+declare 
+    %templates:wrap
+    function app:source-details($node as node(), $model as map(*)) as map(*) {
+        map {
+            'sources' : core:getOrCreateColl('sources', $model('docID'), true()),
+            'creation' : wega-util:transform(
+                ($model?doc//mei:creation[not(parent::mei:expression)], $model?doc//mei:author[@type="textualSource"]), 
+                doc(concat($config:xsl-collection-path, '/sources.xsl')), 
+                config:get-xsl-params( map {'dbPath' : document-uri($model?doc), 'docID' : $model?docID })
+                ), 
+            'dedicatees' : $model?doc//mei:fileDesc/mei:titleStmt/mei:respStmt/mei:persName[@role='dte'],
+            'events' : wega-util:transform(
+                ($model?doc//mei:eventList, $model?doc//tei:listEvent), 
+                doc(concat($config:xsl-collection-path, '/sources.xsl')), 
+                config:get-xsl-params( map {'dbPath' : document-uri($model?doc), 'docID' : $model?docID })
+                ), 
+            'castList': wega-util:transform(
+                $model?doc//mei:perfMedium/mei:castList,
+                doc(concat($config:xsl-collection-path, '/sources.xsl')), 
+                config:get-xsl-params( map {'dbPath' : document-uri($model?doc), 'docID' : $model?docID })
+                ),
+            'perfResList': hha-util:display-perfMedium(
+                $model?doc//mei:perfMedium,
+                $model('lang'),
+                'full'
+                ),
+            'notesStmt': wega-util:transform(
+                $model?doc//mei:notesStmt,
+                doc(concat($config:xsl-collection-path, '/sources.xsl')), 
+                config:get-xsl-params( map {'dbPath' : document-uri($model?doc), 'docID' : $model?docID })
+                ), 
+            'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'gnd' : query:get-gnd($model('doc')),
+            'rism' : query:get-rism($model('doc')),
+            'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml')
+        }
+};
+
+
+(:
+ : ****************************
+ : Biblio pages
+ : ****************************
+:)
+
+declare 
+    %templates:wrap
+    function app:biblio-basic-data($node as node(), $model as map(*)) as map(*) {
+        let $lang := config:guess-language(())
+        let $biblioType := $model?doc//tei:biblStruct/@type/data()
+        let $biblioTypeLabel := if($biblioType) then(lang:get-language-string($biblioType, $lang)) else()
+        let $print-authors := function($doc as document-node(), $alt as xs:boolean) {
+            for $author in ($doc//tei:biblStruct/node()[1]/tei:author)
+            return <span xmlns="http://www.w3.org/1999/xhtml">{
+                    wega-util:transform($author, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))
+            }</span>
+        }
+        let $print-editors := function($doc as document-node(), $alt as xs:boolean) {
+            for $editor in ($doc//tei:biblStruct/node()[1]/tei:editor)
+            return <span xmlns="http://www.w3.org/1999/xhtml">{
+                    wega-util:transform($editor, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))
+            }</span>
+        }
+        let $annotations := function($doc as document-node()) {
+            for $note in ($doc//tei:notesStmt/tei:note|$doc//mei:notesStmt/mei:annot)
+            return <span xmlns="http://www.w3.org/1999/xhtml">{wega-util:transform($note, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))}</span>
+        }
+        let $publication := function($doc as document-node()) {
+            let $dateFormat := function($lang as xs:string) { 
+                if($biblioType = 'journal')
+                then('[Y]')
+                else(if ($lang = 'de') then '[D]. [MNn] [Y]'
+                else '[MNn] [D], [Y]')
+            }
+            return
+                for $pubDate in ($doc//tei:biblStruct/tei:*/tei:imprint/tei:date)
+                    return <span xmlns="http://www.w3.org/1999/xhtml">{date:printDate($pubDate, $lang, lang:get-language-string#3, $dateFormat) => replace('vom ','') => replace('from ','') => replace(' bis ','–') => replace(' to ','–') => replace('unbekannt','') => replace('unknown','')}</span>
+        }
+        let $pubPlace := function($doc as document-node(), $alt as xs:boolean) {
+            for $pubPlace in ($doc//tei:biblStruct/tei:*/tei:imprint/tei:pubPlace)
+            return
+                <span xmlns="http://www.w3.org/1999/xhtml">
+                    {if($pubPlace/@key)
+                     then(<a href="/{$pubPlace/@key}.html" xmlns="http://www.w3.org/1999/xhtml">{$pubPlace/text()}</a>)
+                     else($pubPlace/text())}
+                </span>
+        }
+        let $publisher := function($doc as document-node(), $alt as xs:boolean) {
+            for $segment in ($doc//tei:biblStruct/tei:*/tei:imprint/tei:publisher[not(.='')])
+            return <span xmlns="http://www.w3.org/1999/xhtml">{
+                    wega-util:transform($segment, doc(concat($config:xsl-collection-path, '/works.xsl')), config:get-xsl-params(()))
+            }</span>
+        }
+        let $relators := query:relators($model?doc)[self::tei:*/@role[not(. = ('edt'))] or self::tei:author or self::tei:editor]
+        let $relatorsGrouped := for $each in functx:distinct-deep($relators)
+                                    let $role := $each/@role/string()
+                                    group by $role
+                                    return
+                                        <relators role="{$role}">
+                                            {$each}
+                                        </relators>
+        let $constituents := function($doc as document-node(), $linking as xs:boolean) {
+            for $analytic in $model?doc//tei:biblStruct/tei:analytic[./text() !='']
+                let $key := $analytic/tei:ref/@target
+                let $title := if($key) then(crud:doc($key/string())//*:title[1]/text()) else()
+                let $idnoHWV := $analytic/tei:ref/text()
+                return
+                    <li xmlns="http://www.w3.org/1999/xhtml"><a href="/{$key}.html">{$idnoHWV || (if($title) then(', ') else())}<i>{wega-util:string-shorten-if-longer($title, 25)}</i></a></li>
+        }
+        let $isPartOf := function($doc as document-node(), $linking as xs:boolean) {
+            let $key := $model?doc//tei:biblStruct/tei:monogr/@sameAs
+            let $title := if($key) then(crud:doc($key/string())//tei:title[1]/text()) else()
+            return
+                <a href="/{$key}.html" xmlns="http://www.w3.org/1999/xhtml">{$title}{bibl:biblScope($model?doc//tei:biblStruct/tei:monogr, $lang)}</a>
+        }
+        let $hasParts := function($doc as document-node(), $linking as xs:boolean) {
+            let $files := (crud:data-collection('biblio'), crud:data-collection('works'))[.//tei:monogr[@sameAs = $doc//tei:biblStruct/@xml:id]]
+            let $items := for $file in ($files//tei:sourceDesc/tei:biblStruct)
+                            let $id := if($file/@xml:id) then($file/@xml:id) else($file/ancestor::tei:TEI/@xml:id)
+                            let $title := if($file//tei:title[1]/text()) then($file//tei:title[1]/text()) else(($file/ancestor::tei:*//tei:title[not(@level='s')])[1])
+                            let $author := ($file//tei:author)[1]
+                            let $editor := ($file//tei:editor)[1]
+                            let $type := $file/@type
+                            let $year := if($file//tei:date/@when) then($file//tei:date/@when)
+                                         else if($file//tei:biblscope[@unit='jg']) then($file//tei:biblscope[@unit='jg'])
+                                         else if($file//tei:biblscope[@unit='nr']) then($file//tei:biblscope[@unit='nr'])
+                                         else()
+                            order by $year
+                            return
+                                <li xmlns="http://www.w3.org/1999/xhtml" year="{$year}"><a href="/{$id}.html">{string-join(($author,$title),': '), if($type) then(' (' || lang:get-language-string($type, $lang) || ')') else()}</a></li>
+            
+            
+            return
+                <xhtml:ol class="media">
+					{for $item in $items
+					    let $year := $item/@year
+					    group by $year
+					    order by $year
+					    return
+					        <li><strong>{$item/@year/substring(.,1,4)}</strong>
+        						<ol>
+        							{$item}
+        						</ol>
+    						</li>}
+				</xhtml:ol>
+        }
+        
+        return
+        map {
+            'ids' : $model?doc//tei:biblStruct,
+            'relatorGrps' : wega-util:ordering-relators($relatorsGrouped),
+            'biblioType' : $biblioType,
+            'biblioTypeLabel' : $biblioTypeLabel,
+            'authors' : $print-authors($model?doc, false()),
+            'editors' : $print-editors($model?doc, false()),
+            'annotations' : $annotations($model?doc),
+            'publication' : $publication($model?doc),
+            'publisher' : $publisher($model?doc, true()),
+            'pubPlace' : $pubPlace($model?doc, true()),
+            'constituents' : $constituents($model?doc, true()),
+            'isPartOf' : $isPartOf($model?doc, true()),
+            'hasParts' : $hasParts($model?doc, true())
+        }
+};
+
+declare 
+    %templates:wrap
+    function app:biblio-details($node as node(), $model as map(*)) as map(*) {
+        map {
+            'backlinks' : core:getOrCreateColl('backlinks', $model('docID'), true()),
+            'gnd' : query:get-gnd($model('doc')),
+            'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml')
+        }
+};
+
+(:
+ : ****************************
  : Person pages
  : ****************************
 :)
@@ -1236,6 +1518,105 @@ declare
                 'variantNamesForTheWork' : $dnbContent//gndo:variantNameForTheWork ! str:normalize-space(.),
                 'subjectHeadings' : $subjectHeadings
             }
+};
+
+declare 
+    %templates:wrap
+    %templates:default("lang", "en")
+    function app:rism($node as node(), $model as map(*), $lang as xs:string) as map(*) {
+        let $rism := query:get-rism($model('doc'))
+        let $response := er:grabExternalResource('rism', $rism, ())
+        let $rismContent :=
+            try { parse-json(util:binary-to-string(xs:base64Binary(normalize-space($response//er:body)))) }
+            catch * {
+                wega-util:log-to-file('warn', 'app:rism(): failed to parse RISM response for ' || $rism || ' ;; ' || string-join(($err:code, $err:description), ' ;; ')),
+                map {}
+            }
+        let $contents := app:rism-json-section($rismContent, 'contents', $lang)
+        let $materialGroups := app:rism-json-section($rismContent, 'materialGroups', $lang)
+        let $exemplars := app:rism-json-exemplars($rismContent?exemplars, $lang)
+        let $sourceItems := app:rism-json-source-items($rismContent?sourceItems, $lang)
+        return
+            map {
+                'docType' : config:get-doctype-by-id($model?docID),
+                'lang' : $lang,
+                'rismName' : app:rism-json-select($rismContent?label, $lang),
+                'rismURL' : config:get-option('rism') || $rism,
+                'titleAndContentSectionLabel' : $contents?sectionLabel,
+                'titleAndContentSummary' : $contents?summary,
+                'materialGroupsSectionLabel' : $materialGroups?sectionLabel,
+                'materialGroupsSummary' : $materialGroups?summary,
+                'exemplarsSectionLabel' : $exemplars?sectionLabel,
+                'exemplarsItems' : $exemplars?items,
+                'sourceItemsSectionLabel' : $sourceItems?sectionLabel,
+                'sourceItemsTotal' : $sourceItems?total,
+                'sourceItems' : $sourceItems?items
+            }
+};
+
+declare %private function app:rism-json-section($rismContent as map(*), $sectionName as xs:string, $lang as xs:string) as map(*) {
+    let $section := map:get($rismContent, $sectionName)
+    let $entries :=
+        if ($sectionName eq 'materialGroups') then $section?items?*?summary?*
+        else $section?summary?*
+    return
+        map {
+            'sectionLabel' : app:rism-json-select($section?sectionLabel, $lang),
+            'summary' : app:rism-json-summary($entries, $lang)
+        }
+};
+
+declare %private function app:rism-json-exemplars($section as map(*)?, $lang as xs:string) as map(*) {
+    map {
+        'sectionLabel' : app:rism-json-select($section?sectionLabel, $lang),
+        'items' :
+            for $item in $section?items?*
+            let $heldBy := app:rism-json-select($item?heldBy?label, $lang)
+            let $summary := app:rism-json-summary($item?summary?*, $lang)
+            return string-join(($heldBy, $summary), ', ')
+    }
+};
+
+declare %private function app:rism-json-source-items($section as map(*)?, $lang as xs:string) as map(*) {
+    map {
+        'sectionLabel' : app:rism-json-select($section?sectionLabel, $lang),
+        'total' : $section?totalItems,
+        'items' :
+            for $item in $section?items?*
+            return string-join((
+                app:rism-json-select($item?label, $lang),
+                app:rism-json-summary($item?summary?*, $lang) => string-join('; ')
+            ), ': ')
+    }
+};
+
+declare %private function app:rism-json-summary($entries as map(*)*, $lang as xs:string) as xs:string* {
+    for $entry in $entries
+    let $label := app:rism-json-select($entry?label, $lang)
+    let $value := app:rism-json-select($entry?value, $lang)
+    where exists($label) or exists($value)
+    return string-join(($label, $value), ': ')
+};
+
+declare %private function app:rism-json-select($value as item()*, $lang as xs:string) as xs:string? {
+    let $items :=
+        if ($value instance of array(*)) then $value?*
+        else ($value)
+    let $selected :=
+        for $item in $items
+        return
+            if ($item instance of map(*)) then
+                let $localized := (map:get($item, $lang), map:get($item, 'none'))[1]
+                return
+                    if ($localized instance of array(*)) then
+                        string-join($localized?* ! string(.), '; ')
+                    else
+                        string-join($localized ! string(.), '; ')
+            else
+                string($item)
+    return
+        if (exists($selected)) then ($selected)[1]
+        else ()
 };
 
 (:~

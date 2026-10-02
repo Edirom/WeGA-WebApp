@@ -40,7 +40,7 @@ import module namespace wega-util-shared="http://xquery.weber-gesamtausgabe.de/m
  : @param $lang the language variable (de|en). If no language is specified, the default (German) resource is grabbed and served
  : @return response element
  :)
-declare function er:grabExternalResource($resource as xs:string, $id as xs:string, $lang as xs:string?) as element(er:response)? {
+declare function er:grabExternalResource($resource as xs:string, $id as xs:string, $lang as xs:string?) {
     (: Prevent the grabbing of external resources when a web crawler comes around … :)
     let $botPresent := er:bot-present()
     let $url := 
@@ -53,11 +53,14 @@ declare function er:grabExternalResource($resource as xs:string, $id as xs:strin
         case 'geonames' return concat('https://sws.geonames.org/', $id, '/about.rdf') (: $id is actually the geonames ID :)
         case 'dbpedia' return concat('https://www.wikidata.org/entity/', $id, '.rdf') (: $id is actually the dbpedia(wikidata?) ID :)
         case 'deutsche-biographie' return 'https://www.deutsche-biographie.de/gnd' || $id || '.html'
+        case 'rism' return 'https://rism.online/sources/' || $id
         default return config:get-option($resource) || $id
     let $fileName := string-join(($id, $lang, 'xml'), '.')
     let $fullFilePath := str:join-path-elements(($config:tmp-collection-path, $resource, $fileName))
     return
         if($botPresent or not($url) or not($url castable as xs:anyURI)) then ()
+        (: RISM only serves MARCXML/JSON-LD via content negotiation, not via the default Accept header :)
+        else if($resource eq 'rism') then er:cached-external-request(xs:anyURI($url), $fullFilePath, 'application/ld+json')
         else er:cached-external-request(xs:anyURI($url), $fullFilePath)
 };
 
@@ -151,7 +154,22 @@ declare function er:resolve-rdf-resource($elem as element()) as element(er:respo
  : @return element wega:externalResource, a wrapper around er:response
  :)
 declare function er:http-get($url as xs:anyURI) as element(wega:externalResource) {
-    let $req := <http:request href="{$url}" method="get" timeout="3"><http:header name="Connection" value="close"/><http:header name="User-Agent" value="WeGA-WebApp/{config:expath-descriptor()/@version => string()}"/></http:request>
+    er:http-get($url, ())
+};
+
+(:~
+ : Same as `er:http-get#1` but allows passing an `Accept` HTTP request header.
+ :
+ : @param $url the URL as xs:anyURI
+ : @param $accept the media type to request
+ : @return element wega:externalResource, a wrapper around er:response
+ :)
+declare function er:http-get($url as xs:anyURI, $accept as xs:string?) as element(wega:externalResource) {
+    let $req := <http:request href="{$url}" method="get" timeout="3">
+        <http:header name="Connection" value="close"/>
+        <http:header name="User-Agent" value="WeGA-WebApp/{config:expath-descriptor()/@version => string()}"/>
+        {if($accept) then <http:header name="Accept" value="{$accept}"/> else ()}
+    </http:request>
     let $response := 
         try { http:send-request($req) }
         catch * {wega-util:log-to-file(if(contains($err:description, 'Read timed out')) then 'info' else 'warn', string-join(('er:http-get', $err:code, $err:description, 'URL: ' || $url), ' ;; '))}
@@ -206,9 +224,27 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
 };
 
 (:~
+ : Make a (locally) cached request to an external URI, sending an `Accept` header for content negotiation.
+ : This is the 3-arity version, using defaults for $lease and $onFailureFunc
+ :
+ : @param $uri the external URI to fetch
+ : @param $localFilepath the filepath to store the cached document
+ : @param $accept the media type to request
+ : @return a er:response element with the response stored within er:body if successful, the empty sequence otherwise
+ :)
+declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $accept as xs:string?) as element(er:response)? {
+    let $lease := function($currentDateTimeOfFile as xs:dateTime?) as xs:boolean { wega-util:check-if-update-necessary($currentDateTimeOfFile, ()) }
+    let $onFailureFunc := function($errCode, $errDesc) {
+            wega-util:log-to-file('warn', string-join(($errCode, $errDesc), ' ;; '))
+        }
+    return
+        er:cached-external-request($uri, $localFilepath, $lease, $onFailureFunc, $accept)
+};
+
+(:~
  : Make a (locally) cached request to an external URI.
- : This is the full fledged 4-arity version.
- : The function makes use of `er:http-get#1` to retrieve the external data
+ : This is the 4-arity version, without additional custom headers.
+ : The function makes use of `er:http-get#2` to retrieve the external data
  : but will only cache responses with status codes 2xx, or 4xx.
  :
  : @param $uri the external URI to fetch
@@ -218,9 +254,26 @@ declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as
  : @return a er:response element with the response stored within er:body if successful, the empty sequence otherwise
  :)
 declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*) as element(er:response)? {
-    let $http-get := function($url as xs:anyURI) as element(wega:externalResource)? {
-        (: locally modify `er:http-get#1` to not cache failed requests (e.g. timeouts) :)
-        er:http-get($url)//er:response[matches(@statusCode, '^[24]\d+')]/parent::wega:externalResource
+    er:cached-external-request($uri, $localFilepath, $lease, $onFailureFunc, ())
+};
+
+(:~
+ : Make a (locally) cached request to an external URI, sending an `Accept` header for content negotiation.
+ : This is the full fledged 5-arity version.
+ : The function makes use of `er:http-get#2` to retrieve the external data
+ : but will only cache responses with status codes 2xx, or 4xx.
+ :
+ : @param $uri the external URI to fetch
+ : @param $localFilepath the filepath to store the cached document
+ : @param $lease a function to determine whether the cache should be updated. Must return a boolean value
+ : @param $onFailureFunc an on-error function that's passed on to the underlying mycache:doc() function 
+ : @param $accept the media type to request
+ : @return a er:response element with the response stored within er:body if successful, the empty sequence otherwise
+ :)
+declare function er:cached-external-request($uri as xs:anyURI, $localFilepath as xs:string, $lease as function() as xs:boolean, $onFailureFunc as function() as item()*, $accept as xs:string?) {
+        let $http-get := function($url as xs:anyURI) {
+        (: locally modify `er:http-get#2` to not cache failed requests (e.g. timeouts) :)
+        er:http-get($url, $accept)//er:response[matches(@statusCode, '^[24]\d+')]/parent::wega:externalResource
     }
     return
         try {
