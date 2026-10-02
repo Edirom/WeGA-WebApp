@@ -914,6 +914,12 @@
             </xsl:otherwise>
          </xsl:choose>
       </xsl:variable>
+      <xsl:variable name="handLabels" as="xs:string*" select="
+         if(wega:isSource($docID)
+            and (some $node in $documentaryTextConstitutionNodes satisfies $node is .))
+         then wega:responsible-hand-labels(.)
+         else ()
+      "/>
       <xsl:element name="div">
          <xsl:attribute name="class">apparatusEntry col-11</xsl:attribute>
          <xsl:attribute name="id" select="$id"/>
@@ -934,6 +940,14 @@
             <xsl:if test="matches(normalize-space($explanation), concat('(\w|\)|\])', $quotation-marks, '$')) and not(some $node in $textConstitutionNodes satisfies $node is .)">
                <xsl:text>.</xsl:text>
             </xsl:if>
+         </xsl:if>
+         <xsl:if test="$handLabels">
+            <xsl:element name="span">
+               <xsl:attribute name="class">handResponsibility</xsl:attribute>
+               <xsl:value-of select="wega:getLanguageString(if(count($handLabels) = 1) then 'handLabel' else 'hands', $lang)"/>
+               <xsl:text>: </xsl:text>
+               <xsl:value-of select="string-join($handLabels, '; ')"/>
+            </xsl:element>
          </xsl:if>
       </xsl:element>
    </xsl:template>
@@ -1010,6 +1024,27 @@
          wega:responsibility-keys($node)[starts-with(., 'hand:')] ! substring-after(., 'hand:')
       "/>
       <xsl:sequence select="$doc//tei:handNotes/tei:handNote[@scope][@xml:id = $handIDs]"/>
+   </xsl:function>
+
+   <xsl:function name="wega:responsible-hand-labels" as="xs:string*">
+      <xsl:param name="node" as="element()"/>
+      <xsl:variable name="responsibilityKeys" as="xs:string*" select="wega:responsibility-keys($node)"/>
+      <xsl:variable name="labels" as="xs:string*">
+         <xsl:for-each select="wega:responsible-hand-notes($node)">
+            <xsl:variable name="label" as="xs:string" select="normalize-space(string-join(.//text(), ' '))"/>
+            <xsl:if test="$label">
+               <xsl:sequence select="$label"/>
+            </xsl:if>
+         </xsl:for-each>
+         <xsl:if test="$responsibilityKeys = 'author'">
+            <xsl:variable name="authorLabel" as="xs:string"
+               select="normalize-space(string-join(($doc//tei:fileDesc/tei:titleStmt/tei:author)[1]//text(), ' '))"/>
+            <xsl:if test="$authorLabel">
+               <xsl:sequence select="$authorLabel"/>
+            </xsl:if>
+         </xsl:if>
+      </xsl:variable>
+      <xsl:sequence select="$labels"/>
    </xsl:function>
    
    <xsl:function name="wega:createID">
