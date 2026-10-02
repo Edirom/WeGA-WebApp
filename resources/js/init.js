@@ -290,6 +290,11 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
     }
 });
 
+/* Show the document TOC only while the transcription tab is active. */
+$(document).on('show.bs.tab', 'a[data-toggle="tab"]', function () {
+    $('.doc-toc-side').toggleClass('d-none', $(this).attr('href') !== '#transcription');
+});
+
 // remove popovers when clicking somewhere
 $('body').on('click touchstart', function (e) {
     $('[data-original-title]').each(function () {
