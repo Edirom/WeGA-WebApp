@@ -9,9 +9,7 @@
 
    <xsl:variable name="doc" select="wega:doc($docID)"/>
    <xsl:variable name="textConstitutionNodes" as="node()*" select="
-      .//tei:subst[not(wega:is-split-substitution(.))]
-      | .//tei:subst[wega:is-split-substitution(.)]/tei:add
-      | .//tei:subst[wega:is-split-substitution(.)]/tei:del
+      .//tei:subst
       | .//tei:add[not(parent::tei:subst)]
       | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)]
       | .//tei:sic[not(parent::tei:choice)]
@@ -364,37 +362,16 @@
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
+         <!-- Need to take care of whitespace when there are multiple <add>. -->
          <xsl:choose>
-            <xsl:when test="wega:is-split-substitution(.)">
-               <xsl:for-each select="tei:del">
-                  <xsl:element name="span">
-                     <xsl:apply-templates select="@xml:id"/>
-                     <xsl:attribute name="class">tei_del</xsl:attribute>
-                     <xsl:call-template name="popover"/>
-                  </xsl:element>
-               </xsl:for-each>
-               <xsl:choose>
-                  <xsl:when test="count(tei:add) gt 1">
-                     <xsl:apply-templates select="tei:add | text()"/>
-                  </xsl:when>
-                  <xsl:otherwise>
-                     <xsl:apply-templates select="tei:add"/>
-                  </xsl:otherwise>
-               </xsl:choose>
+            <xsl:when test="count(tei:add) gt 1">
+               <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
             </xsl:when>
             <xsl:otherwise>
-               <!-- Need to take care of whitespace when there are multiple <add>. -->
-               <xsl:choose>
-                  <xsl:when test="count(tei:add) gt 1">
-                     <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
-                  </xsl:when>
-                  <xsl:otherwise>
-                     <xsl:apply-templates select="tei:add" mode="lemma"/>
-                  </xsl:otherwise>
-               </xsl:choose>
-               <xsl:call-template name="popover"/>
+               <xsl:apply-templates select="tei:add" mode="lemma"/>
             </xsl:otherwise>
          </xsl:choose>
+         <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
 
@@ -555,7 +532,7 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:add[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]">
+   <xsl:template match="tei:add[not(parent::tei:subst)]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class">
@@ -580,7 +557,7 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:add[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]" mode="apparatus">
+   <xsl:template match="tei:add[not(parent::tei:subst)]" mode="apparatus">
       <xsl:variable name="addedText">
          <xsl:apply-templates mode="lemma"/>
       </xsl:variable>
@@ -784,7 +761,7 @@
       </xsl:element>
    </xsl:template>
 
-   <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]">
+   <xsl:template match="tei:sic[not(parent::tei:choice)] | tei:del[not(parent::tei:subst)]">
       <xsl:element name="span">
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
@@ -837,7 +814,7 @@
       </xsl:call-template>
    </xsl:template>
 
-   <xsl:template match="tei:del[not(parent::tei:subst) or parent::tei:subst[wega:is-split-substitution(.)]]" mode="apparatus">
+   <xsl:template match="tei:del[not(parent::tei:subst)]" mode="apparatus">
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="title" select="wega:getLanguageString('popoverTitle.del',$lang)"/>
          <xsl:with-param name="lemma">
@@ -988,34 +965,11 @@
       "/>
    </xsl:function>
 
-   <xsl:function name="wega:is-split-substitution" as="xs:boolean">
-      <xsl:param name="subst" as="element(tei:subst)"/>
-      <xsl:variable name="delHands" as="xs:string*" select="
-         distinct-values($subst/tei:del ! wega:inherited-responsibility-keys(.)) => sort()
-      "/>
-      <xsl:variable name="addHands" as="xs:string*" select="
-         distinct-values($subst/tei:add ! wega:inherited-responsibility-keys(.)) => sort()
-      "/>
-      <xsl:sequence select="
-         wega:isSource($docID)
-         and exists($subst/tei:del)
-         and exists($subst/tei:add)
-         and not(deep-equal($delHands, $addHands))
-      "/>
-   </xsl:function>
-
    <xsl:function name="wega:responsibility-keys" as="xs:string*">
       <xsl:param name="node" as="element()"/>
-      <xsl:choose>
-         <xsl:when test="$node/self::tei:subst and not(wega:is-split-substitution($node))">
-            <xsl:sequence select="distinct-values(
-               $node/(tei:del | tei:add) ! wega:inherited-responsibility-keys(.)
-            )"/>
-         </xsl:when>
-         <xsl:otherwise>
-            <xsl:sequence select="wega:inherited-responsibility-keys($node)"/>
-         </xsl:otherwise>
-      </xsl:choose>
+      <!-- Resolve responsibility from the intervention itself. In particular, a subst does
+         not derive responsibility from @hand values on its add or del children. -->
+      <xsl:sequence select="wega:inherited-responsibility-keys($node)"/>
    </xsl:function>
 
    <xsl:function name="wega:responsible-hand-notes" as="element(tei:handNote)*">
