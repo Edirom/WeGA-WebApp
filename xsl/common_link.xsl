@@ -40,7 +40,7 @@
         <!--
             Need to distinguish between docTypes with support for single views and those with tooltips only 
         -->
-        <xsl:variable name="rs-types-with-link" as="xs:string+" select="('person', 'news', 'writing', 'letter', 'diaryDay', 'org', 'document', 'work')"/>
+        <xsl:variable name="rs-types-with-link" as="xs:string+" select="('person', 'news', 'writing', 'letter', 'diaryDay', 'org', 'document', 'work', 'source')"/>
         <xsl:choose>
             <xsl:when test="@key and (@type=$rs-types-with-link)">
                 <xsl:call-template name="createLink"/>
