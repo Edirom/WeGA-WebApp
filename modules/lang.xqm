@@ -111,7 +111,7 @@ declare
     function lang:translate($node as node(), $model as map(*), $wrap as xs:string) as item()* {
     let $translation := lang:get-language-string(normalize-space($node), $model('lang'))
     return
-        if($wrap = 'no') then $translation
+        if(not(wega-util-shared:semantic-boolean($wrap))) then $translation
         else
             element {node-name($node)} {
                 $node/@*,
