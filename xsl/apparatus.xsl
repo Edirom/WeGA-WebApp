@@ -51,7 +51,7 @@
             else ()
          "/>
          <xsl:variable name="fallbackAuthor" as="element(tei:author)?" select="
-            if($isSource and empty($handNotes))
+            if($isSource and empty($handNotes[@scope = ('sole', 'major')]))
             then ($doc//tei:fileDesc/tei:titleStmt/tei:author)[1]
             else ()
          "/>
