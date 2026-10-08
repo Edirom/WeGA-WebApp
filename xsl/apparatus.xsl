@@ -932,7 +932,7 @@
    <xsl:function name="wega:hand-reference-ids" as="xs:string*">
       <xsl:param name="node" as="element()"/>
       <xsl:variable name="handCarrier" as="element()?"
-         select="($node/ancestor-or-self::*[@hand])[last()]"/>
+         select="$node[@hand]"/>
       <xsl:variable name="handValues" as="xs:string*" select="$handCarrier/@hand/string()"/>
       <xsl:variable name="handIDs" as="xs:string*" select="
          for $value in $handValues
