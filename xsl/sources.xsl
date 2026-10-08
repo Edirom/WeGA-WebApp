@@ -79,11 +79,11 @@
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:variable>
-        <hr class="tei_pb-text" title="{$label}" data-content="{$label}">
+        <span class="tei_pb-text" title="{$label}" data-content="{$label}">
             <xsl:if test="@facs">
                 <xsl:attribute name="data-facs" select="substring(@facs, 2)"/>
             </xsl:if>
-        </hr>
+        </span>
     </xsl:template>
 
     <xsl:template match="tei:lg" priority="1">
