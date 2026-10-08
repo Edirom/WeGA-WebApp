@@ -123,7 +123,11 @@
         <xsl:text> </xsl:text>
     </xsl:template>
 
-    <xsl:template match="tei:note | tei:footNote | tei:app | tei:del" mode="source-toc-label" priority="3"/>
+    <xsl:template match="tei:note | tei:footNote | tei:del" mode="source-toc-label" priority="3"/>
+
+    <xsl:template match="tei:app" mode="source-toc-label" priority="3">
+        <xsl:apply-templates select="(tei:lem, tei:rdg)[1]/node()" mode="source-toc-label"/>
+    </xsl:template>
 
     <xsl:template match="tei:subst" mode="source-toc-label" priority="3">
         <xsl:apply-templates select="(tei:add, tei:del)[1]/node()" mode="source-toc-label"/>
