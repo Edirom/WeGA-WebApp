@@ -959,7 +959,7 @@
          then $explicitHandIDs ! concat('hand:', .)
          else if(count($mainHandNotes) = 1)
          then concat('hand:', $mainHandNotes/@xml:id)
-         else if(empty($doc//tei:handNotes/tei:handNote) and $doc//tei:fileDesc/tei:titleStmt/tei:author)
+         else if(empty($mainHandNotes) and $doc//tei:fileDesc/tei:titleStmt/tei:author)
          then 'author'
          else ()
       "/>
