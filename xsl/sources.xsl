@@ -134,7 +134,12 @@
     </xsl:template>
 
     <xsl:template match="tei:choice" mode="source-toc-label" priority="3">
-        <xsl:apply-templates select="(tei:corr, tei:reg, tei:expan, tei:orig, tei:sic, tei:abbr)[1]/node()" mode="source-toc-label"/>
+        <xsl:variable name="unclearOptions" as="element(tei:unclear)*">
+            <xsl:perform-sort select="tei:unclear">
+                <xsl:sort select="$sort-order[. = current()/string(@cert)]/@sort"/>
+            </xsl:perform-sort>
+        </xsl:variable>
+        <xsl:apply-templates select="(tei:corr, tei:reg, tei:expan, tei:orig, tei:sic, tei:abbr, $unclearOptions[1])[1]/node()" mode="source-toc-label"/>
     </xsl:template>
 
     <xsl:template match="*" mode="source-toc-label" priority="2">
