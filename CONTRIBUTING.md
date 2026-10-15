@@ -14,6 +14,9 @@ actually works today, distilled from the repository itself. Coding conventions a
   to each [release](https://github.com/Edirom/WeGA-WebApp/releases).
 - **Shared XQuery code** used by other Edirom apps lives in
   [WeGA-WebApp-lib](https://github.com/Edirom/WeGA-WebApp-lib), not here.
+- **User documentation** (installation, features, API) lives in [`docs/`](docs/) and is
+  published with GitHub Pages at https://edirom.github.io/WeGA-WebApp/. Edit the Markdown
+  there; no build step is needed.
 
 ## Branches
 
