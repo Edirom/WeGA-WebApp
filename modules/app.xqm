@@ -834,7 +834,9 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  : @return a html:span element with the constructed name
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element(xhtml:span) {
-    if(exists($persName/@key)) then 
+    if($persName/self::tei:rs) then 
+        app:create-span-for-entity-popover($persName, $lang)
+    else if(exists($persName/@key)) then 
         if ($order eq 'fs') then app:createDocLink(crud:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
         else if ($order eq 's') then app:createDocLink(crud:doc($persName/string(@key)), functx:substring-before-if-contains(query:title($persName/@key), ', '), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
         else app:createDocLink(crud:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
