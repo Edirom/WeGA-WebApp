@@ -788,8 +788,10 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 };
 
 (:~
- : Construct a name from a tei:persName, tei:orgName, or tei:name element wrapped in a <span> 
+ : Construct a name from a tei:persName, tei:orgName, tei:rs, or tei:name element wrapped in a <span>
  : If a @key is given on the element the regularized form will be returned, otherwise the content of the element.
+ : For tei:persName elements the order of forename and surname can be specified.
+ : For tei:rs elements it is assumed that a group of people is addressed, so always the literal content will be output.
  : If the element is empty than "unknown" is returned.
  : 
  : @author Peter Stadler
