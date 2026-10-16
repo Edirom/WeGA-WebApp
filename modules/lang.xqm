@@ -105,6 +105,8 @@ declare function lang:translate-language-string($string as xs:string, $sourceLan
  : Set $wrap to "no" to return only the translated text.
  :
  : @author Peter Stadler
+ : @param $node the node to translate
+ : @param $model the model containing the language information
  : @param $wrap whether to retain the template element around the translated text
 ~:)
 declare
@@ -127,6 +129,10 @@ declare
  : The language information must be given in the $model
  :
  : @author Steffen Astheimer
+ : @param $node the node to translate
+ : @param $model the model containing the language information
+ : @param $key the key of the value to translate
+ : @return the translated element
 ~:)
 declare function lang:translate-key($node as node(), $model as map(*), $key as xs:string) as element() {
     element {node-name($node)} {
