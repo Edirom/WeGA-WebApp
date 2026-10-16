@@ -89,6 +89,81 @@ declare function app:createDocLink($doc as document-node()?, $content as xs:stri
     else app:createDocLink($doc,$content, $lang, $attributes)
 };
 
+(:~
+ : Creates an xhtml:span element for entity references
+ : (e.g. tei:persName, tei:orgName, tei:rs, or tei:name) with popover preview
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @param $lang the language switch (en, de)
+ : @return an xhtml:span element with class and data-ref attributes for popover preview
+ :)
+declare function app:create-span-for-entity-popover($entity as element()?, $lang as xs:string) as element(xhtml:span) {
+    element xhtml:span {
+        if(exists(app:extract-keys($entity))) then (
+            attribute class {
+                app:preview-class($entity)
+            },
+            attribute data-ref {
+                app:preview-data-ref($entity, $lang)
+            })
+        else (
+            attribute class {
+                'noDataFound'
+            }
+        ),
+        if(not(functx:all-whitespace($entity))) then 
+            normalize-space($entity)
+        else
+            lang:get-language-string('unknown', $lang)
+    }
+};
+
+(:~
+ : Returns the HTML class value for entity references (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : Helper function for `app:create-span-for-entity-popover#2`
+ : Aligned with the XSLT function `wega:preview-class` from `/xsl/common_link.xsl`
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @return a string with the HTML class value for the entity reference
+ :)
+declare %private function app:preview-class($entity as element()?) as xs:string {
+    let $keys := app:extract-keys($entity)
+    let $class :=
+        if(count(distinct-values(for $key in $keys return substring($key, 1,3))) = 1)
+        then config:get-doctype-by-id($keys[1])
+        else 'mixed'
+    return
+        string-join(('preview', $class, $keys), ' ')
+}; 
+
+(:~
+ : Extracts the keys from an entity reference and returns the URLs for the entity references, separated by spaces
+ : Helper function for `app:create-span-for-entity-popover#2`
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @param $lang the language switch (en, de)
+ : @return a string with the URLs for the entity references, separated by spaces
+ :)
+declare %private function app:preview-data-ref($entity as element()?, $lang as xs:string) as xs:string {
+    let $keys := app:extract-keys($entity)
+    return
+        ($keys ! crud:doc(.) ! controller:create-url-for-doc(., $lang))
+        => string-join(' ')
+};
+
+(:~
+ : Extracts the keys from an entity reference.
+ : Potential fragment identifiers will be stripped.
+ : Helper function for `app:create-span-for-entity-popover#2`, `app:preview-data-ref#2`, and `app:preview-class#1`
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @return a sequence of keys
+ :)
+declare %private function app:extract-keys($entity as element()?) as xs:string* {
+    for $key in tokenize(($entity/@key, $entity/@codedval, $entity/@target/replace(., 'wega:', '')), '\s+')
+    return substring($key, 1, 7)
+};
+
 declare 
     %templates:wrap
     function app:documentFooter($node as node(), $model as map(*)) as map(*) {
