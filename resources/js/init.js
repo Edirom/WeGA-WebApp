@@ -255,11 +255,11 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
         apparatusLink = $(this).hasClass("apparatus-link"),
         ref = $(this).attr("data-href");
 
-    if (hasTab && apparatusLink) {
+    if (hasTab.length && apparatusLink) {
         // if clicked link is a link within the apparatus (marked with class .apparatus-link)
         e.preventDefault();
-        hasTab.one('shown.bs.tab', function () {
-            if (hash === 'transcription') {
+        if (hash === 'transcription') {
+            hasTab.one('shown.bs.tab', function () {
                 //wait for tab to be loaded
                 $(".hi-").removeClass("hi-");
                 //remove previous highlight
@@ -270,17 +270,30 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
                 $(ref).click();
                 $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-");
                 // attempt to highlight lemma in text, jump to position and open corresponding popover ...
-            } else if (hash === 'editorial') {
+            });
+        } else if (hash === 'editorial') {
+            hasTab.one('shown.bs.tab', function () {
+                const target = $(ref),
+                    containingCollapse = target.closest('.apparatusCollapse.collapse'),
+                    scrollToTarget = function () {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 400
+                        },
+                        500);
+                    };
+
                 $('.popover').popover('hide');
-                $('html, body').animate({
-                    scrollTop: $(ref).offset().top - 400
-                },
-                500);
-            }
-        });
-        // open tab
+                if (containingCollapse.length && !containingCollapse.hasClass('show')) {
+                    containingCollapse.one('shown.bs.collapse', scrollToTarget);
+                    containingCollapse.collapse('show');
+                } else if (target.length) {
+                    scrollToTarget();
+                }
+            });
+        }
+        // register the event handler before opening the tab
         hasTab.tab('show');
-    } else if (hasTab) {
+    } else if (hasTab.length) {
         hasTab.tab('show');
     }
     
