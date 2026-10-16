@@ -19,7 +19,7 @@ This web application is written in XQuery on top of an [eXist-db](http://exist-d
 
 ## Prerequisites
 
-A running [eXist-db](http://exist-db.org/), v5.2.0 or newer 
+A running [eXist-db](http://exist-db.org/), v5.3.1 or newer 
 
 
 ## Quick start guide
@@ -52,6 +52,11 @@ The
 ## Documentation
 
 (Sparse) Documentation can be found on the [Wiki](https://github.com/Edirom/WeGA-WebApp/wiki) as well as the [changelog](https://github.com/Edirom/WeGA-WebApp/wiki/Changelog).
+
+
+## Contributing
+
+Issues and pull requests are welcome. See [CONTRIBUTING.md](CONTRIBUTING.md) for the development workflow and [STYLEGUIDE.md](STYLEGUIDE.md) for coding conventions. [AGENTS.md](AGENTS.md) is the entry point for AI coding assistants.
 
 
 ## License
