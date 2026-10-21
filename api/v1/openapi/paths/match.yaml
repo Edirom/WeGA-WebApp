@@ -1,0 +1,83 @@
+post:
+  tags:
+    - Reconciliation
+  summary: Reconcile a batch of entities
+  description: Accepts a Reconciliation Service API 1.0-draft query batch.
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          required:
+            - queries
+          properties:
+            queries:
+              type: array
+              items:
+                type: object
+                required:
+                  - conditions
+                properties:
+                  type:
+                    type: string
+                  limit:
+                    type: integer
+                    minimum: 1
+                  conditions:
+                    type: array
+                    minItems: 1
+                    items:
+                      type: object
+                      required:
+                        - matchType
+                        - propertyValue
+                      properties:
+                        matchType:
+                          type: string
+                          enum:
+                            - name
+                            - id
+                        propertyValue:
+                          type: string
+  responses:
+    '200':
+      description: Reconciliation results in query order
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - results
+            properties:
+              results:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - candidates
+                  properties:
+                    candidates:
+                      type: array
+                      items:
+                        type: object
+                        required:
+                          - id
+                          - name
+                          - type
+                          - match
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          type:
+                            type: array
+                            items:
+                              type: object
+                          score:
+                            type: number
+                          match:
+                            type: boolean
+    default:
+      $ref: '../responses/unexpectedError.yaml'

@@ -18,6 +18,8 @@ tags:
     description: Access to facets for filtering result sets
   - name: Repositories
     description: Access to items within the WeGA digital edition by repository
+  - name: Reconciliation
+    description: Reconcile and suggest WeGA entities
 paths:
   /documents:
     $ref: "./openapi/paths/documents.yaml"
@@ -27,6 +29,10 @@ paths:
     $ref: "./openapi/paths/repositories-items.yaml"
   /search/entity:
     $ref: "./openapi/paths/search-entity.yaml"
+  /match:
+    $ref: "./openapi/paths/match.yaml"
+  /suggest/entity:
+    $ref: "./openapi/paths/suggest-entity.yaml"
   /documents/{docID}:
     $ref: "./openapi/paths/documents-docID.yaml"
   /documents/findByDate:

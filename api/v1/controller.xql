@@ -208,7 +208,14 @@ return (:(
     util:log-system-out($exist:resource)
     ):)
     if($exist:resource = ('openapi.json', 'swagger.json')) then response:set-header('Access-Control-Allow-Origin', '*')
-    else if($exist:path eq '/' or not($exist:path)) then controller:redirect-absolute('/index.html')
+    else if(request:get-method() eq 'OPTIONS') then (
+        response:set-header('Access-Control-Allow-Origin', '*'),
+        response:set-header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS'),
+        response:set-header('Access-Control-Allow-Headers', 'Content-Type, Accept'),
+        response:set-status-code(204)
+    )
+    else if($exist:path eq '/' or not($exist:path)) then
+        local:serialize-json(api:reconciliation-manifest(map:put($local:defaults, 'openapi:config', $local:openapi-config)))
     else if($exist:resource eq 'index.html') then controller:forward-html('api/v1/index.html', map:merge(($local:defaults, map {'lang' : 'en'} )))
     else if(contains($exist:path, '/resources/')) then 
         <dispatch xmlns="http://exist.sourceforge.net/NS/exist">

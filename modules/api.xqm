@@ -313,6 +313,197 @@ declare function api:search-entity($model as map(*)) as map(*) {
     )
 };
 
+declare function api:reconciliation-manifest($model as map(*)) as map(*) {
+    map {
+        'results': map {
+            'versions': array { '1.0-draft' },
+            'name': 'WeGA Reconciliation Service',
+            'defaultTypes': array {
+                map { 'id': '/person', 'name': 'Person' },
+                map { 'id': '/organization', 'name': 'Organization' },
+                map { 'id': '/place', 'name': 'Place' },
+                map { 'id': '/work', 'name': 'Work' }
+            },
+            'view': map {
+                'url': config:api-base($model?('openapi:config')) => substring-before('/api/') || '/{id}'
+            },
+            'suggest': map { 'entity': true() },
+            'standardizedScore': true()
+        }
+    }
+};
+
+declare function api:match($model as map(*)) as map(*) {
+    let $request := try { api:reconciliation-request() } catch * { () }
+    return
+        if(request:get-method() ne 'POST') then
+            map { 'code': 405, 'message': 'The match endpoint requires POST.' }
+        else if(not($request instance of map(*)) or not($request?queries instance of array(*))) then
+            map { 'code': 400, 'message': 'The request body must contain a queries array.' }
+        else
+            let $queries := $request?queries?*
+            let $invalid-query := some $query in $queries satisfies
+                if($query instance of map(*)) then
+                    not($query?conditions instance of array(*)) or
+                    array:size($query?conditions) eq 0 or
+                    (exists($query?type) and not($query?type castable as xs:string)) or
+                    (exists($query?limit) and not($query?limit castable as xs:positiveInteger))
+                else true()
+            let $invalid-condition :=
+                if($invalid-query) then false()
+                else some $condition in $queries?conditions?* satisfies
+                    if($condition instance of map(*)) then
+                        not($condition?matchType castable as xs:string) or
+                        empty(api:reconciliation-values($condition?propertyValue))
+                    else true()
+            return
+                if($invalid-query or $invalid-condition) then
+                    map { 'code': 400, 'message': 'Each query must contain at least one valid condition.' }
+                else
+                    let $unsupported-matchType := $queries?conditions?*[not(?matchType = ('name', 'id'))][1]?matchType
+                    return
+                if($unsupported-matchType) then
+                    map {
+                        'code': 422,
+                        'message': 'Unsupported matchType: ' || $unsupported-matchType,
+                        'fields': 'matchType'
+                    }
+                else
+                    map {
+                        'results': map {
+                            'results': array {
+                                for $query in $queries
+                                return map {
+                                    'candidates': array {
+                                        api:reconciliation-query-candidates($query, $model)
+                                    }
+                                }
+                            }
+                        }
+                    }
+};
+
+declare %private function api:reconciliation-request() as map(*) {
+    let $data := request:get-data()
+    return
+        typeswitch($data)
+            case map(*) return $data
+            case xs:string return parse-json($data)
+            case xs:base64Binary return parse-json(util:binary-to-string($data))
+            default return error($api:INVALID_PARAMETER, 'Unable to parse the reconciliation request body.')
+};
+
+declare %private function api:reconciliation-query-candidates(
+    $query as map(*),
+    $model as map(*)
+) as map(*)* {
+    let $docTypes := api:reconciliation-docTypes($query?type)
+    let $limit :=
+        if($query?limit castable as xs:positiveInteger)
+        then min((xs:integer($query?limit), $api:max-limit($model?('openapi:config'))))
+        else $api:max-limit($model?('openapi:config'))
+    let $entities :=
+        if($query?type and empty($docTypes)) then ()
+        else
+            for $condition in $query?conditions?*
+            return
+                if($condition?matchType = 'name') then
+                    for $value in api:reconciliation-values($condition?propertyValue)
+                    return
+                    let $search-results := api:search-entity(map {
+                        'q': $value,
+                        'docType': if(exists($docTypes)) then $docTypes else ('persons', 'orgs', 'places', 'works'),
+                        'limit': $limit,
+                        'openapi:config': $model?('openapi:config')
+                    })?results?*
+                    let $id-results :=
+                        try {
+                            for $doc in api:findByID($value)
+                            let $id := string($doc/*/@xml:id)
+                            let $docType := config:get-doctype-by-id($id)
+                            where empty($docTypes) or $docType = $docTypes
+                            return map:put(api:document-basics($doc, $id, $docType, $model), 'exact', true())
+                        } catch * { () }
+                    return ($search-results, $id-results)
+                else if($condition?matchType = 'id') then
+                    try {
+                        for $value in api:reconciliation-values($condition?propertyValue)
+                        for $doc in api:findByID($value)
+                        let $id := string($doc/*/@xml:id)
+                        let $docType := config:get-doctype-by-id($id)
+                        where empty($docTypes) or $docType = $docTypes
+                        return map:put(api:document-basics($doc, $id, $docType, $model), 'exact', true())
+                    } catch * { () }
+                else ()
+    let $candidates :=
+        for $entity in $entities
+        let $exact := $entity?exact = true() or (some $condition in $query?conditions?* satisfies
+            ($condition?matchType = 'id' and (some $value in api:reconciliation-values($condition?propertyValue) satisfies normalize-space($value) = $entity?docID)) or
+            ($condition?matchType = 'name' and (some $value in api:reconciliation-values($condition?propertyValue) satisfies lower-case(normalize-space($value)) = lower-case(normalize-space($entity?title)))))
+        return map {
+            'id': $entity?docID,
+            'name': $entity?title,
+            'type': array { api:reconciliation-type($entity?docType) },
+            'score': if($exact) then 100 else 50,
+            'match': $exact
+        }
+    for $candidate in $candidates
+    group by $id := $candidate?id
+    let $best := (for $match in $candidate order by $match?score descending return $match)[1]
+    order by $best?score descending, $best?name
+    return $best
+};
+
+declare %private function api:reconciliation-values($value as item()?) as xs:string* {
+    if($value instance of xs:string) then $value
+    else if($value instance of array(*)) then $value?*[. instance of xs:string]
+    else ()
+};
+
+declare %private function api:reconciliation-docTypes($type as xs:string?) as xs:string* {
+    switch($type)
+        case '/person' return 'persons'
+        case '/organization' return 'orgs'
+        case '/place' return 'places'
+        case '/work' return 'works'
+        default return ()
+};
+
+declare %private function api:reconciliation-type($docType as xs:string) as map(*) {
+    switch($docType)
+        case 'persons' return map { 'id': '/person', 'name': 'Person' }
+        case 'orgs' return map { 'id': '/organization', 'name': 'Organization' }
+        case 'places' return map { 'id': '/place', 'name': 'Place' }
+        case 'works' return map { 'id': '/work', 'name': 'Work' }
+        default return map { 'id': '/entity', 'name': 'Entity' }
+};
+
+declare function api:suggest-entity($model as map(*)) as map(*) {
+    let $entities :=
+        if(normalize-space($model?prefix)) then
+            api:search-entity(map {
+                'q': $model?prefix,
+                'docType': ('persons', 'orgs', 'places', 'works'),
+                'offset': $model?offset,
+                'limit': $model?limit,
+                'openapi:config': $model?('openapi:config')
+            })?results?*
+        else ()
+    return
+        map {
+            'results': map {
+                'result': array {
+                    for $entity in $entities
+                    return map {
+                        'id': $entity?docID,
+                        'name': $entity?title,
+                        'notable': array { api:reconciliation-type($entity?docType) }
+                    }
+                }
+            }
+        }
+};
+
 (:~
  :  Return all repositories with a RISM siglum 
  :)
@@ -1201,6 +1392,11 @@ declare function api:validate-docLang($model as map(*)) as map(*)? {
 declare function api:validate-q($model as map(*)) as map(*)? {
     if($model?q castable as xs:string) then $model 
     else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "q". It must be one of the following values: ' || string-join($search:valid-params, ', '))
+};
+
+declare function api:validate-prefix($model as map(*)) as map(*)? {
+    if($model?prefix castable as xs:string) then $model
+    else error($api:INVALID_PARAMETER, 'Unsupported value for parameter "prefix".')
 };
 
 (:~
