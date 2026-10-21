@@ -21,6 +21,12 @@ tags:
   - name: Reconciliation
     description: Reconcile and suggest WeGA entities
 paths:
+  /reconciliation:
+    $ref: "./openapi/paths/reconciliation.yaml"
+  /reconciliation/match:
+    $ref: "./openapi/paths/reconciliation-match.yaml"
+  /reconciliation/suggest/entity:
+    $ref: "./openapi/paths/reconciliation-suggest-entity.yaml"
   /documents:
     $ref: "./openapi/paths/documents.yaml"
   /repositories:
@@ -29,10 +35,6 @@ paths:
     $ref: "./openapi/paths/repositories-items.yaml"
   /search/entity:
     $ref: "./openapi/paths/search-entity.yaml"
-  /match:
-    $ref: "./openapi/paths/match.yaml"
-  /suggest/entity:
-    $ref: "./openapi/paths/suggest-entity.yaml"
   /documents/{docID}:
     $ref: "./openapi/paths/documents-docID.yaml"
   /documents/findByDate:

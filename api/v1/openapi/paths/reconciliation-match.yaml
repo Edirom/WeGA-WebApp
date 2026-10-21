@@ -39,7 +39,11 @@ post:
                             - name
                             - id
                         propertyValue:
-                          type: string
+                          oneOf:
+                            - type: string
+                            - type: array
+                              items:
+                                type: string
   responses:
     '200':
       description: Reconciliation results in query order

@@ -1,0 +1,34 @@
+get:
+  tags:
+    - Reconciliation
+  summary: Reconciliation service manifest
+  responses:
+    '200':
+      description: Reconciliation Service API manifest
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - versions
+              - name
+              - view
+            properties:
+              versions:
+                type: array
+                items:
+                  type: string
+              name:
+                type: string
+              defaultTypes:
+                type: array
+                items:
+                  type: object
+              view:
+                type: object
+              suggest:
+                type: object
+              standardizedScore:
+                type: boolean
+    default:
+      $ref: '../responses/unexpectedError.yaml'

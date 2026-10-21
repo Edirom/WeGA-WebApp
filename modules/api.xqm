@@ -333,7 +333,11 @@ declare function api:reconciliation-manifest($model as map(*)) as map(*) {
     }
 };
 
-declare function api:match($model as map(*)) as map(*) {
+declare function api:reconciliation($model as map(*)) as map(*) {
+    api:reconciliation-manifest($model)
+};
+
+declare function api:reconciliation-match($model as map(*)) as map(*) {
     let $request := try { api:reconciliation-request() } catch * { () }
     return
         if(request:get-method() ne 'POST') then
@@ -360,27 +364,31 @@ declare function api:match($model as map(*)) as map(*) {
                 if($invalid-query or $invalid-condition) then
                     map { 'code': 400, 'message': 'Each query must contain at least one valid condition.' }
                 else
-                    let $unsupported-matchType := $queries?conditions?*[not(?matchType = ('name', 'id'))][1]?matchType
+                    let $unsupported-matchType := (
+                        for $condition in $queries?conditions?*
+                        where not($condition?matchType = ('name', 'id'))
+                        return $condition?matchType
+                    )[1]
                     return
-                if($unsupported-matchType) then
-                    map {
-                        'code': 422,
-                        'message': 'Unsupported matchType: ' || $unsupported-matchType,
-                        'fields': 'matchType'
-                    }
-                else
-                    map {
-                        'results': map {
-                            'results': array {
-                                for $query in $queries
-                                return map {
-                                    'candidates': array {
-                                        api:reconciliation-query-candidates($query, $model)
+                        if($unsupported-matchType) then
+                            map {
+                                'code': 422,
+                                'message': 'Unsupported matchType: ' || $unsupported-matchType,
+                                'fields': 'matchType'
+                            }
+                        else
+                            map {
+                                'results': map {
+                                    'results': array {
+                                        for $query in $queries
+                                        return map {
+                                            'candidates': array {
+                                                api:reconciliation-query-candidates($query, $model)
+                                            }
+                                        }
                                     }
                                 }
                             }
-                        }
-                    }
 };
 
 declare %private function api:reconciliation-request() as map(*) {
@@ -478,7 +486,7 @@ declare %private function api:reconciliation-type($docType as xs:string) as map(
         default return map { 'id': '/entity', 'name': 'Entity' }
 };
 
-declare function api:suggest-entity($model as map(*)) as map(*) {
+declare function api:reconciliation-suggest-entity($model as map(*)) as map(*) {
     let $entities :=
         if(normalize-space($model?prefix)) then
             api:search-entity(map {
