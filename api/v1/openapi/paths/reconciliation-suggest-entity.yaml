@@ -1,0 +1,40 @@
+get:
+  tags:
+    - Reconciliation
+  summary: Suggest entities
+  parameters:
+    - name: prefix
+      in: query
+      required: true
+      schema:
+        type: string
+    - $ref: '../parameters/offset.yaml'
+    - $ref: '../parameters/limit.yaml'
+  responses:
+    '200':
+      description: Matching entity suggestions
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - result
+            properties:
+              result:
+                type: array
+                items:
+                  type: object
+                  required:
+                    - id
+                    - name
+                  properties:
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    notable:
+                      type: array
+                      items:
+                        type: object
+    default:
+      $ref: '../responses/unexpectedError.yaml'
