@@ -175,6 +175,10 @@ else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-l
 (: Bartlitz Sonderband :)
 else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-language-string('specialVolume', $lang)) || '.html')) then
     controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070090'), map:entry('docType', 'var'))))
+
+(: Euryanthe Libretti Sonderband :)
+else if ($exist:path eq ('/' || $lang || '/' || controller:url-encode(lang:get-language-string('specialVolumeLibrettiUnderscore', $lang)) || '.html')) then
+    controller:forward-html('/templates/var.html', map:merge(($exist-vars, map:entry('docID', 'A070092'), map:entry('docType', 'var'))))
     
 (: Weber-Studien Einzelansicht:)
 (:else if ($isWeberPublication and matches($exist:path, concat('^/', $lang, '/', $publications, '/', $weberStudies, '/', 'A11\d{4}/?$'))) then
