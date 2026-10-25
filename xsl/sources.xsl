@@ -40,7 +40,7 @@
             and not($container/ancestor::*
                 [self::tei:castList or self::tei:note or self::tei:footNote or self::tei:app])
             and exists(wega:source-toc-head($container))
-            and exists($container/*[not(self::tei:head)] | $container/text()[normalize-space()])"/>
+            and exists($container//text()[normalize-space() and not(ancestor::tei:head)])"/>
     </xsl:function>
 
     <xsl:function name="wega:has-source-toc" as="xs:boolean">
