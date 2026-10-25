@@ -4,7 +4,8 @@
     xmlns:tei="http://www.tei-c.org/ns/1.0"
     xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
     xmlns:xs="http://www.w3.org/2001/XMLSchema"
-    exclude-result-prefixes="tei wega xs"
+    xmlns:functx="http://www.functx.com"
+    exclude-result-prefixes="tei wega xs functx"
     version="2.0">
 
     <xsl:output encoding="UTF-8" method="html" omit-xml-declaration="yes" indent="no"/>
@@ -55,9 +56,7 @@
         <xsl:param name="container" as="element()"/>
         <xsl:variable name="head" select="wega:source-toc-head($container)"/>
         <xsl:variable name="existingId" select="($head/@xml:id, $container/@xml:id)[1]"/>
-        <xsl:sequence select="
-            if($existingId) then string($existingId)
-            else generate-id($head)"/>
+        <xsl:sequence select="functx:if-empty($existingId, generate-id($head))"/>
     </xsl:function>
 
     <xsl:template match="/">
