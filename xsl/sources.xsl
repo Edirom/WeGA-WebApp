@@ -30,7 +30,7 @@
 
     <xsl:function name="wega:source-toc-head" as="element(tei:head)?">
         <xsl:param name="container" as="element()"/>
-        <xsl:sequence select="$container/tei:head[not(@type = 'sub')][wega:source-toc-label(.) != ''][1]"/>
+        <xsl:sequence select="$container/tei:head[not(@type = 'sub')][wega:source-toc-label(.)][1]"/>
     </xsl:function>
 
     <xsl:function name="wega:is-source-toc-container" as="xs:boolean">
