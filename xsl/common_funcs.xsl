@@ -461,6 +461,16 @@
         <xsl:param name="value" as="item()*"/>
         <xsl:sequence select="if (exists($arg)) then $arg else $value"/>
     </xsl:function>
+
+    <xsl:function name="functx:if-empty" as="item()*">
+        <xsl:param name="arg" as="item()?"/>
+        <xsl:param name="value" as="item()*"/>
+        <xsl:sequence select="
+                         if (string($arg) != '')
+                         then data($arg)
+                         else $value
+                         "/>
+    </xsl:function>
     
     <xsl:function name="functx:change-element-ns-deep" as="node()*"
         xmlns:functx="http://www.functx.com">
