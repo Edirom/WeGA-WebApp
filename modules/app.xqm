@@ -89,6 +89,81 @@ declare function app:createDocLink($doc as document-node()?, $content as xs:stri
     else app:createDocLink($doc,$content, $lang, $attributes)
 };
 
+(:~
+ : Creates an xhtml:span element for entity references
+ : (e.g. tei:persName, tei:orgName, tei:rs, or tei:name) with popover preview
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @param $lang the language switch (en, de)
+ : @return an xhtml:span element with class and data-ref attributes for popover preview
+ :)
+declare function app:create-span-for-entity-popover($entity as element()?, $lang as xs:string) as element(xhtml:span) {
+    element xhtml:span {
+        if(exists(app:extract-keys($entity))) then (
+            attribute class {
+                app:preview-class($entity)
+            },
+            attribute data-ref {
+                app:preview-data-ref($entity, $lang)
+            })
+        else (
+            attribute class {
+                'noDataFound'
+            }
+        ),
+        if(not(functx:all-whitespace($entity))) then 
+            normalize-space($entity)
+        else
+            lang:get-language-string('unknown', $lang)
+    }
+};
+
+(:~
+ : Returns the HTML class value for entity references (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : Helper function for `app:create-span-for-entity-popover#2`
+ : Aligned with the XSLT function `wega:preview-class` from `/xsl/common_link.xsl`
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @return a string with the HTML class value for the entity reference
+ :)
+declare %private function app:preview-class($entity as element()?) as xs:string {
+    let $keys := app:extract-keys($entity)
+    let $class :=
+        if(count(distinct-values(for $key in $keys return substring($key, 1,3))) = 1)
+        then config:get-doctype-by-id($keys[1])
+        else 'mixed'
+    return
+        string-join(('preview', $class, $keys), ' ')
+}; 
+
+(:~
+ : Extracts the keys from an entity reference and returns the URLs for the entity references, separated by spaces
+ : Helper function for `app:create-span-for-entity-popover#2`
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @param $lang the language switch (en, de)
+ : @return a string with the URLs for the entity references, separated by spaces
+ :)
+declare %private function app:preview-data-ref($entity as element()?, $lang as xs:string) as xs:string {
+    let $keys := app:extract-keys($entity)
+    return
+        ($keys ! crud:doc(.) ! controller:create-url-for-doc(., $lang))
+        => string-join(' ')
+};
+
+(:~
+ : Extracts the keys from an entity reference.
+ : Potential fragment identifiers will be stripped.
+ : Helper function for `app:create-span-for-entity-popover#2`, `app:preview-data-ref#2`, and `app:preview-class#1`
+ :
+ : @param $entity the entity reference element (e.g. tei:persName, tei:orgName, tei:rs, or tei:name)
+ : @return a sequence of keys
+ :)
+declare %private function app:extract-keys($entity as element()?) as xs:string* {
+    for $key in tokenize(($entity/@key, $entity/@codedval, $entity/@target/replace(., 'wega:', '')), '\s+')
+    return substring($key, 1, 7)
+};
+
 declare 
     %templates:wrap
     function app:documentFooter($node as node(), $model as map(*)) as map(*) {
@@ -748,8 +823,10 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
 };
 
 (:~
- : Construct a name from a tei:persName, tei:orgName, or tei:name element wrapped in a <span> 
+ : Construct a name from a tei:persName, tei:orgName, tei:rs, or tei:name element wrapped in a <span>
  : If a @key is given on the element the regularized form will be returned, otherwise the content of the element.
+ : For tei:persName elements the order of forename and surname can be specified.
+ : For tei:rs elements it is assumed that a group of people is addressed, so always the literal content will be output.
  : If the element is empty than "unknown" is returned.
  : 
  : @author Peter Stadler
@@ -759,7 +836,9 @@ declare %private function app:createLetterLink($teiDate as element(tei:date)?, $
  : @return a html:span element with the constructed name
  :)
 declare function app:printCorrespondentName($persName as element()?, $lang as xs:string, $order as xs:string) as element(xhtml:span) {
-    if(exists($persName/@key)) then 
+    if($persName/self::tei:rs) then 
+        app:create-span-for-entity-popover($persName, $lang)
+    else if(exists($persName/@key)) then 
         if ($order eq 'fs') then app:createDocLink(crud:doc($persName/string(@key)), wega-util:print-forename-surname-from-nameLike-element($persName), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
         else if ($order eq 's') then app:createDocLink(crud:doc($persName/string(@key)), functx:substring-before-if-contains(query:title($persName/@key), ', '), $lang, ('class=preview ' || concat($persName/@key, " ", config:get-doctype-by-id($persName/@key))))
         else app:createDocLink(crud:doc($persName/string(@key)), query:title($persName/@key), $lang, ('class=' || config:get-doctype-by-id($persName/@key)))
@@ -1746,8 +1825,8 @@ declare
         let $partner := 
             switch($model('letter-norm-entry')('fromTo')) 
             (: There may be multiple addressees or senders! :)
-            case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
-            case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name])[1]
+            case 'from' return ($letter//tei:correspAction[@type='sent']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs])[1]
+            case 'to' return ($letter//tei:correspAction[@type='received']/tei:*[self::tei:persName or self::tei:orgName or self::tei:name or self::tei:rs])[1]
             default return wega-util:log-to-file('error', 'app:print-letter-context(): wrong value for parameter &quot;fromTo&quot;: &quot;' || $model('letter-norm-entry')('fromTo') || '&quot;')
         let $normDate := query:get-normalized-date($letter)
         return (
