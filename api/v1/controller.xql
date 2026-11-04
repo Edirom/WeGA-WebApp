@@ -23,6 +23,8 @@ declare namespace util="http://exist-db.org/xquery/util";
 (: Change this line to point at your local api module :)
 import module namespace api="http://xquery.weber-gesamtausgabe.de/modules/api" at "../../modules/api.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "../../modules/config.xqm";
+import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "../../modules/img.xqm";
+import module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod" at "../../modules/lod.xqm";
 
 import module namespace controller="http://xquery.weber-gesamtausgabe.de/modules/controller" at "../../modules/controller.xqm";
 
@@ -50,7 +52,9 @@ declare variable $local:defaults as map(*) := map {
     'exist:path' : $exist:path, 
     'exist:resource' : $exist:resource, 
     'exist:controller' : $exist:controller || '/../../', 
-    'exist:prefix' : $exist:prefix
+    'exist:prefix' : $exist:prefix,
+    'reconciliation-description' : lod:DC.description#2,
+    'reconciliation-iconography' : img:iconography#3
 };
 
 (:~

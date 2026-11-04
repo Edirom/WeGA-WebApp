@@ -502,11 +502,33 @@ declare function api:reconciliation-suggest-entity($model as map(*)) as map(*) {
             'results': map {
                 'result': array {
                     for $entity in $entities
-                    return map {
-                        'id': $entity?docID,
-                        'name': $entity?title,
-                        'notable': array { api:reconciliation-type($entity?docType) }
+                    let $doc := crud:doc($entity?docID)
+                    let $suggestion-model := map {
+                        'docID': $entity?docID,
+                        'docType': $entity?docType,
+                        'doc': $doc
                     }
+                    let $description :=
+                        if($doc and $model?('reconciliation-description') instance of function(*))
+                        then ($model?('reconciliation-description'))($suggestion-model, 'en')
+                        else ()
+                    let $iconography :=
+                        if($doc and $model?('reconciliation-iconography') instance of function(*)) then try {
+                            ($model?('reconciliation-iconography'))(<div id="meta"/>, $suggestion-model, 'en')
+                        } catch * { () }
+                        else ()
+                    let $image :=
+                        if($iconography?portrait) then $iconography?portrait('url')('thumb')
+                        else ()
+                    return map:merge((
+                        map {
+                            'id': $entity?docID,
+                            'name': $entity?title,
+                            'notable': array { api:reconciliation-type($entity?docType) }
+                        },
+                        if($description) then map { 'description': $description } else (),
+                        if($image) then map { 'image': $image } else ()
+                    ))
                 }
             }
         }
