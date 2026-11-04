@@ -327,7 +327,7 @@ declare function api:reconciliation-manifest($model as map(*)) as map(*) {
             'view': map {
                 'url': config:api-base($model?('openapi:config')) => substring-before('/api/') || '/{id}'
             },
-            'suggest': map { 'entity': true() },
+            'suggest': map { 'entity': true(), 'property': false(), 'type': false() },
             'standardizedScore': true()
         }
     }
