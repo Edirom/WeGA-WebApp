@@ -24,6 +24,8 @@ import module namespace search="http://xquery.weber-gesamtausgabe.de/modules/sea
 import module namespace wdt="http://xquery.weber-gesamtausgabe.de/modules/wdt" at "wdt.xqm";
 import module namespace er="http://xquery.weber-gesamtausgabe.de/modules/external-requests" at "external-requests.xqm";
 import module namespace config="http://xquery.weber-gesamtausgabe.de/modules/config" at "config.xqm";
+import module namespace img="http://xquery.weber-gesamtausgabe.de/modules/img" at "img.xqm";
+import module namespace lod="http://xquery.weber-gesamtausgabe.de/modules/lod" at "lod.xqm";
 import module namespace query="http://xquery.weber-gesamtausgabe.de/modules/query" at "query.xqm";
 import module namespace wega-util="http://xquery.weber-gesamtausgabe.de/modules/wega-util" at "wega-util.xqm";
 import module namespace lang="http://xquery.weber-gesamtausgabe.de/modules/lang" at "lang.xqm";
@@ -509,12 +511,11 @@ declare function api:reconciliation-suggest-entity($model as map(*)) as map(*) {
                         'doc': $doc
                     }
                     let $description :=
-                        if($doc and $model?('reconciliation-description') instance of function(*))
-                        then ($model?('reconciliation-description'))($suggestion-model, 'en')
+                        if($doc) then lod:DC.description($suggestion-model, 'en')
                         else ()
                     let $iconography :=
-                        if($doc and $model?('reconciliation-iconography') instance of function(*)) then try {
-                            ($model?('reconciliation-iconography'))(<div id="meta"/>, $suggestion-model, 'en')
+                        if($doc) then try {
+                            img:iconography(<div id="meta"/>, $suggestion-model, 'en')
                         } catch * { () }
                         else ()
                     let $image :=
