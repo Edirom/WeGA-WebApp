@@ -19,7 +19,7 @@ This web application is written in XQuery on top of an [eXist-db](http://exist-d
 
 ## Prerequisites
 
-A running [eXist-db](http://exist-db.org/), v5.3.1 or newer 
+A running [eXist-db](http://exist-db.org/), v5.3.1 or newer (tested with 6.x)
 
 
 ## Quick start guide

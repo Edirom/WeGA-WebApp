@@ -73,7 +73,8 @@ declare function app:create-doc-link($doc as document-node()?, $lang as xs:strin
   `($node as node(), $model as map(*), …)` and return a map or nodes. Use the
   `%templates:wrap` and `%templates:default("param", "value")` annotations instead of
   handling defaults in the body; most live in `app.xqm` or the topical module.
-- Refer to functions by name and arity in comments and commits: `er:cached-external-request#2`.
+- In comments, refer to functions by name and arity where overloads exist:
+  `lang:get-language-string#3`. In commit subjects the arity is optional (see CONTRIBUTING.md).
 
 ### Variables
 
@@ -86,8 +87,10 @@ declare function app:create-doc-link($doc as document-node()?, $lang as xs:strin
 
 - Prefer **single quotes** for string literals; double quotes only when the string
   contains an apostrophe or for namespace URIs in declarations.
-- Maps use the `map { 'key' : value }` form with a space around the colon; look up with
-  `$model?key`.
+- Maps use the unspaced form `map { 'key': value }`; look up with `$model?key`. Older code
+  often has `'key' : value` with a space before the colon, left over from the `:=` migration.
+  Leave those as they are unless you are changing that line anyway; do not reformat
+  neighbouring entries.
 - `if(…) then … else …` without a space before the parenthesis; multi-branch
   `else if` chains are aligned at the same indentation level, one branch per line.
 - Use `typeswitch` for node-type dispatch, `switch` for string dispatch.
@@ -150,7 +153,6 @@ declare function app:create-doc-link($doc as document-node()?, $lang as xs:strin
   `http://weber-gesamtausgabe.de/xqsuite/<topic>-tests` and a short prefix (`bt`, `wdtt`).
 - Test functions are `prefix:test-<function-under-test>`; each case is one
   `%test:args(…)  %test:assertEquals(…)` pair, aligned in columns.
-- Prefer `%test:assertEmpty` / `%test:assertEquals` over `%test:assertXPath`.
 
 ## OpenAPI (`api/v1/`)
 

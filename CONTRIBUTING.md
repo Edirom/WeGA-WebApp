@@ -34,16 +34,19 @@ Large features are split into a numbered series of small branches/PRs
    intentionally alters HTML output. Commit those updates separately
    (`update expected results`).
 4. Open the PR against `develop`. Reference the issue it closes.
-5. Dependency bumps come from Dependabot (npm, GitHub Actions, Docker; weekly) and are
+5. Dependency bumps come from Dependabot (npm, GitHub Actions, Docker; monthly) and are
    merged as-is after CI passes.
 
 ### Commit messages
 
 - Imperative mood, lower-case start, no trailing period:
-  `add nested source toc`, `prevent unnecessary source editorial span`
+  `add nested source toc`, `prevent unnecessary source editorial span`.
+  This applies to hand-written commits; auto-generated messages (merge commits,
+  Dependabot, GitHub suggestion commits) are left as they are.
 - One logical change per commit; subject ≤ 72 characters.
-- Name XQuery functions with arity in backticks when they are the subject:
-  `` make `lang:translate` wrapping optional ``, `` add function `bt:normalize-hrefs#1` ``
+- Put XQuery function names in backticks when they are the subject; add the arity
+  (`#2`) when the function is overloaded or the distinction matters:
+  `` make `lang:translate` wrapping optional ``, `` update `er:cached-external-request#2` ``
 - A body is optional; use it for the *why*, or to reference an issue (`#205`).
 
 ## Development setup
@@ -124,7 +127,6 @@ stay in sync: `build.properties` (`project.version`), `package.json` and `CITATI
 Development versions carry an `-alpha` suffix. Tag as `vX.Y.Z`, merge `develop` into
 `main`, attach the built xar to the GitHub release, and update the
 [Changelog on the wiki](https://github.com/Edirom/WeGA-WebApp/wiki/Changelog).
-`CITATION.cff` also lists contributors; add yourself with your first substantial PR.
 
 ## License
 
