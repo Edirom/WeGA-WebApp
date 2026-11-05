@@ -1790,7 +1790,7 @@ declare
             else if($isSource and $teiOrigin) then app:creation-place-date((), $teiOrigin//tei:date)
             else ()
         let $hasValue := some $item in $value satisfies normalize-space(string($item)) ne ''
-        return if($hasValue) then $value else '–'
+        return if($hasValue) then $value else if($mode eq 'preview') then () else '–'
 };
 
 declare %private function app:creation-place-date($places as element()*, $dates as element()*) as xs:string? {
