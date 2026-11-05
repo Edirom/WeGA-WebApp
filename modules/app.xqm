@@ -1765,12 +1765,13 @@ declare
 };
 
 (:~
- : Return creation or publication content for documents and source previews.
+ : Return creation or publication content for apparatuses and previews.
  :)
 declare
     %templates:default("lang", "en")
+    %templates:default("mode", "full-text")
     %templates:wrap
-    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as item()* {
+    function app:print-creation($node as node(), $model as map(*), $lang as xs:string, $mode as xs:string) as item()* {
         let $doc := $model('doc')
         let $teiCreation := ($doc//tei:creation)[1]
         let $meiPubStmt := ($doc/mei:manifestation/mei:pubStmt)[1]
@@ -1778,7 +1779,10 @@ declare
         let $meiCreation := ($doc/mei:manifestation/mei:creation)[1]
         let $teiOrigin := ($doc//tei:sourceDesc/tei:msDesc/tei:history/tei:origin)[1]
         let $value :=
-            if($teiCreation) then wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            if($teiCreation) then (
+                if($mode eq 'preview') then wega-util:txtFromTEI($teiCreation)
+                else wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            )
             else if($meiCreation) then str:normalize-space($meiCreation)
             else if($meiPubStmt) then app:creation-place-date($meiPubStmt/mei:pubPlace, $meiPubStmt/mei:date)
             else if($teiImprint) then app:creation-place-date($teiImprint/tei:pubPlace, $teiImprint/tei:date)
@@ -2036,7 +2040,6 @@ declare
         map {
             'doc' : $model('result-page-entry'),
             'docID' : $model('result-page-entry')/root()/*/data(@xml:id),
-            'creation' : app:print-creation($node, map {'doc': $model('result-page-entry')}, $lang),
             'docURL' : 
                 if(config:is-person($model?parent-docID)) then controller:create-url-for-doc-in-context($model?result-page-entry, $lang, $model?parent-docID)
                 else controller:create-url-for-doc($model('result-page-entry'), $lang),
@@ -2089,8 +2092,19 @@ declare
 declare
     %templates:wrap
     function app:preview-details($node as node(), $model as map(*)) as map(*) {
-        map {
-            'summary' : app:print-summary($node, $model, $model?lang) => string-join('; ') => str:normalize-space()
+        let $doc := $model('doc')
+        let $hasSummary :=
+            if($model?docType eq 'sources') then false()
+            else exists(($doc//tei:note[@type='summary'], $doc//tei:correspDesc[@n='revealed']))
+        return map {
+            'summary' :
+                if($hasSummary)
+                then app:print-summary($node, $model, $model?lang) => string-join('; ') => str:normalize-space()
+                else (),
+            'creation' :
+                if($model?docType = ('writings', 'documents', 'sources'))
+                then app:print-creation($node, $model, $model?lang, 'preview')
+                else ()
         }
 };
 
