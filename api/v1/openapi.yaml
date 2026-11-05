@@ -18,7 +18,15 @@ tags:
     description: Access to facets for filtering result sets
   - name: Repositories
     description: Access to items within the WeGA digital edition by repository
+  - name: Reconciliation
+    description: Reconcile and suggest WeGA entities
 paths:
+  /reconciliation:
+    $ref: "./openapi/paths/reconciliation.yaml"
+  /reconciliation/match:
+    $ref: "./openapi/paths/reconciliation-match.yaml"
+  /reconciliation/suggest/entity:
+    $ref: "./openapi/paths/reconciliation-suggest-entity.yaml"
   /documents:
     $ref: "./openapi/paths/documents.yaml"
   /repositories:
