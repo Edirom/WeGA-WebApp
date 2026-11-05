@@ -1778,15 +1778,16 @@ declare
         let $teiImprint := ($doc//tei:sourceDesc/tei:biblStruct/tei:monogr/tei:imprint)[1]
         let $meiCreation := ($doc/mei:manifestation/mei:creation)[1]
         let $teiOrigin := ($doc//tei:sourceDesc/tei:msDesc/tei:history/tei:origin)[1]
+        let $isSource := $model?docType eq 'sources'
         let $value :=
             if($teiCreation) then (
                 if($mode eq 'preview') then wega-util:txtFromTEI($teiCreation)
                 else wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
             )
-            else if($meiCreation) then str:normalize-space($meiCreation)
-            else if($meiPubStmt) then app:creation-place-date($meiPubStmt/mei:pubPlace, $meiPubStmt/mei:date)
-            else if($teiImprint) then app:creation-place-date($teiImprint/tei:pubPlace, $teiImprint/tei:date)
-            else if($teiOrigin) then app:creation-place-date((), $teiOrigin//tei:date)
+            else if($isSource and $meiCreation[str:normalize-space(.) ne '']) then str:normalize-space($meiCreation)
+            else if($isSource and $meiPubStmt) then app:creation-place-date($meiPubStmt/mei:pubPlace, $meiPubStmt/mei:date)
+            else if($isSource and $teiImprint[(tei:pubPlace | tei:date)[str:normalize-space(.) ne '']]) then app:creation-place-date($teiImprint/tei:pubPlace, $teiImprint/tei:date)
+            else if($isSource and $teiOrigin) then app:creation-place-date((), $teiOrigin//tei:date)
             else ()
         let $hasValue := some $item in $value satisfies normalize-space(string($item)) ne ''
         return if($hasValue) then $value else '–'
