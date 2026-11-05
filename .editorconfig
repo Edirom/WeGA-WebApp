@@ -1,0 +1,19 @@
+# EditorConfig — https://editorconfig.org
+# Mechanical part of STYLEGUIDE.md. VS Code needs the EditorConfig extension;
+# Oxygen does not read this file (see CONTRIBUTING.md, "Editor setup").
+root = true
+
+[*]
+charset = utf-8
+end_of_line = lf
+indent_style = space
+indent_size = 4
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.md]
+# two trailing spaces are a Markdown line break
+trim_trailing_whitespace = false
+
+[*.{yml,yaml,json}]
+indent_size = 2
