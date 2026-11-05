@@ -133,6 +133,57 @@ a.checkbox-only {
     }
 }
 
+.doc-toc-side {
+    position: sticky;
+    top: 2rem;
+    font-size: smaller;
+
+    .doc-toc-side-panel {
+        max-height: calc(100vh - 6rem);
+        overflow-y: auto;
+        padding-right: .5rem;
+    }
+
+    .source-toc {
+        ul {
+            margin: 0;
+        }
+
+        ul ul {
+            margin-top: .1rem;
+            padding-left: 1rem;
+        }
+
+        li {
+            padding: .1rem 0;
+        }
+
+        a {
+            display: block;
+            white-space: normal;
+            overflow-wrap: anywhere;
+
+            &:focus-visible {
+                outline: 2px solid $primary;
+                outline-offset: 2px;
+            }
+        }
+
+        > ul > li {
+            margin-top: .5rem;
+
+            &:first-child {
+                margin-top: 0;
+            }
+
+            > a {
+                font-family: $font-family-sans-serif-bold;
+                font-size: 1.2rem;
+            }
+        }
+    }
+}
+
 /*
  * select2 settings for dropdowns on start page
  */

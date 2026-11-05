@@ -255,11 +255,11 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
         apparatusLink = $(this).hasClass("apparatus-link"),
         ref = $(this).attr("data-href");
 
-    if (hasTab && apparatusLink) {
+    if (hasTab.length && apparatusLink) {
         // if clicked link is a link within the apparatus (marked with class .apparatus-link)
         e.preventDefault();
-        hasTab.one('shown.bs.tab', function () {
-            if (hash === 'transcription') {
+        if (hash === 'transcription') {
+            hasTab.one('shown.bs.tab', function () {
                 //wait for tab to be loaded
                 $(".hi-").removeClass("hi-");
                 //remove previous highlight
@@ -270,17 +270,30 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
                 $(ref).click();
                 $(ref).addClass("hi-").prev(".tei_lem").addClass("hi-");
                 // attempt to highlight lemma in text, jump to position and open corresponding popover ...
-            } else if (hash === 'editorial') {
+            });
+        } else if (hash === 'editorial') {
+            hasTab.one('shown.bs.tab', function () {
+                const target = $(ref),
+                    containingCollapse = target.closest('.apparatusCollapse.collapse'),
+                    scrollToTarget = function () {
+                        $('html, body').animate({
+                            scrollTop: target.offset().top - 400
+                        },
+                        500);
+                    };
+
                 $('.popover').popover('hide');
-                $('html, body').animate({
-                    scrollTop: $(ref).offset().top - 400
-                },
-                500);
-            }
-        });
-        // open tab
+                if (containingCollapse.length && !containingCollapse.hasClass('show')) {
+                    containingCollapse.one('shown.bs.collapse', scrollToTarget);
+                    containingCollapse.collapse('show');
+                } else if (target.length) {
+                    scrollToTarget();
+                }
+            });
+        }
+        // register the event handler before opening the tab
         hasTab.tab('show');
-    } else if (hasTab) {
+    } else if (hasTab.length) {
         hasTab.tab('show');
     }
     
@@ -290,6 +303,11 @@ $(document).on('click', 'a[href$="#editorial"], a[href$="#backlinks"], a[href$="
             hasAccordion.click();
         }
     }
+});
+
+/* Show the document TOC only while the transcription tab is active. */
+$(document).on('show.bs.tab', 'a[data-toggle="tab"]', function () {
+    $('.doc-toc-side').toggleClass('d-none', $(this).attr('href') !== '#transcription');
 });
 
 // remove popovers when clicking somewhere
@@ -487,8 +505,77 @@ $.fn.preview_popover = function() {
  * Create initial popover for notes and previews 
  * with template from page.html#carousel-popover for the content
  */
-$('.preview, .noteMarker').on('click', function() {
-    $(this).popover({
+function getClickedClientRect(element, event) {
+    const originalEvent = event.originalEvent || event,
+        pointer = originalEvent.changedTouches ? originalEvent.changedTouches[0] : originalEvent,
+        clientX = pointer.clientX,
+        clientY = pointer.clientY,
+        rects = Array.from(element.getClientRects());
+    let closestRect,
+        closestDistance = Number.POSITIVE_INFINITY;
+
+    if(undefined === clientX || undefined === clientY || rects.length < 2) { return }
+
+    for(const rect of rects) {
+        if(clientX >= rect.left && clientX <= rect.right && clientY >= rect.top && clientY <= rect.bottom) {
+            return rect;
+        }
+
+        const distanceX = Math.max(rect.left - clientX, 0, clientX - rect.right),
+            distanceY = Math.max(rect.top - clientY, 0, clientY - rect.bottom),
+            distance = Math.sqrt(distanceX * distanceX + distanceY * distanceY);
+        if(distance < closestDistance) {
+            closestRect = rect;
+            closestDistance = distance;
+        }
+    }
+
+    return closestRect;
+}
+
+function createPopoverAnchor(source, event) {
+    const rect = source.classList.contains('preview') ? getClickedClientRect(source, event) : undefined;
+
+    if(undefined === rect) { return source }
+
+    const anchor = document.createElement('span');
+
+    Array.from(source.attributes).forEach(function(attribute) {
+        if(attribute.name !== 'id') {
+            anchor.setAttribute(attribute.name, attribute.value);
+        }
+    });
+    anchor.classList.add('preview-popover-anchor');
+    anchor.style.position = 'absolute';
+    anchor.style.left = `${rect.left + window.pageXOffset}px`;
+    anchor.style.top = `${rect.top + window.pageYOffset}px`;
+    anchor.style.width = `${Math.max(rect.width, 1)}px`;
+    anchor.style.height = `${Math.max(rect.height, 1)}px`;
+    anchor.style.pointerEvents = 'none';
+    anchor.style.opacity = '0';
+
+    document.body.appendChild(anchor);
+
+    return anchor;
+}
+
+$('.preview, .noteMarker').on('click', function(event) {
+    const source = this,
+        activePopoverAnchor = $(source).data('preview-popover-anchor');
+
+    if(undefined !== activePopoverAnchor) { return false }
+
+    const popoverTrigger = createPopoverAnchor(source, event);
+
+    if(popoverTrigger !== source) {
+        $(source).data('preview-popover-anchor', popoverTrigger);
+        $(popoverTrigger).one('hidden.bs.popover', function() {
+            $(source).removeData('preview-popover-anchor');
+            popoverTrigger.remove();
+        });
+    }
+
+    $(popoverTrigger).popover({
         "html": true,
         "trigger": "manual",
         "container": 'body',
@@ -496,11 +583,11 @@ $('.preview, .noteMarker').on('click', function() {
         "title": "Loading …", // This is just a dummy title otherwise the content function will be called twice, see  https://github.com/twbs/bootstrap/issues/12563
         "content": popover_template
     });
-    $(this).popover('show');
-    
+    $(popoverTrigger).popover('show');
+
     /* Need to call this after popover('show') to get access to the popover options in a later step (in preview_popover) */
-    popover_callBack.call($(this));
-    
+    popover_callBack.call($(popoverTrigger));
+
     /* Return false to suppress the default link mechanism on html:a */
     return false;
 });
