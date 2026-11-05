@@ -519,7 +519,7 @@ declare function api:reconciliation-suggest-entity($model as map(*)) as map(*) {
                         } catch * { () }
                         else ()
                     let $image :=
-                        if($iconography?portrait) then $iconography?portrait('url')('thumb')
+                        if(map:contains($iconography, 'portrait')) then $iconography?portrait('url')('thumb')
                         else ()
                     return map:merge((
                         map {
