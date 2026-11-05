@@ -104,8 +104,16 @@ declare function app:create-doc-link($doc as document-node()?, $lang as xs:strin
 
 ## XSLT (`xsl/*.xsl`)
 
-- XSLT 2.0, output `method="html"`, `indent="no"`; one stylesheet per document type
-  (`letters.xsl`, `sources.xsl`), shared code in `common_*.xsl` included from `common_main.xsl`.
+- XSLT 2.0, output `method="html"`, `indent="no"`.
+- The rendering stylesheet is selected by document type in `app:prepare-text` (`app.xqm`):
+  `letters.xsl`, `works.xsl`, `diaries.xsl`, `sources.xsl`, `document.xsl` (writings *and*
+  documents); everything else falls back to `var.xsl`. A new stylesheet is only used if it
+  gets a `case` in that switch. Special-purpose stylesheets are called directly where needed:
+  `editorial.xsl` (manuscript descriptions, summaries, incipits), `persons.xsl` (biographies),
+  `wikipedia.xsl` and `deutsche-biographie.xsl` (external content).
+- Every rendering stylesheet includes `common_main.xsl` (which itself includes
+  `common_funcs.xsl`) and `common_link.xsl`; most also include `apparatus.xsl`. Shared
+  templates belong in one of those, not in a per-type file.
 - Default namespace is XHTML; TEI/MEI are prefixed `tei:`/`mei:`.
 - Stylesheet functions live in the `wega:` namespace
   (`http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities`) and are

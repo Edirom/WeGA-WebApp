@@ -22,7 +22,7 @@ Entry point for AI coding agents working in this repository. Humans: start with
 | `modules/config.xqm` | options, paths, environment (`config:get-option`) |
 | `modules/api.xqm`, `api/v1/` | REST API; OpenAPI spec split into `paths/`, `schemas/`, `parameters/` |
 | `templates/` | eXist HTML-templating pages; `ajax/` fragments, `includes/`, `dev/` |
-| `xsl/` | TEI → HTML, one stylesheet per document type, called via `wega-util:transform` |
+| `xsl/` | TEI/MEI → HTML via `wega-util:transform`: shared `common_*.xsl` plus per-type stylesheets, selected by document type in `app:prepare-text` |
 | `catalogues/` | `options.xml`, `dictionary_de.xml` / `dictionary_en.xml`, URL mappings |
 | `indices/` | index definitions, applied only on package install |
 | `resources/sass/`, `resources/js/` | sources for CSS and the webpack bundle |
