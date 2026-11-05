@@ -35,3 +35,14 @@ declare
             }
         })?results?view?url
 };
+
+declare
+    %test:assertEquals("A002332")
+    function at:test-reconciliation-suggest-entity-id-prefix() as xs:string? {
+        api:reconciliation-suggest-entity(map {
+            'prefix': 'A002332',
+            'openapi:config': map {
+                'servers': array { map { 'url': 'https://weber-gesamtausgabe.de/api/v1' } }
+            }
+        })?results?result?1?id
+};

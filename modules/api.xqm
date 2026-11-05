@@ -489,10 +489,21 @@ declare %private function api:reconciliation-type($docType as xs:string) as map(
 };
 
 declare function api:reconciliation-suggest-entity($model as map(*)) as map(*) {
+    let $prefix := normalize-space($model?prefix)
+    let $identified-entity :=
+        if($prefix) then try {
+            for $doc in api:findByID($prefix)
+            let $docID := string($doc/*/@xml:id)
+            let $docType := config:get-doctype-by-id($docID)
+            where $docType = ('persons', 'orgs', 'places', 'works')
+            return api:document-basics($doc, $docID, $docType, $model)
+        } catch * { () }
+        else ()
     let $entities :=
-        if(normalize-space($model?prefix)) then
+        if(exists($identified-entity)) then $identified-entity
+        else if($prefix) then
             api:search-entity(map {
-                'q': $model?prefix,
+                'q': $prefix,
                 'docType': ('persons', 'orgs', 'places', 'works'),
                 'offset': $model?offset,
                 'limit': $model?limit,
