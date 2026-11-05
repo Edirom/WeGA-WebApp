@@ -1465,7 +1465,6 @@ declare
                 'localFacsimiles' : $localFacsimiles,
                 'externalIIIFManifestFacsimiles' : $externalIIIFManifestFacsimiles,
                 'IIIFImagesMap': $IIIFImagesMap,
-                'hasCreation' : exists($model?doc//tei:creation),
                 'hasTranscription' : $hasTranscription,
                 'textRoot' : $textRoot,
                 'xml-download-url' : replace(controller:create-url-for-doc($model('doc'), $model('lang')), '\.html', '.xml'),
@@ -1765,13 +1764,41 @@ declare
             }
 };
 
-declare 
+(:~
+ : Return creation or publication content for documents and source previews.
+ :)
+declare
     %templates:default("lang", "en")
+    %templates:default("usage", "full")
     %templates:wrap
-    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as item()* {
-        if($model?hasCreation and $model('result-page-entry')) then wega-util:txtFromTEI($model('doc')//tei:creation)
-        else if($model?hasCreation) then wega-util:transform($model('doc')//tei:creation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-        else '–'
+    function app:print-creation($node as node(), $model as map(*), $lang as xs:string, $usage as xs:string) as item()* {
+        let $doc := $model('doc')
+        let $teiCreation := ($doc//tei:creation)[1]
+        let $meiPubStmt := ($doc/mei:manifestation/mei:pubStmt)[1]
+        let $teiImprint := ($doc//tei:sourceDesc/tei:biblStruct/tei:monogr/tei:imprint)[1]
+        let $meiCreation := ($doc/mei:manifestation/mei:creation)[1]
+        let $teiOrigin := ($doc//tei:sourceDesc/tei:msDesc/tei:history/tei:origin)[1]
+        let $value :=
+            if($teiCreation) then
+                if($usage = 'preview') then wega-util:txtFromTEI($teiCreation)
+                else wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            else if($meiCreation) then str:normalize-space($meiCreation)
+            else if($meiPubStmt) then app:creation-place-date($meiPubStmt/mei:pubPlace, $meiPubStmt/mei:date)
+            else if($teiImprint) then app:creation-place-date($teiImprint/tei:pubPlace, $teiImprint/tei:date)
+            else if($teiOrigin) then app:creation-place-date((), $teiOrigin//tei:date)
+            else ()
+        let $hasValue := some $item in $value satisfies normalize-space(string($item)) ne ''
+        return
+            if($hasValue) then $value
+            else if($usage = 'preview') then ()
+            else '–'
+};
+
+declare %private function app:creation-place-date($places as element()*, $dates as element()*) as xs:string? {
+    let $place := string-join(($places ! str:normalize-space(.))[. ne ''], ' &amp; ')
+    let $date := string-join(($dates ! str:normalize-space(.))[. ne ''], ' ')
+    let $value := normalize-space(string-join(($place[. ne ''], $date[. ne '']), ' '))
+    return if($value ne '') then $value else ()
 };
 
 
@@ -2015,6 +2042,7 @@ declare
         map {
             'doc' : $model('result-page-entry'),
             'docID' : $model('result-page-entry')/root()/*/data(@xml:id),
+            'creation' : app:print-creation($node, map {'doc': $model('result-page-entry')}, $lang, 'preview'),
             'docURL' : 
                 if(config:is-person($model?parent-docID)) then controller:create-url-for-doc-in-context($model?result-page-entry, $lang, $model?parent-docID)
                 else controller:create-url-for-doc($model('result-page-entry'), $lang),
@@ -2068,7 +2096,6 @@ declare
     %templates:wrap
     function app:preview-details($node as node(), $model as map(*)) as map(*) {
         map {
-            'hasCreation' : exists($model('doc')//tei:creation),
             'summary' : app:print-summary($node, $model, $model?lang) => string-join('; ') => str:normalize-space()
         }
 };
@@ -2164,20 +2191,6 @@ declare
         else if($model('relator')/self::tei:author) then lang:get-language-string('aut', $lang)
         else wega-util:log-to-file('warn', 'app:preview-relator-role(): Failed to reckognize role')
 };
-
-(:~
- : Solely used for sources(?)
-:)
-declare 
-    %templates:wrap
-    %templates:default("lang", "en")
-    function app:preview-creation($node as node(), $model as map(*), $lang as xs:string) as xs:string? {
-        if($model('doc')/mei:manifestation/mei:pubStmt) then ( string-join($model('doc')/mei:manifestation/mei:pubStmt/mei:pubPlace, ' &amp; ') || ' ' || $model('doc')/mei:manifestation/mei:pubStmt/mei:date )
-        else if($model('doc')//tei:sourceDesc/tei:biblStruct) then ( string-join($model('doc')//tei:sourceDesc/tei:biblStruct/tei:monogr/tei:imprint/tei:pubPlace, ' &amp; ') || ' ' || $model('doc')//tei:sourceDesc/tei:biblStruct/tei:monogr/tei:imprint/tei:date ) 
-        else if($model('doc')/mei:manifestation/mei:creation) then str:normalize-space($model('doc')/mei:manifestation/mei:creation)
-        else ()
-};
-
 
 declare 
     %templates:default("lang", "en")
