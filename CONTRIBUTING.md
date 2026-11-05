@@ -85,9 +85,11 @@ Indentation, encoding and line endings are defined in `.editorconfig`.
 ## Tests
 
 CI (`.github/workflows/docker-testing.yml`) builds the Docker image and runs
-`ant test` against it on every push. Locally you need the app running on
-`localhost:8080` with the `WeGA-data-testing` package (see `Dockerfile` for the URL),
-then:
+`ant test` against it on every push. For a non-Docker setup, install the
+`WeGA-data-testing` package (see `Dockerfile` for the URL), set `dataCollectionPath`
+in the deployed `catalogues/options.xml` to `/db/apps/WeGA-data-testing`, and run the
+app on `localhost:8080`. The `docker_run` target below sets this option automatically.
+Then:
 
 ```bash
 ant docker_run          # optional: build + start the test container

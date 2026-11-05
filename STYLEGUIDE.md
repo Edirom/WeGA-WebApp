@@ -108,8 +108,9 @@ declare function app:create-doc-link($doc as document-node()?, $lang as xs:strin
   (`http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities`) and are
   kebab-case; legacy camelCase names (`wega:getOption`) are kept.
 - Mode names are short nouns: `apparatus`, `lemma`, `verbatim`, `source-toc`.
-- Parameters passed from XQuery (`lang`, `docID`, `environment`, …) are declared as
-  `<xsl:param>` at the top of each stylesheet that uses them, after the global variables.
+- Shared parameters passed from XQuery (`lang`, `docID`, `environment`, …) are declared
+  once in `common_main.xsl` and made available through `xsl:include`. Do not redeclare
+  them in including stylesheets; declare only stylesheet-specific parameters locally.
 
 ## HTML templates (`templates/`)
 
