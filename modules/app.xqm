@@ -1769,9 +1769,8 @@ declare
  :)
 declare
     %templates:default("lang", "en")
-    %templates:default("usage", "full")
     %templates:wrap
-    function app:print-creation($node as node(), $model as map(*), $lang as xs:string, $usage as xs:string) as item()* {
+    function app:print-creation($node as node(), $model as map(*), $lang as xs:string) as item()* {
         let $doc := $model('doc')
         let $teiCreation := ($doc//tei:creation)[1]
         let $meiPubStmt := ($doc/mei:manifestation/mei:pubStmt)[1]
@@ -1779,19 +1778,14 @@ declare
         let $meiCreation := ($doc/mei:manifestation/mei:creation)[1]
         let $teiOrigin := ($doc//tei:sourceDesc/tei:msDesc/tei:history/tei:origin)[1]
         let $value :=
-            if($teiCreation) then
-                if($usage = 'preview') then wega-util:txtFromTEI($teiCreation)
-                else wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
+            if($teiCreation) then wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
             else if($meiCreation) then str:normalize-space($meiCreation)
             else if($meiPubStmt) then app:creation-place-date($meiPubStmt/mei:pubPlace, $meiPubStmt/mei:date)
             else if($teiImprint) then app:creation-place-date($teiImprint/tei:pubPlace, $teiImprint/tei:date)
             else if($teiOrigin) then app:creation-place-date((), $teiOrigin//tei:date)
             else ()
         let $hasValue := some $item in $value satisfies normalize-space(string($item)) ne ''
-        return
-            if($hasValue) then $value
-            else if($usage = 'preview') then ()
-            else '–'
+        return if($hasValue) then $value else '–'
 };
 
 declare %private function app:creation-place-date($places as element()*, $dates as element()*) as xs:string? {
@@ -2042,7 +2036,7 @@ declare
         map {
             'doc' : $model('result-page-entry'),
             'docID' : $model('result-page-entry')/root()/*/data(@xml:id),
-            'creation' : app:print-creation($node, map {'doc': $model('result-page-entry')}, $lang, 'preview'),
+            'creation' : app:print-creation($node, map {'doc': $model('result-page-entry')}, $lang),
             'docURL' : 
                 if(config:is-person($model?parent-docID)) then controller:create-url-for-doc-in-context($model?result-page-entry, $lang, $model?parent-docID)
                 else controller:create-url-for-doc($model('result-page-entry'), $lang),
