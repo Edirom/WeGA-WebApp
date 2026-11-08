@@ -99,6 +99,7 @@ The test targets themselves run on the host and need `prettydiff` and `vnu-jar` 
 ```bash
 ant yarn                # once: installs prettydiff and vnu-jar into node_modules
 ant docker_run          # optional: build + start the test container
+ant yarn                # install host-side test tools, also needed with Docker
 ant test                # xqsuite unit tests + HTML regression tests
 ant check-html          # validate expected results with the Nu HTML checker
 ```
