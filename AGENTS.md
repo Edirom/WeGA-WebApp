@@ -50,8 +50,10 @@ Entry point for AI coding agents working in this repository. Humans: start with
   `app-shared:if-matches`, `app-shared:each` and friends cover most cases.
 - **Do not rename, reformat or translate old code as a side effect.** Older camelCase
   functions and German comments stay as they are; new code follows STYLEGUIDE.md.
-- **A new document type touches many places**: a `wdt:` function, templates, `testing/urls/`,
-  expected results, the `test` target in `build.xml` and `testing/ant-testing.xml`.
+- **A new document type touches many places**: a `wdt:` function, a `<type>IdPattern`
+  option in `catalogues/options.xml`, a `case` in `app:prepare-text` if it needs its own
+  stylesheet, templates, `testing/urls/`, expected results, the `test` target in `build.xml`
+  and `testing/ant-testing.xml`.
 
 ## Verifying a change
 

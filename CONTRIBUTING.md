@@ -92,9 +92,12 @@ CI (`.github/workflows/docker-testing.yml`) builds the Docker image and runs
 `WeGA-data-testing` package (see `Dockerfile` for the URL), set `dataCollectionPath`
 in the deployed `catalogues/options.xml` to `/db/apps/WeGA-data-testing`, and run the
 app on `localhost:8080`. The `docker_run` target below sets this option automatically.
-Then:
+The test targets themselves run on the host and need `prettydiff` and `vnu-jar` from
+`node_modules`, so run `ant yarn` once first, even when the app runs in Docker. Without
+`prettydiff` the HTML comparison passes silently. Then:
 
 ```bash
+ant yarn                # once: installs prettydiff and vnu-jar into node_modules
 ant docker_run          # optional: build + start the test container
 ant test                # xqsuite unit tests + HTML regression tests
 ant check-html          # validate expected results with the Nu HTML checker

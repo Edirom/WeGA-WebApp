@@ -9,10 +9,9 @@ end_of_line = lf
 indent_style = space
 indent_size = 4
 insert_final_newline = true
-trim_trailing_whitespace = true
-
-[*.md]
-# two trailing spaces are a Markdown line break
+# Deliberately off: older modules are full of trailing whitespace, and trimming on
+# save would reformat them as a side effect (STYLEGUIDE.md forbids that). New code
+# should still have none.
 trim_trailing_whitespace = false
 
 [*.{yml,yaml,json}]

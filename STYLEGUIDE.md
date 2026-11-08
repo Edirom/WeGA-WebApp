@@ -1,12 +1,14 @@
 # WeGA-WebApp Style Guide
 
-Conventions observed in the codebase. Where old and new code disagree, the rule below
-follows the newer code; do not reformat, rename or translate old code just to comply —
-such changes only as deliberate, separate commits.
+These are the rules for new code. They follow the newer code and, where the codebase is
+inconsistent, common conventions for the language. Older code often diverges; do not
+reformat, rename or translate it just to comply — such changes only as deliberate,
+separate commits.
 
 ## General
 
-- Indentation: **4 spaces**, no tabs (a few older Sass and HTML files still use tabs).
+- Indentation: **4 spaces**, no tabs (older files, including several core XQuery modules,
+  still mix tabs and spaces).
 - Encoding UTF-8, Unix line endings.
 - Code, comments, commit messages and documentation in **English**. Only the two
   dictionaries in `catalogues/` and user-facing strings are localised.
@@ -33,9 +35,9 @@ import module namespace str="…/modules/str" at "xmldb:exist:///db/apps/WeGA-We
 
 - Module namespace URIs follow `http://xquery.weber-gesamtausgabe.de/modules/<name>`;
   the prefix equals the file name (`wega-util.xqm` → `wega-util:`). Short prefixes are
-  acceptable when established (`er` for `external-requests`, `gl` for guidelines).
+  acceptable when established (`er` for `external-requests`).
 - Modules from WeGA-WebApp-lib are always imported via the absolute `xmldb:exist:///db/apps/WeGA-WebApp-lib/xquery/…` path.
-- Group related functions with a banner comment:
+- Long modules group related functions under a banner comment (see `app.xqm`):
 
 ```xquery
 (:
