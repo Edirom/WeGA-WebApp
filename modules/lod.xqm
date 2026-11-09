@@ -184,7 +184,7 @@ declare %private function lod:jsonld-entity($elem as element(), $lang as xs:stri
 (:~
  : Helper function for creating the page description
 ~:)
-declare %private function lod:DC.description($model as map(*), $lang as xs:string) as xs:string? {
+declare function lod:DC.description($model as map(*), $lang as xs:string) as xs:string? {
     if($model?specID) then lang:get-language-string('metaDescriptionGuidelinesSpecs', ($model?specID), $lang)
     else if($model?chapID) then 
         switch($model?chapID)
