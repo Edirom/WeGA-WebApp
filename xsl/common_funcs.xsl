@@ -444,6 +444,22 @@
     </xsl:function>
 
     <!--  *********************************************  -->
+    <!--  * Helper functions for spans and milestones *  -->
+    <!--  *********************************************  -->
+
+    <xsl:key name="spanning-milestones-by-end" match="tei:addSpan | tei:delSpan" use="replace(normalize-space(@spanTo), '^#', '')"/>
+
+    <xsl:function name="wega:span-end" as="element(tei:anchor)?">
+        <xsl:param name="milestone" as="element()"/>
+        <xsl:sequence select="id(replace(normalize-space(string($milestone/@spanTo)), '^#', ''), root($milestone))[self::tei:anchor][1]"/>
+    </xsl:function>
+
+    <xsl:function name="wega:spans-for-node" as="element()*">
+        <xsl:param name="node" as="node()"/>
+        <xsl:sequence select="($node/preceding::tei:addSpan | $node/preceding::tei:delSpan)[$node &lt;&lt; wega:span-end(.)]"/>
+    </xsl:function>
+
+    <!--  *********************************************  -->
     <!--  * Functx - Funktionen http://www.functx.com *  -->
     <!--  *********************************************  -->
     <xsl:function name="functx:replace-multi" as="xs:string?">
