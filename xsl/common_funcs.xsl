@@ -447,6 +447,7 @@
     <!--  * Helper functions for spans and milestones *  -->
     <!--  *********************************************  -->
 
+    <xsl:key name="spanning-milestones" match="tei:addSpan | tei:delSpan" use="'all'"/>
     <xsl:key name="spanning-milestones-by-end" match="tei:addSpan | tei:delSpan" use="replace(normalize-space(@spanTo), '^#', '')"/>
 
     <xsl:function name="wega:span-end" as="element(tei:anchor)?">
@@ -456,7 +457,7 @@
 
     <xsl:function name="wega:spans-for-node" as="element()*">
         <xsl:param name="node" as="node()"/>
-        <xsl:sequence select="($node/preceding::tei:addSpan | $node/preceding::tei:delSpan)[$node &lt;&lt; wega:span-end(.)]"/>
+        <xsl:sequence select="key('spanning-milestones', 'all', root($node))[. &lt;&lt; $node and $node &lt;&lt; wega:span-end(.)]"/>
     </xsl:function>
 
     <!--  *********************************************  -->
