@@ -592,6 +592,49 @@ $('.preview, .noteMarker').on('click', function(event) {
     return false;
 });
 
+function teiSpanFragments(marker) {
+    const spanID = marker.getAttribute('data-tei-span-id'),
+        spanClass = marker.classList.contains('spanMarker-add') ? '.tei_addSpan' : '.tei_delSpan';
+    return $(spanClass + '[data-tei-span-id]').filter(function() {
+        return this.getAttribute('data-tei-span-id') === spanID;
+    });
+}
+
+/* Place each marker next to its first or last fragment, within the rendered line. */
+$(function() {
+    $('.spanMarker').each(function() {
+        const fragments = teiSpanFragments(this);
+        if (!fragments.length) return;
+
+        const start = this.classList.contains('spanMarker-start');
+        const markerParent = this.parentElement;
+        let edge = start ? fragments[0] : fragments[fragments.length - 1];
+        while (edge.parentElement &&
+            (edge.parentElement !== markerParent || markerParent.matches('a, button')) && (
+            ['inline', 'contents'].includes(getComputedStyle(edge.parentElement).display) ||
+            edge.parentElement.matches('a, button')
+        )) {
+            edge = edge.parentElement;
+        }
+        edge[start ? 'before' : 'after'](this);
+    });
+});
+
+/* Keep a range highlighted while either of its marker popovers is open. */
+$(document)
+    .on('shown.bs.popover', '.spanMarker', function() {
+        $(this).addClass('spanMarker-open');
+        teiSpanFragments(this).addClass('tei-span-highlight');
+    })
+    .on('hidden.bs.popover', '.spanMarker', function() {
+        const spanID = this.getAttribute('data-tei-span-id');
+        $(this).removeClass('spanMarker-open');
+        const otherMarkerOpen = $('.spanMarker-open').filter(function() {
+            return this.getAttribute('data-tei-span-id') === spanID;
+        }).length > 0;
+        teiSpanFragments(this).toggleClass('tei-span-highlight', otherMarkerOpen);
+    });
+
 /*
  * A simple template for the popover based on page.html#carousel-popover
  * NB: we do not make use of the generic popover-title since we want 

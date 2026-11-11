@@ -70,6 +70,49 @@ $tei_list-indent: $font-size-base;
     text-decoration:line-through;
 }
 
+.tei_delSpan {
+    color: $gray-light;
+    text-decoration: line-through;
+}
+
+.tei_addSpan.tei-span-highlight,
+.tei_delSpan.tei-span-highlight {
+    background-color: $gray-light;
+    color: $body-color;
+}
+
+// Preserve underlines when a span fragment has its own background.
+.tei_hi_underline1 .tei_addSpan,
+.tei_hi_underline1 .tei_delSpan {
+    background-image: linear-gradient(
+        to bottom,
+        transparent 11px,
+        currentColor 11px,
+        currentColor 12px,
+        transparent 12px
+    );
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    background-size: 100% 14px;
+}
+
+.tei_hi_underline2andMore .tei_addSpan,
+.tei_hi_underline2andMore .tei_delSpan {
+    background-image: linear-gradient(
+        to bottom,
+        transparent 11px,
+        currentColor 11px,
+        currentColor 12px,
+        transparent 12px,
+        transparent 13px,
+        currentColor 13px,
+        currentColor 14px
+    );
+    background-position: center bottom;
+    background-repeat: repeat-x;
+    background-size: 100% 14px;
+}
+
 .tei_pb, .tei_cb {
     cursor: help;
 }
