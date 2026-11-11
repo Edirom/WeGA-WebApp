@@ -205,29 +205,6 @@
         </xsl:choose>
     </xsl:template>
 
-    <!-- A milestone range may cross HTML block boundaries, so wrap each rendered text fragment. -->
-    <xsl:template name="wrap-span-fragments">
-        <xsl:param name="content" as="node()*"/>
-        <xsl:param name="milestones" as="element()*"/>
-        <xsl:choose>
-            <xsl:when test="empty($content)"/>
-            <xsl:when test="empty($milestones)">
-                <xsl:sequence select="$content"/>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:variable name="milestone" as="element()" select="$milestones[1]"/>
-                <xsl:element name="span">
-                    <xsl:attribute name="class" select="concat('tei_', local-name($milestone))"/>
-                    <xsl:attribute name="data-tei-span-id" select="generate-id($milestone)"/>
-                    <xsl:call-template name="wrap-span-fragments">
-                        <xsl:with-param name="content" select="$content"/>
-                        <xsl:with-param name="milestones" select="$milestones[position() gt 1]"/>
-                    </xsl:call-template>
-                </xsl:element>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
-
     <!--  *********************************************  -->
     <!--  *                  Templates                *  -->
     <!--  *********************************************  -->
@@ -256,25 +233,6 @@
     -->
     <xsl:template match="tei:lb[(following-sibling::text()[not(functx:all-whitespace(.))] | following-sibling::*)[1] = following-sibling::tei:seg[@rend]]" priority="0.6"/>
     <xsl:template match="tei:lb[(following-sibling::text()[not(functx:all-whitespace(.))] | following-sibling::*)[1] = following-sibling::tei:signed[@rend]]" priority="0.6"/>
-
-    <!-- Preserve the existing text rendering, then mark the part inside each range. -->
-    <xsl:template match="text()" priority="2">
-        <xsl:variable name="milestones" as="element()*" select="wega:spans-for-node(.)"/>
-        <xsl:choose>
-            <xsl:when test="$milestones and normalize-space(.)">
-                <xsl:variable name="content">
-                    <xsl:next-match/>
-                </xsl:variable>
-                <xsl:call-template name="wrap-span-fragments">
-                    <xsl:with-param name="content" select="$content/node()"/>
-                    <xsl:with-param name="milestones" select="$milestones"/>
-                </xsl:call-template>
-            </xsl:when>
-            <xsl:otherwise>
-                <xsl:next-match/>
-            </xsl:otherwise>
-        </xsl:choose>
-    </xsl:template>
 
     <xsl:template match="text()" mode="#all">
         <xsl:variable name="regex" select="string-join((&#34;'&#34;, $musical-symbols, $fa-exclamation-circle), '|')"/>
