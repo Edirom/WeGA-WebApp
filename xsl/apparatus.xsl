@@ -365,14 +365,20 @@
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <!-- Need to take care of whitespace when there are multiple <add>. -->
-         <xsl:choose>
-            <xsl:when test="count(tei:add) gt 1">
-               <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:apply-templates select="tei:add" mode="lemma"/>
-            </xsl:otherwise>
-         </xsl:choose>
+         <xsl:variable name="added-content">
+            <xsl:choose>
+               <xsl:when test="count(tei:add) gt 1">
+                  <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:apply-templates select="tei:add" mode="lemma"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:variable>
+         <xsl:call-template name="wrap-span-fragments">
+            <xsl:with-param name="content" select="$added-content/node()"/>
+            <xsl:with-param name="milestones" select="wega:spans-for-node(.)"/>
+         </xsl:call-template>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
@@ -637,11 +643,27 @@
 
    <xsl:template match="tei:gap">
       <xsl:element name="span">
-         <xsl:text>[…]</xsl:text>
+         <xsl:call-template name="span-generated-text">
+            <xsl:with-param name="content" select="'[…]'"/>
+         </xsl:call-template>
          <xsl:if test="not(@reason='outOfScope' or parent::tei:del)">
             <xsl:call-template name="popover"/>
          </xsl:if>
       </xsl:element>
+   </xsl:template>
+
+   <xsl:template match="tei:space" priority="2">
+      <xsl:variable name="milestones" as="element()*" select="wega:spans-for-node(.)"/>
+      <xsl:choose>
+         <xsl:when test="$milestones">
+            <xsl:variable name="content"><xsl:next-match/></xsl:variable>
+            <xsl:call-template name="wrap-span-fragments">
+               <xsl:with-param name="content" select="$content/node()"/>
+               <xsl:with-param name="milestones" select="$milestones"/>
+            </xsl:call-template>
+         </xsl:when>
+         <xsl:otherwise><xsl:next-match/></xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
 
    <xsl:template match="tei:gap" mode="apparatus">
@@ -778,12 +800,16 @@
 <!--         <xsl:attribute name="id" select="wega:createID(.)"/>-->
          <xsl:element name="span">
             <xsl:attribute name="class">brackets_supplied</xsl:attribute>
-            <xsl:text>[</xsl:text>
+            <xsl:call-template name="span-generated-text">
+               <xsl:with-param name="content" select="'['"/>
+            </xsl:call-template>
          </xsl:element>
          <xsl:apply-templates mode="#current"/>
          <xsl:element name="span">
             <xsl:attribute name="class">brackets_supplied</xsl:attribute>
-            <xsl:text>]</xsl:text>
+            <xsl:call-template name="span-generated-text">
+               <xsl:with-param name="content" select="']'"/>
+            </xsl:call-template>
          </xsl:element>
          <xsl:if test="parent::tei:damage">
             <xsl:call-template name="popover"/>
@@ -911,6 +937,16 @@
             </xsl:element>
          </xsl:otherwise>
       </xsl:choose>
+   </xsl:template>
+
+   <!-- Literal transcription signs have no source text node to match. -->
+   <xsl:template name="span-generated-text">
+      <xsl:param name="content" as="xs:string"/>
+      <xsl:variable name="rendered"><xsl:value-of select="$content"/></xsl:variable>
+      <xsl:call-template name="wrap-span-fragments">
+         <xsl:with-param name="content" select="$rendered/node()"/>
+         <xsl:with-param name="milestones" select="wega:spans-for-node(.)"/>
+      </xsl:call-template>
    </xsl:template>
 
    <!-- Preserve the existing text rendering, then mark the part inside each range. -->
