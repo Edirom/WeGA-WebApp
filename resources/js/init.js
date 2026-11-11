@@ -596,7 +596,7 @@ function teiSpanFragments(marker) {
     const spanID = marker.getAttribute('data-tei-span-id'),
         spanClass = marker.classList.contains('spanMarker-add') ? '.tei_addSpan' : '.tei_delSpan';
     return $(spanClass + '[data-tei-span-id]').filter(function() {
-        return this.getAttribute('data-tei-span-id') === spanID;
+        return this.getAttribute('data-tei-span-id') === spanID && !this.closest('.apparatus');
     });
 }
 
