@@ -990,19 +990,29 @@
    <xsl:function name="wega:span-lemma" as="xs:string">
       <xsl:param name="milestone" as="element()"/>
       <xsl:variable name="end" as="element(tei:anchor)?" select="wega:span-end($milestone)"/>
-      <xsl:variable name="nodes" as="node()*" select="
-         $milestone/following::node()[
+      <xsl:variable name="rendered">
+         <xsl:for-each select="$milestone/following::node()[
             exists($end) and . &lt;&lt; $end
-            and (self::text() or self::tei:gap)
             and not(ancestor::tei:note or ancestor::tei:rdg
                or ancestor::tei:corr[parent::tei:choice]
                or ancestor::tei:del[parent::tei:subst])
-         ]"/>
-      <xsl:sequence select="normalize-space(string-join(
-         for $node in $nodes
-         return if ($node/self::tei:gap) then '[…]' else string($node),
-         ' '
-      ))"/>
+         ]">
+            <xsl:choose>
+               <xsl:when test="self::text() or self::tei:gap or self::tei:lb">
+                  <xsl:apply-templates select="." mode="lemma"/>
+               </xsl:when>
+               <xsl:when test="self::tei:p or self::tei:l or self::tei:div
+                  or self::tei:opener or self::tei:closer or self::tei:dateline
+                  or self::tei:postscript or self::tei:head
+                  or self::tei:sp or self::tei:stage or self::tei:speaker
+                  or self::tei:item or self::tei:cell">
+                  <!-- A range can cross block boundaries with no whitespace text node between them. -->
+                  <xsl:text> </xsl:text>
+               </xsl:when>
+            </xsl:choose>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:sequence select="normalize-space(string($rendered))"/>
    </xsl:function>
 
    <xsl:template match="tei:addSpan | tei:delSpan" mode="apparatus">
@@ -1011,7 +1021,9 @@
       <xsl:call-template name="apparatusEntry">
          <xsl:with-param name="id" select="generate-id(.)"/>
          <xsl:with-param name="title" select="wega:getLanguageString(if (self::tei:addSpan) then 'popoverTitle.add' else 'popoverTitle.del', $lang)"/>
-         <xsl:with-param name="lemma" select="if (count($tokens) gt 6) then string-join((subsequence($tokens, 1, 3), '…', subsequence($tokens, count($tokens) - 2, 3)), ' ') else $lemma"/>
+         <xsl:with-param name="lemma">
+            <xsl:value-of select="if (count($tokens) gt 6) then string-join((subsequence($tokens, 1, 3), '…', subsequence($tokens, count($tokens) - 2, 3)), ' ') else $lemma"/>
+         </xsl:with-param>
          <xsl:with-param name="explanation">
             <xsl:choose>
                <xsl:when test="self::tei:addSpan">
