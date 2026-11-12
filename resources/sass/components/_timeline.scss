@@ -1,0 +1,231 @@
+// ===== timeline (TEI listEvent[@type='timeline']) =====
+//
+// Layout: events on a side-switching axis (20% / 80%): right is the default
+// side, an event <li class="left"> (TEI @subtype='highlight') sits left. The
+// side is PER EVENT; wherever two consecutive events differ, an S-curve
+// bridges the change -- inside a year group (.bend on the event row) or at a
+// group boundary (.bend on the year group, above the pill). The XSLT
+// (var.xsl) computes all side/bend/exit classes.
+// Axis anatomy: each event row draws its own segment (::after); the year
+// group adds a short segment behind the pill (::after) and a connector
+// through its bottom padding (::before, at the exit side). All of these come
+// from one mixin, so they line up exactly; only the S-curves are background
+// images.
+//
+// All variables and functions are prefixed with 'timeline-' since this file
+// is pulled in via @import and hence shares the global namespace with
+// Bootstrap (which e.g. defines its own $card-bg).
+
+@use 'sass:list';
+@use 'sass:string';
+
+// ----- variables -----
+$timeline-axis: 20%;              // axis position while events sit right (default)
+$timeline-axis-left: 80%;         // axis position while events sit left (highlight)
+$timeline-gap: 5%;                // air between axis and card / date detail
+$timeline-axis-color: #999;
+$timeline-axis-width: 2px;
+$timeline-icon-size: 1.5rem;      // font size of the icon glyph
+$timeline-icon-backing: 2.35rem;  // white disc interrupting the axis
+$timeline-group-gap: .5rem;       // extra air below a year group (on top of the last row's padding)
+$timeline-pill-bg: #333;
+$timeline-card-bg: #f5f5f5;
+$timeline-card-bg-hover: #eef6ff;
+
+// event types: color + Font Awesome icon (solid style, as code point).
+// Keys double as CSS classes = TEI event/@type values.
+$timeline-event-types: (
+  archive:     (#06c    "\f187"), // box-archive
+  edition:     (#0a6    "\f02d"), // book
+  outreach:    (#a8483c "\e533"), // people-group
+  honour:      (#b88a00 "\f005"), // star
+  publication: (#639    "\f70e"), // scroll
+);
+
+// ----- helpers -----
+// '#999' -> '999' for use inside a data URI ('%23999')
+@function timeline-url-color($c) {
+  @return string.slice(string.unquote('#{$c}'), 2);
+}
+
+// S-curve as SVG data URI. The bezier meets the vertical segments
+// tangentially, so there are no corners; arms 18/6 = max roundness before
+// overshoot (12/12 would be the flattest tangential curve). Endpoints are
+// inset 1/60 of the viewBox so the stroke is not clipped -- which is why the
+// background-size below is 62.07%: that makes the endpoints land exactly on
+// the 20% / 80% axis.
+@function timeline-curve($path) {
+  @return url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 60 24' preserveAspectRatio='none'><path d='#{$path}' fill='none' stroke='%23#{timeline-url-color($timeline-axis-color)}' stroke-width='2' vector-effect='non-scaling-stroke'/></svg>");
+}
+$timeline-curve-to-right: timeline-curve('M59 0 C59 18 1 6 1 24'); // left (80%) -> right (20%)
+$timeline-curve-to-left:  timeline-curve('M1 0 C1 18 59 6 59 24'); // right (20%) -> left (80%)
+
+// One straight piece of the axis. Every piece uses this mixin and hence the
+// same positioning, so the browser rounds all of them to the same pixel.
+// (A background image at `20%` would not match: there the percentage refers
+// to the box width minus the image width.) Vertical extent is set by the caller.
+@mixin timeline-axis-segment {
+  content: "";
+  position: absolute;
+  left: $timeline-axis;
+  width: $timeline-axis-width;
+  background: $timeline-axis-color;
+  transform: translateX(-50%);
+}
+
+// ----- component -----
+.tei_listEvent_timeline {
+  list-style: none;
+  margin: 2rem 0;
+  padding: 0;
+  --bend: 4.5rem;                        // height of the S-curves
+  --bend-pad: calc(var(--bend) + .5rem); // curve + air above event rows
+
+  > li {
+    position: relative;
+    padding-bottom: $timeline-group-gap;
+
+    &::after { // segment behind pill + gap down to the first event row;
+      // fixed height (pill line box 1.5rem + ul margin .75rem, slight
+      // overdraw is invisible because the first row's segment sits on the
+      // same side)
+      @include timeline-axis-segment;
+      top: 0;
+      height: 2.4rem;
+    }
+    &.left::after { left: $timeline-axis-left; }
+
+    &::before { // connector through the group's bottom padding
+      @include timeline-axis-segment;
+      bottom: 0;
+      height: $timeline-group-gap + .1rem; // slight overlap with the last row
+    }
+    &.exit-left::before { left: $timeline-axis-left; }
+    &:last-child::before { display: none; } // axis ends at the last icon
+    &:first-child::after { top: .7em; height: 1.7rem; }
+
+    // side change at a group boundary: S-curve above the pill
+    &.bend {
+      padding-top: var(--bend);
+      background: $timeline-curve-to-right 50% 0 / 62.07% var(--bend) no-repeat;
+
+      &.left { background-image: $timeline-curve-to-left; } // mirrored: right -> left
+      &::after { top: var(--bend); }
+    }
+  }
+
+  .year { // year pill centered on the axis (side of the group's first event)
+    display: inline-block;
+    position: relative;
+    left: $timeline-axis;
+    transform: translateX(-50%);
+    background: $timeline-pill-bg;
+    color: #fff;
+    font-weight: bold;
+    padding: .05em .7em;
+    border-radius: 1em;
+    z-index: 1;
+    white-space: nowrap;
+    // fixed line height: the segment behind the pill (> li::after) has a
+    // fixed height and must not depend on the line height of the page
+    line-height: 1.5;
+  }
+  > li.left .year { left: $timeline-axis-left; }
+
+  // event rows: each draws its own axis segment (::after)
+  // !important on the margins of ul and p: the generic rules for document
+  // texts (base/_base.scss, `.tab-content .tab-pane:not(#backlinks) div
+  // ul:last-of-type` etc. and `#transcription p`) carry an ID and would
+  // otherwise win, tearing gaps into the axis
+  ul {
+    list-style: none;
+    margin: .75rem 0 0 !important;
+    padding: 0;
+
+    li {
+      position: relative;
+      padding: 0 0 1rem ($timeline-axis + $timeline-gap);
+
+      &.left { padding: 0 (100% - $timeline-axis-left + $timeline-gap) 1rem 0; }
+
+      // side change inside a group: S-curve at the top of the event row,
+      // its own segment starts below the curve
+      &.bend {
+        padding-top: var(--bend-pad);
+        background: $timeline-curve-to-right 50% 0 / 62.07% var(--bend) no-repeat;
+      }
+      &.left.bend { background-image: $timeline-curve-to-left; } // mirrored: right -> left
+
+      // axis segment over the full height of the row
+      &::after {
+        @include timeline-axis-segment;
+        top: 0;
+        bottom: 0;
+      }
+      &.bend::after { top: var(--bend); }
+
+      // event card
+      > div {
+        background: $timeline-card-bg;
+        border-radius: .5rem;
+        padding: .6rem .9rem;
+        box-shadow: 0 1px 3px rgba(0, 0, 0, .15);
+        transition: background .15s, box-shadow .15s;
+
+        &:hover { background: $timeline-card-bg-hover; box-shadow: 0 2px 6px rgba(0, 0, 0, .25); }
+
+        strong { display: block; font-size: 1.05em; color: #222; }
+      }
+      &.left > div { text-align: right; } // mirrored alignment
+
+      // Font Awesome icon on the axis per event; glyph and color per event
+      // type (see $timeline-event-types). Its box is a white square larger
+      // than the glyph: it visibly interrupts the axis and centers the glyph
+      // whatever its width.
+      &::before {
+        position: absolute;
+        left: $timeline-axis;
+        top: 0;
+        width: $timeline-icon-backing;
+        line-height: $timeline-icon-backing;
+        transform: translateX(-50%);
+        background: #fff;
+        font-family: "Font Awesome 7 Free";
+        font-style: normal;
+        font-weight: 900;
+        font-size: $timeline-icon-size;
+        text-align: center;
+        z-index: 1; // above the axis segments
+      }
+      &.left::before,
+      &.left::after { left: $timeline-axis-left; }
+      &.bend::before { top: var(--bend-pad); }
+    }
+
+    p { margin: .2rem 0 0 !important; color: #444; }
+  }
+
+  // date detail on the opposite side of the axis: anchored $timeline-gap away
+  // from the axis, grows away from it, never wraps
+  time {
+    position: absolute;
+    top: .7rem;
+    right: 100% - $timeline-axis + $timeline-gap;
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: .85em;
+  }
+  ul li.left time { right: auto; left: $timeline-axis-left + $timeline-gap; }
+  ul li.bend time { top: calc(var(--bend-pad) + .7rem); }
+
+  // the axis ends ON the last icon: the last segment stops behind it
+  > li:last-child ul li:last-child::after { bottom: auto; height: $timeline-icon-backing * .5; }
+
+  // one rule per event type: icon color + glyph
+  @each $name, $spec in $timeline-event-types {
+    ul li.#{$name}::before {
+      color: list.nth($spec, 1);
+      content: list.nth($spec, 2);
+    }
+  }
+}
