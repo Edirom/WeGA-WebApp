@@ -27,6 +27,9 @@ $timeline-axis-color: #999;
 $timeline-axis-width: 2px;
 $timeline-icon-size: 1.5rem;      // font size of the icon glyph
 $timeline-icon-backing: 2.35rem;  // white disc interrupting the axis
+// the air actually used: $timeline-gap, but never less than the icon needs
+// (on narrow screens 5% is smaller than half the white disc)
+$timeline-air: "max(#{$timeline-gap}, #{$timeline-icon-backing * .5 + .25rem})";
 $timeline-group-gap: .5rem;       // extra air below a year group (on top of the last row's padding)
 $timeline-pill-bg: #333;
 $timeline-card-bg: #f5f5f5;
@@ -144,9 +147,23 @@ $timeline-curve-to-left:  timeline-curve('M1 0 C1 18 59 6 59 24'); // right (20%
 
     li {
       position: relative;
-      padding: 0 0 1rem ($timeline-axis + $timeline-gap);
+      padding-bottom: 1rem;
+      // three columns: date detail | axis with the air on both sides | card.
+      // The date detail is a grid item: it wraps inside its column and the
+      // row grows with it. (Icon and axis segment are positioned absolutely
+      // and take no part in the grid.)
+      display: grid;
+      grid-template-columns:
+        calc(#{$timeline-axis} - #{$timeline-air})
+        calc(2 * #{$timeline-air})
+        minmax(0, 1fr);
 
-      &.left { padding: 0 (100% - $timeline-axis-left + $timeline-gap) 1rem 0; }
+      &.left { // mirrored: card | axis | date detail
+        grid-template-columns:
+          minmax(0, 1fr)
+          calc(2 * #{$timeline-air})
+          calc(#{100% - $timeline-axis-left} - #{$timeline-air});
+      }
 
       // side change inside a group: S-curve at the top of the event row,
       // its own segment starts below the curve
@@ -166,6 +183,8 @@ $timeline-curve-to-left:  timeline-curve('M1 0 C1 18 59 6 59 24'); // right (20%
 
       // event card
       > div {
+        grid-column: 3;
+        grid-row: 1;
         background: $timeline-card-bg;
         border-radius: .5rem;
         padding: .6rem .9rem;
@@ -176,7 +195,7 @@ $timeline-curve-to-left:  timeline-curve('M1 0 C1 18 59 6 59 24'); // right (20%
 
         strong { display: block; font-size: 1.05em; color: #222; }
       }
-      &.left > div { text-align: right; } // mirrored alignment
+      &.left > div { grid-column: 1; text-align: right; } // mirrored
 
       // Font Awesome icon on the axis per event; glyph and color per event
       // type (see $timeline-event-types). Its box is a white square larger
@@ -205,18 +224,28 @@ $timeline-curve-to-left:  timeline-curve('M1 0 C1 18 59 6 59 24'); // right (20%
     p { margin: .2rem 0 0 !important; color: #444; }
   }
 
-  // date detail on the opposite side of the axis: anchored $timeline-gap away
-  // from the axis, grows away from it, never wraps
+  // date detail in the column on the far side of the axis, aligned towards
+  // the axis; a long one wraps within the column
   time {
-    position: absolute;
-    top: .7rem;
-    right: 100% - $timeline-axis + $timeline-gap;
-    white-space: nowrap;
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    margin-top: .95rem; // level with the card heading
+    text-align: right;
     font-weight: bold;
     font-size: .85em;
+    line-height: 1.3;
+    overflow-wrap: break-word;
   }
-  ul li.left time { right: auto; left: $timeline-axis-left + $timeline-gap; }
-  ul li.bend time { top: calc(var(--bend-pad) + .7rem); }
+  ul li.left time { grid-column: 3; text-align: left; }
+
+  // narrow screens: the date column is too small for a word, so the date
+  // detail moves above its card
+  @include media-breakpoint-down(sm) {
+    time { grid-column: 3; margin: .6rem 0 .3rem; text-align: left; }
+    ul li > div { grid-row: 2; }
+    ul li.left time { grid-column: 1; text-align: right; }
+  }
 
   // the axis ends ON the last icon: the last segment stops behind it
   > li:last-child ul li:last-child::after { bottom: auto; height: $timeline-icon-backing * .5; }
