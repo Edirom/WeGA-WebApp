@@ -1344,18 +1344,65 @@ $.fn.init_settings = function () {
     let endpoint_url = getAPIBase() + '/application/preferences',
         marker,
         data;
+    const hiddenSpanBlocks = new Set(),
+        spanBlockSelector = 'p, .srcHeader, .tei_caption, .tei_stage, .tei_speaker, .verseLine, .lg, .tei_sp, .tei_spGrp, .tei_castGroup';
+
+    function hasVisibleContent(element) {
+        for (const node of element.childNodes) {
+            if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) {
+                return true;
+            }
+            if (node.nodeType === Node.ELEMENT_NODE && !node.hidden && node.style.display !== 'none') {
+                // Page breaks remain visible even in a deleted range.
+                if (node.matches('.tei_pb-text') || hasVisibleContent(node)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
+    /* 
+     * hide span blocks if they don't contain visible content 
+     * this is necessary to get rid of borders and padding when hiding large delSpan ranges
+     */
+    function updateSpanBlocks(show) {
+        if (show) {
+            hiddenSpanBlocks.forEach(block => $(block).show());
+            hiddenSpanBlocks.clear();
+            return;
+        }
+
+        const candidates = new Set();
+        $('.tei_delSpan').each(function() {
+            if (!this.closest('.apparatus')) {
+                $(this).parents(spanBlockSelector).each(function() {
+                    candidates.add(this);
+                });
+            }
+        });
+        candidates.forEach(block => {
+            if (getComputedStyle(block).display !== 'none' && !hasVisibleContent(block)) {
+                $(block).hide();
+                hiddenSpanBlocks.add(block);
+            }
+        });
+    }
         
     this.each(function() {
         // initially hide markers for unchecked inputs
         if(this.checked === false) {
             marker = this.getAttribute('data-toggle-class');
             $(marker).hide();
+            if (this.id === 'textConst-marker') updateSpanBlocks(false);
         }
         // add a listener to toggle markers
         $(this).change(function(){
             marker = this.getAttribute('data-toggle-class');
+            if (this.id === 'textConst-marker' && this.checked) updateSpanBlocks(true);
             // toggle markers within the text
             $(marker).toggle();
+            if (this.id === 'textConst-marker' && !this.checked) updateSpanBlocks(false);
             // update preferences by POSTing changes to the API endpoint 
             data = { [this.getAttribute('id')]: this.checked };
             fetch(endpoint_url, {
