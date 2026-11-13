@@ -1038,10 +1038,11 @@
             exists($end) and . &lt;&lt; $end
             and not(ancestor::tei:note or ancestor::tei:rdg
                or ancestor::tei:corr[parent::tei:choice]
-               or ancestor::tei:del[parent::tei:subst])
+               or ancestor::tei:del[parent::tei:subst]
+               or ancestor::tei:choice)
          ]">
             <xsl:choose>
-               <xsl:when test="self::text() or self::tei:gap or self::tei:lb">
+               <xsl:when test="self::text() or self::tei:gap or self::tei:lb or self::tei:choice">
                   <xsl:apply-templates select="." mode="lemma"/>
                </xsl:when>
                <xsl:when test="self::tei:p or self::tei:l or self::tei:div
