@@ -259,7 +259,7 @@
             <label class="custom-control-label" for="rdg-marker"><span>Lesarten</span> Δ</label>
         </div>
         <div class="custom-control custom-switch">
-            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡'), .tei_del" checked="checked" />
+            <input class="custom-control-input" type="checkbox" id="textConst-marker" data-toggle-class=".noteMarker:contains('‡'), .tei_del, .tei_delSpan, .source-toc-deleted" checked="checked" />
             <label class="custom-control-label" for="textConst-marker"><span>Textkonstitution</span> ‡</label>
         </div>
         <div class="custom-control custom-switch">
@@ -375,6 +375,7 @@
                         </div>
                     </div>
                 </div>
+                
             </div>
             <div class="col-md-9 main-col">
                 
@@ -388,7 +389,7 @@
                                         <p><span class="tei_hi_latintype">merita un Giovane Compositore di si distinti talenti</span></p>
                                         <p class="tei_closer textAlign-left"><span class="tei_segBlock textAlign-right"><span class="tei_hi_latintype">il Suo amico e Servitore</span><br /><span class="tei_hi_latintype"><a class="preview persons A008627" href="">Giov: Schwanberg</a></span></span>
                <span class="tei_dateline textAlign-left">
-                  <span class="tei_addSpan"></span><a class="preview places A130021" href=""><span class="tei_hi_latintype">Brunsvigo</span></a> il 1<span class="tei_hi_superscript">mo</span> 7<span class="tei_hi_superscript"><span class="tei_hi_latintype">bre</span></span> <span class="tei_hi_underline1">1802</span></span><span id="favweberEnd" class="tei_anchor"></span>
+                  <a id="backref-d10e29" class="noteMarker spanMarker spanMarker-add spanMarker-start" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e29" data-tei-span-id="d10e29">‡</a><a class="preview places A130021" href=""><span class="tei_hi_latintype"><span class="tei_addSpan" data-tei-span-id="d10e29">Brunsvigo</span></span></a><span class="tei_addSpan" data-tei-span-id="d10e29"> il 1</span><span class="tei_hi_superscript"><span class="tei_addSpan" data-tei-span-id="d10e29">mo</span></span><span class="tei_addSpan" data-tei-span-id="d10e29"> 7</span><span class="tei_hi_superscript"><span class="tei_hi_latintype"><span class="tei_addSpan" data-tei-span-id="d10e29">bre</span></span></span> <span class="tei_hi_underline1"><span class="tei_addSpan" data-tei-span-id="d10e29">1802</span></span></span><a id="favweberEnd" class="noteMarker spanMarker spanMarker-add spanMarker-end" data-toggle="popover" data-trigger="focus" tabindex="0" data-ref="#d10e29" data-tei-span-id="d10e29">‡</a>
             </p>
                                         <p class="clearer"></p>
                                     </div>
@@ -396,6 +397,8 @@
                     </div>
                     <div class="tab-pane fade" id="editorial">
                         <h2>Apparat</h2>
+                        
+
                         
                         
                         
@@ -436,7 +439,7 @@
                                         
                                         <span>Berlin (D), Staatsbibliothek zu Berlin – Preußischer Kulturbesitz, Musikabteilung (D-B)<br /><i>Signatur</i>: Mus. ms. theor. C. M. v. Weber WFN 5, Bl. 75v</span>
                                                                               
-                                        <div class="collapse apparatus-details" id="source_d80b7ec81fee93c80cf2a2f72aa5ac73">
+                                        <div class="collapse apparatus-details" id="source_8c663445b0ae2f8ce40750c7fceb0d9a">
                                             
                                             
                                             <div>
@@ -457,7 +460,15 @@
                         
                         
                         <div class="apparatus">
-                                    <ul class="apparatus textConstitution"></ul>
+                                    <h3 class="media-heading">Textkonstitution</h3>
+                                    <ul class="apparatus textConstitution">
+                                        <li>
+                                            <div class="row">
+                                                <div class="col-1 text-nowrap"><a href="#transcription" data-href="#backref-d10e29" class="apparatus-link">1.</a></div>
+                                                <div class="apparatusEntry col-11" id="d10e29" data-title="Hinzufügung" data-counter="1" data-href="#d10e29"><span class="tei_lemma">„Brunsvigo il 1mo 7bre 1802“</span>hinzugefügt</div>
+                                            </div>
+                                        </li>
+                                    </ul>
                                     <ul class="apparatus commentary"></ul>
                                     <ul class="apparatus rdg"></ul>
                                 </div>
@@ -484,7 +495,7 @@
         <div class="row permaLink">
             <div class="col-md-9">
                 <h4>Empfohlene Zitierweise</h4>
-                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045335</span> (<a href="">Version 4.14.0-alpha vom 12. Dezember 2025</a>)
+                <p>Carl-Maria-von-Weber-Gesamtausgabe. Digitale Edition, <span>https://weber-gesamtausgabe.de/exist/apps/WeGA-WebApp/A045335</span> (<a href="">Version 4.15.0-alpha vom 29. Juni 2026</a>)
                     <br />
                 <span>Letzte Änderung dieses Dokuments am %1 durch %2</span>
                 </p>

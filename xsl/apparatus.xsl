@@ -14,12 +14,14 @@
       | .//tei:gap[not(@reason='outOfScope' or parent::tei:del)]
       | .//tei:sic[not(parent::tei:choice)]
       | .//tei:del[not(parent::tei:subst)]
+      | .//tei:addSpan[wega:span-end(.)]
+      | .//tei:delSpan[wega:span-end(.)]
       | .//tei:unclear[not(parent::tei:choice)]
       | .//tei:note[@type='textConst']
       | .//tei:supplied[parent::tei:damage]
    "/>
    <xsl:variable name="documentaryTextConstitutionNodes" as="node()*"
-      select="$textConstitutionNodes[self::tei:subst or self::tei:add or self::tei:del]"/>
+      select="$textConstitutionNodes[self::tei:subst or self::tei:add or self::tei:del or self::tei:addSpan or self::tei:delSpan]"/>
    <xsl:variable name="editorialTextConstitutionNodes" as="node()*"
       select="$textConstitutionNodes[self::tei:sic or self::tei:unclear or self::tei:gap or self::tei:note or self::tei:supplied]"/>
    <xsl:variable name="commentaryNodes" as="node()*" select=".//tei:note[@type=('commentary', 'definition')] | .//tei:choice"/>
@@ -39,6 +41,12 @@
    -->
    
    <xsl:template name="createApparatus">
+      <xsl:call-template name="createApparatusContent">
+         <xsl:with-param name="in-apparatus" as="xs:boolean" select="true()" tunnel="yes"/>
+      </xsl:call-template>
+   </xsl:template>
+
+   <xsl:template name="createApparatusContent">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
          <xsl:if test="wega:isNews($docID)">
@@ -282,7 +290,7 @@
                <xsl:attribute name="class">col-1 text-nowrap</xsl:attribute>
                <xsl:element name="a">
                   <xsl:attribute name="href">#transcription</xsl:attribute>
-                  <xsl:attribute name="data-href" select="wega:get-backref-link(wega:createID(.))"/>
+                  <xsl:attribute name="data-href" select="if ((self::tei:addSpan or self::tei:delSpan) and @xml:id) then concat('#', @xml:id) else wega:get-backref-link(wega:createID(.))"/>
                   <xsl:attribute name="class">apparatus-link</xsl:attribute>
                   <xsl:number count="$textConstitutionNodes" level="any"/>
                   <xsl:text>.</xsl:text>
@@ -363,14 +371,20 @@
          <xsl:apply-templates select="@xml:id"/>
          <xsl:attribute name="class" select="concat('tei_', local-name())"/>
          <!-- Need to take care of whitespace when there are multiple <add>. -->
-         <xsl:choose>
-            <xsl:when test="count(tei:add) gt 1">
-               <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
-            </xsl:when>
-            <xsl:otherwise>
-               <xsl:apply-templates select="tei:add" mode="lemma"/>
-            </xsl:otherwise>
-         </xsl:choose>
+         <xsl:variable name="added-content">
+            <xsl:choose>
+               <xsl:when test="count(tei:add) gt 1">
+                  <xsl:apply-templates select="tei:add | text()" mode="lemma"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:apply-templates select="tei:add" mode="lemma"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:variable>
+         <xsl:call-template name="wrap-span-fragments">
+            <xsl:with-param name="content" select="$added-content/node()"/>
+            <xsl:with-param name="milestones" select="wega:spans-for-node(.)"/>
+         </xsl:call-template>
          <xsl:call-template name="popover"/>
       </xsl:element>
    </xsl:template>
@@ -635,11 +649,27 @@
 
    <xsl:template match="tei:gap">
       <xsl:element name="span">
-         <xsl:text>[…]</xsl:text>
+         <xsl:call-template name="span-generated-text">
+            <xsl:with-param name="content" select="'[…]'"/>
+         </xsl:call-template>
          <xsl:if test="not(@reason='outOfScope' or parent::tei:del)">
             <xsl:call-template name="popover"/>
          </xsl:if>
       </xsl:element>
+   </xsl:template>
+
+   <xsl:template match="tei:space" priority="2">
+      <xsl:variable name="milestones" as="element()*" select="wega:spans-for-node(.)"/>
+      <xsl:choose>
+         <xsl:when test="$milestones">
+            <xsl:variable name="content"><xsl:next-match/></xsl:variable>
+            <xsl:call-template name="wrap-span-fragments">
+               <xsl:with-param name="content" select="$content/node()"/>
+               <xsl:with-param name="milestones" select="$milestones"/>
+            </xsl:call-template>
+         </xsl:when>
+         <xsl:otherwise><xsl:next-match/></xsl:otherwise>
+      </xsl:choose>
    </xsl:template>
 
    <xsl:template match="tei:gap" mode="apparatus">
@@ -776,12 +806,16 @@
 <!--         <xsl:attribute name="id" select="wega:createID(.)"/>-->
          <xsl:element name="span">
             <xsl:attribute name="class">brackets_supplied</xsl:attribute>
-            <xsl:text>[</xsl:text>
+            <xsl:call-template name="span-generated-text">
+               <xsl:with-param name="content" select="'['"/>
+            </xsl:call-template>
          </xsl:element>
          <xsl:apply-templates mode="#current"/>
          <xsl:element name="span">
             <xsl:attribute name="class">brackets_supplied</xsl:attribute>
-            <xsl:text>]</xsl:text>
+            <xsl:call-template name="span-generated-text">
+               <xsl:with-param name="content" select="']'"/>
+            </xsl:call-template>
          </xsl:element>
          <xsl:if test="parent::tei:damage">
             <xsl:call-template name="popover"/>
@@ -874,13 +908,189 @@
    <!-- suppress processing of footnoteAnchors in lemma mode when the footnote itself is part of the tei:app -->
    <xsl:template match="tei:ref[@type='footnoteAnchor'][ancestor::tei:app//tei:footNote]" mode="lemma" priority="2"/>
    
+   <!-- Milestone ranges in the transcription and their apparatus entries. -->
+   <xsl:key name="spanning-milestones" match="tei:addSpan | tei:delSpan" use="'all'"/>
+   <xsl:key name="spanning-milestones-by-end" match="tei:addSpan | tei:delSpan" use="replace(normalize-space(@spanTo), '^#', '')"/>
+
+   <xsl:function name="wega:span-end" as="element(tei:anchor)?">
+      <xsl:param name="milestone" as="element()"/>
+      <xsl:sequence select="id(replace(normalize-space(string($milestone/@spanTo)), '^#', ''), root($milestone))[self::tei:anchor][1]"/>
+   </xsl:function>
+
+   <xsl:function name="wega:spans-for-node" as="element()*">
+      <xsl:param name="node" as="node()"/>
+      <xsl:sequence select="key('spanning-milestones', 'all', root($node))[. &lt;&lt; $node and $node &lt;&lt; wega:span-end(.)]"/>
+   </xsl:function>
+
+   <!-- A milestone range may cross HTML block boundaries, so wrap each rendered text fragment. -->
+   <xsl:template name="wrap-span-fragments">
+      <xsl:param name="content" as="node()*"/>
+      <xsl:param name="milestones" as="element()*"/>
+      <xsl:param name="in-apparatus" as="xs:boolean" select="false()" tunnel="yes"/>
+      <xsl:choose>
+         <xsl:when test="empty($content)"/>
+         <xsl:when test="$in-apparatus or empty($milestones)">
+            <xsl:sequence select="$content"/>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:variable name="milestone" as="element()" select="$milestones[1]"/>
+            <xsl:element name="span">
+               <xsl:attribute name="class" select="concat('tei_', local-name($milestone))"/>
+               <xsl:attribute name="data-tei-span-id" select="generate-id($milestone)"/>
+               <xsl:call-template name="wrap-span-fragments">
+                  <xsl:with-param name="content" select="$content"/>
+                  <xsl:with-param name="milestones" select="$milestones[position() gt 1]"/>
+               </xsl:call-template>
+            </xsl:element>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+
+   <!-- Literal transcription signs have no source text node to match. -->
+   <xsl:template name="span-generated-text">
+      <xsl:param name="content" as="xs:string"/>
+      <xsl:variable name="rendered"><xsl:value-of select="$content"/></xsl:variable>
+      <xsl:call-template name="wrap-span-fragments">
+         <xsl:with-param name="content" select="$rendered/node()"/>
+         <xsl:with-param name="milestones" select="wega:spans-for-node(.)"/>
+      </xsl:call-template>
+   </xsl:template>
+
+   <!-- Preserve the existing text rendering, then mark the part inside each range. -->
+   <xsl:template match="text()" priority="2">
+      <xsl:variable name="milestones" as="element()*" select="wega:spans-for-node(.)"/>
+      <xsl:choose>
+         <xsl:when test="$milestones and normalize-space(.)">
+            <xsl:variable name="content">
+               <xsl:next-match/>
+            </xsl:variable>
+            <xsl:call-template name="wrap-span-fragments">
+               <xsl:with-param name="content" select="$content/node()"/>
+               <xsl:with-param name="milestones" select="$milestones"/>
+            </xsl:call-template>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:next-match/>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+
+   <xsl:template name="span-marker">
+      <xsl:param name="position" as="xs:string"/>
+      <xsl:param name="milestone" as="element()" select="."/>
+      <xsl:variable name="span-id" as="xs:string" select="if ($milestone/@xml:id) then string($milestone/@xml:id) else generate-id($milestone)"/>
+      <xsl:element name="a">
+         <xsl:choose>
+            <xsl:when test="$position = 'start' and not(@xml:id)">
+               <xsl:attribute name="id" select="wega:get-backref-id($span-id)"/>
+            </xsl:when>
+            <xsl:otherwise>
+               <xsl:apply-templates select="@xml:id"/>
+            </xsl:otherwise>
+         </xsl:choose>
+         <xsl:attribute name="class" select="string-join((
+            'noteMarker', 'spanMarker',
+            concat('spanMarker-', if ($milestone/self::tei:addSpan) then 'add' else 'del'),
+            concat('spanMarker-', $position)
+         ), ' ')"/>
+         <xsl:attribute name="data-toggle">popover</xsl:attribute>
+         <xsl:attribute name="data-trigger">focus</xsl:attribute>
+         <xsl:attribute name="tabindex">0</xsl:attribute>
+         <xsl:attribute name="data-ref" select="concat('#', generate-id($milestone))"/>
+         <xsl:attribute name="data-tei-span-id" select="generate-id($milestone)"/>
+         <xsl:text>‡</xsl:text>
+      </xsl:element>
+   </xsl:template>
+
+   <xsl:template match="tei:addSpan | tei:delSpan" priority="2">
+      <xsl:choose>
+         <xsl:when test="wega:span-end(.)">
+            <xsl:call-template name="span-marker">
+               <xsl:with-param name="position" select="'start'"/>
+            </xsl:call-template>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:next-match/>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+
+   <xsl:template match="tei:anchor" priority="2">
+      <xsl:variable name="milestone" as="element()?" select="if (@xml:id) then key('spanning-milestones-by-end', string(@xml:id), root(.))[1] else ()"/>
+      <xsl:choose>
+         <xsl:when test="$milestone">
+            <xsl:call-template name="span-marker">
+               <xsl:with-param name="position" select="'end'"/>
+               <xsl:with-param name="milestone" select="$milestone"/>
+            </xsl:call-template>
+         </xsl:when>
+         <xsl:otherwise>
+            <xsl:next-match/>
+         </xsl:otherwise>
+      </xsl:choose>
+   </xsl:template>
+
+   <xsl:function name="wega:span-lemma" as="xs:string">
+      <xsl:param name="milestone" as="element()"/>
+      <xsl:variable name="end" as="element(tei:anchor)?" select="wega:span-end($milestone)"/>
+      <xsl:variable name="rendered">
+         <xsl:for-each select="$milestone/following::node()[
+            exists($end) and . &lt;&lt; $end
+            and not(ancestor::tei:note or ancestor::tei:rdg
+               or ancestor::tei:corr[parent::tei:choice]
+               or ancestor::tei:del[parent::tei:subst]
+               or ancestor::tei:choice)
+         ]">
+            <xsl:choose>
+               <xsl:when test="self::text() or self::tei:gap or self::tei:lb or self::tei:choice">
+                  <xsl:apply-templates select="." mode="lemma"/>
+               </xsl:when>
+               <xsl:when test="self::tei:p or self::tei:l or self::tei:div
+                  or self::tei:opener or self::tei:closer or self::tei:dateline
+                  or self::tei:postscript or self::tei:head
+                  or self::tei:sp or self::tei:stage or self::tei:speaker
+                  or self::tei:item or self::tei:cell">
+                  <!-- A range can cross block boundaries with no whitespace text node between them. -->
+                  <xsl:text> </xsl:text>
+               </xsl:when>
+            </xsl:choose>
+         </xsl:for-each>
+      </xsl:variable>
+      <xsl:sequence select="normalize-space(string($rendered))"/>
+   </xsl:function>
+
+   <xsl:template match="tei:addSpan | tei:delSpan" mode="apparatus">
+      <xsl:variable name="lemma" as="xs:string" select="wega:span-lemma(.)"/>
+      <xsl:variable name="tokens" as="xs:string*" select="tokenize($lemma, '\s+')"/>
+      <xsl:call-template name="apparatusEntry">
+         <xsl:with-param name="id" select="generate-id(.)"/>
+         <xsl:with-param name="title" select="wega:getLanguageString(if (self::tei:addSpan) then 'popoverTitle.add' else 'popoverTitle.del', $lang)"/>
+         <xsl:with-param name="lemma">
+            <xsl:value-of select="if (count($tokens) gt 6) then string-join((subsequence($tokens, 1, 3), '…', subsequence($tokens, count($tokens) - 2, 3)), ' ') else $lemma"/>
+         </xsl:with-param>
+         <xsl:with-param name="explanation">
+            <xsl:choose>
+               <xsl:when test="self::tei:addSpan">
+                  <xsl:value-of select="wega:getLanguageString(if (@place = ('margin', 'inline', 'above', 'below', 'overleaf')) then concat('add', functx:capitalize-first(@place)) else 'addDefault', $lang)"/>
+               </xsl:when>
+               <xsl:when test="@rend = ('strikethrough', 'overwritten', 'erased', 'pasted_over')">
+                  <xsl:value-of select="wega:getLanguageString(if (@rend = 'pasted_over') then 'delPastedOver' else concat('del', functx:capitalize-first(@rend)), $lang)"/>
+               </xsl:when>
+               <xsl:otherwise>
+                  <xsl:value-of select="@rend"/>
+               </xsl:otherwise>
+            </xsl:choose>
+         </xsl:with-param>
+      </xsl:call-template>
+   </xsl:template>
+
    <!-- template for creating an apparatus entry -->
    <xsl:template name="apparatusEntry">
+      <xsl:param name="id" as="xs:string" select="wega:createID(.)"/>
       <xsl:param name="title" as="xs:string"/>
       <xsl:param name="lemma" as="item()*"/>
       <xsl:param name="explanation" as="item()*"/>
       <xsl:param name="counter-param"/>
-      <xsl:variable name="id" select="wega:createID(.)"/>
       <xsl:variable name="counter">
          <xsl:choose>
             <xsl:when test="$counter-param='note'">

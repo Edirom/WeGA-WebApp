@@ -148,11 +148,20 @@
     <xsl:template match="tei:div" mode="source-toc" priority="3">
         <xsl:choose>
             <xsl:when test="wega:is-source-toc-container(.)">
+                <xsl:variable name="head" as="element(tei:head)" select="wega:source-toc-head(.)"/>
+                <xsl:variable name="deleted" as="xs:boolean" select="exists(wega:spans-for-node($head)[self::tei:delSpan])"/>
+                <xsl:variable name="has-children" as="xs:boolean" select="exists(descendant::tei:div[wega:is-source-toc-container(.)])"/>
                 <li>
+                    <xsl:if test="$deleted and not($has-children)">
+                        <xsl:attribute name="class">source-toc-deleted</xsl:attribute>
+                    </xsl:if>
                     <a href="#{wega:source-toc-id(.)}">
-                        <xsl:value-of select="wega:source-toc-label(wega:source-toc-head(.))"/>
+                        <xsl:if test="$deleted and $has-children">
+                            <xsl:attribute name="class">source-toc-deleted</xsl:attribute>
+                        </xsl:if>
+                        <xsl:value-of select="wega:source-toc-label($head)"/>
                     </a>
-                    <xsl:if test="descendant::tei:div[wega:is-source-toc-container(.)]">
+                    <xsl:if test="$has-children">
                         <ul>
                             <xsl:apply-templates mode="source-toc"/>
                         </ul>
