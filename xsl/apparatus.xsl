@@ -41,6 +41,12 @@
    -->
    
    <xsl:template name="createApparatus">
+      <xsl:call-template name="createApparatusContent">
+         <xsl:with-param name="in-apparatus" as="xs:boolean" select="true()" tunnel="yes"/>
+      </xsl:call-template>
+   </xsl:template>
+
+   <xsl:template name="createApparatusContent">
       <xsl:element name="div">
          <xsl:attribute name="class">apparatus</xsl:attribute>
          <xsl:if test="wega:isNews($docID)">
@@ -920,9 +926,10 @@
    <xsl:template name="wrap-span-fragments">
       <xsl:param name="content" as="node()*"/>
       <xsl:param name="milestones" as="element()*"/>
+      <xsl:param name="in-apparatus" as="xs:boolean" select="false()" tunnel="yes"/>
       <xsl:choose>
          <xsl:when test="empty($content)"/>
-         <xsl:when test="empty($milestones)">
+         <xsl:when test="$in-apparatus or empty($milestones)">
             <xsl:sequence select="$content"/>
          </xsl:when>
          <xsl:otherwise>
