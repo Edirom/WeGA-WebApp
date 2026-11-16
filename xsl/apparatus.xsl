@@ -98,35 +98,39 @@
          </xsl:if>
          <xsl:choose>
             <xsl:when test="$isSource and ($additionalTextConstitutionNodes or $doc//tei:notesStmt/tei:note[@type='textConst'])">
-               <xsl:element name="div">
-                  <xsl:attribute name="class">additionalAnnotationsHeading</xsl:attribute>
-                  <xsl:element name="a">
-                     <xsl:attribute name="href">#additionalAnnotations-textConstitution</xsl:attribute>
-                     <xsl:attribute name="class">collapseMarker collapsed</xsl:attribute>
-                     <xsl:attribute name="data-toggle">collapse</xsl:attribute>
-                     <xsl:attribute name="role">button</xsl:attribute>
-                     <xsl:attribute name="aria-expanded">false</xsl:attribute>
-                     <xsl:attribute name="aria-controls">additionalAnnotations-textConstitution</xsl:attribute>
-                     <xsl:element name="span">
-                        <xsl:attribute name="class">sr-only</xsl:attribute>
-                        <xsl:value-of select="wega:getLanguageString('additionalAnnotations', $lang)"/>
-                     </xsl:element>
-                  </xsl:element>
-                  <xsl:element name="strong">
-                     <xsl:value-of select="wega:getLanguageString('additionalAnnotations', $lang)"/>
-                  </xsl:element>
+               <xsl:element name="strong">
+                  <xsl:value-of select="wega:getLanguageString('additionalAnnotations', $lang)"/>
                </xsl:element>
-               <xsl:element name="div">
-                  <xsl:attribute name="id">additionalAnnotations-textConstitution</xsl:attribute>
-                  <xsl:attribute name="class">apparatusCollapse collapse</xsl:attribute>
-                  <xsl:if test="$doc//tei:notesStmt/tei:note[@type='textConst']">
-                     <xsl:apply-templates select="$doc//tei:notesStmt/tei:note[@type='textConst']"/>
-                  </xsl:if>
-                  <xsl:element name="ul">
-                     <xsl:attribute name="class">apparatus textConstitution additionalAnnotations</xsl:attribute>
-                     <xsl:for-each select="$additionalTextConstitutionNodes">
-                        <xsl:call-template name="textConstitutionEntry"/>
-                     </xsl:for-each>
+               <xsl:element name="ul">
+                  <xsl:attribute name="class">hands additionalAnnotations tei_list</xsl:attribute>
+                  <xsl:element name="li">
+                     <xsl:attribute name="class">collapsible</xsl:attribute>
+                     <xsl:element name="a">
+                        <xsl:attribute name="href">#additionalAnnotations-textConstitution</xsl:attribute>
+                        <xsl:attribute name="class">collapseMarker collapsed</xsl:attribute>
+                        <xsl:attribute name="data-toggle">collapse</xsl:attribute>
+                        <xsl:attribute name="role">button</xsl:attribute>
+                        <xsl:attribute name="aria-expanded">false</xsl:attribute>
+                        <xsl:attribute name="aria-controls">additionalAnnotations-textConstitution</xsl:attribute>
+                        <xsl:element name="span">
+                           <xsl:attribute name="class">sr-only</xsl:attribute>
+                           <xsl:value-of select="wega:getLanguageString('additionalAnnotationsCategory', $lang)"/>
+                        </xsl:element>
+                     </xsl:element>
+                     <xsl:value-of select="wega:getLanguageString('additionalAnnotationsCategory', $lang)"/>
+                     <xsl:element name="ul">
+                        <xsl:attribute name="id">additionalAnnotations-textConstitution</xsl:attribute>
+                        <xsl:attribute name="class">apparatus apparatusCollapse textConstitution collapse</xsl:attribute>
+                        <xsl:for-each select="$doc//tei:notesStmt/tei:note[@type='textConst']">
+                           <xsl:element name="li">
+                              <xsl:attribute name="class">textConstitutionNote</xsl:attribute>
+                              <xsl:apply-templates select="."/>
+                           </xsl:element>
+                        </xsl:for-each>
+                        <xsl:for-each select="$additionalTextConstitutionNodes">
+                           <xsl:call-template name="textConstitutionEntry"/>
+                        </xsl:for-each>
+                     </xsl:element>
                   </xsl:element>
                </xsl:element>
             </xsl:when>
