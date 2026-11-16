@@ -1780,10 +1780,13 @@ declare
         let $teiOrigin := ($doc//tei:sourceDesc/tei:msDesc/tei:history/tei:origin)[1]
         let $isSource := $model?docType eq 'sources'
         let $value :=
-            if($teiCreation) then (
-                if($mode eq 'preview') then wega-util:txtFromTEI($teiCreation)
-                else wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
-            )
+            if($teiCreation) then
+                let $encodedDate := ($teiCreation//tei:date[@when or @notBefore or @notAfter or @from or @to])[1]
+                return
+                    if($encodedDate and normalize-space(string($teiCreation)) eq '') then
+                        date:printDate($encodedDate, $lang, lang:get-language-string#3, $config:default-date-picture-string)
+                    else if($mode eq 'preview') then wega-util:txtFromTEI($teiCreation)
+                    else wega-util:transform($teiCreation, doc(concat($config:xsl-collection-path, '/editorial.xsl')), config:get-xsl-params(()))
             else if($isSource and $meiCreation[str:normalize-space(.) ne '']) then str:normalize-space($meiCreation)
             else if($isSource and $meiPubStmt) then app:creation-place-date($meiPubStmt/mei:pubPlace, $meiPubStmt/mei:date)
             else if($isSource and $teiImprint[(tei:pubPlace | tei:date)[str:normalize-space(.) ne '']]) then app:creation-place-date($teiImprint/tei:pubPlace, $teiImprint/tei:date)
