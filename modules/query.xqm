@@ -508,7 +508,7 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
 };
 
 (:~
- : Return the TEI facsimile elements if present and allowed by a repository siglum or document ID in the options file.
+ : Return the TEI facsimile elements if present and allowed by a repository siglum or explicitly marked for publication.
  : External references to IIIF manifests via the @sameAs attribute on the tei:facsimile element are *always* passed on
  :
  : @param $doc the TEI document to look for the facsimile elements
@@ -522,7 +522,7 @@ declare function query:facsimile($doc as document-node()?) as element(tei:facsim
 (:        else if($doc//tei:repository[@n=$facsimileGreenList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
 (:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
         else $doc//tei:facsimile[@sameAs castable as xs:anyURI] 
-            | $doc//tei:facsimile[$doc/tei:TEI/@xml:id = $facsimileAllowList or query:facsimile-witness(.)//tei:repository[@n=$facsimileAllowList]][tei:graphic/@url or tei:graphic/@sameAs]
+            | $doc//tei:facsimile[@publication = 'allowed' or query:facsimile-witness(.)//tei:repository[@n=$facsimileAllowList]][tei:graphic/@url or tei:graphic/@sameAs]
             | $doc//tei:facsimile[tei:graphic[starts-with(@url, 'http')]]
 };
 
