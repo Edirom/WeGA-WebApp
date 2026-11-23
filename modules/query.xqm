@@ -520,7 +520,8 @@ declare function query:facsimile($doc as document-node()?) as element(tei:facsim
         else $doc//tei:facsimile
     return
         $facsimiles[
-            if(@publication) then @publication = 'allowed'
+            if($config:isDevelopment) then true()
+            else if(@publication) then @publication = 'allowed'
             else (@sameAs or query:facsimile-witness(.)//tei:repository[@n = $facsimileAllowList])
         ][tei:graphic/@url or tei:graphic/@sameAs or @sameAs]
 };
