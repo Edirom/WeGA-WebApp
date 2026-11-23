@@ -508,22 +508,21 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
 };
 
 (:~
- : Return the TEI facsimile elements if present and allowed by a repository siglum or explicitly marked for publication.
- : External references to IIIF manifests via the @sameAs attribute on the tei:facsimile element are *always* passed on
+ : Return facsimiles according to @publication, falling back to the repository allowlist or @sameAs when it is absent.
  :
  : @param $doc the TEI document to look for the facsimile elements
  : @return TEI facsimile elements if available, the empty sequence otherwise
 ~:)
 declare function query:facsimile($doc as document-node()?) as element(tei:facsimile)* {
     let $facsimileAllowList := tokenize(config:get-option('facsimileAllowList'), '\s+')
-    return
+    let $facsimiles :=
         if($doc/tei:ab/@facs) then crud:data-collection('diaries')/id($doc/tei:ab/@facs => substring(2))/ancestor::tei:facsimile
-        else if($config:isDevelopment) then $doc//tei:facsimile[tei:graphic/@url or tei:graphic/@sameAs or @sameAs]
-(:        else if($doc//tei:repository[@n=$facsimileGreenList]) then $doc//tei:facsimile[tei:graphic/@url or @sameAs castable as xs:anyURI]:)
-(:        else if($doc//tei:facsimile[@sameAs castable as xs:anyURI]) then $doc//tei:facsimile:)
-        else $doc//tei:facsimile[@sameAs castable as xs:anyURI] 
-            | $doc//tei:facsimile[@publication = 'allowed' or query:facsimile-witness(.)//tei:repository[@n=$facsimileAllowList]][tei:graphic/@url or tei:graphic/@sameAs]
-            | $doc//tei:facsimile[tei:graphic[starts-with(@url, 'http')]]
+        else $doc//tei:facsimile
+    return
+        $facsimiles[
+            if(@publication) then @publication = 'allowed'
+            else (@sameAs or query:facsimile-witness(.)//tei:repository[@n = $facsimileAllowList])
+        ][tei:graphic/@url or tei:graphic/@sameAs or @sameAs]
 };
 
 (:~

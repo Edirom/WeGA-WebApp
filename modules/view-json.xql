@@ -26,9 +26,9 @@ return
     if($type eq 'manifest') then 
         let $doc := crud:doc($docID)
         let $allowedFacsimiles := query:facsimile($doc)
-        let $requestedFacsimile := $doc//tei:facsimile[substring(@source,2) = string($sourceID)]
+        let $requestedFacsimile := $allowedFacsimiles[substring(@source,2) = string($sourceID)]
         return
-            if($requestedFacsimile = $allowedFacsimiles) then mycache:doc(
+            if(exists($requestedFacsimile)) then mycache:doc(
                 str:join-path-elements(($config:tmp-collection-path, 'manifests', substring($docID, 1, 5) || 'xx', $docID || $sourceID || '.json')), 
                 img:iiif-manifest#1, 
                 $requestedFacsimile, 
