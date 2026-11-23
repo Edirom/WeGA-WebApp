@@ -5,7 +5,7 @@
    xmlns:xs="http://www.w3.org/2001/XMLSchema"
    xmlns:functx="http://www.functx.com"
    xmlns:wega="http://xquery.weber-gesamtausgabe.de/webapp/functions/utilities"
-   exclude-result-prefixes="xs" version="3.1">
+   exclude-result-prefixes="xs tei functx wega" version="3.1">
 
    <xsl:variable name="doc" select="wega:doc($docID)"/>
    <xsl:variable name="textConstitutionNodes" as="node()*" select="
@@ -998,7 +998,19 @@
          <xsl:attribute name="tabindex">0</xsl:attribute>
          <xsl:attribute name="data-ref" select="concat('#', generate-id($milestone))"/>
          <xsl:attribute name="data-tei-span-id" select="generate-id($milestone)"/>
-         <xsl:text>‡</xsl:text>
+         <xsl:attribute name="aria-label" select="wega:getLanguageString(concat('spanMarker.', if ($milestone/self::tei:addSpan) then 'add' else 'del', '.', $position), $lang)"/>
+         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" aria-hidden="true" focusable="false">
+            <g fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="square" stroke-linejoin="miter">
+               <xsl:choose>
+                  <xsl:when test="$position = 'start'">
+                     <path d="M12 4 V44 M4 17 H31 M4 31 H31 M25 9 L39 24 L25 39"/>
+                  </xsl:when>
+                  <xsl:otherwise>
+                     <path d="M36 4 V44 M17 17 H44 M17 31 H44 M23 9 L9 24 L23 39"/>
+                  </xsl:otherwise>
+               </xsl:choose>
+            </g>
+         </svg>
       </xsl:element>
    </xsl:template>
 
