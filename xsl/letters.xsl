@@ -39,10 +39,17 @@
             <xsl:choose>
                 <xsl:when test="@type='address'">
                     <xsl:attribute name="class" select="'teiLetter_address'"/>
-                    <xsl:for-each select=".//tei:addrLine">
-                        <xsl:element name="p">
-                            <xsl:apply-templates/>
-                        </xsl:element>
+                    <xsl:for-each select="tei:address/(tei:addrLine | tei:addSpan | tei:delSpan | tei:anchor)">
+                        <xsl:choose>
+                            <xsl:when test="self::tei:addrLine">
+                                <xsl:element name="p">
+                                    <xsl:apply-templates/>
+                                </xsl:element>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <xsl:apply-templates select="."/>
+                            </xsl:otherwise>
+                        </xsl:choose>
                     </xsl:for-each>
                 </xsl:when>
                 <xsl:when test="@type='writingSession'">

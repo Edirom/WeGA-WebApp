@@ -91,7 +91,7 @@
                     <xsl:text>Δ</xsl:text>
                 </xsl:when>
                 <xsl:otherwise>
-                    <xsl:text>‡</xsl:text> <!-- to be changed in apparatus.xsl too if necessary -->
+                    <xsl:text>‡</xsl:text>
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:element>
