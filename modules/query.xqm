@@ -508,7 +508,10 @@ declare function query:correspContext($doc as document-node(), $senderID as xs:s
 };
 
 (:~
- : Return facsimiles according to @publication, falling back to the repository allowlist or @sameAs when it is absent.
+ : Return "allowed" facsimiles based on the following criteria: 
+ : 1. Always allowed in development mode (`$config:isDevelopment`).
+ : 2. Allowed if `@publication = 'allowed'`.
+ : 3. Allowed if `@sameAs` is present (for external IIIF resources) OR the facsimile's witness is in a repository listed in the facsimileAllowList.
  :
  : @param $doc the TEI document to look for the facsimile elements
  : @return TEI facsimile elements if available, the empty sequence otherwise
