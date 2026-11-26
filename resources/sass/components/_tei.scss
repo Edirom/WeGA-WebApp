@@ -81,6 +81,11 @@ $tei_list-indent: $font-size-base;
     color: $body-color;
 }
 
+// Keep nested deletions legible on a highlighted span's gray background.
+.tei-span-highlight .tei_delSpan {
+    color: $body-color;
+}
+
 // Preserve underlines when a span fragment has its own background.
 .tei_hi_underline1 .tei_addSpan,
 .tei_hi_underline1 .tei_delSpan {
