@@ -908,21 +908,51 @@
    <!-- suppress processing of footnoteAnchors in lemma mode when the footnote itself is part of the tei:app -->
    <xsl:template match="tei:ref[@type='footnoteAnchor'][ancestor::tei:app//tei:footNote]" mode="lemma" priority="2"/>
    
-   <!-- Milestone ranges in the transcription and their apparatus entries. -->
+   <!--
+  Key: spanning-milestones
+  Indexes all tei:addSpan and tei:delSpan elements under the document root.
+  The use value 'all' allows wega:spans-for-node to retrieve every milestone for later filtering.
+-->
    <xsl:key name="spanning-milestones" match="tei:addSpan | tei:delSpan" use="'all'"/>
+   <!--
+  Key: spanning-milestones-by-end
+  Provides a reverse lookup from an anchor id (the value of `@spanTo` on a milestone)
+  to the milestone element itself. The use expression strips a leading '#'
+  and normalises whitespace so that key('spanning-milestones-by-end', $id) returns
+  the milestone whose range ends at the anchor with that xml:id.
+-->
    <xsl:key name="spanning-milestones-by-end" match="tei:addSpan | tei:delSpan" use="replace(normalize-space(@spanTo), '^#', '')"/>
 
+   <!--
+  wega:span-end($milestone) returns the target anchor element referenced by @spanTo on a milestone (addSpan/delSpan).
+  It looks up the node with the matching xml:id (or generated id) and returns the first tei:anchor element.
+  Returns an empty sequence if the @spanTo attribute is missing or the referenced anchor does not exist.
+-->
    <xsl:function name="wega:span-end" as="element(tei:anchor)?">
       <xsl:param name="milestone" as="element()"/>
       <xsl:sequence select="id(replace(normalize-space(string($milestone/@spanTo)), '^#', ''), root($milestone))[self::tei:anchor][1]"/>
    </xsl:function>
 
+   <!--
+  wega:spans-for-node($node) returns the set of spanning milestone elements (tei:addSpan or tei:delSpan)
+  that enclose the supplied node. It uses the "spanning-milestones" key to locate all milestones
+  and selects those where the node lies strictly between the milestone start and its end anchor.
+  Returns an empty sequence if the node is not inside any milestone range.
+-->
    <xsl:function name="wega:spans-for-node" as="element()*">
       <xsl:param name="node" as="node()"/>
       <xsl:sequence select="key('spanning-milestones', 'all', root($node))[. &lt;&lt; $node and $node &lt;&lt; wega:span-end(.)]"/>
    </xsl:function>
 
-   <!-- A milestone range may cross HTML block boundaries, so wrap each rendered text fragment. -->
+   <!--
+  Template: wrap-span-fragments($content, $milestones, $in-apparatus)
+  Recursively wraps fragments of $content that belong to milestone ranges.
+  If $milestones is empty, the original $content is emitted unchanged.
+  When a milestone is present, it creates a `<span>` with a class derived from the milestone
+  element name (e.g., tei_addSpan) and a data-tei-span-id attribute, then recurses for the
+  remaining milestones. The $in-apparatus flag (tunnel) suppresses wrapping inside apparatus
+  entries where the surrounding markup already indicates the milestone.
+-->
    <xsl:template name="wrap-span-fragments">
       <xsl:param name="content" as="node()*"/>
       <xsl:param name="milestones" as="element()*"/>
@@ -939,19 +969,26 @@
                <xsl:attribute name="data-tei-span-id" select="generate-id($milestone)"/>
                <xsl:call-template name="wrap-span-fragments">
                   <xsl:with-param name="content" select="$content"/>
-                  <xsl:with-param name="milestones" select="$milestones[position() gt 1]"/>
+                  <xsl:with-param name="milestones" select="subsequence($milestones, 2)"/>
                </xsl:call-template>
             </xsl:element>
          </xsl:otherwise>
       </xsl:choose>
    </xsl:template>
 
-   <!-- Literal transcription signs have no source text node to match. -->
+   <!--
+  Template: span-generated-text($content)
+  Wraps literal transcription signs (e.g., '[…]') into milestone-aware spans.
+  It delegates to wrap-span-fragments so that any surrounding milestone ranges are
+  reflected in the generated markup.
+-->
    <xsl:template name="span-generated-text">
       <xsl:param name="content" as="xs:string"/>
-      <xsl:variable name="rendered"><xsl:value-of select="$content"/></xsl:variable>
       <xsl:call-template name="wrap-span-fragments">
-         <xsl:with-param name="content" select="$rendered/node()"/>
+         <xsl:with-param name="content">
+           <!-- Explicitly create a text node -->
+            <xsl:value-of select="$content"/>
+         </xsl:with-param>
          <xsl:with-param name="milestones" select="wega:spans-for-node(.)"/>
       </xsl:call-template>
    </xsl:template>
@@ -975,6 +1012,14 @@
       </xsl:choose>
    </xsl:template>
 
+   <!--
+  Template: span-marker($position, $milestone)
+  Generates the clickable marker (SVG icon) that indicates the start or end of a span.
+  $position is either 'start' or 'end'. The template creates an `<a>` element with appropriate
+  classes (noteMarker spanMarker plus details about add/del and the position), data attributes
+  for popover handling, and embeds the SVG icon. The milestone's xml:id (or a generated id) is
+  used for anchoring and for the data-tei-span-id attribute.
+-->
    <xsl:template name="span-marker">
       <xsl:param name="position" as="xs:string"/>
       <xsl:param name="milestone" as="element()" select="."/>
@@ -1014,6 +1059,12 @@
       </xsl:element>
    </xsl:template>
 
+   <!--
+  Template: match="tei:addSpan | tei:delSpan" (inline rendering)
+  Handles rendering of addSpan/delSpan in the transcription view.
+  If the milestone has an end anchor, it inserts a start marker via span-marker.
+  Otherwise it falls back to default processing.
+-->
    <xsl:template match="tei:addSpan | tei:delSpan" priority="2">
       <xsl:choose>
          <xsl:when test="wega:span-end(.)">
@@ -1042,6 +1093,12 @@
       </xsl:choose>
    </xsl:template>
 
+   <!--
+  wega:span-lemma($milestone) extracts the textual content of a spanning milestone (addSpan or delSpan).
+  It walks forward from the milestone element until the corresponding end anchor (found via wega:span-end).
+  Text from nodes that are not notes, readings, or other excluded elements is collected and whitespace‑normalized.
+  Returns a single string suitable for use as a lemma in apparatus entries.
+-->
    <xsl:function name="wega:span-lemma" as="xs:string">
       <xsl:param name="milestone" as="element()"/>
       <xsl:variable name="end" as="element(tei:anchor)?" select="wega:span-end($milestone)"/>
@@ -1071,6 +1128,13 @@
       <xsl:sequence select="normalize-space(string($rendered))"/>
    </xsl:function>
 
+   <!--
+  Template: match="tei:addSpan | tei:delSpan" mode="apparatus"
+  Creates an apparatus entry for a spanning milestone.
+  It computes a lemma from the content spanned by the milestone (using wega:span-lemma),
+  tokenizes it for shortening, and then calls the apparatusEntry template with a title
+  appropriate to the type (add or delete) and an explanation derived from `@place` or `@rend`.
+-->
    <xsl:template match="tei:addSpan | tei:delSpan" mode="apparatus">
       <xsl:variable name="lemma" as="xs:string" select="wega:span-lemma(.)"/>
       <xsl:variable name="tokens" as="xs:string*" select="tokenize($lemma, '\s+')"/>
