@@ -388,7 +388,7 @@ declare %private function bibl:printNote($notes as element(tei:note)*, $lang as 
         config:get-xsl-params(())
     )
     return (
-        <xhtml:a class="noteMarker biblioNote" data-toggle="popover" data-ref="#{$id}">*</xhtml:a>,
+        <xhtml:a class="noteMarker biblioNote" data-toggle="popover" data-ref="#{$id}" role="button" tabindex="0">*</xhtml:a>,
         <xhtml:div id="{$id}" data-title="{lang:get-language-string('gl_note', $lang)}" style="display:none;">{$content}</xhtml:div>
       )
 };
