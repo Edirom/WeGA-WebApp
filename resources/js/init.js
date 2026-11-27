@@ -541,7 +541,8 @@ function createPopoverAnchor(source, event) {
     const anchor = document.createElement('span');
 
     Array.from(source.attributes).forEach(function(attribute) {
-        if(attribute.name !== 'id') {
+        // don't copy id/role/tabindex onto the invisible popover anchor
+        if(attribute.name !== 'id' && attribute.name !== 'role' && attribute.name !== 'tabindex') {
             anchor.setAttribute(attribute.name, attribute.value);
         }
     });
@@ -590,6 +591,20 @@ $('.preview, .noteMarker').on('click', function(event) {
 
     /* Return false to suppress the default link mechanism on html:a */
     return false;
+});
+
+/*
+ * Give preview spans button-like keyboard activation while leaving native links alone.
+ * Prevent scrolling and repeated activations.
+ * Reuse the click handler so keyboard and pointer previews follow the same path.
+ */
+$('span.preview[role="button"]').on('keydown', function(event) {
+    if('Enter' !== event.key && ' ' !== event.key) { return }
+
+    event.preventDefault();
+    if(event.originalEvent && event.originalEvent.repeat) { return }
+
+    $(this).trigger('click');
 });
 
 function teiSpanFragments(marker) {
