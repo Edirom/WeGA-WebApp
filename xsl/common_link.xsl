@@ -147,6 +147,10 @@
 
     <xsl:template name="createSpan">
         <xsl:element name="span">
+            <xsl:if test="exists((@key, @codedval, @target))">
+                <xsl:attribute name="role">button</xsl:attribute>
+                <xsl:attribute name="tabindex">0</xsl:attribute>
+            </xsl:if>
             <xsl:apply-templates select="@xml:id"/>
             <xsl:attribute name="class">
                 <xsl:choose>

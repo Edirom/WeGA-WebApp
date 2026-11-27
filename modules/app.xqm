@@ -105,7 +105,10 @@ declare function app:create-span-for-entity-popover($entity as element()?, $lang
             },
             attribute data-ref {
                 app:preview-data-ref($entity, $lang)
-            })
+            },
+            attribute role {'button'},
+            attribute tabindex {'0'}
+        )
         else (
             attribute class {
                 'noDataFound'

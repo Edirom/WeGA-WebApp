@@ -490,7 +490,7 @@ $.fn.preview_popover = function() {
             /*  when this is the last div container we push it to the popover and show it
              *  unfinished ajax calls will still update the popover, though.
              */
-            if(container.next().length === 0) {
+            if(container.next().length === 0 && popover_node.hasClass('show')) {
                 popover_data = popover_node.data('bs.popover');
                 popover_data.config.content = container.parents('div.popover-body').children();
                 popover_node.popover('show');
@@ -541,7 +541,8 @@ function createPopoverAnchor(source, event) {
     const anchor = document.createElement('span');
 
     Array.from(source.attributes).forEach(function(attribute) {
-        if(attribute.name !== 'id') {
+        // don't copy id/role/tabindex onto the invisible popover anchor
+        if(attribute.name !== 'id' && attribute.name !== 'role' && attribute.name !== 'tabindex') {
             anchor.setAttribute(attribute.name, attribute.value);
         }
     });
@@ -569,6 +570,7 @@ $('.preview, .noteMarker').on('click', function(event) {
 
     if(popoverTrigger !== source) {
         $(source).data('preview-popover-anchor', popoverTrigger);
+        $(popoverTrigger).data('preview-popover-source', source);
         $(popoverTrigger).one('hidden.bs.popover', function() {
             $(source).removeData('preview-popover-anchor');
             popoverTrigger.remove();
@@ -590,6 +592,54 @@ $('.preview, .noteMarker').on('click', function(event) {
 
     /* Return false to suppress the default link mechanism on html:a */
     return false;
+});
+
+/*
+ * Give preview spans and noteMarkers button-like keyboard activation.
+ * Prevent scrolling and repeated activations.
+ * Reuse the click handler so keyboard and pointer previews follow the same path.
+ */
+$('span.preview[role="button"], .noteMarker').on('keydown', function(event) {
+    if(event.target !== this) { return } // ignore keydown events that bubble up from descendants (e.g. links in the popover)
+    if('Enter' !== event.key && ' ' !== event.key) { return }
+
+    event.preventDefault();
+    if(event.originalEvent && event.originalEvent.repeat) { return }
+
+    $(this).trigger('click');
+});
+
+/*
+ * Close open popovers on Escape and restore focus if it was inside one.
+ */
+$(document).on('keydown', function (e) {
+    // Only react to the Escape key (covers both "Escape" and legacy "Esc")
+    if (e.key !== 'Escape' && e.key !== 'Esc') { return; }
+
+    // Find any visible pop‑over (Bootstrap adds the .show class)
+    const $visiblePopovers = $('.popover.show');
+    if (!$visiblePopovers.length) { return; }
+
+    $visiblePopovers.each(function () {
+        const popover = $(this).data('bs.popover'),
+            focused = document.activeElement;
+
+        if(popover && this.contains(focused)) {
+            const trigger = popover.element,
+                source = $(trigger).data('preview-popover-source') || trigger;
+
+            $(trigger).one('hidden.bs.popover', function() {
+                const active = document.activeElement;
+                if(source.isConnected && (active === focused || active === document.body || active === document.documentElement)) {
+                    source.focus();
+                }
+            });
+        }
+
+        $(this).popover('hide');
+    });
+
+    e.preventDefault();
 });
 
 function teiSpanFragments(marker) {

@@ -142,6 +142,26 @@ span.tei_notatedMusic img {
     white-space: normal;
 }
 
+/* ------------------------------------------------------------------ *
+ * Focus style for keyboard‑accessible preview spans (role="button")
+ *
+ * The pop‑over trigger is a <span class="preview …"> that we now give
+ * role="button" + tabindex="0".  When such a span receives focus we
+ * want a visible outline that matches the rest of the app.
+ *
+ * We mirror the focus style used for the sidebar links (see
+ * resources/sass/components/_sidebar.scss) – a 2px solid primary‑colour
+ * outline with a small offset, applied only when the user is using the
+ * keyboard (focus‑visible).
+ * ------------------------------------------------------------------ */
+.preview[role="button"] {
+    /* Make sure the rule only fires for keyboard focus, not mouse focus */
+    &:focus-visible {
+        outline: 2px solid $primary;
+        outline-offset: 2px;
+    }
+}
+
 ol.endNotes {
     margin:0px;
 }
