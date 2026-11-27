@@ -10,7 +10,7 @@
     <xsl:param name="secNoOffset" select="0"/>
     <xsl:param name="uri"/>
     <xsl:strip-space elements="*"/>
-    <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note tei:lem tei:rdg tei:add"/>
+    <xsl:preserve-space elements="tei:q tei:quote tei:cell tei:p tei:hi tei:persName tei:rs tei:workName tei:characterName tei:placeName tei:code tei:eg tei:item tei:head tei:date tei:orgName tei:note tei:lem tei:rdg tei:add tei:desc tei:label"/>
     <xsl:include href="common_link.xsl"/>
     <xsl:include href="common_main.xsl"/>
 	<xsl:include href="tagdocs.xsl"/>
@@ -190,6 +190,120 @@
         </xsl:element>
     </xsl:template>
     
+    <!--
+        Return the label of the year pill for an event within a timeline:
+        @n overrides the computed label (e.g. "1985/86"),
+        otherwise the label is computed from @when, @from and @to
+    -->
+    <xsl:function name="wega:timeline-pill" as="xs:string">
+        <xsl:param name="event" as="element(tei:event)"/>
+        <xsl:param name="lang" as="xs:string"/>
+        <xsl:choose>
+            <xsl:when test="$event/@n">
+                <xsl:value-of select="$event/@n"/>
+            </xsl:when>
+            <xsl:when test="$event/@when">
+                <xsl:value-of select="substring($event/@when, 1, 4)"/>
+            </xsl:when>
+            <xsl:when test="$event/@from and $event/@to">
+                <xsl:value-of select="concat(substring($event/@from, 1, 4), '–', substring($event/@to, 1, 4))"/>
+            </xsl:when>
+            <xsl:when test="$event/@from">
+                <xsl:value-of select="replace(wega:getLanguageString('fromOnwards', $lang), '%1', substring($event/@from, 1, 4))"/>
+            </xsl:when>
+            <xsl:otherwise>
+                <xsl:value-of select="'?'"/>
+            </xsl:otherwise>
+        </xsl:choose>
+    </xsl:function>
+
+    <!--
+        Check whether an event within a timeline is placed on the left side of the axis.
+        The right side is the default, only highlighted events are placed on the left.
+    -->
+    <xsl:function name="wega:timeline-left" as="xs:boolean">
+        <xsl:param name="event" as="element(tei:event)"/>
+        <xsl:sequence select="$event/@subtype = 'highlight'"/>
+    </xsl:function>
+
+    <!--
+        Timeline: events on a side-switching axis, grouped by year.
+        Adjacent events with the same year pill label form one group;
+        the document order is authoritative (no sorting).
+        The classes 'left', 'exit-left' and 'bend' describe the course of the axis
+        and are turned into line segments and S-curves by the CSS.
+    -->
+    <xsl:template match="tei:listEvent[@type='timeline']">
+        <xsl:element name="ol">
+            <xsl:attribute name="class" select="string-join(('tei', local-name(), @type), '_')"/>
+            <xsl:for-each-group select="tei:event" group-adjacent="wega:timeline-pill(., $lang)">
+                <xsl:variable name="first" select="current-group()[1]" as="element(tei:event)"/>
+                <xsl:variable name="prev" select="$first/preceding-sibling::tei:event[1]" as="element(tei:event)?"/>
+                <!--
+                    left: the group starts on the left side (= side of the pill)
+                    exit-left: the group ends on the left side (for the connector to the next group)
+                    bend: the axis switches sides at the group boundary
+                -->
+                <xsl:variable name="classes" as="xs:string*" select="(
+                    'left'[wega:timeline-left($first)],
+                    'exit-left'[wega:timeline-left(current-group()[last()])],
+                    'bend'[exists($prev) and wega:timeline-left($prev) ne wega:timeline-left($first)]
+                    )"/>
+                <xsl:element name="li">
+                    <xsl:if test="exists($classes)">
+                        <xsl:attribute name="class" select="string-join($classes, ' ')"/>
+                    </xsl:if>
+                    <xsl:element name="span">
+                        <xsl:attribute name="class" select="'year'"/>
+                        <xsl:value-of select="current-grouping-key()"/>
+                    </xsl:element>
+                    <xsl:element name="ul">
+                        <xsl:apply-templates select="current-group()"/>
+                    </xsl:element>
+                </xsl:element>
+            </xsl:for-each-group>
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="tei:listEvent[@type='timeline']/tei:event">
+        <xsl:variable name="prev" select="preceding-sibling::tei:event[1]" as="element(tei:event)?"/>
+        <!--
+            the event type doubles as CSS class (icon and color);
+            bend: the axis switches sides within a group
+            (side changes at group boundaries are handled on the group)
+        -->
+        <xsl:variable name="classes" as="xs:string*" select="(
+            @type,
+            'left'[wega:timeline-left(current())],
+            'bend'[exists($prev)
+                and wega:timeline-pill($prev, $lang) = wega:timeline-pill(current(), $lang)
+                and wega:timeline-left($prev) ne wega:timeline-left(current())]
+            )"/>
+        <xsl:element name="li">
+            <xsl:attribute name="class" select="string-join($classes, ' ')"/>
+            <!-- date detail, displayed on the opposite side of the axis -->
+            <xsl:for-each select="tei:desc[@type='date']">
+                <xsl:element name="time">
+                    <xsl:if test="parent::tei:event/@when">
+                        <xsl:attribute name="datetime" select="parent::tei:event/@when"/>
+                    </xsl:if>
+                    <xsl:apply-templates/>
+                </xsl:element>
+            </xsl:for-each>
+            <!-- event card -->
+            <xsl:element name="div">
+                <xsl:element name="strong">
+                    <xsl:apply-templates select="tei:label/node()"/>
+                </xsl:element>
+                <xsl:for-each select="tei:desc[not(@type='date')]">
+                    <xsl:element name="p">
+                        <xsl:apply-templates/>
+                    </xsl:element>
+                </xsl:for-each>
+            </xsl:element>
+        </xsl:element>
+    </xsl:template>
+
     <!-- Create section numbers for headings   -->
     <xsl:template name="createSecNo">
         <xsl:param name="div"/>
