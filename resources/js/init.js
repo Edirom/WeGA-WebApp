@@ -570,6 +570,7 @@ $('.preview, .noteMarker').on('click', function(event) {
 
     if(popoverTrigger !== source) {
         $(source).data('preview-popover-anchor', popoverTrigger);
+        $(popoverTrigger).data('preview-popover-source', source);
         $(popoverTrigger).one('hidden.bs.popover', function() {
             $(source).removeData('preview-popover-anchor');
             popoverTrigger.remove();
@@ -609,9 +610,7 @@ $('span.preview[role="button"], .noteMarker').on('keydown', function(event) {
 });
 
 /*
- * Close any open pop‑over when the user presses Escape.
- * Works for both the "preview" spans and the existing
- * noteMarker anchors that use Bootstrap's focus‑trigger.
+ * Close open popovers on Escape and restore focus if it was inside one.
  */
 $(document).on('keydown', function (e) {
     // Only react to the Escape key (covers both "Escape" and legacy "Esc")
@@ -621,15 +620,25 @@ $(document).on('keydown', function (e) {
     const $visiblePopovers = $('.popover.show');
     if (!$visiblePopovers.length) { return; }
 
-    // Hide each pop‑over. The callback also returns focus to the
-    // element that originally opened the pop‑over (stored by Bootstrap).
     $visiblePopovers.each(function () {
-        // The pop‑over is attached to the *anchor* element, not the source.
-        // Trigger hide on the anchor to clean up the internal state.
+        const popover = $(this).data('bs.popover'),
+            focused = document.activeElement;
+
+        if(popover && this.contains(focused)) {
+            const trigger = popover.element,
+                source = $(trigger).data('preview-popover-source') || trigger;
+
+            $(trigger).one('hidden.bs.popover', function() {
+                const active = document.activeElement;
+                if(source.isConnected && (active === focused || active === document.body || active === document.documentElement)) {
+                    source.focus();
+                }
+            });
+        }
+
         $(this).popover('hide');
     });
 
-    // Prevent the default scrolling behaviour that some browsers apply
     e.preventDefault();
 });
 
