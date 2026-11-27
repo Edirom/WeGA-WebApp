@@ -744,7 +744,7 @@ declare function wdt:sources($item as item()*) as map(*) {
             else ()
         },
         'filter-by-date' : function($dateFrom as xs:date?, $dateTo as xs:date?) as document-node()* {
-            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint or parent::tei:creation or parent::mei:pubStmt or parent::mei:creation]/root()
+            $wdt:filter-by-date($item, $dateFrom, $dateTo)[parent::tei:imprint or ancestor::tei:origin or parent::tei:creation or parent::mei:pubStmt or parent::mei:creation]/root()
         },
         'sort' : function($params as map(*)?) as document-node()* {
             if(sort:has-index('sources')) then ()
