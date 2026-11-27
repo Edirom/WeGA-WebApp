@@ -599,6 +599,7 @@ $('.preview, .noteMarker').on('click', function(event) {
  * Reuse the click handler so keyboard and pointer previews follow the same path.
  */
 $('span.preview[role="button"], .noteMarker').on('keydown', function(event) {
+    if(event.target !== this) { return } // ignore keydown events that bubble up from descendants (e.g. links in the popover)
     if('Enter' !== event.key && ' ' !== event.key) { return }
 
     event.preventDefault();
