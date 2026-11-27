@@ -490,7 +490,7 @@ $.fn.preview_popover = function() {
             /*  when this is the last div container we push it to the popover and show it
              *  unfinished ajax calls will still update the popover, though.
              */
-            if(container.next().length === 0) {
+            if(container.next().length === 0 && popover_node.hasClass('show')) {
                 popover_data = popover_node.data('bs.popover');
                 popover_data.config.content = container.parents('div.popover-body').children();
                 popover_node.popover('show');
