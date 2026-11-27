@@ -594,11 +594,11 @@ $('.preview, .noteMarker').on('click', function(event) {
 });
 
 /*
- * Give preview spans button-like keyboard activation while leaving native links alone.
+ * Give preview spans and noteMarkers button-like keyboard activation.
  * Prevent scrolling and repeated activations.
  * Reuse the click handler so keyboard and pointer previews follow the same path.
  */
-$('span.preview[role="button"]').on('keydown', function(event) {
+$('span.preview[role="button"], .noteMarker').on('keydown', function(event) {
     if('Enter' !== event.key && ' ' !== event.key) { return }
 
     event.preventDefault();
